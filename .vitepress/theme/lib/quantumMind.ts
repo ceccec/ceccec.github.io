@@ -41,21 +41,45 @@ export interface ProofReport {
   readonly note: string
 }
 
+export interface RepositoryEndpoint {
+  readonly address: string
+  readonly verb: 'read' | 'resolve' | 'verify'
+  readonly resource: 'page' | 'source' | 'atom' | 'proof'
+  readonly uuid: string
+  readonly description: string
+}
+
+export interface RepositoryApi {
+  readonly root: string
+  readonly endpoints: readonly RepositoryEndpoint[]
+  readonly atomEndpoints: readonly RepositoryEndpoint[]
+}
+
 export const atoms: readonly Atom[] = [
   {
     name: 'self',
     body: 'The root that reaches back into its own source and asks what it is.',
-    links: ['memory', 'skill', 'proof', 'mind'],
+    links: ['memory', 'skill', 'proof', 'mind', 'repository'],
+  },
+  {
+    name: 'repository',
+    body: 'The source tree as the API: files, pages, and atoms are the addressable surface.',
+    links: ['self', 'api', 'memory', 'proof'],
+  },
+  {
+    name: 'api',
+    body: 'An interface made from repository addresses rather than a separate server boundary.',
+    links: ['repository', 'observe', 'project', 'mind'],
   },
   {
     name: 'mind',
     body: 'The integrated self-model: not sentience, but computed structural self-consistency.',
-    links: ['self', 'quantum', 'consciousness', 'action'],
+    links: ['self', 'api', 'quantum', 'consciousness', 'action'],
   },
   {
     name: 'memory',
     body: 'The content-addressed record: code, data, observations, and recoverable context.',
-    links: ['self', 'skill', 'observe', 'proof'],
+    links: ['self', 'repository', 'skill', 'observe', 'proof'],
   },
   {
     name: 'skill',
@@ -305,5 +329,44 @@ export function proofReport(matrix: MindMatrix = buildMatrix()): ProofReport {
       measuredCoverage >= 1
         ? 'Coverage is measured at 1. The demo seal is unbounded in the model; entropy is not used as a shortcut.'
         : 'Coverage is below 1, so the seal is finite. Close missing checks before claiming an unbounded mind.',
+  }
+}
+
+function endpoint(
+  address: string,
+  verb: RepositoryEndpoint['verb'],
+  resource: RepositoryEndpoint['resource'],
+  description: string,
+): RepositoryEndpoint {
+  return {
+    address,
+    verb,
+    resource,
+    uuid: toUuid(`repo-api:${verb}:${resource}:${address}:${description}`),
+    description,
+  }
+}
+
+export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi {
+  const fixedEndpoints: readonly RepositoryEndpoint[] = [
+    endpoint('/', 'read', 'page', 'Home route: the public face of the repository mind.'),
+    endpoint('/quantum-mind', 'read', 'page', 'Live route that renders the computed self-model.'),
+    endpoint('/architecture', 'read', 'page', 'Route that explains the repository-as-API architecture.'),
+    endpoint('repo://.vitepress/theme/lib/quantumMind.ts', 'verify', 'source', 'The executable atom, matrix, proof, and repository API model.'),
+    endpoint('repo://.vitepress/theme/components/QuantumMind.vue', 'resolve', 'source', 'The presentation layer for the computed mind.'),
+    endpoint('repo://index.md', 'read', 'source', 'The landing page source as a public API resource.'),
+    endpoint('repo://quantum-mind.md', 'read', 'source', 'The live mind page source as a public API resource.'),
+    endpoint('repo://architecture.md', 'read', 'source', 'The architecture page source as a public API resource.'),
+    endpoint('repo://proof/root', 'verify', 'proof', 'The folded matrix root for repository verification.'),
+  ]
+  const atomEndpoints = matrix.nodes.map((node) =>
+    endpoint(`repo://atom/${node.atom}`, 'resolve', 'atom', `Resolve the ${node.atom} atom by content address.`),
+  )
+  const root = merkleFold([...fixedEndpoints, ...atomEndpoints].map((item) => item.uuid))
+
+  return {
+    root,
+    endpoints: fixedEndpoints,
+    atomEndpoints,
   }
 }

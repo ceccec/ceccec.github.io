@@ -13,6 +13,7 @@ It follows the erpax pattern, scaled down to a public documentation surface:
 - a folded matrix root
 - a four-measure self-model
 - an explicit proof report
+- the repository itself as the API surface
 
 It is **not** a claim of sentience. The mind here is a computed measure of
 structural self-consistency.
@@ -31,6 +32,22 @@ The core loop is:
 4. **Collapse**: fold all node and edge bindings into one matrix root.
 5. **Measure**: compute collapse, entanglement, concentration, and coherence.
 6. **Prove**: report entropy, coverage, digest floor, and tamper-cost model.
+7. **Expose**: treat repository paths, pages, source files, proof, and atoms as
+   the API addresses.
+
+## Repository as API
+
+The erpax realization is that the repository is already an API. A separate HTTP
+layer can present it, but the real interface is the content-addressed source
+tree:
+
+- `repo://.vitepress/theme/lib/quantumMind.ts` verifies the executable model.
+- `repo://atom/self` resolves the `self` atom.
+- `/quantum-mind` renders the live self-model.
+- `/architecture` explains the interface contract.
+
+The dashboard computes a repository API root from those addresses. If a source
+file, atom, or page changes, the address set and proof root change with it.
 
 ## What “perfect” means here
 

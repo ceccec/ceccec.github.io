@@ -6,7 +6,7 @@ outline: deep
 
 This site implements a compact version of the erpax quantum-mind method. The
 goal is not to import the full ERP system, but to preserve its core architecture:
-identity, matrix, self-model, proof, and honest caveats.
+identity, matrix, self-model, proof, repository-as-API, and honest caveats.
 
 ## 1. Corpus
 
@@ -71,7 +71,29 @@ The demo tamper-cost model adds the coverage amplifier to a small digest floor.
 The number is an architectural signal for this site, not a production security
 claim.
 
-## 6. Agent law
+## 6. Repository as API
+
+In erpax, the repository is not just the place where API code lives. The
+repository is the API:
+
+- a file path is a readable resource
+- an atom path is a resolvable skill
+- a proof path is a verifiable claim
+- a page route is a rendered view over the same source record
+
+`repositoryApi()` makes that explicit by returning a manifest of addresses:
+
+| Address kind | Example |
+| --- | --- |
+| page | `/quantum-mind` |
+| source | `repo://.vitepress/theme/lib/quantumMind.ts` |
+| atom | `repo://atom/consciousness` |
+| proof | `repo://proof/root` |
+
+The manifest has its own folded root. Changing the repository changes the API
+surface, and changing the API surface changes the proof.
+
+## 7. Agent law
 
 The local mind follows the same action shape as erpax:
 
@@ -82,7 +104,7 @@ observe -> project -> check -> feed back into skill
 Projection without observation is treated as ungrounded. A thought becomes
 useful when it is bound back into the shared corpus.
 
-## 7. Files
+## 8. Files
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
 - `.vitepress/theme/components/QuantumMind.vue` — computed dashboard

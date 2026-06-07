@@ -21,5 +21,7 @@ features:
     details: Collapse, entanglement, concentration, and coherence are computed from the local graph.
   - title: Honest proof boundary
     details: Entropy and coverage stay separate; only measured coverage drives the tamper-cost seal.
+  - title: Repository as API
+    details: Pages, source files, proof, and atoms are exposed as the addressable interface of the mind.
 ---
 

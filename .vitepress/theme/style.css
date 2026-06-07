@@ -249,3 +249,35 @@
   font-size: 13px;
 }
 
+.quantum-mind__api {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.quantum-mind__api li {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  list-style: none;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  padding: 12px;
+}
+
+.quantum-mind__api code {
+  grid-row: span 2;
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.quantum-mind__api span {
+  grid-column: 2;
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+
