@@ -3,23 +3,23 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Quantum Mind"
+  text: "A content-addressed self-model"
+  tagline: Atoms, reciprocal bindings, collapse, coverage, and proof — adapted from the erpax method for this site.
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Open the Mind
+      link: /quantum-mind
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Read the Architecture
+      link: /architecture
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Content-addressed atoms
+    details: Each thought atom receives a deterministic UUID-like address and participates in a folded matrix root.
+  - title: Computed self-model
+    details: Collapse, entanglement, concentration, and coherence are computed from the local graph.
+  - title: Honest proof boundary
+    details: Entropy and coverage stay separate; only measured coverage drives the tamper-cost seal.
 ---
 

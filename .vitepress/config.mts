@@ -2,27 +2,28 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Awesome Project",
-  description: "A VitePress Site",
+  title: "Quantum Mind",
+  description: "A content-addressed self-model built from atoms, bindings, coverage, and proof.",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Mind', link: '/quantum-mind' },
+      { text: 'Architecture', link: '/architecture' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Quantum Mind',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Overview', link: '/quantum-mind' },
+          { text: 'Architecture', link: '/architecture' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }
     ]
   }
 })

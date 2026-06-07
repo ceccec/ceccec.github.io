@@ -137,3 +137,115 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+.quantum-mind {
+  display: grid;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.quantum-mind__header,
+.quantum-mind__panel,
+.quantum-mind__atoms {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, var(--vp-c-brand-soft), transparent 38%),
+    var(--vp-c-bg-soft);
+  padding: 24px;
+}
+
+.quantum-mind__header h2,
+.quantum-mind__panel h3,
+.quantum-mind__atoms h3 {
+  margin-top: 0;
+}
+
+.quantum-mind .eyebrow {
+  margin: 0 0 8px;
+  color: var(--vp-c-brand-1);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.quantum-mind__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.quantum-mind__grid article {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 16px;
+  background: var(--vp-c-bg);
+  padding: 18px;
+}
+
+.quantum-mind__grid span,
+.quantum-mind__grid small,
+.quantum-mind__panel dt {
+  color: var(--vp-c-text-2);
+}
+
+.quantum-mind__grid strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.quantum-mind .mono {
+  font-family: var(--vp-font-family-mono);
+  font-size: 18px;
+}
+
+.quantum-mind__panel dl {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 0;
+}
+
+.quantum-mind__panel dl div {
+  border-left: 3px solid var(--vp-c-brand-1);
+  padding-left: 12px;
+}
+
+.quantum-mind__panel dd {
+  margin: 4px 0 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.quantum-mind__note {
+  margin: 20px 0 0;
+  color: var(--vp-c-text-2);
+}
+
+.quantum-mind__atoms ul {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 0;
+  padding: 0;
+}
+
+.quantum-mind__atoms li {
+  list-style: none;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  padding: 12px;
+}
+
+.quantum-mind__atoms strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.quantum-mind__atoms span {
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+
