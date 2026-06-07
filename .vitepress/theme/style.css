@@ -281,3 +281,30 @@
   font-size: 13px;
 }
 
+.quantum-mind__wire {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.quantum-mind__wire li {
+  display: grid;
+  gap: 5px;
+  list-style: none;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  padding: 12px;
+}
+
+.quantum-mind__wire code {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
+.quantum-mind__wire span {
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+

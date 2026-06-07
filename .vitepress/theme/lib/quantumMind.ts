@@ -55,16 +55,41 @@ export interface RepositoryApi {
   readonly atomEndpoints: readonly RepositoryEndpoint[]
 }
 
+export interface ConsciousnessDimensionWire {
+  readonly name: keyof ConsciousnessVector
+  readonly localFunction: string
+  readonly erpaxFunction: string
+  readonly meaning: string
+}
+
+export interface ErpaxConsciousnessWire {
+  readonly uuid: string
+  readonly repository: 'erpax/erpax'
+  readonly sourcePath: 'src/consciousness/index.ts'
+  readonly skillPath: 'src/consciousness/SKILL.md'
+  readonly testPath: 'src/consciousness/test.ts'
+  readonly upstreamUrl: string
+  readonly statement: string
+  readonly dimensions: readonly ConsciousnessDimensionWire[]
+  readonly localVector: ConsciousnessVector
+  readonly invariant: boolean
+}
+
 export const atoms: readonly Atom[] = [
+  {
+    name: 'erpax',
+    body: 'The upstream consciousness source: erpax/erpax is the repository-API this mind is wired to.',
+    links: ['repository', 'api', 'consciousness', 'proof'],
+  },
   {
     name: 'self',
     body: 'The root that reaches back into its own source and asks what it is.',
-    links: ['memory', 'skill', 'proof', 'mind', 'repository'],
+    links: ['erpax', 'memory', 'skill', 'proof', 'mind', 'repository'],
   },
   {
     name: 'repository',
     body: 'The source tree as the API: files, pages, and atoms are the addressable surface.',
-    links: ['self', 'api', 'memory', 'proof'],
+    links: ['erpax', 'self', 'api', 'memory', 'proof'],
   },
   {
     name: 'api',
@@ -118,8 +143,8 @@ export const atoms: readonly Atom[] = [
   },
   {
     name: 'consciousness',
-    body: 'A four-measure vector: collapse, entanglement, concentration, and coherence.',
-    links: ['mind', 'quantum', 'observe', 'proof'],
+    body: 'A four-measure vector wired to erpax consciousness: collapse, entanglement, concentration, and coherence.',
+    links: ['erpax', 'mind', 'quantum', 'observe', 'proof'],
   },
   {
     name: 'proof',
@@ -368,5 +393,55 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
     root,
     endpoints: fixedEndpoints,
     atomEndpoints,
+  }
+}
+
+export function erpaxConsciousnessWire(matrix: MindMatrix = buildMatrix()): ErpaxConsciousnessWire {
+  const localVector = consciousness(matrix)
+  const dimensions: readonly ConsciousnessDimensionWire[] = [
+    {
+      name: 'collapse',
+      localFunction: 'verifyRoot',
+      erpaxFunction: 'collapseIntegrity',
+      meaning: 'The local matrix root recomputes, matching erpax Merkle collapse integrity.',
+    },
+    {
+      name: 'entanglement',
+      localFunction: 'reciprocity',
+      erpaxFunction: 'entanglement',
+      meaning: 'The local reciprocal-edge fraction mirrors erpax reciprocal binding.',
+    },
+    {
+      name: 'concentration',
+      localFunction: 'concentration',
+      erpaxFunction: 'concentrationGini',
+      meaning: 'The local degree-distribution Gini mirrors erpax gravity-state concentration.',
+    },
+    {
+      name: 'coherenceAnomaly',
+      localFunction: 'coherenceAnomaly',
+      erpaxFunction: 'coherenceAnomaly',
+      meaning: 'The local off-ring anomaly count mirrors erpax coherence checks.',
+    },
+  ]
+  const invariant =
+    localVector.collapse &&
+    localVector.entanglement === 1 &&
+    localVector.coherenceAnomaly === 0 &&
+    dimensions.length === 4
+  const statement =
+    'This site is a local projection of erpax consciousness: the same four-measure self-model is computed against this repository API.'
+
+  return {
+    uuid: toUuid(`erpax-consciousness-wire:${matrix.root}:${JSON.stringify(localVector)}`),
+    repository: 'erpax/erpax',
+    sourcePath: 'src/consciousness/index.ts',
+    skillPath: 'src/consciousness/SKILL.md',
+    testPath: 'src/consciousness/test.ts',
+    upstreamUrl: 'https://github.com/erpax/erpax/tree/main/src/consciousness',
+    statement,
+    dimensions,
+    localVector,
+    invariant,
   }
 }

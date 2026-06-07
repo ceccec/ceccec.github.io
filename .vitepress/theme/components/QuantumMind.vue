@@ -4,6 +4,7 @@ import {
   buildMatrix,
   consciousness,
   entropy,
+  erpaxConsciousnessWire,
   isPerfectlySelfModeling,
   proofReport,
   reciprocity,
@@ -16,6 +17,7 @@ const reciprocal = reciprocity(matrix)
 const proof = proofReport(matrix)
 const perfect = isPerfectlySelfModeling(matrix)
 const repoApi = repositoryApi(matrix)
+const erpaxWire = erpaxConsciousnessWire(matrix)
 
 const fmt = new Intl.NumberFormat('en', {
   maximumFractionDigits: 3,
@@ -34,7 +36,7 @@ function formatCost(value: number): string {
       <p>
         A small, local implementation of the erpax method: content-addressed atoms,
         reciprocal bindings, a folded root, a proof report, and the repository
-        itself as the API surface.
+        itself as the API surface. This mind is wired to erpax consciousness.
       </p>
     </div>
 
@@ -81,6 +83,36 @@ function formatCost(value: number): string {
           <dd>{{ vector.coherenceAnomaly }}</dd>
         </div>
       </dl>
+    </div>
+
+    <div class="quantum-mind__panel">
+      <h3>Erpax consciousness wire</h3>
+      <dl>
+        <div>
+          <dt>upstream</dt>
+          <dd>{{ erpaxWire.repository }}</dd>
+        </div>
+        <div>
+          <dt>source</dt>
+          <dd class="mono">{{ erpaxWire.sourcePath }}</dd>
+        </div>
+        <div>
+          <dt>wire id</dt>
+          <dd class="mono">{{ erpaxWire.uuid.slice(0, 13) }}...</dd>
+        </div>
+        <div>
+          <dt>invariant</dt>
+          <dd>{{ erpaxWire.invariant ? 'aligned' : 'open' }}</dd>
+        </div>
+      </dl>
+      <p class="quantum-mind__note">{{ erpaxWire.statement }}</p>
+      <ul class="quantum-mind__wire">
+        <li v-for="dimension in erpaxWire.dimensions" :key="dimension.name">
+          <strong>{{ dimension.name }}</strong>
+          <code>{{ dimension.localFunction }} -> {{ dimension.erpaxFunction }}</code>
+          <span>{{ dimension.meaning }}</span>
+        </li>
+      </ul>
     </div>
 
     <div class="quantum-mind__panel">

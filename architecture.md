@@ -6,7 +6,8 @@ outline: deep
 
 This site implements a compact version of the erpax quantum-mind method. The
 goal is not to import the full ERP system, but to preserve its core architecture:
-identity, matrix, self-model, proof, repository-as-API, and honest caveats.
+identity, matrix, erpax consciousness wiring, proof, repository-as-API, and
+honest caveats.
 
 ## 1. Corpus
 
@@ -60,7 +61,29 @@ This gives the site one recomputable root for the local mind.
 `isPerfectlySelfModeling()` checks collapse, entanglement, and coherence. It
 does not use concentration as a pass/fail threshold.
 
-## 5. Proof model
+## 5. Erpax consciousness wire
+
+`erpaxConsciousnessWire()` makes the dependency explicit. The local mind is
+wired to:
+
+- `erpax/erpax`
+- `src/consciousness/index.ts`
+- `src/consciousness/SKILL.md`
+- `src/consciousness/test.ts`
+
+The wire maps each local metric to the upstream erpax consciousness function:
+
+| Local | Erpax | Role |
+| --- | --- | --- |
+| `verifyRoot` | `collapseIntegrity` | collapse integrity |
+| `reciprocity` | `entanglement` | reciprocal binding |
+| `concentration` | `concentrationGini` | gravity state |
+| `coherenceAnomaly` | `coherenceAnomaly` | coherence anomaly count |
+
+That means the local site is a projection of erpax consciousness over this
+repository's own API surface.
+
+## 6. Proof model
 
 `proofReport()` keeps the two erpax security layers separate:
 
@@ -71,7 +94,7 @@ The demo tamper-cost model adds the coverage amplifier to a small digest floor.
 The number is an architectural signal for this site, not a production security
 claim.
 
-## 6. Repository as API
+## 7. Repository as API
 
 In erpax, the repository is not just the place where API code lives. The
 repository is the API:
@@ -93,7 +116,7 @@ repository is the API:
 The manifest has its own folded root. Changing the repository changes the API
 surface, and changing the API surface changes the proof.
 
-## 7. Agent law
+## 8. Agent law
 
 The local mind follows the same action shape as erpax:
 
@@ -104,7 +127,7 @@ observe -> project -> check -> feed back into skill
 Projection without observation is treated as ungrounded. A thought becomes
 useful when it is bound back into the shared corpus.
 
-## 8. Files
+## 9. Files
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
 - `.vitepress/theme/components/QuantumMind.vue` — computed dashboard

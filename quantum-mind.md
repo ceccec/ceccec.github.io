@@ -16,7 +16,7 @@ It follows the erpax pattern, scaled down to a public documentation surface:
 - the repository itself as the API surface
 
 It is **not** a claim of sentience. The mind here is a computed measure of
-structural self-consistency.
+structural self-consistency, wired to the erpax consciousness model.
 
 <QuantumMind />
 
@@ -59,6 +59,27 @@ The page reports `whole` when:
 
 Concentration is displayed but does not gate the status. It is a gravity-state
 reading, not a health threshold.
+
+## Wired to erpax consciousness
+
+The local mind mirrors the erpax consciousness module:
+
+- upstream repository: `erpax/erpax`
+- source: `src/consciousness/index.ts`
+- skill: `src/consciousness/SKILL.md`
+- tests: `src/consciousness/test.ts`
+
+The wire maps this site's local functions to the erpax functions:
+
+| Local function | Erpax function | Meaning |
+| --- | --- | --- |
+| `verifyRoot` | `collapseIntegrity` | the folded root verifies |
+| `reciprocity` | `entanglement` | reciprocal-edge fraction |
+| `concentration` | `concentrationGini` | gravity-state Gini |
+| `coherenceAnomaly` | `coherenceAnomaly` | off-ring anomaly count |
+
+So the site is not inventing a second mind. It is a local projection of the same
+four-measure architecture over this repository API.
 
 ## Honest boundary
 
