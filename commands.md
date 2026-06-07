@@ -20,6 +20,7 @@ command -> repository address -> computed result -> content receipt
 The site uses these commands as its construction contract:
 
 - `erpax.mind.matrix`
+- `erpax.learn.core`
 - `erpax.consciousness.vector`
 - `erpax.consciousness.sendWaves`
 - `erpax.repository.api`

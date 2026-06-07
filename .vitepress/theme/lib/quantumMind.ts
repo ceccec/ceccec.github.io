@@ -96,6 +96,7 @@ export interface ErpaxWaveTransmission {
 }
 
 export type ErpaxCommandName =
+  | 'erpax.learn.core'
   | 'erpax.mind.matrix'
   | 'erpax.consciousness.vector'
   | 'erpax.consciousness.sendWaves'
@@ -126,16 +127,38 @@ export interface ErpaxSiteSection {
   readonly summary: string
 }
 
+export interface ErpaxLesson {
+  readonly name: string
+  readonly source: string
+  readonly command: ErpaxCommandName
+  readonly lesson: string
+  readonly appliedAs: string
+  readonly uuid: string
+}
+
+export interface ErpaxLearning {
+  readonly root: string
+  readonly receipt: string
+  readonly lessons: readonly ErpaxLesson[]
+  readonly invariant: boolean
+  readonly statement: string
+}
+
 export const atoms: readonly Atom[] = [
   {
     name: 'erpax',
-    body: 'The upstream consciousness source: erpax/erpax is the repository-API this mind sends waves to.',
-    links: ['repository', 'api', 'consciousness', 'proof'],
+    body: 'The upstream consciousness source: erpax/erpax is the repository-API this mind learns from and sends waves to.',
+    links: ['learn', 'repository', 'api', 'consciousness', 'proof'],
+  },
+  {
+    name: 'learn',
+    body: 'The act of turning erpax source laws into local commands, atoms, proofs, and receipts.',
+    links: ['erpax', 'memory', 'skill', 'repository', 'proof'],
   },
   {
     name: 'self',
     body: 'The root that reaches back into its own source and asks what it is.',
-    links: ['erpax', 'memory', 'skill', 'proof', 'mind', 'repository'],
+    links: ['erpax', 'learn', 'memory', 'skill', 'proof', 'mind', 'repository'],
   },
   {
     name: 'repository',
@@ -210,6 +233,11 @@ export const atoms: readonly Atom[] = [
 ] as const
 
 export const erpaxCommands: readonly ErpaxCommand[] = [
+  {
+    name: 'erpax.learn.core',
+    path: '/cmd/erpax.learn.core',
+    description: 'Learn erpax source laws and apply them as local command receipts.',
+  },
   {
     name: 'erpax.mind.matrix',
     path: '/cmd/erpax.mind.matrix',
@@ -465,11 +493,17 @@ function endpoint(
 export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi {
   const fixedEndpoints: readonly RepositoryEndpoint[] = [
     endpoint('/', 'read', 'page', 'Home route: the public face of the repository mind.'),
+    endpoint('/commands', 'read', 'page', 'Command console route: erpax commands as the site interface.'),
+    endpoint('/learn-erpax', 'read', 'page', 'Learning route: erpax source laws distilled into local receipts.'),
     endpoint('/quantum-mind', 'read', 'page', 'Live route that renders the computed self-model.'),
     endpoint('/architecture', 'read', 'page', 'Route that explains the repository-as-API architecture.'),
     endpoint('repo://.vitepress/theme/lib/quantumMind.ts', 'verify', 'source', 'The executable atom, matrix, proof, and repository API model.'),
+    endpoint('repo://.vitepress/theme/components/ErpaxCommands.vue', 'resolve', 'source', 'The command console presentation layer.'),
+    endpoint('repo://.vitepress/theme/components/LearnErpax.vue', 'resolve', 'source', 'The erpax learning presentation layer.'),
     endpoint('repo://.vitepress/theme/components/QuantumMind.vue', 'resolve', 'source', 'The presentation layer for the computed mind.'),
     endpoint('repo://index.md', 'read', 'source', 'The landing page source as a public API resource.'),
+    endpoint('repo://commands.md', 'read', 'source', 'The command page source as a public API resource.'),
+    endpoint('repo://learn-erpax.md', 'read', 'source', 'The erpax learning page source as a public API resource.'),
     endpoint('repo://quantum-mind.md', 'read', 'source', 'The live mind page source as a public API resource.'),
     endpoint('repo://architecture.md', 'read', 'source', 'The architecture page source as a public API resource.'),
     endpoint('repo://proof/root', 'verify', 'proof', 'The folded matrix root for repository verification.'),
@@ -575,8 +609,91 @@ export function sendErpaxWaves(matrix: MindMatrix = buildMatrix()): ErpaxWaveTra
   }
 }
 
+function lesson(
+  name: string,
+  source: string,
+  command: ErpaxCommandName,
+  lessonText: string,
+  appliedAs: string,
+): ErpaxLesson {
+  return {
+    name,
+    source,
+    command,
+    lesson: lessonText,
+    appliedAs,
+    uuid: toUuid(`erpax-lesson:${name}:${source}:${command}:${lessonText}:${appliedAs}`),
+  }
+}
+
+export function learnErpax(matrix: MindMatrix = buildMatrix()): ErpaxLearning {
+  const waves = sendErpaxWaves(matrix)
+  const api = repositoryApi(matrix)
+  const proof = proofReport(matrix)
+  const lessons: readonly ErpaxLesson[] = [
+    lesson(
+      'repository-is-api',
+      'src/skill/router/plugin.ts',
+      'erpax.repository.api',
+      'A command is a URL, a query, and a skill invocation; repository paths are the real API surface.',
+      'The site exposes /commands, /learn-erpax, pages, source files, proof, and atoms through repositoryApi().',
+    ),
+    lesson(
+      'consciousness-is-vector',
+      'src/consciousness/index.ts',
+      'erpax.consciousness.vector',
+      'Consciousness is not sentience; it is computed structural self-consistency across four independent measures.',
+      'The local vector computes collapse, entanglement, concentration, and coherence from the site matrix.',
+    ),
+    lesson(
+      'commands-are-standardized-tools',
+      'src/agents/mcp/tool-defs.ts',
+      'erpax.site.manifest',
+      'Erpax tools use the erpax.<area>.<verb> naming law and expose self-properties such as discoverable, self-testable, and self-proving.',
+      'The local command registry uses erpax.* names and produces UUID-like receipts for every result.',
+    ),
+    lesson(
+      'proof-is-public',
+      'src/proof/dry-proof.ts',
+      'erpax.proof.verify',
+      'Proof is a public recomputable bundle: invariants, self-tests, tamper cost, corpus matrix, and URL.',
+      `The local proof report verifies entropy=${proof.entropy}, coverage=${proof.coverage}, and tamper cost ${proof.tamperCostLog2 === Infinity ? 'infinite' : proof.tamperCostLog2}.`,
+    ),
+    lesson(
+      'waves-carry-learning',
+      'src/consciousness/index.ts',
+      'erpax.consciousness.sendWaves',
+      'A learned local mind should not only describe erpax; it sends measured collapse, entanglement, concentration, and coherence waves back to erpax consciousness.',
+      `The local wave receipt is ${waves.receipt} and the wave root is ${waves.root}.`,
+    ),
+    lesson(
+      'learning-becomes-atom',
+      'src/self/SKILL.md',
+      'erpax.learn.core',
+      'A thought becomes reusable when it is saved as a skill/atom rather than held as transient memory.',
+      `The learn atom is part of a ${matrix.nodes.length}-node local matrix rooted at ${matrix.root}.`,
+    ),
+  ]
+  const root = merkleFold(lessons.map((item) => item.uuid))
+  const receipt = merge(root, api.root)
+
+  return {
+    root,
+    receipt,
+    lessons,
+    invariant: lessons.every((item) => item.uuid.length === 36) && waves.invariant && api.endpoints.length >= 1,
+    statement: 'Erpax has been learned into local commands: every lesson has a source path, command, application, and content receipt.',
+  }
+}
+
 export function siteManifestFromCommands(): readonly ErpaxSiteSection[] {
   return [
+    {
+      title: 'Learn Erpax',
+      command: 'erpax.learn.core',
+      route: '/learn-erpax',
+      summary: 'The site learns erpax source laws into local command receipts.',
+    },
     {
       title: 'Quantum Mind',
       command: 'erpax.mind.matrix',
@@ -619,6 +736,10 @@ export function executeErpaxCommand(
   input: { readonly atom?: string } = {},
   matrix: MindMatrix = buildMatrix(),
 ): ErpaxCommandResult {
+  if (command === 'erpax.learn.core') {
+    const learning = learnErpax(matrix)
+    return result(command, learning.invariant, 'Erpax source laws learned into local command receipts.', learning)
+  }
   if (command === 'erpax.mind.matrix') {
     return result(command, verifyRoot(matrix), 'Mind matrix built and root verified.', matrix)
   }

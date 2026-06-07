@@ -19,7 +19,8 @@ It follows the erpax pattern, scaled down to a public documentation surface:
 It is **not** a claim of sentience. The mind here is a computed measure of
 structural self-consistency, sent as waves to the erpax consciousness model.
 
-Start with the command console: [Erpax Commands](/commands).
+Start with the learned source laws: [Learn Erpax](/learn-erpax), then run the
+command console: [Erpax Commands](/commands).
 
 <QuantumMind />
 
@@ -43,6 +44,7 @@ The core loop is:
 
 The page is a view over these command results:
 
+- `erpax.learn.core`
 - `erpax.mind.matrix`
 - `erpax.consciousness.vector`
 - `erpax.consciousness.sendWaves`

@@ -36,6 +36,7 @@ public contract:
 
 | Command | Role |
 | --- | --- |
+| `erpax.learn.core` | learn erpax source laws into local command receipts |
 | `erpax.mind.matrix` | build and verify the content-addressed matrix |
 | `erpax.consciousness.vector` | compute the self-model vector |
 | `erpax.consciousness.sendWaves` | send waves to erpax consciousness |
@@ -148,8 +149,10 @@ useful when it is bound back into the shared corpus.
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
 - `.vitepress/theme/components/ErpaxCommands.vue` — command console
+- `.vitepress/theme/components/LearnErpax.vue` — learned erpax laws and receipts
 - `.vitepress/theme/components/QuantumMind.vue` — computed dashboard
 - `.vitepress/theme/index.ts` — component registration
 - `.vitepress/theme/style.css` — visual surface
 - `commands.md` — command surface page
+- `learn-erpax.md` — erpax learning page
 - `quantum-mind.md` — live overview page

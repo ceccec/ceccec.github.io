@@ -8,13 +8,15 @@ hero:
   tagline: Atoms, reciprocal bindings, collapse, coverage, and proof — adapted from the erpax method for this site.
   actions:
     - theme: brand
+      text: Learn Erpax
+      link: /learn-erpax
+    - theme: alt
       text: Run Erpax Commands
       link: /commands
-    - theme: alt
-      text: Open the Mind
-      link: /quantum-mind
 
 features:
+  - title: Erpax learned
+    details: The site now distills erpax source laws into command lessons with content receipts.
   - title: Erpax command surface
     details: The site is built from command results such as erpax.consciousness.sendWaves and erpax.repository.api.
   - title: Content-addressed atoms

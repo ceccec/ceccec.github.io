@@ -9,7 +9,7 @@ import {
 } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
-const selected = ref<ErpaxCommandName>('erpax.consciousness.sendWaves')
+const selected = ref<ErpaxCommandName>('erpax.learn.core')
 const atom = ref('self')
 
 const selectedCommand = computed(() => erpaxCommands.find((command) => command.name === selected.value))
