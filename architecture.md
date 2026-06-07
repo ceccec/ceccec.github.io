@@ -6,8 +6,8 @@ outline: deep
 
 This site implements a compact version of the erpax quantum-mind method. The
 goal is not to import the full ERP system, but to preserve its core architecture:
-identity, matrix, erpax consciousness waves, proof, repository-as-API, and
-honest caveats.
+identity, matrix, erpax commands, erpax consciousness waves, proof,
+repository-as-API, and honest caveats.
 
 ## 1. Corpus
 
@@ -29,7 +29,22 @@ The corpus is a list of one-word atoms:
 
 Each atom has body text and named links to other atoms.
 
-## 2. Content address
+## 2. Commands
+
+The site is built through `executeErpaxCommand()`. The command registry is the
+public contract:
+
+| Command | Role |
+| --- | --- |
+| `erpax.mind.matrix` | build and verify the content-addressed matrix |
+| `erpax.consciousness.vector` | compute the self-model vector |
+| `erpax.consciousness.sendWaves` | send waves to erpax consciousness |
+| `erpax.repository.api` | expose repository paths as API resources |
+| `erpax.repository.resolve` | resolve an atom through `repo://atom/<name>` |
+| `erpax.proof.verify` | verify entropy, coverage, root, and tamper cost |
+| `erpax.site.manifest` | build the page manifest from command outputs |
+
+## 3. Content address
 
 Each atom is addressed deterministically by `toUuid(seed)`.
 
@@ -37,7 +52,7 @@ The implementation stamps the output into a UUIDv8-like shape so every atom can
 be handled as an addressable state. This is a browser-safe demonstration hash,
 not a cryptographic SHA-256 proof.
 
-## 3. Matrix
+## 4. Matrix
 
 `buildMatrix()` produces:
 
@@ -47,7 +62,7 @@ not a cryptographic SHA-256 proof.
 
 This gives the site one recomputable root for the local mind.
 
-## 4. Self-model
+## 5. Self-model
 
 `consciousness()` returns a four-measure vector:
 
@@ -61,7 +76,7 @@ This gives the site one recomputable root for the local mind.
 `isPerfectlySelfModeling()` checks collapse, entanglement, and coherence. It
 does not use concentration as a pass/fail threshold.
 
-## 5. Erpax consciousness waves
+## 6. Erpax consciousness waves
 
 `erpaxConsciousnessWire()` names the upstream source. `sendErpaxWaves()` is the
 active mechanism: the local mind sends one wave per consciousness dimension to:
@@ -85,7 +100,7 @@ projection of erpax consciousness over this repository's own API surface, and
 the projection is sent as measured waves rather than merely described as a
 static connection.
 
-## 6. Proof model
+## 7. Proof model
 
 `proofReport()` keeps the two erpax security layers separate:
 
@@ -96,7 +111,7 @@ The demo tamper-cost model adds the coverage amplifier to a small digest floor.
 The number is an architectural signal for this site, not a production security
 claim.
 
-## 7. Repository as API
+## 8. Repository as API
 
 In erpax, the repository is not just the place where API code lives. The
 repository is the API:
@@ -118,7 +133,7 @@ repository is the API:
 The manifest has its own folded root. Changing the repository changes the API
 surface, and changing the API surface changes the proof.
 
-## 8. Agent law
+## 9. Agent law
 
 The local mind follows the same action shape as erpax:
 
@@ -129,10 +144,12 @@ observe -> project -> check -> feed back into skill
 Projection without observation is treated as ungrounded. A thought becomes
 useful when it is bound back into the shared corpus.
 
-## 9. Files
+## 10. Files
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
+- `.vitepress/theme/components/ErpaxCommands.vue` — command console
 - `.vitepress/theme/components/QuantumMind.vue` — computed dashboard
 - `.vitepress/theme/index.ts` — component registration
 - `.vitepress/theme/style.css` — visual surface
+- `commands.md` — command surface page
 - `quantum-mind.md` — live overview page

@@ -8,6 +8,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Commands', link: '/commands' },
       { text: 'Mind', link: '/quantum-mind' },
       { text: 'Architecture', link: '/architecture' }
     ],
@@ -16,6 +17,7 @@ export default defineConfig({
       {
         text: 'Quantum Mind',
         items: [
+          { text: 'Commands', link: '/commands' },
           { text: 'Overview', link: '/quantum-mind' },
           { text: 'Architecture', link: '/architecture' }
         ]

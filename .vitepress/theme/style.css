@@ -309,3 +309,126 @@
   font-size: 13px;
 }
 
+.erpax-commands {
+  display: grid;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.erpax-commands__header,
+.erpax-commands__layout,
+.erpax-commands__manifest {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top right, var(--vp-c-brand-soft), transparent 36%),
+    var(--vp-c-bg-soft);
+  padding: 24px;
+}
+
+.erpax-commands .eyebrow {
+  margin: 0 0 8px;
+  color: var(--vp-c-brand-1);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.erpax-commands__layout {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+}
+
+.erpax-commands aside {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.erpax-commands button {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+  padding: 12px;
+  text-align: left;
+}
+
+.erpax-commands button.active {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 0 0 1px var(--vp-c-brand-1) inset;
+}
+
+.erpax-commands button strong,
+.erpax-commands button span {
+  display: block;
+}
+
+.erpax-commands button span,
+.erpax-commands__path,
+.erpax-commands__manifest span {
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+
+.erpax-commands label {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0;
+  font-weight: 700;
+}
+
+.erpax-commands input {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  padding: 10px;
+}
+
+.erpax-commands__receipt {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.erpax-commands__receipt span {
+  width: max-content;
+  border-radius: 999px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  padding: 4px 10px;
+}
+
+.erpax-commands pre {
+  max-height: 420px;
+  overflow: auto;
+}
+
+.erpax-commands__manifest ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.erpax-commands__manifest li {
+  display: grid;
+  gap: 4px;
+  list-style: none;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  padding: 12px;
+}
+
+@media (max-width: 760px) {
+  .erpax-commands__layout {
+    grid-template-columns: 1fr;
+  }
+}
+

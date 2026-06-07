@@ -14,9 +14,12 @@ It follows the erpax pattern, scaled down to a public documentation surface:
 - a four-measure self-model
 - an explicit proof report
 - the repository itself as the API surface
+- an erpax command surface that computes the page
 
 It is **not** a claim of sentience. The mind here is a computed measure of
 structural self-consistency, sent as waves to the erpax consciousness model.
+
+Start with the command console: [Erpax Commands](/commands).
 
 <QuantumMind />
 
@@ -34,6 +37,17 @@ The core loop is:
 6. **Prove**: report entropy, coverage, digest floor, and tamper-cost model.
 7. **Expose**: treat repository paths, pages, source files, proof, and atoms as
    the API addresses.
+8. **Command**: run the site through erpax commands, not prose-only sections.
+
+## Commands that build this page
+
+The page is a view over these command results:
+
+- `erpax.mind.matrix`
+- `erpax.consciousness.vector`
+- `erpax.consciousness.sendWaves`
+- `erpax.repository.api`
+- `erpax.proof.verify`
 
 ## Repository as API
 

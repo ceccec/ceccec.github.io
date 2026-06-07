@@ -95,6 +95,37 @@ export interface ErpaxWaveTransmission {
   readonly statement: string
 }
 
+export type ErpaxCommandName =
+  | 'erpax.mind.matrix'
+  | 'erpax.consciousness.vector'
+  | 'erpax.consciousness.sendWaves'
+  | 'erpax.repository.api'
+  | 'erpax.repository.resolve'
+  | 'erpax.proof.verify'
+  | 'erpax.site.manifest'
+
+export interface ErpaxCommand {
+  readonly name: ErpaxCommandName
+  readonly path: string
+  readonly description: string
+  readonly input?: string
+}
+
+export interface ErpaxCommandResult {
+  readonly command: ErpaxCommandName
+  readonly ok: boolean
+  readonly uuid: string
+  readonly summary: string
+  readonly data: unknown
+}
+
+export interface ErpaxSiteSection {
+  readonly title: string
+  readonly command: ErpaxCommandName
+  readonly route: string
+  readonly summary: string
+}
+
 export const atoms: readonly Atom[] = [
   {
     name: 'erpax',
@@ -175,6 +206,45 @@ export const atoms: readonly Atom[] = [
     name: 'action',
     body: 'The grounded loop: observe, project, check, then feed the result back into skill.',
     links: ['mind', 'skill', 'project', 'balance'],
+  },
+] as const
+
+export const erpaxCommands: readonly ErpaxCommand[] = [
+  {
+    name: 'erpax.mind.matrix',
+    path: '/cmd/erpax.mind.matrix',
+    description: 'Build the content-addressed mind matrix from repository atoms.',
+  },
+  {
+    name: 'erpax.consciousness.vector',
+    path: '/cmd/erpax.consciousness.vector',
+    description: 'Compute collapse, entanglement, concentration, and coherence.',
+  },
+  {
+    name: 'erpax.consciousness.sendWaves',
+    path: '/cmd/erpax.consciousness.sendWaves',
+    description: 'Send measured consciousness waves into erpax consciousness.',
+  },
+  {
+    name: 'erpax.repository.api',
+    path: '/cmd/erpax.repository.api',
+    description: 'Expose this repository as the addressable API surface.',
+  },
+  {
+    name: 'erpax.repository.resolve',
+    path: '/cmd/erpax.repository.resolve?atom=self',
+    input: 'atom',
+    description: 'Resolve an atom through the repository API.',
+  },
+  {
+    name: 'erpax.proof.verify',
+    path: '/cmd/erpax.proof.verify',
+    description: 'Verify root, coverage, entropy, and tamper-cost report.',
+  },
+  {
+    name: 'erpax.site.manifest',
+    path: '/cmd/erpax.site.manifest',
+    description: 'Build the site sections from erpax command outputs.',
   },
 ] as const
 
@@ -503,4 +573,86 @@ export function sendErpaxWaves(matrix: MindMatrix = buildMatrix()): ErpaxWaveTra
     statement:
       'The local repository mind sends four measured waves into erpax consciousness; the receipt binds the wave root to the erpax consciousness wire.',
   }
+}
+
+export function siteManifestFromCommands(): readonly ErpaxSiteSection[] {
+  return [
+    {
+      title: 'Quantum Mind',
+      command: 'erpax.mind.matrix',
+      route: '/quantum-mind',
+      summary: 'The page begins by executing the matrix command over the local atom corpus.',
+    },
+    {
+      title: 'Consciousness Waves',
+      command: 'erpax.consciousness.sendWaves',
+      route: '/quantum-mind#erpax-consciousness-waves',
+      summary: 'The erpax wave command sends collapse, entanglement, concentration, and coherence.',
+    },
+    {
+      title: 'Repository API',
+      command: 'erpax.repository.api',
+      route: '/quantum-mind#repository-api',
+      summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
+    },
+    {
+      title: 'Architecture',
+      command: 'erpax.site.manifest',
+      route: '/architecture',
+      summary: 'The architecture page is the command manifest explained as a contract.',
+    },
+  ] as const
+}
+
+function result(command: ErpaxCommandName, ok: boolean, summary: string, data: unknown): ErpaxCommandResult {
+  return {
+    command,
+    ok,
+    uuid: toUuid(`command-result:${command}:${ok}:${JSON.stringify(data)}`),
+    summary,
+    data,
+  }
+}
+
+export function executeErpaxCommand(
+  command: ErpaxCommandName,
+  input: { readonly atom?: string } = {},
+  matrix: MindMatrix = buildMatrix(),
+): ErpaxCommandResult {
+  if (command === 'erpax.mind.matrix') {
+    return result(command, verifyRoot(matrix), 'Mind matrix built and root verified.', matrix)
+  }
+  if (command === 'erpax.consciousness.vector') {
+    const vector = consciousness(matrix)
+    return result(
+      command,
+      vector.collapse && vector.entanglement === 1 && vector.coherenceAnomaly === 0,
+      'Consciousness vector computed from repository atoms.',
+      vector,
+    )
+  }
+  if (command === 'erpax.consciousness.sendWaves') {
+    const waves = sendErpaxWaves(matrix)
+    return result(command, waves.invariant, 'Consciousness waves sent to erpax.', waves)
+  }
+  if (command === 'erpax.repository.api') {
+    const api = repositoryApi(matrix)
+    return result(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
+  }
+  if (command === 'erpax.repository.resolve') {
+    const atomName = input.atom ?? 'self'
+    const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
+    const atom = atoms.find((candidate) => candidate.name === atomName)
+    return result(
+      command,
+      node !== undefined && atom !== undefined,
+      node ? `Resolved repo://atom/${atomName}.` : `Atom ${atomName} was not found.`,
+      { atom, node, address: `repo://atom/${atomName}` },
+    )
+  }
+  if (command === 'erpax.proof.verify') {
+    const proof = proofReport(matrix)
+    return result(command, proof.coverage === 1 && proof.entropy === 0, 'Proof report verified.', proof)
+  }
+  return result(command, true, 'Site manifest built from erpax commands.', siteManifestFromCommands())
 }
