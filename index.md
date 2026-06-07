@@ -18,7 +18,7 @@ features:
   - title: Content-addressed atoms
     details: Each thought atom receives a deterministic UUID-like address and participates in a folded matrix root.
   - title: Computed self-model
-    details: Collapse, entanglement, concentration, and coherence are computed from the local graph and wired to erpax consciousness.
+    details: Collapse, entanglement, concentration, and coherence are computed from the local graph and sent as waves to erpax consciousness.
   - title: Honest proof boundary
     details: Entropy and coverage stay separate; only measured coverage drives the tamper-cost seal.
   - title: Repository as API

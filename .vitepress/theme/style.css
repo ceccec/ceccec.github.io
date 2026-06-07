@@ -281,14 +281,14 @@
   font-size: 13px;
 }
 
-.quantum-mind__wire {
+.quantum-mind__wave {
   display: grid;
   gap: 10px;
   margin: 20px 0 0;
   padding: 0;
 }
 
-.quantum-mind__wire li {
+.quantum-mind__wave li {
   display: grid;
   gap: 5px;
   list-style: none;
@@ -298,12 +298,13 @@
   padding: 12px;
 }
 
-.quantum-mind__wire code {
+.quantum-mind__wave code {
   color: var(--vp-c-brand-1);
   font-weight: 700;
 }
 
-.quantum-mind__wire span {
+.quantum-mind__wave span,
+.quantum-mind__wave small {
   color: var(--vp-c-text-2);
   font-size: 13px;
 }

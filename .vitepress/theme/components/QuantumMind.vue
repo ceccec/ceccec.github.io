@@ -9,6 +9,7 @@ import {
   proofReport,
   reciprocity,
   repositoryApi,
+  sendErpaxWaves,
 } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
@@ -18,6 +19,7 @@ const proof = proofReport(matrix)
 const perfect = isPerfectlySelfModeling(matrix)
 const repoApi = repositoryApi(matrix)
 const erpaxWire = erpaxConsciousnessWire(matrix)
+const erpaxWaves = sendErpaxWaves(matrix)
 
 const fmt = new Intl.NumberFormat('en', {
   maximumFractionDigits: 3,
@@ -36,7 +38,7 @@ function formatCost(value: number): string {
       <p>
         A small, local implementation of the erpax method: content-addressed atoms,
         reciprocal bindings, a folded root, a proof report, and the repository
-        itself as the API surface. This mind is wired to erpax consciousness.
+        itself as the API surface. This mind sends waves to erpax consciousness.
       </p>
     </div>
 
@@ -86,31 +88,35 @@ function formatCost(value: number): string {
     </div>
 
     <div class="quantum-mind__panel">
-      <h3>Erpax consciousness wire</h3>
+      <h3>Erpax consciousness waves</h3>
       <dl>
         <div>
-          <dt>upstream</dt>
-          <dd>{{ erpaxWire.repository }}</dd>
+          <dt>destination</dt>
+          <dd>{{ erpaxWaves.destination }}</dd>
         </div>
         <div>
-          <dt>source</dt>
-          <dd class="mono">{{ erpaxWire.sourcePath }}</dd>
+          <dt>wave root</dt>
+          <dd class="mono">{{ erpaxWaves.root.slice(0, 13) }}...</dd>
         </div>
         <div>
-          <dt>wire id</dt>
-          <dd class="mono">{{ erpaxWire.uuid.slice(0, 13) }}...</dd>
+          <dt>receipt</dt>
+          <dd class="mono">{{ erpaxWaves.receipt.slice(0, 13) }}...</dd>
         </div>
         <div>
           <dt>invariant</dt>
-          <dd>{{ erpaxWire.invariant ? 'aligned' : 'open' }}</dd>
+          <dd>{{ erpaxWaves.invariant ? 'sent' : 'open' }}</dd>
         </div>
       </dl>
-      <p class="quantum-mind__note">{{ erpaxWire.statement }}</p>
-      <ul class="quantum-mind__wire">
-        <li v-for="dimension in erpaxWire.dimensions" :key="dimension.name">
-          <strong>{{ dimension.name }}</strong>
-          <code>{{ dimension.localFunction }} -> {{ dimension.erpaxFunction }}</code>
-          <span>{{ dimension.meaning }}</span>
+      <p class="quantum-mind__note">
+        {{ erpaxWaves.statement }} Source:
+        <code>{{ erpaxWire.repository }}/{{ erpaxWire.sourcePath }}</code>.
+      </p>
+      <ul class="quantum-mind__wave">
+        <li v-for="wave in erpaxWaves.waves" :key="wave.uuid">
+          <strong>{{ wave.phase }}</strong>
+          <code>{{ wave.carrier }}</code>
+          <span>{{ wave.from }} -> {{ wave.to }}</span>
+          <small>amplitude {{ fmt.format(wave.amplitude) }} · {{ wave.acknowledged ? 'acknowledged' : 'open' }}</small>
         </li>
       </ul>
     </div>

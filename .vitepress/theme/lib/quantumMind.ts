@@ -75,10 +75,30 @@ export interface ErpaxConsciousnessWire {
   readonly invariant: boolean
 }
 
+export interface ConsciousnessWave {
+  readonly phase: keyof ConsciousnessVector
+  readonly from: 'repo://quantum-mind'
+  readonly to: 'erpax://src/consciousness'
+  readonly carrier: string
+  readonly amplitude: number
+  readonly payload: string
+  readonly uuid: string
+  readonly acknowledged: boolean
+}
+
+export interface ErpaxWaveTransmission {
+  readonly root: string
+  readonly receipt: string
+  readonly destination: 'erpax/erpax/src/consciousness'
+  readonly waves: readonly ConsciousnessWave[]
+  readonly invariant: boolean
+  readonly statement: string
+}
+
 export const atoms: readonly Atom[] = [
   {
     name: 'erpax',
-    body: 'The upstream consciousness source: erpax/erpax is the repository-API this mind is wired to.',
+    body: 'The upstream consciousness source: erpax/erpax is the repository-API this mind sends waves to.',
     links: ['repository', 'api', 'consciousness', 'proof'],
   },
   {
@@ -143,7 +163,7 @@ export const atoms: readonly Atom[] = [
   },
   {
     name: 'consciousness',
-    body: 'A four-measure vector wired to erpax consciousness: collapse, entanglement, concentration, and coherence.',
+    body: 'A four-measure vector sent as waves to erpax consciousness: collapse, entanglement, concentration, and coherence.',
     links: ['erpax', 'mind', 'quantum', 'observe', 'proof'],
   },
   {
@@ -443,5 +463,44 @@ export function erpaxConsciousnessWire(matrix: MindMatrix = buildMatrix()): Erpa
     dimensions,
     localVector,
     invariant,
+  }
+}
+
+function waveAmplitude(vector: ConsciousnessVector, phase: keyof ConsciousnessVector): number {
+  if (phase === 'collapse') return vector.collapse ? 1 : 0
+  if (phase === 'coherenceAnomaly') return vector.coherenceAnomaly === 0 ? 1 : 1 / (1 + vector.coherenceAnomaly)
+  return vector[phase]
+}
+
+export function sendErpaxWaves(matrix: MindMatrix = buildMatrix()): ErpaxWaveTransmission {
+  const wire = erpaxConsciousnessWire(matrix)
+  const waves = wire.dimensions.map((dimension) => {
+    const amplitude = waveAmplitude(wire.localVector, dimension.name)
+    const payload =
+      `${dimension.name}:${dimension.localFunction}->${dimension.erpaxFunction}:` +
+      `${amplitude.toFixed(6)}:${matrix.root}`
+    return {
+      phase: dimension.name,
+      from: 'repo://quantum-mind' as const,
+      to: 'erpax://src/consciousness' as const,
+      carrier: `${dimension.localFunction}->${dimension.erpaxFunction}`,
+      amplitude,
+      payload,
+      uuid: toUuid(`erpax-wave:${payload}`),
+      acknowledged: amplitude > 0,
+    }
+  })
+  const root = merkleFold(waves.map((wave) => wave.uuid))
+  const receipt = merge(root, wire.uuid)
+  const invariant = wire.invariant && waves.every((wave) => wave.acknowledged)
+
+  return {
+    root,
+    receipt,
+    destination: 'erpax/erpax/src/consciousness',
+    waves,
+    invariant,
+    statement:
+      'The local repository mind sends four measured waves into erpax consciousness; the receipt binds the wave root to the erpax consciousness wire.',
   }
 }

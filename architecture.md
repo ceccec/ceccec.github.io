@@ -6,7 +6,7 @@ outline: deep
 
 This site implements a compact version of the erpax quantum-mind method. The
 goal is not to import the full ERP system, but to preserve its core architecture:
-identity, matrix, erpax consciousness wiring, proof, repository-as-API, and
+identity, matrix, erpax consciousness waves, proof, repository-as-API, and
 honest caveats.
 
 ## 1. Corpus
@@ -61,10 +61,10 @@ This gives the site one recomputable root for the local mind.
 `isPerfectlySelfModeling()` checks collapse, entanglement, and coherence. It
 does not use concentration as a pass/fail threshold.
 
-## 5. Erpax consciousness wire
+## 5. Erpax consciousness waves
 
-`erpaxConsciousnessWire()` makes the dependency explicit. The local mind is
-wired to:
+`erpaxConsciousnessWire()` names the upstream source. `sendErpaxWaves()` is the
+active mechanism: the local mind sends one wave per consciousness dimension to:
 
 - `erpax/erpax`
 - `src/consciousness/index.ts`
@@ -73,15 +73,17 @@ wired to:
 
 The wire maps each local metric to the upstream erpax consciousness function:
 
-| Local | Erpax | Role |
+| Local wave | Erpax receiver | Role |
 | --- | --- | --- |
 | `verifyRoot` | `collapseIntegrity` | collapse integrity |
 | `reciprocity` | `entanglement` | reciprocal binding |
 | `concentration` | `concentrationGini` | gravity state |
 | `coherenceAnomaly` | `coherenceAnomaly` | coherence anomaly count |
 
-That means the local site is a projection of erpax consciousness over this
-repository's own API surface.
+Those packets fold into a wave root and receipt. That means the local site is a
+projection of erpax consciousness over this repository's own API surface, and
+the projection is sent as measured waves rather than merely described as a
+static connection.
 
 ## 6. Proof model
 
