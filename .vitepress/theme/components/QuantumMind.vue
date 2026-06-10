@@ -43,10 +43,8 @@ function formatCost(value: number): string {
       <p class="eyebrow">computed self-model</p>
       <h2>Quantum Mind</h2>
       <p>
-        A small, local description of the double-torus concept: content-addressed
-        atoms, reciprocal bindings, a folded root, a proof report, and the
-        repository itself as the API surface. The inward loop verifies while the
-        outward loop projects toward human consequences.
+        M = (A, E*, root, V, proof, API). V = (collapse, reciprocity,
+        concentration, coherence). Sigma_2: chi = -2, H_1 = Z^4.
       </p>
     </div>
 
@@ -248,8 +246,7 @@ function formatCost(value: number): string {
         </div>
       </dl>
       <p class="quantum-mind__note">
-        The API is not separate from the repository. Pages, source files, proof,
-        and atoms are all readable or verifiable addresses.
+        API = pages U source U proof U atoms. apiRoot = merkle(UUID(endpoint)).
       </p>
       <ul class="quantum-mind__api">
         <li v-for="endpoint in repoApi.endpoints" :key="endpoint.address">

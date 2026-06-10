@@ -147,10 +147,8 @@ onBeforeUnmount(() => {
         <p class="eyebrow">computed from diamonds</p>
         <h3>3D double-torus pi train</h3>
         <p>
-          The full sequence is derived from pi-train diamonds. Every point has a
-          digit, four facets, a receipt, a 3D torus coordinate, a tone, and a
-          vibration pulse. The base lattice has {{ lattice.length }} diamonds,
-          and the full train has {{ piTrain.diamonds.length }} pulses.
+          D_pi[i] = (digit, facets[4], receipt, x,y,z, freq, vibration).
+          |D| = {{ lattice.length }}. |D_pi| = {{ piTrain.diamonds.length }}.
         </p>
       </div>
       <div class="double-torus-experience__badges">
@@ -438,8 +436,8 @@ onBeforeUnmount(() => {
           </label>
         </div>
         <p class="quantum-mind__note">
-          Sound and vibration require a user gesture and depend on browser/device
-          support. The sequence root is <code>{{ piTrain.root }}</code>.
+          audio || vibration => userGesture && browserSupport. root_pi =
+          <code>{{ piTrain.root }}</code>.
         </p>
       </TabsContent>
     </TabsRoot>

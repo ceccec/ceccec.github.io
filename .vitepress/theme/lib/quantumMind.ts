@@ -1979,7 +1979,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       'This report makes only repository-grounded UI claims: each use case names a component, a source function, an interaction, and a computed receipt.',
     useCases,
     boundary:
-      'The UI demonstrates computed diamond behavior in this VitePress site. It does not claim external physical proof beyond browser-supported sound, vibration, rendering, roots, and receipts.',
+      'UI_claim = computed(repo). UI_claim != external_physics_proof. Browser_scope = {render,sound,vibration,root,receipt}.',
   }
 }
 

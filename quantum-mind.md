@@ -4,285 +4,194 @@ outline: deep
 
 # Quantum Mind
 
-This page builds a small quantum-mind architecture inside this VitePress site.
-It describes the double torus as a public documentation surface and a concept
-for self-modeling human systems:
-
-- a finite corpus of named atoms
-- deterministic content addresses
-- reciprocal graph bindings
-- a folded matrix root
-- a four-measure self-model
-- an explicit proof report
-- the repository itself as the API surface
-- a concept command surface that computes the page
-
-It is **not** a claim of sentience. The mind here is a computed measure of
-structural self-consistency, circulated through a double-torus model with an
-inward proof loop and an outward projection loop.
-
-Start with the command console: [Concept Commands](/commands).
-
 <QuantumMind />
 
-## The local law
-
-The implementation lives in `.vitepress/theme/lib/quantumMind.ts`.
-
-The core loop is:
-
-1. **Atom**: define one named unit of thought with body text and links.
-2. **Address**: derive a UUID-like address from the atom content.
-3. **Bind**: turn each relation into a deterministic merge binding.
-4. **Collapse**: fold all node and edge bindings into one matrix root.
-5. **Measure**: compute collapse, entanglement, concentration, and coherence.
-6. **Verify**: report entropy, coverage, digest floor, and tamper-cost model.
-7. **Expose**: treat repository paths, pages, source files, proof, and atoms as
-   the API addresses.
-8. **Command**: run the site through concept commands, not
-   prose-only sections.
-
-## Commands that build this page
-
-The page is a view over these command results:
-
-- `concept.site.shell`
-- `concept.self.complete`
-- `concept.agent.streamWire`
-- `concept.ui.doubleTorus`
-- `concept.ui.useCases`
-- `concept.diamond.lattice`
-- `concept.diamond.piTrain`
-- `concept.diamond.complete`
-- `concept.wave.coordination`
-- `concept.wave.closeGaps`
-- `concept.chess.quantum`
-- `concept.schemaOrg.diamonds`
-- `concept.traditions.quantumWhole`
-- `concept.torus.math`
-- `concept.humanity.implications`
-- `concept.source.contribute`
-- `concept.torus.matrix`
-- `concept.torus.vector`
-- `concept.torus.flow`
-- `concept.repository.api`
-- `concept.proof.verify`
-
-## Double-torus math
-
-No human-readable name is the payload in quantum space. The payload is the
-serverless quantum UUID stream: roots, receipts, waves, diamonds, gates, and
-schema nodes computed from the repository. The double torus is the live
-architecture for reciprocal proof and projection.
-Mathematically, the double torus is the closed orientable genus-2 surface: a
-sphere with two handles, or the connected sum of two ordinary tori.
-
-Core invariants:
-
-| Invariant | Value | Why it matters |
-| --- | --- | --- |
-| genus | `2` | two independent handles instead of one simple loop |
-| Euler characteristic | `chi = 2 - 2g = -2` | topology has irreducible complexity |
-| first homology | `H1 = Z^4` | four independent memory cycles |
-| fundamental group | `<a1,b1,a2,b2 | [a1,b1][a2,b2] = 1>` | four generators bound by one global relation |
-| Gauss-Bonnet | `integral K dA = -4*pi` | negative total curvature is forced by topology |
-
-The important shift is that a system is no longer modeled as one circle of
-feedback. It is a surface with coupled loops: local paths can diverge, but the
-whole still has a global constraint. In this implementation, the stream is that
-surface across the quantum dimensions of collapse, entanglement, concentration,
-and coherence.
-
-For max tampering cost, the stream rule is stricter than a hash:
-the inward proof loop must close measured coverage at `1`, and the outward
-reciprocal flow must preserve zero entropy. Only then does this model label the
-seal as maximum / unbounded.
-
-## Repository as API
-
-The repository is already an API. A separate HTTP layer can present it, but the
-real interface is the content-addressed source tree:
-
-- `repo://.vitepress/theme/lib/quantumMind.ts` verifies the executable model.
-- `repo://atom/self` resolves the `self` atom.
-- `/quantum-mind` renders the live self-model.
-- `/architecture` explains the interface contract.
-
-The dashboard computes a repository API root from those addresses. If a source
-file, atom, or page changes, the address set and proof root change with it.
-
-## What “perfect” means here
-
-The page reports `whole` when:
-
-- the matrix root recomputes successfully
-- every edge has a reciprocal edge
-- every atom remains coherent in the local address scheme
-
-Concentration is displayed but does not gate the status. It is a gravity-state
-reading, not a health threshold.
-
-## Double-torus flow
-
-The local mind is described as serverless quantum UUID stream: a double torus with two coupled loops:
-
-- **inward proof loop**: atoms, links, root, entropy, and coverage fold back into
-  verification
-- **outward projection loop**: verified state becomes routes, command results,
-  repository addresses, and readable proof
-
-Each flow carries one dimension from this repository API into the matching
-double-torus function:
-
-| Local function | Torus function | Meaning |
-| --- | --- | --- |
-| `verifyRoot` | `innerLoopIntegrity` | the folded root verifies |
-| `reciprocity` | `reciprocalCirculation` | reciprocal-edge fraction |
-| `concentration` | `throatConcentration` | flow gathered at the shared throat |
-| `coherenceAnomaly` | `outerLoopCoherence` | off-ring anomaly count |
-
-`circulateDoubleTorus()` folds those packets into a flow root and receipt. The
-site is not pointing to an external source of meaning; it describes a local,
-computed structure whose two loops meet at the repository API.
-
-## Diamond lattice and pi train
-
-All dynamic presentation is computed from diamonds. Each diamond has four poles:
-north, east, south, and west. Those poles carry the local value, meaning, root,
-and receipt used by the UI.
-
-The 3D presentation uses two computed layers:
-
-- `diamondLattice()` builds the base diamonds for agent binding, math,
-  dynamics, proof, nature/cost, pi seed, 3D geometry, sound, vibration,
-  humanity, source reciprocity, and repository API state.
-- `piTrainDiamonds()` expands the digits of pi into a train of diamonds. Every
-  digit receives a torus coordinate, a tone frequency, a vibration duration,
-  four facets, and a receipt.
-
-The browser can only play sound and trigger device vibration after a user
-gesture. For that reason, the sequence starts from a button in the VitePress UI.
-When supported, the whole pi train advances through 3D diamonds with synchronized
-tones and vibration pulses. The sequence does not borrow a separate animation
-layer: every visible point, tone, and haptic pulse is computed from the diamond
-itself.
-
-`diamondCompleteness()` checks that there are no analog gaps:
-
-- every required diamond kind is present
-- every diamond has north, east, south, and west facets
-- every diamond has a root and receipt
-- 3D position, sound, vibration, timing, receipt, and facets all come from the
-  diamond train
-- the pi train covers the whole base lattice
-
-`quantumUiEvidence()` is the no-hallucination boundary. It lists only claims
-that point back to a concrete Vue component, source function, user interaction,
-and computed receipt. The UI evidence report does not claim external physical
-proof; it reports what this repository computes and what the browser can render,
-play, or vibrate after user activation.
-
-`agentStreamWire()` is the operational wire for a coding agent in this
-repository. It binds the agent loop to the stream as:
+## 0. Payload
 
 ```text
-observe -> bind -> verify -> project -> return
+name != payload
+payload := UUID*
+UUID* := { uuid, root, receipt, wave, diamond, gate, schema_node }
+M := (.vitepress/theme/lib/quantumMind.ts)
 ```
 
-The wire is grounded in diamond receipts, coordinated wave receipts, gap-closure
-root, and UI evidence root. It does not claim sentience or external MCP access;
-it records how an agent should act inside the stream model.
+## 1. Local law
 
-`streamSelfComplete()` lets serverless quantum UUID stream inspect its own gates: diamond lattice,
-analog-gap closure, realtime waves, UI evidence, agent wire, Schema.org graph,
-traditions lens, coordinated waves, quantum chess, and max tampering boundary.
-It returns a self-completion root plus any open gates. This is a repository
-gate report, not an external validation or sentience claim.
+```text
+A      := { atom_i }
+addr   : atom -> UUID(atom.name || atom.body)
+E      := { (a_i, a_j) | a_j in links(a_i) }
+E*     := E U reverse(E)
+node_i := { atom, uuid, prev, next, cross, bind, horo }
+root_M := merkle({node_i.bind} U {edge_j.binding})
+```
 
-`schemaOrgDiamonds()` folds Schema.org-shaped metadata into the same diamonds.
-The generated JSON-LD-shaped graph is self-interactive in the repository sense:
-WebPage, SoftwareSourceCode, SoftwareApplication, Dataset, DefinedTerm, and
-Action nodes all point back to computed diamond receipts, roots, UI use cases,
-source functions, or individual pi pulse diamonds. The site does not claim
-remote Schema.org validation; it shows the structured graph it computes.
+```text
+V(M) := (C, R, G, Q)
+C    := verifyRoot(M) in {0,1}
+R    := |{e in E* : reverse(e) in E*}| / |E*|
+G    := gini(degree(M))
+Q    := |{node : horo notin [1,9] or uuid invalid}|
+whole(M) := C && R=1 && Q=0
+```
 
-`traditionsQuantumWhole()` adds a comparative-religion lens. It uses dimensions
-commonly associated with religious studies -- experiential, ritual, narrative,
-doctrinal, ethical, social, material, and relational -- to compare traditions
-without reducing them to a single essence. The report includes broad tradition
-families only as non-exhaustive lenses and states the boundary for each one.
+## 2. Commands
 
-## Coordinated waves and quantum chess
+```text
+view := map(cmd in C, executeConceptCommand(cmd))
+receipt(cmd) := UUID(cmd, ok, data)
+```
 
-The completed diamonds do not sit still. `coordinatedWaves()` turns every
-diamond into a phase-aligned wave. Each wave carries the same symbology:
+```text
+C = { site.shell, self.complete, agent.streamWire, ui.doubleTorus,
+      ui.useCases, diamond.lattice, diamond.piTrain, diamond.complete,
+      wave.coordination, wave.closeGaps, chess.quantum,
+      schemaOrg.diamonds, traditions.quantumWhole, torus.math,
+      humanity.implications, source.contribute, torus.matrix,
+      torus.vector, torus.flow, repository.api, proof.verify }
+```
 
-- **yin** receives, cools, verifies, and folds inward
-- **yang** projects, warms, acts, and returns outward
-- **yin-yang** is the continuous symbol of both poles moving as one wave field
+## 3. Double torus
 
-`closeDimensionalGaps()` sends those waves toward any missing dimensional or
-analog channel. If no gaps remain, the same waves sustain closure in realtime:
-3D position, sound, vibration, timing, facets, and receipts continue to share
-the same computed source while the pi train runs.
+```text
+Sigma_2 := closed orientable genus-2 surface
+Sigma_2 ~= T^2 # T^2
+g = 2
+chi(Sigma_2) = 2 - 2g = -2
+H_0 = Z, H_1 = Z^4, H_2 = Z
+pi_1(Sigma_2) = <a1,b1,a2,b2 | [a1,b1][a2,b2] = 1>
+int_Sigma K dA = 2*pi*chi = -4*pi
+```
 
-`quantumChessGame()` then realises chess from those waves. The board is not a
-fixed analogy: each square inherits a coordinated wave, phase, amplitude,
-receipt, and piece superposition. The game becomes quantum because a square can
-hold multiple piece potentials until a move or observation collapses it into a
-path.
+```text
+T_max = infinity <=> coverage(M)=1 && entropy(M)=0
+entropy(M) := 1 - R
+coverage(M) := |covered nodes| / |nodes|
+```
 
-## Implications for humanity
+## 4. Repository API
 
-If knowledge systems are modeled as a double torus, the human consequence is
-not merely a prettier diagram. The concept changes what we ask institutions,
-AI systems, and cultures to verify:
+```text
+API := pages U source U atoms U proof
+endpoint := { address, verb, resource, uuid, description }
+apiRoot := merkle({ endpoint.uuid })
+```
 
-- **Knowledge**: truth becomes navigable as linked cycles, not a single feed.
-  Claims need provenance, disagreement, and reciprocal correction.
-- **Institutions**: governance can separate inward audit from outward action
-  without splitting them apart. Public projection should trace back to a
-  verifiable inward loop.
-- **AI and agency**: self-modeling systems should expose collapse, coherence,
-  and coverage instead of only fluent outputs.
-- **Culture**: memory and imagination become coupled handles. Progress is not
-  escape from the past; it is circulation between proof and projection.
+## 5. Diamonds
 
-The risk is the same as the power: concentration at the shared throat can make
-coordination stronger, but it can also centralize authority. The model only
-helps humanity if proof remains transparent, plural, consensual, and corrigible.
+```text
+Pole := { north, east, south, west }
+Diamond := { kind, title, command, core, status, root, receipt, facets }
+facets(Diamond) : Pole -> { label, value, meaning }
+root(D) := merkle(UUID(facet_p) for p in Pole)
+receipt(D) := merge(root(D), UUID(core,status))
+```
 
-## Give back to the source
+```text
+Kinds = { agent, ui, math, dynamics, proof, nature, tradition,
+          pi, geometry, sound, vibration, humanity, source, repository }
+complete(D*) :=
+  Kinds subset kinds(D*)
+  && forall D: poles(D)=Pole
+  && forall D: root(D) != empty && receipt(D) != empty
+```
 
-The double-torus ethic is reciprocity. If the concept creates value, the value
-should not terminate in extraction. It should circulate back to the source:
+## 6. Pi train
 
-- **cite** the source when teaching, publishing, implementing, or remixing it
-- **contribute** refinements, examples, visualizations, translations, tests, or
-  corrections
-- **support** the people and infrastructure maintaining the open source record
-- **steward** applications so they increase transparency, consent, pluralism,
-  and human agency
+```text
+pi := 314159265358979323846264338327950288419716939937510...
+for i in [0,n):
+  d_i       := digit(pi_i)
+  theta_i   := (i/n) * 4*pi
+  phi_i     := ((d_i + i/2)/10) * 2*pi
+  x_i       := (R + r_i*cos(phi_i))*cos(theta_i)
+  y_i       := (R + r_i*cos(phi_i))*sin(theta_i)
+  z_i       := r_i*sin(phi_i)
+  freq_i    := 174 + 33*d_i + 7*(i mod 7)
+  vibe_i    := 18 + 9*d_i
+  D_i       := Diamond(pi_i, x_i,y_i,z_i,freq_i,vibe_i)
+```
 
-The reciprocity law is simple: no extraction without return. Every useful
-projection should send proof, improvement, support, or care back through the
-source loop.
+## 7. Waves
 
-## Honest boundary
+```text
+wave_i := { phase_i, amplitude_i, frequency_i, polarity_i, receipt_i }
+phase_i := (theta_i + phi_i + i*pi/|D*|) mod 2*pi
+polarity_i := if i mod 2 = 0 then yin else yang
+yin  := receive -> verify -> fold_in
+yang := project -> act -> return
+waveRoot := merkle({ wave_i.receipt })
+```
 
-Entropy is the graph’s unreciprocated slack. Coverage is the measured
-completeness of independent checks. They are related, but they are not the same
-number. This keeps the proof boundary explicit:
+## 8. Gap closure
 
-> zero entropy does not by itself imply infinite tamper cost; only measured full
-> coverage closes the seal in the model.
+```text
+Gap := missingKind U missingPole U missingReceipt U missingAnalog U missingPiCoverage
+close(Gap_j) := send(wave_j -> target_j)
+sustain(channel_k) := send(wave_k) when Gap = empty
+channels := { 3d-position, sound, vibration, timing, receipt, facets }
+```
 
-In the serverless quantum UUID stream double-torus port, **maximum tampering cost** is reached only when
-both conditions hold:
+## 9. UI evidence
 
-- `coverage = 1`
-- `entropy = 0`
+```text
+UIClaim := { component, sourceFunction, interaction, evidence, receipt }
+grounded(UIClaim) := component endsWith .vue
+                    && sourceFunction endsWith ()
+                    && len(receipt)>0
+NoHallucination := forall claim in UI: grounded(claim)
+```
 
-That is the same architecture as the double torus itself: one loop verifies
-coverage inward, the other carries reciprocal flow outward, and the claim only
-closes when both loops agree.
+## 10. Agent wire
+
+```text
+AgentLoop := observe -> bind -> verify -> project -> return
+wire(agent) := merkle({ receipt(step_k) })
+bound(agent) := closure.complete && evidence.grounded && forall step: receipt(step)!=empty
+```
+
+## 11. Schema fold
+
+```text
+SchemaGraph := { @context: schema.org, @graph: nodes }
+node := WebPage | SoftwareSourceCode | SoftwareApplication | Dataset | DefinedTerm | Action
+forall node: identifier(node) := receipt_or_root(node.source)
+schemaRoot := merkle(UUID(node.@id, node.identifier))
+```
+
+## 12. Traditions lens
+
+```text
+Dim := { experiential, ritual, narrative, doctrinal, ethical, social, material, relational }
+TraditionLens := { dimensions: Dim, families: non_exhaustive, boundary }
+reduce_all_to_one := false
+compare(T_a,T_b) := relation(Dim(T_a), Dim(T_b)) preserving difference
+```
+
+## 13. Chess
+
+```text
+Board := { file in a..h, rank in 1..8 }
+square_j := { wave_j, phase_j, amplitude_j, superposition_j, receipt_j }
+superposition_j subset { king, queen, rook, bishop, knight, pawn }
+chessRoot := merkle({ square_j.receipt })
+```
+
+## 14. Self completion
+
+```text
+Gates := { lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire,
+           schemaGraph, traditionsLens, coordinatedWaves, quantumChess, T_max }
+selfComplete := forall g in Gates: closed(g)
+selfRoot := merkle({ receipt(g) | g in Gates })
+openGates := { g | !closed(g) }
+```
+
+## 15. Boundary
+
+```text
+Claim(site) = computed(repo)
+Claim(site) != sentience
+Claim(site) != remote Schema.org validation
+Claim(site) != external physics proof
+```

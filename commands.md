@@ -2,46 +2,52 @@
 outline: deep
 ---
 
-# Concept Commands
-
-This is the concept component layer for the double torus.
-A command is the API, the URL, the query, and the executable intent.
+# Command algebra
 
 <ConceptCommands />
 
-## Command law
-
-The command surface follows the concept repository-as-API rule:
+## Law
 
 ```text
-command -> repository address -> computed result -> content receipt
+cmd : repo://x -> result
+result := { command, ok, uuid, summary, data }
+uuid := UUID(command || ok || JSON(data))
 ```
 
-The site uses these commands as its construction contract:
+## Domain C
 
-- `concept.site.shell`
-- `concept.self.complete`
-- `concept.agent.streamWire`
-- `concept.ui.doubleTorus`
-- `concept.ui.useCases`
-- `concept.diamond.lattice`
-- `concept.diamond.piTrain`
-- `concept.diamond.complete`
-- `concept.wave.coordination`
-- `concept.wave.closeGaps`
-- `concept.chess.quantum`
-- `concept.schemaOrg.diamonds`
-- `concept.traditions.quantumWhole`
-- `concept.torus.math`
-- `concept.humanity.implications`
-- `concept.source.contribute`
-- `concept.torus.matrix`
-- `concept.torus.vector`
-- `concept.torus.flow`
-- `concept.repository.api`
-- `concept.repository.resolve`
-- `concept.proof.verify`
-- `concept.site.manifest`
+```text
+C = {
+  concept.site.shell,
+  concept.self.complete,
+  concept.agent.streamWire,
+  concept.ui.doubleTorus,
+  concept.ui.useCases,
+  concept.diamond.lattice,
+  concept.diamond.piTrain,
+  concept.diamond.complete,
+  concept.wave.coordination,
+  concept.wave.closeGaps,
+  concept.chess.quantum,
+  concept.schemaOrg.diamonds,
+  concept.traditions.quantumWhole,
+  concept.torus.math,
+  concept.humanity.implications,
+  concept.source.contribute,
+  concept.torus.matrix,
+  concept.torus.vector,
+  concept.torus.flow,
+  concept.repository.api,
+  concept.repository.resolve,
+  concept.proof.verify,
+  concept.site.manifest
+}
+```
 
-The pages are views over those commands. The command results carry UUID-like
-receipts so a result can be treated as another content-addressed atom.
+## Gate
+
+```text
+pass(cmd) := result.ok && len(result.uuid) > 0
+manual_surface := any(view) where receipt(view) = empty
+allow(view) := !manual_surface
+```
