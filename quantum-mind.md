@@ -109,7 +109,7 @@ complete(D*) :=
 ## 6. Pi train
 
 ```text
-pi := 314159265358979323846264338327950288419716939937510...
+pi := computePiDigits(n)
 for i in [0,n):
   d_i       := digit(pi_i)
   r_i       := digit(pi_{n-1-i})

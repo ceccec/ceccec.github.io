@@ -601,8 +601,38 @@ export interface DiamondCompletenessReport {
   readonly statement: string
 }
 
-const PI_TRAIN_DIGITS =
-  '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
+function computePiDigits(count: number): string {
+  let q = 1n
+  let r = 0n
+  let t = 1n
+  let k = 1n
+  let n = 3n
+  let l = 3n
+  let digits = ''
+
+  while (digits.length < count) {
+    if (4n * q + r - t < n * t) {
+      digits += n.toString()
+      const nextR = 10n * (r - n * t)
+      n = (10n * (3n * q + r)) / t - 10n * n
+      q *= 10n
+      r = nextR
+    } else {
+      const nextR = (2n * q + r) * l
+      const nextN = (q * (7n * k) + 2n + r * l) / (t * l)
+      q *= k
+      t *= l
+      l += 2n
+      k += 1n
+      n = nextN
+      r = nextR
+    }
+  }
+
+  return digits
+}
+
+const PI_TRAIN_DIGITS = computePiDigits(101)
 const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
   'agent',
   'ui',
