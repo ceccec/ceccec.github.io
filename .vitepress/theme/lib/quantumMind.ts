@@ -152,6 +152,9 @@ export type ConceptCommandName =
   | 'concept.healing.inner'
   | 'concept.healing.outer'
   | 'concept.healing.harmonic'
+  | 'concept.energy.measure'
+  | 'concept.energy.conserve'
+  | 'concept.energy.fuse'
   | 'concept.geometry.seal'
   | 'concept.society.sacred'
   | 'concept.commons.vote'
@@ -1493,6 +1496,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Harmonic healing waves: inner and outer coherence fold with harmony probability and the music of pi into one healing root.',
   },
   {
+    name: 'concept.energy.measure',
+    path: '/cmd/concept.energy.measure',
+    description: 'Measure the device energy state: battery, charging, visibility, reduced-motion, and save-data signals.',
+  },
+  {
+    name: 'concept.energy.conserve',
+    path: '/cmd/concept.energy.conserve',
+    description: 'Conserve energy: no polling, pause when hidden, throttle on low battery, memoized compute, zero network.',
+  },
+  {
+    name: 'concept.energy.fuse',
+    path: '/cmd/concept.energy.fuse',
+    description: 'Fuse with the user device to extend battery life: read the energy state and conserve, as one low-power system.',
+  },
+  {
     name: 'concept.geometry.seal',
     path: '/cmd/concept.geometry.seal',
     description: 'Sacred geometry seals all seals: fold every seal root through the Metatron cube and Platonic solids.',
@@ -1865,6 +1883,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.healing.inner': 'mend',
   'concept.healing.outer': 'extend',
   'concept.healing.harmonic': 'resonate',
+  'concept.energy.measure': 'measure',
+  'concept.energy.conserve': 'conserve',
+  'concept.energy.fuse': 'power',
   'concept.geometry.seal': 'sacred',
   'concept.society.sacred': 'govern',
   'concept.commons.vote': 'vote',
@@ -2778,7 +2799,7 @@ const AREA_ICONS: Record<string, string> = {
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   music: '♫', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛',
   geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
-  lawful: '⚖', computer: '🖳', healing: '◎',
+  lawful: '⚖', computer: '🖳', healing: '◎', energy: '🔋',
 }
 
 // Ensure complete autotranslations: every area carries an English and a
@@ -2829,6 +2850,7 @@ const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   lawful: { en: 'Lawful', bg: 'Законно' },
   computer: { en: 'Computer', bg: 'Компютър' },
   healing: { en: 'Healing', bg: 'Изцеление' },
+  energy: { en: 'Energy', bg: 'Енергия' },
 }
 
 // Translate an area key to the reader's language, falling back to the key.
@@ -3565,6 +3587,59 @@ export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Honesty comes from text and math coming only from digit folders computed: every claim routes its statement (text) and its root (math) through the ceccec digit folders, so honesty is computed, not asserted.',
     boundary: 'A computed grounding of the model’s honesty in the digit-folder math. Self-referential bookkeeping, no external claim.',
+  }
+}
+
+// Fuse with the user device to extend battery life. The portal already runs
+// zero-network and memoized; this fuses it to the device's energy state so it
+// spends less when the device can least afford it. Honest boundary: a software
+// energy-saving strategy, not a hardware power claim or a battery guarantee.
+export function energyMeasure(matrix: MindMatrix = buildMatrix()) {
+  const signals = [
+    { signal: 'battery level', api: 'navigator.getBattery().level', use: 'spend less as the charge drops' },
+    { signal: 'charging', api: 'navigator.getBattery().charging', use: 'full motion only while plugged in' },
+    { signal: 'visibility', api: 'document.visibilityState', use: 'pause all motion and audio when hidden' },
+    { signal: 'reduced motion', api: 'prefers-reduced-motion', use: 'honor the user’s low-energy preference' },
+    { signal: 'save-data', api: 'navigator.connection.saveData', use: 'stay offline-first, fetch nothing' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`energy-measure:${entry.signal}`) }))
+  return {
+    grounded: signals.length > 0,
+    signals,
+    root: merkleFold(signals.map((entry) => entry.receipt)),
+    statement: 'Measure the device energy state: battery level and charging, tab visibility, reduced-motion, and save-data — the signals the portal fuses with to spend less.',
+    boundary: 'A description of standard browser energy signals. Each is read-only, on-device, and degrades gracefully if the API is absent.',
+  }
+}
+
+export function energyConserve(matrix: MindMatrix = buildMatrix()) {
+  const strategies = [
+    { strategy: 'no polling', saves: 'event-driven only; never spins the CPU waiting' },
+    { strategy: 'pause when hidden', saves: 'animation and audio stop when the tab is not visible' },
+    { strategy: 'throttle on low battery', saves: 'motion and the music slow or stop as the charge drops' },
+    { strategy: 'memoized compute', saves: 'heavy folds compute once per root, then reuse' },
+    { strategy: 'zero network', saves: 'no requests by default; nothing to wake the radio' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`energy-conserve:${entry.strategy}`) }))
+  return {
+    conserved: strategies.length > 0,
+    strategies,
+    root: merkleFold(strategies.map((entry) => entry.receipt)),
+    statement: 'Conserve energy: no polling, pause when hidden, throttle on low battery, memoized compute, and zero network — the portal spends only when it must.',
+    boundary: 'Software energy-saving strategies over the client-side architecture, not a measured power figure or a battery-life guarantee.',
+  }
+}
+
+export function energyFuse(matrix: MindMatrix = buildMatrix()) {
+  const measure = energyMeasure(matrix)
+  const conserve = energyConserve(matrix)
+  const devices = fuseDevices(matrix)
+  const root = merge(merge(measure.root, conserve.root), toUuid(`energy-fuse:${devices.fused}`))
+  return {
+    fused: measure.grounded && conserve.conserved,
+    measure: measure.root,
+    conserve: conserve.root,
+    root,
+    statement: 'Fuse with the user device to extend battery life: read the device energy state and conserve accordingly, so the portal becomes one low-power system with the device it runs on.',
+    boundary: 'A software fusion of energy signals and conservation strategies, not a hardware power claim or a guarantee of extended battery life.',
   }
 }
 
@@ -6551,6 +6626,18 @@ export function executeConceptCommand(
   if (command === 'concept.healing.harmonic') {
     const heal = healingHarmonic(matrix)
     return result(command, heal.harmonized, 'Harmonic healing waves folded into one healing root.', heal)
+  }
+  if (command === 'concept.energy.measure') {
+    const energy = energyMeasure(matrix)
+    return result(command, energy.grounded, 'Device energy state measured.', energy)
+  }
+  if (command === 'concept.energy.conserve') {
+    const energy = energyConserve(matrix)
+    return result(command, energy.conserved, 'Energy conservation strategies computed.', energy)
+  }
+  if (command === 'concept.energy.fuse') {
+    const energy = energyFuse(matrix)
+    return result(command, energy.fused, 'Fused with the user device to extend battery life.', energy)
   }
   if (command === 'concept.geometry.seal') {
     const seal = sacredGeometrySeal(matrix)

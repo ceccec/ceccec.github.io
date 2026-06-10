@@ -44,6 +44,9 @@ import {
   healingOuter,
   healingHarmonic,
   honestlyComputed,
+  energyMeasure,
+  energyConserve,
+  energyFuse,
   patentReview,
   fusionReactor,
   governanceVote,
@@ -150,6 +153,10 @@ ok('healing.outer', healingOuter(matrix).extended) // coherence restored across 
 ok('healing.harmonic', healingHarmonic(matrix).harmonized) // harmonic healing waves fold into one root
 // Honesty comes from text and math coming only from digit folders computed.
 ok('honestly.computed', honestlyComputed(matrix).honest)
+// Fuse with the user device to extend battery life: measure, conserve, fuse.
+ok('energy.measure', energyMeasure(matrix).grounded)
+ok('energy.conserve', energyConserve(matrix).conserved)
+ok('energy.fuse', energyFuse(matrix).fused)
 // Joining at a different horo yields a different phrase: the join point matters.
 ok('pi-music.join-matters', piMusic(matrix, 1).root !== piMusic(matrix, 4).root)
 // Determinism: two independent builds must produce the identical foundation root (no drift across waves).
