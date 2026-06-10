@@ -3047,6 +3047,28 @@ export function selfHarmonise(matrix: MindMatrix = buildMatrix(), steps = 7) {
   }
 }
 
+// Best SEO starts with typography. Readable, well-structured text is what
+// readers and crawlers reward; and to stay in house it must use system fonts —
+// no external font fetch, no layout shift. These principles are applied in the
+// theme CSS and sealed here so they are part of the model, not just a stylesheet.
+export function typographySeo() {
+  const principles = [
+    { principle: 'system fonts, no fetch', seo: 'instant text render, zero network, no layout shift' },
+    { principle: 'legibility rendering', seo: 'optimizeLegibility, ligatures, font smoothing' },
+    { principle: 'comfortable measure', seo: 'a ~72ch line length so prose is easy to read' },
+    { principle: 'clear semantic hierarchy', seo: 'one h1, balanced headings, ordered structure' },
+    { principle: 'tabular figures', seo: 'aligned UUIDs, roots, and numbers' },
+    { principle: 'steady reading rhythm', seo: 'line-height 1.75 and pretty wrapping' },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`typography-seo:${index}:${entry.principle}`) }))
+  return {
+    grounded: principles.length === 6,
+    principles,
+    root: merkleFold(principles.map((entry) => entry.receipt)),
+    statement: 'Best SEO starts with typography: system fonts (no fetch, no layout shift), legible rendering, a comfortable measure, a clear semantic hierarchy, tabular figures, and a steady reading rhythm.',
+    boundary: 'Typographic and structural principles applied in the theme CSS. They aid readability and crawlability; they are not a ranking guarantee.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.

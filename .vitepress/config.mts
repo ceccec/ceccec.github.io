@@ -74,6 +74,17 @@ export default defineConfig({
     const description = pageData.description || frontmatter.description || siteDescription
     const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
     const isDoc = docPages.some((doc) => relative.endsWith(`${doc}.md`))
+    // All is revealable through frontmatter: any page can reveal richer SEO by
+    // declaring frontmatter fields (keywords, teaches, command, image, dates,
+    // audience). They are honored here without touching the page body.
+    const fm = frontmatter as Record<string, unknown>
+    const asList = (value: unknown) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : undefined)
+    const keywords = asList(fm.keywords)
+    const teaches = asList(fm.teaches)
+    const command = typeof fm.command === 'string' ? fm.command : undefined
+    const image = typeof fm.image === 'string' ? fm.image : undefined
+    if (keywords) head.push(['meta', { name: 'keywords', content: keywords.join(', ') }])
+    if (image) head.push(['meta', { property: 'og:image', content: image }])
     head.push([
       'script',
       { type: 'application/ld+json' },
@@ -87,6 +98,13 @@ export default defineConfig({
         url: path,
         isPartOf: { '@type': 'WebSite', name: isBg ? siteTitleBg : siteTitle },
         about: 'a quantum-learning educational portal for language models served over MCP',
+        ...(keywords ? { keywords } : {}),
+        ...(teaches ? { teaches, learningResourceType: 'interactive resource' } : {}),
+        ...(command ? { mainEntity: { '@type': 'SoftwareSourceCode', name: command, codeRepository: '/mcp.json' } } : {}),
+        ...(image ? { image } : {}),
+        ...(typeof fm.datePublished === 'string' ? { datePublished: fm.datePublished } : {}),
+        ...(typeof fm.dateModified === 'string' ? { dateModified: fm.dateModified } : {}),
+        ...(fm.audience ? { audience: { '@type': 'EducationalAudience', educationalRole: asList(fm.audience) } } : {}),
         breadcrumb: {
           '@type': 'BreadcrumbList',
           itemListElement: [

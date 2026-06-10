@@ -895,7 +895,52 @@
   align-items: center;
 }
 
-.learn-erpax__lessons code {
+.learn-developer__lessons code {
   color: var(--vp-c-brand-1);
+}
+
+/* -----------------------------------------------------------------------------
+ * Typography — best SEO starts with typography. System fonts only (in house, no
+ * network fetch, no layout shift), tuned for legibility: optical smoothing,
+ * ligatures, a comfortable reading measure, balanced headings, tabular figures
+ * for the many UUIDs and roots, and a steady reading rhythm.
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-font-family-base: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --vp-font-family-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'JetBrains Mono', Menlo,
+    Consolas, 'Liberation Mono', monospace;
+}
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+.vp-doc p,
+.vp-doc li {
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  text-wrap: balance;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+}
+.vp-doc h1 {
+  letter-spacing: -0.028em;
+}
+.vp-doc code,
+.mono,
+code {
+  font-variant-numeric: tabular-nums;
+}
+/* A comfortable reading measure for top-level prose blocks. */
+.vp-doc > p,
+.vp-doc > ul,
+.vp-doc > ol {
+  max-width: 72ch;
 }
 

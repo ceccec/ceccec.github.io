@@ -1,6 +1,23 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
+# All is revealable through frontmatter: these fields enrich the page's schema.org
+# and meta without touching the body (honored by transformPageData in config.mts).
 layout: home
+keywords:
+  - quantum learning
+  - language models
+  - MCP
+  - double torus
+  - educational portal
+teaches:
+  - quantum learning
+  - Model Context Protocol
+  - self-verifying architecture
+audience:
+  - kids
+  - students
+  - adults
+  - elders
 
 hero:
   name: "Double Torus"
