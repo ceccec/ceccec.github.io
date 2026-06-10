@@ -17,6 +17,8 @@ system. This page converts that complexity into a graded curriculum — seven
 stages, from kids to elders — where each stage teaches one idea in plain words,
 with an activity and the real command that grounds it.
 
+<SpeechReader />
+
 <SchoolCurriculum />
 
 <CreativePalette />

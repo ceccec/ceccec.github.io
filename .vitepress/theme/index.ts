@@ -21,6 +21,7 @@ import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
+import SpeechReader from './components/SpeechReader.vue'
 import ShowAll from './components/ShowAll.vue'
 import TamperSeal from './components/TamperSeal.vue'
 import TaxonomyIcons from './components/TaxonomyIcons.vue'
@@ -59,6 +60,7 @@ export default {
     app.component('RevolutAside', RevolutAside)
     app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)
+    app.component('SpeechReader', SpeechReader)
     app.component('ShowAll', ShowAll)
     app.component('TamperSeal', TamperSeal)
     app.component('TaxonomyIcons', TaxonomyIcons)
