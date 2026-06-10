@@ -142,7 +142,8 @@ and receipt used by the UI.
 
 The 3D presentation uses two computed layers:
 
-- `diamondLattice()` builds the base diamonds for math, dynamics, proof,
+- `diamondLattice()` builds the base diamonds for agent binding, math,
+  dynamics, proof, nature/cost, pi seed, 3D geometry, sound, vibration,
   humanity, source reciprocity, and repository API state.
 - `piTrainDiamonds()` expands the digits of pi into a train of diamonds. Every
   digit receives a torus coordinate, a tone frequency, a vibration duration,
@@ -151,7 +152,9 @@ The 3D presentation uses two computed layers:
 The browser can only play sound and trigger device vibration after a user
 gesture. For that reason, the sequence starts from a button in the VitePress UI.
 When supported, the whole pi train advances through 3D diamonds with synchronized
-tones and vibration pulses.
+tones and vibration pulses. The sequence does not borrow a separate animation
+layer: every visible point, tone, and haptic pulse is computed from the diamond
+itself.
 
 ## Implications for humanity
 

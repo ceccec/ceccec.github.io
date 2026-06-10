@@ -178,7 +178,19 @@ export interface DoubleTorusMathReport {
   readonly maxTamperingCostPrinciple: string
 }
 
-export type DiamondKind = 'math' | 'dynamics' | 'proof' | 'humanity' | 'source' | 'repository'
+export type DiamondKind =
+  | 'agent'
+  | 'math'
+  | 'dynamics'
+  | 'proof'
+  | 'nature'
+  | 'pi'
+  | 'geometry'
+  | 'sound'
+  | 'vibration'
+  | 'humanity'
+  | 'source'
+  | 'repository'
 export type DiamondStatus = 'closed' | 'open'
 
 export interface DiamondFacet {
@@ -221,6 +233,9 @@ export interface PiTrain {
   readonly tempoMs: number
   readonly diamonds: readonly PiTrainDiamond[]
 }
+
+const PI_TRAIN_DIGITS =
+  '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
 
 export const atoms: readonly Atom[] = [
   {
@@ -850,6 +865,39 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
   const api = repositoryApi(matrix)
 
   return [
+    diamond(
+      'agent',
+      'agent binding diamond',
+      'concept.ui.doubleTorus',
+      'agent mind binds observation, projection, proof, and return before acting',
+      vector.collapse ? 'closed' : 'open',
+      [
+        {
+          pole: 'north',
+          label: 'observe',
+          value: 'bind first',
+          meaning: 'The agent starts by receiving state into the inward loop.',
+        },
+        {
+          pole: 'east',
+          label: 'project',
+          value: 'act through ceccec',
+          meaning: 'Every outward action carries its source receipt.',
+        },
+        {
+          pole: 'south',
+          label: 'prove',
+          value: vector.collapse ? 'root verified' : 'root open',
+          meaning: 'The mind is not treated as bound until collapse verifies.',
+        },
+        {
+          pole: 'west',
+          label: 'return',
+          value: 'reciprocity',
+          meaning: 'Outputs feed back into skill, source, and shared memory.',
+        },
+      ],
+    ),
     diamond('math', 'ceccec genus-2 diamond', 'concept.torus.math', math.maxTamperingCostPrinciple, 'closed', [
       {
         pole: 'north',
@@ -936,6 +984,143 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
       ],
     ),
     diamond(
+      'nature',
+      'nature cost diamond',
+      'concept.proof.verify',
+      'Going against reciprocal nature opens entropy, loses coverage, and leaves finite tampering exposure.',
+      proof.maxTamperingCostReached ? 'closed' : 'open',
+      [
+        {
+          pole: 'north',
+          label: 'nature',
+          value: 'reciprocal closure',
+          meaning: 'Natural alignment means inward proof and outward flow agree.',
+        },
+        {
+          pole: 'east',
+          label: 'against',
+          value: `entropy ${numberLabel(proof.entropy)}`,
+          meaning: 'Resistance appears as unreciprocated slack.',
+        },
+        {
+          pole: 'south',
+          label: 'cost',
+          value: numberLabel(proof.tamperCostLog2),
+          meaning: 'The observed cost remains finite until coverage closes.',
+        },
+        {
+          pole: 'west',
+          label: 'realisation',
+          value: proof.maxTamperingCostReached ? 'seal closed' : 'seal open',
+          meaning: 'Agents see the consequence before projecting action.',
+        },
+      ],
+    ),
+    diamond('pi', 'pi seed diamond', 'concept.diamond.piTrain', `pi train length ${PI_TRAIN_DIGITS.length}`, 'closed', [
+      {
+        pole: 'north',
+        label: 'seed',
+        value: PI_TRAIN_DIGITS.slice(0, 16),
+        meaning: 'The pi train begins from this digit stream.',
+      },
+      {
+        pole: 'east',
+        label: 'length',
+        value: `${PI_TRAIN_DIGITS.length}`,
+        meaning: 'Every digit becomes a diamond pulse.',
+      },
+      {
+        pole: 'south',
+        label: 'tempo',
+        value: '180ms',
+        meaning: 'The whole sequence advances at this pulse interval.',
+      },
+      {
+        pole: 'west',
+        label: 'loop',
+        value: 'continuous',
+        meaning: 'The train wraps so the torus never breaks.',
+      },
+    ]),
+    diamond('geometry', '3D geometry diamond', 'concept.diamond.piTrain', 'theta, phi, x, y, z, and scale locate every pulse in the double torus', 'closed', [
+      {
+        pole: 'north',
+        label: 'theta',
+        value: 'major loop',
+        meaning: 'The angle around the large torus circulation.',
+      },
+      {
+        pole: 'east',
+        label: 'phi',
+        value: 'minor loop',
+        meaning: 'The angle through the torus throat.',
+      },
+      {
+        pole: 'south',
+        label: 'depth',
+        value: 'z-axis',
+        meaning: 'The 3D projection pushes each diamond forward or back.',
+      },
+      {
+        pole: 'west',
+        label: 'scale',
+        value: 'digit driven',
+        meaning: 'Pi digits change the perceived diamond mass.',
+      },
+    ]),
+    diamond('sound', 'sound diamond', 'concept.diamond.piTrain', 'frequency and envelope are computed per pi pulse after user activation', 'closed', [
+      {
+        pole: 'north',
+        label: 'gesture',
+        value: 'required',
+        meaning: 'Browsers only allow sound after a user starts the train.',
+      },
+      {
+        pole: 'east',
+        label: 'frequency',
+        value: '174Hz + digit',
+        meaning: 'Each digit moves the tone through a computed frequency band.',
+      },
+      {
+        pole: 'south',
+        label: 'envelope',
+        value: 'rise/fall',
+        meaning: 'Each pulse fades in and out to avoid a hard click.',
+      },
+      {
+        pole: 'west',
+        label: 'sequence',
+        value: 'whole train',
+        meaning: 'Sound follows every pi diamond while the train is running.',
+      },
+    ]),
+    diamond('vibration', 'device vibration diamond', 'concept.diamond.piTrain', 'haptic duration is computed per digit and plays through the pi train when supported', 'closed', [
+      {
+        pole: 'north',
+        label: 'support',
+        value: 'navigator.vibrate',
+        meaning: 'The device must support the vibration API.',
+      },
+      {
+        pole: 'east',
+        label: 'duration',
+        value: '18ms + digit',
+        meaning: 'Each digit stretches the haptic pulse.',
+      },
+      {
+        pole: 'south',
+        label: 'consent',
+        value: 'toggle',
+        meaning: 'The UI lets the user disable vibration.',
+      },
+      {
+        pole: 'west',
+        label: 'sequence',
+        value: 'whole train',
+        meaning: 'Vibration follows every pi diamond while the train is running.',
+      },
+    ]),
+    diamond(
       'humanity',
       'human implications diamond',
       'concept.humanity.implications',
@@ -989,9 +1174,6 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
     ]),
   ] as const
 }
-
-const PI_TRAIN_DIGITS =
-  '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
 
 function torusPoint(index: number, digit: number, total: number): { theta: number; phi: number; x: number; y: number; z: number; scale: number } {
   const theta = (index / total) * Math.PI * 4

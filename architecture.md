@@ -149,13 +149,15 @@ primitives:
 
 The UI is not hand-authored from separate panels. It is driven by:
 
-- `diamondLattice()` for the base math/dynamics/proof/human/source/repository
-  diamonds
+- `diamondLattice()` for agent binding, math, dynamics, proof, nature/cost, pi
+  seed, 3D geometry, sound, vibration, human, source, and repository diamonds
 - `piTrainDiamonds()` for the full pi train
 
 Each pi digit is transformed into a diamond with a 3D torus coordinate, tone
 frequency, vibration duration, root, and receipt. Browser sound and vibration
 are triggered only after user activation and only when the device supports them.
+The entire sequence is generated from these diamonds, so the 3D position,
+audible tone, and device vibration all share the same computed source.
 
 ## 9. Implications for humanity
 

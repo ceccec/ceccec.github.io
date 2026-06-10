@@ -110,7 +110,8 @@ onBeforeUnmount(() => {
         <p>
           The full sequence is derived from pi-train diamonds. Every point has a
           digit, four facets, a receipt, a 3D torus coordinate, a tone, and a
-          vibration pulse.
+          vibration pulse. The base lattice has {{ lattice.length }} diamonds,
+          and the full train has {{ piTrain.diamonds.length }} pulses.
         </p>
       </div>
       <Badge :variant="running ? 'success' : 'outline'">{{ running ? 'running' : 'ready' }}</Badge>
@@ -136,7 +137,7 @@ onBeforeUnmount(() => {
     <TabsRoot default-value="pulse" class="diamond-tabs">
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
-        <TabsTrigger value="lattice">Base lattice</TabsTrigger>
+        <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
 
