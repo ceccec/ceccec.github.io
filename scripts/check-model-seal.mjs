@@ -47,6 +47,7 @@ import {
   emfApplications,
   emf358,
   navigation358,
+  endlessWaves,
   agnostic,
   release,
   doubleTorus3D,
