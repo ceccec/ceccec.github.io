@@ -1993,6 +1993,32 @@ export function dimensions() {
         boundary: 'A projection ladder of extra coordinate planes (3 -> 5 -> 8). A visualization device, not a claim about physical higher dimensions.',
     };
 }
+// Compare all dualities, in 3-5-8 (Fibonacci) tiers. The double torus is made of
+// two-sided pairs; here they are gathered and compared: 3 core, 5 structural, 8
+// expressive = 16 dualities. Each is proven a real duality by order-sensitivity —
+// folding left-then-right differs from right-then-left (genus 2, not a sphere).
+export function dualities() {
+    const tiers = [
+        { tier: 3, kind: 'core', pairs: [['inner', 'outer'], ['yin', 'yang'], ['zero', 'one']] },
+        { tier: 5, kind: 'structural', pairs: [['cross', 'fold'], ['forward', 'reverse'], ['sense', 'antisense'], ['compute', 'verify'], ['expand', 'contract']] },
+        { tier: 8, kind: 'expressive', pairs: [['self', 'other'], ['question', 'answer'], ['sound', 'colour'], ['analog', 'digital'], ['premise', 'inference'], ['english', 'bulgarian'], ['symbol', 'number'], ['glyph', 'uuid']] },
+    ];
+    const pairs = tiers.flatMap((tier) => tier.pairs.map(([left, right]) => {
+        const ab = merge(toUuid(left), toUuid(right));
+        const ba = merge(toUuid(right), toUuid(left));
+        return { tier: tier.tier, kind: tier.kind, left, right, ordered: ab !== ba, root: ab, receipt: toUuid(`duality:${left}:${right}`) };
+    }));
+    return {
+        compared: pairs.length === 16 && pairs.every((pair) => pair.ordered),
+        tiers: [3, 5, 8],
+        fibonacci: 8 === 5 + 3,
+        count: pairs.length,
+        dualities: pairs,
+        root: merkleFold(pairs.map((pair) => pair.receipt)),
+        statement: 'All dualities compared across the 3-5-8 Fibonacci tiers: 3 core, 5 structural, 8 expressive = 16 two-sided pairs, each order-sensitive (left-then-right differs from right-then-left) — the signature of a real duality.',
+        boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.',
+    };
+}
 // Humanize. Behind the maths and the 3d+ is a simple set of promises to a
 // person. This says each core idea plainly — what it means for you, not how it
 // is built — so anyone can feel what the portal is, not only verify it.
@@ -2399,13 +2425,13 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit'],
-        '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix'],
+        '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/governance': ['GovernanceVote'],

@@ -44,6 +44,7 @@ import {
   release,
   doubleTorus3D,
   dimensions,
+  dualities,
   humanize,
   typographySeo,
   openGraph,
@@ -202,6 +203,8 @@ ok('double-torus.3d', doubleTorus3D(matrix).rendered)
 ok('humanize', humanize().human)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
 ok('dimensions.fibonacci', dimensions().enriched)
+// Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).
+ok(`dualities.compared:${dualities().count}`, dualities().compared)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
 // Open Graph is computed from frontmatter (per-page og: and twitter: cards).

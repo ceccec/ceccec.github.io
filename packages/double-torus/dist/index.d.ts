@@ -1313,6 +1313,24 @@ export declare function dimensions(): {
     statement: string;
     boundary: string;
 };
+export declare function dualities(): {
+    compared: boolean;
+    tiers: number[];
+    fibonacci: boolean;
+    count: number;
+    dualities: {
+        tier: number;
+        kind: string;
+        left: string;
+        right: string;
+        ordered: boolean;
+        root: string;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function humanize(): {
     human: boolean;
     translations: {
