@@ -13,7 +13,7 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      'aside-top': () => h(RevolutAside),
+      'aside-ads-before': () => h(RevolutAside),
     })
   },
   enhanceApp({ app }) {
