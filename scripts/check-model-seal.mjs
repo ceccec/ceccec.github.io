@@ -47,6 +47,7 @@ import {
   doubleTorus3D,
   dimensions,
   dualities,
+  deviceSensors,
   equilibrium,
   path,
   quantumAcademy,
@@ -227,6 +228,8 @@ ok('question-answer.equilibrium', questionAnswerEquilibrium(matrix).equilibrium)
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).
 ok(`dualities.compared:${dualities().count}`, dualities().compared)
+// Fill the gaps with device sensors in the quantum field, 3-5-8 tiers (16 inputs).
+ok(`sensors.tiered:${deviceSensors().count}`, deviceSensors().tiered)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
 // Open Graph is computed from frontmatter (per-page og: and twitter: cards).

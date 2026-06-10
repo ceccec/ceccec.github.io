@@ -1354,6 +1354,20 @@ export declare function equilibrium(matrix?: MindMatrix, steps?: number): {
     statement: string;
     boundary: string;
 };
+export declare function deviceSensors(): {
+    tiered: boolean;
+    tiers: number[];
+    count: number;
+    sensors: {
+        tier: number;
+        kind: string;
+        sensor: string;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function dualities(): {
     compared: boolean;
     tiers: number[];

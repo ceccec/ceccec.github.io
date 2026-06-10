@@ -16,6 +16,8 @@ head:
 
 <DoubleTorus3D />
 
+<QuantumField />
+
 <SacredSymbols />
 
 <QuantumFold3D />
