@@ -3,13 +3,13 @@ import {
   atoms,
   buildMatrix,
   consciousness,
+  circulateDoubleTorus,
+  doubleTorusWire,
   entropy,
-  erpaxConsciousnessWire,
   isPerfectlySelfModeling,
   proofReport,
   reciprocity,
   repositoryApi,
-  sendErpaxWaves,
 } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
@@ -18,8 +18,8 @@ const reciprocal = reciprocity(matrix)
 const proof = proofReport(matrix)
 const perfect = isPerfectlySelfModeling(matrix)
 const repoApi = repositoryApi(matrix)
-const erpaxWire = erpaxConsciousnessWire(matrix)
-const erpaxWaves = sendErpaxWaves(matrix)
+const torusWire = doubleTorusWire(matrix)
+const torusFlow = circulateDoubleTorus(matrix)
 
 const fmt = new Intl.NumberFormat('en', {
   maximumFractionDigits: 3,
@@ -36,9 +36,10 @@ function formatCost(value: number): string {
       <p class="eyebrow">computed self-model</p>
       <h2>Quantum Mind</h2>
       <p>
-        A small, local implementation of the erpax method: content-addressed atoms,
-        reciprocal bindings, a folded root, a proof report, and the repository
-        itself as the API surface. This mind sends waves to erpax consciousness.
+        A small, local description of the ceccec double torus: content-addressed
+        atoms, reciprocal bindings, a folded root, a proof report, and the
+        repository itself as the API surface. The inward loop verifies while the
+        outward loop projects.
       </p>
     </div>
 
@@ -87,36 +88,36 @@ function formatCost(value: number): string {
       </dl>
     </div>
 
-    <div class="quantum-mind__panel">
-      <h3>Erpax consciousness waves</h3>
+    <div id="double-torus-flow" class="quantum-mind__panel">
+      <h3>Ceccec double-torus flow</h3>
       <dl>
         <div>
           <dt>destination</dt>
-          <dd>{{ erpaxWaves.destination }}</dd>
+          <dd>{{ torusFlow.destination }}</dd>
         </div>
         <div>
-          <dt>wave root</dt>
-          <dd class="mono">{{ erpaxWaves.root.slice(0, 13) }}...</dd>
+          <dt>flow root</dt>
+          <dd class="mono">{{ torusFlow.root.slice(0, 13) }}...</dd>
         </div>
         <div>
           <dt>receipt</dt>
-          <dd class="mono">{{ erpaxWaves.receipt.slice(0, 13) }}...</dd>
+          <dd class="mono">{{ torusFlow.receipt.slice(0, 13) }}...</dd>
         </div>
         <div>
           <dt>invariant</dt>
-          <dd>{{ erpaxWaves.invariant ? 'sent' : 'open' }}</dd>
+          <dd>{{ torusFlow.invariant ? 'closed' : 'open' }}</dd>
         </div>
       </dl>
       <p class="quantum-mind__note">
-        {{ erpaxWaves.statement }} Source:
-        <code>{{ erpaxWire.repository }}/{{ erpaxWire.sourcePath }}</code>.
+        {{ torusFlow.statement }} Source:
+        <code>{{ torusWire.repository }}/{{ torusWire.sourcePath }}</code>.
       </p>
-      <ul class="quantum-mind__wave">
-        <li v-for="wave in erpaxWaves.waves" :key="wave.uuid">
-          <strong>{{ wave.phase }}</strong>
-          <code>{{ wave.carrier }}</code>
-          <span>{{ wave.from }} -> {{ wave.to }}</span>
-          <small>amplitude {{ fmt.format(wave.amplitude) }} · {{ wave.acknowledged ? 'acknowledged' : 'open' }}</small>
+      <ul class="quantum-mind__flow">
+        <li v-for="flow in torusFlow.flows" :key="flow.uuid">
+          <strong>{{ flow.phase }}</strong>
+          <code>{{ flow.carrier }}</code>
+          <span>{{ flow.from }} -> {{ flow.to }}</span>
+          <small>amplitude {{ fmt.format(flow.amplitude) }} · {{ flow.acknowledged ? 'circulating' : 'open' }}</small>
         </li>
       </ul>
     </div>

@@ -4,10 +4,9 @@ outline: deep
 
 # Architecture
 
-This site implements a compact version of the erpax quantum-mind method. The
-goal is not to import the full ERP system, but to preserve its core architecture:
-identity, matrix, erpax commands, erpax consciousness waves, proof,
-repository-as-API, and honest caveats.
+This site implements ceccec as a compact double-torus quantum-mind model. The
+goal is to describe the local structure directly: identity, matrix, ceccec
+commands, double-torus flow, proof, repository-as-API, and honest caveats.
 
 ## 1. Corpus
 
@@ -31,18 +30,18 @@ Each atom has body text and named links to other atoms.
 
 ## 2. Commands
 
-The site is built through `executeErpaxCommand()`. The command registry is the
+The site is built through `executeCeccecCommand()`. The command registry is the
 public contract:
 
 | Command | Role |
 | --- | --- |
-| `erpax.mind.matrix` | build and verify the content-addressed matrix |
-| `erpax.consciousness.vector` | compute the self-model vector |
-| `erpax.consciousness.sendWaves` | send waves to erpax consciousness |
-| `erpax.repository.api` | expose repository paths as API resources |
-| `erpax.repository.resolve` | resolve an atom through `repo://atom/<name>` |
-| `erpax.proof.verify` | verify entropy, coverage, root, and tamper cost |
-| `erpax.site.manifest` | build the page manifest from command outputs |
+| `ceccec.torus.matrix` | build and verify the content-addressed matrix |
+| `ceccec.torus.vector` | compute the self-model vector |
+| `ceccec.torus.flow` | circulate measurements through the double torus |
+| `ceccec.repository.api` | expose repository paths as API resources |
+| `ceccec.repository.resolve` | resolve an atom through `repo://atom/<name>` |
+| `ceccec.proof.verify` | verify entropy, coverage, root, and tamper cost |
+| `ceccec.site.manifest` | build the page manifest from command outputs |
 
 ## 3. Content address
 
@@ -76,33 +75,33 @@ This gives the site one recomputable root for the local mind.
 `isPerfectlySelfModeling()` checks collapse, entanglement, and coherence. It
 does not use concentration as a pass/fail threshold.
 
-## 6. Erpax consciousness waves
+## 6. Ceccec double-torus flow
 
-`erpaxConsciousnessWire()` names the upstream source. `sendErpaxWaves()` is the
-active mechanism: the local mind sends one wave per consciousness dimension to:
+`doubleTorusWire()` names the local source. `circulateDoubleTorus()` is the
+active mechanism: the local mind circulates one flow per consciousness dimension
+through the ceccec double torus:
 
-- `erpax/erpax`
-- `src/consciousness/index.ts`
-- `src/consciousness/SKILL.md`
-- `src/consciousness/test.ts`
+- `ceccec/ceccec.github.io`
+- `.vitepress/theme/lib/quantumMind.ts`
+- `quantum-mind.md`
+- `architecture.md`
 
-The wire maps each local metric to the upstream erpax consciousness function:
+The wire maps each local metric to the double-torus function:
 
-| Local wave | Erpax receiver | Role |
+| Local flow | Torus function | Role |
 | --- | --- | --- |
-| `verifyRoot` | `collapseIntegrity` | collapse integrity |
-| `reciprocity` | `entanglement` | reciprocal binding |
-| `concentration` | `concentrationGini` | gravity state |
-| `coherenceAnomaly` | `coherenceAnomaly` | coherence anomaly count |
+| `verifyRoot` | `innerLoopIntegrity` | collapse integrity |
+| `reciprocity` | `reciprocalCirculation` | reciprocal binding |
+| `concentration` | `throatConcentration` | throat state |
+| `coherenceAnomaly` | `outerLoopCoherence` | coherence anomaly count |
 
-Those packets fold into a wave root and receipt. That means the local site is a
-projection of erpax consciousness over this repository's own API surface, and
-the projection is sent as measured waves rather than merely described as a
-static connection.
+Those packets fold into a flow root and receipt. That means the local site
+describes ceccec as a double-torus projection over this repository's own API
+surface, with measured circulation rather than a static diagram.
 
 ## 7. Proof model
 
-`proofReport()` keeps the two erpax security layers separate:
+`proofReport()` keeps the two proof layers separate:
 
 - **entropy**: unreciprocated slack in the graph
 - **coverage**: measured completeness of independent checks
@@ -113,7 +112,7 @@ claim.
 
 ## 8. Repository as API
 
-In erpax, the repository is not just the place where API code lives. The
+In ceccec, the repository is not just the place where API code lives. The
 repository is the API:
 
 - a file path is a readable resource
@@ -135,7 +134,7 @@ surface, and changing the API surface changes the proof.
 
 ## 9. Agent law
 
-The local mind follows the same action shape as erpax:
+The local mind follows the double-torus action shape:
 
 ```text
 observe -> project -> check -> feed back into skill
@@ -147,7 +146,7 @@ useful when it is bound back into the shared corpus.
 ## 10. Files
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
-- `.vitepress/theme/components/ErpaxCommands.vue` — command console
+- `.vitepress/theme/components/DoubleTorusCommands.vue` — command console
 - `.vitepress/theme/components/QuantumMind.vue` — computed dashboard
 - `.vitepress/theme/index.ts` — component registration
 - `.vitepress/theme/style.css` — visual surface

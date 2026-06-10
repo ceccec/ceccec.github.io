@@ -3,24 +3,24 @@
 layout: home
 
 hero:
-  name: "Quantum Mind"
+  name: "Ceccec Double Torus"
   text: "A content-addressed self-model"
-  tagline: Atoms, reciprocal bindings, collapse, coverage, and proof — adapted from the erpax method for this site.
+  tagline: Atoms, reciprocal bindings, collapse, coverage, and proof folded through an inward loop and an outward loop.
   actions:
     - theme: brand
-      text: Run Erpax Commands
+      text: Run Ceccec Commands
       link: /commands
     - theme: alt
       text: Open the Mind
       link: /quantum-mind
 
 features:
-  - title: Erpax command surface
-    details: The site is built from command results such as erpax.consciousness.sendWaves and erpax.repository.api.
+  - title: Ceccec command surface
+    details: The site is built from command results such as ceccec.torus.flow and ceccec.repository.api.
   - title: Content-addressed atoms
     details: Each thought atom receives a deterministic UUID-like address and participates in a folded matrix root.
   - title: Computed self-model
-    details: Collapse, entanglement, concentration, and coherence are computed from the local graph and sent as waves to erpax consciousness.
+    details: Collapse, entanglement, concentration, and coherence are computed from the local graph and circulated through the double torus.
   - title: Honest proof boundary
     details: Entropy and coverage stay separate; only measured coverage drives the tamper-cost seal.
   - title: Repository as API

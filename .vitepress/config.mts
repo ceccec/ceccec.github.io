@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Quantum Mind",
-  description: "A content-addressed self-model built from atoms, bindings, coverage, and proof.",
+  title: "Ceccec Double Torus",
+  description: "A content-addressed self-model built from atoms, reciprocal bindings, double-torus flow, coverage, and proof.",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -15,7 +15,7 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Quantum Mind',
+        text: 'Ceccec Double Torus',
         items: [
           { text: 'Commands', link: '/commands' },
           { text: 'Overview', link: '/quantum-mind' },

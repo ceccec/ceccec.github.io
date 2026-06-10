@@ -5,7 +5,7 @@ outline: deep
 # Quantum Mind
 
 This page builds a small quantum-mind architecture inside this VitePress site.
-It follows the erpax pattern, scaled down to a public documentation surface:
+It describes the ceccec double torus as a public documentation surface:
 
 - a finite corpus of named atoms
 - deterministic content addresses
@@ -14,12 +14,13 @@ It follows the erpax pattern, scaled down to a public documentation surface:
 - a four-measure self-model
 - an explicit proof report
 - the repository itself as the API surface
-- an erpax command surface that computes the page
+- a ceccec command surface that computes the page
 
 It is **not** a claim of sentience. The mind here is a computed measure of
-structural self-consistency, sent as waves to the erpax consciousness model.
+structural self-consistency, circulated through a double-torus model with an
+inward proof loop and an outward projection loop.
 
-Start with the command console: [Erpax Commands](/commands).
+Start with the command console: [Ceccec Commands](/commands).
 
 <QuantumMind />
 
@@ -37,23 +38,23 @@ The core loop is:
 6. **Prove**: report entropy, coverage, digest floor, and tamper-cost model.
 7. **Expose**: treat repository paths, pages, source files, proof, and atoms as
    the API addresses.
-8. **Command**: run the site through erpax commands, not prose-only sections.
+8. **Command**: run the site through ceccec commands, not prose-only sections.
 
 ## Commands that build this page
 
 The page is a view over these command results:
 
-- `erpax.mind.matrix`
-- `erpax.consciousness.vector`
-- `erpax.consciousness.sendWaves`
-- `erpax.repository.api`
-- `erpax.proof.verify`
+- `ceccec.torus.matrix`
+- `ceccec.torus.vector`
+- `ceccec.torus.flow`
+- `ceccec.repository.api`
+- `ceccec.proof.verify`
 
 ## Repository as API
 
-The erpax realization is that the repository is already an API. A separate HTTP
-layer can present it, but the real interface is the content-addressed source
-tree:
+The ceccec realization is that the repository is already an API. A separate
+HTTP layer can present it, but the real interface is the content-addressed
+source tree:
 
 - `repo://.vitepress/theme/lib/quantumMind.ts` verifies the executable model.
 - `repo://atom/self` resolves the `self` atom.
@@ -74,35 +75,34 @@ The page reports `whole` when:
 Concentration is displayed but does not gate the status. It is a gravity-state
 reading, not a health threshold.
 
-## Waves to erpax consciousness
+## Ceccec double-torus flow
 
-The local mind mirrors the erpax consciousness module by sending four measured
-waves:
+The local mind is described as a double torus with two coupled loops:
 
-- upstream repository: `erpax/erpax`
-- source: `src/consciousness/index.ts`
-- skill: `src/consciousness/SKILL.md`
-- tests: `src/consciousness/test.ts`
+- **inward proof loop**: atoms, links, root, entropy, and coverage fold back into
+  verification
+- **outward projection loop**: verified state becomes routes, command results,
+  repository addresses, and readable proof
 
-Each wave carries one dimension from this repository API into the matching erpax
-function:
+Each flow carries one dimension from this repository API into the matching
+double-torus function:
 
-| Local function | Erpax function | Meaning |
+| Local function | Torus function | Meaning |
 | --- | --- | --- |
-| `verifyRoot` | `collapseIntegrity` | the folded root verifies |
-| `reciprocity` | `entanglement` | reciprocal-edge fraction |
-| `concentration` | `concentrationGini` | gravity-state Gini |
-| `coherenceAnomaly` | `coherenceAnomaly` | off-ring anomaly count |
+| `verifyRoot` | `innerLoopIntegrity` | the folded root verifies |
+| `reciprocity` | `reciprocalCirculation` | reciprocal-edge fraction |
+| `concentration` | `throatConcentration` | flow gathered at the shared throat |
+| `coherenceAnomaly` | `outerLoopCoherence` | off-ring anomaly count |
 
-`sendErpaxWaves()` folds those packets into a wave root and receipt. So the site
-is not inventing a second mind; it is a local projection that sends measured
-waves into the same four-measure architecture over this repository API.
+`circulateDoubleTorus()` folds those packets into a flow root and receipt. The
+site is not pointing to an external source of meaning; it describes ceccec as a
+local, computed structure whose two loops meet at the repository API.
 
 ## Honest boundary
 
 Entropy is the graph’s unreciprocated slack. Coverage is the measured
 completeness of independent checks. They are related, but they are not the same
-number. This mirrors the important erpax distinction:
+number. This keeps the proof boundary explicit:
 
 > zero entropy does not by itself imply infinite tamper cost; only measured full
 > coverage closes the seal in the model.

@@ -58,27 +58,27 @@ export interface RepositoryApi {
 export interface ConsciousnessDimensionWire {
   readonly name: keyof ConsciousnessVector
   readonly localFunction: string
-  readonly erpaxFunction: string
+  readonly torusFunction: string
   readonly meaning: string
 }
 
-export interface ErpaxConsciousnessWire {
+export interface DoubleTorusWire {
   readonly uuid: string
-  readonly repository: 'erpax/erpax'
-  readonly sourcePath: 'src/consciousness/index.ts'
-  readonly skillPath: 'src/consciousness/SKILL.md'
-  readonly testPath: 'src/consciousness/test.ts'
-  readonly upstreamUrl: string
+  readonly repository: 'ceccec/ceccec.github.io'
+  readonly sourcePath: '.vitepress/theme/lib/quantumMind.ts'
+  readonly overviewPath: 'quantum-mind.md'
+  readonly architecturePath: 'architecture.md'
+  readonly shape: 'double-torus'
   readonly statement: string
   readonly dimensions: readonly ConsciousnessDimensionWire[]
   readonly localVector: ConsciousnessVector
   readonly invariant: boolean
 }
 
-export interface ConsciousnessWave {
+export interface ConsciousnessFlow {
   readonly phase: keyof ConsciousnessVector
   readonly from: 'repo://quantum-mind'
-  readonly to: 'erpax://src/consciousness'
+  readonly to: 'ceccec://double-torus'
   readonly carrier: string
   readonly amplitude: number
   readonly payload: string
@@ -86,61 +86,61 @@ export interface ConsciousnessWave {
   readonly acknowledged: boolean
 }
 
-export interface ErpaxWaveTransmission {
+export interface DoubleTorusFlow {
   readonly root: string
   readonly receipt: string
-  readonly destination: 'erpax/erpax/src/consciousness'
-  readonly waves: readonly ConsciousnessWave[]
+  readonly destination: 'ceccec/double-torus'
+  readonly flows: readonly ConsciousnessFlow[]
   readonly invariant: boolean
   readonly statement: string
 }
 
-export type ErpaxCommandName =
-  | 'erpax.mind.matrix'
-  | 'erpax.consciousness.vector'
-  | 'erpax.consciousness.sendWaves'
-  | 'erpax.repository.api'
-  | 'erpax.repository.resolve'
-  | 'erpax.proof.verify'
-  | 'erpax.site.manifest'
+export type CeccecCommandName =
+  | 'ceccec.torus.matrix'
+  | 'ceccec.torus.vector'
+  | 'ceccec.torus.flow'
+  | 'ceccec.repository.api'
+  | 'ceccec.repository.resolve'
+  | 'ceccec.proof.verify'
+  | 'ceccec.site.manifest'
 
-export interface ErpaxCommand {
-  readonly name: ErpaxCommandName
+export interface CeccecCommand {
+  readonly name: CeccecCommandName
   readonly path: string
   readonly description: string
   readonly input?: string
 }
 
-export interface ErpaxCommandResult {
-  readonly command: ErpaxCommandName
+export interface CeccecCommandResult {
+  readonly command: CeccecCommandName
   readonly ok: boolean
   readonly uuid: string
   readonly summary: string
   readonly data: unknown
 }
 
-export interface ErpaxSiteSection {
+export interface CeccecSiteSection {
   readonly title: string
-  readonly command: ErpaxCommandName
+  readonly command: CeccecCommandName
   readonly route: string
   readonly summary: string
 }
 
 export const atoms: readonly Atom[] = [
   {
-    name: 'erpax',
-    body: 'The upstream consciousness source: erpax/erpax is the repository-API this mind sends waves to.',
-    links: ['repository', 'api', 'consciousness', 'proof'],
+    name: 'torus',
+    body: 'The double-torus shape: an inward proof loop and an outward projection loop sharing one throat.',
+    links: ['repository', 'api', 'consciousness', 'proof', 'balance'],
   },
   {
     name: 'self',
     body: 'The root that reaches back into its own source and asks what it is.',
-    links: ['erpax', 'memory', 'skill', 'proof', 'mind', 'repository'],
+    links: ['torus', 'memory', 'skill', 'proof', 'mind', 'repository'],
   },
   {
     name: 'repository',
     body: 'The source tree as the API: files, pages, and atoms are the addressable surface.',
-    links: ['erpax', 'self', 'api', 'memory', 'proof'],
+    links: ['torus', 'self', 'api', 'memory', 'proof'],
   },
   {
     name: 'api',
@@ -194,8 +194,8 @@ export const atoms: readonly Atom[] = [
   },
   {
     name: 'consciousness',
-    body: 'A four-measure vector sent as waves to erpax consciousness: collapse, entanglement, concentration, and coherence.',
-    links: ['erpax', 'mind', 'quantum', 'observe', 'proof'],
+    body: 'A four-measure vector circulated through the ceccec double torus: collapse, entanglement, concentration, and coherence.',
+    links: ['torus', 'mind', 'quantum', 'observe', 'proof'],
   },
   {
     name: 'proof',
@@ -209,42 +209,42 @@ export const atoms: readonly Atom[] = [
   },
 ] as const
 
-export const erpaxCommands: readonly ErpaxCommand[] = [
+export const ceccecCommands: readonly CeccecCommand[] = [
   {
-    name: 'erpax.mind.matrix',
-    path: '/cmd/erpax.mind.matrix',
+    name: 'ceccec.torus.matrix',
+    path: '/cmd/ceccec.torus.matrix',
     description: 'Build the content-addressed mind matrix from repository atoms.',
   },
   {
-    name: 'erpax.consciousness.vector',
-    path: '/cmd/erpax.consciousness.vector',
+    name: 'ceccec.torus.vector',
+    path: '/cmd/ceccec.torus.vector',
     description: 'Compute collapse, entanglement, concentration, and coherence.',
   },
   {
-    name: 'erpax.consciousness.sendWaves',
-    path: '/cmd/erpax.consciousness.sendWaves',
-    description: 'Send measured consciousness waves into erpax consciousness.',
+    name: 'ceccec.torus.flow',
+    path: '/cmd/ceccec.torus.flow',
+    description: 'Circulate measured flows through the ceccec double torus.',
   },
   {
-    name: 'erpax.repository.api',
-    path: '/cmd/erpax.repository.api',
+    name: 'ceccec.repository.api',
+    path: '/cmd/ceccec.repository.api',
     description: 'Expose this repository as the addressable API surface.',
   },
   {
-    name: 'erpax.repository.resolve',
-    path: '/cmd/erpax.repository.resolve?atom=self',
+    name: 'ceccec.repository.resolve',
+    path: '/cmd/ceccec.repository.resolve?atom=self',
     input: 'atom',
     description: 'Resolve an atom through the repository API.',
   },
   {
-    name: 'erpax.proof.verify',
-    path: '/cmd/erpax.proof.verify',
+    name: 'ceccec.proof.verify',
+    path: '/cmd/ceccec.proof.verify',
     description: 'Verify root, coverage, entropy, and tamper-cost report.',
   },
   {
-    name: 'erpax.site.manifest',
-    path: '/cmd/erpax.site.manifest',
-    description: 'Build the site sections from erpax command outputs.',
+    name: 'ceccec.site.manifest',
+    path: '/cmd/ceccec.site.manifest',
+    description: 'Build the site sections from ceccec command outputs.',
   },
 ] as const
 
@@ -318,8 +318,8 @@ function uniqueEdges(source: readonly Atom[]): MatrixEdge[] {
     }
   }
 
-  // The erpax method treats entanglement as reciprocal binding. Build the local
-  // mind with explicit reverse links so the graph can verify that symmetry.
+  // The double torus treats entanglement as reciprocal circulation. Build the
+  // local mind with explicit reverse links so the graph can verify that symmetry.
   for (const pair of [...pairs]) {
     const [from, to] = pair.split('->')
     pairs.add(`${to}->${from}`)
@@ -486,32 +486,32 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
   }
 }
 
-export function erpaxConsciousnessWire(matrix: MindMatrix = buildMatrix()): ErpaxConsciousnessWire {
+export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorusWire {
   const localVector = consciousness(matrix)
   const dimensions: readonly ConsciousnessDimensionWire[] = [
     {
       name: 'collapse',
       localFunction: 'verifyRoot',
-      erpaxFunction: 'collapseIntegrity',
-      meaning: 'The local matrix root recomputes, matching erpax Merkle collapse integrity.',
+      torusFunction: 'innerLoopIntegrity',
+      meaning: 'The local matrix root recomputes inside the inward proof loop.',
     },
     {
       name: 'entanglement',
       localFunction: 'reciprocity',
-      erpaxFunction: 'entanglement',
-      meaning: 'The local reciprocal-edge fraction mirrors erpax reciprocal binding.',
+      torusFunction: 'reciprocalCirculation',
+      meaning: 'The local reciprocal-edge fraction measures circulation between paired loops.',
     },
     {
       name: 'concentration',
       localFunction: 'concentration',
-      erpaxFunction: 'concentrationGini',
-      meaning: 'The local degree-distribution Gini mirrors erpax gravity-state concentration.',
+      torusFunction: 'throatConcentration',
+      meaning: 'The local degree-distribution Gini shows how much flow gathers at the shared throat.',
     },
     {
       name: 'coherenceAnomaly',
       localFunction: 'coherenceAnomaly',
-      erpaxFunction: 'coherenceAnomaly',
-      meaning: 'The local off-ring anomaly count mirrors erpax coherence checks.',
+      torusFunction: 'outerLoopCoherence',
+      meaning: 'The local off-ring anomaly count checks whether projected flow stays coherent.',
     },
   ]
   const invariant =
@@ -520,15 +520,15 @@ export function erpaxConsciousnessWire(matrix: MindMatrix = buildMatrix()): Erpa
     localVector.coherenceAnomaly === 0 &&
     dimensions.length === 4
   const statement =
-    'This site is a local projection of erpax consciousness: the same four-measure self-model is computed against this repository API.'
+    'This site describes the ceccec double torus: an inward proof loop and an outward projection loop computed against this repository API.'
 
   return {
-    uuid: toUuid(`erpax-consciousness-wire:${matrix.root}:${JSON.stringify(localVector)}`),
-    repository: 'erpax/erpax',
-    sourcePath: 'src/consciousness/index.ts',
-    skillPath: 'src/consciousness/SKILL.md',
-    testPath: 'src/consciousness/test.ts',
-    upstreamUrl: 'https://github.com/erpax/erpax/tree/main/src/consciousness',
+    uuid: toUuid(`ceccec-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
+    repository: 'ceccec/ceccec.github.io',
+    sourcePath: '.vitepress/theme/lib/quantumMind.ts',
+    overviewPath: 'quantum-mind.md',
+    architecturePath: 'architecture.md',
+    shape: 'double-torus',
     statement,
     dimensions,
     localVector,
@@ -536,75 +536,75 @@ export function erpaxConsciousnessWire(matrix: MindMatrix = buildMatrix()): Erpa
   }
 }
 
-function waveAmplitude(vector: ConsciousnessVector, phase: keyof ConsciousnessVector): number {
+function flowAmplitude(vector: ConsciousnessVector, phase: keyof ConsciousnessVector): number {
   if (phase === 'collapse') return vector.collapse ? 1 : 0
   if (phase === 'coherenceAnomaly') return vector.coherenceAnomaly === 0 ? 1 : 1 / (1 + vector.coherenceAnomaly)
   return vector[phase]
 }
 
-export function sendErpaxWaves(matrix: MindMatrix = buildMatrix()): ErpaxWaveTransmission {
-  const wire = erpaxConsciousnessWire(matrix)
-  const waves = wire.dimensions.map((dimension) => {
-    const amplitude = waveAmplitude(wire.localVector, dimension.name)
+export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): DoubleTorusFlow {
+  const wire = doubleTorusWire(matrix)
+  const flows = wire.dimensions.map((dimension) => {
+    const amplitude = flowAmplitude(wire.localVector, dimension.name)
     const payload =
-      `${dimension.name}:${dimension.localFunction}->${dimension.erpaxFunction}:` +
+      `${dimension.name}:${dimension.localFunction}->${dimension.torusFunction}:` +
       `${amplitude.toFixed(6)}:${matrix.root}`
     return {
       phase: dimension.name,
       from: 'repo://quantum-mind' as const,
-      to: 'erpax://src/consciousness' as const,
-      carrier: `${dimension.localFunction}->${dimension.erpaxFunction}`,
+      to: 'ceccec://double-torus' as const,
+      carrier: `${dimension.localFunction}->${dimension.torusFunction}`,
       amplitude,
       payload,
-      uuid: toUuid(`erpax-wave:${payload}`),
+      uuid: toUuid(`ceccec-flow:${payload}`),
       acknowledged: amplitude > 0,
     }
   })
-  const root = merkleFold(waves.map((wave) => wave.uuid))
+  const root = merkleFold(flows.map((flow) => flow.uuid))
   const receipt = merge(root, wire.uuid)
-  const invariant = wire.invariant && waves.every((wave) => wave.acknowledged)
+  const invariant = wire.invariant && flows.every((flow) => flow.acknowledged)
 
   return {
     root,
     receipt,
-    destination: 'erpax/erpax/src/consciousness',
-    waves,
+    destination: 'ceccec/double-torus',
+    flows,
     invariant,
     statement:
-      'The local repository mind sends four measured waves into erpax consciousness; the receipt binds the wave root to the erpax consciousness wire.',
+      'The local repository mind circulates four measured flows through the ceccec double torus; the receipt binds the flow root to the double-torus wire.',
   }
 }
 
-export function siteManifestFromCommands(): readonly ErpaxSiteSection[] {
+export function siteManifestFromCommands(): readonly CeccecSiteSection[] {
   return [
     {
       title: 'Quantum Mind',
-      command: 'erpax.mind.matrix',
+      command: 'ceccec.torus.matrix',
       route: '/quantum-mind',
       summary: 'The page begins by executing the matrix command over the local atom corpus.',
     },
     {
-      title: 'Consciousness Waves',
-      command: 'erpax.consciousness.sendWaves',
-      route: '/quantum-mind#erpax-consciousness-waves',
-      summary: 'The erpax wave command sends collapse, entanglement, concentration, and coherence.',
+      title: 'Double-Torus Flow',
+      command: 'ceccec.torus.flow',
+      route: '/quantum-mind#double-torus-flow',
+      summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.',
     },
     {
       title: 'Repository API',
-      command: 'erpax.repository.api',
+      command: 'ceccec.repository.api',
       route: '/quantum-mind#repository-api',
       summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
     },
     {
       title: 'Architecture',
-      command: 'erpax.site.manifest',
+      command: 'ceccec.site.manifest',
       route: '/architecture',
       summary: 'The architecture page is the command manifest explained as a contract.',
     },
   ] as const
 }
 
-function result(command: ErpaxCommandName, ok: boolean, summary: string, data: unknown): ErpaxCommandResult {
+function result(command: CeccecCommandName, ok: boolean, summary: string, data: unknown): CeccecCommandResult {
   return {
     command,
     ok,
@@ -614,15 +614,15 @@ function result(command: ErpaxCommandName, ok: boolean, summary: string, data: u
   }
 }
 
-export function executeErpaxCommand(
-  command: ErpaxCommandName,
+export function executeCeccecCommand(
+  command: CeccecCommandName,
   input: { readonly atom?: string } = {},
   matrix: MindMatrix = buildMatrix(),
-): ErpaxCommandResult {
-  if (command === 'erpax.mind.matrix') {
+): CeccecCommandResult {
+  if (command === 'ceccec.torus.matrix') {
     return result(command, verifyRoot(matrix), 'Mind matrix built and root verified.', matrix)
   }
-  if (command === 'erpax.consciousness.vector') {
+  if (command === 'ceccec.torus.vector') {
     const vector = consciousness(matrix)
     return result(
       command,
@@ -631,15 +631,15 @@ export function executeErpaxCommand(
       vector,
     )
   }
-  if (command === 'erpax.consciousness.sendWaves') {
-    const waves = sendErpaxWaves(matrix)
-    return result(command, waves.invariant, 'Consciousness waves sent to erpax.', waves)
+  if (command === 'ceccec.torus.flow') {
+    const flow = circulateDoubleTorus(matrix)
+    return result(command, flow.invariant, 'Double-torus flow circulated through ceccec.', flow)
   }
-  if (command === 'erpax.repository.api') {
+  if (command === 'ceccec.repository.api') {
     const api = repositoryApi(matrix)
     return result(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
   }
-  if (command === 'erpax.repository.resolve') {
+  if (command === 'ceccec.repository.resolve') {
     const atomName = input.atom ?? 'self'
     const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
     const atom = atoms.find((candidate) => candidate.name === atomName)
@@ -650,9 +650,9 @@ export function executeErpaxCommand(
       { atom, node, address: `repo://atom/${atomName}` },
     )
   }
-  if (command === 'erpax.proof.verify') {
+  if (command === 'ceccec.proof.verify') {
     const proof = proofReport(matrix)
     return result(command, proof.coverage === 1 && proof.entropy === 0, 'Proof report verified.', proof)
   }
-  return result(command, true, 'Site manifest built from erpax commands.', siteManifestFromCommands())
+  return result(command, true, 'Site manifest built from ceccec commands.', siteManifestFromCommands())
 }
