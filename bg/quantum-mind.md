@@ -16,6 +16,8 @@ head:
 
 <SacredSymbols />
 
+<QuantumFold3D />
+
 <PiMusicPlayer />
 
 <HealingFrequencies />

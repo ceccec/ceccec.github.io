@@ -121,6 +121,7 @@ ok(`autotranslations.complete${autotranslations(matrix).missing.length ? ':' + a
 // 42 areas is the limit: 7 x 6 = 6 x 7 = 21 pairs of areas. A 43rd area breaks the pairing.
 const pairs = areaPairs()
 ok(`areas.limit-42:${pairs.count}`, pairs.withinLimit && pairs.paired)
+ok('areas.pairs-bidirectional', pairs.bidirectional) // both directions for every pair (genus 2)
 // One ancient language all dimensions understand, decoded over all knowledge, completes the double torus.
 ok('language.universal', universalLanguage(matrix).universal)
 ok('knowledge.decoded', decodeKnowledge(matrix).decoded)

@@ -3000,9 +3000,31 @@ export function areaPairs() {
   const areas = taxonomyIcons().entries
     .map((entry) => entry.area)
     .sort((a, b) => digitOf(toUuid(`area:${a}`)) - digitOf(toUuid(`area:${b}`)) || (a < b ? -1 : 1))
-  const pairs: { inner: string; outer: string; receipt: string }[] = []
+  // Every pair folds in both directions: forward (inner -> outer) and reverse
+  // (outer -> inner). Because the fold is order-sensitive (genus 2), the two
+  // directions differ, so each pair is a real two-way channel, not a one-way
+  // edge — the double torus turns both ways.
+  const pairs = [] as {
+    inner: string
+    outer: string
+    forward: string
+    reverse: string
+    bidirectional: boolean
+    receipt: string
+  }[]
   for (let index = 0; index + 1 < areas.length; index += 2) {
-    pairs.push({ inner: areas[index], outer: areas[index + 1], receipt: toUuid(`area-pair:${areas[index]}:${areas[index + 1]}`) })
+    const inner = areas[index]
+    const outer = areas[index + 1]
+    const forward = merge(toUuid(`area:${inner}`), toUuid(`area:${outer}`))
+    const reverse = merge(toUuid(`area:${outer}`), toUuid(`area:${inner}`))
+    pairs.push({
+      inner,
+      outer,
+      forward,
+      reverse,
+      bidirectional: forward !== reverse,
+      receipt: toUuid(`area-pair:${inner}:${outer}:${forward}:${reverse}`),
+    })
   }
   return {
     count: areas.length,
@@ -3010,10 +3032,11 @@ export function areaPairs() {
     withinLimit: areas.length === 42, // 42 is the limit, not a target to exceed
     grid: areas.length === 42, // 7 x 6 = 6 x 7
     paired: areas.length % 2 === 0 && pairs.length * 2 === areas.length, // 21 clean pairs
+    bidirectional: pairs.length > 0 && pairs.every((pair) => pair.bidirectional), // both directions for every pair
     pairs,
     root: merkleFold(pairs.map((pair) => pair.receipt)),
-    statement: '42 areas = 7 x 6 = 6 x 7 = 21 pairs of areas; the math orders the areas and deals them into the dual pairs of the double torus. 42 is the limit.',
-    boundary: 'A structural pairing of the area taxonomy with an enforced limit of 42. Bookkeeping over the area set, not an external claim.',
+    statement: '42 areas = 7 x 6 = 6 x 7 = 21 pairs of areas; the math orders them into dual pairs, and every pair folds in both directions (forward and reverse differ — genus 2). 42 is the limit.',
+    boundary: 'A structural, bidirectional pairing of the area taxonomy with an enforced limit of 42. Bookkeeping over the area set, not an external claim.',
   }
 }
 
@@ -3214,12 +3237,12 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
-    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D'],
     '/console': ['QuantumConsole'],
     '/school': ['SchoolCurriculum', 'CreativePalette'],
     '/governance': ['GovernanceVote'],
