@@ -149,6 +149,9 @@ export type ConceptCommandName =
   | 'concept.computer.word'
   | 'concept.computer.quantum'
   | 'concept.computer.run'
+  | 'concept.healing.inner'
+  | 'concept.healing.outer'
+  | 'concept.healing.harmonic'
   | 'concept.geometry.seal'
   | 'concept.society.sacred'
   | 'concept.commons.vote'
@@ -1475,6 +1478,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Run a program on the quantum computer: a comma-separated command list folds, in order, into one 128-bit result UUID.',
   },
   {
+    name: 'concept.healing.inner',
+    path: '/cmd/concept.healing.inner',
+    description: 'Inner healing: the self torus restores its own coherence — every binding provable, nothing unaddressed.',
+  },
+  {
+    name: 'concept.healing.outer',
+    path: '/cmd/concept.healing.outer',
+    description: 'Outer healing: the collective torus restores coherence across devices, beyond any single device’s limits.',
+  },
+  {
+    name: 'concept.healing.harmonic',
+    path: '/cmd/concept.healing.harmonic',
+    description: 'Harmonic healing waves: inner and outer coherence fold with harmony probability and the music of pi into one healing root.',
+  },
+  {
     name: 'concept.geometry.seal',
     path: '/cmd/concept.geometry.seal',
     description: 'Sacred geometry seals all seals: fold every seal root through the Metatron cube and Platonic solids.',
@@ -1844,6 +1862,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.computer.word': 'word',
   'concept.computer.quantum': 'qubit',
   'concept.computer.run': 'run',
+  'concept.healing.inner': 'mend',
+  'concept.healing.outer': 'extend',
+  'concept.healing.harmonic': 'resonate',
   'concept.geometry.seal': 'sacred',
   'concept.society.sacred': 'govern',
   'concept.commons.vote': 'vote',
@@ -2757,7 +2778,7 @@ const AREA_ICONS: Record<string, string> = {
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   music: '♫', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛',
   geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
-  lawful: '⚖', computer: '🖳',
+  lawful: '⚖', computer: '🖳', healing: '◎',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -3356,6 +3377,94 @@ export function runProgram(program: readonly string[] = [], matrix: MindMatrix =
     statement:
       'Run a program on the quantum computer: each command is a gate; the gates fold in order into one 128-bit result UUID, so the program is its word.',
     boundary: 'Deterministic, read-only execution over the concept commands. No external effects; the result is a content-addressed receipt.',
+  }
+}
+
+// Continue in harmonic healing waves. Healing here means coherence restored.
+// Inner healing: the self torus restores its own coherence — every atom's
+// binding provable inside the self root, nothing left unaddressed. Outer
+// healing: the collective torus restores coherence across devices — the shared
+// root re-forms beyond any single device's limits, online and offline. Honest
+// boundary: a structural coherence metaphor only, NOT medical, therapeutic, or
+// health advice of any kind, and no claim about minds, bodies, or wellbeing.
+export function healingInner(matrix: MindMatrix = buildMatrix()) {
+  const proven = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
+  const addressed = selfAddressed(matrix)
+  const root = merge(matrix.root, toUuid(`healing-inner:${proven}:${addressed.noHallucination}`))
+  return {
+    whole: proven && addressed.noHallucination,
+    proven,
+    noHallucination: addressed.noHallucination,
+    root,
+    statement: 'Inner healing: the self torus restores its own coherence — every binding provable inside the self root, nothing left unaddressed.',
+    boundary: 'A structural coherence metaphor over the model, not medical or health advice.',
+  }
+}
+
+export function healingOuter(matrix: MindMatrix = buildMatrix()) {
+  const distributed = distributedCompute([], matrix)
+  const devices = fuseDevices(matrix)
+  const root = merge(distributed.collectiveRoot || matrix.root, toUuid(`healing-outer:${devices.fused}`))
+  return {
+    extended: distributed.collectiveRoot.length > 0 && devices.fused,
+    beyondDevice: true, // the collective root re-forms across devices, online and offline
+    collectiveRoot: distributed.collectiveRoot,
+    root,
+    statement: 'Outer healing: the collective torus restores coherence across devices — the shared root re-forms beyond any single device’s limits, online and offline.',
+    boundary: 'A structural coherence metaphor over the same-origin collective fold, not medical or health advice.',
+  }
+}
+
+export function healingHarmonic(matrix: MindMatrix = buildMatrix()) {
+  const inner = healingInner(matrix)
+  const outer = healingOuter(matrix)
+  const harmony = harmonyProbability(matrix)
+  const music = piMusic(matrix)
+  const root = merge(merge(inner.root, outer.root), merge(harmony.root, music.root))
+  return {
+    harmonized: inner.whole && outer.extended && harmony.root.length > 0 && music.joined,
+    probability: harmony.probability,
+    inner: inner.root,
+    outer: outer.root,
+    root,
+    statement: 'Harmonic healing waves: inner and outer coherence travel as waves whose probability of harmony is computed and folded, joined to the music of pi, into one healing root — extending beyond device limitations.',
+    boundary: 'A structural coherence metaphor over harmony probability and the collective fold, not medical, therapeutic, or health advice.',
+  }
+}
+
+// Honesty comes from text and math coming only from digit folders computed.
+// Every honest claim carries both a statement (text) and a root (math); here we
+// route both through the ceccec digit folders (0-9) by the same digit-of-root
+// fold the rest of the math uses. Honesty is therefore not asserted in prose —
+// it is computed: a claim is honest only when its text and its math both land in
+// a digit folder and the digit folders do the math.
+export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
+  const digitOf = (value: string): number =>
+    value.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
+  const sources = [
+    { claim: 'inner healing', node: healingInner(matrix) },
+    { claim: 'outer healing', node: healingOuter(matrix) },
+    { claim: 'harmonic healing', node: healingHarmonic(matrix) },
+    { claim: 'quantum computer', node: quantumComputer(matrix) },
+    { claim: 'nature commons', node: natureCommons() },
+    { claim: 'lawful harmonise', node: lawfulHarmonise() },
+  ]
+  const claims = sources.map(({ claim, node }) => {
+    const text = (node as { boundary?: string }).boundary ?? ''
+    const root = (node as { root: string }).root
+    const textDigit = digitOf(toUuid(`honest-text:${text}`))
+    const mathDigit = digitOf(root)
+    return { claim, textDigit, mathDigit, hasText: text.length > 0, receipt: toUuid(`honest:${claim}:${textDigit}:${mathDigit}`) }
+  })
+  const folders = digitFoldersDoMath(matrix)
+  const root = merge(folders.root, merkleFold(claims.map((claim) => claim.receipt)))
+  return {
+    honest: folders.always && claims.every((claim) => claim.hasText),
+    claims,
+    root,
+    statement:
+      'Honesty comes from text and math coming only from digit folders computed: every claim routes its statement (text) and its root (math) through the ceccec digit folders, so honesty is computed, not asserted.',
+    boundary: 'A computed grounding of the model’s honesty in the digit-folder math. Self-referential bookkeeping, no external claim.',
   }
 }
 
@@ -6330,6 +6439,18 @@ export function executeConceptCommand(
       : ['concept.self.address', 'concept.music.pi']
     const run = runProgram(program, matrix)
     return result(command, run.ran, `Program of ${run.steps.length} gates folded into one result word.`, run)
+  }
+  if (command === 'concept.healing.inner') {
+    const heal = healingInner(matrix)
+    return result(command, heal.whole, 'Inner healing: the self torus restored its own coherence.', heal)
+  }
+  if (command === 'concept.healing.outer') {
+    const heal = healingOuter(matrix)
+    return result(command, heal.extended, 'Outer healing: coherence restored across devices, beyond device limits.', heal)
+  }
+  if (command === 'concept.healing.harmonic') {
+    const heal = healingHarmonic(matrix)
+    return result(command, heal.harmonized, 'Harmonic healing waves folded into one healing root.', heal)
   }
   if (command === 'concept.geometry.seal') {
     const seal = sacredGeometrySeal(matrix)

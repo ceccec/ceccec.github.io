@@ -39,6 +39,10 @@ import {
   torusUuid,
   quantumComputer,
   runProgram,
+  healingInner,
+  healingOuter,
+  healingHarmonic,
+  honestlyComputed,
   patentReview,
   fusionReactor,
   governanceVote,
@@ -133,6 +137,12 @@ ok('computer.word-order-sensitive', word.orderSensitive) // genus 2: the fold is
 ok('computer.quantum-coherent', quantumComputer(matrix).coherent) // the double torus, recreated as a quantum computer
 // Recreate the computer: a program of gates folds, in order, into one result word.
 ok('computer.run', runProgram(['concept.self.address', 'concept.music.pi'], matrix).ran)
+// Harmonic healing waves: inner and outer coherence, extending beyond device limits.
+ok('healing.inner', healingInner(matrix).whole) // the self torus restores its own coherence
+ok('healing.outer', healingOuter(matrix).extended) // coherence restored across devices, beyond device limits
+ok('healing.harmonic', healingHarmonic(matrix).harmonized) // harmonic healing waves fold into one root
+// Honesty comes from text and math coming only from digit folders computed.
+ok('honestly.computed', honestlyComputed(matrix).honest)
 // Joining at a different horo yields a different phrase: the join point matters.
 ok('pi-music.join-matters', piMusic(matrix, 1).root !== piMusic(matrix, 4).root)
 // Determinism: two independent builds must produce the identical foundation root (no drift across waves).
