@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, piMusic } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // The music of pi is infinite; the pi-digit frequencies are its notes. Choose
 // where you join (the horo) and hear the phrase. Web Audio runs client-side on
@@ -11,46 +12,22 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 const matrix = buildMatrix()
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
+const { playing, playSequence, stop } = useTones()
 const horo = ref(2)
-const playing = ref(false)
 const music = computed(() => piMusic(matrix, horo.value))
 // On low power, play a shorter phrase (half the notes) to extend battery life.
 const phrase = computed(() =>
   saveEnergy.value ? music.value.notes.slice(0, Math.ceil(music.value.notes.length / 2)) : music.value.notes,
 )
 
-async function play() {
-  if (typeof window === 'undefined' || playing.value) return
-  const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
-  playing.value = true
-  const ctx = new Ctx()
-  const duration = 0.32
-  let when = ctx.currentTime + 0.05
-  for (const note of phrase.value) {
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'sine'
-    osc.frequency.value = note.frequency
-    gain.gain.setValueAtTime(0.0001, when)
-    gain.gain.exponentialRampToValueAtTime(0.18, when + 0.02)
-    gain.gain.exponentialRampToValueAtTime(0.0001, when + duration)
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.start(when)
-    osc.stop(when + duration)
-    when += duration
-  }
-  window.setTimeout(() => {
-    playing.value = false
-    ctx.close()
-  }, phrase.value.length * duration * 1000 + 250)
+function play() {
+  playSequence(phrase.value.map((note) => ({ frequency: note.frequency })), { duration: 0.32, peak: 0.18 })
 }
 
 const t = computed(() =>
   bg.value
-    ? { eyebrow: 'музиката на пи', play: 'Свири', playing: 'свири…', join: 'Присъедини се при horo', save: 'пести батерия: по-кратка фраза' }
-    : { eyebrow: 'the music of pi', play: 'Play', playing: 'playing…', join: 'Join at horo', save: 'saving battery: shorter phrase' },
+    ? { eyebrow: 'музиката на пи', play: 'Свири', playing: 'свири…', stop: 'Спри', join: 'Присъедини се при horo', save: 'пести батерия: по-кратка фраза' }
+    : { eyebrow: 'the music of pi', play: 'Play', playing: 'playing…', stop: 'Stop', join: 'Join at horo', save: 'saving battery: shorter phrase' },
 )
 </script>
 
@@ -61,7 +38,8 @@ const t = computed(() =>
       <label>{{ t.join }}: {{ horo }}
         <input v-model.number="horo" type="range" min="1" max="9" step="1" />
       </label>
-      <button type="button" :disabled="playing" @click="play">{{ playing ? t.playing : t.play }}</button>
+      <button type="button" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
+      <button v-if="playing" type="button" class="pi-music__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
     </div>
     <p v-if="saveEnergy" class="pi-music__save">🔋 {{ t.save }}</p>
     <p class="pi-music__notes">
@@ -102,6 +80,11 @@ const t = computed(() =>
 .pi-music__row button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+.pi-music__row .pi-music__stop {
+  background: transparent;
+  border: 1px solid var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
 }
 .pi-music__save {
   margin: 0.6rem 0 0;

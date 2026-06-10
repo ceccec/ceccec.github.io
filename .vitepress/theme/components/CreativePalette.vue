@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, artistPalette, artistMelody } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // Extremely helpful for visual artists and musicians: a deterministic palette
 // and melody from any seed word. The same seed always yields the same five
@@ -15,41 +16,17 @@ const melody = computed(() => artistMelody(seed.value || 'double-torus', matrix)
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-const playing = ref(false)
+const { playing, playSequence, stop } = useTones()
 
 function playMelody() {
-  if (typeof window === 'undefined' || playing.value) return
-  const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
-  playing.value = true
-  const ctx = new Ctx()
-  const duration = 0.28
   const list = saveEnergy.value ? melody.value.notes.slice(0, 4) : melody.value.notes
-  let when = ctx.currentTime + 0.04
-  for (const note of list) {
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'sine'
-    osc.frequency.value = note.frequency
-    gain.gain.setValueAtTime(0.0001, when)
-    gain.gain.exponentialRampToValueAtTime(0.16, when + 0.02)
-    gain.gain.exponentialRampToValueAtTime(0.0001, when + duration)
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.start(when)
-    osc.stop(when + duration)
-    when += duration
-  }
-  window.setTimeout(() => {
-    playing.value = false
-    ctx.close()
-  }, list.length * duration * 1000 + 250)
+  playSequence(list.map((note) => ({ frequency: note.frequency })), { duration: 0.28, peak: 0.16 })
 }
 
 const t = computed(() =>
   bg.value
-    ? { eyebrow: 'творческа палитра · цветовете и мелодията се изчисляват', seedLabel: 'семе', play: 'Свири мелодията', playing: 'свири…' }
-    : { eyebrow: 'creative palette · colours and melody are computed', seedLabel: 'seed', play: 'Play melody', playing: 'playing…' },
+    ? { eyebrow: 'творческа палитра · цветовете и мелодията се изчисляват', seedLabel: 'семе', play: 'Свири мелодията', playing: 'свири…', stop: 'Спри' }
+    : { eyebrow: 'creative palette · colours and melody are computed', seedLabel: 'seed', play: 'Play melody', playing: 'playing…', stop: 'Stop' },
 )
 </script>
 
@@ -68,7 +45,8 @@ const t = computed(() =>
       </article>
     </div>
     <div class="palette__row">
-      <button type="button" :disabled="playing" @click="playMelody">{{ playing ? t.playing : t.play }}</button>
+      <button type="button" :disabled="playing" :aria-label="t.play" @click="playMelody">{{ playing ? t.playing : t.play }}</button>
+      <button v-if="playing" type="button" class="palette__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
       <span class="palette__melody">{{ melody.notes.map((n) => n.note).join(' ') }}</span>
     </div>
   </section>
@@ -140,6 +118,15 @@ const t = computed(() =>
   background: var(--vp-c-brand-1);
   color: #fff;
   cursor: pointer;
+}
+.palette__row button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.palette__row .palette__stop {
+  background: transparent;
+  border: 1px solid var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
 }
 .palette__melody {
   font-size: 0.8rem;

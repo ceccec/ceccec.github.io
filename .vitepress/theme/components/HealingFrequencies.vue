@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from 'vue'
+import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, healingFrequencies } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // Calculate the healing frequencies and dynamically harmonise them through the
 // device — as SOUND through the speaker. The lead tone is derived from the live
@@ -13,53 +14,15 @@ const matrix = buildMatrix()
 const data = computed(() => healingFrequencies(matrix))
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-
-const playing = ref(false)
-let ctx: AudioContext | null = null
-let nodes: { osc: OscillatorNode; gain: GainNode }[] = []
-
-function stop() {
-  for (const node of nodes) {
-    try {
-      node.gain.gain.exponentialRampToValueAtTime(0.0001, (ctx?.currentTime ?? 0) + 0.2)
-      node.osc.stop((ctx?.currentTime ?? 0) + 0.25)
-    } catch {
-      /* already stopped */
-    }
-  }
-  nodes = []
-  window.setTimeout(() => {
-    ctx?.close()
-    ctx = null
-  }, 300)
-  playing.value = false
-}
+const { playing, playChord, stop } = useTones()
 
 // Harmonise: play all nine frequencies together as a soft drone, the lead tone
 // louder. A chord of sound — nothing electromagnetic, nothing physical beyond it.
 function harmonise() {
-  if (typeof window === 'undefined' || playing.value) return
-  const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
-  ctx = new Ctx()
-  playing.value = true
   const energyScale = saveEnergy.value ? 0.4 : 1 // quieter and fewer tones on low power
   const list = saveEnergy.value ? data.value.frequencies.filter((f) => f.lead) : data.value.frequencies
-  for (const entry of list) {
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'sine'
-    osc.frequency.value = entry.hz
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime)
-    gain.gain.exponentialRampToValueAtTime(entry.gain * energyScale, ctx.currentTime + 0.6)
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.start()
-    nodes.push({ osc, gain })
-  }
+  playChord(list.map((entry) => ({ frequency: entry.hz, gain: entry.gain * energyScale })))
 }
-
-onUnmounted(stop)
 
 const t = computed(() =>
   bg.value

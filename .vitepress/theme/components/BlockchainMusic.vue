@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, quantumFoldedBlockchains, blockchainMusic } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // Playing the blockchain returns unique harmonic waves: pick a chain, press
 // play, and hear each block's hash as a note. Deterministic — the same chain
@@ -15,41 +16,17 @@ const music = computed(() => blockchainMusic(selected.value, matrix))
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-const playing = ref(false)
+const { playing, playSequence, stop } = useTones()
 
 function play() {
-  if (typeof window === 'undefined' || playing.value) return
-  const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
-  playing.value = true
-  const ctx = new Ctx()
-  const duration = saveEnergy.value ? 0.16 : 0.26
   const list = saveEnergy.value ? music.value.notes.slice(0, 16) : music.value.notes
-  let when = ctx.currentTime + 0.04
-  for (const note of list) {
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'sine'
-    osc.frequency.value = note.frequency
-    gain.gain.setValueAtTime(0.0001, when)
-    gain.gain.exponentialRampToValueAtTime(0.16, when + 0.02)
-    gain.gain.exponentialRampToValueAtTime(0.0001, when + duration)
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.start(when)
-    osc.stop(when + duration)
-    when += duration
-  }
-  window.setTimeout(() => {
-    playing.value = false
-    ctx.close()
-  }, list.length * duration * 1000 + 250)
+  playSequence(list.map((note) => ({ frequency: note.frequency })), { duration: saveEnergy.value ? 0.16 : 0.26, peak: 0.16, lead: 0.04 })
 }
 
 const t = computed(() =>
   bg.value
-    ? { eyebrow: 'свири блокчейн · уникални хармонични вълни', chain: 'верига', play: 'Свири', playing: 'свири…', tones: 'различни тона', blocks: 'блока' }
-    : { eyebrow: 'play the blockchain · unique harmonic waves', chain: 'chain', play: 'Play', playing: 'playing…', tones: 'distinct tones', blocks: 'blocks' },
+    ? { eyebrow: 'свири блокчейн · уникални хармонични вълни', chain: 'верига', play: 'Свири', playing: 'свири…', stop: 'Спри', tones: 'различни тона', blocks: 'блока' }
+    : { eyebrow: 'play the blockchain · unique harmonic waves', chain: 'chain', play: 'Play', playing: 'playing…', stop: 'Stop', tones: 'distinct tones', blocks: 'blocks' },
 )
 </script>
 
@@ -62,7 +39,8 @@ const t = computed(() =>
           <option v-for="name in names" :key="name" :value="name">{{ name }}</option>
         </select>
       </label>
-      <button type="button" :disabled="playing" @click="play">{{ playing ? t.playing : t.play }}</button>
+      <button type="button" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
+      <button v-if="playing" type="button" class="chain-music__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
       <span class="chain-music__meta">{{ music.notes.length }} {{ t.blocks }} · {{ music.distinctTones }} {{ t.tones }}</span>
     </div>
     <p class="chain-music__notes">
@@ -107,6 +85,11 @@ const t = computed(() =>
 .chain-music__row button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+.chain-music__row .chain-music__stop {
+  background: transparent;
+  border: 1px solid var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
 }
 .chain-music__meta {
   font-size: 0.75rem;
