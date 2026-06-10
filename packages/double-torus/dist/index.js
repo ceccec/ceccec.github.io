@@ -4024,6 +4024,25 @@ export function contract(matrix = buildMatrix()) {
         boundary: 'A structural pairing of the expansion (fuseAll) with the genesis seed into one contracted point. Bookkeeping over the fold, not a physical contraction.',
     };
 }
+// Contract and expand — the breath in one. Expand folds the many into one wave
+// (fuseAll); contract folds that wave back to the seed (contract); and the damped
+// breath settles (equilibrium). Out, in, and rest: the double torus breathing.
+// This is the single entry point for the cycle the whole portal turns on.
+export function breathe(matrix = buildMatrix()) {
+    const out = fuseAll(matrix); // expand: the many into one wave
+    const back = contract(matrix); // contract: the wave back to the seed
+    const rest = equilibrium(matrix); // the damped breath settles
+    return {
+        breathing: out.fused && back.contracted && rest.equilibrium && out.wave !== back.point,
+        expand: out.wave,
+        contractRoot: back.point,
+        settled: rest.equilibrium,
+        cycle: merge(out.wave, back.point),
+        root: merge(merge(out.wave, back.point), rest.root),
+        statement: 'Contract and expand, the breath in one: expand folds the many into one wave, contract folds that wave back to the seed, and the damped breath settles — out, in, and rest, the double torus breathing at equilibrium.',
+        boundary: 'A composition of the expansion (fuseAll), the contraction (contract), and the settled equilibrium into one breath. Structural bookkeeping over the fold, not a physical breath.',
+    };
+}
 // Quantum synthesis: synthesize the whole into one coherent state across all its
 // dimensions — symbol, number, and fold (the universal language), the proof
 // bundle (entropy 0, coverage 1), the 128-bit two-loop word, and the device-

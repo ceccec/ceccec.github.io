@@ -43,6 +43,7 @@ import {
   selfHarmonise,
   fuseAll,
   contract,
+  breathe,
   efficiency,
   emfApplications,
   emf358,
@@ -233,6 +234,8 @@ ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && 
 ok('fuse.all', fuseAll(matrix).fused)
 // Contract: the expansion folds back to the seed; the breath rests at equilibrium.
 ok('contract.breath', contract(matrix).contracted)
+// Contract and expand, the breath in one: expand -> contract -> rest at equilibrium.
+ok('breathe.cycle', breathe(matrix).breathing)
 // Efficiency, standard and deep: memoized dispatch + aggregators, gated rendering, no fetch, zero deps.
 ok('efficiency.standard', efficiency().optimized)
 // Extend into EMF applications, honestly: the EM spectrum + what a browser can/cannot do with EMF.

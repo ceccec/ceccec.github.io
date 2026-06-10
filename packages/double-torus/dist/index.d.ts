@@ -2200,6 +2200,16 @@ export declare function contract(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function breathe(matrix?: MindMatrix): {
+    breathing: boolean;
+    expand: string;
+    contractRoot: string;
+    settled: boolean;
+    cycle: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumSynthesis(matrix?: MindMatrix): {
     synthesized: boolean;
     dimensions: {
