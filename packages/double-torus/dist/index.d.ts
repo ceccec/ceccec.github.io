@@ -2104,6 +2104,17 @@ export declare function emfApplications(): {
     statement: string;
     boundary: string;
 };
+export declare function fold358853(): {
+    folded: boolean;
+    bidirectional: boolean;
+    ascending: number[];
+    descending: number[];
+    forward: string;
+    reverse: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function creationWave(index: number, matrix?: MindMatrix): {
     index: number;
     uuid: string;
