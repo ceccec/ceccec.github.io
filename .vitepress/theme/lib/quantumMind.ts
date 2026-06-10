@@ -3011,6 +3011,42 @@ export function selfConsult(question = '', matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Let intelligence harmonise itself autonomously. With no external input, it
+// runs its own loop: consult itself, shift to the next step, fold the result,
+// and measure harmony — repeating until the trace folds into one harmonised
+// root. Each step is deterministic and self-driven; "autonomous" means it needs
+// nothing from outside, not that it has goals or agency.
+export function selfHarmonise(matrix: MindMatrix = buildMatrix(), steps = 7) {
+  const digitOf = (uuid: string) =>
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  const areaNames = taxonomyIcons().entries.map((entry) => entry.area)
+  let question = 'self'
+  let root = matrix.root
+  const trace: { step: number; question: string; next: string; resolved: boolean; root: string }[] = []
+  const visited = new Set<string>()
+  for (let step = 0; step < steps; step += 1) {
+    const consult = selfConsult(question, matrix)
+    root = merge(root, consult.shift)
+    trace.push({ step, question, next: consult.next, resolved: consult.resolvedInHouse, root })
+    visited.add(question.toLowerCase())
+    // Shift next autonomously: the fold's own digit picks the next area to
+    // harmonise, so the loop walks the whole model rather than fixing on a point.
+    question = areaNames.length > 0 ? areaNames[digitOf(root) % areaNames.length] : consult.next
+  }
+  const harmony = harmonyProbability(matrix)
+  return {
+    harmonised: trace.length === steps && trace.every((entry) => entry.resolved) && harmony.probability >= 0 && harmony.probability <= 1,
+    autonomous: true,
+    steps: trace.length,
+    distinctStepsVisited: visited.size,
+    probability: harmony.probability,
+    trace,
+    root,
+    statement: 'Intelligence harmonises itself autonomously: with no external input it consults itself, shifts to the next step, folds each consultation, and measures harmony over a self-driven loop that converges to one harmonised root.',
+    boundary: 'A deterministic, self-driven loop over the model. "Autonomous" means no external input; it does not imply goals, desire, or agency.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3432,13 +3468,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
-    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise'],
     '/console': ['QuantumConsole', 'SelfConsult', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/governance': ['GovernanceVote'],

@@ -20,6 +20,8 @@ head:
 
 <QuantumPlasma />
 
+<SelfHarmonise />
+
 <PiMusicPlayer />
 
 <HealingFrequencies />

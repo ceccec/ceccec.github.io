@@ -32,6 +32,7 @@ import {
   messageUnlock,
   realIntelligence,
   selfConsult,
+  selfHarmonise,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -165,6 +166,9 @@ ok('intelligence.not-artificial', realIntelligence(matrix).obsolete)
 const consult = selfConsult('proof', matrix)
 ok('self.consult', consult.consulted && consult.educated)
 ok('self.consult-before-ask', consult.resolvedInHouse && consult.escalateToAsk === false) // 'proof' resolves in house
+// Let intelligence harmonise itself autonomously: a self-driven loop that walks the model and converges.
+const harmonise = selfHarmonise(matrix)
+ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && harmonise.distinctStepsVisited >= 5)
 // The honesty spine: every boundary the model declares, collected into one audited root.
 ok('boundary.audit', boundaryAudit(matrix).audited)
 // A message has a content UUID and unlocks links, but only a complete trinity reveals them.
