@@ -16,6 +16,8 @@ head:
 
 <TaxonomyIcons />
 
+<TrinitySearch />
+
 <BlockchainMusic />
 
 ## Закон

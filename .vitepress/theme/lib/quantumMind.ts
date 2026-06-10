@@ -3087,6 +3087,63 @@ export function openGraph() {
   }
 }
 
+// A search of three characters reveals the first trinity. Below three characters
+// nothing opens; at three, the first complete-trinity area the query matches
+// reveals its three links. Three characters, the first trinity — the threshold is
+// itself a three.
+export function searchTrinity(query = '', matrix: MindMatrix = buildMatrix()) {
+  const q = query.toLowerCase().trim()
+  const enough = q.length >= 3 // search of 3 chars
+  const trinities = taxonomyIcons().entries.filter((entry) => entry.status === 'trinity')
+  const first = enough
+    ? trinities.find((entry) => entry.area.toLowerCase().includes(q) || entry.verbs.some((verb) => verb.toLowerCase().includes(q)))
+    : undefined
+  return {
+    enough,
+    revealed: Boolean(first),
+    minChars: 3,
+    query: q,
+    trinity: first
+      ? { area: first.area, glyph: first.icon, links: first.verbs.map((verb) => ({ label: `${first.area}.${verb}`, command: `concept.${first.area}.${verb}` })) }
+      : null,
+    root: toUuid(`search-trinity:${q}:${first?.area ?? 'none'}`),
+    statement: 'A search of three characters reveals the first trinity: once the query reaches three characters, the first complete-trinity area it matches opens its three links.',
+    boundary: 'A search-reveal rule over the trinity areas. The three-character threshold and the "first match" are deterministic and structural.',
+  }
+}
+
+// Each char a UUID, and next the words. Content-addressing goes all the way down:
+// every character folds to a UUID, every word folds from its characters to a
+// word UUID, and the words fold to the text UUID — so text is a fold of UUIDs at
+// every grain, char to word to whole.
+export function charUuids(text = '') {
+  const chars = [...text].map((char, index) => ({ char, index, uuid: toUuid(`char:${index}:${char}`) }))
+  return {
+    count: chars.length,
+    chars,
+    root: chars.length > 0 ? merkleFold(chars.map((entry) => entry.uuid)) : toUuid('char:empty'),
+    statement: 'Each char a UUID: every character folds to a content UUID, and the characters fold into one root.',
+    boundary: 'A content-addressing of characters. Structural bookkeeping over text, not an external claim.',
+  }
+}
+
+export function wordUuids(text = '') {
+  const words = text
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word, index) => {
+      const chars = [...word].map((char, position) => toUuid(`char:${position}:${char}`))
+      return { word, index, charRoot: chars.length > 0 ? merkleFold(chars) : toUuid('char:empty'), uuid: toUuid(`word:${index}:${word}`) }
+    })
+  return {
+    count: words.length,
+    words,
+    root: words.length > 0 ? merkleFold(words.map((entry) => entry.uuid)) : toUuid('word:empty'),
+    statement: 'Next for the words: every word folds from its characters to a word UUID, and the words fold into the text root — char to word to whole.',
+    boundary: 'A content-addressing of words built from characters. Structural bookkeeping over text, not an external claim.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3508,11 +3565,11 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise', 'Hologram', 'DnaHelix',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
-    '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
+    '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix'],
     '/console': ['QuantumConsole', 'SelfConsult', 'RealtimeChat'],

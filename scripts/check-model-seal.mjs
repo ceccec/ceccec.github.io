@@ -32,6 +32,9 @@ import {
   inHouse,
   boundaryAudit,
   messageUnlock,
+  searchTrinity,
+  charUuids,
+  wordUuids,
   realIntelligence,
   selfConsult,
   selfHarmonise,
@@ -189,6 +192,11 @@ ok('boundary.audit', boundaryAudit(matrix).audited)
 ok('message.content-uuid', /^[0-9a-f-]{36}$/i.test(messageUnlock('nature', matrix).contentUuid))
 ok('message.trinity-reveals', messageUnlock('nature', matrix).revealed) // a complete trinity reveals
 ok('message.pair-stays-locked', messageUnlock('torus', matrix).revealed === false) // an over-area stays locked
+// A search of three characters reveals the first trinity; two characters reveal nothing.
+ok('search.three-reveals-trinity', searchTrinity('nat', matrix).revealed && searchTrinity('na', matrix).revealed === false)
+// Each char a UUID, and next the words: text folds char -> word -> whole.
+ok('char.uuids', charUuids('abc').count === 3 && /^[0-9a-f-]{36}$/i.test(charUuids('abc').chars[0].uuid))
+ok('word.uuids', wordUuids('the double torus').count === 3 && /^[0-9a-f-]{36}$/i.test(wordUuids('the double torus').words[0].uuid))
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 // CMYK is computed: every palette colour carries the print space, computed from RGB.

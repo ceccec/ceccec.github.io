@@ -31,6 +31,7 @@ import SpeechReader from './components/SpeechReader.vue'
 import ShowAll from './components/ShowAll.vue'
 import TamperSeal from './components/TamperSeal.vue'
 import TaxonomyIcons from './components/TaxonomyIcons.vue'
+import TrinitySearch from './components/TrinitySearch.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import WebCryptoSeal from './components/WebCryptoSeal.vue'
 import './style.css'
@@ -76,6 +77,7 @@ export default {
     app.component('ShowAll', ShowAll)
     app.component('TamperSeal', TamperSeal)
     app.component('TaxonomyIcons', TaxonomyIcons)
+    app.component('TrinitySearch', TrinitySearch)
     app.component('VitePressPossibilities', VitePressPossibilities)
     app.component('WebCryptoSeal', WebCryptoSeal)
   }
