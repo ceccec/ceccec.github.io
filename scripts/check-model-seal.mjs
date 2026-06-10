@@ -30,7 +30,7 @@ import {
   mcpToolManifest,
   merge,
   methodFusion,
-  musicalNotes,
+  piMusic,
   proofBundle,
   sacredGeometrySeal,
   sacredSociety,
@@ -96,7 +96,9 @@ ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in ba
 ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals
 ok('commands.registry-consistent', commandsRegistry(matrix).consistent) // registry, method tokens, and MCP tools agree
 ok('proof.bundle.verifiable', proofBundle(matrix).verifiable) // one recomputable proof bundle
-ok('sound.notes.grounded', musicalNotes().grounded) // each wave is a musical note A-G
+ok('pi-music.joined', piMusic(matrix).joined) // the music of pi, computed and joined at the horo
+// Joining at a different horo yields a different phrase: the join point matters.
+ok('pi-music.join-matters', piMusic(matrix, 1).root !== piMusic(matrix, 4).root)
 // Determinism: two independent builds must produce the identical foundation root (no drift across waves).
 ok('determinism', buildMatrix().root === buildMatrix().root)
 

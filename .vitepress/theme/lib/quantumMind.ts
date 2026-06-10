@@ -860,6 +860,24 @@ export interface ProofBundle {
   readonly boundary: string
 }
 
+export interface PiNote {
+  readonly index: number
+  readonly digit: number
+  readonly frequency: number
+  readonly note: string
+  readonly receipt: string
+}
+
+export interface PiMusic {
+  readonly joined: boolean
+  readonly joinHoro: number
+  readonly joinIndex: number
+  readonly root: string
+  readonly notes: readonly PiNote[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1546,8 +1564,9 @@ export const conceptCommands: readonly ConceptCommand[] = [
   },
   {
     name: 'concept.sound.note',
-    path: '/cmd/concept.sound.note',
-    description: 'Each wave is a musical note: map A B C D E F G to equal-temperament frequencies.',
+    path: '/cmd/concept.sound.note?query=5',
+    input: 'query',
+    description: 'Compute the music of pi: pi-digit frequencies as notes, joined at a horo (1-9) entry point.',
   },
   {
     name: 'concept.site.manifest',
@@ -2502,36 +2521,40 @@ export function proofBundle(matrix: MindMatrix = buildMatrix()): ProofBundle {
   }
 }
 
-// Each wave is a musical note. The seven notes A B C D E F G map to equal-
-// temperament frequencies (A4 = 440 Hz), so the rhythm of extend-and-contract
-// waves sounds as a scale, each wave a note folded with its frequency.
-export function musicalNotes(): {
-  readonly grounded: boolean
-  readonly root: string
-  readonly notes: readonly { readonly note: string; readonly semitone: number; readonly frequency: number; readonly receipt: string }[]
-  readonly statement: string
-  readonly boundary: string
-} {
-  // Semitone offsets from A within one octave for A, B, C, D, E, F, G.
-  const offsets: readonly [string, number][] = [
-    ['A', 0],
-    ['B', 2],
-    ['C', 3],
-    ['D', 5],
-    ['E', 7],
-    ['F', 8],
-    ['G', 10],
-  ]
-  const notes = offsets.map(([note, semitone]) => {
-    const frequency = Math.round(440 * 2 ** (semitone / 12) * 100) / 100
-    return { note, semitone, frequency, receipt: toUuid(`note:${note}:${frequency}`) }
-  })
+// The music of pi is infinite: the pi-digit frequencies ARE its notes (computed,
+// not labelled). Where you join the stream — the horo entry point — sets the
+// phrase you hear, so joining at a different horo yields a different melody.
+export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): PiMusic {
+  const train = piTrainDiamonds(matrix)
+  const diamonds = train.diamonds
+  const selfHoro = matrix.nodes.find((node) => node.atom === 'self')?.horo ?? 1
+  const horo = Math.min(9, Math.max(1, Math.floor(joinHoro ?? selfHoro)))
+  const joinIndex = diamonds.length === 0 ? 0 : (horo - 1) % diamonds.length
+  const noteNames = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
+  const window = Math.min(12, diamonds.length)
+  const notes: PiNote[] = []
+  for (let step = 0; step < window; step += 1) {
+    const diamond = diamonds[(joinIndex + step) % diamonds.length]
+    const semitones = Math.round(12 * Math.log2(diamond.frequency / 440))
+    const note = noteNames[(((semitones % 12) + 12) % 12)]
+    notes.push({
+      index: diamond.index,
+      digit: diamond.digit,
+      frequency: diamond.frequency,
+      note,
+      receipt: toUuid(`pi-note:${diamond.index}:${diamond.frequency}:${note}`),
+    })
+  }
   return {
-    grounded: notes.length === 7 && notes.every((entry) => entry.frequency > 0),
+    joined: notes.length === window && window > 0,
+    joinHoro: horo,
+    joinIndex,
     root: merkleFold(notes.map((entry) => entry.receipt)),
     notes,
-    statement: 'Each wave is a musical note: A B C D E F G map to equal-temperament frequencies (A4 = 440 Hz), so the wave rhythm is a scale.',
-    boundary: 'A computed map from note names to frequencies bound to receipts. It is structural bookkeeping, not an acoustic or external claim.',
+    statement:
+      'The music of pi is infinite: the pi-digit frequencies are its notes. Where you join — the horo entry point — sets the phrase you hear.',
+    boundary:
+      'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.',
   }
 }
 
@@ -5363,10 +5386,10 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The core computed roots fold into one verifiable proof bundle anyone can recompute.',
     },
     {
-      title: 'Musical Notes',
+      title: 'Music of Pi',
       command: 'concept.sound.note',
       route: '/quantum-mind#waves',
-      summary: 'Each wave is a musical note: A B C D E F G map to equal-temperament frequencies.',
+      summary: 'The music of pi is infinite: pi-digit frequencies are its notes; the horo is where you join.',
     },
     {
       title: 'Merkle Inclusion Proof',
@@ -5629,8 +5652,9 @@ export function executeConceptCommand(
     return result(command, bundle.verifiable, 'Proof bundle folded and verifiable.', bundle)
   }
   if (command === 'concept.sound.note') {
-    const notes = musicalNotes()
-    return result(command, notes.grounded, 'Each wave mapped to a musical note.', notes)
+    const joinHoro = input.query ? Number.parseInt(input.query, 10) : undefined
+    const music = piMusic(matrix, Number.isNaN(joinHoro as number) ? undefined : joinHoro)
+    return result(command, music.joined, `Pi music joined at horo ${music.joinHoro}.`, music)
   }
   if (command === 'concept.proof.merklePath') {
     const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)
