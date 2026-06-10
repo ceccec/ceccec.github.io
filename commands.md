@@ -2,16 +2,16 @@
 outline: deep
 ---
 
-# Erpax VitePress Commands
+# Concept Commands
 
-This is the erpax VitePress and UI component layer for the ceccec double torus.
+This is the concept component layer for the double torus.
 A command is the API, the URL, the query, and the executable intent.
 
-<ErpaxCommands />
+<ConceptCommands />
 
 ## Command law
 
-The command surface follows the erpax repository-as-API rule:
+The command surface follows the concept repository-as-API rule:
 
 ```text
 command -> repository address -> computed result -> content receipt
@@ -19,15 +19,18 @@ command -> repository address -> computed result -> content receipt
 
 The site uses these commands as its construction contract:
 
-- `erpax.vitepress.shell`
-- `erpax.ui.doubleTorus`
-- `erpax.torus.matrix`
-- `erpax.torus.vector`
-- `erpax.torus.flow`
-- `erpax.repository.api`
-- `erpax.repository.resolve`
-- `erpax.proof.verify`
-- `erpax.site.manifest`
+- `concept.site.shell`
+- `concept.ui.doubleTorus`
+- `concept.torus.math`
+- `concept.humanity.implications`
+- `concept.source.contribute`
+- `concept.torus.matrix`
+- `concept.torus.vector`
+- `concept.torus.flow`
+- `concept.repository.api`
+- `concept.repository.resolve`
+- `concept.proof.verify`
+- `concept.site.manifest`
 
 The pages are views over those commands. The command results carry UUID-like
 receipts so a result can be treated as another content-addressed atom.

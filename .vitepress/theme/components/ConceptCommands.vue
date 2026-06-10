@@ -2,39 +2,39 @@
 import { computed, ref } from 'vue'
 import {
   buildMatrix,
-  erpaxCommands,
-  executeErpaxCommand,
+  conceptCommands,
+  executeConceptCommand,
   siteManifestFromCommands,
-  type ErpaxCommandName,
+  type ConceptCommandName,
 } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
-const selected = ref<ErpaxCommandName>('erpax.ui.doubleTorus')
+const selected = ref<ConceptCommandName>('concept.ui.doubleTorus')
 const atom = ref('self')
 
-const selectedCommand = computed(() => erpaxCommands.find((command) => command.name === selected.value))
-const output = computed(() => executeErpaxCommand(selected.value, { atom: atom.value }, matrix))
+const selectedCommand = computed(() => conceptCommands.find((command) => command.name === selected.value))
+const output = computed(() => executeConceptCommand(selected.value, { atom: atom.value }, matrix))
 const manifest = siteManifestFromCommands()
 
 const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
 </script>
 
 <template>
-  <section class="erpax-commands">
-    <div class="erpax-commands__header">
-      <p class="eyebrow">erpax VitePress UI</p>
-      <h2>Build the site by erpax component command</h2>
+  <section class="concept-commands">
+    <div class="concept-commands__header">
+      <p class="eyebrow">concept UI</p>
+      <h2>Build the site by concept component command</h2>
       <p>
-        The site is not assembled from copy alone. It uses erpax VitePress and
+        The site is not assembled from copy alone. It uses concept VitePress and
         UI component commands to build the matrix, render the double torus,
         resolve repository resources, and verify proof.
       </p>
     </div>
 
-    <div class="erpax-commands__layout">
+    <div class="concept-commands__layout">
       <aside>
         <button
-          v-for="command in erpaxCommands"
+          v-for="command in conceptCommands"
           :key="command.name"
           :class="{ active: selected === command.name }"
           type="button"
@@ -47,12 +47,12 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
 
       <article>
         <h3>{{ selectedCommand?.name }}</h3>
-        <p class="erpax-commands__path">{{ selectedCommand?.path }}</p>
+        <p class="concept-commands__path">{{ selectedCommand?.path }}</p>
         <label v-if="selectedCommand?.input === 'atom'">
           Atom
           <input v-model="atom" type="text" />
         </label>
-        <div class="erpax-commands__receipt">
+        <div class="concept-commands__receipt">
           <span>{{ output.ok ? 'ok' : 'open' }}</span>
           <code>{{ output.uuid }}</code>
         </div>
@@ -61,7 +61,7 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
       </article>
     </div>
 
-    <div class="erpax-commands__manifest">
+    <div class="concept-commands__manifest">
       <h3>Site manifest from commands</h3>
       <ul>
         <li v-for="section in manifest" :key="section.title">

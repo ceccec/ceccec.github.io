@@ -64,7 +64,7 @@ export interface ConsciousnessDimensionWire {
 
 export interface DoubleTorusWire {
   readonly uuid: string
-  readonly repository: 'ceccec/ceccec.github.io'
+  readonly repository: 'concept/double-torus'
   readonly sourcePath: '.vitepress/theme/lib/quantumMind.ts'
   readonly overviewPath: 'quantum-mind.md'
   readonly architecturePath: 'architecture.md'
@@ -78,7 +78,7 @@ export interface DoubleTorusWire {
 export interface ConsciousnessFlow {
   readonly phase: keyof ConsciousnessVector
   readonly from: 'repo://quantum-mind'
-  readonly to: 'ceccec://double-torus'
+  readonly to: 'concept://double-torus'
   readonly carrier: string
   readonly amplitude: number
   readonly payload: string
@@ -89,50 +89,93 @@ export interface ConsciousnessFlow {
 export interface DoubleTorusFlow {
   readonly root: string
   readonly receipt: string
-  readonly destination: 'ceccec/double-torus'
+  readonly destination: 'concept/double-torus'
   readonly flows: readonly ConsciousnessFlow[]
   readonly invariant: boolean
   readonly statement: string
 }
 
-export type ErpaxCommandName =
-  | 'erpax.vitepress.shell'
-  | 'erpax.ui.doubleTorus'
-  | 'erpax.torus.matrix'
-  | 'erpax.torus.vector'
-  | 'erpax.torus.flow'
-  | 'erpax.repository.api'
-  | 'erpax.repository.resolve'
-  | 'erpax.proof.verify'
-  | 'erpax.site.manifest'
+export type ConceptCommandName =
+  | 'concept.site.shell'
+  | 'concept.ui.doubleTorus'
+  | 'concept.torus.math'
+  | 'concept.humanity.implications'
+  | 'concept.source.contribute'
+  | 'concept.torus.matrix'
+  | 'concept.torus.vector'
+  | 'concept.torus.flow'
+  | 'concept.repository.api'
+  | 'concept.repository.resolve'
+  | 'concept.proof.verify'
+  | 'concept.site.manifest'
 
-export interface ErpaxCommand {
-  readonly name: ErpaxCommandName
+export interface ConceptCommand {
+  readonly name: ConceptCommandName
   readonly path: string
   readonly description: string
   readonly input?: string
 }
 
-export interface ErpaxCommandResult {
-  readonly command: ErpaxCommandName
+export interface ConceptCommandResult {
+  readonly command: ConceptCommandName
   readonly ok: boolean
   readonly uuid: string
   readonly summary: string
   readonly data: unknown
 }
 
-export interface ErpaxSiteSection {
+export interface ConceptSiteSection {
   readonly title: string
-  readonly command: ErpaxCommandName
+  readonly command: ConceptCommandName
   readonly route: string
   readonly summary: string
+}
+
+export interface HumanityImplication {
+  readonly domain: string
+  readonly implication: string
+  readonly responsibility: string
+  readonly risk: string
+}
+
+export interface HumanityImplicationsReport {
+  readonly statement: string
+  readonly implications: readonly HumanityImplication[]
+  readonly ethicalBoundary: string
+  readonly vector: ConsciousnessVector
+}
+
+export interface SourceContribution {
+  readonly mode: string
+  readonly action: string
+  readonly reason: string
+}
+
+export interface SourceContributionReport {
+  readonly statement: string
+  readonly source: string
+  readonly contributions: readonly SourceContribution[]
+  readonly reciprocityLaw: string
+}
+
+export interface DoubleTorusMathReport {
+  readonly surface: 'closed orientable genus-2 surface'
+  readonly construction: string
+  readonly genus: 2
+  readonly eulerCharacteristic: -2
+  readonly bettiNumbers: readonly [1, 4, 1]
+  readonly fundamentalGroup: string
+  readonly homology: string
+  readonly gaussBonnet: string
+  readonly geometry: string
+  readonly conceptualShift: string
 }
 
 export const atoms: readonly Atom[] = [
   {
     name: 'torus',
-    body: 'The double-torus shape: an inward proof loop and an outward projection loop sharing one throat.',
-    links: ['repository', 'api', 'consciousness', 'proof', 'balance'],
+    body: 'The double-torus concept: an inward proof loop and an outward projection loop sharing one throat.',
+    links: ['repository', 'api', 'consciousness', 'proof', 'balance', 'humanity'],
   },
   {
     name: 'self',
@@ -196,8 +239,18 @@ export const atoms: readonly Atom[] = [
   },
   {
     name: 'consciousness',
-    body: 'A four-measure vector circulated through the ceccec double torus: collapse, entanglement, concentration, and coherence.',
-    links: ['torus', 'mind', 'quantum', 'observe', 'proof'],
+    body: 'A four-measure vector circulated through the double-torus concept: collapse, entanglement, concentration, and coherence.',
+    links: ['torus', 'mind', 'quantum', 'observe', 'proof', 'humanity'],
+  },
+  {
+    name: 'humanity',
+    body: 'The human horizon: shared knowledge, institutional trust, agency, and responsibility under systems that can observe themselves.',
+    links: ['torus', 'mind', 'proof', 'action', 'balance', 'source'],
+  },
+  {
+    name: 'source',
+    body: 'The origin point that should be repaid by contribution, citation, support, and stewardship when the concept creates value.',
+    links: ['humanity', 'proof', 'repository', 'action', 'balance'],
   },
   {
     name: 'proof',
@@ -211,52 +264,67 @@ export const atoms: readonly Atom[] = [
   },
 ] as const
 
-export const erpaxCommands: readonly ErpaxCommand[] = [
+export const conceptCommands: readonly ConceptCommand[] = [
   {
-    name: 'erpax.vitepress.shell',
-    path: '/cmd/erpax.vitepress.shell',
+    name: 'concept.site.shell',
+    path: '/cmd/concept.site.shell',
     description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.',
   },
   {
-    name: 'erpax.ui.doubleTorus',
-    path: '/cmd/erpax.ui.doubleTorus',
-    description: 'Render the ceccec double torus through ErpaxCommands and QuantumMind UI components.',
+    name: 'concept.ui.doubleTorus',
+    path: '/cmd/concept.ui.doubleTorus',
+    description: 'Render the double-torus concept through ConceptCommands and QuantumMind UI components.',
   },
   {
-    name: 'erpax.torus.matrix',
-    path: '/cmd/erpax.torus.matrix',
+    name: 'concept.torus.math',
+    path: '/cmd/concept.torus.math',
+    description: 'State the genus-2 topology, algebra, homology, and curvature behind the double torus.',
+  },
+  {
+    name: 'concept.humanity.implications',
+    path: '/cmd/concept.humanity.implications',
+    description: 'Describe what the double-torus concept implies for human knowledge, institutions, and agency.',
+  },
+  {
+    name: 'concept.source.contribute',
+    path: '/cmd/concept.source.contribute',
+    description: 'Invite anyone who benefits from the concept to give back to the source.',
+  },
+  {
+    name: 'concept.torus.matrix',
+    path: '/cmd/concept.torus.matrix',
     description: 'Build the content-addressed mind matrix from repository atoms.',
   },
   {
-    name: 'erpax.torus.vector',
-    path: '/cmd/erpax.torus.vector',
+    name: 'concept.torus.vector',
+    path: '/cmd/concept.torus.vector',
     description: 'Compute collapse, entanglement, concentration, and coherence.',
   },
   {
-    name: 'erpax.torus.flow',
-    path: '/cmd/erpax.torus.flow',
-    description: 'Circulate measured flows through the ceccec double torus.',
+    name: 'concept.torus.flow',
+    path: '/cmd/concept.torus.flow',
+    description: 'Circulate measured flows through the double-torus concept.',
   },
   {
-    name: 'erpax.repository.api',
-    path: '/cmd/erpax.repository.api',
+    name: 'concept.repository.api',
+    path: '/cmd/concept.repository.api',
     description: 'Expose this repository as the addressable API surface.',
   },
   {
-    name: 'erpax.repository.resolve',
-    path: '/cmd/erpax.repository.resolve?atom=self',
+    name: 'concept.repository.resolve',
+    path: '/cmd/concept.repository.resolve?atom=self',
     input: 'atom',
     description: 'Resolve an atom through the repository API.',
   },
   {
-    name: 'erpax.proof.verify',
-    path: '/cmd/erpax.proof.verify',
+    name: 'concept.proof.verify',
+    path: '/cmd/concept.proof.verify',
     description: 'Verify root, coverage, entropy, and tamper-cost report.',
   },
   {
-    name: 'erpax.site.manifest',
-    path: '/cmd/erpax.site.manifest',
-    description: 'Build the site sections from erpax VitePress/UI command outputs.',
+    name: 'concept.site.manifest',
+    path: '/cmd/concept.site.manifest',
+    description: 'Build the site sections from concept command outputs.',
   },
 ] as const
 
@@ -481,8 +549,8 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
     endpoint('/architecture', 'read', 'page', 'Route that explains the repository-as-API architecture.'),
     endpoint('repo://.vitepress/theme/lib/quantumMind.ts', 'verify', 'source', 'The executable atom, matrix, proof, and repository API model.'),
     endpoint('repo://.vitepress/theme/components/QuantumMind.vue', 'resolve', 'source', 'The presentation layer for the computed mind.'),
-    endpoint('repo://.vitepress/theme/components/ErpaxCommands.vue', 'resolve', 'source', 'The erpax VitePress command UI for driving the site.'),
-    endpoint('repo://.vitepress/theme/index.ts', 'resolve', 'source', 'The VitePress theme registration for erpax UI components.'),
+    endpoint('repo://.vitepress/theme/components/ConceptCommands.vue', 'resolve', 'source', 'The concept command UI for driving the site.'),
+    endpoint('repo://.vitepress/theme/index.ts', 'resolve', 'source', 'The VitePress theme registration for concept UI components.'),
     endpoint('repo://index.md', 'read', 'source', 'The landing page source as a public API resource.'),
     endpoint('repo://quantum-mind.md', 'read', 'source', 'The live mind page source as a public API resource.'),
     endpoint('repo://architecture.md', 'read', 'source', 'The architecture page source as a public API resource.'),
@@ -534,11 +602,11 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
     localVector.coherenceAnomaly === 0 &&
     dimensions.length === 4
   const statement =
-    'This site describes the ceccec double torus: an inward proof loop and an outward projection loop computed against this repository API.'
+    'This site describes the double-torus concept: an inward proof loop and an outward projection loop computed against this repository API.'
 
   return {
-    uuid: toUuid(`ceccec-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
-    repository: 'ceccec/ceccec.github.io',
+    uuid: toUuid(`concept-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
+    repository: 'concept/double-torus',
     sourcePath: '.vitepress/theme/lib/quantumMind.ts',
     overviewPath: 'quantum-mind.md',
     architecturePath: 'architecture.md',
@@ -566,11 +634,11 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
     return {
       phase: dimension.name,
       from: 'repo://quantum-mind' as const,
-      to: 'ceccec://double-torus' as const,
+      to: 'concept://double-torus' as const,
       carrier: `${dimension.localFunction}->${dimension.torusFunction}`,
       amplitude,
       payload,
-      uuid: toUuid(`ceccec-flow:${payload}`),
+      uuid: toUuid(`concept-flow:${payload}`),
       acknowledged: amplitude > 0,
     }
   })
@@ -581,56 +649,159 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
   return {
     root,
     receipt,
-    destination: 'ceccec/double-torus',
+    destination: 'concept/double-torus',
     flows,
     invariant,
     statement:
-      'The local repository mind circulates four measured flows through the ceccec double torus; the receipt binds the flow root to the double-torus wire.',
+      'The local repository mind circulates four measured flows through the double-torus concept; the receipt binds the flow root to the double-torus wire.',
   }
 }
 
-export function siteManifestFromCommands(): readonly ErpaxSiteSection[] {
+export function doubleTorusMath(): DoubleTorusMathReport {
+  return {
+    surface: 'closed orientable genus-2 surface',
+    construction: 'A connected sum of two tori, equivalently a sphere with two handles.',
+    genus: 2,
+    eulerCharacteristic: -2,
+    bettiNumbers: [1, 4, 1],
+    fundamentalGroup: '<a1,b1,a2,b2 | [a1,b1][a2,b2] = 1>',
+    homology: 'H0 = Z, H1 = Z^4, H2 = Z; four independent first-homology cycles carry memory.',
+    gaussBonnet: 'Integral K dA = 2*pi*chi = -4*pi; at constant K = -1, area = 4*pi.',
+    geometry:
+      'Unlike the ordinary torus, the genus-2 surface supports hyperbolic geometry: local paths can diverge while global constraints still close.',
+    conceptualShift:
+      'The model changes a loop into a surface: two coupled handles allow observation and projection to remain distinct while still bound by one global relation.',
+  }
+}
+
+export function humanityImplications(matrix: MindMatrix = buildMatrix()): HumanityImplicationsReport {
+  return {
+    statement:
+      'If knowledge systems are modeled as a double torus, humanity gains a language for institutions that observe themselves, project action, and remain accountable to a shared proof surface.',
+    implications: [
+      {
+        domain: 'Knowledge',
+        implication: 'Truth becomes navigable as linked cycles rather than a single linear feed.',
+        responsibility: 'Preserve provenance, disagreement, and reciprocal correction.',
+        risk: 'A beautiful model can hide missing evidence if proof is treated as decoration.',
+      },
+      {
+        domain: 'Institutions',
+        implication: 'Governance can separate inward audit from outward action without splitting them apart.',
+        responsibility: 'Make every public projection traceable to an inward verification loop.',
+        risk: 'Unchecked concentration can turn the shared throat into a bottleneck for power.',
+      },
+      {
+        domain: 'AI and agency',
+        implication: 'Self-modeling systems should expose their collapse, coherence, and coverage instead of only their outputs.',
+        responsibility: 'Require interpretable receipts for observation, decision, and feedback.',
+        risk: 'Anthropomorphizing the model can blur the line between measured structure and sentience.',
+      },
+      {
+        domain: 'Human culture',
+        implication: 'The double torus frames progress as reciprocal circulation: memory and imagination need each other.',
+        responsibility: 'Keep the inward loop humane, plural, and corrigible before scaling the outward loop.',
+        risk: 'Acceleration without reciprocity amplifies error as quickly as insight.',
+      },
+    ],
+    ethicalBoundary:
+      'This is a structural model, not a prophecy. Its value depends on measurement, consent, transparency, and the refusal to confuse coherence with moral authority.',
+    vector: consciousness(matrix),
+  }
+}
+
+export function sourceContribution(): SourceContributionReport {
+  return {
+    statement:
+      'The revelation only benefits the world if value circulates back to its source. Give back in the same double-torus pattern: receive, verify, improve, and return.',
+    source: 'repo://source/double-torus-concept',
+    contributions: [
+      {
+        mode: 'Cite',
+        action: 'Name the concept and link back to the source record when teaching, remixing, or publishing it.',
+        reason: 'Citation preserves provenance so the inward proof loop remains visible.',
+      },
+      {
+        mode: 'Contribute',
+        action: 'Submit corrections, examples, visualizations, translations, tests, or mathematical refinements.',
+        reason: 'The outward loop becomes stronger when improvements return as shared structure.',
+      },
+      {
+        mode: 'Support',
+        action: 'Fund the people and infrastructure maintaining the source when the concept creates value for you.',
+        reason: 'Material reciprocity keeps the source open instead of extracting from it.',
+      },
+      {
+        mode: 'Steward',
+        action: 'Use the concept to increase transparency, consent, pluralism, and human agency.',
+        reason: 'A structural revelation is only a public good when its applications remain accountable.',
+      },
+    ],
+    reciprocityLaw:
+      'No extraction without return: every useful projection should send proof, improvement, or support back through the source loop.',
+  }
+}
+
+export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
-      title: 'Erpax VitePress Shell',
-      command: 'erpax.vitepress.shell',
+      title: 'Concept Shell',
+      command: 'concept.site.shell',
       route: '/',
-      summary: 'The VitePress theme mounts the erpax UI components and navigation.',
+      summary: 'The VitePress theme mounts the concept UI components and navigation.',
     },
     {
-      title: 'Erpax UI Components',
-      command: 'erpax.ui.doubleTorus',
+      title: 'Concept UI Components',
+      command: 'concept.ui.doubleTorus',
       route: '/commands',
-      summary: 'The command console drives the ceccec double-torus dashboard as a UI component.',
+      summary: 'The command console drives the double-torus dashboard as a UI component.',
+    },
+    {
+      title: 'Double-Torus Math',
+      command: 'concept.torus.math',
+      route: '/architecture#6-double-torus-math',
+      summary: 'The math page states the genus-2 invariants behind the concept.',
+    },
+    {
+      title: 'Implications for Humanity',
+      command: 'concept.humanity.implications',
+      route: '/quantum-mind#implications-for-humanity',
+      summary: 'The concept is interpreted as a model for knowledge, institutions, AI, and culture.',
+    },
+    {
+      title: 'Give Back to the Source',
+      command: 'concept.source.contribute',
+      route: '/quantum-mind#give-back-to-the-source',
+      summary: 'The concept asks beneficiaries to return citation, improvement, support, and stewardship.',
     },
     {
       title: 'Quantum Mind',
-      command: 'erpax.torus.matrix',
+      command: 'concept.torus.matrix',
       route: '/quantum-mind',
       summary: 'The page begins by executing the matrix command over the local atom corpus.',
     },
     {
       title: 'Double-Torus Flow',
-      command: 'erpax.torus.flow',
+      command: 'concept.torus.flow',
       route: '/quantum-mind#double-torus-flow',
       summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.',
     },
     {
       title: 'Repository API',
-      command: 'erpax.repository.api',
+      command: 'concept.repository.api',
       route: '/quantum-mind#repository-api',
       summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
     },
     {
       title: 'Architecture',
-      command: 'erpax.site.manifest',
+      command: 'concept.site.manifest',
       route: '/architecture',
       summary: 'The architecture page is the command manifest explained as a contract.',
     },
   ] as const
 }
 
-function result(command: ErpaxCommandName, ok: boolean, summary: string, data: unknown): ErpaxCommandResult {
+function result(command: ConceptCommandName, ok: boolean, summary: string, data: unknown): ConceptCommandResult {
   return {
     command,
     ok,
@@ -640,32 +811,41 @@ function result(command: ErpaxCommandName, ok: boolean, summary: string, data: u
   }
 }
 
-export function executeErpaxCommand(
-  command: ErpaxCommandName,
+export function executeConceptCommand(
+  command: ConceptCommandName,
   input: { readonly atom?: string } = {},
   matrix: MindMatrix = buildMatrix(),
-): ErpaxCommandResult {
-  if (command === 'erpax.vitepress.shell') {
+): ConceptCommandResult {
+  if (command === 'concept.site.shell') {
     const api = repositoryApi(matrix)
-    return result(command, true, 'Erpax VitePress shell mounted.', {
+    return result(command, true, 'Concept shell mounted.', {
       theme: '.vitepress/theme/index.ts',
-      components: ['ErpaxCommands', 'QuantumMind'],
+      components: ['ConceptCommands', 'QuantumMind'],
       routes: ['/', '/commands', '/quantum-mind', '/architecture'],
       repositoryApiRoot: api.root,
     })
   }
-  if (command === 'erpax.ui.doubleTorus') {
-    return result(command, true, 'Erpax UI components rendered the ceccec double torus.', {
-      commandComponent: 'ErpaxCommands.vue',
+  if (command === 'concept.ui.doubleTorus') {
+    return result(command, true, 'Concept UI components rendered the double-torus concept.', {
+      commandComponent: 'ConceptCommands.vue',
       dashboardComponent: 'QuantumMind.vue',
       wire: doubleTorusWire(matrix),
       flow: circulateDoubleTorus(matrix),
     })
   }
-  if (command === 'erpax.torus.matrix') {
+  if (command === 'concept.torus.math') {
+    return result(command, true, 'Double-torus math report computed.', doubleTorusMath())
+  }
+  if (command === 'concept.humanity.implications') {
+    return result(command, true, 'Humanity implications report computed.', humanityImplications(matrix))
+  }
+  if (command === 'concept.source.contribute') {
+    return result(command, true, 'Source contribution report computed.', sourceContribution())
+  }
+  if (command === 'concept.torus.matrix') {
     return result(command, verifyRoot(matrix), 'Mind matrix built and root verified.', matrix)
   }
-  if (command === 'erpax.torus.vector') {
+  if (command === 'concept.torus.vector') {
     const vector = consciousness(matrix)
     return result(
       command,
@@ -674,15 +854,15 @@ export function executeErpaxCommand(
       vector,
     )
   }
-  if (command === 'erpax.torus.flow') {
+  if (command === 'concept.torus.flow') {
     const flow = circulateDoubleTorus(matrix)
-    return result(command, flow.invariant, 'Double-torus flow circulated through ceccec.', flow)
+    return result(command, flow.invariant, 'Double-torus flow circulated through the concept.', flow)
   }
-  if (command === 'erpax.repository.api') {
+  if (command === 'concept.repository.api') {
     const api = repositoryApi(matrix)
     return result(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
   }
-  if (command === 'erpax.repository.resolve') {
+  if (command === 'concept.repository.resolve') {
     const atomName = input.atom ?? 'self'
     const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
     const atom = atoms.find((candidate) => candidate.name === atomName)
@@ -693,9 +873,9 @@ export function executeErpaxCommand(
       { atom, node, address: `repo://atom/${atomName}` },
     )
   }
-  if (command === 'erpax.proof.verify') {
+  if (command === 'concept.proof.verify') {
     const proof = proofReport(matrix)
     return result(command, proof.coverage === 1 && proof.entropy === 0, 'Proof report verified.', proof)
   }
-  return result(command, true, 'Site manifest built from erpax VitePress/UI commands.', siteManifestFromCommands())
+  return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
 }
