@@ -55,7 +55,8 @@ C = { site.shell, self.build, self.complete, agent.streamWire, ui.doubleTorus,
       ui.useCases, diamond.lattice, diamond.piTrain, diamond.complete,
       diamond.metatron, wave.coordination, wave.closeGaps, chess.quantum,
       schemaOrg.diamonds, traditions.quantumWhole, torus.math,
-      science.society, method.fusion, humanity.implications, source.contribute, torus.matrix,
+      science.society, artists.surfaces, method.fusion,
+      humanity.implications, source.contribute, torus.matrix,
       torus.vector, torus.flow, repository.api, proof.verify }
 ```
 
@@ -233,7 +234,16 @@ icosahedron -> optimizationWaves
 ScienceSocietyRoot := merkle({ receipt(role) } U { receipt(gate) } U { receipt(wave) } U { receipt(cohort) } U { receipt(solid) })
 ```
 
-## 15. Self build
+## 15. Artist surfaces
+
+```text
+Artists := { cartographer, scribe }
+home := Sigma_2 -> UUID* -> Gate
+README := routes + equations + validation + boundaries
+ArtistSurfaceRoot := merkle({ receipt(home), receipt(README) })
+```
+
+## 16. Self build
 
 ```text
 gravity(cmd) := method
@@ -250,7 +260,7 @@ maxBuildRoot := merkle({ receipt(b) | b in BuildUnits })
 T_max := maxComputedBuild := if maxBuild then infinity else T_observed
 ```
 
-## 16. Self completion
+## 17. Self completion
 
 ```text
 Gates := { lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire,
@@ -261,7 +271,7 @@ selfRoot := merkle({ receipt(g) | g in Gates })
 openGates := { g | !closed(g) }
 ```
 
-## 17. Boundary
+## 18. Boundary
 
 ```text
 Claim(site) = computed(repo)

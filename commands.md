@@ -43,6 +43,7 @@ C = {
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
   concept.science.society,
+  concept.artists.surfaces,
   concept.method.fusion,
   concept.torus.math,
   concept.humanity.implications,

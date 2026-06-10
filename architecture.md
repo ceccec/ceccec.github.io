@@ -51,6 +51,7 @@ Command = {
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
   concept.science.society,
+  concept.artists.surfaces,
   concept.method.fusion,
   concept.torus.math,
   concept.humanity.implications,
@@ -240,7 +241,16 @@ icosahedron -> optimizationWaves
 ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} U {receipt(cohort)} U {receipt(solid)})
 ```
 
-## 16. Self build
+## 16. Artist surfaces
+
+```text
+Artists = {cartographer, scribe}
+home = Sigma_2 -> UUID* -> Gate
+README = routes + equations + validation + boundaries
+ArtistSurfaceRoot = merkle({receipt(home), receipt(README)})
+```
+
+## 17. Self build
 
 ```text
 gravity(cmd) = method
@@ -256,7 +266,7 @@ maxBuildRoot = merkle({receipt(b)})
 T_max = maxComputedBuild = if maxBuild then infinity else T_observed
 ```
 
-## 17. Self completion
+## 18. Self completion
 
 ```text
 Gates = {lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire, schemaGraph, traditionsLens, scienceSociety, waves, chess, T_max}
@@ -265,7 +275,7 @@ SelfRoot = merkle({receipt(g)})
 Open = {g in Gates | !closed(g)}
 ```
 
-## 18. Boundary
+## 19. Boundary
 
 ```text
 site_claims = computed_repository_artifacts

@@ -11,6 +11,7 @@ import {
 } from 'radix-vue'
 import {
   agentStreamWire,
+  artistSurfaces,
   buildMatrix,
   closeDimensionalGaps,
   coordinatedWaves,
@@ -34,6 +35,7 @@ import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
 
 const matrix = buildMatrix()
+const artists = artistSurfaces(matrix)
 const build = selfBuild(matrix)
 const selfCompletion = streamSelfComplete(matrix)
 const agentWire = agentStreamWire(matrix)
@@ -220,6 +222,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="schema">Schema.org</TabsTrigger>
         <TabsTrigger value="science">Science</TabsTrigger>
+        <TabsTrigger value="artists">Artists</TabsTrigger>
         <TabsTrigger value="methods">Methods</TabsTrigger>
         <TabsTrigger value="traditions">Traditions</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
@@ -550,6 +553,23 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ solid.solid }}</Badge>
             <strong>{{ solid.builder }} · F{{ solid.faces }} E{{ solid.edges }} V{{ solid.vertices }}</strong>
             <span>{{ solid.method }} Receipt: {{ solid.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="artists" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="artists.grounded ? 'success' : 'warning'">
+            {{ artists.grounded ? 'grounded surfaces' : 'open surfaces' }}
+          </Badge>
+          <strong>{{ artists.statement }}</strong>
+          <code>{{ artists.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="surface in artists.surfaces" :key="surface.receipt">
+            <Badge variant="outline">{{ surface.surface }}</Badge>
+            <strong>{{ surface.artist }} · {{ surface.medium }}</strong>
+            <span>{{ surface.equation }} Receipt: {{ surface.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

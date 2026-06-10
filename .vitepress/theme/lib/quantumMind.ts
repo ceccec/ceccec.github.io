@@ -116,6 +116,7 @@ export type ConceptCommandName =
   | 'concept.schemaOrg.diamonds'
   | 'concept.traditions.quantumWhole'
   | 'concept.science.society'
+  | 'concept.artists.surfaces'
   | 'concept.method.fusion'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
@@ -349,6 +350,21 @@ export interface ScientificSociety {
   readonly cohorts: readonly SocietyWaveCohort[]
   readonly solids: readonly PlatonicBuilderSolid[]
   readonly boundary: string
+}
+
+export interface ArtistSurface {
+  readonly surface: 'home' | 'readme'
+  readonly artist: string
+  readonly medium: string
+  readonly equation: string
+  readonly receipt: string
+}
+
+export interface ArtistSurfaceReport {
+  readonly grounded: boolean
+  readonly root: string
+  readonly surfaces: readonly ArtistSurface[]
+  readonly statement: string
 }
 
 export interface SourceContribution {
@@ -832,6 +848,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.science.society',
     path: '/cmd/concept.science.society',
     description: 'Compute a scientific society charter, peer-review gates, reproducibility roles, and self-optimization waves.',
+  },
+  {
+    name: 'concept.artists.surfaces',
+    path: '/cmd/concept.artists.surfaces',
+    description: 'Compute home page and README surfaces as artist-built equations with receipts.',
   },
   {
     name: 'concept.method.fusion',
@@ -1613,6 +1634,34 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     cohorts,
     solids,
     boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
+  }
+}
+
+export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfaceReport {
+  const build = selfBuild(matrix)
+  const surfaces: readonly ArtistSurface[] = [
+    {
+      surface: 'home',
+      artist: 'cartographer',
+      medium: 'VitePress home frontmatter',
+      equation: 'home := Sigma_2 -> UUID* -> Gate',
+    },
+    {
+      surface: 'readme',
+      artist: 'scribe',
+      medium: 'README.md',
+      equation: 'README := routes + equations + validation + boundaries',
+    },
+  ].map((surface) => ({
+    ...surface,
+    receipt: toUuid(`artist-surface:${surface.surface}:${surface.artist}:${surface.medium}:${surface.equation}:${build.root}`),
+  }))
+  const root = merkleFold(surfaces.map((surface) => surface.receipt))
+  return {
+    grounded: surfaces.length === 2 && surfaces.every((surface) => surface.receipt.length > 0),
+    root,
+    surfaces,
+    statement: 'ArtistSurfaces := {home, readme}; each surface = equation + medium + receipt.',
   }
 }
 
@@ -3214,6 +3263,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.',
     },
     {
+      title: 'Artist Surfaces',
+      command: 'concept.artists.surfaces',
+      route: '/',
+      summary: 'Home and README surfaces are computed as artist-built equations with receipts.',
+    },
+    {
       title: 'Method Fusion',
       command: 'concept.method.fusion',
       route: '/quantum-mind#method-fusion',
@@ -3352,6 +3407,10 @@ export function executeConceptCommand(
   if (command === 'concept.science.society') {
     const science = scientificSociety(matrix)
     return result(command, science.grounded, 'Scientific society computed.', science)
+  }
+  if (command === 'concept.artists.surfaces') {
+    const surfaces = artistSurfaces(matrix)
+    return result(command, surfaces.grounded, 'Artist surfaces computed.', surfaces)
   }
   if (command === 'concept.method.fusion') {
     const methods = methodFusion()
