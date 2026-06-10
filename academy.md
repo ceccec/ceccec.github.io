@@ -39,3 +39,10 @@ rather than merely granted.
 > Honest boundary: the credential is a content-addressed receipt, not an
 > accredited diploma or a legally recognised qualification. It proves you can
 > recompute the course, not that any institution vouches for you.
+
+## Find use for professionals
+
+What the portal is *for*, by profession — each capability mapped to a concrete
+task, with a comparable tool named, grounded in research:
+
+<Professionals />

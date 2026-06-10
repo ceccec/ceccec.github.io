@@ -1344,6 +1344,92 @@ export function sealAll(matrix = buildMatrix()) {
         boundary: 'A conjunction of the model\'s own seals, folded as waves into one root. It restates the parts it already proves; a property it does not track lies outside this seal.',
     };
 }
+// Find use for professionals. The portal's capabilities map onto concrete
+// professional tasks, grounded in how comparable tools are used: deterministic
+// generative design (like Coolors/Huemint, but offline and content-addressed),
+// data sonification (like TwoTone/Highcharts), tamper-evident content-addressing
+// (in the spirit of C2PA/Sigstore/git, though structural — see the boundary),
+// and an MCP tool surface for agents. Each entry names the profession, the task,
+// the capability it uses, why determinism/offline/content-addressing matter, a
+// comparable tool, and a route to try it. Folded into one root.
+export function professionals(matrix = buildMatrix()) {
+    void matrix;
+    const groups = [
+        {
+            group: 'design',
+            icon: '◈',
+            entries: [
+                { profession: 'Brand & graphic designer', capability: 'palette', route: '/school',
+                    task: 'Regenerate an exact brand palette — hex, RGB, and CMYK for screen and print — from a documented seed word, without storing a file.',
+                    why: 'The seed is the file: cite the seed and anyone recomputes the identical palette, offline and free.',
+                    comparable: 'Coolors · Adobe Color · Huemint' },
+                { profession: 'Design-system engineer', capability: 'palette', route: '/school',
+                    task: 'Compile a seeded palette into design tokens (CSS variables) committed to git as the single source of truth.',
+                    why: 'Content-addressed: the same seed yields the same tokens in every commit and on every platform.',
+                    comparable: 'W3C Design Tokens · Style Dictionary' },
+            ],
+        },
+        {
+            group: 'sound',
+            icon: '♫',
+            entries: [
+                { profession: 'Musician & sound designer', capability: 'melody', route: '/quantum-mind',
+                    task: 'Derive a reproducible melodic seed from a word or dataset to sketch motifs offline.',
+                    why: 'Deterministic: the same seed always sounds the same, so a motif is shareable by citing the seed.',
+                    comparable: 'generative-music sketchpads' },
+                { profession: 'Accessibility specialist', capability: 'sonification', route: '/commands',
+                    task: 'Sonify a data series so screen-reader users hear trends and outliers without visuals.',
+                    why: 'Web Audio, client-side: non-visual access to data with no server and no upload.',
+                    comparable: 'Highcharts Sonification · MIT Umwelt · TwoTone' },
+                { profession: 'Data analyst & scientist', capability: 'sonification', route: '/commands',
+                    task: 'Listen to a dataset to catch weak signals and transitions the eye misses.',
+                    why: 'Audio paired with vision improves weak-signal detection in exploratory analysis.',
+                    comparable: 'TwoTone · Sonification Sandbox · NASA sonifications' },
+            ],
+        },
+        {
+            group: 'provenance',
+            icon: '🔏',
+            entries: [
+                { profession: 'Auditor & compliance', capability: 'receipts', route: '/architecture',
+                    task: 'Give each audit event a recomputable receipt and verify the merkle root without re-reading the whole log.',
+                    why: 'Tamper-evident: any change flips the root, and the root is verified by recomputation.',
+                    comparable: 'C2PA · Sigstore/Rekor · RFC 9162 Merkle proofs' },
+                { profession: 'Journalist & researcher', capability: 'receipts', route: '/architecture',
+                    task: 'Cite the exact version of a source artifact by its content hash so anyone can verify it later.',
+                    why: 'Content-addressed identity is intrinsic: it survives even if the original hosting disappears.',
+                    comparable: 'Software Heritage SWHID · git · C2PA Content Credentials' },
+            ],
+        },
+        {
+            group: 'agents',
+            icon: '☿',
+            entries: [
+                { profession: 'AI & agent developer', capability: 'mcp', route: '/mcp',
+                    task: 'Let an agent call every capability as an MCP tool (tools/list, tools/call) with deterministic, client-side results.',
+                    why: 'Pure deterministic computations with no network: an agent can keep intermediate data out of the model context.',
+                    comparable: 'Model Context Protocol · color-scheme MCP servers' },
+                { profession: 'Educator', capability: 'all', route: '/academy',
+                    task: 'Teach a concept from one seed that unfolds the same palette, melody, and proof for every student.',
+                    why: 'Reproducible and offline: identical for everyone, at no cost, on any device.',
+                    comparable: 'open educational resources' },
+            ],
+        },
+    ].map((group) => ({
+        ...group,
+        entries: group.entries.map((entry) => ({ ...entry, receipt: toUuid(`pro:${entry.profession}:${entry.capability}`) })),
+    }));
+    const entries = groups.flatMap((group) => group.entries);
+    return {
+        found: groups.length === 4 && entries.length >= 9,
+        groups,
+        entries,
+        count: entries.length,
+        root: merkleFold(entries.map((entry) => entry.receipt)),
+        statement: 'Find use for professionals: the portal\'s deterministic design, data sonification, content-addressed receipts, and MCP tool surface map onto concrete tasks for designers, sound and accessibility specialists, analysts, auditors, journalists, educators, and agent developers — every result reproducible from a cited seed, offline and free.',
+        boundary: 'A map from capabilities to professional tasks, with honestly named comparable tools. The receipts are tamper-evident structural UUID folds, not cryptographic signatures like C2PA or Sigstore; the palettes and sonification are comparable in spirit to the named tools, the distinction being offline, content-addressed, and zero-dependency.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3126,7 +3212,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -3135,7 +3221,7 @@ export function componentGraph() {
         '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
-        '/academy': ['QuantumAcademy'],
+        '/academy': ['QuantumAcademy', 'Professionals'],
         '/governance': ['GovernanceVote'],
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],

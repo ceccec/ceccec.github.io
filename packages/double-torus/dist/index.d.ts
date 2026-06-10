@@ -1085,6 +1085,35 @@ export declare function sealAll(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function professionals(matrix?: MindMatrix): {
+    found: boolean;
+    groups: {
+        entries: {
+            receipt: string;
+            profession: string;
+            capability: string;
+            route: string;
+            task: string;
+            why: string;
+            comparable: string;
+        }[];
+        group: string;
+        icon: string;
+    }[];
+    entries: {
+        receipt: string;
+        profession: string;
+        capability: string;
+        route: string;
+        task: string;
+        why: string;
+        comparable: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

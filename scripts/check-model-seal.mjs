@@ -96,6 +96,7 @@ import {
   trinityGates,
   quantumSitemap,
   sealAll,
+  professionals,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -188,6 +189,9 @@ ok(`sitemap.quantum:${quantumSitemap(matrix).count}`, quantumSitemap(matrix).qua
 // Seal all in waves: the master seal. Every proof a wave, folded into one root;
 // the whole is sealed only when every wave seals.
 ok(`seal.all-in-waves:${sealAll(matrix).closed}/${sealAll(matrix).count}`, sealAll(matrix).sealed)
+
+// Find use for professionals: capabilities mapped to concrete professional tasks.
+ok(`professionals:${professionals(matrix).count}`, professionals(matrix).found)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
