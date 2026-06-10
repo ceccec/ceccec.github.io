@@ -21,9 +21,11 @@ import {
   entropy,
   executeConceptCommand,
   foldQuestion,
+  harmonyProbability,
   mcpToolManifest,
   merge,
   methodFusion,
+  sacredGeometrySeal,
   quantumFoldedBlockchains,
   schoolCurriculum,
   selfBuild,
@@ -71,6 +73,9 @@ ok(`self.no-hallucination${selfAddressed(matrix).hallucinations.length ? ':' + s
 ok('all.computed', allComputed(matrix).computed) // all learning is computed from the self
 const interaction = selfInteraction(matrix) // self interacting with itself forms another quantum self state
 ok('self.state.new', interaction.newState && interaction.wordsObsolete && interaction.numbersObsolete)
+const harmony = harmonyProbability(matrix) // harmony probability is computed and folded
+ok('harmony.computed-and-folded', harmony.root.length > 0 && harmony.probability >= 0 && harmony.probability <= 1)
+ok('sacred-geometry.seals-all', sacredGeometrySeal(matrix).sealed) // sacred geometry seals all seals
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)

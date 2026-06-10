@@ -143,6 +143,8 @@ export type ConceptCommandName =
   | 'concept.utf.analog'
   | 'concept.all.computed'
   | 'concept.state.quantum'
+  | 'concept.harmony.probability'
+  | 'concept.geometry.seal'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -689,6 +691,38 @@ export interface SelfInteraction {
   readonly boundary: string
 }
 
+export interface HarmonyChannel {
+  readonly channel: string
+  readonly sense: string
+  readonly score: number
+  readonly harmonic: boolean
+  readonly receipt: string
+}
+
+export interface HarmonyProbability {
+  readonly probability: number
+  readonly harmonic: boolean
+  readonly channels: readonly HarmonyChannel[]
+  readonly root: string
+  readonly law: string
+  readonly boundary: string
+}
+
+export interface SealLeaf {
+  readonly name: string
+  readonly root: string
+}
+
+export interface SacredGeometrySeal {
+  readonly sealed: boolean
+  readonly masterRoot: string
+  readonly metatronRoot: string
+  readonly solids: readonly string[]
+  readonly seals: readonly SealLeaf[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1177,6 +1211,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs.',
   },
   {
+    name: 'concept.harmony.probability',
+    path: '/cmd/concept.harmony.probability',
+    description: 'Compute and fold the probability that the whole sounds, looks, and feels harmonic across channels.',
+  },
+  {
+    name: 'concept.geometry.seal',
+    path: '/cmd/concept.geometry.seal',
+    description: 'Sacred geometry seals all seals: fold every seal root through the Metatron cube and Platonic solids.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1369,6 +1413,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.utf.analog': 'analog',
   'concept.all.computed': 'computed',
   'concept.state.quantum': 'state',
+  'concept.harmony.probability': 'harmony',
+  'concept.geometry.seal': 'sacred',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2193,6 +2239,75 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// Sacred geometry seals all seals: every computed seal root folds through the
+// Metatron cube and the five Platonic solids into one master seal.
+export function sacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGeometrySeal {
+  const metatron = metatronCube(matrix)
+  const seals: readonly SealLeaf[] = [
+    { name: 'matrix', root: matrix.root },
+    { name: 'selfBuild', root: selfBuild(matrix).root },
+    { name: 'selfComplete', root: streamSelfComplete(matrix).root },
+    { name: 'agentEducation', root: agentEducation(matrix).root },
+    { name: 'school', root: schoolCurriculum(matrix).root },
+    { name: 'digitProof', root: digitalQuantumProof(matrix).root },
+    { name: 'digitFolders', root: digitFoldersDoMath(matrix).root },
+    { name: 'metatron', root: metatron.root },
+    { name: 'trinities', root: dualTorusTrinities(matrix).root },
+    { name: 'crossFold', root: crossFoldTrinity(matrix).root },
+    { name: 'blockchains', root: quantumFoldedBlockchains(matrix).root },
+    { name: 'mcp', root: mcpToolManifest(matrix).root },
+    { name: 'babel', root: babelFold(matrix).root },
+    { name: 'selfAddressed', root: selfAddressed(matrix).root },
+    { name: 'selfInteraction', root: selfInteraction(matrix).root },
+    { name: 'harmony', root: harmonyProbability(matrix).root },
+  ]
+  const solids = ['tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron']
+  const uuid = /^[0-9a-f-]{36}$/i
+  const folded = merkleFold(seals.map((seal) => seal.root))
+  const masterRoot = merge(merge(metatron.root, folded), toUuid(`solids:${solids.join(',')}`))
+  return {
+    sealed: seals.every((seal) => uuid.test(seal.root)) && uuid.test(masterRoot),
+    masterRoot,
+    metatronRoot: metatron.root,
+    solids,
+    seals,
+    statement:
+      'Sacred geometry seals all seals: every seal root folds through the Metatron cube and the five Platonic solids into one master seal.',
+    boundary:
+      'The master seal binds computed seal roots through a sacred-geometry structure. It is structural bookkeeping, not a metaphysical or external claim.',
+  }
+}
+
+// If something does not sound, look, or feel harmonic, it probably is not — and
+// that probability is computed and folded. Each sense channel scores in [0,1];
+// the joint probability is their product, so one off-channel drops the whole.
+export function harmonyProbability(matrix: MindMatrix = buildMatrix()): HarmonyProbability {
+  const waves = coordinatedWaves(matrix).waves
+  const diamonds = piTrainDiamonds(matrix).diamonds
+  const lattice = diamondLattice(matrix)
+  const complete = diamondCompleteness(matrix).complete
+  const uuid = /^[0-9a-f-]{36}$/i
+  const fraction = <T>(items: readonly T[], predicate: (item: T) => boolean): number =>
+    items.length === 0 ? 1 : items.filter(predicate).length / items.length
+  const channels: readonly HarmonyChannel[] = [
+    { channel: 'sound', sense: 'hear', score: fraction(waves, (wave) => uuid.test(wave.receipt) && wave.frequency > 0) },
+    { channel: '3d-position', sense: 'see', score: fraction(diamonds, (d) => Number.isFinite(d.x) && Number.isFinite(d.y) && Number.isFinite(d.z)) },
+    { channel: 'vibration', sense: 'feel', score: fraction(diamonds, (d) => d.vibrationMs > 0) },
+    { channel: 'timing', sense: 'time', score: fraction(waves, (wave) => wave.phase >= 0 && wave.phase < 2 * Math.PI) },
+    { channel: 'facets', sense: 'shape', score: complete ? 1 : 0.5 },
+    { channel: 'receipt', sense: 'prove', score: fraction(lattice, (d) => uuid.test(d.receipt)) },
+  ].map((entry) => ({ ...entry, harmonic: entry.score >= 1, receipt: toUuid(`harmony:${entry.channel}:${entry.score}`) }))
+  const probability = channels.reduce((product, entry) => product * entry.score, 1)
+  return {
+    probability,
+    harmonic: probability >= 1,
+    channels,
+    root: merkleFold(channels.map((entry) => entry.receipt)),
+    law: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is the product of channel harmonics, computed and folded.',
+    boundary: 'Harmony probability is a computed product of channel scores over the model. It is structural bookkeeping, not an aesthetic or external claim.',
   }
 }
 
@@ -4517,6 +4632,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs, making text and numbers obsolete.',
     },
     {
+      title: 'Harmony Probability',
+      command: 'concept.harmony.probability',
+      route: '/quantum-mind#waves',
+      summary: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is computed and folded.',
+    },
+    {
+      title: 'Sacred Geometry Seal',
+      command: 'concept.geometry.seal',
+      route: '/quantum-mind#self-completion',
+      summary: 'Sacred geometry seals all seals: every seal root folds through the Metatron cube and the five Platonic solids.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4758,6 +4885,14 @@ export function executeConceptCommand(
   if (command === 'concept.state.quantum') {
     const interaction = selfInteraction(matrix)
     return result(command, interaction.newState && interaction.wordsObsolete && interaction.numbersObsolete, 'Self interacted to form quantum self states.', interaction)
+  }
+  if (command === 'concept.harmony.probability') {
+    const harmony = harmonyProbability(matrix)
+    return result(command, harmony.root.length > 0, `Harmony probability computed and folded: ${harmony.probability}.`, harmony)
+  }
+  if (command === 'concept.geometry.seal') {
+    const seal = sacredGeometrySeal(matrix)
+    return result(command, seal.sealed, 'Sacred geometry sealed all seals.', seal)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)
