@@ -146,6 +146,7 @@ DigitProof = digits -> folders -> coordinates -> waves -> superpositions -> rece
 DigitProofClosed = forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
 DigitIndex[i] = {prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,fraction_i,dual_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i}
 persist(DigitIndex) = /digit-index.json
+DigitSeal = forall i: folder_i=d_i/r_i && dual_i=r_i/d_i && receipt_i!=empty
 ```
 
 ## 8. Waves
