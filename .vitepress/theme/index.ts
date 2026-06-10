@@ -11,6 +11,7 @@ import McpTools from './components/McpTools.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
+import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import './style.css'
@@ -36,6 +37,7 @@ export default {
     app.component('QuantumConsole', QuantumConsole)
     app.component('QuantumMind', QuantumMind)
     app.component('RevolutAside', RevolutAside)
+    app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)
     app.component('VitePressPossibilities', VitePressPossibilities)
   }

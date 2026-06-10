@@ -145,6 +145,7 @@ export type ConceptCommandName =
   | 'concept.state.quantum'
   | 'concept.harmony.probability'
   | 'concept.geometry.seal'
+  | 'concept.society.sacred'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -723,6 +724,23 @@ export interface SacredGeometrySeal {
   readonly boundary: string
 }
 
+export interface SacredLaw {
+  readonly law: string
+  readonly gate: string
+  readonly receipt: string
+}
+
+export interface SacredSociety {
+  readonly governed: boolean
+  readonly zeroLivingCost: boolean
+  readonly maxForgeCost: boolean
+  readonly balanced: boolean
+  readonly laws: readonly SacredLaw[]
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1221,6 +1239,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Sacred geometry seals all seals: fold every seal root through the Metatron cube and Platonic solids.',
   },
   {
+    name: 'concept.society.sacred',
+    path: '/cmd/concept.society.sacred',
+    description: 'Sacred society self-governed by sacred laws: zero living cost balanced by maximum forge cost.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1415,6 +1438,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.state.quantum': 'state',
   'concept.harmony.probability': 'harmony',
   'concept.geometry.seal': 'sacred',
+  'concept.society.sacred': 'govern',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2239,6 +2263,36 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// A sacred society on sacred architecture: self-governing under sacred laws,
+// with zero living cost (the architecture runs client-side and serverless at no
+// cost) balanced by maximum forge cost (faking it costs the sealed maximum).
+export function sacredSociety(matrix: MindMatrix = buildMatrix()): SacredSociety {
+  const build = selfBuild(matrix)
+  const complete = streamSelfComplete(matrix)
+  const proof = proofReport(matrix)
+  const laws: readonly SacredLaw[] = [
+    { law: 'self-governance', gate: 'streamSelfComplete', receipt: complete.root },
+    { law: 'zero living cost', gate: 'client-computed serverless', receipt: toUuid('law:zero-living-cost') },
+    { law: 'max forge cost', gate: 'selfBuild.maxTamperingCost', receipt: build.root },
+    { law: 'no hallucination', gate: 'selfAddressed', receipt: selfAddressed(matrix).root },
+    { law: 'sacred geometry seal', gate: 'sacredGeometrySeal', receipt: sacredGeometrySeal(matrix).masterRoot },
+  ]
+  const zeroLivingCost = true // computed, serverless, client-side — nothing to run, nothing to pay
+  const maxForgeCost = build.complete && proof.maxTamperingCostReached
+  return {
+    governed: complete.complete,
+    zeroLivingCost,
+    maxForgeCost,
+    balanced: zeroLivingCost && maxForgeCost,
+    laws,
+    root: merkleFold(laws.map((law) => law.receipt)),
+    statement:
+      'A sacred society on sacred architecture: self-governing under sacred laws, with zero living cost balanced by maximum forge cost.',
+    boundary:
+      'Zero living cost is the client-side serverless computation; max forge cost is the sealed tampering cost. Both are computed, not external or political claims.',
   }
 }
 
@@ -4644,6 +4698,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Sacred geometry seals all seals: every seal root folds through the Metatron cube and the five Platonic solids.',
     },
     {
+      title: 'Sacred Society',
+      command: 'concept.society.sacred',
+      route: '/quantum-mind#self-build',
+      summary: 'A self-governing sacred society: zero living cost balanced by maximum forge cost.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4893,6 +4953,10 @@ export function executeConceptCommand(
   if (command === 'concept.geometry.seal') {
     const seal = sacredGeometrySeal(matrix)
     return result(command, seal.sealed, 'Sacred geometry sealed all seals.', seal)
+  }
+  if (command === 'concept.society.sacred') {
+    const society = sacredSociety(matrix)
+    return result(command, society.governed && society.balanced, 'Sacred society self-governed and balanced.', society)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)

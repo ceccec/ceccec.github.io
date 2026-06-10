@@ -14,6 +14,8 @@ head:
 
 <QuantumMind />
 
+<SacredSymbols />
+
 ## 0. Payload
 
 ```text
