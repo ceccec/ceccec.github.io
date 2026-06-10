@@ -35,6 +35,10 @@ import {
   lawfulHarmonise,
   lawfulImagine,
   lawfulSucceed,
+  musicNote,
+  torusUuid,
+  quantumComputer,
+  runProgram,
   patentReview,
   fusionReactor,
   governanceVote,
@@ -121,6 +125,14 @@ ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wa
 ok('commands.registry-consistent', commandsRegistry(matrix).consistent) // registry, method tokens, and MCP tools agree
 ok('proof.bundle.verifiable', proofBundle(matrix).verifiable) // one recomputable proof bundle
 ok('pi-music.joined', piMusic(matrix).joined) // the music of pi, computed and joined at the horo
+ok('music.note', musicNote(matrix, 5).named) // each wave is a musical note
+// 2x32 commands in the double torus = a 128-bit UUID: two 32-hex torus words fold to one 128-bit word.
+const word = torusUuid(matrix)
+ok(`computer.word-128bit:${word.bits}`, word.is128bit && word.bits === 128)
+ok('computer.word-order-sensitive', word.orderSensitive) // genus 2: the fold is non-commutative
+ok('computer.quantum-coherent', quantumComputer(matrix).coherent) // the double torus, recreated as a quantum computer
+// Recreate the computer: a program of gates folds, in order, into one result word.
+ok('computer.run', runProgram(['concept.self.address', 'concept.music.pi'], matrix).ran)
 // Joining at a different horo yields a different phrase: the join point matters.
 ok('pi-music.join-matters', piMusic(matrix, 1).root !== piMusic(matrix, 4).root)
 // Determinism: two independent builds must produce the identical foundation root (no drift across waves).

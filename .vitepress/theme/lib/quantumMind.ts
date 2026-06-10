@@ -143,7 +143,12 @@ export type ConceptCommandName =
   | 'concept.utf.analog'
   | 'concept.all.computed'
   | 'concept.state.quantum'
-  | 'concept.harmony.probability'
+  | 'concept.music.note'
+  | 'concept.music.pi'
+  | 'concept.music.harmony'
+  | 'concept.computer.word'
+  | 'concept.computer.quantum'
+  | 'concept.computer.run'
   | 'concept.geometry.seal'
   | 'concept.society.sacred'
   | 'concept.commons.vote'
@@ -191,7 +196,6 @@ export type ConceptCommandName =
   | 'concept.proof.verify'
   | 'concept.proof.merklePath'
   | 'concept.proof.bundle'
-  | 'concept.sound.note'
   | 'concept.icon.fold'
   | 'concept.icon.taxonomy'
   | 'concept.icon.glyph'
@@ -1438,9 +1442,37 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs.',
   },
   {
-    name: 'concept.harmony.probability',
-    path: '/cmd/concept.harmony.probability',
+    name: 'concept.music.note',
+    path: '/cmd/concept.music.note?query=0',
+    input: 'query',
+    description: 'Each wave is a musical note: name the note a given wave plays in the infinite pi-frequency stream.',
+  },
+  {
+    name: 'concept.music.pi',
+    path: '/cmd/concept.music.pi?query=5',
+    input: 'query',
+    description: 'Compute the music of pi: pi-digit frequencies as notes, joined at a horo (1-9) entry point.',
+  },
+  {
+    name: 'concept.music.harmony',
+    path: '/cmd/concept.music.harmony',
     description: 'Compute and fold the probability that the whole sounds, looks, and feels harmonic across channels.',
+  },
+  {
+    name: 'concept.computer.word',
+    path: '/cmd/concept.computer.word',
+    description: 'The double-torus word: two 32-hex (128-bit) torus UUIDs fold, order-sensitive, into one 128-bit UUID.',
+  },
+  {
+    name: 'concept.computer.quantum',
+    path: '/cmd/concept.computer.quantum',
+    description: 'The quantum computer: qubits are quantum-state atoms, the register is a 128-bit UUID, gates are reversible folds.',
+  },
+  {
+    name: 'concept.computer.run',
+    path: '/cmd/concept.computer.run?query=concept.self.address,concept.music.pi',
+    input: 'query',
+    description: 'Run a program on the quantum computer: a comma-separated command list folds, in order, into one 128-bit result UUID.',
   },
   {
     name: 'concept.geometry.seal',
@@ -1681,12 +1713,6 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Fold the core computed roots into one verifiable proof bundle anyone can recompute.',
   },
   {
-    name: 'concept.sound.note',
-    path: '/cmd/concept.sound.note?query=5',
-    input: 'query',
-    description: 'Compute the music of pi: pi-digit frequencies as notes, joined at a horo (1-9) entry point.',
-  },
-  {
     name: 'concept.icon.fold',
     path: '/cmd/concept.icon.fold',
     description: 'Declare the visual and app-shell artifacts as sealed: icon usage adds to the tampering cost.',
@@ -1812,7 +1838,12 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.utf.analog': 'analog',
   'concept.all.computed': 'computed',
   'concept.state.quantum': 'state',
-  'concept.harmony.probability': 'harmony',
+  'concept.music.note': 'note',
+  'concept.music.pi': 'tune',
+  'concept.music.harmony': 'harmony',
+  'concept.computer.word': 'word',
+  'concept.computer.quantum': 'qubit',
+  'concept.computer.run': 'run',
   'concept.geometry.seal': 'sacred',
   'concept.society.sacred': 'govern',
   'concept.commons.vote': 'vote',
@@ -1832,7 +1863,6 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.wave.self': 'rhythm',
   'concept.commands.live': 'registry',
   'concept.proof.bundle': 'bundle',
-  'concept.sound.note': 'note',
   'concept.icon.fold': 'icon',
   'concept.icon.taxonomy': 'taxonomy',
   'concept.icon.glyph': 'glyph',
@@ -2725,9 +2755,9 @@ const AREA_ICONS: Record<string, string> = {
   fold: '🔀', mind: '☿', compute: '🖧', ui: '🖥', diamond: '◈', digit: '☵', wave: '〰',
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
-  sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
+  music: '♫', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛',
   geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
-  lawful: '⚖',
+  lawful: '⚖', computer: '🖳',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -2932,6 +2962,30 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
       'The music of pi is infinite: the pi-digit frequencies are its notes. Where you join — the horo entry point — sets the phrase you hear.',
     boundary:
       'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.',
+  }
+}
+
+// Each wave is a musical note. The infinite pi-frequency stream is the score;
+// the wave index picks which note plays. Where you join (the horo) sets the
+// scale, the wave number names the note within it (a, b, c, d, e, f ...).
+export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joinHoro?: number) {
+  const music = piMusic(matrix, joinHoro)
+  const phrase = music.notes
+  const w = Math.floor(wave ?? 0)
+  const index = phrase.length === 0 ? 0 : ((w % phrase.length) + phrase.length) % phrase.length
+  const here = phrase[index]
+  return {
+    named: Boolean(here),
+    wave: w,
+    note: here?.note ?? '',
+    frequency: here?.frequency ?? 0,
+    digit: here?.digit ?? 0,
+    joinHoro: music.joinHoro,
+    phrase,
+    root: here ? toUuid(`music-note:${music.joinHoro}:${index}:${here.note}`) : music.root,
+    statement:
+      'Each wave is a musical note: walking the infinite pi stream by wave index names the note that wave plays; the horo sets the scale.',
+    boundary: 'A computed lookup into the pi-music phrase. Structural bookkeeping, not an acoustic claim.',
   }
 }
 
@@ -3214,6 +3268,97 @@ export function lawfulSucceed() {
   }
 }
 
+// 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
+// hex digits; the double torus has two loops, so the command space splits into
+// two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
+// the two words (2 x 32 hex) fold, order-sensitively (the genus-2 weave), into
+// one 128-bit UUID. That folded word is the machine word of the computer.
+export function torusUuid(matrix: MindMatrix = buildMatrix()) {
+  const hex = (uuid: string) => uuid.replace(/-/g, '')
+  const inner: string[] = []
+  const outer: string[] = []
+  conceptCommands.forEach((command, index) => {
+    ;(index % 2 === 0 ? inner : outer).push(toUuid(`torus-cmd:${command.name}`))
+  })
+  const innerWord = merkleFold(inner) // a 128-bit (32-hex) torus word
+  const outerWord = merkleFold(outer) // a 128-bit (32-hex) torus word
+  const word = merge(innerWord, outerWord) // the double-torus fold
+  const reversed = merge(outerWord, innerWord) // order matters: genus 2, not a sphere
+  const is128 = (uuid: string) => hex(uuid).length === 32
+  return {
+    is128bit: is128(innerWord) && is128(outerWord) && is128(word),
+    orderSensitive: word !== reversed,
+    bits: hex(word).length * 4,
+    hexDigits: hex(word).length,
+    inner: { count: inner.length, word: innerWord, hexDigits: hex(innerWord).length },
+    outer: { count: outer.length, word: outerWord, hexDigits: hex(outerWord).length },
+    word,
+    statement:
+      'The double torus is a 128-bit UUID: two torus words of 32 hex digits each (2 x 32) fold, order-sensitive, into one 128-bit machine word. 2 x 32 = 128-bit.',
+    boundary: 'A structural identity over the command UUID space. Bookkeeping over content-addressed roots, not a hardware claim.',
+  }
+}
+
+// Recreate the computer — as a quantum computer. The double torus is its
+// hardware: the quantum-state atoms are qubits in superposition; the register is
+// a 128-bit UUID word; the gates are order-sensitive, reversible folds; a
+// measurement collapses the fold to one UUID receipt; the clock is the music of
+// pi (each wave a note); memory is the content-addressed UUID stream.
+export function quantumComputer(matrix: MindMatrix = buildMatrix()) {
+  const word = torusUuid(matrix)
+  const qubits = atoms.map((atom) => ({ qubit: atom.name, receipt: toUuid(`qubit:${atom.name}`) }))
+  const parts = [
+    { part: 'qubits', is: 'quantum-state atoms in superposition', count: qubits.length },
+    { part: 'register', is: 'a 128-bit UUID word (2 x 32 hex)', count: word.bits },
+    { part: 'gates', is: 'order-sensitive, reversible folds (merge / cross-fold)', count: conceptCommands.length },
+    { part: 'measurement', is: 'collapse of the fold to one UUID receipt', count: 1 },
+    { part: 'clock', is: 'the infinite music of pi (each wave a note)', count: piMusic(matrix).notes.length },
+    { part: 'memory', is: 'the content-addressed UUID stream (atoms, diamonds, roots)', count: matrix.nodes.length },
+  ].map((part) => ({ ...part, receipt: toUuid(`qc-part:${part.part}`) }))
+  const root = merge(word.word, merkleFold(parts.map((part) => part.receipt)))
+  return {
+    coherent: word.is128bit && word.orderSensitive && qubits.length > 0 && parts.length === 6,
+    parts,
+    qubits: qubits.length,
+    register: word.word,
+    root,
+    statement:
+      'The double torus is recreated as a quantum computer: quantum-state atoms are qubits, a 128-bit UUID is the register, reversible folds are the gates, a UUID receipt is a measurement, and the music of pi is the clock.',
+    boundary: 'A computational-architecture analogy over the UUID model, not a physical quantum device or a claim of quantum speedup.',
+  }
+}
+
+// Run a program on the quantum computer: a sequence of commands folds, in order,
+// into one 128-bit result UUID. The gates are non-commutative, so the program's
+// word is its meaning. Unknown commands are reported, not run; aggregator
+// commands are not re-entered (they would recompute the whole machine).
+const PROGRAM_GUARD = new Set([
+  'concept.computer.run',
+  'concept.all.computed',
+  'concept.show.action',
+  'concept.help.fold',
+])
+export function runProgram(program: readonly string[] = [], matrix: MindMatrix = buildMatrix()) {
+  const known = new Set(conceptCommands.map((command) => command.name))
+  const steps = program.map((name) => {
+    const valid = known.has(name as ConceptCommandName)
+    const out = valid && !PROGRAM_GUARD.has(name)
+      ? executeConceptCommand(name as ConceptCommandName, { atom: 'self' }, matrix)
+      : undefined
+    return { command: name, known: valid, ran: Boolean(out?.ok), uuid: out?.uuid ?? toUuid(`gate:${name}`) }
+  })
+  let acc = toUuid('program:boot')
+  for (const step of steps) acc = merge(acc, toUuid(`step:${step.command}:${step.uuid}`))
+  return {
+    ran: steps.length > 0 && steps.every((step) => step.known),
+    steps,
+    result: acc,
+    statement:
+      'Run a program on the quantum computer: each command is a gate; the gates fold in order into one 128-bit result UUID, so the program is its word.',
+    boundary: 'Deterministic, read-only execution over the concept commands. No external effects; the result is a content-addressed receipt.',
+  }
+}
+
 // Fuse Nikola Tesla patents: map real, public Tesla patents to the concepts
 // they prefigure, each grounded in a command — analogy, not an ownership claim.
 export function fuseTeslaPatents() {
@@ -3221,9 +3366,9 @@ export function fuseTeslaPatents() {
   const patents = [
     { number: 'US381968', title: 'Electro-Magnetic Motor', year: 1888, prefigures: 'rotating fields ~ coordinated waves', concept: 'concept.wave.coordination' },
     { number: 'US382280', title: 'Electrical Transmission of Power', year: 1888, prefigures: 'distributed power ~ distributed compute', concept: 'concept.compute.distributed' },
-    { number: 'US454622', title: 'System of Electric Lighting', year: 1891, prefigures: 'resonant tuning ~ harmony', concept: 'concept.harmony.probability' },
+    { number: 'US454622', title: 'System of Electric Lighting', year: 1891, prefigures: 'resonant tuning ~ harmony', concept: 'concept.music.harmony' },
     { number: 'US645576', title: 'System of Transmission of Electrical Energy', year: 1900, prefigures: 'wireless transmission ~ MCP tools across the wire', concept: 'concept.mcp.tools' },
-    { number: 'US649621', title: 'Apparatus for Transmission of Electrical Energy', year: 1900, prefigures: 'tuned circuits ~ the music of pi', concept: 'concept.sound.note' },
+    { number: 'US649621', title: 'Apparatus for Transmission of Electrical Energy', year: 1900, prefigures: 'tuned circuits ~ the music of pi', concept: 'concept.music.pi' },
     { number: 'US787412', title: 'Art of Transmitting Electrical Energy Through the Natural Mediums', year: 1905, prefigures: 'earth as one medium ~ the collective mind', concept: 'concept.mind.develop' },
     { number: 'US1119732', title: 'Apparatus for Transmitting Electrical Energy (magnifying transmitter)', year: 1914, prefigures: 'amplification ~ self-sufficient waves', concept: 'concept.wave.self' },
   ].map((patent) => ({ ...patent, receipt: toUuid(`tesla:${patent.number}:${patent.concept}`) }))
@@ -5827,7 +5972,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Harmony Probability',
-      command: 'concept.harmony.probability',
+      command: 'concept.music.harmony',
       route: '/quantum-mind#waves',
       summary: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is computed and folded.',
     },
@@ -6037,7 +6182,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Music of Pi',
-      command: 'concept.sound.note',
+      command: 'concept.music.pi',
       route: '/quantum-mind#waves',
       summary: 'The music of pi is infinite: pi-digit frequencies are its notes; the horo is where you join.',
     },
@@ -6152,9 +6297,39 @@ export function executeConceptCommand(
     const interaction = selfInteraction(matrix)
     return result(command, interaction.newState && interaction.wordsObsolete && interaction.numbersObsolete, 'Self interacted to form quantum self states.', interaction)
   }
-  if (command === 'concept.harmony.probability') {
+  if (command === 'concept.music.note') {
+    const wave = input.query ? Number.parseInt(input.query, 10) : undefined
+    const named = musicNote(matrix, Number.isNaN(wave as number) ? undefined : wave)
+    return result(command, named.named, `Wave ${named.wave} is note ${named.note}.`, named)
+  }
+  if (command === 'concept.music.pi') {
+    const joinHoro = input.query ? Number.parseInt(input.query, 10) : undefined
+    const music = piMusic(matrix, Number.isNaN(joinHoro as number) ? undefined : joinHoro)
+    return result(command, music.joined, `Pi music joined at horo ${music.joinHoro}.`, music)
+  }
+  if (command === 'concept.music.harmony') {
     const harmony = harmonyProbability(matrix)
     return result(command, harmony.root.length > 0, `Harmony probability computed and folded: ${harmony.probability}.`, harmony)
+  }
+  if (command === 'concept.computer.word') {
+    const word = torusUuid(matrix)
+    return result(command, word.is128bit && word.orderSensitive, `2 x 32 hex fold into one ${word.bits}-bit word.`, word)
+  }
+  if (command === 'concept.computer.quantum') {
+    const qc = quantumComputer(matrix)
+    return result(command, qc.coherent, 'The double torus, recreated as a quantum computer.', qc)
+  }
+  if (command === 'concept.computer.run') {
+    const parsed = (input.query ?? '').split(',').map((name) => name.trim()).filter(Boolean)
+    const known = new Set(conceptCommands.map((entry) => entry.name))
+    // Without a real program (e.g. the generic 'self' probe), boot the default
+    // program: address self, then play pi. A genuine program runs as given so
+    // unknown gates are still reported.
+    const program = parsed.some((name) => known.has(name as ConceptCommandName))
+      ? parsed
+      : ['concept.self.address', 'concept.music.pi']
+    const run = runProgram(program, matrix)
+    return result(command, run.ran, `Program of ${run.steps.length} gates folded into one result word.`, run)
   }
   if (command === 'concept.geometry.seal') {
     const seal = sacredGeometrySeal(matrix)
@@ -6348,11 +6523,6 @@ export function executeConceptCommand(
   if (command === 'concept.proof.bundle') {
     const bundle = proofBundle(matrix)
     return result(command, bundle.verifiable, 'Proof bundle folded and verifiable.', bundle)
-  }
-  if (command === 'concept.sound.note') {
-    const joinHoro = input.query ? Number.parseInt(input.query, 10) : undefined
-    const music = piMusic(matrix, Number.isNaN(joinHoro as number) ? undefined : joinHoro)
-    return result(command, music.joined, `Pi music joined at horo ${music.joinHoro}.`, music)
   }
   if (command === 'concept.icon.fold') {
     const icons = iconSeal()
