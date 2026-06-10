@@ -20,6 +20,8 @@ head:
 
 <QuantumConsole />
 
+<SelfConsult />
+
 <RealtimeChat />
 
 ## Сигурност чрез архитектура

@@ -31,6 +31,7 @@ import {
   boundaryAudit,
   messageUnlock,
   realIntelligence,
+  selfConsult,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -160,6 +161,10 @@ ok('auto.speech', autoSpeech('Hello world. Second cue.', matrix).ready)
 ok('all.in-house', inHouse(matrix).independent)
 // Use all skills: computed, in-house, self-addressed, answering — the "artificial" prefix is obsolete.
 ok('intelligence.not-artificial', realIntelligence(matrix).obsolete)
+// Self education leads to self consulting before asking: educate, consult, then ask only if unresolved.
+const consult = selfConsult('proof', matrix)
+ok('self.consult', consult.consulted && consult.educated)
+ok('self.consult-before-ask', consult.resolvedInHouse && consult.escalateToAsk === false) // 'proof' resolves in house
 // The honesty spine: every boundary the model declares, collected into one audited root.
 ok('boundary.audit', boundaryAudit(matrix).audited)
 // A message has a content UUID and unlocks links, but only a complete trinity reveals them.

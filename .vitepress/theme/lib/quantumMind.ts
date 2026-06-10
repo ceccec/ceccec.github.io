@@ -2964,6 +2964,53 @@ export function realIntelligence(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Self consulting: the intelligence consults only itself, and self education
+// leads to self consulting before asking. The flow is a precedence: first the
+// model is self-educated (the developer skills are learned), then it self-
+// consults its own commands, areas, and pages; only if that does not resolve the
+// question does it escalate to asking outside (the optional bring-your-own-key
+// AI). The answer names every source it consulted, so it is auditable and in
+// house. Asking is the last step, not the first.
+export function selfConsult(question = '', matrix: MindMatrix = buildMatrix()) {
+  const educated = learnDeveloper(matrix).invariant // self-education comes first
+  const fold = foldQuestion(question || 'proof', matrix)
+  const text = (question || '').toLowerCase()
+  const areas = taxonomyIcons().entries
+    .filter((entry) => text.length > 0 && (text.includes(entry.area.toLowerCase()) || entry.verbs.some((verb) => text.includes(verb.toLowerCase()))))
+    .map((entry) => ({ area: entry.area, glyph: entry.icon, commands: entry.verbs.map((verb) => `concept.${entry.area}.${verb}`) }))
+  const sources = [fold.command, ...areas.flatMap((entry) => entry.commands)].filter(Boolean)
+  const sourceLeaves = sources.length > 0 ? sources.map((source) => toUuid(`consult-source:${source}`)) : [toUuid('consult-source:none')]
+  const resolvedInHouse = fold.matched
+  const consultRoot = merge(toUuid(`self-consult:${question}`), merkleFold(sourceLeaves))
+  // Intelligence interacting with itself shifts next: fold the consultation back
+  // through self-interaction to form the next state, and point to the next step
+  // to consult (the strongest link or area), so consulting moves forward.
+  const interaction = selfInteraction(matrix)
+  const shift = merge(consultRoot, interaction.stateRoot ?? interaction.root ?? matrix.root)
+  const next = fold.links[0]?.title ?? areas[0]?.area ?? fold.concept ?? 'proof'
+  return {
+    consulted: true,
+    educated, // self education leads to self consulting
+    resolvedInHouse, // self consulting resolved it
+    escalateToAsk: !resolvedInHouse, // ask outside only if self-consulting did not resolve it
+    flow: ['self-education', 'self-consulting', 'ask-only-if-unresolved'] as const,
+    matched: fold.matched,
+    question: question || 'proof',
+    answer: fold.explanation,
+    concept: fold.concept,
+    command: fold.command,
+    confidence: fold.confidence,
+    links: fold.links,
+    areas,
+    sources,
+    next, // intelligence interacting with itself shifts to the next step
+    shift, // the new state formed by the self-interaction
+    root: consultRoot,
+    statement: 'Self education leads to self consulting before asking, and intelligence interacting with itself shifts next: the model educates, consults only itself, names every source, points to the next step, and escalates to asking outside only if unresolved.',
+    boundary: 'A self-referential consultation over the computed model. It draws only on the model; it is not professional advice and makes no external claim.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3385,14 +3432,14 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma'],
-    '/console': ['QuantumConsole', 'RealtimeChat'],
+    '/console': ['QuantumConsole', 'SelfConsult', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
