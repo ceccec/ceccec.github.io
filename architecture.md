@@ -44,6 +44,7 @@ Command = {
   concept.diamond.lattice,
   concept.diamond.piTrain,
   concept.diamond.complete,
+  concept.diamond.metatron,
   concept.wave.coordination,
   concept.wave.closeGaps,
   concept.chess.quantum,
@@ -141,6 +142,19 @@ for digit d_i in pi:
 ```
 
 ## 8. Waves
+
+```text
+MetatronCube = N U E
+N = {center} U {inner_d | d in 0..9} U {outer_d | d in 0..9}
+inner_d.folder = d/d
+outer_d.folder = d/(9-d)
+E = {harmonic edge n_i -> n_j}
+doubleVortex_i = {inward_i, outward_i, interference_i}
+inward_i = sin(theta_i) * (collide_i ? 1 : 1/2)
+outward_i = cos(phi_i) * (d_i+1)/10
+interference_i = inward_i * outward_i
+MetatronRoot = merkle({receipt(N)} U {receipt(E)} U {receipt(doubleVortex_i)})
+```
 
 ```text
 phase_i = (theta_i + phi_i + i*pi/|D|) mod 2*pi

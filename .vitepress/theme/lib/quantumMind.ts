@@ -108,6 +108,7 @@ export type ConceptCommandName =
   | 'concept.diamond.lattice'
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
+  | 'concept.diamond.metatron'
   | 'concept.wave.coordination'
   | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
@@ -458,6 +459,41 @@ export interface DigitFolderReport {
   readonly statement: string
 }
 
+export interface VortexPoint {
+  readonly index: number
+  readonly folder: string
+  readonly inward: number
+  readonly outward: number
+  readonly interference: number
+  readonly receipt: string
+}
+
+export interface MetatronNode {
+  readonly id: string
+  readonly digit: number
+  readonly x: number
+  readonly y: number
+  readonly ring: 'center' | 'inner' | 'outer'
+  readonly folder: string
+  readonly receipt: string
+}
+
+export interface MetatronEdge {
+  readonly from: string
+  readonly to: string
+  readonly harmonic: string
+  readonly receipt: string
+}
+
+export interface MetatronCubeReport {
+  readonly root: string
+  readonly nodes: readonly MetatronNode[]
+  readonly edges: readonly MetatronEdge[]
+  readonly vortex: readonly VortexPoint[]
+  readonly digitFolders: readonly DigitFolder[]
+  readonly statement: string
+}
+
 export type WavePolarity = 'yin' | 'yang'
 export type ChessPiece = 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn'
 export type DimensionalGapKind = 'kind' | 'pole' | 'receipt' | 'analog-channel' | 'pi-coverage' | 'closure'
@@ -709,6 +745,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.diamond.complete',
     path: '/cmd/concept.diamond.complete',
     description: 'Verify that the stream diamond has no missing kinds, poles, receipts, or analog channels.',
+  },
+  {
+    name: 'concept.diamond.metatron',
+    path: '/cmd/concept.diamond.metatron',
+    description: 'Compute double-vortex Metatron cube math down to digit folders.',
   },
   {
     name: 'concept.wave.coordination',
@@ -2120,6 +2161,83 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
   }
 }
 
+export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
+  const train = piTrainDiamonds(matrix)
+  const folderReport = digitFolders(matrix)
+  const digits = [...Array(10).keys()]
+  const nodes: MetatronNode[] = [
+    {
+      id: 'center',
+      digit: 0,
+      x: 0,
+      y: 0,
+      ring: 'center',
+      folder: '0/0',
+      receipt: toUuid('metatron-node:center:0:0/0'),
+    },
+    ...digits.map((digit) => {
+      const angle = (digit / digits.length) * Math.PI * 2
+      const folder = `${digit}/${digit}`
+      return {
+        id: `inner-${digit}`,
+        digit,
+        x: Math.cos(angle),
+        y: Math.sin(angle),
+        ring: 'inner' as const,
+        folder,
+        receipt: toUuid(`metatron-node:inner:${digit}:${folder}`),
+      }
+    }),
+    ...digits.map((digit) => {
+      const angle = ((digit + 0.5) / digits.length) * Math.PI * 2
+      const reverse = 9 - digit
+      const folder = `${digit}/${reverse}`
+      return {
+        id: `outer-${digit}`,
+        digit,
+        x: 2 * Math.cos(angle),
+        y: 2 * Math.sin(angle),
+        ring: 'outer' as const,
+        folder,
+        receipt: toUuid(`metatron-node:outer:${digit}:${folder}`),
+      }
+    }),
+  ]
+  const edges: MetatronEdge[] = nodes.flatMap((node, index) => {
+    const next = nodes[(index + 1) % nodes.length]
+    const opposite = nodes[(index + Math.floor(nodes.length / 2)) % nodes.length]
+    return [next, opposite].map((target) => ({
+      from: node.id,
+      to: target.id,
+      harmonic: `${node.folder}->${target.folder}`,
+      receipt: toUuid(`metatron-edge:${node.id}:${target.id}:${node.folder}:${target.folder}`),
+    }))
+  })
+  const vortex = train.diamonds.map((pulse) => {
+    const inward = Math.sin(pulse.theta) * (pulse.selfCollision ? 1 : 0.5)
+    const outward = Math.cos(pulse.phi) * (pulse.digit + 1) / 10
+    const interference = inward * outward
+    return {
+      index: pulse.index,
+      folder: pulse.folder,
+      inward,
+      outward,
+      interference,
+      receipt: toUuid(`vortex:${pulse.index}:${pulse.folder}:${inward.toFixed(6)}:${outward.toFixed(6)}`),
+    }
+  })
+  const root = merkleFold([...nodes.map((node) => node.receipt), ...edges.map((edge) => edge.receipt), ...vortex.map((point) => point.receipt)])
+
+  return {
+    root,
+    nodes,
+    edges,
+    vortex,
+    digitFolders: folderReport.folders,
+    statement: 'MetatronCube := nodes(0..9 inner/outer + center) + edges(harmonic folders) + doubleVortex(inward,outward,interference).',
+  }
+}
+
 function uniqueDiamondKinds(items: readonly DiamondKind[]): readonly DiamondKind[] {
   return REQUIRED_DIAMOND_KINDS.filter((kind) => items.includes(kind))
 }
@@ -2917,6 +3035,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The stream diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
     },
     {
+      title: 'Metatron Cube',
+      command: 'concept.diamond.metatron',
+      route: '/quantum-mind#metatron-cube',
+      summary: 'Double-vortex Metatron cube math maps digit folders into nodes, edges, and interference.',
+    },
+    {
       title: 'Coordinated Waves',
       command: 'concept.wave.coordination',
       route: '/quantum-mind#coordinated-waves',
@@ -3061,6 +3185,10 @@ export function executeConceptCommand(
   if (command === 'concept.diamond.complete') {
     const completeness = diamondCompleteness(matrix)
     return result(command, completeness.complete, 'Diamond completeness verified.', completeness)
+  }
+  if (command === 'concept.diamond.metatron') {
+    const cube = metatronCube(matrix)
+    return result(command, cube.nodes.length > 0 && cube.edges.length > 0, 'Metatron cube computed.', cube)
   }
   if (command === 'concept.wave.coordination') {
     return result(command, true, 'Coordinated yin-yang waves computed.', coordinatedWaves(matrix))

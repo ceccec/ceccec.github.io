@@ -18,6 +18,7 @@ import {
   diamondLattice,
   digitFolders,
   methodFusion,
+  metatronCube,
   piTrainDiamonds,
   quantumChessGame,
   quantumUiEvidence,
@@ -38,6 +39,7 @@ const agentWire = agentStreamWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
 const folders = digitFolders(matrix)
+const metatron = metatronCube(matrix)
 const completeness = diamondCompleteness(matrix)
 const waves = coordinatedWaves(matrix)
 const closure = closeDimensionalGaps(matrix)
@@ -203,6 +205,7 @@ onBeforeUnmount(() => {
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
         <TabsTrigger value="folders">Digit folders</TabsTrigger>
+        <TabsTrigger value="metatron">Metatron</TabsTrigger>
         <TabsTrigger value="build">Self build</TabsTrigger>
         <TabsTrigger value="self">Self complete</TabsTrigger>
         <TabsTrigger value="agent">Agent wire</TabsTrigger>
@@ -256,6 +259,29 @@ onBeforeUnmount(() => {
             <Badge :variant="folder.selfCollision ? 'success' : 'outline'">{{ folder.folder }}</Badge>
             <strong>count={{ folder.count }} · next={{ folder.nextHarmonicFolder }}</strong>
             <span>indices={{ folder.indices.join(',') }} · receipt={{ folder.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="metatron" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">metatron</Badge>
+          <strong>{{ metatron.statement }}</strong>
+          <span>|N|={{ metatron.nodes.length }} · |E|={{ metatron.edges.length }} · |Vortex|={{ metatron.vortex.length }}</span>
+          <code>{{ metatron.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="node in metatron.nodes" :key="node.receipt">
+            <Badge variant="outline">{{ node.ring }}</Badge>
+            <strong>{{ node.id }} · folder={{ node.folder }}</strong>
+            <span>x={{ node.x.toFixed(3) }} y={{ node.y.toFixed(3) }} receipt={{ node.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="point in metatron.vortex.slice(0, 24)" :key="point.receipt">
+            <Badge :variant="Math.abs(point.interference) > 0.25 ? 'success' : 'outline'">{{ point.folder }}</Badge>
+            <strong>i={{ point.index }} · interference={{ point.interference.toFixed(3) }}</strong>
+            <span>in={{ point.inward.toFixed(3) }} out={{ point.outward.toFixed(3) }} receipt={{ point.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

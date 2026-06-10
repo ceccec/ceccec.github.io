@@ -35,6 +35,7 @@ C = {
   concept.diamond.lattice,
   concept.diamond.piTrain,
   concept.diamond.complete,
+  concept.diamond.metatron,
   concept.wave.coordination,
   concept.wave.closeGaps,
   concept.chess.quantum,
