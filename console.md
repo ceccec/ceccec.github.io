@@ -39,3 +39,5 @@ portal's own computed tools and local search and answers from receipts, with
   text only.
 
 The cost is the architecture, not an API bill.
+
+<SecurityScan />

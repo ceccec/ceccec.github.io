@@ -1350,6 +1350,20 @@ export declare function gapScan(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function securityScan(matrix?: MindMatrix): {
+    secure: boolean;
+    tiers: number[];
+    count: number;
+    properties: {
+        tier: number;
+        kind: string;
+        property: string;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function computerDesign(): {
     complete: boolean;
     tiers: {

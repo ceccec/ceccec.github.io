@@ -41,6 +41,7 @@ import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SelfConsult from './components/SelfConsult.vue'
 import SelfHarmonise from './components/SelfHarmonise.vue'
+import SecurityScan from './components/SecurityScan.vue'
 import SelfReason from './components/SelfReason.vue'
 import SignSeal from './components/SignSeal.vue'
 import SpeechReader from './components/SpeechReader.vue'
@@ -103,6 +104,7 @@ export default {
     app.component('SchoolCurriculum', SchoolCurriculum)
     app.component('SelfConsult', SelfConsult)
     app.component('SelfHarmonise', SelfHarmonise)
+    app.component('SecurityScan', SecurityScan)
     app.component('SelfReason', SelfReason)
     app.component('SignSeal', SignSeal)
     app.component('SpeechReader', SpeechReader)

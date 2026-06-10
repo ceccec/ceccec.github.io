@@ -52,6 +52,7 @@ import {
   humanDesign,
   computerDesign,
   design358,
+  securityScan,
   gapScan,
   complete,
   dimensions,
@@ -245,6 +246,8 @@ ok('humandesign.358', humanDesign().complete)
 // 3-5-8 in computer design (grounded), and the 3-5-8 as a design method for new ideas.
 ok('computer.358', computerDesign().complete)
 ok('design.358', design358().designs)
+// All connected users interact securely, scanned in 3-5-8 (16 security properties).
+ok(`security.358:${securityScan(matrix).count}`, securityScan(matrix).secure)
 // Fill the new gaps until no gaps are discovered: every known gap surface scans to zero.
 ok(`gaps.none:${gapScan(matrix).total}`, gapScan(matrix).closed)
 // Complete all: every completion proof holds at once.

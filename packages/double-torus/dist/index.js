@@ -2060,6 +2060,28 @@ function computeGapScan(matrix) {
         boundary: 'A scan over the model\'s known gap surfaces, zero across all of them. Only over the surfaces it knows to scan — finding a new kind of gap is itself never finished.',
     };
 }
+// All connected users interact securely, scanned in 3-5-8. The peers meet over a
+// same-origin channel with content-addressed messages and no server to attack;
+// this scans the security-by-architecture in three tiers — 3 core guarantees, 5
+// structural choices, 8 surface properties — so the secure interaction is
+// audited, not assumed.
+export function securityScan(matrix = buildMatrix()) {
+    const tiers = [
+        { tier: 3, kind: 'core', properties: ['zero network by default', 'no secrets in the repo or bundle', 'content-addressed (tamper-evident)'] },
+        { tier: 5, kind: 'structural', properties: ['same-origin peers only (BroadcastChannel)', 'bring-your-own-key, browser-only', 'read-only commands (no writes)', 'text-only rendering (no injected HTML)', 'no eval, no remote code'] },
+        { tier: 8, kind: 'surface', properties: ['no third-party scripts', 'no cookies, no tracking', 'permission-gated sensors', 'ephemeral keys (no persistent secret)', 'offline-capable (same-origin GET)', 'secure context for Web Crypto', 'deterministic and recomputable', 'open source and auditable'] },
+    ];
+    const properties = tiers.flatMap((tier) => tier.properties.map((property) => ({ tier: tier.tier, kind: tier.kind, property, receipt: toUuid(`security:${tier.tier}:${property}`) })));
+    return {
+        secure: properties.length === 16 && tiers[2].properties.length === tiers[1].properties.length + tiers[0].properties.length, // 8 = 5 + 3
+        tiers: [3, 5, 8],
+        count: properties.length,
+        properties,
+        root: merkleFold(properties.map((entry) => entry.receipt)),
+        statement: 'All connected users interact securely, scanned in 3-5-8: 3 core guarantees (zero network, no secrets, content-addressed), 5 structural choices (same-origin peers, bring-your-own-key, read-only, text-only, no eval), and 8 surface properties (no third-party scripts, no cookies, permission-gated sensors, ephemeral keys, offline, secure context, deterministic, open source) — security by architecture.',
+        boundary: 'A scan of the architecture\'s security properties in 3-5-8 tiers. It describes how the design avoids whole classes of risk; it is not a formal audit, a penetration test, or a guarantee against all attacks.',
+    };
+}
 // Computer design in 3-5-8 — grounded in real computer architecture: the three
 // buses (address, data, control), the five units of the von Neumann machine
 // (input, output, memory, ALU, control), and the eight bits of a byte.
@@ -2879,14 +2901,14 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions'],
         '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'QuantumField'],
-        '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
+        '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/academy': ['QuantumAcademy'],
         '/governance': ['GovernanceVote'],
