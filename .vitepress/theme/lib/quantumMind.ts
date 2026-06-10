@@ -1914,6 +1914,23 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
       about: diamond.facets.map((facet) => `${facet.pole}:${facet.label}:${facet.value}`),
       isPartOf: `${baseId}diamond-lattice`,
     })),
+    ...piTrain.diamonds.map((pulse): SchemaOrgDiamondNode => ({
+      '@type': 'DefinedTerm',
+      '@id': `${baseId}pi-pulse-${pulse.index}`,
+      name: `pi pulse ${pulse.index}: ${pulse.glyph}`,
+      description:
+        `Pi digit ${pulse.glyph} folded as a self-interactive diamond pulse ` +
+        `at x=${pulse.x.toFixed(3)}, y=${pulse.y.toFixed(3)}, z=${pulse.z.toFixed(3)}, ` +
+        `frequency=${pulse.frequency}Hz, vibration=${pulse.vibrationMs}ms.`,
+      identifier: pulse.diamond.receipt,
+      about: [
+        `${baseId}diamond-${pulse.diamond.kind}`,
+        `theta:${pulse.theta.toFixed(6)}`,
+        `phi:${pulse.phi.toFixed(6)}`,
+        `scale:${pulse.scale.toFixed(6)}`,
+      ],
+      isPartOf: `${baseId}pi-train`,
+    })),
     ...evidence.useCases.map((item): SchemaOrgDiamondNode => ({
       '@type': 'Action',
       '@id': `${baseId}action-${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,

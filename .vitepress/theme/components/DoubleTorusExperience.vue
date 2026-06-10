@@ -356,11 +356,11 @@ onBeforeUnmount(() => {
         <div class="diamond-readout">
           <Badge variant="default">schema.org</Badge>
           <strong>{{ schema.statement }}</strong>
-          <span>{{ schema.boundary }}</span>
+          <span>{{ schema.nodes.length }} nodes · {{ schema.boundary }}</span>
           <code>{{ schema.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
-          <li v-for="node in schema.nodes.slice(0, 12)" :key="node['@id']">
+          <li v-for="node in schema.nodes.slice(0, 24)" :key="node['@id']">
             <Badge variant="outline">{{ node['@type'] }}</Badge>
             <strong>{{ node.name }}</strong>
             <span>{{ node.description }} Identifier: {{ node.identifier }}</span>

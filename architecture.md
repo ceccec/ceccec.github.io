@@ -184,7 +184,8 @@ contract, not a claim that the agent has sentience or external MCP access.
 `schemaOrgDiamonds()` produces a JSON-LD-shaped graph from repository-computed
 data. Schema.org node types are used only where the repository has a concrete
 source: page, source module, application surface, datasets, defined diamond
-terms, and UI actions. The graph is inspectable in the UI and has its own root.
+terms, every pi pulse diamond, and UI actions. The graph is inspectable in the
+UI and has its own root.
 
 `coordinatedWaves()` gives the lattice motion. Every diamond emits one wave
 with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward

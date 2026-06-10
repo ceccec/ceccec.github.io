@@ -193,8 +193,8 @@ it records how an agent should act inside the ceccec model.
 The generated JSON-LD-shaped graph is self-interactive in the repository sense:
 WebPage, SoftwareSourceCode, SoftwareApplication, Dataset, DefinedTerm, and
 Action nodes all point back to computed diamond receipts, roots, UI use cases,
-or source functions. The site does not claim remote Schema.org validation; it
-shows the structured graph it computes.
+source functions, or individual pi pulse diamonds. The site does not claim
+remote Schema.org validation; it shows the structured graph it computes.
 
 ## Coordinated waves and quantum chess
 
