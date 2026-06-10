@@ -28,6 +28,8 @@ import {
   executeConceptCommand,
   fairLife,
   foldQuestion,
+  fuseTeslaPatents,
+  patentReview,
   fusionReactor,
   governanceVote,
   harmonyProbability,
@@ -98,6 +100,8 @@ ok('sacred-society.balanced', society.governed && society.balanced)
 ok('governance.defined', governanceVote([], matrix).defined) // society approves and monitors by rate and vote
 ok('fair-life.grounded', fairLife(matrix).grounded) // participation ladder for fair trade and sustainable life
 ok('ancient-tech.grounded', ancientTech(matrix).grounded) // ancient tech prefigures the concepts
+ok('patent.tesla-fused', fuseTeslaPatents().fused) // Tesla patents map to the concepts they prefigure
+ok('patent.review-rubric', patentReview().rubric) // credibility + legality rubric (some patents may be illegal)
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals

@@ -149,6 +149,9 @@ export type ConceptCommandName =
   | 'concept.commons.vote'
   | 'concept.commons.fair'
   | 'concept.ancient.tech'
+  | 'concept.patent.fuse'
+  | 'concept.patent.discover'
+  | 'concept.patent.review'
   | 'concept.society.relations'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
@@ -1459,6 +1462,22 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Dive deep in ancient tech: map ancient technologies to the concepts they prefigure.',
   },
   {
+    name: 'concept.patent.fuse',
+    path: '/cmd/concept.patent.fuse',
+    description: 'Fuse Nikola Tesla patents: map public Tesla patents to the concepts they prefigure.',
+  },
+  {
+    name: 'concept.patent.discover',
+    path: '/cmd/concept.patent.discover?query=resonance',
+    input: 'query',
+    description: 'Autodiscover patents through public sources (USPTO, Google Patents, Espacenet, PATENTSCOPE).',
+  },
+  {
+    name: 'concept.patent.review',
+    path: '/cmd/concept.patent.review',
+    description: 'Autoreview patent credibility, the right to be patented, and legality. Some patents may be illegal.',
+  },
+  {
     name: 'concept.society.relations',
     path: '/cmd/concept.society.relations',
     description: 'Fold all society relations: traditions, science, sacred society, governance, and fair life into one root.',
@@ -1763,6 +1782,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.commons.vote': 'vote',
   'concept.commons.fair': 'sustain',
   'concept.ancient.tech': 'ancient',
+  'concept.patent.fuse': 'fuse',
+  'concept.patent.discover': 'discover',
+  'concept.patent.review': 'review',
   'concept.society.relations': 'relate',
   'concept.torus.breathe': 'breathe',
   'concept.wave.self': 'rhythm',
@@ -2662,7 +2684,7 @@ const AREA_ICONS: Record<string, string> = {
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
-  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀',
+  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -3024,6 +3046,70 @@ export function torusBreathe(matrix: MindMatrix = buildMatrix(), cycles = 3): To
       'The double torus breathes: the system extends outward into all its computed forms and contracts inward into one master seal, in balanced cycles.',
     boundary:
       'Breathing is order-sensitive folding between an expansion root and a contraction root. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// Fuse Nikola Tesla patents: map real, public Tesla patents to the concepts
+// they prefigure, each grounded in a command — analogy, not an ownership claim.
+export function fuseTeslaPatents() {
+  const known = new Set(conceptCommands.map((command) => command.name))
+  const patents = [
+    { number: 'US381968', title: 'Electro-Magnetic Motor', year: 1888, prefigures: 'rotating fields ~ coordinated waves', concept: 'concept.wave.coordination' },
+    { number: 'US382280', title: 'Electrical Transmission of Power', year: 1888, prefigures: 'distributed power ~ distributed compute', concept: 'concept.compute.distributed' },
+    { number: 'US454622', title: 'System of Electric Lighting', year: 1891, prefigures: 'resonant tuning ~ harmony', concept: 'concept.harmony.probability' },
+    { number: 'US645576', title: 'System of Transmission of Electrical Energy', year: 1900, prefigures: 'wireless transmission ~ MCP tools across the wire', concept: 'concept.mcp.tools' },
+    { number: 'US649621', title: 'Apparatus for Transmission of Electrical Energy', year: 1900, prefigures: 'tuned circuits ~ the music of pi', concept: 'concept.sound.note' },
+    { number: 'US787412', title: 'Art of Transmitting Electrical Energy Through the Natural Mediums', year: 1905, prefigures: 'earth as one medium ~ the collective mind', concept: 'concept.mind.develop' },
+    { number: 'US1119732', title: 'Apparatus for Transmitting Electrical Energy (magnifying transmitter)', year: 1914, prefigures: 'amplification ~ self-sufficient waves', concept: 'concept.wave.self' },
+  ].map((patent) => ({ ...patent, receipt: toUuid(`tesla:${patent.number}:${patent.concept}`) }))
+  return {
+    fused: patents.every((patent) => known.has(patent.concept)),
+    count: patents.length,
+    patents,
+    root: merkleFold(patents.map((patent) => patent.receipt)),
+    statement: 'Nikola Tesla patents fused: each public patent maps to the concept it prefigures (resonance, wireless transmission, distributed energy).',
+    boundary: 'Public patent records mapped by analogy to computed concepts. Educational, not a legal, novelty, or ownership claim.',
+  }
+}
+
+// Autodiscover patents: declare the public sources and the query shape. A static
+// site cannot query live databases; discovery routes through these public APIs
+// (or the optional bring-your-own-key web search).
+export function patentDiscovery(query = '') {
+  const sources = [
+    { name: 'USPTO PatFT/Open Data', url: 'https://developer.uspto.gov' },
+    { name: 'Google Patents', url: 'https://patents.google.com' },
+    { name: 'EPO Espacenet (OPS)', url: 'https://worldwide.espacenet.com' },
+    { name: 'WIPO PATENTSCOPE', url: 'https://patentscope.wipo.int' },
+  ].map((source) => ({ ...source, receipt: toUuid(`patent-source:${source.name}:${source.url}`) }))
+  return {
+    discoverable: sources.length > 0,
+    query,
+    sources,
+    root: merkleFold(sources.map((source) => source.receipt)),
+    statement: 'Autodiscover patents through public sources (USPTO, Google Patents, Espacenet, PATENTSCOPE) by inventor, topic, or number.',
+    boundary: 'A declared set of public discovery sources, not a live database query. The portal points; the searcher fetches.',
+  }
+}
+
+// Autoreview patent credibility and the right to be patented. Some patents may
+// be invalid or illegal under these tests — this is an educational rubric, not
+// legal advice or a determination.
+export function patentReview() {
+  const criteria = [
+    { test: 'novelty', question: 'Is the invention genuinely new versus the prior art?' },
+    { test: 'non-obviousness', question: 'Would it be obvious to a person skilled in the art?' },
+    { test: 'utility', question: 'Does it have a specific, substantial, credible use?' },
+    { test: 'eligible-subject-matter', question: 'Is it more than an abstract idea, law of nature, or natural phenomenon? (Alice/Mayo)' },
+    { test: 'prior-art', question: 'Does disclosing prior art invalidate it?' },
+    { test: 'legality', question: 'Is the subject matter lawful and ethical? A patent on illegal or non-disclosed subject matter may be invalid or unenforceable.' },
+  ].map((criterion) => ({ ...criterion, receipt: toUuid(`patent-review:${criterion.test}`) }))
+  return {
+    rubric: criteria.length === 6,
+    criteria,
+    root: merkleFold(criteria.map((criterion) => criterion.receipt)),
+    statement: 'A rubric to auto-review patent credibility, the right to be patented, and legality. Some patents may be invalid or illegal under these tests.',
+    boundary: 'An educational checklist, not legal advice or a legal determination. Patentability and legality are decided by patent offices and courts.',
   }
 }
 
@@ -5924,6 +6010,18 @@ export function executeConceptCommand(
   if (command === 'concept.ancient.tech') {
     const ancient = ancientTech(matrix)
     return result(command, ancient.grounded, 'Ancient technologies mapped to the concepts they prefigure.', ancient)
+  }
+  if (command === 'concept.patent.fuse') {
+    const tesla = fuseTeslaPatents()
+    return result(command, tesla.fused, 'Nikola Tesla patents fused to the concepts they prefigure.', tesla)
+  }
+  if (command === 'concept.patent.discover') {
+    const discovery = patentDiscovery(input.query ?? '')
+    return result(command, discovery.discoverable, 'Patent discovery sources declared.', discovery)
+  }
+  if (command === 'concept.patent.review') {
+    const review = patentReview()
+    return result(command, review.rubric, 'Patent credibility and legality rubric computed.', review)
   }
   if (command === 'concept.society.relations') {
     const relations = societyRelations(matrix)
