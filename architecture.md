@@ -205,7 +205,13 @@ Cohorts = {scientists, engineers, societyArchitects}
 scientists = {hypotheses, measurements, negativeTests, evidenceReceipts}
 engineers = {interfaces, automation, tests, deploymentReceipts}
 societyArchitects = {protocols, boundaries, institutions, reciprocityReceipts}
-ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} U {receipt(cohort)})
+Solids = {tetrahedron, cube, octahedron, dodecahedron, icosahedron}
+tetrahedron -> scientists
+cube -> engineers
+octahedron -> societyArchitects
+dodecahedron -> reviewGates
+icosahedron -> optimizationWaves
+ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} U {receipt(cohort)} U {receipt(solid)})
 ```
 
 ## 16. Self build

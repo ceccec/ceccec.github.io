@@ -310,6 +310,16 @@ export interface SocietyWaveCohort {
   readonly receipt: string
 }
 
+export interface PlatonicBuilderSolid {
+  readonly solid: 'tetrahedron' | 'cube' | 'octahedron' | 'dodecahedron' | 'icosahedron'
+  readonly faces: number
+  readonly edges: number
+  readonly vertices: number
+  readonly builder: 'scientists' | 'engineers' | 'society architects' | 'review gates' | 'optimization waves'
+  readonly method: string
+  readonly receipt: string
+}
+
 export interface ScientificSociety {
   readonly grounded: boolean
   readonly root: string
@@ -318,6 +328,7 @@ export interface ScientificSociety {
   readonly reviewGates: readonly SelfCompletionGate[]
   readonly optimizationWaves: readonly OptimizationWave[]
   readonly cohorts: readonly SocietyWaveCohort[]
+  readonly solids: readonly PlatonicBuilderSolid[]
   readonly boundary: string
 }
 
@@ -1373,11 +1384,57 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     ...cohort,
     receipt: toUuid(`science-cohort:${cohort.cohort}:${cohort.purpose}:${cohort.develops.join('|')}:${cohort.coordinatesWith.join('|')}`),
   }))
+  const solids: readonly PlatonicBuilderSolid[] = [
+    {
+      solid: 'tetrahedron',
+      faces: 4,
+      edges: 6,
+      vertices: 4,
+      builder: 'scientists',
+      method: 'hypothesis -> measurement -> falsification -> receipt',
+    },
+    {
+      solid: 'cube',
+      faces: 6,
+      edges: 12,
+      vertices: 8,
+      builder: 'engineers',
+      method: 'interface -> test -> deploy -> monitor -> receipt',
+    },
+    {
+      solid: 'octahedron',
+      faces: 8,
+      edges: 12,
+      vertices: 6,
+      builder: 'society architects',
+      method: 'policy -> boundary -> consent -> reciprocity -> receipt',
+    },
+    {
+      solid: 'dodecahedron',
+      faces: 12,
+      edges: 30,
+      vertices: 20,
+      builder: 'review gates',
+      method: 'review all gates before public projection',
+    },
+    {
+      solid: 'icosahedron',
+      faces: 20,
+      edges: 30,
+      vertices: 12,
+      builder: 'optimization waves',
+      method: 'send many small improvements without breaking closure',
+    },
+  ].map((solid) => ({
+    ...solid,
+    receipt: toUuid(`platonic-builder:${solid.solid}:${solid.faces}:${solid.edges}:${solid.vertices}:${solid.builder}:${solid.method}`),
+  }))
   const root = merkleFold([
     ...roles.map((role) => role.receipt),
     ...reviewGates.map((gate) => gate.receipt),
     ...optimizationWaves.map((wave) => wave.receipt),
     ...cohorts.map((cohort) => cohort.receipt),
+    ...solids.map((solid) => solid.receipt),
   ])
 
   return {
@@ -1388,6 +1445,7 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     reviewGates,
     optimizationWaves,
     cohorts,
+    solids,
     boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
   }
 }

@@ -465,6 +465,13 @@ onBeforeUnmount(() => {
             </span>
           </li>
         </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="solid in science.solids" :key="solid.receipt">
+            <Badge variant="outline">{{ solid.solid }}</Badge>
+            <strong>{{ solid.builder }} · F{{ solid.faces }} E{{ solid.edges }} V{{ solid.vertices }}</strong>
+            <span>{{ solid.method }} Receipt: {{ solid.receipt }}</span>
+          </li>
+        </ul>
       </TabsContent>
 
       <TabsContent value="traditions" class="diamond-tabs__content">
