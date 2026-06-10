@@ -1270,7 +1270,7 @@ export function trinityGates(matrix = buildMatrix()) {
 export function quantumSitemap(matrix = buildMatrix()) {
     void matrix;
     const routes = [
-        '/', '/console', '/show', '/explore', '/school', '/academy', '/governance',
+        '/', '/start', '/console', '/show', '/explore', '/school', '/academy', '/governance',
         '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries',
     ];
     const urls = routes.map((route, index) => {
@@ -1472,6 +1472,47 @@ export function analytics(matrix = buildMatrix()) {
         root: merkleFold(metrics.map((entry) => entry.receipt)),
         statement: 'DRY analytics: the portal\'s self-metrics counted once — the model, the proof, and the reach — each content-addressed, so every dashboard reads from one source instead of reciting numbers.',
         boundary: 'Self-metrics over the model\'s own structures (areas, commands, components, gates, coverage). Descriptive counts, not usage telemetry — nothing is tracked, nothing leaves the device.',
+    };
+}
+// Simple to use, rich in features. Sometimes the simplicity is missing in all the
+// complexity; this is the plain-language layer — one clear line per idea, so a
+// first-time reader understands the portal before meeting its depth. Each line
+// links to the precise page where the full definition lives.
+export function plainLanguage() {
+    const lines = [
+        { term: 'Double Torus', plain: 'A learning portal you can check for yourself: every claim is a number anyone can recompute.', route: '/' },
+        { term: 'Receipt', plain: 'A short code that fingerprints something — change one bit and the code changes.', route: '/architecture' },
+        { term: 'Seal', plain: 'Proof the whole thing still adds up: recompute it and compare.', route: '/architecture' },
+        { term: 'Palette & melody', plain: 'Type a word and get the same colours and tune every time, shareable by citing the word.', route: '/school' },
+        { term: 'Sonification', plain: 'Hear data as sound — to catch what the eye misses, or to use without a screen.', route: '/commands' },
+        { term: 'MCP', plain: 'A way for AI assistants to call these tools directly.', route: '/mcp' },
+        { term: 'Academy', plain: 'Five short courses; finish them and you earn a credential you can prove.', route: '/academy' },
+        { term: 'Offline & free', plain: 'It all runs on your device — no account, nothing sent anywhere.', route: '/boundaries' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`plain:${entry.term}`) }));
+    return {
+        clear: lines.length >= 8 && lines.every((line) => line.plain.length > 0),
+        lines,
+        count: lines.length,
+        root: merkleFold(lines.map((line) => line.receipt)),
+        statement: 'Simple to use, rich in features: one plain-language line for each idea, so anyone understands the portal before meeting its depth.',
+        boundary: 'Plain restatements of the model\'s own ideas for a first-time reader. They simplify; the precise definitions live in the pages they link to.',
+    };
+}
+// Education graduates. Complete all five Academy courses and their credentials
+// fold into one graduation credential — recomputable, so the graduation is
+// verifiable by anyone rather than granted by anyone.
+export function graduation(matrix = buildMatrix()) {
+    const academy = quantumAcademy(matrix);
+    const courses = academy.courses.map((course) => ({ course: course.course, credential: course.credential }));
+    const credential = merkleFold(courses.map((course) => course.credential));
+    return {
+        graduated: academy.established,
+        courses,
+        count: courses.length,
+        credential,
+        root: toUuid(`graduation:${credential}:${academy.established}`),
+        statement: 'Education graduates: complete all five courses and their credentials fold into one graduation credential — recomputable, so the graduation is verifiable by anyone, not granted by anyone.',
+        boundary: 'A content-addressed graduation receipt folding the five course credentials. It proves the courses can be recomputed end to end, not that any institution confers a degree.',
     };
 }
 export function agentEducation(matrix = buildMatrix()) {
@@ -3256,9 +3297,9 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle',
     ];
-    const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
+    const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo'],
@@ -3269,6 +3310,7 @@ export function componentGraph() {
         '/governance': ['GovernanceVote'],
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
+        '/start': ['StartHere'],
         '/': ['HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
         '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard'],
         '/explore': ['Multidimensional'],

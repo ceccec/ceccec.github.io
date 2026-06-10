@@ -21,7 +21,9 @@ const componentDir = join(root, '.vitepress', 'theme', 'components')
 const componentFiles = readdirSync(componentDir).filter((file) => file.endsWith('.vue')).map((file) => file.replace(/\.vue$/, ''))
 
 const graph = componentGraph()
-const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
+// Globals and placements both come from the graph's own edges — one source, no
+// duplicated list to drift.
+const globals = new Set(graph.edges.filter((edge) => edge.kind === 'global').map((edge) => edge.from))
 const placedBy = {}
 for (const edge of graph.edges) if (edge.kind === 'placed') (placedBy[edge.to] ??= []).push(edge.from)
 const placed = new Set(Object.values(placedBy).flat())
@@ -49,7 +51,7 @@ for (const file of enPages) if (!bgSet.has(file)) gaps.push({ harmonic: 'octave'
 for (const file of bgPages) if (!enSet.has(file)) gaps.push({ harmonic: 'octave', kind: 'parity', detail: `bg/${file} has no en ${file}` })
 for (const component of componentFiles) if (!declared.has(component)) gaps.push({ harmonic: 'fifth', kind: 'undeclared', detail: `component ${component}.vue is not in componentGraph` })
 for (const component of graph.components) if (!componentFiles.includes(component)) gaps.push({ harmonic: 'fifth', kind: 'no-file', detail: `declared ${component} has no .vue file` })
-for (const component of graph.components) if (!placed.has(component) && !globals.includes(component)) gaps.push({ harmonic: 'fifth', kind: 'orphan', detail: `${component} is declared but neither placed nor global` })
+for (const component of graph.components) if (!placed.has(component) && !globals.has(component)) gaps.push({ harmonic: 'fifth', kind: 'orphan', detail: `${component} is declared but neither placed nor global` })
 for (const [route, components] of Object.entries(placedBy)) {
   const file = routeToFile(route)
   const en = read(join(root, file))

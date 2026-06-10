@@ -146,6 +146,7 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'Start', link: '/start' },
           { text: 'Console', link: '/console' },
           { text: 'Show', link: '/show' },
           { text: 'Explore', link: '/explore' },
@@ -183,6 +184,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Начало', link: '/bg/' },
+          { text: 'Старт', link: '/bg/start' },
           { text: 'Конзола', link: '/bg/console' },
           { text: 'Покажи', link: '/bg/show' },
           { text: 'Изследвай', link: '/bg/explore' },

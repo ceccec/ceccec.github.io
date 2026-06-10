@@ -972,3 +972,13 @@ code {
   }
 }
 
+/* -----------------------------------------------------------------------------
+ * Simple ⇄ Rich. One toggle sets data-mode on <html>; these two utilities let
+ * any surface offer a calm default and reveal its depth on demand. Simple mode
+ * hides .rich-only and shows .simple-only; rich mode (the default) does the
+ * reverse. Opt-in per element — nothing is hidden unless it is marked.
+ * -------------------------------------------------------------------------- */
+.simple-only { display: none; }
+html[data-mode='simple'] .simple-only { display: revert; }
+html[data-mode='simple'] .rich-only { display: none !important; }
+

@@ -48,6 +48,8 @@ import RevolutAside from './components/RevolutAside.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SealAll from './components/SealAll.vue'
+import SimpleToggle from './components/SimpleToggle.vue'
+import StartHere from './components/StartHere.vue'
 import SelfConsult from './components/SelfConsult.vue'
 import SelfHarmonise from './components/SelfHarmonise.vue'
 import SecurityScan from './components/SecurityScan.vue'
@@ -70,6 +72,8 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),
+      // Simple ⇄ Rich switch, reachable from every page's navbar.
+      'nav-bar-content-after': () => h(SimpleToggle),
       // Intelligent help + collective-mind self-development folded into every page.
       'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind)],
     })
@@ -121,6 +125,8 @@ export default {
     app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)
     app.component('SealAll', SealAll)
+    app.component('SimpleToggle', SimpleToggle)
+    app.component('StartHere', StartHere)
     app.component('SelfConsult', SelfConsult)
     app.component('SelfHarmonise', SelfHarmonise)
     app.component('SecurityScan', SecurityScan)
