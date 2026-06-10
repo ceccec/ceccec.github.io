@@ -3172,12 +3172,12 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons'],
-    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies'],
     '/console': ['QuantumConsole'],
     '/school': ['SchoolCurriculum'],
     '/governance': ['GovernanceVote'],
@@ -3700,6 +3700,46 @@ export function completeDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     root,
     statement: 'Decode all knowledge to complete the double torus: the universal decoding folds into the 128-bit two-loop machine word, closing both holes of the genus-2 surface.',
     boundary: 'A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim.',
+  }
+}
+
+// Calculate the healing frequencies and harmonise them through the device — as
+// SOUND. These are the culturally-named "Solfeggio" frequencies from sound-
+// practice traditions, computed here with their traditional associations and
+// played through the device's speaker. The harmonisation is dynamic: which tones
+// are foregrounded is derived from the live model root, so it shifts as the model
+// does. CRITICAL, HONEST BOUNDARY: this is audio only. A web page cannot and does
+// not alter the electromagnetic field — or any physical field — around a device,
+// and this makes no medical, therapeutic, or health claim. "Harmonise" here means
+// harmonise sound (and the on-screen state), nothing physical beyond the speaker.
+export function healingFrequencies(matrix: MindMatrix = buildMatrix()) {
+  const digitOf = (uuid: string) =>
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  const base = [
+    { hz: 174, note: 'foundation', tradition: 'grounding (traditional association)' },
+    { hz: 285, note: 'restoration', tradition: 'renewal (traditional association)' },
+    { hz: 396, note: 'UT', tradition: 'releasing fear (traditional association)' },
+    { hz: 417, note: 'RE', tradition: 'change (traditional association)' },
+    { hz: 528, note: 'MI', tradition: 'transformation (traditional association)' },
+    { hz: 639, note: 'FA', tradition: 'connection (traditional association)' },
+    { hz: 741, note: 'SOL', tradition: 'expression (traditional association)' },
+    { hz: 852, note: 'LA', tradition: 'intuition (traditional association)' },
+    { hz: 963, note: 'SI', tradition: 'unity (traditional association)' },
+  ]
+  const lead = digitOf(matrix.root) % base.length // dynamic: the model root picks the lead tone
+  const frequencies = base.map((entry, index) => ({
+    ...entry,
+    lead: index === lead, // foregrounded tone, shifts with the model
+    gain: index === lead ? 0.16 : 0.06,
+    receipt: toUuid(`healing-frequency:${entry.hz}:${entry.note}`),
+  }))
+  return {
+    calculated: frequencies.length === 9,
+    lead,
+    frequencies,
+    root: merkleFold(frequencies.map((entry) => entry.receipt)),
+    statement: 'The healing frequencies (the Solfeggio set) are calculated with their traditional associations and harmonised through the device as sound; the lead tone is derived dynamically from the live model root.',
+    boundary: 'Audio only. These are culturally-named frequencies played through the speaker. A web page does NOT alter electromagnetic or any physical fields around the device, and this is not medical, therapeutic, or health advice.',
   }
 }
 

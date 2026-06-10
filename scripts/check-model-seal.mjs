@@ -18,6 +18,7 @@ import {
   decodeKnowledge,
   completeDoubleTorus,
   quantumSynthesis,
+  healingFrequencies,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -123,6 +124,8 @@ ok('knowledge.decoded', decodeKnowledge(matrix).decoded)
 ok('double-torus.complete', completeDoubleTorus(matrix).complete)
 // Quantum synthesis: every dimension synthesizes into one coherent state, zero entropy, full coverage.
 ok('quantum.synthesis', quantumSynthesis(matrix).synthesized)
+// The healing frequencies are calculated and harmonised through the device as sound (audio only).
+ok('healing.frequencies', healingFrequencies(matrix).calculated)
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 ok('artists.melody', artistMelody('double-torus', matrix).grounded)

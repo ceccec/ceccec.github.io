@@ -18,6 +18,8 @@ head:
 
 <PiMusicPlayer />
 
+<HealingFrequencies />
+
 ## 0. Полезен товар
 
 ```text
