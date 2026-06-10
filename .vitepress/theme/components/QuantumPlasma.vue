@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { buildMatrix, plasmaContainment } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useInView } from '../lib/useInView'
 
 // Quantum plasma contained by bit logic. A continuous, flowing plasma field —
 // movement — gated by the 128 bits of the double-torus word: the plasma shows
@@ -85,18 +86,20 @@ function sizeCanvas() {
   el.style.height = '200px'
 }
 
-watch(saveEnergy, (save) => {
-  if (save) {
+const { inView } = useInView(canvas)
+function sync() {
+  if (inView.value && !saveEnergy.value) start()
+  else {
     stop()
     requestAnimationFrame((t) => draw(t))
-  } else start()
-})
+  }
+}
+watch([saveEnergy, inView], sync)
 
 onMounted(() => {
   sizeCanvas()
   window.addEventListener('resize', sizeCanvas)
-  if (saveEnergy.value) requestAnimationFrame((t) => draw(t))
-  else start()
+  sync()
 })
 onUnmounted(() => {
   stop()

@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useInView } from '../lib/useInView'
 
 // Animated folding of all quantum objects in 3d+. Every area-object sits on one
 // of the two lobes of the double torus; every pair is folded in both directions
@@ -160,18 +161,20 @@ function sizeCanvas() {
 
 // Energy-aware: pause when saving energy; resume otherwise. A single static
 // frame is drawn when paused so the structure is still visible.
-watch(saveEnergy, (save) => {
-  if (save) {
+const { inView } = useInView(canvas)
+function sync() {
+  if (inView.value && !saveEnergy.value) start()
+  else {
     stop()
     requestAnimationFrame((t) => draw(t))
-  } else start()
-})
+  }
+}
+watch([saveEnergy, inView], sync)
 
 onMounted(() => {
   sizeCanvas()
   window.addEventListener('resize', sizeCanvas)
-  if (saveEnergy.value) requestAnimationFrame((t) => draw(t))
-  else start()
+  sync()
 })
 onUnmounted(() => {
   stop()

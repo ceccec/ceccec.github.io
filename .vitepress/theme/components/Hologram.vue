@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { buildMatrix, hologram } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useInView } from '../lib/useInView'
 
 // A 3d+ representation of the hologram, to the bit. The 128 bits of the double-
 // torus word are placed on a Fibonacci sphere and rotated in 3d with a fourth-
@@ -85,17 +86,19 @@ function sizeCanvas() {
   el.style.height = '300px'
 }
 
-watch(saveEnergy, (save) => {
-  if (save) {
+const { inView } = useInView(canvas)
+function sync() {
+  if (inView.value && !saveEnergy.value) start()
+  else {
     stop()
     requestAnimationFrame((t) => draw(t))
-  } else start()
-})
+  }
+}
+watch([saveEnergy, inView], sync)
 onMounted(() => {
   sizeCanvas()
   window.addEventListener('resize', sizeCanvas)
-  if (saveEnergy.value) requestAnimationFrame((t) => draw(t))
-  else start()
+  sync()
 })
 onUnmounted(() => {
   stop()

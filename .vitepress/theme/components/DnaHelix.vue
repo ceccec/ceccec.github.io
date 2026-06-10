@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { buildMatrix, dna } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useInView } from '../lib/useInView'
 
 // The model as a DNA double helix, to the bit. The 128-bit word is 64 bases; the
 // two strands are the sense and its Watson-Crick antisense complement, drawn as
@@ -93,17 +94,19 @@ function sizeCanvas() {
   el.height = 220 * ratio
   el.style.height = '220px'
 }
-watch(saveEnergy, (save) => {
-  if (save) {
+const { inView } = useInView(canvas)
+function sync() {
+  if (inView.value && !saveEnergy.value) start()
+  else {
     stop()
     requestAnimationFrame((t) => draw(t))
-  } else start()
-})
+  }
+}
+watch([saveEnergy, inView], sync)
 onMounted(() => {
   sizeCanvas()
   window.addEventListener('resize', sizeCanvas)
-  if (saveEnergy.value) requestAnimationFrame((t) => draw(t))
-  else start()
+  sync()
 })
 onUnmounted(() => {
   stop()
