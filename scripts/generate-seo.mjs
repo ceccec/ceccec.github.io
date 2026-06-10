@@ -2,9 +2,10 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const outDir = join(process.cwd(), '.vitepress', 'dist')
-const siteUrl = (process.env.SITE_URL || 'https://serverless-quantum-uuid-stream.example').replace(/\/$/, '')
+const siteUrl = (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
 const now = new Date().toISOString()
-const routes = ['/', '/commands', '/quantum-mind', '/architecture']
+const enRoutes = ['/', '/console', '/school', '/mcp', '/learn-erpax', '/commands', '/quantum-mind', '/architecture']
+const routes = [...enRoutes, ...enRoutes.map((route) => (route === '/' ? '/bg/' : `/bg${route}`))]
 
 function computePiDigits(count) {
   let q = 1n
