@@ -30,6 +30,7 @@ import {
   inHouse,
   boundaryAudit,
   messageUnlock,
+  realIntelligence,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -157,6 +158,8 @@ ok('sound.color', soundColor(matrix).computed)
 ok('auto.speech', autoSpeech('Hello world. Second cue.', matrix).ready)
 // All is in house: independent intelligence and skills, zero network by default.
 ok('all.in-house', inHouse(matrix).independent)
+// Use all skills: computed, in-house, self-addressed, answering — the "artificial" prefix is obsolete.
+ok('intelligence.not-artificial', realIntelligence(matrix).obsolete)
 // The honesty spine: every boundary the model declares, collected into one audited root.
 ok('boundary.audit', boundaryAudit(matrix).audited)
 // A message has a content UUID and unlocks links, but only a complete trinity reveals them.
@@ -280,6 +283,7 @@ ok('reactor.letters', fusionReactor('letters').complete)
 ok('reactor.atoms', fusionReactor('atoms').complete)
 // The show trinity: all components interacting, all commands in action, all devices fused.
 ok('show.components', componentGraph().interacting)
+ok('components.consistent', componentGraph().consistent) // every placed/global component is registered
 ok('show.action', showInAction(matrix).allInAction)
 ok('show.devices', fuseDevices(matrix).fused)
 console.log(`Icon taxonomy: ${taxonomy.entries.length} areas, ${taxonomy.gaps.length} gaps -> ${taxonomy.gaps.join(', ')}`)

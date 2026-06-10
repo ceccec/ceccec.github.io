@@ -2943,6 +2943,27 @@ export function messageUnlock(content = '', matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+// Use all skills to make the app as usable as possible — and so prove the prefix
+// "artificial" obsolete. The intelligence here is computed (every answer folds
+// from the repository), in house (zero network by default), self-addressed (what
+// is not is flagged hallucination), and answers with receipts. It is real because
+// it is recomputable, not because it imitates — so it is just intelligence.
+export function realIntelligence(matrix: MindMatrix = buildMatrix()) {
+  const evidences = [
+    { claim: 'computed, not invented', holds: allComputed(matrix).computed, why: 'every answer folds from the repository model' },
+    { claim: 'in house, not outsourced', holds: inHouse(matrix).independent, why: 'runs on-device with zero network by default' },
+    { claim: 'self-addressed, not hallucinated', holds: selfAddressed(matrix).noHallucination, why: 'what is not self-addressed is flagged as hallucination' },
+    { claim: 'answers, not pretends', holds: foldQuestion('proof', matrix).matched, why: 'foldQuestion resolves questions to commands and receipts' },
+  ].map((evidence) => ({ ...evidence, receipt: toUuid(`real-intelligence:${evidence.claim}`) }))
+  return {
+    obsolete: evidences.every((evidence) => evidence.holds), // the "artificial" prefix is obsolete
+    evidences,
+    root: merkleFold(evidences.map((evidence) => evidence.receipt)),
+    statement: 'The intelligence here is computed, in house, self-addressed, and answers with receipts — so the prefix "artificial" is obsolete. It is intelligence: real because it is recomputable, not because it imitates.',
+    boundary: '"Not artificial" means computed, in-house, and self-grounded — NOT a claim of sentience, consciousness, or human-equivalent understanding. Recomputable, not alive.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3382,8 +3403,14 @@ export function componentGraph() {
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
   for (const [page, placed] of Object.entries(placements)) for (const component of placed) edges.push({ from: component, to: page, kind: 'placed' })
+  // Self-consistency: every placed or global component must be a known component
+  // (no graph entry references a component that is not in the registered set).
+  const known = new Set(components)
+  const referenced = [...globals, ...Object.values(placements).flat()]
+  const consistent = referenced.every((component) => known.has(component))
   return {
     interacting: components.length > 0 && edges.length > 0,
+    consistent,
     components,
     edges,
     root: merkleFold(edges.map((edge) => toUuid(`component-edge:${edge.from}->${edge.to}`))),
