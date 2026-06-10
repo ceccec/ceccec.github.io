@@ -137,6 +137,37 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+.revolut-aside {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top right, var(--vp-c-brand-soft), transparent 42%),
+    var(--vp-c-bg-soft);
+  margin-bottom: 16px;
+  padding: 14px;
+}
+
+.revolut-aside__label,
+.revolut-aside__formula {
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.revolut-aside__label {
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.revolut-aside__link {
+  display: inline-flex;
+  margin: 8px 0;
+  color: var(--vp-c-brand-1);
+  font-weight: 800;
+}
+
 .quantum-mind {
   display: grid;
   gap: 24px;
