@@ -176,6 +176,8 @@ Dim := { experiential, ritual, narrative, doctrinal, ethical, social, material, 
 TraditionLens := { dimensions: Dim, families: non_exhaustive, boundary }
 reduce_all_to_one := false
 compare(T_a,T_b) := relation(Dim(T_a), Dim(T_b)) preserving difference
+SocietyCell := Family x Dim -> { societyFunction, interaction, boundary, receipt }
+Society := { SocietyCell_i }
 ```
 
 ## 13. Chess

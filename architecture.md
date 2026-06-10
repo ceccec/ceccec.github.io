@@ -182,6 +182,8 @@ Dim = {experiential, ritual, narrative, doctrinal, ethical, social, material, re
 Families = non_exhaustive_lenses
 SameAllTraditions = false
 Compare = relation_preserving_difference(Dim, Families)
+SocietyCell = Families x Dim -> {societyFunction, interaction, boundary, receipt}
+Society = {SocietyCell_i}
 ```
 
 ## 14. Chess

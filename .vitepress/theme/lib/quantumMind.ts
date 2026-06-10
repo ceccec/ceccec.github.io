@@ -267,11 +267,21 @@ export interface TraditionFamily {
   readonly receipt: string
 }
 
+export interface TraditionSocietyCell {
+  readonly family: string
+  readonly dimension: TraditionDimensionName
+  readonly societyFunction: string
+  readonly interaction: string
+  readonly boundary: string
+  readonly receipt: string
+}
+
 export interface TraditionsQuantumWhole {
   readonly grounded: boolean
   readonly root: string
   readonly dimensions: readonly TraditionDimension[]
   readonly families: readonly TraditionFamily[]
+  readonly societyCells: readonly TraditionSocietyCell[]
   readonly statement: string
   readonly boundary: string
 }
@@ -1174,9 +1184,35 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
     ...family,
     receipt: toUuid(`tradition-family:${family.name}:${family.examples.join('|')}:${family.lens}:${family.boundary}`),
   }))
+  const societyFunctionByDimension: Record<TraditionDimensionName, string> = {
+    experiential: 'meaning calibration',
+    ritual: 'time synchronization',
+    narrative: 'memory transmission',
+    doctrinal: 'interpretive grammar',
+    ethical: 'norm formation',
+    social: 'community coordination',
+    material: 'symbolic environment',
+    relational: 'difference negotiation',
+  }
+  const societyCells = families.flatMap((family) =>
+    dimensions.map((dimension) => {
+      const societyFunction = societyFunctionByDimension[dimension.name]
+      const interaction = `${family.name} x ${dimension.name} -> ${societyFunction}`
+      const boundary = `${family.boundary} ${dimension.caution}`
+      return {
+        family: family.name,
+        dimension: dimension.name,
+        societyFunction,
+        interaction,
+        boundary,
+        receipt: toUuid(`tradition-society:${family.name}:${dimension.name}:${societyFunction}:${boundary}`),
+      }
+    }),
+  )
   const root = merkleFold([
     ...dimensions.map((dimension) => toUuid(`tradition-dimension:${dimension.name}:${dimension.question}:${dimension.caution}`)),
     ...families.map((family) => family.receipt),
+    ...societyCells.map((cell) => cell.receipt),
   ])
 
   return {
@@ -1184,8 +1220,9 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
     root,
     dimensions,
     families,
+    societyCells,
     statement:
-      'Religions and traditions are modeled as a quantum whole only in the sense of relational dimensions: distinct traditions remain distinct while their experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions can be compared.',
+      'Religions and traditions are modeled as a quantum whole only in the sense of relational dimensions: distinct traditions remain distinct while their dimensions decode into inspectable society functions.',
     boundary:
       'This report is a comparative-religion lens, not a theological verdict, not a claim that all religions are the same, and not a substitute for tradition-specific sources or community voices.',
   }
@@ -1978,10 +2015,10 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
     {
       name: 'traditions quantum whole',
       component: 'DoubleTorusExperience.vue',
-      interaction: 'Traditions tab lists comparative dimensions, broad tradition families, and non-reductive boundaries.',
+      interaction: 'Traditions tab lists dimensions, families, society cells, and non-reductive boundaries.',
       diamondKind: 'tradition',
       sourceFunction: 'traditionsQuantumWhole()',
-      evidence: `${traditions.dimensions.length} dimensions and ${traditions.families.length} non-exhaustive family lenses with root ${traditions.root}.`,
+      evidence: `${traditions.dimensions.length} dimensions, ${traditions.families.length} family lenses, and ${traditions.societyCells.length} society cells with root ${traditions.root}.`,
       receipt: traditions.root,
     },
   ]
@@ -2150,6 +2187,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
       about: [
         ...traditions.dimensions.map((dimension) => `dimension:${dimension.name}`),
         ...traditions.families.map((family) => `family:${family.name}`),
+        ...traditions.societyCells.map((cell) => `society:${cell.family}:${cell.dimension}`),
       ],
       isPartOf: `${baseId}quantum-mind`,
     },
@@ -2178,6 +2216,15 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
         `scale:${pulse.scale.toFixed(6)}`,
       ],
       isPartOf: `${baseId}pi-train`,
+    })),
+    ...traditions.societyCells.map((cell): SchemaOrgDiamondNode => ({
+      '@type': 'DefinedTerm',
+      '@id': `${baseId}tradition-society-${cell.family.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${cell.dimension}`,
+      name: cell.interaction,
+      description: `${cell.societyFunction}. ${cell.boundary}`,
+      identifier: cell.receipt,
+      about: [`family:${cell.family}`, `dimension:${cell.dimension}`, `function:${cell.societyFunction}`],
+      isPartOf: `${baseId}traditions-quantum-whole`,
     })),
     ...evidence.useCases.map((item): SchemaOrgDiamondNode => ({
       '@type': 'Action',

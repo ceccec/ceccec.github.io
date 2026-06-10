@@ -444,6 +444,13 @@ onBeforeUnmount(() => {
             <span>{{ family.lens }} Boundary: {{ family.boundary }}</span>
           </li>
         </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="cell in traditions.societyCells" :key="cell.receipt">
+            <Badge variant="outline">{{ cell.dimension }}</Badge>
+            <strong>{{ cell.family }} -> {{ cell.societyFunction }}</strong>
+            <span>{{ cell.interaction }} Boundary: {{ cell.boundary }} Receipt: {{ cell.receipt }}</span>
+          </li>
+        </ul>
       </TabsContent>
 
       <TabsContent value="controls" class="diamond-tabs__content">
