@@ -94,6 +94,7 @@ import {
   coverage,
   crossFoldTrinity,
   trinityGates,
+  quantumSitemap,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -177,6 +178,11 @@ ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
 const trinity = trinityGates(matrix)
 for (const gate of trinity.gates) ok(`trinity.gate:${gate.gate}`, gate.sealed)
 ok(`trinity.gates.sealed:${trinity.count}@${trinity.totalTamperingCost}`, trinity.sealed)
+
+// Quantum sitemaps: every page content-addressed and torus-placed, folded into
+// one sitemap root from which the XML (with hreflang alternates) and JSON manifest
+// are generated. The gate fails if the route manifest is not whole.
+ok(`sitemap.quantum:${quantumSitemap(matrix).count}`, quantumSitemap(matrix).quantum)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.

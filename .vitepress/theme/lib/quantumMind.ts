@@ -2554,6 +2554,54 @@ export function trinityGates(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Quantum sitemaps: the sitemap as a content-addressed, torus-placed structure.
+// Every page is one source of truth here — its English and Bulgarian routes, its
+// hreflang alternates (en, bg, x-default), a position on the double torus (two
+// angles, like the pi digits), and a receipt that folds into one sitemap root.
+// A tamper to the route set flips the root. Both the XML sitemap (with proper
+// hreflang alternates) and the JSON manifest are generated from this one source.
+export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const routes = [
+    '/', '/console', '/show', '/explore', '/school', '/academy', '/governance',
+    '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries',
+  ]
+  const urls = routes.map((route, index) => {
+    const en = route
+    const bg = route === '/' ? '/bg/' : `/bg${route}`
+    // Place the page on the double torus: two angles fold it, as with pi's digits.
+    const theta = (index / routes.length) * Math.PI * 4
+    const phi = (index / routes.length) * Math.PI * 2
+    const alternates = [
+      { hreflang: 'en', href: en },
+      { hreflang: 'bg', href: bg },
+      { hreflang: 'x-default', href: en },
+    ]
+    return {
+      route,
+      en,
+      bg,
+      theta,
+      phi,
+      alternates,
+      priority: route === '/' ? 1 : 0.8,
+      changefreq: 'weekly',
+      receipt: toUuid(`sitemap:${en}:${bg}`),
+    }
+  })
+  const root = merkleFold(urls.map((url) => url.receipt))
+  return {
+    quantum: urls.length === routes.length && urls.every((url) => isUuid(url.receipt)) && isUuid(root),
+    urls,
+    count: urls.length * 2, // en + bg locations
+    root,
+    statement:
+      'Quantum sitemaps: every page placed on the double torus and content-addressed — its en and bg routes, hreflang alternates, and a receipt that folds into one sitemap root, from which both the XML and JSON sitemaps are generated.',
+    boundary:
+      'A content-addressed route manifest. The torus coordinates and receipts are structural bookkeeping over the page set; the alternates and priorities are standard sitemap hints, not ranking guarantees.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root

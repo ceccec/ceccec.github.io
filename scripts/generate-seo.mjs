@@ -1,11 +1,13 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { quantumSitemap } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const outDir = join(process.cwd(), '.vitepress', 'dist')
 const siteUrl = (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
 const now = new Date().toISOString()
-const enRoutes = ['/', '/console', '/school', '/academy', '/explore', '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries']
-const routes = [...enRoutes, ...enRoutes.map((route) => (route === '/' ? '/bg/' : `/bg${route}`))]
+// Quantum sitemap: one content-addressed, torus-placed source for every page.
+const quantum = quantumSitemap()
+const abs = (path) => (path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`)
 
 function computePiDigits(count) {
   let q = 1n
@@ -42,23 +44,51 @@ const piDigits = computePiDigits(101)
 
 mkdirSync(outDir, { recursive: true })
 
+// Every locale of a page carries the full set of hreflang alternates (en, bg,
+// x-default), so crawlers fold the two loops of the torus into one page identity.
+const altLinks = (alternates) =>
+  alternates.map((alt) => `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${abs(alt.href)}" />`).join('\n')
+
+const urlBlock = (loc, priority, alternates) =>
+  [
+    '  <url>',
+    `    <loc>${abs(loc)}</loc>`,
+    `    <lastmod>${now}</lastmod>`,
+    '    <changefreq>weekly</changefreq>',
+    `    <priority>${priority.toFixed(1)}</priority>`,
+    altLinks(alternates),
+    '  </url>',
+  ].join('\n')
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  routes
-    .map((route) => {
-      const loc = route === '/' ? siteUrl : `${siteUrl}${route}`
-      const priority = route === '/' ? '1.0' : '0.8'
-      return [
-        '  <url>',
-        `    <loc>${loc}</loc>`,
-        `    <lastmod>${now}</lastmod>`,
-        '    <changefreq>weekly</changefreq>',
-        `    <priority>${priority}</priority>`,
-        '  </url>',
-      ].join('\n')
-    })
+  `<!-- quantum sitemap root: ${quantum.root} -->\n` +
+  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+  quantum.urls
+    .flatMap((url) => [
+      urlBlock(url.en, url.priority, url.alternates),
+      urlBlock(url.bg, url.priority * 0.8, url.alternates),
+    ])
     .join('\n') +
   `\n</urlset>\n`
+
+// The quantum manifest: every page placed on the double torus and content-addressed.
+const sitemapJson = {
+  generatedAt: now,
+  root: quantum.root,
+  count: quantum.count,
+  statement: quantum.statement,
+  boundary: quantum.boundary,
+  urls: quantum.urls.map((url) => ({
+    en: abs(url.en),
+    bg: abs(url.bg),
+    theta: url.theta,
+    phi: url.phi,
+    priority: url.priority,
+    changefreq: url.changefreq,
+    alternates: url.alternates.map((alt) => ({ hreflang: alt.hreflang, href: abs(alt.href) })),
+    receipt: url.receipt,
+  })),
+}
 
 const robots = [
   'User-agent: *',
@@ -69,6 +99,7 @@ const robots = [
 ].join('\n')
 
 writeFileSync(join(outDir, 'sitemap.xml'), sitemap)
+writeFileSync(join(outDir, 'sitemap.json'), JSON.stringify(sitemapJson, null, 2))
 writeFileSync(join(outDir, 'robots.txt'), robots)
 
 function uuid(seed) {

@@ -6,7 +6,7 @@
   },
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build && node scripts/generate-seo.mjs && node scripts/check-digit-index-seal.mjs && node --experimental-strip-types scripts/generate-mcp.mjs && node --experimental-strip-types scripts/generate-llms.mjs && node --experimental-strip-types scripts/check-model-seal.mjs && node scripts/check-seal-tripwire.mjs",
+    "docs:build": "vitepress build && node --experimental-strip-types scripts/generate-seo.mjs && node scripts/check-digit-index-seal.mjs && node --experimental-strip-types scripts/generate-mcp.mjs && node --experimental-strip-types scripts/generate-llms.mjs && node --experimental-strip-types scripts/check-model-seal.mjs && node scripts/check-seal-tripwire.mjs",
     "docs:preview": "vitepress preview"
   },
   "dependencies": {

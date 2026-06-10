@@ -1047,6 +1047,27 @@ export declare function trinityGates(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumSitemap(matrix?: MindMatrix): {
+    quantum: boolean;
+    urls: {
+        route: string;
+        en: string;
+        bg: string;
+        theta: number;
+        phi: number;
+        alternates: {
+            hreflang: string;
+            href: string;
+        }[];
+        priority: number;
+        changefreq: string;
+        receipt: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
