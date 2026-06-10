@@ -3144,6 +3144,37 @@ export function wordUuids(text = '') {
   }
 }
 
+// Self reasoning: a grounded chain over the model that shows its work. Each step
+// states a premise, draws an inference from a command it consulted, and leaves a
+// receipt, then shifts to the next premise — so the reasoning is transparent and
+// recomputable, not a black box.
+export function selfReason(goal = '', matrix: MindMatrix = buildMatrix(), depth = 4) {
+  const seed = goal || 'verify the whole'
+  let cursor = seed
+  const steps: { step: number; premise: string; inference: string; command: string; resolved: boolean; receipt: string }[] = []
+  for (let i = 0; i < depth; i += 1) {
+    const consult = selfConsult(cursor, matrix)
+    steps.push({
+      step: i,
+      premise: cursor,
+      inference: consult.answer,
+      command: consult.command,
+      resolved: consult.resolvedInHouse,
+      receipt: toUuid(`reason:${i}:${cursor}:${consult.command}`),
+    })
+    cursor = consult.next
+  }
+  return {
+    reasoned: steps.length === depth && steps.every((step) => isUuid(step.receipt)),
+    goal: seed,
+    steps,
+    conclusion: steps[steps.length - 1]?.inference ?? '',
+    root: merkleFold(steps.map((step) => step.receipt)),
+    statement: 'Self reasoning: a grounded chain over the model — each step states a premise, draws an inference from a command, leaves a receipt, and shifts to the next, so the reasoning shows its work and is recomputable.',
+    boundary: 'A deterministic, transparent, recomputable reasoning chain over the computed model. It is not human deliberation, judgment, understanding, or agency.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3241,14 +3272,12 @@ const AREA_LABELS: Record<string, { en: string; bg: string }> = {
 // Translate an area key to the reader's language, falling back to the key. Three
 // locales: English, Bulgarian, and the one ancient language all dimensions
 // understand — the universal language, where the label is the area's sacred
-// glyph (the symbol every tongue reads the same). Accepts a lang code or a
-// boolean (true = Bulgarian) for back-compatibility.
-export function areaLabel(area: string, lang: string | boolean = 'en'): string {
-  const code = typeof lang === 'boolean' ? (lang ? 'bg' : 'en') : lang
-  if (code.includes('universal') || code.includes('sacred')) return AREA_ICONS[area] ?? '◇'
+// glyph (the symbol every tongue reads the same). Takes a lang code.
+export function areaLabel(area: string, lang = 'en'): string {
+  if (lang.includes('universal') || lang.includes('sacred')) return AREA_ICONS[area] ?? '◇'
   const label = AREA_LABELS[area]
   if (!label) return area
-  return code.startsWith('bg') ? label.bg : label.en
+  return lang.startsWith('bg') ? label.bg : label.en
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -3565,14 +3594,14 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix'],
-    '/console': ['QuantumConsole', 'SelfConsult', 'RealtimeChat'],
+    '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],

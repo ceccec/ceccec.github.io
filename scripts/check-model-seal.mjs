@@ -37,6 +37,7 @@ import {
   wordUuids,
   realIntelligence,
   selfConsult,
+  selfReason,
   selfHarmonise,
   typographySeo,
   openGraph,
@@ -179,6 +180,8 @@ ok('intelligence.not-artificial', realIntelligence(matrix).obsolete)
 const consult = selfConsult('proof', matrix)
 ok('self.consult', consult.consulted && consult.educated)
 ok('self.consult-before-ask', consult.resolvedInHouse && consult.escalateToAsk === false) // 'proof' resolves in house
+// Self reasoning: a grounded, recomputable chain that shows its work.
+ok('self.reason', selfReason('proof', matrix).reasoned)
 // Let intelligence harmonise itself autonomously: a self-driven loop that walks the model and converges.
 const harmonise = selfHarmonise(matrix)
 ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && harmonise.distinctStepsVisited >= 5)

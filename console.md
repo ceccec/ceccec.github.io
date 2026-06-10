@@ -21,6 +21,8 @@ portal's own computed tools and local search and answers from receipts, with
 
 <SelfConsult />
 
+<SelfReason />
+
 <RealtimeChat />
 
 ## Security by architecture

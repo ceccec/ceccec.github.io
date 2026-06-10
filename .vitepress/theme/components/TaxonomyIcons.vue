@@ -25,10 +25,10 @@ const t = computed(() =>
         v-for="entry in taxonomy.entries"
         :key="entry.area"
         :class="{ gap: entry.gap, trinity: entry.status === 'trinity' }"
-        :title="`${areaLabel(entry.area, bg)}: ${entry.verbs.join(', ')} — ${entry.gap ? t.gap : t.trinity}`"
+        :title="`${areaLabel(entry.area, lang)}: ${entry.verbs.join(', ')} — ${entry.gap ? t.gap : t.trinity}`"
       >
         <span class="taxonomy__icon">{{ entry.icon }}</span>
-        <span class="taxonomy__area">{{ areaLabel(entry.area, bg) }}</span>
+        <span class="taxonomy__area">{{ areaLabel(entry.area, lang) }}</span>
         <span class="taxonomy__count">{{ entry.count }}</span>
       </li>
     </ul>

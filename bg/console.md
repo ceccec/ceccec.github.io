@@ -22,6 +22,8 @@ head:
 
 <SelfConsult />
 
+<SelfReason />
+
 <RealtimeChat />
 
 ## Сигурност чрез архитектура
