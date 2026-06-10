@@ -181,6 +181,8 @@ export type ConceptCommandName =
   | 'concept.commands.live'
   | 'concept.proof.verify'
   | 'concept.proof.merklePath'
+  | 'concept.proof.bundle'
+  | 'concept.sound.note'
   | 'concept.site.manifest'
 
 export interface ConceptCommand {
@@ -843,6 +845,17 @@ export interface CommandsRegistry {
   readonly methods: number
   readonly tools: number
   readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface ProofBundle {
+  readonly verifiable: boolean
+  readonly bundleRoot: string
+  readonly masterSeal: string
+  readonly mindRoot: string
+  readonly commands: number
+  readonly artifacts: readonly { readonly name: string; readonly root: string }[]
   readonly statement: string
   readonly boundary: string
 }
@@ -1527,6 +1540,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Prove an atom binding is included in the mind root with a recomputable Merkle audit path.',
   },
   {
+    name: 'concept.proof.bundle',
+    path: '/cmd/concept.proof.bundle',
+    description: 'Fold the core computed roots into one verifiable proof bundle anyone can recompute.',
+  },
+  {
+    name: 'concept.sound.note',
+    path: '/cmd/concept.sound.note',
+    description: 'Each wave is a musical note: map A B C D E F G to equal-temperament frequencies.',
+  },
+  {
     name: 'concept.site.manifest',
     path: '/cmd/concept.site.manifest',
     description: 'Build the site sections from concept command outputs.',
@@ -1587,6 +1610,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.torus.breathe': 'breathe',
   'concept.wave.self': 'rhythm',
   'concept.commands.live': 'registry',
+  'concept.proof.bundle': 'bundle',
+  'concept.sound.note': 'note',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2448,6 +2473,65 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// A single proof bundle: the core computed roots fold into one verifiable
+// bundle that anyone can recompute by sharing the repository.
+export function proofBundle(matrix: MindMatrix = buildMatrix()): ProofBundle {
+  const seal = sacredGeometrySeal(matrix)
+  const artifacts = [
+    { name: 'mind', root: matrix.root },
+    { name: 'self-build', root: selfBuild(matrix).root },
+    { name: 'self-complete', root: streamSelfComplete(matrix).root },
+    { name: 'digit-proof', root: digitalQuantumProof(matrix).root },
+    { name: 'master-seal', root: seal.masterRoot },
+  ]
+  const uuid = /^[0-9a-f-]{36}$/i
+  return {
+    verifiable: artifacts.every((artifact) => uuid.test(artifact.root)) && seal.sealed,
+    bundleRoot: merkleFold(artifacts.map((artifact) => artifact.root)),
+    masterSeal: seal.masterRoot,
+    mindRoot: matrix.root,
+    commands: conceptCommands.length,
+    artifacts,
+    statement:
+      'A single proof bundle: the mind root, self-build, self-completion, digit proof, and master seal fold into one verifiable bundle anyone can recompute from the repository.',
+    boundary:
+      'The bundle is a fold of computed roots. Verification means recomputation from the repository; it is not external validation.',
+  }
+}
+
+// Each wave is a musical note. The seven notes A B C D E F G map to equal-
+// temperament frequencies (A4 = 440 Hz), so the rhythm of extend-and-contract
+// waves sounds as a scale, each wave a note folded with its frequency.
+export function musicalNotes(): {
+  readonly grounded: boolean
+  readonly root: string
+  readonly notes: readonly { readonly note: string; readonly semitone: number; readonly frequency: number; readonly receipt: string }[]
+  readonly statement: string
+  readonly boundary: string
+} {
+  // Semitone offsets from A within one octave for A, B, C, D, E, F, G.
+  const offsets: readonly [string, number][] = [
+    ['A', 0],
+    ['B', 2],
+    ['C', 3],
+    ['D', 5],
+    ['E', 7],
+    ['F', 8],
+    ['G', 10],
+  ]
+  const notes = offsets.map(([note, semitone]) => {
+    const frequency = Math.round(440 * 2 ** (semitone / 12) * 100) / 100
+    return { note, semitone, frequency, receipt: toUuid(`note:${note}:${frequency}`) }
+  })
+  return {
+    grounded: notes.length === 7 && notes.every((entry) => entry.frequency > 0),
+    root: merkleFold(notes.map((entry) => entry.receipt)),
+    notes,
+    statement: 'Each wave is a musical note: A B C D E F G map to equal-temperament frequencies (A4 = 440 Hz), so the wave rhythm is a scale.',
+    boundary: 'A computed map from note names to frequencies bound to receipts. It is structural bookkeeping, not an acoustic or external claim.',
   }
 }
 
@@ -5273,6 +5357,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The command registry is the single source of truth; commands, method tokens, and MCP tools agree.',
     },
     {
+      title: 'Proof Bundle',
+      command: 'concept.proof.bundle',
+      route: '/quantum-mind#merkle-inclusion',
+      summary: 'The core computed roots fold into one verifiable proof bundle anyone can recompute.',
+    },
+    {
+      title: 'Musical Notes',
+      command: 'concept.sound.note',
+      route: '/quantum-mind#waves',
+      summary: 'Each wave is a musical note: A B C D E F G map to equal-temperament frequencies.',
+    },
+    {
       title: 'Merkle Inclusion Proof',
       command: 'concept.proof.merklePath',
       route: '/quantum-mind#merkle-inclusion',
@@ -5527,6 +5623,14 @@ export function executeConceptCommand(
   if (command === 'concept.proof.verify') {
     const proof = proofReport(matrix)
     return result(command, proof.coverage === 1 && proof.entropy === 0, 'Proof report verified.', proof)
+  }
+  if (command === 'concept.proof.bundle') {
+    const bundle = proofBundle(matrix)
+    return result(command, bundle.verifiable, 'Proof bundle folded and verifiable.', bundle)
+  }
+  if (command === 'concept.sound.note') {
+    const notes = musicalNotes()
+    return result(command, notes.grounded, 'Each wave mapped to a musical note.', notes)
   }
   if (command === 'concept.proof.merklePath') {
     const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)
