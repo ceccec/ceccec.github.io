@@ -15,6 +15,7 @@ import McpTools from './components/McpTools.vue'
 import PiMusicPlayer from './components/PiMusicPlayer.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
 import QuantumFold3D from './components/QuantumFold3D.vue'
+import QuantumPlasma from './components/QuantumPlasma.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
@@ -50,6 +51,7 @@ export default {
     app.component('PiMusicPlayer', PiMusicPlayer)
     app.component('QuantumConsole', QuantumConsole)
     app.component('QuantumFold3D', QuantumFold3D)
+    app.component('QuantumPlasma', QuantumPlasma)
     app.component('QuantumMind', QuantumMind)
     app.component('RevolutAside', RevolutAside)
     app.component('SacredSymbols', SacredSymbols)

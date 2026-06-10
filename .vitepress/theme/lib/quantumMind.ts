@@ -3237,12 +3237,12 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
-    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma'],
     '/console': ['QuantumConsole'],
     '/school': ['SchoolCurriculum', 'CreativePalette'],
     '/governance': ['GovernanceVote'],
@@ -3805,6 +3805,34 @@ export function healingFrequencies(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(frequencies.map((entry) => entry.receipt)),
     statement: 'The healing frequencies (the Solfeggio set) are calculated with their traditional associations and harmonised through the device as sound; the lead tone is derived dynamically from the live model root.',
     boundary: 'Audio only. These are culturally-named frequencies played through the speaker. A web page does NOT alter electromagnetic or any physical fields around the device, and this is not medical, therapeutic, or health advice.',
+  }
+}
+
+// Quantum plasma contained by bit logic. The plasma is a continuous, flowing
+// field; the container is discrete — the 128 bits of the double-torus word. The
+// field flows only where a bit is set, so the analog plasma is shaped and bounded
+// by binary logic: continuous movement contained by bit logic. The container is
+// content-addressed (the word), so it is deterministic and recomputable.
+export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
+  const word = torusUuid(matrix).word
+  const hex = word.replace(/-/g, '')
+  const bits: number[] = []
+  for (const char of hex) {
+    const nibble = Number.parseInt(char, 16) || 0
+    for (let b = 3; b >= 0; b -= 1) bits.push((nibble >> b) & 1)
+  }
+  const ones = bits.filter((bit) => bit === 1).length
+  return {
+    contained: bits.length === 128,
+    bits,
+    ones,
+    zeros: bits.length - ones,
+    cols: 16,
+    rows: 8, // 16 x 8 = 128 bits
+    word,
+    root: toUuid(`plasma:${word}:${ones}`),
+    statement: 'Quantum plasma contained by bit logic: the continuous plasma field is gated by the 128 bits of the double-torus word — it flows only where a bit is set, so analog movement is shaped and bounded by binary logic.',
+    boundary: 'A visual containment of an animated field by the bits of a content-addressed word. Animation and bookkeeping, not a physical plasma.',
   }
 }
 

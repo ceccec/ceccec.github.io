@@ -18,6 +18,8 @@ head:
 
 <QuantumFold3D />
 
+<QuantumPlasma />
+
 <PiMusicPlayer />
 
 <HealingFrequencies />
