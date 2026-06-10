@@ -1114,6 +1114,22 @@ export declare function professionals(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function analytics(matrix?: MindMatrix): {
+    measured: boolean;
+    boards: {
+        board: string;
+        icon: string;
+        metrics: {
+            receipt: string;
+            metric: string;
+            value: number;
+        }[];
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

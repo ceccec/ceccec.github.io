@@ -1430,6 +1430,50 @@ export function professionals(matrix = buildMatrix()) {
         boundary: 'A map from capabilities to professional tasks, with honestly named comparable tools. The receipts are tamper-evident structural UUID folds, not cryptographic signatures like C2PA or Sigstore; the palettes and sonification are comparable in spirit to the named tools, the distinction being offline, content-addressed, and zero-dependency.',
     };
 }
+// DRY analytics. The portal's self-metrics were recited page by page; this counts
+// them once, in one source, grouped into the missing dashboards: the model (what
+// it is), the proof (how it verifies), and the reach (how far it goes). Each
+// metric is content-addressed. These are descriptive counts over the model's own
+// structures — not usage telemetry; nothing is tracked, nothing leaves the device.
+export function analytics(matrix = buildMatrix()) {
+    const make = (board, icon, metrics) => ({
+        board,
+        icon,
+        metrics: metrics.map((entry) => ({ ...entry, receipt: toUuid(`analytics:${board}:${entry.metric}:${entry.value}`) })),
+    });
+    const boards = [
+        make('model', '◉', [
+            { metric: 'areas', value: areaPairs().count },
+            { metric: 'pairs', value: Math.floor(areaPairs().count / 2) },
+            { metric: 'commands', value: conceptCommands.length },
+            { metric: 'components', value: componentGraph().components.length },
+            { metric: 'atoms', value: atoms.length },
+            { metric: 'blockchains', value: quantumFoldedBlockchains(matrix).chains.length },
+        ]),
+        make('proof', '🔏', [
+            { metric: 'trinity gates', value: trinityGates(matrix).count },
+            { metric: 'seal waves', value: sealAll(matrix).count },
+            { metric: 'free animations', value: freeAnimations(matrix).count },
+            { metric: 'coverage', value: coverage(matrix) },
+            { metric: 'entropy', value: entropy(matrix) },
+        ]),
+        make('reach', '🧭', [
+            { metric: 'sitemap urls', value: quantumSitemap(matrix).count },
+            { metric: 'dimensions', value: multidimensional().dimensions.length },
+            { metric: 'professions', value: professionals(matrix).count },
+            { metric: 'locales', value: 2 },
+        ]),
+    ];
+    const metrics = boards.flatMap((board) => board.metrics);
+    return {
+        measured: boards.length === 3 && metrics.every((entry) => Number.isFinite(entry.value)),
+        boards,
+        count: metrics.length,
+        root: merkleFold(metrics.map((entry) => entry.receipt)),
+        statement: 'DRY analytics: the portal\'s self-metrics counted once — the model, the proof, and the reach — each content-addressed, so every dashboard reads from one source instead of reciting numbers.',
+        boundary: 'Self-metrics over the model\'s own structures (areas, commands, components, gates, coverage). Descriptive counts, not usage telemetry — nothing is tracked, nothing leaves the device.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3212,7 +3256,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -3226,7 +3270,7 @@ export function componentGraph() {
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
         '/': ['HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
-        '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete'],
+        '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard'],
         '/explore': ['Multidimensional'],
         '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
     };

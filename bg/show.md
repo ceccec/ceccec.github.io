@@ -19,4 +19,6 @@ head:
 
 <Complete />
 
+<QuantumDashboard />
+
 <WavesOfCreation />

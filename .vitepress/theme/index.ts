@@ -36,6 +36,7 @@ import PiMusicPlayer from './components/PiMusicPlayer.vue'
 import QuantumAcademy from './components/QuantumAcademy.vue'
 import QuantumClock from './components/QuantumClock.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
+import QuantumDashboard from './components/QuantumDashboard.vue'
 import QuantumField from './components/QuantumField.vue'
 import QuantumFold3D from './components/QuantumFold3D.vue'
 import RealtimeChat from './components/RealtimeChat.vue'
@@ -108,6 +109,7 @@ export default {
     app.component('QuantumAcademy', QuantumAcademy)
     app.component('QuantumClock', QuantumClock)
     app.component('QuantumConsole', QuantumConsole)
+    app.component('QuantumDashboard', QuantumDashboard)
     app.component('QuantumField', QuantumField)
     app.component('QuantumFold3D', QuantumFold3D)
     app.component('QAEquilibrium', QAEquilibrium)

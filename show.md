@@ -19,4 +19,6 @@ zero network.
 
 <Complete />
 
+<QuantumDashboard />
+
 <WavesOfCreation />

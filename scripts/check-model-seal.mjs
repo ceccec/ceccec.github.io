@@ -97,6 +97,7 @@ import {
   quantumSitemap,
   sealAll,
   professionals,
+  analytics,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -192,6 +193,9 @@ ok(`seal.all-in-waves:${sealAll(matrix).closed}/${sealAll(matrix).count}`, sealA
 
 // Find use for professionals: capabilities mapped to concrete professional tasks.
 ok(`professionals:${professionals(matrix).count}`, professionals(matrix).found)
+
+// DRY analytics: the portal's self-metrics counted once, into the dashboards.
+ok(`analytics:${analytics(matrix).count}`, analytics(matrix).measured)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
