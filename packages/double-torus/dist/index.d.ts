@@ -1350,6 +1350,44 @@ export declare function gapScan(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function music358(): {
+    complete: boolean;
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function geometry358(): {
+    complete: boolean;
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function tiers358(matrix?: MindMatrix): {
+    universal: boolean;
+    count: number;
+    grounded: number;
+    belief: number;
+    domains: {
+        receipt: string;
+        domain: string;
+        belief: boolean;
+        ok: boolean;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function securityScan(matrix?: MindMatrix): {
     secure: boolean;
     tiers: number[];

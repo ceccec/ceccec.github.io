@@ -3378,6 +3378,72 @@ function computeGapScan(matrix: MindMatrix) {
   }
 }
 
+// Music in 3-5-8 — grounded in tonal theory: the triad (root, third, fifth), the
+// pentatonic scale (five notes), and the octave (the diatonic scale of eight).
+export function music358() {
+  const tiers = [
+    { tier: 3, name: 'the triad', members: ['root', 'third', 'fifth'] },
+    { tier: 5, name: 'the pentatonic scale', members: ['1', '2', '3', '5', '6'] },
+    { tier: 8, name: 'the octave (diatonic)', members: ['do', 're', 'mi', 'fa', 'sol', 'la', 'ti', 'do'] },
+  ]
+  return {
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(`music358:${index}:${member}`))),
+    statement: 'Music in 3-5-8: the triad (root, third, fifth), the pentatonic scale (five notes), and the octave — the diatonic scale of eight. 3, 5, 8 in sound.',
+    boundary: 'A correspondence to standard Western tonal theory (triad, pentatonic, octave). A teaching device; other tunings and traditions differ.',
+  }
+}
+
+// Geometry in 3-5-8 — the polygons of the Fibonacci tiers: triangle, pentagon,
+// octagon. The pentagon hides the golden ratio phi, the same phi the sequence
+// grows toward.
+export function geometry358() {
+  const tiers = [
+    { tier: 3, name: 'triangle', members: ['triangle'] },
+    { tier: 5, name: 'pentagon (golden ratio)', members: ['pentagon'] },
+    { tier: 8, name: 'octagon', members: ['octagon'] },
+  ]
+  return {
+    complete: tiers[0].tier === 3 && tiers[1].tier === 5 && tiers[2].tier === 8,
+    tiers,
+    root: merkleFold(tiers.map((tier) => toUuid(`geometry358:${tier.tier}:${tier.name}`))),
+    statement: 'Geometry in 3-5-8: the triangle (3), the pentagon (5), and the octagon (8). The pentagon holds the golden ratio phi — the same phi the Fibonacci sequence grows toward.',
+    boundary: 'A correspondence of the 3-5-8 tiers to regular polygons. A teaching device, not a claim about geometry beyond the side counts.',
+  }
+}
+
+// The 3-5-8 is universal across the portal — all in one batch. Every domain that
+// carries the Fibonacci tiers is gathered here and folded into one root: the
+// grounded ones, the cultural games, and — honestly flagged as belief
+// frameworks, not science — chakras and human design. One pattern, woven through.
+export function tiers358(matrix: MindMatrix = buildMatrix()) {
+  const domains = [
+    { domain: 'dimensions', belief: false, ok: dimensions().enriched, root: dimensions().root },
+    { domain: 'dualities', belief: false, ok: dualities().compared, root: dualities().root },
+    { domain: 'sensors', belief: false, ok: deviceSensors().tiered, root: deviceSensors().root },
+    { domain: 'computer', belief: false, ok: computerDesign().complete, root: computerDesign().root },
+    { domain: 'music', belief: false, ok: music358().complete, root: music358().root },
+    { domain: 'geometry', belief: false, ok: geometry358().complete, root: geometry358().root },
+    { domain: 'design', belief: false, ok: design358().designs, root: design358().root },
+    { domain: 'security', belief: false, ok: securityScan(matrix).secure, root: securityScan(matrix).root },
+    { domain: 'yin-yang', belief: false, ok: yinYang().complete, root: yinYang().root },
+    { domain: 'chess', belief: false, ok: chess358().complete, root: chess358().root },
+    { domain: 'chakras & aura', belief: true, ok: chakrasAura().complete, root: chakrasAura().root },
+    { domain: 'human design', belief: true, ok: humanDesign().complete, root: humanDesign().root },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tiers358:${entry.domain}`) }))
+  return {
+    universal: domains.every((entry) => entry.ok),
+    count: domains.length,
+    grounded: domains.filter((entry) => !entry.belief).length,
+    belief: domains.filter((entry) => entry.belief).length,
+    domains,
+    root: merkleFold(domains.map((entry) => entry.receipt)),
+    statement: 'The 3-5-8 is universal across the portal: dimensions, dualities, sensors, computer design, music, geometry, design method, and security; the games yin-yang and chess; and, as belief frameworks, chakras and human design — every one folds into the same Fibonacci tiers.',
+    boundary: 'A registry of where the 3-5-8 tiers recur. Some are grounded (number, structure, music, geometry, computing, security); some are cultural games; some are belief frameworks, not science (chakras, human design). Correspondences, not a unified theory of everything.',
+  }
+}
+
 // All connected users interact securely, scanned in 3-5-8. The peers meet over a
 // same-origin channel with content-addressed messages and no server to attack;
 // this scans the security-by-architecture in three tiers — 3 core guarantees, 5

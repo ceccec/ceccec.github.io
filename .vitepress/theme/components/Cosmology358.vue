@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358 } from '../lib/quantumMind'
+import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358, music358, geometry358, tiers358 } from '../lib/quantumMind'
 
 // 3-5-8 across domains: the same Fibonacci tiers (3, 5, 8) recur in yin-yang
 // (three powers, five elements, eight trigrams), on the chessboard (minor piece,
@@ -16,10 +16,14 @@ const domains = computed(() => {
   const ck = chakrasAura()
   const hd = humanDesign()
   const cd = computerDesign()
+  const mu = music358()
+  const ge = geometry358()
   return [
     { key: 'yinyang', icon: '☯', title: bg.value ? 'ин-ян' : 'yin-yang', belief: false, rows: yy.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
     { key: 'chess', icon: '♛', title: bg.value ? `шах · ${ch.squares} полета` : `chess · ${ch.squares} squares`, belief: false, rows: ch.tiers.map((tier) => ({ n: tier.tier, text: tier.where })) },
     { key: 'computer', icon: '🖳', title: bg.value ? 'компютърен дизайн' : 'computer design', belief: false, rows: cd.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'music', icon: '♫', title: bg.value ? 'музика' : 'music', belief: false, rows: mu.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'geometry', icon: '△', title: bg.value ? 'геометрия' : 'geometry', belief: false, rows: ge.tiers.map((tier) => ({ n: tier.tier, text: tier.name })) },
     { key: 'chakras', icon: '🧘', title: bg.value ? 'чакри и аура' : 'chakras & aura', belief: true, rows: ck.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
     { key: 'humandesign', icon: '⌘', title: bg.value ? 'хюман дизайн' : 'human design', belief: true, rows: hd.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
   ]
