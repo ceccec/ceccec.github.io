@@ -2229,6 +2229,27 @@ export declare function allInEquilibrium(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function freeAnimations(matrix?: MindMatrix): {
+    maxFree: boolean;
+    free: boolean;
+    bound: boolean;
+    channels: {
+        free: boolean;
+        clientCost: number;
+        networkCost: number;
+        seed: string;
+        phase: number;
+        bound: boolean;
+        channel: string;
+        sense: string;
+        motion: string;
+    }[];
+    count: number;
+    tamperingCost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function breathe(matrix?: MindMatrix): {
     breathing: boolean;
     expand: string;

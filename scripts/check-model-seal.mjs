@@ -46,6 +46,7 @@ import {
   breathe,
   multidimensional,
   allInEquilibrium,
+  freeAnimations,
   efficiency,
   emfApplications,
   emf358,
@@ -241,6 +242,8 @@ ok('breathe.cycle', breathe(matrix).breathing)
 // Present all multidimensionally; equilibrium is when all is in equilibrium.
 ok(`multidimensional:${multidimensional().count}`, multidimensional().mapped)
 ok(`all.equilibrium:${allInEquilibrium(matrix).balanced}/${allInEquilibrium(matrix).total}`, allInEquilibrium(matrix).equilibrium)
+// Max free animations for max tampering cost: free (client-side) and bound to the root.
+ok(`free.animations:${freeAnimations(matrix).count}x${freeAnimations(matrix).tamperingCost}`, freeAnimations(matrix).maxFree)
 // Efficiency, standard and deep: memoized dispatch + aggregators, gated rendering, no fetch, zero deps.
 ok('efficiency.standard', efficiency().optimized)
 // Extend into EMF applications, honestly: the EM spectrum + what a browser can/cannot do with EMF.

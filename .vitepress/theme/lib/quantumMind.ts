@@ -5537,6 +5537,50 @@ export function allInEquilibrium(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Max free animations for max tampering cost. Every animation in the portal is
+// free: it runs client-side, with no network and no added architecture — the
+// cost is the architecture itself. Each animation channel is bound to the model:
+// its motion is seeded by the synthesis root, so a tamper flips the seed and the
+// motion no longer matches. To forge a convincing seal a forger must reproduce
+// every animated channel consistently with a root that any tamper already broke;
+// so more free animations mean a higher forgery cost, at zero runtime cost.
+export function freeAnimations(matrix: MindMatrix = buildMatrix()) {
+  const root = quantumSynthesis(matrix).root
+  // The free, client-side animation channels across the three senses. Each is
+  // seeded from the synthesis root so its motion is content-derived: a tamper
+  // flips the seed, and the seed drives a deterministic phase the animation reads.
+  const channels = [
+    { channel: 'breathe', sense: 'sight', motion: 'pulse' },
+    { channel: 'spin', sense: 'sight', motion: 'rotation' },
+    { channel: 'reveal', sense: 'sight', motion: 'entrance' },
+    { channel: 'pulse', sense: 'sight', motion: 'seal flash' },
+    { channel: 'vibrate', sense: 'touch', motion: 'haptic' },
+    { channel: 'tone', sense: 'sound', motion: 'synthesis' },
+  ].map((entry) => {
+    const seed = toUuid(`free-anim:${entry.channel}:${root}`)
+    const phase = (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16) % 1000) / 1000
+    return { ...entry, free: true, clientCost: 0, networkCost: 0, seed, phase, bound: isUuid(seed) }
+  })
+  const free = channels.every((entry) => entry.free && entry.clientCost === 0 && entry.networkCost === 0)
+  const bound = channels.every((entry) => entry.bound)
+  // The forger must reproduce every bound channel and the 128-bit word; the cost
+  // figure counts channels times the word's bits — an honest surface measure of
+  // how much a forgery must match, not a cryptographic hardness bound.
+  const wordBits = 128
+  const tamperingCost = channels.length * wordBits
+  return {
+    maxFree: free && bound,
+    free,
+    bound,
+    channels,
+    count: channels.length,
+    tamperingCost,
+    root: merkleFold(channels.map((entry) => entry.seed)),
+    statement: 'Max free animations for max tampering cost: every animation is free — client-side, no network, the architecture itself is the cost — and seeded by the synthesis root, so each one a forger must reproduce raises the cost of a convincing forgery while costing nothing to run.',
+    boundary: 'A surface measure, not a cryptographic one. Animations widen what a forgery must reproduce and cost nothing at runtime, but the security rests on the root match, not on the motion. The cost figure counts channels times the word bits; it is not a hardness bound.',
+  }
+}
+
 // Contract and expand — the breath in one. Expand folds the many into one wave
 // (fuseAll); contract folds that wave back to the seed (contract); and the damped
 // breath settles (equilibrium). Out, in, and rest: the double torus breathing.

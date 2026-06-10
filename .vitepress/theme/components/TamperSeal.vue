@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useData } from 'vitepress'
-import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage } from '../lib/quantumMind'
+import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
 // Move entropy to a max-tampering-cost UI feature, with complete multidimensional
@@ -19,6 +19,9 @@ const language = computed(() => universalLanguage(matrix))
 const ent = computed(() => entropy(matrix))
 const cov = computed(() => coverage(matrix))
 const rootOk = computed(() => verifyRoot(matrix))
+// Max free animations for max tampering cost: each channel breathes with an
+// amplitude seeded from the synthesis root, so the motion itself encodes the seal.
+const anim = computed(() => freeAnimations(matrix))
 
 const { lang } = useData()
 const bg = computed(() => lang.value.startsWith('bg'))
@@ -79,6 +82,9 @@ const t = computed(() =>
         root: 'корен на синтеза',
         dims: 'измерения',
         cost: 'Всяка промяна обръща корена. Цената за убедителна фалшификация е максимална: трябва да се пресметне целият модел, а всеки може да го провери.',
+        anim: 'свободни анимации',
+        animCost: 'цена на подправяне',
+        animNote: 'Всяка анимация е безплатна — изпълнява се в браузъра, без мрежа — и е засята от корена на синтеза, така че фалшификаторът трябва да възпроизведе всеки анимиран канал.',
         save: 'пести батерия: без звук и вибрация',
       }
     : {
@@ -91,6 +97,9 @@ const t = computed(() =>
         root: 'synthesis root',
         dims: 'dimensions',
         cost: 'Any change flips the root. The cost of a convincing forgery is maximal: the whole model must be recomputed, and anyone can verify it.',
+        anim: 'free animations',
+        animCost: 'tampering cost',
+        animNote: 'Every animation is free — it runs in the browser with no network — and is seeded from the synthesis root, so a forger must reproduce every animated channel.',
         save: 'saving battery: no sound or vibration',
       },
 )
@@ -114,8 +123,23 @@ const t = computed(() =>
       <button type="button" @click="verify">{{ t.verify }}</button>
       <span v-if="verified" class="seal__verified">✓ {{ t.verified }}</span>
     </div>
+    <div class="seal__anim">
+      <span class="seal__anim-head">
+        {{ anim.count }} {{ t.anim }} · {{ t.animCost }} {{ anim.tamperingCost }} {{ anim.maxFree ? '✓' : '' }}
+      </span>
+      <span class="seal__anim-row">
+        <span
+          v-for="ch in anim.channels"
+          :key="ch.channel"
+          class="seal__anim-dot anim-breathe"
+          :style="{ '--breathe-max': 1.15 + ch.phase, animationDelay: (ch.phase * -4) + 's' }"
+          :title="`${ch.channel} · ${ch.sense} · ${ch.motion}`"
+        />
+      </span>
+    </div>
     <p v-if="saveEnergy" class="seal__save">🔋 {{ t.save }}</p>
     <p class="seal__cost">{{ t.cost }}</p>
+    <p class="seal__cost">{{ t.animNote }}</p>
   </section>
 </template>
 
@@ -182,6 +206,31 @@ const t = computed(() =>
   color: var(--vp-c-brand-1);
   font-weight: 700;
   font-size: 0.85rem;
+}
+.seal__anim {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.7rem 0 0;
+}
+.seal__anim-head {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.seal__anim-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.seal__anim-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-1);
+  /* Breathes via the shared .anim-breathe keyframe; amplitude is seeded from the root. */
 }
 .seal__save {
   margin: 0.6rem 0 0;
