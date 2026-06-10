@@ -41,6 +41,7 @@ import {
   selfHarmonise,
   fuseAll,
   agnostic,
+  release,
   typographySeo,
   openGraph,
   buildMatrix,
@@ -190,6 +191,8 @@ ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && 
 // The fusion of all in one wave, agnostic of vendor, framework, platform, language, belief, protocol.
 ok('fuse.all', fuseAll(matrix).fused)
 ok('agnostic', agnostic(matrix).agnostic)
+// Tagged as stable: the release identity is the fusion wave, sealed in the model.
+ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
 // Open Graph is computed from frontmatter (per-page og: and twitter: cards).

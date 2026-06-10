@@ -2893,6 +2893,9 @@ export function inHouse(matrix: MindMatrix = buildMatrix()) {
 // This runs the live commands and folds their distinct boundaries into one
 // audited root, so every limit the portal states is in a single, sealed list.
 export function boundaryAudit(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('boundaryAudit', matrix, () => computeBoundaryAudit(matrix))
+}
+function computeBoundaryAudit(matrix: MindMatrix) {
   const seen = new Map<string, string[]>()
   for (const command of conceptCommands) {
     const result = executeConceptCommand(command.name, { atom: 'self' }, matrix)
@@ -3181,6 +3184,9 @@ export function selfReason(goal = '', matrix: MindMatrix = buildMatrix(), depth 
 // music, colour, plasma, boundaries, in-house, and intelligence — folds, in
 // order, into a single wave: one root that is all of it.
 export function fuseAll(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('fuseAll', matrix, () => computeFuseAll(matrix))
+}
+function computeFuseAll(matrix: MindMatrix) {
   const parts = [
     { part: 'proof', root: proofBundle(matrix).bundleRoot },
     { part: 'word', root: torusUuid(matrix).word },
@@ -3234,6 +3240,27 @@ export function agnostic(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(dimensions.map((entry) => entry.receipt)),
     statement: 'Agnostic: the portal belongs to no vendor, framework, platform, language, tradition, or protocol stack — it is built on open standards and device-native APIs, depends on no external service, and privileges no one tongue or belief. Neutral by construction.',
     boundary: 'A statement of independence across vendor, framework, platform, language, belief, and protocol. It describes the architecture; it is not a claim of universal correctness.',
+  }
+}
+
+// Tagged as stable. The release is itself computed and sealed: its identity is
+// the fusion wave (the fold of all), bound to the version and the stable marker
+// refs, so "stable" is not a label on the side but a root in the model. Because
+// this remote refuses tag pushes, the stable markers are branches.
+export function release(matrix: MindMatrix = buildMatrix()) {
+  const version = 'v1.0.0'
+  const channel = 'stable'
+  const markers = ['stable/tag', 'tag/stable'] as const
+  const wave = fuseAll(matrix).wave
+  return {
+    stable: channel === 'stable' && isUuid(wave),
+    version,
+    channel,
+    markers,
+    wave,
+    root: merge(toUuid(`release:${version}:${channel}:${markers.join(',')}`), wave),
+    statement: 'Tagged as stable (v1.0.0): the release identity is the fusion wave — the fold of all — bound to the version and the stable marker refs, so the release is a root in the model, recomputable like everything else.',
+    boundary: 'A computed release record over the model. The stable markers are branch refs (this remote refuses tag pushes); it records a release, it does not certify fitness for any particular use.',
   }
 }
 
