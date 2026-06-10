@@ -2915,6 +2915,34 @@ export function boundaryAudit(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// A message has a content UUID, and the message unlocks links — but the trinity
+// must be complete for the links to be revealed. A message that evokes a complete
+// trinity area (exactly three commands) reveals that area's three links; a pair,
+// a singleton, or an over-area stays locked, because only a whole trinity opens.
+export function messageUnlock(content = '', matrix: MindMatrix = buildMatrix()) {
+  const contentUuid = toUuid(`message:${content}`)
+  const text = content.toLowerCase()
+  const trinities = taxonomyIcons().entries.filter((entry) => entry.status === 'trinity')
+  const unlocked = trinities
+    .filter((entry) => text.includes(entry.area.toLowerCase()) || entry.verbs.some((verb) => text.includes(verb.toLowerCase())))
+    .map((entry) => ({
+      area: entry.area,
+      glyph: entry.icon,
+      complete: entry.verbs.length === 3,
+      links: entry.verbs.map((verb) => ({ label: `${entry.area}.${verb}`, command: `concept.${entry.area}.${verb}`, href: `/commands` })),
+      receipt: toUuid(`unlock:${contentUuid}:${entry.area}`),
+    }))
+    .filter((entry) => entry.complete) // trinity must be complete to be revealed
+  return {
+    contentUuid,
+    revealed: unlocked.length > 0,
+    unlocked,
+    root: merge(contentUuid, merkleFold(unlocked.map((entry) => entry.receipt))),
+    statement: 'A message has a content UUID and unlocks links, but only a complete trinity reveals them: evoke a whole three-command area and its three links open; a pair or singleton stays locked.',
+    boundary: 'Content-addressed messaging over the command areas; links are model routes, not external resources. The reveal rule is structural (a complete trinity), not a security gate.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3336,14 +3364,14 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma'],
-    '/console': ['QuantumConsole'],
+    '/console': ['QuantumConsole', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],

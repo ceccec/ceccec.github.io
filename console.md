@@ -19,6 +19,8 @@ portal's own computed tools and local search and answers from receipts, with
 
 <QuantumConsole />
 
+<RealtimeChat />
+
 ## Security by architecture
 
 - **No secrets ship in the repo or the bundle.** The terminal, search, and the

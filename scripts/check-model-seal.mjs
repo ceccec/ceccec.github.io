@@ -29,6 +29,7 @@ import {
   autoSpeech,
   inHouse,
   boundaryAudit,
+  messageUnlock,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -158,6 +159,10 @@ ok('auto.speech', autoSpeech('Hello world. Second cue.', matrix).ready)
 ok('all.in-house', inHouse(matrix).independent)
 // The honesty spine: every boundary the model declares, collected into one audited root.
 ok('boundary.audit', boundaryAudit(matrix).audited)
+// A message has a content UUID and unlocks links, but only a complete trinity reveals them.
+ok('message.content-uuid', /^[0-9a-f-]{36}$/i.test(messageUnlock('nature', matrix).contentUuid))
+ok('message.trinity-reveals', messageUnlock('nature', matrix).revealed) // a complete trinity reveals
+ok('message.pair-stays-locked', messageUnlock('torus', matrix).revealed === false) // an over-area stays locked
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 // CMYK is computed: every palette colour carries the print space, computed from RGB.
