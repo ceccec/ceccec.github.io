@@ -56,6 +56,7 @@ The page is a view over these command results:
 - `concept.wave.coordination`
 - `concept.wave.closeGaps`
 - `concept.chess.quantum`
+- `concept.schemaOrg.diamonds`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`
@@ -187,6 +188,13 @@ observe -> bind -> verify -> project -> return
 The wire is grounded in diamond receipts, coordinated wave receipts, gap-closure
 root, and UI evidence root. It does not claim sentience or external MCP access;
 it records how an agent should act inside the ceccec model.
+
+`schemaOrgDiamonds()` folds Schema.org-shaped metadata into the same diamonds.
+The generated JSON-LD-shaped graph is self-interactive in the repository sense:
+WebPage, SoftwareSourceCode, SoftwareApplication, Dataset, DefinedTerm, and
+Action nodes all point back to computed diamond receipts, roots, UI use cases,
+or source functions. The site does not claim remote Schema.org validation; it
+shows the structured graph it computes.
 
 ## Coordinated waves and quantum chess
 

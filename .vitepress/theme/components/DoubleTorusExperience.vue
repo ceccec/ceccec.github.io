@@ -19,6 +19,7 @@ import {
   piTrainDiamonds,
   quantumChessGame,
   quantumUiEvidence,
+  schemaOrgDiamonds,
 } from '../lib/quantumMind'
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
@@ -33,6 +34,7 @@ const waves = coordinatedWaves(matrix)
 const closure = closeDimensionalGaps(matrix)
 const chess = quantumChessGame(matrix)
 const evidence = quantumUiEvidence(matrix)
+const schema = schemaOrgDiamonds(matrix)
 const activeIndex = ref(0)
 const waveTick = ref(0)
 const running = ref(false)
@@ -46,6 +48,7 @@ let audioContext: AudioContext | undefined
 const activePulse = computed(() => piTrain.diamonds[activeIndex.value])
 const activeDiamond = computed(() => activePulse.value.diamond)
 const activeClosureWave = computed(() => closure.waves[activeIndex.value % closure.waves.length])
+const schemaJson = computed(() => JSON.stringify(schema.jsonLd, null, 2))
 
 function ensureAudio(): AudioContext | undefined {
   if (typeof window === 'undefined' || !audioEnabled.value) return undefined
@@ -190,6 +193,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="waves">Waves</TabsTrigger>
         <TabsTrigger value="closure">Gap closure</TabsTrigger>
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
+        <TabsTrigger value="schema">Schema.org</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
 
@@ -346,6 +350,23 @@ onBeforeUnmount(() => {
             <span>{{ square.superposition.join('/') }}</span>
           </div>
         </div>
+      </TabsContent>
+
+      <TabsContent value="schema" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">schema.org</Badge>
+          <strong>{{ schema.statement }}</strong>
+          <span>{{ schema.boundary }}</span>
+          <code>{{ schema.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="node in schema.nodes.slice(0, 12)" :key="node['@id']">
+            <Badge variant="outline">{{ node['@type'] }}</Badge>
+            <strong>{{ node.name }}</strong>
+            <span>{{ node.description }} Identifier: {{ node.identifier }}</span>
+          </li>
+        </ul>
+        <pre class="schema-json">{{ schemaJson }}</pre>
       </TabsContent>
 
       <TabsContent value="controls" class="diamond-tabs__content">

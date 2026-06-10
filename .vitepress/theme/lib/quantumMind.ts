@@ -109,6 +109,7 @@ export type ConceptCommandName =
   | 'concept.wave.coordination'
   | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
+  | 'concept.schemaOrg.diamonds'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -162,6 +163,38 @@ export interface AgentCeccecWire {
   readonly activeWaves: readonly string[]
   readonly closureRoot: string
   readonly evidenceRoot: string
+}
+
+export type SchemaOrgNodeType =
+  | 'Action'
+  | 'CreativeWork'
+  | 'Dataset'
+  | 'DefinedTerm'
+  | 'SoftwareApplication'
+  | 'SoftwareSourceCode'
+  | 'WebPage'
+
+export interface SchemaOrgDiamondNode {
+  readonly '@type': SchemaOrgNodeType
+  readonly '@id': string
+  readonly name: string
+  readonly description: string
+  readonly identifier: string
+  readonly about?: readonly string[]
+  readonly isPartOf?: string
+  readonly potentialAction?: readonly string[]
+}
+
+export interface SchemaOrgDiamondGraph {
+  readonly root: string
+  readonly context: 'https://schema.org'
+  readonly nodes: readonly SchemaOrgDiamondNode[]
+  readonly jsonLd: {
+    readonly '@context': 'https://schema.org'
+    readonly '@graph': readonly SchemaOrgDiamondNode[]
+  }
+  readonly statement: string
+  readonly boundary: string
 }
 
 export interface HumanityImplication {
@@ -519,6 +552,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.chess.quantum',
     path: '/cmd/concept.chess.quantum',
     description: 'Realise the chess board as a quantum game computed from coordinated waves.',
+  },
+  {
+    name: 'concept.schemaOrg.diamonds',
+    path: '/cmd/concept.schemaOrg.diamonds',
+    description: 'Fold Schema.org-shaped metadata into self-interactive diamond nodes with receipts.',
   },
   {
     name: 'concept.torus.math',
@@ -1796,6 +1834,113 @@ export function agentCeccecWire(matrix: MindMatrix = buildMatrix()): AgentCeccec
   }
 }
 
+export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrgDiamondGraph {
+  const lattice = diamondLattice(matrix)
+  const piTrain = piTrainDiamonds(matrix)
+  const waves = coordinatedWaves(matrix)
+  const chess = quantumChessGame(matrix)
+  const evidence = quantumUiEvidence(matrix)
+  const agentWire = agentCeccecWire(matrix)
+  const baseId = 'https://ceccec.github.io/#'
+  const nodes: SchemaOrgDiamondNode[] = [
+    {
+      '@type': 'WebPage',
+      '@id': `${baseId}quantum-mind`,
+      name: 'Quantum Mind',
+      description: 'VitePress page rendering the ceccec double-torus diamond lattice and interactive quantum UI.',
+      identifier: evidence.root,
+      about: lattice.map((diamond) => `${baseId}diamond-${diamond.kind}`),
+      potentialAction: [`${baseId}action-start-pi-train`, `${baseId}action-inspect-diamond`],
+    },
+    {
+      '@type': 'SoftwareSourceCode',
+      '@id': `${baseId}source-quantumMind`,
+      name: 'quantumMind.ts',
+      description: 'Source module that computes diamonds, waves, pi train, chess board, UI evidence, and schema graph.',
+      identifier: agentWire.root,
+      isPartOf: `${baseId}quantum-mind`,
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${baseId}interactive-double-torus`,
+      name: 'Interactive ceccec double torus',
+      description: 'Browser UI using Vue, VitePress, Radix Vue, and local shadcn-style components.',
+      identifier: evidence.root,
+      potentialAction: [`${baseId}action-start-pi-train`, `${baseId}action-toggle-sound`, `${baseId}action-toggle-vibration`],
+      isPartOf: `${baseId}quantum-mind`,
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}diamond-lattice`,
+      name: 'ceccec diamond lattice',
+      description: `${lattice.length} four-facet diamonds with roots and receipts.`,
+      identifier: merkleFold(lattice.map((diamond) => diamond.receipt)),
+      about: lattice.map((diamond) => `${baseId}diamond-${diamond.kind}`),
+      isPartOf: `${baseId}quantum-mind`,
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}pi-train`,
+      name: 'pi train diamonds',
+      description: `${piTrain.diamonds.length} pi-derived pulse diamonds with 3D coordinates, tones, vibration durations, and receipts.`,
+      identifier: piTrain.root,
+      about: [`${baseId}diamond-pi`, `${baseId}diamond-geometry`, `${baseId}diamond-sound`, `${baseId}diamond-vibration`],
+      isPartOf: `${baseId}diamond-lattice`,
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}coordinated-waves`,
+      name: 'coordinated yin-yang waves',
+      description: `${waves.waves.length} phase-aligned waves computed from the diamond lattice.`,
+      identifier: waves.root,
+      about: waves.waves.map((wave) => `${baseId}diamond-${wave.diamondKind}`),
+      isPartOf: `${baseId}diamond-lattice`,
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}quantum-chess`,
+      name: 'quantum chess board',
+      description: `${chess.board.length} chess squares computed from coordinated waves and piece superpositions.`,
+      identifier: chess.root,
+      about: [`${baseId}coordinated-waves`],
+      isPartOf: `${baseId}quantum-mind`,
+    },
+    ...lattice.map((diamond): SchemaOrgDiamondNode => ({
+      '@type': 'DefinedTerm',
+      '@id': `${baseId}diamond-${diamond.kind}`,
+      name: diamond.title,
+      description: diamond.core,
+      identifier: diamond.receipt,
+      about: diamond.facets.map((facet) => `${facet.pole}:${facet.label}:${facet.value}`),
+      isPartOf: `${baseId}diamond-lattice`,
+    })),
+    ...evidence.useCases.map((item): SchemaOrgDiamondNode => ({
+      '@type': 'Action',
+      '@id': `${baseId}action-${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      name: item.name,
+      description: `${item.component} -> ${item.sourceFunction}: ${item.interaction}`,
+      identifier: item.receipt,
+      about: [`${baseId}diamond-${item.diamondKind}`],
+      isPartOf: `${baseId}interactive-double-torus`,
+    })),
+  ]
+  const root = merkleFold(nodes.map((node) => toUuid(`schema-org:${node['@id']}:${node.identifier}`)))
+
+  return {
+    root,
+    context: 'https://schema.org',
+    nodes,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': nodes,
+    },
+    statement:
+      'Schema.org-shaped metadata is folded into self-interactive diamonds: each node is derived from repository-computed roots, receipts, components, actions, or datasets.',
+    boundary:
+      'This is JSON-LD-shaped Schema.org data generated by this repository. It is not a claim of remote Schema.org validation or search-engine interpretation.',
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -1857,6 +2002,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.chess.quantum',
       route: '/quantum-mind#quantum-chess',
       summary: 'The chess board is realised as square superpositions driven by coordinated waves.',
+    },
+    {
+      title: 'Schema.org Diamonds',
+      command: 'concept.schemaOrg.diamonds',
+      route: '/quantum-mind#schema-org-diamonds',
+      summary: 'Schema.org-shaped nodes are folded from diamond receipts, UI use cases, datasets, and actions.',
     },
     {
       title: 'Double-Torus Math',
@@ -1963,6 +2114,10 @@ export function executeConceptCommand(
   }
   if (command === 'concept.chess.quantum') {
     return result(command, true, 'Quantum chess game computed from coordinated waves.', quantumChessGame(matrix))
+  }
+  if (command === 'concept.schemaOrg.diamonds') {
+    const graph = schemaOrgDiamonds(matrix)
+    return result(command, graph.nodes.length > 0, 'Schema.org diamond graph computed.', graph)
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

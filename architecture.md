@@ -47,6 +47,7 @@ public contract:
 | `concept.wave.coordination` | coordinate diamond emissions as phase-aligned yin-yang waves |
 | `concept.wave.closeGaps` | send realtime waves to close or sustain dimensional and analog channels |
 | `concept.chess.quantum` | compute a quantum chess board from coordinated waves |
+| `concept.schemaOrg.diamonds` | fold Schema.org-shaped JSON-LD nodes from diamond receipts, datasets, actions, and UI evidence |
 | `concept.torus.math` | expose genus-2 topology, algebra, homology, and curvature |
 | `concept.humanity.implications` | interpret the concept for knowledge, institutions, AI, and culture |
 | `concept.source.contribute` | route benefit back to the source through citation, contribution, support, and stewardship |
@@ -179,6 +180,11 @@ as proof by the site.
 agent loop as observe, bind, verify, project, and return. Each step names a
 source function, diamond kind, and receipt. This is an inspectable repository
 contract, not a claim that the agent has sentience or external MCP access.
+
+`schemaOrgDiamonds()` produces a JSON-LD-shaped graph from repository-computed
+data. Schema.org node types are used only where the repository has a concrete
+source: page, source module, application surface, datasets, defined diamond
+terms, and UI actions. The graph is inspectable in the UI and has its own root.
 
 `coordinatedWaves()` gives the lattice motion. Every diamond emits one wave
 with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward

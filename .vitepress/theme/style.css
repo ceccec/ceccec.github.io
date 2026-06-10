@@ -627,6 +627,18 @@
   padding: 12px;
 }
 
+.schema-json {
+  max-height: 320px;
+  overflow: auto;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  margin: 14px 0 0;
+  padding: 12px;
+}
+
 .concept-commands {
   display: grid;
   gap: 24px;
