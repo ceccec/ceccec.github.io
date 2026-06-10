@@ -119,6 +119,7 @@ export default defineConfig({
           { text: 'Commands', link: '/commands' },
           { text: 'Mind', link: '/quantum-mind' },
           { text: 'Architecture', link: '/architecture' },
+          { text: 'Boundaries', link: '/boundaries' },
         ],
         sidebar: [
           {
@@ -153,6 +154,7 @@ export default defineConfig({
           { text: 'Команди', link: '/bg/commands' },
           { text: 'Ум', link: '/bg/quantum-mind' },
           { text: 'Архитектура', link: '/bg/architecture' },
+          { text: 'Граници', link: '/bg/boundaries' },
         ],
         sidebar: [
           {

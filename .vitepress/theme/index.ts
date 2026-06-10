@@ -3,6 +3,7 @@ import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import BlockchainMusic from './components/BlockchainMusic.vue'
+import BoundaryAudit from './components/BoundaryAudit.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import CreativePalette from './components/CreativePalette.vue'
 import CryptoCompare from './components/CryptoCompare.vue'
@@ -42,6 +43,7 @@ export default {
   },
   enhanceApp({ app }) {
     app.component('BlockchainMusic', BlockchainMusic)
+    app.component('BoundaryAudit', BoundaryAudit)
     app.component('CollectiveMind', CollectiveMind)
     app.component('CreativePalette', CreativePalette)
     app.component('CryptoCompare', CryptoCompare)

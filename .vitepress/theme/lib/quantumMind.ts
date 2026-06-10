@@ -2888,6 +2888,33 @@ export function inHouse(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The honesty spine: collect every boundary the model declares into one place.
+// Each command's payload carries a `boundary` — the honest limit of that claim.
+// This runs the live commands and folds their distinct boundaries into one
+// audited root, so every limit the portal states is in a single, sealed list.
+export function boundaryAudit(matrix: MindMatrix = buildMatrix()) {
+  const seen = new Map<string, string[]>()
+  for (const command of conceptCommands) {
+    const result = executeConceptCommand(command.name, { atom: 'self' }, matrix)
+    const boundary = (result.data as { boundary?: string } | undefined)?.boundary
+    if (boundary && boundary.length > 0) {
+      if (!seen.has(boundary)) seen.set(boundary, [])
+      seen.get(boundary)!.push(command.name)
+    }
+  }
+  const boundaries = [...seen.entries()]
+    .sort((a, b) => b[1].length - a[1].length)
+    .map(([boundary, commands], index) => ({ boundary, commands, receipt: toUuid(`boundary-audit:${index}:${boundary}`) }))
+  return {
+    audited: boundaries.length > 0,
+    count: boundaries.length,
+    boundaries,
+    root: merkleFold(boundaries.map((entry) => entry.receipt)),
+    statement: `The honesty spine: ${boundaries.length} distinct boundaries, collected from the live commands and folded into one audited root, so every limit the portal declares is in one place.`,
+    boundary: 'An auto-collected audit of the model\'s own boundary statements. It surfaces the limits the model already declares; it adds no new claim.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3309,11 +3336,12 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
+    '/boundaries': ['BoundaryAudit'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma'],
     '/console': ['QuantumConsole'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],

@@ -28,6 +28,7 @@ import {
   soundColor,
   autoSpeech,
   inHouse,
+  boundaryAudit,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -155,6 +156,8 @@ ok('sound.color', soundColor(matrix).computed)
 ok('auto.speech', autoSpeech('Hello world. Second cue.', matrix).ready)
 // All is in house: independent intelligence and skills, zero network by default.
 ok('all.in-house', inHouse(matrix).independent)
+// The honesty spine: every boundary the model declares, collected into one audited root.
+ok('boundary.audit', boundaryAudit(matrix).audited)
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 // CMYK is computed: every palette colour carries the print space, computed from RGB.
