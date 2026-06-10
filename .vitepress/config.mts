@@ -61,6 +61,42 @@ export default defineConfig({
       ],
     })],
   ],
+  // Let every page explain itself using standards: inject a schema.org WebPage
+  // (TechArticle for the math/doc pages) JSON-LD into every page's head, plus a
+  // breadcrumb, so each page is self-describing to crawlers and agents.
+  transformPageData(pageData) {
+    const frontmatter = (pageData.frontmatter ||= {})
+    const head = (frontmatter.head ||= [])
+    const relative = pageData.relativePath
+    const isBg = relative.startsWith('bg/')
+    const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    const name = pageData.title || siteTitle
+    const description = pageData.description || frontmatter.description || siteDescription
+    const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-erpax']
+    const isDoc = docPages.some((doc) => relative.endsWith(`${doc}.md`))
+    head.push([
+      'script',
+      { type: 'application/ld+json' },
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': isDoc ? 'TechArticle' : 'WebPage',
+        name,
+        headline: name,
+        description,
+        inLanguage: isBg ? 'bg' : 'en',
+        url: path,
+        isPartOf: { '@type': 'WebSite', name: isBg ? siteTitleBg : siteTitle },
+        about: 'a quantum-learning educational portal for language models served over MCP',
+        breadcrumb: {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: isBg ? siteTitleBg : siteTitle, item: isBg ? '/bg/' : '/' },
+            { '@type': 'ListItem', position: 2, name, item: path },
+          ],
+        },
+      }),
+    ])
+  },
   themeConfig: {
     socialLinks: [],
   },
