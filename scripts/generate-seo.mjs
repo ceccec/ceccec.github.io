@@ -89,6 +89,8 @@ const digitIndex = [...piDigits].map((glyph, index) => {
   const nextDigit = Number.parseInt(piDigits[nextIndex], 10)
   const nextReverseDigit = Number.parseInt(piDigits[piDigits.length - 1 - nextIndex], 10)
   const folder = `${digit}/${reverseDigit}`
+  const fraction = folder
+  const dualFraction = `${reverseDigit}/${digit}`
   const nextHarmonicFolder = `${nextDigit}/${nextReverseDigit}`
   const theta = (index / piDigits.length) * Math.PI * 4
   const phi = ((digit + index * 0.5) / 10) * Math.PI * 2
@@ -110,6 +112,8 @@ const digitIndex = [...piDigits].map((glyph, index) => {
     digit,
     reverseDigit,
     folder,
+    fraction,
+    dualFraction,
     nextHarmonicFolder,
     selfCollision: digit === reverseDigit,
     theta,

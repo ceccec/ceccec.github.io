@@ -231,6 +231,7 @@ onBeforeUnmount(() => {
           <strong>{{ activeDiamond.title }}</strong>
           <span>
             folder={{ activePulse.folder }} · reverse={{ activePulse.reverseDigit }} ·
+            fractions={{ activePulse.fraction }} | {{ activePulse.dualFraction }} ·
             next={{ activePulse.nextHarmonicFolder }} ·
             collision={{ activePulse.selfCollision ? 'self' : 'paired' }}
           </span>

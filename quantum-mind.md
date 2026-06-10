@@ -114,6 +114,8 @@ for i in [0,n):
   d_i       := digit(pi_i)
   r_i       := digit(pi_{n-1-i})
   folder_i  := d_i / r_i
+  fraction_i := d_i/r_i
+  dual_i := r_i/d_i
   collide_i := [d_i = r_i]
   harmonic_i := folder_{i+1 mod n}
   theta_i   := (i/n) * 4*pi
@@ -127,7 +129,7 @@ for i in [0,n):
 0/0,1/1,...,9/9 := self-collision folders
 DigitProof := digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
 DigitProofClosed := forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
-DigitIndex[i] := { prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i }
+DigitIndex[i] := { prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,fraction_i,dual_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i }
 persist(DigitIndex) := /digit-index.json
 ```
 

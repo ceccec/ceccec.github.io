@@ -426,6 +426,8 @@ export interface PiTrainDiamond {
   readonly glyph: string
   readonly reverseDigit: number
   readonly folder: string
+  readonly fraction: string
+  readonly dualFraction: string
   readonly nextHarmonicFolder: string
   readonly selfCollision: boolean
   readonly theta: number
@@ -2114,6 +2116,8 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
     const nextGlyph = sequence[nextIndex]
     const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - nextIndex], 10)
     const folder = `${digit}/${reverseDigit}`
+    const fraction = folder
+    const dualFraction = `${reverseDigit}/${digit}`
     const nextHarmonicFolder = `${Number.parseInt(nextGlyph, 10)}/${nextReverseDigit}`
     const selfCollision = digit === reverseDigit
     const base = lattice[(index + digit) % lattice.length]
@@ -2163,6 +2167,8 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       glyph,
       reverseDigit,
       folder,
+      fraction,
+      dualFraction,
       nextHarmonicFolder,
       selfCollision,
       theta: point.theta,
