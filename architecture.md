@@ -344,11 +344,19 @@ offline = serviceWorker(stale-while-revalidate, same-origin GET)
 foldQuestion(q) = {concept, explanation, command, receipt, links}
 ```
 
-## 26. Boundary
+## 26. Cryptography compared (honest)
+
+How the fold above compares to established cryptography — same shapes, a
+non-cryptographic hash. Tamper-evident, not collision-resistant.
+
+<CryptoCompare />
+
+## 27. Boundary
 
 ```text
 site_claims = computed_repository_artifacts
 site_claims != sentience
 site_claims != external_physics_proof
 site_claims != remote_schema_validation
+site_claims != cryptographic_security   // tamper-evident, not collision-resistant
 ```

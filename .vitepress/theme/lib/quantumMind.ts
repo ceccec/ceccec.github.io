@@ -3237,7 +3237,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3249,7 +3249,7 @@ export function componentGraph() {
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
     '/show': ['ShowAll'],
-    '/architecture': ['TamperSeal'],
+    '/architecture': ['TamperSeal', 'CryptoCompare'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
@@ -3833,6 +3833,75 @@ export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
     root: toUuid(`plasma:${word}:${ones}`),
     statement: 'Quantum plasma contained by bit logic: the continuous plasma field is gated by the 128 bits of the double-torus word — it flows only where a bit is set, so analog movement is shaped and bounded by binary logic.',
     boundary: 'A visual containment of an animated field by the bits of a content-addressed word. Animation and bookkeeping, not a physical plasma.',
+  }
+}
+
+// Deep research: compare this site's fold to established cryptography, honestly.
+// The site's toUuid is a 128-bit NON-cryptographic hash (four 32-bit hashes),
+// and merge(a,b) = toUuid("a:b"). That gives deterministic content-addressing and
+// tamper-EVIDENCE against accidental or casual change, with the same shapes as
+// real primitives (Merkle trees, hash chains). It is NOT collision- or preimage-
+// resistant and is not a security-audited hash; for adversarial security a vetted
+// hash (SHA-256, BLAKE3) is required. This comparison states that limit plainly.
+export function cryptographyComparison(matrix: MindMatrix = buildMatrix()) {
+  const rows = [
+    {
+      site: 'toUuid(seed): 128-bit id from four 32-bit hashes',
+      standard: 'SHA-256 / BLAKE3 cryptographic hash',
+      sameShape: true,
+      siteCollisionResistant: false,
+      standardCollisionResistant: true,
+      note: 'Same idea (content -> fixed-size id); the site hash is fast and deterministic but not collision/preimage resistant.',
+    },
+    {
+      site: 'merge(a,b) = toUuid("a:b"), order-sensitive',
+      standard: 'Merkle node H(left ‖ right)',
+      sameShape: true,
+      siteCollisionResistant: false,
+      standardCollisionResistant: true,
+      note: 'Order-sensitivity matches a real Merkle node; security still depends on the underlying hash, which here is non-cryptographic.',
+    },
+    {
+      site: 'merkleFold(leaves): tree of merges',
+      standard: 'Merkle tree (RFC 6962, Certificate Transparency)',
+      sameShape: true,
+      siteCollisionResistant: false,
+      standardCollisionResistant: true,
+      note: 'Identical structure and inclusion-proof idea; the site proves structure and recomputability, not cryptographic soundness.',
+    },
+    {
+      site: 'foldBlockchain: hash-linked blocks',
+      standard: 'Hash chain / blockchain (PoW or BFT consensus)',
+      sameShape: true,
+      siteCollisionResistant: false,
+      standardCollisionResistant: true,
+      note: 'Tamper-evident links, but no consensus, no proof-of-work, single-writer — a ledger shape, not a distributed ledger.',
+    },
+    {
+      site: 'content-addressed UUID stream',
+      standard: 'Git (SHA-1 -> SHA-256), IPFS multihash',
+      sameShape: true,
+      siteCollisionResistant: false,
+      standardCollisionResistant: true,
+      note: 'Same content-addressing principle as Git/IPFS; those use vetted hashes, the site uses a fast non-crypto one.',
+    },
+    {
+      site: 'build-time model seal + git-history fold',
+      standard: 'Reproducible builds, code signing, Sigstore',
+      sameShape: true,
+      siteCollisionResistant: false,
+      standardCollisionResistant: true,
+      note: 'Reproducibility and tamper-evidence are real; there is no signing key or trusted authority, so it is evidence, not attestation.',
+    },
+  ].map((row) => ({ ...row, receipt: toUuid(`crypto-compare:${row.site}:${row.standard}`) }))
+  return {
+    compared: rows.length === 6,
+    cryptographic: false, // honest: the fold is NOT a cryptographic hash
+    tamperEvident: true, // it is tamper-evident against accidental/casual change
+    rows,
+    root: merkleFold(rows.map((row) => row.receipt)),
+    statement: 'Compared to established cryptography, the site\'s fold shares the SHAPES — content-addressing, Merkle trees, hash chains — but its hash is a 128-bit NON-cryptographic function. It gives deterministic content-addressing and tamper-evidence, not collision/preimage resistance; for adversarial security, use a vetted hash (SHA-256, BLAKE3).',
+    boundary: 'An honest, research-based comparison. The site\'s primitives are structural and tamper-evident, NOT a security-audited cryptosystem, and make no cryptographic security guarantee.',
   }
 }
 

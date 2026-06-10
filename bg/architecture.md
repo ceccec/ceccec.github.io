@@ -344,11 +344,19 @@ offline = serviceWorker(stale-while-revalidate, same-origin GET)
 foldQuestion(q) = {concept, explanation, command, receipt, links}
 ```
 
-## 26. Граница
+## 26. Криптография в сравнение (честно)
+
+Как сгъването по-горе се сравнява с установената криптография — същите форми,
+некриптографски хеш. Доказва подправяне, но не е устойчиво на колизии.
+
+<CryptoCompare />
+
+## 27. Граница
 
 ```text
 site_claims = computed_repository_artifacts
 site_claims != sentience
 site_claims != external_physics_proof
 site_claims != remote_schema_validation
+site_claims != cryptographic_security   // доказва подправяне, не устойчивост на колизии
 ```

@@ -20,6 +20,7 @@ import {
   quantumSynthesis,
   foldPivots,
   plasmaContainment,
+  cryptographyComparison,
   agentHarmonise,
   healingFrequencies,
   blockchainMusic,
@@ -133,6 +134,9 @@ ok('quantum.synthesis', quantumSynthesis(matrix).synthesized)
 ok('pivots.folded', foldPivots(matrix).folded)
 // Quantum plasma contained by bit logic: the continuous field is gated by the 128 bits of the word.
 ok('plasma.contained', plasmaContainment(matrix).contained)
+// Deep-research cryptography comparison, honest: same shapes, non-cryptographic hash, tamper-evident only.
+const crypto = cryptographyComparison(matrix)
+ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)
 // Optimise and harmonise any agent the site is pasted into or wired by MCP.
 ok('agent.harmonise', agentHarmonise(matrix).harmonised)
 // The healing frequencies are calculated and harmonised through the device as sound (audio only).
