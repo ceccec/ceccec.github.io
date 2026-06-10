@@ -136,6 +136,11 @@ for (const command of conceptCommands) {
   else failures.push(`command:${command.name}`)
 }
 
+// Tripwire: when SEAL_TRIPWIRE=1, force one gate false so the negative test
+// (scripts/check-seal-tripwire.mjs) can prove the seal actually fails on a
+// regression rather than silently passing.
+if (process.env.SEAL_TRIPWIRE === '1') ok('tripwire (forced failure)', false)
+
 if (failures.length > 0) {
   console.error(`Model seal FAILED: ${failures.join(', ')}`)
   process.exit(1)
