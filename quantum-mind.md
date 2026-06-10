@@ -127,6 +127,8 @@ for i in [0,n):
 0/0,1/1,...,9/9 := self-collision folders
 DigitProof := digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
 DigitProofClosed := forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
+DigitIndex[i] := { i,d_i,r_i,folder_i,harmonic_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i }
+persist(DigitIndex) := /digit-index.json
 ```
 
 ## 7. Waves
