@@ -186,6 +186,9 @@ export type ConceptCommandName =
   | 'concept.icon.fold'
   | 'concept.icon.taxonomy'
   | 'concept.icon.glyph'
+  | 'concept.reactor.words'
+  | 'concept.reactor.letters'
+  | 'concept.reactor.atoms'
   | 'concept.agent.observe'
   | 'concept.digit.index'
   | 'concept.repository.ledger'
@@ -854,6 +857,21 @@ export interface CommandsRegistry {
   readonly methods: number
   readonly tools: number
   readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface ReactorItem {
+  readonly command: ConceptCommandName
+  readonly value: string
+  readonly receipt: string
+}
+
+export interface FusionReactor {
+  readonly stage: 'words' | 'letters' | 'atoms'
+  readonly complete: boolean
+  readonly root: string
+  readonly items: readonly ReactorItem[]
   readonly statement: string
   readonly boundary: string
 }
@@ -1626,6 +1644,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Fold the glyph set: every command-area icon and the five Platonic-solid glyphs.',
   },
   {
+    name: 'concept.reactor.words',
+    path: '/cmd/concept.reactor.words',
+    description: 'Fusion reactor stage 1: reduce every command to its method word.',
+  },
+  {
+    name: 'concept.reactor.letters',
+    path: '/cmd/concept.reactor.letters',
+    description: 'Fusion reactor stage 2: reduce every method word to its unique letters.',
+  },
+  {
+    name: 'concept.reactor.atoms',
+    path: '/cmd/concept.reactor.atoms',
+    description: 'Fusion reactor stage 3: reduce every command to its smallest atom, one letter.',
+  },
+  {
     name: 'concept.agent.observe',
     path: '/cmd/concept.agent.observe',
     description: 'The observe step of the agent loop: read the consciousness vector before acting.',
@@ -1721,6 +1754,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.icon.fold': 'icon',
   'concept.icon.taxonomy': 'taxonomy',
   'concept.icon.glyph': 'glyph',
+  'concept.reactor.words': 'words',
+  'concept.reactor.letters': 'letters',
+  'concept.reactor.atoms': 'atoms',
   'concept.agent.observe': 'observe',
   'concept.digit.index': 'index',
   'concept.repository.ledger': 'ledger',
@@ -2605,7 +2641,7 @@ const AREA_ICONS: Record<string, string> = {
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
-  geometry: '△', society: '🏘', commons: '♻', ancient: '☥',
+  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -2810,6 +2846,28 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
       'The music of pi is infinite: the pi-digit frequencies are its notes. Where you join — the horo entry point — sets the phrase you hear.',
     boundary:
       'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.',
+  }
+}
+
+// Complete the fusion reactor in parts to the smallest: reduce each command in
+// stages — its method word, then the word's unique letters, then the single
+// smallest atom (one letter). methodFusion is the first stage; this carries it
+// down to the indivisible part.
+export function fusionReactor(stage: 'words' | 'letters' | 'atoms'): FusionReactor {
+  const items: readonly ReactorItem[] = conceptCommands.map((command) => {
+    const word = SINGLE_WORD_METHODS[command.name] ?? ''
+    const value =
+      stage === 'words' ? word : stage === 'letters' ? [...new Set(word.split(''))].sort().join('') : word.charAt(0)
+    return { command: command.name, value, receipt: toUuid(`reactor:${stage}:${command.name}:${value}`) }
+  })
+  const complete = stage === 'atoms' ? items.every((item) => item.value.length === 1) : items.every((item) => item.value.length > 0)
+  return {
+    stage,
+    complete,
+    root: merkleFold(items.map((item) => item.receipt)),
+    items,
+    statement: `Fusion reactor stage ${stage}: each command is reduced ${stage === 'words' ? 'to its method word' : stage === 'letters' ? "to its word's unique letters" : 'to its smallest atom (one letter)'}.`,
+    boundary: 'A staged reduction of the command set to its smallest parts. Structural bookkeeping, not an external claim.',
   }
 }
 
@@ -5928,6 +5986,18 @@ export function executeConceptCommand(
   if (command === 'concept.icon.glyph') {
     const glyphs = iconGlyphs()
     return result(command, glyphs.grounded, 'Glyph set folded.', glyphs)
+  }
+  if (command === 'concept.reactor.words') {
+    const reactor = fusionReactor('words')
+    return result(command, reactor.complete, 'Fusion reactor reduced commands to method words.', reactor)
+  }
+  if (command === 'concept.reactor.letters') {
+    const reactor = fusionReactor('letters')
+    return result(command, reactor.complete, 'Fusion reactor reduced words to letters.', reactor)
+  }
+  if (command === 'concept.reactor.atoms') {
+    const reactor = fusionReactor('atoms')
+    return result(command, reactor.complete, 'Fusion reactor reduced commands to smallest atoms.', reactor)
   }
   if (command === 'concept.agent.observe') {
     const observe = agentObserve(matrix)

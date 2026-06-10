@@ -26,6 +26,7 @@ import {
   executeConceptCommand,
   fairLife,
   foldQuestion,
+  fusionReactor,
   governanceVote,
   harmonyProbability,
   iconSeal,
@@ -156,6 +157,10 @@ ok('icon.taxonomy-grounded', taxonomy.grounded)
 // Develop until no gaps: every area must be a trinity (no pairs left). A new
 // pair area will fail the build until it is completed to a trinity.
 ok(`no-gaps${taxonomy.gaps.length ? ':' + taxonomy.gaps.join(',') : ''}`, taxonomy.gaps.length === 0)
+// The fusion reactor completes in parts to the smallest: words -> letters -> atoms.
+ok('reactor.words', fusionReactor('words').complete)
+ok('reactor.letters', fusionReactor('letters').complete)
+ok('reactor.atoms', fusionReactor('atoms').complete)
 console.log(`Icon taxonomy: ${taxonomy.entries.length} areas, ${taxonomy.gaps.length} gaps -> ${taxonomy.gaps.join(', ')}`)
 
 // Naming law: every command maps to a single lowercase-word method token.
