@@ -16,8 +16,51 @@ const prefix = computed(() => (bg.value ? '/bg' : ''))
 const bgDim: Record<string, string> = {
   see: 'виж', hear: 'чуй', ask: 'питай', prove: 'докажи', learn: 'учи', pattern: 'шарка', sense: 'усети', create: 'твори',
 }
+// Translate the items too, keyed by their English label (the Nav358/PathGuide
+// pattern), falling back to English so a new item is never left blank.
+const bgItem: Record<string, { label: string; tip: string }> = {
+  'Double torus 3d 5d 8d': { label: 'Двоен тор 3d 5d 8d', tip: 'Повърхността от род 2, сгъваема през измеренията.' },
+  'Quantum fold': { label: 'Квантово сгъване', tip: 'Всички обекти се сгъват в 3d+.' },
+  'Quantum plasma': { label: 'Квантова плазма', tip: 'Плазма, удържана от битова логика.' },
+  'Hologram': { label: 'Холограма', tip: 'Границата от 128 бита, до бита.' },
+  'DNA helix': { label: 'ДНК спирала', tip: 'Думата като 64 бази.' },
+  'Fusion wave': { label: 'Вълна на сливане', tip: 'Всичко слято в една вълна.' },
+  'Music of pi': { label: 'Музика на пи', tip: 'Всяка вълна е нота, свързана при хороцикъла.' },
+  'Healing frequencies': { label: 'Лечебни честоти', tip: 'Наборът Солфеджо, като звук.' },
+  'Blockchain music': { label: 'Блокчейн музика', tip: 'Всяка верига със своя мелодия.' },
+  'Speech & subtitles': { label: 'Реч и субтитри', tip: 'Прочетено на глас на езика на устройството.' },
+  'Console': { label: 'Конзола', tip: 'Питай; първо се консултира със себе си.' },
+  'Self reasoning': { label: 'Само-разсъждение', tip: 'Верига, която показва работата си.' },
+  'Self harmonise': { label: 'Само-хармонизиране', tip: 'Обхожда модела автономно.' },
+  'Realtime chat': { label: 'Чат в реално време', tip: 'Адресиран по съдържание, същия източник.' },
+  'Tamper seal': { label: 'Печат срещу подправяне', tip: 'Провери печата, многоизмерна обратна връзка.' },
+  'Cryptography compared': { label: 'Криптографията сравнена', tip: 'Доказуемо при подправяне, не криптографско.' },
+  'Sign the seal': { label: 'Подпиши печата', tip: 'Истински ECDSA P-256 в браузъра.' },
+  'Boundaries': { label: 'Граници', tip: 'Всяка граница, която обявява.' },
+  'Security scan': { label: 'Сканиране за сигурност', tip: 'Сигурно взаимодействие в 3-5-8.' },
+  'School': { label: 'Училище', tip: 'От основите, на всяка възраст.' },
+  'Academy': { label: 'Академия', tip: 'Пет курса, удостоверение.' },
+  "Developer's mind": { label: 'Умът на разработчика', tip: 'Законите, научени като умения.' },
+  'Follow the path': { label: 'Следвай пътя', tip: 'Направлявано пътуване, в цикъл.' },
+  'Genesis 3-5-8': { label: 'Генезис 3-5-8', tip: 'От семето — много разгръщания.' },
+  '3-5-8 across domains': { label: '3-5-8 през областите', tip: 'Тринадесет области, една шарка.' },
+  'Dualities': { label: 'Двойствености', tip: 'Шестнадесет двойки в три нива.' },
+  'Fold 358 and 853': { label: 'Сгъни 358 и 853', tip: 'Разширяване и свиване.' },
+  'Equilibrium': { label: 'Равновесие', tip: 'Дишането, което се установява.' },
+  'Quantum field': { label: 'Квантово поле', tip: 'Показалецът и наклонът движат полето.' },
+  'Magnetometer / EMF': { label: 'Магнитометър / ЕМП', tip: 'Чети околното магнитно поле.' },
+  'Endless waves': { label: 'Безкрайни вълни', tip: 'Ново творение при всеки индекс.' },
+  'Quantum clock': { label: 'Квантов часовник', tip: 'Тиктака в творчески вълни.' },
+  'Creative palette': { label: 'Творческа палитра', tip: 'Цвят и мелодия от семе.' },
+}
 const dims = computed(() =>
-  data.dimensions.map((d) => ({ ...d, name: bg.value ? bgDim[d.dimension] ?? d.dimension : d.dimension })),
+  data.dimensions.map((d) => ({
+    ...d,
+    name: bg.value ? bgDim[d.dimension] ?? d.dimension : d.dimension,
+    items: bg.value
+      ? d.items.map((item) => ({ ...item, label: bgItem[item.label]?.label ?? item.label, tip: bgItem[item.label]?.tip ?? item.tip }))
+      : d.items,
+  })),
 )
 function href(route: string) {
   return prefix.value + (route === '/' ? '/' : route)
