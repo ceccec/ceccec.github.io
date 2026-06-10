@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 const siteTitle = 'Double Torus'
 const siteTitleBg = 'Двоен тор'
-const siteDescription = 'Sigma_2 -> UUID* -> Gate. A serverless quantum UUID stream of roots, receipts, waves, diamonds, gates, and schema nodes.'
-const siteDescriptionBg = 'Sigma_2 -> UUID* -> Gate. Безсървърен квантов UUID поток от корени, разписки, вълни, диаманти, порти и schema възли.'
+const siteDescription = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
+const siteDescriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен тор UUID поток от корени, разписки, вълни, диаманти и порти.'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
       {
         name: 'keywords',
         content:
-          'double torus, genus 2, UUID stream, diamond lattice, quantum UI, pi train, schema.org, VitePress, Radix Vue, shadcn-vue',
+          'quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress',
       },
     ],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -35,14 +35,28 @@ export default defineConfig({
     ['link', { rel: 'alternate', hreflang: 'bg', href: '/bg/' }],
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: siteTitle,
-      description: siteDescription,
-      inLanguage: ['en', 'bg'],
-      potentialAction: {
-        '@type': 'ViewAction',
-        target: ['/quantum-mind', '/architecture', '/commands', '/bg/quantum-mind', '/bg/architecture', '/bg/commands'],
-      },
+      '@graph': [
+        {
+          '@type': ['WebSite', 'LearningResource'],
+          name: siteTitle,
+          description: siteDescription,
+          inLanguage: ['en', 'bg'],
+          learningResourceType: 'educational portal',
+          teaches: ['quantum learning', 'language models', 'Model Context Protocol'],
+          audience: { '@type': 'EducationalAudience', educationalRole: ['kids', 'students', 'adults', 'elders'] },
+          potentialAction: {
+            '@type': 'ViewAction',
+            target: ['/school', '/mcp', '/quantum-mind', '/bg/school', '/bg/mcp', '/bg/quantum-mind'],
+          },
+        },
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Double Torus MCP',
+          applicationCategory: 'DeveloperApplication',
+          description: 'An MCP tool surface that publishes every concept command for language models at /mcp.json.',
+          url: '/mcp.json',
+        },
+      ],
     })],
   ],
   themeConfig: {
@@ -59,6 +73,7 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/' },
           { text: 'School', link: '/school' },
+          { text: 'MCP', link: '/mcp' },
           { text: 'Learn', link: '/learn-erpax' },
           { text: 'Commands', link: '/commands' },
           { text: 'Mind', link: '/quantum-mind' },
@@ -69,6 +84,7 @@ export default defineConfig({
             text: 'Double Torus',
             items: [
               { text: 'School (kids to elders)', link: '/school' },
+              { text: 'MCP tool surface', link: '/mcp' },
               { text: 'Learn Erpax', link: '/learn-erpax' },
               { text: 'Commands', link: '/commands' },
               { text: 'Overview', link: '/quantum-mind' },
@@ -87,6 +103,7 @@ export default defineConfig({
         nav: [
           { text: 'Начало', link: '/bg/' },
           { text: 'Училище', link: '/bg/school' },
+          { text: 'MCP', link: '/bg/mcp' },
           { text: 'Научи', link: '/bg/learn-erpax' },
           { text: 'Команди', link: '/bg/commands' },
           { text: 'Ум', link: '/bg/quantum-mind' },
@@ -97,6 +114,7 @@ export default defineConfig({
             text: 'Двоен тор',
             items: [
               { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
+              { text: 'MCP инструментален слой', link: '/bg/mcp' },
               { text: 'Научи Erpax', link: '/bg/learn-erpax' },
               { text: 'Команди', link: '/bg/commands' },
               { text: 'Преглед', link: '/bg/quantum-mind' },

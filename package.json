@@ -6,7 +6,7 @@
   },
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build && node scripts/generate-seo.mjs && node scripts/check-digit-index-seal.mjs",
+    "docs:build": "vitepress build && node scripts/generate-seo.mjs && node scripts/check-digit-index-seal.mjs && node --experimental-strip-types scripts/generate-mcp.mjs",
     "docs:preview": "vitepress preview"
   },
   "dependencies": {

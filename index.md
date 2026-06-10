@@ -4,12 +4,15 @@ layout: home
 
 hero:
   name: "Double Torus"
-  text: "Sigma_2 -> UUID* -> Gate"
-  tagline: "chi(Sigma_2)=-2; H_1(Sigma_2)=Z^4; payload := {uuid, root, receipt, wave, diamond}."
+  text: "Quantum-learning portal for language models · MCP"
+  tagline: "An educational portal from kids to elders, served as an MCP tool surface over a double-torus UUID stream. chi(Sigma_2)=-2; H_1(Sigma_2)=Z^4."
   actions:
     - theme: brand
-      text: Run f_cmd
-      link: /commands
+      text: Enter the School
+      link: /school
+    - theme: alt
+      text: MCP tools
+      link: /mcp
     - theme: alt
       text: Open M
       link: /quantum-mind

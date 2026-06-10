@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import LearnErpax from './components/LearnErpax.vue'
+import McpTools from './components/McpTools.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
@@ -24,6 +25,7 @@ export default {
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('LearnErpax', LearnErpax)
+    app.component('McpTools', McpTools)
     app.component('QuantumMind', QuantumMind)
     app.component('RevolutAside', RevolutAside)
     app.component('SchoolCurriculum', SchoolCurriculum)

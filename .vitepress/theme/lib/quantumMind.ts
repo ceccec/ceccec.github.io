@@ -132,6 +132,7 @@ export type ConceptCommandName =
   | 'concept.self.complete'
   | 'concept.agent.educate'
   | 'concept.school.curriculum'
+  | 'concept.mcp.tools'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -500,6 +501,29 @@ export interface SchoolCurriculum {
   readonly source: 'double-torus/school'
   readonly lessons: readonly SchoolLesson[]
   readonly stages: readonly SchoolStage[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface McpTool {
+  readonly name: string
+  readonly description: string
+  readonly inputSchema: {
+    readonly type: 'object'
+    readonly properties: Record<string, { readonly type: string; readonly description: string }>
+    readonly required: readonly string[]
+    readonly additionalProperties: false
+  }
+}
+
+export interface McpToolManifest {
+  readonly name: 'double-torus'
+  readonly version: string
+  readonly protocol: 'mcp'
+  readonly description: string
+  readonly instructions: string
+  readonly tools: readonly McpTool[]
+  readonly root: string
   readonly statement: string
   readonly boundary: string
 }
@@ -933,6 +957,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.school.curriculum',
     path: '/cmd/concept.school.curriculum',
     description: 'Convert the complexity into a seven-stage school curriculum from kids to elders.',
+  },
+  {
+    name: 'concept.mcp.tools',
+    path: '/cmd/concept.mcp.tools',
+    description: 'Publish every concept command as an MCP tool so language models can read tools/list and call tools/call.',
   },
   {
     name: 'concept.agent.streamWire',
@@ -1806,6 +1835,40 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       : 'The school curriculum is open: a stage is missing a receipt or points at an unknown command.',
     boundary:
       'This is an educational ladder over the computed model. The plain-words lessons are teaching aids, not a claim that the metaphors are the formal mathematics.',
+  }
+}
+
+// Expose the portal as an MCP (Model Context Protocol) tool surface: every
+// concept command becomes an MCP tool with a name, description, and JSON-Schema
+// inputSchema, so a language model can read tools/list and invoke tools/call.
+export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolManifest {
+  const tools: readonly McpTool[] = conceptCommands.map((command) => ({
+    name: command.name,
+    description: command.description,
+    inputSchema: {
+      type: 'object',
+      properties:
+        command.input === 'atom'
+          ? { atom: { type: 'string', description: 'Atom name to resolve, e.g. self.' } }
+          : {},
+      required: [],
+      additionalProperties: false,
+    },
+  }))
+  const root = merkleFold(tools.map((tool) => toUuid(`mcp:${tool.name}:${tool.description}`)))
+  return {
+    name: 'double-torus',
+    version: '1.0.0',
+    protocol: 'mcp',
+    description:
+      'Quantum-learning educational portal for language models, exposed as an MCP tool surface over a double-torus UUID stream.',
+    instructions:
+      'tools/list returns every concept command as a tool; tools/call(name, arguments) maps to executeConceptCommand(name, arguments) and returns its receipt.',
+    tools,
+    root,
+    statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,
+    boundary:
+      'This is a static MCP tool manifest computed from the repository. It documents the tool surface and is recomputable; it is not a live server and makes no external claims.',
   }
 }
 
@@ -3817,6 +3880,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The complexity is converted into a seven-stage school from kids to elders.',
     },
     {
+      title: 'MCP Tools',
+      command: 'concept.mcp.tools',
+      route: '/mcp',
+      summary: 'Every concept command is published as an MCP tool for language models at /mcp.json.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4014,6 +4083,10 @@ export function executeConceptCommand(
   if (command === 'concept.school.curriculum') {
     const school = schoolCurriculum(matrix)
     return result(command, school.complete, 'School curriculum computed from kids to elders.', school)
+  }
+  if (command === 'concept.mcp.tools') {
+    const manifest = mcpToolManifest(matrix)
+    return result(command, manifest.tools.length > 0, 'MCP tool manifest published from concept commands.', manifest)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)

@@ -4,12 +4,15 @@ layout: home
 
 hero:
   name: "Двоен тор"
-  text: "Sigma_2 -> UUID* -> Gate"
-  tagline: "chi(Sigma_2)=-2; H_1(Sigma_2)=Z^4; payload := {uuid, root, receipt, wave, diamond}."
+  text: "Портал за квантово учене за езикови модели · MCP"
+  tagline: "Образователен портал от деца до възрастни, поднесен като MCP инструментален слой над двоен тор UUID поток. chi(Sigma_2)=-2; H_1(Sigma_2)=Z^4."
   actions:
     - theme: brand
-      text: Изпълни f_cmd
-      link: /bg/commands
+      text: Влез в Училището
+      link: /bg/school
+    - theme: alt
+      text: MCP инструменти
+      link: /bg/mcp
     - theme: alt
       text: Отвори M
       link: /bg/quantum-mind
