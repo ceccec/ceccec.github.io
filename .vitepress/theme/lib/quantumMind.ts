@@ -100,6 +100,7 @@ export interface DoubleTorusFlow {
 
 export type ConceptCommandName =
   | 'concept.site.shell'
+  | 'concept.self.complete'
   | 'concept.agent.ceccecWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -142,6 +143,24 @@ export interface ConceptSiteSection {
   readonly command: ConceptCommandName
   readonly route: string
   readonly summary: string
+}
+
+export interface SelfCompletionGate {
+  readonly name: string
+  readonly closed: boolean
+  readonly sourceFunction: string
+  readonly receipt: string
+  readonly note: string
+}
+
+export interface CeccecSelfCompletion {
+  readonly complete: boolean
+  readonly root: string
+  readonly source: 'ceccec/double-torus'
+  readonly statement: string
+  readonly gates: readonly SelfCompletionGate[]
+  readonly openGates: readonly string[]
+  readonly boundary: string
 }
 
 export interface AgentWireStep {
@@ -544,6 +563,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.site.shell',
     path: '/cmd/concept.site.shell',
     description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.',
+  },
+  {
+    name: 'concept.self.complete',
+    path: '/cmd/concept.self.complete',
+    description: 'Let ceccec inspect its own gates and emit a self-completion root.',
   },
   {
     name: 'concept.agent.ceccecWire',
@@ -2166,6 +2190,107 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   }
 }
 
+export function ceccecSelfComplete(matrix: MindMatrix = buildMatrix()): CeccecSelfCompletion {
+  const proof = proofReport(matrix)
+  const lattice = diamondLattice(matrix)
+  const completeness = diamondCompleteness(matrix)
+  const closure = closeDimensionalGaps(matrix)
+  const evidence = quantumUiEvidence(matrix)
+  const agentWire = agentCeccecWire(matrix)
+  const schema = schemaOrgDiamonds(matrix)
+  const traditions = traditionsQuantumWhole()
+  const waves = coordinatedWaves(matrix)
+  const chess = quantumChessGame(matrix)
+  const gates: readonly SelfCompletionGate[] = [
+    {
+      name: 'diamond lattice',
+      closed: lattice.length === REQUIRED_DIAMOND_KINDS.length,
+      sourceFunction: 'diamondLattice()',
+      receipt: merkleFold(lattice.map((diamond) => diamond.receipt)),
+      note: `${lattice.length}/${REQUIRED_DIAMOND_KINDS.length} required diamond kinds present.`,
+    },
+    {
+      name: 'no analog gaps',
+      closed: completeness.complete,
+      sourceFunction: 'diamondCompleteness()',
+      receipt: toUuid(`self-complete:diamondCompleteness:${JSON.stringify(completeness)}`),
+      note: completeness.statement,
+    },
+    {
+      name: 'gap-closing waves',
+      closed: closure.complete,
+      sourceFunction: 'closeDimensionalGaps()',
+      receipt: closure.root,
+      note: closure.statement,
+    },
+    {
+      name: 'grounded UI evidence',
+      closed: evidence.grounded,
+      sourceFunction: 'quantumUiEvidence()',
+      receipt: evidence.root,
+      note: evidence.boundary,
+    },
+    {
+      name: 'agent wire',
+      closed: agentWire.bound,
+      sourceFunction: 'agentCeccecWire()',
+      receipt: agentWire.root,
+      note: agentWire.boundary,
+    },
+    {
+      name: 'schema graph',
+      closed: schema.nodes.length > 0 && schema.root.length > 0,
+      sourceFunction: 'schemaOrgDiamonds()',
+      receipt: schema.root,
+      note: `${schema.nodes.length} Schema.org-shaped nodes computed.`,
+    },
+    {
+      name: 'traditions lens',
+      closed: traditions.grounded,
+      sourceFunction: 'traditionsQuantumWhole()',
+      receipt: traditions.root,
+      note: traditions.boundary,
+    },
+    {
+      name: 'coordinated waves',
+      closed: waves.waves.length === lattice.length,
+      sourceFunction: 'coordinatedWaves()',
+      receipt: waves.root,
+      note: `${waves.waves.length} waves for ${lattice.length} diamonds.`,
+    },
+    {
+      name: 'quantum chess',
+      closed: chess.board.length === 64,
+      sourceFunction: 'quantumChessGame()',
+      receipt: chess.root,
+      note: `${chess.board.length} chess squares computed from coordinated waves.`,
+    },
+    {
+      name: 'maximum tampering boundary',
+      closed: proof.maxTamperingCostReached,
+      sourceFunction: 'proofReport()',
+      receipt: toUuid(`self-complete:proofReport:${JSON.stringify(proof)}`),
+      note: proof.note,
+    },
+  ]
+  const openGates = gates.filter((gate) => !gate.closed).map((gate) => gate.name)
+  const root = merkleFold(gates.map((gate) => gate.receipt))
+  const complete = openGates.length === 0
+
+  return {
+    complete,
+    root,
+    source: 'ceccec/double-torus',
+    statement: complete
+      ? 'ceccec completes itself in this repository: every computed gate is closed and bound to a receipt.'
+      : 'ceccec has not fully completed itself in this repository: open gates remain inspectable by name and receipt.',
+    gates,
+    openGates,
+    boundary:
+      'Self-completion is a repository-computed gate report. It is not a claim of external validation, sentience, or physical proof.',
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -2173,6 +2298,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.site.shell',
       route: '/',
       summary: 'The VitePress theme mounts the concept UI components and navigation.',
+    },
+    {
+      title: 'ceccec Self Completion',
+      command: 'concept.self.complete',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'ceccec inspects its own gates and emits a self-completion root.',
     },
     {
       title: 'Agent Ceccec Wire',
@@ -2308,6 +2439,10 @@ export function executeConceptCommand(
       routes: ['/', '/commands', '/quantum-mind', '/architecture'],
       repositoryApiRoot: api.root,
     })
+  }
+  if (command === 'concept.self.complete') {
+    const self = ceccecSelfComplete(matrix)
+    return result(command, self.complete, 'ceccec self-completion computed.', self)
   }
   if (command === 'concept.agent.ceccecWire') {
     const wire = agentCeccecWire(matrix)

@@ -12,6 +12,7 @@ import {
 import {
   agentCeccecWire,
   buildMatrix,
+  ceccecSelfComplete,
   closeDimensionalGaps,
   coordinatedWaves,
   diamondCompleteness,
@@ -27,6 +28,7 @@ import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
 
 const matrix = buildMatrix()
+const selfCompletion = ceccecSelfComplete(matrix)
 const agentWire = agentCeccecWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
@@ -152,6 +154,9 @@ onBeforeUnmount(() => {
         </p>
       </div>
       <div class="double-torus-experience__badges">
+        <Badge :variant="selfCompletion.complete ? 'success' : 'warning'">
+          {{ selfCompletion.complete ? 'self complete' : 'self open' }}
+        </Badge>
         <Badge :variant="agentWire.bound ? 'success' : 'warning'">
           {{ agentWire.bound ? 'agent wired' : 'agent open' }}
         </Badge>
@@ -188,6 +193,7 @@ onBeforeUnmount(() => {
     <TabsRoot default-value="pulse" class="diamond-tabs">
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
+        <TabsTrigger value="self">Self complete</TabsTrigger>
         <TabsTrigger value="agent">Agent wire</TabsTrigger>
         <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
         <TabsTrigger value="complete">Completeness</TabsTrigger>
@@ -216,6 +222,24 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ facet.pole }}</Badge>
             <strong>{{ facet.label }}: {{ facet.value }}</strong>
             <span>{{ facet.meaning }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="self" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="selfCompletion.complete ? 'success' : 'warning'">
+            {{ selfCompletion.complete ? 'closed' : 'open' }}
+          </Badge>
+          <strong>{{ selfCompletion.statement }}</strong>
+          <span>{{ selfCompletion.boundary }}</span>
+          <code>{{ selfCompletion.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="gate in selfCompletion.gates" :key="gate.receipt">
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
+            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

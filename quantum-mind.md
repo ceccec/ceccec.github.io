@@ -47,6 +47,7 @@ The core loop is:
 The page is a view over these command results:
 
 - `concept.site.shell`
+- `concept.self.complete`
 - `concept.agent.ceccecWire`
 - `concept.ui.doubleTorus`
 - `concept.ui.useCases`
@@ -189,6 +190,12 @@ observe -> bind -> verify -> project -> return
 The wire is grounded in diamond receipts, coordinated wave receipts, gap-closure
 root, and UI evidence root. It does not claim sentience or external MCP access;
 it records how an agent should act inside the ceccec model.
+
+`ceccecSelfComplete()` lets ceccec inspect its own gates: diamond lattice,
+analog-gap closure, realtime waves, UI evidence, agent wire, Schema.org graph,
+traditions lens, coordinated waves, quantum chess, and max tampering boundary.
+It returns a self-completion root plus any open gates. This is a repository
+gate report, not an external validation or sentience claim.
 
 `schemaOrgDiamonds()` folds Schema.org-shaped metadata into the same diamonds.
 The generated JSON-LD-shaped graph is self-interactive in the repository sense:

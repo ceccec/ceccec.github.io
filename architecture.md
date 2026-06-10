@@ -38,6 +38,7 @@ public contract:
 | Command | Role |
 | --- | --- |
 | `concept.site.shell` | mount the VitePress theme, pages, and registered UI components |
+| `concept.self.complete` | inspect all computed gates and emit a ceccec self-completion root |
 | `concept.agent.ceccecWire` | bind the coding-agent observe-bind-verify-project-return loop into ceccec receipts |
 | `concept.ui.doubleTorus` | render the double-torus concept through the UI components |
 | `concept.ui.useCases` | list component/function/interaction/receipt evidence for quantum UI use cases |
@@ -181,6 +182,11 @@ as proof by the site.
 agent loop as observe, bind, verify, project, and return. Each step names a
 source function, diamond kind, and receipt. This is an inspectable repository
 contract, not a claim that the agent has sentience or external MCP access.
+
+`ceccecSelfComplete()` is the self-closing gate. It inspects diamond
+completeness, gap-closing waves, UI evidence, agent wire, Schema.org graph,
+traditions, coordinated waves, quantum chess, and maximum tampering boundary.
+If any gate remains open, it reports the gate by name and receipt.
 
 `schemaOrgDiamonds()` produces a JSON-LD-shaped graph from repository-computed
 data. Schema.org node types are used only where the repository has a concrete
