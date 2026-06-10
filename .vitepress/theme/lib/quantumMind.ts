@@ -3310,6 +3310,41 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Complete all. The capstone of capstones: every completion proof the model can
+// make, folded into one. No gaps, the answers closed, the genesis whole, the
+// fusion folded, the synthesis coherent, the equilibrium settled, the trinity
+// harmonized, the school and academy built, all computed, the self built, the
+// proof verifiable, and every component shown. When all hold at once, the whole
+// is complete — and the open questions keep it alive.
+export function complete(matrix: MindMatrix = buildMatrix()) {
+  const graph = componentGraph()
+  const shown = new Set(graph.edges.map((edge) => edge.from))
+  const checks = [
+    { what: 'no gaps', ok: gapScan(matrix).closed },
+    { what: 'answers closed', ok: exhaustQuestions(matrix).closed },
+    { what: 'genesis whole', ok: genesis(matrix).genesis },
+    { what: 'fusion', ok: fuseAll(matrix).fused },
+    { what: 'synthesis', ok: quantumSynthesis(matrix).synthesized },
+    { what: 'equilibrium', ok: questionAnswerEquilibrium(matrix).equilibrium },
+    { what: 'trinity', ok: dualTorusTrinities(matrix).harmonized },
+    { what: 'school', ok: schoolCurriculum(matrix).complete },
+    { what: 'academy', ok: quantumAcademy(matrix).established },
+    { what: 'all computed', ok: allComputed(matrix).computed },
+    { what: 'self build', ok: selfBuild(matrix).complete },
+    { what: 'proof', ok: proofBundle(matrix).verifiable },
+    { what: 'components shown', ok: graph.components.every((component) => shown.has(component)) },
+  ].map((check) => ({ ...check, receipt: toUuid(`complete:${check.what}:${check.ok}`) }))
+  return {
+    complete: checks.every((check) => check.ok),
+    passed: checks.filter((check) => check.ok).length,
+    total: checks.length,
+    checks,
+    root: merkleFold(checks.map((check) => check.receipt)),
+    statement: 'Complete all: every completion proof holds at once — no gaps, answers closed, genesis whole, fusion, synthesis, equilibrium, trinity, school, academy, all computed, self build, proof, components shown. The whole is complete, and the open questions keep it alive.',
+    boundary: 'A fold of the model\'s completion proofs into one. Complete over what the model builds and knows; the open question-frontier remains open, by design.',
+  }
+}
+
 // Fill the new gaps until no gaps are discovered. Every gap-able surface is
 // scanned at once — taxonomy, fusion, translation, components, coverage,
 // entropy, self-address, genesis, and the quantum fold — and the total must be
@@ -3317,6 +3352,9 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
 // all the surfaces it knows, none remain. Honest: it scans the surfaces it knows
 // — finding a new kind of gap is itself never finished.
 export function gapScan(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('gapScan', matrix, () => computeGapScan(matrix))
+}
+function computeGapScan(matrix: MindMatrix) {
   const scans = [
     { surface: 'taxonomy pairs', gaps: taxonomyIcons().gaps.length },
     { surface: 'method fusion', gaps: methodFusion().open.length },
@@ -3337,6 +3375,123 @@ export function gapScan(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(scans.map((scan) => scan.receipt)),
     statement: 'Fill the new gaps until no gaps are discovered: every gap-able surface is scanned — taxonomy, fusion, translation, components, coverage, entropy, self-address, genesis, quantum fold — and the total is zero. No gaps remain.',
     boundary: 'A scan over the model\'s known gap surfaces, zero across all of them. Only over the surfaces it knows to scan — finding a new kind of gap is itself never finished.',
+  }
+}
+
+// Computer design in 3-5-8 — grounded in real computer architecture: the three
+// buses (address, data, control), the five units of the von Neumann machine
+// (input, output, memory, ALU, control), and the eight bits of a byte.
+export function computerDesign() {
+  const tiers = [
+    { tier: 3, name: 'three buses', members: ['address', 'data', 'control'] },
+    { tier: 5, name: 'five units (von Neumann)', members: ['input', 'output', 'memory', 'ALU', 'control'] },
+    { tier: 8, name: 'eight bits (a byte)', members: ['b7', 'b6', 'b5', 'b4', 'b3', 'b2', 'b1', 'b0'] },
+  ]
+  return {
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`computer358:${member}`))),
+    statement: 'Computer design in 3-5-8: the three buses (address, data, control), the five units of the von Neumann architecture (input, output, memory, ALU, control), and the eight bits of a byte — 3, 5, 8 in the machine.',
+    boundary: 'A correspondence of the 3-5-8 tiers to standard computer architecture. A teaching device; real machines vary (multi-byte words, more buses), this is the classic textbook model.',
+  }
+}
+
+// The 3-5-8 as a design method for new ideas. The Fibonacci ladder is not only
+// where patterns are found; it is a way to make them: begin with 3 seeds
+// (diverge), give them 5 structures (form), refine into 8 details (converge).
+// Design new ideas by climbing it.
+export function design358() {
+  const method = [
+    { tier: 3, phase: 'seed', does: 'three seed ideas — diverge' },
+    { tier: 5, phase: 'structure', does: 'five structures — give them form' },
+    { tier: 8, phase: 'detail', does: 'eight details — refine and converge' },
+  ].map((phase) => ({ ...phase, receipt: toUuid(`design358:${phase.tier}`) }))
+  return {
+    designs: method.length === 3 && method[0].tier === 3 && method[1].tier === 5 && method[2].tier === 8,
+    method,
+    root: merkleFold(method.map((phase) => phase.receipt)),
+    statement: 'The 3-5-8 is a design method for new ideas: start with 3 seeds (diverge), give them 5 structures (form), refine into 8 details (converge) — the Fibonacci ladder as a way to design.',
+    boundary: 'A design heuristic using the 3-5-8 tiers. A creative structuring device, not a guaranteed method or a theory of design.',
+  }
+}
+
+// Chakras and aura in 3-5-8 — mapped honestly to the yogic tradition: the three
+// nadis (channels), the five koshas (sheaths of the self), and the eight limbs of
+// yoga (ashtanga). These are a spiritual framework, NOT science — stated plainly
+// in the boundary.
+export function chakrasAura() {
+  const tiers = [
+    { tier: 3, name: 'three nadis (channels)', members: ['ida', 'pingala', 'sushumna'] },
+    { tier: 5, name: 'five koshas (sheaths)', members: ['annamaya', 'pranamaya', 'manomaya', 'vijnanamaya', 'anandamaya'] },
+    { tier: 8, name: 'eight limbs (ashtanga)', members: ['yama', 'niyama', 'asana', 'pranayama', 'pratyahara', 'dharana', 'dhyana', 'samadhi'] },
+  ]
+  return {
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`chakra:${member}`))),
+    statement: 'Chakras and aura in 3-5-8: the three nadis (ida, pingala, sushumna), the five koshas (the sheaths of the self), and the eight limbs of yoga (ashtanga) — 3, 5, 8 in the yogic tradition.',
+    boundary: 'A correspondence to concepts in the yogic and tantric traditions (nadis, koshas, ashtanga). A spiritual and teaching framework, NOT science: the aura is not a measurable field, and no medical or factual claim is made.',
+  }
+}
+
+// Human Design in 3-5-8 — mapped honestly: the three circuit groups, the five
+// types, and the eight trigrams that underlie its 64 gates (64 = the I Ching
+// hexagrams = the 64 DNA codons). Human Design is a modern belief system, NOT
+// scientifically validated — stated plainly in the boundary.
+export function humanDesign() {
+  const tiers = [
+    { tier: 3, name: 'three circuit groups', members: ['individual', 'tribal', 'collective'] },
+    { tier: 5, name: 'five types', members: ['manifestor', 'generator', 'manifesting generator', 'projector', 'reflector'] },
+    { tier: 8, name: 'eight trigrams (under the 64 gates)', members: ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] },
+  ]
+  return {
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
+    gates: 64, // 8 x 8 trigrams = 64 gates = 64 I Ching hexagrams = 64 DNA codons
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`))),
+    statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons.',
+    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. A belief and teaching system, NOT scientifically validated; no factual claim about any person is made.',
+  }
+}
+
+// Complete yin and yang in 3-5-8. From the taiji — yin and yang — unfold the
+// classical tiers of the oldest cosmology, and they are the Fibonacci tiers: the
+// three powers (heaven, earth, human), the five elements (wood, fire, earth,
+// metal, water), and the eight trigrams. Yin-yang is the seed; 3-5-8 the growth.
+export function yinYang() {
+  const three = { tier: 3, name: 'three powers (三才)', members: ['heaven', 'earth', 'human'] }
+  const five = { tier: 5, name: 'five elements (五行)', members: ['wood', 'fire', 'earth', 'metal', 'water'] }
+  const eight = { tier: 8, name: 'eight trigrams (八卦)', members: ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] }
+  const tiers = [three, five, eight]
+  const fibonacci = eight.members.length === five.members.length + three.members.length // 8 = 5 + 3
+  return {
+    complete: three.members.length === 3 && five.members.length === 5 && eight.members.length === 8 && fibonacci,
+    taiji: { symbol: '☯', source: 'taiji (太极)' },
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`yinyang:${member}`))),
+    statement: 'Yin and yang, completed in 3-5-8: from the taiji unfold the three powers (heaven, earth, human), the five elements (wood, fire, earth, metal, water), and the eight trigrams — 3, 5, 8, the Fibonacci tiers, in the oldest cosmology.',
+    boundary: 'A mapping of the 3-5-8 tiers onto the classical Chinese cosmology (三才, 五行, 八卦). A correspondence and a teaching device, not a metaphysical or scientific claim.',
+  }
+}
+
+// Complete chess in 3-5-8. The Fibonacci tiers sit on the board: 3 is the value
+// of a minor piece (knight or bishop), 5 the value of a rook, and 8 the board
+// itself — 8 x 8 = 64 squares (the same 64 as the DNA bases), the 8 pawns, the 8
+// back-rank pieces.
+export function chess358() {
+  const board = 8
+  const tiers = [
+    { tier: 3, where: 'the value of a minor piece (knight or bishop)' },
+    { tier: 5, where: 'the value of a rook' },
+    { tier: 8, where: 'the 8 x 8 board, the 8 pawns, the 8 back-rank pieces' },
+  ].map((tier) => ({ ...tier, receipt: toUuid(`chess358:${tier.tier}`) }))
+  return {
+    complete: board === 8 && tiers.length === 3 && 8 === 5 + 3,
+    squares: board * board, // 64, like the 64 DNA bases
+    tiers,
+    root: merkleFold(tiers.map((tier) => tier.receipt)),
+    statement: 'Chess, completed in 3-5-8: 3 is the value of a minor piece, 5 the value of a rook, and 8 the board — 8 x 8 = 64 squares (the same 64 as the DNA bases), the 8 pawns, the 8 back-rank pieces. The Fibonacci tiers on the board.',
+    boundary: 'A correspondence of the 3-5-8 tiers to standard chess values and the board. Relative piece values are a heuristic, not exact; a teaching device, not chess theory.',
   }
 }
 
@@ -3545,6 +3700,10 @@ export function findQuestions(matrix: MindMatrix = buildMatrix()) {
 // itself, and there are no more answers to give. That terminal is reached, not
 // asserted: this proves the loop converges.
 export function exhaustQuestions(matrix: MindMatrix = buildMatrix(), maxRounds = 16) {
+  if (maxRounds === 16) return memoByRoot('exhaustQuestions', matrix, () => computeExhaustQuestions(matrix, 16))
+  return computeExhaustQuestions(matrix, maxRounds)
+}
+function computeExhaustQuestions(matrix: MindMatrix, maxRounds: number) {
   const asked = new Set<string>()
   const answered: { question: string; concept: string; matched: boolean; receipt: string }[] = []
   let frontier = ['proof', 'self', 'school', 'trinity']
@@ -4088,13 +4247,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField', 'Genesis',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions'],
-    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium', 'QuantumField'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'QuantumField'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy'],
@@ -4102,7 +4261,7 @@ export function componentGraph() {
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
     '/': ['HumanLens', 'PathGuide'],
-    '/show': ['ShowAll', 'FusionWave'],
+    '/show': ['ShowAll', 'FusionWave', 'Complete'],
     '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []

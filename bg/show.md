@@ -16,3 +16,5 @@ head:
 <FusionWave />
 
 <ShowAll />
+
+<Complete />

@@ -1324,6 +1324,19 @@ export declare function doubleTorus3D(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function complete(matrix?: MindMatrix): {
+    complete: boolean;
+    passed: number;
+    total: number;
+    checks: {
+        receipt: string;
+        what: string;
+        ok: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function gapScan(matrix?: MindMatrix): {
     closed: boolean;
     total: number;
@@ -1332,6 +1345,79 @@ export declare function gapScan(matrix?: MindMatrix): {
         receipt: string;
         surface: string;
         gaps: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function computerDesign(): {
+    complete: boolean;
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function design358(): {
+    designs: boolean;
+    method: {
+        receipt: string;
+        tier: number;
+        phase: string;
+        does: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function chakrasAura(): {
+    complete: boolean;
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function humanDesign(): {
+    complete: boolean;
+    gates: number;
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function yinYang(): {
+    complete: boolean;
+    taiji: {
+        symbol: string;
+        source: string;
+    };
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function chess358(): {
+    complete: boolean;
+    squares: number;
+    tiers: {
+        receipt: string;
+        tier: number;
+        where: string;
     }[];
     root: string;
     statement: string;

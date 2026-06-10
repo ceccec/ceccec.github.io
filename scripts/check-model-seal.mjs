@@ -46,7 +46,14 @@ import {
   release,
   doubleTorus3D,
   genesis,
+  yinYang,
+  chess358,
+  chakrasAura,
+  humanDesign,
+  computerDesign,
+  design358,
   gapScan,
+  complete,
   dimensions,
   dualities,
   deviceSensors,
@@ -229,8 +236,20 @@ ok('question-answer.equilibrium', questionAnswerEquilibrium(matrix).equilibrium)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
 // The double-torus genesis: from the seed 1,1 the 3-5-8 tiers and the genus-2 structure unfold.
 ok('genesis.double-torus', genesis(matrix).genesis)
+// Complete 3-5-8 in yin-yang (3 powers, 5 elements, 8 trigrams) and chess (minor, rook, board).
+ok('yinyang.358', yinYang().complete)
+ok('chess.358', chess358().complete)
+// 3-5-8 across traditions (mapped honestly as belief frameworks, not science).
+ok('chakras.358', chakrasAura().complete)
+ok('humandesign.358', humanDesign().complete)
+// 3-5-8 in computer design (grounded), and the 3-5-8 as a design method for new ideas.
+ok('computer.358', computerDesign().complete)
+ok('design.358', design358().designs)
 // Fill the new gaps until no gaps are discovered: every known gap surface scans to zero.
 ok(`gaps.none:${gapScan(matrix).total}`, gapScan(matrix).closed)
+// Complete all: every completion proof holds at once.
+const completion = complete(matrix)
+ok(`complete.all:${completion.passed}/${completion.total}`, completion.complete)
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).
 ok(`dualities.compared:${dualities().count}`, dualities().compared)

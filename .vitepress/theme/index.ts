@@ -5,6 +5,8 @@ import DefaultTheme from 'vitepress/theme'
 import BlockchainMusic from './components/BlockchainMusic.vue'
 import BoundaryAudit from './components/BoundaryAudit.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
+import Complete from './components/Complete.vue'
+import Cosmology358 from './components/Cosmology358.vue'
 import CreativePalette from './components/CreativePalette.vue'
 import CryptoCompare from './components/CryptoCompare.vue'
 import DnaHelix from './components/DnaHelix.vue'
@@ -65,6 +67,8 @@ export default {
     app.component('BlockchainMusic', BlockchainMusic)
     app.component('BoundaryAudit', BoundaryAudit)
     app.component('CollectiveMind', CollectiveMind)
+    app.component('Complete', Complete)
+    app.component('Cosmology358', Cosmology358)
     app.component('CreativePalette', CreativePalette)
     app.component('CryptoCompare', CryptoCompare)
     app.component('DnaHelix', DnaHelix)
