@@ -5,11 +5,13 @@
 import { execSync } from 'node:child_process'
 import {
   allComputed,
+  ancientTech,
   atomInclusionProof,
   atoms,
   babelFold,
   buildMatrix,
   conceptCommands,
+  societyRelations,
   selfAddressed,
   selfInteraction,
   utfAnalog,
@@ -83,6 +85,8 @@ const society = sacredSociety(matrix) // self-governance: zero living cost balan
 ok('sacred-society.balanced', society.governed && society.balanced)
 ok('governance.defined', governanceVote([], matrix).defined) // society approves and monitors by rate and vote
 ok('fair-life.grounded', fairLife(matrix).grounded) // participation ladder for fair trade and sustainable life
+ok('ancient-tech.grounded', ancientTech(matrix).grounded) // ancient tech prefigures the concepts
+ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)

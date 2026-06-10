@@ -148,6 +148,8 @@ export type ConceptCommandName =
   | 'concept.society.sacred'
   | 'concept.governance.vote'
   | 'concept.life.fair'
+  | 'concept.ancient.tech'
+  | 'concept.society.relations'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -780,6 +782,38 @@ export interface FairLife {
   readonly boundary: string
 }
 
+export interface AncientTech {
+  readonly tech: string
+  readonly era: string
+  readonly prefigures: string
+  readonly concept: ConceptCommandName
+  readonly receipt: string
+}
+
+export interface AncientTechLens {
+  readonly grounded: boolean
+  readonly root: string
+  readonly technologies: readonly AncientTech[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface SocietyRelation {
+  readonly from: string
+  readonly to: string
+  readonly kind: string
+  readonly receipt: string
+}
+
+export interface SocietyRelations {
+  readonly folded: boolean
+  readonly root: string
+  readonly parts: readonly { readonly name: string; readonly root: string }[]
+  readonly relations: readonly SocietyRelation[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1293,6 +1327,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'A participation ladder for fair trade and sustainable life that anyone can learn and follow.',
   },
   {
+    name: 'concept.ancient.tech',
+    path: '/cmd/concept.ancient.tech',
+    description: 'Dive deep in ancient tech: map ancient technologies to the concepts they prefigure.',
+  },
+  {
+    name: 'concept.society.relations',
+    path: '/cmd/concept.society.relations',
+    description: 'Fold all society relations: traditions, science, sacred society, governance, and fair life into one root.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1490,6 +1534,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.society.sacred': 'govern',
   'concept.governance.vote': 'vote',
   'concept.life.fair': 'sustain',
+  'concept.ancient.tech': 'ancient',
+  'concept.society.relations': 'relate',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2314,6 +2360,64 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// Dive deep in ancient tech: ancient technologies prefigure the computed model.
+// Each maps a historical technique to a concept it anticipates — analogy, not
+// historical claim, and each mapping is grounded in a real command.
+export function ancientTech(matrix: MindMatrix = buildMatrix()): AncientTechLens {
+  const known = new Set(conceptCommands.map((command) => command.name))
+  const technologies: readonly AncientTech[] = (
+    [
+      { tech: 'I Ching hexagrams', era: 'Zhou China', prefigures: 'binary digits folded into states', concept: 'concept.digit.math' },
+      { tech: 'Antikythera mechanism', era: 'Hellenistic Greece', prefigures: 'deterministic geared computation', concept: 'concept.compute.distributed' },
+      { tech: 'Platonic solids', era: 'classical Greece', prefigures: 'the five solids that seal the geometry', concept: 'concept.geometry.seal' },
+      { tech: 'Quipu knot records', era: 'Andean / Inca', prefigures: 'hash-linked knotted ledgers', concept: 'concept.chain.quantum' },
+      { tech: 'Astrolabe', era: 'Hellenistic / Islamic', prefigures: 'coordinates folded onto a wheel', concept: 'concept.diamond.piTrain' },
+      { tech: 'Songlines & oral mnemonics', era: 'Aboriginal Australia', prefigures: 'self-development by traversing a path', concept: 'concept.mind.develop' },
+      { tech: "Metatron's cube", era: 'sacred-geometry tradition', prefigures: 'the cube that binds the seal nodes', concept: 'concept.diamond.metatron' },
+    ] as const
+  ).map((entry) => ({ ...entry, receipt: toUuid(`ancient:${entry.tech}:${entry.concept}`) }))
+  return {
+    grounded: technologies.every((entry) => known.has(entry.concept) && entry.receipt.length > 0),
+    root: merkleFold(technologies.map((entry) => entry.receipt)),
+    technologies,
+    statement:
+      'Ancient technologies prefigure the model: hexagrams to digits, gears to computation, solids to the seal, knots to chains, the astrolabe to the pi train.',
+    boundary:
+      'These are structural analogies between ancient techniques and computed concepts, not historical, archaeological, or metaphysical claims.',
+  }
+}
+
+// Fold all society relations: traditions, science, sacred society, governance,
+// and fair life reciprocate around a ring and each addresses the self, folding
+// into one society-relations root.
+export function societyRelations(matrix: MindMatrix = buildMatrix()): SocietyRelations {
+  const parts = [
+    { name: 'traditions', root: traditionsQuantumWhole().root },
+    { name: 'science', root: scientificSociety(matrix).root },
+    { name: 'sacred-society', root: sacredSociety(matrix).root },
+    { name: 'governance', root: governanceVote([], matrix).root },
+    { name: 'fair-life', root: fairLife(matrix).root },
+  ]
+  const uuid = /^[0-9a-f-]{36}$/i
+  const relations: SocietyRelation[] = []
+  for (let index = 0; index < parts.length; index += 1) {
+    const here = parts[index]
+    const next = parts[(index + 1) % parts.length]
+    relations.push({ from: here.name, to: next.name, kind: 'reciprocate', receipt: merge(here.root, next.root) })
+    relations.push({ from: here.name, to: 'self', kind: 'self-address', receipt: merge(here.root, matrix.root) })
+  }
+  return {
+    folded: parts.every((part) => uuid.test(part.root)) && relations.every((relation) => uuid.test(relation.receipt)),
+    root: merkleFold(relations.map((relation) => relation.receipt)),
+    parts,
+    relations,
+    statement:
+      'All society relations fold into one: traditions, science, sacred society, governance, and fair life reciprocate around a ring and each addresses the self.',
+    boundary:
+      'Society relations are folded roots of the computed society reports. Structural bookkeeping, not a political or external claim.',
   }
 }
 
@@ -4841,6 +4945,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'A five-step participation ladder anyone can learn: learn the value, exchange transparently, reciprocate, steward, regenerate.',
     },
     {
+      title: 'Ancient Tech',
+      command: 'concept.ancient.tech',
+      route: '/quantum-mind#traditions-lens',
+      summary: 'Ancient technologies prefigure the model: hexagrams to digits, gears to computation, solids to the seal.',
+    },
+    {
+      title: 'Society Relations',
+      command: 'concept.society.relations',
+      route: '/governance',
+      summary: 'All society relations fold into one: traditions, science, sacred society, governance, and fair life.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -5102,6 +5218,14 @@ export function executeConceptCommand(
   if (command === 'concept.life.fair') {
     const fair = fairLife(matrix)
     return result(command, fair.grounded, 'Fair trade and sustainable life ladder computed.', fair)
+  }
+  if (command === 'concept.ancient.tech') {
+    const ancient = ancientTech(matrix)
+    return result(command, ancient.grounded, 'Ancient technologies mapped to the concepts they prefigure.', ancient)
+  }
+  if (command === 'concept.society.relations') {
+    const relations = societyRelations(matrix)
+    return result(command, relations.folded, 'All society relations folded into one root.', relations)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)
