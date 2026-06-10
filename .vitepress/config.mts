@@ -72,6 +72,7 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'Console', link: '/console' },
           { text: 'School', link: '/school' },
           { text: 'MCP', link: '/mcp' },
           { text: 'Learn', link: '/learn-erpax' },
@@ -83,6 +84,7 @@ export default defineConfig({
           {
             text: 'Double Torus',
             items: [
+              { text: 'Quantum Console', link: '/console' },
               { text: 'School (kids to elders)', link: '/school' },
               { text: 'MCP tool surface', link: '/mcp' },
               { text: 'Learn Erpax', link: '/learn-erpax' },
@@ -102,6 +104,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Начало', link: '/bg/' },
+          { text: 'Конзола', link: '/bg/console' },
           { text: 'Училище', link: '/bg/school' },
           { text: 'MCP', link: '/bg/mcp' },
           { text: 'Научи', link: '/bg/learn-erpax' },
@@ -113,6 +116,7 @@ export default defineConfig({
           {
             text: 'Двоен тор',
             items: [
+              { text: 'Квантова конзола', link: '/bg/console' },
               { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
               { text: 'MCP инструментален слой', link: '/bg/mcp' },
               { text: 'Научи Erpax', link: '/bg/learn-erpax' },
