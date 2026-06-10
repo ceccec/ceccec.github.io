@@ -54,7 +54,7 @@ const t = computed(() =>
     </div>
 
     <svg viewBox="0 0 100 100" class="sacred-symbols__wheel" role="img" :aria-label="t.title">
-      <g class="sacred-symbols__rotor">
+      <g class="sacred-symbols__rotor" :class="{ 'anim-spin': animated }">
         <line v-for="(node, i) in nodes" :key="'spoke' + i" x1="50" y1="50" :x2="node.x" :y2="node.y" class="spoke" />
         <line
           v-for="(node, i) in nodes"
@@ -81,7 +81,7 @@ const t = computed(() =>
 
     <p class="sacred-symbols__solids">{{ solidGlyphs.join('  ') }} · {{ seal.solids.join(' / ') }}</p>
 
-    <ul v-if="animated" class="sacred-symbols__keys">
+    <ul v-if="animated" class="sacred-symbols__keys anim-reveal">
       <li v-for="(node, i) in nodes" :key="i">
         <code>{{ node.name }}</code><small>{{ node.key }}</small>
       </li>
@@ -126,15 +126,8 @@ const t = computed(() =>
   margin: 0.75rem auto;
 }
 .sacred-symbols__rotor {
+  /* Spins via the shared .anim-spin keyframe, gated by the animated toggle. */
   transform-origin: 50px 50px;
-}
-.sacred-symbols.animated .sacred-symbols__rotor {
-  animation: sacred-spin 18s linear infinite;
-}
-@keyframes sacred-spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 .spoke {
   stroke: var(--vp-c-brand-1);
@@ -176,13 +169,7 @@ const t = computed(() =>
   gap: 0.2rem;
   max-height: 260px;
   overflow: auto;
-  animation: sacred-reveal 0.6s ease;
-}
-@keyframes sacred-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
+  /* Reveals via the shared .anim-reveal keyframe. */
 }
 .sacred-symbols__keys li {
   display: flex;

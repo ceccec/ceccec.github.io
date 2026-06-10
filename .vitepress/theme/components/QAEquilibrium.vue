@@ -34,7 +34,7 @@ const t = computed(() =>
         <span class="qae__label">{{ t.answers }} · {{ t.closed }}</span>
       </div>
       <div class="qae__center" :class="{ settled: data.breathSettles }">
-        <span class="qae__dot" />
+        <span class="qae__dot anim-breathe" />
         <span class="qae__label">{{ t.equilibrium }}</span>
       </div>
       <div class="qae__side questions">
@@ -102,17 +102,10 @@ const t = computed(() =>
   height: 14px;
   border-radius: 50%;
   background: var(--vp-c-brand-1);
-  animation: qae-breathe 4s ease-in-out infinite;
+  /* Breathes via the shared .anim-breathe keyframe (default amplitude). */
 }
 .qae__center.settled .qae__dot {
   box-shadow: 0 0 0 4px var(--vp-c-brand-soft);
-}
-@keyframes qae-breathe {
-  0%, 100% { transform: scale(0.7); opacity: 0.6; }
-  50% { transform: scale(1.4); opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .qae__dot { animation: none; }
 }
 .qae__statement {
   margin: 0;

@@ -944,3 +944,31 @@ code {
   max-width: 72ch;
 }
 
+/* -----------------------------------------------------------------------------
+ * Motion — one breath, shared (DRY). Every pulse, spin, and reveal across the
+ * portal is defined once here as a keyframe + utility class, not redefined per
+ * component. The breath is parameterized: a component tunes its amplitude with
+ * --breathe-min / --breathe-max rather than copying the keyframe. Reduced
+ * motion is honored in a single place for all of them.
+ * -------------------------------------------------------------------------- */
+@keyframes breathe {
+  0%, 100% { transform: scale(var(--breathe-min, 0.7)); opacity: var(--breathe-dim, 0.6); }
+  50% { transform: scale(var(--breathe-max, 1.4)); opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(6px); }
+}
+.anim-breathe { animation: breathe 4s ease-in-out infinite; }
+.anim-spin { animation: spin 18s linear infinite; }
+.anim-reveal { animation: reveal 0.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .anim-breathe,
+  .anim-spin,
+  .anim-reveal {
+    animation: none !important;
+  }
+}
+

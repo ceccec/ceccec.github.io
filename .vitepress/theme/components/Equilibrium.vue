@@ -23,7 +23,7 @@ const t = computed(() =>
     <p class="eq__lead">{{ t.lead }}</p>
     <div class="eq__chart">
       <span class="eq__center" />
-      <div class="eq__breath" :title="`${t.settled}: ${data.settled}`" />
+      <div class="eq__breath anim-breathe" :title="`${t.settled}: ${data.settled}`" />
       <div
         v-for="entry in data.trace"
         :key="entry.step"
@@ -77,14 +77,8 @@ const t = computed(() =>
   margin: -6px 0 0 -6px;
   border-radius: 50%;
   background: var(--vp-c-brand-1);
-  animation: eq-breathe 4s ease-in-out infinite;
-}
-@keyframes eq-breathe {
-  0%, 100% { transform: scale(0.7); opacity: 0.6; }
-  50% { transform: scale(1.5); opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .eq__breath { animation: none; }
+  /* Breathes via the shared .anim-breathe keyframe; only the amplitude is local. */
+  --breathe-max: 1.5;
 }
 .eq__bar {
   position: relative;
