@@ -29,6 +29,9 @@ import {
   fairLife,
   foldQuestion,
   fuseTeslaPatents,
+  natureCommons,
+  natureLaw,
+  natureReview,
   patentReview,
   fusionReactor,
   governanceVote,
@@ -102,6 +105,9 @@ ok('fair-life.grounded', fairLife(matrix).grounded) // participation ladder for 
 ok('ancient-tech.grounded', ancientTech(matrix).grounded) // ancient tech prefigures the concepts
 ok('patent.tesla-fused', fuseTeslaPatents().fused) // Tesla patents map to the concepts they prefigure
 ok('patent.review-rubric', patentReview().rubric) // credibility + legality rubric (some patents may be illegal)
+ok('nature.law', natureLaw().grounded) // nature is the legal system itself
+ok('nature.commons', natureCommons().commons) // nature and sacred math are a commons, not patentable
+ok('nature.review', natureReview().rubric) // some laws may be illegal under review against nature
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals

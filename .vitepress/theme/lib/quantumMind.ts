@@ -152,6 +152,9 @@ export type ConceptCommandName =
   | 'concept.patent.fuse'
   | 'concept.patent.discover'
   | 'concept.patent.review'
+  | 'concept.nature.law'
+  | 'concept.nature.commons'
+  | 'concept.nature.review'
   | 'concept.society.relations'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
@@ -1478,6 +1481,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Autoreview patent credibility, the right to be patented, and legality. Some patents may be illegal.',
   },
   {
+    name: 'concept.nature.law',
+    path: '/cmd/concept.nature.law',
+    description: 'Nature is the legal system itself: enacted law borrows its authority from natural law.',
+  },
+  {
+    name: 'concept.nature.commons',
+    path: '/cmd/concept.nature.commons',
+    description: 'The base knowledge of nature and sacred math is a commons, not patentable subject matter.',
+  },
+  {
+    name: 'concept.nature.review',
+    path: '/cmd/concept.nature.review',
+    description: 'Review laws and patents against nature. Some laws may be illegal.',
+  },
+  {
     name: 'concept.society.relations',
     path: '/cmd/concept.society.relations',
     description: 'Fold all society relations: traditions, science, sacred society, governance, and fair life into one root.',
@@ -1785,6 +1803,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.patent.fuse': 'fuse',
   'concept.patent.discover': 'discover',
   'concept.patent.review': 'review',
+  'concept.nature.law': 'natural',
+  'concept.nature.commons': 'public',
+  'concept.nature.review': 'judge',
   'concept.society.relations': 'relate',
   'concept.torus.breathe': 'breathe',
   'concept.wave.self': 'rhythm',
@@ -2684,7 +2705,7 @@ const AREA_ICONS: Record<string, string> = {
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
-  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡',
+  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -3046,6 +3067,62 @@ export function torusBreathe(matrix: MindMatrix = buildMatrix(), cycles = 3): To
       'The double torus breathes: the system extends outward into all its computed forms and contracts inward into one master seal, in balanced cycles.',
     boundary:
       'Breathing is order-sensitive folding between an expansion root and a contraction root. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// Nature is the legal system itself: a natural-law lens. Enacted law borrows its
+// authority from natural law; what violates nature is, by this measure, illegitimate.
+export function natureLaw() {
+  const principles = [
+    'Nature is the legal system itself: its laws are discovered, not enacted.',
+    'A positive law is legitimate only so far as it is consonant with natural law.',
+    'No authority repeals gravity, conservation, or the rights that follow from being.',
+    'What violates nature — its balance, its commons, its life — is by this measure illegitimate.',
+  ].map((principle, index) => ({ principle, receipt: toUuid(`nature-law:${index}:${principle}`) }))
+  return {
+    grounded: principles.length > 0,
+    principles,
+    root: merkleFold(principles.map((entry) => entry.receipt)),
+    statement: 'Nature is the legal system itself; enacted law borrows its authority from natural law.',
+    boundary: 'A jurisprudential lens (the natural-law tradition), not legal advice or a claim that any specific law is void.',
+  }
+}
+
+// The base knowledge of nature and sacred math is a commons, not patentable.
+// Laws of nature, natural phenomena, and mathematics cannot be enclosed and sold.
+export function natureCommons() {
+  const items = [
+    { kind: 'law of nature', example: 'gravity, conservation, thermodynamics', patentable: false, reason: 'discoveries, not inventions (Alice/Mayo)' },
+    { kind: 'natural phenomenon', example: 'a gene, a mineral, sunlight', patentable: false, reason: 'products of nature are ineligible' },
+    { kind: 'mathematics', example: 'pi, primes, the merkle fold, sacred geometry', patentable: false, reason: 'abstract ideas and math are not patentable' },
+    { kind: 'base knowledge', example: 'the public domain a society builds on', patentable: false, reason: 'belongs to the commons' },
+  ].map((item) => ({ ...item, receipt: toUuid(`nature-commons:${item.kind}`) }))
+  return {
+    commons: items.every((item) => !item.patentable),
+    items,
+    root: merkleFold(items.map((item) => item.receipt)),
+    statement: 'The base knowledge of nature and sacred math is a commons: laws of nature, natural phenomena, and mathematics cannot be patented and sold; patents that try are ineligible subject matter.',
+    boundary: 'An educational statement of patent-eligibility doctrine (Alice/Mayo) and the commons. Not legal advice.',
+  }
+}
+
+// Review laws and patents against nature. Some laws and patents may be illegal —
+// those that violate natural law or try to enclose the commons.
+export function natureReview() {
+  const tests = [
+    { test: 'consonant-with-nature', question: 'Does the rule respect natural law and the commons?' },
+    { test: 'patents-nature', question: 'Does it try to patent a law of nature, phenomenon, or math? (ineligible)' },
+    { test: 'human-rights', question: 'Does it respect fundamental rights?' },
+    { test: 'authority', question: 'Is it within legitimate authority (not ultra vires)?' },
+    { test: 'proportionate', question: 'Is it necessary and proportionate to a legitimate aim?' },
+    { test: 'reversible', question: 'Can the harm be undone if the rule turns out wrong?' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nature-review:${entry.test}`) }))
+  return {
+    rubric: tests.length === 6,
+    tests,
+    root: merkleFold(tests.map((entry) => entry.receipt)),
+    statement: 'Review laws and patents against nature. Some laws and patents may be illegitimate — those that violate natural law or enclose the commons.',
+    boundary: 'An educational rubric, not legal advice or a determination that any specific law or patent is void.',
   }
 }
 
@@ -6022,6 +6099,18 @@ export function executeConceptCommand(
   if (command === 'concept.patent.review') {
     const review = patentReview()
     return result(command, review.rubric, 'Patent credibility and legality rubric computed.', review)
+  }
+  if (command === 'concept.nature.law') {
+    const law = natureLaw()
+    return result(command, law.grounded, 'Nature is the legal system itself.', law)
+  }
+  if (command === 'concept.nature.commons') {
+    const commons = natureCommons()
+    return result(command, commons.commons, 'Nature and sacred math are a commons, not patentable.', commons)
+  }
+  if (command === 'concept.nature.review') {
+    const review = natureReview()
+    return result(command, review.rubric, 'Laws and patents reviewed against nature.', review)
   }
   if (command === 'concept.society.relations') {
     const relations = societyRelations(matrix)
