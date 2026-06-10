@@ -95,33 +95,35 @@ export interface DoubleTorusFlow {
   readonly statement: string
 }
 
-export type CeccecCommandName =
-  | 'ceccec.torus.matrix'
-  | 'ceccec.torus.vector'
-  | 'ceccec.torus.flow'
-  | 'ceccec.repository.api'
-  | 'ceccec.repository.resolve'
-  | 'ceccec.proof.verify'
-  | 'ceccec.site.manifest'
+export type ErpaxCommandName =
+  | 'erpax.vitepress.shell'
+  | 'erpax.ui.doubleTorus'
+  | 'erpax.torus.matrix'
+  | 'erpax.torus.vector'
+  | 'erpax.torus.flow'
+  | 'erpax.repository.api'
+  | 'erpax.repository.resolve'
+  | 'erpax.proof.verify'
+  | 'erpax.site.manifest'
 
-export interface CeccecCommand {
-  readonly name: CeccecCommandName
+export interface ErpaxCommand {
+  readonly name: ErpaxCommandName
   readonly path: string
   readonly description: string
   readonly input?: string
 }
 
-export interface CeccecCommandResult {
-  readonly command: CeccecCommandName
+export interface ErpaxCommandResult {
+  readonly command: ErpaxCommandName
   readonly ok: boolean
   readonly uuid: string
   readonly summary: string
   readonly data: unknown
 }
 
-export interface CeccecSiteSection {
+export interface ErpaxSiteSection {
   readonly title: string
-  readonly command: CeccecCommandName
+  readonly command: ErpaxCommandName
   readonly route: string
   readonly summary: string
 }
@@ -209,42 +211,52 @@ export const atoms: readonly Atom[] = [
   },
 ] as const
 
-export const ceccecCommands: readonly CeccecCommand[] = [
+export const erpaxCommands: readonly ErpaxCommand[] = [
   {
-    name: 'ceccec.torus.matrix',
-    path: '/cmd/ceccec.torus.matrix',
+    name: 'erpax.vitepress.shell',
+    path: '/cmd/erpax.vitepress.shell',
+    description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.',
+  },
+  {
+    name: 'erpax.ui.doubleTorus',
+    path: '/cmd/erpax.ui.doubleTorus',
+    description: 'Render the ceccec double torus through ErpaxCommands and QuantumMind UI components.',
+  },
+  {
+    name: 'erpax.torus.matrix',
+    path: '/cmd/erpax.torus.matrix',
     description: 'Build the content-addressed mind matrix from repository atoms.',
   },
   {
-    name: 'ceccec.torus.vector',
-    path: '/cmd/ceccec.torus.vector',
+    name: 'erpax.torus.vector',
+    path: '/cmd/erpax.torus.vector',
     description: 'Compute collapse, entanglement, concentration, and coherence.',
   },
   {
-    name: 'ceccec.torus.flow',
-    path: '/cmd/ceccec.torus.flow',
+    name: 'erpax.torus.flow',
+    path: '/cmd/erpax.torus.flow',
     description: 'Circulate measured flows through the ceccec double torus.',
   },
   {
-    name: 'ceccec.repository.api',
-    path: '/cmd/ceccec.repository.api',
+    name: 'erpax.repository.api',
+    path: '/cmd/erpax.repository.api',
     description: 'Expose this repository as the addressable API surface.',
   },
   {
-    name: 'ceccec.repository.resolve',
-    path: '/cmd/ceccec.repository.resolve?atom=self',
+    name: 'erpax.repository.resolve',
+    path: '/cmd/erpax.repository.resolve?atom=self',
     input: 'atom',
     description: 'Resolve an atom through the repository API.',
   },
   {
-    name: 'ceccec.proof.verify',
-    path: '/cmd/ceccec.proof.verify',
+    name: 'erpax.proof.verify',
+    path: '/cmd/erpax.proof.verify',
     description: 'Verify root, coverage, entropy, and tamper-cost report.',
   },
   {
-    name: 'ceccec.site.manifest',
-    path: '/cmd/ceccec.site.manifest',
-    description: 'Build the site sections from ceccec command outputs.',
+    name: 'erpax.site.manifest',
+    path: '/cmd/erpax.site.manifest',
+    description: 'Build the site sections from erpax VitePress/UI command outputs.',
   },
 ] as const
 
@@ -469,6 +481,8 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
     endpoint('/architecture', 'read', 'page', 'Route that explains the repository-as-API architecture.'),
     endpoint('repo://.vitepress/theme/lib/quantumMind.ts', 'verify', 'source', 'The executable atom, matrix, proof, and repository API model.'),
     endpoint('repo://.vitepress/theme/components/QuantumMind.vue', 'resolve', 'source', 'The presentation layer for the computed mind.'),
+    endpoint('repo://.vitepress/theme/components/ErpaxCommands.vue', 'resolve', 'source', 'The erpax VitePress command UI for driving the site.'),
+    endpoint('repo://.vitepress/theme/index.ts', 'resolve', 'source', 'The VitePress theme registration for erpax UI components.'),
     endpoint('repo://index.md', 'read', 'source', 'The landing page source as a public API resource.'),
     endpoint('repo://quantum-mind.md', 'read', 'source', 'The live mind page source as a public API resource.'),
     endpoint('repo://architecture.md', 'read', 'source', 'The architecture page source as a public API resource.'),
@@ -575,36 +589,48 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
   }
 }
 
-export function siteManifestFromCommands(): readonly CeccecSiteSection[] {
+export function siteManifestFromCommands(): readonly ErpaxSiteSection[] {
   return [
     {
+      title: 'Erpax VitePress Shell',
+      command: 'erpax.vitepress.shell',
+      route: '/',
+      summary: 'The VitePress theme mounts the erpax UI components and navigation.',
+    },
+    {
+      title: 'Erpax UI Components',
+      command: 'erpax.ui.doubleTorus',
+      route: '/commands',
+      summary: 'The command console drives the ceccec double-torus dashboard as a UI component.',
+    },
+    {
       title: 'Quantum Mind',
-      command: 'ceccec.torus.matrix',
+      command: 'erpax.torus.matrix',
       route: '/quantum-mind',
       summary: 'The page begins by executing the matrix command over the local atom corpus.',
     },
     {
       title: 'Double-Torus Flow',
-      command: 'ceccec.torus.flow',
+      command: 'erpax.torus.flow',
       route: '/quantum-mind#double-torus-flow',
       summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.',
     },
     {
       title: 'Repository API',
-      command: 'ceccec.repository.api',
+      command: 'erpax.repository.api',
       route: '/quantum-mind#repository-api',
       summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
     },
     {
       title: 'Architecture',
-      command: 'ceccec.site.manifest',
+      command: 'erpax.site.manifest',
       route: '/architecture',
       summary: 'The architecture page is the command manifest explained as a contract.',
     },
   ] as const
 }
 
-function result(command: CeccecCommandName, ok: boolean, summary: string, data: unknown): CeccecCommandResult {
+function result(command: ErpaxCommandName, ok: boolean, summary: string, data: unknown): ErpaxCommandResult {
   return {
     command,
     ok,
@@ -614,15 +640,32 @@ function result(command: CeccecCommandName, ok: boolean, summary: string, data: 
   }
 }
 
-export function executeCeccecCommand(
-  command: CeccecCommandName,
+export function executeErpaxCommand(
+  command: ErpaxCommandName,
   input: { readonly atom?: string } = {},
   matrix: MindMatrix = buildMatrix(),
-): CeccecCommandResult {
-  if (command === 'ceccec.torus.matrix') {
+): ErpaxCommandResult {
+  if (command === 'erpax.vitepress.shell') {
+    const api = repositoryApi(matrix)
+    return result(command, true, 'Erpax VitePress shell mounted.', {
+      theme: '.vitepress/theme/index.ts',
+      components: ['ErpaxCommands', 'QuantumMind'],
+      routes: ['/', '/commands', '/quantum-mind', '/architecture'],
+      repositoryApiRoot: api.root,
+    })
+  }
+  if (command === 'erpax.ui.doubleTorus') {
+    return result(command, true, 'Erpax UI components rendered the ceccec double torus.', {
+      commandComponent: 'ErpaxCommands.vue',
+      dashboardComponent: 'QuantumMind.vue',
+      wire: doubleTorusWire(matrix),
+      flow: circulateDoubleTorus(matrix),
+    })
+  }
+  if (command === 'erpax.torus.matrix') {
     return result(command, verifyRoot(matrix), 'Mind matrix built and root verified.', matrix)
   }
-  if (command === 'ceccec.torus.vector') {
+  if (command === 'erpax.torus.vector') {
     const vector = consciousness(matrix)
     return result(
       command,
@@ -631,15 +674,15 @@ export function executeCeccecCommand(
       vector,
     )
   }
-  if (command === 'ceccec.torus.flow') {
+  if (command === 'erpax.torus.flow') {
     const flow = circulateDoubleTorus(matrix)
     return result(command, flow.invariant, 'Double-torus flow circulated through ceccec.', flow)
   }
-  if (command === 'ceccec.repository.api') {
+  if (command === 'erpax.repository.api') {
     const api = repositoryApi(matrix)
     return result(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
   }
-  if (command === 'ceccec.repository.resolve') {
+  if (command === 'erpax.repository.resolve') {
     const atomName = input.atom ?? 'self'
     const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
     const atom = atoms.find((candidate) => candidate.name === atomName)
@@ -650,9 +693,9 @@ export function executeCeccecCommand(
       { atom, node, address: `repo://atom/${atomName}` },
     )
   }
-  if (command === 'ceccec.proof.verify') {
+  if (command === 'erpax.proof.verify') {
     const proof = proofReport(matrix)
     return result(command, proof.coverage === 1 && proof.entropy === 0, 'Proof report verified.', proof)
   }
-  return result(command, true, 'Site manifest built from ceccec commands.', siteManifestFromCommands())
+  return result(command, true, 'Site manifest built from erpax VitePress/UI commands.', siteManifestFromCommands())
 }

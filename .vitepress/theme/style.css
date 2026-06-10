@@ -309,15 +309,15 @@
   font-size: 13px;
 }
 
-.double-torus-commands {
+.erpax-commands {
   display: grid;
   gap: 24px;
   margin: 32px 0;
 }
 
-.double-torus-commands__header,
-.double-torus-commands__layout,
-.double-torus-commands__manifest {
+.erpax-commands__header,
+.erpax-commands__layout,
+.erpax-commands__manifest {
   border: 1px solid var(--vp-c-divider);
   border-radius: 18px;
   background:
@@ -326,7 +326,7 @@
   padding: 24px;
 }
 
-.double-torus-commands .eyebrow {
+.erpax-commands .eyebrow {
   margin: 0 0 8px;
   color: var(--vp-c-brand-1);
   font-size: 12px;
@@ -335,19 +335,19 @@
   text-transform: uppercase;
 }
 
-.double-torus-commands__layout {
+.erpax-commands__layout {
   display: grid;
   gap: 20px;
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
 }
 
-.double-torus-commands aside {
+.erpax-commands aside {
   display: grid;
   align-content: start;
   gap: 10px;
 }
 
-.double-torus-commands button {
+.erpax-commands button {
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   background: var(--vp-c-bg);
@@ -357,31 +357,31 @@
   text-align: left;
 }
 
-.double-torus-commands button.active {
+.erpax-commands button.active {
   border-color: var(--vp-c-brand-1);
   box-shadow: 0 0 0 1px var(--vp-c-brand-1) inset;
 }
 
-.double-torus-commands button strong,
-.double-torus-commands button span {
+.erpax-commands button strong,
+.erpax-commands button span {
   display: block;
 }
 
-.double-torus-commands button span,
-.double-torus-commands__path,
-.double-torus-commands__manifest span {
+.erpax-commands button span,
+.erpax-commands__path,
+.erpax-commands__manifest span {
   color: var(--vp-c-text-2);
   font-size: 13px;
 }
 
-.double-torus-commands label {
+.erpax-commands label {
   display: grid;
   gap: 6px;
   margin: 16px 0;
   font-weight: 700;
 }
 
-.double-torus-commands input {
+.erpax-commands input {
   border: 1px solid var(--vp-c-divider);
   border-radius: 10px;
   background: var(--vp-c-bg);
@@ -389,13 +389,13 @@
   padding: 10px;
 }
 
-.double-torus-commands__receipt {
+.erpax-commands__receipt {
   display: grid;
   gap: 6px;
   margin: 16px 0;
 }
 
-.double-torus-commands__receipt span {
+.erpax-commands__receipt span {
   width: max-content;
   border-radius: 999px;
   background: var(--vp-c-brand-soft);
@@ -404,19 +404,19 @@
   padding: 4px 10px;
 }
 
-.double-torus-commands pre {
+.erpax-commands pre {
   max-height: 420px;
   overflow: auto;
 }
 
-.double-torus-commands__manifest ul {
+.erpax-commands__manifest ul {
   display: grid;
   gap: 10px;
   margin: 0;
   padding: 0;
 }
 
-.double-torus-commands__manifest li {
+.erpax-commands__manifest li {
   display: grid;
   gap: 4px;
   list-style: none;
@@ -427,7 +427,7 @@
 }
 
 @media (max-width: 760px) {
-  .double-torus-commands__layout {
+  .erpax-commands__layout {
     grid-template-columns: 1fr;
   }
 }

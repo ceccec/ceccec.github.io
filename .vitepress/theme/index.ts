@@ -2,7 +2,7 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import DoubleTorusCommands from './components/DoubleTorusCommands.vue'
+import ErpaxCommands from './components/ErpaxCommands.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import './style.css'
 
@@ -14,7 +14,7 @@ export default {
     })
   },
   enhanceApp({ app }) {
-    app.component('DoubleTorusCommands', DoubleTorusCommands)
+    app.component('ErpaxCommands', ErpaxCommands)
     app.component('QuantumMind', QuantumMind)
   }
 } satisfies Theme

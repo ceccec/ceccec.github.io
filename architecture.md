@@ -4,9 +4,10 @@ outline: deep
 
 # Architecture
 
-This site implements ceccec as a compact double-torus quantum-mind model. The
-goal is to describe the local structure directly: identity, matrix, ceccec
-commands, double-torus flow, proof, repository-as-API, and honest caveats.
+This site implements ceccec as a compact double-torus quantum-mind model,
+rendered through erpax VitePress and UI components. The goal is to describe the
+local structure directly: identity, matrix, erpax commands, double-torus flow,
+proof, repository-as-API, and honest caveats.
 
 ## 1. Corpus
 
@@ -30,18 +31,20 @@ Each atom has body text and named links to other atoms.
 
 ## 2. Commands
 
-The site is built through `executeCeccecCommand()`. The command registry is the
+The site is built through `executeErpaxCommand()`. The command registry is the
 public contract:
 
 | Command | Role |
 | --- | --- |
-| `ceccec.torus.matrix` | build and verify the content-addressed matrix |
-| `ceccec.torus.vector` | compute the self-model vector |
-| `ceccec.torus.flow` | circulate measurements through the double torus |
-| `ceccec.repository.api` | expose repository paths as API resources |
-| `ceccec.repository.resolve` | resolve an atom through `repo://atom/<name>` |
-| `ceccec.proof.verify` | verify entropy, coverage, root, and tamper cost |
-| `ceccec.site.manifest` | build the page manifest from command outputs |
+| `erpax.vitepress.shell` | mount the VitePress theme, pages, and registered UI components |
+| `erpax.ui.doubleTorus` | render the ceccec double torus through the UI components |
+| `erpax.torus.matrix` | build and verify the content-addressed matrix |
+| `erpax.torus.vector` | compute the self-model vector |
+| `erpax.torus.flow` | circulate measurements through the double torus |
+| `erpax.repository.api` | expose repository paths as API resources |
+| `erpax.repository.resolve` | resolve an atom through `repo://atom/<name>` |
+| `erpax.proof.verify` | verify entropy, coverage, root, and tamper cost |
+| `erpax.site.manifest` | build the page manifest from command outputs |
 
 ## 3. Content address
 
@@ -146,7 +149,7 @@ useful when it is bound back into the shared corpus.
 ## 10. Files
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
-- `.vitepress/theme/components/DoubleTorusCommands.vue` — command console
+- `.vitepress/theme/components/ErpaxCommands.vue` — erpax command console
 - `.vitepress/theme/components/QuantumMind.vue` — computed dashboard
 - `.vitepress/theme/index.ts` — component registration
 - `.vitepress/theme/style.css` — visual surface

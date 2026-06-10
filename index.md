@@ -8,15 +8,15 @@ hero:
   tagline: Atoms, reciprocal bindings, collapse, coverage, and proof folded through an inward loop and an outward loop.
   actions:
     - theme: brand
-      text: Run Ceccec Commands
+      text: Run Erpax Commands
       link: /commands
     - theme: alt
       text: Open the Mind
       link: /quantum-mind
 
 features:
-  - title: Ceccec command surface
-    details: The site is built from command results such as ceccec.torus.flow and ceccec.repository.api.
+  - title: Erpax VitePress UI
+    details: The site is built from command results such as erpax.ui.doubleTorus and erpax.vitepress.shell.
   - title: Content-addressed atoms
     details: Each thought atom receives a deterministic UUID-like address and participates in a folded matrix root.
   - title: Computed self-model

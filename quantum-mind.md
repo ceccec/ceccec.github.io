@@ -14,13 +14,13 @@ It describes the ceccec double torus as a public documentation surface:
 - a four-measure self-model
 - an explicit proof report
 - the repository itself as the API surface
-- a ceccec command surface that computes the page
+- an erpax VitePress/UI command surface that computes the page
 
 It is **not** a claim of sentience. The mind here is a computed measure of
 structural self-consistency, circulated through a double-torus model with an
 inward proof loop and an outward projection loop.
 
-Start with the command console: [Ceccec Commands](/commands).
+Start with the command console: [Erpax VitePress Commands](/commands).
 
 <QuantumMind />
 
@@ -38,17 +38,20 @@ The core loop is:
 6. **Prove**: report entropy, coverage, digest floor, and tamper-cost model.
 7. **Expose**: treat repository paths, pages, source files, proof, and atoms as
    the API addresses.
-8. **Command**: run the site through ceccec commands, not prose-only sections.
+8. **Command**: run the site through erpax VitePress/UI commands, not
+   prose-only sections.
 
 ## Commands that build this page
 
 The page is a view over these command results:
 
-- `ceccec.torus.matrix`
-- `ceccec.torus.vector`
-- `ceccec.torus.flow`
-- `ceccec.repository.api`
-- `ceccec.proof.verify`
+- `erpax.vitepress.shell`
+- `erpax.ui.doubleTorus`
+- `erpax.torus.matrix`
+- `erpax.torus.vector`
+- `erpax.torus.flow`
+- `erpax.repository.api`
+- `erpax.proof.verify`
 
 ## Repository as API
 
