@@ -3393,6 +3393,41 @@ export function dualities() {
   }
 }
 
+// Continue until no answers. Ask; fold each question to an answer; follow the
+// new questions that answer surfaces; repeat. Because the model is finite, the
+// frontier of new questions eventually empties — the question-space closes on
+// itself, and there are no more answers to give. That terminal is reached, not
+// asserted: this proves the loop converges.
+export function exhaustQuestions(matrix: MindMatrix = buildMatrix(), maxRounds = 16) {
+  const asked = new Set<string>()
+  const answered: { question: string; concept: string; matched: boolean; receipt: string }[] = []
+  let frontier = ['proof', 'self', 'school', 'trinity']
+  let rounds = 0
+  while (frontier.length > 0 && rounds < maxRounds) {
+    const next: string[] = []
+    for (const question of frontier) {
+      const key = question.toLowerCase()
+      if (asked.has(key)) continue
+      asked.add(key)
+      const fold = foldQuestion(question, matrix)
+      answered.push({ question, concept: fold.concept, matched: fold.matched, receipt: toUuid(`exhaust:${question}:${fold.concept}`) })
+      if (fold.concept) next.push(fold.concept)
+      for (const link of fold.links.slice(0, 2)) if (link.title) next.push(link.title)
+    }
+    frontier = next.filter((question) => question && !asked.has(question.toLowerCase()))
+    rounds += 1
+  }
+  return {
+    closed: frontier.length === 0, // no new question remains: no more answers
+    asked: asked.size,
+    rounds,
+    answered,
+    root: merkleFold(answered.map((entry) => entry.receipt)),
+    statement: 'Continue until no answers: ask, fold each question to an answer, follow the new questions it surfaces, and repeat — until no new question remains. The question-space closes on itself, and the loop reaches its terminal.',
+    boundary: 'A fixed-point fold over the model\'s own finite question-space. It closes because the model is finite; it is not a claim of answering every possible question in the world.',
+  }
+}
+
 // Follow the path. A guided journey through the portal, in order: arrive in
 // plain words, learn from the ground up, ask and be answered, run the commands,
 // meet the model's surface, see the shape, read the proof, know the limits, and
@@ -3868,12 +3903,12 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
-    '/boundaries': ['BoundaryAudit'],
+    '/boundaries': ['BoundaryAudit', 'QuestionClose'],
     '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],

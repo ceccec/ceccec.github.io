@@ -27,6 +27,7 @@ import QuantumConsole from './components/QuantumConsole.vue'
 import QuantumFold3D from './components/QuantumFold3D.vue'
 import RealtimeChat from './components/RealtimeChat.vue'
 import QuantumPlasma from './components/QuantumPlasma.vue'
+import QuestionClose from './components/QuestionClose.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
@@ -79,6 +80,7 @@ export default {
     app.component('QuantumConsole', QuantumConsole)
     app.component('QuantumFold3D', QuantumFold3D)
     app.component('QuantumPlasma', QuantumPlasma)
+    app.component('QuestionClose', QuestionClose)
     app.component('RealtimeChat', RealtimeChat)
     app.component('QuantumMind', QuantumMind)
     app.component('RevolutAside', RevolutAside)

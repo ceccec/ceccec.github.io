@@ -17,3 +17,5 @@ is folded into one audited root and sealed at build time.
 If a claim is not here with its boundary, it is not a claim the model makes.
 
 <BoundaryAudit />
+
+<QuestionClose />

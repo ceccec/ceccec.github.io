@@ -1372,6 +1372,20 @@ export declare function dualities(): {
     statement: string;
     boundary: string;
 };
+export declare function exhaustQuestions(matrix?: MindMatrix, maxRounds?: number): {
+    closed: boolean;
+    asked: number;
+    rounds: number;
+    answered: {
+        question: string;
+        concept: string;
+        matched: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function path(matrix?: MindMatrix): {
     walkable: boolean;
     length: number;

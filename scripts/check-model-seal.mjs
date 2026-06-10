@@ -48,6 +48,7 @@ import {
   dualities,
   equilibrium,
   path,
+  exhaustQuestions,
   humanize,
   typographySeo,
   openGraph,
@@ -208,6 +209,8 @@ ok('double-torus.3d', doubleTorus3D(matrix).rendered)
 ok('humanize', humanize().human)
 // Follow the path: a guided, looping journey through the portal's pages.
 ok('path.walkable', path(matrix).walkable)
+// Continue until no answers: the question-space folds shut on itself (closure proven).
+ok('questions.closed', exhaustQuestions(matrix).closed)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).
