@@ -49,6 +49,7 @@ import {
   equilibrium,
   path,
   exhaustQuestions,
+  findQuestions,
   humanize,
   typographySeo,
   openGraph,
@@ -211,6 +212,8 @@ ok('humanize', humanize().human)
 ok('path.walkable', path(matrix).walkable)
 // Continue until no answers: the question-space folds shut on itself (closure proven).
 ok('questions.closed', exhaustQuestions(matrix).closed)
+// Find the questions: the answers close, but the open questions live at the edges (never closed).
+ok('questions.found', findQuestions(matrix).found)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).

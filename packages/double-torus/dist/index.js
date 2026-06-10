@@ -2072,6 +2072,32 @@ export function dualities() {
         boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.',
     };
 }
+// Find the questions. The answers close on themselves, but the questions do not:
+// they live at the edges — at every boundary, every roadmap item, every honest
+// unknown the portal refuses to pretend it has settled. These are open by
+// design. Where exhaustQuestions() proved the inner answer-space closes, this
+// finds the outer frontier, which never does.
+export function findQuestions(matrix = buildMatrix()) {
+    const questions = [
+        { question: 'Will the fold become cryptographic (SHA-256 / BLAKE3), not only tamper-evident?', source: 'roadmap' },
+        { question: 'Will the seal be signed (Ed25519, Sigstore), not only evidenced?', source: 'roadmap' },
+        { question: 'Can a society actually self-govern just by sharing this site?', source: 'society' },
+        { question: 'Does colour-from-sound, or CMYK, match human perception — or only the maths?', source: 'perception' },
+        { question: 'Is the structural "consciousness" ever more than self-consistency? (bounded: no)', source: 'boundary' },
+        { question: 'Will the 42-area limit hold as needs grow, or must it bend?', source: 'structure' },
+        { question: 'How do we keep every language genuinely natural, not literal?', source: 'translation' },
+        { question: 'Who stewards the commons if the author steps away?', source: 'governance' },
+        { question: 'Does the question-space stay closed as the model grows?', source: 'meta' },
+    ].map((entry, index) => ({ ...entry, open: true, receipt: toUuid(`open-question:${index}:${entry.question}`) }));
+    return {
+        found: questions.length > 0 && questions.every((entry) => entry.open),
+        count: questions.length,
+        questions,
+        root: merkleFold(questions.map((entry) => entry.receipt)),
+        statement: 'Find the questions: the answers closed, but the questions live at the edges — at every boundary, every roadmap item, every honest unknown. They are open by design, the frontier the portal does not pretend to have crossed.',
+        boundary: 'A curated set of the portal\'s genuine open questions, drawn from its boundaries and roadmap. Honest unknowns, never a complete list; finding questions is itself never finished.',
+    };
+}
 // Continue until no answers. Ask; fold each question to an answer; follow the
 // new questions that answer surfaces; repeat. Because the model is finite, the
 // frontier of new questions eventually empties — the question-space closes on
@@ -2549,12 +2575,12 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
-        '/boundaries': ['BoundaryAudit', 'QuestionClose'],
+        '/boundaries': ['BoundaryAudit', 'QuestionClose', 'OpenQuestions'],
         '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],

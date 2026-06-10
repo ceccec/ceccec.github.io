@@ -19,3 +19,5 @@ head:
 <BoundaryAudit />
 
 <QuestionClose />
+
+<OpenQuestions />

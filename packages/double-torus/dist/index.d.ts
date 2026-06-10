@@ -1372,6 +1372,19 @@ export declare function dualities(): {
     statement: string;
     boundary: string;
 };
+export declare function findQuestions(matrix?: MindMatrix): {
+    found: boolean;
+    count: number;
+    questions: {
+        open: boolean;
+        receipt: string;
+        question: string;
+        source: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function exhaustQuestions(matrix?: MindMatrix, maxRounds?: number): {
     closed: boolean;
     asked: number;
