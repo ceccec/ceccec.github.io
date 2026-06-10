@@ -3296,27 +3296,44 @@ export function lawfulSucceed() {
 // one 128-bit UUID. That folded word is the machine word of the computer.
 export function torusUuid(matrix: MindMatrix = buildMatrix()) {
   const hex = (uuid: string) => uuid.replace(/-/g, '')
+  const digitSum = (uuid: string) => hex(uuid).split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  // Do the math: order every command by the digit-fold of its UUID (the ceccec
+  // digit folders, not a label, set the order), then deal alternately onto the
+  // two loops. The math decides the order; the deal keeps the loops balanced so
+  // the double torus carries 2 x 32 evenly.
+  const ordered = conceptCommands
+    .map((command) => ({ name: command.name, cuuid: toUuid(`torus-cmd:${command.name}`) }))
+    .sort((a, b) => digitSum(a.cuuid) - digitSum(b.cuuid) || (a.cuuid < b.cuuid ? -1 : 1))
   const inner: string[] = []
   const outer: string[] = []
-  conceptCommands.forEach((command, index) => {
-    ;(index % 2 === 0 ? inner : outer).push(toUuid(`torus-cmd:${command.name}`))
+  ordered.forEach((entry, index) => {
+    ;(index % 2 === 0 ? inner : outer).push(entry.cuuid)
   })
   const innerWord = merkleFold(inner) // a 128-bit (32-hex) torus word
   const outerWord = merkleFold(outer) // a 128-bit (32-hex) torus word
   const word = merge(innerWord, outerWord) // the double-torus fold
   const reversed = merge(outerWord, innerWord) // order matters: genus 2, not a sphere
   const is128 = (uuid: string) => hex(uuid).length === 32
+  // Naming law: every command folds to a single lowercase-word method token.
+  const namingConsistent = conceptCommands.every((command) => {
+    const token = SINGLE_WORD_METHODS[command.name]
+    return typeof token === 'string' && /^[a-z]+$/.test(token)
+  })
+  const spread = Math.abs(inner.length - outer.length)
   return {
     is128bit: is128(innerWord) && is128(outerWord) && is128(word),
     orderSensitive: word !== reversed,
+    balanced: spread <= 1, // the math orders, the deal balances: 2 x 32 evenly
+    namingConsistent,
+    spread,
     bits: hex(word).length * 4,
     hexDigits: hex(word).length,
     inner: { count: inner.length, word: innerWord, hexDigits: hex(innerWord).length },
     outer: { count: outer.length, word: outerWord, hexDigits: hex(outerWord).length },
     word,
     statement:
-      'The double torus is a 128-bit UUID: two torus words of 32 hex digits each (2 x 32) fold, order-sensitive, into one 128-bit machine word. 2 x 32 = 128-bit.',
-    boundary: 'A structural identity over the command UUID space. Bookkeeping over content-addressed roots, not a hardware claim.',
+      'The double torus is a 128-bit UUID: the digit-fold of each command places it on the inner or outer loop; the two loops fold to two 32-hex words that fold, order-sensitive, into one 128-bit machine word. 2 x 32 = 128-bit.',
+    boundary: 'A structural identity over the command UUID space, the loop decided by the digit fold. Bookkeeping over content-addressed roots, not a hardware claim.',
   }
 }
 

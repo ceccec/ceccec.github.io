@@ -134,6 +134,10 @@ ok('music.note', musicNote(matrix, 5).named) // each wave is a musical note
 const word = torusUuid(matrix)
 ok(`computer.word-128bit:${word.bits}`, word.is128bit && word.bits === 128)
 ok('computer.word-order-sensitive', word.orderSensitive) // genus 2: the fold is non-commutative
+// Commands refactored: the math orders every command, the deal balances the two loops (2 x 32),
+// and the naming law holds for all of them.
+ok(`commands.balanced:${word.inner.count}/${word.outer.count}`, word.balanced)
+ok('commands.naming-consistent', word.namingConsistent)
 ok('computer.quantum-coherent', quantumComputer(matrix).coherent) // the double torus, recreated as a quantum computer
 // Recreate the computer: a program of gates folds, in order, into one result word.
 ok('computer.run', runProgram(['concept.self.address', 'concept.music.pi'], matrix).ran)
