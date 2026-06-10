@@ -409,6 +409,13 @@
   justify-content: space-between;
 }
 
+.double-torus-experience__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .double-torus-experience__header h3 {
   margin: 0 0 8px;
 }

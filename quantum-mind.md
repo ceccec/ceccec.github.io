@@ -50,6 +50,7 @@ The page is a view over these command results:
 - `concept.ui.doubleTorus`
 - `concept.diamond.lattice`
 - `concept.diamond.piTrain`
+- `concept.diamond.complete`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`
@@ -155,6 +156,15 @@ When supported, the whole pi train advances through 3D diamonds with synchronize
 tones and vibration pulses. The sequence does not borrow a separate animation
 layer: every visible point, tone, and haptic pulse is computed from the diamond
 itself.
+
+`diamondCompleteness()` checks that there are no analog gaps:
+
+- every required diamond kind is present
+- every diamond has north, east, south, and west facets
+- every diamond has a root and receipt
+- 3D position, sound, vibration, timing, receipt, and facets all come from the
+  diamond train
+- the pi train covers the whole base lattice
 
 ## Implications for humanity
 

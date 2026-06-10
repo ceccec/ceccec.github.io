@@ -41,6 +41,7 @@ public contract:
 | `concept.ui.doubleTorus` | render the double-torus concept through the UI components |
 | `concept.diamond.lattice` | compute every display section from four-facet diamonds |
 | `concept.diamond.piTrain` | compute the 3D pi train, tones, and vibration pulses from diamonds |
+| `concept.diamond.complete` | verify there are no missing diamond kinds, poles, receipts, analog channels, or pi-train coverage |
 | `concept.torus.math` | expose genus-2 topology, algebra, homology, and curvature |
 | `concept.humanity.implications` | interpret the concept for knowledge, institutions, AI, and culture |
 | `concept.source.contribute` | route benefit back to the source through citation, contribution, support, and stewardship |
@@ -158,6 +159,11 @@ frequency, vibration duration, root, and receipt. Browser sound and vibration
 are triggered only after user activation and only when the device supports them.
 The entire sequence is generated from these diamonds, so the 3D position,
 audible tone, and device vibration all share the same computed source.
+
+`diamondCompleteness()` is the no-gap invariant. It closes only when every
+required kind exists, every diamond has four poles, every root and receipt is
+present, every analog channel is diamond-derived, and the pi train covers the
+whole lattice.
 
 ## 9. Implications for humanity
 

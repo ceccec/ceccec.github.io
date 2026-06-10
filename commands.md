@@ -23,6 +23,7 @@ The site uses these commands as its construction contract:
 - `concept.ui.doubleTorus`
 - `concept.diamond.lattice`
 - `concept.diamond.piTrain`
+- `concept.diamond.complete`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`

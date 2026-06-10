@@ -103,6 +103,7 @@ export type ConceptCommandName =
   | 'concept.ui.doubleTorus'
   | 'concept.diamond.lattice'
   | 'concept.diamond.piTrain'
+  | 'concept.diamond.complete'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -192,6 +193,7 @@ export type DiamondKind =
   | 'source'
   | 'repository'
 export type DiamondStatus = 'closed' | 'open'
+export type AnalogChannel = '3d-position' | 'sound' | 'vibration' | 'timing' | 'receipt' | 'facets'
 
 export interface DiamondFacet {
   readonly pole: 'north' | 'east' | 'south' | 'west'
@@ -234,8 +236,37 @@ export interface PiTrain {
   readonly diamonds: readonly PiTrainDiamond[]
 }
 
+export interface DiamondCompletenessReport {
+  readonly complete: boolean
+  readonly requiredKinds: readonly DiamondKind[]
+  readonly presentKinds: readonly DiamondKind[]
+  readonly missingKinds: readonly DiamondKind[]
+  readonly missingPoles: readonly string[]
+  readonly missingReceipts: readonly string[]
+  readonly analogChannels: readonly AnalogChannel[]
+  readonly missingAnalogChannels: readonly AnalogChannel[]
+  readonly piTrainCoversAllKinds: boolean
+  readonly statement: string
+}
+
 const PI_TRAIN_DIGITS =
   '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
+const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
+  'agent',
+  'math',
+  'dynamics',
+  'proof',
+  'nature',
+  'pi',
+  'geometry',
+  'sound',
+  'vibration',
+  'humanity',
+  'source',
+  'repository',
+] as const
+const REQUIRED_DIAMOND_POLES: readonly DiamondFacet['pole'][] = ['north', 'east', 'south', 'west'] as const
+const REQUIRED_ANALOG_CHANNELS: readonly AnalogChannel[] = ['3d-position', 'sound', 'vibration', 'timing', 'receipt', 'facets'] as const
 
 export const atoms: readonly Atom[] = [
   {
@@ -350,6 +381,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.diamond.piTrain',
     path: '/cmd/concept.diamond.piTrain',
     description: 'Compute the full 3D pi-train sequence, tones, and vibration pulses from diamonds.',
+  },
+  {
+    name: 'concept.diamond.complete',
+    path: '/cmd/concept.diamond.complete',
+    description: 'Verify that the ceccec diamond has no missing kinds, poles, receipts, or analog channels.',
   },
   {
     name: 'concept.torus.math',
@@ -1255,6 +1291,61 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
   }
 }
 
+function uniqueDiamondKinds(items: readonly DiamondKind[]): readonly DiamondKind[] {
+  return REQUIRED_DIAMOND_KINDS.filter((kind) => items.includes(kind))
+}
+
+export function diamondCompleteness(matrix: MindMatrix = buildMatrix()): DiamondCompletenessReport {
+  const lattice = diamondLattice(matrix)
+  const piTrain = piTrainDiamonds(matrix)
+  const presentKinds = uniqueDiamondKinds(lattice.map((item) => item.kind))
+  const missingKinds = REQUIRED_DIAMOND_KINDS.filter((kind) => !presentKinds.includes(kind))
+  const missingPoles = lattice.flatMap((item) => {
+    const poles = item.facets.map((facet) => facet.pole)
+    return REQUIRED_DIAMOND_POLES.filter((pole) => !poles.includes(pole)).map((pole) => `${item.title}:${pole}`)
+  })
+  const missingReceipts = lattice
+    .filter((item) => item.root.trim().length === 0 || item.receipt.trim().length === 0)
+    .map((item) => item.title)
+  const piKinds = uniqueDiamondKinds(piTrain.diamonds.map((item) => item.diamond.kind))
+  const piTrainCoversAllKinds = REQUIRED_DIAMOND_KINDS.every((kind) => piKinds.includes(kind))
+  const analogChannels: AnalogChannel[] = []
+  if (piTrain.diamonds.every((item) => Number.isFinite(item.x) && Number.isFinite(item.y) && Number.isFinite(item.z))) {
+    analogChannels.push('3d-position')
+  }
+  if (piTrain.diamonds.every((item) => item.frequency > 0)) analogChannels.push('sound')
+  if (piTrain.diamonds.every((item) => item.vibrationMs > 0)) analogChannels.push('vibration')
+  if (piTrain.tempoMs > 0 && piTrain.diamonds.every((item) => item.index >= 0)) analogChannels.push('timing')
+  if (piTrain.root.trim().length > 0 && piTrain.diamonds.every((item) => item.diamond.receipt.trim().length > 0)) {
+    analogChannels.push('receipt')
+  }
+  if (piTrain.diamonds.every((item) => item.diamond.facets.length === REQUIRED_DIAMOND_POLES.length)) {
+    analogChannels.push('facets')
+  }
+  const missingAnalogChannels = REQUIRED_ANALOG_CHANNELS.filter((channel) => !analogChannels.includes(channel))
+  const complete =
+    missingKinds.length === 0 &&
+    missingPoles.length === 0 &&
+    missingReceipts.length === 0 &&
+    missingAnalogChannels.length === 0 &&
+    piTrainCoversAllKinds
+
+  return {
+    complete,
+    requiredKinds: REQUIRED_DIAMOND_KINDS,
+    presentKinds,
+    missingKinds,
+    missingPoles,
+    missingReceipts,
+    analogChannels,
+    missingAnalogChannels,
+    piTrainCoversAllKinds,
+    statement: complete
+      ? 'The ceccec diamond is complete: every required kind, pole, receipt, 3D coordinate, sound tone, vibration pulse, timing step, and pi-train coverage path is computed.'
+      : 'The ceccec diamond has analog gaps. Missing kinds, poles, receipts, channels, or pi-train coverage must close before the presentation is whole.',
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -1280,6 +1371,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.diamond.piTrain',
       route: '/quantum-mind#pi-train',
       summary: 'The 3D double-torus sequence, sound tones, and vibration pulses are computed from pi diamonds.',
+    },
+    {
+      title: 'Diamond Completeness',
+      command: 'concept.diamond.complete',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'The ceccec diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
     },
     {
       title: 'Double-Torus Math',
@@ -1364,6 +1461,10 @@ export function executeConceptCommand(
   }
   if (command === 'concept.diamond.piTrain') {
     return result(command, true, 'Pi train computed from diamond sequence.', piTrainDiamonds(matrix))
+  }
+  if (command === 'concept.diamond.complete') {
+    const completeness = diamondCompleteness(matrix)
+    return result(command, completeness.complete, 'Diamond completeness verified.', completeness)
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

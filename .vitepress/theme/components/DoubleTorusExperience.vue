@@ -9,7 +9,7 @@ import {
   TabsRoot,
   TabsTrigger,
 } from 'radix-vue'
-import { buildMatrix, diamondLattice, piTrainDiamonds } from '../lib/quantumMind'
+import { buildMatrix, diamondCompleteness, diamondLattice, piTrainDiamonds } from '../lib/quantumMind'
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
@@ -17,6 +17,7 @@ import Card from './ui/Card.vue'
 const matrix = buildMatrix()
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
+const completeness = diamondCompleteness(matrix)
 const activeIndex = ref(0)
 const running = ref(false)
 const expanded = ref(true)
@@ -114,7 +115,12 @@ onBeforeUnmount(() => {
           and the full train has {{ piTrain.diamonds.length }} pulses.
         </p>
       </div>
-      <Badge :variant="running ? 'success' : 'outline'">{{ running ? 'running' : 'ready' }}</Badge>
+      <div class="double-torus-experience__badges">
+        <Badge :variant="completeness.complete ? 'success' : 'warning'">
+          {{ completeness.complete ? 'complete' : 'gaps' }}
+        </Badge>
+        <Badge :variant="running ? 'success' : 'outline'">{{ running ? 'running' : 'ready' }}</Badge>
+      </div>
     </div>
 
     <div class="double-torus-stage" aria-label="3D diamond double torus">
@@ -138,6 +144,7 @@ onBeforeUnmount(() => {
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
         <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
+        <TabsTrigger value="complete">Completeness</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
 
@@ -163,6 +170,42 @@ onBeforeUnmount(() => {
             <Badge :variant="diamond.status === 'closed' ? 'success' : 'warning'">{{ diamond.status }}</Badge>
             <strong>{{ diamond.title }}</strong>
             <span>{{ diamond.core }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="complete" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="completeness.complete ? 'success' : 'warning'">
+            {{ completeness.complete ? 'no analog gaps' : 'analog gaps' }}
+          </Badge>
+          <strong>{{ completeness.statement }}</strong>
+          <span>
+            {{ completeness.presentKinds.length }}/{{ completeness.requiredKinds.length }} kinds ·
+            {{ completeness.analogChannels.length }}/{{ completeness.analogChannels.length + completeness.missingAnalogChannels.length }} channels ·
+            pi coverage {{ completeness.piTrainCoversAllKinds ? 'complete' : 'open' }}
+          </span>
+        </div>
+        <ul class="diamond-facets">
+          <li>
+            <Badge variant="outline">kinds</Badge>
+            <strong>{{ completeness.presentKinds.join(', ') }}</strong>
+            <span>Missing: {{ completeness.missingKinds.length ? completeness.missingKinds.join(', ') : 'none' }}</span>
+          </li>
+          <li>
+            <Badge variant="outline">channels</Badge>
+            <strong>{{ completeness.analogChannels.join(', ') }}</strong>
+            <span>Missing: {{ completeness.missingAnalogChannels.length ? completeness.missingAnalogChannels.join(', ') : 'none' }}</span>
+          </li>
+          <li>
+            <Badge variant="outline">poles</Badge>
+            <strong>{{ completeness.missingPoles.length ? 'open' : 'north/east/south/west closed' }}</strong>
+            <span>Missing poles: {{ completeness.missingPoles.length ? completeness.missingPoles.join(', ') : 'none' }}</span>
+          </li>
+          <li>
+            <Badge variant="outline">receipts</Badge>
+            <strong>{{ completeness.missingReceipts.length ? 'open' : 'all present' }}</strong>
+            <span>Missing receipts: {{ completeness.missingReceipts.length ? completeness.missingReceipts.join(', ') : 'none' }}</span>
           </li>
         </ul>
       </TabsContent>
