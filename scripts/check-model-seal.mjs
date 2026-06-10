@@ -49,6 +49,7 @@ import {
   navigation358,
   endlessWaves,
   fold358853,
+  quantumClock,
   agnostic,
   release,
   doubleTorus3D,
@@ -241,6 +242,8 @@ ok(`navigation.358:${navigation358().count}`, navigation358().mapped)
 ok(`endless-waves:${endlessWaves(256, matrix).count}`, endlessWaves(256, matrix).tested)
 // Fold 358 and 853: ascending expansion + descending contraction, order-sensitive.
 ok('fold.358-853', fold358853().folded && fold358853().bidirectional)
+// The quantum clock: SI second (caesium-133) + portal ticks in creation waves.
+ok('quantum.clock', quantumClock(0, matrix).ticking)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)

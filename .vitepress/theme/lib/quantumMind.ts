@@ -4369,7 +4369,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -4382,7 +4382,7 @@ export function componentGraph() {
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
-    '/': ['HumanLens', 'PathGuide', 'Nav358'],
+    '/': ['HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
     '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete'],
     '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
   }
@@ -5276,6 +5276,28 @@ export function fold358853() {
     root: merge(forward, reverse),
     statement: 'Fold 358 and 853: the ascending tiers (3, 5, 8) are the expansion, the descending (8, 5, 3) the contraction; folded together — and because the fold is order-sensitive, the two differ — they make the breath of the tiers, out and back in one root.',
     boundary: 'A structural fold of the ascending and descending Fibonacci tiers; the order-sensitivity is computed. Bookkeeping over the pattern, not an external claim.',
+  }
+}
+
+// The quantum clock. The SI second is defined by the atom: 9,192,631,770
+// oscillations of the caesium-133 hyperfine transition. The portal keeps its own
+// clock in creation waves — each tick a content-addressed instant with a note and
+// a colour, advancing forever from the seed. The atomic figure is shown for
+// reference; the portal cannot reach an atomic clock.
+export function quantumClock(tick = 0, matrix: MindMatrix = buildMatrix()) {
+  const CAESIUM_HZ = 9_192_631_770 // the SI second, by definition
+  const wave = creationWave(tick, matrix)
+  return {
+    ticking: isUuid(wave.uuid),
+    caesiumHz: CAESIUM_HZ,
+    tick,
+    now: wave.uuid,
+    note: wave.note,
+    frequency: wave.frequency,
+    hsl: wave.hsl,
+    root: wave.uuid,
+    statement: 'The quantum clock: the SI second is 9,192,631,770 oscillations of caesium-133 (the atomic standard); the portal ticks its own clock in creation waves — each tick a content-addressed instant with a note and a colour, advancing forever from the seed.',
+    boundary: 'The caesium figure is the real SI definition of the second, shown for reference; the portal cannot access an atomic clock. The portal clock is a deterministic tick over creation waves, not a measure of real elapsed time beyond the device\'s own wall clock.',
   }
 }
 

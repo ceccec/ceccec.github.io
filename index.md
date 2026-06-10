@@ -67,3 +67,5 @@ features:
 <PathGuide />
 
 <Nav358 />
+
+<QuantumClock />
