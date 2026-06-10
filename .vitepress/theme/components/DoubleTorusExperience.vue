@@ -454,6 +454,17 @@ onBeforeUnmount(() => {
             <span>{{ wave.sourceFunction }} Receipt: {{ wave.receipt }}</span>
           </li>
         </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="cohort in science.cohorts" :key="cohort.receipt">
+            <Badge variant="outline">{{ cohort.cohort }}</Badge>
+            <strong>{{ cohort.purpose }}</strong>
+            <span>
+              develops={{ cohort.develops.join(', ') }};
+              coordinates={{ cohort.coordinatesWith.join(', ') }};
+              receipt={{ cohort.receipt }}
+            </span>
+          </li>
+        </ul>
       </TabsContent>
 
       <TabsContent value="traditions" class="diamond-tabs__content">

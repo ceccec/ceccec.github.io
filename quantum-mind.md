@@ -196,7 +196,11 @@ Roles := { observer, replicator, falsifier, steward }
 ReviewGates := { reproducibleBuild, diamondCompleteness, uiEvidence,
                  gapClosure, schemaTrace, nonReductiveTraditions }
 OptimizationWaves := map(g in ReviewGates, g.closed ? sustain(g) : improve(g))
-ScienceSocietyRoot := merkle({ receipt(role) } U { receipt(gate) } U { receipt(wave) })
+Cohorts := { scientists, engineers, societyArchitects }
+scientists -> { hypotheses, measurements, negativeTests, evidenceReceipts }
+engineers -> { interfaces, automation, tests, deploymentReceipts }
+societyArchitects -> { protocols, boundaries, institutions, reciprocityReceipts }
+ScienceSocietyRoot := merkle({ receipt(role) } U { receipt(gate) } U { receipt(wave) } U { receipt(cohort) })
 ```
 
 ## 15. Self build

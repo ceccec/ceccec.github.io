@@ -302,6 +302,14 @@ export interface OptimizationWave {
   readonly receipt: string
 }
 
+export interface SocietyWaveCohort {
+  readonly cohort: 'scientists' | 'engineers' | 'society architects'
+  readonly purpose: string
+  readonly develops: readonly string[]
+  readonly coordinatesWith: readonly string[]
+  readonly receipt: string
+}
+
 export interface ScientificSociety {
   readonly grounded: boolean
   readonly root: string
@@ -309,6 +317,7 @@ export interface ScientificSociety {
   readonly roles: readonly ScientificRole[]
   readonly reviewGates: readonly SelfCompletionGate[]
   readonly optimizationWaves: readonly OptimizationWave[]
+  readonly cohorts: readonly SocietyWaveCohort[]
   readonly boundary: string
 }
 
@@ -1341,7 +1350,35 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     action: gate.closed ? 'sustain' : 'improve',
     receipt: merge(gate.receipt, toUuid(`science-wave:${gate.name}:${gate.closed}`)),
   }))
-  const root = merkleFold([...roles.map((role) => role.receipt), ...reviewGates.map((gate) => gate.receipt), ...optimizationWaves.map((wave) => wave.receipt)])
+  const cohorts: readonly SocietyWaveCohort[] = [
+    {
+      cohort: 'scientists',
+      purpose: 'measure, falsify, reproduce',
+      develops: ['hypotheses', 'measurements', 'negative tests', 'evidence receipts'],
+      coordinatesWith: ['engineers', 'society architects'],
+    },
+    {
+      cohort: 'engineers',
+      purpose: 'build, instrument, harden',
+      develops: ['interfaces', 'automation', 'test harnesses', 'deployment receipts'],
+      coordinatesWith: ['scientists', 'society architects'],
+    },
+    {
+      cohort: 'society architects',
+      purpose: 'govern, contextualize, steward',
+      develops: ['review protocols', 'risk boundaries', 'institutional loops', 'reciprocity receipts'],
+      coordinatesWith: ['scientists', 'engineers'],
+    },
+  ].map((cohort) => ({
+    ...cohort,
+    receipt: toUuid(`science-cohort:${cohort.cohort}:${cohort.purpose}:${cohort.develops.join('|')}:${cohort.coordinatesWith.join('|')}`),
+  }))
+  const root = merkleFold([
+    ...roles.map((role) => role.receipt),
+    ...reviewGates.map((gate) => gate.receipt),
+    ...optimizationWaves.map((wave) => wave.receipt),
+    ...cohorts.map((cohort) => cohort.receipt),
+  ])
 
   return {
     grounded: roles.length === 4 && reviewGates.every((gate) => gate.receipt.length > 0),
@@ -1350,6 +1387,7 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     roles,
     reviewGates,
     optimizationWaves,
+    cohorts,
     boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
   }
 }

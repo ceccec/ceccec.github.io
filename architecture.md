@@ -201,7 +201,11 @@ ChessRoot = merkle({square_j.receipt})
 Roles = {observer, replicator, falsifier, steward}
 ReviewGates = {reproducibleBuild, diamondCompleteness, uiEvidence, gapClosure, schemaTrace, nonReductiveTraditions}
 OptimizationWaves = map(g in ReviewGates, if closed(g) then sustain(g) else improve(g))
-ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)})
+Cohorts = {scientists, engineers, societyArchitects}
+scientists = {hypotheses, measurements, negativeTests, evidenceReceipts}
+engineers = {interfaces, automation, tests, deploymentReceipts}
+societyArchitects = {protocols, boundaries, institutions, reciprocityReceipts}
+ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} U {receipt(cohort)})
 ```
 
 ## 16. Self build
