@@ -1,5 +1,13 @@
 ---
 outline: deep
+description: "Command algebra for the double-torus UUID stream: cmd -> result -> receipt."
+head:
+  - - meta
+    - property: og:title
+      content: "Command algebra | Double Torus"
+  - - meta
+    - property: og:description
+      content: "Command algebra for the double-torus UUID stream: cmd -> result -> receipt."
 ---
 
 # Command algebra

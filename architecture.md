@@ -1,5 +1,13 @@
 ---
 outline: deep
+description: "Formal architecture for the double-torus UUID stream: matrix, vector, diamonds, waves, gates, schema, and self-build."
+head:
+  - - meta
+    - property: og:title
+      content: "Architecture math | Double Torus"
+  - - meta
+    - property: og:description
+      content: "Formal architecture for the double-torus UUID stream: matrix, vector, diamonds, waves, gates, schema, and self-build."
 ---
 
 # Architecture

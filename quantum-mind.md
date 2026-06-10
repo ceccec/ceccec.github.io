@@ -1,5 +1,13 @@
 ---
 outline: deep
+description: "Mathematical model of Sigma_2, UUID streams, diamonds, waves, gates, and maxComputedBuild."
+head:
+  - - meta
+    - property: og:title
+      content: "Quantum mind math | Double Torus"
+  - - meta
+    - property: og:description
+      content: "Mathematical model of Sigma_2, UUID streams, diamonds, waves, gates, and maxComputedBuild."
 ---
 
 # Quantum Mind
