@@ -1337,6 +1337,19 @@ export declare function complete(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function todoScan(matrix?: MindMatrix): {
+    nothingToDo: boolean;
+    total: number;
+    items: {
+        receipt: string;
+        item: string;
+        count: number;
+    }[];
+    openFrontier: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function gapScan(matrix?: MindMatrix): {
     closed: boolean;
     total: number;

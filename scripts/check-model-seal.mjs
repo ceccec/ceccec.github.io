@@ -58,6 +58,7 @@ import {
   tiers358,
   securityScan,
   gapScan,
+  todoScan,
   complete,
   dimensions,
   dualities,
@@ -262,6 +263,8 @@ ok(`gaps.none:${gapScan(matrix).total}`, gapScan(matrix).closed)
 // Complete all: every completion proof holds at once.
 const completion = complete(matrix)
 ok(`complete.all:${completion.passed}/${completion.total}`, completion.complete)
+// Keep going until nothing to do: every actionable surface scans to zero.
+ok(`nothing-to-do:${todoScan(matrix).total}`, todoScan(matrix).nothingToDo)
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).
 ok(`dualities.compared:${dualities().count}`, dualities().compared)

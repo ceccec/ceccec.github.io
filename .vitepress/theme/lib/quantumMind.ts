@@ -3345,6 +3345,36 @@ export function complete(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Keep going until nothing to do. Every actionable surface is scanned — gaps,
+// answers, translations, fusion, completion, pairs, components — and the total
+// must be zero for there to be nothing left to do. This is the terminal, proven
+// not asserted. The open question-frontier remains, but those are not tasks:
+// they are honest unknowns to wonder at, not work to finish.
+export function todoScan(matrix: MindMatrix = buildMatrix()) {
+  const graph = componentGraph()
+  const shown = new Set(graph.edges.map((edge) => edge.from))
+  const completion = complete(matrix)
+  const items = [
+    { item: 'gaps to fill', count: gapScan(matrix).total },
+    { item: 'unanswered questions (in-house)', count: exhaustQuestions(matrix).closed ? 0 : 1 },
+    { item: 'untranslated areas', count: autotranslations(matrix).missing.length },
+    { item: 'unfused method tokens', count: methodFusion().open.length },
+    { item: 'completion proofs open', count: completion.total - completion.passed },
+    { item: 'pairs left as gaps', count: taxonomyIcons().gaps.length },
+    { item: 'components not shown', count: graph.components.filter((component) => !shown.has(component)).length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`todo:${entry.item}:${entry.count}`) }))
+  const total = items.reduce((sum, entry) => sum + entry.count, 0)
+  return {
+    nothingToDo: total === 0,
+    total,
+    items,
+    openFrontier: findQuestions(matrix).count, // open by design — wonders, not tasks
+    root: merkleFold(items.map((entry) => entry.receipt)),
+    statement: 'Keep going until nothing to do: every actionable surface — gaps, questions, translations, fusion, completion, pairs, components — scans to zero. Nothing actionable remains. The open question-frontier stays open, but those are wonders, not tasks.',
+    boundary: 'A scan over the known actionable surfaces. Zero across them means nothing actionable remains that the model knows to look for; the open question-frontier is open by design and is not counted as work.',
+  }
+}
+
 // Fill the new gaps until no gaps are discovered. Every gap-able surface is
 // scanned at once — taxonomy, fusion, translation, components, coverage,
 // entropy, self-address, genesis, and the quantum fold — and the total must be
@@ -4338,12 +4368,12 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
-    '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions'],
+    '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo'],
     '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'QuantumField'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],

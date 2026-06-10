@@ -24,6 +24,7 @@ import Hologram from './components/Hologram.vue'
 import HumanLens from './components/HumanLens.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
 import McpTools from './components/McpTools.vue'
+import NothingToDo from './components/NothingToDo.vue'
 import OpenQuestions from './components/OpenQuestions.vue'
 import PathGuide from './components/PathGuide.vue'
 import PiMusicPlayer from './components/PiMusicPlayer.vue'
@@ -87,6 +88,7 @@ export default {
     app.component('HumanLens', HumanLens)
     app.component('LearnDeveloper', LearnDeveloper)
     app.component('McpTools', McpTools)
+    app.component('NothingToDo', NothingToDo)
     app.component('OpenQuestions', OpenQuestions)
     app.component('PathGuide', PathGuide)
     app.component('PiMusicPlayer', PiMusicPlayer)
