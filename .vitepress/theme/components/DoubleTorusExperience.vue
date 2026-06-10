@@ -43,6 +43,7 @@ let audioContext: AudioContext | undefined
 
 const activePulse = computed(() => piTrain.diamonds[activeIndex.value])
 const activeDiamond = computed(() => activePulse.value.diamond)
+const activeClosureWave = computed(() => closure.waves[activeIndex.value % closure.waves.length])
 
 function ensureAudio(): AudioContext | undefined {
   if (typeof window === 'undefined' || !audioEnabled.value) return undefined
@@ -191,6 +192,10 @@ onBeforeUnmount(() => {
           <Badge variant="default">digit {{ activePulse.glyph }}</Badge>
           <strong>{{ activeDiamond.title }}</strong>
           <span>frequency {{ activePulse.frequency }}Hz · vibration {{ activePulse.vibrationMs }}ms</span>
+          <span>
+            closure wave {{ activeClosureWave.wave.index }} targets {{ activeClosureWave.target }}
+            with {{ activeClosureWave.wave.polarity }} phase {{ activeClosureWave.wave.phase.toFixed(3) }}
+          </span>
           <code>{{ activeDiamond.receipt }}</code>
         </div>
         <ul class="diamond-facets">
