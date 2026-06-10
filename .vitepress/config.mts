@@ -10,6 +10,8 @@ export default defineConfig({
   title: siteTitle,
   description: siteDescription,
   cleanUrls: true,
+  // The published npm package lives under packages/; its README is not a site page.
+  srcExclude: ['packages/**'],
   head: [
     ['meta', { name: 'application-name', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],

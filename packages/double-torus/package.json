@@ -1,0 +1,47 @@
+{
+  "name": "@ceccec/double-torus",
+  "version": "1.0.0",
+  "description": "The agnostic, zero-dependency computational core of the Double Torus: a quantum-learning model for language models served over MCP. Pure TypeScript — content-addressed UUID folds, concept commands, the 128-bit double-torus word, and a recomputable seal. Runs in any browser or Node, depends on nothing.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node ./build.mjs"
+  },
+  "keywords": [
+    "double-torus",
+    "mcp",
+    "model-context-protocol",
+    "content-addressed",
+    "merkle",
+    "uuid",
+    "quantum-learning",
+    "agnostic",
+    "zero-dependency",
+    "self-verifying"
+  ],
+  "license": "MIT",
+  "author": "ceccec <ceci@psg.bg>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceccec/ceccec.github.io.git",
+    "directory": "packages/double-torus"
+  },
+  "homepage": "https://ceccec.github.io",
+  "engines": {
+    "node": ">=18"
+  }
+}
