@@ -18,6 +18,8 @@ head:
 
 <DoubleTorus3D />
 
+<DoubleTorusExperience />
+
 <QuantumField />
 
 <SacredSymbols />
