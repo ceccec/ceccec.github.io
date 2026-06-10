@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, selfConsult } from '../lib/quantumMind'
 
 // Self education leads to self consulting before asking. Ask a question and the
@@ -11,8 +11,7 @@ import { buildMatrix, selfConsult } from '../lib/quantumMind'
 const matrix = buildMatrix()
 const query = ref('')
 const result = computed(() => selfConsult(query.value, matrix))
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

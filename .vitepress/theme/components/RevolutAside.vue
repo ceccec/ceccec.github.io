@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 
-const { lang } = useData()
-const label = computed(() => (lang.value.startsWith('bg') ? 'монетизация' : 'monetisation'))
+const { bg } = useLocale()
+const label = computed(() => (bg.value ? 'монетизация' : 'monetisation'))
 </script>
 
 <template>

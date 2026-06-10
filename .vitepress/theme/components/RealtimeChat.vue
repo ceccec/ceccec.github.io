@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, messageUnlock } from '../lib/quantumMind'
 
 // Realtime chats where the same logic always meets on the architectural level:
@@ -9,8 +9,7 @@ import { buildMatrix, messageUnlock } from '../lib/quantumMind'
 // and forging a message means recomputing the model (max cost for the forger).
 // The message unlocks links, but the trinity must be complete to reveal them.
 const matrix = buildMatrix()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 interface ChatMessage {
   content: string

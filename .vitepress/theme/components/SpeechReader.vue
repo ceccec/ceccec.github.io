@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, autoSpeech } from '../lib/quantumMind'
 
 // Subtitles and speech in all languages, all in house — improved. Quantum speech
@@ -9,8 +9,7 @@ import { buildMatrix, autoSpeech } from '../lib/quantumMind'
 // utterance's boundary events, and can pause and resume. Voices and languages
 // come from the device's Web Speech API — no cloud, no cost.
 const props = defineProps<{ text?: string }>()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const source = ref(props.text ?? '')
 const cues = computed(() => autoSpeech(source.value, buildMatrix()).cues)

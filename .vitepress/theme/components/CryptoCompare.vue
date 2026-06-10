@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, cryptographyComparison } from '../lib/quantumMind'
 
 // Deep research, honest: how the site's fold compares to established
 // cryptography. A widget, not a wall of text — each row pairs a site primitive
 // with its standard counterpart, the same shape but a non-cryptographic hash.
 const data = cryptographyComparison(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

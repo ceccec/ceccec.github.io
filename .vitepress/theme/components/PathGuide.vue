@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
 import { buildMatrix, path } from '../lib/quantumMind'
+import { useLocale } from '../lib/useLocale'
 
 // Follow the path. A guided, looping journey through the portal: step along it,
 // or jump to any station. Each step says why you are there.
 const data = path(buildMatrix())
 const here = ref(0)
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
-const prefix = computed(() => (bg.value ? '/bg' : ''))
+const { bg, localize } = useLocale()
 
 const bgStation: Record<string, { station: string; why: string }> = {
   Start: { station: 'Начало', why: 'Виж обещанията с прости думи.' },
@@ -27,7 +25,7 @@ const items = computed(() =>
     ...s,
     label: bg.value ? bgStation[s.station]?.station ?? s.station : s.station,
     why: bg.value ? bgStation[s.station]?.why ?? s.why : s.why,
-    link: prefix.value + (s.route === '/' ? '/' : s.route),
+    link: localize(s.route),
   })),
 )
 const current = computed(() => items.value[here.value])

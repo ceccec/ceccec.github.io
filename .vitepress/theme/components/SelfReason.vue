@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, selfReason } from '../lib/quantumMind'
 
 // Self reasoning that shows its work: a grounded chain over the model. Each step
@@ -9,8 +9,7 @@ import { buildMatrix, selfReason } from '../lib/quantumMind'
 const matrix = buildMatrix()
 const goal = ref('')
 const result = computed(() => selfReason(goal.value, matrix))
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'само-разсъждение · показва работата си', placeholder: 'Цел… (proof, school, trinity)', because: 'защото', via: 'чрез', conclusion: 'извод' }

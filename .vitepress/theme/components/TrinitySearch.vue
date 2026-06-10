@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, searchTrinity, charUuids, wordUuids } from '../lib/quantumMind'
 
 // Each char a UUID, then the words, and a search of three characters reveals the
@@ -11,8 +11,7 @@ const query = ref('')
 const chars = computed(() => charUuids(query.value).chars)
 const words = computed(() => wordUuids(query.value).words)
 const search = computed(() => searchTrinity(query.value, matrix))
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'търсене · всеки символ UUID · троица при 3', placeholder: 'Пиши… (nat, mus, heal)', chars: 'символи', words: 'думи', hint: 'въведи 3 символа, за да разкриеш първата троица', revealed: 'разкрита троица' }

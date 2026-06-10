@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358, music358, geometry358, emf358, tiers358 } from '../lib/quantumMind'
 
 // 3-5-8 across domains: the same Fibonacci tiers (3, 5, 8) recur in yin-yang
 // (three powers, five elements, eight trigrams), on the chessboard (minor piece,
 // rook, the 8 x 8 board), and — mapped honestly as belief frameworks, not science
 // — in the yogic chakra tradition and in Human Design.
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const domains = computed(() => {
   const yy = yinYang()

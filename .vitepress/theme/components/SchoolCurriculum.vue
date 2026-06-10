@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, schoolCurriculum, type SchoolStage } from '../lib/quantumMind'
 
 const school = schoolCurriculum(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 type Card = { ageBand: string; title: string; bigIdea: string; inPlainWords: string; activity: string }
 

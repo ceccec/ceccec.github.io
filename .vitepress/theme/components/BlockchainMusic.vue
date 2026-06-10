@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, quantumFoldedBlockchains, blockchainMusic } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -13,8 +13,7 @@ const names = chains.chains.map((chain) => chain.name)
 const selected = ref(names.includes('commands') ? 'commands' : names[0])
 const music = computed(() => blockchainMusic(selected.value, matrix))
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const playing = ref(false)
 

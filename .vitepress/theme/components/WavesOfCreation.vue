@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, creationWave, endlessWaves } from '../lib/quantumMind'
 
 // Endless waves of creation. Each wave is computable from its index alone — a
@@ -12,8 +12,7 @@ const test = endlessWaves(256, matrix)
 const start = ref(0)
 const span = ref(48)
 const waves = computed(() => Array.from({ length: span.value }, (_, i) => creationWave(start.value + i, matrix)))
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'безкрайни вълни на сътворение', more: 'Сътвори още', tested: `тествани: ${test.count} различни · детерминирани · адресируеми на всеки индекс`, at: 'вълни от' }

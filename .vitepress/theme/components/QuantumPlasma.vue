@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, plasmaContainment } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
@@ -12,8 +12,7 @@ import { useInView } from '../lib/useInView'
 // on low battery, leaving a static frame).
 const matrix = buildMatrix()
 const containment = plasmaContainment(matrix)
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 
 const canvas = ref<HTMLCanvasElement | null>(null)

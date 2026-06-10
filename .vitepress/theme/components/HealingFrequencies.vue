@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, healingFrequencies } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -11,8 +11,7 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 // physical field around the device, and makes no health claim.
 const matrix = buildMatrix()
 const data = computed(() => healingFrequencies(matrix))
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 
 const playing = ref(false)

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, executeDeveloperCommand, learnDeveloper } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
 const learning = learnDeveloper(matrix)
 const command = executeDeveloperCommand('developer.learn.core', {}, matrix)
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

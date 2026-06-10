@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import {
   buildMatrix,
   conceptCommands,
@@ -13,8 +13,7 @@ const matrix = buildMatrix()
 const selected = ref<ConceptCommandName>('concept.ui.doubleTorus')
 const atom = ref('self')
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

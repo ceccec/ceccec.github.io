@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { dualities } from '../lib/quantumMind'
 
 // Compare all dualities, in 3-5-8 (Fibonacci) tiers. Each pair is a real duality
 // because folding left-then-right differs from right-then-left.
 const data = dualities()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const bgPole: Record<string, string> = {
   inner: 'вътрешен', outer: 'външен', yin: 'ин', yang: 'ян', zero: 'нула', one: 'едно',

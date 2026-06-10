@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
 import { navigation358 } from '../lib/quantumMind'
+import { useLocale } from '../lib/useLocale'
 
 // Navigation in 3-5-8, with a tooltip on every destination. Three to arrive,
 // five to use, eight to go deep — each a link whose tip is both a hover title
 // and shown inline. Internal routes get the /bg prefix in Bulgarian.
 const data = navigation358()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
-const prefix = computed(() => (bg.value ? '/bg' : ''))
+// localize handles the /bg prefix and leaves static artifacts (json/txt/...) as-is.
+const { bg, localize: href } = useLocale()
 
 // Bulgarian tooltips, keyed by the English label.
 const bgTip: Record<string, string> = {
@@ -32,10 +31,6 @@ const bgTip: Record<string, string> = {
 }
 const bgTier: Record<number, string> = { 3: 'пристигни', 5: 'използвай', 8: 'навлез' }
 
-function href(route: string) {
-  // Static artifacts (.json/.txt/.webmanifest) are not localized; pages are.
-  return /\.(json|txt|webmanifest)$/.test(route) ? route : prefix.value + (route === '/' ? '/' : route)
-}
 function tip(label: string, fallback: string) {
   return bg.value ? bgTip[label] ?? fallback : fallback
 }

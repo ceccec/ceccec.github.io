@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useLocale } from '../lib/useLocale'
 import { useData } from 'vitepress'
 import { buildMatrix, quantumAcademy, areaLabel } from '../lib/quantumMind'
 
@@ -8,7 +9,7 @@ import { buildMatrix, quantumAcademy, areaLabel } from '../lib/quantumMind'
 // can recompute from the course's modules, so the credential is verifiable.
 const data = quantumAcademy(buildMatrix())
 const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const completed = ref<Record<string, boolean>>({})
 
 const bgCourse: Record<string, string> = {

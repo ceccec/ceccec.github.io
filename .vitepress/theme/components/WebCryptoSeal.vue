@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, cryptoFuture } from '../lib/quantumMind'
 
 // Future crypto tools — real cryptography, in the browser. The model fold is
@@ -9,8 +9,7 @@ import { buildMatrix, cryptoFuture } from '../lib/quantumMind'
 // canonical string and hash it with any vetted tool and get the same digest.
 // Zero dependencies, client-side, no network.
 const data = cryptoFuture(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const digest = ref('')
 const computing = ref(false)

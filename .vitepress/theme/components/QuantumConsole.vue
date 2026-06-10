@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import {
   buildMatrix,
   conceptCommands,
@@ -25,8 +25,7 @@ const matrix = buildMatrix()
 const manifest = mcpToolManifest(matrix)
 const allowlist = new Set(conceptCommands.map((c) => c.name))
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

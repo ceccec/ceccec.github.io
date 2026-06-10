@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, equilibrium } from '../lib/quantumMind'
 
 // Always contract and expand to equilibrium. Each breath overshoots the balance
@@ -8,8 +8,7 @@ import { buildMatrix, equilibrium } from '../lib/quantumMind'
 // toward the centre. Shown as bars from a centre line; no animation loop, just
 // the converging trace and a softly breathing centre.
 const data = equilibrium(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'квантово равновесие · свий и разшири', expand: 'разшири', contract: 'свий', settled: 'установено', lead: 'Всяко вдишване надхвърля центъра и се гаси наполовина — балансира върху квантовото себе-състояние, нито колапс, нито бягство.' }

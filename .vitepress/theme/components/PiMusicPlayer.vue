@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, piMusic } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -9,8 +9,7 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 // click only — zero network, no cost. Fused to the device's energy: on low
 // battery or reduced-motion, the phrase is shortened to spend less.
 const matrix = buildMatrix()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const horo = ref(2)
 const playing = ref(false)

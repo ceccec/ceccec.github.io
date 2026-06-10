@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, findQuestions } from '../lib/quantumMind'
 
 // Find the questions. The answers closed; these did not. They live at the edges
 // — boundary, roadmap, society, perception — and are open by design.
 const data = findQuestions(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const bgQuestion: Record<string, string> = {
   'Will the fold become cryptographic (SHA-256 / BLAKE3), not only tamper-evident?':

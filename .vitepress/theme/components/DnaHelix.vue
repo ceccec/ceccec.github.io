@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, dna } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
@@ -10,8 +10,7 @@ import { useInView } from '../lib/useInView'
 // two rotating helices with base-pair rungs. Each base is coloured (A C G T).
 // Zero dependencies, energy-aware.
 const data = dna(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const canvas = ref<HTMLCanvasElement | null>(null)
 let raf = 0

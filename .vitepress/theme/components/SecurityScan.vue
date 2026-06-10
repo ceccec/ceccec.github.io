@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, securityScan } from '../lib/quantumMind'
 
 // All connected users interact securely, scanned in 3-5-8. The peers meet over a
 // same-origin channel with content-addressed messages and no server to attack;
 // this lists the 16 security-by-architecture properties across three tiers.
 const data = securityScan(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const tiers = computed(() => [3, 5, 8].map((tier) => ({ tier, items: data.properties.filter((p) => p.tier === tier) })))
 const t = computed(() =>
   bg.value

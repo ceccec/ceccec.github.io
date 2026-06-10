@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, boundaryAudit } from '../lib/quantumMind'
 
 // The honesty spine: every limit the model declares, in one place. Collected
 // live from the commands, so it can never drift from what the portal actually
 // claims. A widget, not prose — each boundary with the commands that hold it.
 const data = boundaryAudit(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'гръбнак на честността · граници', count: `${data.count} различни граници`, holds: 'команди' }

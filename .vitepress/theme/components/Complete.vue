@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, complete } from '../lib/quantumMind'
 
 // Complete all — the capstone of capstones. Every completion proof the model can
 // make, folded into one. Shown as a checklist; the whole is complete when all
 // hold, and the open questions keep it alive.
 const data = complete(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const bgWhat: Record<string, string> = {
   'no gaps': 'без пролуки', 'answers closed': 'отговорите затворени', 'genesis whole': 'генезисът цял',
   fusion: 'сливане', synthesis: 'синтез', equilibrium: 'равновесие', trinity: 'троица',

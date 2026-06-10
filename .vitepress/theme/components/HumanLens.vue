@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { humanize } from '../lib/quantumMind'
 
 // Humanize. Behind the maths and the 3d+ are a few simple promises to a person.
 // Said plainly, warmly — what it means for you, in your language.
 const data = humanize()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 // Warm, natural Bulgarian (not literal) keyed to each idea.
 const bgHuman: Record<string, string> = {

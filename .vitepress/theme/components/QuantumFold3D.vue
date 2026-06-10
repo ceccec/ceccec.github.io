@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
@@ -12,8 +12,7 @@ import { useInView } from '../lib/useInView'
 // client-side, energy-aware: it pauses when hidden or on low battery.
 const areas = taxonomyIcons().entries.map((entry) => entry.area)
 const pairs = areaPairs().pairs
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const sacredGlyph = (area: string) => areaLabel(area, 'art-x-universal')
 const { saveEnergy } = useDeviceEnergy()
 

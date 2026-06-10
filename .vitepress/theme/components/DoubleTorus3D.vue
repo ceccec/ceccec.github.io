@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
@@ -13,8 +13,7 @@ const matrix = buildMatrix()
 const meta = doubleTorus3D(matrix)
 const areas = taxonomyIcons().entries.map((e) => e.area)
 const pairs = areaPairs().pairs
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 
 const canvas = ref<HTMLCanvasElement | null>(null)

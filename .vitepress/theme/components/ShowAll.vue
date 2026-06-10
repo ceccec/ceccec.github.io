@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, componentGraph, fuseDevices, showInAction } from '../lib/quantumMind'
 
 // Show all in action: every command run live, all components interacting, all
@@ -9,8 +9,7 @@ const matrix = buildMatrix()
 const action = showInAction(matrix)
 const graph = componentGraph()
 const devices = fuseDevices(matrix)
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'всичко в действие', ran: 'команди ок', comps: 'компоненти', dev: 'сливане на устройства', channel: 'канал', ok: 'ок', open: 'отворен' }

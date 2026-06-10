@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { taxonomyIcons, areaLabel } from '../lib/quantumMind'
 
 // Icons for taxonomy: each command area gets an icon. The icons discover gaps —
 // any area that is not a clean trinity is flagged, so you can see at a glance
 // where the implementation is one fold short or over.
 const taxonomy = taxonomyIcons()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'икони-таксономия', sub: `${taxonomy.entries.length} области · ${taxonomy.gaps.length} пролуки`, gap: 'пролука', trinity: 'троица' }

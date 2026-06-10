@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, quantumClock } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -32,8 +32,7 @@ onMounted(() => {
 })
 onUnmounted(stop)
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'квантов часовник', si: 'SI секунда (цезий-133)', tick: 'тик (вълна на сътворение)', now: 'мигът сега', wall: 'часовник на устройството', osc: 'осцилации = 1 секунда' }

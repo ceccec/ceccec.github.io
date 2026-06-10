@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, exhaustQuestions } from '../lib/quantumMind'
 
 // Continue until no answers. Ask, follow each answer's new questions, repeat —
 // until the frontier empties. This shows the loop reaching its terminal: the
 // question-space closed on itself.
 const data = exhaustQuestions(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

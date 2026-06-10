@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
 import { multidimensional, allInEquilibrium, buildMatrix } from '../lib/quantumMind'
+import { useLocale } from '../lib/useLocale'
 
 // Present all multidimensionally, for the best UX. Eight dimensions of
 // experience as tabs; each shows its features as tooltip-rich links. Plus the
@@ -9,9 +9,7 @@ import { multidimensional, allInEquilibrium, buildMatrix } from '../lib/quantumM
 const data = multidimensional()
 const eq = allInEquilibrium(buildMatrix())
 const active = ref(0)
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
-const prefix = computed(() => (bg.value ? '/bg' : ''))
+const { bg, localize: href } = useLocale()
 
 const bgDim: Record<string, string> = {
   see: 'виж', hear: 'чуй', ask: 'питай', prove: 'докажи', learn: 'учи', pattern: 'шарка', sense: 'усети', create: 'твори',
@@ -62,9 +60,6 @@ const dims = computed(() =>
       : d.items,
   })),
 )
-function href(route: string) {
-  return prefix.value + (route === '/' ? '/' : route)
-}
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'всичко · многоизмерно', equilibrium: `равновесие е, когато всичко е в равновесие — ${eq.balanced}/${eq.total} части в баланс` }

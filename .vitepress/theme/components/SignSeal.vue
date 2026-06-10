@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, cryptoFuture, attestation } from '../lib/quantumMind'
 
 // Toward attestation. The canonical model roots can be signed and verified in
@@ -10,8 +10,7 @@ import { buildMatrix, cryptoFuture, attestation } from '../lib/quantumMind'
 // key stays an open question.
 const data = attestation()
 const canonical = cryptoFuture(buildMatrix()).canonical
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const supported = ref(true)
 const busy = ref(false)

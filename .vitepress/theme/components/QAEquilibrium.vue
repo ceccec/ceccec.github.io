@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, questionAnswerEquilibrium } from '../lib/quantumMind'
 
 // Questions, answers, equilibrium — the three as one. Answers contract to a
 // closed point, questions expand to an open frontier, and the breath settles
 // between them. A small triptych: ∎ answers · breath · questions …
 const data = questionAnswerEquilibrium(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {

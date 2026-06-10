@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, genesis } from '../lib/quantumMind'
 
 // The 3-5-8 genesis. From the seed 1, 1 the Fibonacci sequence unfolds; 3, 5, 8
@@ -8,8 +8,7 @@ import { buildMatrix, genesis } from '../lib/quantumMind'
 // sequence with 3-5-8 marked, the recurrence, the threads, and a golden spiral
 // (static SVG — no animation loop).
 const data = genesis(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const tierSet = new Set(data.tiers)
 
 // A logarithmic (golden) spiral path: r = a * phi^(theta / (pi/2)).

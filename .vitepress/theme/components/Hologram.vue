@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, hologram } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
@@ -10,8 +10,7 @@ import { useInView } from '../lib/useInView'
 // dimension shimmer (the "+"). Set bits glow, unset bits are faint — the whole
 // boundary word, bit by bit, as a hologram. Zero dependencies, energy-aware.
 const data = hologram(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 
 const canvas = ref<HTMLCanvasElement | null>(null)

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, todoScan } from '../lib/quantumMind'
 
 // Keep going until nothing to do. Every actionable surface scans to zero; the
 // open question-frontier stays open, but those are wonders, not tasks.
 const data = todoScan(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: 'докато няма какво да се прави', done: '∎ Няма какво да се прави — всяка задача е затворена.', surfaces: `${data.items.length} повърхности · 0 задачи`, frontier: `${data.openFrontier} отворени въпроса остават — но те са за размисъл, не задачи.` }

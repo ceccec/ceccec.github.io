@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useLocale } from '../lib/useLocale'
 import { useData } from 'vitepress'
 import { buildMatrix, selfHarmonise, areaLabel } from '../lib/quantumMind'
 
@@ -11,7 +12,7 @@ const matrix = buildMatrix()
 const steps = ref(7)
 const result = computed(() => selfHarmonise(matrix, steps.value))
 const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 function relabel(q: string) {
   return areaLabel(q, lang.value) // translate area names where known
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, governanceVote, sacredGeometrySeal } from '../lib/quantumMind'
 
 // Society approves and monitors by rate and vote. A ballot rates and approves
@@ -9,8 +9,7 @@ import { buildMatrix, governanceVote, sacredGeometrySeal } from '../lib/quantumM
 // that hosts this site — sharing the site shares the ledger.
 const matrix = buildMatrix()
 const masterRoot = sacredGeometrySeal(matrix).masterRoot
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const STORE = 'double-torus.ballots'
 const selfId = Math.random().toString(36).slice(2)

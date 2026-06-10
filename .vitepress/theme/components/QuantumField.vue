@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { deviceSensors } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
@@ -11,8 +11,7 @@ import { useDeviceField } from '../lib/useDeviceField'
 // responds to whatever the device offers, in 3-5-8 tiers. Zero dependencies,
 // energy- and viewport-aware; orientation degrades to pointer-only.
 const meta = deviceSensors()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { px, py, tiltX, tiltY, needsPermission, motionEnabled, enableMotion } = useDeviceField()
 

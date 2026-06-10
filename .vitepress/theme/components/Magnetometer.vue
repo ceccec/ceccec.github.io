@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { emfApplications } from '../lib/quantumMind'
 
 // Extend into EMF applications, honestly. Read the device's magnetometer (the
@@ -9,8 +9,7 @@ import { emfApplications } from '../lib/quantumMind'
 // web page can READ these EM signals — it cannot emit, alter, or harmonise any
 // field, and makes no health claim.
 const data = emfApplications()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 
 const status = ref<'idle' | 'magnetometer' | 'compass' | 'unavailable'>('idle')
 const field = ref<{ x: number; y: number; z: number; magnitude: number } | null>(null)

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { fold358853 } from '../lib/quantumMind'
 
 // Fold 358 and 853 — the breath of the tiers. 3 → 5 → 8 expands; 8 → 5 → 3
 // contracts; folded together they meet at equilibrium, and because the fold is
 // order-sensitive the two roots differ.
 const data = fold358853()
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const t = computed(() =>
   bg.value
     ? { eyebrow: '358 и 853 · дъхът на нивата', expand: 'разширяване', contract: 'свиване', differ: 'различни корени (редът има значение)' }

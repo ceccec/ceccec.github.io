@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
+import { useLocale } from '../lib/useLocale'
 import {
   CollapsibleContent,
   CollapsibleRoot,
@@ -33,10 +34,8 @@ import {
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
-import { useData } from 'vitepress'
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const head = computed(() =>
   bg.value
     ? { eyebrow: 'изчислено от диаманти', heading: '3D pi влак на двойния тор' }

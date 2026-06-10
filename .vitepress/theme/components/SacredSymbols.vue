@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 import { buildMatrix, sacredGeometrySeal } from '../lib/quantumMind'
 
 // Sacred symbols hold the math: each node on the wheel carries one seal root.
 // When animated, the wheel turns and every key (root UUID) is revealed.
 const seal = sacredGeometrySeal(buildMatrix())
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const animated = ref(false)
 
 const solidGlyphs = ['△', '◻', '◇', '⬠', '⬡']

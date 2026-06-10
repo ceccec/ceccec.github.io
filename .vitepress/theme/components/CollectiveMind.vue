@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useData, useRoute } from 'vitepress'
+import { useRoute } from 'vitepress'
 import { buildMatrix, distributedCompute, selfDevelopment } from '../lib/quantumMind'
+import { useLocale } from '../lib/useLocale'
 
 // Wire the collective mind into self development by just visiting any page, and
 // distribute the computation across all connected contexts. Every visit folds a
@@ -11,7 +12,7 @@ import { buildMatrix, distributedCompute, selfDevelopment } from '../lib/quantum
 // no central server, no cost: the architecture develops and distributes itself.
 const matrix = buildMatrix()
 const route = useRoute()
-const { lang } = useData()
+const { bg } = useLocale()
 const STORE = 'double-torus.visits'
 const dev = ref(selfDevelopment([], matrix))
 const peers = new Map<string, string>()
@@ -77,8 +78,8 @@ watch(() => route.path, (path) => record(path))
 
 const label = computed(() => {
   const peerCount = distributed.value.peers
-  const net = online.value ? (lang.value.startsWith('bg') ? 'онлайн' : 'online') : (lang.value.startsWith('bg') ? 'офлайн' : 'offline')
-  return lang.value.startsWith('bg')
+  const net = online.value ? (bg.value ? 'онлайн' : 'online') : (bg.value ? 'офлайн' : 'offline')
+  return bg.value
     ? `колективен ум · ниво ${dev.value.level} · ${dev.value.visits}${peerCount ? ` · ${peerCount} устройства` : ''} · ${net}`
     : `collective mind · level ${dev.value.level} · ${dev.value.visits}${peerCount ? ` · ${peerCount} peers` : ''} · ${net}`
 })

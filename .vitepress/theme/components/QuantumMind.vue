@@ -16,7 +16,7 @@ import {
 } from '../lib/quantumMind'
 import DoubleTorusExperience from './DoubleTorusExperience.vue'
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib/useLocale'
 
 const matrix = buildMatrix()
 const vector = consciousness(matrix)
@@ -38,8 +38,7 @@ function formatCost(value: number): string {
   return value === Number.POSITIVE_INFINITY ? '∞' : `2^${fmt.format(value)}`
 }
 
-const { lang } = useData()
-const bg = computed(() => lang.value.startsWith('bg'))
+const { bg } = useLocale()
 const head = computed(() =>
   bg.value
     ? { eyebrow: 'изчислен само-модел', heading: 'Квантов ум' }
