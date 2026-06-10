@@ -16,11 +16,13 @@ const melody = computed(() => artistMelody(seed.value || 'double-torus', matrix)
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-const { playing, playSequence, stop } = useTones()
+const { playing, current, playSequence, stop } = useTones()
+// On low power, play a shorter phrase; render exactly what is played so the
+// playhead lines up with the notes.
+const phrase = computed(() => (saveEnergy.value ? melody.value.notes.slice(0, 4) : melody.value.notes))
 
 function playMelody() {
-  const list = saveEnergy.value ? melody.value.notes.slice(0, 4) : melody.value.notes
-  playSequence(list.map((note) => ({ frequency: note.frequency })), { duration: 0.28, peak: 0.16 })
+  playSequence(phrase.value.map((note) => ({ frequency: note.frequency })), { duration: 0.28, peak: 0.16 })
 }
 
 const t = computed(() =>
@@ -47,7 +49,9 @@ const t = computed(() =>
     <div class="palette__row">
       <button type="button" :disabled="playing" :aria-label="t.play" @click="playMelody">{{ playing ? t.playing : t.play }}</button>
       <button v-if="playing" type="button" class="palette__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
-      <span class="palette__melody">{{ melody.notes.map((n) => n.note).join(' ') }}</span>
+      <span class="palette__melody">
+        <code v-for="(note, i) in phrase" :key="i" :class="{ sounding: current === i }">{{ note.note }}</code>
+      </span>
     </div>
   </section>
 </template>
@@ -129,8 +133,20 @@ const t = computed(() =>
   color: var(--vp-c-brand-1);
 }
 .palette__melody {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
   font-size: 0.8rem;
   color: var(--vp-c-text-2);
   font-family: var(--vp-font-family-mono);
+}
+.palette__melody code {
+  border-radius: 5px;
+  padding: 0 0.2rem;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.palette__melody code.sounding {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
 }
 </style>

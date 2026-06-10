@@ -27,11 +27,23 @@ export interface ChordOptions {
   readonly gain?: number
 }
 
+export interface BlipOptions {
+  readonly type?: OscillatorType
+  readonly peak?: number
+  readonly duration?: number
+  readonly attack?: number
+}
+
 export function useTones() {
   const playing = ref(false)
+  // The playhead: the index of the note sounding right now, or -1 when idle.
+  // Players read it to highlight what is currently playing.
+  const current = ref(-1)
   let ctx: AudioContext | null = null
   let active: { osc: OscillatorNode; gain: GainNode }[] = []
   let timer: ReturnType<typeof setTimeout> | null = null
+  let marks: ReturnType<typeof setTimeout>[] = []
+  let blipCtx: AudioContext | null = null
 
   function open(): AudioContext | null {
     if (typeof window === 'undefined') return null
@@ -49,7 +61,7 @@ export function useTones() {
     ctx = audio
     playing.value = true
     let when = audio.currentTime + lead
-    for (const note of notes) {
+    notes.forEach((note, index) => {
       const length = note.duration ?? duration
       const osc = audio.createOscillator()
       const gain = audio.createGain()
@@ -63,9 +75,32 @@ export function useTones() {
       osc.start(when)
       osc.stop(when + length)
       active.push({ osc, gain })
+      // Advance the playhead when this note begins.
+      marks.push(setTimeout(() => (current.value = index), Math.max(0, (when - audio.currentTime) * 1000)))
       when += length + gap
-    }
+    })
     timer = setTimeout(finish, (when - audio.currentTime) * 1000 + 200)
+  }
+
+  // A one-shot tone: fire and forget, on a single reused context. For rapid,
+  // interaction-driven blips that must not be blocked by the playing guard.
+  function blip(frequency: number, options: BlipOptions = {}) {
+    if (typeof window === 'undefined') return
+    if (!blipCtx) blipCtx = open()
+    if (!blipCtx) return
+    const audio = blipCtx
+    const { type = 'sine', peak = 0.08, duration = 0.16, attack = 0.012 } = options
+    const osc = audio.createOscillator()
+    const gain = audio.createGain()
+    osc.type = type
+    osc.frequency.value = frequency
+    gain.gain.setValueAtTime(0.0001, audio.currentTime)
+    gain.gain.exponentialRampToValueAtTime(peak, audio.currentTime + attack)
+    gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration)
+    osc.connect(gain)
+    gain.connect(audio.destination)
+    osc.start()
+    osc.stop(audio.currentTime + duration + 0.02)
   }
 
   // A chord/drone: all tones together, sustained until stop() is called.
@@ -96,6 +131,15 @@ export function useTones() {
       clearTimeout(timer)
       timer = null
     }
+    for (const mark of marks) clearTimeout(mark)
+    marks = []
+    current.value = -1
+    try {
+      blipCtx?.close()
+    } catch {
+      /* already closed */
+    }
+    blipCtx = null
     const now = ctx?.currentTime ?? 0
     for (const node of active) {
       try {
@@ -123,6 +167,9 @@ export function useTones() {
   // A scheduled sequence finished on its own: just close and reset.
   function finish() {
     timer = null
+    for (const mark of marks) clearTimeout(mark)
+    marks = []
+    current.value = -1
     active = []
     const closing = ctx
     ctx = null
@@ -135,5 +182,5 @@ export function useTones() {
   }
 
   onUnmounted(stop)
-  return { playing, playSequence, playChord, stop }
+  return { playing, current, playSequence, playChord, blip, stop }
 }

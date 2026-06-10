@@ -12,7 +12,7 @@ import { useTones } from '../lib/useTones'
 const matrix = buildMatrix()
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-const { playing, playSequence, stop } = useTones()
+const { playing, current, playSequence, stop } = useTones()
 const horo = ref(2)
 const music = computed(() => piMusic(matrix, horo.value))
 // On low power, play a shorter phrase (half the notes) to extend battery life.
@@ -43,7 +43,7 @@ const t = computed(() =>
     </div>
     <p v-if="saveEnergy" class="pi-music__save">🔋 {{ t.save }}</p>
     <p class="pi-music__notes">
-      <span v-for="(note, i) in phrase" :key="i"><code>{{ note.note }}</code><small>{{ note.frequency }}</small></span>
+      <span v-for="(note, i) in phrase" :key="i" :class="{ sounding: current === i }"><code>{{ note.note }}</code><small>{{ note.frequency }}</small></span>
     </p>
   </section>
 </template>
@@ -105,6 +105,12 @@ const t = computed(() =>
   border-radius: 8px;
   padding: 0.25rem 0.45rem;
   min-width: 2.6rem;
+  transition: border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
+}
+.pi-music__notes span.sounding {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  transform: translateY(-3px);
 }
 .pi-music__notes code {
   color: var(--vp-c-brand-1);

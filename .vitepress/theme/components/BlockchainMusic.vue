@@ -16,7 +16,7 @@ const music = computed(() => blockchainMusic(selected.value, matrix))
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-const { playing, playSequence, stop } = useTones()
+const { playing, current, playSequence, stop } = useTones()
 
 function play() {
   const list = saveEnergy.value ? music.value.notes.slice(0, 16) : music.value.notes
@@ -44,7 +44,7 @@ const t = computed(() =>
       <span class="chain-music__meta">{{ music.notes.length }} {{ t.blocks }} · {{ music.distinctTones }} {{ t.tones }}</span>
     </div>
     <p class="chain-music__notes">
-      <span v-for="(note, i) in music.notes" :key="i"><code>{{ note.note }}</code><small>{{ note.frequency }}</small></span>
+      <span v-for="(note, i) in music.notes" :key="i" :class="{ sounding: current === i }"><code>{{ note.note }}</code><small>{{ note.frequency }}</small></span>
     </p>
   </section>
 </template>
@@ -111,6 +111,12 @@ const t = computed(() =>
   border-radius: 6px;
   padding: 0.2rem 0.4rem;
   min-width: 2.4rem;
+  transition: border-color 0.1s ease, background 0.1s ease, transform 0.1s ease;
+}
+.chain-music__notes span.sounding {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  transform: translateY(-2px);
 }
 .chain-music__notes code {
   color: var(--vp-c-brand-1);

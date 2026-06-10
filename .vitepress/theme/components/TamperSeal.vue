@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // Move entropy to a max-tampering-cost UI feature, with complete multidimensional
 // interaction through the device. The seal is recomputed client-side and shown
@@ -25,6 +26,7 @@ const anim = computed(() => freeAnimations(matrix))
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
+const { playSequence } = useTones()
 
 const pulsing = ref(false)
 const verified = ref(false)
@@ -41,32 +43,20 @@ function verify() {
   if (!saveEnergy.value && typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
     navigator.vibrate([18, 40, 18])
   }
-  // Sound dimension: synthesize one short tone per synthesized dimension, unless saving energy.
+  // Sound dimension: a rising synthesis, one tone per synthesized dimension,
+  // through the shared engine — unless saving energy.
   if (!saveEnergy.value) synthesize(synthesis.value.dimensions.length)
 }
 
 function synthesize(steps: number) {
-  const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
-  const ctx = new Ctx()
   const base = 220
-  let when = ctx.currentTime + 0.02
-  const step = 0.12
-  for (let i = 0; i < steps; i += 1) {
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'triangle'
-    osc.frequency.value = base * Math.pow(2, i / steps) // a rising synthesis across the dimensions
-    gain.gain.setValueAtTime(0.0001, when)
-    gain.gain.exponentialRampToValueAtTime(0.14, when + 0.02)
-    gain.gain.exponentialRampToValueAtTime(0.0001, when + step)
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.start(when)
-    osc.stop(when + step)
-    when += step
-  }
-  window.setTimeout(() => ctx.close(), steps * step * 1000 + 200)
+  const tones = Array.from({ length: steps }, (_, i) => ({
+    frequency: base * Math.pow(2, i / steps), // a rising synthesis across the dimensions
+    duration: 0.12,
+    gain: 0.14,
+    type: 'triangle' as OscillatorType,
+  }))
+  playSequence(tones, { lead: 0.02 })
 }
 
 const t = computed(() =>

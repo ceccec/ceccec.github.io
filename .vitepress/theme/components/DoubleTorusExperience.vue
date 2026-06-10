@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
+import { useTones } from '../lib/useTones'
 import {
   CollapsibleContent,
   CollapsibleRoot,
@@ -69,36 +70,17 @@ const audioEnabled = ref(true)
 const vibrationEnabled = ref(true)
 let timer: ReturnType<typeof window.setInterval> | undefined
 let animationFrame: number | undefined
-let audioContext: AudioContext | undefined
+const { blip } = useTones()
 
 const activePulse = computed(() => piTrain.diamonds[activeIndex.value])
 const activeDiamond = computed(() => activePulse.value.diamond)
 const activeClosureWave = computed(() => closure.waves[activeIndex.value % closure.waves.length])
 const schemaJson = computed(() => JSON.stringify(schema.jsonLd, null, 2))
 
-function ensureAudio(): AudioContext | undefined {
-  if (typeof window === 'undefined' || !audioEnabled.value) return undefined
-  const AudioContextConstructor =
-    window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!AudioContextConstructor) return undefined
-  audioContext ??= new AudioContextConstructor()
-  return audioContext
-}
-
 function playPulse(frequency: number): void {
-  const context = ensureAudio()
-  if (!context) return
-  const oscillator = context.createOscillator()
-  const gain = context.createGain()
-  oscillator.type = 'sine'
-  oscillator.frequency.value = frequency
-  gain.gain.setValueAtTime(0.0001, context.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.08, context.currentTime + 0.012)
-  gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.16)
-  oscillator.connect(gain)
-  gain.connect(context.destination)
-  oscillator.start()
-  oscillator.stop(context.currentTime + 0.18)
+  if (!audioEnabled.value) return
+  // One shared audio engine: a short pulse through useTones (reused context).
+  blip(frequency, { peak: 0.08, duration: 0.16 })
 }
 
 function vibratePulse(duration: number): void {
@@ -158,7 +140,6 @@ function diamondStyle(pulse: (typeof piTrain.diamonds)[number]) {
 
 onBeforeUnmount(() => {
   stop()
-  audioContext?.close()
 })
 </script>
 
