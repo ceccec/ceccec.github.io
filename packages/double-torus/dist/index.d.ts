@@ -2104,6 +2104,32 @@ export declare function emfApplications(): {
     statement: string;
     boundary: string;
 };
+export declare function creationWave(index: number, matrix?: MindMatrix): {
+    index: number;
+    uuid: string;
+    note: string;
+    frequency: number;
+    hsl: string;
+    hue: number;
+};
+export declare function endlessWaves(count?: number, matrix?: MindMatrix): {
+    tested: boolean;
+    count: number;
+    distinct: boolean;
+    deterministic: boolean;
+    endless: boolean;
+    sample: {
+        index: number;
+        uuid: string;
+        note: string;
+        frequency: number;
+        hsl: string;
+        hue: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function navigation358(): {
     mapped: boolean;
     tiers: {

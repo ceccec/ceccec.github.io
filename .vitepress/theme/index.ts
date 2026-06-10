@@ -53,6 +53,7 @@ import TamperSeal from './components/TamperSeal.vue'
 import TaxonomyIcons from './components/TaxonomyIcons.vue'
 import TrinitySearch from './components/TrinitySearch.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
+import WavesOfCreation from './components/WavesOfCreation.vue'
 import WebCryptoSeal from './components/WebCryptoSeal.vue'
 import './style.css'
 
@@ -119,6 +120,7 @@ export default {
     app.component('TaxonomyIcons', TaxonomyIcons)
     app.component('TrinitySearch', TrinitySearch)
     app.component('VitePressPossibilities', VitePressPossibilities)
+    app.component('WavesOfCreation', WavesOfCreation)
     app.component('WebCryptoSeal', WebCryptoSeal)
   }
 } satisfies Theme

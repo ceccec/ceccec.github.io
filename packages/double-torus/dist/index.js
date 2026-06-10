@@ -2994,7 +2994,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -3008,7 +3008,7 @@ export function componentGraph() {
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
         '/': ['HumanLens', 'PathGuide', 'Nav358'],
-        '/show': ['ShowAll', 'FusionWave', 'Complete'],
+        '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete'],
         '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
     };
     const edges = [];
@@ -3844,6 +3844,45 @@ export function emfApplications() {
         root: merkleFold(spectrum.map((entry) => entry.receipt)),
         statement: 'EMF applications, honestly: the electromagnetic spectrum in seven bands (radio to gamma); a browser can READ a few EM signals — the magnetometer (ambient magnetic field), the compass, and ambient light (visible EM) — but it cannot emit, alter, or harmonise any field.',
         boundary: 'Educational EM-spectrum data and a list of what a browser can and cannot do with EMF. Reading a sensor is real; emitting, altering, or "harmonising" fields, or any health effect, is impossible from a web page and is not claimed.',
+    };
+}
+// Endless waves of creation. Each wave is a full creation computable from its
+// index alone — a content UUID, a note from the pi stream, and a colour from
+// that note — so any wave is addressable directly, with no chain to walk: finite
+// rules, endless creation. The seed grounds it in the genesis.
+export function creationWave(index, matrix = buildMatrix()) {
+    const uuid = merge(genesis(matrix).seedRoot, toUuid(`creation-wave:${index}`));
+    const note = musicNote(matrix, index);
+    const colour = colorFromSound(note.frequency);
+    return { index, uuid, note: note.note, frequency: note.frequency, hsl: colour.hsl, hue: colour.hue };
+}
+// Test the endless waves: distinct across the tested run, identical on recompute,
+// and defined even far beyond it. Honest about the limit — distinctness is tested
+// over a sample, not proven collision-free for all of the finite UUID space.
+export function endlessWaves(count = 256, matrix = buildMatrix()) {
+    const seen = new Set();
+    let distinct = true;
+    for (let i = 0; i < count; i += 1) {
+        const wave = creationWave(i, matrix).uuid;
+        if (seen.has(wave)) {
+            distinct = false;
+            break;
+        }
+        seen.add(wave);
+    }
+    const deterministic = creationWave(0, matrix).uuid === creationWave(0, matrix).uuid &&
+        creationWave(count - 1, matrix).uuid === creationWave(count - 1, matrix).uuid;
+    const endless = isUuid(creationWave(1_000_000_000, matrix).uuid); // a wave a billion out is still computable
+    return {
+        tested: distinct && deterministic && endless,
+        count,
+        distinct,
+        deterministic,
+        endless,
+        sample: [0, 1, 2].map((index) => creationWave(index, matrix)),
+        root: merkleFold([...seen]),
+        statement: 'Endless waves of creation, tested: each wave is a deterministic, content-addressed creation (a UUID, a note, a colour) computable for any index — distinct across the tested run, identical on recompute, and defined even a billion waves out. Finite rules, endless creation.',
+        boundary: 'A deterministic generator tested over a finite sample. Distinctness is verified over the tested range, not proven collision-free for every index (the 128-bit space is large but finite). "Endless" means addressable at any index, not infinite storage.',
     };
 }
 // Navigation in 3-5-8, with a tooltip on every destination. Three ways to

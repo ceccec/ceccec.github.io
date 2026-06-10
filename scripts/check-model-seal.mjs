@@ -235,6 +235,8 @@ ok('emf.applications', emfApplications().grounded)
 ok('emf.358', emf358().complete)
 // Navigation in 3-5-8 with a tooltip on every destination (16 destinations).
 ok(`navigation.358:${navigation358().count}`, navigation358().mapped)
+// Test endless waves of creation: distinct, deterministic, addressable at any index.
+ok(`endless-waves:${endlessWaves(256, matrix).count}`, endlessWaves(256, matrix).tested)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
