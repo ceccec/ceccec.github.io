@@ -7548,6 +7548,35 @@ export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLea
       'A thought becomes reusable when it is saved as a skill/atom rather than held as transient memory.',
       `The learn atom is part of a ${matrix.nodes.length}-node local matrix rooted at ${matrix.root}.`,
     ),
+    // Updated skills: the laws the portal itself now embodies, learned back in.
+    developerLesson(
+      'work-in-trinities',
+      '.vitepress/theme/lib/quantumMind.ts',
+      'developer.site.manifest',
+      'Capabilities group in trinities; a pair is a gap the icons discover and the seal refuses; areas hold to a limit.',
+      `The taxonomy holds exactly ${taxonomyIcons().entries.length} areas (7 x 6 = 21 pairs), gated, with ${conceptCommands.length} commands.`,
+    ),
+    developerLesson(
+      'bound-every-claim',
+      '.vitepress/theme/lib/quantumMind.ts',
+      'developer.proof.verify',
+      'Every claim carries an honest boundary; what is not self-addressed is hallucination, and honesty itself is computed from the digit folders.',
+      `selfAddressed reports ${selfAddressed(matrix).hallucinations.length} hallucinations; honesty is folded through the ceccec digit folders.`,
+    ),
+    developerLesson(
+      'tamper-evident-not-cryptographic',
+      '.vitepress/theme/lib/quantumMind.ts',
+      'developer.proof.verify',
+      'The fold is deterministic, tamper-evident content-addressing — not a cryptographic hash; real SHA-256 is offered separately via the Web Crypto API.',
+      `cryptographyComparison reports cryptographic=${cryptographyComparison(matrix).cryptographic}, tamperEvident=${cryptographyComparison(matrix).tamperEvident}; cryptoFuture exposes a real SHA-256 layer.`,
+    ),
+    developerLesson(
+      'optimise-and-harmonise-agents',
+      '.vitepress/theme/lib/quantumMind.ts',
+      'developer.site.manifest',
+      'Any agent the site is pasted into or wired by MCP adopts the eight operating laws; every command is an MCP tool and the protocol is at /llms.txt.',
+      `agentHarmonise folds ${agentHarmonise(matrix).laws.length} laws; every command is published at /mcp.json.`,
+    ),
   ]
   const root = merkleFold(lessons.map((item) => item.uuid))
   const receipt = merge(root, api.root)
