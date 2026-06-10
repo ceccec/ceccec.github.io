@@ -20,6 +20,7 @@ import {
   quantumChessGame,
   quantumUiEvidence,
   schemaOrgDiamonds,
+  scientificSociety,
   selfBuild,
   streamSelfComplete,
   traditionsQuantumWhole,
@@ -40,6 +41,7 @@ const closure = closeDimensionalGaps(matrix)
 const chess = quantumChessGame(matrix)
 const evidence = quantumUiEvidence(matrix)
 const schema = schemaOrgDiamonds(matrix)
+const science = scientificSociety(matrix)
 const traditions = traditionsQuantumWhole()
 const activeIndex = ref(0)
 const waveTick = ref(0)
@@ -206,6 +208,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="closure">Gap closure</TabsTrigger>
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="schema">Schema.org</TabsTrigger>
+        <TabsTrigger value="science">Science</TabsTrigger>
         <TabsTrigger value="traditions">Traditions</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
@@ -419,6 +422,38 @@ onBeforeUnmount(() => {
           </li>
         </ul>
         <pre class="schema-json">{{ schemaJson }}</pre>
+      </TabsContent>
+
+      <TabsContent value="science" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="science.grounded ? 'success' : 'warning'">
+            {{ science.grounded ? 'grounded society' : 'open society' }}
+          </Badge>
+          <strong>{{ science.charter }}</strong>
+          <span>{{ science.boundary }}</span>
+          <code>{{ science.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="role in science.roles" :key="role.receipt">
+            <Badge variant="outline">{{ role.name }}</Badge>
+            <strong>{{ role.responsibility }}</strong>
+            <span>{{ role.gate }} Receipt: {{ role.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="gate in science.reviewGates" :key="gate.receipt">
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
+            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="wave in science.optimizationWaves" :key="wave.receipt">
+            <Badge variant="outline">{{ wave.action }}</Badge>
+            <strong>{{ wave.target }} · {{ wave.metric }}</strong>
+            <span>{{ wave.sourceFunction }} Receipt: {{ wave.receipt }}</span>
+          </li>
+        </ul>
       </TabsContent>
 
       <TabsContent value="traditions" class="diamond-tabs__content">

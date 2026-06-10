@@ -40,6 +40,7 @@ C = {
   concept.chess.quantum,
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
+  concept.science.society,
   concept.torus.math,
   concept.humanity.implications,
   concept.source.contribute,

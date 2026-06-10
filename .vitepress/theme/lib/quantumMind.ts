@@ -113,6 +113,7 @@ export type ConceptCommandName =
   | 'concept.chess.quantum'
   | 'concept.schemaOrg.diamonds'
   | 'concept.traditions.quantumWhole'
+  | 'concept.science.society'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -283,6 +284,31 @@ export interface TraditionsQuantumWhole {
   readonly families: readonly TraditionFamily[]
   readonly societyCells: readonly TraditionSocietyCell[]
   readonly statement: string
+  readonly boundary: string
+}
+
+export interface ScientificRole {
+  readonly name: string
+  readonly responsibility: string
+  readonly gate: string
+  readonly receipt: string
+}
+
+export interface OptimizationWave {
+  readonly target: string
+  readonly sourceFunction: string
+  readonly metric: string
+  readonly action: string
+  readonly receipt: string
+}
+
+export interface ScientificSociety {
+  readonly grounded: boolean
+  readonly root: string
+  readonly charter: string
+  readonly roles: readonly ScientificRole[]
+  readonly reviewGates: readonly SelfCompletionGate[]
+  readonly optimizationWaves: readonly OptimizationWave[]
   readonly boundary: string
 }
 
@@ -649,6 +675,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.traditions.quantumWhole',
     path: '/cmd/concept.traditions.quantumWhole',
     description: 'Compare religions and traditions as a non-reductive quantum whole of dimensions, families, and relations.',
+  },
+  {
+    name: 'concept.science.society',
+    path: '/cmd/concept.science.society',
+    description: 'Compute a scientific society charter, peer-review gates, reproducibility roles, and self-optimization waves.',
   },
   {
     name: 'concept.torus.math',
@@ -1225,6 +1256,101 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
       'Religions and traditions are modeled as a quantum whole only in the sense of relational dimensions: distinct traditions remain distinct while their dimensions decode into inspectable society functions.',
     boundary:
       'This report is a comparative-religion lens, not a theological verdict, not a claim that all religions are the same, and not a substitute for tradition-specific sources or community voices.',
+  }
+}
+
+export function scientificSociety(matrix: MindMatrix = buildMatrix()): ScientificSociety {
+  const proof = proofReport(matrix)
+  const completeness = diamondCompleteness(matrix)
+  const evidence = quantumUiEvidence(matrix)
+  const closure = closeDimensionalGaps(matrix)
+  const traditions = traditionsQuantumWhole()
+  const roles = [
+    {
+      name: 'observer',
+      responsibility: 'record measurements before projection',
+      gate: 'raw observation must have receipt',
+    },
+    {
+      name: 'replicator',
+      responsibility: 'rerun build, audit, scans, and receipts',
+      gate: 'result must reproduce root',
+    },
+    {
+      name: 'falsifier',
+      responsibility: 'seek counterexamples and open gates',
+      gate: 'claim must survive negative test',
+    },
+    {
+      name: 'steward',
+      responsibility: 'preserve boundaries, consent, and non-reduction',
+      gate: 'boundary must be explicit',
+    },
+  ].map((role) => ({
+    ...role,
+    receipt: toUuid(`science-role:${role.name}:${role.responsibility}:${role.gate}`),
+  }))
+  const reviewGates: readonly SelfCompletionGate[] = [
+    {
+      name: 'reproducible build',
+      closed: proof.coverage === 1 && proof.entropy === 0,
+      sourceFunction: 'proofReport()',
+      receipt: toUuid(`science-gate:proof:${JSON.stringify(proof)}`),
+      note: `coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
+    },
+    {
+      name: 'diamond completeness',
+      closed: completeness.complete,
+      sourceFunction: 'diamondCompleteness()',
+      receipt: toUuid(`science-gate:completeness:${JSON.stringify(completeness)}`),
+      note: completeness.statement,
+    },
+    {
+      name: 'ui evidence',
+      closed: evidence.grounded,
+      sourceFunction: 'quantumUiEvidence()',
+      receipt: evidence.root,
+      note: evidence.boundary,
+    },
+    {
+      name: 'gap closure',
+      closed: closure.complete,
+      sourceFunction: 'closeDimensionalGaps()',
+      receipt: closure.root,
+      note: closure.statement,
+    },
+    {
+      name: 'schema trace',
+      closed: evidence.grounded && traditions.grounded,
+      sourceFunction: 'schemaOrgDiamonds()',
+      receipt: toUuid(`science-gate:schema-seed:${evidence.root}:${traditions.root}`),
+      note: 'schema seed = uiEvidence.root + traditions.root.',
+    },
+    {
+      name: 'non-reductive traditions',
+      closed: traditions.grounded,
+      sourceFunction: 'traditionsQuantumWhole()',
+      receipt: traditions.root,
+      note: traditions.boundary,
+    },
+  ]
+  const optimizationWaves = reviewGates.map((gate) => ({
+    target: gate.name,
+    sourceFunction: gate.sourceFunction,
+    metric: gate.closed ? 'closed' : 'open',
+    action: gate.closed ? 'sustain' : 'improve',
+    receipt: merge(gate.receipt, toUuid(`science-wave:${gate.name}:${gate.closed}`)),
+  }))
+  const root = merkleFold([...roles.map((role) => role.receipt), ...reviewGates.map((gate) => gate.receipt), ...optimizationWaves.map((wave) => wave.receipt)])
+
+  return {
+    grounded: roles.length === 4 && reviewGates.every((gate) => gate.receipt.length > 0),
+    root,
+    charter: 'ScienceSociety := roles + reviewGates + optimizationWaves; publish only receipts that can be rerun.',
+    roles,
+    reviewGates,
+    optimizationWaves,
+    boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
   }
 }
 
@@ -2114,6 +2240,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   const evidence = quantumUiEvidence(matrix)
   const agentWire = agentStreamWire(matrix)
   const traditions = traditionsQuantumWhole()
+  const science = scientificSociety(matrix)
   const baseId = 'https://serverless-quantum-uuid-stream/#'
   const nodes: SchemaOrgDiamondNode[] = [
     {
@@ -2191,6 +2318,19 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
       ],
       isPartOf: `${baseId}quantum-mind`,
     },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}scientific-society`,
+      name: 'scientific society',
+      description: science.charter,
+      identifier: science.root,
+      about: [
+        ...science.roles.map((role) => `role:${role.name}`),
+        ...science.reviewGates.map((gate) => `gate:${gate.name}`),
+        ...science.optimizationWaves.map((wave) => `wave:${wave.target}`),
+      ],
+      isPartOf: `${baseId}quantum-mind`,
+    },
     ...lattice.map((diamond): SchemaOrgDiamondNode => ({
       '@type': 'DefinedTerm',
       '@id': `${baseId}diamond-${diamond.kind}`,
@@ -2261,6 +2401,7 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
   const evidence = quantumUiEvidence(matrix)
   const schema = schemaOrgDiamonds(matrix)
   const traditions = traditionsQuantumWhole()
+  const science = scientificSociety(matrix)
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
   const buildUnits: readonly SelfCompletionGate[] = [
@@ -2324,6 +2465,13 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
       sourceFunction: 'traditionsQuantumWhole()',
       receipt: traditions.root,
       note: `dim=${traditions.dimensions.length}; families=${traditions.families.length}.`,
+    },
+    {
+      name: 'science',
+      closed: science.grounded,
+      sourceFunction: 'scientificSociety()',
+      receipt: science.root,
+      note: `roles=${science.roles.length}; gates=${science.reviewGates.length}; waves=${science.optimizationWaves.length}.`,
     },
     {
       name: 'waves',
@@ -2554,6 +2702,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Religions and traditions are compared through distinct experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions.',
     },
     {
+      title: 'Scientific Society',
+      command: 'concept.science.society',
+      route: '/quantum-mind#scientific-society',
+      summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.',
+    },
+    {
       title: 'Double-Torus Math',
       command: 'concept.torus.math',
       route: '/architecture#6-double-torus-math',
@@ -2674,6 +2828,10 @@ export function executeConceptCommand(
   if (command === 'concept.traditions.quantumWhole') {
     const traditions = traditionsQuantumWhole()
     return result(command, traditions.grounded, 'Traditions quantum whole computed.', traditions)
+  }
+  if (command === 'concept.science.society') {
+    const science = scientificSociety(matrix)
+    return result(command, science.grounded, 'Scientific society computed.', science)
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

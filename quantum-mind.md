@@ -55,7 +55,7 @@ C = { site.shell, self.build, self.complete, agent.streamWire, ui.doubleTorus,
       ui.useCases, diamond.lattice, diamond.piTrain, diamond.complete,
       wave.coordination, wave.closeGaps, chess.quantum,
       schemaOrg.diamonds, traditions.quantumWhole, torus.math,
-      humanity.implications, source.contribute, torus.matrix,
+      science.society, humanity.implications, source.contribute, torus.matrix,
       torus.vector, torus.flow, repository.api, proof.verify }
 ```
 
@@ -189,27 +189,38 @@ superposition_j subset { king, queen, rook, bishop, knight, pawn }
 chessRoot := merkle({ square_j.receipt })
 ```
 
-## 14. Self build
+## 14. Scientific society
+
+```text
+Roles := { observer, replicator, falsifier, steward }
+ReviewGates := { reproducibleBuild, diamondCompleteness, uiEvidence,
+                 gapClosure, schemaTrace, nonReductiveTraditions }
+OptimizationWaves := map(g in ReviewGates, g.closed ? sustain(g) : improve(g))
+ScienceSocietyRoot := merkle({ receipt(role) } U { receipt(gate) } U { receipt(wave) })
+```
+
+## 15. Self build
 
 ```text
 BuildUnits := {matrix, coverage, diamonds, noAnalogGaps, gapWaves,
-               uiEvidence, schema, traditions, waves, chess}
+               uiEvidence, schema, traditions, science, waves, chess}
 maxBuild := forall b in BuildUnits: closed(b)
 maxBuildRoot := merkle({ receipt(b) | b in BuildUnits })
 T_max := maxComputedBuild := if maxBuild then infinity else T_observed
 ```
 
-## 15. Self completion
+## 16. Self completion
 
 ```text
 Gates := { lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire,
-           schemaGraph, traditionsLens, coordinatedWaves, quantumChess, T_max }
+           schemaGraph, traditionsLens, scienceSociety, coordinatedWaves,
+           quantumChess, T_max }
 selfComplete := forall g in Gates: closed(g)
 selfRoot := merkle({ receipt(g) | g in Gates })
 openGates := { g | !closed(g) }
 ```
 
-## 16. Boundary
+## 17. Boundary
 
 ```text
 Claim(site) = computed(repo)

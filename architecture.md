@@ -49,6 +49,7 @@ Command = {
   concept.chess.quantum,
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
+  concept.science.society,
   concept.torus.math,
   concept.humanity.implications,
   concept.source.contribute,
@@ -194,25 +195,34 @@ square_j = {wave_j, phase_j, amplitude_j, superposition_j, receipt_j}
 ChessRoot = merkle({square_j.receipt})
 ```
 
-## 15. Self build
+## 15. Scientific society
 
 ```text
-BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, waves, chess}
+Roles = {observer, replicator, falsifier, steward}
+ReviewGates = {reproducibleBuild, diamondCompleteness, uiEvidence, gapClosure, schemaTrace, nonReductiveTraditions}
+OptimizationWaves = map(g in ReviewGates, if closed(g) then sustain(g) else improve(g))
+ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)})
+```
+
+## 16. Self build
+
+```text
+BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, science, waves, chess}
 maxBuild = forall b in BuildUnits: closed(b)
 maxBuildRoot = merkle({receipt(b)})
 T_max = maxComputedBuild = if maxBuild then infinity else T_observed
 ```
 
-## 16. Self completion
+## 17. Self completion
 
 ```text
-Gates = {lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire, schemaGraph, traditionsLens, waves, chess, T_max}
+Gates = {lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire, schemaGraph, traditionsLens, scienceSociety, waves, chess, T_max}
 closedAll = forall g in Gates: closed(g)
 SelfRoot = merkle({receipt(g)})
 Open = {g in Gates | !closed(g)}
 ```
 
-## 17. Boundary
+## 18. Boundary
 
 ```text
 site_claims = computed_repository_artifacts
