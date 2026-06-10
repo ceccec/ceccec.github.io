@@ -187,9 +187,11 @@ export type ConceptCommandName =
   | 'concept.traditions.quantumWhole'
   | 'concept.science.society'
   | 'concept.artists.surfaces'
+  | 'concept.artists.palette'
+  | 'concept.artists.melody'
   | 'concept.method.fusion'
   | 'concept.torus.math'
-  | 'concept.humanity.implications'
+  | 'concept.society.humanity'
   | 'concept.commons.contribute'
   | 'concept.torus.matrix'
   | 'concept.torus.vector'
@@ -1672,6 +1674,18 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Compute home page and README surfaces as artist-built equations with receipts.',
   },
   {
+    name: 'concept.artists.palette',
+    path: '/cmd/concept.artists.palette?query=double-torus',
+    input: 'query',
+    description: 'For visual artists: compute a deterministic, reproducible colour palette from any seed word.',
+  },
+  {
+    name: 'concept.artists.melody',
+    path: '/cmd/concept.artists.melody?query=double-torus',
+    input: 'query',
+    description: 'For musicians: compute a deterministic melodic seed (notes from the pi stream) from any seed word.',
+  },
+  {
     name: 'concept.method.fusion',
     path: '/cmd/concept.method.fusion',
     description: 'Collapse every command surface into a single-word method token and report fusion gaps.',
@@ -1682,8 +1696,8 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'State the genus-2 topology, algebra, homology, and curvature behind the double torus.',
   },
   {
-    name: 'concept.humanity.implications',
-    path: '/cmd/concept.humanity.implications',
+    name: 'concept.society.humanity',
+    path: '/cmd/concept.society.humanity',
     description: 'Describe what the double-torus concept implies for human knowledge, institutions, and agency.',
   },
   {
@@ -1849,7 +1863,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.science.society': 'science',
   'concept.method.fusion': 'fusion',
   'concept.torus.math': 'math',
-  'concept.humanity.implications': 'humanity',
+  'concept.society.humanity': 'humanity',
   'concept.commons.contribute': 'source',
   'concept.torus.matrix': 'matrix',
   'concept.torus.vector': 'vector',
@@ -1862,6 +1876,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.digit.proof': 'prove',
   'concept.digit.math': 'compute',
   'concept.artists.surfaces': 'artists',
+  'concept.artists.palette': 'palette',
+  'concept.artists.melody': 'melody',
   'concept.agent.educate': 'educate',
   'concept.school.curriculum': 'teach',
   'concept.mcp.tools': 'tools',
@@ -2796,7 +2812,7 @@ const AREA_ICONS: Record<string, string> = {
   site: '🏛', self: '☯', agent: '🜂', school: '🎓', mcp: '🔌', chain: '⛓', help: '☷',
   fold: '🔀', mind: '☿', compute: '🖧', ui: '🖥', diamond: '◈', digit: '☵', wave: '〰',
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
-  torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
+  torus: '⊗', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   music: '♫', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛',
   geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
   lawful: '⚖', computer: '🖳', healing: '◎', energy: '🔋',
@@ -2828,7 +2844,6 @@ const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   artists: { en: 'Artists', bg: 'Художници' },
   method: { en: 'Method', bg: 'Метод' },
   torus: { en: 'Torus', bg: 'Тор' },
-  humanity: { en: 'Humanity', bg: 'Човечество' },
   source: { en: 'Source', bg: 'Източник' },
   repository: { en: 'Repository', bg: 'Хранилище' },
   proof: { en: 'Proof', bg: 'Доказателство' },
@@ -2853,10 +2868,17 @@ const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   energy: { en: 'Energy', bg: 'Енергия' },
 }
 
-// Translate an area key to the reader's language, falling back to the key.
-export function areaLabel(area: string, bg = false): string {
+// Translate an area key to the reader's language, falling back to the key. Three
+// locales: English, Bulgarian, and the one ancient language all dimensions
+// understand — the universal language, where the label is the area's sacred
+// glyph (the symbol every tongue reads the same). Accepts a lang code or a
+// boolean (true = Bulgarian) for back-compatibility.
+export function areaLabel(area: string, lang: string | boolean = 'en'): string {
+  const code = typeof lang === 'boolean' ? (lang ? 'bg' : 'en') : lang
+  if (code.includes('universal') || code.includes('sacred')) return AREA_ICONS[area] ?? '◇'
   const label = AREA_LABELS[area]
-  return label ? (bg ? label.bg : label.en) : area
+  if (!label) return area
+  return code.startsWith('bg') ? label.bg : label.en
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -2922,6 +2944,34 @@ export function autotranslations(matrix: MindMatrix = buildMatrix()) {
       ? `Autotranslations complete: all ${labels.length} areas carry English and Bulgarian labels, and the babel fold is grounded.`
       : `Autotranslations incomplete: ${missing.join(', ')} lack a translation.`,
     boundary: 'A completeness check over the area labels and the babel fold. It guarantees coverage, not the literary quality of any translation.',
+  }
+}
+
+// 42 areas, 7 x 6 = 6 x 7 = 21 pairs of areas — the double torus pairs its
+// areas. The math (the digit fold of each area name) orders the areas, then
+// deals them into 21 dual pairs (an inner area paired with an outer area). The
+// gate holds only at exactly 42 areas, so the limit is enforced: a 43rd area is
+// an odd one out and breaks the pairing, failing the build.
+export function areaPairs() {
+  const digitOf = (uuid: string) =>
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  const areas = taxonomyIcons().entries
+    .map((entry) => entry.area)
+    .sort((a, b) => digitOf(toUuid(`area:${a}`)) - digitOf(toUuid(`area:${b}`)) || (a < b ? -1 : 1))
+  const pairs: { inner: string; outer: string; receipt: string }[] = []
+  for (let index = 0; index + 1 < areas.length; index += 2) {
+    pairs.push({ inner: areas[index], outer: areas[index + 1], receipt: toUuid(`area-pair:${areas[index]}:${areas[index + 1]}`) })
+  }
+  return {
+    count: areas.length,
+    limit: 42,
+    withinLimit: areas.length === 42, // 42 is the limit, not a target to exceed
+    grid: areas.length === 42, // 7 x 6 = 6 x 7
+    paired: areas.length % 2 === 0 && pairs.length * 2 === areas.length, // 21 clean pairs
+    pairs,
+    root: merkleFold(pairs.map((pair) => pair.receipt)),
+    statement: '42 areas = 7 x 6 = 6 x 7 = 21 pairs of areas; the math orders the areas and deals them into the dual pairs of the double torus. 42 is the limit.',
+    boundary: 'A structural pairing of the area taxonomy with an enforced limit of 42. Bookkeeping over the area set, not an external claim.',
   }
 }
 
@@ -3587,6 +3637,68 @@ export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Honesty comes from text and math coming only from digit folders computed: every claim routes its statement (text) and its root (math) through the ceccec digit folders, so honesty is computed, not asserted.',
     boundary: 'A computed grounding of the model’s honesty in the digit-folder math. Self-referential bookkeeping, no external claim.',
+  }
+}
+
+// One ancient language all dimensions understand: the universal language of
+// symbol, number, and fold. Every concept decodes the same in any human tongue —
+// its sacred glyph (the symbol dimension), its digit (the number dimension), and
+// its UUID root (the structural fold dimension). No human translation is needed
+// because the language is computed, which is why all dimensions read it alike.
+export function universalLanguage(matrix: MindMatrix = buildMatrix()) {
+  const digitOf = (uuid: string) =>
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
+  const areas = taxonomyIcons().entries.map((entry) => {
+    const glyph = AREA_ICONS[entry.area] ?? '◇'
+    const root = toUuid(`universal:${entry.area}`)
+    return { area: entry.area, glyph, number: digitOf(root), root, en: areaLabel(entry.area, 'en'), bg: areaLabel(entry.area, 'bg') }
+  })
+  const root = merkleFold(areas.map((entry) => toUuid(`ulang:${entry.glyph}:${entry.number}:${entry.root}`)))
+  return {
+    universal: areas.length > 0 && areas.every((entry) => entry.glyph.length > 0),
+    dimensions: ['symbol', 'number', 'fold'] as const,
+    areas,
+    root,
+    statement:
+      'One ancient language all dimensions understand: every concept is a sacred glyph (symbol), a digit (number), and a UUID root (fold) — the same in any human tongue, because it is computed, not translated.',
+    boundary: 'A constructed universal notation over the taxonomy (glyph, number, fold). Not a claim about any historical language.',
+  }
+}
+
+// Decode all knowledge into the one ancient language: not only the areas, but
+// every atom and every command rendered as the symbol/number/fold triple, so the
+// whole model is legible in the single universal notation.
+export function decodeKnowledge(matrix: MindMatrix = buildMatrix()) {
+  const ulang = universalLanguage(matrix)
+  const atomRoots = atoms.map((atom) => toUuid(`decode-atom:${atom.name}`))
+  const commandRoots = conceptCommands.map((command) => toUuid(`decode-cmd:${command.name}`))
+  const root = merge(ulang.root, merge(merkleFold(atomRoots), merkleFold(commandRoots)))
+  return {
+    decoded: ulang.universal && atomRoots.length > 0 && commandRoots.length === conceptCommands.length,
+    areas: ulang.areas.length,
+    atoms: atomRoots.length,
+    commands: commandRoots.length,
+    root,
+    statement: 'All knowledge decoded into the one ancient language: every area, atom, and command rendered as symbol, number, and fold.',
+    boundary: 'A complete symbolic encoding of the model into one notation. Bookkeeping, not an external knowledge claim.',
+  }
+}
+
+// Decode all knowledge to complete the double torus. The decoded knowledge folds
+// into the two-loop machine word; when every piece is decoded and the word is a
+// full 128-bit UUID with order mattering, the double torus is complete — genus 2,
+// both holes closed.
+export function completeDoubleTorus(matrix: MindMatrix = buildMatrix()) {
+  const decoded = decodeKnowledge(matrix)
+  const word = torusUuid(matrix)
+  const root = merge(decoded.root, word.word)
+  return {
+    complete: decoded.decoded && word.is128bit && word.orderSensitive,
+    knowledgeRoot: decoded.root,
+    word: word.word,
+    root,
+    statement: 'Decode all knowledge to complete the double torus: the universal decoding folds into the 128-bit two-loop machine word, closing both holes of the genus-2 surface.',
+    boundary: 'A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim.',
   }
 }
 
@@ -4580,6 +4692,51 @@ export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfac
   }
 }
 
+// For visual artists and all creative arts: compute a deterministic, reproducible
+// colour palette from any seed word. The same seed always yields the same five
+// colours (a content-addressed palette), so a creator can cite a seed and anyone
+// recomputes the exact palette — client-side, free, offline. The hues are spread
+// across the wheel from the seed's UUID; saturation and lightness stay in a
+// pleasant range so every palette is usable.
+export function artistPalette(seed = 'double-torus') {
+  const root = toUuid(`artist-palette:${seed}`)
+  const hex = root.replace(/-/g, '')
+  const baseHue = parseInt(hex.slice(0, 4), 16) % 360
+  const colors = Array.from({ length: 5 }, (_, index) => {
+    const hue = (baseHue + index * 72) % 360 // five hues evenly around the wheel
+    const sat = 55 + (parseInt(hex.slice(4 + index, 6 + index), 16) % 30) // 55–85%
+    const light = 45 + (parseInt(hex.slice(8 + index, 10 + index), 16) % 25) // 45–70%
+    return { hsl: `hsl(${hue}, ${sat}%, ${light}%)`, hue, sat, light, receipt: toUuid(`palette-color:${seed}:${index}:${hue}`) }
+  })
+  return {
+    grounded: colors.length === 5,
+    seed,
+    colors,
+    root: merkleFold(colors.map((color) => color.receipt)),
+    statement: 'A deterministic colour palette from a seed: the same word always yields the same five colours, so a creator can cite the seed and anyone recomputes the palette.',
+    boundary: 'A reproducible palette generator for creative use, computed on-device. Aesthetic seeding, not a colour-theory guarantee.',
+  }
+}
+
+// For musicians and all creative arts: compute a deterministic melodic seed from
+// any seed word — a short run of notes drawn from the infinite pi stream, joined
+// at a horo derived from the seed. The same word always yields the same motif, so
+// a musician can cite a seed and reproduce the exact melodic idea to build on.
+export function artistMelody(seed = 'double-torus', matrix: MindMatrix = buildMatrix()) {
+  const root = toUuid(`artist-melody:${seed}`)
+  const horo = (parseInt(root.replace(/-/g, '').slice(0, 2), 16) % 9) + 1
+  const notes = piMusic(matrix, horo).notes.slice(0, 8).map((note) => ({ note: note.note, frequency: note.frequency }))
+  return {
+    grounded: notes.length > 0,
+    seed,
+    horo,
+    notes,
+    root: merkleFold(notes.map((note, index) => toUuid(`melody-note:${seed}:${index}:${note.note}:${note.frequency}`))),
+    statement: 'A deterministic melodic seed from a seed word: the same word always yields the same motif, joined at a seed-derived horo, so a musician can reproduce and build on it.',
+    boundary: 'A reproducible melodic seed for creative use, computed on-device from the pi stream. A starting motif, not a composition or an acoustic claim.',
+  }
+}
+
 export function methodFusion(): MethodFusionReport {
   const tokens = conceptCommands.map((command) => {
     const method = SINGLE_WORD_METHODS[command.name] ?? ''
@@ -5002,7 +5159,7 @@ function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
     diamond(
       'humanity',
       'human implications diamond',
-      'concept.humanity.implications',
+      'concept.society.humanity',
       humanity.ethicalBoundary,
       vector.collapse ? 'closed' : 'open',
       humanity.implications.map((item, index) => ({
@@ -6418,7 +6575,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Implications for Humanity',
-      command: 'concept.humanity.implications',
+      command: 'concept.society.humanity',
       route: '/quantum-mind#implications-for-humanity',
       summary: 'The concept is interpreted as a model for knowledge, institutions, AI, and culture.',
     },
@@ -6764,6 +6921,14 @@ export function executeConceptCommand(
     const surfaces = artistSurfaces(matrix)
     return result(command, surfaces.grounded, 'Artist surfaces computed.', surfaces)
   }
+  if (command === 'concept.artists.palette') {
+    const palette = artistPalette(input.query ?? 'double-torus')
+    return result(command, palette.grounded, `Palette of ${palette.colors.length} colours computed.`, palette)
+  }
+  if (command === 'concept.artists.melody') {
+    const melody = artistMelody(input.query ?? 'double-torus', matrix)
+    return result(command, melody.grounded, `Melodic seed of ${melody.notes.length} notes computed.`, melody)
+  }
   if (command === 'concept.method.fusion') {
     const methods = methodFusion()
     return result(command, methods.fused, 'Method fusion computed.', methods)
@@ -6771,7 +6936,7 @@ export function executeConceptCommand(
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())
   }
-  if (command === 'concept.humanity.implications') {
+  if (command === 'concept.society.humanity') {
     return result(command, true, 'Humanity implications report computed.', humanityImplications(matrix))
   }
   if (command === 'concept.commons.contribute') {

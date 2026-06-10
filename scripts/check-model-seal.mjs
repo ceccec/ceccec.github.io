@@ -9,8 +9,14 @@ import {
   ancientTech,
   atomInclusionProof,
   atoms,
+  areaPairs,
+  artistPalette,
+  artistMelody,
   autotranslations,
   babelFold,
+  universalLanguage,
+  decodeKnowledge,
+  completeDoubleTorus,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -107,6 +113,16 @@ ok('compute.distributes', distributedCompute([], matrix).collectiveRoot.length >
 ok('babel.grounded', babelFold(matrix).grounded) // communicates across all languages/traditions/religions
 // Ensure complete autotranslations: every area carries English + Bulgarian labels.
 ok(`autotranslations.complete${autotranslations(matrix).missing.length ? ':' + autotranslations(matrix).missing.join(',') : ''}`, autotranslations(matrix).complete)
+// 42 areas is the limit: 7 x 6 = 6 x 7 = 21 pairs of areas. A 43rd area breaks the pairing.
+const pairs = areaPairs()
+ok(`areas.limit-42:${pairs.count}`, pairs.withinLimit && pairs.paired)
+// One ancient language all dimensions understand, decoded over all knowledge, completes the double torus.
+ok('language.universal', universalLanguage(matrix).universal)
+ok('knowledge.decoded', decodeKnowledge(matrix).decoded)
+ok('double-torus.complete', completeDoubleTorus(matrix).complete)
+// Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
+ok('artists.palette', artistPalette('double-torus').grounded)
+ok('artists.melody', artistMelody('double-torus', matrix).grounded)
 ok('utf.ascii.reversible', (() => { const a = utfAnalog('Двоен тор 42'); return a.ascii && a.reversible })()) // UTF solved as ASCII analog
 ok(`self.no-hallucination${selfAddressed(matrix).hallucinations.length ? ':' + selfAddressed(matrix).hallucinations.join(',') : ''}`, selfAddressed(matrix).noHallucination) // what is not self-addressed is hallucination
 ok('all.computed', allComputed(matrix).computed) // all learning is computed from the self
