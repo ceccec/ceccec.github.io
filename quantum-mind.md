@@ -346,7 +346,20 @@ multichainRoot := merkleFold({ head(chain) })
 gitSeal := merge(root_M, foldCommits(git log))   // git history is part of the seal
 ```
 
-## 23. Boundary
+## 23. Cross fold references
+
+```text
+cross_i := merge(prev_i, next_i)        // node cross reference
+fold_i  := bind_i                        // node fold reference
+crossOverFold_i := merge(cross_i, fold_i)
+foldOverCross_i := merge(fold_i, cross_i)
+reciprocal_i := crossOverFold_i != foldOverCross_i      // merge is order-sensitive
+crossRoot := merkleFold({ cross_i }); foldRoot := root_M
+weave := merge(merge(crossRoot,foldRoot), merge(foldRoot,crossRoot))
+trinity := (forall i: reciprocal_i) && weave != empty   // {cross, fold, weave}
+```
+
+## 24. Boundary
 
 ```text
 Claim(site) = computed(repo)

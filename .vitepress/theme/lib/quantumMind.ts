@@ -135,6 +135,7 @@ export type ConceptCommandName =
   | 'concept.mcp.tools'
   | 'concept.chain.quantum'
   | 'concept.help.fold'
+  | 'concept.fold.cross'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -571,6 +572,30 @@ export interface QuantumFoldedBlockchains {
   readonly root: string
   readonly source: 'double-torus/blockchain'
   readonly chains: readonly Blockchain[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface CrossFoldReference {
+  readonly atom: string
+  readonly cross: string
+  readonly fold: string
+  readonly crossOverFold: string
+  readonly foldOverCross: string
+  readonly reciprocal: boolean
+  readonly receipt: string
+}
+
+export interface CrossFoldTrinity {
+  readonly crossRoot: string
+  readonly foldRoot: string
+  readonly crossOverFold: string
+  readonly foldOverCross: string
+  readonly reciprocal: boolean
+  readonly weave: string
+  readonly trinity: boolean
+  readonly references: readonly CrossFoldReference[]
+  readonly root: string
   readonly statement: string
   readonly boundary: string
 }
@@ -1022,6 +1047,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Fold a question into an answer locally from atoms, commands, and pages — AI encoded as intelligence.',
   },
   {
+    name: 'concept.fold.cross',
+    path: '/cmd/concept.fold.cross',
+    description: 'Cross-fold references: the reciprocal cross/fold and fold/cross dual that weaves a trinity.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1206,6 +1236,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.mcp.tools': 'tools',
   'concept.chain.quantum': 'chain',
   'concept.help.fold': 'fold',
+  'concept.fold.cross': 'weave',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2000,6 +2031,51 @@ export function quantumFoldedBlockchains(matrix: MindMatrix = buildMatrix()): Qu
       : 'A blockchain is incomplete: a link failed to recompute or a chain is empty.',
     boundary:
       'These are hash-linked chains over the repository-computed model, folded in the same UUID space. They are tamper-evident bookkeeping, not a distributed ledger or external claim.',
+  }
+}
+
+// cross/fold fold/cross: each node carries a cross reference (merge of its
+// prev/next neighbours) and a fold reference (its place in the merkle fold).
+// Crossing them both ways is order-sensitive, so cross/fold != fold/cross — a
+// reciprocal dual whose weave is the third that completes a trinity.
+export function crossFoldTrinity(matrix: MindMatrix = buildMatrix()): CrossFoldTrinity {
+  const references: readonly CrossFoldReference[] = matrix.nodes.map((node) => {
+    const cross = node.cross
+    const fold = node.bind
+    const crossOverFold = merge(cross, fold)
+    const foldOverCross = merge(fold, cross)
+    return {
+      atom: node.atom,
+      cross,
+      fold,
+      crossOverFold,
+      foldOverCross,
+      reciprocal: crossOverFold !== foldOverCross,
+      receipt: merge(crossOverFold, foldOverCross),
+    }
+  })
+  const crossRoot = merkleFold(matrix.nodes.map((node) => node.cross))
+  const foldRoot = matrix.root
+  const crossOverFold = merge(crossRoot, foldRoot)
+  const foldOverCross = merge(foldRoot, crossRoot)
+  const reciprocal = crossOverFold !== foldOverCross && references.every((reference) => reference.reciprocal)
+  const weave = merge(crossOverFold, foldOverCross)
+  const trinity = reciprocal && weave.length > 0
+  return {
+    crossRoot,
+    foldRoot,
+    crossOverFold,
+    foldOverCross,
+    reciprocal,
+    weave,
+    trinity,
+    references,
+    root: merkleFold([...references.map((reference) => reference.receipt), weave]),
+    statement: trinity
+      ? 'cross/fold and fold/cross are reciprocal references; their weave completes the cross-fold trinity {cross, fold, weave}.'
+      : 'The cross-fold dual is degenerate: a reference collapsed under crossing.',
+    boundary:
+      'Cross-fold references are order-sensitive merges over the computed matrix. They are structural bookkeeping, not an external claim.',
   }
 }
 
@@ -4072,6 +4148,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'AI is encoded locally as intelligence: questions fold into answers from atoms, commands, and pages with no external API.',
     },
     {
+      title: 'Cross Fold References',
+      command: 'concept.fold.cross',
+      route: '/quantum-mind#cross-fold-references',
+      summary: 'Cross/fold and fold/cross are reciprocal references whose weave completes a trinity.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4281,6 +4363,10 @@ export function executeConceptCommand(
   if (command === 'concept.help.fold') {
     const answer = foldQuestion(input.query ?? '', matrix)
     return result(command, true, answer.matched ? 'Question folded into a local answer.' : 'Question folded; no concept matched.', answer)
+  }
+  if (command === 'concept.fold.cross') {
+    const dual = crossFoldTrinity(matrix)
+    return result(command, dual.trinity, 'Cross-fold references woven into a trinity.', dual)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)

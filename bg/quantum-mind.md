@@ -346,7 +346,20 @@ multichainRoot := merkleFold({ head(chain) })
 gitSeal := merge(root_M, foldCommits(git log))   // git историята е част от печата
 ```
 
-## 23. Граница
+## 23. Кръстосано-сгънати препратки
+
+```text
+cross_i := merge(prev_i, next_i)        // кръстосана препратка на възела
+fold_i  := bind_i                        // сгъваща препратка на възела
+crossOverFold_i := merge(cross_i, fold_i)
+foldOverCross_i := merge(fold_i, cross_i)
+reciprocal_i := crossOverFold_i != foldOverCross_i      // merge зависи от реда
+crossRoot := merkleFold({ cross_i }); foldRoot := root_M
+weave := merge(merge(crossRoot,foldRoot), merge(foldRoot,crossRoot))
+trinity := (forall i: reciprocal_i) && weave != empty   // {cross, fold, weave}
+```
+
+## 24. Граница
 
 ```text
 Claim(site) = computed(repo)

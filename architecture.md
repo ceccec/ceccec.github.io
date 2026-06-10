@@ -345,7 +345,18 @@ multichainRoot = merkleFold({head(chain)})
 sealRoot = merge(root_M, foldCommits(gitHistory))
 ```
 
-## 24. Boundary
+## 24. Cross fold references
+
+```text
+cross_i = merge(prev_i, next_i)
+fold_i = bind_i
+crossOverFold_i = merge(cross_i, fold_i); foldOverCross_i = merge(fold_i, cross_i)
+reciprocal_i = crossOverFold_i != foldOverCross_i
+weave = merge(merge(crossRoot,foldRoot), merge(foldRoot,crossRoot))
+trinity = forall i: reciprocal_i && weave != empty
+```
+
+## 25. Boundary
 
 ```text
 site_claims = computed_repository_artifacts

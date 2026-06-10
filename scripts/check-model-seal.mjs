@@ -9,6 +9,7 @@ import {
   buildMatrix,
   conceptCommands,
   coverage,
+  crossFoldTrinity,
   digitFoldersDoMath,
   dualTorusTrinities,
   entropy,
@@ -46,6 +47,10 @@ ok('quantum.fold.complete', foldComplete)
 // All fails if the trinity is incomplete: the dual-torus trinities must be
 // harmonized (every axis pair closed, all analog channels covered, no gaps).
 ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
+
+// All fails if the cross-fold dual collapses: cross/fold must differ from
+// fold/cross for every reference, weaving the cross-fold trinity.
+ok('crossFold.trinity', crossFoldTrinity(matrix).trinity)
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)
