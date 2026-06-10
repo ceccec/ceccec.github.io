@@ -146,8 +146,8 @@ export type ConceptCommandName =
   | 'concept.harmony.probability'
   | 'concept.geometry.seal'
   | 'concept.society.sacred'
-  | 'concept.governance.vote'
-  | 'concept.life.fair'
+  | 'concept.commons.vote'
+  | 'concept.commons.fair'
   | 'concept.ancient.tech'
   | 'concept.society.relations'
   | 'concept.agent.streamWire'
@@ -170,7 +170,7 @@ export type ConceptCommandName =
   | 'concept.method.fusion'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
-  | 'concept.source.contribute'
+  | 'concept.commons.contribute'
   | 'concept.torus.matrix'
   | 'concept.torus.vector'
   | 'concept.torus.flow'
@@ -1423,13 +1423,13 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Sacred society self-governed by sacred laws: zero living cost balanced by maximum forge cost.',
   },
   {
-    name: 'concept.governance.vote',
-    path: '/cmd/concept.governance.vote',
+    name: 'concept.commons.vote',
+    path: '/cmd/concept.commons.vote',
     description: 'Society approves and monitors by rate and vote; ballots fold into one governance root.',
   },
   {
-    name: 'concept.life.fair',
-    path: '/cmd/concept.life.fair',
+    name: 'concept.commons.fair',
+    path: '/cmd/concept.commons.fair',
     description: 'A participation ladder for fair trade and sustainable life that anyone can learn and follow.',
   },
   {
@@ -1543,8 +1543,8 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Describe what the double-torus concept implies for human knowledge, institutions, and agency.',
   },
   {
-    name: 'concept.source.contribute',
-    path: '/cmd/concept.source.contribute',
+    name: 'concept.commons.contribute',
+    path: '/cmd/concept.commons.contribute',
     description: 'Invite anyone who benefits from the concept to give back to the source.',
   },
   {
@@ -1682,7 +1682,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.method.fusion': 'fusion',
   'concept.torus.math': 'math',
   'concept.humanity.implications': 'humanity',
-  'concept.source.contribute': 'source',
+  'concept.commons.contribute': 'source',
   'concept.torus.matrix': 'matrix',
   'concept.torus.vector': 'vector',
   'concept.torus.flow': 'flow',
@@ -1709,8 +1709,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.harmony.probability': 'harmony',
   'concept.geometry.seal': 'sacred',
   'concept.society.sacred': 'govern',
-  'concept.governance.vote': 'vote',
-  'concept.life.fair': 'sustain',
+  'concept.commons.vote': 'vote',
+  'concept.commons.fair': 'sustain',
   'concept.ancient.tech': 'ancient',
   'concept.society.relations': 'relate',
   'concept.torus.breathe': 'breathe',
@@ -2441,7 +2441,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       bigIdea: 'boundary, reciprocity, and giving back to the source',
       inPlainWords: 'The wisest step is knowing what the model does not claim, staying honest about its limits, and giving back to the people and sources that made it possible.',
       activity: 'Talk through the limits, who to trust, and how to pass the knowledge on to the next learner.',
-      conceptCommand: 'concept.source.contribute',
+      conceptCommand: 'concept.commons.contribute',
       nextStage: 'graduate',
     },
   ]
@@ -2605,7 +2605,7 @@ const AREA_ICONS: Record<string, string> = {
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
-  geometry: '△', society: '🏘', governance: '⚖', life: '♻', ancient: '☥',
+  geometry: '△', society: '🏘', commons: '♻', ancient: '☥',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -4185,7 +4185,7 @@ function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
     diamond(
       'source',
       'source reciprocity diamond',
-      'concept.source.contribute',
+      'concept.commons.contribute',
       source.reciprocityLaw,
       'closed',
       source.contributions.map((item, index) => ({
@@ -5444,13 +5444,13 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Rate and Vote Governance',
-      command: 'concept.governance.vote',
+      command: 'concept.commons.vote',
       route: '/governance',
       summary: 'Society approves and monitors the recomputable master seal by rate and vote; sharing the site shares the ledger.',
     },
     {
       title: 'Fair Trade & Sustainable Life',
-      command: 'concept.life.fair',
+      command: 'concept.commons.fair',
       route: '/governance',
       summary: 'A five-step participation ladder anyone can learn: learn the value, exchange transparently, reciprocate, steward, regenerate.',
     },
@@ -5594,7 +5594,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Give Back to the Source',
-      command: 'concept.source.contribute',
+      command: 'concept.commons.contribute',
       route: '/quantum-mind#give-back-to-the-source',
       summary: 'The concept asks beneficiaries to return citation, improvement, support, and stewardship.',
     },
@@ -5763,11 +5763,11 @@ export function executeConceptCommand(
     const society = sacredSociety(matrix)
     return result(command, society.governed && society.balanced, 'Sacred society self-governed and balanced.', society)
   }
-  if (command === 'concept.governance.vote') {
+  if (command === 'concept.commons.vote') {
     const governance = governanceVote([], matrix)
     return result(command, governance.defined, 'Rate-and-vote governance defined and folded.', governance)
   }
-  if (command === 'concept.life.fair') {
+  if (command === 'concept.commons.fair') {
     const fair = fairLife(matrix)
     return result(command, fair.grounded, 'Fair trade and sustainable life ladder computed.', fair)
   }
@@ -5854,7 +5854,7 @@ export function executeConceptCommand(
   if (command === 'concept.humanity.implications') {
     return result(command, true, 'Humanity implications report computed.', humanityImplications(matrix))
   }
-  if (command === 'concept.source.contribute') {
+  if (command === 'concept.commons.contribute') {
     return result(command, true, 'Source contribution report computed.', sourceContribution())
   }
   if (command === 'concept.torus.matrix') {
