@@ -2994,7 +2994,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -3007,7 +3007,7 @@ export function componentGraph() {
         '/governance': ['GovernanceVote'],
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
-        '/': ['HumanLens', 'PathGuide'],
+        '/': ['HumanLens', 'PathGuide', 'Nav358'],
         '/show': ['ShowAll', 'FusionWave', 'Complete'],
         '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
     };
@@ -3844,6 +3844,44 @@ export function emfApplications() {
         root: merkleFold(spectrum.map((entry) => entry.receipt)),
         statement: 'EMF applications, honestly: the electromagnetic spectrum in seven bands (radio to gamma); a browser can READ a few EM signals — the magnetometer (ambient magnetic field), the compass, and ambient light (visible EM) — but it cannot emit, alter, or harmonise any field.',
         boundary: 'Educational EM-spectrum data and a list of what a browser can and cannot do with EMF. Reading a sensor is real; emitting, altering, or "harmonising" fields, or any health effect, is impossible from a web page and is not claimed.',
+    };
+}
+// Navigation in 3-5-8, with a tooltip on every destination. Three ways to
+// arrive, five to use, eight to go deep — the whole portal as one tooltip-rich
+// map, organized by the Fibonacci tiers.
+export function navigation358() {
+    const tiers = [
+        { tier: 3, name: 'arrive', items: [
+                { label: 'Home', route: '/', tip: 'The promises, in plain words.' },
+                { label: 'School', route: '/school', tip: 'Learn it from the ground up, at any age.' },
+                { label: 'Academy', route: '/academy', tip: 'Five courses, a recomputable credential.' },
+            ] },
+        { tier: 5, name: 'use', items: [
+                { label: 'Console', route: '/console', tip: 'Ask — it consults itself before answering.' },
+                { label: 'Commands', route: '/commands', tip: 'Every capability, named and runnable.' },
+                { label: 'MCP', route: '/mcp', tip: 'The tool surface for language models.' },
+                { label: 'Show', route: '/show', tip: 'Everything in action, fused into one wave.' },
+                { label: 'Mind', route: '/quantum-mind', tip: 'The shape — the double torus, in 3d 5d 8d.' },
+            ] },
+        { tier: 8, name: 'go deep', items: [
+                { label: 'Architecture', route: '/architecture', tip: 'The formal model and the live seal.' },
+                { label: 'Boundaries', route: '/boundaries', tip: 'Every limit it declares, in one place.' },
+                { label: 'Governance', route: '/governance', tip: 'Rate and vote over the recomputable seal.' },
+                { label: "Developer's mind", route: '/learn-developer', tip: 'All is the mind of the developer.' },
+                { label: 'mcp.json', route: '/mcp.json', tip: 'Every command as an MCP tool.' },
+                { label: 'llms.txt', route: '/llms.txt', tip: 'The agent harmonisation protocol.' },
+                { label: 'digit-index.json', route: '/digit-index.json', tip: 'The pi-digit fold index.' },
+                { label: 'site.webmanifest', route: '/site.webmanifest', tip: 'The installable PWA manifest.' },
+            ] },
+    ];
+    const items = tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })));
+    return {
+        mapped: items.length === 16 && tiers[2].items.length === tiers[1].items.length + tiers[0].items.length,
+        tiers,
+        count: items.length,
+        root: merkleFold(items.map((item) => toUuid(`nav358:${item.tier}:${item.label}`))),
+        statement: 'Navigation in 3-5-8: three ways to arrive (home, school, academy), five to use (console, commands, mcp, show, mind), and eight to go deep (architecture, boundaries, governance, developer, mcp.json, llms.txt, digit-index, manifest) — every destination with a tooltip.',
+        boundary: 'A navigation map of the portal organized in 3-5-8 tiers with tooltips. A guide over the real routes and artifacts.',
     };
 }
 // EMF in 3-5-8 — grounded in electromagnetism, completing the family: the

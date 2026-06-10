@@ -46,6 +46,7 @@ import {
   efficiency,
   emfApplications,
   emf358,
+  navigation358,
   agnostic,
   release,
   doubleTorus3D,
@@ -232,6 +233,8 @@ ok('efficiency.standard', efficiency().optimized)
 // Extend into EMF applications, honestly: the EM spectrum + what a browser can/cannot do with EMF.
 ok('emf.applications', emfApplications().grounded)
 ok('emf.358', emf358().complete)
+// Navigation in 3-5-8 with a tooltip on every destination (16 destinations).
+ok(`navigation.358:${navigation358().count}`, navigation358().mapped)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)

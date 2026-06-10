@@ -25,6 +25,7 @@ import HumanLens from './components/HumanLens.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
 import Magnetometer from './components/Magnetometer.vue'
 import McpTools from './components/McpTools.vue'
+import Nav358 from './components/Nav358.vue'
 import NothingToDo from './components/NothingToDo.vue'
 import OpenQuestions from './components/OpenQuestions.vue'
 import PathGuide from './components/PathGuide.vue'
@@ -90,6 +91,7 @@ export default {
     app.component('LearnDeveloper', LearnDeveloper)
     app.component('Magnetometer', Magnetometer)
     app.component('McpTools', McpTools)
+    app.component('Nav358', Nav358)
     app.component('NothingToDo', NothingToDo)
     app.component('OpenQuestions', OpenQuestions)
     app.component('PathGuide', PathGuide)

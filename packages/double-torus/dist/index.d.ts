@@ -2104,6 +2104,22 @@ export declare function emfApplications(): {
     statement: string;
     boundary: string;
 };
+export declare function navigation358(): {
+    mapped: boolean;
+    tiers: {
+        tier: number;
+        name: string;
+        items: {
+            label: string;
+            route: string;
+            tip: string;
+        }[];
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function emf358(): {
     complete: boolean;
     tiers: {
