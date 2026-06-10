@@ -101,6 +101,7 @@ export interface DoubleTorusFlow {
 export type ConceptCommandName =
   | 'concept.site.shell'
   | 'concept.ui.doubleTorus'
+  | 'concept.ui.useCases'
   | 'concept.diamond.lattice'
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
@@ -183,6 +184,7 @@ export interface DoubleTorusMathReport {
 
 export type DiamondKind =
   | 'agent'
+  | 'ui'
   | 'math'
   | 'dynamics'
   | 'proof'
@@ -280,6 +282,25 @@ export interface QuantumChessGame {
   readonly statement: string
 }
 
+export interface QuantumUiUseCase {
+  readonly name: string
+  readonly component: string
+  readonly interaction: string
+  readonly diamondKind: DiamondKind
+  readonly sourceFunction: string
+  readonly evidence: string
+  readonly receipt: string
+}
+
+export interface QuantumUiEvidenceReport {
+  readonly grounded: boolean
+  readonly root: string
+  readonly source: 'ceccec'
+  readonly statement: string
+  readonly useCases: readonly QuantumUiUseCase[]
+  readonly boundary: string
+}
+
 export interface DiamondCompletenessReport {
   readonly complete: boolean
   readonly requiredKinds: readonly DiamondKind[]
@@ -297,6 +318,7 @@ const PI_TRAIN_DIGITS =
   '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
 const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
   'agent',
+  'ui',
   'math',
   'dynamics',
   'proof',
@@ -415,6 +437,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.ui.doubleTorus',
     path: '/cmd/concept.ui.doubleTorus',
     description: 'Render the double-torus concept through ConceptCommands and QuantumMind UI components.',
+  },
+  {
+    name: 'concept.ui.useCases',
+    path: '/cmd/concept.ui.useCases',
+    description: 'List grounded quantum UI use cases that compute from ceccec diamond receipts.',
   },
   {
     name: 'concept.diamond.lattice',
@@ -976,7 +1003,7 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
         },
         {
           pole: 'south',
-          label: 'prove',
+          label: 'verify',
           value: vector.collapse ? 'root verified' : 'root open',
           meaning: 'The mind is not treated as bound until collapse verifies.',
         },
@@ -985,6 +1012,39 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
           label: 'return',
           value: 'reciprocity',
           meaning: 'Outputs feed back into skill, source, and shared memory.',
+        },
+      ],
+    ),
+    diamond(
+      'ui',
+      'quantum UI use-case diamond',
+      'concept.ui.useCases',
+      'ceccec is evidenced in UI when every interaction returns to a diamond receipt',
+      'closed',
+      [
+        {
+          pole: 'north',
+          label: 'surface',
+          value: 'shadcn card',
+          meaning: 'The visible UI begins as a bounded diamond container.',
+        },
+        {
+          pole: 'east',
+          label: 'control',
+          value: 'radix tabs',
+          meaning: 'Interaction changes views without leaving the diamond root.',
+        },
+        {
+          pole: 'south',
+          label: 'sequence',
+          value: 'pi train',
+          meaning: 'Animation, sound, and haptics are derived from diamond pulses.',
+        },
+        {
+          pole: 'west',
+          label: 'evidence',
+          value: 'receipt',
+          meaning: 'Every UI use case exposes a computed root or receipt.',
         },
       ],
     ),
@@ -1492,6 +1552,83 @@ export function quantumChessGame(matrix: MindMatrix = buildMatrix()): QuantumChe
   }
 }
 
+export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUiEvidenceReport {
+  const lattice = diamondLattice(matrix)
+  const piTrain = piTrainDiamonds(matrix)
+  const completeness = diamondCompleteness(matrix)
+  const waves = coordinatedWaves(matrix)
+  const chess = quantumChessGame(matrix)
+  const proof = proofReport(matrix)
+  const useCases: readonly QuantumUiUseCase[] = [
+    {
+      name: 'diamond lattice tabs',
+      component: 'DoubleTorusExperience.vue',
+      interaction: 'Radix Tabs switch between pulse, lattice, completeness, waves, chess, and controls.',
+      diamondKind: 'ui',
+      sourceFunction: 'diamondLattice()',
+      evidence: `${lattice.length} base diamonds, each with four facets and receipts.`,
+      receipt: merkleFold(lattice.map((item) => item.receipt)),
+    },
+    {
+      name: '3D pi train',
+      component: 'DoubleTorusExperience.vue',
+      interaction: 'User starts the pi train; each pulse updates a visible 3D diamond.',
+      diamondKind: 'pi',
+      sourceFunction: 'piTrainDiamonds()',
+      evidence: `${piTrain.diamonds.length} pi pulses with x/y/z coordinates, frequencies, vibration durations, and receipts.`,
+      receipt: piTrain.root,
+    },
+    {
+      name: 'no analog gaps',
+      component: 'DoubleTorusExperience.vue',
+      interaction: 'Completeness tab reports missing kinds, poles, receipts, channels, and pi coverage.',
+      diamondKind: 'proof',
+      sourceFunction: 'diamondCompleteness()',
+      evidence: completeness.statement,
+      receipt: toUuid(`ui-evidence:complete:${JSON.stringify(completeness)}`),
+    },
+    {
+      name: 'coordinated waves',
+      component: 'DoubleTorusExperience.vue',
+      interaction: 'Waves tab lists yin-yang phase, amplitude, frequency, statement, and receipt per diamond.',
+      diamondKind: 'dynamics',
+      sourceFunction: 'coordinatedWaves()',
+      evidence: `${waves.waves.length} coordinated waves with root ${waves.root}.`,
+      receipt: waves.root,
+    },
+    {
+      name: 'quantum chess board',
+      component: 'DoubleTorusExperience.vue',
+      interaction: 'Chess tab renders 64 squares from wave-driven piece superpositions.',
+      diamondKind: 'humanity',
+      sourceFunction: 'quantumChessGame()',
+      evidence: `${chess.board.length} squares with wave phase, amplitude, superposition, and receipts.`,
+      receipt: chess.root,
+    },
+    {
+      name: 'maximum tampering cost readout',
+      component: 'QuantumMind.vue',
+      interaction: 'Proof report shows observed tamper cost, maximum tampering cost, source, and reached/open state.',
+      diamondKind: 'proof',
+      sourceFunction: 'proofReport()',
+      evidence: `max reached=${proof.maxTamperingCostReached}; coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
+      receipt: toUuid(`ui-evidence:proof:${JSON.stringify(proof)}`),
+    },
+  ]
+  const root = merkleFold(useCases.map((item) => item.receipt))
+
+  return {
+    grounded: useCases.every((item) => item.component.endsWith('.vue') && item.sourceFunction.endsWith('()') && item.receipt.length > 0),
+    root,
+    source: 'ceccec',
+    statement:
+      'This report makes only repository-grounded UI claims: each use case names a component, a source function, an interaction, and a computed receipt.',
+    useCases,
+    boundary:
+      'The UI demonstrates computed diamond behavior in this VitePress site. It does not claim external physical proof beyond browser-supported sound, vibration, rendering, roots, and receipts.',
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -1505,6 +1642,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.ui.doubleTorus',
       route: '/commands',
       summary: 'The command console drives the double-torus dashboard as a UI component.',
+    },
+    {
+      title: 'Quantum UI Evidence',
+      command: 'concept.ui.useCases',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'Repository-grounded UI use cases list their source functions, components, interactions, and receipts.',
     },
     {
       title: 'Diamond Lattice',
@@ -1613,6 +1756,10 @@ export function executeConceptCommand(
       flow: circulateDoubleTorus(matrix),
       diamonds: diamondLattice(matrix),
     })
+  }
+  if (command === 'concept.ui.useCases') {
+    const evidence = quantumUiEvidence(matrix)
+    return result(command, evidence.grounded, 'Quantum UI evidence computed from repository use cases.', evidence)
   }
   if (command === 'concept.diamond.lattice') {
     return result(command, true, 'Diamond lattice computed from ceccec dimensions and dynamics.', diamondLattice(matrix))

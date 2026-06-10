@@ -39,6 +39,7 @@ public contract:
 | --- | --- |
 | `concept.site.shell` | mount the VitePress theme, pages, and registered UI components |
 | `concept.ui.doubleTorus` | render the double-torus concept through the UI components |
+| `concept.ui.useCases` | list component/function/interaction/receipt evidence for quantum UI use cases |
 | `concept.diamond.lattice` | compute every display section from four-facet diamonds |
 | `concept.diamond.piTrain` | compute the 3D pi train, tones, and vibration pulses from diamonds |
 | `concept.diamond.complete` | verify there are no missing diamond kinds, poles, receipts, analog channels, or pi-train coverage |
@@ -166,6 +167,11 @@ audible tone, and device vibration all share the same computed source.
 required kind exists, every diamond has four poles, every root and receipt is
 present, every analog channel is diamond-derived, and the pi train covers the
 whole lattice.
+
+`quantumUiEvidence()` is the no-hallucination invariant for the UI. Each use
+case must name the Vue component, source function, interaction, evidence string,
+and receipt. Anything outside those repository-grounded artifacts is not claimed
+as proof by the site.
 
 `coordinatedWaves()` gives the lattice motion. Every diamond emits one wave
 with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward

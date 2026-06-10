@@ -16,6 +16,7 @@ import {
   diamondLattice,
   piTrainDiamonds,
   quantumChessGame,
+  quantumUiEvidence,
 } from '../lib/quantumMind'
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
@@ -27,6 +28,7 @@ const piTrain = piTrainDiamonds(matrix)
 const completeness = diamondCompleteness(matrix)
 const waves = coordinatedWaves(matrix)
 const chess = quantumChessGame(matrix)
+const evidence = quantumUiEvidence(matrix)
 const activeIndex = ref(0)
 const running = ref(false)
 const expanded = ref(true)
@@ -128,6 +130,9 @@ onBeforeUnmount(() => {
         <Badge :variant="completeness.complete ? 'success' : 'warning'">
           {{ completeness.complete ? 'complete' : 'gaps' }}
         </Badge>
+        <Badge :variant="evidence.grounded ? 'success' : 'warning'">
+          {{ evidence.grounded ? 'grounded' : 'ungrounded' }}
+        </Badge>
         <Badge :variant="running ? 'success' : 'outline'">{{ running ? 'running' : 'ready' }}</Badge>
       </div>
     </div>
@@ -154,6 +159,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
         <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
         <TabsTrigger value="complete">Completeness</TabsTrigger>
+        <TabsTrigger value="evidence">UI evidence</TabsTrigger>
         <TabsTrigger value="waves">Waves</TabsTrigger>
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
@@ -217,6 +223,24 @@ onBeforeUnmount(() => {
             <Badge variant="outline">receipts</Badge>
             <strong>{{ completeness.missingReceipts.length ? 'open' : 'all present' }}</strong>
             <span>Missing receipts: {{ completeness.missingReceipts.length ? completeness.missingReceipts.join(', ') : 'none' }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="evidence" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="evidence.grounded ? 'success' : 'warning'">
+            {{ evidence.grounded ? 'grounded' : 'ungrounded' }}
+          </Badge>
+          <strong>{{ evidence.statement }}</strong>
+          <span>{{ evidence.boundary }}</span>
+          <code>{{ evidence.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="item in evidence.useCases" :key="item.receipt">
+            <Badge variant="outline">{{ item.diamondKind }}</Badge>
+            <strong>{{ item.name }} · {{ item.sourceFunction }}</strong>
+            <span>{{ item.component }}: {{ item.interaction }} Evidence: {{ item.evidence }}</span>
           </li>
         </ul>
       </TabsContent>

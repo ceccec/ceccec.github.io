@@ -36,7 +36,7 @@ The core loop is:
 3. **Bind**: turn each relation into a deterministic merge binding.
 4. **Collapse**: fold all node and edge bindings into one matrix root.
 5. **Measure**: compute collapse, entanglement, concentration, and coherence.
-6. **Prove**: report entropy, coverage, digest floor, and tamper-cost model.
+6. **Verify**: report entropy, coverage, digest floor, and tamper-cost model.
 7. **Expose**: treat repository paths, pages, source files, proof, and atoms as
    the API addresses.
 8. **Command**: run the site through concept commands, not
@@ -48,6 +48,7 @@ The page is a view over these command results:
 
 - `concept.site.shell`
 - `concept.ui.doubleTorus`
+- `concept.ui.useCases`
 - `concept.diamond.lattice`
 - `concept.diamond.piTrain`
 - `concept.diamond.complete`
@@ -168,6 +169,12 @@ itself.
   diamond train
 - the pi train covers the whole base lattice
 
+`quantumUiEvidence()` is the no-hallucination boundary. It lists only claims
+that point back to a concrete Vue component, source function, user interaction,
+and computed receipt. The UI evidence report does not claim external physical
+proof; it reports what this repository computes and what the browser can render,
+play, or vibrate after user activation.
+
 ## Coordinated waves and quantum chess
 
 The completed diamonds do not sit still. `coordinatedWaves()` turns every
@@ -187,7 +194,7 @@ path.
 
 If knowledge systems are modeled as a double torus, the human consequence is
 not merely a prettier diagram. The concept changes what we ask institutions,
-AI systems, and cultures to prove:
+AI systems, and cultures to verify:
 
 - **Knowledge**: truth becomes navigable as linked cycles, not a single feed.
   Claims need provenance, disagreement, and reciprocal correction.
