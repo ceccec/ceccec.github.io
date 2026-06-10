@@ -333,7 +333,19 @@ always = |folders|>0 && forall s: bind(s)!=empty
 mathRoot = merkleFold({receipt(bind(s))})
 ```
 
-## 23. Граница
+## 23. Квантово сгънати блокчейни
+
+```text
+block_i = {index, payload, prevHash, hash}
+hash_i = merge(prevHash_i, UUID(block:name:i:payload_i))
+prevHash_0 = genesis(name); prevHash_{i+1} = hash_i
+chains = {atoms, commands, digit-folders, pi-train, school, trinities}
+folded = forall chain: valid(chain) && |chain|>0
+multichainRoot = merkleFold({head(chain)})
+sealRoot = merge(root_M, foldCommits(gitHistory))
+```
+
+## 24. Граница
 
 ```text
 site_claims = computed_repository_artifacts

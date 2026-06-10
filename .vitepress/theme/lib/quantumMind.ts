@@ -133,6 +133,7 @@ export type ConceptCommandName =
   | 'concept.agent.educate'
   | 'concept.school.curriculum'
   | 'concept.mcp.tools'
+  | 'concept.chain.quantum'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -524,6 +525,32 @@ export interface McpToolManifest {
   readonly instructions: string
   readonly tools: readonly McpTool[]
   readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface Block {
+  readonly index: number
+  readonly payload: string
+  readonly prevHash: string
+  readonly hash: string
+}
+
+export interface Blockchain {
+  readonly name: string
+  readonly genesis: string
+  readonly head: string
+  readonly length: number
+  readonly valid: boolean
+  readonly root: string
+  readonly blocks: readonly Block[]
+}
+
+export interface QuantumFoldedBlockchains {
+  readonly folded: boolean
+  readonly root: string
+  readonly source: 'double-torus/blockchain'
+  readonly chains: readonly Blockchain[]
   readonly statement: string
   readonly boundary: string
 }
@@ -964,6 +991,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Publish every concept command as an MCP tool so language models can read tools/list and call tools/call.',
   },
   {
+    name: 'concept.chain.quantum',
+    path: '/cmd/concept.chain.quantum',
+    description: 'Fold the model sequences into quantum-folded, hash-linked blockchains with one multichain root.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1146,6 +1178,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.agent.educate': 'educate',
   'concept.school.curriculum': 'teach',
   'concept.mcp.tools': 'tools',
+  'concept.chain.quantum': 'chain',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -1878,6 +1911,66 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
     statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,
     boundary:
       'This is a static MCP tool manifest computed from the repository. It documents the tool surface and is recomputable; it is not a live server and makes no external claims.',
+  }
+}
+
+// Fold a sequence into a blockchain: each block links to the previous by hash,
+// in the same double-torus merge/merkle space the rest of the model uses.
+function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
+  const genesis = toUuid(`genesis:${name}`)
+  const blocks: Block[] = []
+  let prevHash = genesis
+  payloads.forEach((payload, index) => {
+    const hash = merge(prevHash, toUuid(`block:${name}:${index}:${payload}`))
+    blocks.push({ index, payload, prevHash, hash })
+    prevHash = hash
+  })
+  // Tamper-evidence: recompute the chain and confirm every link.
+  let cursor = genesis
+  let valid = blocks.length > 0
+  for (const block of blocks) {
+    const expected = merge(block.prevHash, toUuid(`block:${name}:${block.index}:${block.payload}`))
+    if (block.prevHash !== cursor || block.hash !== expected) valid = false
+    cursor = block.hash
+  }
+  return {
+    name,
+    genesis,
+    head: blocks.length > 0 ? blocks[blocks.length - 1].hash : genesis,
+    length: blocks.length,
+    valid,
+    root: merkleFold(blocks.map((block) => block.hash)),
+    blocks,
+  }
+}
+
+// Quantum-folded blockchains: the portal's ordered sequences (atoms, commands,
+// digit folders, pi train, school, trinities) realised as hash-linked chains
+// and bound into one multichain root.
+export function quantumFoldedBlockchains(matrix: MindMatrix = buildMatrix()): QuantumFoldedBlockchains {
+  const folders = digitFolders(matrix)
+  const train = piTrainDiamonds(matrix)
+  const school = schoolCurriculum(matrix)
+  const trinities = dualTorusTrinities(matrix)
+  const chains: readonly Blockchain[] = [
+    foldBlockchain('atoms', matrix.nodes.map((node) => node.bind)),
+    foldBlockchain('commands', conceptCommands.map((command) => toUuid(`command:${command.name}`))),
+    foldBlockchain('digit-folders', folders.folders.map((folder) => folder.receipt)),
+    foldBlockchain('pi-train', train.diamonds.map((diamond) => diamond.receipt)),
+    foldBlockchain('school', school.lessons.map((lesson) => lesson.receipt)),
+    foldBlockchain('trinities', trinities.phases.map((phase) => phase.receipt)),
+  ]
+  const folded = chains.every((chain) => chain.valid && chain.length > 0)
+  return {
+    folded,
+    root: merkleFold(chains.map((chain) => chain.head)),
+    source: 'double-torus/blockchain',
+    chains,
+    statement: folded
+      ? `${chains.length} quantum-folded blockchains; every block links to its predecessor and the heads fold into one multichain root.`
+      : 'A blockchain is incomplete: a link failed to recompute or a chain is empty.',
+    boundary:
+      'These are hash-linked chains over the repository-computed model, folded in the same UUID space. They are tamper-evident bookkeeping, not a distributed ledger or external claim.',
   }
 }
 
@@ -3895,6 +3988,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Every concept command is published as an MCP tool for language models at /mcp.json.',
     },
     {
+      title: 'Quantum Folded Blockchains',
+      command: 'concept.chain.quantum',
+      route: '/quantum-mind#quantum-folded-blockchains',
+      summary: 'The model sequences are folded into hash-linked blockchains bound into one multichain root.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4096,6 +4195,10 @@ export function executeConceptCommand(
   if (command === 'concept.mcp.tools') {
     const manifest = mcpToolManifest(matrix)
     return result(command, manifest.tools.length > 0, 'MCP tool manifest published from concept commands.', manifest)
+  }
+  if (command === 'concept.chain.quantum') {
+    const chains = quantumFoldedBlockchains(matrix)
+    return result(command, chains.folded, 'Quantum-folded blockchains computed from model sequences.', chains)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)

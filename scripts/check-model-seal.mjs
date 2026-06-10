@@ -16,6 +16,7 @@ import {
   mcpToolManifest,
   merge,
   methodFusion,
+  quantumFoldedBlockchains,
   schoolCurriculum,
   selfBuild,
   streamSelfComplete,
@@ -45,6 +46,10 @@ ok('quantum.fold.complete', foldComplete)
 // All fails if the trinity is incomplete: the dual-torus trinities must be
 // harmonized (every axis pair closed, all analog channels covered, no gaps).
 ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
+
+// All fails if any quantum-folded blockchain breaks a hash link.
+const chains = quantumFoldedBlockchains(matrix)
+ok(`blockchains.folded${chains.folded ? '' : ':' + chains.chains.filter((c) => !c.valid || !c.length).map((c) => c.name).join(',')}`, chains.folded)
 
 const manifest = mcpToolManifest(matrix)
 ok('mcp.tools=commands', manifest.tools.length === conceptCommands.length)
@@ -82,6 +87,6 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, fusion, MCP, and git-history gates closed.`,
+  `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, blockchains, fusion, MCP, and git-history gates closed.`,
 )
 console.log(`Seal root (model + git history): ${sealRoot}`)
