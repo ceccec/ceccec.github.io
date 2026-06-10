@@ -4,7 +4,7 @@ import { join } from 'node:path'
 const outDir = join(process.cwd(), '.vitepress', 'dist')
 const siteUrl = (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
 const now = new Date().toISOString()
-const enRoutes = ['/', '/console', '/school', '/academy', '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries']
+const enRoutes = ['/', '/console', '/school', '/academy', '/explore', '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries']
 const routes = [...enRoutes, ...enRoutes.map((route) => (route === '/' ? '/bg/' : `/bg${route}`))]
 
 function computePiDigits(count) {

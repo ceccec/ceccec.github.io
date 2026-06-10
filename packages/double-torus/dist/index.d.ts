@@ -2200,6 +2200,35 @@ export declare function contract(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function multidimensional(): {
+    mapped: boolean;
+    dimensions: {
+        dimension: string;
+        icon: string;
+        items: {
+            label: string;
+            route: string;
+            tip: string;
+        }[];
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function allInEquilibrium(matrix?: MindMatrix): {
+    equilibrium: boolean;
+    parts: {
+        receipt: string;
+        part: string;
+        ok: boolean;
+    }[];
+    balanced: number;
+    total: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function breathe(matrix?: MindMatrix): {
     breathing: boolean;
     expand: string;

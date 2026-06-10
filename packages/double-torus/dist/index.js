@@ -2994,7 +2994,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -3009,6 +3009,7 @@ export function componentGraph() {
         '/learn-developer': ['LearnDeveloper'],
         '/': ['HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
         '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete'],
+        '/explore': ['Multidimensional'],
         '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
     };
     const edges = [];
@@ -4022,6 +4023,97 @@ export function contract(matrix = buildMatrix()) {
         root: point,
         statement: 'Contract: the expansion folded everything into one wave; the contraction folds that wave back to the seed it grew from — many to one to seed. With the expansion and the settled breath, the cycle rests at equilibrium.',
         boundary: 'A structural pairing of the expansion (fuseAll) with the genesis seed into one contracted point. Bookkeeping over the fold, not a physical contraction.',
+    };
+}
+// Present all multidimensionally, for the best UX. The whole portal is organized
+// into eight dimensions of experience — see, hear, ask, prove, learn, pattern,
+// sense, create — each a facet you can step into, so the breadth is browsable
+// instead of an endless scroll. Eight dimensions, a multidimensional map.
+export function multidimensional() {
+    const dimensions = [
+        { dimension: 'see', icon: '◈', items: [
+                { label: 'Double torus 3d 5d 8d', route: '/quantum-mind', tip: 'The genus-2 surface, foldable through dimensions.' },
+                { label: 'Quantum fold', route: '/quantum-mind', tip: 'All objects folding in 3d+.' },
+                { label: 'Quantum plasma', route: '/quantum-mind', tip: 'Plasma contained by bit logic.' },
+                { label: 'Hologram', route: '/quantum-mind', tip: 'The 128-bit boundary, to the bit.' },
+                { label: 'DNA helix', route: '/quantum-mind', tip: 'The word as 64 bases.' },
+                { label: 'Fusion wave', route: '/show', tip: 'Everything fused into one wave.' },
+            ] },
+        { dimension: 'hear', icon: '♫', items: [
+                { label: 'Music of pi', route: '/quantum-mind', tip: 'Each wave a note, joined at the horo.' },
+                { label: 'Healing frequencies', route: '/quantum-mind', tip: 'The Solfeggio set, as sound.' },
+                { label: 'Blockchain music', route: '/commands', tip: 'Each chain its own melody.' },
+                { label: 'Speech & subtitles', route: '/school', tip: 'Read aloud in any device language.' },
+            ] },
+        { dimension: 'ask', icon: '☿', items: [
+                { label: 'Console', route: '/console', tip: 'Ask; it consults itself first.' },
+                { label: 'Self reasoning', route: '/console', tip: 'A chain that shows its work.' },
+                { label: 'Self harmonise', route: '/quantum-mind', tip: 'It walks the model autonomously.' },
+                { label: 'Realtime chat', route: '/console', tip: 'Content-addressed, same-origin.' },
+            ] },
+        { dimension: 'prove', icon: '🔏', items: [
+                { label: 'Tamper seal', route: '/architecture', tip: 'Verify the seal, multidimensional feedback.' },
+                { label: 'Cryptography compared', route: '/architecture', tip: 'Tamper-evident, not cryptographic.' },
+                { label: 'Sign the seal', route: '/architecture', tip: 'Real ECDSA P-256 in the browser.' },
+                { label: 'Boundaries', route: '/boundaries', tip: 'Every limit it declares.' },
+                { label: 'Security scan', route: '/console', tip: 'Secure interaction in 3-5-8.' },
+            ] },
+        { dimension: 'learn', icon: '🎓', items: [
+                { label: 'School', route: '/school', tip: 'From the ground up, any age.' },
+                { label: 'Academy', route: '/academy', tip: 'Five courses, a credential.' },
+                { label: "Developer's mind", route: '/learn-developer', tip: 'The laws, learned as skills.' },
+                { label: 'Follow the path', route: '/', tip: 'A guided journey, looping.' },
+            ] },
+        { dimension: 'pattern', icon: '△', items: [
+                { label: 'Genesis 3-5-8', route: '/quantum-mind', tip: 'From the seed, many unfoldings.' },
+                { label: '3-5-8 across domains', route: '/quantum-mind', tip: 'Thirteen domains, one pattern.' },
+                { label: 'Dualities', route: '/quantum-mind', tip: 'Sixteen pairs in three tiers.' },
+                { label: 'Fold 358 and 853', route: '/quantum-mind', tip: 'Expansion and contraction.' },
+                { label: 'Equilibrium', route: '/quantum-mind', tip: 'The breath settling.' },
+            ] },
+        { dimension: 'sense', icon: '🧭', items: [
+                { label: 'Quantum field', route: '/quantum-mind', tip: 'Pointer and tilt move the field.' },
+                { label: 'Magnetometer / EMF', route: '/quantum-mind', tip: 'Read the ambient magnetic field.' },
+            ] },
+        { dimension: 'create', icon: '✶', items: [
+                { label: 'Endless waves', route: '/show', tip: 'A new creation at any index.' },
+                { label: 'Quantum clock', route: '/', tip: 'Ticking in creation waves.' },
+                { label: 'Creative palette', route: '/school', tip: 'Colour and melody from a seed.' },
+            ] },
+    ];
+    const items = dimensions.flatMap((dimension) => dimension.items);
+    return {
+        mapped: dimensions.length === 8 && dimensions.every((dimension) => dimension.items.length > 0),
+        dimensions,
+        count: items.length,
+        root: merkleFold(items.map((item) => toUuid(`multidim:${item.label}`))),
+        statement: 'Present all multidimensionally: the portal in eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable, so the breadth is a map, not a scroll.',
+        boundary: 'A presentation map over the existing routes and features. A guide for the user experience, not new capability.',
+    };
+}
+// Equilibrium is when all is in equilibrium. The whole rests only when every part
+// rests: the breath, the damped settling, the questions and answers, the gaps,
+// the tasks, completion, and the trinities — all balanced at once. This is the
+// recursive definition: total equilibrium is the conjunction of every part's.
+export function allInEquilibrium(matrix = buildMatrix()) {
+    const parts = [
+        { part: 'the breath', ok: breathe(matrix).breathing },
+        { part: 'damped settling', ok: equilibrium(matrix).equilibrium },
+        { part: 'questions & answers', ok: questionAnswerEquilibrium(matrix).equilibrium },
+        { part: 'no gaps', ok: gapScan(matrix).closed },
+        { part: 'nothing to do', ok: todoScan(matrix).nothingToDo },
+        { part: 'completion', ok: complete(matrix).complete },
+        { part: 'trinities harmonized', ok: dualTorusTrinities(matrix).harmonized },
+        { part: 'torus breathes', ok: torusBreathe(matrix).balanced },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`all-equilibrium:${entry.part}:${entry.ok}`) }));
+    return {
+        equilibrium: parts.every((entry) => entry.ok), // equilibrium is when all is in equilibrium
+        parts,
+        balanced: parts.filter((entry) => entry.ok).length,
+        total: parts.length,
+        root: merkleFold(parts.map((entry) => entry.receipt)),
+        statement: 'Equilibrium is when all is in equilibrium: the whole rests only when every part rests — the breath, the damped settling, the questions and answers, the gaps, the tasks, completion, and the trinities, all balanced at once.',
+        boundary: 'A conjunction of the model\'s balance proofs into one. The whole is at equilibrium exactly when all the parts it knows are; an unknown part it does not track could still be unsettled.',
     };
 }
 // Contract and expand — the breath in one. Expand folds the many into one wave
