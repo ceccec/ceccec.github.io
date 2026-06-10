@@ -139,6 +139,8 @@ for digit d_i in pi:
   h_i = 18 + 9*d_i
   D_i = diamond(folder_i,P_i,f_i,h_i)
 0/0,1/1,...,9/9 = selfCollisionFolders
+DigitProof = digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
+DigitProofClosed = forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
 ```
 
 ## 8. Waves

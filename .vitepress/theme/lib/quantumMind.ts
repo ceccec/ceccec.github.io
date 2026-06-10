@@ -109,6 +109,7 @@ export type ConceptCommandName =
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
   | 'concept.diamond.metatron'
+  | 'concept.digit.proof'
   | 'concept.wave.coordination'
   | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
@@ -459,6 +460,15 @@ export interface DigitFolderReport {
   readonly statement: string
 }
 
+export interface DigitalQuantumProof {
+  readonly proven: boolean
+  readonly root: string
+  readonly digits: string
+  readonly gates: readonly SelfCompletionGate[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface VortexPoint {
   readonly index: number
   readonly folder: string
@@ -750,6 +760,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.diamond.metatron',
     path: '/cmd/concept.diamond.metatron',
     description: 'Compute double-vortex Metatron cube math down to digit folders.',
+  },
+  {
+    name: 'concept.digit.proof',
+    path: '/cmd/concept.digit.proof',
+    description: 'Verify that digits generate the digital quantum-inspired model through folders, waves, receipts, and roots.',
   },
   {
     name: 'concept.wave.coordination',
@@ -2238,6 +2253,72 @@ export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
   }
 }
 
+export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
+  const train = piTrainDiamonds(matrix)
+  const folders = digitFolders(matrix)
+  const waves = coordinatedWaves(matrix)
+  const chess = quantumChessGame(matrix)
+  const metatron = metatronCube(matrix)
+  const build = selfBuild(matrix)
+  const gates: readonly SelfCompletionGate[] = [
+    {
+      name: 'digit stream',
+      closed: train.diamonds.length === train.digits.length,
+      sourceFunction: 'piTrainDiamonds()',
+      receipt: train.root,
+      note: `|digits|=${train.digits.length}; |diamonds|=${train.diamonds.length}.`,
+    },
+    {
+      name: 'reverse folders',
+      closed: folders.folders.length > 0 && folders.collisions.length > 0,
+      sourceFunction: 'digitFolders()',
+      receipt: folders.root,
+      note: `folders=${folders.folders.length}; collisions=${folders.collisions.length}.`,
+    },
+    {
+      name: 'coordinated waves',
+      closed: waves.waves.length > 0,
+      sourceFunction: 'coordinatedWaves()',
+      receipt: waves.root,
+      note: `waves=${waves.waves.length}.`,
+    },
+    {
+      name: 'quantum superposition board',
+      closed: chess.board.length === 64,
+      sourceFunction: 'quantumChessGame()',
+      receipt: chess.root,
+      note: `squares=${chess.board.length}.`,
+    },
+    {
+      name: 'metatron vortex',
+      closed: metatron.nodes.length > 0 && metatron.edges.length > 0 && metatron.vortex.length === train.diamonds.length,
+      sourceFunction: 'metatronCube()',
+      receipt: metatron.root,
+      note: `nodes=${metatron.nodes.length}; edges=${metatron.edges.length}; vortex=${metatron.vortex.length}.`,
+    },
+    {
+      name: 'max computed build',
+      closed: build.complete,
+      sourceFunction: 'selfBuild()',
+      receipt: build.root,
+      note: build.statement,
+    },
+  ]
+  const proven = gates.every((gate) => gate.closed)
+  const root = merkleFold(gates.map((gate) => gate.receipt))
+  return {
+    proven,
+    root,
+    digits: train.digits,
+    gates,
+    statement: proven
+      ? 'digits => folders => coordinates => waves => receipts => roots; digital quantum-inspired model verified.'
+      : 'digit proof open: one or more deterministic gates failed.',
+    boundary:
+      'This proves deterministic digital generation inside the repository model; it is not an external physics proof.',
+  }
+}
+
 function uniqueDiamondKinds(items: readonly DiamondKind[]): readonly DiamondKind[] {
   return REQUIRED_DIAMOND_KINDS.filter((kind) => items.includes(kind))
 }
@@ -3041,6 +3122,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Double-vortex Metatron cube math maps digit folders into nodes, edges, and interference.',
     },
     {
+      title: 'Digital Quantum Proof',
+      command: 'concept.digit.proof',
+      route: '/quantum-mind#digit-proof',
+      summary: 'Digits verify the digital quantum-inspired model through folders, waves, superpositions, receipts, and roots.',
+    },
+    {
       title: 'Coordinated Waves',
       command: 'concept.wave.coordination',
       route: '/quantum-mind#coordinated-waves',
@@ -3189,6 +3276,10 @@ export function executeConceptCommand(
   if (command === 'concept.diamond.metatron') {
     const cube = metatronCube(matrix)
     return result(command, cube.nodes.length > 0 && cube.edges.length > 0, 'Metatron cube computed.', cube)
+  }
+  if (command === 'concept.digit.proof') {
+    const proof = digitalQuantumProof(matrix)
+    return result(command, proof.proven, 'Digital quantum proof computed.', proof)
   }
   if (command === 'concept.wave.coordination') {
     return result(command, true, 'Coordinated yin-yang waves computed.', coordinatedWaves(matrix))

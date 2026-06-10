@@ -17,6 +17,7 @@ import {
   diamondCompleteness,
   diamondLattice,
   digitFolders,
+  digitalQuantumProof,
   methodFusion,
   metatronCube,
   piTrainDiamonds,
@@ -39,6 +40,7 @@ const agentWire = agentStreamWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
 const folders = digitFolders(matrix)
+const digitProof = digitalQuantumProof(matrix)
 const metatron = metatronCube(matrix)
 const completeness = diamondCompleteness(matrix)
 const waves = coordinatedWaves(matrix)
@@ -205,6 +207,7 @@ onBeforeUnmount(() => {
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
         <TabsTrigger value="folders">Digit folders</TabsTrigger>
+        <TabsTrigger value="digitProof">Digit proof</TabsTrigger>
         <TabsTrigger value="metatron">Metatron</TabsTrigger>
         <TabsTrigger value="build">Self build</TabsTrigger>
         <TabsTrigger value="self">Self complete</TabsTrigger>
@@ -259,6 +262,24 @@ onBeforeUnmount(() => {
             <Badge :variant="folder.selfCollision ? 'success' : 'outline'">{{ folder.folder }}</Badge>
             <strong>count={{ folder.count }} · next={{ folder.nextHarmonicFolder }}</strong>
             <span>indices={{ folder.indices.join(',') }} · receipt={{ folder.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="digitProof" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="digitProof.proven ? 'success' : 'warning'">
+            {{ digitProof.proven ? 'digital proof closed' : 'digital proof open' }}
+          </Badge>
+          <strong>{{ digitProof.statement }}</strong>
+          <span>{{ digitProof.boundary }}</span>
+          <code>{{ digitProof.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="gate in digitProof.gates" :key="gate.receipt">
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
+            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

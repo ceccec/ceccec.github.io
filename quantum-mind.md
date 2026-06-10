@@ -125,6 +125,8 @@ for i in [0,n):
   vibe_i    := 18 + 9*d_i
   D_i       := Diamond(folder_i, x_i,y_i,z_i,freq_i,vibe_i)
 0/0,1/1,...,9/9 := self-collision folders
+DigitProof := digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
+DigitProofClosed := forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
 ```
 
 ## 7. Waves
