@@ -1138,6 +1138,15 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.repository.api': 'api',
   'concept.repository.resolve': 'resolve',
   'concept.proof.verify': 'verify',
+  'concept.proof.merklePath': 'include',
+  'concept.diamond.metatron': 'metatron',
+  'concept.digit.proof': 'prove',
+  'concept.digit.math': 'compute',
+  'concept.artists.surfaces': 'artists',
+  'concept.agent.educate': 'educate',
+  'concept.school.curriculum': 'teach',
+  'concept.mcp.tools': 'tools',
+  'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
 
@@ -2273,8 +2282,8 @@ export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfac
 
 export function methodFusion(): MethodFusionReport {
   const tokens = conceptCommands.map((command) => {
-    const method = SINGLE_WORD_METHODS[command.name]
-    const single = /^[a-z]+$/.test(method)
+    const method = SINGLE_WORD_METHODS[command.name] ?? ''
+    const single = typeof method === 'string' && /^[a-z]+$/.test(method)
     const receipt = toUuid(`method-fusion:${command.name}:${method}:${single}`)
     return {
       command: command.name,
