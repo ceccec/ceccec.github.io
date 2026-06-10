@@ -131,6 +131,8 @@ ok('healing.frequencies', healingFrequencies(matrix).calculated)
 ok('blockchain.music', blockchainMusic('commands', matrix).plays)
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
+// CMYK is computed: every palette colour carries the print space, computed from RGB.
+ok('artists.cmyk', artistPalette('double-torus').colors.every((c) => typeof c.cmyk === 'string' && c.cmyk.startsWith('cmyk(')))
 ok('artists.melody', artistMelody('double-torus', matrix).grounded)
 ok('utf.ascii.reversible', (() => { const a = utfAnalog('Двоен тор 42'); return a.ascii && a.reversible })()) // UTF solved as ASCII analog
 ok(`self.no-hallucination${selfAddressed(matrix).hallucinations.length ? ':' + selfAddressed(matrix).hallucinations.join(',') : ''}`, selfAddressed(matrix).noHallucination) // what is not self-addressed is hallucination

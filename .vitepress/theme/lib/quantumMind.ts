@@ -3207,14 +3207,14 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies'],
     '/console': ['QuantumConsole'],
-    '/school': ['SchoolCurriculum'],
+    '/school': ['SchoolCurriculum', 'CreativePalette'],
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
@@ -4811,20 +4811,61 @@ export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfac
 export function artistPalette(seed = 'double-torus') {
   const root = toUuid(`artist-palette:${seed}`)
   const hex = root.replace(/-/g, '')
+  // HSL -> RGB, then RGB -> CMYK. CMYK is computed (the print space), not stored,
+  // so every colour carries both the screen (HSL/RGB/hex) and print (CMYK) forms.
+  const hslToRgb = (h: number, s: number, l: number) => {
+    const sn = s / 100
+    const ln = l / 100
+    const c = (1 - Math.abs(2 * ln - 1)) * sn
+    const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
+    const m = ln - c / 2
+    const [r, g, b] =
+      h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x]
+    return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)] as const
+  }
+  const rgbToCmyk = (r: number, g: number, b: number) => {
+    const r1 = r / 255
+    const g1 = g / 255
+    const b1 = b / 255
+    const k = 1 - Math.max(r1, g1, b1)
+    if (k >= 1) return [0, 0, 0, 100] as const
+    return [
+      Math.round(((1 - r1 - k) / (1 - k)) * 100),
+      Math.round(((1 - g1 - k) / (1 - k)) * 100),
+      Math.round(((1 - b1 - k) / (1 - k)) * 100),
+      Math.round(k * 100),
+    ] as const
+  }
+  const toHex = (n: number) => n.toString(16).padStart(2, '0')
   const baseHue = parseInt(hex.slice(0, 4), 16) % 360
   const colors = Array.from({ length: 5 }, (_, index) => {
     const hue = (baseHue + index * 72) % 360 // five hues evenly around the wheel
     const sat = 55 + (parseInt(hex.slice(4 + index, 6 + index), 16) % 30) // 55–85%
     const light = 45 + (parseInt(hex.slice(8 + index, 10 + index), 16) % 25) // 45–70%
-    return { hsl: `hsl(${hue}, ${sat}%, ${light}%)`, hue, sat, light, receipt: toUuid(`palette-color:${seed}:${index}:${hue}`) }
+    const [r, g, b] = hslToRgb(hue, sat, light)
+    const [c, m, y, k] = rgbToCmyk(r, g, b)
+    return {
+      hsl: `hsl(${hue}, ${sat}%, ${light}%)`,
+      hue,
+      sat,
+      light,
+      rgb: `rgb(${r}, ${g}, ${b})`,
+      hex: `#${toHex(r)}${toHex(g)}${toHex(b)}`,
+      cmyk: `cmyk(${c}%, ${m}%, ${y}%, ${k}%)`,
+      c,
+      m,
+      y,
+      k,
+      receipt: toUuid(`palette-color:${seed}:${index}:${hue}:${c}-${m}-${y}-${k}`),
+    }
   })
   return {
-    grounded: colors.length === 5,
+    grounded: colors.length === 5 && colors.every((color) => color.c + color.m + color.y + color.k >= 0),
     seed,
     colors,
     root: merkleFold(colors.map((color) => color.receipt)),
-    statement: 'A deterministic colour palette from a seed: the same word always yields the same five colours, so a creator can cite the seed and anyone recomputes the palette.',
-    boundary: 'A reproducible palette generator for creative use, computed on-device. Aesthetic seeding, not a colour-theory guarantee.',
+    statement: 'A deterministic colour palette from a seed: the same word always yields the same five colours in both screen (HSL/RGB/hex) and print (CMYK) space, so a creator can cite the seed and anyone recomputes the palette.',
+    boundary: 'A reproducible palette generator for creative use, computed on-device; CMYK is computed from RGB. Aesthetic seeding, not a colour-management or colour-theory guarantee.',
   }
 }
 

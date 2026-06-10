@@ -19,6 +19,8 @@ with an activity and the real command that grounds it.
 
 <SchoolCurriculum />
 
+<CreativePalette />
+
 ## How to use this ladder
 
 - Start at any stage that fits the learner; the stages build on each other.
