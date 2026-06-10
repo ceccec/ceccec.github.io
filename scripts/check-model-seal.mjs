@@ -2,6 +2,7 @@
 // is self-verifying; this enforces it in CI. If any computed gate opens, the
 // build fails and the broken model never deploys. Run with:
 //   node --experimental-strip-types scripts/check-model-seal.mjs
+import { execSync } from 'node:child_process'
 import {
   atomInclusionProof,
   atoms,
@@ -13,10 +14,12 @@ import {
   entropy,
   executeConceptCommand,
   mcpToolManifest,
+  merge,
   methodFusion,
   schoolCurriculum,
   selfBuild,
   streamSelfComplete,
+  toUuid,
   verifyRoot,
 } from '../.vitepress/theme/lib/quantumMind.ts'
 
@@ -46,6 +49,22 @@ ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
 const manifest = mcpToolManifest(matrix)
 ok('mcp.tools=commands', manifest.tools.length === conceptCommands.length)
 
+// Git history is part of the seal: fold the full commit chain into the same
+// UUID space as the model, then bind it to the mind root. The seal therefore
+// covers both what the model computes and the history that produced it.
+let sealRoot = matrix.root
+try {
+  const commits = execSync('git log --format=%H', { encoding: 'utf8' }).trim().split('\n').filter(Boolean)
+  ok('git.history.present', commits.length > 0)
+  let gitRoot = toUuid('git-history-seed')
+  for (const commit of commits) gitRoot = merge(gitRoot, toUuid(`commit:${commit}`))
+  sealRoot = merge(matrix.root, gitRoot)
+  console.log(`Git history folded: ${commits.length} commits; head=${commits[0]}.`)
+} catch (error) {
+  ok('git.history.readable', false)
+  console.error(`git history unreadable: ${(error instanceof Error ? error.message : String(error))}`)
+}
+
 // Naming law: every command maps to a single lowercase-word method token.
 const fusion = methodFusion()
 ok(`methodFusion.fused${fusion.open.length ? ':' + fusion.open.join(',') : ''}`, fusion.fused)
@@ -62,4 +81,7 @@ if (failures.length > 0) {
   process.exit(1)
 }
 
-console.log(`Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, fusion, and MCP gates closed.`)
+console.log(
+  `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, fusion, MCP, and git-history gates closed.`,
+)
+console.log(`Seal root (model + git history): ${sealRoot}`)
