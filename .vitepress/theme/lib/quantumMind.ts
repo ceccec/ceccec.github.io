@@ -3457,6 +3457,7 @@ export function tiers358(matrix: MindMatrix = buildMatrix()) {
     { domain: 'geometry', belief: false, ok: geometry358().complete, root: geometry358().root },
     { domain: 'design', belief: false, ok: design358().designs, root: design358().root },
     { domain: 'security', belief: false, ok: securityScan(matrix).secure, root: securityScan(matrix).root },
+    { domain: 'emf', belief: false, ok: emf358().complete, root: emf358().root },
     { domain: 'yin-yang', belief: false, ok: yinYang().complete, root: yinYang().root },
     { domain: 'chess', belief: false, ok: chess358().complete, root: chess358().root },
     { domain: 'chakras & aura', belief: true, ok: chakrasAura().complete, root: chakrasAura().root },
@@ -5252,6 +5253,24 @@ export function emfApplications() {
     root: merkleFold(spectrum.map((entry) => entry.receipt)),
     statement: 'EMF applications, honestly: the electromagnetic spectrum in seven bands (radio to gamma); a browser can READ a few EM signals — the magnetometer (ambient magnetic field), the compass, and ambient light (visible EM) — but it cannot emit, alter, or harmonise any field.',
     boundary: 'Educational EM-spectrum data and a list of what a browser can and cannot do with EMF. Reading a sensor is real; emitting, altering, or "harmonising" fields, or any health effect, is impossible from a web page and is not claimed.',
+  }
+}
+
+// EMF in 3-5-8 — grounded in electromagnetism, completing the family: the
+// magnetic field has three axes (x, y, z); the spectrum has five non-ionizing
+// bands; and visible light divides into eight colours.
+export function emf358() {
+  const tiers = [
+    { tier: 3, name: 'magnetic field axes', members: ['x', 'y', 'z'] },
+    { tier: 5, name: 'five non-ionizing bands', members: ['radio', 'microwave', 'infrared', 'visible', 'ultraviolet'] },
+    { tier: 8, name: 'eight colours of visible light', members: ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'indigo', 'violet'] },
+  ]
+  return {
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
+    tiers,
+    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(`emf358:${index}:${member}`))),
+    statement: 'EMF in 3-5-8: the magnetic field has three axes (x, y, z); the spectrum has five non-ionizing bands (radio, microwave, infrared, visible, ultraviolet); and visible light divides into eight colours (red to violet).',
+    boundary: 'A correspondence of the 3-5-8 tiers to electromagnetism. The band grouping and the eight-colour division are conventional, not exact; a teaching device, not a physics claim.',
   }
 }
 

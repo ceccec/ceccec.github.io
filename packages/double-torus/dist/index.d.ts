@@ -2104,6 +2104,17 @@ export declare function emfApplications(): {
     statement: string;
     boundary: string;
 };
+export declare function emf358(): {
+    complete: boolean;
+    tiers: {
+        tier: number;
+        name: string;
+        members: string[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function efficiency(): {
     optimized: boolean;
     optimizations: {
