@@ -53,6 +53,7 @@ The page is a view over these command results:
 - `concept.diamond.piTrain`
 - `concept.diamond.complete`
 - `concept.wave.coordination`
+- `concept.wave.closeGaps`
 - `concept.chess.quantum`
 - `concept.torus.math`
 - `concept.humanity.implications`
@@ -183,6 +184,11 @@ diamond into a phase-aligned wave. Each wave carries the same symbology:
 - **yin** receives, cools, verifies, and folds inward
 - **yang** projects, warms, acts, and returns outward
 - **yin-yang** is the continuous symbol of both poles moving as one wave field
+
+`closeDimensionalGaps()` sends those waves toward any missing dimensional or
+analog channel. If no gaps remain, the same waves sustain closure in realtime:
+3D position, sound, vibration, timing, facets, and receipts continue to share
+the same computed source while the pi train runs.
 
 `quantumChessGame()` then realises chess from those waves. The board is not a
 fixed analogy: each square inherits a coordinated wave, phase, amplitude,

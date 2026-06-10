@@ -44,6 +44,7 @@ public contract:
 | `concept.diamond.piTrain` | compute the 3D pi train, tones, and vibration pulses from diamonds |
 | `concept.diamond.complete` | verify there are no missing diamond kinds, poles, receipts, analog channels, or pi-train coverage |
 | `concept.wave.coordination` | coordinate diamond emissions as phase-aligned yin-yang waves |
+| `concept.wave.closeGaps` | send realtime waves to close or sustain dimensional and analog channels |
 | `concept.chess.quantum` | compute a quantum chess board from coordinated waves |
 | `concept.torus.math` | expose genus-2 topology, algebra, homology, and curvature |
 | `concept.humanity.implications` | interpret the concept for knowledge, institutions, AI, and culture |
@@ -177,6 +178,11 @@ as proof by the site.
 with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward
 verification; yang is outward projection; together they keep symbol and physics
 in the same computed wave.
+
+`closeDimensionalGaps()` compares those waves with `diamondCompleteness()`. If
+gaps exist, it targets them by kind, pole, receipt, channel, or pi coverage. If
+there are no gaps, it sends sustaining waves so the realtime animation keeps 3D
+position, sound, vibration, timing, facets, and receipts aligned.
 
 `quantumChessGame()` uses those waves to realise chess. Each square inherits a
 wave, amplitude, phase, and receipt. Pieces are represented as superpositions

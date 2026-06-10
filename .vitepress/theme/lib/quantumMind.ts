@@ -106,6 +106,7 @@ export type ConceptCommandName =
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
   | 'concept.wave.coordination'
+  | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
@@ -242,6 +243,7 @@ export interface PiTrain {
 
 export type WavePolarity = 'yin' | 'yang'
 export type ChessPiece = 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn'
+export type DimensionalGapKind = 'kind' | 'pole' | 'receipt' | 'analog-channel' | 'pi-coverage' | 'closure'
 
 export interface CoordinatedWave {
   readonly index: number
@@ -260,6 +262,23 @@ export interface WaveCoordination {
   readonly root: string
   readonly waves: readonly CoordinatedWave[]
   readonly symbol: 'yin-yang'
+  readonly statement: string
+}
+
+export interface GapClosingWave {
+  readonly gapKind: DimensionalGapKind
+  readonly target: string
+  readonly wave: CoordinatedWave
+  readonly action: string
+  readonly closed: boolean
+  readonly receipt: string
+}
+
+export interface DimensionalGapClosure {
+  readonly complete: boolean
+  readonly root: string
+  readonly gaps: readonly string[]
+  readonly waves: readonly GapClosingWave[]
   readonly statement: string
 }
 
@@ -462,6 +481,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.wave.coordination',
     path: '/cmd/concept.wave.coordination',
     description: 'Coordinate all diamond emissions as phase-aligned yin-yang quantum waves.',
+  },
+  {
+    name: 'concept.wave.closeGaps',
+    path: '/cmd/concept.wave.closeGaps',
+    description: 'Send coordinated waves to close dimensional and analog gaps in the realtime presentation.',
   },
   {
     name: 'concept.chess.quantum',
@@ -1498,6 +1522,51 @@ export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
   }
 }
 
+function gapTargets(completeness: DiamondCompletenessReport): readonly { kind: DimensionalGapKind; target: string }[] {
+  const gaps = [
+    ...completeness.missingKinds.map((target) => ({ kind: 'kind' as const, target })),
+    ...completeness.missingPoles.map((target) => ({ kind: 'pole' as const, target })),
+    ...completeness.missingReceipts.map((target) => ({ kind: 'receipt' as const, target })),
+    ...completeness.missingAnalogChannels.map((target) => ({ kind: 'analog-channel' as const, target })),
+  ]
+  return completeness.piTrainCoversAllKinds ? gaps : [...gaps, { kind: 'pi-coverage' as const, target: 'pi train lattice coverage' }]
+}
+
+export function closeDimensionalGaps(matrix: MindMatrix = buildMatrix()): DimensionalGapClosure {
+  const completeness = diamondCompleteness(matrix)
+  const coordination = coordinatedWaves(matrix)
+  const targets = gapTargets(completeness)
+  const closureTargets = targets.length > 0 ? targets : REQUIRED_ANALOG_CHANNELS.map((target) => ({ kind: 'closure' as const, target }))
+  const waves = closureTargets.map((gap, index) => {
+    const wave = coordination.waves[index % coordination.waves.length]
+    const closed = gap.kind === 'closure' || !targets.some((target) => target.kind === gap.kind && target.target === gap.target)
+    const receipt = merge(wave.receipt, toUuid(`gap-wave:${gap.kind}:${gap.target}:${closed}`))
+    return {
+      gapKind: gap.kind,
+      target: gap.target,
+      wave,
+      action:
+        gap.kind === 'closure'
+          ? `sustain ${gap.target} closure with ${wave.polarity} wave ${wave.index}`
+          : `send ${wave.polarity} wave ${wave.index} toward ${gap.target}`,
+      closed,
+      receipt,
+    }
+  })
+  const root = merkleFold(waves.map((wave) => wave.receipt))
+
+  return {
+    complete: completeness.complete && targets.length === 0,
+    root,
+    gaps: targets.map((target) => `${target.kind}:${target.target}`),
+    waves,
+    statement:
+      completeness.complete && targets.length === 0
+        ? 'No dimensional gaps remain. Realtime waves sustain 3D position, sound, vibration, timing, receipts, and facets.'
+        : 'Dimensional gaps remain. Coordinated waves identify the targets that must close before the realtime presentation is complete.',
+  }
+}
+
 const CHESS_FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const
 const CHESS_PIECES: readonly ChessPiece[] = ['rook', 'knight', 'bishop', 'queen', 'king', 'bishop', 'knight', 'rook']
 
@@ -1674,6 +1743,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Diamonds emit phase-aligned yin-yang waves across the double torus.',
     },
     {
+      title: 'Gap-Closing Waves',
+      command: 'concept.wave.closeGaps',
+      route: '/quantum-mind#coordinated-waves',
+      summary: 'Realtime waves close or sustain dimensional and analog channels.',
+    },
+    {
       title: 'Quantum Chess',
       command: 'concept.chess.quantum',
       route: '/quantum-mind#quantum-chess',
@@ -1773,6 +1848,10 @@ export function executeConceptCommand(
   }
   if (command === 'concept.wave.coordination') {
     return result(command, true, 'Coordinated yin-yang waves computed.', coordinatedWaves(matrix))
+  }
+  if (command === 'concept.wave.closeGaps') {
+    const closure = closeDimensionalGaps(matrix)
+    return result(command, closure.complete, 'Dimensional gap-closing waves computed.', closure)
   }
   if (command === 'concept.chess.quantum') {
     return result(command, true, 'Quantum chess game computed from coordinated waves.', quantumChessGame(matrix))

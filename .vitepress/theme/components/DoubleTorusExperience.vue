@@ -11,6 +11,7 @@ import {
 } from 'radix-vue'
 import {
   buildMatrix,
+  closeDimensionalGaps,
   coordinatedWaves,
   diamondCompleteness,
   diamondLattice,
@@ -27,14 +28,17 @@ const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
 const completeness = diamondCompleteness(matrix)
 const waves = coordinatedWaves(matrix)
+const closure = closeDimensionalGaps(matrix)
 const chess = quantumChessGame(matrix)
 const evidence = quantumUiEvidence(matrix)
 const activeIndex = ref(0)
+const waveTick = ref(0)
 const running = ref(false)
 const expanded = ref(true)
 const audioEnabled = ref(true)
 const vibrationEnabled = ref(true)
 let timer: ReturnType<typeof window.setInterval> | undefined
+let animationFrame: number | undefined
 let audioContext: AudioContext | undefined
 
 const activePulse = computed(() => piTrain.diamonds[activeIndex.value])
@@ -77,10 +81,16 @@ function triggerPulse(index: number): void {
   vibratePulse(pulse.vibrationMs)
 }
 
+function animateWaves(): void {
+  waveTick.value += 1
+  animationFrame = window.requestAnimationFrame(animateWaves)
+}
+
 function start(): void {
   stop()
   running.value = true
   triggerPulse(activeIndex.value)
+  animationFrame = window.requestAnimationFrame(animateWaves)
   timer = window.setInterval(() => {
     triggerPulse(activeIndex.value + 1)
   }, piTrain.tempoMs)
@@ -89,7 +99,9 @@ function start(): void {
 function stop(): void {
   running.value = false
   if (timer) window.clearInterval(timer)
+  if (animationFrame) window.cancelAnimationFrame(animationFrame)
   timer = undefined
+  animationFrame = undefined
 }
 
 function reset(): void {
@@ -98,12 +110,17 @@ function reset(): void {
 }
 
 function diamondStyle(pulse: (typeof piTrain.diamonds)[number]) {
+  const wave = waves.waves[pulse.index % waves.waves.length]
+  const livePhase = wave.phase + waveTick.value * 0.055
+  const liveLift = Math.sin(livePhase) * 28 * wave.amplitude
+  const liveGlow = 0.25 + Math.abs(Math.cos(livePhase)) * 0.75
   return {
     '--diamond-x': `${pulse.x}%`,
     '--diamond-y': `${pulse.y}%`,
-    '--diamond-z': `${pulse.z}px`,
+    '--diamond-z': `${pulse.z + liveLift}px`,
     '--diamond-scale': `${pulse.scale}`,
     '--diamond-delay': `${pulse.index * 18}ms`,
+    '--wave-glow': `${liveGlow}`,
   }
 }
 
@@ -129,6 +146,9 @@ onBeforeUnmount(() => {
       <div class="double-torus-experience__badges">
         <Badge :variant="completeness.complete ? 'success' : 'warning'">
           {{ completeness.complete ? 'complete' : 'gaps' }}
+        </Badge>
+        <Badge :variant="closure.complete ? 'success' : 'warning'">
+          {{ closure.complete ? 'waves sent' : 'gaps open' }}
         </Badge>
         <Badge :variant="evidence.grounded ? 'success' : 'warning'">
           {{ evidence.grounded ? 'grounded' : 'ungrounded' }}
@@ -161,6 +181,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="complete">Completeness</TabsTrigger>
         <TabsTrigger value="evidence">UI evidence</TabsTrigger>
         <TabsTrigger value="waves">Waves</TabsTrigger>
+        <TabsTrigger value="closure">Gap closure</TabsTrigger>
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
@@ -256,6 +277,24 @@ onBeforeUnmount(() => {
             <Badge :variant="wave.polarity === 'yin' ? 'outline' : 'success'">{{ wave.polarity }}</Badge>
             <strong>{{ wave.diamondKind }} · phase {{ wave.phase.toFixed(3) }}</strong>
             <span>{{ wave.statement }} Frequency {{ wave.frequency }}Hz · amplitude {{ wave.amplitude.toFixed(3) }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="closure" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="closure.complete ? 'success' : 'warning'">
+            {{ closure.complete ? 'closed' : 'open' }}
+          </Badge>
+          <strong>{{ closure.statement }}</strong>
+          <span>Targets: {{ closure.gaps.length ? closure.gaps.join(', ') : 'none' }}</span>
+          <code>{{ closure.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="item in closure.waves" :key="item.receipt">
+            <Badge :variant="item.closed ? 'success' : 'warning'">{{ item.gapKind }}</Badge>
+            <strong>{{ item.target }}</strong>
+            <span>{{ item.action }} · receipt {{ item.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

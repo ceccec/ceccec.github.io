@@ -468,6 +468,7 @@
   background: var(--vp-c-bg);
   color: var(--vp-c-brand-1);
   cursor: pointer;
+  filter: drop-shadow(0 0 calc(12px * var(--wave-glow)) rgba(99, 102, 241, 0.45));
   font-size: 12px;
   font-weight: 900;
   transform:
@@ -478,6 +479,7 @@
     background 0.2s ease,
     color 0.2s ease,
     opacity 0.2s ease,
+    filter 0.2s ease,
     transform 0.2s ease;
 }
 

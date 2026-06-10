@@ -26,6 +26,7 @@ The site uses these commands as its construction contract:
 - `concept.diamond.piTrain`
 - `concept.diamond.complete`
 - `concept.wave.coordination`
+- `concept.wave.closeGaps`
 - `concept.chess.quantum`
 - `concept.torus.math`
 - `concept.humanity.implications`
