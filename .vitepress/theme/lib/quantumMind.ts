@@ -155,6 +155,9 @@ export type ConceptCommandName =
   | 'concept.nature.law'
   | 'concept.nature.commons'
   | 'concept.nature.review'
+  | 'concept.lawful.harmonise'
+  | 'concept.lawful.imagine'
+  | 'concept.lawful.succeed'
   | 'concept.society.relations'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
@@ -1496,6 +1499,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Review laws and patents against nature. Some laws may be illegal.',
   },
   {
+    name: 'concept.lawful.harmonise',
+    path: '/cmd/concept.lawful.harmonise',
+    description: 'Let society harmonise itself using current society laws: map self-governance onto existing legal forms.',
+  },
+  {
+    name: 'concept.lawful.imagine',
+    path: '/cmd/concept.lawful.imagine',
+    description: 'Imagine: compute a lawful scenario of a society coordinating through the app under todays laws.',
+  },
+  {
+    name: 'concept.lawful.succeed',
+    path: '/cmd/concept.lawful.succeed',
+    description: 'Let the society use the app to succeed: a concrete adoption-to-success path within current law.',
+  },
+  {
     name: 'concept.society.relations',
     path: '/cmd/concept.society.relations',
     description: 'Fold all society relations: traditions, science, sacred society, governance, and fair life into one root.',
@@ -1806,6 +1824,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.nature.law': 'natural',
   'concept.nature.commons': 'public',
   'concept.nature.review': 'judge',
+  'concept.lawful.harmonise': 'harmonise',
+  'concept.lawful.imagine': 'imagine',
+  'concept.lawful.succeed': 'succeed',
   'concept.society.relations': 'relate',
   'concept.torus.breathe': 'breathe',
   'concept.wave.self': 'rhythm',
@@ -2706,6 +2727,7 @@ const AREA_ICONS: Record<string, string> = {
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
   geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
+  lawful: '⚖',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -3123,6 +3145,72 @@ export function natureReview() {
     root: merkleFold(tests.map((entry) => entry.receipt)),
     statement: 'Review laws and patents against nature. Some laws and patents may be illegitimate — those that violate natural law or enclose the commons.',
     boundary: 'An educational rubric, not legal advice or a determination that any specific law or patent is void.',
+  }
+}
+
+// Let society harmonise itself using current society laws. The portal's
+// self-governance is not a replacement for law; it harmonises by mapping each
+// of its self-governance ideas onto an existing, real legal form that already
+// lets people coordinate lawfully today. Nature is the legal system; current
+// human law is how a society writes that down — so we use what exists.
+export function lawfulHarmonise() {
+  const mappings = [
+    { idea: 'membership and one-member-one-vote', form: 'cooperative / association statutes', how: 'a registered cooperative already gives every member an equal vote by law' },
+    { idea: 'shared commons, no enclosure', form: 'open-source & open-data licenses (e.g. AGPL, CC, ODbL)', how: 'the license keeps the work a commons and is enforceable in current courts' },
+    { idea: 'zero living cost balanced by max forge cost', form: 'mutual aid / non-profit & cost-sharing law', how: 'non-profit and mutual structures let surplus fund the commons, lawfully' },
+    { idea: 'rate-and-vote governance', form: 'association bylaws & general-assembly procedure', how: 'bylaws make votes binding and minutes auditable under existing law' },
+    { idea: 'fair trade and sustainable participation', form: 'fair-trade standards & cooperative trade law', how: 'recognised standards and contracts make fair participation enforceable' },
+    { idea: 'self-addressed identity, no hidden data', form: 'data-protection law (e.g. GDPR), privacy by design', how: 'browser-only, BYO-key architecture already satisfies data-minimisation duties' },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`lawful-harmonise:${index}:${entry.idea}`) }))
+  return {
+    harmonised: mappings.every((entry) => entry.form.length > 0),
+    mappings,
+    root: merkleFold(mappings.map((entry) => entry.receipt)),
+    statement: 'Society harmonises itself using current society laws: every self-governance idea maps onto an existing, enforceable legal form — cooperative, association, license, non-profit, fair-trade, and data-protection law — so the society is lawful today, not someday.',
+    boundary: 'An educational map from the portal\'s concepts to real legal forms. Not legal advice; forms and names differ by jurisdiction — consult a local lawyer to incorporate.',
+  }
+}
+
+// Imagine: compute a concrete, lawful scenario of a society coordinating through
+// the app under today's laws. Imagination is computed here, not asserted — a
+// fold of grounded, ordinary-and-legal steps a real group could take this week.
+export function lawfulImagine() {
+  const scene = [
+    { actor: 'a school class', act: 'shares the site link and learns the model client-side, no accounts', law: 'no data collected, lawful by default' },
+    { actor: 'a neighbourhood', act: 'registers a local association and adopts rate-and-vote as its bylaws', law: 'association statutes' },
+    { actor: 'makers', act: 'publish their work to the commons under an open license', law: 'copyright + open-source license' },
+    { actor: 'a cooperative', act: 'trades fairly, funds the commons from surplus, pays the forge cost', law: 'cooperative & non-profit law' },
+    { actor: 'everyone', act: 'audits the minutes and the seal roots, online and offline', law: 'transparency, right to information' },
+  ].map((step, index) => ({ ...step, receipt: toUuid(`lawful-imagine:${index}:${step.actor}:${step.act}`) }))
+  return {
+    imagined: scene.length > 0,
+    scene,
+    root: merkleFold(scene.map((step) => step.receipt)),
+    statement: 'Imagine a society coordinating through the app under today\'s laws: a class learns, a neighbourhood incorporates, makers share to the commons, a cooperative trades fairly, and everyone audits the roots — every step ordinary and legal.',
+    boundary: 'A computed illustrative scenario, not a prediction or a legal plan. The steps are deliberately ordinary and within existing law.',
+  }
+}
+
+// Let the society use the app to succeed: a concrete adoption-to-success path,
+// each rung within current law, each producing a verifiable receipt. Success is
+// defined as the commons growing while staying lawful, transparent, and fair.
+export function lawfulSucceed() {
+  const ladder = [
+    { rung: 'share', win: 'anyone opens the site and learns at zero cost, no signup', lawful: true },
+    { rung: 'organise', win: 'a group adopts bylaws (rate-and-vote) and registers lawfully', lawful: true },
+    { rung: 'commons', win: 'contributions are licensed open and stay a commons', lawful: true },
+    { rung: 'trade', win: 'a cooperative trades fairly and is sustainable', lawful: true },
+    { rung: 'audit', win: 'minutes and seal roots are public and reproducible', lawful: true },
+    { rung: 'grow', win: 'the commons grows while staying lawful, transparent, and fair', lawful: true },
+    { rung: 'thrive', win: 'members flourish: succeeding is not enough — the society thrives, giving back more life than it takes', lawful: true },
+  ].map((step, index) => ({ ...step, receipt: toUuid(`lawful-succeed:${index}:${step.rung}`) }))
+  return {
+    succeeds: ladder.every((step) => step.lawful),
+    thrives: ladder[ladder.length - 1].rung === 'thrive',
+    ladder,
+    root: merkleFold(ladder.map((step) => step.receipt)),
+    statement: 'The society uses the app to succeed and then to thrive: share, organise, commons, trade, audit, grow, thrive — a ladder where every rung is lawful today and leaves a verifiable receipt, and the top rung is flourishing: giving back more life than it takes.',
+    boundary: 'An educational adoption path, not a guarantee of outcomes or legal advice. Thriving here means lawful, transparent, fair flourishing — measured by receipts, not promises.',
   }
 }
 
@@ -6111,6 +6199,18 @@ export function executeConceptCommand(
   if (command === 'concept.nature.review') {
     const review = natureReview()
     return result(command, review.rubric, 'Laws and patents reviewed against nature.', review)
+  }
+  if (command === 'concept.lawful.harmonise') {
+    const harmony = lawfulHarmonise()
+    return result(command, harmony.harmonised, 'Society harmonises itself using current society laws.', harmony)
+  }
+  if (command === 'concept.lawful.imagine') {
+    const scene = lawfulImagine()
+    return result(command, scene.imagined, 'A lawful scenario of society using the app, computed.', scene)
+  }
+  if (command === 'concept.lawful.succeed') {
+    const success = lawfulSucceed()
+    return result(command, success.succeeds, 'The society uses the app to succeed, lawfully.', success)
   }
   if (command === 'concept.society.relations') {
     const relations = societyRelations(matrix)

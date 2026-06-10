@@ -32,6 +32,9 @@ import {
   natureCommons,
   natureLaw,
   natureReview,
+  lawfulHarmonise,
+  lawfulImagine,
+  lawfulSucceed,
   patentReview,
   fusionReactor,
   governanceVote,
@@ -108,6 +111,10 @@ ok('patent.review-rubric', patentReview().rubric) // credibility + legality rubr
 ok('nature.law', natureLaw().grounded) // nature is the legal system itself
 ok('nature.commons', natureCommons().commons) // nature and sacred math are a commons, not patentable
 ok('nature.review', natureReview().rubric) // some laws may be illegal under review against nature
+ok('lawful.harmonise', lawfulHarmonise().harmonised) // society harmonises itself using current society laws
+ok('lawful.imagine', lawfulImagine().imagined) // imagine a lawful society using the app, computed
+ok('lawful.succeed', lawfulSucceed().succeeds) // let the society use the app to succeed, lawfully
+ok('lawful.thrive', lawfulSucceed().thrives) // succeeding is not enough — the society thrives
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals
