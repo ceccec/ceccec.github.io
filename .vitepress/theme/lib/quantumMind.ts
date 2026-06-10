@@ -3290,6 +3290,47 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Enrich with 3d, 5d, 8d — the Fibonacci dimensions (3, 5, 8 are consecutive
+// Fibonacci numbers). Each level folds more coordinate planes into the
+// projection, so the same shape carries more of itself as you climb the ladder:
+// 3d is the body, 5d adds two folded planes, 8d adds five.
+export function dimensions() {
+  const levels = [3, 5, 8] as const
+  const fibonacci = levels[2] === levels[1] + levels[0] // 8 = 5 + 3
+  const ladder = levels.map((d) => ({ d, label: `${d}d`, extraPlanes: d - 3, receipt: toUuid(`dimension:${d}`) }))
+  return {
+    enriched: levels.length === 3 && fibonacci,
+    levels: [...levels],
+    fibonacci,
+    ladder,
+    root: merkleFold(ladder.map((entry) => entry.receipt)),
+    statement: 'Enriched with 3d, 5d, 8d — the Fibonacci dimensions: each level folds more coordinate planes into the projection, so the same shape carries more of itself as you climb the ladder.',
+    boundary: 'A projection ladder of extra coordinate planes (3 -> 5 -> 8). A visualization device, not a claim about physical higher dimensions.',
+  }
+}
+
+// Humanize. Behind the maths and the 3d+ is a simple set of promises to a
+// person. This says each core idea plainly — what it means for you, not how it
+// is built — so anyone can feel what the portal is, not only verify it.
+export function humanize() {
+  const translations = [
+    { idea: 'everything is computed', human: 'Nothing here is hidden or made up. Anything the site says, you can check for yourself.' },
+    { idea: 'tamper-evident', human: 'If someone changed it, you would see — the proof would no longer match.' },
+    { idea: 'in house, no network', human: 'It runs on your device. Nothing is sent anywhere. It is yours, and it works offline.' },
+    { idea: 'honest boundaries', human: 'It tells you what it cannot do, not only what it can.' },
+    { idea: 'from kids to elders', human: 'It is made to be understood by anyone, at any age.' },
+    { idea: 'free', human: 'No cost, no account, no sign-up. The architecture is the price, and it is already paid.' },
+    { idea: 'not artificial', human: 'The intelligence here is real because it can be recomputed — not because it pretends to be a person.' },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`humanize:${index}:${entry.idea}`) }))
+  return {
+    human: translations.length === 7,
+    translations,
+    root: merkleFold(translations.map((entry) => entry.receipt)),
+    statement: 'Humanized: every core idea said plainly for a person — what it means for you, not how it is built.',
+    boundary: 'Plain-language restatements of the model\'s properties. Warmth and clarity, not new claims.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3709,7 +3750,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3721,6 +3762,7 @@ export function componentGraph() {
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
+    '/': ['HumanLens'],
     '/show': ['ShowAll', 'FusionWave'],
     '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal'],
   }

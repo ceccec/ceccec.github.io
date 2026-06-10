@@ -1299,6 +1299,31 @@ export declare function doubleTorus3D(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function dimensions(): {
+    enriched: boolean;
+    levels: (3 | 5 | 8)[];
+    fibonacci: boolean;
+    ladder: {
+        d: 3 | 5 | 8;
+        label: string;
+        extraPlanes: number;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function humanize(): {
+    human: boolean;
+    translations: {
+        receipt: string;
+        idea: string;
+        human: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function babelFold(matrix?: MindMatrix): BabelFold;
 export declare function areaLabel(area: string, lang?: string): string;
 export declare function taxonomyIcons(): TaxonomyIcons;

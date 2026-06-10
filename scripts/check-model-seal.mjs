@@ -43,6 +43,8 @@ import {
   agnostic,
   release,
   doubleTorus3D,
+  dimensions,
+  humanize,
   typographySeo,
   openGraph,
   buildMatrix,
@@ -196,6 +198,10 @@ ok('agnostic', agnostic(matrix).agnostic)
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
 // The complete double torus in 3d+: the genus-2 surface carrying the 42 areas.
 ok('double-torus.3d', doubleTorus3D(matrix).rendered)
+// Humanize: every core idea said plainly for a person.
+ok('humanize', humanize().human)
+// Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
+ok('dimensions.fibonacci', dimensions().enriched)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
 // Open Graph is computed from frontmatter (per-page og: and twitter: cards).
