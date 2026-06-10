@@ -351,6 +351,11 @@ foldQuestion(q) = {concept, explanation, command, receipt, links}
 
 <CryptoCompare />
 
+Бъдещи крипто инструменти — истински SHA-256 дайджест на каноничните корени на
+модела, изчислен в браузъра ти чрез Web Crypto API:
+
+<WebCryptoSeal />
+
 ## 27. Граница
 
 ```text

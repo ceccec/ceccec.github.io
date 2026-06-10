@@ -351,6 +351,11 @@ non-cryptographic hash. Tamper-evident, not collision-resistant.
 
 <CryptoCompare />
 
+Future crypto tools — a real SHA-256 digest of the canonical model roots,
+computed in your browser with the Web Crypto API:
+
+<WebCryptoSeal />
+
 ## 27. Boundary
 
 ```text

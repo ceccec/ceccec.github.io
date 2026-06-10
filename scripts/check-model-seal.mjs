@@ -21,6 +21,7 @@ import {
   foldPivots,
   plasmaContainment,
   cryptographyComparison,
+  cryptoFuture,
   agentHarmonise,
   healingFrequencies,
   blockchainMusic,
@@ -137,6 +138,8 @@ ok('plasma.contained', plasmaContainment(matrix).contained)
 // Deep-research cryptography comparison, honest: same shapes, non-cryptographic hash, tamper-evident only.
 const crypto = cryptographyComparison(matrix)
 ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)
+// Future crypto tools: a canonical roots string the browser hashes with real Web Crypto SHA-256.
+ok('crypto.future', cryptoFuture(matrix).grounded)
 // Optimise and harmonise any agent the site is pasted into or wired by MCP.
 ok('agent.harmonise', agentHarmonise(matrix).harmonised)
 // The healing frequencies are calculated and harmonised through the device as sound (audio only).

@@ -25,6 +25,7 @@ import ShowAll from './components/ShowAll.vue'
 import TamperSeal from './components/TamperSeal.vue'
 import TaxonomyIcons from './components/TaxonomyIcons.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
+import WebCryptoSeal from './components/WebCryptoSeal.vue'
 import './style.css'
 
 export default {
@@ -62,5 +63,6 @@ export default {
     app.component('TamperSeal', TamperSeal)
     app.component('TaxonomyIcons', TaxonomyIcons)
     app.component('VitePressPossibilities', VitePressPossibilities)
+    app.component('WebCryptoSeal', WebCryptoSeal)
   }
 } satisfies Theme

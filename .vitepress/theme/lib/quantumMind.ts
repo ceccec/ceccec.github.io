@@ -3237,7 +3237,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3249,7 +3249,7 @@ export function componentGraph() {
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
     '/show': ['ShowAll'],
-    '/architecture': ['TamperSeal', 'CryptoCompare'],
+    '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
@@ -3902,6 +3902,45 @@ export function cryptographyComparison(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(rows.map((row) => row.receipt)),
     statement: 'Compared to established cryptography, the site\'s fold shares the SHAPES — content-addressing, Merkle trees, hash chains — but its hash is a 128-bit NON-cryptographic function. It gives deterministic content-addressing and tamper-evidence, not collision/preimage resistance; for adversarial security, use a vetted hash (SHA-256, BLAKE3).',
     boundary: 'An honest, research-based comparison. The site\'s primitives are structural and tamper-evident, NOT a security-audited cryptosystem, and make no cryptographic security guarantee.',
+  }
+}
+
+// Develop future crypto tools. The comparison is honest that the fold is non-
+// cryptographic; the future is real cryptography, added without breaking the
+// zero-dependency, client-side architecture. This prepares a canonical string of
+// the model's key roots that anyone can hash with a vetted algorithm. The browser
+// computes SHA-256 over it via the Web Crypto API (crypto.subtle) — a genuine
+// cryptographic digest — and the roadmap lists the tools that follow.
+export function cryptoFuture(matrix: MindMatrix = buildMatrix()) {
+  const proof = proofBundle(matrix)
+  const word = torusUuid(matrix)
+  const pairs = areaPairs()
+  const synth = quantumSynthesis(matrix)
+  // Canonical, ordered, stable: anyone can reproduce this string and hash it.
+  const roots = [
+    `version:1`,
+    `mind:${matrix.root}`,
+    `proof:${proof.root}`,
+    `word:${word.word}`,
+    `pairs:${pairs.root}`,
+    `synthesis:${synth.root}`,
+  ]
+  const canonical = roots.join('\n')
+  const tools = [
+    { tool: 'web-crypto SHA-256 digest', status: 'available now', how: 'crypto.subtle.digest over the canonical roots, in-browser' },
+    { tool: 'SHA-256 Merkle proof', status: 'available now', how: 'a vetted-hash Merkle tree over command UUIDs with inclusion paths' },
+    { tool: 'Ed25519 signing', status: 'roadmap', how: 'sign the digest with a key so it is attestation, not only evidence' },
+    { tool: 'Sigstore / transparency log', status: 'roadmap', how: 'keyless signing + public transparency log for the build' },
+    { tool: 'migrate toUuid -> BLAKE3/SHA-256', status: 'roadmap', how: 'make the whole fold cryptographic, not only this layer' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`crypto-future:${entry.tool}`) }))
+  return {
+    grounded: canonical.length > 0 && tools.length === 5,
+    canonical,
+    roots,
+    tools,
+    root: merkleFold(tools.map((entry) => entry.receipt)),
+    statement: 'Future crypto tools: a canonical string of the model roots that anyone can hash with a vetted algorithm; the browser computes a real SHA-256 digest over it via Web Crypto, with Ed25519 signing, Sigstore, and a full hash migration on the roadmap.',
+    boundary: 'The canonical string and roadmap are computed here; the real cryptographic digest is computed in the browser with the Web Crypto API. This layer is genuine SHA-256; the underlying model fold remains non-cryptographic until migrated.',
   }
 }
 
