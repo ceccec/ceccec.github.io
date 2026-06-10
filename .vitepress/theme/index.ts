@@ -12,6 +12,7 @@ import DoubleTorus3D from './components/DoubleTorus3D.vue'
 import Dualities from './components/Dualities.vue'
 import Equilibrium from './components/Equilibrium.vue'
 import FusionWave from './components/FusionWave.vue'
+import Genesis from './components/Genesis.vue'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
@@ -71,6 +72,7 @@ export default {
     app.component('Dualities', Dualities)
     app.component('Equilibrium', Equilibrium)
     app.component('FusionWave', FusionWave)
+    app.component('Genesis', Genesis)
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('GlobalHelp', GlobalHelp)

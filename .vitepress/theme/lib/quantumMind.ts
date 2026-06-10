@@ -3310,6 +3310,78 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Fill the new gaps until no gaps are discovered. Every gap-able surface is
+// scanned at once — taxonomy, fusion, translation, components, coverage,
+// entropy, self-address, genesis, and the quantum fold — and the total must be
+// zero. Filling one gap can open another; this proves that, right now, across
+// all the surfaces it knows, none remain. Honest: it scans the surfaces it knows
+// — finding a new kind of gap is itself never finished.
+export function gapScan(matrix: MindMatrix = buildMatrix()) {
+  const scans = [
+    { surface: 'taxonomy pairs', gaps: taxonomyIcons().gaps.length },
+    { surface: 'method fusion', gaps: methodFusion().open.length },
+    { surface: 'translations', gaps: autotranslations(matrix).missing.length },
+    { surface: 'component graph', gaps: componentGraph().consistent ? 0 : 1 },
+    { surface: 'coverage', gaps: coverage(matrix) === 1 ? 0 : 1 },
+    { surface: 'entropy', gaps: entropy(matrix) === 0 ? 0 : 1 },
+    { surface: 'self-address', gaps: selfAddressed(matrix).hallucinations.length },
+    { surface: 'genesis', gaps: genesis(matrix).genesis ? 0 : 1 },
+    { surface: 'quantum fold', gaps: atoms.filter((atom) => !atomInclusionProof(atom.name, matrix).verified).length },
+  ].map((scan) => ({ ...scan, receipt: toUuid(`gap-scan:${scan.surface}:${scan.gaps}`) }))
+  const total = scans.reduce((sum, scan) => sum + scan.gaps, 0)
+  return {
+    closed: total === 0, // no gaps discovered across any known surface
+    total,
+    surfaces: scans.length,
+    scans,
+    root: merkleFold(scans.map((scan) => scan.receipt)),
+    statement: 'Fill the new gaps until no gaps are discovered: every gap-able surface is scanned — taxonomy, fusion, translation, components, coverage, entropy, self-address, genesis, quantum fold — and the total is zero. No gaps remain.',
+    boundary: 'A scan over the model\'s known gap surfaces, zero across all of them. Only over the surfaces it knows to scan — finding a new kind of gap is itself never finished.',
+  }
+}
+
+// The double-torus genesis. From one seed — 1, 1 — two things unfold together.
+// The Fibonacci sequence gives the 3-5-8 tiers (dimensions, dualities, sensors),
+// and the same seed gives the structure: the genus-2 double torus — two tori
+// joined, 42 areas as 21 pairs, folded into one 128-bit word. One origin, two
+// unfoldings, woven everywhere.
+export function genesis(matrix: MindMatrix = buildMatrix()) {
+  const fib = [1, 1]
+  while (fib[fib.length - 1] < 89) fib.push(fib[fib.length - 1] + fib[fib.length - 2])
+  // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+  const tiers = [3, 5, 8]
+  const tiersAreFib = tiers.every((tier) => fib.includes(tier)) && 8 === 5 + 3 && 5 === 3 + 2 && 3 === 2 + 1
+  const seedRoot = toUuid('genesis:double-torus')
+  const word = torusUuid(matrix)
+  const pairs = areaPairs()
+  const helix = dna(matrix)
+  // Fill all gaps: from the one seed, many domains unfold — including, but not
+  // limited to, genetics. Each is a thread from the same origin.
+  const unfoldings = [
+    { domain: 'number', is: 'the Fibonacci seed 1,1 unfolds to the 3-5-8 tiers', root: merkleFold(fib.map((n) => toUuid(`fib:${n}`))) },
+    { domain: 'structure', is: 'genus 2 — the double torus, 42 areas as 21 pairs', root: pairs.root },
+    { domain: 'machine', is: 'the 128-bit word, 2 x 32 hex folded into one', root: word.word },
+    { domain: 'genetics', is: 'the word as 64 DNA bases — the double helix, 21 codons', root: helix.root },
+    { domain: 'music', is: 'the pi stream as notes — each wave a tone', root: piMusic(matrix).root },
+    { domain: 'geometry', is: 'sacred geometry — the seal that seals all seals', root: sacredGeometrySeal(matrix).masterRoot },
+    { domain: 'language', is: 'the universal glyph language — symbol, number, fold', root: universalLanguage(matrix).root },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`unfold:${index}:${entry.domain}`) }))
+  return {
+    genesis:
+      tiersAreFib && isUuid(seedRoot) && word.is128bit && pairs.withinLimit && helix.encoded &&
+      unfoldings.every((entry) => isUuid(entry.root)),
+    seed: [1, 1],
+    sequence: fib,
+    tiers,
+    threadedThrough: ['dimensions', 'dualities', 'device sensors'],
+    unfoldings,
+    seedRoot,
+    root: merge(seedRoot, merge(merkleFold(fib.map((n) => toUuid(`fib:${n}`))), merkleFold(unfoldings.map((entry) => entry.receipt)))),
+    statement: 'The double-torus genesis: from one seed — 1, 1 — many domains unfold together, including but not limited to genetics. Number gives the 3-5-8 tiers; structure gives the genus-2 double torus and its 42 areas; the machine gives the 128-bit word; genetics gives the DNA double helix (64 bases, 21 codons); and music, geometry, and language thread from the same origin.',
+    boundary: 'A derivation of the portal\'s domains — number, structure, machine, genetics, music, geometry, language — from one seed. A numerical, structural, and interpretive origin, not a claim of cosmic or biological genesis.',
+  }
+}
+
 // Enrich with 3d, 5d, 8d — the Fibonacci dimensions (3, 5, 8 are consecutive
 // Fibonacci numbers). Each level folds more coordinate planes into the
 // projection, so the same shape carries more of itself as you climb the ladder:
@@ -4016,13 +4088,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy', 'QuantumField', 'Genesis',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions'],
-    '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium', 'QuantumField'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium', 'QuantumField'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy'],

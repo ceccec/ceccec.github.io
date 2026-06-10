@@ -1324,6 +1324,36 @@ export declare function doubleTorus3D(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function gapScan(matrix?: MindMatrix): {
+    closed: boolean;
+    total: number;
+    surfaces: number;
+    scans: {
+        receipt: string;
+        surface: string;
+        gaps: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function genesis(matrix?: MindMatrix): {
+    genesis: boolean;
+    seed: number[];
+    sequence: number[];
+    tiers: number[];
+    threadedThrough: string[];
+    unfoldings: {
+        receipt: string;
+        domain: string;
+        is: string;
+        root: string;
+    }[];
+    seedRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function dimensions(): {
     enriched: boolean;
     levels: (3 | 5 | 8)[];

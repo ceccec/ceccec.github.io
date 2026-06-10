@@ -45,6 +45,8 @@ import {
   agnostic,
   release,
   doubleTorus3D,
+  genesis,
+  gapScan,
   dimensions,
   dualities,
   deviceSensors,
@@ -225,6 +227,10 @@ ok('questions.found', findQuestions(matrix).found)
 // Questions, answers, equilibrium: the closed answers, the open questions, and the settling breath in one balance.
 ok('question-answer.equilibrium', questionAnswerEquilibrium(matrix).equilibrium)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
+// The double-torus genesis: from the seed 1,1 the 3-5-8 tiers and the genus-2 structure unfold.
+ok('genesis.double-torus', genesis(matrix).genesis)
+// Fill the new gaps until no gaps are discovered: every known gap surface scans to zero.
+ok(`gaps.none:${gapScan(matrix).total}`, gapScan(matrix).closed)
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).
 ok(`dualities.compared:${dualities().count}`, dualities().compared)

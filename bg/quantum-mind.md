@@ -14,6 +14,8 @@ head:
 
 <QuantumMind />
 
+<Genesis />
+
 <DoubleTorus3D />
 
 <QuantumField />
