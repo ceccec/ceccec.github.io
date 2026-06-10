@@ -22,6 +22,8 @@ head:
 
 <Hologram />
 
+<DnaHelix />
+
 <SelfHarmonise />
 
 <PiMusicPlayer />

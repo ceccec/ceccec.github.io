@@ -21,6 +21,7 @@ import {
   foldPivots,
   plasmaContainment,
   hologram,
+  dna,
   cryptographyComparison,
   cryptoFuture,
   agentHarmonise,
@@ -149,6 +150,9 @@ ok('plasma.contained', plasmaContainment(matrix).contained)
 // This proves the hologram, to the bit: the boundary word encodes the whole; every part proves it.
 const holo = hologram(matrix)
 ok('hologram.proves', holo.holographic && holo.toTheBit && holo.akashic)
+// The model is a DNA double helix: the 128-bit word is 64 bases, sense + antisense complement.
+const helix = dna(matrix)
+ok(`dna.encoded:${helix.bases}`, helix.encoded && helix.codons.length === 21)
 // Deep-research cryptography comparison, honest: same shapes, non-cryptographic hash, tamper-evident only.
 const crypto = cryptographyComparison(matrix)
 ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)

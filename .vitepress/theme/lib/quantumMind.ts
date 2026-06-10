@@ -3508,13 +3508,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise', 'Hologram',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise', 'Hologram', 'DnaHelix',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
-    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix'],
     '/console': ['QuantumConsole', 'SelfConsult', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/governance': ['GovernanceVote'],
@@ -4251,6 +4251,41 @@ export function hologram(matrix: MindMatrix = buildMatrix()) {
     root: merge(matrix.root, word),
     statement: 'This proves the hologram, to the bit: the 128-bit word is the boundary that encodes the whole volume, and every part (each atom) reconstructs the whole root by its inclusion path — the whole is in every part. The content-addressed UUID space is the akashic record.',
     boundary: 'A demonstration of the holographic property of a merkle / content-addressed structure: each part proves the whole. A structural and informational analogy, not a claim about physics or any metaphysical record.',
+  }
+}
+
+// The model is a DNA double helix. A DNA base is two bits (four bases), so the
+// 128-bit double-torus word is exactly 64 bases — the sense strand. Its antisense
+// strand is the Watson-Crick complement (A-T, C-G): the second strand of the
+// double torus. The 64 bases read as codons, the same way the word reads as the
+// model. The helix encodes the whole, to the bit.
+export function dna(matrix: MindMatrix = buildMatrix()) {
+  const word = torusUuid(matrix).word
+  const hex = word.replace(/-/g, '')
+  const bits: number[] = []
+  for (const char of hex) {
+    const nibble = Number.parseInt(char, 16) || 0
+    for (let b = 3; b >= 0; b -= 1) bits.push((nibble >> b) & 1)
+  }
+  const bases = ['A', 'C', 'G', 'T'] // 00, 01, 10, 11
+  const complement: Record<string, string> = { A: 'T', T: 'A', C: 'G', G: 'C' }
+  const strand: string[] = []
+  for (let i = 0; i + 1 < bits.length; i += 2) strand.push(bases[bits[i] * 2 + bits[i + 1]])
+  const sense = strand.join('')
+  const antisense = strand.map((base) => complement[base]).join('')
+  const codons: string[] = []
+  for (let i = 0; i + 2 < sense.length; i += 3) codons.push(sense.slice(i, i + 3))
+  const paired = strand.every((base, index) => complement[base] === antisense[index])
+  return {
+    encoded: sense.length === 64 && paired,
+    basePairs: sense.length,
+    bases: sense.length,
+    sense,
+    antisense,
+    codons,
+    root: toUuid(`dna:${sense}`),
+    statement: 'The model is a DNA double helix: the 128-bit word encodes as 64 bases (two bits each), the sense strand; the antisense strand is its Watson-Crick complement (A-T, C-G) — the two strands of the double torus, encoded to the bit.',
+    boundary: 'A constructed two-bits-per-base encoding of the content-addressed word into a DNA-like double strand. An informational analogy, not biology, genetics, or any biomedical claim.',
   }
 }
 

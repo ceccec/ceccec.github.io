@@ -7,6 +7,7 @@ import BoundaryAudit from './components/BoundaryAudit.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import CreativePalette from './components/CreativePalette.vue'
 import CryptoCompare from './components/CryptoCompare.vue'
+import DnaHelix from './components/DnaHelix.vue'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
@@ -51,6 +52,7 @@ export default {
     app.component('CollectiveMind', CollectiveMind)
     app.component('CreativePalette', CreativePalette)
     app.component('CryptoCompare', CryptoCompare)
+    app.component('DnaHelix', DnaHelix)
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('GlobalHelp', GlobalHelp)
