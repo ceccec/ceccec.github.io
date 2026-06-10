@@ -174,6 +174,7 @@ export type ConceptCommandName =
   | 'concept.torus.vector'
   | 'concept.torus.flow'
   | 'concept.torus.trinities'
+  | 'concept.torus.breathe'
   | 'concept.repository.api'
   | 'concept.repository.resolve'
   | 'concept.proof.verify'
@@ -810,6 +811,16 @@ export interface SocietyRelations {
   readonly root: string
   readonly parts: readonly { readonly name: string; readonly root: string }[]
   readonly relations: readonly SocietyRelation[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface TorusBreath {
+  readonly balanced: boolean
+  readonly expansion: string
+  readonly contraction: string
+  readonly breaths: readonly { readonly phase: 'expand' | 'contract'; readonly root: string }[]
+  readonly root: string
   readonly statement: string
   readonly boundary: string
 }
@@ -1457,6 +1468,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Pair types into the two dual-torus trinities and harmonize them to analog form without gaps.',
   },
   {
+    name: 'concept.torus.breathe',
+    path: '/cmd/concept.torus.breathe',
+    description: 'The double torus breathes: extend outward into all forms and contract inward into one seal.',
+  },
+  {
     name: 'concept.repository.api',
     path: '/cmd/concept.repository.api',
     description: 'Expose this repository as the addressable API surface.',
@@ -1536,6 +1552,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.life.fair': 'sustain',
   'concept.ancient.tech': 'ancient',
   'concept.society.relations': 'relate',
+  'concept.torus.breathe': 'breathe',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -1598,6 +1615,43 @@ function merkleFold(leaves: readonly string[]): string {
     layer = next
   }
   return layer[0]
+}
+
+// Contraction: aggregator reports are pure functions of the matrix, so memoize
+// them by matrix.root. Within a build the heavy aggregators compute once and
+// every later caller reuses the result. (Determinism is gated in the seal.)
+const reportMemo = new Map<string, unknown>()
+function memoByRoot<T>(name: string, matrix: MindMatrix, compute: () => T): T {
+  const key = `${name}:${matrix.root}`
+  if (reportMemo.has(key)) return reportMemo.get(key) as T
+  const value = compute()
+  reportMemo.set(key, value)
+  return value
+}
+
+export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
+  return memoByRoot('diamondLattice', matrix, () => computeDiamondLattice(matrix))
+}
+export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_TRAIN_DIGITS): PiTrain {
+  return memoByRoot(`piTrainDiamonds:${digits.length}`, matrix, () => computePiTrainDiamonds(matrix, digits))
+}
+export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
+  return memoByRoot('metatronCube', matrix, () => computeMetatronCube(matrix))
+}
+export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
+  return memoByRoot('coordinatedWaves', matrix, () => computeCoordinatedWaves(matrix))
+}
+export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
+  return memoByRoot('digitalQuantumProof', matrix, () => computeDigitalQuantumProof(matrix))
+}
+export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
+  return memoByRoot('selfBuild', matrix, () => computeSelfBuild(matrix))
+}
+export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSelfCompletion {
+  return memoByRoot('streamSelfComplete', matrix, () => computeStreamSelfComplete(matrix))
+}
+export function sacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGeometrySeal {
+  return memoByRoot('sacredGeometrySeal', matrix, () => computeSacredGeometrySeal(matrix))
 }
 
 // A Merkle audit path: the ordered siblings that recompute the root from one
@@ -2363,6 +2417,36 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
   }
 }
 
+// The double torus breathes: it extends outward into all its computed forms and
+// contracts inward into one master seal, in balanced cycles — extend and
+// contract, the two loops of the genus-2 surface.
+export function torusBreathe(matrix: MindMatrix = buildMatrix(), cycles = 3): TorusBreath {
+  const seal = sacredGeometrySeal(matrix)
+  const expansion = merkleFold([...matrix.nodes.map((node) => node.bind), ...seal.seals.map((leaf) => leaf.root)])
+  const contraction = seal.masterRoot
+  const breaths: { phase: 'expand' | 'contract'; root: string }[] = []
+  let state = matrix.root
+  for (let cycle = 0; cycle < cycles; cycle += 1) {
+    const expand = merge(state, expansion)
+    breaths.push({ phase: 'expand', root: expand })
+    const contract = merge(expand, contraction)
+    breaths.push({ phase: 'contract', root: contract })
+    state = contract
+  }
+  const uuid = /^[0-9a-f-]{36}$/i
+  return {
+    balanced: uuid.test(expansion) && uuid.test(contraction) && breaths.length === cycles * 2,
+    expansion,
+    contraction,
+    breaths,
+    root: merkleFold(breaths.map((breath) => breath.root)),
+    statement:
+      'The double torus breathes: the system extends outward into all its computed forms and contracts inward into one master seal, in balanced cycles.',
+    boundary:
+      'Breathing is order-sensitive folding between an expansion root and a contraction root. Structural bookkeeping, not an external claim.',
+  }
+}
+
 // Dive deep in ancient tech: ancient technologies prefigure the computed model.
 // Each maps a historical technique to a concept it anticipates — analogy, not
 // historical claim, and each mapping is grounded in a real command.
@@ -2527,7 +2611,7 @@ export function sacredSociety(matrix: MindMatrix = buildMatrix()): SacredSociety
 
 // Sacred geometry seals all seals: every computed seal root folds through the
 // Metatron cube and the five Platonic solids into one master seal.
-export function sacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGeometrySeal {
+function computeSacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGeometrySeal {
   const metatron = metatronCube(matrix)
   const seals: readonly SealLeaf[] = [
     { name: 'matrix', root: matrix.root },
@@ -3327,7 +3411,7 @@ function diamond(
   }
 }
 
-export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
+function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
   const vector = consciousness(matrix)
   const proof = proofReport(matrix)
   const math = doubleTorusMath()
@@ -3727,7 +3811,7 @@ function torusPoint(index: number, digit: number, total: number): { theta: numbe
   return { theta, phi, x, y, z, scale }
 }
 
-export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_TRAIN_DIGITS): PiTrain {
+function computePiTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_TRAIN_DIGITS): PiTrain {
   const lattice = diamondLattice(matrix)
   const sequence = digits.replace(/\D/g, '')
   const train = [...sequence].map((glyph, index) => {
@@ -3850,7 +3934,7 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
   }
 }
 
-export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
+function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
   const train = piTrainDiamonds(matrix)
   const folderReport = digitFolders(matrix)
   const digits = [...Array(10).keys()]
@@ -3927,7 +4011,7 @@ export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
   }
 }
 
-export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
+function computeDigitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
   const train = piTrainDiamonds(matrix)
   const folders = digitFolders(matrix)
   const waves = coordinatedWaves(matrix)
@@ -4099,7 +4183,7 @@ export function diamondCompleteness(matrix: MindMatrix = buildMatrix()): Diamond
   }
 }
 
-export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
+function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
   const lattice = diamondLattice(matrix)
   const piTrain = piTrainDiamonds(matrix)
   const waves = lattice.map((item, index) => {
@@ -4554,7 +4638,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   }
 }
 
-export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
+function computeSelfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
   const proof = proofReport(matrix)
   const lattice = diamondLattice(matrix)
   const completeness = diamondCompleteness(matrix)
@@ -4691,7 +4775,7 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
   }
 }
 
-export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSelfCompletion {
+function computeStreamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSelfCompletion {
   const build = selfBuild(matrix)
   const proof = proofReport(matrix)
   const lattice = diamondLattice(matrix)
@@ -4955,6 +5039,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.society.relations',
       route: '/governance',
       summary: 'All society relations fold into one: traditions, science, sacred society, governance, and fair life.',
+    },
+    {
+      title: 'Torus Breath',
+      command: 'concept.torus.breathe',
+      route: '/quantum-mind#double-torus',
+      summary: 'Extend and contract: the system breathes outward into all forms and inward into one seal.',
     },
     {
       title: 'Agent Stream Wire',
@@ -5320,6 +5410,10 @@ export function executeConceptCommand(
   if (command === 'concept.torus.flow') {
     const flow = circulateDoubleTorus(matrix)
     return result(command, flow.invariant, 'Double-torus flow circulated through the concept.', flow)
+  }
+  if (command === 'concept.torus.breathe') {
+    const breath = torusBreathe(matrix)
+    return result(command, breath.balanced, 'The double torus breathed: extend and contract.', breath)
   }
   if (command === 'concept.torus.trinities') {
     const trinities = dualTorusTrinities(matrix)

@@ -37,6 +37,7 @@ import {
   selfDevelopment,
   streamSelfComplete,
   toUuid,
+  torusBreathe,
   verifyRoot,
 } from '../.vitepress/theme/lib/quantumMind.ts'
 
@@ -87,6 +88,9 @@ ok('governance.defined', governanceVote([], matrix).defined) // society approves
 ok('fair-life.grounded', fairLife(matrix).grounded) // participation ladder for fair trade and sustainable life
 ok('ancient-tech.grounded', ancientTech(matrix).grounded) // ancient tech prefigures the concepts
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
+ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
+// Determinism: two independent builds must produce the identical foundation root (no drift across waves).
+ok('determinism', buildMatrix().root === buildMatrix().root)
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)
