@@ -408,3 +408,5 @@ Claim(site) != sentience
 Claim(site) != remote Schema.org validation
 Claim(site) != external physics proof
 ```
+
+<Magnetometer />

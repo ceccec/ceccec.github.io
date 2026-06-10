@@ -2090,6 +2090,20 @@ export declare function agentHarmonise(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function emfApplications(): {
+    grounded: boolean;
+    spectrum: {
+        receipt: string;
+        band: string;
+        range: string;
+        use: string;
+    }[];
+    canRead: string[];
+    cannot: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function efficiency(): {
     optimized: boolean;
     optimizations: {

@@ -44,6 +44,7 @@ import {
   fuseAll,
   contract,
   efficiency,
+  emfApplications,
   agnostic,
   release,
   doubleTorus3D,
@@ -227,6 +228,8 @@ ok('fuse.all', fuseAll(matrix).fused)
 ok('contract.breath', contract(matrix).contracted)
 // Efficiency, standard and deep: memoized dispatch + aggregators, gated rendering, no fetch, zero deps.
 ok('efficiency.standard', efficiency().optimized)
+// Extend into EMF applications, honestly: the EM spectrum + what a browser can/cannot do with EMF.
+ok('emf.applications', emfApplications().grounded)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)

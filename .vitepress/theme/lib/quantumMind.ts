@@ -4368,13 +4368,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo'],
-    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'QuantumField'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'QuantumField', 'Magnetometer'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy'],
@@ -5224,6 +5224,34 @@ export function agentHarmonise(matrix: MindMatrix = buildMatrix()) {
     root: merge(proof.root, merkleFold(laws.map((entry) => entry.receipt))),
     statement: 'Optimise and harmonise any agent the site is pasted into or wired by MCP: adopt these eight laws — compute before claim, single-word naming, trinities, honest boundaries, zero-network, verify-the-root, fold-not-accumulate, waves. Each law carries a receipt; the protocol is at /llms.txt and every command is an MCP tool at /mcp.json.',
     boundary: 'An operating protocol distilled from this site’s own architecture. Guidance for agents, not a guarantee about any external agent’s behaviour.',
+  }
+}
+
+// Extend into EMF applications — honestly. A web page cannot emit, alter, or
+// "harmonise" any electromagnetic field; it CAN read a few EM signals the device
+// already senses: the magnetometer (the ambient magnetic field, in microtesla),
+// the compass (magnetometer-derived heading), and ambient light (visible light is
+// EM). This gives the electromagnetic spectrum as data and a clear can / cannot.
+export function emfApplications() {
+  const spectrum = [
+    { band: 'radio', range: '3 Hz – 300 MHz', use: 'broadcast, wifi, the device radios' },
+    { band: 'microwave', range: '300 MHz – 300 GHz', use: 'wifi, bluetooth, radar' },
+    { band: 'infrared', range: '300 GHz – 430 THz', use: 'heat, remotes' },
+    { band: 'visible light', range: '430 – 750 THz', use: 'what the eye and the camera see' },
+    { band: 'ultraviolet', range: '750 THz – 30 PHz', use: 'the sun, sterilisation' },
+    { band: 'x-ray', range: '30 PHz – 30 EHz', use: 'imaging' },
+    { band: 'gamma', range: 'above 30 EHz', use: 'radioactivity, cosmic rays' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`emf:${entry.band}`) }))
+  const canRead = ['magnetometer — the ambient magnetic field (µT)', 'compass heading (from orientation)', 'ambient light — visible EM']
+  const cannot = ['emit or transmit EMF', 'alter or "harmonise" any field', 'measure wifi / cellular / RF power', 'make any health claim']
+  return {
+    grounded: spectrum.length === 7,
+    spectrum,
+    canRead,
+    cannot,
+    root: merkleFold(spectrum.map((entry) => entry.receipt)),
+    statement: 'EMF applications, honestly: the electromagnetic spectrum in seven bands (radio to gamma); a browser can READ a few EM signals — the magnetometer (ambient magnetic field), the compass, and ambient light (visible EM) — but it cannot emit, alter, or harmonise any field.',
+    boundary: 'Educational EM-spectrum data and a list of what a browser can and cannot do with EMF. Reading a sensor is real; emitting, altering, or "harmonising" fields, or any health effect, is impossible from a web page and is not claimed.',
   }
 }
 

@@ -23,6 +23,7 @@ import HealingFrequencies from './components/HealingFrequencies.vue'
 import Hologram from './components/Hologram.vue'
 import HumanLens from './components/HumanLens.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
+import Magnetometer from './components/Magnetometer.vue'
 import McpTools from './components/McpTools.vue'
 import NothingToDo from './components/NothingToDo.vue'
 import OpenQuestions from './components/OpenQuestions.vue'
@@ -87,6 +88,7 @@ export default {
     app.component('Hologram', Hologram)
     app.component('HumanLens', HumanLens)
     app.component('LearnDeveloper', LearnDeveloper)
+    app.component('Magnetometer', Magnetometer)
     app.component('McpTools', McpTools)
     app.component('NothingToDo', NothingToDo)
     app.component('OpenQuestions', OpenQuestions)
