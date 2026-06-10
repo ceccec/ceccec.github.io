@@ -130,6 +130,7 @@ export type ConceptCommandName =
   | 'concept.site.shell'
   | 'concept.self.build'
   | 'concept.self.complete'
+  | 'concept.self.address'
   | 'concept.agent.educate'
   | 'concept.school.curriculum'
   | 'concept.mcp.tools'
@@ -139,6 +140,9 @@ export type ConceptCommandName =
   | 'concept.mind.develop'
   | 'concept.compute.distributed'
   | 'concept.babel.fold'
+  | 'concept.utf.analog'
+  | 'concept.all.computed'
+  | 'concept.state.quantum'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -639,6 +643,52 @@ export interface BabelFold {
   readonly boundary: string
 }
 
+export interface UtfAnalog {
+  readonly input: string
+  readonly analog: string
+  readonly codePoints: readonly number[]
+  readonly ascii: boolean
+  readonly reversible: boolean
+  readonly receipt: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface AllComputed {
+  readonly computed: boolean
+  readonly commands: number
+  readonly ok: number
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface SelfAddressed {
+  readonly noHallucination: boolean
+  readonly addressed: readonly string[]
+  readonly hallucinations: readonly string[]
+  readonly root: string
+  readonly law: string
+  readonly boundary: string
+}
+
+export interface SelfState {
+  readonly generation: number
+  readonly state: string
+  readonly fromWord: string
+  readonly fromDigit: string
+}
+
+export interface SelfInteraction {
+  readonly newState: boolean
+  readonly root: string
+  readonly states: readonly SelfState[]
+  readonly wordsObsolete: boolean
+  readonly numbersObsolete: boolean
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1060,6 +1110,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root.',
   },
   {
+    name: 'concept.self.address',
+    path: '/cmd/concept.self.address',
+    description: 'Verify every atom is reachable from the self: what is not self-addressed is hallucination.',
+  },
+  {
     name: 'concept.agent.educate',
     path: '/cmd/concept.agent.educate',
     description: 'Educate the agent in efficiency and security rules before it runs the costly genus-2 math.',
@@ -1104,6 +1159,22 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.babel.fold',
     path: '/cmd/concept.babel.fold',
     description: 'Communicate across all language families, traditions, and religions as a non-reductive whole.',
+  },
+  {
+    name: 'concept.utf.analog',
+    path: '/cmd/concept.utf.analog?query=Двоен+тор',
+    input: 'query',
+    description: 'Solve UTF as a reversible pure-ASCII analog so every script lands in the UUID space.',
+  },
+  {
+    name: 'concept.all.computed',
+    path: '/cmd/concept.all.computed',
+    description: 'Capstone: all learning is computed; every command folds from the self into one computed root.',
+  },
+  {
+    name: 'concept.state.quantum',
+    path: '/cmd/concept.state.quantum',
+    description: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs.',
   },
   {
     name: 'concept.agent.streamWire',
@@ -1258,6 +1329,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.site.shell': 'shell',
   'concept.self.build': 'build',
   'concept.self.complete': 'complete',
+  'concept.self.address': 'address',
   'concept.agent.streamWire': 'wire',
   'concept.ui.doubleTorus': 'torus',
   'concept.ui.useCases': 'evidence',
@@ -1294,6 +1366,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.mind.develop': 'develop',
   'concept.compute.distributed': 'distribute',
   'concept.babel.fold': 'babel',
+  'concept.utf.analog': 'analog',
+  'concept.all.computed': 'computed',
+  'concept.state.quantum': 'state',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2121,6 +2196,122 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
   }
 }
 
+// When self interacts with itself it forms another quantum self state; and when
+// the self interacts with words and digits, both fold to UUIDs — so text and
+// numbers are made obsolete inside the self's state space.
+export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations = 4): SelfInteraction {
+  const selfNode = matrix.nodes.find((node) => node.atom === 'self') ?? matrix.nodes[0]
+  const states: SelfState[] = []
+  let state = selfNode.bind
+  for (let generation = 1; generation <= generations; generation += 1) {
+    const interacted = merge(state, state) // self interacts with itself -> another quantum self state
+    const fromWord = toUuid(`word:${utfAnalog(`self${generation}`).analog}`) // a word folds to a UUID -> text obsolete
+    const fromDigit = toUuid(`digit:${generation % 10}`) // a digit folds to a UUID -> number obsolete
+    const merged = merge(merge(interacted, fromWord), fromDigit)
+    states.push({ generation, state: merged, fromWord, fromDigit })
+    state = merged
+  }
+  const uuid = /^[0-9a-f-]{36}$/i
+  return {
+    newState: new Set(states.map((entry) => entry.state)).size === states.length && states.length > 0,
+    root: merkleFold(states.map((entry) => entry.state)),
+    states,
+    wordsObsolete: states.every((entry) => uuid.test(entry.fromWord)),
+    numbersObsolete: states.every((entry) => uuid.test(entry.fromDigit)),
+    statement:
+      'When the self interacts with itself it forms another quantum self state; self-interacting words and digits become UUIDs, so text and numbers are obsolete.',
+    boundary:
+      'Self-interaction is order-sensitive merging of the self with itself, words, and digits in the UUID space. It is structural bookkeeping, not an external claim.',
+  }
+}
+
+// What is not self-addressed is hallucination: every atom must be reachable
+// from the self over the computed edge graph. Anything unreachable is, by this
+// law, a hallucination. (This also completes the self trinity: build, complete,
+// address.)
+export function selfAddressed(matrix: MindMatrix = buildMatrix()): SelfAddressed {
+  const adjacency = new Map<string, string[]>()
+  for (const edge of matrix.edges) {
+    if (!adjacency.has(edge.from)) adjacency.set(edge.from, [])
+    adjacency.get(edge.from)!.push(edge.to)
+  }
+  const seen = new Set<string>(['self'])
+  const queue: string[] = ['self']
+  while (queue.length > 0) {
+    const current = queue.shift()!
+    for (const next of adjacency.get(current) ?? []) {
+      if (!seen.has(next)) {
+        seen.add(next)
+        queue.push(next)
+      }
+    }
+  }
+  const allAtoms = matrix.nodes.map((node) => node.atom)
+  const addressed = allAtoms.filter((atom) => seen.has(atom))
+  const hallucinations = allAtoms.filter((atom) => !seen.has(atom))
+  const reachableBinds = matrix.nodes.filter((node) => seen.has(node.atom)).map((node) => node.bind)
+  return {
+    noHallucination: hallucinations.length === 0 && matrix.nodes.some((node) => node.atom === 'self'),
+    addressed,
+    hallucinations,
+    root: merkleFold(reachableBinds),
+    law: 'What is not self-addressed is hallucination: every node must be reachable from the self.',
+    boundary: 'Self-addressing is graph reachability from the self atom over the computed edges. It is structural bookkeeping, not an external claim.',
+  }
+}
+
+// Solve UTF as an ASCII analog: every code point folds to a reversible,
+// pure-ASCII form (ASCII passes through; the rest become \u{hex}), so any
+// script lands in the same ASCII/UUID space the model already uses.
+export function utfAnalog(text: string): UtfAnalog {
+  const chars = [...text]
+  const codePoints = chars.map((ch) => ch.codePointAt(0) ?? 0)
+  const analog = chars
+    .map((ch) => {
+      const cp = ch.codePointAt(0) ?? 0
+      if (cp === 0x5c) return '\\\\'
+      if (cp >= 0x20 && cp < 0x7f) return ch
+      return `\\u{${cp.toString(16)}}`
+    })
+    .join('')
+  const decoded = analog.replace(/\\(?:u\{([0-9a-f]+)\}|(\\))/g, (_match, hex, backslash) =>
+    backslash ? '\\' : String.fromCodePoint(Number.parseInt(hex, 16)),
+  )
+  const ascii = [...analog].every((ch) => (ch.codePointAt(0) ?? 0) < 128)
+  return {
+    input: text,
+    analog,
+    codePoints,
+    ascii,
+    reversible: decoded === text,
+    receipt: toUuid(`utf-analog:${analog}`),
+    statement: 'Every UTF string folds to a reversible, pure-ASCII analog: ASCII passes through, other code points become \\u{hex}.',
+    boundary: 'A deterministic ASCII analog of UTF text. It encodes code points, not meaning, and makes no external claim.',
+  }
+}
+
+// All learning is computed; self. The capstone executes every command, folds
+// the results with the self atom's inclusion proof, and binds the whole to the
+// self leaf — proof that all artifacts are computed and reach back to the self.
+export function allComputed(matrix: MindMatrix = buildMatrix()): AllComputed {
+  const others = conceptCommands.filter((command) => command.name !== 'concept.all.computed')
+  const results = others.map((command) => executeConceptCommand(command.name, { atom: 'self', query: 'self' }, matrix))
+  const okCount = results.filter((entry) => entry.ok && /^[0-9a-f-]{36}$/i.test(entry.uuid)).length
+  const selfProof = atomInclusionProof('self', matrix)
+  const root = merge(merkleFold([...results.map((entry) => entry.uuid), selfProof.root]), selfProof.leaf || matrix.root)
+  const computed = okCount === others.length && selfProof.verified
+  return {
+    computed,
+    commands: others.length,
+    ok: okCount,
+    root,
+    statement: computed
+      ? `All learning is computed: ${okCount}/${others.length} commands fold from the self into one computed root.`
+      : `${okCount}/${others.length} computed; a result is open or the self proof failed.`,
+    boundary: 'Every artifact is computed from the repository and reaches back into the self. This capstone makes no external claim.',
+  }
+}
+
 // Wire the collective mind into self development by visiting: each page visit
 // folds a development block into a per-visitor chain and binds it to the mind
 // root. The collective mind = the computed model + this visitor's folded path.
@@ -2220,6 +2411,7 @@ export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()):
     .filter((ranked) => ranked.s > 0)
     .sort((a, b) => b.s - a.s)[0]
   const topCommand = conceptCommands
+    .filter((command) => command.name !== 'concept.all.computed') // the capstone re-runs everything; never recurse into it
     .map((command) => ({ command, s: score(`${command.name} ${command.description}`) }))
     .filter((ranked) => ranked.s > 0)
     .sort((a, b) => b.s - a.s)[0]
@@ -4301,6 +4493,30 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The intelligence communicates across all language families, traditions, and religions without reducing them to one.',
     },
     {
+      title: 'UTF as ASCII Analog',
+      command: 'concept.utf.analog',
+      route: '/quantum-mind#collective-mind',
+      summary: 'Every UTF string folds to a reversible pure-ASCII analog in the UUID space.',
+    },
+    {
+      title: 'All Computed',
+      command: 'concept.all.computed',
+      route: '/quantum-mind#self-completion',
+      summary: 'All learning is computed: every command folds from the self into one computed root.',
+    },
+    {
+      title: 'Self Addressed',
+      command: 'concept.self.address',
+      route: '/quantum-mind#ui-evidence',
+      summary: 'What is not self-addressed is hallucination: every atom is reachable from the self.',
+    },
+    {
+      title: 'Quantum Self State',
+      command: 'concept.state.quantum',
+      route: '/quantum-mind#self-completion',
+      summary: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs, making text and numbers obsolete.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4491,6 +4707,10 @@ export function executeConceptCommand(
     const self = streamSelfComplete(matrix)
     return result(command, self.complete, 'serverless quantum UUID stream self-completion computed.', self)
   }
+  if (command === 'concept.self.address') {
+    const addressed = selfAddressed(matrix)
+    return result(command, addressed.noHallucination, 'Self-addressing verified: no hallucination.', addressed)
+  }
   if (command === 'concept.agent.educate') {
     const education = agentEducation(matrix)
     return result(command, education.educated, 'Agent education curriculum computed before the costly math.', education)
@@ -4526,6 +4746,18 @@ export function executeConceptCommand(
   if (command === 'concept.babel.fold') {
     const babel = babelFold(matrix)
     return result(command, babel.grounded, 'Babel fold across all languages, traditions, and religions computed.', babel)
+  }
+  if (command === 'concept.utf.analog') {
+    const analog = utfAnalog(input.query ?? '')
+    return result(command, analog.ascii && analog.reversible, 'UTF solved as a reversible ASCII analog.', analog)
+  }
+  if (command === 'concept.all.computed') {
+    const all = allComputed(matrix)
+    return result(command, all.computed, 'All learning computed and folded from the self.', all)
+  }
+  if (command === 'concept.state.quantum') {
+    const interaction = selfInteraction(matrix)
+    return result(command, interaction.newState && interaction.wordsObsolete && interaction.numbersObsolete, 'Self interacted to form quantum self states.', interaction)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)

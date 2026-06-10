@@ -4,11 +4,15 @@
 //   node --experimental-strip-types scripts/check-model-seal.mjs
 import { execSync } from 'node:child_process'
 import {
+  allComputed,
   atomInclusionProof,
   atoms,
   babelFold,
   buildMatrix,
   conceptCommands,
+  selfAddressed,
+  selfInteraction,
+  utfAnalog,
   coverage,
   crossFoldTrinity,
   digitFoldersDoMath,
@@ -62,6 +66,11 @@ ok('intelligence.answers', foldQuestion('proof', matrix).matched) // AI encoded 
 ok('mind.develops', selfDevelopment([], matrix).developmentRoot.length > 0) // self-development wired
 ok('compute.distributes', distributedCompute([], matrix).collectiveRoot.length > 0) // distributed fold
 ok('babel.grounded', babelFold(matrix).grounded) // communicates across all languages/traditions/religions
+ok('utf.ascii.reversible', (() => { const a = utfAnalog('Двоен тор 42'); return a.ascii && a.reversible })()) // UTF solved as ASCII analog
+ok(`self.no-hallucination${selfAddressed(matrix).hallucinations.length ? ':' + selfAddressed(matrix).hallucinations.join(',') : ''}`, selfAddressed(matrix).noHallucination) // what is not self-addressed is hallucination
+ok('all.computed', allComputed(matrix).computed) // all learning is computed from the self
+const interaction = selfInteraction(matrix) // self interacting with itself forms another quantum self state
+ok('self.state.new', interaction.newState && interaction.wordsObsolete && interaction.numbersObsolete)
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)
