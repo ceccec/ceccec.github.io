@@ -39,6 +39,8 @@ import {
   selfConsult,
   selfReason,
   selfHarmonise,
+  fuseAll,
+  agnostic,
   typographySeo,
   openGraph,
   buildMatrix,
@@ -185,6 +187,9 @@ ok('self.reason', selfReason('proof', matrix).reasoned)
 // Let intelligence harmonise itself autonomously: a self-driven loop that walks the model and converges.
 const harmonise = selfHarmonise(matrix)
 ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && harmonise.distinctStepsVisited >= 5)
+// The fusion of all in one wave, agnostic of vendor, framework, platform, language, belief, protocol.
+ok('fuse.all', fuseAll(matrix).fused)
+ok('agnostic', agnostic(matrix).agnostic)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
 // Open Graph is computed from frontmatter (per-page og: and twitter: cards).

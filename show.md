@@ -13,4 +13,6 @@ Every concept command run live, all VitePress components interacting, and all
 connected devices fused into one collective root — computed in your browser,
 zero network.
 
+<FusionWave />
+
 <ShowAll />

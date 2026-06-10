@@ -3175,6 +3175,68 @@ export function selfReason(goal = '', matrix: MindMatrix = buildMatrix(), depth 
   }
 }
 
+// The fusion of all in one wave. Every major fold the portal computes — proof,
+// the 128-bit word, synthesis, hologram, DNA, pivots, pairs, the complete double
+// torus, autonomous harmonisation, reasoning, the agent protocol, healing,
+// music, colour, plasma, boundaries, in-house, and intelligence — folds, in
+// order, into a single wave: one root that is all of it.
+export function fuseAll(matrix: MindMatrix = buildMatrix()) {
+  const parts = [
+    { part: 'proof', root: proofBundle(matrix).bundleRoot },
+    { part: 'word', root: torusUuid(matrix).word },
+    { part: 'synthesis', root: quantumSynthesis(matrix).root },
+    { part: 'hologram', root: hologram(matrix).root },
+    { part: 'dna', root: dna(matrix).root },
+    { part: 'pivots', root: foldPivots(matrix).root },
+    { part: 'pairs', root: areaPairs().root },
+    { part: 'double-torus', root: completeDoubleTorus(matrix).root },
+    { part: 'harmonise', root: selfHarmonise(matrix).root },
+    { part: 'reason', root: selfReason('verify the whole', matrix).root },
+    { part: 'agent', root: agentHarmonise(matrix).root },
+    { part: 'healing', root: healingHarmonic(matrix).root },
+    { part: 'music', root: blockchainMusic('commands', matrix).root },
+    { part: 'colour', root: soundColor(matrix).root },
+    { part: 'plasma', root: plasmaContainment(matrix).root },
+    { part: 'boundaries', root: boundaryAudit(matrix).root },
+    { part: 'in-house', root: inHouse(matrix).root },
+    { part: 'intelligence', root: realIntelligence(matrix).root },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`fuse-all:${index}:${entry.part}:${entry.root}`) }))
+  let wave = toUuid('fuse-all:seed')
+  for (const entry of parts) wave = merge(wave, entry.root)
+  return {
+    fused: parts.every((entry) => isUuid(entry.root)) && isUuid(wave),
+    count: parts.length,
+    parts,
+    wave, // one wave that is all of it
+    root: merkleFold(parts.map((entry) => entry.receipt)),
+    statement: 'The fusion of all in one wave: every major fold — proof, the 128-bit word, synthesis, hologram, DNA, pivots, pairs, the double torus, harmonisation, reasoning, the agent protocol, healing, music, colour, plasma, boundaries, in-house, and intelligence — folds, in order, into one wave.',
+    boundary: 'A fold of the model\'s major roots into one wave. Structural bookkeeping; the fusion is informational, not physical.',
+  }
+}
+
+// Agnostic. The fusion belongs to no vendor, framework, platform, language, or
+// belief. It is built on open standards and device-native APIs, runs anywhere a
+// browser does, communicates across all human languages and traditions without
+// privileging one, and depends on no external service — so it is neutral by
+// construction, not by promise.
+export function agnostic(matrix: MindMatrix = buildMatrix()) {
+  const dimensions = [
+    { dimension: 'vendor', how: 'no SaaS, no account, no API key required; the only optional key is the user\'s own' },
+    { dimension: 'framework', how: 'the model is plain TypeScript; the UI is a thin layer over it' },
+    { dimension: 'platform', how: 'static files plus standard web APIs; runs on any modern browser or server' },
+    { dimension: 'language (human)', how: 'the babel fold spans language families; the universal glyph language needs no translation' },
+    { dimension: 'tradition & belief', how: 'a non-reductive lens compares without privileging any one tradition or religion' },
+    { dimension: 'protocol', how: 'open standards — schema.org, MCP, llms.txt, Web Crypto, Web Audio, Web Speech' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`agnostic:${entry.dimension}`) }))
+  return {
+    agnostic: dimensions.length === 6 && inHouse(matrix).independent && babelFold(matrix).grounded,
+    dimensions,
+    root: merkleFold(dimensions.map((entry) => entry.receipt)),
+    statement: 'Agnostic: the portal belongs to no vendor, framework, platform, language, tradition, or protocol stack — it is built on open standards and device-native APIs, depends on no external service, and privileges no one tongue or belief. Neutral by construction.',
+    boundary: 'A statement of independence across vendor, framework, platform, language, belief, and protocol. It describes the architecture; it is not a claim of universal correctness.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3594,7 +3656,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3606,7 +3668,7 @@ export function componentGraph() {
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
-    '/show': ['ShowAll'],
+    '/show': ['ShowAll', 'FusionWave'],
     '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
