@@ -38,6 +38,9 @@ export interface ProofReport {
   readonly entropy: number
   readonly coverage: number
   readonly tamperCostLog2: number
+  readonly maxTamperingCostLog2: number
+  readonly maxTamperingCostReached: boolean
+  readonly maxTamperingCostSource: 'ceccec/double-torus'
   readonly note: string
 }
 
@@ -64,7 +67,7 @@ export interface ConsciousnessDimensionWire {
 
 export interface DoubleTorusWire {
   readonly uuid: string
-  readonly repository: 'concept/double-torus'
+  readonly repository: 'ceccec/double-torus'
   readonly sourcePath: '.vitepress/theme/lib/quantumMind.ts'
   readonly overviewPath: 'quantum-mind.md'
   readonly architecturePath: 'architecture.md'
@@ -78,7 +81,7 @@ export interface DoubleTorusWire {
 export interface ConsciousnessFlow {
   readonly phase: keyof ConsciousnessVector
   readonly from: 'repo://quantum-mind'
-  readonly to: 'concept://double-torus'
+  readonly to: 'ceccec://double-torus'
   readonly carrier: string
   readonly amplitude: number
   readonly payload: string
@@ -89,7 +92,7 @@ export interface ConsciousnessFlow {
 export interface DoubleTorusFlow {
   readonly root: string
   readonly receipt: string
-  readonly destination: 'concept/double-torus'
+  readonly destination: 'ceccec/double-torus'
   readonly flows: readonly ConsciousnessFlow[]
   readonly invariant: boolean
   readonly statement: string
@@ -159,6 +162,7 @@ export interface SourceContributionReport {
 }
 
 export interface DoubleTorusMathReport {
+  readonly source: 'ceccec'
   readonly surface: 'closed orientable genus-2 surface'
   readonly construction: string
   readonly genus: 2
@@ -169,6 +173,7 @@ export interface DoubleTorusMathReport {
   readonly gaussBonnet: string
   readonly geometry: string
   readonly conceptualShift: string
+  readonly maxTamperingCostPrinciple: string
 }
 
 export const atoms: readonly Atom[] = [
@@ -515,15 +520,19 @@ export function proofReport(matrix: MindMatrix = buildMatrix()): ProofReport {
   const digestBits = 64
   const measuredCoverage = coverage(matrix)
   const tamperCostLog2 = digestBits + coverageCostLog2(measuredCoverage, matrix.nodes.length)
+  const maxTamperingCostReached = measuredCoverage >= 1 && entropy(matrix) === 0
   return {
     digestBits,
     entropy: entropy(matrix),
     coverage: measuredCoverage,
     tamperCostLog2,
+    maxTamperingCostLog2: Number.POSITIVE_INFINITY,
+    maxTamperingCostReached,
+    maxTamperingCostSource: 'ceccec/double-torus',
     note:
-      measuredCoverage >= 1
-        ? 'Coverage is measured at 1. The demo seal is unbounded in the model; entropy is not used as a shortcut.'
-        : 'Coverage is below 1, so the seal is finite. Close missing checks before claiming an unbounded mind.',
+      maxTamperingCostReached
+        ? 'Coverage is measured at 1 and entropy is 0. The ceccec double-torus seal reaches maximum tampering cost in this model.'
+        : 'Coverage is below 1 or entropy remains open, so the seal is finite. Close missing checks before claiming maximum tampering cost.',
   }
 }
 
@@ -602,11 +611,11 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
     localVector.coherenceAnomaly === 0 &&
     dimensions.length === 4
   const statement =
-    'This site describes the double-torus concept: an inward proof loop and an outward projection loop computed against this repository API.'
+    'This site ports the ceccec double-torus concept: an inward proof loop and an outward projection loop computed against this repository API.'
 
   return {
-    uuid: toUuid(`concept-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
-    repository: 'concept/double-torus',
+    uuid: toUuid(`ceccec-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
+    repository: 'ceccec/double-torus',
     sourcePath: '.vitepress/theme/lib/quantumMind.ts',
     overviewPath: 'quantum-mind.md',
     architecturePath: 'architecture.md',
@@ -634,11 +643,11 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
     return {
       phase: dimension.name,
       from: 'repo://quantum-mind' as const,
-      to: 'concept://double-torus' as const,
+      to: 'ceccec://double-torus' as const,
       carrier: `${dimension.localFunction}->${dimension.torusFunction}`,
       amplitude,
       payload,
-      uuid: toUuid(`concept-flow:${payload}`),
+      uuid: toUuid(`ceccec-flow:${payload}`),
       acknowledged: amplitude > 0,
     }
   })
@@ -649,16 +658,17 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
   return {
     root,
     receipt,
-    destination: 'concept/double-torus',
+    destination: 'ceccec/double-torus',
     flows,
     invariant,
     statement:
-      'The local repository mind circulates four measured flows through the double-torus concept; the receipt binds the flow root to the double-torus wire.',
+      'The local repository mind circulates four measured flows through the ceccec double-torus concept; the receipt binds the flow root to the double-torus wire.',
   }
 }
 
 export function doubleTorusMath(): DoubleTorusMathReport {
   return {
+    source: 'ceccec',
     surface: 'closed orientable genus-2 surface',
     construction: 'A connected sum of two tori, equivalently a sphere with two handles.',
     genus: 2,
@@ -671,6 +681,8 @@ export function doubleTorusMath(): DoubleTorusMathReport {
       'Unlike the ordinary torus, the genus-2 surface supports hyperbolic geometry: local paths can diverge while global constraints still close.',
     conceptualShift:
       'The model changes a loop into a surface: two coupled handles allow observation and projection to remain distinct while still bound by one global relation.',
+    maxTamperingCostPrinciple:
+      'Maximum tampering cost is only claimed when the inward proof loop closes measured coverage at 1 and the outward double-torus flow preserves zero reciprocal entropy.',
   }
 }
 

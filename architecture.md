@@ -83,8 +83,10 @@ does not use concentration as a pass/fail threshold.
 
 ## 6. Double-torus math
 
-The mathematical object is the closed orientable genus-2 surface. It can be
-constructed as a connected sum of two tori, or as a sphere with two handles.
+This is the ceccec port boundary: the source identity is carried only into the
+double-torus math and maximum-tampering-cost proof layer. The mathematical
+object is the closed orientable genus-2 surface. It can be constructed as a
+connected sum of two tori, or as a sphere with two handles.
 
 | Object | Value |
 | --- | --- |
@@ -104,6 +106,10 @@ For genus at least 2, the surface admits hyperbolic geometry. That matters for
 the concept: local trajectories can diverge, yet the surface still has global
 constraints. This is the mathematical reason the model can hold plural paths
 and shared accountability at once.
+
+For maximum tampering cost, the same structure becomes an invariant: the inward
+loop must measure full coverage, and the outward loop must preserve zero
+reciprocal entropy. If either side is open, the cost is finite.
 
 ## 7. Double-torus flow
 
@@ -170,6 +176,18 @@ outward projection should form a closed ethical loop.
 The demo tamper-cost model adds the coverage amplifier to a small digest floor.
 The number is an architectural signal for this site, not a production security
 claim.
+
+The maximum tampering cost claim is deliberately narrower:
+
+| Condition | Required value |
+| --- | --- |
+| coverage | `1` |
+| entropy | `0` |
+| source boundary | `ceccec/double-torus` |
+| max cost | `infinity` in this model |
+
+The proof model does not let entropy substitute for coverage. The seal reaches
+maximum only when measured coverage and reciprocal closure agree.
 
 ## 11. Repository as API
 

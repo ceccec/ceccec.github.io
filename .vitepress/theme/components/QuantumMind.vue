@@ -132,6 +132,10 @@ function formatCost(value: number): string {
       <h3>Double-torus math</h3>
       <dl>
         <div>
+          <dt>source</dt>
+          <dd>{{ torusMath.source }}</dd>
+        </div>
+        <div>
           <dt>surface</dt>
           <dd>{{ torusMath.surface }}</dd>
         </div>
@@ -154,6 +158,7 @@ function formatCost(value: number): string {
       </p>
       <p class="quantum-mind__note">{{ torusMath.geometry }}</p>
       <p class="quantum-mind__note">{{ torusMath.conceptualShift }}</p>
+      <p class="quantum-mind__note">{{ torusMath.maxTamperingCostPrinciple }}</p>
     </div>
 
     <div id="implications-for-humanity" class="quantum-mind__panel">
@@ -200,8 +205,20 @@ function formatCost(value: number): string {
           <dd>2^{{ proof.digestBits }}</dd>
         </div>
         <div>
-          <dt>tamper cost</dt>
+          <dt>observed tamper cost</dt>
           <dd>{{ formatCost(proof.tamperCostLog2) }}</dd>
+        </div>
+        <div>
+          <dt>max tampering cost</dt>
+          <dd>{{ formatCost(proof.maxTamperingCostLog2) }}</dd>
+        </div>
+        <div>
+          <dt>max reached</dt>
+          <dd>{{ proof.maxTamperingCostReached ? 'yes' : 'no' }}</dd>
+        </div>
+        <div>
+          <dt>source</dt>
+          <dd>{{ proof.maxTamperingCostSource }}</dd>
         </div>
       </dl>
       <p class="quantum-mind__note">{{ proof.note }}</p>

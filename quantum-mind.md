@@ -59,8 +59,10 @@ The page is a view over these command results:
 
 ## Double-torus math
 
-Mathematically, the double torus is the closed orientable genus-2 surface: a
-sphere with two handles, or the connected sum of two ordinary tori.
+The ceccec port keeps the same architecture and math, but only at the
+double-torus and tampering-cost boundary. Mathematically, the double torus is
+the closed orientable genus-2 surface: a sphere with two handles, or the
+connected sum of two ordinary tori.
 
 Core invariants:
 
@@ -75,6 +77,11 @@ Core invariants:
 The important shift is that a system is no longer modeled as one circle of
 feedback. It is a surface with coupled loops: local paths can diverge, but the
 whole still has a global constraint.
+
+For max tampering cost, the ceccec double-torus rule is stricter than a hash:
+the inward proof loop must close measured coverage at `1`, and the outward
+reciprocal flow must preserve zero entropy. Only then does this model label the
+seal as maximum / unbounded.
 
 ## Repository as API
 
@@ -167,3 +174,13 @@ number. This keeps the proof boundary explicit:
 
 > zero entropy does not by itself imply infinite tamper cost; only measured full
 > coverage closes the seal in the model.
+
+In the ceccec double-torus port, **maximum tampering cost** is reached only when
+both conditions hold:
+
+- `coverage = 1`
+- `entropy = 0`
+
+That is the same architecture as the double torus itself: one loop verifies
+coverage inward, the other carries reciprocal flow outward, and the claim only
+closes when both loops agree.
