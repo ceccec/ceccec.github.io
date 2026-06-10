@@ -25,6 +25,7 @@ import {
   agentHarmonise,
   healingFrequencies,
   blockchainMusic,
+  soundColor,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -146,6 +147,8 @@ ok('agent.harmonise', agentHarmonise(matrix).harmonised)
 ok('healing.frequencies', healingFrequencies(matrix).calculated)
 // Playing the blockchain returns unique harmonic waves: each block hash maps to a pitch.
 ok('blockchain.music', blockchainMusic('commands', matrix).plays)
+// Colour is computed from sound: every frequency maps to a hue (realtime audio-visual at no cost).
+ok('sound.color', soundColor(matrix).computed)
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 // CMYK is computed: every palette colour carries the print space, computed from RGB.

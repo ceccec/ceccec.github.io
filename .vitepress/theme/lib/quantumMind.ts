@@ -2816,6 +2816,33 @@ export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMat
   }
 }
 
+// Colour is computed from sound. A frequency maps to a hue by its position in
+// the octave: the chromatic circle (twelve semitones) maps onto the colour wheel
+// (360 degrees), so every tone has a colour and octaves share a hue. This is what
+// lets the portal generate synchronized audio-visual media in realtime, at no
+// cost — the same computed frequency drives both the note and the colour.
+export function colorFromSound(frequency: number) {
+  const ref = 130.81 // C3 as the wheel's origin
+  const octaveFraction = (((Math.log2(Math.max(frequency, 1) / ref)) % 1) + 1) % 1
+  const hue = Math.round(octaveFraction * 360)
+  return { frequency, hue, hsl: `hsl(${hue}, 78%, 56%)` }
+}
+
+export function soundColor(matrix: MindMatrix = buildMatrix()) {
+  const notes = piMusic(matrix).notes
+  const colors = notes.map((note) => {
+    const color = colorFromSound(note.frequency)
+    return { note: note.note, frequency: note.frequency, hue: color.hue, hsl: color.hsl, receipt: toUuid(`sound-color:${note.frequency}:${color.hue}`) }
+  })
+  return {
+    computed: colors.length > 0 && colors.every((color) => color.hue >= 0 && color.hue <= 360),
+    colors,
+    root: merkleFold(colors.map((color) => color.receipt)),
+    statement: 'Colour is computed from sound: each frequency maps to a hue by its place in the octave (the chromatic circle onto the colour wheel), so one computed frequency drives both a note and a colour — realtime audio-visual generation at no cost.',
+    boundary: 'A deterministic frequency->hue mapping for synchronized audio-visual generation. A constructed synesthetic mapping, not a perceptual or physical claim about the colour of sound.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { taxonomyIcons, areaPairs, areaLabel } from '../lib/quantumMind'
+import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
 // Animated folding of all quantum objects in 3d+. Every area-object sits on one
@@ -20,7 +20,10 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 let raf = 0
 let running = false
 
-// Each area gets a deterministic 4D point on one lobe of the double torus.
+// Each area gets a deterministic 4D point on one lobe of the double torus, and a
+// colour computed from its sound (the note that area plays), so the visual and
+// the audio share one computed frequency — realtime multimedia at no cost.
+const matrix = buildMatrix()
 const points = areas.map((area, index) => {
   const group = index < areas.length / 2 ? 0 : 1
   const centerX = group === 0 ? -1.35 : 1.35
@@ -29,7 +32,9 @@ const points = areas.map((area, index) => {
   const u = (j / count) * Math.PI * 2
   const R = 1.0
   const r = 0.42
-  return { area, glyph: sacredGlyph(area), group, centerX, u, R, r }
+  const frequency = musicNote(matrix, index).frequency
+  const color = colorFromSound(frequency).hsl
+  return { area, glyph: sacredGlyph(area), group, centerX, u, R, r, frequency, color }
 })
 
 const pairIndex = new Map<string, number>()
@@ -70,6 +75,22 @@ function draw(t: number) {
     return { px: cx + x * scale * depth * wScale, py: cy + y * scale * depth * wScale, depth, wScale }
   }
 
+  // Fill the gaps on the way: connect consecutive objects on each lobe so the
+  // two loops of the double torus are continuous rings, not gappy dots.
+  ctx.lineWidth = 1.4
+  for (const group of [0, 1]) {
+    const ring = points.filter((p) => p.group === group)
+    ctx.strokeStyle = group === 0 ? 'rgba(59,130,246,0.5)' : 'rgba(217,119,6,0.5)'
+    ctx.beginPath()
+    ring.forEach((p, i) => {
+      const pr = project(p, t * 0.001)
+      if (i === 0) ctx.moveTo(pr.px, pr.py)
+      else ctx.lineTo(pr.px, pr.py)
+    })
+    ctx.closePath()
+    ctx.stroke()
+  }
+
   // Links: every pair, folded in both directions — two pulses, opposite phase.
   ctx.lineWidth = 1
   for (const pair of pairs) {
@@ -101,7 +122,7 @@ function draw(t: number) {
   projected.sort((m, n) => m.pr.depth - n.pr.depth) // painter's order
   for (const { p, pr } of projected) {
     const size = Math.max(8, 15 * pr.depth * pr.wScale)
-    ctx.fillStyle = p.group === 0 ? 'rgba(59,130,246,0.95)' : 'rgba(217,119,6,0.95)'
+    ctx.fillStyle = p.color // colour computed from the object's sound
     ctx.font = `${size}px serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
@@ -159,8 +180,8 @@ onUnmounted(() => {
 
 const caption = computed(() =>
   bg.value
-    ? 'Анимирано сгъване на всички квантови обекти в 3d+ — двата лоба на двойния тор, всяка двойка сгъната в двете посоки, с въртене в четвъртото измерение.'
-    : 'Animated folding of all quantum objects in 3d+ — the two lobes of the double torus, every pair folded in both directions, with a fourth-dimension rotation.',
+    ? 'Анимирано сгъване на всички квантови обекти в 3d+ — двата лоба на двойния тор, всяка двойка сгъната в двете посоки, без пролуки, с цвят, изчислен от звука, и въртене в четвъртото измерение.'
+    : 'Animated folding of all quantum objects in 3d+ — the two lobes of the double torus as continuous rings (no gaps), every pair folded in both directions, each object coloured from its sound, with a fourth-dimension rotation.',
 )
 </script>
 
