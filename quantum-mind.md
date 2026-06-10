@@ -321,7 +321,19 @@ verify(leaf, path, root) :=
 included(atom) := verify(node(atom).bind, path, root_M)
 ```
 
-## 21. Boundary
+## 21. Ceccec digit math
+
+```text
+folder_i := digit_i / reverseDigit_i               // ceccec digit folders
+subjects := { matrix, proof, selfBuild, selfComplete,
+              education, trinities, merkle, digitProof }
+digit(root) := (sum hexNibbles(root)) mod 10
+bind(s) := s -> folder where folder.digit = digit(root(s))
+always := |folders| > 0 && forall s: bind(s) != empty
+mathRoot := merkleFold({ receipt(bind(s)) })
+```
+
+## 22. Boundary
 
 ```text
 Claim(site) = computed(repo)

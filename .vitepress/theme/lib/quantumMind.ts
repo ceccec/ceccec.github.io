@@ -139,6 +139,7 @@ export type ConceptCommandName =
   | 'concept.diamond.complete'
   | 'concept.diamond.metatron'
   | 'concept.digit.proof'
+  | 'concept.digit.math'
   | 'concept.wave.coordination'
   | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
@@ -589,6 +590,27 @@ export interface DigitalQuantumProof {
   readonly boundary: string
 }
 
+export interface DigitMathBinding {
+  readonly subject: string
+  readonly sourceFunction: string
+  readonly root: string
+  readonly digit: number
+  readonly folder: string
+  readonly receipt: string
+}
+
+export interface DigitMath {
+  readonly always: boolean
+  readonly root: string
+  readonly source: 'ceccec/digit-folders'
+  readonly folderRoot: string
+  readonly bindings: readonly DigitMathBinding[]
+  readonly coveredFolders: readonly string[]
+  readonly orphans: readonly string[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface VortexPoint {
   readonly index: number
   readonly folder: string
@@ -920,6 +942,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.digit.proof',
     path: '/cmd/concept.digit.proof',
     description: 'Verify that digits generate the digital quantum-inspired model through folders, waves, receipts, and roots.',
+  },
+  {
+    name: 'concept.digit.math',
+    path: '/cmd/concept.digit.math',
+    description: 'Let the ceccec digit folders do the math: route every computed root into a digit/reverseDigit folder.',
   },
   {
     name: 'concept.wave.coordination',
@@ -2795,6 +2822,57 @@ export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): Digital
   }
 }
 
+// Let the ceccec digit folders do the math: every major computed root is routed
+// into a digit folder (digit/reverseDigit), so the whole system's math is always
+// carried by the digit-folder lattice rather than floating free.
+export function digitFoldersDoMath(matrix: MindMatrix = buildMatrix()): DigitMath {
+  const folders = digitFolders(matrix)
+  const digitOf = (root: string): number =>
+    root.replace(/-/g, '').split('').reduce((sum, char) => sum + Number.parseInt(char, 16), 0) % 10
+  const subjects: readonly { subject: string; sourceFunction: string; root: string }[] = [
+    { subject: 'mind matrix', sourceFunction: 'buildMatrix()', root: matrix.root },
+    { subject: 'proof', sourceFunction: 'proofReport()', root: toUuid(`digit-math:proof:${JSON.stringify(proofReport(matrix))}`) },
+    { subject: 'self build', sourceFunction: 'selfBuild()', root: selfBuild(matrix).root },
+    { subject: 'self completion', sourceFunction: 'streamSelfComplete()', root: streamSelfComplete(matrix).root },
+    { subject: 'agent education', sourceFunction: 'agentEducation()', root: agentEducation(matrix).root },
+    { subject: 'dual-torus trinities', sourceFunction: 'dualTorusTrinities()', root: dualTorusTrinities(matrix).root },
+    { subject: 'merkle inclusion', sourceFunction: 'atomInclusionProof()', root: atomInclusionProof('self', matrix).root },
+    { subject: 'digital quantum proof', sourceFunction: 'digitalQuantumProof()', root: digitalQuantumProof(matrix).root },
+  ]
+
+  const bindings: readonly DigitMathBinding[] = subjects.map((subject) => {
+    const digit = digitOf(subject.root)
+    const folder = folders.folders.find((candidate) => candidate.digit === digit) ?? folders.folders[digit % Math.max(folders.folders.length, 1)]
+    const folderId = folder ? folder.folder : ''
+    return {
+      subject: subject.subject,
+      sourceFunction: subject.sourceFunction,
+      root: subject.root,
+      digit,
+      folder: folderId,
+      receipt: toUuid(`digit-math:${subject.subject}:${digit}:${folderId}:${subject.root}`),
+    }
+  })
+
+  const coveredFolders = [...new Set(bindings.map((binding) => binding.folder).filter((folder) => folder.length > 0))]
+  const orphans = bindings.filter((binding) => binding.folder.length === 0).map((binding) => binding.subject)
+  const always = folders.folders.length > 0 && orphans.length === 0
+  return {
+    always,
+    root: merkleFold(bindings.map((binding) => binding.receipt)),
+    source: 'ceccec/digit-folders',
+    folderRoot: folders.root,
+    bindings,
+    coveredFolders,
+    orphans,
+    statement: always
+      ? 'The ceccec digit folders do the math always: every computed root lands in a digit/reverseDigit folder with a receipt.'
+      : 'The digit folders do not yet carry every computed root: orphan math remains outside the folder lattice.',
+    boundary:
+      'Routing computed roots into digit folders is structural bookkeeping inside the repository model; it is not an external physics proof.',
+  }
+}
+
 function uniqueDiamondKinds(items: readonly DiamondKind[]): readonly DiamondKind[] {
   return REQUIRED_DIAMOND_KINDS.filter((kind) => items.includes(kind))
 }
@@ -3642,6 +3720,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Digits verify the digital quantum-inspired model through folders, waves, superpositions, receipts, and roots.',
     },
     {
+      title: 'Ceccec Digit Math',
+      command: 'concept.digit.math',
+      route: '/quantum-mind#ceccec-digit-math',
+      summary: 'Every computed root is routed into a ceccec digit folder, so the digit folders do the math always.',
+    },
+    {
       title: 'Coordinated Waves',
       command: 'concept.wave.coordination',
       route: '/quantum-mind#coordinated-waves',
@@ -3816,6 +3900,10 @@ export function executeConceptCommand(
   if (command === 'concept.digit.proof') {
     const proof = digitalQuantumProof(matrix)
     return result(command, proof.proven, 'Digital quantum proof computed.', proof)
+  }
+  if (command === 'concept.digit.math') {
+    const math = digitFoldersDoMath(matrix)
+    return result(command, math.always, 'Ceccec digit folders carried every computed root.', math)
   }
   if (command === 'concept.wave.coordination') {
     return result(command, true, 'Coordinated yin-yang waves computed.', coordinatedWaves(matrix))

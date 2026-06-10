@@ -46,6 +46,8 @@ Command = {
   concept.diamond.piTrain,
   concept.diamond.complete,
   concept.diamond.metatron,
+  concept.digit.proof,
+  concept.digit.math,
   concept.wave.coordination,
   concept.wave.closeGaps,
   concept.chess.quantum,
@@ -320,7 +322,18 @@ verify(leaf, path, root) = fold(acc, step) where
 included(atom) = verify(bind(atom), path, root_M) == root_M
 ```
 
-## 22. Boundary
+## 22. Ceccec digit math
+
+```text
+folder_i = digit_i / reverseDigit_i
+subjects = {matrix, proof, selfBuild, selfComplete, education, trinities, merkle, digitProof}
+digit(root) = sum(hexNibbles(root)) mod 10
+bind(s) = s -> folder where folder.digit = digit(root(s))
+always = |folders|>0 && forall s: bind(s)!=empty
+mathRoot = merkleFold({receipt(bind(s))})
+```
+
+## 23. Boundary
 
 ```text
 site_claims = computed_repository_artifacts
