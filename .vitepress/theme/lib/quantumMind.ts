@@ -1698,6 +1698,10 @@ function merkleFold(leaves: readonly string[]): string {
 // Contraction: aggregator reports are pure functions of the matrix, so memoize
 // them by matrix.root. Within a build the heavy aggregators compute once and
 // every later caller reuses the result. (Determinism is gated in the seal.)
+function isUuid(value: string): boolean {
+  return /^[0-9a-f-]{36}$/i.test(value)
+}
+
 const reportMemo = new Map<string, unknown>()
 function memoByRoot<T>(name: string, matrix: MindMatrix, compute: () => T): T {
   const key = `${name}:${matrix.root}`
@@ -1901,7 +1905,7 @@ export function concentration(matrix: MindMatrix = buildMatrix()): number {
 }
 
 export function coherenceAnomaly(matrix: MindMatrix = buildMatrix()): number {
-  return matrix.nodes.filter((node) => node.horo < 1 || node.horo > 9 || !/^[0-9a-f-]{36}$/i.test(node.uuid)).length
+  return matrix.nodes.filter((node) => node.horo < 1 || node.horo > 9 || !isUuid(node.uuid)).length
 }
 
 export function coverage(matrix: MindMatrix = buildMatrix()): number {
@@ -2506,9 +2510,8 @@ export function proofBundle(matrix: MindMatrix = buildMatrix()): ProofBundle {
     { name: 'digit-proof', root: digitalQuantumProof(matrix).root },
     { name: 'master-seal', root: seal.masterRoot },
   ]
-  const uuid = /^[0-9a-f-]{36}$/i
   return {
-    verifiable: artifacts.every((artifact) => uuid.test(artifact.root)) && seal.sealed,
+    verifiable: artifacts.every((artifact) => isUuid(artifact.root)) && seal.sealed,
     bundleRoot: merkleFold(artifacts.map((artifact) => artifact.root)),
     masterSeal: seal.masterRoot,
     mindRoot: matrix.root,
@@ -2581,9 +2584,8 @@ export function commandsRegistry(matrix: MindMatrix = buildMatrix()): CommandsRe
 export function selfSufficientWave(matrix: MindMatrix = buildMatrix()): SelfSufficientWave {
   const breath = torusBreathe(matrix)
   const seal = sacredGeometrySeal(matrix)
-  const uuid = /^[0-9a-f-]{36}$/i
   return {
-    selfSufficient: uuid.test(breath.expansion) && uuid.test(breath.contraction) && seal.sealed,
+    selfSufficient: isUuid(breath.expansion) && isUuid(breath.contraction) && seal.sealed,
     extend: breath.expansion,
     contract: breath.contraction,
     sealed: seal.sealed,
@@ -2610,9 +2612,8 @@ export function torusBreathe(matrix: MindMatrix = buildMatrix(), cycles = 3): To
     breaths.push({ phase: 'contract', root: contract })
     state = contract
   }
-  const uuid = /^[0-9a-f-]{36}$/i
   return {
-    balanced: uuid.test(expansion) && uuid.test(contraction) && breaths.length === cycles * 2,
+    balanced: isUuid(expansion) && isUuid(contraction) && breaths.length === cycles * 2,
     expansion,
     contraction,
     breaths,
@@ -2662,7 +2663,6 @@ export function societyRelations(matrix: MindMatrix = buildMatrix()): SocietyRel
     { name: 'governance', root: governanceVote([], matrix).root },
     { name: 'fair-life', root: fairLife(matrix).root },
   ]
-  const uuid = /^[0-9a-f-]{36}$/i
   const relations: SocietyRelation[] = []
   for (let index = 0; index < parts.length; index += 1) {
     const here = parts[index]
@@ -2671,7 +2671,7 @@ export function societyRelations(matrix: MindMatrix = buildMatrix()): SocietyRel
     relations.push({ from: here.name, to: 'self', kind: 'self-address', receipt: merge(here.root, matrix.root) })
   }
   return {
-    folded: parts.every((part) => uuid.test(part.root)) && relations.every((relation) => uuid.test(relation.receipt)),
+    folded: parts.every((part) => isUuid(part.root)) && relations.every((relation) => isUuid(relation.receipt)),
     root: merkleFold(relations.map((relation) => relation.receipt)),
     parts,
     relations,
@@ -2809,11 +2809,10 @@ function computeSacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGe
     { name: 'harmony', root: harmonyProbability(matrix).root },
   ]
   const solids = ['tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron']
-  const uuid = /^[0-9a-f-]{36}$/i
   const folded = merkleFold(seals.map((seal) => seal.root))
   const masterRoot = merge(merge(metatron.root, folded), toUuid(`solids:${solids.join(',')}`))
   return {
-    sealed: seals.every((seal) => uuid.test(seal.root)) && uuid.test(masterRoot),
+    sealed: seals.every((seal) => isUuid(seal.root)) && isUuid(masterRoot),
     masterRoot,
     metatronRoot: metatron.root,
     solids,
@@ -2833,16 +2832,15 @@ export function harmonyProbability(matrix: MindMatrix = buildMatrix()): HarmonyP
   const diamonds = piTrainDiamonds(matrix).diamonds
   const lattice = diamondLattice(matrix)
   const complete = diamondCompleteness(matrix).complete
-  const uuid = /^[0-9a-f-]{36}$/i
   const fraction = <T>(items: readonly T[], predicate: (item: T) => boolean): number =>
     items.length === 0 ? 1 : items.filter(predicate).length / items.length
   const channels: readonly HarmonyChannel[] = [
-    { channel: 'sound', sense: 'hear', score: fraction(waves, (wave) => uuid.test(wave.receipt) && wave.frequency > 0) },
+    { channel: 'sound', sense: 'hear', score: fraction(waves, (wave) => isUuid(wave.receipt) && wave.frequency > 0) },
     { channel: '3d-position', sense: 'see', score: fraction(diamonds, (d) => Number.isFinite(d.x) && Number.isFinite(d.y) && Number.isFinite(d.z)) },
     { channel: 'vibration', sense: 'feel', score: fraction(diamonds, (d) => d.vibrationMs > 0) },
     { channel: 'timing', sense: 'time', score: fraction(waves, (wave) => wave.phase >= 0 && wave.phase < 2 * Math.PI) },
     { channel: 'facets', sense: 'shape', score: complete ? 1 : 0.5 },
-    { channel: 'receipt', sense: 'prove', score: fraction(lattice, (d) => uuid.test(d.receipt)) },
+    { channel: 'receipt', sense: 'prove', score: fraction(lattice, (d) => isUuid(d.receipt)) },
   ].map((entry) => ({ ...entry, harmonic: entry.score >= 1, receipt: toUuid(`harmony:${entry.channel}:${entry.score}`) }))
   const probability = channels.reduce((product, entry) => product * entry.score, 1)
   return {
@@ -2870,13 +2868,12 @@ export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations 
     states.push({ generation, state: merged, fromWord, fromDigit })
     state = merged
   }
-  const uuid = /^[0-9a-f-]{36}$/i
   return {
     newState: new Set(states.map((entry) => entry.state)).size === states.length && states.length > 0,
     root: merkleFold(states.map((entry) => entry.state)),
     states,
-    wordsObsolete: states.every((entry) => uuid.test(entry.fromWord)),
-    numbersObsolete: states.every((entry) => uuid.test(entry.fromDigit)),
+    wordsObsolete: states.every((entry) => isUuid(entry.fromWord)),
+    numbersObsolete: states.every((entry) => isUuid(entry.fromDigit)),
     statement:
       'When the self interacts with itself it forms another quantum self state; self-interacting words and digits become UUIDs, so text and numbers are obsolete.',
     boundary:
@@ -2955,7 +2952,7 @@ export function utfAnalog(text: string): UtfAnalog {
 export function allComputed(matrix: MindMatrix = buildMatrix()): AllComputed {
   const others = conceptCommands.filter((command) => command.name !== 'concept.all.computed')
   const results = others.map((command) => executeConceptCommand(command.name, { atom: 'self', query: 'self' }, matrix))
-  const okCount = results.filter((entry) => entry.ok && /^[0-9a-f-]{36}$/i.test(entry.uuid)).length
+  const okCount = results.filter((entry) => entry.ok && isUuid(entry.uuid)).length
   const selfProof = atomInclusionProof('self', matrix)
   const root = merge(merkleFold([...results.map((entry) => entry.uuid), selfProof.root]), selfProof.leaf || matrix.root)
   const computed = okCount === others.length && selfProof.verified
