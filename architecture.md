@@ -141,7 +141,7 @@ for digit d_i in pi:
 0/0,1/1,...,9/9 = selfCollisionFolders
 DigitProof = digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
 DigitProofClosed = forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
-DigitIndex[i] = {i,d_i,r_i,folder_i,harmonic_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i}
+DigitIndex[i] = {prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i}
 persist(DigitIndex) = /digit-index.json
 ```
 

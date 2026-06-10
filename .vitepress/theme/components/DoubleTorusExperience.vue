@@ -234,6 +234,11 @@ onBeforeUnmount(() => {
             next={{ activePulse.nextHarmonicFolder }} ·
             collision={{ activePulse.selfCollision ? 'self' : 'paired' }}
           </span>
+          <span>
+            refs={{ activePulse.previousIndex }} -> {{ activePulse.index }} -> {{ activePulse.nextIndex }};
+            reverse={{ activePulse.reverseIndex }};
+            harmonic={{ activePulse.harmonicIndex }}
+          </span>
           <span>frequency {{ activePulse.frequency }}Hz · vibration {{ activePulse.vibrationMs }}ms</span>
           <span>
             closure wave {{ activeClosureWave.wave.index }} targets {{ activeClosureWave.target }}

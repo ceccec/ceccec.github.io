@@ -418,6 +418,10 @@ export interface QuantumDiamond {
 
 export interface PiTrainDiamond {
   readonly index: number
+  readonly previousIndex: number
+  readonly nextIndex: number
+  readonly reverseIndex: number
+  readonly harmonicIndex: number
   readonly digit: number
   readonly glyph: string
   readonly reverseDigit: number
@@ -432,6 +436,7 @@ export interface PiTrainDiamond {
   readonly scale: number
   readonly frequency: number
   readonly vibrationMs: number
+  readonly referenceReceipt: string
   readonly diamond: QuantumDiamond
 }
 
@@ -2070,10 +2075,14 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
   const lattice = diamondLattice(matrix)
   const sequence = digits.replace(/\D/g, '')
   const train = [...sequence].map((glyph, index) => {
+    const previousIndex = (index - 1 + sequence.length) % sequence.length
+    const nextIndex = (index + 1) % sequence.length
+    const reverseIndex = sequence.length - 1 - index
+    const harmonicIndex = nextIndex
     const digit = Number.parseInt(glyph, 10)
-    const reverseDigit = Number.parseInt(sequence[sequence.length - 1 - index], 10)
-    const nextGlyph = sequence[(index + 1) % sequence.length]
-    const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - ((index + 1) % sequence.length)], 10)
+    const reverseDigit = Number.parseInt(sequence[reverseIndex], 10)
+    const nextGlyph = sequence[nextIndex]
+    const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - nextIndex], 10)
     const folder = `${digit}/${reverseDigit}`
     const nextHarmonicFolder = `${Number.parseInt(nextGlyph, 10)}/${nextReverseDigit}`
     const selfCollision = digit === reverseDigit
@@ -2116,6 +2125,10 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
 
     return {
       index,
+      previousIndex,
+      nextIndex,
+      reverseIndex,
+      harmonicIndex,
       digit,
       glyph,
       reverseDigit,
@@ -2130,6 +2143,7 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       scale: point.scale,
       frequency: 174 + digit * 33 + (index % 7) * 7,
       vibrationMs: 18 + digit * 9,
+      referenceReceipt: toUuid(`digit-reference:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`),
       diamond: pulseDiamond,
     }
   })

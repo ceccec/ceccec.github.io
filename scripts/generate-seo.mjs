@@ -49,10 +49,14 @@ function uuid(seed) {
 }
 
 const digitIndex = [...piDigits].map((glyph, index) => {
+  const previousIndex = (index - 1 + piDigits.length) % piDigits.length
+  const nextIndex = (index + 1) % piDigits.length
+  const reverseIndex = piDigits.length - 1 - index
+  const harmonicIndex = nextIndex
   const digit = Number.parseInt(glyph, 10)
-  const reverseDigit = Number.parseInt(piDigits[piDigits.length - 1 - index], 10)
-  const nextDigit = Number.parseInt(piDigits[(index + 1) % piDigits.length], 10)
-  const nextReverseDigit = Number.parseInt(piDigits[piDigits.length - 1 - ((index + 1) % piDigits.length)], 10)
+  const reverseDigit = Number.parseInt(piDigits[reverseIndex], 10)
+  const nextDigit = Number.parseInt(piDigits[nextIndex], 10)
+  const nextReverseDigit = Number.parseInt(piDigits[piDigits.length - 1 - nextIndex], 10)
   const folder = `${digit}/${reverseDigit}`
   const nextHarmonicFolder = `${nextDigit}/${nextReverseDigit}`
   const theta = (index / piDigits.length) * Math.PI * 4
@@ -63,10 +67,15 @@ const digitIndex = [...piDigits].map((glyph, index) => {
   const z = radius * Math.sin(phi)
   const inward = Math.sin(theta) * (digit === reverseDigit ? 1 : 0.5)
   const outward = Math.cos(phi) * (digit + 1) / 10
-  const receipt = uuid(`${index}:${folder}:${nextHarmonicFolder}:${x}:${y}:${z}`)
+  const referenceReceipt = uuid(`ref:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`)
+  const receipt = uuid(`${index}:${folder}:${nextHarmonicFolder}:${x}:${y}:${z}:${referenceReceipt}`)
 
   return {
     index,
+    previousIndex,
+    nextIndex,
+    reverseIndex,
+    harmonicIndex,
     digit,
     reverseDigit,
     folder,
@@ -82,6 +91,7 @@ const digitIndex = [...piDigits].map((glyph, index) => {
     inward,
     outward,
     interference: inward * outward,
+    referenceReceipt,
     receipt,
   }
 })
