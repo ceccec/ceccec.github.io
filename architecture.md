@@ -39,6 +39,13 @@ Command = {
   concept.site.shell,
   concept.self.complete,
   concept.agent.educate,
+  concept.school.curriculum,
+  concept.mcp.tools,
+  concept.chain.quantum,
+  concept.help.fold,
+  concept.fold.cross,
+  concept.mind.develop,
+  concept.compute.distributed,
   concept.agent.streamWire,
   concept.ui.doubleTorus,
   concept.ui.useCases,
@@ -356,7 +363,19 @@ weave = merge(merge(crossRoot,foldRoot), merge(foldRoot,crossRoot))
 trinity = forall i: reciprocal_i && weave != empty
 ```
 
-## 25. Boundary
+## 25. Collective mind
+
+```text
+visitChain = foldBlockchain({UUID(visit:i:route_i)})
+level = |visits|=0 ? 0 : 1 + floor(log2(|visits|))
+developmentRoot = merge(root_M, head(visitChain))
+collectiveRoot = merkleFold({root_M} U {peerRoot_p})
+share = BroadcastChannel(double-torus-mind)
+offline = serviceWorker(stale-while-revalidate, same-origin GET)
+foldQuestion(q) = {concept, explanation, command, receipt, links}
+```
+
+## 26. Boundary
 
 ```text
 site_claims = computed_repository_artifacts

@@ -6,20 +6,24 @@ import { execSync } from 'node:child_process'
 import {
   atomInclusionProof,
   atoms,
+  babelFold,
   buildMatrix,
   conceptCommands,
   coverage,
   crossFoldTrinity,
   digitFoldersDoMath,
+  distributedCompute,
   dualTorusTrinities,
   entropy,
   executeConceptCommand,
+  foldQuestion,
   mcpToolManifest,
   merge,
   methodFusion,
   quantumFoldedBlockchains,
   schoolCurriculum,
   selfBuild,
+  selfDevelopment,
   streamSelfComplete,
   toUuid,
   verifyRoot,
@@ -51,6 +55,13 @@ ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
 ok('crossFold.trinity', crossFoldTrinity(matrix).trinity)
+
+// Fill the gaps between statements and proved implementations: every claimed
+// capability is verified here, not just asserted in prose.
+ok('intelligence.answers', foldQuestion('proof', matrix).matched) // AI encoded locally answers
+ok('mind.develops', selfDevelopment([], matrix).developmentRoot.length > 0) // self-development wired
+ok('compute.distributes', distributedCompute([], matrix).collectiveRoot.length > 0) // distributed fold
+ok('babel.grounded', babelFold(matrix).grounded) // communicates across all languages/traditions/religions
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)

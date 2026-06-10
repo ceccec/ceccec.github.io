@@ -359,7 +359,20 @@ weave := merge(merge(crossRoot,foldRoot), merge(foldRoot,crossRoot))
 trinity := (forall i: reciprocal_i) && weave != empty   // {cross, fold, weave}
 ```
 
-## 24. Граница
+## 24. Колективен ум
+
+```text
+visit_i := route при зареждане на страница
+visitChain := foldBlockchain({ UUID(visit:i:route_i) })
+level := if |visits|=0 then 0 else 1 + floor(log2(|visits|))
+developmentRoot := merge(root_M, head(visitChain))     // себе си се развива чрез посещение
+collectiveRoot := merkleFold({ root_M } U { peerRoot_p })  // разпределено между контексти
+share := BroadcastChannel(double-torus-mind)            // същ произход, реално време
+offline := serviceWorker(stale-while-revalidate, same-origin GET)  // онлайн и офлайн
+foldQuestion(q) := { concept, explanation, command, receipt, links }  // ИИ като локална интелигентност
+```
+
+## 25. Граница
 
 ```text
 Claim(site) = computed(repo)

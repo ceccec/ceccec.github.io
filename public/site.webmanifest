@@ -1,0 +1,15 @@
+{
+  "name": "Double Torus — Quantum Learning Portal",
+  "short_name": "Double Torus",
+  "description": "A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream. Works online and offline.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "lang": "en",
+  "categories": ["education", "productivity", "developer"],
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

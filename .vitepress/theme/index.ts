@@ -2,6 +2,7 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import CollectiveMind from './components/CollectiveMind.vue'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
@@ -21,11 +22,12 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),
-      // Intelligent help folded into every page.
-      'layout-bottom': () => h(GlobalHelp),
+      // Intelligent help + collective-mind self-development folded into every page.
+      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind)],
     })
   },
   enhanceApp({ app }) {
+    app.component('CollectiveMind', CollectiveMind)
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('GlobalHelp', GlobalHelp)

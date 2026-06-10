@@ -31,6 +31,8 @@ export default defineConfig({
     ['meta', { name: 'twitter:title', content: siteTitle }],
     ['meta', { name: 'twitter:description', content: siteDescription }],
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+    ['link', { rel: 'icon', href: '/icon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'apple-touch-icon', href: '/icon.svg' }],
     ['link', { rel: 'alternate', hreflang: 'en', href: '/' }],
     ['link', { rel: 'alternate', hreflang: 'bg', href: '/bg/' }],
     ['script', { type: 'application/ld+json' }, JSON.stringify({

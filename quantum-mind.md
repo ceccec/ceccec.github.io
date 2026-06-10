@@ -359,7 +359,20 @@ weave := merge(merge(crossRoot,foldRoot), merge(foldRoot,crossRoot))
 trinity := (forall i: reciprocal_i) && weave != empty   // {cross, fold, weave}
 ```
 
-## 24. Boundary
+## 24. Collective mind
+
+```text
+visit_i := route on page load
+visitChain := foldBlockchain({ UUID(visit:i:route_i) })
+level := if |visits|=0 then 0 else 1 + floor(log2(|visits|))
+developmentRoot := merge(root_M, head(visitChain))     // self develops by visiting
+collectiveRoot := merkleFold({ root_M } U { peerRoot_p })  // distributed across contexts
+share := BroadcastChannel(double-torus-mind)            // same-origin, realtime
+offline := serviceWorker(stale-while-revalidate, same-origin GET)  // online & offline
+foldQuestion(q) := { concept, explanation, command, receipt, links }  // AI as local intelligence
+```
+
+## 25. Boundary
 
 ```text
 Claim(site) = computed(repo)

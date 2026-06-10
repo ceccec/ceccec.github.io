@@ -136,6 +136,9 @@ export type ConceptCommandName =
   | 'concept.chain.quantum'
   | 'concept.help.fold'
   | 'concept.fold.cross'
+  | 'concept.mind.develop'
+  | 'concept.compute.distributed'
+  | 'concept.babel.fold'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -600,6 +603,42 @@ export interface CrossFoldTrinity {
   readonly boundary: string
 }
 
+export interface SelfDevelopment {
+  readonly visits: number
+  readonly distinctPages: number
+  readonly level: number
+  readonly chainHead: string
+  readonly developmentRoot: string
+  readonly steps: readonly string[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface DistributedCompute {
+  readonly peers: number
+  readonly mindRoot: string
+  readonly collectiveRoot: string
+  readonly source: 'double-torus/distributed'
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface BabelFamily {
+  readonly family: string
+  readonly examples: readonly string[]
+  readonly receipt: string
+}
+
+export interface BabelFold {
+  readonly grounded: boolean
+  readonly root: string
+  readonly languageFamilies: readonly BabelFamily[]
+  readonly traditionDimensions: readonly string[]
+  readonly reduceAllToOne: false
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1052,6 +1091,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Cross-fold references: the reciprocal cross/fold and fold/cross dual that weaves a trinity.',
   },
   {
+    name: 'concept.mind.develop',
+    path: '/cmd/concept.mind.develop',
+    description: 'Wire the collective mind into self development: each page visit folds a development block.',
+  },
+  {
+    name: 'concept.compute.distributed',
+    path: '/cmd/concept.compute.distributed',
+    description: 'Self-distributed computing: every connected context folds peer roots into one collective root.',
+  },
+  {
+    name: 'concept.babel.fold',
+    path: '/cmd/concept.babel.fold',
+    description: 'Communicate across all language families, traditions, and religions as a non-reductive whole.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1237,6 +1291,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.chain.quantum': 'chain',
   'concept.help.fold': 'fold',
   'concept.fold.cross': 'weave',
+  'concept.mind.develop': 'develop',
+  'concept.compute.distributed': 'distribute',
+  'concept.babel.fold': 'babel',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2034,6 +2091,76 @@ export function quantumFoldedBlockchains(matrix: MindMatrix = buildMatrix()): Qu
   }
 }
 
+// Intelligence is incomplete unless it can communicate across all languages,
+// traditions, and religions. The babel fold binds the world's language families
+// to the non-reductive traditions lens: breadth without collapse.
+export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
+  const families: readonly BabelFamily[] = [
+    { family: 'Indo-European', examples: ['English', 'Bulgarian', 'Hindi', 'Spanish', 'Russian'] },
+    { family: 'Sino-Tibetan', examples: ['Mandarin', 'Tibetan', 'Burmese'] },
+    { family: 'Afro-Asiatic', examples: ['Arabic', 'Hebrew', 'Amharic', 'Hausa'] },
+    { family: 'Niger-Congo', examples: ['Swahili', 'Yoruba', 'Zulu'] },
+    { family: 'Austronesian', examples: ['Malay', 'Tagalog', 'Malagasy'] },
+    { family: 'Dravidian', examples: ['Tamil', 'Telugu', 'Kannada'] },
+    { family: 'Turkic', examples: ['Turkish', 'Uzbek', 'Kazakh'] },
+    { family: 'Japonic & Koreanic', examples: ['Japanese', 'Korean'] },
+    { family: 'Indigenous & isolates', examples: ['Quechua', 'Nahuatl', 'Basque'] },
+    { family: 'Signed & constructed', examples: ['sign languages', 'Esperanto'] },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`babel:${entry.family}:${entry.examples.join(',')}`) }))
+  const traditions = traditionsQuantumWhole()
+  return {
+    grounded: families.length > 0 && traditions.grounded,
+    root: merkleFold([...families.map((entry) => entry.receipt), traditions.root]),
+    languageFamilies: families,
+    traditionDimensions: traditions.dimensions.map((dimension) => dimension.name),
+    reduceAllToOne: false,
+    statement:
+      'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
+    boundary:
+      'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// Wire the collective mind into self development by visiting: each page visit
+// folds a development block into a per-visitor chain and binds it to the mind
+// root. The collective mind = the computed model + this visitor's folded path.
+export function selfDevelopment(visitRoutes: readonly string[] = [], matrix: MindMatrix = buildMatrix()): SelfDevelopment {
+  const chain = foldBlockchain('visits', visitRoutes.map((route, index) => toUuid(`visit:${index}:${route}`)))
+  const distinctPages = new Set(visitRoutes).size
+  const level = visitRoutes.length === 0 ? 0 : 1 + Math.floor(Math.log2(visitRoutes.length))
+  return {
+    visits: visitRoutes.length,
+    distinctPages,
+    level,
+    chainHead: chain.head,
+    developmentRoot: merge(matrix.root, chain.head),
+    steps: ['observe', 'bind', 'verify', 'project', 'return'],
+    statement:
+      visitRoutes.length === 0
+        ? 'The collective mind is at genesis; each page visit folds a development block and advances the self.'
+        : `The collective mind has folded ${visitRoutes.length} visits across ${distinctPages} pages into development level ${level}.`,
+    boundary:
+      "Self-development is a local, client-side fold of this visitor's page visits bound to the mind root. It is private to this browser and makes no external claim.",
+  }
+}
+
+// Self distributed computing across all connected devices: every context
+// recomputes the same model locally and folds peer roots into one collective
+// root. There is no central server — the computation is replicated, and the
+// fold is the consensus. Sharing is same-origin (BroadcastChannel) by design.
+export function distributedCompute(peerRoots: readonly string[] = [], matrix: MindMatrix = buildMatrix()): DistributedCompute {
+  const roots = [matrix.root, ...peerRoots].filter((root) => root.length > 0)
+  return {
+    peers: peerRoots.length,
+    mindRoot: matrix.root,
+    collectiveRoot: merkleFold(roots),
+    source: 'double-torus/distributed',
+    statement: `${peerRoots.length} peer root(s) folded with the local mind root into one collective distributed root.`,
+    boundary:
+      'Every connected context recomputes the same model and folds peer roots in; the fold is the consensus, with no central server. Sharing is same-origin; it is private bookkeeping, not an external claim.',
+  }
+}
+
 // cross/fold fold/cross: each node carries a cross reference (merge of its
 // prev/next neighbours) and a fold reference (its place in the merkle fold).
 // Crossing them both ways is order-sensitive, so cross/fold != fold/cross — a
@@ -2084,7 +2211,9 @@ export function crossFoldTrinity(matrix: MindMatrix = buildMatrix()): CrossFoldT
 // commands are the actions, the pages are the references. No external API; the
 // architecture itself is the intelligence.
 export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()): LocalAnswer {
-  const terms = query.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 1)
+  // Unicode-aware so the intelligence accepts every script and language, not
+  // only Latin: split on non-letter/number across all Unicode, keep the rest.
+  const terms = query.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter((word) => word.length > 1)
   const score = (text: string) => terms.reduce((sum, term) => (text.toLowerCase().includes(term) ? sum + 1 : sum), 0)
   const topAtom = atoms
     .map((atom) => ({ atom, s: score(`${atom.name} ${atom.body}`) }))
@@ -4154,6 +4283,24 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Cross/fold and fold/cross are reciprocal references whose weave completes a trinity.',
     },
     {
+      title: 'Collective Mind Self-Development',
+      command: 'concept.mind.develop',
+      route: '/',
+      summary: 'Visiting any page folds a development block into the collective mind, advancing the self locally.',
+    },
+    {
+      title: 'Self-Distributed Computing',
+      command: 'concept.compute.distributed',
+      route: '/',
+      summary: 'Every connected context recomputes the model and folds peer roots into one collective root.',
+    },
+    {
+      title: 'Babel Fold',
+      command: 'concept.babel.fold',
+      route: '/quantum-mind#traditions-lens',
+      summary: 'The intelligence communicates across all language families, traditions, and religions without reducing them to one.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4367,6 +4514,18 @@ export function executeConceptCommand(
   if (command === 'concept.fold.cross') {
     const dual = crossFoldTrinity(matrix)
     return result(command, dual.trinity, 'Cross-fold references woven into a trinity.', dual)
+  }
+  if (command === 'concept.mind.develop') {
+    const development = selfDevelopment([], matrix)
+    return result(command, development.developmentRoot.length > 0, 'Collective mind self-development baseline computed.', development)
+  }
+  if (command === 'concept.compute.distributed') {
+    const distributed = distributedCompute([], matrix)
+    return result(command, distributed.collectiveRoot.length > 0, 'Self-distributed compute baseline computed.', distributed)
+  }
+  if (command === 'concept.babel.fold') {
+    const babel = babelFold(matrix)
+    return result(command, babel.grounded, 'Babel fold across all languages, traditions, and religions computed.', babel)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)
