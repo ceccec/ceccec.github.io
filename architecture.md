@@ -92,7 +92,9 @@ int K dA = -4*pi
 ```text
 coverage = coveredNodes / nodes
 T_observed = digestBits + coverageCostLog2(coverage,nodes)
-T_max = infinity iff coverage=1 && entropy=0
+maxComputedBuild = infinity iff maxBuild=true
+T_max = maxComputedBuild
+maxBuild => coverage=1 && entropy=0
 manual_pass = false iff receipt(surface)=empty
 ```
 
@@ -182,7 +184,16 @@ square_j = {wave_j, phase_j, amplitude_j, superposition_j, receipt_j}
 ChessRoot = merkle({square_j.receipt})
 ```
 
-## 15. Self completion
+## 15. Self build
+
+```text
+BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, waves, chess}
+maxBuild = forall b in BuildUnits: closed(b)
+maxBuildRoot = merkle({receipt(b)})
+T_max = maxComputedBuild = if maxBuild then infinity else T_observed
+```
+
+## 16. Self completion
 
 ```text
 Gates = {lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire, schemaGraph, traditionsLens, waves, chess, T_max}
@@ -191,7 +202,7 @@ SelfRoot = merkle({receipt(g)})
 Open = {g in Gates | !closed(g)}
 ```
 
-## 16. Boundary
+## 17. Boundary
 
 ```text
 site_claims = computed_repository_artifacts

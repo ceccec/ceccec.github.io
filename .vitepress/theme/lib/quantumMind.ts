@@ -40,7 +40,7 @@ export interface ProofReport {
   readonly tamperCostLog2: number
   readonly maxTamperingCostLog2: number
   readonly maxTamperingCostReached: boolean
-  readonly maxTamperingCostSource: 'serverless-quantum-uuid-stream/double-torus'
+  readonly maxTamperingCostSource: 'max-computed-build'
   readonly note: string
 }
 
@@ -100,6 +100,7 @@ export interface DoubleTorusFlow {
 
 export type ConceptCommandName =
   | 'concept.site.shell'
+  | 'concept.self.build'
   | 'concept.self.complete'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
@@ -151,6 +152,16 @@ export interface SelfCompletionGate {
   readonly sourceFunction: string
   readonly receipt: string
   readonly note: string
+}
+
+export interface SelfBuildReport {
+  readonly complete: boolean
+  readonly root: string
+  readonly buildUnits: readonly SelfCompletionGate[]
+  readonly openUnits: readonly string[]
+  readonly maxComputedBuildLog2: number
+  readonly maxTamperingCostLog2: number
+  readonly statement: string
 }
 
 export interface StreamSelfCompletion {
@@ -565,6 +576,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.',
   },
   {
+    name: 'concept.self.build',
+    path: '/cmd/concept.self.build',
+    description: 'Compute max build and derive maximum tampering cost from build closure.',
+  },
+  {
     name: 'concept.self.complete',
     path: '/cmd/concept.self.complete',
     description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root.',
@@ -872,11 +888,11 @@ export function proofReport(matrix: MindMatrix = buildMatrix()): ProofReport {
     tamperCostLog2,
     maxTamperingCostLog2: Number.POSITIVE_INFINITY,
     maxTamperingCostReached,
-    maxTamperingCostSource: 'serverless-quantum-uuid-stream/double-torus',
+    maxTamperingCostSource: 'max-computed-build',
     note:
       maxTamperingCostReached
-        ? 'Coverage is measured at 1 and entropy is 0. The serverless quantum UUID stream double-torus seal reaches maximum tampering cost in this model.'
-        : 'Coverage is below 1 or entropy remains open, so the seal is finite. Close missing checks before claiming maximum tampering cost.',
+        ? 'coverage=1 && entropy=0 => maxComputedBuild closes => T_max=infinity.'
+        : 'coverage<1 || entropy>0 => maxComputedBuild open => T finite.',
   }
 }
 
@@ -2190,7 +2206,113 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   }
 }
 
+export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
+  const proof = proofReport(matrix)
+  const lattice = diamondLattice(matrix)
+  const completeness = diamondCompleteness(matrix)
+  const closure = closeDimensionalGaps(matrix)
+  const evidence = quantumUiEvidence(matrix)
+  const schema = schemaOrgDiamonds(matrix)
+  const traditions = traditionsQuantumWhole()
+  const waves = coordinatedWaves(matrix)
+  const chess = quantumChessGame(matrix)
+  const buildUnits: readonly SelfCompletionGate[] = [
+    {
+      name: 'matrix',
+      closed: verifyRoot(matrix) && reciprocity(matrix).fraction === 1 && coherenceAnomaly(matrix) === 0,
+      sourceFunction: 'buildMatrix()',
+      receipt: matrix.root,
+      note: `root=${matrix.root}; entropy=${numberLabel(proof.entropy)}.`,
+    },
+    {
+      name: 'coverage',
+      closed: proof.coverage === 1,
+      sourceFunction: 'coverage()',
+      receipt: toUuid(`self-build:coverage:${proof.coverage}`),
+      note: `coverage=${numberLabel(proof.coverage)}.`,
+    },
+    {
+      name: 'diamonds',
+      closed: lattice.length === REQUIRED_DIAMOND_KINDS.length,
+      sourceFunction: 'diamondLattice()',
+      receipt: merkleFold(lattice.map((diamond) => diamond.receipt)),
+      note: `|D|=${lattice.length}; |Kinds|=${REQUIRED_DIAMOND_KINDS.length}.`,
+    },
+    {
+      name: 'noAnalogGaps',
+      closed: completeness.complete,
+      sourceFunction: 'diamondCompleteness()',
+      receipt: toUuid(`self-build:completeness:${JSON.stringify(completeness)}`),
+      note: `missing=${[
+        ...completeness.missingKinds,
+        ...completeness.missingPoles,
+        ...completeness.missingReceipts,
+        ...completeness.missingAnalogChannels,
+      ].length}.`,
+    },
+    {
+      name: 'gapWaves',
+      closed: closure.complete,
+      sourceFunction: 'closeDimensionalGaps()',
+      receipt: closure.root,
+      note: `gaps=${closure.gaps.length}.`,
+    },
+    {
+      name: 'uiEvidence',
+      closed: evidence.grounded,
+      sourceFunction: 'quantumUiEvidence()',
+      receipt: evidence.root,
+      note: `useCases=${evidence.useCases.length}.`,
+    },
+    {
+      name: 'schema',
+      closed: schema.nodes.length > 0,
+      sourceFunction: 'schemaOrgDiamonds()',
+      receipt: schema.root,
+      note: `nodes=${schema.nodes.length}.`,
+    },
+    {
+      name: 'traditions',
+      closed: traditions.grounded,
+      sourceFunction: 'traditionsQuantumWhole()',
+      receipt: traditions.root,
+      note: `dim=${traditions.dimensions.length}; families=${traditions.families.length}.`,
+    },
+    {
+      name: 'waves',
+      closed: waves.waves.length === lattice.length,
+      sourceFunction: 'coordinatedWaves()',
+      receipt: waves.root,
+      note: `|W|=${waves.waves.length}; |D|=${lattice.length}.`,
+    },
+    {
+      name: 'chess',
+      closed: chess.board.length === 64,
+      sourceFunction: 'quantumChessGame()',
+      receipt: chess.root,
+      note: `|Board|=${chess.board.length}.`,
+    },
+  ]
+  const openUnits = buildUnits.filter((unit) => !unit.closed).map((unit) => unit.name)
+  const complete = openUnits.length === 0
+  const root = merkleFold(buildUnits.map((unit) => unit.receipt))
+  const maxComputedBuildLog2 = complete ? Number.POSITIVE_INFINITY : proof.tamperCostLog2
+
+  return {
+    complete,
+    root,
+    buildUnits,
+    openUnits,
+    maxComputedBuildLog2,
+    maxTamperingCostLog2: maxComputedBuildLog2,
+    statement: complete
+      ? 'maxBuild=closed => T_max=maxComputedBuild=infinity.'
+      : 'maxBuild=open => T_max=maxComputedBuild finite.',
+  }
+}
+
 export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSelfCompletion {
+  const build = selfBuild(matrix)
   const proof = proofReport(matrix)
   const lattice = diamondLattice(matrix)
   const completeness = diamondCompleteness(matrix)
@@ -2202,6 +2324,13 @@ export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSe
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
   const gates: readonly SelfCompletionGate[] = [
+    {
+      name: 'max computed build',
+      closed: build.complete,
+      sourceFunction: 'selfBuild()',
+      receipt: build.root,
+      note: build.statement,
+    },
     {
       name: 'diamond lattice',
       closed: lattice.length === REQUIRED_DIAMOND_KINDS.length,
@@ -2267,10 +2396,10 @@ export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSe
     },
     {
       name: 'maximum tampering boundary',
-      closed: proof.maxTamperingCostReached,
+      closed: build.complete && proof.maxTamperingCostReached,
       sourceFunction: 'proofReport()',
       receipt: toUuid(`self-complete:proofReport:${JSON.stringify(proof)}`),
-      note: proof.note,
+      note: `${proof.note} source=${proof.maxTamperingCostSource}.`,
     },
   ]
   const openGates = gates.filter((gate) => !gate.closed).map((gate) => gate.name)
@@ -2298,6 +2427,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.site.shell',
       route: '/',
       summary: 'The VitePress theme mounts the concept UI components and navigation.',
+    },
+    {
+      title: 'Self Build',
+      command: 'concept.self.build',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'maxBuild aggregates computed roots and supplies maximum tampering cost.',
     },
     {
       title: 'Stream Self Completion',
@@ -2439,6 +2574,10 @@ export function executeConceptCommand(
       routes: ['/', '/commands', '/quantum-mind', '/architecture'],
       repositoryApiRoot: api.root,
     })
+  }
+  if (command === 'concept.self.build') {
+    const build = selfBuild(matrix)
+    return result(command, build.complete, 'self build computed.', build)
   }
   if (command === 'concept.self.complete') {
     const self = streamSelfComplete(matrix)

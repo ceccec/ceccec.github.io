@@ -19,6 +19,7 @@ uuid := UUID(command || ok || JSON(data))
 ```text
 C = {
   concept.site.shell,
+  concept.self.build,
   concept.self.complete,
   concept.agent.streamWire,
   concept.ui.doubleTorus,

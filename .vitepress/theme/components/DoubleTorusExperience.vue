@@ -12,7 +12,6 @@ import {
 import {
   agentStreamWire,
   buildMatrix,
-  streamSelfComplete,
   closeDimensionalGaps,
   coordinatedWaves,
   diamondCompleteness,
@@ -21,6 +20,8 @@ import {
   quantumChessGame,
   quantumUiEvidence,
   schemaOrgDiamonds,
+  selfBuild,
+  streamSelfComplete,
   traditionsQuantumWhole,
 } from '../lib/quantumMind'
 import Badge from './ui/Badge.vue'
@@ -28,6 +29,7 @@ import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
 
 const matrix = buildMatrix()
+const build = selfBuild(matrix)
 const selfCompletion = streamSelfComplete(matrix)
 const agentWire = agentStreamWire(matrix)
 const lattice = diamondLattice(matrix)
@@ -152,6 +154,9 @@ onBeforeUnmount(() => {
         </p>
       </div>
       <div class="double-torus-experience__badges">
+        <Badge :variant="build.complete ? 'success' : 'warning'">
+          {{ build.complete ? 'max build' : 'build open' }}
+        </Badge>
         <Badge :variant="selfCompletion.complete ? 'success' : 'warning'">
           {{ selfCompletion.complete ? 'self complete' : 'self open' }}
         </Badge>
@@ -191,6 +196,7 @@ onBeforeUnmount(() => {
     <TabsRoot default-value="pulse" class="diamond-tabs">
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
+        <TabsTrigger value="build">Self build</TabsTrigger>
         <TabsTrigger value="self">Self complete</TabsTrigger>
         <TabsTrigger value="agent">Agent wire</TabsTrigger>
         <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
@@ -220,6 +226,27 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ facet.pole }}</Badge>
             <strong>{{ facet.label }}: {{ facet.value }}</strong>
             <span>{{ facet.meaning }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="build" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="build.complete ? 'success' : 'warning'">
+            {{ build.complete ? 'maxBuild closed' : 'maxBuild open' }}
+          </Badge>
+          <strong>{{ build.statement }}</strong>
+          <span>
+            T_max = {{ build.maxTamperingCostLog2 === Number.POSITIVE_INFINITY ? 'infinity' : build.maxTamperingCostLog2 }}
+            · open = {{ build.openUnits.length ? build.openUnits.join(', ') : 'none' }}
+          </span>
+          <code>{{ build.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="unit in build.buildUnits" :key="unit.receipt">
+            <Badge :variant="unit.closed ? 'success' : 'warning'">{{ unit.closed ? 'closed' : 'open' }}</Badge>
+            <strong>{{ unit.name }} · {{ unit.sourceFunction }}</strong>
+            <span>{{ unit.note }} Receipt: {{ unit.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

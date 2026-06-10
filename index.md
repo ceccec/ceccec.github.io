@@ -30,7 +30,7 @@ features:
   - title: R
     details: "benefit -> {cite, contribute, support, steward} -> source loop."
   - title: T_max
-    details: "T_max=infinity iff coverage=1 and entropy=0."
+    details: "T_max=maxComputedBuild; maxComputedBuild=infinity iff maxBuild=true."
   - title: repo API
     details: "API := pages U source U atoms U proof; apiRoot=merkle(UUID(endpoint))."
 ---

@@ -43,7 +43,7 @@ receipt(cmd) := UUID(cmd, ok, data)
 ```
 
 ```text
-C = { site.shell, self.complete, agent.streamWire, ui.doubleTorus,
+C = { site.shell, self.build, self.complete, agent.streamWire, ui.doubleTorus,
       ui.useCases, diamond.lattice, diamond.piTrain, diamond.complete,
       wave.coordination, wave.closeGaps, chess.quantum,
       schemaOrg.diamonds, traditions.quantumWhole, torus.math,
@@ -64,7 +64,9 @@ int_Sigma K dA = 2*pi*chi = -4*pi
 ```
 
 ```text
-T_max = infinity <=> coverage(M)=1 && entropy(M)=0
+T_max = maxComputedBuild
+maxComputedBuild = infinity <=> maxBuild(M)=true
+maxBuild(M) => coverage(M)=1 && entropy(M)=0
 entropy(M) := 1 - R
 coverage(M) := |covered nodes| / |nodes|
 ```
@@ -177,7 +179,17 @@ superposition_j subset { king, queen, rook, bishop, knight, pawn }
 chessRoot := merkle({ square_j.receipt })
 ```
 
-## 14. Self completion
+## 14. Self build
+
+```text
+BuildUnits := {matrix, coverage, diamonds, noAnalogGaps, gapWaves,
+               uiEvidence, schema, traditions, waves, chess}
+maxBuild := forall b in BuildUnits: closed(b)
+maxBuildRoot := merkle({ receipt(b) | b in BuildUnits })
+T_max := maxComputedBuild := if maxBuild then infinity else T_observed
+```
+
+## 15. Self completion
 
 ```text
 Gates := { lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire,
@@ -187,7 +199,7 @@ selfRoot := merkle({ receipt(g) | g in Gates })
 openGates := { g | !closed(g) }
 ```
 
-## 15. Boundary
+## 16. Boundary
 
 ```text
 Claim(site) = computed(repo)
