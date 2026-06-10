@@ -2595,13 +2595,17 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
   }
 }
 
+// Symbols grounded by research: the I Ching (☯ yin/yang, ☰/☷ trigrams), the
+// Unicode alchemical block (☿ Mercury = process, 🜍 Sulphur = source/soul,
+// ⚗ alembic = science), sacred geometry (△), and astronomical/old glyphs
+// (☥ ankh, ⚖ scales). Generic emoji are replaced where a canonical symbol fits.
 const AREA_ICONS: Record<string, string> = {
-  site: '🏛', self: '🪞', agent: '🤖', school: '🎓', mcp: '🔌', chain: '⛓', help: '💬',
-  fold: '🔀', mind: '🧠', compute: '🖧', ui: '🖥', diamond: '💎', digit: '🔢', wave: '🌊',
-  chess: '♟', schemaOrg: '🔖', traditions: '📿', science: '🔬', artists: '🎨', method: '⚙',
-  torus: '🍩', humanity: '🫂', source: '🌱', repository: '📦', proof: '🔏', commands: '📜',
-  sound: '🔔', icon: '🖼', babel: '🗣', utf: '🔤', all: '∞', state: '⚛', harmony: '🎵',
-  geometry: '🔺', society: '🏘', governance: '🗳', life: '♻', ancient: '🏺',
+  site: '🏛', self: '☯', agent: '🜂', school: '🎓', mcp: '🔌', chain: '⛓', help: '☷',
+  fold: '🔀', mind: '☿', compute: '🖧', ui: '🖥', diamond: '◈', digit: '☵', wave: '〰',
+  chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
+  torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
+  sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
+  geometry: '△', society: '🏘', governance: '⚖', life: '♻', ancient: '☥',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
