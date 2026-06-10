@@ -168,6 +168,44 @@
   font-weight: 800;
 }
 
+.vitepress-possibilities {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+  background: var(--vp-c-bg-soft);
+  margin-bottom: 16px;
+  padding: 14px;
+}
+
+.vitepress-possibilities__label {
+  margin: 0 0 8px;
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vitepress-possibilities ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.vitepress-possibilities li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  list-style: none;
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+}
+
+.vitepress-possibilities code {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
 .quantum-mind {
   display: grid;
   gap: 24px;
