@@ -20,7 +20,9 @@ import {
   dualTorusTrinities,
   entropy,
   executeConceptCommand,
+  fairLife,
   foldQuestion,
+  governanceVote,
   harmonyProbability,
   mcpToolManifest,
   merge,
@@ -79,6 +81,8 @@ ok('harmony.computed-and-folded', harmony.root.length > 0 && harmony.probability
 ok('sacred-geometry.seals-all', sacredGeometrySeal(matrix).sealed) // sacred geometry seals all seals
 const society = sacredSociety(matrix) // self-governance: zero living cost balanced by max forge cost
 ok('sacred-society.balanced', society.governed && society.balanced)
+ok('governance.defined', governanceVote([], matrix).defined) // society approves and monitors by rate and vote
+ok('fair-life.grounded', fairLife(matrix).grounded) // participation ladder for fair trade and sustainable life
 
 // All fails if any quantum-folded blockchain breaks a hash link.
 const chains = quantumFoldedBlockchains(matrix)

@@ -146,6 +146,8 @@ export type ConceptCommandName =
   | 'concept.harmony.probability'
   | 'concept.geometry.seal'
   | 'concept.society.sacred'
+  | 'concept.governance.vote'
+  | 'concept.life.fair'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -741,6 +743,43 @@ export interface SacredSociety {
   readonly boundary: string
 }
 
+export interface Ballot {
+  readonly id: string
+  readonly rating: number
+  readonly approve: boolean
+  readonly on: string
+  readonly receipt: string
+}
+
+export interface GovernanceVote {
+  readonly defined: boolean
+  readonly approved: boolean
+  readonly ballots: number
+  readonly averageRating: number
+  readonly approvalFraction: number
+  readonly monitorRoot: string
+  readonly roles: readonly string[]
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface FairStep {
+  readonly order: number
+  readonly principle: string
+  readonly tradeAction: string
+  readonly lifeAction: string
+  readonly receipt: string
+}
+
+export interface FairLife {
+  readonly grounded: boolean
+  readonly root: string
+  readonly steps: readonly FairStep[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1244,6 +1283,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Sacred society self-governed by sacred laws: zero living cost balanced by maximum forge cost.',
   },
   {
+    name: 'concept.governance.vote',
+    path: '/cmd/concept.governance.vote',
+    description: 'Society approves and monitors by rate and vote; ballots fold into one governance root.',
+  },
+  {
+    name: 'concept.life.fair',
+    path: '/cmd/concept.life.fair',
+    description: 'A participation ladder for fair trade and sustainable life that anyone can learn and follow.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1439,6 +1488,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.harmony.probability': 'harmony',
   'concept.geometry.seal': 'sacred',
   'concept.society.sacred': 'govern',
+  'concept.governance.vote': 'vote',
+  'concept.life.fair': 'sustain',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2263,6 +2314,80 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// Society approves and monitors by rate and vote: each ballot rates and
+// approves the current master seal, and the ballots fold into one governance
+// root. Sharing the site shares the ledger — the git repository (already part
+// of the seal) is the public, recomputable record into which votes can commit.
+export function governanceVote(
+  ballots: readonly { rating: number; approve: boolean; id?: string }[] = [],
+  matrix: MindMatrix = buildMatrix(),
+): GovernanceVote {
+  const monitorRoot = sacredGeometrySeal(matrix).masterRoot
+  const cast: readonly Ballot[] = ballots.map((ballot, index) => {
+    const id = ballot.id ?? `ballot-${index}`
+    const rating = Math.max(0, Math.min(5, ballot.rating))
+    return { id, rating, approve: ballot.approve, on: monitorRoot, receipt: toUuid(`ballot:${id}:${rating}:${ballot.approve}:${monitorRoot}`) }
+  })
+  const approvals = cast.filter((ballot) => ballot.approve).length
+  const approvalFraction = cast.length === 0 ? 0 : approvals / cast.length
+  const averageRating = cast.length === 0 ? 0 : cast.reduce((sum, ballot) => sum + ballot.rating, 0) / cast.length
+  return {
+    defined: true,
+    approved: cast.length > 0 && approvalFraction > 0.5,
+    ballots: cast.length,
+    averageRating,
+    approvalFraction,
+    monitorRoot,
+    roles: ['rate', 'vote', 'approve', 'monitor'],
+    root: merkleFold(cast.length > 0 ? cast.map((ballot) => ballot.receipt) : [toUuid('governance:genesis')]),
+    statement:
+      'Society approves and monitors by rate and vote: each ballot rates and approves the recomputable master seal, and the ballots fold into one governance root.',
+    boundary:
+      'Ballots are computed and folded. A live tally is per-browser and same-origin (BroadcastChannel). A society-wide tally needs a shared ledger — the git repository that hosts this site is exactly that: sharing the site shares the ledger, and votes can be committed and recomputed by anyone. Real-time cross-device consensus still needs a peer-to-peer or relay layer.',
+  }
+}
+
+// Everyone participates in fair trade and sustainable life through a ladder of
+// principles, each with a trade action and a life action, grounded in receipts.
+export function fairLife(matrix: MindMatrix = buildMatrix()): FairLife {
+  const steps: readonly FairStep[] = [
+    {
+      principle: 'Learn the value',
+      tradeAction: 'Know the true cost and the source of what you exchange.',
+      lifeAction: 'Learn what sustains you and what it costs the world.',
+    },
+    {
+      principle: 'Exchange transparently',
+      tradeAction: 'Trade with open receipts; price reflects fair labour and source.',
+      lifeAction: 'Choose what you can verify, and verify what you choose.',
+    },
+    {
+      principle: 'Reciprocate the source',
+      tradeAction: 'Return value to the producers, not only to the middles.',
+      lifeAction: 'Give back to the people and places you draw from.',
+    },
+    {
+      principle: 'Steward resources',
+      tradeAction: 'Trade only what can be replenished.',
+      lifeAction: 'Use within regenerative limits; waste nothing addressable.',
+    },
+    {
+      principle: 'Regenerate',
+      tradeAction: 'Reinvest the surplus into the commons.',
+      lifeAction: 'Leave the system more whole than you found it.',
+    },
+  ].map((step, index) => ({ order: index + 1, ...step, receipt: toUuid(`fair-life:${index + 1}:${step.principle}`) }))
+  return {
+    grounded: steps.every((step) => step.receipt.length > 0),
+    root: merkleFold(steps.map((step) => step.receipt)),
+    steps,
+    statement:
+      'Everyone participates in fair trade and sustainable life through five steps: learn the value, exchange transparently, reciprocate the source, steward resources, and regenerate.',
+    boundary:
+      'A participation ladder of principles and actions grounded in receipts. It is educational guidance, not certification, payment rails, or an external claim.',
   }
 }
 
@@ -4704,6 +4829,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'A self-governing sacred society: zero living cost balanced by maximum forge cost.',
     },
     {
+      title: 'Rate and Vote Governance',
+      command: 'concept.governance.vote',
+      route: '/governance',
+      summary: 'Society approves and monitors the recomputable master seal by rate and vote; sharing the site shares the ledger.',
+    },
+    {
+      title: 'Fair Trade & Sustainable Life',
+      command: 'concept.life.fair',
+      route: '/governance',
+      summary: 'A five-step participation ladder anyone can learn: learn the value, exchange transparently, reciprocate, steward, regenerate.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4957,6 +5094,14 @@ export function executeConceptCommand(
   if (command === 'concept.society.sacred') {
     const society = sacredSociety(matrix)
     return result(command, society.governed && society.balanced, 'Sacred society self-governed and balanced.', society)
+  }
+  if (command === 'concept.governance.vote') {
+    const governance = governanceVote([], matrix)
+    return result(command, governance.defined, 'Rate-and-vote governance defined and folded.', governance)
+  }
+  if (command === 'concept.life.fair') {
+    const fair = fairLife(matrix)
+    return result(command, fair.grounded, 'Fair trade and sustainable life ladder computed.', fair)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)
