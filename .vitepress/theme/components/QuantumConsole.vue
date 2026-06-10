@@ -10,6 +10,7 @@ import {
   siteManifestFromCommands,
   type ConceptCommandName,
 } from '../lib/quantumMind'
+import { runAiChat } from '../lib/useQuantumChat'
 
 // ── Security by architecture ────────────────────────────────────────────────
 // 1. No secrets ship in the repo or bundle. The AI key is supplied by the user
@@ -187,18 +188,6 @@ function clearKey() {
   if (typeof window !== 'undefined') window.localStorage.removeItem(KEY_STORE)
 }
 
-// Portal tools (read-only concept commands) + Anthropic's public web search.
-function portalTools() {
-  return [
-    { type: 'web_search_20260209', name: 'web_search' },
-    ...manifest.tools.map((tool) => ({
-      name: tool.name,
-      description: tool.description,
-      input_schema: tool.inputSchema,
-    })),
-  ]
-}
-
 async function sendChat() {
   const text = chatInput.value.trim()
   if (!text || chatBusy.value) return
@@ -214,41 +203,12 @@ async function sendChat() {
 
   chatBusy.value = true
   try {
-    const Anthropic = (await import('@anthropic-ai/sdk')).default
-    const client = new Anthropic({ apiKey: apiKey.value, dangerouslyAllowBrowser: true })
-    const messages: any[] = [{ role: 'user', content: text }]
-    for (let step = 0; step < 6; step += 1) {
-      const resp: any = await client.messages.create({
-        model: 'claude-opus-4-8',
-        max_tokens: 4096,
-        thinking: { type: 'adaptive' },
-        tools: portalTools() as any,
-        messages,
-      })
-      messages.push({ role: 'assistant', content: resp.content })
-      for (const block of resp.content) {
-        if (block.type === 'text' && block.text.trim()) {
-          chatLines.value.push({ role: 'assistant', text: block.text })
-        } else if (block.type === 'server_tool_use') {
-          chatLines.value.push({ role: 'note', text: `· ${t.value.searched}` })
-        }
-      }
-      if (resp.stop_reason === 'pause_turn') continue
-      const toolUses = resp.content.filter((b: any) => b.type === 'tool_use')
-      if (!toolUses.length) break
-      const results: any[] = []
-      for (const tu of toolUses) {
-        // Allowlist boundary: only known read-only concept commands may run.
-        if (!allowlist.has(tu.name)) {
-          results.push({ type: 'tool_result', tool_use_id: tu.id, content: 'refused: tool not in allowlist', is_error: true })
-          continue
-        }
-        chatLines.value.push({ role: 'note', text: `· ${t.value.tool}: ${tu.name}` })
-        const out = executeConceptCommand(tu.name as ConceptCommandName, { atom: tu.input?.atom }, matrix)
-        results.push({ type: 'tool_result', tool_use_id: tu.id, content: JSON.stringify(out).slice(0, 6000) })
-      }
-      messages.push({ role: 'user', content: results })
-    }
+    await runAiChat(
+      apiKey.value,
+      text,
+      (role, content) => chatLines.value.push({ role, text: content }),
+      { tool: t.value.tool, web: t.value.searched },
+    )
   } catch (error) {
     chatLines.value.push({ role: 'note', text: `error: ${(error as Error).message}` })
   } finally {

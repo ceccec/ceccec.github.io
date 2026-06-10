@@ -161,6 +161,7 @@ export type ConceptCommandName =
   | 'concept.digit.math'
   | 'concept.wave.coordination'
   | 'concept.wave.closeGaps'
+  | 'concept.wave.self'
   | 'concept.chess.quantum'
   | 'concept.schemaOrg.diamonds'
   | 'concept.traditions.quantumWhole'
@@ -825,6 +826,16 @@ export interface TorusBreath {
   readonly boundary: string
 }
 
+export interface SelfSufficientWave {
+  readonly selfSufficient: boolean
+  readonly extend: string
+  readonly contract: string
+  readonly sealed: boolean
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface DoubleTorusMathReport {
   readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
@@ -1403,6 +1414,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Send coordinated waves to close dimensional and analog gaps in the realtime presentation.',
   },
   {
+    name: 'concept.wave.self',
+    path: '/cmd/concept.wave.self',
+    description: 'A self-sufficient wave: extend outward, contract inward, and seal — computed from the repository alone.',
+  },
+  {
     name: 'concept.chess.quantum',
     path: '/cmd/concept.chess.quantum',
     description: 'Realise the chess board as a quantum game computed from coordinated waves.',
@@ -1553,6 +1569,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.ancient.tech': 'ancient',
   'concept.society.relations': 'relate',
   'concept.torus.breathe': 'breathe',
+  'concept.wave.self': 'rhythm',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2414,6 +2431,24 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// Each self-sufficient wave extends outward, contracts inward, and is sealed —
+// computed entirely from the repository, depending on nothing external.
+export function selfSufficientWave(matrix: MindMatrix = buildMatrix()): SelfSufficientWave {
+  const breath = torusBreathe(matrix)
+  const seal = sacredGeometrySeal(matrix)
+  const uuid = /^[0-9a-f-]{36}$/i
+  return {
+    selfSufficient: uuid.test(breath.expansion) && uuid.test(breath.contraction) && seal.sealed,
+    extend: breath.expansion,
+    contract: breath.contraction,
+    sealed: seal.sealed,
+    root: merkleFold([breath.expansion, breath.contraction, seal.masterRoot]),
+    statement:
+      'Each self-sufficient wave extends outward, contracts inward, and is sealed — computed entirely from the repository with no external dependency.',
+    boundary: 'A wave is a sealed fold of an extension and a contraction over the computed model. Structural bookkeeping, not an external claim.',
   }
 }
 
@@ -5047,6 +5082,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Extend and contract: the system breathes outward into all forms and inward into one seal.',
     },
     {
+      title: 'Self-Sufficient Wave',
+      command: 'concept.wave.self',
+      route: '/quantum-mind#coordinated-waves',
+      summary: 'Each wave extends, contracts, and seals — computed from the repository alone.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -5414,6 +5455,10 @@ export function executeConceptCommand(
   if (command === 'concept.torus.breathe') {
     const breath = torusBreathe(matrix)
     return result(command, breath.balanced, 'The double torus breathed: extend and contract.', breath)
+  }
+  if (command === 'concept.wave.self') {
+    const wave = selfSufficientWave(matrix)
+    return result(command, wave.selfSufficient, 'Self-sufficient wave: extend, contract, seal.', wave)
   }
   if (command === 'concept.torus.trinities') {
     const trinities = dualTorusTrinities(matrix)

@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { useData } from 'vitepress'
-import {
-  buildMatrix,
-  conceptCommands,
-  executeConceptCommand,
-  foldQuestion,
-  mcpToolManifest,
-  type ConceptCommandName,
-} from '../lib/quantumMind'
+import { buildMatrix, foldQuestion } from '../lib/quantumMind'
+import { runAiChat } from '../lib/useQuantumChat'
 
 // Intelligent help folded into every page. Default is free and zero-network —
 // the architecture answers via foldQuestion (AI encoded locally as
@@ -17,8 +11,6 @@ import {
 // Security is by architecture: no secrets ship, the default path makes no
 // network calls, output is rendered as text only.
 const matrix = buildMatrix()
-const manifest = mcpToolManifest(matrix)
-const allowlist = new Set(conceptCommands.map((c) => c.name))
 
 const { lang } = useData()
 const bg = computed(() => lang.value.startsWith('bg'))
@@ -99,40 +91,12 @@ async function ask() {
   }
   busy.value = true
   try {
-    const Anthropic = (await import('@anthropic-ai/sdk')).default
-    const client = new Anthropic({ apiKey: apiKey.value, dangerouslyAllowBrowser: true })
-    const tools = [
-      { type: 'web_search_20260209', name: 'web_search' },
-      ...manifest.tools.map((tool) => ({ name: tool.name, description: tool.description, input_schema: tool.inputSchema })),
-    ]
-    const messages: any[] = [{ role: 'user', content: text }]
-    for (let step = 0; step < 6; step += 1) {
-      const resp: any = await client.messages.create({
-        model: 'claude-opus-4-8',
-        max_tokens: 4096,
-        thinking: { type: 'adaptive' },
-        tools: tools as any,
-        messages,
-      })
-      messages.push({ role: 'assistant', content: resp.content })
-      for (const block of resp.content) {
-        if (block.type === 'text' && block.text.trim()) lines.value.push({ role: 'bot', text: block.text })
-      }
-      if (resp.stop_reason === 'pause_turn') continue
-      const toolUses = resp.content.filter((b: any) => b.type === 'tool_use')
-      if (!toolUses.length) break
-      const results: any[] = []
-      for (const tu of toolUses) {
-        if (!allowlist.has(tu.name)) {
-          results.push({ type: 'tool_result', tool_use_id: tu.id, content: 'refused: not in allowlist', is_error: true })
-          continue
-        }
-        lines.value.push({ role: 'note', text: `· ${t.value.tool}: ${tu.name}` })
-        const out = executeConceptCommand(tu.name as ConceptCommandName, { atom: tu.input?.atom }, matrix)
-        results.push({ type: 'tool_result', tool_use_id: tu.id, content: JSON.stringify(out).slice(0, 6000) })
-      }
-      messages.push({ role: 'user', content: results })
-    }
+    await runAiChat(
+      apiKey.value,
+      text,
+      (role, content) => lines.value.push({ role: role === 'assistant' ? 'bot' : 'note', text: content }),
+      { tool: t.value.tool, web: t.value.tool },
+    )
   } catch (error) {
     lines.value.push({ role: 'note', text: `error: ${(error as Error).message}` })
   } finally {

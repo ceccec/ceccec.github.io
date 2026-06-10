@@ -35,6 +35,7 @@ import {
   schoolCurriculum,
   selfBuild,
   selfDevelopment,
+  selfSufficientWave,
   streamSelfComplete,
   toUuid,
   torusBreathe,
@@ -89,6 +90,7 @@ ok('fair-life.grounded', fairLife(matrix).grounded) // participation ladder for 
 ok('ancient-tech.grounded', ancientTech(matrix).grounded) // ancient tech prefigures the concepts
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
+ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals
 // Determinism: two independent builds must produce the identical foundation root (no drift across waves).
 ok('determinism', buildMatrix().root === buildMatrix().root)
 
