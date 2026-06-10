@@ -1067,6 +1067,31 @@ export declare function soundColor(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function analogSpeech(): {
+    analog: boolean;
+    params: ({
+        analog: boolean;
+        receipt: string;
+        param: string;
+        range: readonly [0, 2];
+        note: string;
+    } | {
+        analog: boolean;
+        receipt: string;
+        param: string;
+        range: readonly [0.5, 2];
+        note: string;
+    } | {
+        analog: boolean;
+        receipt: string;
+        param: string;
+        range: readonly [0, 1];
+        note: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function autoSpeech(text?: string, matrix?: MindMatrix): {
     ready: boolean;
     cues: {
