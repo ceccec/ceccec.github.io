@@ -153,6 +153,9 @@ sealRoot = merge(sealRoot, iconContentRoot)
 // not failed — they are a map of where to fold next.
 const taxonomy = taxonomyIcons()
 ok('icon.taxonomy-grounded', taxonomy.grounded)
+// Develop until no gaps: every area must be a trinity (no pairs left). A new
+// pair area will fail the build until it is completed to a trinity.
+ok(`no-gaps${taxonomy.gaps.length ? ':' + taxonomy.gaps.join(',') : ''}`, taxonomy.gaps.length === 0)
 console.log(`Icon taxonomy: ${taxonomy.entries.length} areas, ${taxonomy.gaps.length} gaps -> ${taxonomy.gaps.join(', ')}`)
 
 // Naming law: every command maps to a single lowercase-word method token.

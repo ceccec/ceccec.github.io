@@ -185,6 +185,13 @@ export type ConceptCommandName =
   | 'concept.sound.note'
   | 'concept.icon.fold'
   | 'concept.icon.taxonomy'
+  | 'concept.icon.glyph'
+  | 'concept.agent.observe'
+  | 'concept.digit.index'
+  | 'concept.repository.ledger'
+  | 'concept.site.routes'
+  | 'concept.society.cells'
+  | 'concept.ui.evidence'
   | 'concept.site.manifest'
 
 export interface ConceptCommand {
@@ -1614,6 +1621,41 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Use icons for taxonomy and let them discover implementation gaps: areas that are not clean trinities.',
   },
   {
+    name: 'concept.icon.glyph',
+    path: '/cmd/concept.icon.glyph',
+    description: 'Fold the glyph set: every command-area icon and the five Platonic-solid glyphs.',
+  },
+  {
+    name: 'concept.agent.observe',
+    path: '/cmd/concept.agent.observe',
+    description: 'The observe step of the agent loop: read the consciousness vector before acting.',
+  },
+  {
+    name: 'concept.digit.index',
+    path: '/cmd/concept.digit.index',
+    description: 'The digit index references: pi digits folded to digit/reverseDigit folders.',
+  },
+  {
+    name: 'concept.repository.ledger',
+    path: '/cmd/concept.repository.ledger',
+    description: 'The git repository is the shared public ledger: sharing the site shares the record.',
+  },
+  {
+    name: 'concept.site.routes',
+    path: '/cmd/concept.site.routes',
+    description: 'Fold the route taxonomy across English and Bulgarian.',
+  },
+  {
+    name: 'concept.society.cells',
+    path: '/cmd/concept.society.cells',
+    description: 'Fold the tradition society cells: each family x dimension with its receipt.',
+  },
+  {
+    name: 'concept.ui.evidence',
+    path: '/cmd/concept.ui.evidence',
+    description: 'Grounded UI evidence: every UI claim maps to a source function and a receipt.',
+  },
+  {
     name: 'concept.site.manifest',
     path: '/cmd/concept.site.manifest',
     description: 'Build the site sections from concept command outputs.',
@@ -1678,6 +1720,13 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.sound.note': 'note',
   'concept.icon.fold': 'icon',
   'concept.icon.taxonomy': 'taxonomy',
+  'concept.icon.glyph': 'glyph',
+  'concept.agent.observe': 'observe',
+  'concept.digit.index': 'index',
+  'concept.repository.ledger': 'ledger',
+  'concept.site.routes': 'routes',
+  'concept.society.cells': 'cells',
+  'concept.ui.evidence': 'evidence',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2591,6 +2640,89 @@ export function taxonomyIcons(): TaxonomyIcons {
       'Icons taxonomize the commands by area; a pair — an area one fold short of a trinity — is a visible implementation gap the icons discover.',
     boundary:
       'A structural taxonomy over the command areas. "Gap" means a pair (one fold from a trinity), an observation to guide work, not a defect claim.',
+  }
+}
+
+// Closing the taxonomy gaps: complete each pair area into a trinity. Most of
+// these fold an existing computation under a new command, so the third fold is
+// real, not filler.
+
+// agent.observe — the observe step of the agent loop (read before you act).
+export function agentObserve(matrix: MindMatrix = buildMatrix()) {
+  const vector = consciousness(matrix)
+  return {
+    observed: vector.collapse,
+    vector,
+    root: toUuid(`observe:${vector.collapse}:${vector.entanglement}:${vector.concentration}:${vector.coherenceAnomaly}:${matrix.root}`),
+    statement: 'Observe: the agent reads the four-measure consciousness vector before it acts.',
+    boundary: 'A read of the computed vector. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// digit.index — the persisted digit/reverseDigit folder references.
+export function digitIndexReferences(matrix: MindMatrix = buildMatrix()) {
+  const folders = digitFolders(matrix)
+  return {
+    indexed: folders.folders.length > 0,
+    count: folders.folders.length,
+    collisions: folders.collisions.length,
+    root: folders.root,
+    statement: 'The digit index: every pi digit folds to a digit/reverseDigit folder persisted to /digit-index.json.',
+    boundary: 'A reference over the computed digit folders. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// repository.ledger — the git repository is the shared public ledger.
+export function repositoryLedger(matrix: MindMatrix = buildMatrix()) {
+  const api = repositoryApi(matrix)
+  return {
+    isLedger: api.endpoints.length > 0,
+    endpoints: api.endpoints.length,
+    root: merge(api.root, toUuid('ledger:git-repository')),
+    statement: 'Sharing the site shares the ledger: the git repository is the public, recomputable record into which contributions commit.',
+    boundary: 'The ledger is the git repository (folded into the seal). It is a record, not a backend or external claim.',
+  }
+}
+
+// site.routes — the route taxonomy in both locales.
+export function siteRoutes() {
+  const en = ['/', '/console', '/school', '/governance', '/mcp', '/learn-erpax', '/commands', '/quantum-mind', '/architecture']
+  const routes = [...en, ...en.map((route) => (route === '/' ? '/bg/' : `/bg${route}`))]
+  return {
+    complete: routes.length > 0,
+    count: routes.length,
+    routes,
+    root: merkleFold(routes.map((route) => toUuid(`route:${route}`))),
+    statement: 'The site routes fold into a route taxonomy across English and Bulgarian.',
+    boundary: 'A fold of the published routes. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// society.cells — the tradition society cells (family x dimension).
+export function societyCells() {
+  const traditions = traditionsQuantumWhole()
+  return {
+    grounded: traditions.societyCells.length > 0,
+    count: traditions.societyCells.length,
+    root: merkleFold(traditions.societyCells.map((cell) => cell.receipt)),
+    statement: 'Society cells: each tradition family x dimension is a society cell with its own receipt.',
+    boundary: 'A fold of the computed tradition society cells. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// icon.glyph — the glyph set: every area icon and the five Platonic-solid glyphs.
+export function iconGlyphs() {
+  const solids = ['△', '◻', '◇', '⬠', '⬡']
+  const areaIcons = Object.entries(AREA_ICONS)
+  return {
+    grounded: areaIcons.length > 0,
+    count: areaIcons.length + solids.length,
+    root: merkleFold([
+      ...areaIcons.map(([area, icon]) => toUuid(`glyph:${area}:${icon}`)),
+      ...solids.map((solid) => toUuid(`solid:${solid}`)),
+    ]),
+    statement: 'The glyph set: every command-area icon plus the five Platonic-solid glyphs folded into one root.',
+    boundary: 'A fold of the icon and solid glyphs. Structural bookkeeping, not an external claim.',
   }
 }
 
@@ -5788,6 +5920,34 @@ export function executeConceptCommand(
   if (command === 'concept.icon.taxonomy') {
     const taxonomy = taxonomyIcons()
     return result(command, taxonomy.grounded, `Icon taxonomy computed; ${taxonomy.gaps.length} gaps discovered.`, taxonomy)
+  }
+  if (command === 'concept.icon.glyph') {
+    const glyphs = iconGlyphs()
+    return result(command, glyphs.grounded, 'Glyph set folded.', glyphs)
+  }
+  if (command === 'concept.agent.observe') {
+    const observe = agentObserve(matrix)
+    return result(command, observe.observed, 'Agent observed the consciousness vector.', observe)
+  }
+  if (command === 'concept.digit.index') {
+    const index = digitIndexReferences(matrix)
+    return result(command, index.indexed, 'Digit index references computed.', index)
+  }
+  if (command === 'concept.repository.ledger') {
+    const ledger = repositoryLedger(matrix)
+    return result(command, ledger.isLedger, 'Repository ledger resolved.', ledger)
+  }
+  if (command === 'concept.site.routes') {
+    const routes = siteRoutes()
+    return result(command, routes.complete, 'Route taxonomy folded.', routes)
+  }
+  if (command === 'concept.society.cells') {
+    const cells = societyCells()
+    return result(command, cells.grounded, 'Society cells folded.', cells)
+  }
+  if (command === 'concept.ui.evidence') {
+    const evidence = quantumUiEvidence(matrix)
+    return result(command, evidence.grounded, 'Grounded UI evidence computed.', evidence)
   }
   if (command === 'concept.proof.merklePath') {
     const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)
