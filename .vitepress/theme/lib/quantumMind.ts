@@ -134,6 +134,7 @@ export type ConceptCommandName =
   | 'concept.school.curriculum'
   | 'concept.mcp.tools'
   | 'concept.chain.quantum'
+  | 'concept.help.fold'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -526,6 +527,25 @@ export interface McpToolManifest {
   readonly tools: readonly McpTool[]
   readonly root: string
   readonly statement: string
+  readonly boundary: string
+}
+
+export interface LocalAnswerLink {
+  readonly title: string
+  readonly route: string
+  readonly detail: string
+}
+
+export interface LocalAnswer {
+  readonly query: string
+  readonly matched: boolean
+  readonly concept: string
+  readonly explanation: string
+  readonly command: ConceptCommandName | null
+  readonly receipt: string
+  readonly links: readonly LocalAnswerLink[]
+  readonly confidence: number
+  readonly source: 'double-torus/local-intelligence'
   readonly boundary: string
 }
 
@@ -996,6 +1016,12 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Fold the model sequences into quantum-folded, hash-linked blockchains with one multichain root.',
   },
   {
+    name: 'concept.help.fold',
+    path: '/cmd/concept.help.fold?query=what+is+proof',
+    input: 'query',
+    description: 'Fold a question into an answer locally from atoms, commands, and pages — AI encoded as intelligence.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -1179,6 +1205,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.school.curriculum': 'teach',
   'concept.mcp.tools': 'tools',
   'concept.chain.quantum': 'chain',
+  'concept.help.fold': 'fold',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -1892,7 +1919,9 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
       properties:
         command.input === 'atom'
           ? { atom: { type: 'string', description: 'Atom name to resolve, e.g. self.' } }
-          : {},
+          : command.input === 'query'
+            ? { query: { type: 'string', description: 'A natural-language question to fold into an answer.' } }
+            : {},
       required: [],
       additionalProperties: false,
     },
@@ -1971,6 +2000,49 @@ export function quantumFoldedBlockchains(matrix: MindMatrix = buildMatrix()): Qu
       : 'A blockchain is incomplete: a link failed to recompute or a chain is empty.',
     boundary:
       'These are hash-linked chains over the repository-computed model, folded in the same UUID space. They are tamper-evident bookkeeping, not a distributed ledger or external claim.',
+  }
+}
+
+// Encode AI locally as intelligence: fold a question into an answer using only
+// the repository-computed model — the atom graph is the knowledge, the concept
+// commands are the actions, the pages are the references. No external API; the
+// architecture itself is the intelligence.
+export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()): LocalAnswer {
+  const terms = query.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 1)
+  const score = (text: string) => terms.reduce((sum, term) => (text.toLowerCase().includes(term) ? sum + 1 : sum), 0)
+  const topAtom = atoms
+    .map((atom) => ({ atom, s: score(`${atom.name} ${atom.body}`) }))
+    .filter((ranked) => ranked.s > 0)
+    .sort((a, b) => b.s - a.s)[0]
+  const topCommand = conceptCommands
+    .map((command) => ({ command, s: score(`${command.name} ${command.description}`) }))
+    .filter((ranked) => ranked.s > 0)
+    .sort((a, b) => b.s - a.s)[0]
+  const pages = siteManifestFromCommands()
+    .map((page) => ({ page, s: score(`${page.title} ${page.summary}`) }))
+    .filter((ranked) => ranked.s > 0)
+    .sort((a, b) => b.s - a.s)
+    .slice(0, 3)
+
+  const command = topCommand?.command.name ?? null
+  const executed = command ? executeConceptCommand(command, { atom: topAtom?.atom.name ?? 'self' }, matrix) : null
+  const matched = Boolean(topAtom || topCommand || pages.length)
+  const maxScore = Math.max(topAtom?.s ?? 0, topCommand?.s ?? 0, pages[0]?.s ?? 0)
+  return {
+    query,
+    matched,
+    concept: topAtom?.atom.name ?? '',
+    explanation:
+      topAtom?.atom.body ??
+      topCommand?.command.description ??
+      'No matching concept yet. Try a word like proof, school, mcp, chain, trinity, or an atom name.',
+    command,
+    receipt: executed?.uuid ?? '',
+    links: pages.map((ranked) => ({ title: ranked.page.title, route: ranked.page.route, detail: ranked.page.summary })),
+    confidence: terms.length ? Math.min(1, maxScore / terms.length) : 0,
+    source: 'double-torus/local-intelligence',
+    boundary:
+      'A deterministic answer folded from the repository-computed model (atoms, commands, pages). No external API call; the architecture is the intelligence.',
   }
 }
 
@@ -3994,6 +4066,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The model sequences are folded into hash-linked blockchains bound into one multichain root.',
     },
     {
+      title: 'Local Intelligence',
+      command: 'concept.help.fold',
+      route: '/console',
+      summary: 'AI is encoded locally as intelligence: questions fold into answers from atoms, commands, and pages with no external API.',
+    },
+    {
       title: 'Agent Stream Wire',
       command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
@@ -4164,7 +4242,7 @@ function result(command: ConceptCommandName, ok: boolean, summary: string, data:
 
 export function executeConceptCommand(
   command: ConceptCommandName,
-  input: { readonly atom?: string } = {},
+  input: { readonly atom?: string; readonly query?: string } = {},
   matrix: MindMatrix = buildMatrix(),
 ): ConceptCommandResult {
   if (command === 'concept.site.shell') {
@@ -4199,6 +4277,10 @@ export function executeConceptCommand(
   if (command === 'concept.chain.quantum') {
     const chains = quantumFoldedBlockchains(matrix)
     return result(command, chains.folded, 'Quantum-folded blockchains computed from model sequences.', chains)
+  }
+  if (command === 'concept.help.fold') {
+    const answer = foldQuestion(input.query ?? '', matrix)
+    return result(command, true, answer.matched ? 'Question folded into a local answer.' : 'Question folded; no concept matched.', answer)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)

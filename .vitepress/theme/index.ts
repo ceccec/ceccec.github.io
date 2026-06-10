@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
+import GlobalHelp from './components/GlobalHelp.vue'
 import LearnErpax from './components/LearnErpax.vue'
 import McpTools from './components/McpTools.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
@@ -20,11 +21,14 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),
+      // Intelligent help folded into every page.
+      'layout-bottom': () => h(GlobalHelp),
     })
   },
   enhanceApp({ app }) {
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
+    app.component('GlobalHelp', GlobalHelp)
     app.component('LearnErpax', LearnErpax)
     app.component('McpTools', McpTools)
     app.component('QuantumConsole', QuantumConsole)

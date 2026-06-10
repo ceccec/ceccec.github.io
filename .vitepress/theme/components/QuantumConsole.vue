@@ -5,6 +5,7 @@ import {
   buildMatrix,
   conceptCommands,
   executeConceptCommand,
+  foldQuestion,
   mcpToolManifest,
   siteManifestFromCommands,
   type ConceptCommandName,
@@ -155,35 +156,20 @@ const chatInput = ref('')
 const chatBusy = ref(false)
 const chatLines = ref<{ role: 'user' | 'assistant' | 'note'; text: string }[]>([])
 
-// Free, client-side agent: rank concept commands + pages by query overlap, run
-// the best-matching read-only command, and answer from its receipt + search.
+// Free, client-side agent: AI encoded locally as intelligence — foldQuestion
+// answers from the model's own atoms, commands, and pages with zero network.
 function answerLocally(query: string) {
-  const terms = query.toLowerCase().split(/\s+/).filter(Boolean)
-  const score = (text: string) => terms.reduce((s, term) => (text.toLowerCase().includes(term) ? s + 1 : s), 0)
-  const ranked = conceptCommands
-    .map((c) => ({ c, s: score(`${c.name} ${c.description}`) }))
-    .filter((r) => r.s > 0)
-    .sort((a, b) => b.s - a.s)
-  const hits = searchIndex
-    .map((item) => ({ item, s: score(`${item.title} ${item.detail}`) }))
-    .filter((r) => r.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, 3)
-
-  if (!ranked.length && !hits.length) {
+  const answer = foldQuestion(query, matrix)
+  if (!answer.matched) {
     chatLines.value.push({ role: 'assistant', text: 'No matching tool or page. Try "ls" in the terminal, or a concept word like proof, school, mcp, digit.' })
     return
   }
-  if (ranked.length) {
-    const best = ranked[0].c
-    chatLines.value.push({ role: 'note', text: `· ${t.value.tool}: ${best.name}` })
-    const out = executeConceptCommand(best.name as ConceptCommandName, { atom: 'self' }, matrix)
-    chatLines.value.push({ role: 'assistant', text: `${best.description}\n${out.ok ? 'ok' : 'open'} ${out.uuid}\n${out.summary}` })
-  }
-  if (hits.length) {
+  if (answer.command) chatLines.value.push({ role: 'note', text: `· ${t.value.tool}: ${answer.command}` })
+  chatLines.value.push({ role: 'assistant', text: answer.receipt ? `${answer.explanation}\n${answer.receipt}` : answer.explanation })
+  if (answer.links.length) {
     chatLines.value.push({
       role: 'assistant',
-      text: hits.map((h) => `→ ${h.item.title} (${h.item.link}): ${h.item.detail}`).join('\n'),
+      text: answer.links.map((l) => `→ ${l.title} (${l.route}): ${l.detail}`).join('\n'),
     })
   }
 }
