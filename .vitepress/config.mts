@@ -1,7 +1,9 @@
 import { defineConfig } from 'vitepress'
 
 const siteTitle = 'Double Torus'
+const siteTitleBg = 'Двоен тор'
 const siteDescription = 'Sigma_2 -> UUID* -> Gate. A serverless quantum UUID stream of roots, receipts, waves, diamonds, gates, and schema nodes.'
+const siteDescriptionBg = 'Sigma_2 -> UUID* -> Gate. Безсървърен квантов UUID поток от корени, разписки, вълни, диаманти, порти и schema възли.'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -29,40 +31,82 @@ export default defineConfig({
     ['meta', { name: 'twitter:title', content: siteTitle }],
     ['meta', { name: 'twitter:description', content: siteDescription }],
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+    ['link', { rel: 'alternate', hreflang: 'en', href: '/' }],
+    ['link', { rel: 'alternate', hreflang: 'bg', href: '/bg/' }],
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: siteTitle,
       description: siteDescription,
-      inLanguage: 'en',
+      inLanguage: ['en', 'bg'],
       potentialAction: {
         '@type': 'ViewAction',
-        target: ['/quantum-mind', '/architecture', '/commands'],
+        target: ['/quantum-mind', '/architecture', '/commands', '/bg/quantum-mind', '/bg/architecture', '/bg/commands'],
       },
     })],
   ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Learn', link: '/learn-erpax' },
-      { text: 'Commands', link: '/commands' },
-      { text: 'Mind', link: '/quantum-mind' },
-      { text: 'Architecture', link: '/architecture' }
-    ],
-
-    sidebar: [
-      {
-        text: 'Double Torus',
-        items: [
-          { text: 'Learn Erpax', link: '/learn-erpax' },
+    socialLinks: [],
+  },
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en',
+      title: siteTitle,
+      description: siteDescription,
+      themeConfig: {
+        // https://vitepress.dev/reference/default-theme-config
+        nav: [
+          { text: 'Home', link: '/' },
+          { text: 'Learn', link: '/learn-erpax' },
           { text: 'Commands', link: '/commands' },
-          { text: 'Overview', link: '/quantum-mind' },
-          { text: 'Architecture', link: '/architecture' }
-        ]
-      }
-    ],
-
-    socialLinks: []
-  }
+          { text: 'Mind', link: '/quantum-mind' },
+          { text: 'Architecture', link: '/architecture' },
+        ],
+        sidebar: [
+          {
+            text: 'Double Torus',
+            items: [
+              { text: 'Learn Erpax', link: '/learn-erpax' },
+              { text: 'Commands', link: '/commands' },
+              { text: 'Overview', link: '/quantum-mind' },
+              { text: 'Architecture', link: '/architecture' },
+            ],
+          },
+        ],
+      },
+    },
+    bg: {
+      label: 'Български',
+      lang: 'bg-BG',
+      title: siteTitleBg,
+      description: siteDescriptionBg,
+      themeConfig: {
+        nav: [
+          { text: 'Начало', link: '/bg/' },
+          { text: 'Научи', link: '/bg/learn-erpax' },
+          { text: 'Команди', link: '/bg/commands' },
+          { text: 'Ум', link: '/bg/quantum-mind' },
+          { text: 'Архитектура', link: '/bg/architecture' },
+        ],
+        sidebar: [
+          {
+            text: 'Двоен тор',
+            items: [
+              { text: 'Научи Erpax', link: '/bg/learn-erpax' },
+              { text: 'Команди', link: '/bg/commands' },
+              { text: 'Преглед', link: '/bg/quantum-mind' },
+              { text: 'Архитектура', link: '/bg/architecture' },
+            ],
+          },
+        ],
+        docFooter: { prev: 'Предишна', next: 'Следваща' },
+        outline: { label: 'На тази страница' },
+        darkModeSwitchLabel: 'Облик',
+        sidebarMenuLabel: 'Меню',
+        returnToTopLabel: 'Към началото',
+        langMenuLabel: 'Смени езика',
+      },
+    },
+  },
 })

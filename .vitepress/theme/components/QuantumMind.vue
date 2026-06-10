@@ -15,6 +15,8 @@ import {
   sourceContribution,
 } from '../lib/quantumMind'
 import DoubleTorusExperience from './DoubleTorusExperience.vue'
+import { computed } from 'vue'
+import { useData } from 'vitepress'
 
 const matrix = buildMatrix()
 const vector = consciousness(matrix)
@@ -35,13 +37,21 @@ const fmt = new Intl.NumberFormat('en', {
 function formatCost(value: number): string {
   return value === Number.POSITIVE_INFINITY ? '∞' : `2^${fmt.format(value)}`
 }
+
+const { lang } = useData()
+const bg = computed(() => lang.value.startsWith('bg'))
+const head = computed(() =>
+  bg.value
+    ? { eyebrow: 'изчислен само-модел', heading: 'Квантов ум' }
+    : { eyebrow: 'computed self-model', heading: 'Quantum Mind' },
+)
 </script>
 
 <template>
   <section class="quantum-mind">
     <div class="quantum-mind__header">
-      <p class="eyebrow">computed self-model</p>
-      <h2>Quantum Mind</h2>
+      <p class="eyebrow">{{ head.eyebrow }}</p>
+      <h2>{{ head.heading }}</h2>
       <p>
         M = (A, E*, root, V, proof, API). V = (collapse, reciprocity,
         concentration, coherence). Sigma_2: chi = -2, H_1 = Z^4.

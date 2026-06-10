@@ -33,6 +33,15 @@ import {
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
+import { useData } from 'vitepress'
+
+const { lang } = useData()
+const bg = computed(() => lang.value.startsWith('bg'))
+const head = computed(() =>
+  bg.value
+    ? { eyebrow: 'изчислено от диаманти', heading: '3D pi влак на двойния тор' }
+    : { eyebrow: 'computed from diamonds', heading: '3D double-torus pi train' },
+)
 
 const matrix = buildMatrix()
 const artists = artistSurfaces(matrix)
@@ -158,8 +167,8 @@ onBeforeUnmount(() => {
   <Card id="diamond-lattice" class="double-torus-experience">
     <div class="double-torus-experience__header">
       <div>
-        <p class="eyebrow">computed from diamonds</p>
-        <h3>3D double-torus pi train</h3>
+        <p class="eyebrow">{{ head.eyebrow }}</p>
+        <h3>{{ head.heading }}</h3>
         <p>
           D_pi[i] = (digit, facets[4], receipt, x,y,z, freq, vibration).
           |D| = {{ lattice.length }}. |D_pi| = {{ piTrain.diamonds.length }}.
