@@ -45,6 +45,7 @@ import {
   doubleTorus3D,
   dimensions,
   dualities,
+  equilibrium,
   humanize,
   typographySeo,
   openGraph,
@@ -249,6 +250,7 @@ ok('lawful.succeed', lawfulSucceed().succeeds) // let the society use the app to
 ok('lawful.thrive', lawfulSucceed().thrives) // succeeding is not enough — the society thrives
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
+ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
 ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals
 ok('commands.registry-consistent', commandsRegistry(matrix).consistent) // registry, method tokens, and MCP tools agree
 ok('proof.bundle.verifiable', proofBundle(matrix).verifiable) // one recomputable proof bundle

@@ -1993,6 +1993,40 @@ export function dimensions() {
         boundary: 'A projection ladder of extra coordinate planes (3 -> 5 -> 8). A visualization device, not a claim about physical higher dimensions.',
     };
 }
+// Always contract and expand to quantum equilibrium. The breath does not run
+// away and does not collapse: each cycle overshoots the balance point and is
+// damped by half, alternating expand and contract. It is a quantum equilibrium
+// because the balance is over the quantum self-state — self interacting with
+// itself — so the settled point is the distribution the states relax into, never
+// a single frozen value, approached forever and never overshot to ruin.
+export function equilibrium(matrix = buildMatrix(), steps = 10) {
+    const breathe = torusBreathe(matrix);
+    const quantum = selfInteraction(matrix); // the quantum self-state the breath balances over
+    let displacement = 1;
+    const trace = [];
+    for (let i = 0; i < steps; i += 1) {
+        displacement = displacement * -0.5; // overshoot alternately, damped by half each breath
+        trace.push({
+            step: i,
+            displacement,
+            phase: displacement > 0 ? 'expand' : 'contract',
+            root: toUuid(`equilibrium:${i}:${displacement}`),
+        });
+    }
+    const finalDisplacement = trace[trace.length - 1].displacement;
+    const settled = Math.abs(finalDisplacement) < 0.01;
+    return {
+        equilibrium: settled && breathe.balanced && quantum.newState,
+        quantum: quantum.newState,
+        settled,
+        steps: trace.length,
+        finalDisplacement,
+        trace,
+        root: merge(merge(breathe.root, quantum.root), merkleFold(trace.map((entry) => entry.root))),
+        statement: 'Always contract and expand to quantum equilibrium: each breath overshoots the balance point and is damped by half, alternating expand and contract, settling over the quantum self-state toward the distribution the states relax into — never collapsing to one value, never running away.',
+        boundary: 'A damped-oscillation model of the breath toward a balance over the quantum self-state. Structural bookkeeping; "quantum equilibrium" is a computed balance, not a physical steady state or a quantum-mechanical claim.',
+    };
+}
 // Compare all dualities, in 3-5-8 (Fibonacci) tiers. The double torus is made of
 // two-sided pairs; here they are gathered and compared: 3 core, 5 structural, 8
 // expressive = 16 dualities. Each is proven a real duality by order-sensitivity —
@@ -2425,13 +2459,13 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit'],
-        '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities'],
+        '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/governance': ['GovernanceVote'],

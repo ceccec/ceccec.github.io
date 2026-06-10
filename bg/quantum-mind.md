@@ -28,6 +28,8 @@ head:
 
 <Dualities />
 
+<Equilibrium />
+
 <SelfHarmonise />
 
 <PiMusicPlayer />

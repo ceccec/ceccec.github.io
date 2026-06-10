@@ -10,6 +10,7 @@ import CryptoCompare from './components/CryptoCompare.vue'
 import DnaHelix from './components/DnaHelix.vue'
 import DoubleTorus3D from './components/DoubleTorus3D.vue'
 import Dualities from './components/Dualities.vue'
+import Equilibrium from './components/Equilibrium.vue'
 import FusionWave from './components/FusionWave.vue'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
@@ -61,6 +62,7 @@ export default {
     app.component('DnaHelix', DnaHelix)
     app.component('DoubleTorus3D', DoubleTorus3D)
     app.component('Dualities', Dualities)
+    app.component('Equilibrium', Equilibrium)
     app.component('FusionWave', FusionWave)
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)

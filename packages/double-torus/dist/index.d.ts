@@ -1313,6 +1313,22 @@ export declare function dimensions(): {
     statement: string;
     boundary: string;
 };
+export declare function equilibrium(matrix?: MindMatrix, steps?: number): {
+    equilibrium: boolean;
+    quantum: boolean;
+    settled: boolean;
+    steps: number;
+    finalDisplacement: number;
+    trace: {
+        step: number;
+        displacement: number;
+        phase: "expand" | "contract";
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function dualities(): {
     compared: boolean;
     tiers: number[];
