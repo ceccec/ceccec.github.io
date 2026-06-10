@@ -55,7 +55,7 @@ C = { site.shell, self.build, self.complete, agent.streamWire, ui.doubleTorus,
       ui.useCases, diamond.lattice, diamond.piTrain, diamond.complete,
       wave.coordination, wave.closeGaps, chess.quantum,
       schemaOrg.diamonds, traditions.quantumWhole, torus.math,
-      science.society, humanity.implications, source.contribute, torus.matrix,
+      science.society, method.fusion, humanity.implications, source.contribute, torus.matrix,
       torus.vector, torus.flow, repository.api, proof.verify }
 ```
 
@@ -212,8 +212,15 @@ ScienceSocietyRoot := merkle({ receipt(role) } U { receipt(gate) } U { receipt(w
 ## 15. Self build
 
 ```text
+gravity(cmd) := method
+method in /^[a-z]+$/
+MethodFusion := forall cmd in C: single(gravity(cmd))
+MethodRoot := merkle({ receipt(gravity(cmd)) | cmd in C })
+```
+
+```text
 BuildUnits := {matrix, coverage, diamonds, noAnalogGaps, gapWaves,
-               uiEvidence, schema, traditions, science, waves, chess}
+               uiEvidence, schema, traditions, science, methods, waves, chess}
 maxBuild := forall b in BuildUnits: closed(b)
 maxBuildRoot := merkle({ receipt(b) | b in BuildUnits })
 T_max := maxComputedBuild := if maxBuild then infinity else T_observed

@@ -50,6 +50,7 @@ Command = {
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
   concept.science.society,
+  concept.method.fusion,
   concept.torus.math,
   concept.humanity.implications,
   concept.source.contribute,
@@ -217,7 +218,14 @@ ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} 
 ## 16. Self build
 
 ```text
-BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, science, waves, chess}
+gravity(cmd) = method
+method in /^[a-z]+$/
+MethodFusion = forall cmd in Command: single(gravity(cmd))
+MethodRoot = merkle({receipt(gravity(cmd))})
+```
+
+```text
+BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, science, methods, waves, chess}
 maxBuild = forall b in BuildUnits: closed(b)
 maxBuildRoot = merkle({receipt(b)})
 T_max = maxComputedBuild = if maxBuild then infinity else T_observed

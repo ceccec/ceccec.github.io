@@ -114,6 +114,7 @@ export type ConceptCommandName =
   | 'concept.schemaOrg.diamonds'
   | 'concept.traditions.quantumWhole'
   | 'concept.science.society'
+  | 'concept.method.fusion'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -145,6 +146,22 @@ export interface ConceptSiteSection {
   readonly command: ConceptCommandName
   readonly route: string
   readonly summary: string
+}
+
+export interface MethodFusionToken {
+  readonly command: ConceptCommandName
+  readonly method: string
+  readonly source: string
+  readonly single: boolean
+  readonly receipt: string
+}
+
+export interface MethodFusionReport {
+  readonly fused: boolean
+  readonly root: string
+  readonly tokens: readonly MethodFusionToken[]
+  readonly open: readonly string[]
+  readonly law: string
 }
 
 export interface SelfCompletionGate {
@@ -702,6 +719,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Compute a scientific society charter, peer-review gates, reproducibility roles, and self-optimization waves.',
   },
   {
+    name: 'concept.method.fusion',
+    path: '/cmd/concept.method.fusion',
+    description: 'Collapse every command surface into a single-word method token and report fusion gaps.',
+  },
+  {
     name: 'concept.torus.math',
     path: '/cmd/concept.torus.math',
     description: 'State the genus-2 topology, algebra, homology, and curvature behind the double torus.',
@@ -753,6 +775,35 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Build the site sections from concept command outputs.',
   },
 ] as const
+
+const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
+  'concept.site.shell': 'shell',
+  'concept.self.build': 'build',
+  'concept.self.complete': 'complete',
+  'concept.agent.streamWire': 'wire',
+  'concept.ui.doubleTorus': 'torus',
+  'concept.ui.useCases': 'evidence',
+  'concept.diamond.lattice': 'lattice',
+  'concept.diamond.piTrain': 'train',
+  'concept.diamond.complete': 'seal',
+  'concept.wave.coordination': 'coordinate',
+  'concept.wave.closeGaps': 'close',
+  'concept.chess.quantum': 'chess',
+  'concept.schemaOrg.diamonds': 'schema',
+  'concept.traditions.quantumWhole': 'traditions',
+  'concept.science.society': 'science',
+  'concept.method.fusion': 'fusion',
+  'concept.torus.math': 'math',
+  'concept.humanity.implications': 'humanity',
+  'concept.source.contribute': 'source',
+  'concept.torus.matrix': 'matrix',
+  'concept.torus.vector': 'vector',
+  'concept.torus.flow': 'flow',
+  'concept.repository.api': 'api',
+  'concept.repository.resolve': 'resolve',
+  'concept.proof.verify': 'verify',
+  'concept.site.manifest': 'manifest',
+}
 
 const BYTE_MASK = 0xff
 
@@ -1447,6 +1498,31 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     cohorts,
     solids,
     boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
+  }
+}
+
+export function methodFusion(): MethodFusionReport {
+  const tokens = conceptCommands.map((command) => {
+    const method = SINGLE_WORD_METHODS[command.name]
+    const single = /^[a-z]+$/.test(method)
+    const receipt = toUuid(`method-fusion:${command.name}:${method}:${single}`)
+    return {
+      command: command.name,
+      method,
+      source: command.path,
+      single,
+      receipt,
+    }
+  })
+  const open = tokens.filter((token) => !token.single).map((token) => token.command)
+  const root = merkleFold(tokens.map((token) => token.receipt))
+
+  return {
+    fused: open.length === 0,
+    root,
+    tokens,
+    open,
+    law: 'gravity(command) -> method; method in /^[a-z]+$/; fusion = forall method: single.',
   }
 }
 
@@ -2498,6 +2574,7 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
   const schema = schemaOrgDiamonds(matrix)
   const traditions = traditionsQuantumWhole()
   const science = scientificSociety(matrix)
+  const methods = methodFusion()
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
   const buildUnits: readonly SelfCompletionGate[] = [
@@ -2568,6 +2645,13 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
       sourceFunction: 'scientificSociety()',
       receipt: science.root,
       note: `roles=${science.roles.length}; gates=${science.reviewGates.length}; waves=${science.optimizationWaves.length}.`,
+    },
+    {
+      name: 'methods',
+      closed: methods.fused,
+      sourceFunction: 'methodFusion()',
+      receipt: methods.root,
+      note: `tokens=${methods.tokens.length}; open=${methods.open.length}.`,
     },
     {
       name: 'waves',
@@ -2804,6 +2888,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.',
     },
     {
+      title: 'Method Fusion',
+      command: 'concept.method.fusion',
+      route: '/quantum-mind#method-fusion',
+      summary: 'Gravity maps every command surface to a single-word method token.',
+    },
+    {
       title: 'Double-Torus Math',
       command: 'concept.torus.math',
       route: '/architecture#6-double-torus-math',
@@ -2928,6 +3018,10 @@ export function executeConceptCommand(
   if (command === 'concept.science.society') {
     const science = scientificSociety(matrix)
     return result(command, science.grounded, 'Scientific society computed.', science)
+  }
+  if (command === 'concept.method.fusion') {
+    const methods = methodFusion()
+    return result(command, methods.fused, 'Method fusion computed.', methods)
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

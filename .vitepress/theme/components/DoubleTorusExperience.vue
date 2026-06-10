@@ -16,6 +16,7 @@ import {
   coordinatedWaves,
   diamondCompleteness,
   diamondLattice,
+  methodFusion,
   piTrainDiamonds,
   quantumChessGame,
   quantumUiEvidence,
@@ -42,6 +43,7 @@ const chess = quantumChessGame(matrix)
 const evidence = quantumUiEvidence(matrix)
 const schema = schemaOrgDiamonds(matrix)
 const science = scientificSociety(matrix)
+const methods = methodFusion()
 const traditions = traditionsQuantumWhole()
 const activeIndex = ref(0)
 const waveTick = ref(0)
@@ -209,6 +211,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="schema">Schema.org</TabsTrigger>
         <TabsTrigger value="science">Science</TabsTrigger>
+        <TabsTrigger value="methods">Methods</TabsTrigger>
         <TabsTrigger value="traditions">Traditions</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
@@ -470,6 +473,24 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ solid.solid }}</Badge>
             <strong>{{ solid.builder }} · F{{ solid.faces }} E{{ solid.edges }} V{{ solid.vertices }}</strong>
             <span>{{ solid.method }} Receipt: {{ solid.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="methods" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="methods.fused ? 'success' : 'warning'">
+            {{ methods.fused ? 'fused' : 'open' }}
+          </Badge>
+          <strong>{{ methods.law }}</strong>
+          <span>open={{ methods.open.length ? methods.open.join(', ') : 'none' }}</span>
+          <code>{{ methods.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="token in methods.tokens" :key="token.receipt">
+            <Badge :variant="token.single ? 'success' : 'warning'">{{ token.method }}</Badge>
+            <strong>{{ token.command }}</strong>
+            <span>{{ token.source }} Receipt: {{ token.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
