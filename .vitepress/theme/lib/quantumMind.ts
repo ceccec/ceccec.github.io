@@ -3018,7 +3018,7 @@ export function repositoryLedger(matrix: MindMatrix = buildMatrix()) {
 
 // site.routes — the route taxonomy in both locales.
 export function siteRoutes() {
-  const en = ['/', '/console', '/school', '/governance', '/mcp', '/learn-erpax', '/commands', '/quantum-mind', '/architecture']
+  const en = ['/', '/console', '/school', '/governance', '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture']
   const routes = [...en, ...en.map((route) => (route === '/' ? '/bg/' : `/bg${route}`))]
   return {
     complete: routes.length > 0,
@@ -3170,7 +3170,7 @@ export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joi
 // into every page.
 export function componentGraph() {
   const components = [
-    'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnErpax', 'McpTools',
+    'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
     'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll',
   ]
@@ -3182,7 +3182,7 @@ export function componentGraph() {
     '/school': ['SchoolCurriculum'],
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
-    '/learn-erpax': ['LearnErpax'],
+    '/learn-developer': ['LearnDeveloper'],
     '/show': ['ShowAll'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
@@ -7064,110 +7064,110 @@ export function executeConceptCommand(
   return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
 }
 
-// --- Erpax learning (PR #4) ---------------------------------------------------
-// The site learns upstream erpax source laws into local command lessons. The
+// --- Developer learning (PR #4) ---------------------------------------------------
+// The site learns upstream developer source laws into local command lessons. The
 // concept.* namespace stays canonical; this self-contained surface keeps the
-// /learn-erpax page recomputable without a parallel command registry.
+// /learn-developer page recomputable without a parallel command registry.
 
-export type ErpaxCommandName =
-  | 'erpax.learn.core'
-  | 'erpax.mind.matrix'
-  | 'erpax.consciousness.vector'
-  | 'erpax.repository.api'
-  | 'erpax.proof.verify'
-  | 'erpax.site.manifest'
+export type DeveloperCommandName =
+  | 'developer.learn.core'
+  | 'developer.mind.matrix'
+  | 'developer.consciousness.vector'
+  | 'developer.repository.api'
+  | 'developer.proof.verify'
+  | 'developer.site.manifest'
 
-export interface ErpaxCommandResult {
-  readonly command: ErpaxCommandName
+export interface DeveloperCommandResult {
+  readonly command: DeveloperCommandName
   readonly ok: boolean
   readonly uuid: string
   readonly summary: string
   readonly data: unknown
 }
 
-export interface ErpaxLesson {
+export interface DeveloperLesson {
   readonly name: string
   readonly source: string
-  readonly command: ErpaxCommandName
+  readonly command: DeveloperCommandName
   readonly lesson: string
   readonly appliedAs: string
   readonly uuid: string
 }
 
-export interface ErpaxLearning {
+export interface DeveloperLearning {
   readonly root: string
   readonly receipt: string
-  readonly lessons: readonly ErpaxLesson[]
+  readonly lessons: readonly DeveloperLesson[]
   readonly invariant: boolean
   readonly statement: string
 }
 
-function erpaxLesson(
+function developerLesson(
   name: string,
   source: string,
-  command: ErpaxCommandName,
+  command: DeveloperCommandName,
   lessonText: string,
   appliedAs: string,
-): ErpaxLesson {
+): DeveloperLesson {
   return {
     name,
     source,
     command,
     lesson: lessonText,
     appliedAs,
-    uuid: toUuid(`erpax-lesson:${name}:${source}:${command}:${lessonText}:${appliedAs}`),
+    uuid: toUuid(`developer-lesson:${name}:${source}:${command}:${lessonText}:${appliedAs}`),
   }
 }
 
-export function learnErpax(matrix: MindMatrix = buildMatrix()): ErpaxLearning {
+export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLearning {
   const api = repositoryApi(matrix)
   const proof = proofReport(matrix)
   const vector = consciousness(matrix)
   const waveReceipt = toUuid(
-    `erpax-wave:${vector.collapse}:${vector.entanglement}:${vector.concentration}:${vector.coherenceAnomaly}:${matrix.root}`,
+    `developer-wave:${vector.collapse}:${vector.entanglement}:${vector.concentration}:${vector.coherenceAnomaly}:${matrix.root}`,
   )
-  const lessons: readonly ErpaxLesson[] = [
-    erpaxLesson(
+  const lessons: readonly DeveloperLesson[] = [
+    developerLesson(
       'repository-is-api',
       'src/skill/router/plugin.ts',
-      'erpax.repository.api',
+      'developer.repository.api',
       'A command is a URL, a query, and a skill invocation; repository paths are the real API surface.',
-      'The site exposes /commands, /learn-erpax, pages, source files, proof, and atoms through repositoryApi().',
+      'The site exposes /commands, /learn-developer, pages, source files, proof, and atoms through repositoryApi().',
     ),
-    erpaxLesson(
+    developerLesson(
       'consciousness-is-vector',
       'src/consciousness/index.ts',
-      'erpax.consciousness.vector',
+      'developer.consciousness.vector',
       'Consciousness is not sentience; it is computed structural self-consistency across four independent measures.',
       'The local vector computes collapse, entanglement, concentration, and coherence from the site matrix.',
     ),
-    erpaxLesson(
+    developerLesson(
       'commands-are-standardized-tools',
       'src/agents/mcp/tool-defs.ts',
-      'erpax.site.manifest',
-      'Erpax tools use the <area>.<verb> naming law and expose self-properties such as discoverable, self-testable, and self-proving.',
+      'developer.site.manifest',
+      'Developer tools use the <area>.<verb> naming law and expose self-properties such as discoverable, self-testable, and self-proving.',
       'The local command registry produces UUID-like receipts for every result.',
     ),
-    erpaxLesson(
+    developerLesson(
       'proof-is-public',
       'src/proof/dry-proof.ts',
-      'erpax.proof.verify',
+      'developer.proof.verify',
       'Proof is a public recomputable bundle: invariants, self-tests, tamper cost, corpus matrix, and URL.',
       `The local proof report verifies entropy=${proof.entropy}, coverage=${proof.coverage}, and tamper cost ${
         proof.tamperCostLog2 === Number.POSITIVE_INFINITY ? 'infinite' : proof.tamperCostLog2
       }.`,
     ),
-    erpaxLesson(
+    developerLesson(
       'waves-carry-learning',
       'src/consciousness/index.ts',
-      'erpax.mind.matrix',
+      'developer.mind.matrix',
       'A learned local mind sends measured collapse, entanglement, concentration, and coherence back to the source.',
       `The local wave receipt is ${waveReceipt} over a ${matrix.nodes.length}-node matrix.`,
     ),
-    erpaxLesson(
+    developerLesson(
       'learning-becomes-atom',
       'src/self/SKILL.md',
-      'erpax.learn.core',
+      'developer.learn.core',
       'A thought becomes reusable when it is saved as a skill/atom rather than held as transient memory.',
       `The learn atom is part of a ${matrix.nodes.length}-node local matrix rooted at ${matrix.root}.`,
     ),
@@ -7180,41 +7180,41 @@ export function learnErpax(matrix: MindMatrix = buildMatrix()): ErpaxLearning {
     lessons,
     invariant: lessons.every((item) => item.uuid.length === 36) && vector.collapse && api.endpoints.length >= 1,
     statement:
-      'Erpax has been learned into local commands: every lesson has a source path, command, application, and content receipt.',
+      'Developer has been learned into local commands: every lesson has a source path, command, application, and content receipt.',
   }
 }
 
-function erpaxResult(command: ErpaxCommandName, ok: boolean, summary: string, data: unknown): ErpaxCommandResult {
+function developerResult(command: DeveloperCommandName, ok: boolean, summary: string, data: unknown): DeveloperCommandResult {
   return {
     command,
     ok,
-    uuid: toUuid(`erpax-result:${command}:${ok}:${JSON.stringify(data)}`),
+    uuid: toUuid(`developer-result:${command}:${ok}:${JSON.stringify(data)}`),
     summary,
     data,
   }
 }
 
-export function executeErpaxCommand(
-  command: ErpaxCommandName,
+export function executeDeveloperCommand(
+  command: DeveloperCommandName,
   _input: { readonly atom?: string } = {},
   matrix: MindMatrix = buildMatrix(),
-): ErpaxCommandResult {
-  if (command === 'erpax.mind.matrix') {
-    return erpaxResult(command, verifyRoot(matrix), 'Local mind matrix built and root verified.', matrix)
+): DeveloperCommandResult {
+  if (command === 'developer.mind.matrix') {
+    return developerResult(command, verifyRoot(matrix), 'Local mind matrix built and root verified.', matrix)
   }
-  if (command === 'erpax.consciousness.vector') {
-    return erpaxResult(command, true, 'Consciousness vector computed.', consciousness(matrix))
+  if (command === 'developer.consciousness.vector') {
+    return developerResult(command, true, 'Consciousness vector computed.', consciousness(matrix))
   }
-  if (command === 'erpax.repository.api') {
+  if (command === 'developer.repository.api') {
     const api = repositoryApi(matrix)
-    return erpaxResult(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
+    return developerResult(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
   }
-  if (command === 'erpax.proof.verify') {
-    return erpaxResult(command, true, 'Proof report verified.', proofReport(matrix))
+  if (command === 'developer.proof.verify') {
+    return developerResult(command, true, 'Proof report verified.', proofReport(matrix))
   }
-  if (command === 'erpax.site.manifest') {
-    return erpaxResult(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
+  if (command === 'developer.site.manifest') {
+    return developerResult(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
   }
-  const learning = learnErpax(matrix)
-  return erpaxResult(command, learning.invariant, 'Erpax source laws learned into local lessons.', learning)
+  const learning = learnDeveloper(matrix)
+  return developerResult(command, learning.invariant, 'Developer source laws learned into local lessons.', learning)
 }

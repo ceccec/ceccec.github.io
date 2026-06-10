@@ -18,7 +18,7 @@ T_max = maxComputedBuild
 
 ```text
 R_en = { "/", "/console", "/show", "/school", "/governance", "/mcp",
-         "/learn-erpax", "/commands", "/quantum-mind", "/architecture" }
+         "/learn-developer", "/commands", "/quantum-mind", "/architecture" }
 R     = R_en U bg(R_en)            // English root + Bulgarian /bg
 tools = /mcp.json                  // every command as an MCP tool
 ```

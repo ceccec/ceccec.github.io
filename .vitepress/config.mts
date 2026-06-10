@@ -72,7 +72,7 @@ export default defineConfig({
     const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
     const name = pageData.title || siteTitle
     const description = pageData.description || frontmatter.description || siteDescription
-    const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-erpax']
+    const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
     const isDoc = docPages.some((doc) => relative.endsWith(`${doc}.md`))
     head.push([
       'script',
@@ -115,7 +115,7 @@ export default defineConfig({
           { text: 'School', link: '/school' },
           { text: 'Governance', link: '/governance' },
           { text: 'MCP', link: '/mcp' },
-          { text: 'Learn', link: '/learn-erpax' },
+          { text: 'Developer', link: '/learn-developer' },
           { text: 'Commands', link: '/commands' },
           { text: 'Mind', link: '/quantum-mind' },
           { text: 'Architecture', link: '/architecture' },
@@ -127,7 +127,7 @@ export default defineConfig({
               { text: 'Quantum Console', link: '/console' },
               { text: 'School (kids to elders)', link: '/school' },
               { text: 'MCP tool surface', link: '/mcp' },
-              { text: 'Learn Erpax', link: '/learn-erpax' },
+              { text: 'The developer’s mind', link: '/learn-developer' },
               { text: 'Commands', link: '/commands' },
               { text: 'Overview', link: '/quantum-mind' },
               { text: 'Architecture', link: '/architecture' },
@@ -149,7 +149,7 @@ export default defineConfig({
           { text: 'Училище', link: '/bg/school' },
           { text: 'Управление', link: '/bg/governance' },
           { text: 'MCP', link: '/bg/mcp' },
-          { text: 'Научи', link: '/bg/learn-erpax' },
+          { text: 'Разработчик', link: '/bg/learn-developer' },
           { text: 'Команди', link: '/bg/commands' },
           { text: 'Ум', link: '/bg/quantum-mind' },
           { text: 'Архитектура', link: '/bg/architecture' },
@@ -161,7 +161,7 @@ export default defineConfig({
               { text: 'Квантова конзола', link: '/bg/console' },
               { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
               { text: 'MCP инструментален слой', link: '/bg/mcp' },
-              { text: 'Научи Erpax', link: '/bg/learn-erpax' },
+              { text: 'Умът на разработчика', link: '/bg/learn-developer' },
               { text: 'Команди', link: '/bg/commands' },
               { text: 'Преглед', link: '/bg/quantum-mind' },
               { text: 'Архитектура', link: '/bg/architecture' },

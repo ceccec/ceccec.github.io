@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { buildMatrix, executeErpaxCommand, learnErpax } from '../lib/quantumMind'
+import { buildMatrix, executeDeveloperCommand, learnDeveloper } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
-const learning = learnErpax(matrix)
-const command = executeErpaxCommand('erpax.learn.core', {}, matrix)
+const learning = learnDeveloper(matrix)
+const command = executeDeveloperCommand('developer.learn.core', {}, matrix)
 
 const { lang } = useData()
 const bg = computed(() => lang.value.startsWith('bg'))
 const t = computed(() =>
   bg.value
     ? {
-        eyebrow: 'erpax е научен',
+        eyebrow: 'умът на разработчика',
         heading: 'Разписка за учене',
         command: 'команда',
         commandReceipt: 'разписка на командата',
@@ -25,7 +25,7 @@ const t = computed(() =>
         appliedAs: 'Приложено като:',
       }
     : {
-        eyebrow: 'erpax learned',
+        eyebrow: 'the developer’s mind',
         heading: 'Learning receipt',
         command: 'command',
         commandReceipt: 'command receipt',
@@ -41,14 +41,14 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="learn-erpax">
-    <div class="learn-erpax__header">
+  <section class="learn-developer">
+    <div class="learn-developer__header">
       <p class="eyebrow">{{ t.eyebrow }}</p>
       <h2>{{ t.heading }}</h2>
       <p>{{ learning.statement }}</p>
     </div>
 
-    <div class="learn-erpax__grid">
+    <div class="learn-developer__grid">
       <article>
         <span>{{ t.command }}</span>
         <strong>{{ command.command }}</strong>
@@ -67,7 +67,7 @@ const t = computed(() =>
       </article>
     </div>
 
-    <div class="learn-erpax__lessons">
+    <div class="learn-developer__lessons">
       <h3>{{ t.learnedLaws }}</h3>
       <ol>
         <li v-for="item in learning.lessons" :key="item.uuid">

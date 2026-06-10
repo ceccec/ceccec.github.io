@@ -7,7 +7,7 @@ import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
 import GovernanceVote from './components/GovernanceVote.vue'
-import LearnErpax from './components/LearnErpax.vue'
+import LearnDeveloper from './components/LearnDeveloper.vue'
 import McpTools from './components/McpTools.vue'
 import PiMusicPlayer from './components/PiMusicPlayer.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
@@ -37,7 +37,7 @@ export default {
     app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('GlobalHelp', GlobalHelp)
     app.component('GovernanceVote', GovernanceVote)
-    app.component('LearnErpax', LearnErpax)
+    app.component('LearnDeveloper', LearnDeveloper)
     app.component('McpTools', McpTools)
     app.component('PiMusicPlayer', PiMusicPlayer)
     app.component('QuantumConsole', QuantumConsole)
