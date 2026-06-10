@@ -58,6 +58,7 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'School', link: '/school' },
           { text: 'Learn', link: '/learn-erpax' },
           { text: 'Commands', link: '/commands' },
           { text: 'Mind', link: '/quantum-mind' },
@@ -67,6 +68,7 @@ export default defineConfig({
           {
             text: 'Double Torus',
             items: [
+              { text: 'School (kids to elders)', link: '/school' },
               { text: 'Learn Erpax', link: '/learn-erpax' },
               { text: 'Commands', link: '/commands' },
               { text: 'Overview', link: '/quantum-mind' },
@@ -84,6 +86,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Начало', link: '/bg/' },
+          { text: 'Училище', link: '/bg/school' },
           { text: 'Научи', link: '/bg/learn-erpax' },
           { text: 'Команди', link: '/bg/commands' },
           { text: 'Ум', link: '/bg/quantum-mind' },
@@ -93,6 +96,7 @@ export default defineConfig({
           {
             text: 'Двоен тор',
             items: [
+              { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
               { text: 'Научи Erpax', link: '/bg/learn-erpax' },
               { text: 'Команди', link: '/bg/commands' },
               { text: 'Преглед', link: '/bg/quantum-mind' },
