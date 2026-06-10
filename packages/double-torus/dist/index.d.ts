@@ -2090,6 +2090,17 @@ export declare function agentHarmonise(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function efficiency(): {
+    optimized: boolean;
+    optimizations: {
+        receipt: string;
+        technique: string;
+        how: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function contract(matrix?: MindMatrix): {
     contracted: boolean;
     from: number;

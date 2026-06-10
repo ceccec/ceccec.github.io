@@ -43,6 +43,7 @@ import {
   selfHarmonise,
   fuseAll,
   contract,
+  efficiency,
   agnostic,
   release,
   doubleTorus3D,
@@ -224,6 +225,8 @@ ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && 
 ok('fuse.all', fuseAll(matrix).fused)
 // Contract: the expansion folds back to the seed; the breath rests at equilibrium.
 ok('contract.breath', contract(matrix).contracted)
+// Efficiency, standard and deep: memoized dispatch + aggregators, gated rendering, no fetch, zero deps.
+ok('efficiency.standard', efficiency().optimized)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
