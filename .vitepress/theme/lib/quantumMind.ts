@@ -3069,6 +3069,24 @@ export function typographySeo() {
   }
 }
 
+// Open Graph is computed from frontmatter. Each page's social card (og: and
+// twitter: meta) is derived from its own frontmatter — ogTitle, ogDescription,
+// ogType, image — falling back to the page title and description, so a page
+// reveals its card without any code change. Applied in transformPageData.
+export function openGraph() {
+  const fields = [
+    'og:type', 'og:title', 'og:description', 'og:url', 'og:locale', 'og:image',
+    'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image',
+  ].map((field, index) => ({ field, source: 'frontmatter', receipt: toUuid(`open-graph:${index}:${field}`) }))
+  return {
+    computed: fields.length === 10,
+    fields,
+    root: merkleFold(fields.map((entry) => entry.receipt)),
+    statement: 'Open Graph is computed from frontmatter: each page derives its og: and twitter: social card from its own frontmatter (ogTitle, ogDescription, ogType, image), falling back to the page title and description.',
+    boundary: 'A declared mapping from frontmatter to Open Graph and Twitter meta, applied at render time. It does not guarantee how any platform renders the card.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.

@@ -23,13 +23,9 @@ export default defineConfig({
           'quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress',
       },
     ],
-    ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: siteTitle }],
-    ['meta', { property: 'og:description', content: siteDescription }],
+    // og:title/description/type and twitter:* are computed per page from
+    // frontmatter in transformPageData; only the site-level name stays here.
     ['meta', { property: 'og:site_name', content: siteTitle }],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:title', content: siteTitle }],
-    ['meta', { name: 'twitter:description', content: siteDescription }],
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
     ['link', { rel: 'icon', href: '/icon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/icon.svg' }],
@@ -84,7 +80,27 @@ export default defineConfig({
     const command = typeof fm.command === 'string' ? fm.command : undefined
     const image = typeof fm.image === 'string' ? fm.image : undefined
     if (keywords) head.push(['meta', { name: 'keywords', content: keywords.join(', ') }])
-    if (image) head.push(['meta', { property: 'og:image', content: image }])
+    // Open Graph is computed from frontmatter: each page's social card is derived
+    // from its own frontmatter (ogTitle/ogDescription/ogType/image), falling back
+    // to the page title and description. Twitter mirrors Open Graph.
+    const ogTitle = (typeof fm.ogTitle === 'string' && fm.ogTitle) || name
+    const ogDescription = (typeof fm.ogDescription === 'string' && fm.ogDescription) || description
+    const ogType = (typeof fm.ogType === 'string' && fm.ogType) || (isDoc ? 'article' : 'website')
+    const og: [string, Record<string, string>][] = [
+      ['meta', { property: 'og:type', content: ogType }],
+      ['meta', { property: 'og:title', content: ogTitle }],
+      ['meta', { property: 'og:description', content: ogDescription }],
+      ['meta', { property: 'og:url', content: path }],
+      ['meta', { property: 'og:locale', content: isBg ? 'bg_BG' : 'en_US' }],
+      ['meta', { name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' }],
+      ['meta', { name: 'twitter:title', content: ogTitle }],
+      ['meta', { name: 'twitter:description', content: ogDescription }],
+    ]
+    if (image) {
+      og.push(['meta', { property: 'og:image', content: image }])
+      og.push(['meta', { name: 'twitter:image', content: image }])
+    }
+    for (const tag of og) head.push(tag)
     head.push([
       'script',
       { type: 'application/ld+json' },

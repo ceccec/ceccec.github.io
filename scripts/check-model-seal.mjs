@@ -34,6 +34,7 @@ import {
   selfConsult,
   selfHarmonise,
   typographySeo,
+  openGraph,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -172,6 +173,8 @@ const harmonise = selfHarmonise(matrix)
 ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && harmonise.distinctStepsVisited >= 5)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
+// Open Graph is computed from frontmatter (per-page og: and twitter: cards).
+ok('open-graph.computed', openGraph().computed)
 // The honesty spine: every boundary the model declares, collected into one audited root.
 ok('boundary.audit', boundaryAudit(matrix).audited)
 // A message has a content UUID and unlocks links, but only a complete trinity reveals them.
