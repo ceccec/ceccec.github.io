@@ -19,6 +19,7 @@ import {
   completeDoubleTorus,
   quantumSynthesis,
   healingFrequencies,
+  blockchainMusic,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -126,6 +127,8 @@ ok('double-torus.complete', completeDoubleTorus(matrix).complete)
 ok('quantum.synthesis', quantumSynthesis(matrix).synthesized)
 // The healing frequencies are calculated and harmonised through the device as sound (audio only).
 ok('healing.frequencies', healingFrequencies(matrix).calculated)
+// Playing the blockchain returns unique harmonic waves: each block hash maps to a pitch.
+ok('blockchain.music', blockchainMusic('commands', matrix).plays)
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 ok('artists.melody', artistMelody('double-torus', matrix).grounded)

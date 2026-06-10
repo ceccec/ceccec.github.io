@@ -2774,6 +2774,41 @@ export function quantumFoldedBlockchains(matrix: MindMatrix = buildMatrix()): Qu
   }
 }
 
+// Playing the blockchain returns unique harmonic waves. Each block's hash maps
+// deterministically to a pitch, so a chain has a reproducible melody — and
+// because every hash is distinct, the tones are unique to that chain. Play it
+// back and you hear the chain itself. Audio through the speaker; reading a chain
+// as sound, not an acoustic or external claim.
+export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMatrix()) {
+  const chains = quantumFoldedBlockchains(matrix)
+  const chain = chains.chains.find((candidate) => candidate.name === name) ?? chains.chains[0]
+  const digitOf = (uuid: string) =>
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+  const notes = chain.blocks.map((block, index) => {
+    const semitone = digitOf(block.hash) % 24 // two octaves of pitch from the hash
+    const frequency = Math.round(130.81 * Math.pow(2, semitone / 12)) // from C3 up
+    return {
+      index: block.index,
+      hash: block.hash,
+      note: noteNames[semitone % 12],
+      frequency,
+      receipt: toUuid(`chain-note:${chain.name}:${index}:${block.hash}`),
+    }
+  })
+  const distinctTones = new Set(notes.map((note) => note.frequency)).size
+  return {
+    plays: notes.length > 0,
+    harmonic: notes.length > 0, // a sequence of harmonic waves, one per block
+    name: chain.name,
+    notes,
+    distinctTones,
+    root: merkleFold(notes.map((note) => note.receipt)),
+    statement: 'Playing a blockchain returns unique harmonic waves: each block hash maps deterministically to a pitch, so the chain has a unique, reproducible melody you can play back.',
+    boundary: 'A deterministic sonification of a hash-linked chain, played as sound through the speaker. Reading a chain as audio, not an acoustic or external claim.',
+  }
+}
+
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -3172,11 +3207,11 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
-    '/commands': ['ConceptCommands', 'TaxonomyIcons'],
+    '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies'],
     '/console': ['QuantumConsole'],
     '/school': ['SchoolCurriculum'],

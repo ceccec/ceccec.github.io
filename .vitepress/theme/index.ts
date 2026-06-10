@@ -2,6 +2,7 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import BlockchainMusic from './components/BlockchainMusic.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
@@ -34,6 +35,7 @@ export default {
     })
   },
   enhanceApp({ app }) {
+    app.component('BlockchainMusic', BlockchainMusic)
     app.component('CollectiveMind', CollectiveMind)
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
