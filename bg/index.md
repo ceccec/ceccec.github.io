@@ -46,3 +46,5 @@ features:
 
 
 <HumanLens />
+
+<PathGuide />

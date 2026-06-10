@@ -3393,6 +3393,40 @@ export function dualities() {
   }
 }
 
+// Follow the path. A guided journey through the portal, in order: arrive in
+// plain words, learn from the ground up, ask and be answered, run the commands,
+// meet the model's surface, see the shape, read the proof, know the limits, and
+// watch it all fuse into one wave. Each station follows from the last and points
+// to the next, so you can simply follow the path — though every page also stands
+// on its own.
+export function path(matrix: MindMatrix = buildMatrix()) {
+  const route = [
+    { station: 'Start', route: '/', why: 'See the promises in plain words.' },
+    { station: 'School', route: '/school', why: 'Learn it from the ground up, at any age.' },
+    { station: 'Console', route: '/console', why: 'Ask — and watch it consult itself before answering.' },
+    { station: 'Commands', route: '/commands', why: 'Every capability, named and runnable.' },
+    { station: 'MCP', route: '/mcp', why: 'The same surface, for language models.' },
+    { station: 'Mind', route: '/quantum-mind', why: 'See the shape — the double torus, in 3d 5d 8d.' },
+    { station: 'Architecture', route: '/architecture', why: 'The formal model and the live seal.' },
+    { station: 'Boundaries', route: '/boundaries', why: 'Every limit it declares, in one place.' },
+    { station: 'Show', route: '/show', why: 'Everything in action, fused into one wave.' },
+  ]
+  const stations = route.map((entry, index) => ({
+    ...entry,
+    step: index + 1,
+    next: route[(index + 1) % route.length].route, // the path loops: the end returns to the start
+    receipt: toUuid(`path:${index}:${entry.route}`),
+  }))
+  return {
+    walkable: stations.length > 0 && stations.every((entry) => entry.route.length > 0 && entry.next.length > 0),
+    length: stations.length,
+    stations,
+    root: merkleFold(stations.map((entry) => entry.receipt)),
+    statement: 'Follow the path: a guided journey — arrive in plain words, learn, ask, run, meet the surface, see the shape, read the proof, know the limits, and watch it all fuse into one wave, then return to the start.',
+    boundary: 'A curated walking order over the existing pages. A guide, not the only way through; every page also stands on its own.',
+  }
+}
+
 // Humanize. Behind the maths and the 3d+ is a simple set of promises to a
 // person. This says each core idea plainly — what it means for you, not how it
 // is built — so anyone can feel what the portal is, not only verify it.
@@ -3834,7 +3868,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3846,7 +3880,7 @@ export function componentGraph() {
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
-    '/': ['HumanLens'],
+    '/': ['HumanLens', 'PathGuide'],
     '/show': ['ShowAll', 'FusionWave'],
     '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal'],
   }

@@ -47,6 +47,7 @@ import {
   dimensions,
   dualities,
   equilibrium,
+  path,
   humanize,
   typographySeo,
   openGraph,
@@ -205,6 +206,8 @@ ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
 ok('double-torus.3d', doubleTorus3D(matrix).rendered)
 // Humanize: every core idea said plainly for a person.
 ok('humanize', humanize().human)
+// Follow the path: a guided, looping journey through the portal's pages.
+ok('path.walkable', path(matrix).walkable)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).

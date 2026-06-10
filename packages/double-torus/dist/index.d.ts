@@ -1372,6 +1372,21 @@ export declare function dualities(): {
     statement: string;
     boundary: string;
 };
+export declare function path(matrix?: MindMatrix): {
+    walkable: boolean;
+    length: number;
+    stations: {
+        step: number;
+        next: string;
+        receipt: string;
+        station: string;
+        route: string;
+        why: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function humanize(): {
     human: boolean;
     translations: {
