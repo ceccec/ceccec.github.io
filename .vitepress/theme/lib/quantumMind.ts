@@ -2781,6 +2781,62 @@ const AREA_ICONS: Record<string, string> = {
   lawful: '⚖', computer: '🖳', healing: '◎',
 }
 
+// Ensure complete autotranslations: every area carries an English and a
+// Bulgarian label, so the taxonomy renders in the reader's language and never
+// leaks an untranslated key. The autotranslations() gate fails the build if any
+// area lacks either label, making translation part of the seal.
+const AREA_LABELS: Record<string, { en: string; bg: string }> = {
+  site: { en: 'Site', bg: 'Сайт' },
+  self: { en: 'Self', bg: 'Себе' },
+  agent: { en: 'Agent', bg: 'Агент' },
+  school: { en: 'School', bg: 'Училище' },
+  mcp: { en: 'MCP', bg: 'MCP' },
+  chain: { en: 'Chain', bg: 'Верига' },
+  help: { en: 'Help', bg: 'Помощ' },
+  fold: { en: 'Fold', bg: 'Сгъване' },
+  mind: { en: 'Mind', bg: 'Ум' },
+  compute: { en: 'Compute', bg: 'Изчисление' },
+  ui: { en: 'UI', bg: 'Интерфейс' },
+  diamond: { en: 'Diamond', bg: 'Диамант' },
+  digit: { en: 'Digit', bg: 'Цифра' },
+  wave: { en: 'Wave', bg: 'Вълна' },
+  chess: { en: 'Chess', bg: 'Шах' },
+  schemaOrg: { en: 'Schema.org', bg: 'Schema.org' },
+  traditions: { en: 'Traditions', bg: 'Традиции' },
+  science: { en: 'Science', bg: 'Наука' },
+  artists: { en: 'Artists', bg: 'Художници' },
+  method: { en: 'Method', bg: 'Метод' },
+  torus: { en: 'Torus', bg: 'Тор' },
+  humanity: { en: 'Humanity', bg: 'Човечество' },
+  source: { en: 'Source', bg: 'Източник' },
+  repository: { en: 'Repository', bg: 'Хранилище' },
+  proof: { en: 'Proof', bg: 'Доказателство' },
+  commands: { en: 'Commands', bg: 'Команди' },
+  music: { en: 'Music', bg: 'Музика' },
+  icon: { en: 'Icon', bg: 'Икона' },
+  babel: { en: 'Babel', bg: 'Вавилон' },
+  utf: { en: 'UTF', bg: 'UTF' },
+  all: { en: 'All', bg: 'Всичко' },
+  state: { en: 'State', bg: 'Състояние' },
+  geometry: { en: 'Geometry', bg: 'Геометрия' },
+  society: { en: 'Society', bg: 'Общество' },
+  commons: { en: 'Commons', bg: 'Общи блага' },
+  ancient: { en: 'Ancient', bg: 'Древни' },
+  reactor: { en: 'Reactor', bg: 'Реактор' },
+  show: { en: 'Show', bg: 'Покажи' },
+  patent: { en: 'Patent', bg: 'Патент' },
+  nature: { en: 'Nature', bg: 'Природа' },
+  lawful: { en: 'Lawful', bg: 'Законно' },
+  computer: { en: 'Computer', bg: 'Компютър' },
+  healing: { en: 'Healing', bg: 'Изцеление' },
+}
+
+// Translate an area key to the reader's language, falling back to the key.
+export function areaLabel(area: string, bg = false): string {
+  const label = AREA_LABELS[area]
+  return label ? (bg ? label.bg : label.en) : area
+}
+
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
 // group the three-word commands by area, give each area an icon, and flag every
 // area that is not a clean trinity as a gap to be seen.
@@ -2817,6 +2873,33 @@ export function taxonomyIcons(): TaxonomyIcons {
       'Icons taxonomize the commands by area; a pair — an area one fold short of a trinity — is a visible implementation gap the icons discover.',
     boundary:
       'A structural taxonomy over the command areas. "Gap" means a pair (one fold from a trinity), an observation to guide work, not a defect claim.',
+  }
+}
+
+// Ensure complete autotranslations: every taxonomy area must carry a non-empty
+// English and Bulgarian label, and the babel fold must be grounded. The build
+// fails if a new area is added without its translation, so the bilingual
+// surface can never silently fall behind the model.
+export function autotranslations(matrix: MindMatrix = buildMatrix()) {
+  const areas = taxonomyIcons().entries.map((entry) => entry.area)
+  const labels = areas.map((area) => {
+    const label = AREA_LABELS[area]
+    const en = label?.en ?? ''
+    const bg = label?.bg ?? ''
+    return { area, en, bg, translated: en.length > 0 && bg.length > 0, receipt: toUuid(`autotranslate:${area}:${en}:${bg}`) }
+  })
+  const missing = labels.filter((label) => !label.translated).map((label) => label.area)
+  const babel = babelFold(matrix)
+  return {
+    complete: missing.length === 0 && babel.grounded,
+    areas: labels.length,
+    missing,
+    labels,
+    root: merkleFold(labels.map((label) => label.receipt)),
+    statement: missing.length === 0
+      ? `Autotranslations complete: all ${labels.length} areas carry English and Bulgarian labels, and the babel fold is grounded.`
+      : `Autotranslations incomplete: ${missing.join(', ')} lack a translation.`,
+    boundary: 'A completeness check over the area labels and the babel fold. It guarantees coverage, not the literary quality of any translation.',
   }
 }
 

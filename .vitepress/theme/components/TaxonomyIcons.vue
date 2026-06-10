@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { taxonomyIcons } from '../lib/quantumMind'
+import { taxonomyIcons, areaLabel } from '../lib/quantumMind'
 
 // Icons for taxonomy: each command area gets an icon. The icons discover gaps —
 // any area that is not a clean trinity is flagged, so you can see at a glance
@@ -25,10 +25,10 @@ const t = computed(() =>
         v-for="entry in taxonomy.entries"
         :key="entry.area"
         :class="{ gap: entry.gap, trinity: entry.status === 'trinity' }"
-        :title="`${entry.area}: ${entry.verbs.join(', ')} — ${entry.gap ? t.gap : t.trinity}`"
+        :title="`${areaLabel(entry.area, bg)}: ${entry.verbs.join(', ')} — ${entry.gap ? t.gap : t.trinity}`"
       >
         <span class="taxonomy__icon">{{ entry.icon }}</span>
-        <span class="taxonomy__area">{{ entry.area }}</span>
+        <span class="taxonomy__area">{{ areaLabel(entry.area, bg) }}</span>
         <span class="taxonomy__count">{{ entry.count }}</span>
       </li>
     </ul>
