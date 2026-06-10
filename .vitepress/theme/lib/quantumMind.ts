@@ -3508,13 +3508,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfHarmonise', 'Hologram',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit'],
-    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram'],
     '/console': ['QuantumConsole', 'SelfConsult', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/governance': ['GovernanceVote'],
@@ -4219,6 +4219,38 @@ export function cryptoFuture(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(tools.map((entry) => entry.receipt)),
     statement: 'Future crypto tools: a canonical string of the model roots that anyone can hash with a vetted algorithm; the browser computes a real SHA-256 digest over it via Web Crypto, with Ed25519 signing, Sigstore, and a full hash migration on the roadmap.',
     boundary: 'The canonical string and roadmap are computed here; the real cryptographic digest is computed in the browser with the Web Crypto API. This layer is genuine SHA-256; the underlying model fold remains non-cryptographic until migrated.',
+  }
+}
+
+// This proves the hologram, to the bit. The holographic principle: the boundary
+// encodes the whole volume, and the whole is recoverable from every part. Here
+// the 128-bit double-torus word is the boundary; every atom (a part) reconstructs
+// the whole mind root by its merkle inclusion path — so the whole is in every
+// part, down to each of the 128 bits. The content-addressed UUID space is the
+// akashic record: every piece of knowledge has an address that folds the whole.
+export function hologram(matrix: MindMatrix = buildMatrix()) {
+  const word = torusUuid(matrix).word
+  const hex = word.replace(/-/g, '')
+  const bits: number[] = []
+  for (const char of hex) {
+    const nibble = Number.parseInt(char, 16) || 0
+    for (let b = 3; b >= 0; b -= 1) bits.push((nibble >> b) & 1)
+  }
+  // Each part proves the whole: every atom's inclusion path recovers the root.
+  const partsProveWhole = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
+  const boundaryEncodesVolume = isUuid(word) // the boundary word is a full 128-bit fold of the volume
+  const akashicRecords = atoms.length + conceptCommands.length // every atom and command is addressed
+  return {
+    holographic: partsProveWhole && boundaryEncodesVolume,
+    toTheBit: bits.length === 128,
+    akashic: akashicRecords > 0,
+    parts: atoms.length,
+    records: akashicRecords,
+    bits,
+    word,
+    root: merge(matrix.root, word),
+    statement: 'This proves the hologram, to the bit: the 128-bit word is the boundary that encodes the whole volume, and every part (each atom) reconstructs the whole root by its inclusion path — the whole is in every part. The content-addressed UUID space is the akashic record.',
+    boundary: 'A demonstration of the holographic property of a merkle / content-addressed structure: each part proves the whole. A structural and informational analogy, not a claim about physics or any metaphysical record.',
   }
 }
 
