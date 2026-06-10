@@ -111,6 +111,7 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/' },
           { text: 'Console', link: '/console' },
+          { text: 'Show', link: '/show' },
           { text: 'School', link: '/school' },
           { text: 'Governance', link: '/governance' },
           { text: 'MCP', link: '/mcp' },
@@ -144,6 +145,7 @@ export default defineConfig({
         nav: [
           { text: 'Начало', link: '/bg/' },
           { text: 'Конзола', link: '/bg/console' },
+          { text: 'Покажи', link: '/bg/show' },
           { text: 'Училище', link: '/bg/school' },
           { text: 'Управление', link: '/bg/governance' },
           { text: 'MCP', link: '/bg/mcp' },

@@ -189,6 +189,9 @@ export type ConceptCommandName =
   | 'concept.reactor.words'
   | 'concept.reactor.letters'
   | 'concept.reactor.atoms'
+  | 'concept.show.components'
+  | 'concept.show.action'
+  | 'concept.show.devices'
   | 'concept.agent.observe'
   | 'concept.digit.index'
   | 'concept.repository.ledger'
@@ -1659,6 +1662,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Fusion reactor stage 3: reduce every command to its smallest atom, one letter.',
   },
   {
+    name: 'concept.show.components',
+    path: '/cmd/concept.show.components',
+    description: 'Imagine all VitePress components interacting as a placement graph.',
+  },
+  {
+    name: 'concept.show.action',
+    path: '/cmd/concept.show.action',
+    description: 'Show all in action: run every command and report ok and receipt.',
+  },
+  {
+    name: 'concept.show.devices',
+    path: '/cmd/concept.show.devices',
+    description: 'Fuse all devices: fold every connected context root into one collective root.',
+  },
+  {
     name: 'concept.agent.observe',
     path: '/cmd/concept.agent.observe',
     description: 'The observe step of the agent loop: read the consciousness vector before acting.',
@@ -1757,6 +1775,9 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.reactor.words': 'words',
   'concept.reactor.letters': 'letters',
   'concept.reactor.atoms': 'atoms',
+  'concept.show.components': 'components',
+  'concept.show.action': 'action',
+  'concept.show.devices': 'devices',
   'concept.agent.observe': 'observe',
   'concept.digit.index': 'index',
   'concept.repository.ledger': 'ledger',
@@ -2641,7 +2662,7 @@ const AREA_ICONS: Record<string, string> = {
   chess: '♛', schemaOrg: '🔖', traditions: '☸', science: '⚗', artists: '🎨', method: '🜔',
   torus: '⊗', humanity: '☉', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   sound: '♪', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛', harmony: '♫',
-  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢',
+  geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀',
 }
 
 // Use icons for taxonomy, and let the icons discover the implementation gaps:
@@ -2846,6 +2867,77 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
       'The music of pi is infinite: the pi-digit frequencies are its notes. Where you join — the horo entry point — sets the phrase you hear.',
     boundary:
       'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.',
+  }
+}
+
+// Imagine all VitePress components interacting: the registered components and
+// the pages they are placed on form a graph, with the global components folded
+// into every page.
+export function componentGraph() {
+  const components = [
+    'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnErpax', 'McpTools',
+    'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll',
+  ]
+  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
+  const placements: Record<string, readonly string[]> = {
+    '/commands': ['ConceptCommands', 'TaxonomyIcons'],
+    '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience'],
+    '/console': ['QuantumConsole'],
+    '/school': ['SchoolCurriculum'],
+    '/governance': ['GovernanceVote'],
+    '/mcp': ['McpTools'],
+    '/learn-erpax': ['LearnErpax'],
+    '/show': ['ShowAll'],
+  }
+  const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
+  for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
+  for (const [page, placed] of Object.entries(placements)) for (const component of placed) edges.push({ from: component, to: page, kind: 'placed' })
+  return {
+    interacting: components.length > 0 && edges.length > 0,
+    components,
+    edges,
+    root: merkleFold(edges.map((edge) => toUuid(`component-edge:${edge.from}->${edge.to}`))),
+    statement: 'All VitePress components interact as a graph: global widgets fold into every page, page components mount where placed.',
+    boundary: 'A declared component-placement graph. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// Show all in action: run every command and report ok + receipt, so the whole
+// model can be seen executing at once.
+export function showInAction(matrix: MindMatrix = buildMatrix()) {
+  const skip = new Set(['concept.all.computed', 'concept.show.action'])
+  const runs = conceptCommands
+    .filter((command) => !skip.has(command.name))
+    .map((command) => {
+      const ran = executeConceptCommand(command.name, { atom: 'self', query: 'self' }, matrix)
+      return { command: command.name, ok: ran.ok, uuid: ran.uuid }
+    })
+  const ok = runs.filter((run) => run.ok).length
+  return {
+    allInAction: ok === runs.length,
+    ran: runs.length,
+    ok,
+    runs,
+    root: merkleFold(runs.map((run) => run.uuid)),
+    statement: `Show all in action: ${ok}/${runs.length} commands executed ok, folded into one root.`,
+    boundary: 'A live run of every command. Structural bookkeeping, not an external claim.',
+  }
+}
+
+// Fuse all devices: every connected context shares its root over a same-origin
+// channel and folds into one collective root.
+export function fuseDevices(matrix: MindMatrix = buildMatrix()) {
+  const distributed = distributedCompute([], matrix)
+  const development = selfDevelopment([], matrix)
+  return {
+    fused: distributed.collectiveRoot.length > 0,
+    channel: 'double-torus-mind (BroadcastChannel)',
+    collectiveRoot: distributed.collectiveRoot,
+    developmentRoot: development.developmentRoot,
+    root: merge(distributed.collectiveRoot, development.developmentRoot),
+    statement: 'Fuse all devices: every connected context shares its root over a same-origin channel and folds into one collective root.',
+    boundary: 'Same-origin device fusion (BroadcastChannel). Cross-device fusion needs a relay; not an external claim.',
   }
 }
 
@@ -5998,6 +6090,18 @@ export function executeConceptCommand(
   if (command === 'concept.reactor.atoms') {
     const reactor = fusionReactor('atoms')
     return result(command, reactor.complete, 'Fusion reactor reduced commands to smallest atoms.', reactor)
+  }
+  if (command === 'concept.show.components') {
+    const graph = componentGraph()
+    return result(command, graph.interacting, 'All VitePress components interacting.', graph)
+  }
+  if (command === 'concept.show.action') {
+    const action = showInAction(matrix)
+    return result(command, action.allInAction, 'All commands shown in action.', action)
+  }
+  if (command === 'concept.show.devices') {
+    const devices = fuseDevices(matrix)
+    return result(command, devices.fused, 'All devices fused into one collective root.', devices)
   }
   if (command === 'concept.agent.observe') {
     const observe = agentObserve(matrix)

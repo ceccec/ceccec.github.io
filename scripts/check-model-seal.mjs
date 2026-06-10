@@ -17,9 +17,11 @@ import {
   selfAddressed,
   selfInteraction,
   utfAnalog,
+  componentGraph,
   coverage,
   crossFoldTrinity,
   digitFoldersDoMath,
+  fuseDevices,
   distributedCompute,
   dualTorusTrinities,
   entropy,
@@ -42,6 +44,7 @@ import {
   selfBuild,
   selfDevelopment,
   selfSufficientWave,
+  showInAction,
   streamSelfComplete,
   taxonomyIcons,
   toUuid,
@@ -161,6 +164,10 @@ ok(`no-gaps${taxonomy.gaps.length ? ':' + taxonomy.gaps.join(',') : ''}`, taxono
 ok('reactor.words', fusionReactor('words').complete)
 ok('reactor.letters', fusionReactor('letters').complete)
 ok('reactor.atoms', fusionReactor('atoms').complete)
+// The show trinity: all components interacting, all commands in action, all devices fused.
+ok('show.components', componentGraph().interacting)
+ok('show.action', showInAction(matrix).allInAction)
+ok('show.devices', fuseDevices(matrix).fused)
 console.log(`Icon taxonomy: ${taxonomy.entries.length} areas, ${taxonomy.gaps.length} gaps -> ${taxonomy.gaps.join(', ')}`)
 
 // Naming law: every command maps to a single lowercase-word method token.
