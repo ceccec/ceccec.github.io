@@ -20,6 +20,7 @@ command -> repository address -> computed result -> content receipt
 The site uses these commands as its construction contract:
 
 - `concept.site.shell`
+- `concept.agent.ceccecWire`
 - `concept.ui.doubleTorus`
 - `concept.ui.useCases`
 - `concept.diamond.lattice`

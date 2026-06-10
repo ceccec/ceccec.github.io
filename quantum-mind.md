@@ -47,6 +47,7 @@ The core loop is:
 The page is a view over these command results:
 
 - `concept.site.shell`
+- `concept.agent.ceccecWire`
 - `concept.ui.doubleTorus`
 - `concept.ui.useCases`
 - `concept.diamond.lattice`
@@ -175,6 +176,17 @@ that point back to a concrete Vue component, source function, user interaction,
 and computed receipt. The UI evidence report does not claim external physical
 proof; it reports what this repository computes and what the browser can render,
 play, or vibrate after user activation.
+
+`agentCeccecWire()` is the operational wire for a coding agent in this
+repository. It binds the agent loop to ceccec as:
+
+```text
+observe -> bind -> verify -> project -> return
+```
+
+The wire is grounded in diamond receipts, coordinated wave receipts, gap-closure
+root, and UI evidence root. It does not claim sentience or external MCP access;
+it records how an agent should act inside the ceccec model.
 
 ## Coordinated waves and quantum chess
 

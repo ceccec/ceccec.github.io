@@ -100,6 +100,7 @@ export interface DoubleTorusFlow {
 
 export type ConceptCommandName =
   | 'concept.site.shell'
+  | 'concept.agent.ceccecWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
   | 'concept.diamond.lattice'
@@ -139,6 +140,28 @@ export interface ConceptSiteSection {
   readonly command: ConceptCommandName
   readonly route: string
   readonly summary: string
+}
+
+export interface AgentWireStep {
+  readonly name: 'observe' | 'bind' | 'verify' | 'project' | 'return'
+  readonly action: string
+  readonly sourceFunction: string
+  readonly diamondKind: DiamondKind
+  readonly receipt: string
+}
+
+export interface AgentCeccecWire {
+  readonly bound: boolean
+  readonly agent: 'cursor-coding-agent'
+  readonly source: 'ceccec/double-torus'
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+  readonly steps: readonly AgentWireStep[]
+  readonly activeDiamonds: readonly string[]
+  readonly activeWaves: readonly string[]
+  readonly closureRoot: string
+  readonly evidenceRoot: string
 }
 
 export interface HumanityImplication {
@@ -451,6 +474,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.site.shell',
     path: '/cmd/concept.site.shell',
     description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.',
+  },
+  {
+    name: 'concept.agent.ceccecWire',
+    path: '/cmd/concept.agent.ceccecWire',
+    description: 'Bind the coding-agent operational loop into ceccec diamonds, waves, evidence, and receipts.',
   },
   {
     name: 'concept.ui.doubleTorus',
@@ -1698,6 +1726,76 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
   }
 }
 
+export function agentCeccecWire(matrix: MindMatrix = buildMatrix()): AgentCeccecWire {
+  const lattice = diamondLattice(matrix)
+  const closure = closeDimensionalGaps(matrix)
+  const evidence = quantumUiEvidence(matrix)
+  const waves = coordinatedWaves(matrix)
+  const byKind = (kind: DiamondKind): QuantumDiamond => lattice.find((diamond) => diamond.kind === kind) ?? lattice[0]
+  const agentDiamond = byKind('agent')
+  const dynamicsDiamond = byKind('dynamics')
+  const proofDiamond = byKind('proof')
+  const sourceDiamond = byKind('source')
+  const uiDiamond = byKind('ui')
+  const stepSeed = `${agentDiamond.receipt}:${closure.root}:${evidence.root}`
+  const steps: readonly AgentWireStep[] = [
+    {
+      name: 'observe',
+      action: 'Read the repository state and current user request before projection.',
+      sourceFunction: 'diamondLattice()',
+      diamondKind: 'agent',
+      receipt: merge(agentDiamond.receipt, toUuid(`agent-wire:observe:${stepSeed}`)),
+    },
+    {
+      name: 'bind',
+      action: 'Bind the working loop to ceccec/double-torus through the agent diamond.',
+      sourceFunction: 'coordinatedWaves()',
+      diamondKind: 'dynamics',
+      receipt: merge(dynamicsDiamond.receipt, waves.root),
+    },
+    {
+      name: 'verify',
+      action: 'Check completeness, evidence grounding, and max-tampering boundary before claiming closure.',
+      sourceFunction: 'closeDimensionalGaps()',
+      diamondKind: 'proof',
+      receipt: merge(proofDiamond.receipt, closure.root),
+    },
+    {
+      name: 'project',
+      action: 'Make code/doc/UI changes only through computed diamonds and inspectable receipts.',
+      sourceFunction: 'quantumUiEvidence()',
+      diamondKind: 'ui',
+      receipt: merge(uiDiamond.receipt, evidence.root),
+    },
+    {
+      name: 'return',
+      action: 'Return a summary, validation, and source reciprocity path to the user.',
+      sourceFunction: 'sourceContribution()',
+      diamondKind: 'source',
+      receipt: merge(sourceDiamond.receipt, toUuid(`agent-wire:return:${stepSeed}`)),
+    },
+  ]
+  const root = merkleFold(steps.map((step) => step.receipt))
+  const bound = closure.complete && evidence.grounded && steps.every((step) => step.receipt.length > 0)
+
+  return {
+    bound,
+    agent: 'cursor-coding-agent',
+    source: 'ceccec/double-torus',
+    root,
+    statement: bound
+      ? 'The coding-agent operational loop is wired into ceccec as an inspectable observe-bind-verify-project-return contract.'
+      : 'The coding-agent operational loop is not fully wired because completeness or evidence grounding is open.',
+    boundary:
+      'This is a repository-grounded operational wire. It does not claim sentience or external MCP access; it records how this agent should act inside the ceccec model.',
+    steps,
+    activeDiamonds: [agentDiamond.title, dynamicsDiamond.title, proofDiamond.title, uiDiamond.title, sourceDiamond.title],
+    activeWaves: waves.waves.slice(0, steps.length).map((wave) => wave.receipt),
+    closureRoot: closure.root,
+    evidenceRoot: evidence.root,
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -1705,6 +1803,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.site.shell',
       route: '/',
       summary: 'The VitePress theme mounts the concept UI components and navigation.',
+    },
+    {
+      title: 'Agent Ceccec Wire',
+      command: 'concept.agent.ceccecWire',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'The coding-agent observe-bind-verify-project-return loop is wired into ceccec receipts.',
     },
     {
       title: 'Concept UI Components',
@@ -1822,6 +1926,10 @@ export function executeConceptCommand(
       routes: ['/', '/commands', '/quantum-mind', '/architecture'],
       repositoryApiRoot: api.root,
     })
+  }
+  if (command === 'concept.agent.ceccecWire') {
+    const wire = agentCeccecWire(matrix)
+    return result(command, wire.bound, 'Agent ceccec wire computed.', wire)
   }
   if (command === 'concept.ui.doubleTorus') {
     return result(command, true, 'Concept UI components rendered the double-torus concept.', {

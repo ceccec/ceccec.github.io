@@ -38,6 +38,7 @@ public contract:
 | Command | Role |
 | --- | --- |
 | `concept.site.shell` | mount the VitePress theme, pages, and registered UI components |
+| `concept.agent.ceccecWire` | bind the coding-agent observe-bind-verify-project-return loop into ceccec receipts |
 | `concept.ui.doubleTorus` | render the double-torus concept through the UI components |
 | `concept.ui.useCases` | list component/function/interaction/receipt evidence for quantum UI use cases |
 | `concept.diamond.lattice` | compute every display section from four-facet diamonds |
@@ -173,6 +174,11 @@ whole lattice.
 case must name the Vue component, source function, interaction, evidence string,
 and receipt. Anything outside those repository-grounded artifacts is not claimed
 as proof by the site.
+
+`agentCeccecWire()` defines the coding-agent operational contract. It wires the
+agent loop as observe, bind, verify, project, and return. Each step names a
+source function, diamond kind, and receipt. This is an inspectable repository
+contract, not a claim that the agent has sentience or external MCP access.
 
 `coordinatedWaves()` gives the lattice motion. Every diamond emits one wave
 with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward

@@ -10,6 +10,7 @@ import {
   TabsTrigger,
 } from 'radix-vue'
 import {
+  agentCeccecWire,
   buildMatrix,
   closeDimensionalGaps,
   coordinatedWaves,
@@ -24,6 +25,7 @@ import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
 
 const matrix = buildMatrix()
+const agentWire = agentCeccecWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
 const completeness = diamondCompleteness(matrix)
@@ -145,6 +147,9 @@ onBeforeUnmount(() => {
         </p>
       </div>
       <div class="double-torus-experience__badges">
+        <Badge :variant="agentWire.bound ? 'success' : 'warning'">
+          {{ agentWire.bound ? 'agent wired' : 'agent open' }}
+        </Badge>
         <Badge :variant="completeness.complete ? 'success' : 'warning'">
           {{ completeness.complete ? 'complete' : 'gaps' }}
         </Badge>
@@ -178,6 +183,7 @@ onBeforeUnmount(() => {
     <TabsRoot default-value="pulse" class="diamond-tabs">
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
+        <TabsTrigger value="agent">Agent wire</TabsTrigger>
         <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
         <TabsTrigger value="complete">Completeness</TabsTrigger>
         <TabsTrigger value="evidence">UI evidence</TabsTrigger>
@@ -203,6 +209,24 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ facet.pole }}</Badge>
             <strong>{{ facet.label }}: {{ facet.value }}</strong>
             <span>{{ facet.meaning }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="agent" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="agentWire.bound ? 'success' : 'warning'">
+            {{ agentWire.bound ? 'bound' : 'open' }}
+          </Badge>
+          <strong>{{ agentWire.statement }}</strong>
+          <span>{{ agentWire.boundary }}</span>
+          <code>{{ agentWire.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="step in agentWire.steps" :key="step.receipt">
+            <Badge variant="outline">{{ step.name }}</Badge>
+            <strong>{{ step.sourceFunction }} · {{ step.diamondKind }}</strong>
+            <span>{{ step.action }} Receipt: {{ step.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
