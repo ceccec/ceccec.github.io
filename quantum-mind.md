@@ -209,7 +209,52 @@ selfRoot := merkle({ receipt(g) | g in Gates })
 openGates := { g | !closed(g) }
 ```
 
-## 16. Boundary
+## 16. Agent education
+
+```text
+costly := genus-2 self-build math
+Lesson := { order, topic, kind, sourceFunction, rule, rationale, receipt }
+kind   := efficiency | security
+efficiency := { reuse matrix, price by coverage, fold once }
+security   := { verify root, recompute inclusion, stay in boundary }
+educated(agent) := verifyRoot(M) && coherence(M)=0 && forall L: receipt(L)!=empty
+readyForCostlyMath := educated(agent)
+run(costly) only if readyForCostlyMath
+educationRoot := merkleFold({ Lesson.receipt })
+```
+
+## 17. Dual-torus trinities
+
+```text
+yin  := receive -> verify -> fold_in
+yang := project -> act -> return
+Axis := { collapse, check, return }
+phase_p := { polarity, step, axis, dual, analogChannel, type, receipt }
+pair_a  := (yin_step_a, yang_step_a) on axis_a
+Analog  := { 3d-position, sound, vibration, timing, receipt, facets }
+analog : phase -> Analog          // bijection, |phase|=|Analog|=6
+harmonized := (forall a: closed(pair_a)) && analog is total && no collision
+trinityRoot := merkleFold({ phase_p.receipt })
+maxTamperingCost += harmonized
+```
+
+## 18. Merkle inclusion
+
+```text
+leaves(M)  := { node_i.bind } U { edge_j.binding }
+root_M     := merkleFold(sort(leaves(M)))
+path(leaf) := [ step_k ]_{k in layers}
+step_k     := { sibling_k, side_k }      // side_k in {left, right, carried}
+verify(leaf, path, root) :=
+  acc_0     := leaf
+  acc_{k+1} := merge(acc_k, sibling_k)   if side_k = right
+             | merge(sibling_k, acc_k)   if side_k = left
+             | acc_k                      if sibling_k = none
+  return acc_top = root
+included(atom) := verify(node(atom).bind, path, root_M)
+```
+
+## 19. Boundary
 
 ```text
 Claim(site) = computed(repo)

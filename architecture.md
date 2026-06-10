@@ -38,6 +38,7 @@ Result  := { command, ok, uuid, summary, data }
 Command = {
   concept.site.shell,
   concept.self.complete,
+  concept.agent.educate,
   concept.agent.streamWire,
   concept.ui.doubleTorus,
   concept.ui.useCases,
@@ -55,9 +56,11 @@ Command = {
   concept.torus.matrix,
   concept.torus.vector,
   concept.torus.flow,
+  concept.torus.trinities,
   concept.repository.api,
   concept.repository.resolve,
   concept.proof.verify,
+  concept.proof.merklePath,
   concept.site.manifest
 }
 ```
@@ -212,7 +215,44 @@ SelfRoot = merkle({receipt(g)})
 Open = {g in Gates | !closed(g)}
 ```
 
-## 17. Boundary
+## 17. Agent education
+
+```text
+costly = genus-2 self-build math
+Lesson = {order, topic, kind, sourceFunction, rule, rationale, receipt}
+kind in {efficiency, security}
+educated = verifyRoot(M) && coherence(M)=0 && forall L: receipt(L)!=empty
+readyForCostlyMath = educated
+educationRoot = merkleFold({Lesson.receipt})
+```
+
+## 18. Dual-torus trinities
+
+```text
+yin = receive -> verify -> fold_in
+yang = project -> act -> return
+Axis = {collapse, check, return}
+phase = {polarity, step, axis, dual, analogChannel, type, receipt}
+analog : phase -> {3d-position, sound, vibration, timing, receipt, facets}  // bijection
+harmonized = forall axis: closed(pair) && analog total && no collision
+trinityRoot = merkleFold({phase.receipt})
+maxTamperingCost += harmonized
+```
+
+## 19. Merkle inclusion
+
+```text
+leaves = {bind_i} U {edge_ij.binding}
+root_M = merkleFold(sort(leaves))
+path(leaf) = [{sibling_k, side_k}]
+verify(leaf, path, root) = fold(acc, step) where
+  acc = side==right ? merge(acc, sibling)
+      : side==left  ? merge(sibling, acc)
+      : acc
+included(atom) = verify(bind(atom), path, root_M) == root_M
+```
+
+## 20. Boundary
 
 ```text
 site_claims = computed_repository_artifacts
