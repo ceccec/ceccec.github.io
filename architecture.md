@@ -358,6 +358,10 @@ computed in your browser with the Web Crypto API:
 
 <SignSeal />
 
+Seal all in waves — every proof a wave, folded into one master seal:
+
+<SealAll />
+
 ## 27. Boundary
 
 ```text

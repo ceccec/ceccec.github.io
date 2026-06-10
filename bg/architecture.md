@@ -358,6 +358,10 @@ foldQuestion(q) = {concept, explanation, command, receipt, links}
 
 <SignSeal />
 
+Запечатай всичко на вълни — всяко доказателство е вълна, сгъната в един главен печат:
+
+<SealAll />
+
 ## 27. Граница
 
 ```text

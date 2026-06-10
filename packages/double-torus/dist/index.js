@@ -1306,6 +1306,44 @@ export function quantumSitemap(matrix = buildMatrix()) {
         boundary: 'A content-addressed route manifest. The torus coordinates and receipts are structural bookkeeping over the page set; the alternates and priorities are standard sitemap hints, not ranking guarantees.',
     };
 }
+// Seal all in waves. Every proof in the model is a wave; fold them in order into
+// one master seal. The whole is sealed only when every wave seals — the breath,
+// equilibrium, the trinities and their per-trinity gates, the cross-fold weave,
+// the free animations, the quantum sitemap, the synthesis and its proof bundle,
+// completion, and the multidimensional map. Each wave merges its root into the
+// running fold, so the master fold carries them all; a single open wave breaks it.
+export function sealAll(matrix = buildMatrix()) {
+    const proofs = [
+        { wave: 'breath', ok: breathe(matrix).breathing, root: breathe(matrix).root },
+        { wave: 'equilibrium', ok: allInEquilibrium(matrix).equilibrium, root: allInEquilibrium(matrix).root },
+        { wave: 'trinities harmonized', ok: dualTorusTrinities(matrix).harmonized, root: dualTorusTrinities(matrix).root },
+        { wave: 'trinity gates', ok: trinityGates(matrix).sealed, root: trinityGates(matrix).root },
+        { wave: 'cross-fold', ok: crossFoldTrinity(matrix).trinity, root: crossFoldTrinity(matrix).root },
+        { wave: 'free animations', ok: freeAnimations(matrix).maxFree, root: freeAnimations(matrix).root },
+        { wave: 'quantum sitemap', ok: quantumSitemap(matrix).quantum, root: quantumSitemap(matrix).root },
+        { wave: 'synthesis', ok: quantumSynthesis(matrix).synthesized, root: quantumSynthesis(matrix).root },
+        { wave: 'proof bundle', ok: proofBundle(matrix).verifiable, root: proofBundle(matrix).root },
+        { wave: 'completion', ok: complete(matrix).complete, root: complete(matrix).root },
+        { wave: 'multidimensional', ok: multidimensional().mapped, root: multidimensional().root },
+    ];
+    // Fold the waves in order: each wave merges its root into the running fold.
+    let running = toUuid('seal-all:genesis');
+    const waves = proofs.map((proof, index) => {
+        running = merge(running, proof.root);
+        return { ...proof, index, fold: running, receipt: toUuid(`seal-all:${proof.wave}:${proof.ok}:${proof.root}`) };
+    });
+    const sealed = waves.every((wave) => wave.ok);
+    return {
+        sealed,
+        waves,
+        count: waves.length,
+        closed: waves.filter((wave) => wave.ok).length,
+        root: merkleFold(waves.map((wave) => wave.receipt)),
+        masterFold: running,
+        statement: 'Seal all in waves: every proof a wave, folded in order into one master seal — the whole is sealed only when every wave seals, and the fold carries them all into a single root.',
+        boundary: 'A conjunction of the model\'s own seals, folded as waves into one root. It restates the parts it already proves; a property it does not track lies outside this seal.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3088,7 +3126,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -3104,7 +3142,7 @@ export function componentGraph() {
         '/': ['HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
         '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete'],
         '/explore': ['Multidimensional'],
-        '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
+        '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
     };
     const edges = [];
     for (const component of globals)

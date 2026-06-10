@@ -95,6 +95,7 @@ import {
   crossFoldTrinity,
   trinityGates,
   quantumSitemap,
+  sealAll,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -183,6 +184,10 @@ ok(`trinity.gates.sealed:${trinity.count}@${trinity.totalTamperingCost}`, trinit
 // one sitemap root from which the XML (with hreflang alternates) and JSON manifest
 // are generated. The gate fails if the route manifest is not whole.
 ok(`sitemap.quantum:${quantumSitemap(matrix).count}`, quantumSitemap(matrix).quantum)
+
+// Seal all in waves: the master seal. Every proof a wave, folded into one root;
+// the whole is sealed only when every wave seals.
+ok(`seal.all-in-waves:${sealAll(matrix).closed}/${sealAll(matrix).count}`, sealAll(matrix).sealed)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.

@@ -1068,6 +1068,23 @@ export declare function quantumSitemap(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function sealAll(matrix?: MindMatrix): {
+    sealed: boolean;
+    waves: {
+        index: number;
+        fold: string;
+        receipt: string;
+        wave: string;
+        ok: boolean;
+        root: string;
+    }[];
+    count: number;
+    closed: number;
+    root: string;
+    masterFold: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

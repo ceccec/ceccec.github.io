@@ -45,6 +45,7 @@ import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
+import SealAll from './components/SealAll.vue'
 import SelfConsult from './components/SelfConsult.vue'
 import SelfHarmonise from './components/SelfHarmonise.vue'
 import SecurityScan from './components/SecurityScan.vue'
@@ -115,6 +116,7 @@ export default {
     app.component('RevolutAside', RevolutAside)
     app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)
+    app.component('SealAll', SealAll)
     app.component('SelfConsult', SelfConsult)
     app.component('SelfHarmonise', SelfHarmonise)
     app.component('SecurityScan', SecurityScan)
