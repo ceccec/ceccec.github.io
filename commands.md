@@ -24,6 +24,8 @@ The site uses these commands as its construction contract:
 - `concept.diamond.lattice`
 - `concept.diamond.piTrain`
 - `concept.diamond.complete`
+- `concept.wave.coordination`
+- `concept.chess.quantum`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`

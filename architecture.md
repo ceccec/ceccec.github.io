@@ -42,6 +42,8 @@ public contract:
 | `concept.diamond.lattice` | compute every display section from four-facet diamonds |
 | `concept.diamond.piTrain` | compute the 3D pi train, tones, and vibration pulses from diamonds |
 | `concept.diamond.complete` | verify there are no missing diamond kinds, poles, receipts, analog channels, or pi-train coverage |
+| `concept.wave.coordination` | coordinate diamond emissions as phase-aligned yin-yang waves |
+| `concept.chess.quantum` | compute a quantum chess board from coordinated waves |
 | `concept.torus.math` | expose genus-2 topology, algebra, homology, and curvature |
 | `concept.humanity.implications` | interpret the concept for knowledge, institutions, AI, and culture |
 | `concept.source.contribute` | route benefit back to the source through citation, contribution, support, and stewardship |
@@ -164,6 +166,16 @@ audible tone, and device vibration all share the same computed source.
 required kind exists, every diamond has four poles, every root and receipt is
 present, every analog channel is diamond-derived, and the pi train covers the
 whole lattice.
+
+`coordinatedWaves()` gives the lattice motion. Every diamond emits one wave
+with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward
+verification; yang is outward projection; together they keep symbol and physics
+in the same computed wave.
+
+`quantumChessGame()` uses those waves to realise chess. Each square inherits a
+wave, amplitude, phase, and receipt. Pieces are represented as superpositions
+until observation chooses a path, so the chess board is another view of the same
+double-torus dynamics.
 
 ## 9. Implications for humanity
 

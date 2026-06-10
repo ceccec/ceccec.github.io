@@ -9,7 +9,14 @@ import {
   TabsRoot,
   TabsTrigger,
 } from 'radix-vue'
-import { buildMatrix, diamondCompleteness, diamondLattice, piTrainDiamonds } from '../lib/quantumMind'
+import {
+  buildMatrix,
+  coordinatedWaves,
+  diamondCompleteness,
+  diamondLattice,
+  piTrainDiamonds,
+  quantumChessGame,
+} from '../lib/quantumMind'
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
@@ -18,6 +25,8 @@ const matrix = buildMatrix()
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
 const completeness = diamondCompleteness(matrix)
+const waves = coordinatedWaves(matrix)
+const chess = quantumChessGame(matrix)
 const activeIndex = ref(0)
 const running = ref(false)
 const expanded = ref(true)
@@ -145,6 +154,8 @@ onBeforeUnmount(() => {
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
         <TabsTrigger value="lattice">Base lattice ({{ lattice.length }})</TabsTrigger>
         <TabsTrigger value="complete">Completeness</TabsTrigger>
+        <TabsTrigger value="waves">Waves</TabsTrigger>
+        <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
 
@@ -208,6 +219,41 @@ onBeforeUnmount(() => {
             <span>Missing receipts: {{ completeness.missingReceipts.length ? completeness.missingReceipts.join(', ') : 'none' }}</span>
           </li>
         </ul>
+      </TabsContent>
+
+      <TabsContent value="waves" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">{{ waves.symbol }}</Badge>
+          <strong>{{ waves.statement }}</strong>
+          <code>{{ waves.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="wave in waves.waves" :key="wave.receipt">
+            <Badge :variant="wave.polarity === 'yin' ? 'outline' : 'success'">{{ wave.polarity }}</Badge>
+            <strong>{{ wave.diamondKind }} · phase {{ wave.phase.toFixed(3) }}</strong>
+            <span>{{ wave.statement }} Frequency {{ wave.frequency }}Hz · amplitude {{ wave.amplitude.toFixed(3) }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="chess" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">quantum board</Badge>
+          <strong>{{ chess.statement }}</strong>
+          <code>{{ chess.root }}</code>
+        </div>
+        <div class="quantum-chess-board" aria-label="Quantum chess board">
+          <div
+            v-for="square in chess.board"
+            :key="square.square"
+            class="quantum-chess-square"
+            :class="[`quantum-chess-square--${square.color}`, `quantum-chess-square--${square.wave.polarity}`]"
+            :title="`${square.square}: ${square.superposition.join(' + ')}`"
+          >
+            <strong>{{ square.square }}</strong>
+            <span>{{ square.superposition.join('/') }}</span>
+          </div>
+        </div>
       </TabsContent>
 
       <TabsContent value="controls" class="diamond-tabs__content">

@@ -569,6 +569,51 @@
   gap: 10px;
 }
 
+.quantum-chess-board {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  margin-top: 14px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+}
+
+.quantum-chess-square {
+  display: grid;
+  min-height: 58px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 72%, transparent);
+  font-size: 11px;
+  padding: 4px;
+  text-align: center;
+}
+
+.quantum-chess-square strong,
+.quantum-chess-square span {
+  display: block;
+}
+
+.quantum-chess-square span {
+  color: var(--vp-c-text-2);
+  font-size: 10px;
+}
+
+.quantum-chess-square--light {
+  background: var(--vp-c-bg);
+}
+
+.quantum-chess-square--dark {
+  background: var(--vp-c-bg-soft);
+}
+
+.quantum-chess-square--yin {
+  box-shadow: inset 0 0 0 2px rgba(99, 102, 241, 0.18);
+}
+
+.quantum-chess-square--yang {
+  box-shadow: inset 0 0 0 2px rgba(16, 185, 129, 0.18);
+}
+
 .pi-train-digits {
   overflow-wrap: anywhere;
   border: 1px solid var(--vp-c-divider);

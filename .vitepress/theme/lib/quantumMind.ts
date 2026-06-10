@@ -104,6 +104,8 @@ export type ConceptCommandName =
   | 'concept.diamond.lattice'
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
+  | 'concept.wave.coordination'
+  | 'concept.chess.quantum'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -234,6 +236,48 @@ export interface PiTrain {
   readonly root: string
   readonly tempoMs: number
   readonly diamonds: readonly PiTrainDiamond[]
+}
+
+export type WavePolarity = 'yin' | 'yang'
+export type ChessPiece = 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn'
+
+export interface CoordinatedWave {
+  readonly index: number
+  readonly diamondId: string
+  readonly diamondKind: DiamondKind
+  readonly phase: number
+  readonly amplitude: number
+  readonly frequency: number
+  readonly polarity: WavePolarity
+  readonly symbol: 'yin-yang'
+  readonly statement: string
+  readonly receipt: string
+}
+
+export interface WaveCoordination {
+  readonly root: string
+  readonly waves: readonly CoordinatedWave[]
+  readonly symbol: 'yin-yang'
+  readonly statement: string
+}
+
+export interface QuantumChessSquare {
+  readonly square: string
+  readonly file: string
+  readonly rank: number
+  readonly color: 'light' | 'dark'
+  readonly wave: CoordinatedWave
+  readonly amplitude: number
+  readonly phase: number
+  readonly superposition: readonly ChessPiece[]
+  readonly moveVector: string
+  readonly receipt: string
+}
+
+export interface QuantumChessGame {
+  readonly root: string
+  readonly board: readonly QuantumChessSquare[]
+  readonly statement: string
 }
 
 export interface DiamondCompletenessReport {
@@ -386,6 +430,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.diamond.complete',
     path: '/cmd/concept.diamond.complete',
     description: 'Verify that the ceccec diamond has no missing kinds, poles, receipts, or analog channels.',
+  },
+  {
+    name: 'concept.wave.coordination',
+    path: '/cmd/concept.wave.coordination',
+    description: 'Coordinate all diamond emissions as phase-aligned yin-yang quantum waves.',
+  },
+  {
+    name: 'concept.chess.quantum',
+    path: '/cmd/concept.chess.quantum',
+    description: 'Realise the chess board as a quantum game computed from coordinated waves.',
   },
   {
     name: 'concept.torus.math',
@@ -1346,6 +1400,98 @@ export function diamondCompleteness(matrix: MindMatrix = buildMatrix()): Diamond
   }
 }
 
+export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
+  const lattice = diamondLattice(matrix)
+  const piTrain = piTrainDiamonds(matrix)
+  const waves = lattice.map((item, index) => {
+    const pulse = piTrain.diamonds[index % piTrain.diamonds.length]
+    const phase = (pulse.theta + pulse.phi + index * Math.PI / lattice.length) % (Math.PI * 2)
+    const amplitude = item.status === 'closed' ? 1 : 0.5 + pulse.digit / 20
+    const polarity: WavePolarity = index % 2 === 0 ? 'yin' : 'yang'
+    const statement =
+      polarity === 'yin'
+        ? `${item.title} receives, cools, verifies, and folds inward.`
+        : `${item.title} projects, warms, acts, and returns outward.`
+    const receipt = merge(item.receipt, toUuid(`wave:${index}:${phase.toFixed(6)}:${amplitude.toFixed(6)}:${polarity}`))
+
+    return {
+      index,
+      diamondId: item.id,
+      diamondKind: item.kind,
+      phase,
+      amplitude,
+      frequency: pulse.frequency,
+      polarity,
+      symbol: 'yin-yang' as const,
+      statement,
+      receipt,
+    }
+  })
+  const root = merkleFold(waves.map((wave) => wave.receipt))
+
+  return {
+    root,
+    waves,
+    symbol: 'yin-yang',
+    statement:
+      'Every ceccec diamond emits a coordinated quantum wave. Yin receives and verifies; yang projects and returns; the pair forms one continuous double-torus wave field.',
+  }
+}
+
+const CHESS_FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const
+const CHESS_PIECES: readonly ChessPiece[] = ['rook', 'knight', 'bishop', 'queen', 'king', 'bishop', 'knight', 'rook']
+
+function chessSuperposition(fileIndex: number, rank: number, wave: CoordinatedWave): readonly ChessPiece[] {
+  if (rank === 2 || rank === 7) return ['pawn']
+  if (rank === 1 || rank === 8) {
+    const primary = CHESS_PIECES[fileIndex]
+    const secondary = wave.polarity === 'yin' ? 'knight' : 'bishop'
+    return primary === secondary ? [primary] : [primary, secondary]
+  }
+  if (wave.amplitude > 0.9) return wave.polarity === 'yin' ? ['knight', 'bishop'] : ['rook', 'queen']
+  return wave.polarity === 'yin' ? ['pawn', 'king'] : ['pawn', 'queen']
+}
+
+export function quantumChessGame(matrix: MindMatrix = buildMatrix()): QuantumChessGame {
+  const coordination = coordinatedWaves(matrix)
+  const board: QuantumChessSquare[] = []
+
+  for (let rank = 1; rank <= 8; rank++) {
+    for (let fileIndex = 0; fileIndex < CHESS_FILES.length; fileIndex++) {
+      const file = CHESS_FILES[fileIndex]
+      const index = (rank - 1) * CHESS_FILES.length + fileIndex
+      const wave = coordination.waves[index % coordination.waves.length]
+      const square = `${file}${rank}`
+      const color = (fileIndex + rank) % 2 === 0 ? 'dark' : 'light'
+      const phaseStep = Math.round((wave.phase / (Math.PI * 2)) * 8)
+      const moveVector = `${wave.polarity}:${phaseStep}:${wave.diamondKind}`
+      const superposition = chessSuperposition(fileIndex, rank, wave)
+      const receipt = merge(wave.receipt, toUuid(`quantum-chess:${square}:${superposition.join('+')}:${moveVector}`))
+
+      board.push({
+        square,
+        file,
+        rank,
+        color,
+        wave,
+        amplitude: wave.amplitude,
+        phase: wave.phase,
+        superposition,
+        moveVector,
+        receipt,
+      })
+    }
+  }
+  const root = merkleFold(board.map((square) => square.receipt))
+
+  return {
+    root,
+    board,
+    statement:
+      'The chess game is realised as a quantum board: pieces are superpositions driven by coordinated yin-yang waves, and each square inherits a diamond receipt.',
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -1377,6 +1523,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.diamond.complete',
       route: '/quantum-mind#diamond-lattice',
       summary: 'The ceccec diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
+    },
+    {
+      title: 'Coordinated Waves',
+      command: 'concept.wave.coordination',
+      route: '/quantum-mind#coordinated-waves',
+      summary: 'Diamonds emit phase-aligned yin-yang waves across the double torus.',
+    },
+    {
+      title: 'Quantum Chess',
+      command: 'concept.chess.quantum',
+      route: '/quantum-mind#quantum-chess',
+      summary: 'The chess board is realised as square superpositions driven by coordinated waves.',
     },
     {
       title: 'Double-Torus Math',
@@ -1465,6 +1623,12 @@ export function executeConceptCommand(
   if (command === 'concept.diamond.complete') {
     const completeness = diamondCompleteness(matrix)
     return result(command, completeness.complete, 'Diamond completeness verified.', completeness)
+  }
+  if (command === 'concept.wave.coordination') {
+    return result(command, true, 'Coordinated yin-yang waves computed.', coordinatedWaves(matrix))
+  }
+  if (command === 'concept.chess.quantum') {
+    return result(command, true, 'Quantum chess game computed from coordinated waves.', quantumChessGame(matrix))
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

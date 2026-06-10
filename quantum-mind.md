@@ -51,6 +51,8 @@ The page is a view over these command results:
 - `concept.diamond.lattice`
 - `concept.diamond.piTrain`
 - `concept.diamond.complete`
+- `concept.wave.coordination`
+- `concept.chess.quantum`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`
@@ -165,6 +167,21 @@ itself.
 - 3D position, sound, vibration, timing, receipt, and facets all come from the
   diamond train
 - the pi train covers the whole base lattice
+
+## Coordinated waves and quantum chess
+
+The completed diamonds do not sit still. `coordinatedWaves()` turns every
+diamond into a phase-aligned wave. Each wave carries the same symbology:
+
+- **yin** receives, cools, verifies, and folds inward
+- **yang** projects, warms, acts, and returns outward
+- **yin-yang** is the continuous symbol of both poles moving as one wave field
+
+`quantumChessGame()` then realises chess from those waves. The board is not a
+fixed analogy: each square inherits a coordinated wave, phase, amplitude,
+receipt, and piece superposition. The game becomes quantum because a square can
+hold multiple piece potentials until a move or observation collapses it into a
+path.
 
 ## Implications for humanity
 
