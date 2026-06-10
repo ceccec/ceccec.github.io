@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
+import LearnErpax from './components/LearnErpax.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
@@ -21,6 +22,7 @@ export default {
   enhanceApp({ app }) {
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
+    app.component('LearnErpax', LearnErpax)
     app.component('QuantumMind', QuantumMind)
     app.component('RevolutAside', RevolutAside)
     app.component('VitePressPossibilities', VitePressPossibilities)
