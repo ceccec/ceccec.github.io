@@ -1286,6 +1286,19 @@ export declare function release(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function doubleTorus3D(matrix?: MindMatrix): {
+    rendered: boolean;
+    tori: number;
+    genus: number;
+    euler: number;
+    areas: number;
+    perLobe: number;
+    majorRadius: number;
+    minorRadius: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function babelFold(matrix?: MindMatrix): BabelFold;
 export declare function areaLabel(area: string, lang?: string): string;
 export declare function taxonomyIcons(): TaxonomyIcons;

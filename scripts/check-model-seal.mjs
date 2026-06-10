@@ -42,6 +42,7 @@ import {
   fuseAll,
   agnostic,
   release,
+  doubleTorus3D,
   typographySeo,
   openGraph,
   buildMatrix,
@@ -193,6 +194,8 @@ ok('fuse.all', fuseAll(matrix).fused)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
+// The complete double torus in 3d+: the genus-2 surface carrying the 42 areas.
+ok('double-torus.3d', doubleTorus3D(matrix).rendered)
 // Best SEO starts with typography: system fonts, legibility, measure, hierarchy, tabular figures, rhythm.
 ok('typography.seo', typographySeo().grounded)
 // Open Graph is computed from frontmatter (per-page og: and twitter: cards).

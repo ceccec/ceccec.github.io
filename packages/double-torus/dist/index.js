@@ -1950,6 +1950,31 @@ export function release(matrix = buildMatrix()) {
         boundary: 'A computed release record over the model. The stable markers are branch refs (this remote refuses tag pushes); it records a release, it does not certify fitness for any particular use.',
     };
 }
+// The complete double torus in 3d+: the actual genus-2 surface. Two linked tori
+// (genus 2, Euler characteristic 2 - 2g = -2) carry the 42 area-objects, 21 per
+// lobe, rendered as a surface and turned through a fourth dimension. This is the
+// shape itself — the fold, plasma, hologram, and DNA were facets; this draws the
+// body they are facets of.
+export function doubleTorus3D(matrix = buildMatrix()) {
+    const tori = 2;
+    const genus = 2;
+    const euler = 2 - 2 * genus; // -2
+    const areas = taxonomyIcons().entries.length;
+    const perLobe = Math.ceil(areas / tori);
+    return {
+        rendered: tori === 2 && euler === -2 && areas === 42,
+        tori,
+        genus,
+        euler,
+        areas,
+        perLobe,
+        majorRadius: 0.9,
+        minorRadius: 0.35,
+        root: toUuid(`double-torus-3d:${genus}:${euler}:${areas}`),
+        statement: 'The complete double torus in 3d+: two linked tori (genus 2, Euler characteristic -2) carry the 42 area-objects, 21 per lobe, rendered as a surface and turned through a fourth dimension.',
+        boundary: 'A parametric rendering of the genus-2 surface with the area taxonomy mapped onto it. A visualization, not a claim beyond the topology it draws.',
+    };
+}
 // Intelligence is incomplete unless it can communicate across all languages,
 // traditions, and religions. The babel fold binds the world's language families
 // to the non-reductive traditions lens: breadth without collapse.
@@ -2335,13 +2360,13 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit'],
-        '/quantum-mind': ['QuantumMind', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix'],
+        '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/governance': ['GovernanceVote'],

@@ -8,6 +8,7 @@ import CollectiveMind from './components/CollectiveMind.vue'
 import CreativePalette from './components/CreativePalette.vue'
 import CryptoCompare from './components/CryptoCompare.vue'
 import DnaHelix from './components/DnaHelix.vue'
+import DoubleTorus3D from './components/DoubleTorus3D.vue'
 import FusionWave from './components/FusionWave.vue'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
@@ -56,6 +57,7 @@ export default {
     app.component('CreativePalette', CreativePalette)
     app.component('CryptoCompare', CryptoCompare)
     app.component('DnaHelix', DnaHelix)
+    app.component('DoubleTorus3D', DoubleTorus3D)
     app.component('FusionWave', FusionWave)
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
