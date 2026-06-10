@@ -17,6 +17,7 @@ import {
   universalLanguage,
   decodeKnowledge,
   completeDoubleTorus,
+  quantumSynthesis,
   buildMatrix,
   commandsRegistry,
   conceptCommands,
@@ -120,6 +121,8 @@ ok(`areas.limit-42:${pairs.count}`, pairs.withinLimit && pairs.paired)
 ok('language.universal', universalLanguage(matrix).universal)
 ok('knowledge.decoded', decodeKnowledge(matrix).decoded)
 ok('double-torus.complete', completeDoubleTorus(matrix).complete)
+// Quantum synthesis: every dimension synthesizes into one coherent state, zero entropy, full coverage.
+ok('quantum.synthesis', quantumSynthesis(matrix).synthesized)
 // Extremely helpful for artists and musicians: reproducible palette and melody from any seed.
 ok('artists.palette', artistPalette('double-torus').grounded)
 ok('artists.melody', artistMelody('double-torus', matrix).grounded)

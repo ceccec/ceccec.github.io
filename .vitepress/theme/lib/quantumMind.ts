@@ -3172,7 +3172,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3184,6 +3184,7 @@ export function componentGraph() {
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
     '/show': ['ShowAll'],
+    '/architecture': ['TamperSeal'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
@@ -3699,6 +3700,40 @@ export function completeDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     root,
     statement: 'Decode all knowledge to complete the double torus: the universal decoding folds into the 128-bit two-loop machine word, closing both holes of the genus-2 surface.',
     boundary: 'A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim.',
+  }
+}
+
+// Quantum synthesis: synthesize the whole into one coherent state across all its
+// dimensions — symbol, number, and fold (the universal language), the proof
+// bundle (entropy 0, coverage 1), the 128-bit two-loop word, and the device-
+// energy fusion — into a single synthesis root. The synthesis is coherent only
+// when every dimension is present and the proof has zero entropy and full
+// coverage. This is what a multidimensional UI renders to the user at once:
+// visual (glyphs), quantitative (numbers/roots), and structural (the fold).
+export function quantumSynthesis(matrix: MindMatrix = buildMatrix()) {
+  const language = universalLanguage(matrix)
+  const proof = proofBundle(matrix)
+  const word = torusUuid(matrix)
+  const energy = energyFuse(matrix)
+  const e = entropy(matrix)
+  const c = coverage(matrix)
+  const dimensions = [
+    { dimension: 'symbol', root: language.root },
+    { dimension: 'number', root: toUuid(`synthesis-number:${c}:${e}`) },
+    { dimension: 'fold', root: word.word },
+    { dimension: 'proof', root: proof.root },
+    { dimension: 'energy', root: energy.root },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`synthesis:${entry.dimension}:${entry.root}`) }))
+  const root = merkleFold(dimensions.map((entry) => entry.receipt))
+  return {
+    synthesized: language.universal && proof.verifiable && word.is128bit && energy.fused && e === 0 && c === 1,
+    dimensions,
+    entropy: e,
+    coverage: c,
+    word: word.word,
+    root,
+    statement: 'Quantum synthesis: symbol, number, fold, proof, and energy synthesize into one coherent state — zero entropy, full coverage — the single state a multidimensional interface renders to the user at once.',
+    boundary: 'A fold of the model’s computed dimensions into one synthesis root. Bookkeeping and an interface model, not a physical synthesis or external claim.',
   }
 }
 

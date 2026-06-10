@@ -12,6 +12,14 @@ head:
 
 # Architecture
 
+The formal model below is recomputed live and sealed. Entropy is moved into a
+max-tampering-cost interface: verify the whole seal in your browser across every
+dimension at once — symbol, number, and fold — with multidimensional device
+feedback. Any change flips the root, so a convincing forgery costs the whole
+recomputed model.
+
+<TamperSeal />
+
 ## 0. Symbols
 
 ```text
