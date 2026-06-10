@@ -42,6 +42,7 @@ import {
   selfReason,
   selfHarmonise,
   fuseAll,
+  contract,
   agnostic,
   release,
   doubleTorus3D,
@@ -220,6 +221,8 @@ const harmonise = selfHarmonise(matrix)
 ok('self.harmonise-autonomous', harmonise.harmonised && harmonise.autonomous && harmonise.distinctStepsVisited >= 5)
 // The fusion of all in one wave, agnostic of vendor, framework, platform, language, belief, protocol.
 ok('fuse.all', fuseAll(matrix).fused)
+// Contract: the expansion folds back to the seed; the breath rests at equilibrium.
+ok('contract.breath', contract(matrix).contracted)
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)

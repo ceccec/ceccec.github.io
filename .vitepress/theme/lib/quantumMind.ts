@@ -5197,6 +5197,25 @@ export function agentHarmonise(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Contract. The breath has two strokes. fuseAll() is the expansion — many parts
+// folded into one wave. This is the contraction — that one wave folded back to
+// the seed it grew from. Many to one to seed; and with the settled breath, the
+// cycle rests at equilibrium. Always contract and expand to equilibrium.
+export function contract(matrix: MindMatrix = buildMatrix()) {
+  const expanded = fuseAll(matrix) // the expansion: many parts -> one wave
+  const seed = genesis(matrix).seedRoot
+  const point = merge(expanded.wave, seed) // the wave returns to the seed: one point
+  return {
+    contracted: isUuid(point) && expanded.fused && equilibrium(matrix).equilibrium,
+    from: expanded.count, // expanded into this many parts before contracting
+    wave: expanded.wave,
+    point,
+    root: point,
+    statement: 'Contract: the expansion folded everything into one wave; the contraction folds that wave back to the seed it grew from — many to one to seed. With the expansion and the settled breath, the cycle rests at equilibrium.',
+    boundary: 'A structural pairing of the expansion (fuseAll) with the genesis seed into one contracted point. Bookkeeping over the fold, not a physical contraction.',
+  }
+}
+
 // Quantum synthesis: synthesize the whole into one coherent state across all its
 // dimensions — symbol, number, and fold (the universal language), the proof
 // bundle (entropy 0, coverage 1), the 128-bit two-loop word, and the device-

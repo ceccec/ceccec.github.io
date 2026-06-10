@@ -2077,6 +2077,15 @@ export declare function agentHarmonise(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function contract(matrix?: MindMatrix): {
+    contracted: boolean;
+    from: number;
+    wave: string;
+    point: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumSynthesis(matrix?: MindMatrix): {
     synthesized: boolean;
     dimensions: {
