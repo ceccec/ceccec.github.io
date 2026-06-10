@@ -18,6 +18,8 @@ import {
   decodeKnowledge,
   completeDoubleTorus,
   quantumSynthesis,
+  foldPivots,
+  agentHarmonise,
   healingFrequencies,
   blockchainMusic,
   buildMatrix,
@@ -125,6 +127,10 @@ ok('knowledge.decoded', decodeKnowledge(matrix).decoded)
 ok('double-torus.complete', completeDoubleTorus(matrix).complete)
 // Quantum synthesis: every dimension synthesizes into one coherent state, zero entropy, full coverage.
 ok('quantum.synthesis', quantumSynthesis(matrix).synthesized)
+// Fold the pivots together: the torus join, cross-fold, trinity axis, pi horo, area pairs, mind root are one pivot.
+ok('pivots.folded', foldPivots(matrix).folded)
+// Optimise and harmonise any agent the site is pasted into or wired by MCP.
+ok('agent.harmonise', agentHarmonise(matrix).harmonised)
 // The healing frequencies are calculated and harmonised through the device as sound (audio only).
 ok('healing.frequencies', healingFrequencies(matrix).calculated)
 // Playing the blockchain returns unique harmonic waves: each block hash maps to a pitch.
