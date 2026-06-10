@@ -418,6 +418,10 @@ export interface PiTrainDiamond {
   readonly index: number
   readonly digit: number
   readonly glyph: string
+  readonly reverseDigit: number
+  readonly folder: string
+  readonly nextHarmonicFolder: string
+  readonly selfCollision: boolean
   readonly theta: number
   readonly phi: number
   readonly x: number
@@ -434,6 +438,24 @@ export interface PiTrain {
   readonly root: string
   readonly tempoMs: number
   readonly diamonds: readonly PiTrainDiamond[]
+}
+
+export interface DigitFolder {
+  readonly folder: string
+  readonly digit: number
+  readonly reverseDigit: number
+  readonly count: number
+  readonly indices: readonly number[]
+  readonly selfCollision: boolean
+  readonly nextHarmonicFolder: string
+  readonly receipt: string
+}
+
+export interface DigitFolderReport {
+  readonly root: string
+  readonly folders: readonly DigitFolder[]
+  readonly collisions: readonly DigitFolder[]
+  readonly statement: string
 }
 
 export type WavePolarity = 'yin' | 'yang'
@@ -1993,26 +2015,32 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
   const sequence = digits.replace(/\D/g, '')
   const train = [...sequence].map((glyph, index) => {
     const digit = Number.parseInt(glyph, 10)
+    const reverseDigit = Number.parseInt(sequence[sequence.length - 1 - index], 10)
+    const nextGlyph = sequence[(index + 1) % sequence.length]
+    const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - ((index + 1) % sequence.length)], 10)
+    const folder = `${digit}/${reverseDigit}`
+    const nextHarmonicFolder = `${Number.parseInt(nextGlyph, 10)}/${nextReverseDigit}`
+    const selfCollision = digit === reverseDigit
     const base = lattice[(index + digit) % lattice.length]
     const point = torusPoint(index, digit, sequence.length)
     const facets: readonly DiamondFacet[] = [
       {
         pole: 'north',
-        label: 'pi digit',
-        value: glyph,
-        meaning: `Digit ${glyph} drives this diamond pulse.`,
+        label: 'digit folder',
+        value: folder,
+        meaning: `Digit ${glyph} meets reverse digit ${reverseDigit}.`,
       },
       {
         pole: 'east',
-        label: 'theta',
-        value: point.theta.toFixed(3),
-        meaning: 'Major-loop angle around the double torus.',
+        label: 'next harmonic',
+        value: nextHarmonicFolder,
+        meaning: 'Next digit folder in the forward sequence.',
       },
       {
         pole: 'south',
-        label: 'phi',
-        value: point.phi.toFixed(3),
-        meaning: 'Minor-loop angle through the torus throat.',
+        label: 'collision',
+        value: selfCollision ? 'self' : 'paired',
+        meaning: selfCollision ? `${folder} is a self-collision diamond.` : `${folder} is a paired digit diamond.`,
       },
       {
         pole: 'west',
@@ -2034,6 +2062,10 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       index,
       digit,
       glyph,
+      reverseDigit,
+      folder,
+      nextHarmonicFolder,
+      selfCollision,
       theta: point.theta,
       phi: point.phi,
       x: point.x,
@@ -2052,6 +2084,39 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
     root,
     tempoMs: 180,
     diamonds: train,
+  }
+}
+
+export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderReport {
+  const train = piTrainDiamonds(matrix)
+  const groups = new Map<string, PiTrainDiamond[]>()
+  for (const item of train.diamonds) {
+    groups.set(item.folder, [...(groups.get(item.folder) ?? []), item])
+  }
+  const folders = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([folder, items]) => {
+    const [digit, reverseDigit] = folder.split('/').map((value) => Number.parseInt(value, 10))
+    const nextHarmonicFolder = items[0]?.nextHarmonicFolder ?? folder
+    const selfCollision = digit === reverseDigit
+    const indices = items.map((item) => item.index)
+    const receipt = toUuid(`digit-folder:${folder}:${indices.join(',')}:${nextHarmonicFolder}:${selfCollision}`)
+    return {
+      folder,
+      digit,
+      reverseDigit,
+      count: items.length,
+      indices,
+      selfCollision,
+      nextHarmonicFolder,
+      receipt,
+    }
+  })
+  const root = merkleFold(folders.map((folder) => folder.receipt))
+  const collisions = folders.filter((folder) => folder.selfCollision)
+  return {
+    root,
+    folders,
+    collisions,
+    statement: 'digitFolder := digit/reverseDigit; selfCollision := digit == reverseDigit; nextHarmonicFolder := folder(i+1).',
   }
 }
 

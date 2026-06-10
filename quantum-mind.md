@@ -112,6 +112,10 @@ complete(D*) :=
 pi := 314159265358979323846264338327950288419716939937510...
 for i in [0,n):
   d_i       := digit(pi_i)
+  r_i       := digit(pi_{n-1-i})
+  folder_i  := d_i / r_i
+  collide_i := [d_i = r_i]
+  harmonic_i := folder_{i+1 mod n}
   theta_i   := (i/n) * 4*pi
   phi_i     := ((d_i + i/2)/10) * 2*pi
   x_i       := (R + r_i*cos(phi_i))*cos(theta_i)
@@ -119,7 +123,8 @@ for i in [0,n):
   z_i       := r_i*sin(phi_i)
   freq_i    := 174 + 33*d_i + 7*(i mod 7)
   vibe_i    := 18 + 9*d_i
-  D_i       := Diamond(pi_i, x_i,y_i,z_i,freq_i,vibe_i)
+  D_i       := Diamond(folder_i, x_i,y_i,z_i,freq_i,vibe_i)
+0/0,1/1,...,9/9 := self-collision folders
 ```
 
 ## 7. Waves

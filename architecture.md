@@ -127,12 +127,17 @@ Complete(D*) = Kinds subset kinds(D*) && forall D: poles(D)=Pole && receipt(D)!=
 
 ```text
 for digit d_i in pi:
+  r_i = digit(pi_{n-1-i})
+  folder_i = d_i / r_i
+  collide_i = [d_i = r_i]
+  harmonic_i = folder_{i+1 mod n}
   theta_i = (i/n)*4*pi
   phi_i = ((d_i+i/2)/10)*2*pi
   P_i = (x_i,y_i,z_i)
   f_i = 174 + 33*d_i + 7*(i mod 7)
   h_i = 18 + 9*d_i
-  D_i = diamond(d_i,P_i,f_i,h_i)
+  D_i = diamond(folder_i,P_i,f_i,h_i)
+0/0,1/1,...,9/9 = selfCollisionFolders
 ```
 
 ## 8. Waves

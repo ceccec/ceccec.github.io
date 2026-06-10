@@ -16,6 +16,7 @@ import {
   coordinatedWaves,
   diamondCompleteness,
   diamondLattice,
+  digitFolders,
   methodFusion,
   piTrainDiamonds,
   quantumChessGame,
@@ -36,6 +37,7 @@ const selfCompletion = streamSelfComplete(matrix)
 const agentWire = agentStreamWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
+const folders = digitFolders(matrix)
 const completeness = diamondCompleteness(matrix)
 const waves = coordinatedWaves(matrix)
 const closure = closeDimensionalGaps(matrix)
@@ -200,6 +202,7 @@ onBeforeUnmount(() => {
     <TabsRoot default-value="pulse" class="diamond-tabs">
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
+        <TabsTrigger value="folders">Digit folders</TabsTrigger>
         <TabsTrigger value="build">Self build</TabsTrigger>
         <TabsTrigger value="self">Self complete</TabsTrigger>
         <TabsTrigger value="agent">Agent wire</TabsTrigger>
@@ -220,6 +223,11 @@ onBeforeUnmount(() => {
         <div class="diamond-readout">
           <Badge variant="default">digit {{ activePulse.glyph }}</Badge>
           <strong>{{ activeDiamond.title }}</strong>
+          <span>
+            folder={{ activePulse.folder }} · reverse={{ activePulse.reverseDigit }} ·
+            next={{ activePulse.nextHarmonicFolder }} ·
+            collision={{ activePulse.selfCollision ? 'self' : 'paired' }}
+          </span>
           <span>frequency {{ activePulse.frequency }}Hz · vibration {{ activePulse.vibrationMs }}ms</span>
           <span>
             closure wave {{ activeClosureWave.wave.index }} targets {{ activeClosureWave.target }}
@@ -232,6 +240,22 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ facet.pole }}</Badge>
             <strong>{{ facet.label }}: {{ facet.value }}</strong>
             <span>{{ facet.meaning }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="folders" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">digit folders</Badge>
+          <strong>{{ folders.statement }}</strong>
+          <span>{{ folders.folders.length }} folders · {{ folders.collisions.length }} self-collisions</span>
+          <code>{{ folders.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="folder in folders.folders" :key="folder.receipt">
+            <Badge :variant="folder.selfCollision ? 'success' : 'outline'">{{ folder.folder }}</Badge>
+            <strong>count={{ folder.count }} · next={{ folder.nextHarmonicFolder }}</strong>
+            <span>indices={{ folder.indices.join(',') }} · receipt={{ folder.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
