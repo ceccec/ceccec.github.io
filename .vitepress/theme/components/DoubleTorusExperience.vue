@@ -1,0 +1,201 @@
+<script setup lang="ts">
+import { computed, onBeforeUnmount, ref } from 'vue'
+import {
+  CollapsibleContent,
+  CollapsibleRoot,
+  CollapsibleTrigger,
+  TabsContent,
+  TabsList,
+  TabsRoot,
+  TabsTrigger,
+} from 'radix-vue'
+import { buildMatrix, diamondLattice, piTrainDiamonds } from '../lib/quantumMind'
+import Badge from './ui/Badge.vue'
+import Button from './ui/Button.vue'
+import Card from './ui/Card.vue'
+
+const matrix = buildMatrix()
+const lattice = diamondLattice(matrix)
+const piTrain = piTrainDiamonds(matrix)
+const activeIndex = ref(0)
+const running = ref(false)
+const expanded = ref(true)
+const audioEnabled = ref(true)
+const vibrationEnabled = ref(true)
+let timer: ReturnType<typeof window.setInterval> | undefined
+let audioContext: AudioContext | undefined
+
+const activePulse = computed(() => piTrain.diamonds[activeIndex.value])
+const activeDiamond = computed(() => activePulse.value.diamond)
+
+function ensureAudio(): AudioContext | undefined {
+  if (typeof window === 'undefined' || !audioEnabled.value) return undefined
+  const AudioContextConstructor =
+    window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  if (!AudioContextConstructor) return undefined
+  audioContext ??= new AudioContextConstructor()
+  return audioContext
+}
+
+function playPulse(frequency: number): void {
+  const context = ensureAudio()
+  if (!context) return
+  const oscillator = context.createOscillator()
+  const gain = context.createGain()
+  oscillator.type = 'sine'
+  oscillator.frequency.value = frequency
+  gain.gain.setValueAtTime(0.0001, context.currentTime)
+  gain.gain.exponentialRampToValueAtTime(0.08, context.currentTime + 0.012)
+  gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.16)
+  oscillator.connect(gain)
+  gain.connect(context.destination)
+  oscillator.start()
+  oscillator.stop(context.currentTime + 0.18)
+}
+
+function vibratePulse(duration: number): void {
+  if (!vibrationEnabled.value || typeof navigator === 'undefined' || !('vibrate' in navigator)) return
+  navigator.vibrate(duration)
+}
+
+function triggerPulse(index: number): void {
+  activeIndex.value = index % piTrain.diamonds.length
+  const pulse = piTrain.diamonds[activeIndex.value]
+  playPulse(pulse.frequency)
+  vibratePulse(pulse.vibrationMs)
+}
+
+function start(): void {
+  stop()
+  running.value = true
+  triggerPulse(activeIndex.value)
+  timer = window.setInterval(() => {
+    triggerPulse(activeIndex.value + 1)
+  }, piTrain.tempoMs)
+}
+
+function stop(): void {
+  running.value = false
+  if (timer) window.clearInterval(timer)
+  timer = undefined
+}
+
+function reset(): void {
+  stop()
+  triggerPulse(0)
+}
+
+function diamondStyle(pulse: (typeof piTrain.diamonds)[number]) {
+  return {
+    '--diamond-x': `${pulse.x}%`,
+    '--diamond-y': `${pulse.y}%`,
+    '--diamond-z': `${pulse.z}px`,
+    '--diamond-scale': `${pulse.scale}`,
+    '--diamond-delay': `${pulse.index * 18}ms`,
+  }
+}
+
+onBeforeUnmount(() => {
+  stop()
+  audioContext?.close()
+})
+</script>
+
+<template>
+  <Card id="diamond-lattice" class="double-torus-experience">
+    <div class="double-torus-experience__header">
+      <div>
+        <p class="eyebrow">computed from diamonds</p>
+        <h3>3D double-torus pi train</h3>
+        <p>
+          The full sequence is derived from pi-train diamonds. Every point has a
+          digit, four facets, a receipt, a 3D torus coordinate, a tone, and a
+          vibration pulse.
+        </p>
+      </div>
+      <Badge :variant="running ? 'success' : 'outline'">{{ running ? 'running' : 'ready' }}</Badge>
+    </div>
+
+    <div class="double-torus-stage" aria-label="3D diamond double torus">
+      <div class="double-torus-stage__ring double-torus-stage__ring--inner" />
+      <div class="double-torus-stage__ring double-torus-stage__ring--outer" />
+      <button
+        v-for="pulse in piTrain.diamonds"
+        :key="pulse.diamond.id"
+        class="double-torus-stage__diamond"
+        :class="{ active: pulse.index === activeIndex }"
+        :style="diamondStyle(pulse)"
+        type="button"
+        :aria-label="`pi digit ${pulse.glyph} diamond ${pulse.index}`"
+        @click="triggerPulse(pulse.index)"
+      >
+        <span>{{ pulse.glyph }}</span>
+      </button>
+    </div>
+
+    <TabsRoot default-value="pulse" class="diamond-tabs">
+      <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
+        <TabsTrigger value="pulse">Active pulse</TabsTrigger>
+        <TabsTrigger value="lattice">Base lattice</TabsTrigger>
+        <TabsTrigger value="controls">Controls</TabsTrigger>
+      </TabsList>
+
+      <TabsContent value="pulse" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">digit {{ activePulse.glyph }}</Badge>
+          <strong>{{ activeDiamond.title }}</strong>
+          <span>frequency {{ activePulse.frequency }}Hz · vibration {{ activePulse.vibrationMs }}ms</span>
+          <code>{{ activeDiamond.receipt }}</code>
+        </div>
+        <ul class="diamond-facets">
+          <li v-for="facet in activeDiamond.facets" :key="facet.pole">
+            <Badge variant="outline">{{ facet.pole }}</Badge>
+            <strong>{{ facet.label }}: {{ facet.value }}</strong>
+            <span>{{ facet.meaning }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="lattice" class="diamond-tabs__content">
+        <ul class="diamond-lattice-list">
+          <li v-for="diamond in lattice" :key="diamond.id">
+            <Badge :variant="diamond.status === 'closed' ? 'success' : 'warning'">{{ diamond.status }}</Badge>
+            <strong>{{ diamond.title }}</strong>
+            <span>{{ diamond.core }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="controls" class="diamond-tabs__content">
+        <div class="diamond-controls">
+          <Button type="button" @click="start">Start pi train</Button>
+          <Button type="button" variant="outline" @click="stop">Pause</Button>
+          <Button type="button" variant="ghost" @click="reset">Reset</Button>
+        </div>
+        <div class="diamond-toggles">
+          <label>
+            <input v-model="audioEnabled" type="checkbox" />
+            sound
+          </label>
+          <label>
+            <input v-model="vibrationEnabled" type="checkbox" />
+            device vibration
+          </label>
+        </div>
+        <p class="quantum-mind__note">
+          Sound and vibration require a user gesture and depend on browser/device
+          support. The sequence root is <code>{{ piTrain.root }}</code>.
+        </p>
+      </TabsContent>
+    </TabsRoot>
+
+    <CollapsibleRoot v-model:open="expanded" class="diamond-collapsible">
+      <CollapsibleTrigger as-child>
+        <Button variant="ghost" size="sm">{{ expanded ? 'Hide' : 'Show' }} pi train digits</Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <p class="pi-train-digits">{{ piTrain.digits }}</p>
+      </CollapsibleContent>
+    </CollapsibleRoot>
+  </Card>
+</template>

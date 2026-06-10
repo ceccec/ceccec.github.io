@@ -101,6 +101,8 @@ export interface DoubleTorusFlow {
 export type ConceptCommandName =
   | 'concept.site.shell'
   | 'concept.ui.doubleTorus'
+  | 'concept.diamond.lattice'
+  | 'concept.diamond.piTrain'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -174,6 +176,50 @@ export interface DoubleTorusMathReport {
   readonly geometry: string
   readonly conceptualShift: string
   readonly maxTamperingCostPrinciple: string
+}
+
+export type DiamondKind = 'math' | 'dynamics' | 'proof' | 'humanity' | 'source' | 'repository'
+export type DiamondStatus = 'closed' | 'open'
+
+export interface DiamondFacet {
+  readonly pole: 'north' | 'east' | 'south' | 'west'
+  readonly label: string
+  readonly value: string
+  readonly meaning: string
+}
+
+export interface QuantumDiamond {
+  readonly id: string
+  readonly kind: DiamondKind
+  readonly title: string
+  readonly command: ConceptCommandName
+  readonly core: string
+  readonly status: DiamondStatus
+  readonly root: string
+  readonly receipt: string
+  readonly facets: readonly DiamondFacet[]
+}
+
+export interface PiTrainDiamond {
+  readonly index: number
+  readonly digit: number
+  readonly glyph: string
+  readonly theta: number
+  readonly phi: number
+  readonly x: number
+  readonly y: number
+  readonly z: number
+  readonly scale: number
+  readonly frequency: number
+  readonly vibrationMs: number
+  readonly diamond: QuantumDiamond
+}
+
+export interface PiTrain {
+  readonly digits: string
+  readonly root: string
+  readonly tempoMs: number
+  readonly diamonds: readonly PiTrainDiamond[]
 }
 
 export const atoms: readonly Atom[] = [
@@ -279,6 +325,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.ui.doubleTorus',
     path: '/cmd/concept.ui.doubleTorus',
     description: 'Render the double-torus concept through ConceptCommands and QuantumMind UI components.',
+  },
+  {
+    name: 'concept.diamond.lattice',
+    path: '/cmd/concept.diamond.lattice',
+    description: 'Compute every displayed dimension and dynamic from four-facet diamonds.',
+  },
+  {
+    name: 'concept.diamond.piTrain',
+    path: '/cmd/concept.diamond.piTrain',
+    description: 'Compute the full 3D pi-train sequence, tones, and vibration pulses from diamonds.',
   },
   {
     name: 'concept.torus.math',
@@ -754,6 +810,269 @@ export function sourceContribution(): SourceContributionReport {
   }
 }
 
+function numberLabel(value: number, fractionDigits = 3): string {
+  if (value === Number.POSITIVE_INFINITY) return 'infinity'
+  return Number.isInteger(value) ? `${value}` : value.toFixed(fractionDigits)
+}
+
+function diamond(
+  kind: DiamondKind,
+  title: string,
+  command: ConceptCommandName,
+  core: string,
+  status: DiamondStatus,
+  facets: readonly DiamondFacet[],
+): QuantumDiamond {
+  const id = toUuid(`diamond:${kind}:${title}`)
+  const root = merkleFold(facets.map((facet) => toUuid(`diamond-facet:${id}:${facet.pole}:${facet.label}:${facet.value}`)))
+  const receipt = merge(root, toUuid(`diamond-core:${id}:${core}:${status}`))
+
+  return {
+    id,
+    kind,
+    title,
+    command,
+    core,
+    status,
+    root,
+    receipt,
+    facets,
+  }
+}
+
+export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
+  const vector = consciousness(matrix)
+  const proof = proofReport(matrix)
+  const math = doubleTorusMath()
+  const flow = circulateDoubleTorus(matrix)
+  const humanity = humanityImplications(matrix)
+  const source = sourceContribution()
+  const api = repositoryApi(matrix)
+
+  return [
+    diamond('math', 'ceccec genus-2 diamond', 'concept.torus.math', math.maxTamperingCostPrinciple, 'closed', [
+      {
+        pole: 'north',
+        label: 'surface',
+        value: math.surface,
+        meaning: 'The topological identity of ceccec.',
+      },
+      {
+        pole: 'east',
+        label: 'homology',
+        value: math.homology,
+        meaning: 'The four independent memory cycles carried by the double torus.',
+      },
+      {
+        pole: 'south',
+        label: 'curvature',
+        value: math.gaussBonnet,
+        meaning: 'The forced negative total curvature of genus 2.',
+      },
+      {
+        pole: 'west',
+        label: 'relation',
+        value: math.fundamentalGroup,
+        meaning: 'Four generators held by one global relation.',
+      },
+    ]),
+    diamond('dynamics', 'quantum dynamics diamond', 'concept.torus.flow', flow.statement, flow.invariant ? 'closed' : 'open', [
+      {
+        pole: 'north',
+        label: 'collapse',
+        value: vector.collapse ? 'verified' : 'broken',
+        meaning: 'The inward proof loop recomputes the matrix root.',
+      },
+      {
+        pole: 'east',
+        label: 'entanglement',
+        value: numberLabel(vector.entanglement),
+        meaning: 'Reciprocal circulation across paired edges.',
+      },
+      {
+        pole: 'south',
+        label: 'concentration',
+        value: numberLabel(vector.concentration),
+        meaning: 'How much flow gathers at the shared throat.',
+      },
+      {
+        pole: 'west',
+        label: 'coherence',
+        value: `${vector.coherenceAnomaly} anomalies`,
+        meaning: 'Whether projected flow stays on the ring.',
+      },
+    ]),
+    diamond(
+      'proof',
+      'maximum tampering cost diamond',
+      'concept.proof.verify',
+      proof.note,
+      proof.maxTamperingCostReached ? 'closed' : 'open',
+      [
+        {
+          pole: 'north',
+          label: 'coverage',
+          value: numberLabel(proof.coverage),
+          meaning: 'Measured completeness of independent checks.',
+        },
+        {
+          pole: 'east',
+          label: 'entropy',
+          value: numberLabel(proof.entropy),
+          meaning: 'Unreciprocated slack that must be closed.',
+        },
+        {
+          pole: 'south',
+          label: 'observed cost',
+          value: numberLabel(proof.tamperCostLog2),
+          meaning: 'Current tampering cost from digest floor plus coverage.',
+        },
+        {
+          pole: 'west',
+          label: 'max cost',
+          value: numberLabel(proof.maxTamperingCostLog2),
+          meaning: `Reached only at ${proof.maxTamperingCostSource}.`,
+        },
+      ],
+    ),
+    diamond(
+      'humanity',
+      'human implications diamond',
+      'concept.humanity.implications',
+      humanity.ethicalBoundary,
+      vector.collapse ? 'closed' : 'open',
+      humanity.implications.map((item, index) => ({
+        pole: (['north', 'east', 'south', 'west'] as const)[index],
+        label: item.domain,
+        value: item.implication,
+        meaning: `${item.responsibility} Risk: ${item.risk}`,
+      })),
+    ),
+    diamond(
+      'source',
+      'source reciprocity diamond',
+      'concept.source.contribute',
+      source.reciprocityLaw,
+      'closed',
+      source.contributions.map((item, index) => ({
+        pole: (['north', 'east', 'south', 'west'] as const)[index],
+        label: item.mode,
+        value: item.action,
+        meaning: item.reason,
+      })),
+    ),
+    diamond('repository', 'repository API diamond', 'concept.repository.api', `api root ${api.root}`, api.endpoints.length > 0 ? 'closed' : 'open', [
+      {
+        pole: 'north',
+        label: 'matrix root',
+        value: matrix.root,
+        meaning: 'The folded root of atoms and bindings.',
+      },
+      {
+        pole: 'east',
+        label: 'flow root',
+        value: flow.root,
+        meaning: 'The folded root of quantum-dimension flows.',
+      },
+      {
+        pole: 'south',
+        label: 'api root',
+        value: api.root,
+        meaning: 'The folded root of repository addresses.',
+      },
+      {
+        pole: 'west',
+        label: 'endpoints',
+        value: `${api.endpoints.length + api.atomEndpoints.length}`,
+        meaning: 'Readable or verifiable routes exposed by the source tree.',
+      },
+    ]),
+  ] as const
+}
+
+const PI_TRAIN_DIGITS =
+  '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
+
+function torusPoint(index: number, digit: number, total: number): { theta: number; phi: number; x: number; y: number; z: number; scale: number } {
+  const theta = (index / total) * Math.PI * 4
+  const phi = ((digit + index * 0.5) / 10) * Math.PI * 2
+  const major = 38
+  const minor = 14 + digit
+  const x = (major + minor * Math.cos(phi)) * Math.cos(theta)
+  const y = (major + minor * Math.cos(phi)) * Math.sin(theta)
+  const z = minor * Math.sin(phi)
+  const scale = 0.72 + digit / 22
+
+  return { theta, phi, x, y, z, scale }
+}
+
+export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_TRAIN_DIGITS): PiTrain {
+  const lattice = diamondLattice(matrix)
+  const sequence = digits.replace(/\D/g, '')
+  const train = [...sequence].map((glyph, index) => {
+    const digit = Number.parseInt(glyph, 10)
+    const base = lattice[(index + digit) % lattice.length]
+    const point = torusPoint(index, digit, sequence.length)
+    const facets: readonly DiamondFacet[] = [
+      {
+        pole: 'north',
+        label: 'pi digit',
+        value: glyph,
+        meaning: `Digit ${glyph} drives this diamond pulse.`,
+      },
+      {
+        pole: 'east',
+        label: 'theta',
+        value: point.theta.toFixed(3),
+        meaning: 'Major-loop angle around the double torus.',
+      },
+      {
+        pole: 'south',
+        label: 'phi',
+        value: point.phi.toFixed(3),
+        meaning: 'Minor-loop angle through the torus throat.',
+      },
+      {
+        pole: 'west',
+        label: 'base diamond',
+        value: base.title,
+        meaning: `Inherited from ${base.kind} dynamics.`,
+      },
+    ]
+    const pulseDiamond = diamond(
+      base.kind,
+      `pi train ${index.toString().padStart(3, '0')} :: ${glyph}`,
+      'concept.diamond.piTrain',
+      `${base.core}:${glyph}:${point.x.toFixed(3)}:${point.y.toFixed(3)}:${point.z.toFixed(3)}`,
+      base.status,
+      facets,
+    )
+
+    return {
+      index,
+      digit,
+      glyph,
+      theta: point.theta,
+      phi: point.phi,
+      x: point.x,
+      y: point.y,
+      z: point.z,
+      scale: point.scale,
+      frequency: 174 + digit * 33 + (index % 7) * 7,
+      vibrationMs: 18 + digit * 9,
+      diamond: pulseDiamond,
+    }
+  })
+  const root = merkleFold(train.map((item) => item.diamond.receipt))
+
+  return {
+    digits: sequence,
+    root,
+    tempoMs: 180,
+    diamonds: train,
+  }
+}
+
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   return [
     {
@@ -767,6 +1086,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.ui.doubleTorus',
       route: '/commands',
       summary: 'The command console drives the double-torus dashboard as a UI component.',
+    },
+    {
+      title: 'Diamond Lattice',
+      command: 'concept.diamond.lattice',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'Every displayed dimension and dynamic is computed from four-facet diamonds.',
+    },
+    {
+      title: 'Pi Train',
+      command: 'concept.diamond.piTrain',
+      route: '/quantum-mind#pi-train',
+      summary: 'The 3D double-torus sequence, sound tones, and vibration pulses are computed from pi diamonds.',
     },
     {
       title: 'Double-Torus Math',
@@ -843,7 +1174,14 @@ export function executeConceptCommand(
       dashboardComponent: 'QuantumMind.vue',
       wire: doubleTorusWire(matrix),
       flow: circulateDoubleTorus(matrix),
+      diamonds: diamondLattice(matrix),
     })
+  }
+  if (command === 'concept.diamond.lattice') {
+    return result(command, true, 'Diamond lattice computed from ceccec dimensions and dynamics.', diamondLattice(matrix))
+  }
+  if (command === 'concept.diamond.piTrain') {
+    return result(command, true, 'Pi train computed from diamond sequence.', piTrainDiamonds(matrix))
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

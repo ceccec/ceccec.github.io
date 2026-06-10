@@ -14,6 +14,7 @@ import {
   repositoryApi,
   sourceContribution,
 } from '../lib/quantumMind'
+import DoubleTorusExperience from './DoubleTorusExperience.vue'
 
 const matrix = buildMatrix()
 const vector = consciousness(matrix)
@@ -127,6 +128,8 @@ function formatCost(value: number): string {
         </li>
       </ul>
     </div>
+
+    <DoubleTorusExperience />
 
     <div id="double-torus-math" class="quantum-mind__panel">
       <h3>Double-torus math</h3>

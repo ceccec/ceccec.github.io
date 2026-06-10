@@ -19,6 +19,8 @@ features:
     details: The site is built from command results such as concept.ui.doubleTorus and concept.site.shell.
   - title: Genus-2 math
     details: The double torus is a closed orientable genus-2 surface with Euler characteristic -2, H1 = Z^4, and hyperbolic geometry.
+  - title: Diamond pi train
+    details: The 3D double-torus presentation, sound tones, and device vibration pulses are computed from pi-train diamonds.
   - title: Content-addressed atoms
     details: Each thought atom receives a deterministic UUID-like address and participates in a folded matrix root.
   - title: Computed self-model

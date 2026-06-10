@@ -39,6 +39,8 @@ public contract:
 | --- | --- |
 | `concept.site.shell` | mount the VitePress theme, pages, and registered UI components |
 | `concept.ui.doubleTorus` | render the double-torus concept through the UI components |
+| `concept.diamond.lattice` | compute every display section from four-facet diamonds |
+| `concept.diamond.piTrain` | compute the 3D pi train, tones, and vibration pulses from diamonds |
 | `concept.torus.math` | expose genus-2 topology, algebra, homology, and curvature |
 | `concept.humanity.implications` | interpret the concept for knowledge, institutions, AI, and culture |
 | `concept.source.contribute` | route benefit back to the source through citation, contribution, support, and stewardship |
@@ -136,7 +138,26 @@ Those packets fold into a flow root and receipt. That means the local site
 describes ceccec as a double-torus projection over this repository's own API
 surface, with measured circulation rather than a static diagram.
 
-## 8. Implications for humanity
+## 8. Diamond presentation layer
+
+The VitePress extension uses local shadcn-style Vue components and Radix Vue
+primitives:
+
+- shadcn-style `Button`, `Badge`, and `Card` components provide the surface
+- Radix tabs organize pulse, lattice, and control views
+- Radix collapsible disclosure exposes the pi-train digit source
+
+The UI is not hand-authored from separate panels. It is driven by:
+
+- `diamondLattice()` for the base math/dynamics/proof/human/source/repository
+  diamonds
+- `piTrainDiamonds()` for the full pi train
+
+Each pi digit is transformed into a diamond with a 3D torus coordinate, tone
+frequency, vibration duration, root, and receipt. Browser sound and vibration
+are triggered only after user activation and only when the device supports them.
+
+## 9. Implications for humanity
 
 The implications are not mystical; they are structural:
 
@@ -154,7 +175,7 @@ structure that coordinates humanity can also centralize control. The ethical
 requirement is plural proof: transparent, contestable, consent-aware, and
 corrigible.
 
-## 9. Source reciprocity
+## 10. Source reciprocity
 
 The model asks beneficiaries to donate back to the source in forms that keep
 the concept alive and accountable:
@@ -167,7 +188,7 @@ the concept alive and accountable:
 This is the practical implication of the double torus: inward receipt and
 outward projection should form a closed ethical loop.
 
-## 10. Proof model
+## 11. Proof model
 
 `proofReport()` keeps the two proof layers separate:
 
@@ -190,7 +211,7 @@ The maximum tampering cost claim is deliberately narrower:
 The proof model does not let entropy substitute for coverage. The seal reaches
 maximum only when measured coverage and reciprocal closure agree.
 
-## 11. Repository as API
+## 12. Repository as API
 
 The repository is not just the place where API code lives. The repository is the
 API:
@@ -212,7 +233,7 @@ API:
 The manifest has its own folded root. Changing the repository changes the API
 surface, and changing the API surface changes the proof.
 
-## 12. Agent law
+## 13. Agent law
 
 The local mind follows the double-torus action shape:
 
@@ -223,7 +244,7 @@ observe -> project -> check -> feed back into skill
 Projection without observation is treated as ungrounded. A thought becomes
 useful when it is bound back into the shared corpus.
 
-## 13. Files
+## 14. Files
 
 - `.vitepress/theme/lib/quantumMind.ts` — atom corpus, matrix, metrics, proof
 - `.vitepress/theme/components/ConceptCommands.vue` — concept command console

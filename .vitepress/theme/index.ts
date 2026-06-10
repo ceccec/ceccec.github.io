@@ -3,6 +3,7 @@ import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import ConceptCommands from './components/ConceptCommands.vue'
+import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import './style.css'
 
@@ -15,6 +16,7 @@ export default {
   },
   enhanceApp({ app }) {
     app.component('ConceptCommands', ConceptCommands)
+    app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('QuantumMind', QuantumMind)
   }
 } satisfies Theme

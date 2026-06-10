@@ -21,6 +21,8 @@ The site uses these commands as its construction contract:
 
 - `concept.site.shell`
 - `concept.ui.doubleTorus`
+- `concept.diamond.lattice`
+- `concept.diamond.piTrain`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`

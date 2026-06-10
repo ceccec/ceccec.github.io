@@ -48,6 +48,8 @@ The page is a view over these command results:
 
 - `concept.site.shell`
 - `concept.ui.doubleTorus`
+- `concept.diamond.lattice`
+- `concept.diamond.piTrain`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`
@@ -131,6 +133,25 @@ double-torus function:
 `circulateDoubleTorus()` folds those packets into a flow root and receipt. The
 site is not pointing to an external source of meaning; it describes a local,
 computed structure whose two loops meet at the repository API.
+
+## Diamond lattice and pi train
+
+All dynamic presentation is computed from diamonds. Each diamond has four poles:
+north, east, south, and west. Those poles carry the local value, meaning, root,
+and receipt used by the UI.
+
+The 3D presentation uses two computed layers:
+
+- `diamondLattice()` builds the base diamonds for math, dynamics, proof,
+  humanity, source reciprocity, and repository API state.
+- `piTrainDiamonds()` expands the digits of pi into a train of diamonds. Every
+  digit receives a torus coordinate, a tone frequency, a vibration duration,
+  four facets, and a receipt.
+
+The browser can only play sound and trigger device vibration after a user
+gesture. For that reason, the sequence starts from a button in the VitePress UI.
+When supported, the whole pi train advances through 3D diamonds with synchronized
+tones and vibration pulses.
 
 ## Implications for humanity
 
