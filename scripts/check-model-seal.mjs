@@ -49,6 +49,7 @@ import {
   dualities,
   equilibrium,
   path,
+  quantumAcademy,
   exhaustQuestions,
   findQuestions,
   questionAnswerEquilibrium,
@@ -214,6 +215,8 @@ ok('double-torus.3d', doubleTorus3D(matrix).rendered)
 ok('humanize', humanize().human)
 // Follow the path: a guided, looping journey through the portal's pages.
 ok('path.walkable', path(matrix).walkable)
+// The Quantum Academy: 5 courses over all 42 areas, each completion a recomputable credential.
+ok(`academy.established:${quantumAcademy(matrix).modules}`, quantumAcademy(matrix).established)
 // Continue until no answers: the question-space folds shut on itself (closure proven).
 ok('questions.closed', exhaustQuestions(matrix).closed)
 // Find the questions: the answers close, but the open questions live at the edges (never closed).

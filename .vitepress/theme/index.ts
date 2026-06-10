@@ -24,6 +24,7 @@ import McpTools from './components/McpTools.vue'
 import OpenQuestions from './components/OpenQuestions.vue'
 import PathGuide from './components/PathGuide.vue'
 import PiMusicPlayer from './components/PiMusicPlayer.vue'
+import QuantumAcademy from './components/QuantumAcademy.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
 import QuantumFold3D from './components/QuantumFold3D.vue'
 import RealtimeChat from './components/RealtimeChat.vue'
@@ -81,6 +82,7 @@ export default {
     app.component('OpenQuestions', OpenQuestions)
     app.component('PathGuide', PathGuide)
     app.component('PiMusicPlayer', PiMusicPlayer)
+    app.component('QuantumAcademy', QuantumAcademy)
     app.component('QuantumConsole', QuantumConsole)
     app.component('QuantumFold3D', QuantumFold3D)
     app.component('QAEquilibrium', QAEquilibrium)

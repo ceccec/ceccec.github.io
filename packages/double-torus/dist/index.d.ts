@@ -1425,6 +1425,24 @@ export declare function path(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumAcademy(matrix?: MindMatrix): {
+    established: boolean;
+    courses: {
+        course: string;
+        level: string;
+        modules: {
+            area: string;
+            glyph: string;
+        }[];
+        credential: string;
+        receipt: string;
+    }[];
+    levels: string[];
+    modules: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function humanize(): {
     human: boolean;
     translations: {

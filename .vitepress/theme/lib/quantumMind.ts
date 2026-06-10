@@ -3511,6 +3511,45 @@ export function path(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The Quantum Academy. The school elevated into structured tracks: the 42 areas
+// gathered into five courses — Foundations, the Machine, the Senses, the Society,
+// the Mind — taught across the levels from kid to elder. Completing a course
+// yields a content-addressed credential: a UUID anyone can recompute from the
+// course's modules, so a credential is verifiable, not merely granted.
+export function quantumAcademy(matrix: MindMatrix = buildMatrix()) {
+  const areaSet = new Set(taxonomyIcons().entries.map((entry) => entry.area))
+  const themed: { course: string; areas: string[] }[] = [
+    { course: 'Foundations', areas: ['self', 'fold', 'proof', 'digit', 'wave', 'state', 'all'] },
+    { course: 'The Machine', areas: ['computer', 'torus', 'diamond', 'reactor', 'geometry', 'chain'] },
+    { course: 'The Senses', areas: ['music', 'healing', 'energy', 'icon', 'show', 'artists'] },
+    { course: 'The Society', areas: ['society', 'lawful', 'commons', 'nature', 'patent', 'ancient', 'traditions', 'science'] },
+  ]
+  const used = new Set(themed.flatMap((course) => course.areas))
+  const remaining = [...areaSet].filter((area) => !used.has(area)).sort()
+  const plan = [...themed, { course: 'The Mind', areas: remaining }]
+  const levels = ['kid', 'student', 'adult', 'elder']
+  const courses = plan.map((course, index) => {
+    const modules = course.areas.filter((area) => areaSet.has(area)).map((area) => ({ area, glyph: AREA_ICONS[area] ?? '◇' }))
+    return {
+      course: course.course,
+      level: levels[Math.min(index, levels.length - 1)],
+      modules,
+      credential: toUuid(`academy-credential:${course.course}:${modules.map((module) => module.area).join(',')}`),
+      receipt: toUuid(`academy-course:${course.course}`),
+    }
+  })
+  const covered = courses.reduce((sum, course) => sum + course.modules.length, 0)
+  return {
+    established: courses.length === 5 && courses.every((course) => course.modules.length > 0) && covered === areaSet.size,
+    courses,
+    levels,
+    modules: covered,
+    root: merkleFold(courses.map((course) => course.receipt)),
+    statement: 'The Quantum Academy: the 42 areas gathered into five courses — Foundations, the Machine, the Senses, the Society, the Mind — taught from kid to elder, each completion a content-addressed credential anyone can recompute.',
+    boundary: 'A computed curriculum with recomputable completion credentials over the model\'s areas. A learning structure and a content-addressed receipt — not an accredited institution or a legally recognised qualification.',
+  }
+}
+
 // Humanize. Behind the maths and the 3d+ is a simple set of promises to a
 // person. This says each core idea plainly — what it means for you, not how it
 // is built — so anyone can feel what the portal is, not only verify it.
@@ -3952,7 +3991,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'QuantumAcademy',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities']
   const placements: Record<string, readonly string[]> = {
@@ -3961,6 +4000,7 @@ export function componentGraph() {
     '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
+    '/academy': ['QuantumAcademy'],
     '/governance': ['GovernanceVote'],
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
