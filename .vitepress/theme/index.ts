@@ -9,6 +9,7 @@ import GlobalHelp from './components/GlobalHelp.vue'
 import GovernanceVote from './components/GovernanceVote.vue'
 import LearnErpax from './components/LearnErpax.vue'
 import McpTools from './components/McpTools.vue'
+import PiMusicPlayer from './components/PiMusicPlayer.vue'
 import QuantumConsole from './components/QuantumConsole.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import RevolutAside from './components/RevolutAside.vue'
@@ -36,6 +37,7 @@ export default {
     app.component('GovernanceVote', GovernanceVote)
     app.component('LearnErpax', LearnErpax)
     app.component('McpTools', McpTools)
+    app.component('PiMusicPlayer', PiMusicPlayer)
     app.component('QuantumConsole', QuantumConsole)
     app.component('QuantumMind', QuantumMind)
     app.component('RevolutAside', RevolutAside)

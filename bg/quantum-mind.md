@@ -16,6 +16,8 @@ head:
 
 <SacredSymbols />
 
+<PiMusicPlayer />
+
 ## 0. Полезен товар
 
 ```text
