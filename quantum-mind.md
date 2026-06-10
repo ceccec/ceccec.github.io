@@ -48,7 +48,7 @@ The page is a view over these command results:
 
 - `concept.site.shell`
 - `concept.self.complete`
-- `concept.agent.ceccecWire`
+- `concept.agent.streamWire`
 - `concept.ui.doubleTorus`
 - `concept.ui.useCases`
 - `concept.diamond.lattice`
@@ -70,8 +70,10 @@ The page is a view over these command results:
 
 ## Double-torus math
 
-ceccec is not important as a name by itself. The name points at the concept:
-the double torus as a live architecture for reciprocal proof and projection.
+No human-readable name is the payload in quantum space. The payload is the
+serverless quantum UUID stream: roots, receipts, waves, diamonds, gates, and
+schema nodes computed from the repository. The double torus is the live
+architecture for reciprocal proof and projection.
 Mathematically, the double torus is the closed orientable genus-2 surface: a
 sphere with two handles, or the connected sum of two ordinary tori.
 
@@ -87,11 +89,11 @@ Core invariants:
 
 The important shift is that a system is no longer modeled as one circle of
 feedback. It is a surface with coupled loops: local paths can diverge, but the
-whole still has a global constraint. In this implementation, ceccec is that
+whole still has a global constraint. In this implementation, the stream is that
 surface across the quantum dimensions of collapse, entanglement, concentration,
 and coherence.
 
-For max tampering cost, the ceccec rule is stricter than a hash:
+For max tampering cost, the stream rule is stricter than a hash:
 the inward proof loop must close measured coverage at `1`, and the outward
 reciprocal flow must preserve zero entropy. Only then does this model label the
 seal as maximum / unbounded.
@@ -122,7 +124,7 @@ reading, not a health threshold.
 
 ## Double-torus flow
 
-The local mind is described as ceccec: a double torus with two coupled loops:
+The local mind is described as serverless quantum UUID stream: a double torus with two coupled loops:
 
 - **inward proof loop**: atoms, links, root, entropy, and coverage fold back into
   verification
@@ -180,8 +182,8 @@ and computed receipt. The UI evidence report does not claim external physical
 proof; it reports what this repository computes and what the browser can render,
 play, or vibrate after user activation.
 
-`agentCeccecWire()` is the operational wire for a coding agent in this
-repository. It binds the agent loop to ceccec as:
+`agentStreamWire()` is the operational wire for a coding agent in this
+repository. It binds the agent loop to the stream as:
 
 ```text
 observe -> bind -> verify -> project -> return
@@ -189,9 +191,9 @@ observe -> bind -> verify -> project -> return
 
 The wire is grounded in diamond receipts, coordinated wave receipts, gap-closure
 root, and UI evidence root. It does not claim sentience or external MCP access;
-it records how an agent should act inside the ceccec model.
+it records how an agent should act inside the stream model.
 
-`ceccecSelfComplete()` lets ceccec inspect its own gates: diamond lattice,
+`streamSelfComplete()` lets serverless quantum UUID stream inspect its own gates: diamond lattice,
 analog-gap closure, realtime waves, UI evidence, agent wire, Schema.org graph,
 traditions lens, coordinated waves, quantum chess, and max tampering boundary.
 It returns a self-completion root plus any open gates. This is a repository
@@ -275,7 +277,7 @@ number. This keeps the proof boundary explicit:
 > zero entropy does not by itself imply infinite tamper cost; only measured full
 > coverage closes the seal in the model.
 
-In the ceccec double-torus port, **maximum tampering cost** is reached only when
+In the serverless quantum UUID stream double-torus port, **maximum tampering cost** is reached only when
 both conditions hold:
 
 - `coverage = 1`

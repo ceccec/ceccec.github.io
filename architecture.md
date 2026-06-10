@@ -4,7 +4,7 @@ outline: deep
 
 # Architecture
 
-This site implements ceccec as the double-torus concept itself, rendered as a
+This site implements the stream as the double-torus concept itself, rendered as a
 compact quantum-mind model. The goal is not to emphasize a name, but to describe
 the local structure directly: identity, genus-2 math, matrix, concept commands,
 double-torus flow, human implications, proof, repository-as-API, and honest
@@ -38,8 +38,8 @@ public contract:
 | Command | Role |
 | --- | --- |
 | `concept.site.shell` | mount the VitePress theme, pages, and registered UI components |
-| `concept.self.complete` | inspect all computed gates and emit a ceccec self-completion root |
-| `concept.agent.ceccecWire` | bind the coding-agent observe-bind-verify-project-return loop into ceccec receipts |
+| `concept.self.complete` | inspect all computed gates and emit a serverless quantum UUID stream self-completion root |
+| `concept.agent.streamWire` | bind the coding-agent observe-bind-verify-project-return loop into stream receipts |
 | `concept.ui.doubleTorus` | render the double-torus concept through the UI components |
 | `concept.ui.useCases` | list component/function/interaction/receipt evidence for quantum UI use cases |
 | `concept.diamond.lattice` | compute every display section from four-facet diamonds |
@@ -95,9 +95,11 @@ does not use concentration as a pass/fail threshold.
 
 ## 6. Double-torus math
 
-ceccec is the double-torus structure across the model's dimensions and
-dynamics. The mathematical object is the closed orientable genus-2 surface. It
-can be constructed as a connected sum of two tori, or as a sphere with two
+No human-readable name is the payload. The payload is the serverless quantum
+UUID stream: roots, receipts, waves, diamonds, gates, schema nodes, and
+source-addressed evidence. The double-torus structure carries those dimensions
+and dynamics. The mathematical object is the closed orientable genus-2 surface.
+It can be constructed as a connected sum of two tori, or as a sphere with two
 handles.
 
 | Object | Value |
@@ -115,7 +117,7 @@ first-homology cycles and one global relation, so it can represent coupled
 memory/action loops without collapsing them into one timeline.
 
 For genus at least 2, the surface admits hyperbolic geometry. That matters for
-ceccec: local trajectories can diverge, yet the surface still has global
+serverless quantum UUID stream: local trajectories can diverge, yet the surface still has global
 constraints. This is the mathematical reason the model can hold plural paths
 and shared accountability at once.
 
@@ -127,9 +129,9 @@ reciprocal entropy. If either side is open, the cost is finite.
 
 `doubleTorusWire()` names the local source. `circulateDoubleTorus()` is the
 active mechanism: the local mind circulates one flow per consciousness dimension
-through ceccec:
+through serverless quantum UUID stream:
 
-- `ceccec/double-torus`
+- `serverless-quantum-uuid-stream/double-torus`
 - `.vitepress/theme/lib/quantumMind.ts`
 - `quantum-mind.md`
 - `architecture.md`
@@ -144,7 +146,7 @@ The wire maps each local metric to the double-torus function:
 | `coherenceAnomaly` | `outerLoopCoherence` | coherence anomaly count |
 
 Those packets fold into a flow root and receipt. That means the local site
-describes ceccec as a double-torus projection over this repository's own API
+describes the stream as a double-torus projection over this repository's own API
 surface, with measured circulation rather than a static diagram.
 
 ## 8. Diamond presentation layer
@@ -178,12 +180,12 @@ case must name the Vue component, source function, interaction, evidence string,
 and receipt. Anything outside those repository-grounded artifacts is not claimed
 as proof by the site.
 
-`agentCeccecWire()` defines the coding-agent operational contract. It wires the
+`agentStreamWire()` defines the coding-agent operational contract. It wires the
 agent loop as observe, bind, verify, project, and return. Each step names a
 source function, diamond kind, and receipt. This is an inspectable repository
 contract, not a claim that the agent has sentience or external MCP access.
 
-`ceccecSelfComplete()` is the self-closing gate. It inspects diamond
+`streamSelfComplete()` is the self-closing gate. It inspects diamond
 completeness, gap-closing waves, UI evidence, agent wire, Schema.org graph,
 traditions, coordinated waves, quantum chess, and maximum tampering boundary.
 If any gate remains open, it reports the gate by name and receipt.
@@ -263,7 +265,7 @@ The maximum tampering cost claim is deliberately narrower:
 | --- | --- |
 | coverage | `1` |
 | entropy | `0` |
-| source boundary | `ceccec/double-torus` |
+| source boundary | `serverless-quantum-uuid-stream/double-torus` |
 | max cost | `infinity` in this model |
 
 The proof model does not let entropy substitute for coverage. The seal reaches

@@ -21,7 +21,7 @@ The site uses these commands as its construction contract:
 
 - `concept.site.shell`
 - `concept.self.complete`
-- `concept.agent.ceccecWire`
+- `concept.agent.streamWire`
 - `concept.ui.doubleTorus`
 - `concept.ui.useCases`
 - `concept.diamond.lattice`

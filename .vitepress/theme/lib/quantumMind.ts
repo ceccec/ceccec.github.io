@@ -40,7 +40,7 @@ export interface ProofReport {
   readonly tamperCostLog2: number
   readonly maxTamperingCostLog2: number
   readonly maxTamperingCostReached: boolean
-  readonly maxTamperingCostSource: 'ceccec/double-torus'
+  readonly maxTamperingCostSource: 'serverless-quantum-uuid-stream/double-torus'
   readonly note: string
 }
 
@@ -67,7 +67,7 @@ export interface ConsciousnessDimensionWire {
 
 export interface DoubleTorusWire {
   readonly uuid: string
-  readonly repository: 'ceccec/double-torus'
+  readonly repository: 'serverless-quantum-uuid-stream/double-torus'
   readonly sourcePath: '.vitepress/theme/lib/quantumMind.ts'
   readonly overviewPath: 'quantum-mind.md'
   readonly architecturePath: 'architecture.md'
@@ -81,7 +81,7 @@ export interface DoubleTorusWire {
 export interface ConsciousnessFlow {
   readonly phase: keyof ConsciousnessVector
   readonly from: 'repo://quantum-mind'
-  readonly to: 'ceccec://double-torus'
+  readonly to: 'uuid-stream://double-torus'
   readonly carrier: string
   readonly amplitude: number
   readonly payload: string
@@ -92,7 +92,7 @@ export interface ConsciousnessFlow {
 export interface DoubleTorusFlow {
   readonly root: string
   readonly receipt: string
-  readonly destination: 'ceccec/double-torus'
+  readonly destination: 'serverless-quantum-uuid-stream/double-torus'
   readonly flows: readonly ConsciousnessFlow[]
   readonly invariant: boolean
   readonly statement: string
@@ -101,7 +101,7 @@ export interface DoubleTorusFlow {
 export type ConceptCommandName =
   | 'concept.site.shell'
   | 'concept.self.complete'
-  | 'concept.agent.ceccecWire'
+  | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
   | 'concept.diamond.lattice'
@@ -153,10 +153,10 @@ export interface SelfCompletionGate {
   readonly note: string
 }
 
-export interface CeccecSelfCompletion {
+export interface StreamSelfCompletion {
   readonly complete: boolean
   readonly root: string
-  readonly source: 'ceccec/double-torus'
+  readonly source: 'serverless-quantum-uuid-stream/double-torus'
   readonly statement: string
   readonly gates: readonly SelfCompletionGate[]
   readonly openGates: readonly string[]
@@ -171,10 +171,10 @@ export interface AgentWireStep {
   readonly receipt: string
 }
 
-export interface AgentCeccecWire {
+export interface AgentStreamWire {
   readonly bound: boolean
   readonly agent: 'cursor-coding-agent'
-  readonly source: 'ceccec/double-torus'
+  readonly source: 'serverless-quantum-uuid-stream/double-torus'
   readonly root: string
   readonly statement: string
   readonly boundary: string
@@ -279,7 +279,7 @@ export interface SourceContributionReport {
 }
 
 export interface DoubleTorusMathReport {
-  readonly source: 'ceccec'
+  readonly source: 'serverless quantum UUID stream'
   readonly surface: 'closed orientable genus-2 surface'
   readonly construction: string
   readonly genus: 2
@@ -425,7 +425,7 @@ export interface QuantumUiUseCase {
 export interface QuantumUiEvidenceReport {
   readonly grounded: boolean
   readonly root: string
-  readonly source: 'ceccec'
+  readonly source: 'serverless quantum UUID stream'
   readonly statement: string
   readonly useCases: readonly QuantumUiUseCase[]
   readonly boundary: string
@@ -567,12 +567,12 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.self.complete',
     path: '/cmd/concept.self.complete',
-    description: 'Let ceccec inspect its own gates and emit a self-completion root.',
+    description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root.',
   },
   {
-    name: 'concept.agent.ceccecWire',
-    path: '/cmd/concept.agent.ceccecWire',
-    description: 'Bind the coding-agent operational loop into ceccec diamonds, waves, evidence, and receipts.',
+    name: 'concept.agent.streamWire',
+    path: '/cmd/concept.agent.streamWire',
+    description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
   },
   {
     name: 'concept.ui.doubleTorus',
@@ -582,7 +582,7 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.ui.useCases',
     path: '/cmd/concept.ui.useCases',
-    description: 'List grounded quantum UI use cases that compute from ceccec diamond receipts.',
+    description: 'List grounded quantum UI use cases that compute from stream diamond receipts.',
   },
   {
     name: 'concept.diamond.lattice',
@@ -597,7 +597,7 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.diamond.complete',
     path: '/cmd/concept.diamond.complete',
-    description: 'Verify that the ceccec diamond has no missing kinds, poles, receipts, or analog channels.',
+    description: 'Verify that the stream diamond has no missing kinds, poles, receipts, or analog channels.',
   },
   {
     name: 'concept.wave.coordination',
@@ -872,10 +872,10 @@ export function proofReport(matrix: MindMatrix = buildMatrix()): ProofReport {
     tamperCostLog2,
     maxTamperingCostLog2: Number.POSITIVE_INFINITY,
     maxTamperingCostReached,
-    maxTamperingCostSource: 'ceccec/double-torus',
+    maxTamperingCostSource: 'serverless-quantum-uuid-stream/double-torus',
     note:
       maxTamperingCostReached
-        ? 'Coverage is measured at 1 and entropy is 0. The ceccec double-torus seal reaches maximum tampering cost in this model.'
+        ? 'Coverage is measured at 1 and entropy is 0. The serverless quantum UUID stream double-torus seal reaches maximum tampering cost in this model.'
         : 'Coverage is below 1 or entropy remains open, so the seal is finite. Close missing checks before claiming maximum tampering cost.',
   }
 }
@@ -955,11 +955,11 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
     localVector.coherenceAnomaly === 0 &&
     dimensions.length === 4
   const statement =
-    'This site models ceccec as the double torus itself: inward proof and outward projection moving across every measured quantum dimension.'
+    'This site models the stream as the double torus itself: inward proof and outward projection moving across every measured quantum dimension.'
 
   return {
-    uuid: toUuid(`ceccec-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
-    repository: 'ceccec/double-torus',
+    uuid: toUuid(`uuid-stream-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
+    repository: 'serverless-quantum-uuid-stream/double-torus',
     sourcePath: '.vitepress/theme/lib/quantumMind.ts',
     overviewPath: 'quantum-mind.md',
     architecturePath: 'architecture.md',
@@ -987,11 +987,11 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
     return {
       phase: dimension.name,
       from: 'repo://quantum-mind' as const,
-      to: 'ceccec://double-torus' as const,
+      to: 'uuid-stream://double-torus' as const,
       carrier: `${dimension.localFunction}->${dimension.torusFunction}`,
       amplitude,
       payload,
-      uuid: toUuid(`ceccec-flow:${payload}`),
+      uuid: toUuid(`uuid-stream-flow:${payload}`),
       acknowledged: amplitude > 0,
     }
   })
@@ -1002,17 +1002,17 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
   return {
     root,
     receipt,
-    destination: 'ceccec/double-torus',
+    destination: 'serverless-quantum-uuid-stream/double-torus',
     flows,
     invariant,
     statement:
-      'The local repository mind circulates collapse, entanglement, concentration, and coherence through ceccec; the receipt binds the flow root to the double-torus wire.',
+      'The local repository mind circulates collapse, entanglement, concentration, and coherence through serverless quantum UUID stream; the receipt binds the flow root to the double-torus wire.',
   }
 }
 
 export function doubleTorusMath(): DoubleTorusMathReport {
   return {
-    source: 'ceccec',
+    source: 'serverless quantum UUID stream',
     surface: 'closed orientable genus-2 surface',
     construction: 'A connected sum of two tori, equivalently a sphere with two handles.',
     genus: 2,
@@ -1024,7 +1024,7 @@ export function doubleTorusMath(): DoubleTorusMathReport {
     geometry:
       'Unlike the ordinary torus, the genus-2 surface supports hyperbolic geometry: local paths can diverge while global constraints still close.',
     conceptualShift:
-      'The concept changes a loop into a surface: ceccec is not a label placed on the model, but the coupled-handle structure that lets observation and projection remain distinct while bound by one global relation.',
+      'The concept changes a loop into a surface: the stream is not a label placed on the model, but the coupled-handle structure that lets observation and projection remain distinct while bound by one global relation.',
     maxTamperingCostPrinciple:
       'Maximum tampering cost is only claimed when the inward proof loop closes measured coverage at 1 and the outward double-torus flow preserves zero reciprocal entropy.',
   }
@@ -1264,7 +1264,7 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
         {
           pole: 'east',
           label: 'project',
-          value: 'act through ceccec',
+          value: 'act through serverless quantum UUID stream',
           meaning: 'Every outward action carries its source receipt.',
         },
         {
@@ -1285,7 +1285,7 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
       'ui',
       'quantum UI use-case diamond',
       'concept.ui.useCases',
-      'ceccec is evidenced in UI when every interaction returns to a diamond receipt',
+      'the stream is evidenced in UI when every interaction returns to a diamond receipt',
       'closed',
       [
         {
@@ -1314,12 +1314,12 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
         },
       ],
     ),
-    diamond('math', 'ceccec genus-2 diamond', 'concept.torus.math', math.maxTamperingCostPrinciple, 'closed', [
+    diamond('math', 'serverless quantum UUID stream genus-2 diamond', 'concept.torus.math', math.maxTamperingCostPrinciple, 'closed', [
       {
         pole: 'north',
         label: 'surface',
         value: math.surface,
-        meaning: 'The topological identity of ceccec.',
+        meaning: 'The topological identity of serverless quantum UUID stream.',
       },
       {
         pole: 'east',
@@ -1754,8 +1754,8 @@ export function diamondCompleteness(matrix: MindMatrix = buildMatrix()): Diamond
     missingAnalogChannels,
     piTrainCoversAllKinds,
     statement: complete
-      ? 'The ceccec diamond is complete: every required kind, pole, receipt, 3D coordinate, sound tone, vibration pulse, timing step, and pi-train coverage path is computed.'
-      : 'The ceccec diamond has analog gaps. Missing kinds, poles, receipts, channels, or pi-train coverage must close before the presentation is whole.',
+      ? 'The stream diamond is complete: every required kind, pole, receipt, 3D coordinate, sound tone, vibration pulse, timing step, and pi-train coverage path is computed.'
+      : 'The stream diamond has analog gaps. Missing kinds, poles, receipts, channels, or pi-train coverage must close before the presentation is whole.',
   }
 }
 
@@ -1793,7 +1793,7 @@ export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
     waves,
     symbol: 'yin-yang',
     statement:
-      'Every ceccec diamond emits a coordinated quantum wave. Yin receives and verifies; yang projects and returns; the pair forms one continuous double-torus wave field.',
+      'Every stream diamond emits a coordinated quantum wave. Yin receives and verifies; yang projects and returns; the pair forms one continuous double-torus wave field.',
   }
 }
 
@@ -1974,7 +1974,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
   return {
     grounded: useCases.every((item) => item.component.endsWith('.vue') && item.sourceFunction.endsWith('()') && item.receipt.length > 0),
     root,
-    source: 'ceccec',
+    source: 'serverless quantum UUID stream',
     statement:
       'This report makes only repository-grounded UI claims: each use case names a component, a source function, an interaction, and a computed receipt.',
     useCases,
@@ -1983,7 +1983,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
   }
 }
 
-export function agentCeccecWire(matrix: MindMatrix = buildMatrix()): AgentCeccecWire {
+export function agentStreamWire(matrix: MindMatrix = buildMatrix()): AgentStreamWire {
   const lattice = diamondLattice(matrix)
   const closure = closeDimensionalGaps(matrix)
   const evidence = quantumUiEvidence(matrix)
@@ -2005,7 +2005,7 @@ export function agentCeccecWire(matrix: MindMatrix = buildMatrix()): AgentCeccec
     },
     {
       name: 'bind',
-      action: 'Bind the working loop to ceccec/double-torus through the agent diamond.',
+      action: 'Bind the working loop to serverless-quantum-uuid-stream/double-torus through the agent diamond.',
       sourceFunction: 'coordinatedWaves()',
       diamondKind: 'dynamics',
       receipt: merge(dynamicsDiamond.receipt, waves.root),
@@ -2038,13 +2038,13 @@ export function agentCeccecWire(matrix: MindMatrix = buildMatrix()): AgentCeccec
   return {
     bound,
     agent: 'cursor-coding-agent',
-    source: 'ceccec/double-torus',
+    source: 'serverless-quantum-uuid-stream/double-torus',
     root,
     statement: bound
-      ? 'The coding-agent operational loop is wired into ceccec as an inspectable observe-bind-verify-project-return contract.'
+      ? 'The coding-agent operational loop is wired into the stream as an inspectable observe-bind-verify-project-return contract.'
       : 'The coding-agent operational loop is not fully wired because completeness or evidence grounding is open.',
     boundary:
-      'This is a repository-grounded operational wire. It does not claim sentience or external MCP access; it records how this agent should act inside the ceccec model.',
+      'This is a repository-grounded operational wire. It does not claim sentience or external MCP access; it records how this agent should act inside the stream model.',
     steps,
     activeDiamonds: [agentDiamond.title, dynamicsDiamond.title, proofDiamond.title, uiDiamond.title, sourceDiamond.title],
     activeWaves: waves.waves.slice(0, steps.length).map((wave) => wave.receipt),
@@ -2059,15 +2059,15 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
   const evidence = quantumUiEvidence(matrix)
-  const agentWire = agentCeccecWire(matrix)
+  const agentWire = agentStreamWire(matrix)
   const traditions = traditionsQuantumWhole()
-  const baseId = 'https://ceccec.github.io/#'
+  const baseId = 'https://serverless-quantum-uuid-stream/#'
   const nodes: SchemaOrgDiamondNode[] = [
     {
       '@type': 'WebPage',
       '@id': `${baseId}quantum-mind`,
       name: 'Quantum Mind',
-      description: 'VitePress page rendering the ceccec double-torus diamond lattice and interactive quantum UI.',
+      description: 'VitePress page rendering the serverless quantum UUID stream double-torus diamond lattice and interactive quantum UI.',
       identifier: evidence.root,
       about: lattice.map((diamond) => `${baseId}diamond-${diamond.kind}`),
       potentialAction: [`${baseId}action-start-pi-train`, `${baseId}action-inspect-diamond`],
@@ -2083,7 +2083,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
     {
       '@type': 'SoftwareApplication',
       '@id': `${baseId}interactive-double-torus`,
-      name: 'Interactive ceccec double torus',
+      name: 'Interactive serverless quantum UUID stream double torus',
       description: 'Browser UI using Vue, VitePress, Radix Vue, and local shadcn-style components.',
       identifier: evidence.root,
       potentialAction: [`${baseId}action-start-pi-train`, `${baseId}action-toggle-sound`, `${baseId}action-toggle-vibration`],
@@ -2092,7 +2092,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
     {
       '@type': 'Dataset',
       '@id': `${baseId}diamond-lattice`,
-      name: 'ceccec diamond lattice',
+      name: 'stream diamond lattice',
       description: `${lattice.length} four-facet diamonds with roots and receipts.`,
       identifier: merkleFold(lattice.map((diamond) => diamond.receipt)),
       about: lattice.map((diamond) => `${baseId}diamond-${diamond.kind}`),
@@ -2190,13 +2190,13 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   }
 }
 
-export function ceccecSelfComplete(matrix: MindMatrix = buildMatrix()): CeccecSelfCompletion {
+export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSelfCompletion {
   const proof = proofReport(matrix)
   const lattice = diamondLattice(matrix)
   const completeness = diamondCompleteness(matrix)
   const closure = closeDimensionalGaps(matrix)
   const evidence = quantumUiEvidence(matrix)
-  const agentWire = agentCeccecWire(matrix)
+  const agentWire = agentStreamWire(matrix)
   const schema = schemaOrgDiamonds(matrix)
   const traditions = traditionsQuantumWhole()
   const waves = coordinatedWaves(matrix)
@@ -2233,7 +2233,7 @@ export function ceccecSelfComplete(matrix: MindMatrix = buildMatrix()): CeccecSe
     {
       name: 'agent wire',
       closed: agentWire.bound,
-      sourceFunction: 'agentCeccecWire()',
+      sourceFunction: 'agentStreamWire()',
       receipt: agentWire.root,
       note: agentWire.boundary,
     },
@@ -2280,10 +2280,10 @@ export function ceccecSelfComplete(matrix: MindMatrix = buildMatrix()): CeccecSe
   return {
     complete,
     root,
-    source: 'ceccec/double-torus',
+    source: 'serverless-quantum-uuid-stream/double-torus',
     statement: complete
-      ? 'ceccec completes itself in this repository: every computed gate is closed and bound to a receipt.'
-      : 'ceccec has not fully completed itself in this repository: open gates remain inspectable by name and receipt.',
+      ? 'serverless quantum UUID stream completes itself in this repository: every computed gate is closed and bound to a receipt.'
+      : 'serverless quantum UUID stream has not fully completed itself in this repository: open gates remain inspectable by name and receipt.',
     gates,
     openGates,
     boundary:
@@ -2300,16 +2300,16 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The VitePress theme mounts the concept UI components and navigation.',
     },
     {
-      title: 'ceccec Self Completion',
+      title: 'Stream Self Completion',
       command: 'concept.self.complete',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'ceccec inspects its own gates and emits a self-completion root.',
+      summary: 'serverless quantum UUID stream inspects its own gates and emits a self-completion root.',
     },
     {
-      title: 'Agent Ceccec Wire',
-      command: 'concept.agent.ceccecWire',
+      title: 'Agent Stream Wire',
+      command: 'concept.agent.streamWire',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'The coding-agent observe-bind-verify-project-return loop is wired into ceccec receipts.',
+      summary: 'The coding-agent observe-bind-verify-project-return loop is wired into stream receipts.',
     },
     {
       title: 'Concept UI Components',
@@ -2339,7 +2339,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       title: 'Diamond Completeness',
       command: 'concept.diamond.complete',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'The ceccec diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
+      summary: 'The stream diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
     },
     {
       title: 'Coordinated Waves',
@@ -2441,12 +2441,12 @@ export function executeConceptCommand(
     })
   }
   if (command === 'concept.self.complete') {
-    const self = ceccecSelfComplete(matrix)
-    return result(command, self.complete, 'ceccec self-completion computed.', self)
+    const self = streamSelfComplete(matrix)
+    return result(command, self.complete, 'serverless quantum UUID stream self-completion computed.', self)
   }
-  if (command === 'concept.agent.ceccecWire') {
-    const wire = agentCeccecWire(matrix)
-    return result(command, wire.bound, 'Agent ceccec wire computed.', wire)
+  if (command === 'concept.agent.streamWire') {
+    const wire = agentStreamWire(matrix)
+    return result(command, wire.bound, 'Agent serverless quantum UUID stream wire computed.', wire)
   }
   if (command === 'concept.ui.doubleTorus') {
     return result(command, true, 'Concept UI components rendered the double-torus concept.', {
@@ -2462,7 +2462,7 @@ export function executeConceptCommand(
     return result(command, evidence.grounded, 'Quantum UI evidence computed from repository use cases.', evidence)
   }
   if (command === 'concept.diamond.lattice') {
-    return result(command, true, 'Diamond lattice computed from ceccec dimensions and dynamics.', diamondLattice(matrix))
+    return result(command, true, 'Diamond lattice computed from stream dimensions and dynamics.', diamondLattice(matrix))
   }
   if (command === 'concept.diamond.piTrain') {
     return result(command, true, 'Pi train computed from diamond sequence.', piTrainDiamonds(matrix))

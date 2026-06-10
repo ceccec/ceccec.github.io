@@ -24,8 +24,6 @@ export default defineConfig({
       }
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }
-    ]
+    socialLinks: []
   }
 })

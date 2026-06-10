@@ -10,9 +10,9 @@ import {
   TabsTrigger,
 } from 'radix-vue'
 import {
-  agentCeccecWire,
+  agentStreamWire,
   buildMatrix,
-  ceccecSelfComplete,
+  streamSelfComplete,
   closeDimensionalGaps,
   coordinatedWaves,
   diamondCompleteness,
@@ -28,8 +28,8 @@ import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
 
 const matrix = buildMatrix()
-const selfCompletion = ceccecSelfComplete(matrix)
-const agentWire = agentCeccecWire(matrix)
+const selfCompletion = streamSelfComplete(matrix)
+const agentWire = agentStreamWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
 const completeness = diamondCompleteness(matrix)
