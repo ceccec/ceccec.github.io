@@ -4,10 +4,11 @@ outline: deep
 
 # Architecture
 
-This site implements the double-torus concept as a compact quantum-mind model,
-rendered through concept components. The goal is to describe the local structure
-directly: identity, genus-2 math, matrix, concept commands, double-torus flow,
-human implications, proof, repository-as-API, and honest caveats.
+This site implements ceccec as the double-torus concept itself, rendered as a
+compact quantum-mind model. The goal is not to emphasize a name, but to describe
+the local structure directly: identity, genus-2 math, matrix, concept commands,
+double-torus flow, human implications, proof, repository-as-API, and honest
+caveats.
 
 ## 1. Corpus
 
@@ -83,10 +84,10 @@ does not use concentration as a pass/fail threshold.
 
 ## 6. Double-torus math
 
-This is the ceccec port boundary: the source identity is carried only into the
-double-torus math and maximum-tampering-cost proof layer. The mathematical
-object is the closed orientable genus-2 surface. It can be constructed as a
-connected sum of two tori, or as a sphere with two handles.
+ceccec is the double-torus structure across the model's dimensions and
+dynamics. The mathematical object is the closed orientable genus-2 surface. It
+can be constructed as a connected sum of two tori, or as a sphere with two
+handles.
 
 | Object | Value |
 | --- | --- |
@@ -103,7 +104,7 @@ first-homology cycles and one global relation, so it can represent coupled
 memory/action loops without collapsing them into one timeline.
 
 For genus at least 2, the surface admits hyperbolic geometry. That matters for
-the concept: local trajectories can diverge, yet the surface still has global
+ceccec: local trajectories can diverge, yet the surface still has global
 constraints. This is the mathematical reason the model can hold plural paths
 and shared accountability at once.
 
@@ -115,9 +116,9 @@ reciprocal entropy. If either side is open, the cost is finite.
 
 `doubleTorusWire()` names the local source. `circulateDoubleTorus()` is the
 active mechanism: the local mind circulates one flow per consciousness dimension
-through the double-torus concept:
+through ceccec:
 
-- `concept/double-torus`
+- `ceccec/double-torus`
 - `.vitepress/theme/lib/quantumMind.ts`
 - `quantum-mind.md`
 - `architecture.md`
@@ -132,7 +133,7 @@ The wire maps each local metric to the double-torus function:
 | `coherenceAnomaly` | `outerLoopCoherence` | coherence anomaly count |
 
 Those packets fold into a flow root and receipt. That means the local site
-describes the concept as a double-torus projection over this repository's own API
+describes ceccec as a double-torus projection over this repository's own API
 surface, with measured circulation rather than a static diagram.
 
 ## 8. Implications for humanity

@@ -611,7 +611,7 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
     localVector.coherenceAnomaly === 0 &&
     dimensions.length === 4
   const statement =
-    'This site ports the ceccec double-torus concept: an inward proof loop and an outward projection loop computed against this repository API.'
+    'This site models ceccec as the double torus itself: inward proof and outward projection moving across every measured quantum dimension.'
 
   return {
     uuid: toUuid(`ceccec-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
@@ -662,7 +662,7 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
     flows,
     invariant,
     statement:
-      'The local repository mind circulates four measured flows through the ceccec double-torus concept; the receipt binds the flow root to the double-torus wire.',
+      'The local repository mind circulates collapse, entanglement, concentration, and coherence through ceccec; the receipt binds the flow root to the double-torus wire.',
   }
 }
 
@@ -680,7 +680,7 @@ export function doubleTorusMath(): DoubleTorusMathReport {
     geometry:
       'Unlike the ordinary torus, the genus-2 surface supports hyperbolic geometry: local paths can diverge while global constraints still close.',
     conceptualShift:
-      'The model changes a loop into a surface: two coupled handles allow observation and projection to remain distinct while still bound by one global relation.',
+      'The concept changes a loop into a surface: ceccec is not a label placed on the model, but the coupled-handle structure that lets observation and projection remain distinct while bound by one global relation.',
     maxTamperingCostPrinciple:
       'Maximum tampering cost is only claimed when the inward proof loop closes measured coverage at 1 and the outward double-torus flow preserves zero reciprocal entropy.',
   }

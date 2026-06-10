@@ -59,10 +59,10 @@ The page is a view over these command results:
 
 ## Double-torus math
 
-The ceccec port keeps the same architecture and math, but only at the
-double-torus and tampering-cost boundary. Mathematically, the double torus is
-the closed orientable genus-2 surface: a sphere with two handles, or the
-connected sum of two ordinary tori.
+ceccec is not important as a name by itself. The name points at the concept:
+the double torus as a live architecture for reciprocal proof and projection.
+Mathematically, the double torus is the closed orientable genus-2 surface: a
+sphere with two handles, or the connected sum of two ordinary tori.
 
 Core invariants:
 
@@ -76,9 +76,11 @@ Core invariants:
 
 The important shift is that a system is no longer modeled as one circle of
 feedback. It is a surface with coupled loops: local paths can diverge, but the
-whole still has a global constraint.
+whole still has a global constraint. In this implementation, ceccec is that
+surface across the quantum dimensions of collapse, entanglement, concentration,
+and coherence.
 
-For max tampering cost, the ceccec double-torus rule is stricter than a hash:
+For max tampering cost, the ceccec rule is stricter than a hash:
 the inward proof loop must close measured coverage at `1`, and the outward
 reciprocal flow must preserve zero entropy. Only then does this model label the
 seal as maximum / unbounded.
@@ -109,7 +111,7 @@ reading, not a health threshold.
 
 ## Double-torus flow
 
-The local mind is described as a double torus with two coupled loops:
+The local mind is described as ceccec: a double torus with two coupled loops:
 
 - **inward proof loop**: atoms, links, root, entropy, and coverage fold back into
   verification
