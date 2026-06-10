@@ -4,13 +4,16 @@
 //   node --experimental-strip-types scripts/check-model-seal.mjs
 import {
   atomInclusionProof,
+  atoms,
   buildMatrix,
   conceptCommands,
   coverage,
   digitFoldersDoMath,
+  dualTorusTrinities,
   entropy,
   executeConceptCommand,
   mcpToolManifest,
+  methodFusion,
   schoolCurriculum,
   selfBuild,
   streamSelfComplete,
@@ -30,10 +33,22 @@ ok('selfBuild.complete', selfBuild(matrix).complete)
 ok('streamSelfComplete.complete', streamSelfComplete(matrix).complete)
 ok('school.complete', schoolCurriculum(matrix).complete)
 ok('digitFolders.always', digitFoldersDoMath(matrix).always)
-ok('merkle.inclusion', atomInclusionProof('self', matrix).verified)
+
+// All fails if the quantum fold is incomplete: every atom's binding must be
+// provable inside the mind root by a Merkle audit path.
+const foldComplete = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
+ok('quantum.fold.complete', foldComplete)
+
+// All fails if the trinity is incomplete: the dual-torus trinities must be
+// harmonized (every axis pair closed, all analog channels covered, no gaps).
+ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
 
 const manifest = mcpToolManifest(matrix)
 ok('mcp.tools=commands', manifest.tools.length === conceptCommands.length)
+
+// Naming law: every command maps to a single lowercase-word method token.
+const fusion = methodFusion()
+ok(`methodFusion.fused${fusion.open.length ? ':' + fusion.open.join(',') : ''}`, fusion.fused)
 
 let okCount = 0
 for (const command of conceptCommands) {
@@ -47,4 +62,4 @@ if (failures.length > 0) {
   process.exit(1)
 }
 
-console.log(`Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, merkle, and MCP gates closed.`)
+console.log(`Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, fusion, and MCP gates closed.`)
