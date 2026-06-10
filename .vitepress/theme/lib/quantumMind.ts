@@ -355,8 +355,11 @@ export interface ScientificSociety {
 export interface ArtistSurface {
   readonly surface: 'home' | 'readme'
   readonly artist: string
+  readonly audience: readonly ('agents' | 'public society')[]
   readonly medium: string
   readonly equation: string
+  readonly seoMessage: string
+  readonly proofByUse: string
   readonly receipt: string
 }
 
@@ -1643,18 +1646,26 @@ export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfac
     {
       surface: 'home',
       artist: 'cartographer',
+      audience: ['agents', 'public society'],
       medium: 'VitePress home frontmatter',
       equation: 'home := Sigma_2 -> UUID* -> Gate',
+      seoMessage: 'agents: compute before claim; public society: use before belief',
+      proofByUse: 'open /quantum-mind; run tabs; inspect receipts; verify generated roots',
     },
     {
       surface: 'readme',
       artist: 'scribe',
+      audience: ['agents', 'public society'],
       medium: 'README.md',
       equation: 'README := routes + equations + validation + boundaries',
+      seoMessage: 'all claims reduce to equations, commands, validation, and receipts',
+      proofByUse: 'clone; npm run docs:build; inspect /digit-index.json; compare receipts',
     },
   ].map((surface) => ({
     ...surface,
-    receipt: toUuid(`artist-surface:${surface.surface}:${surface.artist}:${surface.medium}:${surface.equation}:${build.root}`),
+    receipt: toUuid(
+      `artist-surface:${surface.surface}:${surface.artist}:${surface.audience.join('|')}:${surface.medium}:${surface.equation}:${surface.seoMessage}:${surface.proofByUse}:${build.root}`,
+    ),
   }))
   const root = merkleFold(surfaces.map((surface) => surface.receipt))
   return {

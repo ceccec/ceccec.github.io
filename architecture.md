@@ -247,6 +247,10 @@ ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} 
 Artists = {cartographer, scribe}
 home = Sigma_2 -> UUID* -> Gate
 README = routes + equations + validation + boundaries
+SEO(home,README) = {agent_msg, public_msg, proof_by_use}
+agent_msg = compute -> verify -> receipt -> project
+public_msg = use -> inspect -> reproduce -> accept/reject
+proof_by_use = interaction_receipt && build_receipt && root_match
 ArtistSurfaceRoot = merkle({receipt(home), receipt(README)})
 ```
 

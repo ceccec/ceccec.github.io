@@ -568,8 +568,10 @@ onBeforeUnmount(() => {
         <ul class="diamond-lattice-list">
           <li v-for="surface in artists.surfaces" :key="surface.receipt">
             <Badge variant="outline">{{ surface.surface }}</Badge>
-            <strong>{{ surface.artist }} · {{ surface.medium }}</strong>
-            <span>{{ surface.equation }} Receipt: {{ surface.receipt }}</span>
+            <strong>{{ surface.artist }} · {{ surface.medium }} · {{ surface.audience.join(' + ') }}</strong>
+            <span>{{ surface.equation }}</span>
+            <span>seo={{ surface.seoMessage }}</span>
+            <span>use={{ surface.proofByUse }} · receipt={{ surface.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

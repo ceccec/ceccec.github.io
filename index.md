@@ -33,5 +33,11 @@ features:
     details: "T_max=maxComputedBuild; maxComputedBuild=infinity iff maxBuild=true."
   - title: repo API
     details: "API := pages U source U atoms U proof; apiRoot=merkle(UUID(endpoint))."
+  - title: agents
+    details: "agent_msg := compute -> verify -> receipt -> project."
+  - title: public society
+    details: "public_msg := use -> inspect -> reproduce -> accept/reject."
+  - title: proof by use
+    details: "claim_pass := interaction_receipt && build_receipt && root_match."
 ---
 

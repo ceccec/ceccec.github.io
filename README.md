@@ -22,6 +22,20 @@ R = { "/", "/commands", "/quantum-mind", "/architecture" }
 npm run docs:build
 ```
 
+## Agents
+
+```text
+agent_msg := compute -> verify -> receipt -> project
+agent_gate := no_claim_without_receipt
+```
+
+## Public society
+
+```text
+public_msg := use -> inspect -> reproduce -> accept/reject
+proof_by_use := interaction_receipt && build_receipt && root_match
+```
+
 ## Boundaries
 
 ```text
