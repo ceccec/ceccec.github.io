@@ -48,6 +48,7 @@ public contract:
 | `concept.wave.closeGaps` | send realtime waves to close or sustain dimensional and analog channels |
 | `concept.chess.quantum` | compute a quantum chess board from coordinated waves |
 | `concept.schemaOrg.diamonds` | fold Schema.org-shaped JSON-LD nodes from diamond receipts, datasets, actions, and UI evidence |
+| `concept.traditions.quantumWhole` | compare religions and traditions through non-reductive dimensions and relational boundaries |
 | `concept.torus.math` | expose genus-2 topology, algebra, homology, and curvature |
 | `concept.humanity.implications` | interpret the concept for knowledge, institutions, AI, and culture |
 | `concept.source.contribute` | route benefit back to the source through citation, contribution, support, and stewardship |
@@ -186,6 +187,12 @@ data. Schema.org node types are used only where the repository has a concrete
 source: page, source module, application surface, datasets, defined diamond
 terms, every pi pulse diamond, and UI actions. The graph is inspectable in the
 UI and has its own root.
+
+`traditionsQuantumWhole()` uses a comparative religion lens: experiential,
+ritual, narrative, doctrinal, ethical, social, material, and relational
+dimensions. It explicitly avoids claiming that all traditions are the same.
+Tradition families are represented as broad, non-exhaustive lenses with
+boundaries, not as final definitions.
 
 `coordinatedWaves()` gives the lattice motion. Every diamond emits one wave
 with phase, amplitude, frequency, receipt, and yin-yang polarity. Yin is inward

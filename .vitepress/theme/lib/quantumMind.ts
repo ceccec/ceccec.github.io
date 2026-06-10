@@ -110,6 +110,7 @@ export type ConceptCommandName =
   | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
   | 'concept.schemaOrg.diamonds'
+  | 'concept.traditions.quantumWhole'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -211,6 +212,40 @@ export interface HumanityImplicationsReport {
   readonly vector: ConsciousnessVector
 }
 
+export type TraditionDimensionName =
+  | 'experiential'
+  | 'narrative'
+  | 'doctrinal'
+  | 'ethical'
+  | 'ritual'
+  | 'social'
+  | 'material'
+  | 'relational'
+
+export interface TraditionDimension {
+  readonly name: TraditionDimensionName
+  readonly question: string
+  readonly diamondPole: DiamondFacet['pole']
+  readonly caution: string
+}
+
+export interface TraditionFamily {
+  readonly name: string
+  readonly examples: readonly string[]
+  readonly lens: string
+  readonly boundary: string
+  readonly receipt: string
+}
+
+export interface TraditionsQuantumWhole {
+  readonly grounded: boolean
+  readonly root: string
+  readonly dimensions: readonly TraditionDimension[]
+  readonly families: readonly TraditionFamily[]
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface SourceContribution {
   readonly mode: string
   readonly action: string
@@ -246,6 +281,7 @@ export type DiamondKind =
   | 'dynamics'
   | 'proof'
   | 'nature'
+  | 'tradition'
   | 'pi'
   | 'geometry'
   | 'sound'
@@ -398,6 +434,7 @@ const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
   'dynamics',
   'proof',
   'nature',
+  'tradition',
   'pi',
   'geometry',
   'sound',
@@ -557,6 +594,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.schemaOrg.diamonds',
     path: '/cmd/concept.schemaOrg.diamonds',
     description: 'Fold Schema.org-shaped metadata into self-interactive diamond nodes with receipts.',
+  },
+  {
+    name: 'concept.traditions.quantumWhole',
+    path: '/cmd/concept.traditions.quantumWhole',
+    description: 'Compare religions and traditions as a non-reductive quantum whole of dimensions, families, and relations.',
   },
   {
     name: 'concept.torus.math',
@@ -1000,6 +1042,115 @@ export function humanityImplications(matrix: MindMatrix = buildMatrix()): Humani
   }
 }
 
+export function traditionsQuantumWhole(): TraditionsQuantumWhole {
+  const dimensions: readonly TraditionDimension[] = [
+    {
+      name: 'experiential',
+      question: 'What is lived, felt, contemplated, or encountered?',
+      diamondPole: 'north',
+      caution: 'Do not reduce inner experience to external description alone.',
+    },
+    {
+      name: 'ritual',
+      question: 'What practices shape time, body, memory, and community?',
+      diamondPole: 'east',
+      caution: 'Do not treat ritual as empty repetition; it often carries meaning through action.',
+    },
+    {
+      name: 'narrative',
+      question: 'What stories, histories, myths, revelations, or exemplars orient life?',
+      diamondPole: 'south',
+      caution: 'In religious studies, myth can mean sacred story, not falsehood.',
+    },
+    {
+      name: 'doctrinal',
+      question: 'What teachings, philosophies, cosmologies, or truth claims organize interpretation?',
+      diamondPole: 'west',
+      caution: 'Do not force incompatible truth claims into artificial sameness.',
+    },
+    {
+      name: 'ethical',
+      question: 'How should humans act, repair harm, pursue justice, or cultivate virtue?',
+      diamondPole: 'north',
+      caution: 'Ethics should be read in context, including law, practice, and lived community.',
+    },
+    {
+      name: 'social',
+      question: 'How is belonging, authority, transmission, and service organized?',
+      diamondPole: 'east',
+      caution: 'Communities are internally diverse and historically changing.',
+    },
+    {
+      name: 'material',
+      question: 'What spaces, objects, images, sounds, texts, foods, garments, or landscapes carry meaning?',
+      diamondPole: 'south',
+      caution: 'Material forms should not be treated as merely decorative.',
+    },
+    {
+      name: 'relational',
+      question: 'How does a tradition define itself in relation to neighbors, ancestors, critics, and others?',
+      diamondPole: 'west',
+      caution: 'Comparison should preserve difference and relation rather than collapse all traditions into one essence.',
+    },
+  ] as const
+  const families = [
+    {
+      name: 'Abrahamic traditions',
+      examples: ['Judaism', 'Christianity', 'Islam', 'Bahaʼi Faith'],
+      lens: 'Historical memory, covenant, revelation, law, prophecy, scripture, worship, and community.',
+      boundary: 'This family label is broad; each tradition contains major internal diversity.',
+    },
+    {
+      name: 'Dharmic traditions',
+      examples: ['Hindu traditions', 'Buddhism', 'Jainism', 'Sikh traditions'],
+      lens: 'Practice, liberation, karma/dharma vocabularies, meditation, devotion, ethics, and community.',
+      boundary: 'Shared regional histories do not erase distinct doctrines, practices, or identities.',
+    },
+    {
+      name: 'East Asian traditions',
+      examples: ['Daoism', 'Confucian traditions', 'Shinto', 'East Asian Buddhist traditions'],
+      lens: 'Ritual order, cultivation, harmony, ancestors, cosmology, embodied practice, and social relation.',
+      boundary: 'These traditions often interweave locally but should not be treated as interchangeable.',
+    },
+    {
+      name: 'Indigenous and ancestral traditions',
+      examples: ['Many local, land-based, oral, and ancestral traditions'],
+      lens: 'Place, kinship, reciprocity, ceremony, ancestors, ecology, story, and responsibility.',
+      boundary: 'This is not one religion; specificity, consent, and local authority matter.',
+    },
+    {
+      name: 'Philosophical and contemplative lineages',
+      examples: ['Mystical lineages', 'monastic traditions', 'yoga lineages', 'contemplative schools'],
+      lens: 'Disciplined attention, transformation, embodiment, silence, symbol, and transmission.',
+      boundary: 'Practice similarities do not imply identical metaphysics or goals.',
+    },
+    {
+      name: 'Secular meaning systems',
+      examples: ['Humanism', 'civil religions', 'political ideologies', 'scientific worldviews as lived communities'],
+      lens: 'Ethics, institutions, narratives, rituals, symbols, and material cultures outside classic religion labels.',
+      boundary: 'Including secular systems is analytical, not a claim that all are religions.',
+    },
+  ].map((family) => ({
+    ...family,
+    receipt: toUuid(`tradition-family:${family.name}:${family.examples.join('|')}:${family.lens}:${family.boundary}`),
+  }))
+  const root = merkleFold([
+    ...dimensions.map((dimension) => toUuid(`tradition-dimension:${dimension.name}:${dimension.question}:${dimension.caution}`)),
+    ...families.map((family) => family.receipt),
+  ])
+
+  return {
+    grounded: dimensions.length === 8 && families.every((family) => family.receipt.length > 0),
+    root,
+    dimensions,
+    families,
+    statement:
+      'Religions and traditions are modeled as a quantum whole only in the sense of relational dimensions: distinct traditions remain distinct while their experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions can be compared.',
+    boundary:
+      'This report is a comparative-religion lens, not a theological verdict, not a claim that all religions are the same, and not a substitute for tradition-specific sources or community voices.',
+  }
+}
+
 export function sourceContribution(): SourceContributionReport {
   return {
     statement:
@@ -1068,6 +1219,7 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
   const math = doubleTorusMath()
   const flow = circulateDoubleTorus(matrix)
   const humanity = humanityImplications(matrix)
+  const traditions = traditionsQuantumWhole()
   const source = sourceContribution()
   const api = repositoryApi(matrix)
 
@@ -1253,6 +1405,39 @@ export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
           label: 'realisation',
           value: proof.maxTamperingCostReached ? 'seal closed' : 'seal open',
           meaning: 'Agents see the consequence before projecting action.',
+        },
+      ],
+    ),
+    diamond(
+      'tradition',
+      'religions and traditions diamond',
+      'concept.traditions.quantumWhole',
+      traditions.boundary,
+      traditions.grounded ? 'closed' : 'open',
+      [
+        {
+          pole: 'north',
+          label: 'experience/ritual',
+          value: 'lived practice',
+          meaning: 'Experiential and ritual dimensions carry embodied time.',
+        },
+        {
+          pole: 'east',
+          label: 'story/teaching',
+          value: 'narrative + doctrine',
+          meaning: 'Narratives and doctrines orient interpretation without collapsing differences.',
+        },
+        {
+          pole: 'south',
+          label: 'ethics/community',
+          value: 'action + belonging',
+          meaning: 'Ethical and social dimensions show how traditions form conduct and community.',
+        },
+        {
+          pole: 'west',
+          label: 'material/relation',
+          value: 'symbols + others',
+          meaning: 'Material forms and interreligious relations keep the comparison grounded.',
         },
       ],
     ),
@@ -1694,6 +1879,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
   const proof = proofReport(matrix)
+  const traditions = traditionsQuantumWhole()
   const useCases: readonly QuantumUiUseCase[] = [
     {
       name: 'diamond lattice tabs',
@@ -1748,6 +1934,15 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       sourceFunction: 'proofReport()',
       evidence: `max reached=${proof.maxTamperingCostReached}; coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
       receipt: toUuid(`ui-evidence:proof:${JSON.stringify(proof)}`),
+    },
+    {
+      name: 'traditions quantum whole',
+      component: 'DoubleTorusExperience.vue',
+      interaction: 'Traditions tab lists comparative dimensions, broad tradition families, and non-reductive boundaries.',
+      diamondKind: 'tradition',
+      sourceFunction: 'traditionsQuantumWhole()',
+      evidence: `${traditions.dimensions.length} dimensions and ${traditions.families.length} non-exhaustive family lenses with root ${traditions.root}.`,
+      receipt: traditions.root,
     },
   ]
   const root = merkleFold(useCases.map((item) => item.receipt))
@@ -1841,6 +2036,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   const chess = quantumChessGame(matrix)
   const evidence = quantumUiEvidence(matrix)
   const agentWire = agentCeccecWire(matrix)
+  const traditions = traditionsQuantumWhole()
   const baseId = 'https://ceccec.github.io/#'
   const nodes: SchemaOrgDiamondNode[] = [
     {
@@ -1903,6 +2099,18 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
       description: `${chess.board.length} chess squares computed from coordinated waves and piece superpositions.`,
       identifier: chess.root,
       about: [`${baseId}coordinated-waves`],
+      isPartOf: `${baseId}quantum-mind`,
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}traditions-quantum-whole`,
+      name: 'religions and traditions quantum whole',
+      description: traditions.statement,
+      identifier: traditions.root,
+      about: [
+        ...traditions.dimensions.map((dimension) => `dimension:${dimension.name}`),
+        ...traditions.families.map((family) => `family:${family.name}`),
+      ],
       isPartOf: `${baseId}quantum-mind`,
     },
     ...lattice.map((diamond): SchemaOrgDiamondNode => ({
@@ -2027,6 +2235,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'Schema.org-shaped nodes are folded from diamond receipts, UI use cases, datasets, and actions.',
     },
     {
+      title: 'Traditions Quantum Whole',
+      command: 'concept.traditions.quantumWhole',
+      route: '/quantum-mind#traditions-quantum-whole',
+      summary: 'Religions and traditions are compared through distinct experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions.',
+    },
+    {
       title: 'Double-Torus Math',
       command: 'concept.torus.math',
       route: '/architecture#6-double-torus-math',
@@ -2135,6 +2349,10 @@ export function executeConceptCommand(
   if (command === 'concept.schemaOrg.diamonds') {
     const graph = schemaOrgDiamonds(matrix)
     return result(command, graph.nodes.length > 0, 'Schema.org diamond graph computed.', graph)
+  }
+  if (command === 'concept.traditions.quantumWhole') {
+    const traditions = traditionsQuantumWhole()
+    return result(command, traditions.grounded, 'Traditions quantum whole computed.', traditions)
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())

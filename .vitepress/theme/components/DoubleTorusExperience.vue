@@ -20,6 +20,7 @@ import {
   quantumChessGame,
   quantumUiEvidence,
   schemaOrgDiamonds,
+  traditionsQuantumWhole,
 } from '../lib/quantumMind'
 import Badge from './ui/Badge.vue'
 import Button from './ui/Button.vue'
@@ -35,6 +36,7 @@ const closure = closeDimensionalGaps(matrix)
 const chess = quantumChessGame(matrix)
 const evidence = quantumUiEvidence(matrix)
 const schema = schemaOrgDiamonds(matrix)
+const traditions = traditionsQuantumWhole()
 const activeIndex = ref(0)
 const waveTick = ref(0)
 const running = ref(false)
@@ -194,6 +196,7 @@ onBeforeUnmount(() => {
         <TabsTrigger value="closure">Gap closure</TabsTrigger>
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="schema">Schema.org</TabsTrigger>
+        <TabsTrigger value="traditions">Traditions</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
 
@@ -367,6 +370,31 @@ onBeforeUnmount(() => {
           </li>
         </ul>
         <pre class="schema-json">{{ schemaJson }}</pre>
+      </TabsContent>
+
+      <TabsContent value="traditions" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="traditions.grounded ? 'success' : 'warning'">
+            {{ traditions.grounded ? 'grounded lens' : 'open lens' }}
+          </Badge>
+          <strong>{{ traditions.statement }}</strong>
+          <span>{{ traditions.boundary }}</span>
+          <code>{{ traditions.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="dimension in traditions.dimensions" :key="dimension.name">
+            <Badge variant="outline">{{ dimension.diamondPole }}</Badge>
+            <strong>{{ dimension.name }} · {{ dimension.question }}</strong>
+            <span>{{ dimension.caution }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="family in traditions.families" :key="family.receipt">
+            <Badge variant="outline">{{ family.name }}</Badge>
+            <strong>{{ family.examples.join(', ') }}</strong>
+            <span>{{ family.lens }} Boundary: {{ family.boundary }}</span>
+          </li>
+        </ul>
       </TabsContent>
 
       <TabsContent value="controls" class="diamond-tabs__content">

@@ -30,6 +30,7 @@ The site uses these commands as its construction contract:
 - `concept.wave.closeGaps`
 - `concept.chess.quantum`
 - `concept.schemaOrg.diamonds`
+- `concept.traditions.quantumWhole`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`

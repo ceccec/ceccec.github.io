@@ -57,6 +57,7 @@ The page is a view over these command results:
 - `concept.wave.closeGaps`
 - `concept.chess.quantum`
 - `concept.schemaOrg.diamonds`
+- `concept.traditions.quantumWhole`
 - `concept.torus.math`
 - `concept.humanity.implications`
 - `concept.source.contribute`
@@ -195,6 +196,12 @@ WebPage, SoftwareSourceCode, SoftwareApplication, Dataset, DefinedTerm, and
 Action nodes all point back to computed diamond receipts, roots, UI use cases,
 source functions, or individual pi pulse diamonds. The site does not claim
 remote Schema.org validation; it shows the structured graph it computes.
+
+`traditionsQuantumWhole()` adds a comparative-religion lens. It uses dimensions
+commonly associated with religious studies -- experiential, ritual, narrative,
+doctrinal, ethical, social, material, and relational -- to compare traditions
+without reducing them to a single essence. The report includes broad tradition
+families only as non-exhaustive lenses and states the boundary for each one.
 
 ## Coordinated waves and quantum chess
 
