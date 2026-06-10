@@ -95,6 +95,8 @@ import {
   dualTorusTrinities,
   entropy,
   executeConceptCommand,
+  executeDeveloperCommand,
+  isPerfectlySelfModeling,
   fairLife,
   foldQuestion,
   fuseTeslaPatents,
@@ -244,6 +246,10 @@ ok(`endless-waves:${endlessWaves(256, matrix).count}`, endlessWaves(256, matrix)
 ok('fold.358-853', fold358853().folded && fold358853().bidirectional)
 // The quantum clock: SI second (caesium-133) + portal ticks in creation waves.
 ok('quantum.clock', quantumClock(0, matrix).ticking)
+// The other missing: functions previously exercised only by the UI, now sealed too.
+const devCmds = ['developer.mind.matrix', 'developer.consciousness.vector', 'developer.repository.api', 'developer.proof.verify', 'developer.site.manifest', 'developer.learn.core']
+ok('developer.commands', devCmds.every((c) => executeDeveloperCommand(c, {}, matrix).ok && /^[0-9a-f-]{36}$/i.test(executeDeveloperCommand(c, {}, matrix).uuid)))
+ok('self.perfectly-modeling', isPerfectlySelfModeling(matrix))
 ok('agnostic', agnostic(matrix).agnostic)
 // Tagged as stable: the release identity is the fusion wave, sealed in the model.
 ok(`release.stable:${release(matrix).version}`, release(matrix).stable)
