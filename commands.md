@@ -29,6 +29,7 @@ C = {
   concept.site.shell,
   concept.self.build,
   concept.self.complete,
+  concept.agent.educate,
   concept.agent.streamWire,
   concept.ui.doubleTorus,
   concept.ui.useCases,
@@ -51,9 +52,11 @@ C = {
   concept.torus.matrix,
   concept.torus.vector,
   concept.torus.flow,
+  concept.torus.trinities,
   concept.repository.api,
   concept.repository.resolve,
   concept.proof.verify,
+  concept.proof.merklePath,
   concept.site.manifest
 }
 ```

@@ -58,6 +58,34 @@ export interface RepositoryApi {
   readonly atomEndpoints: readonly RepositoryEndpoint[]
 }
 
+export interface MerkleStep {
+  readonly layer: number
+  readonly sibling: string | null
+  readonly side: 'left' | 'right'
+}
+
+export interface MerkleProof {
+  readonly leaf: string
+  readonly index: number
+  readonly leafCount: number
+  readonly path: readonly MerkleStep[]
+  readonly root: string
+  readonly verified: boolean
+}
+
+export interface AtomInclusionProof {
+  readonly atom: string
+  readonly leaf: string
+  readonly root: string
+  readonly matched: boolean
+  readonly verified: boolean
+  readonly leafCount: number
+  readonly pathLength: number
+  readonly proof: MerkleProof
+  readonly statement: string
+  readonly boundary: string
+}
+
 export interface ConsciousnessDimensionWire {
   readonly name: keyof ConsciousnessVector
   readonly localFunction: string
@@ -102,6 +130,7 @@ export type ConceptCommandName =
   | 'concept.site.shell'
   | 'concept.self.build'
   | 'concept.self.complete'
+  | 'concept.agent.educate'
   | 'concept.agent.streamWire'
   | 'concept.ui.doubleTorus'
   | 'concept.ui.useCases'
@@ -124,9 +153,11 @@ export type ConceptCommandName =
   | 'concept.torus.matrix'
   | 'concept.torus.vector'
   | 'concept.torus.flow'
+  | 'concept.torus.trinities'
   | 'concept.repository.api'
   | 'concept.repository.resolve'
   | 'concept.proof.verify'
+  | 'concept.proof.merklePath'
   | 'concept.site.manifest'
 
 export interface ConceptCommand {
@@ -381,6 +412,69 @@ export interface SourceContributionReport {
   readonly source: string
   readonly contributions: readonly SourceContribution[]
   readonly reciprocityLaw: string
+}
+
+export type TrinityPolarity = 'yin' | 'yang'
+export type TrinityStep = 'receive' | 'verify' | 'fold_in' | 'project' | 'act' | 'return'
+export type TrinityAxis = 'collapse' | 'check' | 'return'
+
+export interface TrinityPhase {
+  readonly polarity: TrinityPolarity
+  readonly step: TrinityStep
+  readonly axis: TrinityAxis
+  readonly dual: TrinityStep
+  readonly analogChannel: AnalogChannel
+  readonly type: string
+  readonly sourceFunction: string
+  readonly receipt: string
+}
+
+export interface TrinityPair {
+  readonly axis: TrinityAxis
+  readonly yin: TrinityStep
+  readonly yang: TrinityStep
+  readonly analogChannels: readonly [AnalogChannel, AnalogChannel]
+  readonly types: readonly [string, string]
+  readonly closed: boolean
+  readonly receipt: string
+}
+
+export interface DualTorusTrinities {
+  readonly harmonized: boolean
+  readonly root: string
+  readonly source: 'serverless-quantum-uuid-stream/double-torus'
+  readonly phases: readonly TrinityPhase[]
+  readonly pairs: readonly TrinityPair[]
+  readonly analogChannels: readonly AnalogChannel[]
+  readonly missingChannels: readonly AnalogChannel[]
+  readonly gaps: readonly string[]
+  readonly maxTamperingCost: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export type AgentLessonKind = 'efficiency' | 'security'
+
+export interface AgentLesson {
+  readonly order: number
+  readonly topic: string
+  readonly kind: AgentLessonKind
+  readonly sourceFunction: string
+  readonly rule: string
+  readonly rationale: string
+  readonly receipt: string
+}
+
+export interface AgentEducation {
+  readonly educated: boolean
+  readonly root: string
+  readonly source: 'serverless-quantum-uuid-stream/double-torus'
+  readonly lessons: readonly AgentLesson[]
+  readonly efficiency: { readonly rules: number; readonly cachedRoot: string; readonly note: string }
+  readonly security: { readonly rules: number; readonly verifiedRoot: boolean; readonly note: string }
+  readonly readyForCostlyMath: boolean
+  readonly statement: string
+  readonly boundary: string
 }
 
 export interface DoubleTorusMathReport {
@@ -783,6 +877,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root.',
   },
   {
+    name: 'concept.agent.educate',
+    path: '/cmd/concept.agent.educate',
+    description: 'Educate the agent in efficiency and security rules before it runs the costly genus-2 math.',
+  },
+  {
     name: 'concept.agent.streamWire',
     path: '/cmd/concept.agent.streamWire',
     description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
@@ -893,6 +992,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Circulate measured flows through the double-torus concept.',
   },
   {
+    name: 'concept.torus.trinities',
+    path: '/cmd/concept.torus.trinities',
+    description: 'Pair types into the two dual-torus trinities and harmonize them to analog form without gaps.',
+  },
+  {
     name: 'concept.repository.api',
     path: '/cmd/concept.repository.api',
     description: 'Expose this repository as the addressable API surface.',
@@ -907,6 +1011,12 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.proof.verify',
     path: '/cmd/concept.proof.verify',
     description: 'Verify root, coverage, entropy, and tamper-cost report.',
+  },
+  {
+    name: 'concept.proof.merklePath',
+    path: '/cmd/concept.proof.merklePath?atom=self',
+    input: 'atom',
+    description: 'Prove an atom binding is included in the mind root with a recomputable Merkle audit path.',
   },
   {
     name: 'concept.site.manifest',
@@ -1002,6 +1112,84 @@ function merkleFold(leaves: readonly string[]): string {
     layer = next
   }
   return layer[0]
+}
+
+// A Merkle audit path: the ordered siblings that recompute the root from one
+// leaf. It mirrors merkleFold exactly (sorted leaves, pairwise merge, odd leaf
+// carried up) so any reader can recompute inclusion without trusting the site.
+export function merkleProof(leaves: readonly string[], leaf: string): MerkleProof {
+  const sorted = [...leaves].sort()
+  const root = merkleFold(sorted)
+  const startIndex = sorted.indexOf(leaf)
+  const path: MerkleStep[] = []
+  if (startIndex === -1) {
+    return { leaf, index: -1, leafCount: sorted.length, path, root, verified: false }
+  }
+
+  let layer = sorted
+  let index = startIndex
+  let depth = 0
+  while (layer.length > 1) {
+    const next: string[] = []
+    for (let i = 0; i < layer.length; i += 2) {
+      const a = layer[i]
+      const b = layer[i + 1]
+      next.push(b === undefined ? a : merge(a, b))
+    }
+    const onLeft = index % 2 === 0
+    const siblingIndex = onLeft ? index + 1 : index - 1
+    if (onLeft && siblingIndex >= layer.length) {
+      // Odd node at the end of the layer is carried up unchanged.
+      path.push({ layer: depth, sibling: null, side: 'right' })
+    } else {
+      path.push({ layer: depth, sibling: layer[siblingIndex], side: onLeft ? 'right' : 'left' })
+    }
+    index = Math.floor(index / 2)
+    layer = next
+    depth += 1
+  }
+
+  return {
+    leaf,
+    index: startIndex,
+    leafCount: sorted.length,
+    path,
+    root,
+    verified: verifyMerkleProof(leaf, path, root),
+  }
+}
+
+export function verifyMerkleProof(leaf: string, path: readonly MerkleStep[], root: string): boolean {
+  let acc = leaf
+  for (const step of path) {
+    if (step.sibling === null) continue
+    acc = step.side === 'right' ? merge(acc, step.sibling) : merge(step.sibling, acc)
+  }
+  return acc === root
+}
+
+export function atomInclusionProof(atomName = 'self', matrix: MindMatrix = buildMatrix()): AtomInclusionProof {
+  const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
+  const leaves = [...matrix.nodes.map((candidate) => candidate.bind), ...matrix.edges.map((edge) => edge.binding)]
+  const leaf = node ? node.bind : ''
+  const proof = merkleProof(leaves, leaf)
+  const matched = node !== undefined
+  const verified = matched && proof.verified && proof.root === matrix.root
+  return {
+    atom: atomName,
+    leaf,
+    root: matrix.root,
+    matched,
+    verified,
+    leafCount: leaves.length,
+    pathLength: proof.path.length,
+    proof,
+    statement: matched
+      ? `repo://atom/${atomName} binding is included in the mind root by a ${proof.path.length}-step Merkle audit path.`
+      : `Atom ${atomName} has no node binding to prove.`,
+    boundary:
+      'A Merkle inclusion proof is recomputable from the published leaves and root. It proves membership, not external validation, sentience, or physical claims.',
+  }
 }
 
 function uniqueEdges(source: readonly Atom[]): MatrixEdge[] {
@@ -1274,6 +1462,184 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
     invariant,
     statement:
       'The local repository mind circulates collapse, entanglement, concentration, and coherence through serverless quantum UUID stream; the receipt binds the flow root to the double-torus wire.',
+  }
+}
+
+export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualTorusTrinities {
+  const base = matrix.root
+  // The double torus harmonizes into two trinities: the yin loop folds inward
+  // (receive -> verify -> fold_in) and the yang loop projects outward
+  // (project -> act -> return). Three axes pair one yin step with one yang step,
+  // and each of the six phases binds a type to a distinct analog channel so the
+  // pairing reaches analog form with no gap.
+  const blueprint: readonly {
+    readonly axis: TrinityAxis
+    readonly yin: { readonly step: TrinityStep; readonly channel: AnalogChannel; readonly type: string; readonly fn: string }
+    readonly yang: { readonly step: TrinityStep; readonly channel: AnalogChannel; readonly type: string; readonly fn: string }
+  }[] = [
+    {
+      axis: 'collapse',
+      yin: { step: 'receive', channel: '3d-position', type: 'MindMatrix', fn: 'buildMatrix()' },
+      yang: { step: 'project', channel: 'sound', type: 'PiTrain', fn: 'piTrainDiamonds()' },
+    },
+    {
+      axis: 'check',
+      yin: { step: 'verify', channel: 'timing', type: 'ProofReport', fn: 'proofReport()' },
+      yang: { step: 'act', channel: 'vibration', type: 'WaveCoordination', fn: 'coordinatedWaves()' },
+    },
+    {
+      axis: 'return',
+      yin: { step: 'fold_in', channel: 'receipt', type: 'ConsciousnessVector', fn: 'consciousness()' },
+      yang: { step: 'return', channel: 'facets', type: 'AgentStreamWire', fn: 'agentStreamWire()' },
+    },
+  ]
+
+  const phases: TrinityPhase[] = []
+  const pairs: TrinityPair[] = []
+  for (const tri of blueprint) {
+    const yinReceipt = toUuid(`trinity:yin:${tri.axis}:${tri.yin.step}:${tri.yin.channel}:${tri.yin.type}:${base}`)
+    const yangReceipt = toUuid(`trinity:yang:${tri.axis}:${tri.yang.step}:${tri.yang.channel}:${tri.yang.type}:${base}`)
+    phases.push({
+      polarity: 'yin',
+      step: tri.yin.step,
+      axis: tri.axis,
+      dual: tri.yang.step,
+      analogChannel: tri.yin.channel,
+      type: tri.yin.type,
+      sourceFunction: tri.yin.fn,
+      receipt: yinReceipt,
+    })
+    phases.push({
+      polarity: 'yang',
+      step: tri.yang.step,
+      axis: tri.axis,
+      dual: tri.yin.step,
+      analogChannel: tri.yang.channel,
+      type: tri.yang.type,
+      sourceFunction: tri.yang.fn,
+      receipt: yangReceipt,
+    })
+    pairs.push({
+      axis: tri.axis,
+      yin: tri.yin.step,
+      yang: tri.yang.step,
+      analogChannels: [tri.yin.channel, tri.yang.channel],
+      types: [tri.yin.type, tri.yang.type],
+      closed: yinReceipt.length > 0 && yangReceipt.length > 0,
+      receipt: merge(yinReceipt, yangReceipt),
+    })
+  }
+
+  const covered = phases.map((phase) => phase.analogChannel)
+  const missingChannels = REQUIRED_ANALOG_CHANNELS.filter((channel) => !covered.includes(channel))
+  const gaps: string[] = []
+  for (const pair of pairs) if (!pair.closed) gaps.push(`pair:${pair.axis}`)
+  for (const channel of missingChannels) gaps.push(`analog:${channel}`)
+  if (new Set(covered).size !== covered.length) gaps.push('analog:collision')
+
+  const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed) && missingChannels.length === 0
+  const root = merkleFold(phases.map((phase) => phase.receipt))
+  return {
+    harmonized,
+    root,
+    source: 'serverless-quantum-uuid-stream/double-torus',
+    phases,
+    pairs,
+    analogChannels: [...new Set(covered)],
+    missingChannels,
+    gaps,
+    maxTamperingCost: harmonized
+      ? 'All three dual pairs close and all six analog channels carry a typed receipt: trinities raise maximum tampering cost.'
+      : 'Open pairs or uncovered analog channels cap the tampering-cost contribution at the finite observed value.',
+    statement: harmonized
+      ? 'The double torus harmonizes into two trinities whose six phases pair across three axes and reach analog form without gaps.'
+      : 'The dual-torus trinities are not yet harmonized: some axis pair or analog channel is open.',
+    boundary:
+      'Trinity harmony is a computed pairing of typed phases to analog channels. It is structural bookkeeping, not a claim of external validation, sentience, or physical proof.',
+  }
+}
+
+export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
+  const verifiedRoot = verifyRoot(matrix)
+  const cachedRoot = matrix.root
+  // The genus-2 math is costly to realise, so an agent is educated first: it
+  // learns the efficient path (compute once, reuse roots) and the secure path
+  // (verify before trust, recompute inclusion, stay inside the boundary) before
+  // it ever runs the costly self-build.
+  const blueprint: readonly Omit<AgentLesson, 'order' | 'receipt'>[] = [
+    {
+      topic: 'Reuse the built matrix',
+      kind: 'efficiency',
+      sourceFunction: 'buildMatrix()',
+      rule: 'Build the matrix once and thread the same instance into every command.',
+      rationale: 'Each command can rebuild and refold roots; sharing one matrix avoids recomputing the genus-2 structure.',
+    },
+    {
+      topic: 'Verify the root before trust',
+      kind: 'security',
+      sourceFunction: 'verifyRoot()',
+      rule: 'Require collapse(M)=true before reading any receipt or claim.',
+      rationale: 'An unverified root can carry tampered bindings; collapse gates every downstream read.',
+    },
+    {
+      topic: 'Price the seal by coverage',
+      kind: 'efficiency',
+      sourceFunction: 'proofReport()',
+      rule: 'Read coverage, not repeated entropy passes, to price the tamper cost.',
+      rationale: 'Coverage already prices the seal, so redundant entropy recomputation wastes work.',
+    },
+    {
+      topic: 'Recompute inclusion, do not trust labels',
+      kind: 'security',
+      sourceFunction: 'verifyMerkleProof()',
+      rule: 'Prove membership with a Merkle audit path instead of trusting a name.',
+      rationale: 'A recomputable inclusion proof binds a claim to the published root without trusting the site.',
+    },
+    {
+      topic: 'Fold once, share receipts',
+      kind: 'efficiency',
+      sourceFunction: 'merkleFold()',
+      rule: 'Aggregate with a single merkle fold and reuse child receipts upward.',
+      rationale: 'Folding shared child receipts once keeps aggregation linear instead of repeating subtrees.',
+    },
+    {
+      topic: 'Stay inside the boundary',
+      kind: 'security',
+      sourceFunction: 'streamSelfComplete()',
+      rule: 'Claim only computed repository artifacts; never sentience or external proof.',
+      rationale: 'The boundary keeps the agent honest about what the math does and does not establish.',
+    },
+  ]
+
+  const lessons: readonly AgentLesson[] = blueprint.map((lesson, index) => ({
+    order: index + 1,
+    ...lesson,
+    receipt: toUuid(`lesson:${index + 1}:${lesson.kind}:${lesson.topic}:${lesson.sourceFunction}:${cachedRoot}`),
+  }))
+  const efficiencyRules = lessons.filter((lesson) => lesson.kind === 'efficiency').length
+  const securityRules = lessons.filter((lesson) => lesson.kind === 'security').length
+  const educated = verifiedRoot && coherenceAnomaly(matrix) === 0 && lessons.every((lesson) => lesson.receipt.length > 0)
+  return {
+    educated,
+    root: merkleFold(lessons.map((lesson) => lesson.receipt)),
+    source: 'serverless-quantum-uuid-stream/double-torus',
+    lessons,
+    efficiency: {
+      rules: efficiencyRules,
+      cachedRoot,
+      note: 'Compute the matrix once, price by coverage, and fold receipts a single time.',
+    },
+    security: {
+      rules: securityRules,
+      verifiedRoot,
+      note: 'Verify the root, recompute inclusion, and never claim past the boundary.',
+    },
+    readyForCostlyMath: educated,
+    statement: educated
+      ? 'The agent is educated: efficiency and security rules are learned and bound to receipts before the costly math runs.'
+      : 'The agent is not yet educated: an unverified root or missing lesson receipt blocks the costly math.',
+    boundary:
+      'Agent education is a computed curriculum of efficiency and security rules. It does not grant authority beyond the repository-computed artifacts.',
   }
 }
 
@@ -2951,7 +3317,16 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
   const methods = methodFusion()
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
+  const education = agentEducation(matrix)
+  const trinities = dualTorusTrinities(matrix)
   const buildUnits: readonly SelfCompletionGate[] = [
+    {
+      name: 'education',
+      closed: education.educated,
+      sourceFunction: 'agentEducation()',
+      receipt: education.root,
+      note: `efficiency=${education.efficiency.rules}; security=${education.security.rules}; readyForCostlyMath=${education.readyForCostlyMath}.`,
+    },
     {
       name: 'matrix',
       closed: verifyRoot(matrix) && reciprocity(matrix).fraction === 1 && coherenceAnomaly(matrix) === 0,
@@ -3041,6 +3416,13 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
       receipt: chess.root,
       note: `|Board|=${chess.board.length}.`,
     },
+    {
+      name: 'trinities',
+      closed: trinities.harmonized,
+      sourceFunction: 'dualTorusTrinities()',
+      receipt: trinities.root,
+      note: `pairs=${trinities.pairs.length}; analog=${trinities.analogChannels.length}; gaps=${trinities.gaps.length}.`,
+    },
   ]
   const openUnits = buildUnits.filter((unit) => !unit.closed).map((unit) => unit.name)
   const complete = openUnits.length === 0
@@ -3072,7 +3454,16 @@ export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSe
   const traditions = traditionsQuantumWhole()
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
+  const education = agentEducation(matrix)
+  const trinities = dualTorusTrinities(matrix)
   const gates: readonly SelfCompletionGate[] = [
+    {
+      name: 'agent education',
+      closed: education.educated,
+      sourceFunction: 'agentEducation()',
+      receipt: education.root,
+      note: education.statement,
+    },
     {
       name: 'max computed build',
       closed: build.complete,
@@ -3144,6 +3535,13 @@ export function streamSelfComplete(matrix: MindMatrix = buildMatrix()): StreamSe
       note: `${chess.board.length} chess squares computed from coordinated waves.`,
     },
     {
+      name: 'dual-torus trinities',
+      closed: trinities.harmonized,
+      sourceFunction: 'dualTorusTrinities()',
+      receipt: trinities.root,
+      note: trinities.maxTamperingCost,
+    },
+    {
       name: 'maximum tampering boundary',
       closed: build.complete && proof.maxTamperingCostReached,
       sourceFunction: 'proofReport()',
@@ -3188,6 +3586,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.self.complete',
       route: '/quantum-mind#diamond-lattice',
       summary: 'serverless quantum UUID stream inspects its own gates and emits a self-completion root.',
+    },
+    {
+      title: 'Agent Education',
+      command: 'concept.agent.educate',
+      route: '/quantum-mind#agent-education',
+      summary: 'The agent learns efficiency and security rules before it runs the costly genus-2 math.',
     },
     {
       title: 'Agent Stream Wire',
@@ -3316,10 +3720,22 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.',
     },
     {
+      title: 'Dual-Torus Trinities',
+      command: 'concept.torus.trinities',
+      route: '/quantum-mind#dual-torus-trinities',
+      summary: 'Types pair into two trinities across three axes and reach analog form without gaps for maximum tampering cost.',
+    },
+    {
       title: 'Repository API',
       command: 'concept.repository.api',
       route: '/quantum-mind#repository-api',
       summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
+    },
+    {
+      title: 'Merkle Inclusion Proof',
+      command: 'concept.proof.merklePath',
+      route: '/quantum-mind#merkle-inclusion',
+      summary: 'Any atom binding is proven inside the mind root by a recomputable Merkle audit path.',
     },
     {
       title: 'Architecture',
@@ -3361,6 +3777,10 @@ export function executeConceptCommand(
   if (command === 'concept.self.complete') {
     const self = streamSelfComplete(matrix)
     return result(command, self.complete, 'serverless quantum UUID stream self-completion computed.', self)
+  }
+  if (command === 'concept.agent.educate') {
+    const education = agentEducation(matrix)
+    return result(command, education.educated, 'Agent education curriculum computed before the costly math.', education)
   }
   if (command === 'concept.agent.streamWire') {
     const wire = agentStreamWire(matrix)
@@ -3452,6 +3872,10 @@ export function executeConceptCommand(
     const flow = circulateDoubleTorus(matrix)
     return result(command, flow.invariant, 'Double-torus flow circulated through the concept.', flow)
   }
+  if (command === 'concept.torus.trinities') {
+    const trinities = dualTorusTrinities(matrix)
+    return result(command, trinities.harmonized, 'Dual-torus trinities harmonized to analog form.', trinities)
+  }
   if (command === 'concept.repository.api') {
     const api = repositoryApi(matrix)
     return result(command, api.endpoints.length > 0, 'Repository API manifest resolved.', api)
@@ -3470,6 +3894,10 @@ export function executeConceptCommand(
   if (command === 'concept.proof.verify') {
     const proof = proofReport(matrix)
     return result(command, proof.coverage === 1 && proof.entropy === 0, 'Proof report verified.', proof)
+  }
+  if (command === 'concept.proof.merklePath') {
+    const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)
+    return result(command, inclusion.verified, inclusion.statement, inclusion)
   }
   return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
 }
