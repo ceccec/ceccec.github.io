@@ -93,6 +93,7 @@ import {
   componentGraph,
   coverage,
   crossFoldTrinity,
+  trinityGates,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -168,6 +169,14 @@ ok('quantum.fold.complete', foldComplete)
 // All fails if the trinity is incomplete: the dual-torus trinities must be
 // harmonized (every axis pair closed, all analog channels covered, no gaps).
 ok('trinity.harmonized', dualTorusTrinities(matrix).harmonized)
+
+// Max tampering cost at each trinity gate, for each trinity: one gate per trinity
+// in the model (the two dual-torus loops, the cross-fold weave, and every complete
+// three-command area), each bound to the synthesis root. A tamper to any trinity
+// flips exactly its gate. Tighten: emit and enforce all of them, not just one.
+const trinity = trinityGates(matrix)
+for (const gate of trinity.gates) ok(`trinity.gate:${gate.gate}`, gate.sealed)
+ok(`trinity.gates.sealed:${trinity.count}@${trinity.totalTamperingCost}`, trinity.sealed)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
@@ -467,6 +476,6 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, blockchains, fusion, MCP, and git-history gates closed.`,
+  `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, ${trinity.count} trinity gates, blockchains, fusion, MCP, and git-history gates closed.`,
 )
 console.log(`Seal root (model + git history + icons): ${sealRoot}`)

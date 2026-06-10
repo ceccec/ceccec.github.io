@@ -1029,6 +1029,24 @@ export declare function repositoryApi(matrix?: MindMatrix): RepositoryApi;
 export declare function doubleTorusWire(matrix?: MindMatrix): DoubleTorusWire;
 export declare function circulateDoubleTorus(matrix?: MindMatrix): DoubleTorusFlow;
 export declare function dualTorusTrinities(matrix?: MindMatrix): DualTorusTrinities;
+export declare function trinityGates(matrix?: MindMatrix): {
+    sealed: boolean;
+    gates: {
+        family: string;
+        trinity: string;
+        gate: string;
+        members: string[];
+        count: number;
+        sealed: boolean;
+        root: string;
+        tamperingCost: number;
+    }[];
+    count: number;
+    totalTamperingCost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

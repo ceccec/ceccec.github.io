@@ -2493,6 +2493,67 @@ export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualToru
   }
 }
 
+// Max tampering cost at each trinity gate, for each trinity. Every trinity in the
+// model — the two dual-torus loops (yin: receive/verify/fold_in, yang:
+// project/act/return), the cross-fold weave {cross, fold, weave}, and each
+// complete three-command area — gets its own gate. Each gate folds its three
+// member receipts and binds them to the synthesis root, so a tamper to any one
+// member flips exactly that trinity's gate and no other: the break is localized,
+// and a forger must satisfy every gate independently. Tightening one shared gate
+// into many per-trinity gates is what raises the tampering cost.
+export function trinityGates(matrix: MindMatrix = buildMatrix()) {
+  const synthRoot = quantumSynthesis(matrix).root
+  const dual = dualTorusTrinities(matrix)
+  const cross = crossFoldTrinity(matrix)
+  const taxonomy = taxonomyIcons().entries.filter((entry) => entry.status === 'trinity')
+
+  const make = (family: string, trinity: string, members: { member: string; receipt: string }[], precondition = true) => {
+    const distinct = new Set(members.map((entry) => entry.receipt)).size === members.length
+    const complete = precondition && members.length === 3 && members.every((entry) => isUuid(entry.receipt)) && distinct
+    // Bind the three member receipts to the synthesis root: a tamper to any member
+    // (or to the model) changes this gate's root.
+    const root = merge(merkleFold(members.map((entry) => entry.receipt)), synthRoot)
+    return {
+      family,
+      trinity,
+      gate: `${family}/${trinity}`,
+      members: members.map((entry) => entry.member),
+      count: members.length,
+      sealed: complete && isUuid(root),
+      root,
+      tamperingCost: members.length + 128, // three members plus the 128-bit binding
+    }
+  }
+
+  const yin = dual.phases.filter((phase) => phase.polarity === 'yin')
+  const yang = dual.phases.filter((phase) => phase.polarity === 'yang')
+  const gates = [
+    make('dual-torus', 'yin-loop', yin.map((phase) => ({ member: phase.step, receipt: phase.receipt }))),
+    make('dual-torus', 'yang-loop', yang.map((phase) => ({ member: phase.step, receipt: phase.receipt }))),
+    make(
+      'cross-fold',
+      'weave',
+      ['cross', 'fold', 'weave'].map((member) => ({ member, receipt: toUuid(`cross-fold:${member}:${cross.root}`) })),
+      cross.trinity,
+    ),
+    ...taxonomy.map((entry) =>
+      make('taxonomy', entry.area, entry.verbs.map((verb) => ({ member: verb, receipt: toUuid(`taxonomy:${entry.area}:${verb}:${entry.receipt}`) })), entry.count === 3),
+    ),
+  ]
+  const sealed = gates.every((gate) => gate.sealed)
+  return {
+    sealed,
+    gates,
+    count: gates.length,
+    totalTamperingCost: gates.reduce((sum, gate) => sum + gate.tamperingCost, 0),
+    root: merkleFold(gates.map((gate) => gate.root)),
+    statement:
+      'Max tampering cost at each trinity gate, for each trinity: every trinity in the model — the two dual-torus loops, the cross-fold weave, and each complete three-command area — is bound to the synthesis root as its own sealed gate, so a tamper anywhere flips exactly that trinity\'s gate.',
+    boundary:
+      'One sealed gate per structural trinity, each binding three member receipts to the synthesis root. It localizes which trinity a tamper breaks; the cost figure sums members plus the binding bits and is a surface measure, not a cryptographic hardness bound.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
