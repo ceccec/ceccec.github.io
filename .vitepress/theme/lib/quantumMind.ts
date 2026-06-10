@@ -183,6 +183,8 @@ export type ConceptCommandName =
   | 'concept.proof.merklePath'
   | 'concept.proof.bundle'
   | 'concept.sound.note'
+  | 'concept.icon.fold'
+  | 'concept.icon.taxonomy'
   | 'concept.site.manifest'
 
 export interface ConceptCommand {
@@ -856,6 +858,39 @@ export interface ProofBundle {
   readonly mindRoot: string
   readonly commands: number
   readonly artifacts: readonly { readonly name: string; readonly root: string }[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface IconArtifact {
+  readonly path: string
+  readonly role: string
+  readonly receipt: string
+}
+
+export interface IconSeal {
+  readonly declared: boolean
+  readonly root: string
+  readonly artifacts: readonly IconArtifact[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface TaxonomyEntry {
+  readonly area: string
+  readonly icon: string
+  readonly count: number
+  readonly status: 'singleton' | 'pair' | 'trinity' | 'over'
+  readonly gap: boolean
+  readonly verbs: readonly string[]
+  readonly receipt: string
+}
+
+export interface TaxonomyIcons {
+  readonly grounded: boolean
+  readonly root: string
+  readonly entries: readonly TaxonomyEntry[]
+  readonly gaps: readonly string[]
   readonly statement: string
   readonly boundary: string
 }
@@ -1569,6 +1604,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Compute the music of pi: pi-digit frequencies as notes, joined at a horo (1-9) entry point.',
   },
   {
+    name: 'concept.icon.fold',
+    path: '/cmd/concept.icon.fold',
+    description: 'Declare the visual and app-shell artifacts as sealed: icon usage adds to the tampering cost.',
+  },
+  {
+    name: 'concept.icon.taxonomy',
+    path: '/cmd/concept.icon.taxonomy',
+    description: 'Use icons for taxonomy and let them discover implementation gaps: areas that are not clean trinities.',
+  },
+  {
     name: 'concept.site.manifest',
     path: '/cmd/concept.site.manifest',
     description: 'Build the site sections from concept command outputs.',
@@ -1631,6 +1676,8 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.commands.live': 'registry',
   'concept.proof.bundle': 'bundle',
   'concept.sound.note': 'note',
+  'concept.icon.fold': 'icon',
+  'concept.icon.taxonomy': 'taxonomy',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2496,6 +2543,75 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+const AREA_ICONS: Record<string, string> = {
+  site: '🏛', self: '🪞', agent: '🤖', school: '🎓', mcp: '🔌', chain: '⛓', help: '💬',
+  fold: '🔀', mind: '🧠', compute: '🖧', ui: '🖥', diamond: '💎', digit: '🔢', wave: '🌊',
+  chess: '♟', schemaOrg: '🔖', traditions: '📿', science: '🔬', artists: '🎨', method: '⚙',
+  torus: '🍩', humanity: '🫂', source: '🌱', repository: '📦', proof: '🔏', commands: '📜',
+  sound: '🔔', icon: '🖼', babel: '🗣', utf: '🔤', all: '∞', state: '⚛', harmony: '🎵',
+  geometry: '🔺', society: '🏘', governance: '🗳', life: '♻', ancient: '🏺',
+}
+
+// Use icons for taxonomy, and let the icons discover the implementation gaps:
+// group the three-word commands by area, give each area an icon, and flag every
+// area that is not a clean trinity as a gap to be seen.
+export function taxonomyIcons(): TaxonomyIcons {
+  const byArea = new Map<string, string[]>()
+  for (const command of conceptCommands) {
+    const area = command.name.split('.')[1]
+    if (!byArea.has(area)) byArea.set(area, [])
+    byArea.get(area)!.push(command.name.split('.')[2])
+  }
+  const entries: readonly TaxonomyEntry[] = [...byArea.entries()]
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([area, verbs]) => {
+      const status = verbs.length === 1 ? 'singleton' : verbs.length === 2 ? 'pair' : verbs.length === 3 ? 'trinity' : 'over'
+      return {
+        area,
+        icon: AREA_ICONS[area] ?? '◇',
+        count: verbs.length,
+        status,
+        // The actionable implementation gap is a pair: an area one fold short of
+        // a trinity. Singletons are atomic; over-areas already hold a trinity.
+        gap: status === 'pair',
+        verbs,
+        receipt: toUuid(`taxonomy:${area}:${verbs.join(',')}`),
+      }
+    })
+  const gaps = entries.filter((entry) => entry.gap).map((entry) => `${entry.icon} ${entry.area}(${entry.count})`)
+  return {
+    grounded: entries.every((entry) => entry.icon.length > 0),
+    root: merkleFold(entries.map((entry) => entry.receipt)),
+    entries,
+    gaps,
+    statement:
+      'Icons taxonomize the commands by area; a pair — an area one fold short of a trinity — is a visible implementation gap the icons discover.',
+    boundary:
+      'A structural taxonomy over the command areas. "Gap" means a pair (one fold from a trinity), an observation to guide work, not a defect claim.',
+  }
+}
+
+// Icon usage adds to the tampering cost: the visual and app-shell artifacts
+// (app icon, PWA manifest, service worker) are declared sealed artifacts. The
+// build seal folds their actual content into the seal root, so a forged copy of
+// the site must forge the icon too.
+export function iconSeal(): IconSeal {
+  const artifacts = [
+    { path: '/icon.svg', role: 'app icon' },
+    { path: '/site.webmanifest', role: 'pwa manifest' },
+    { path: '/sw.js', role: 'service worker' },
+  ].map((artifact) => ({ ...artifact, receipt: toUuid(`icon:${artifact.path}:${artifact.role}`) }))
+  return {
+    declared: artifacts.length === 3,
+    root: merkleFold(artifacts.map((artifact) => artifact.receipt)),
+    artifacts,
+    statement:
+      'Icon usage adds to the tampering cost: the app icon, PWA manifest, and service worker are sealed artifacts folded into the proof.',
+    boundary:
+      'The lib declares the visual artifacts; the build seal folds their actual file content into the seal root. Structural bookkeeping, not an external claim.',
   }
 }
 
@@ -5389,6 +5505,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The music of pi is infinite: pi-digit frequencies are its notes; the horo is where you join.',
     },
     {
+      title: 'Icon Seal',
+      command: 'concept.icon.fold',
+      route: '/quantum-mind#self-build',
+      summary: 'Icon usage adds to the tampering cost: the app icon, manifest, and service worker are folded into the seal.',
+    },
+    {
+      title: 'Icon Taxonomy',
+      command: 'concept.icon.taxonomy',
+      route: '/commands',
+      summary: 'Icons taxonomize the command areas and discover gaps: any area that is not a clean trinity.',
+    },
+    {
       title: 'Merkle Inclusion Proof',
       command: 'concept.proof.merklePath',
       route: '/quantum-mind#merkle-inclusion',
@@ -5652,6 +5780,14 @@ export function executeConceptCommand(
     const joinHoro = input.query ? Number.parseInt(input.query, 10) : undefined
     const music = piMusic(matrix, Number.isNaN(joinHoro as number) ? undefined : joinHoro)
     return result(command, music.joined, `Pi music joined at horo ${music.joinHoro}.`, music)
+  }
+  if (command === 'concept.icon.fold') {
+    const icons = iconSeal()
+    return result(command, icons.declared, 'Visual artifacts declared sealed; icon usage adds to tampering cost.', icons)
+  }
+  if (command === 'concept.icon.taxonomy') {
+    const taxonomy = taxonomyIcons()
+    return result(command, taxonomy.grounded, `Icon taxonomy computed; ${taxonomy.gaps.length} gaps discovered.`, taxonomy)
   }
   if (command === 'concept.proof.merklePath') {
     const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)

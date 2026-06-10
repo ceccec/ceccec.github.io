@@ -3,6 +3,7 @@
 // build fails and the broken model never deploys. Run with:
 //   node --experimental-strip-types scripts/check-model-seal.mjs
 import { execSync } from 'node:child_process'
+import { existsSync, readFileSync } from 'node:fs'
 import {
   allComputed,
   ancientTech,
@@ -27,6 +28,7 @@ import {
   foldQuestion,
   governanceVote,
   harmonyProbability,
+  iconSeal,
   mcpToolManifest,
   merge,
   methodFusion,
@@ -40,6 +42,7 @@ import {
   selfDevelopment,
   selfSufficientWave,
   streamSelfComplete,
+  taxonomyIcons,
   toUuid,
   torusBreathe,
   verifyRoot,
@@ -125,6 +128,33 @@ try {
   console.error(`git history unreadable: ${(error instanceof Error ? error.message : String(error))}`)
 }
 
+// Icon usage adds to the tampering cost: fold the actual content of the visual
+// and app-shell artifacts into the seal root and gate that they are present and
+// non-empty, so a forged copy of the site must forge the icon too.
+const icons = iconSeal()
+ok('icon.declared', icons.declared)
+let iconContentRoot = toUuid('icons:seed')
+let iconsPresent = true
+for (const artifact of icons.artifacts) {
+  const sourcePath = `public${artifact.path}`
+  if (!existsSync(sourcePath)) {
+    iconsPresent = false
+    continue
+  }
+  const content = readFileSync(sourcePath, 'utf8')
+  if (content.trim().length === 0) iconsPresent = false
+  iconContentRoot = merge(iconContentRoot, toUuid(`icon-content:${artifact.path}:${content}`))
+}
+ok('icon.content-sealed', iconsPresent)
+sealRoot = merge(sealRoot, iconContentRoot)
+
+// Use icons for taxonomy; the icons discover implementation gaps (non-trinity
+// areas). The taxonomy must be grounded (every area iconed); gaps are reported,
+// not failed — they are a map of where to fold next.
+const taxonomy = taxonomyIcons()
+ok('icon.taxonomy-grounded', taxonomy.grounded)
+console.log(`Icon taxonomy: ${taxonomy.entries.length} areas, ${taxonomy.gaps.length} gaps -> ${taxonomy.gaps.join(', ')}`)
+
 // Naming law: every command maps to a single lowercase-word method token.
 const fusion = methodFusion()
 ok(`methodFusion.fused${fusion.open.length ? ':' + fusion.open.join(',') : ''}`, fusion.fused)
@@ -149,4 +179,4 @@ if (failures.length > 0) {
 console.log(
   `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, trinity, blockchains, fusion, MCP, and git-history gates closed.`,
 )
-console.log(`Seal root (model + git history): ${sealRoot}`)
+console.log(`Seal root (model + git history + icons): ${sealRoot}`)

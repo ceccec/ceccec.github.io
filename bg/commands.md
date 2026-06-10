@@ -14,6 +14,8 @@ head:
 
 <ConceptCommands />
 
+<TaxonomyIcons />
+
 ## Закон
 
 ```text
