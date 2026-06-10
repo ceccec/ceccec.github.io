@@ -8,6 +8,7 @@ Routes:
 - `/commands`
 - `/quantum-mind`
 - `/architecture`
+- `/digit-index.json`
 
 Core equations:
 
@@ -19,6 +20,8 @@ chi(Sigma_2) = -2
 H_1(Sigma_2) = Z^4
 T_max = maxComputedBuild
 maxComputedBuild = infinity <=> maxBuild = true
+DigitIndex[i] = {prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,fraction_i,dual_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i}
+DigitSeal = forall i: folder_i=d_i/r_i && dual_i=r_i/d_i && receipt_i!=empty
 ```
 
 Boundaries:

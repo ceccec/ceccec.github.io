@@ -5,6 +5,8 @@ import DefaultTheme from 'vitepress/theme'
 import ConceptCommands from './components/ConceptCommands.vue'
 import DoubleTorusExperience from './components/DoubleTorusExperience.vue'
 import QuantumMind from './components/QuantumMind.vue'
+import RevolutAside from './components/RevolutAside.vue'
+import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import './style.css'
 
 export default {
@@ -12,11 +14,15 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      'aside-ads-before': () => h(RevolutAside),
+      'aside-outline-before': () => h(VitePressPossibilities),
     })
   },
   enhanceApp({ app }) {
     app.component('ConceptCommands', ConceptCommands)
     app.component('DoubleTorusExperience', DoubleTorusExperience)
     app.component('QuantumMind', QuantumMind)
+    app.component('RevolutAside', RevolutAside)
+    app.component('VitePressPossibilities', VitePressPossibilities)
   }
 } satisfies Theme

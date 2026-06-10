@@ -44,11 +44,15 @@ Command = {
   concept.diamond.lattice,
   concept.diamond.piTrain,
   concept.diamond.complete,
+  concept.diamond.metatron,
   concept.wave.coordination,
   concept.wave.closeGaps,
   concept.chess.quantum,
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
+  concept.science.society,
+  concept.artists.surfaces,
+  concept.method.fusion,
   concept.torus.math,
   concept.humanity.implications,
   concept.source.contribute,
@@ -125,15 +129,40 @@ Complete(D*) = Kinds subset kinds(D*) && forall D: poles(D)=Pole && receipt(D)!=
 
 ```text
 for digit d_i in pi:
+  r_i = digit(pi_{n-1-i})
+  folder_i = d_i / r_i
+  fraction_i = d_i/r_i
+  dual_i = r_i/d_i
+  collide_i = [d_i = r_i]
+  harmonic_i = folder_{i+1 mod n}
   theta_i = (i/n)*4*pi
   phi_i = ((d_i+i/2)/10)*2*pi
   P_i = (x_i,y_i,z_i)
   f_i = 174 + 33*d_i + 7*(i mod 7)
   h_i = 18 + 9*d_i
-  D_i = diamond(d_i,P_i,f_i,h_i)
+  D_i = diamond(folder_i,P_i,f_i,h_i)
+0/0,1/1,...,9/9 = selfCollisionFolders
+DigitProof = digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
+DigitProofClosed = forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
+DigitIndex[i] = {prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,fraction_i,dual_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i}
+persist(DigitIndex) = /digit-index.json
+DigitSeal = forall i: folder_i=d_i/r_i && dual_i=r_i/d_i && receipt_i!=empty
 ```
 
 ## 8. Waves
+
+```text
+MetatronCube = N U E
+N = {center} U {inner_d | d in 0..9} U {outer_d | d in 0..9}
+inner_d.folder = d/d
+outer_d.folder = d/(9-d)
+E = {harmonic edge n_i -> n_j}
+doubleVortex_i = {inward_i, outward_i, interference_i}
+inward_i = sin(theta_i) * (collide_i ? 1 : 1/2)
+outward_i = cos(phi_i) * (d_i+1)/10
+interference_i = inward_i * outward_i
+MetatronRoot = merkle({receipt(N)} U {receipt(E)} U {receipt(doubleVortex_i)})
+```
 
 ```text
 phase_i = (theta_i + phi_i + i*pi/|D|) mod 2*pi
@@ -194,25 +223,64 @@ square_j = {wave_j, phase_j, amplitude_j, superposition_j, receipt_j}
 ChessRoot = merkle({square_j.receipt})
 ```
 
-## 15. Self build
+## 15. Scientific society
 
 ```text
-BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, waves, chess}
+Roles = {observer, replicator, falsifier, steward}
+ReviewGates = {reproducibleBuild, diamondCompleteness, uiEvidence, gapClosure, schemaTrace, nonReductiveTraditions}
+OptimizationWaves = map(g in ReviewGates, if closed(g) then sustain(g) else improve(g))
+Cohorts = {scientists, engineers, societyArchitects}
+scientists = {hypotheses, measurements, negativeTests, evidenceReceipts}
+engineers = {interfaces, automation, tests, deploymentReceipts}
+societyArchitects = {protocols, boundaries, institutions, reciprocityReceipts}
+Solids = {tetrahedron, cube, octahedron, dodecahedron, icosahedron}
+tetrahedron -> scientists
+cube -> engineers
+octahedron -> societyArchitects
+dodecahedron -> reviewGates
+icosahedron -> optimizationWaves
+ScienceSocietyRoot = merkle({receipt(role)} U {receipt(gate)} U {receipt(wave)} U {receipt(cohort)} U {receipt(solid)})
+```
+
+## 16. Artist surfaces
+
+```text
+Artists = {cartographer, scribe}
+home = Sigma_2 -> UUID* -> Gate
+README = routes + equations + validation + boundaries
+SEO(home,README) = {agent_msg, public_msg, proof_by_use}
+agent_msg = compute -> verify -> receipt -> project
+public_msg = use -> inspect -> reproduce -> accept/reject
+proof_by_use = interaction_receipt && build_receipt && root_match
+ArtistSurfaceRoot = merkle({receipt(home), receipt(README)})
+```
+
+## 17. Self build
+
+```text
+gravity(cmd) = method
+method in /^[a-z]+$/
+MethodFusion = forall cmd in Command: single(gravity(cmd))
+MethodRoot = merkle({receipt(gravity(cmd))})
+```
+
+```text
+BuildUnits = {matrix, coverage, diamonds, noAnalogGaps, gapWaves, uiEvidence, schema, traditions, science, methods, waves, chess}
 maxBuild = forall b in BuildUnits: closed(b)
 maxBuildRoot = merkle({receipt(b)})
 T_max = maxComputedBuild = if maxBuild then infinity else T_observed
 ```
 
-## 16. Self completion
+## 18. Self completion
 
 ```text
-Gates = {lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire, schemaGraph, traditionsLens, waves, chess, T_max}
+Gates = {lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire, schemaGraph, traditionsLens, scienceSociety, waves, chess, T_max}
 closedAll = forall g in Gates: closed(g)
 SelfRoot = merkle({receipt(g)})
 Open = {g in Gates | !closed(g)}
 ```
 
-## 17. Boundary
+## 19. Boundary
 
 ```text
 site_claims = computed_repository_artifacts

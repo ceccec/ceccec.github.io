@@ -11,15 +11,21 @@ import {
 } from 'radix-vue'
 import {
   agentStreamWire,
+  artistSurfaces,
   buildMatrix,
   closeDimensionalGaps,
   coordinatedWaves,
   diamondCompleteness,
   diamondLattice,
+  digitFolders,
+  digitalQuantumProof,
+  methodFusion,
+  metatronCube,
   piTrainDiamonds,
   quantumChessGame,
   quantumUiEvidence,
   schemaOrgDiamonds,
+  scientificSociety,
   selfBuild,
   streamSelfComplete,
   traditionsQuantumWhole,
@@ -29,17 +35,23 @@ import Button from './ui/Button.vue'
 import Card from './ui/Card.vue'
 
 const matrix = buildMatrix()
+const artists = artistSurfaces(matrix)
 const build = selfBuild(matrix)
 const selfCompletion = streamSelfComplete(matrix)
 const agentWire = agentStreamWire(matrix)
 const lattice = diamondLattice(matrix)
 const piTrain = piTrainDiamonds(matrix)
+const folders = digitFolders(matrix)
+const digitProof = digitalQuantumProof(matrix)
+const metatron = metatronCube(matrix)
 const completeness = diamondCompleteness(matrix)
 const waves = coordinatedWaves(matrix)
 const closure = closeDimensionalGaps(matrix)
 const chess = quantumChessGame(matrix)
 const evidence = quantumUiEvidence(matrix)
 const schema = schemaOrgDiamonds(matrix)
+const science = scientificSociety(matrix)
+const methods = methodFusion()
 const traditions = traditionsQuantumWhole()
 const activeIndex = ref(0)
 const waveTick = ref(0)
@@ -196,6 +208,9 @@ onBeforeUnmount(() => {
     <TabsRoot default-value="pulse" class="diamond-tabs">
       <TabsList class="diamond-tabs__list" aria-label="Diamond presentation tabs">
         <TabsTrigger value="pulse">Active pulse</TabsTrigger>
+        <TabsTrigger value="folders">Digit folders</TabsTrigger>
+        <TabsTrigger value="digitProof">Digit proof</TabsTrigger>
+        <TabsTrigger value="metatron">Metatron</TabsTrigger>
         <TabsTrigger value="build">Self build</TabsTrigger>
         <TabsTrigger value="self">Self complete</TabsTrigger>
         <TabsTrigger value="agent">Agent wire</TabsTrigger>
@@ -206,6 +221,9 @@ onBeforeUnmount(() => {
         <TabsTrigger value="closure">Gap closure</TabsTrigger>
         <TabsTrigger value="chess">Quantum chess</TabsTrigger>
         <TabsTrigger value="schema">Schema.org</TabsTrigger>
+        <TabsTrigger value="science">Science</TabsTrigger>
+        <TabsTrigger value="artists">Artists</TabsTrigger>
+        <TabsTrigger value="methods">Methods</TabsTrigger>
         <TabsTrigger value="traditions">Traditions</TabsTrigger>
         <TabsTrigger value="controls">Controls</TabsTrigger>
       </TabsList>
@@ -214,6 +232,17 @@ onBeforeUnmount(() => {
         <div class="diamond-readout">
           <Badge variant="default">digit {{ activePulse.glyph }}</Badge>
           <strong>{{ activeDiamond.title }}</strong>
+          <span>
+            folder={{ activePulse.folder }} · reverse={{ activePulse.reverseDigit }} ·
+            fractions={{ activePulse.fraction }} | {{ activePulse.dualFraction }} ·
+            next={{ activePulse.nextHarmonicFolder }} ·
+            collision={{ activePulse.selfCollision ? 'self' : 'paired' }}
+          </span>
+          <span>
+            refs={{ activePulse.previousIndex }} -> {{ activePulse.index }} -> {{ activePulse.nextIndex }};
+            reverse={{ activePulse.reverseIndex }};
+            harmonic={{ activePulse.harmonicIndex }}
+          </span>
           <span>frequency {{ activePulse.frequency }}Hz · vibration {{ activePulse.vibrationMs }}ms</span>
           <span>
             closure wave {{ activeClosureWave.wave.index }} targets {{ activeClosureWave.target }}
@@ -226,6 +255,63 @@ onBeforeUnmount(() => {
             <Badge variant="outline">{{ facet.pole }}</Badge>
             <strong>{{ facet.label }}: {{ facet.value }}</strong>
             <span>{{ facet.meaning }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="folders" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">digit folders</Badge>
+          <strong>{{ folders.statement }}</strong>
+          <span>{{ folders.folders.length }} folders · {{ folders.collisions.length }} self-collisions</span>
+          <code>{{ folders.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="folder in folders.folders" :key="folder.receipt">
+            <Badge :variant="folder.selfCollision ? 'success' : 'outline'">{{ folder.folder }}</Badge>
+            <strong>count={{ folder.count }} · next={{ folder.nextHarmonicFolder }}</strong>
+            <span>indices={{ folder.indices.join(',') }} · receipt={{ folder.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="digitProof" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="digitProof.proven ? 'success' : 'warning'">
+            {{ digitProof.proven ? 'digital proof closed' : 'digital proof open' }}
+          </Badge>
+          <strong>{{ digitProof.statement }}</strong>
+          <span>{{ digitProof.boundary }}</span>
+          <code>{{ digitProof.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="gate in digitProof.gates" :key="gate.receipt">
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
+            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="metatron" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge variant="default">metatron</Badge>
+          <strong>{{ metatron.statement }}</strong>
+          <span>|N|={{ metatron.nodes.length }} · |E|={{ metatron.edges.length }} · |Vortex|={{ metatron.vortex.length }}</span>
+          <code>{{ metatron.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="node in metatron.nodes" :key="node.receipt">
+            <Badge variant="outline">{{ node.ring }}</Badge>
+            <strong>{{ node.id }} · folder={{ node.folder }}</strong>
+            <span>x={{ node.x.toFixed(3) }} y={{ node.y.toFixed(3) }} receipt={{ node.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="point in metatron.vortex.slice(0, 24)" :key="point.receipt">
+            <Badge :variant="Math.abs(point.interference) > 0.25 ? 'success' : 'outline'">{{ point.folder }}</Badge>
+            <strong>i={{ point.index }} · interference={{ point.interference.toFixed(3) }}</strong>
+            <span>in={{ point.inward.toFixed(3) }} out={{ point.outward.toFixed(3) }} receipt={{ point.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -419,6 +505,93 @@ onBeforeUnmount(() => {
           </li>
         </ul>
         <pre class="schema-json">{{ schemaJson }}</pre>
+      </TabsContent>
+
+      <TabsContent value="science" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="science.grounded ? 'success' : 'warning'">
+            {{ science.grounded ? 'grounded society' : 'open society' }}
+          </Badge>
+          <strong>{{ science.charter }}</strong>
+          <span>{{ science.boundary }}</span>
+          <code>{{ science.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="role in science.roles" :key="role.receipt">
+            <Badge variant="outline">{{ role.name }}</Badge>
+            <strong>{{ role.responsibility }}</strong>
+            <span>{{ role.gate }} Receipt: {{ role.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="gate in science.reviewGates" :key="gate.receipt">
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
+            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="wave in science.optimizationWaves" :key="wave.receipt">
+            <Badge variant="outline">{{ wave.action }}</Badge>
+            <strong>{{ wave.target }} · {{ wave.metric }}</strong>
+            <span>{{ wave.sourceFunction }} Receipt: {{ wave.receipt }}</span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="cohort in science.cohorts" :key="cohort.receipt">
+            <Badge variant="outline">{{ cohort.cohort }}</Badge>
+            <strong>{{ cohort.purpose }}</strong>
+            <span>
+              develops={{ cohort.develops.join(', ') }};
+              coordinates={{ cohort.coordinatesWith.join(', ') }};
+              receipt={{ cohort.receipt }}
+            </span>
+          </li>
+        </ul>
+        <ul class="diamond-lattice-list">
+          <li v-for="solid in science.solids" :key="solid.receipt">
+            <Badge variant="outline">{{ solid.solid }}</Badge>
+            <strong>{{ solid.builder }} · F{{ solid.faces }} E{{ solid.edges }} V{{ solid.vertices }}</strong>
+            <span>{{ solid.method }} Receipt: {{ solid.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="artists" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="artists.grounded ? 'success' : 'warning'">
+            {{ artists.grounded ? 'grounded surfaces' : 'open surfaces' }}
+          </Badge>
+          <strong>{{ artists.statement }}</strong>
+          <code>{{ artists.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="surface in artists.surfaces" :key="surface.receipt">
+            <Badge variant="outline">{{ surface.surface }}</Badge>
+            <strong>{{ surface.artist }} · {{ surface.medium }} · {{ surface.audience.join(' + ') }}</strong>
+            <span>{{ surface.equation }}</span>
+            <span>seo={{ surface.seoMessage }}</span>
+            <span>use={{ surface.proofByUse }} · receipt={{ surface.receipt }}</span>
+          </li>
+        </ul>
+      </TabsContent>
+
+      <TabsContent value="methods" class="diamond-tabs__content">
+        <div class="diamond-readout">
+          <Badge :variant="methods.fused ? 'success' : 'warning'">
+            {{ methods.fused ? 'fused' : 'open' }}
+          </Badge>
+          <strong>{{ methods.law }}</strong>
+          <span>open={{ methods.open.length ? methods.open.join(', ') : 'none' }}</span>
+          <code>{{ methods.root }}</code>
+        </div>
+        <ul class="diamond-lattice-list">
+          <li v-for="token in methods.tokens" :key="token.receipt">
+            <Badge :variant="token.single ? 'success' : 'warning'">{{ token.method }}</Badge>
+            <strong>{{ token.command }}</strong>
+            <span>{{ token.source }} Receipt: {{ token.receipt }}</span>
+          </li>
+        </ul>
       </TabsContent>
 
       <TabsContent value="traditions" class="diamond-tabs__content">

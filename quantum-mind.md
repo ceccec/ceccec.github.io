@@ -53,8 +53,9 @@ receipt(cmd) := UUID(cmd, ok, data)
 ```text
 C = { site.shell, self.build, self.complete, agent.streamWire, ui.doubleTorus,
       ui.useCases, diamond.lattice, diamond.piTrain, diamond.complete,
-      wave.coordination, wave.closeGaps, chess.quantum,
+      diamond.metatron, wave.coordination, wave.closeGaps, chess.quantum,
       schemaOrg.diamonds, traditions.quantumWhole, torus.math,
+      science.society, artists.surfaces, method.fusion,
       humanity.implications, source.contribute, torus.matrix,
       torus.vector, torus.flow, repository.api, proof.verify }
 ```
@@ -109,9 +110,15 @@ complete(D*) :=
 ## 6. Pi train
 
 ```text
-pi := 314159265358979323846264338327950288419716939937510...
+pi := computePiDigits(n)
 for i in [0,n):
   d_i       := digit(pi_i)
+  r_i       := digit(pi_{n-1-i})
+  folder_i  := d_i / r_i
+  fraction_i := d_i/r_i
+  dual_i := r_i/d_i
+  collide_i := [d_i = r_i]
+  harmonic_i := folder_{i+1 mod n}
   theta_i   := (i/n) * 4*pi
   phi_i     := ((d_i + i/2)/10) * 2*pi
   x_i       := (R + r_i*cos(phi_i))*cos(theta_i)
@@ -119,10 +126,29 @@ for i in [0,n):
   z_i       := r_i*sin(phi_i)
   freq_i    := 174 + 33*d_i + 7*(i mod 7)
   vibe_i    := 18 + 9*d_i
-  D_i       := Diamond(pi_i, x_i,y_i,z_i,freq_i,vibe_i)
+  D_i       := Diamond(folder_i, x_i,y_i,z_i,freq_i,vibe_i)
+0/0,1/1,...,9/9 := self-collision folders
+DigitProof := digits -> folders -> coordinates -> waves -> superpositions -> receipts -> roots
+DigitProofClosed := forall gate in {digitStream, reverseFolders, waves, board, metatron, maxBuild}: closed(gate)
+DigitIndex[i] := { prev_i,i,next_i,reverse_i,harmonic_i,d_i,r_i,folder_i,fraction_i,dual_i,theta_i,phi_i,x_i,y_i,z_i,receipt_i }
+persist(DigitIndex) := /digit-index.json
+DigitSeal := forall i: folder_i=d_i/r_i && dual_i=r_i/d_i && receipt_i!=empty
 ```
 
 ## 7. Waves
+
+```text
+MetatronCube := N U E
+N := {center} U {inner_d | d in 0..9} U {outer_d | d in 0..9}
+inner_d.folder := d/d
+outer_d.folder := d/(9-d)
+E := { harmonic edge n_i -> n_j }
+doubleVortex_i := { inward_i, outward_i, interference_i }
+inward_i := sin(theta_i) * (collide_i ? 1 : 1/2)
+outward_i := cos(phi_i) * (d_i+1)/10
+interference_i := inward_i * outward_i
+MetatronRoot := merkle({ receipt(N) } U { receipt(E) } U { receipt(doubleVortex_i) })
+```
 
 ```text
 wave_i := { phase_i, amplitude_i, frequency_i, polarity_i, receipt_i }
@@ -189,27 +215,68 @@ superposition_j subset { king, queen, rook, bishop, knight, pawn }
 chessRoot := merkle({ square_j.receipt })
 ```
 
-## 14. Self build
+## 14. Scientific society
+
+```text
+Roles := { observer, replicator, falsifier, steward }
+ReviewGates := { reproducibleBuild, diamondCompleteness, uiEvidence,
+                 gapClosure, schemaTrace, nonReductiveTraditions }
+OptimizationWaves := map(g in ReviewGates, g.closed ? sustain(g) : improve(g))
+Cohorts := { scientists, engineers, societyArchitects }
+scientists -> { hypotheses, measurements, negativeTests, evidenceReceipts }
+engineers -> { interfaces, automation, tests, deploymentReceipts }
+societyArchitects -> { protocols, boundaries, institutions, reciprocityReceipts }
+Solids := { tetrahedron, cube, octahedron, dodecahedron, icosahedron }
+tetrahedron -> scientists
+cube -> engineers
+octahedron -> societyArchitects
+dodecahedron -> reviewGates
+icosahedron -> optimizationWaves
+ScienceSocietyRoot := merkle({ receipt(role) } U { receipt(gate) } U { receipt(wave) } U { receipt(cohort) } U { receipt(solid) })
+```
+
+## 15. Artist surfaces
+
+```text
+Artists := { cartographer, scribe }
+home := Sigma_2 -> UUID* -> Gate
+README := routes + equations + validation + boundaries
+SEO(home,README) := { agent_msg, public_msg, proof_by_use }
+agent_msg := compute -> verify -> receipt -> project
+public_msg := use -> inspect -> reproduce -> accept/reject
+proof_by_use := interaction_receipt && build_receipt && root_match
+ArtistSurfaceRoot := merkle({ receipt(home), receipt(README) })
+```
+
+## 16. Self build
+
+```text
+gravity(cmd) := method
+method in /^[a-z]+$/
+MethodFusion := forall cmd in C: single(gravity(cmd))
+MethodRoot := merkle({ receipt(gravity(cmd)) | cmd in C })
+```
 
 ```text
 BuildUnits := {matrix, coverage, diamonds, noAnalogGaps, gapWaves,
-               uiEvidence, schema, traditions, waves, chess}
+               uiEvidence, schema, traditions, science, methods, waves, chess}
 maxBuild := forall b in BuildUnits: closed(b)
 maxBuildRoot := merkle({ receipt(b) | b in BuildUnits })
 T_max := maxComputedBuild := if maxBuild then infinity else T_observed
 ```
 
-## 15. Self completion
+## 17. Self completion
 
 ```text
 Gates := { lattice, noAnalogGaps, gapWaves, uiEvidence, agentWire,
-           schemaGraph, traditionsLens, coordinatedWaves, quantumChess, T_max }
+           schemaGraph, traditionsLens, scienceSociety, coordinatedWaves,
+           quantumChess, T_max }
 selfComplete := forall g in Gates: closed(g)
 selfRoot := merkle({ receipt(g) | g in Gates })
 openGates := { g | !closed(g) }
 ```
 
-## 16. Boundary
+## 18. Boundary
 
 ```text
 Claim(site) = computed(repo)

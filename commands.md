@@ -35,11 +35,16 @@ C = {
   concept.diamond.lattice,
   concept.diamond.piTrain,
   concept.diamond.complete,
+  concept.diamond.metatron,
+  concept.digit.proof,
   concept.wave.coordination,
   concept.wave.closeGaps,
   concept.chess.quantum,
   concept.schemaOrg.diamonds,
   concept.traditions.quantumWhole,
+  concept.science.society,
+  concept.artists.surfaces,
+  concept.method.fusion,
   concept.torus.math,
   concept.humanity.implications,
   concept.source.contribute,
@@ -59,4 +64,6 @@ C = {
 pass(cmd) := result.ok && len(result.uuid) > 0
 manual_surface := any(view) where receipt(view) = empty
 allow(view) := !manual_surface
+gravity(command) := singleWordMethod(command)
+fusion := forall cmd in C: gravity(cmd) in /^[a-z]+$/
 ```

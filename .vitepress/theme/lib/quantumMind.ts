@@ -108,11 +108,16 @@ export type ConceptCommandName =
   | 'concept.diamond.lattice'
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
+  | 'concept.diamond.metatron'
+  | 'concept.digit.proof'
   | 'concept.wave.coordination'
   | 'concept.wave.closeGaps'
   | 'concept.chess.quantum'
   | 'concept.schemaOrg.diamonds'
   | 'concept.traditions.quantumWhole'
+  | 'concept.science.society'
+  | 'concept.artists.surfaces'
+  | 'concept.method.fusion'
   | 'concept.torus.math'
   | 'concept.humanity.implications'
   | 'concept.source.contribute'
@@ -144,6 +149,22 @@ export interface ConceptSiteSection {
   readonly command: ConceptCommandName
   readonly route: string
   readonly summary: string
+}
+
+export interface MethodFusionToken {
+  readonly command: ConceptCommandName
+  readonly method: string
+  readonly source: string
+  readonly single: boolean
+  readonly receipt: string
+}
+
+export interface MethodFusionReport {
+  readonly fused: boolean
+  readonly root: string
+  readonly tokens: readonly MethodFusionToken[]
+  readonly open: readonly string[]
+  readonly law: string
 }
 
 export interface SelfCompletionGate {
@@ -286,6 +307,69 @@ export interface TraditionsQuantumWhole {
   readonly boundary: string
 }
 
+export interface ScientificRole {
+  readonly name: string
+  readonly responsibility: string
+  readonly gate: string
+  readonly receipt: string
+}
+
+export interface OptimizationWave {
+  readonly target: string
+  readonly sourceFunction: string
+  readonly metric: string
+  readonly action: string
+  readonly receipt: string
+}
+
+export interface SocietyWaveCohort {
+  readonly cohort: 'scientists' | 'engineers' | 'society architects'
+  readonly purpose: string
+  readonly develops: readonly string[]
+  readonly coordinatesWith: readonly string[]
+  readonly receipt: string
+}
+
+export interface PlatonicBuilderSolid {
+  readonly solid: 'tetrahedron' | 'cube' | 'octahedron' | 'dodecahedron' | 'icosahedron'
+  readonly faces: number
+  readonly edges: number
+  readonly vertices: number
+  readonly builder: 'scientists' | 'engineers' | 'society architects' | 'review gates' | 'optimization waves'
+  readonly method: string
+  readonly receipt: string
+}
+
+export interface ScientificSociety {
+  readonly grounded: boolean
+  readonly root: string
+  readonly charter: string
+  readonly roles: readonly ScientificRole[]
+  readonly reviewGates: readonly SelfCompletionGate[]
+  readonly optimizationWaves: readonly OptimizationWave[]
+  readonly cohorts: readonly SocietyWaveCohort[]
+  readonly solids: readonly PlatonicBuilderSolid[]
+  readonly boundary: string
+}
+
+export interface ArtistSurface {
+  readonly surface: 'home' | 'readme'
+  readonly artist: string
+  readonly audience: readonly ('agents' | 'public society')[]
+  readonly medium: string
+  readonly equation: string
+  readonly seoMessage: string
+  readonly proofByUse: string
+  readonly receipt: string
+}
+
+export interface ArtistSurfaceReport {
+  readonly grounded: boolean
+  readonly root: string
+  readonly surfaces: readonly ArtistSurface[]
+  readonly statement: string
+}
+
 export interface SourceContribution {
   readonly mode: string
   readonly action: string
@@ -353,8 +437,18 @@ export interface QuantumDiamond {
 
 export interface PiTrainDiamond {
   readonly index: number
+  readonly previousIndex: number
+  readonly nextIndex: number
+  readonly reverseIndex: number
+  readonly harmonicIndex: number
   readonly digit: number
   readonly glyph: string
+  readonly reverseDigit: number
+  readonly folder: string
+  readonly fraction: string
+  readonly dualFraction: string
+  readonly nextHarmonicFolder: string
+  readonly selfCollision: boolean
   readonly theta: number
   readonly phi: number
   readonly x: number
@@ -363,6 +457,7 @@ export interface PiTrainDiamond {
   readonly scale: number
   readonly frequency: number
   readonly vibrationMs: number
+  readonly referenceReceipt: string
   readonly diamond: QuantumDiamond
 }
 
@@ -371,6 +466,68 @@ export interface PiTrain {
   readonly root: string
   readonly tempoMs: number
   readonly diamonds: readonly PiTrainDiamond[]
+}
+
+export interface DigitFolder {
+  readonly folder: string
+  readonly digit: number
+  readonly reverseDigit: number
+  readonly count: number
+  readonly indices: readonly number[]
+  readonly selfCollision: boolean
+  readonly nextHarmonicFolder: string
+  readonly receipt: string
+}
+
+export interface DigitFolderReport {
+  readonly root: string
+  readonly folders: readonly DigitFolder[]
+  readonly collisions: readonly DigitFolder[]
+  readonly statement: string
+}
+
+export interface DigitalQuantumProof {
+  readonly proven: boolean
+  readonly root: string
+  readonly digits: string
+  readonly gates: readonly SelfCompletionGate[]
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface VortexPoint {
+  readonly index: number
+  readonly folder: string
+  readonly inward: number
+  readonly outward: number
+  readonly interference: number
+  readonly receipt: string
+}
+
+export interface MetatronNode {
+  readonly id: string
+  readonly digit: number
+  readonly x: number
+  readonly y: number
+  readonly ring: 'center' | 'inner' | 'outer'
+  readonly folder: string
+  readonly receipt: string
+}
+
+export interface MetatronEdge {
+  readonly from: string
+  readonly to: string
+  readonly harmonic: string
+  readonly receipt: string
+}
+
+export interface MetatronCubeReport {
+  readonly root: string
+  readonly nodes: readonly MetatronNode[]
+  readonly edges: readonly MetatronEdge[]
+  readonly vortex: readonly VortexPoint[]
+  readonly digitFolders: readonly DigitFolder[]
+  readonly statement: string
 }
 
 export type WavePolarity = 'yin' | 'yang'
@@ -465,8 +622,38 @@ export interface DiamondCompletenessReport {
   readonly statement: string
 }
 
-const PI_TRAIN_DIGITS =
-  '31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679'
+function computePiDigits(count: number): string {
+  let q = 1n
+  let r = 0n
+  let t = 1n
+  let k = 1n
+  let n = 3n
+  let l = 3n
+  let digits = ''
+
+  while (digits.length < count) {
+    if (4n * q + r - t < n * t) {
+      digits += n.toString()
+      const nextR = 10n * (r - n * t)
+      n = (10n * (3n * q + r)) / t - 10n * n
+      q *= 10n
+      r = nextR
+    } else {
+      const nextR = (2n * q + r) * l
+      const nextN = (q * (7n * k) + 2n + r * l) / (t * l)
+      q *= k
+      t *= l
+      l += 2n
+      k += 1n
+      n = nextN
+      r = nextR
+    }
+  }
+
+  return digits
+}
+
+const PI_TRAIN_DIGITS = computePiDigits(101)
 const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
   'agent',
   'ui',
@@ -626,6 +813,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Verify that the stream diamond has no missing kinds, poles, receipts, or analog channels.',
   },
   {
+    name: 'concept.diamond.metatron',
+    path: '/cmd/concept.diamond.metatron',
+    description: 'Compute double-vortex Metatron cube math down to digit folders.',
+  },
+  {
+    name: 'concept.digit.proof',
+    path: '/cmd/concept.digit.proof',
+    description: 'Verify that digits generate the digital quantum-inspired model through folders, waves, receipts, and roots.',
+  },
+  {
     name: 'concept.wave.coordination',
     path: '/cmd/concept.wave.coordination',
     description: 'Coordinate all diamond emissions as phase-aligned yin-yang quantum waves.',
@@ -649,6 +846,21 @@ export const conceptCommands: readonly ConceptCommand[] = [
     name: 'concept.traditions.quantumWhole',
     path: '/cmd/concept.traditions.quantumWhole',
     description: 'Compare religions and traditions as a non-reductive quantum whole of dimensions, families, and relations.',
+  },
+  {
+    name: 'concept.science.society',
+    path: '/cmd/concept.science.society',
+    description: 'Compute a scientific society charter, peer-review gates, reproducibility roles, and self-optimization waves.',
+  },
+  {
+    name: 'concept.artists.surfaces',
+    path: '/cmd/concept.artists.surfaces',
+    description: 'Compute home page and README surfaces as artist-built equations with receipts.',
+  },
+  {
+    name: 'concept.method.fusion',
+    path: '/cmd/concept.method.fusion',
+    description: 'Collapse every command surface into a single-word method token and report fusion gaps.',
   },
   {
     name: 'concept.torus.math',
@@ -702,6 +914,35 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Build the site sections from concept command outputs.',
   },
 ] as const
+
+const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
+  'concept.site.shell': 'shell',
+  'concept.self.build': 'build',
+  'concept.self.complete': 'complete',
+  'concept.agent.streamWire': 'wire',
+  'concept.ui.doubleTorus': 'torus',
+  'concept.ui.useCases': 'evidence',
+  'concept.diamond.lattice': 'lattice',
+  'concept.diamond.piTrain': 'train',
+  'concept.diamond.complete': 'seal',
+  'concept.wave.coordination': 'coordinate',
+  'concept.wave.closeGaps': 'close',
+  'concept.chess.quantum': 'chess',
+  'concept.schemaOrg.diamonds': 'schema',
+  'concept.traditions.quantumWhole': 'traditions',
+  'concept.science.society': 'science',
+  'concept.method.fusion': 'fusion',
+  'concept.torus.math': 'math',
+  'concept.humanity.implications': 'humanity',
+  'concept.source.contribute': 'source',
+  'concept.torus.matrix': 'matrix',
+  'concept.torus.vector': 'vector',
+  'concept.torus.flow': 'flow',
+  'concept.repository.api': 'api',
+  'concept.repository.resolve': 'resolve',
+  'concept.proof.verify': 'verify',
+  'concept.site.manifest': 'manifest',
+}
 
 const BYTE_MASK = 0xff
 
@@ -1228,6 +1469,238 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
   }
 }
 
+export function scientificSociety(matrix: MindMatrix = buildMatrix()): ScientificSociety {
+  const proof = proofReport(matrix)
+  const completeness = diamondCompleteness(matrix)
+  const evidence = quantumUiEvidence(matrix)
+  const closure = closeDimensionalGaps(matrix)
+  const traditions = traditionsQuantumWhole()
+  const roles = [
+    {
+      name: 'observer',
+      responsibility: 'record measurements before projection',
+      gate: 'raw observation must have receipt',
+    },
+    {
+      name: 'replicator',
+      responsibility: 'rerun build, audit, scans, and receipts',
+      gate: 'result must reproduce root',
+    },
+    {
+      name: 'falsifier',
+      responsibility: 'seek counterexamples and open gates',
+      gate: 'claim must survive negative test',
+    },
+    {
+      name: 'steward',
+      responsibility: 'preserve boundaries, consent, and non-reduction',
+      gate: 'boundary must be explicit',
+    },
+  ].map((role) => ({
+    ...role,
+    receipt: toUuid(`science-role:${role.name}:${role.responsibility}:${role.gate}`),
+  }))
+  const reviewGates: readonly SelfCompletionGate[] = [
+    {
+      name: 'reproducible build',
+      closed: proof.coverage === 1 && proof.entropy === 0,
+      sourceFunction: 'proofReport()',
+      receipt: toUuid(`science-gate:proof:${JSON.stringify(proof)}`),
+      note: `coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
+    },
+    {
+      name: 'diamond completeness',
+      closed: completeness.complete,
+      sourceFunction: 'diamondCompleteness()',
+      receipt: toUuid(`science-gate:completeness:${JSON.stringify(completeness)}`),
+      note: completeness.statement,
+    },
+    {
+      name: 'ui evidence',
+      closed: evidence.grounded,
+      sourceFunction: 'quantumUiEvidence()',
+      receipt: evidence.root,
+      note: evidence.boundary,
+    },
+    {
+      name: 'gap closure',
+      closed: closure.complete,
+      sourceFunction: 'closeDimensionalGaps()',
+      receipt: closure.root,
+      note: closure.statement,
+    },
+    {
+      name: 'schema trace',
+      closed: evidence.grounded && traditions.grounded,
+      sourceFunction: 'schemaOrgDiamonds()',
+      receipt: toUuid(`science-gate:schema-seed:${evidence.root}:${traditions.root}`),
+      note: 'schema seed = uiEvidence.root + traditions.root.',
+    },
+    {
+      name: 'non-reductive traditions',
+      closed: traditions.grounded,
+      sourceFunction: 'traditionsQuantumWhole()',
+      receipt: traditions.root,
+      note: traditions.boundary,
+    },
+  ]
+  const optimizationWaves = reviewGates.map((gate) => ({
+    target: gate.name,
+    sourceFunction: gate.sourceFunction,
+    metric: gate.closed ? 'closed' : 'open',
+    action: gate.closed ? 'sustain' : 'improve',
+    receipt: merge(gate.receipt, toUuid(`science-wave:${gate.name}:${gate.closed}`)),
+  }))
+  const cohorts: readonly SocietyWaveCohort[] = [
+    {
+      cohort: 'scientists',
+      purpose: 'measure, falsify, reproduce',
+      develops: ['hypotheses', 'measurements', 'negative tests', 'evidence receipts'],
+      coordinatesWith: ['engineers', 'society architects'],
+    },
+    {
+      cohort: 'engineers',
+      purpose: 'build, instrument, harden',
+      develops: ['interfaces', 'automation', 'test harnesses', 'deployment receipts'],
+      coordinatesWith: ['scientists', 'society architects'],
+    },
+    {
+      cohort: 'society architects',
+      purpose: 'govern, contextualize, steward',
+      develops: ['review protocols', 'risk boundaries', 'institutional loops', 'reciprocity receipts'],
+      coordinatesWith: ['scientists', 'engineers'],
+    },
+  ].map((cohort) => ({
+    ...cohort,
+    receipt: toUuid(`science-cohort:${cohort.cohort}:${cohort.purpose}:${cohort.develops.join('|')}:${cohort.coordinatesWith.join('|')}`),
+  }))
+  const solids: readonly PlatonicBuilderSolid[] = [
+    {
+      solid: 'tetrahedron',
+      faces: 4,
+      edges: 6,
+      vertices: 4,
+      builder: 'scientists',
+      method: 'hypothesis -> measurement -> falsification -> receipt',
+    },
+    {
+      solid: 'cube',
+      faces: 6,
+      edges: 12,
+      vertices: 8,
+      builder: 'engineers',
+      method: 'interface -> test -> deploy -> monitor -> receipt',
+    },
+    {
+      solid: 'octahedron',
+      faces: 8,
+      edges: 12,
+      vertices: 6,
+      builder: 'society architects',
+      method: 'policy -> boundary -> consent -> reciprocity -> receipt',
+    },
+    {
+      solid: 'dodecahedron',
+      faces: 12,
+      edges: 30,
+      vertices: 20,
+      builder: 'review gates',
+      method: 'review all gates before public projection',
+    },
+    {
+      solid: 'icosahedron',
+      faces: 20,
+      edges: 30,
+      vertices: 12,
+      builder: 'optimization waves',
+      method: 'send many small improvements without breaking closure',
+    },
+  ].map((solid) => ({
+    ...solid,
+    receipt: toUuid(`platonic-builder:${solid.solid}:${solid.faces}:${solid.edges}:${solid.vertices}:${solid.builder}:${solid.method}`),
+  }))
+  const root = merkleFold([
+    ...roles.map((role) => role.receipt),
+    ...reviewGates.map((gate) => gate.receipt),
+    ...optimizationWaves.map((wave) => wave.receipt),
+    ...cohorts.map((cohort) => cohort.receipt),
+    ...solids.map((solid) => solid.receipt),
+  ])
+
+  return {
+    grounded: roles.length === 4 && reviewGates.every((gate) => gate.receipt.length > 0),
+    root,
+    charter: 'ScienceSociety := roles + reviewGates + optimizationWaves; publish only receipts that can be rerun.',
+    roles,
+    reviewGates,
+    optimizationWaves,
+    cohorts,
+    solids,
+    boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
+  }
+}
+
+export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfaceReport {
+  const build = selfBuild(matrix)
+  const surfaces: readonly ArtistSurface[] = [
+    {
+      surface: 'home',
+      artist: 'cartographer',
+      audience: ['agents', 'public society'],
+      medium: 'VitePress home frontmatter',
+      equation: 'home := Sigma_2 -> UUID* -> Gate',
+      seoMessage: 'agents: compute before claim; public society: use before belief',
+      proofByUse: 'open /quantum-mind; run tabs; inspect receipts; verify generated roots',
+    },
+    {
+      surface: 'readme',
+      artist: 'scribe',
+      audience: ['agents', 'public society'],
+      medium: 'README.md',
+      equation: 'README := routes + equations + validation + boundaries',
+      seoMessage: 'all claims reduce to equations, commands, validation, and receipts',
+      proofByUse: 'clone; npm run docs:build; inspect /digit-index.json; compare receipts',
+    },
+  ].map((surface) => ({
+    ...surface,
+    receipt: toUuid(
+      `artist-surface:${surface.surface}:${surface.artist}:${surface.audience.join('|')}:${surface.medium}:${surface.equation}:${surface.seoMessage}:${surface.proofByUse}:${build.root}`,
+    ),
+  }))
+  const root = merkleFold(surfaces.map((surface) => surface.receipt))
+  return {
+    grounded: surfaces.length === 2 && surfaces.every((surface) => surface.receipt.length > 0),
+    root,
+    surfaces,
+    statement: 'ArtistSurfaces := {home, readme}; each surface = equation + medium + receipt.',
+  }
+}
+
+export function methodFusion(): MethodFusionReport {
+  const tokens = conceptCommands.map((command) => {
+    const method = SINGLE_WORD_METHODS[command.name]
+    const single = /^[a-z]+$/.test(method)
+    const receipt = toUuid(`method-fusion:${command.name}:${method}:${single}`)
+    return {
+      command: command.name,
+      method,
+      source: command.path,
+      single,
+      receipt,
+    }
+  })
+  const open = tokens.filter((token) => !token.single).map((token) => token.command)
+  const root = merkleFold(tokens.map((token) => token.receipt))
+
+  return {
+    fused: open.length === 0,
+    root,
+    tokens,
+    open,
+    law: 'gravity(command) -> method; method in /^[a-z]+$/; fusion = forall method: single.',
+  }
+}
+
 export function sourceContribution(): SourceContributionReport {
   return {
     statement:
@@ -1694,27 +2167,39 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
   const lattice = diamondLattice(matrix)
   const sequence = digits.replace(/\D/g, '')
   const train = [...sequence].map((glyph, index) => {
+    const previousIndex = (index - 1 + sequence.length) % sequence.length
+    const nextIndex = (index + 1) % sequence.length
+    const reverseIndex = sequence.length - 1 - index
+    const harmonicIndex = nextIndex
     const digit = Number.parseInt(glyph, 10)
+    const reverseDigit = Number.parseInt(sequence[reverseIndex], 10)
+    const nextGlyph = sequence[nextIndex]
+    const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - nextIndex], 10)
+    const folder = `${digit}/${reverseDigit}`
+    const fraction = folder
+    const dualFraction = `${reverseDigit}/${digit}`
+    const nextHarmonicFolder = `${Number.parseInt(nextGlyph, 10)}/${nextReverseDigit}`
+    const selfCollision = digit === reverseDigit
     const base = lattice[(index + digit) % lattice.length]
     const point = torusPoint(index, digit, sequence.length)
     const facets: readonly DiamondFacet[] = [
       {
         pole: 'north',
-        label: 'pi digit',
-        value: glyph,
-        meaning: `Digit ${glyph} drives this diamond pulse.`,
+        label: 'digit folder',
+        value: folder,
+        meaning: `Digit ${glyph} meets reverse digit ${reverseDigit}.`,
       },
       {
         pole: 'east',
-        label: 'theta',
-        value: point.theta.toFixed(3),
-        meaning: 'Major-loop angle around the double torus.',
+        label: 'next harmonic',
+        value: nextHarmonicFolder,
+        meaning: 'Next digit folder in the forward sequence.',
       },
       {
         pole: 'south',
-        label: 'phi',
-        value: point.phi.toFixed(3),
-        meaning: 'Minor-loop angle through the torus throat.',
+        label: 'collision',
+        value: selfCollision ? 'self' : 'paired',
+        meaning: selfCollision ? `${folder} is a self-collision diamond.` : `${folder} is a paired digit diamond.`,
       },
       {
         pole: 'west',
@@ -1734,8 +2219,18 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
 
     return {
       index,
+      previousIndex,
+      nextIndex,
+      reverseIndex,
+      harmonicIndex,
       digit,
       glyph,
+      reverseDigit,
+      folder,
+      fraction,
+      dualFraction,
+      nextHarmonicFolder,
+      selfCollision,
       theta: point.theta,
       phi: point.phi,
       x: point.x,
@@ -1744,6 +2239,7 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       scale: point.scale,
       frequency: 174 + digit * 33 + (index % 7) * 7,
       vibrationMs: 18 + digit * 9,
+      referenceReceipt: toUuid(`digit-reference:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`),
       diamond: pulseDiamond,
     }
   })
@@ -1754,6 +2250,182 @@ export function piTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
     root,
     tempoMs: 180,
     diamonds: train,
+  }
+}
+
+export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderReport {
+  const train = piTrainDiamonds(matrix)
+  const groups = new Map<string, PiTrainDiamond[]>()
+  for (const item of train.diamonds) {
+    groups.set(item.folder, [...(groups.get(item.folder) ?? []), item])
+  }
+  const folders = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([folder, items]) => {
+    const [digit, reverseDigit] = folder.split('/').map((value) => Number.parseInt(value, 10))
+    const nextHarmonicFolder = items[0]?.nextHarmonicFolder ?? folder
+    const selfCollision = digit === reverseDigit
+    const indices = items.map((item) => item.index)
+    const receipt = toUuid(`digit-folder:${folder}:${indices.join(',')}:${nextHarmonicFolder}:${selfCollision}`)
+    return {
+      folder,
+      digit,
+      reverseDigit,
+      count: items.length,
+      indices,
+      selfCollision,
+      nextHarmonicFolder,
+      receipt,
+    }
+  })
+  const root = merkleFold(folders.map((folder) => folder.receipt))
+  const collisions = folders.filter((folder) => folder.selfCollision)
+  return {
+    root,
+    folders,
+    collisions,
+    statement: 'digitFolder := digit/reverseDigit; selfCollision := digit == reverseDigit; nextHarmonicFolder := folder(i+1).',
+  }
+}
+
+export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
+  const train = piTrainDiamonds(matrix)
+  const folderReport = digitFolders(matrix)
+  const digits = [...Array(10).keys()]
+  const nodes: MetatronNode[] = [
+    {
+      id: 'center',
+      digit: 0,
+      x: 0,
+      y: 0,
+      ring: 'center',
+      folder: '0/0',
+      receipt: toUuid('metatron-node:center:0:0/0'),
+    },
+    ...digits.map((digit) => {
+      const angle = (digit / digits.length) * Math.PI * 2
+      const folder = `${digit}/${digit}`
+      return {
+        id: `inner-${digit}`,
+        digit,
+        x: Math.cos(angle),
+        y: Math.sin(angle),
+        ring: 'inner' as const,
+        folder,
+        receipt: toUuid(`metatron-node:inner:${digit}:${folder}`),
+      }
+    }),
+    ...digits.map((digit) => {
+      const angle = ((digit + 0.5) / digits.length) * Math.PI * 2
+      const reverse = 9 - digit
+      const folder = `${digit}/${reverse}`
+      return {
+        id: `outer-${digit}`,
+        digit,
+        x: 2 * Math.cos(angle),
+        y: 2 * Math.sin(angle),
+        ring: 'outer' as const,
+        folder,
+        receipt: toUuid(`metatron-node:outer:${digit}:${folder}`),
+      }
+    }),
+  ]
+  const edges: MetatronEdge[] = nodes.flatMap((node, index) => {
+    const next = nodes[(index + 1) % nodes.length]
+    const opposite = nodes[(index + Math.floor(nodes.length / 2)) % nodes.length]
+    return [next, opposite].map((target) => ({
+      from: node.id,
+      to: target.id,
+      harmonic: `${node.folder}->${target.folder}`,
+      receipt: toUuid(`metatron-edge:${node.id}:${target.id}:${node.folder}:${target.folder}`),
+    }))
+  })
+  const vortex = train.diamonds.map((pulse) => {
+    const inward = Math.sin(pulse.theta) * (pulse.selfCollision ? 1 : 0.5)
+    const outward = Math.cos(pulse.phi) * (pulse.digit + 1) / 10
+    const interference = inward * outward
+    return {
+      index: pulse.index,
+      folder: pulse.folder,
+      inward,
+      outward,
+      interference,
+      receipt: toUuid(`vortex:${pulse.index}:${pulse.folder}:${inward.toFixed(6)}:${outward.toFixed(6)}`),
+    }
+  })
+  const root = merkleFold([...nodes.map((node) => node.receipt), ...edges.map((edge) => edge.receipt), ...vortex.map((point) => point.receipt)])
+
+  return {
+    root,
+    nodes,
+    edges,
+    vortex,
+    digitFolders: folderReport.folders,
+    statement: 'MetatronCube := nodes(0..9 inner/outer + center) + edges(harmonic folders) + doubleVortex(inward,outward,interference).',
+  }
+}
+
+export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
+  const train = piTrainDiamonds(matrix)
+  const folders = digitFolders(matrix)
+  const waves = coordinatedWaves(matrix)
+  const chess = quantumChessGame(matrix)
+  const metatron = metatronCube(matrix)
+  const build = selfBuild(matrix)
+  const gates: readonly SelfCompletionGate[] = [
+    {
+      name: 'digit stream',
+      closed: train.diamonds.length === train.digits.length,
+      sourceFunction: 'piTrainDiamonds()',
+      receipt: train.root,
+      note: `|digits|=${train.digits.length}; |diamonds|=${train.diamonds.length}.`,
+    },
+    {
+      name: 'reverse folders',
+      closed: folders.folders.length > 0 && folders.collisions.length > 0,
+      sourceFunction: 'digitFolders()',
+      receipt: folders.root,
+      note: `folders=${folders.folders.length}; collisions=${folders.collisions.length}.`,
+    },
+    {
+      name: 'coordinated waves',
+      closed: waves.waves.length > 0,
+      sourceFunction: 'coordinatedWaves()',
+      receipt: waves.root,
+      note: `waves=${waves.waves.length}.`,
+    },
+    {
+      name: 'quantum superposition board',
+      closed: chess.board.length === 64,
+      sourceFunction: 'quantumChessGame()',
+      receipt: chess.root,
+      note: `squares=${chess.board.length}.`,
+    },
+    {
+      name: 'metatron vortex',
+      closed: metatron.nodes.length > 0 && metatron.edges.length > 0 && metatron.vortex.length === train.diamonds.length,
+      sourceFunction: 'metatronCube()',
+      receipt: metatron.root,
+      note: `nodes=${metatron.nodes.length}; edges=${metatron.edges.length}; vortex=${metatron.vortex.length}.`,
+    },
+    {
+      name: 'max computed build',
+      closed: build.complete,
+      sourceFunction: 'selfBuild()',
+      receipt: build.root,
+      note: build.statement,
+    },
+  ]
+  const proven = gates.every((gate) => gate.closed)
+  const root = merkleFold(gates.map((gate) => gate.receipt))
+  return {
+    proven,
+    root,
+    digits: train.digits,
+    gates,
+    statement: proven
+      ? 'digits => folders => coordinates => waves => receipts => roots; digital quantum-inspired model verified.'
+      : 'digit proof open: one or more deterministic gates failed.',
+    boundary:
+      'This proves deterministic digital generation inside the repository model; it is not an external physics proof.',
   }
 }
 
@@ -2114,6 +2786,7 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
   const evidence = quantumUiEvidence(matrix)
   const agentWire = agentStreamWire(matrix)
   const traditions = traditionsQuantumWhole()
+  const science = scientificSociety(matrix)
   const baseId = 'https://serverless-quantum-uuid-stream/#'
   const nodes: SchemaOrgDiamondNode[] = [
     {
@@ -2191,6 +2864,19 @@ export function schemaOrgDiamonds(matrix: MindMatrix = buildMatrix()): SchemaOrg
       ],
       isPartOf: `${baseId}quantum-mind`,
     },
+    {
+      '@type': 'Dataset',
+      '@id': `${baseId}scientific-society`,
+      name: 'scientific society',
+      description: science.charter,
+      identifier: science.root,
+      about: [
+        ...science.roles.map((role) => `role:${role.name}`),
+        ...science.reviewGates.map((gate) => `gate:${gate.name}`),
+        ...science.optimizationWaves.map((wave) => `wave:${wave.target}`),
+      ],
+      isPartOf: `${baseId}quantum-mind`,
+    },
     ...lattice.map((diamond): SchemaOrgDiamondNode => ({
       '@type': 'DefinedTerm',
       '@id': `${baseId}diamond-${diamond.kind}`,
@@ -2261,6 +2947,8 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
   const evidence = quantumUiEvidence(matrix)
   const schema = schemaOrgDiamonds(matrix)
   const traditions = traditionsQuantumWhole()
+  const science = scientificSociety(matrix)
+  const methods = methodFusion()
   const waves = coordinatedWaves(matrix)
   const chess = quantumChessGame(matrix)
   const buildUnits: readonly SelfCompletionGate[] = [
@@ -2324,6 +3012,20 @@ export function selfBuild(matrix: MindMatrix = buildMatrix()): SelfBuildReport {
       sourceFunction: 'traditionsQuantumWhole()',
       receipt: traditions.root,
       note: `dim=${traditions.dimensions.length}; families=${traditions.families.length}.`,
+    },
+    {
+      name: 'science',
+      closed: science.grounded,
+      sourceFunction: 'scientificSociety()',
+      receipt: science.root,
+      note: `roles=${science.roles.length}; gates=${science.reviewGates.length}; waves=${science.optimizationWaves.length}.`,
+    },
+    {
+      name: 'methods',
+      closed: methods.fused,
+      sourceFunction: 'methodFusion()',
+      receipt: methods.root,
+      note: `tokens=${methods.tokens.length}; open=${methods.open.length}.`,
     },
     {
       name: 'waves',
@@ -2524,6 +3226,18 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The stream diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
     },
     {
+      title: 'Metatron Cube',
+      command: 'concept.diamond.metatron',
+      route: '/quantum-mind#metatron-cube',
+      summary: 'Double-vortex Metatron cube math maps digit folders into nodes, edges, and interference.',
+    },
+    {
+      title: 'Digital Quantum Proof',
+      command: 'concept.digit.proof',
+      route: '/quantum-mind#digit-proof',
+      summary: 'Digits verify the digital quantum-inspired model through folders, waves, superpositions, receipts, and roots.',
+    },
+    {
       title: 'Coordinated Waves',
       command: 'concept.wave.coordination',
       route: '/quantum-mind#coordinated-waves',
@@ -2552,6 +3266,24 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       command: 'concept.traditions.quantumWhole',
       route: '/quantum-mind#traditions-quantum-whole',
       summary: 'Religions and traditions are compared through distinct experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions.',
+    },
+    {
+      title: 'Scientific Society',
+      command: 'concept.science.society',
+      route: '/quantum-mind#scientific-society',
+      summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.',
+    },
+    {
+      title: 'Artist Surfaces',
+      command: 'concept.artists.surfaces',
+      route: '/',
+      summary: 'Home and README surfaces are computed as artist-built equations with receipts.',
+    },
+    {
+      title: 'Method Fusion',
+      command: 'concept.method.fusion',
+      route: '/quantum-mind#method-fusion',
+      summary: 'Gravity maps every command surface to a single-word method token.',
     },
     {
       title: 'Double-Torus Math',
@@ -2657,6 +3389,14 @@ export function executeConceptCommand(
     const completeness = diamondCompleteness(matrix)
     return result(command, completeness.complete, 'Diamond completeness verified.', completeness)
   }
+  if (command === 'concept.diamond.metatron') {
+    const cube = metatronCube(matrix)
+    return result(command, cube.nodes.length > 0 && cube.edges.length > 0, 'Metatron cube computed.', cube)
+  }
+  if (command === 'concept.digit.proof') {
+    const proof = digitalQuantumProof(matrix)
+    return result(command, proof.proven, 'Digital quantum proof computed.', proof)
+  }
   if (command === 'concept.wave.coordination') {
     return result(command, true, 'Coordinated yin-yang waves computed.', coordinatedWaves(matrix))
   }
@@ -2674,6 +3414,18 @@ export function executeConceptCommand(
   if (command === 'concept.traditions.quantumWhole') {
     const traditions = traditionsQuantumWhole()
     return result(command, traditions.grounded, 'Traditions quantum whole computed.', traditions)
+  }
+  if (command === 'concept.science.society') {
+    const science = scientificSociety(matrix)
+    return result(command, science.grounded, 'Scientific society computed.', science)
+  }
+  if (command === 'concept.artists.surfaces') {
+    const surfaces = artistSurfaces(matrix)
+    return result(command, surfaces.grounded, 'Artist surfaces computed.', surfaces)
+  }
+  if (command === 'concept.method.fusion') {
+    const methods = methodFusion()
+    return result(command, methods.fused, 'Method fusion computed.', methods)
   }
   if (command === 'concept.torus.math') {
     return result(command, true, 'Double-torus math report computed.', doubleTorusMath())
