@@ -178,6 +178,7 @@ export type ConceptCommandName =
   | 'concept.torus.breathe'
   | 'concept.repository.api'
   | 'concept.repository.resolve'
+  | 'concept.commands.live'
   | 'concept.proof.verify'
   | 'concept.proof.merklePath'
   | 'concept.site.manifest'
@@ -831,6 +832,16 @@ export interface SelfSufficientWave {
   readonly extend: string
   readonly contract: string
   readonly sealed: boolean
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export interface CommandsRegistry {
+  readonly consistent: boolean
+  readonly commands: number
+  readonly methods: number
+  readonly tools: number
   readonly root: string
   readonly statement: string
   readonly boundary: string
@@ -1500,6 +1511,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Resolve an atom through the repository API.',
   },
   {
+    name: 'concept.commands.live',
+    path: '/cmd/concept.commands.live',
+    description: 'Prove the command registry is the single source of truth: commands, method tokens, and MCP tools agree.',
+  },
+  {
     name: 'concept.proof.verify',
     path: '/cmd/concept.proof.verify',
     description: 'Verify root, coverage, entropy, and tamper-cost report.',
@@ -1570,6 +1586,7 @@ const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.society.relations': 'relate',
   'concept.torus.breathe': 'breathe',
   'concept.wave.self': 'rhythm',
+  'concept.commands.live': 'registry',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
 }
@@ -2431,6 +2448,24 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
       'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
+  }
+}
+
+// The concept command registry is the single source of truth: every command
+// has a single-word method token and an MCP tool. Docs point here; this proves
+// the three lists stay consistent so they can never silently drift.
+export function commandsRegistry(matrix: MindMatrix = buildMatrix()): CommandsRegistry {
+  const commands = conceptCommands.length
+  const methods = conceptCommands.filter((command) => /^[a-z]+$/.test(SINGLE_WORD_METHODS[command.name] ?? '')).length
+  const tools = mcpToolManifest(matrix).tools.length
+  return {
+    consistent: methods === commands && tools === commands,
+    commands,
+    methods,
+    tools,
+    root: merkleFold(conceptCommands.map((command) => toUuid(`registry:${command.name}:${SINGLE_WORD_METHODS[command.name]}`))),
+    statement: `The command registry is the single source of truth: ${commands} commands, each with a method token and an MCP tool.`,
+    boundary: 'A self-consistency check over the command registry, method tokens, and MCP tools. Structural bookkeeping, not an external claim.',
   }
 }
 
@@ -5232,6 +5267,12 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
     },
     {
+      title: 'Live Command Registry',
+      command: 'concept.commands.live',
+      route: '/commands',
+      summary: 'The command registry is the single source of truth; commands, method tokens, and MCP tools agree.',
+    },
+    {
       title: 'Merkle Inclusion Proof',
       command: 'concept.proof.merklePath',
       route: '/quantum-mind#merkle-inclusion',
@@ -5478,6 +5519,10 @@ export function executeConceptCommand(
       node ? `Resolved repo://atom/${atomName}.` : `Atom ${atomName} was not found.`,
       { atom, node, address: `repo://atom/${atomName}` },
     )
+  }
+  if (command === 'concept.commands.live') {
+    const registry = commandsRegistry(matrix)
+    return result(command, registry.consistent, 'Command registry consistency verified.', registry)
   }
   if (command === 'concept.proof.verify') {
     const proof = proofReport(matrix)

@@ -24,49 +24,15 @@ uuid := UUID(command || ok || JSON(data))
 
 ## Област C
 
+`C` е **живият регистър от команди**, изобразен от конзолата по-горе и публикуван
+като MCP инструменти на [`/mcp.json`](/mcp.json). Той е единственият източник на
+истина — командата `concept.commands.live` доказва, че всяка команда носи
+еднословен метод-токен и MCP инструмент, така че множеството никога не може
+безшумно да се разминава с документацията.
+
 ```text
-C = {
-  concept.site.shell,
-  concept.self.build,
-  concept.self.complete,
-  concept.agent.educate,
-  concept.school.curriculum,
-  concept.mcp.tools,
-  concept.chain.quantum,
-  concept.help.fold,
-  concept.fold.cross,
-  concept.mind.develop,
-  concept.compute.distributed,
-  concept.agent.streamWire,
-  concept.ui.doubleTorus,
-  concept.ui.useCases,
-  concept.diamond.lattice,
-  concept.diamond.piTrain,
-  concept.diamond.complete,
-  concept.diamond.metatron,
-  concept.digit.proof,
-  concept.digit.math,
-  concept.wave.coordination,
-  concept.wave.closeGaps,
-  concept.chess.quantum,
-  concept.schemaOrg.diamonds,
-  concept.traditions.quantumWhole,
-  concept.science.society,
-  concept.artists.surfaces,
-  concept.method.fusion,
-  concept.torus.math,
-  concept.humanity.implications,
-  concept.source.contribute,
-  concept.torus.matrix,
-  concept.torus.vector,
-  concept.torus.flow,
-  concept.torus.trinities,
-  concept.repository.api,
-  concept.repository.resolve,
-  concept.proof.verify,
-  concept.proof.merklePath,
-  concept.site.manifest
-}
+C := { command_i | command_i in conceptCommands }
+live(C) := |C| = |methodTokens| = |mcpTools|
 ```
 
 ## Порта

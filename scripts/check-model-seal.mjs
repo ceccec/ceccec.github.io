@@ -10,6 +10,7 @@ import {
   atoms,
   babelFold,
   buildMatrix,
+  commandsRegistry,
   conceptCommands,
   societyRelations,
   selfAddressed,
@@ -91,6 +92,7 @@ ok('ancient-tech.grounded', ancientTech(matrix).grounded) // ancient tech prefig
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('wave.self-sufficient', selfSufficientWave(matrix).selfSufficient) // each wave extends, contracts, and seals
+ok('commands.registry-consistent', commandsRegistry(matrix).consistent) // registry, method tokens, and MCP tools agree
 // Determinism: two independent builds must produce the identical foundation root (no drift across waves).
 ok('determinism', buildMatrix().root === buildMatrix().root)
 
