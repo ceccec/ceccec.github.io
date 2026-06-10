@@ -1,0 +1,124 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useData } from 'vitepress'
+import { buildMatrix, questionAnswerEquilibrium } from '../lib/quantumMind'
+
+// Questions, answers, equilibrium — the three as one. Answers contract to a
+// closed point, questions expand to an open frontier, and the breath settles
+// between them. A small triptych: ∎ answers · breath · questions …
+const data = questionAnswerEquilibrium(buildMatrix())
+const { lang } = useData()
+const bg = computed(() => lang.value.startsWith('bg'))
+const t = computed(() =>
+  bg.value
+    ? {
+        eyebrow: 'въпроси · отговори · равновесие',
+        answers: 'отговори', questions: 'въпроси', closed: 'затворени', open: 'отворени', equilibrium: 'равновесие',
+        statement: 'Отговорите се свиват до затворена точка, въпросите се разширяват до отворен ръб, а дишането се установява между тях — порталът почива в баланса, държан отворен завинаги от въпросите.',
+      }
+    : {
+        eyebrow: 'questions · answers · equilibrium',
+        answers: 'answers', questions: 'questions', closed: 'closed', open: 'open', equilibrium: 'equilibrium',
+        statement: 'The answers contract to a closed point, the questions expand to an open frontier, and the breath settles between them — the portal rests in the balance, kept open forever by the questions.',
+      },
+)
+</script>
+
+<template>
+  <section class="qae">
+    <p class="eyebrow">{{ t.eyebrow }}</p>
+    <div class="qae__triptych">
+      <div class="qae__side answers">
+        <span class="qae__mark">∎</span>
+        <strong>{{ data.answers }}</strong>
+        <span class="qae__label">{{ t.answers }} · {{ t.closed }}</span>
+      </div>
+      <div class="qae__center" :class="{ settled: data.breathSettles }">
+        <span class="qae__dot" />
+        <span class="qae__label">{{ t.equilibrium }}</span>
+      </div>
+      <div class="qae__side questions">
+        <span class="qae__mark">…</span>
+        <strong>{{ data.questions }}</strong>
+        <span class="qae__label">{{ t.questions }} · {{ t.open }}</span>
+      </div>
+    </div>
+    <p class="qae__statement">{{ t.statement }}</p>
+  </section>
+</template>
+
+<style scoped>
+.qae {
+  margin: 1.5rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  background: var(--vp-c-bg-soft);
+}
+.qae__triptych {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.6rem 0 0.9rem;
+}
+.qae__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+}
+.qae__side.answers {
+  border-left: 3px solid var(--vp-c-brand-1);
+}
+.qae__side.questions {
+  border-right: 3px solid var(--vp-c-warning-1, #d97706);
+}
+.qae__mark {
+  font-size: 1.4rem;
+  color: var(--vp-c-text-2);
+}
+.qae__side strong {
+  font-size: 1.3rem;
+  color: var(--vp-c-text-1);
+}
+.qae__label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--vp-c-text-3);
+}
+.qae__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.qae__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-1);
+  animation: qae-breathe 4s ease-in-out infinite;
+}
+.qae__center.settled .qae__dot {
+  box-shadow: 0 0 0 4px var(--vp-c-brand-soft);
+}
+@keyframes qae-breathe {
+  0%, 100% { transform: scale(0.7); opacity: 0.6; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qae__dot { animation: none; }
+}
+.qae__statement {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-1);
+  line-height: 1.6;
+  text-align: center;
+}
+</style>

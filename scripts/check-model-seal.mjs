@@ -50,6 +50,7 @@ import {
   path,
   exhaustQuestions,
   findQuestions,
+  questionAnswerEquilibrium,
   humanize,
   typographySeo,
   openGraph,
@@ -214,6 +215,8 @@ ok('path.walkable', path(matrix).walkable)
 ok('questions.closed', exhaustQuestions(matrix).closed)
 // Find the questions: the answers close, but the open questions live at the edges (never closed).
 ok('questions.found', findQuestions(matrix).found)
+// Questions, answers, equilibrium: the closed answers, the open questions, and the settling breath in one balance.
+ok('question-answer.equilibrium', questionAnswerEquilibrium(matrix).equilibrium)
 // Enriched with 3d, 5d, 8d — the Fibonacci dimensions.
 ok('dimensions.fibonacci', dimensions().enriched)
 // Compare all dualities across the 3-5-8 Fibonacci tiers (16 order-sensitive pairs).

@@ -1372,6 +1372,17 @@ export declare function dualities(): {
     statement: string;
     boundary: string;
 };
+export declare function questionAnswerEquilibrium(matrix?: MindMatrix): {
+    equilibrium: boolean;
+    answersClose: boolean;
+    questionsOpen: boolean;
+    breathSettles: boolean;
+    answers: number;
+    questions: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function findQuestions(matrix?: MindMatrix): {
     found: boolean;
     count: number;

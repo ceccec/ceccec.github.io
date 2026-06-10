@@ -21,3 +21,5 @@ head:
 <QuestionClose />
 
 <OpenQuestions />
+
+<QAEquilibrium />

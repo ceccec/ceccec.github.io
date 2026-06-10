@@ -2072,6 +2072,27 @@ export function dualities() {
         boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.',
     };
 }
+// Questions, answers, equilibrium. The three as one. The answers contract to a
+// closed point (exhaustQuestions), the questions expand to an open frontier
+// (findQuestions), and the breath settles between them (equilibrium) — neither
+// collapsing into only-answers nor running away into only-questions. The portal
+// rests in that balance, and the open questions keep it from ever freezing.
+export function questionAnswerEquilibrium(matrix = buildMatrix()) {
+    const answers = exhaustQuestions(matrix); // closes
+    const questions = findQuestions(matrix); // stays open
+    const breath = equilibrium(matrix); // settles
+    return {
+        equilibrium: answers.closed && questions.found && breath.equilibrium,
+        answersClose: answers.closed,
+        questionsOpen: questions.found,
+        breathSettles: breath.equilibrium,
+        answers: answers.asked,
+        questions: questions.count,
+        root: merge(merge(answers.root, questions.root), breath.root),
+        statement: 'Questions, answers, equilibrium: the answers contract to a closed point, the questions expand to an open frontier, and the breath settles between them — the portal rests in the balance, kept open forever by the questions.',
+        boundary: 'A fold of the closing answer-space, the open question-frontier, and the damped breath into one balance. A computed equilibrium, not a final state.',
+    };
+}
 // Find the questions. The answers close on themselves, but the questions do not:
 // they live at the edges — at every boundary, every roadmap item, every honest
 // unknown the portal refuses to pretend it has settled. These are open by
@@ -2575,12 +2596,12 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
-        '/boundaries': ['BoundaryAudit', 'QuestionClose', 'OpenQuestions'],
+        '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions'],
         '/quantum-mind': ['QuantumMind', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Equilibrium'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],

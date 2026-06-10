@@ -21,3 +21,5 @@ If a claim is not here with its boundary, it is not a claim the model makes.
 <QuestionClose />
 
 <OpenQuestions />
+
+<QAEquilibrium />
