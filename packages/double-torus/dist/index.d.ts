@@ -1804,6 +1804,18 @@ export declare function cryptographyComparison(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function attestation(): {
+    ready: boolean;
+    steps: {
+        present: boolean;
+        receipt: string;
+        step: string;
+        how: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function cryptoFuture(matrix?: MindMatrix): {
     grounded: boolean;
     canonical: string;

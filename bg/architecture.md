@@ -356,6 +356,8 @@ foldQuestion(q) = {concept, explanation, command, receipt, links}
 
 <WebCryptoSeal />
 
+<SignSeal />
+
 ## 27. Граница
 
 ```text

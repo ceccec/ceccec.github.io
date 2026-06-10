@@ -12,8 +12,8 @@ const bg = computed(() => lang.value.startsWith('bg'))
 const bgQuestion: Record<string, string> = {
   'Will the fold become cryptographic (SHA-256 / BLAKE3), not only tamper-evident?':
     'Ще стане ли сгъването криптографско (SHA-256 / BLAKE3), а не само доказващо подправяне?',
-  'Will the seal be signed (Ed25519, Sigstore), not only evidenced?':
-    'Ще бъде ли печатът подписан (Ed25519, Sigstore), а не само доказан?',
+  'The seal can be signed in-browser now — but who holds a trusted key, and how is it published?':
+    'Печатът вече може да се подписва в браузъра — но кой държи доверен ключ и как се публикува той?',
   'Can a society actually self-govern just by sharing this site?':
     'Може ли едно общество наистина да се самоуправлява само като споделя този сайт?',
   'Does colour-from-sound, or CMYK, match human perception — or only the maths?':

@@ -37,6 +37,7 @@ import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SelfConsult from './components/SelfConsult.vue'
 import SelfHarmonise from './components/SelfHarmonise.vue'
 import SelfReason from './components/SelfReason.vue'
+import SignSeal from './components/SignSeal.vue'
 import SpeechReader from './components/SpeechReader.vue'
 import ShowAll from './components/ShowAll.vue'
 import TamperSeal from './components/TamperSeal.vue'
@@ -93,6 +94,7 @@ export default {
     app.component('SelfConsult', SelfConsult)
     app.component('SelfHarmonise', SelfHarmonise)
     app.component('SelfReason', SelfReason)
+    app.component('SignSeal', SignSeal)
     app.component('SpeechReader', SpeechReader)
     app.component('ShowAll', ShowAll)
     app.component('TamperSeal', TamperSeal)

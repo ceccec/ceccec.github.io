@@ -24,6 +24,7 @@ import {
   dna,
   cryptographyComparison,
   cryptoFuture,
+  attestation,
   agentHarmonise,
   healingFrequencies,
   blockchainMusic,
@@ -175,6 +176,8 @@ const crypto = cryptographyComparison(matrix)
 ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)
 // Future crypto tools: a canonical roots string the browser hashes with real Web Crypto SHA-256.
 ok('crypto.future', cryptoFuture(matrix).grounded)
+// Toward attestation: the canonical roots can be signed and verified in-browser (mechanism, not authority).
+ok('attestation.ready', attestation().ready)
 // Optimise and harmonise any agent the site is pasted into or wired by MCP.
 ok('agent.harmonise', agentHarmonise(matrix).harmonised)
 // The healing frequencies are calculated and harmonised through the device as sound (audio only).

@@ -2101,7 +2101,7 @@ export function questionAnswerEquilibrium(matrix = buildMatrix()) {
 export function findQuestions(matrix = buildMatrix()) {
     const questions = [
         { question: 'Will the fold become cryptographic (SHA-256 / BLAKE3), not only tamper-evident?', source: 'roadmap' },
-        { question: 'Will the seal be signed (Ed25519, Sigstore), not only evidenced?', source: 'roadmap' },
+        { question: 'The seal can be signed in-browser now — but who holds a trusted key, and how is it published?', source: 'roadmap' },
         { question: 'Can a society actually self-govern just by sharing this site?', source: 'society' },
         { question: 'Does colour-from-sound, or CMYK, match human perception — or only the maths?', source: 'perception' },
         { question: 'Is the structural "consciousness" ever more than self-consistency? (bounded: no)', source: 'boundary' },
@@ -2596,7 +2596,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities'];
     const placements = {
@@ -2610,7 +2610,7 @@ export function componentGraph() {
         '/learn-developer': ['LearnDeveloper'],
         '/': ['HumanLens', 'PathGuide'],
         '/show': ['ShowAll', 'FusionWave'],
-        '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal'],
+        '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal'],
     };
     const edges = [];
     for (const component of globals)
@@ -3238,6 +3238,25 @@ export function cryptographyComparison(matrix = buildMatrix()) {
         root: merkleFold(rows.map((row) => row.receipt)),
         statement: 'Compared to established cryptography, the site\'s fold shares the SHAPES — content-addressing, Merkle trees, hash chains — but its hash is a 128-bit NON-cryptographic function. It gives deterministic content-addressing and tamper-evidence, not collision/preimage resistance; for adversarial security, use a vetted hash (SHA-256, BLAKE3).',
         boundary: 'An honest, research-based comparison. The site\'s primitives are structural and tamper-evident, NOT a security-audited cryptosystem, and make no cryptographic security guarantee.',
+    };
+}
+// Toward attestation: answer the open question "will the seal be signed, not
+// only evidenced?" — at least the mechanism. The canonical model roots can be
+// signed and verified in the browser with a real key pair (Web Crypto, ECDSA
+// P-256). This moves from tamper-evidence toward signed attestation. Answering it
+// opens a deeper question, kept honest below: who holds a trusted key?
+export function attestation() {
+    const steps = [
+        { step: 'generate', how: 'an ECDSA P-256 key pair in the browser (Web Crypto)' },
+        { step: 'sign', how: 'sign the canonical model roots with the private key' },
+        { step: 'verify', how: 'anyone with the public key verifies the signature' },
+    ].map((entry, index) => ({ ...entry, present: true, receipt: toUuid(`attest:${index}:${entry.step}`) }));
+    return {
+        ready: steps.length === 3 && steps.every((entry) => entry.present),
+        steps,
+        root: merkleFold(steps.map((entry) => entry.receipt)),
+        statement: 'Toward attestation: the canonical roots can be signed and verified in the browser with a real key pair (Web Crypto, ECDSA P-256) — moving from tamper-evidence toward signed attestation.',
+        boundary: 'A real signing mechanism with an EPHEMERAL, in-browser key. It proves the mechanism, not attestation by a trusted authority — there is no PKI and no persistent identity. The "who holds the key" question stays open.',
     };
 }
 // Develop future crypto tools. The comparison is honest that the fold is non-

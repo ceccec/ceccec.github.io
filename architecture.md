@@ -356,6 +356,8 @@ computed in your browser with the Web Crypto API:
 
 <WebCryptoSeal />
 
+<SignSeal />
+
 ## 27. Boundary
 
 ```text
