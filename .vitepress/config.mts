@@ -1,4 +1,9 @@
 import { defineConfig } from 'vitepress'
+import { quantumAcademy, buildMatrix } from './theme/lib/quantumMind'
+
+// Derived from the model so the SEO never drifts from the source: the academy's
+// course names come straight from quantumAcademy(), not a second hand-kept list.
+const academyCourses = quantumAcademy(buildMatrix()).courses.map((course) => course.course)
 
 const siteTitle = 'Double Torus'
 const siteTitleBg = 'Двоен тор'
@@ -149,7 +154,6 @@ export default defineConfig({
     // Fold the academy into Course structured data — five recomputable courses
     // (mirrors quantumAcademy().courses in the model), eligible for rich results.
     if (relative.endsWith('academy.md')) {
-      const courses = ['Foundations', 'The Machine', 'The Senses', 'The Society', 'The Mind']
       head.push([
         'script',
         { type: 'application/ld+json' },
@@ -157,7 +161,7 @@ export default defineConfig({
           '@context': 'https://schema.org',
           '@type': 'ItemList',
           name: isBg ? 'Квантова академия — пет курса' : 'The Quantum Academy — five courses',
-          itemListElement: courses.map((course, index) => ({
+          itemListElement: academyCourses.map((course, index) => ({
             '@type': 'ListItem',
             position: index + 1,
             item: {
