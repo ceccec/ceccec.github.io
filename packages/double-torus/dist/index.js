@@ -3349,12 +3349,12 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
-        '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo'],
+        '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
         '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
@@ -4131,6 +4131,55 @@ export function cryptoFuture(matrix = buildMatrix()) {
         root: merkleFold(tools.map((entry) => entry.receipt)),
         statement: 'Future crypto tools: a canonical string of the model roots that anyone can hash with a vetted algorithm; the browser computes a real SHA-256 digest over it via Web Crypto, with Ed25519 signing, Sigstore, and a full hash migration on the roadmap.',
         boundary: 'The canonical string and roadmap are computed here; the real cryptographic digest is computed in the browser with the Web Crypto API. This layer is genuine SHA-256; the underlying model fold remains non-cryptographic until migrated.',
+    };
+}
+// Complete the roadmaps: gather the portal's forward-looking items, scattered
+// across the crypto future, the academy, and the journey, into one place — three
+// tracks, each laid out end to end with every milestone marked done, next, or
+// later, and content-addressed. Where the portal is and where it is going become
+// one source, no roadmap left as a dangling list.
+export function roadmaps(matrix = buildMatrix()) {
+    const crypto = cryptoFuture(matrix);
+    const academy = quantumAcademy(matrix);
+    const journey = path(matrix);
+    const firstFuture = crypto.tools.findIndex((tool) => tool.status === 'roadmap');
+    const cryptoMilestones = [
+        { milestone: 'Tamper-evident UUID folds', status: 'done', note: 'the content-addressed seal in place today' },
+        ...crypto.tools.map((tool, index) => ({
+            milestone: tool.tool,
+            status: (tool.status === 'available now' ? 'done' : index === firstFuture ? 'next' : 'later'),
+            note: tool.how,
+        })),
+    ];
+    const tracks = [
+        { track: 'cryptography', icon: '🔏', milestones: cryptoMilestones },
+        {
+            track: 'learning',
+            icon: '🎓',
+            milestones: [
+                ...academy.courses.map((course) => ({ milestone: course.course, status: 'done', note: 'a recomputable course credential' })),
+                { milestone: 'Graduation credential', status: 'done', note: 'all five courses fold into one' },
+            ],
+        },
+        {
+            track: 'journey',
+            icon: '🧭',
+            milestones: journey.stations.map((station) => ({ milestone: station.station, status: 'done', note: station.why })),
+        },
+    ].map((track) => ({
+        ...track,
+        milestones: track.milestones.map((entry) => ({ ...entry, receipt: toUuid(`roadmap:${track.track}:${entry.milestone}:${entry.status}`) })),
+    }));
+    const milestones = tracks.flatMap((track) => track.milestones);
+    return {
+        complete: tracks.length === 3 && tracks.every((track) => track.milestones.length > 0),
+        tracks,
+        count: milestones.length,
+        done: milestones.filter((entry) => entry.status === 'done').length,
+        planned: milestones.filter((entry) => entry.status !== 'done').length,
+        root: merkleFold(milestones.map((entry) => entry.receipt)),
+        statement: 'The roadmaps, complete: three tracks — cryptography, learning, journey — each laid out end to end, every milestone marked done, next, or later and content-addressed, so where the portal is and where it is going are one source.',
+        boundary: 'A consolidated roadmap over the portal\'s own forward-looking items. The future milestones (signing, transparency log, hash migration) are intentions, not commitments or delivery schedules.',
     };
 }
 // This proves the hologram, to the bit. The holographic principle: the boundary

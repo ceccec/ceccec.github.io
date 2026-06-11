@@ -2221,6 +2221,25 @@ export declare function cryptoFuture(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function roadmaps(matrix?: MindMatrix): {
+    complete: boolean;
+    tracks: {
+        milestones: {
+            receipt: string;
+            milestone: string;
+            status: "next" | "done" | "later";
+            note: string;
+        }[];
+        track: string;
+        icon: string;
+    }[];
+    count: number;
+    done: number;
+    planned: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function hologram(matrix?: MindMatrix): {
     holographic: boolean;
     toTheBit: boolean;

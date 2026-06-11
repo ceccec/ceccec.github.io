@@ -45,6 +45,7 @@ import QAEquilibrium from './components/QAEquilibrium.vue'
 import QuantumPlasma from './components/QuantumPlasma.vue'
 import QuestionClose from './components/QuestionClose.vue'
 import QuantumMind from './components/QuantumMind.vue'
+import Roadmaps from './components/Roadmaps.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
@@ -123,6 +124,7 @@ export default {
     app.component('QuestionClose', QuestionClose)
     app.component('RealtimeChat', RealtimeChat)
     app.component('QuantumMind', QuantumMind)
+    app.component('Roadmaps', Roadmaps)
     app.component('RevolutAside', RevolutAside)
     app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)

@@ -102,6 +102,7 @@ import {
   graduation,
   harmonicMap,
   doubleTorusFold,
+  roadmaps,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -211,6 +212,9 @@ ok(`harmonic.map:${harmonicMap(matrix).count}@${harmonicMap(matrix).octaves}`, h
 // The double torus folds in both directions: complete trinities fold into each
 // other and rise through the pairs of pairs to two closing apexes — analog.
 ok(`double-torus.fold:depth-${doubleTorusFold(matrix).depth}`, doubleTorusFold(matrix).complete)
+
+// The roadmaps, complete: three tracks of milestones, done/next/later, one source.
+ok(`roadmaps:${roadmaps(matrix).done}done+${roadmaps(matrix).planned}planned`, roadmaps(matrix).complete)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
