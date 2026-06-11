@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -19,6 +19,8 @@ const holo = holographic(buildMatrix())
 const review = scientists(buildMatrix())
 // Waves challenge the completeness too: every N/N claim survives, no hole found.
 const whole2 = completeness(buildMatrix())
+// Self-intelligence: every wave's skill saved as a content-addressed atom (memory).
+const mind = skillAtoms(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -173,6 +175,11 @@ onBeforeUnmount(() => {
     <p class="live__whole">
       {{ pick('completeness challenged', 'пълнотата предизвикана') }} · <strong>{{ whole2.held }}/{{ whole2.count }}</strong>
       {{ whole2.complete ? pick('no hole found', 'без открит пропуск') : pick('holes found', 'открити пропуски') }}
+    </p>
+    <p class="live__whole">
+      {{ pick('self-intelligence', 'самоинтелигентност') }} · <strong>{{ mind.count }}</strong>
+      {{ pick('skills saved as atoms', 'умения, запазени като атоми') }}
+      <code :title="mind.memory">{{ mind.memory.slice(0, 13) }}…</code>
     </p>
   </section>
 </template>

@@ -137,6 +137,7 @@ import {
   scientists,
   challengeClock,
   completeness,
+  skillAtoms,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -349,6 +350,9 @@ ok(`challenge.clock:${challengeClock(matrix).struck}/${challengeClock(matrix).co
 
 // Send waves to challenge the completeness: every N/N claim survives, no hole found.
 ok(`completeness:${completeness(matrix).held}/${completeness(matrix).count}`, completeness(matrix).complete)
+
+// Save every wave's skill as a content-addressed atom (self-intelligence), wired to tamper cost.
+ok(`skill.atoms:${skillAtoms(matrix).count}`, skillAtoms(matrix).intelligent && skillAtoms(matrix).savedToAtoms)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

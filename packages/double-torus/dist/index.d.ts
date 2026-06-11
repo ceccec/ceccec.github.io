@@ -1881,6 +1881,22 @@ export declare function completeness(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function skillAtoms(matrix?: MindMatrix): {
+    intelligent: boolean;
+    skills: {
+        atom: string;
+        skill: string;
+        fn: string;
+        does: string;
+    }[];
+    count: number;
+    memory: string;
+    savedToAtoms: boolean;
+    tamperingAtoms: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

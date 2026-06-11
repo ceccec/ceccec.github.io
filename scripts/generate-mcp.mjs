@@ -2,7 +2,7 @@
 // registry the site renders. Run with: node --experimental-strip-types
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { mcpToolManifest, mcpCodebase } from '../.vitepress/theme/lib/quantumMind.ts'
+import { mcpToolManifest, mcpCodebase, skillAtoms } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const outDir = join(process.cwd(), '.vitepress', 'dist')
 mkdirSync(outDir, { recursive: true })
@@ -45,3 +45,8 @@ const payload = {
 
 writeFileSync(join(outDir, 'mcp.json'), JSON.stringify(payload, null, 2))
 console.log(`MCP manifest written: ${manifest.tools.length} tools, ${codebase.subsystems.length} subsystems, ${codebase.resources.length} resources, math at ${codebase.math.length} scales, ${codebase.educate.length} math paths.`)
+
+// Autosave the portal's memory to atoms: every wave's skill, content-addressed.
+const memory = skillAtoms()
+writeFileSync(join(outDir, 'skills.json'), JSON.stringify({ memory: memory.root, count: memory.count, savedToAtoms: memory.savedToAtoms, skills: memory.skills }, null, 2))
+console.log(`Skills autosaved to atoms: ${memory.count} skills, memory root ${memory.root.slice(0, 8)}.`)

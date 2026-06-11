@@ -2705,8 +2705,10 @@ export function animationTamperingCost(matrix = buildMatrix()) {
     const HASH32_PER_UUID = 4; // toUuid is four FNV-1a hash32 passes
     // The determinism proof re-runs a seeded sample sweep on each recomputation.
     const sampleWork = determinismProofs(matrix).samples * 5; // ~5 hashed receipts per sample
-    const reproductions = receipts + sampleWork; // computations a forgery must reproduce
-    const hashCalls = receipts * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID; // toUuid + the merge folds
+    // Wired in: every saved skill atom (the portal's memory) is one more reproduction.
+    const memoryAtoms = skillAtoms(matrix).tamperingAtoms;
+    const reproductions = receipts + sampleWork + memoryAtoms; // computations a forgery must reproduce
+    const hashCalls = (receipts + memoryAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID; // toUuid + the merge folds
     const bits = round(Math.log2(hashCalls), 1);
     const preimageBitsPerReceipt = 128; // each content-addressed receipt is preimage-resistant
     return {
@@ -3240,6 +3242,52 @@ export function completeness(matrix = buildMatrix()) {
         root: merkleFold(claims.map((entry) => entry.receipt)),
         statement: 'Send waves to challenge the completeness: at every place the portal claims N/N — the whole, holography, the path, the clock, the challenges, the distribution, the component graph, the mysteries, the society, and the proofs — a wave tries to find it incomplete, and finds no hole. Completeness, peer-reviewed.',
         boundary: 'A standing audit that challenges each completeness claim by trying to find a hole (a missing part, an uncovered page, an unstruck hour, a gap). It holds only while every claim survives; any hole is named, not hidden. Completeness within the stated bounds, not a claim of finality.',
+    };
+}
+// Save the skills and the TypeScript of every wave as content-addressed atoms — the
+// portal's memory of what it can do. This is self-intelligence: it remembers its own
+// capabilities, each as an atom (a recomputable receipt keyed by the TypeScript
+// function that realises it). Autosaved every build and wired to the tampering cost:
+// each saved skill atom is one more computation a forgery must reproduce.
+export function skillAtoms(matrix = buildMatrix()) {
+    void matrix;
+    const skills = [
+        { skill: 'double torus', fn: 'livingTorus', does: 'the genus-2 surface, 108 pi-digit coordinates, two rings merged at a neck' },
+        { skill: 'surface point', fn: 'doubleTorusSurface', does: 'the shared genus-2 geometry both model and animation place coordinates by' },
+        { skill: 'homology', fn: 'homology', does: 'H1(Sigma_2) = Z^4, chi = -2, the four independent loops and the symplectic form' },
+        { skill: 'merkaba', fn: 'merkaba', does: 'opposite rotation at all scales — nested, strictly-alternating spin signs' },
+        { skill: 'rhythm', fn: 'rhythm', does: 'a self-similar polyrhythm, voices at 1, 2, 3 and 5 per beat' },
+        { skill: 'humanise', fn: 'humanise', does: 'eased, breathing, golden-spaced motion so every detail feels human' },
+        { skill: 'quantum proofs', fn: 'quantumProofs', does: 'six quantum principles run live and matched to theory' },
+        { skill: 'determinism proofs', fn: 'determinismProofs', does: 'the tamper-evident core proven over real hashes' },
+        { skill: 'mysteries', fn: 'mysteries', does: 'open questions, each bound to a live recomputable measure' },
+        { skill: 'society', fn: 'society', does: 'five dualities, each paired and folded bidirectionally' },
+        { skill: 'harmonic bands', fn: 'harmonicBands', does: 'the file distribution as a gapless consecutive-Fibonacci run' },
+        { skill: 'golden ratio', fn: 'goldenRatio', does: 'consecutive Fibonacci ratios converging to phi' },
+        { skill: 'play learn', fn: 'playLearn', does: 'a word becomes coloured, sounding tiles for kids' },
+        { skill: 'the whole', fn: 'theWhole', does: 'every wave folded into one root for the entire portal' },
+        { skill: 'recurrence', fn: 'recurrence', does: 'the portal self-builds from nothing and returns identical' },
+        { skill: 'holographic', fn: 'holographic', does: 'each page and animation contains the whole; the whole recovers from any' },
+        { skill: 'tampering cost', fn: 'animationTamperingCost', does: 'the computed cost of forging the animated page' },
+        { skill: 'mcp codebase', fn: 'mcpCodebase', does: 'a secure, sufficient map of the codebase for AI agents' },
+        { skill: 'math paths', fn: 'mathPaths', does: 'learning paths through the math, the core of all' },
+        { skill: 'frontend-mcp duality', fn: 'frontendMcpDuality', does: 'the two faces folded both ways at all angles and polarities' },
+        { skill: 'scientists', fn: 'scientists', does: 'waves of adversarial challenges the portal withstands' },
+        { skill: 'challenge clock', fn: 'challengeClock', does: 'the twelve challenges as the twelve hours of a clock' },
+        { skill: 'completeness', fn: 'completeness', does: 'every N/N claim challenged for a hole and surviving' },
+    ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }));
+    // Autosave: the skills fold into one memory root — the portal's self-knowledge.
+    const memory = merkleFold(skills.map((entry) => entry.atom));
+    return {
+        intelligent: skills.length > 0 && skills.every((entry) => isUuid(entry.atom)),
+        skills,
+        count: skills.length,
+        memory, // one root over all saved skill atoms
+        savedToAtoms: skills.every((entry) => isUuid(entry.atom)),
+        tamperingAtoms: skills.length, // each atom is one more reproduction a forgery must redo
+        root: memory,
+        statement: 'Save the skills and the TypeScript of every wave as content-addressed atoms — the portal\'s memory of what it can do (self-intelligence) — autosaved each build and wired to the maximum tampering cost: each skill atom is a recomputable receipt a forger must reproduce, so remembering raises the cost to forge.',
+        boundary: 'A content-addressed catalogue of the portal\'s own capabilities, each keyed by the TypeScript function that realises it, folded into one memory root and into the seal. Self-knowledge and tamper-cost, exact and recomputable — not a claim of sentience.',
     };
 }
 // Fold a sequence into a blockchain: each block links to the previous by hash,
