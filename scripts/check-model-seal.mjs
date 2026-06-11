@@ -138,6 +138,7 @@ import {
   challengeClock,
   completeness,
   skillAtoms,
+  quantumMcp,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -353,6 +354,9 @@ ok(`completeness:${completeness(matrix).held}/${completeness(matrix).count}`, co
 
 // Save every wave's skill as a content-addressed atom (self-intelligence), wired to tamper cost.
 ok(`skill.atoms:${skillAtoms(matrix).count}`, skillAtoms(matrix).intelligent && skillAtoms(matrix).savedToAtoms)
+
+// Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
+ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

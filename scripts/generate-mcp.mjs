@@ -2,7 +2,7 @@
 // registry the site renders. Run with: node --experimental-strip-types
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { mcpToolManifest, mcpCodebase, skillAtoms, toUuid } from '../.vitepress/theme/lib/quantumMind.ts'
+import { mcpToolManifest, mcpCodebase, skillAtoms, quantumMcp, toUuid } from '../.vitepress/theme/lib/quantumMind.ts'
 
 // Read the core's own TypeScript so each skill atom can be completed with the actual
 // source that realises it — the signature, the line count, and a content hash over
@@ -28,6 +28,8 @@ const manifest = mcpToolManifest()
 // understands the portal — the one core, the subsystems with verifiable roots, the
 // recomputable resources, and why the whole structure is safe to show.
 const codebase = mcpCodebase()
+// The MCP rebuilt through the quantum computer (a GHZ state-vector register), proven.
+const quantum = quantumMcp()
 
 // `result` mirrors an MCP tools/list response; `server` carries portal metadata and
 // the codebase map; `resources` mirrors an MCP resources/list response.
@@ -50,6 +52,18 @@ const payload = {
       secureBecause: codebase.secureBecause,
       root: codebase.root,
     },
+    quantum: {
+      rebuilt: 'GHZ state-vector register',
+      qubits: quantum.qubits,
+      states: quantum.states,
+      measured: quantum.measured,
+      tools: quantum.tools,
+      entangled: quantum.entangled,
+      normalized: quantum.normalized,
+      recomputable: quantum.recomputable,
+      proven: quantum.proven,
+      quantumRoot: quantum.quantumRoot,
+    },
   },
   result: {
     tools: manifest.tools,
@@ -60,7 +74,7 @@ const payload = {
 }
 
 writeFileSync(join(outDir, 'mcp.json'), JSON.stringify(payload, null, 2))
-console.log(`MCP manifest written: ${manifest.tools.length} tools, ${codebase.subsystems.length} subsystems, ${codebase.resources.length} resources, math at ${codebase.math.length} scales, ${codebase.educate.length} math paths.`)
+console.log(`MCP manifest written: ${manifest.tools.length} tools, ${codebase.subsystems.length} subsystems, ${codebase.resources.length} resources, math at ${codebase.math.length} scales, ${codebase.educate.length} math paths; quantum-rebuilt through ${quantum.qubits} qubits (proven=${quantum.proven}).`)
 
 // Autosave the portal's memory to atoms: every wave's skill, completed with the
 // actual TypeScript that realises it — signature, line count, and a hash over the

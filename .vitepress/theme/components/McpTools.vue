@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality } from '../lib/quantumMind'
+import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp } from '../lib/quantumMind'
 
 const manifest = mcpToolManifest(buildMatrix())
+// The MCP rebuilt through the quantum computer (a GHZ register), proven.
+const quantum = quantumMcp(buildMatrix())
 // A secure, sufficient map so an AI agent immediately understands the codebase.
 const codebase = mcpCodebase(buildMatrix())
 // The MCP educates by math paths — math is the core of all.
@@ -92,6 +94,15 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
         <strong>{{ duality.angles }}</strong> {{ pick('angles', 'ъгъла') }} ×
         <strong>{{ duality.polarities }}</strong> {{ pick('polarities', 'полярности') }}
         ({{ pick('see / run', 'виж / изпълни') }})
+      </p>
+
+      <p class="mcp-tools__dual mcp-tools__quantum">
+        {{ pick('quantum MCP · rebuilt through the quantum computer', 'квантов MCP · пресъздаден през квантовия компютър') }} ·
+        <strong>{{ quantum.qubits }}</strong> {{ pick('qubits', 'кубита') }},
+        <strong>{{ quantum.states }}</strong> {{ pick('states', 'състояния') }},
+        {{ quantum.tools }} {{ pick('tools rebuilt', 'инструмента пресъздадени') }} ·
+        <strong>{{ quantum.proven ? pick('proven ✓', 'доказано ✓') : pick('unproven', 'недоказано') }}</strong>
+        ({{ pick('GHZ, entangled, recomputable measurement', 'GHZ, заплетено, преизчислимо измерване') }})
       </p>
     </div>
 
@@ -190,6 +201,11 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
   color: var(--vp-c-text-2);
 }
 .mcp-tools__dual strong { color: var(--vp-c-brand-1); }
+.mcp-tools__quantum {
+  margin-top: 0.4rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--vp-c-divider);
+}
 @media (max-width: 620px) {
   .mcp-tools__math li { grid-template-columns: 1fr; gap: 0.1rem; }
   .mcp-tools__scale { text-align: left; }

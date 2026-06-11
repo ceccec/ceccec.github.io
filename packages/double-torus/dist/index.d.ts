@@ -1897,6 +1897,26 @@ export declare function skillAtoms(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumMcp(matrix?: MindMatrix): {
+    proven: boolean;
+    qubits: number;
+    states: number;
+    measured: string;
+    tools: number;
+    entangled: boolean;
+    normalized: boolean;
+    recomputable: boolean;
+    classicalRoot: string;
+    quantumRoot: string;
+    rebuilt: {
+        name: string;
+        basis: string;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;
