@@ -1764,6 +1764,25 @@ export declare function holographic(matrix?: MindMatrix): {
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
+export declare function mcpCodebase(matrix?: MindMatrix): {
+    understandable: boolean;
+    overview: string;
+    subsystems: {
+        name: string;
+        purpose: string;
+        root: string;
+    }[];
+    resources: {
+        uri: string;
+        purpose: string;
+    }[];
+    understand: string[];
+    secure: boolean;
+    secureBecause: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

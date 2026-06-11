@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, mcpToolManifest } from '../lib/quantumMind'
+import { buildMatrix, mcpToolManifest, mcpCodebase } from '../lib/quantumMind'
 
 const manifest = mcpToolManifest(buildMatrix())
-const { bg } = useLocale()
+// A secure, sufficient map so an AI agent immediately understands the codebase.
+const codebase = mcpCodebase(buildMatrix())
+const { bg, pick } = useLocale()
 
 const t = computed(() =>
   bg.value
@@ -52,6 +54,20 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
       </p>
     </div>
 
+    <div class="mcp-tools__understand">
+      <p class="eyebrow">{{ pick('for AI agents · understand immediately, verify by recomputing', 'за AI агенти · разбери веднага, провери чрез преизчисление') }}</p>
+      <p class="mcp-tools__overview">{{ codebase.overview }}</p>
+      <ul class="mcp-tools__facts">
+        <li v-for="fact in codebase.understand" :key="fact">{{ fact }}</li>
+      </ul>
+      <p class="mcp-tools__secure"><b>{{ pick('secure', 'сигурно') }}:</b> {{ codebase.secureBecause }}</p>
+      <div class="mcp-tools__subs">
+        <span v-for="sub in codebase.subsystems" :key="sub.name" class="mcp-tools__sub" :title="sub.purpose">
+          <code>{{ sub.name }}</code><small>{{ sub.root.slice(0, 8) }}</small>
+        </span>
+      </div>
+    </div>
+
     <ul class="mcp-tools__list">
       <li v-for="tool in manifest.tools" :key="tool.name">
         <code class="mcp-tools__name">{{ tool.name }}</code>
@@ -68,6 +84,46 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
 .mcp-tools {
   margin: 1.5rem 0;
 }
+.mcp-tools__understand {
+  margin: 1rem 0 1.4rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+.mcp-tools__overview {
+  margin: 0.3rem 0 0.6rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.mcp-tools__facts {
+  margin: 0 0 0.6rem;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.5;
+}
+.mcp-tools__secure {
+  margin: 0 0 0.7rem;
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+}
+.mcp-tools__subs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.mcp-tools__sub {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  font-size: 0.74rem;
+}
+.mcp-tools__sub small { color: var(--vp-c-text-3); font-family: var(--vp-font-family-mono); }
 .mcp-tools__header h2 {
   margin: 0.2rem 0;
 }

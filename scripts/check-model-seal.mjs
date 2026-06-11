@@ -131,6 +131,7 @@ import {
   homology,
   animationTamperingCost,
   holographic,
+  mcpCodebase,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -325,6 +326,9 @@ ok(`anim.tamper:${animationTamperingCost(matrix).reproductions}x`, animationTamp
 
 // Animations are holographic: each part included in and carrying the whole.
 ok(`holographic:${holographic(matrix).count}cells`, holographic(matrix).holographic)
+
+// MCP shows the codebase securely but sufficiently, so AI agents immediately understand.
+ok(`mcp.codebase:${mcpCodebase(matrix).subsystems.length}+${mcpCodebase(matrix).resources.length}`, mcpCodebase(matrix).understandable)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

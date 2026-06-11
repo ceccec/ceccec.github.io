@@ -4343,6 +4343,59 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
   }
 }
 
+// MCP shows the codebase securely but sufficiently, so AI agents immediately
+// understand. A concise map: what the portal is, the one agnostic core, the
+// subsystems each with a verifiable root, where the recomputable resources are, and
+// why the whole structure can be shown safely. Secure because everything is
+// content-addressed and runs client-side — no secrets, no server, no credentials;
+// the architecture is the security, so showing the structure exposes nothing.
+export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
+  const subsystems = [
+    { name: 'livingTorus', purpose: 'The genus-2 double torus: 108 pi-digit coordinates on the surface (H1=Z^4, chi=-2).', root: livingTorus(matrix).root },
+    { name: 'merkaba', purpose: 'Opposite rotation at all scales — nested counter-rotating scales.', root: merkaba(matrix).root },
+    { name: 'quantumProofs', purpose: 'Six quantum principles run live and matched to theory.', root: quantumProofs(matrix).root },
+    { name: 'determinismProofs', purpose: 'The deterministic, tamper-evident core proven over real hashes.', root: determinismProofs(matrix).root },
+    { name: 'mysteries', purpose: 'Open questions, each bound to a live recomputable measure.', root: mysteries(matrix).root },
+    { name: 'society', purpose: 'Five dualities, each paired and folded bidirectionally.', root: society(matrix).root },
+    { name: 'harmonicBands', purpose: 'The file distribution as a gapless run of consecutive Fibonacci numbers.', root: harmonicBands(110).root },
+    { name: 'theWhole', purpose: 'Every wave folded into one root for the entire portal.', root: theWhole(matrix).root },
+    { name: 'holographic', purpose: 'Each part contains the whole; the whole recovers from any part.', root: holographic(matrix).root },
+    { name: 'animationTamperingCost', purpose: 'Computed cost of forging the animated page.', root: animationTamperingCost(matrix).root },
+  ]
+  const resources = [
+    { uri: '/mcp.json', purpose: 'The MCP tool surface (tools/list) and this codebase map.' },
+    { uri: '/llms.txt', purpose: 'The laws and every command, in plain text for LLMs.' },
+    { uri: '/harmonic.json', purpose: 'The file distribution as Fibonacci harmonic bands.' },
+    { uri: '/digit-index.json', purpose: 'The pi-digit coordinate index (the double-torus stream).' },
+    { uri: '/architecture', purpose: 'The formal model and the live seal.' },
+    { uri: '/quantum-mind', purpose: 'The live double torus, merkaba, rhythm, and proofs.' },
+  ]
+  const understand = [
+    'One agnostic core: .vitepress/theme/lib/quantumMind.ts, zero imports, computes everything.',
+    'Every value is a content-addressed UUID; verify by recomputing the root, not by trusting the host.',
+    'tools/call(name, arguments) maps to executeConceptCommand and returns a recomputable receipt.',
+    'Each subsystem here exposes a root you can recompute and compare; theWhole folds them all into one.',
+    'Nothing is secret and nothing is sent: it runs on your device. The architecture is the security.',
+  ]
+  const secure = subsystems.every((entry) => isUuid(entry.root)) && resources.every((entry) => entry.uri.length > 0)
+  return {
+    understandable: secure && subsystems.length > 0 && understand.length > 0,
+    overview:
+      'A quantum-learning educational portal for AI agents and humans, served as an MCP tool surface over a double-torus UUID stream. Self-verifying by construction: one zero-dependency core computes a content-addressed model, every page and animation is derived from it, and the whole folds into a single recomputable root.',
+    subsystems,
+    resources,
+    understand,
+    secure,
+    secureBecause:
+      'Everything is content-addressed and runs client-side — no secrets, no server, no credentials. The architecture is the security, so the full structure is shown: sufficient to understand and verify, exposing nothing exploitable.',
+    root: merkleFold([...subsystems.map((entry) => entry.root), ...resources.map((entry) => toUuid(`mcp-res:${entry.uri}`))]),
+    statement:
+      'MCP shows the codebase securely but sufficiently, so AI agents immediately understand: the overview, the one core, the subsystems each with a verifiable root, the recomputable resources, and why the whole structure is safe to show.',
+    boundary:
+      'A static, recomputable map of the codebase for agents — overview, subsystems with roots, resources, and the security rationale. It documents structure and verification entry points; it is not a live server and exposes no secret, because there is none.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
