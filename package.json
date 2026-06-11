@@ -11,7 +11,6 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.104.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "radix-vue": "^1.9.17",
