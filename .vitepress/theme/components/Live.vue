@@ -157,8 +157,9 @@ onBeforeUnmount(() => {
       {{ again.returns ? pick('identical every time', 'идентично всеки път') : pick('drift detected', 'установено разминаване') }}
     </p>
     <p class="live__whole">
-      {{ pick('holographic', 'холографично') }} · <strong>{{ holo.count }}/{{ holo.count }}</strong>
-      {{ pick('each part contains the whole', 'всяка част съдържа цялото') }}
+      {{ pick('holographic', 'холографично') }} · <strong>{{ holo.count }}</strong>
+      ({{ holo.animations }} {{ pick('animations', 'анимации') }} + {{ holo.pages }} {{ pick('pages', 'страници') }}) ·
+      {{ pick('each contains the whole', 'всяка съдържа цялото') }}
     </p>
   </section>
 </template>

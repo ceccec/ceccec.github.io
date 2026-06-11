@@ -1750,13 +1750,16 @@ export declare function holographic(matrix?: MindMatrix): {
     holographic: boolean;
     reconstructed: boolean;
     cells: {
-        part: string;
+        kind: "page" | "animation";
+        name: string;
         includedInWhole: boolean;
         carriesWhole: boolean;
         holographic: boolean;
         cell: string;
     }[];
     count: number;
+    animations: number;
+    pages: number;
     root: string;
     statement: string;
     boundary: string;
@@ -1777,6 +1780,11 @@ export declare function mcpCodebase(matrix?: MindMatrix): {
         purpose: string;
     }[];
     understand: string[];
+    math: {
+        scale: string;
+        law: string;
+        value: string;
+    }[];
     secure: boolean;
     secureBecause: string;
     root: string;

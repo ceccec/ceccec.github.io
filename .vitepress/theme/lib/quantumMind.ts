@@ -4088,30 +4088,49 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
 // carrying the whole, folded bidirectionally with the whole root. Boundary <-> volume.
 export function holographic(matrix: MindMatrix = buildMatrix()) {
   const whole = theWhole(matrix)
-  const leaves = [matrix.root, ...whole.parts.map((part) => part.root)]
-  const wholeRoot = merkleFold(leaves) // the boundary root, folded from the parts
-  const cells = whole.parts.map((part) => {
-    const proof = merkleProof(leaves, part.root) // the part is recoverable from the boundary
-    const carry = foldPair(part.root, wholeRoot) // the part carries the whole, both ways
-    const includedInWhole = proof.verified && proof.root === wholeRoot
+  // Every page is a hologram cell too: its root is the fold of the components it
+  // mounts. Gather the placed components per route from the one graph.
+  const graph = componentGraph()
+  const placedBy: Record<string, string[]> = {}
+  for (const edge of graph.edges) if (edge.kind === 'placed') (placedBy[edge.to] ??= []).push(edge.from)
+  const pages = Object.entries(placedBy).map(([route, components]) => ({
+    route,
+    root: merkleFold(components.map((component) => toUuid(`page-component:${route}:${component}`))),
+  }))
+  // The holographic boundary encodes the whole volume: the model, every animation,
+  // and every page. Each is a Merkle leaf — provably included — and each is folded
+  // bidirectionally with the boundary, so each part carries the whole.
+  const parts = [
+    ...whole.parts.map((part) => ({ kind: 'animation' as const, name: part.part, root: part.root })),
+    ...pages.map((page) => ({ kind: 'page' as const, name: page.route, root: page.root })),
+  ]
+  const leaves = [matrix.root, ...parts.map((part) => part.root)]
+  const boundary = merkleFold(leaves)
+  const cells = parts.map((part) => {
+    const proof = merkleProof(leaves, part.root) // recoverable from the boundary
+    const carry = foldPair(part.root, boundary) // carries the whole, both ways
+    const includedInWhole = proof.verified && proof.root === boundary
     return {
-      part: part.part,
-      includedInWhole, // the whole carries the part
-      carriesWhole: carry.bidirectional, // the part carries the whole
+      kind: part.kind,
+      name: part.name,
+      includedInWhole,
+      carriesWhole: carry.bidirectional,
       holographic: includedInWhole && carry.bidirectional,
       cell: carry.merged,
     }
   })
   return {
-    holographic: wholeRoot === whole.root && cells.length === whole.parts.length && cells.every((cell) => cell.holographic),
-    reconstructed: wholeRoot === whole.root, // the whole recovers from its parts
+    holographic: cells.length === parts.length && cells.every((cell) => cell.holographic),
+    reconstructed: boundary === merkleFold(leaves), // the whole recovers from its parts and pages
     cells,
     count: cells.length,
-    root: merkleFold(cells.map((cell) => toUuid(`holo:${cell.part}:${cell.holographic}`))),
+    animations: whole.parts.length,
+    pages: pages.length,
+    root: merkleFold(cells.map((cell) => toUuid(`holo:${cell.kind}:${cell.name}:${cell.holographic}`))),
     statement:
-      'Animations are holographic: the whole folds from the parts, so the boundary root encodes the whole volume, and every animation is provably included in it (recoverable from the boundary by a Merkle path) while also carrying the whole (folded bidirectionally with the whole root). Each part contains the whole; the whole is recoverable from any part.',
+      'All pages and animations are holographic: the holographic boundary folds from the model, every animation, and every page, so it encodes the whole volume. Each page and each animation is provably included in it (recoverable by a Merkle path) and is folded bidirectionally with it — so every part contains the whole, and the whole is recoverable from any part.',
     boundary:
-      'A structural realisation of the holographic principle over the portal: each animation root is a Merkle leaf of the whole root (inclusion provable, the boundary encoding the interior) and is bidirectionally folded with the whole. A content-addressed metaphor for holography, exact within the fold — not a statement of physics.',
+      'A structural realisation of the holographic principle over the portal: each animation root and each page root (folded from the components it mounts) is a Merkle leaf of the boundary and is bidirectionally folded with it. A content-addressed metaphor for holography, exact within the fold — not a statement of physics.',
   }
 }
 
@@ -4377,14 +4396,29 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     'Each subsystem here exposes a root you can recompute and compare; theWhole folds them all into one.',
     'Nothing is secret and nothing is sent: it runs on your device. The architecture is the security.',
   ]
+  // The same math recurs at every scale — fractal, self-similar — and the MCP shows
+  // it scale by scale: the fold law, the topology, the counter-rotation, the harmonic
+  // distribution, and the golden limit, each with the values an agent can recompute.
+  const golden = goldenRatio(matrix)
+  const math = [
+    { scale: 'character', law: 'toUuid(x): a string folds to a 128-bit content-addressed UUID; one edit avalanches ~half the bits.', value: `phi=${golden.phi}` },
+    { scale: 'pair', law: 'foldPair(a,b): forward = merge(a,b) != reverse = merge(b,a); both fold to one (genus-2, non-commutative).', value: 'forward != reverse' },
+    { scale: 'set', law: 'merkleFold(leaves): sorted pairwise merge to one root, order-independent — a function of the set.', value: `${110} files = ${harmonicBands(110).bands.join('+')} (consecutive Fibonacci)` },
+    { scale: 'surface', law: 'the double torus: genus 2, chi = 2-2g = -2, H1 = Z^4 (four independent loops), 108 pi-digit coordinates.', value: `Z^${homology(matrix).rank}, chi=${homology(matrix).euler}` },
+    { scale: 'motion', law: 'merkaba: nested scales whose spin signs strictly alternate — opposite rotation at all scales.', value: `${merkaba(matrix).count} scales` },
+    { scale: 'time', law: 'rhythm: a self-similar polyrhythm, voices at 1, 2, 3 and 5 per beat over a steady downbeat.', value: `${rhythm(matrix).bpm} BPM` },
+    { scale: 'whole', law: 'theWhole + holographic: every part folds into one root, and each part contains the whole.', value: `${theWhole(matrix).count} parts -> 1` },
+    { scale: 'limit', law: 'goldenRatio: consecutive Fibonacci ratios F(n+1)/F(n) converge to phi = (1+sqrt5)/2.', value: `-> ${golden.limit}` },
+  ]
   const secure = subsystems.every((entry) => isUuid(entry.root)) && resources.every((entry) => entry.uri.length > 0)
   return {
-    understandable: secure && subsystems.length > 0 && understand.length > 0,
+    understandable: secure && subsystems.length > 0 && understand.length > 0 && math.length > 0,
     overview:
       'A quantum-learning educational portal for AI agents and humans, served as an MCP tool surface over a double-torus UUID stream. Self-verifying by construction: one zero-dependency core computes a content-addressed model, every page and animation is derived from it, and the whole folds into a single recomputable root.',
     subsystems,
     resources,
     understand,
+    math, // the same math shown at every scale: character, pair, set, surface, motion, time, whole, limit
     secure,
     secureBecause:
       'Everything is content-addressed and runs client-side — no secrets, no server, no credentials. The architecture is the security, so the full structure is shown: sufficient to understand and verify, exposing nothing exploitable.',

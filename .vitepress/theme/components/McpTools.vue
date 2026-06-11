@@ -66,6 +66,14 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
           <code>{{ sub.name }}</code><small>{{ sub.root.slice(0, 8) }}</small>
         </span>
       </div>
+      <p class="eyebrow mcp-tools__math-label">{{ pick('the same math, shown at every scale', 'същата математика, показана на всеки мащаб') }}</p>
+      <ul class="mcp-tools__math">
+        <li v-for="m in codebase.math" :key="m.scale">
+          <code class="mcp-tools__scale">{{ m.scale }}</code>
+          <span class="mcp-tools__law">{{ m.law }}</span>
+          <span class="mcp-tools__val">{{ m.value }}</span>
+        </li>
+      </ul>
     </div>
 
     <ul class="mcp-tools__list">
@@ -124,6 +132,33 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
   font-size: 0.74rem;
 }
 .mcp-tools__sub small { color: var(--vp-c-text-3); font-family: var(--vp-font-family-mono); }
+.mcp-tools__math-label { margin: 1rem 0 0.4rem; }
+.mcp-tools__math {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.mcp-tools__math li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr auto;
+  gap: 0.6rem;
+  align-items: baseline;
+  font-size: 0.8rem;
+}
+.mcp-tools__scale {
+  color: var(--vp-c-brand-1);
+  font-size: 0.72rem;
+  text-align: right;
+}
+.mcp-tools__law { color: var(--vp-c-text-2); line-height: 1.45; }
+.mcp-tools__val { color: var(--vp-c-text-3); font-family: var(--vp-font-family-mono); font-size: 0.72rem; white-space: nowrap; }
+@media (max-width: 620px) {
+  .mcp-tools__math li { grid-template-columns: 1fr; gap: 0.1rem; }
+  .mcp-tools__scale { text-align: left; }
+}
 .mcp-tools__header h2 {
   margin: 0.2rem 0;
 }

@@ -28,6 +28,7 @@ const payload = {
       overview: codebase.overview,
       understand: codebase.understand,
       subsystems: codebase.subsystems,
+      math: codebase.math,
       secure: codebase.secure,
       secureBecause: codebase.secureBecause,
       root: codebase.root,
@@ -42,4 +43,4 @@ const payload = {
 }
 
 writeFileSync(join(outDir, 'mcp.json'), JSON.stringify(payload, null, 2))
-console.log(`MCP manifest written: ${manifest.tools.length} tools, ${codebase.subsystems.length} subsystems, ${codebase.resources.length} resources.`)
+console.log(`MCP manifest written: ${manifest.tools.length} tools, ${codebase.subsystems.length} subsystems, ${codebase.resources.length} resources, math at ${codebase.math.length} scales.`)
