@@ -435,6 +435,8 @@ ok('double-torus.3d', doubleTorus3D(matrix).rendered)
 ok('humanize', humanize().human)
 // Follow the path: a guided, looping journey through the portal's pages.
 ok('path.walkable', path(matrix).walkable)
+// Paths consolidated to animated pages only, and complete — every animated page, none static.
+ok(`path.complete:${path(matrix).animatedPages}`, path(matrix).complete && path(matrix).consolidated)
 // The Quantum Academy: 5 courses over all 42 areas, each completion a recomputable credential.
 ok(`academy.established:${quantumAcademy(matrix).modules}`, quantumAcademy(matrix).established)
 // Continue until no answers: the question-space folds shut on itself (closure proven).

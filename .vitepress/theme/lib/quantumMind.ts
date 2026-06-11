@@ -5513,31 +5513,51 @@ function computeExhaustQuestions(matrix: MindMatrix, maxRounds: number) {
 // watch it all fuse into one wave. Each station follows from the last and points
 // to the next, so you can simply follow the path — though every page also stands
 // on its own.
+// The three pages that present but do not animate — they stand on their own; the
+// guided path runs only through the living, animated pages.
+const STATIC_ROUTES = new Set(['/boundaries', '/learn-developer', '/start'])
+
 export function path(matrix: MindMatrix = buildMatrix()) {
+  // Consolidated to animated pages only: every station is a living page that computes
+  // and animates as you arrive, so the journey is itself the proof — and it is
+  // complete, covering every animated page with none missing.
   const route = [
-    { station: 'Start', route: '/', why: 'See the promises in plain words.' },
-    { station: 'School', route: '/school', why: 'Learn it from the ground up, at any age.' },
+    { station: 'Home', route: '/', why: 'The living double torus, and the portal\'s pulse.' },
+    { station: 'School', route: '/school', why: 'Learn it from the ground up, at any age — by playing.' },
     { station: 'Console', route: '/console', why: 'Ask — and watch it consult itself before answering.' },
     { station: 'Commands', route: '/commands', why: 'Every capability, named and runnable.' },
-    { station: 'MCP', route: '/mcp', why: 'The same surface, for language models.' },
-    { station: 'Mind', route: '/quantum-mind', why: 'See the shape — the double torus, in 3d 5d 8d.' },
-    { station: 'Architecture', route: '/architecture', why: 'The formal model and the live seal.' },
-    { station: 'Boundaries', route: '/boundaries', why: 'Every limit it declares, in one place.' },
+    { station: 'MCP', route: '/mcp', why: 'The same surface, for AI agents.' },
+    { station: 'Mind', route: '/quantum-mind', why: 'The shape: the double torus, the merkaba, the rhythm.' },
+    { station: 'Architecture', route: '/architecture', why: 'The seal, the proofs, and the cost of forging it.' },
+    { station: 'Explore', route: '/explore', why: 'The mysteries, and the golden harmonic spiral.' },
+    { station: 'Governance', route: '/governance', why: 'The society, paired and folded.' },
+    { station: 'Academy', route: '/academy', why: 'Structured tracks and a verifiable credential.' },
     { station: 'Show', route: '/show', why: 'Everything in action, fused into one wave.' },
   ]
+  // The animated pages are every placed route except the static ones. The path must
+  // cover them all (none missing) and contain only them (consolidated, none static).
+  const placedRoutes = [...new Set(componentGraph().edges.filter((edge) => edge.kind === 'placed').map((edge) => edge.to))]
+  const animatedRoutes = placedRoutes.filter((entry) => !STATIC_ROUTES.has(entry))
+  const stationRoutes = new Set(route.map((entry) => entry.route))
+  const coversAll = animatedRoutes.every((entry) => stationRoutes.has(entry)) // nothing missing
+  const onlyAnimated = route.every((entry) => animatedRoutes.includes(entry.route)) // none static
   const stations = route.map((entry, index) => ({
     ...entry,
     step: index + 1,
     next: route[(index + 1) % route.length].route, // the path loops: the end returns to the start
+    animated: true,
     receipt: toUuid(`path:${index}:${entry.route}`),
   }))
   return {
     walkable: stations.length > 0 && stations.every((entry) => entry.route.length > 0 && entry.next.length > 0),
+    complete: coversAll && onlyAnimated && stations.length === animatedRoutes.length,
+    consolidated: onlyAnimated,
     length: stations.length,
+    animatedPages: animatedRoutes.length,
     stations,
     root: merkleFold(stations.map((entry) => entry.receipt)),
-    statement: 'Follow the path: a guided journey — arrive in plain words, learn, ask, run, meet the surface, see the shape, read the proof, know the limits, and watch it all fuse into one wave, then return to the start.',
-    boundary: 'A curated walking order over the existing pages. A guide, not the only way through; every page also stands on its own.',
+    statement: 'Follow the path, consolidated to animated pages only: every station is a living page that computes and animates as you arrive — home and its pulse, school by play, the console, the commands, the MCP surface, the shape, the architecture and its proofs, the mysteries, the society, the academy, and the final fused wave — then back to the start. No animated page is missing; no station is static.',
+    boundary: 'A guided walking order over the portal\'s animated pages, verified to cover every animated page and only animated pages. A guide, not the only way through; the static pages still stand on their own.',
   }
 }
 

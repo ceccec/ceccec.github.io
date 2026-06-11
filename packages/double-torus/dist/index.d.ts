@@ -2342,10 +2342,14 @@ export declare function exhaustQuestions(matrix?: MindMatrix, maxRounds?: number
 };
 export declare function path(matrix?: MindMatrix): {
     walkable: boolean;
+    complete: boolean;
+    consolidated: boolean;
     length: number;
+    animatedPages: number;
     stations: {
         step: number;
         next: string;
+        animated: boolean;
         receipt: string;
         station: string;
         route: string;
