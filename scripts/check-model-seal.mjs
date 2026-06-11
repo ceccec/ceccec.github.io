@@ -110,6 +110,7 @@ import {
   livingTorus,
   directions,
   frequencyBalance,
+  selfHealing,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -239,6 +240,9 @@ ok(`directions:${directions(matrix).count}`, directions(matrix).calculated)
 
 // Frequency quantum balance: the healing frequencies settle around their centre.
 ok(`frequency.balance:${frequencyBalance(matrix).center}hz`, frequencyBalance(matrix).balanced)
+
+// All in self-healing waves: every dimension heals to balance in its own wave.
+ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)
 const inclusion = atomInclusionProof('self', matrix)
 ok('atom.inclusion-proof', inclusion.verified && verifyMerkleProof(inclusion.proof.leaf, inclusion.proof.path, matrix.root))
 

@@ -46,6 +46,8 @@ head:
 
 <HarmonicMap />
 
+<SelfHealing />
+
 ## 0. Полезен товар
 
 ```text

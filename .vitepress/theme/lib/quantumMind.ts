@@ -2976,6 +2976,47 @@ export function directions(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// All in self-healing waves. Every dimension that can fall out of balance — the
+// gaps, the tasks, the frequency balance, the equilibrium, the trinities, the
+// directions, coverage, entropy — heals in its own damped wave back toward
+// balance (the equilibrium breath: overshoot, halve, alternate, settle). The
+// whole is self-healed only when every wave settles. This is the active,
+// wave-form companion to the static seal: not just sealed, but self-restoring.
+export function selfHealing(matrix: MindMatrix = buildMatrix()) {
+  const dimensions = [
+    { wound: 'gaps', balanced: gapScan(matrix).closed },
+    { wound: 'tasks', balanced: todoScan(matrix).nothingToDo },
+    { wound: 'frequency balance', balanced: frequencyBalance(matrix).balanced },
+    { wound: 'equilibrium', balanced: equilibrium(matrix).equilibrium },
+    { wound: 'trinities', balanced: dualTorusTrinities(matrix).harmonized },
+    { wound: 'directions', balanced: directions(matrix).calculated },
+    { wound: 'coverage', balanced: coverage(matrix) === 1 },
+    { wound: 'entropy', balanced: entropy(matrix) === 0 },
+  ]
+  const waves = dimensions.map((dimension) => {
+    // A balanced dimension still breathes a gentle maintenance wave; an open one
+    // starts fully displaced. Both damp toward the centre — the self-healing.
+    const startAmp = dimension.balanced ? 0.5 : 1
+    const trace: number[] = []
+    for (let step = 0; step < 12; step += 1) {
+      trace.push(Math.round(startAmp * Math.cos(step * 0.9) * Math.pow(0.62, step) * 1000) / 1000)
+    }
+    const settled = Math.abs(trace[trace.length - 1]) < 0.02
+    return { ...dimension, settled, trace, receipt: toUuid(`self-heal:${dimension.wound}:${dimension.balanced}`) }
+  })
+  return {
+    healed: waves.every((wave) => wave.balanced && wave.settled),
+    waves,
+    count: waves.length,
+    balanced: waves.filter((wave) => wave.balanced).length,
+    root: merkleFold(waves.map((wave) => wave.receipt)),
+    statement:
+      'All in self-healing waves: every dimension that can fall out of balance heals in its own damped wave toward the centre — the equilibrium breath — and the whole is self-healed only when every wave settles.',
+    boundary:
+      'A conjunction of the model\'s own balance checks, each shown as a damped settling wave. Structural self-restoration over what the model tracks — not a physical, therapeutic, or medical healing claim.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -4857,13 +4898,13 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
-    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy', 'Professionals'],
