@@ -4289,12 +4289,13 @@ export function deviceSensors() {
   }
 }
 
-// Compare all dualities, in 3-5-8-13 (Fibonacci) tiers. The double torus is made
-// of two-sided pairs; here they are gathered and compared: 3 core, 5 structural,
-// 8 expressive, and 13 emergent — the other dualities the portal found in its own
-// making (the directions, the modes, the proofs) = 29. Each is proven a real
-// duality by order-sensitivity — left-then-right differs from right-then-left
-// (genus 2, not a sphere) — and folds both ways into its root.
+// Compare all dualities, in 3-5-8-13-21 (Fibonacci) tiers. The double torus is
+// made of two-sided pairs; here they are gathered and compared: 3 core, 5
+// structural, 8 expressive, 13 emergent, and 21 discovered — the many more found
+// across the model (the poles, the elements, the trinity phases, decode, fusion,
+// the theme, the tamper, proof, security, the academy, time) = 50. Each is proven
+// a real duality by order-sensitivity — left-then-right differs from right-then-
+// left (genus 2, not a sphere) — and folds both ways into its root.
 export function dualities() {
   const tiers = [
     { tier: 3, kind: 'core', pairs: [['inner', 'outer'], ['yin', 'yang'], ['zero', 'one']] },
@@ -4306,6 +4307,14 @@ export function dualities() {
     // (note/hue), the source loop (give/take), distribution (local/distributed),
     // the frontier (open/closed), and the quantum (wave/particle).
     { tier: 13, kind: 'emergent', pairs: [['up', 'down'], ['right', 'left'], ['front', 'back'], ['out', 'in'], ['clockwise', 'counter'], ['simple', 'rich'], ['seal', 'heal'], ['done', 'planned'], ['note', 'hue'], ['give', 'take'], ['local', 'distributed'], ['open', 'closed'], ['wave', 'particle']] },
+    // Many more to discover: the poles (north/south, east/west), the three powers
+    // (heaven/earth) and five elements (wood/metal, fire/water), the trinity phases
+    // (receive/project, verify/act, fold_in/return), decoding (encode/decode),
+    // fusion (one/many), the part (whole/part), the theme (light/dark), the tamper
+    // (real/fake), proof by use (proof/claim), the signal (signal/noise), order
+    // (order/chaos), the api (read/write), security (public/private), the academy
+    // (teacher/student), time (past/future), and the human (body/mind).
+    { tier: 21, kind: 'discovered', pairs: [['north', 'south'], ['east', 'west'], ['heaven', 'earth'], ['wood', 'metal'], ['fire', 'water'], ['receive', 'project'], ['verify', 'act'], ['fold_in', 'return'], ['encode', 'decode'], ['one', 'many'], ['whole', 'part'], ['light', 'dark'], ['real', 'fake'], ['proof', 'claim'], ['signal', 'noise'], ['order', 'chaos'], ['read', 'write'], ['public', 'private'], ['teacher', 'student'], ['past', 'future'], ['body', 'mind']] },
   ]
   const pairs = tiers.flatMap((tier) =>
     tier.pairs.map(([left, right]) => {
@@ -4329,13 +4338,13 @@ export function dualities() {
     }),
   )
   return {
-    compared: pairs.length === 29 && pairs.every((pair) => pair.bidirectional),
-    tiers: [3, 5, 8, 13],
-    fibonacci: 8 === 5 + 3 && 13 === 8 + 5,
+    compared: pairs.length === 50 && pairs.every((pair) => pair.bidirectional),
+    tiers: [3, 5, 8, 13, 21],
+    fibonacci: 8 === 5 + 3 && 13 === 8 + 5 && 21 === 13 + 8,
     count: pairs.length,
     dualities: pairs,
     root: merkleFold(pairs.map((pair) => pair.receipt)),
-    statement: 'All dualities compared across the 3-5-8-13 Fibonacci tiers: 3 core, 5 structural, 8 expressive, 13 emergent = 29 two-sided pairs, each folded both ways — left into right and right into left differ (genus 2), and the pair root carries both — the signature of a real duality.',
+    statement: 'All dualities compared across the 3-5-8-13-21 Fibonacci tiers: 3 core, 5 structural, 8 expressive, 13 emergent, 21 discovered = 50 two-sided pairs, each folded both ways — left into right and right into left differ (genus 2), and the pair root carries both — the signature of a real duality.',
     boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.',
   }
 }
