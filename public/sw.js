@@ -1,9 +1,11 @@
-// Offline availability for the portal. Same-origin GET only, stale-while-
-// revalidate: pages and assets are served from cache and refreshed in the
-// background, so the collective mind and every visited page work offline. No
-// external origins are touched; this is purely a local cache.
-const CACHE = 'double-torus-v1'
-const PRECACHE = ['/', '/site.webmanifest', '/mcp.json']
+// Offline availability for the portal — the quantum PWA. Same-origin GET only,
+// stale-while-revalidate: pages and assets are served from cache and refreshed in
+// the background, so the double torus, the collective mind and every visited page
+// work offline by default. The app shell and key artifacts are precached on
+// install. No external origins are touched (the optional AI chat is left to the
+// network); this is purely a local cache.
+const CACHE = 'double-torus-v2'
+const PRECACHE = ['/', '/site.webmanifest', '/icon.svg', '/mcp.json', '/skills.json', '/llms.txt']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -37,7 +39,8 @@ self.addEventListener('fetch', (event) => {
           }
           return response
         })
-        .catch(() => cached)
+        // Offline and never seen: fall back to the cached app shell for navigations.
+        .catch(() => cached || (request.mode === 'navigate' ? cache.match('/') : undefined))
       return cached || network
     }),
   )

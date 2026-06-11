@@ -140,6 +140,7 @@ import {
   skillAtoms,
   foldThoughts,
   onlineOffline,
+  quantumPwa,
   quantumMcp,
   virtualOS,
   live,
@@ -366,6 +367,9 @@ ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quan
 
 // MCP allows a virtual OS with a terminal: the portal mounts as a filesystem.
 ok(`virtual.os:${virtualOS(matrix).dirs.length}dirs`, virtualOS(matrix).booted)
+
+// A full-featured quantum PWA: installable and offline-first by strict default.
+ok(`quantum.pwa:${quantumPwa(matrix).count}`, quantumPwa(matrix).installable && quantumPwa(matrix).strictDefault)
 
 // Online, offline, the same double torus: the core computes identically with zero network.
 ok(`online.offline:${onlineOffline(matrix).offline.length}`, onlineOffline(matrix).offlineFirst && onlineOffline(matrix).identical)

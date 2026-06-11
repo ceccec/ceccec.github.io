@@ -1944,9 +1944,32 @@ export declare function foldThoughts(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumPwa(matrix?: MindMatrix): {
+    installable: boolean;
+    strictDefault: boolean;
+    standalone: boolean;
+    offline: boolean;
+    manifest: string;
+    serviceWorker: string;
+    icon: string;
+    scope: string;
+    precache: string[];
+    features: {
+        receipt: string;
+        feature: string;
+        detail: string;
+        present: boolean;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function onlineOffline(matrix?: MindMatrix): {
     offlineFirst: boolean;
     identical: boolean;
+    strictDefault: boolean;
+    pwa: boolean;
     offline: string[];
     online: string[];
     root: string;

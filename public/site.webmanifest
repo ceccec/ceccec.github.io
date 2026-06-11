@@ -1,15 +1,25 @@
 {
+  "id": "/",
   "name": "Double Torus — Quantum Learning Portal",
   "short_name": "Double Torus",
-  "description": "A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream. Works online and offline.",
+  "description": "A quantum-learning educational portal for AI agents and humans, served as an MCP tool surface over a double-torus UUID stream. Installable, and works offline by default.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
   "background_color": "#0f172a",
   "theme_color": "#3b82f6",
   "lang": "en",
+  "dir": "ltr",
   "categories": ["education", "productivity", "developer"],
   "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Quantum Mind", "short_name": "Mind", "description": "The living double torus, merkaba and rhythm", "url": "/quantum-mind" },
+    { "name": "MCP & Virtual OS", "short_name": "MCP", "description": "The tool surface and terminal for AI agents", "url": "/mcp" },
+    { "name": "School", "short_name": "School", "description": "Learn it by playing, at any age", "url": "/school" }
   ]
 }

@@ -100,6 +100,13 @@ export default {
     })
   },
   enhanceApp({ app }) {
+    // Full-featured PWA: register the service worker so the double torus installs to
+    // the device and runs offline by default (cache-first). Client-only, fails quietly.
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {})
+      })
+    }
     app.component('BlockchainMusic', BlockchainMusic)
     app.component('BoundaryAudit', BoundaryAudit)
     app.component('CollectiveMind', CollectiveMind)

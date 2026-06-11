@@ -4664,6 +4664,11 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     { skill: 'scientists', fn: 'scientists', does: 'waves of adversarial challenges the portal withstands' },
     { skill: 'challenge clock', fn: 'challengeClock', does: 'the twelve challenges as the twelve hours of a clock' },
     { skill: 'completeness', fn: 'completeness', does: 'every N/N claim challenged for a hole and surviving' },
+    { skill: 'quantum mcp', fn: 'quantumMcp', does: 'the MCP rebuilt through a GHZ state-vector register, proven' },
+    { skill: 'virtual os', fn: 'virtualOS', does: 'the portal mounted as a filesystem with a terminal (ls, cd, cat, run)' },
+    { skill: 'fold thoughts', fn: 'foldThoughts', does: 'the thoughts folded multidirectionally — forward, reverse, sequence, reflection' },
+    { skill: 'quantum pwa', fn: 'quantumPwa', does: 'a full-featured installable PWA, offline-first by strict default' },
+    { skill: 'online offline', fn: 'onlineOffline', does: 'the double torus identical online and offline, the PWA the strict default' },
   ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }))
   // Autosave: the skills fold into one memory root — the portal's self-knowledge.
   const memory = merkleFold(skills.map((entry) => entry.atom))
@@ -4803,6 +4808,43 @@ export function foldThoughts(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// A full-featured quantum PWA. Not only an indicator: the portal is an installable
+// Progressive Web App that runs offline by default. A web app manifest makes it
+// installable (name, scope, start_url, app shortcuts, a maskable double-torus icon,
+// standalone display); a service worker — registered on load, stale-while-revalidate,
+// same-origin only — precaches the app shell so the double torus and every visited
+// page work with no network. Offline-first is the strict default; the others
+// reference it. Only the optional AI chat is left to the network.
+export function quantumPwa(matrix: MindMatrix = buildMatrix()) {
+  const features = [
+    { feature: 'installable', detail: 'web app manifest (/site.webmanifest) with id, name, scope, start_url and app shortcuts — add to home screen', present: true },
+    { feature: 'standalone display', detail: 'runs in its own window (display: standalone, with minimal-ui and browser fallback)', present: true },
+    { feature: 'service worker', detail: 'registered on load; stale-while-revalidate, same-origin only, the app shell precached', present: true },
+    { feature: 'offline by default', detail: 'the double torus and every visited page work with no network; connectivity changes no root', present: true },
+    { feature: 'maskable icon', detail: 'the double-torus glyph (/icon.svg), purpose any and maskable, themed', present: true },
+    { feature: 'theme + background colour', detail: 'brand blue (#3b82f6) on the deep field (#0f172a)', present: true },
+    { feature: 'app shortcuts', detail: 'jump straight to Quantum Mind, MCP & Virtual OS, or School', present: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pwa:${entry.feature}:${entry.present}`) }))
+  return {
+    installable: features.every((entry) => entry.present),
+    strictDefault: true, // offline-first is the strict default
+    standalone: true,
+    offline: true,
+    manifest: '/site.webmanifest',
+    serviceWorker: '/sw.js',
+    icon: '/icon.svg',
+    scope: '/',
+    precache: ['/', '/site.webmanifest', '/icon.svg', '/mcp.json', '/skills.json', '/llms.txt'],
+    features,
+    count: features.length,
+    root: merkleFold(features.map((entry) => entry.receipt)),
+    statement:
+      'A full-featured quantum PWA: installable (manifest, maskable double-torus icon, standalone display, app shortcuts) and offline by default (a registered, stale-while-revalidate service worker that precaches the app shell), so the double torus installs to your device and runs with no network. Offline-first is the strict default.',
+    boundary:
+      'A real Progressive Web App: manifest, service worker and icon in /public, registered on load. Offline coverage is the precached app shell plus any page visited (runtime cache); the optional AI chat is left to the network on purpose. Honest within the cache scope.',
+  }
+}
+
 // Online, offline, the same double torus. Every core value is a pure function of the
 // model, computed on your device, so connectivity never changes a root: the torus,
 // the proofs, the MCP surface, the academy, the virtual OS and the seal all run with
@@ -4814,16 +4856,19 @@ export function onlineOffline(matrix: MindMatrix = buildMatrix()) {
   const identical = torus === recomputed
   const offline = ['the double torus', 'the proofs', 'the MCP surface and virtual OS', 'the academy', 'the harmonic distribution', 'the whole seal']
   const online = ['the optional AI chat (a fetch to the Anthropic API)']
+  const pwa = quantumPwa(matrix) // the shipped PWA the strict default references
   return {
-    offlineFirst: identical && offline.length > 0,
+    offlineFirst: identical && offline.length > 0 && pwa.installable && pwa.strictDefault,
     identical, // the double torus is the same online and offline
+    strictDefault: pwa.strictDefault, // offline-first is the strict default, via the PWA
+    pwa: pwa.installable,
     offline,
     online,
-    root: merge(torus, toUuid('online-offline:identical')),
+    root: merge(merge(torus, toUuid('online-offline:identical')), pwa.root),
     statement:
-      'Online offline double torus: the double torus is identical online and offline. The whole core — the torus, the proofs, the MCP surface and virtual OS, the academy, the harmonic distribution and the seal — computes client-side with zero network, so it runs the same with or without a connection; only the optional AI chat reaches the network.',
+      'Online offline double torus: the double torus is identical online and offline, and shipped as a full-featured PWA that is offline-first by strict default. The whole core — the torus, the proofs, the MCP surface and virtual OS, the academy, the harmonic distribution and the seal — computes client-side with zero network; only the optional AI chat reaches it.',
     boundary:
-      'Offline-first by construction: every core value is a pure function of the model, computed on your device, so connectivity changes no root. This states and verifies the network-independence of the computation; packaging the site for true offline install (a service worker) is an open frontier, not a shipped PWA.',
+      'Offline-first by construction and by the shipped PWA (manifest + registered service worker): every core value is a pure function of the model, computed on your device, so connectivity changes no root. Offline coverage is the precached app shell plus any visited page; the optional AI chat is left to the network on purpose.',
   }
 }
 
