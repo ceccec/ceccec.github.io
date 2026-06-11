@@ -3619,6 +3619,51 @@ export function merkaba(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Keep the rhythm: counter-rotation at all scales has a temporal face — a self-
+// similar polyrhythm. The merkaba's four scales become four voices at 1, 2, 3 and
+// 5 onsets per beat; a steady downbeat (the ratio-1 voice) keeps the rhythm while
+// the others subdivide it, and the counter-scales are accented off the beat (the
+// counter-rhythm). Every voice realigns on the downbeat, so the beat is always kept.
+export function rhythm(matrix: MindMatrix = buildMatrix()) {
+  const round = (value: number, digits = 2) => { const f = 10 ** digits; return Math.round(value * f) / f }
+  const mk = merkaba(matrix)
+  const seed = Number.parseInt(toUuid(`rhythm:${matrix.root}`).replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16)
+  const bpm = 96 + (seed % 32) // 96..127 BPM, content-derived
+  const beatMs = round(60000 / bpm, 1)
+  const ratios = [1, 2, 3, 5] // a steady pulse, then self-similar subdivisions
+  const base = 196 // G3
+  const partials = [1, 1.5, 2, 3] // a pitch per voice, harmonic on the base
+  const voices = ratios.map((ratio, i) => {
+    const offBeat = i % 2 === 1 // the counter-scales accent off the beat
+    return {
+      scale: mk.scales[i].scale,
+      ratio,
+      periodMs: round(beatMs / ratio, 1),
+      frequency: round(base * partials[i], 2),
+      sign: mk.scales[i].sign,
+      offBeat,
+      // onset phases within one beat (0..1); off-beat voices shifted by half a step
+      onsets: Array.from({ length: ratio }, (_, k) => round(((k + (offBeat ? 0.5 : 0)) / ratio) % 1, 4)),
+      receipt: toUuid(`rhythm-voice:${mk.scales[i].scale}:${ratio}:${offBeat}`),
+    }
+  })
+  const steady = voices[0].ratio === 1 // the downbeat that keeps the rhythm
+  const ascending = ratios.every((ratio, i) => i === 0 || ratio > ratios[i - 1])
+  return {
+    keeps: steady && ascending && voices.length === 4 && voices.every((voice) => voice.periodMs > 0),
+    bpm,
+    beatMs,
+    voices,
+    count: voices.length,
+    onsetsPerBeat: voices.reduce((sum, voice) => sum + voice.onsets.length, 0),
+    root: merkleFold(voices.map((voice) => voice.receipt)),
+    statement:
+      'Keep the rhythm: a self-similar polyrhythm from the merkaba scales — a steady beat (1 per beat) anchors voices at 2, 3 and 5 per beat, the counter-scales accented off the beat. All voices realign on every downbeat, so the rhythm is always kept.',
+    boundary:
+      'A deterministic polyrhythm derived from the merkaba scales and a content-derived tempo, played client-side. Music as structure over the model, not a claim about a universal beat.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -5529,7 +5574,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'RichOnly', 'SimpleOnly',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'RichOnly', 'SimpleOnly',
   ]
   // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
   // they count as global utilities (available everywhere) for the placement audit.
@@ -5537,7 +5582,7 @@ export function componentGraph() {
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
-    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'Merkaba'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'Merkaba', 'Rhythm'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
     '/school': ['SchoolCurriculum', 'PlayLearn', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy', 'Professionals', 'Solutions'],

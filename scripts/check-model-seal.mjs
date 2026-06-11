@@ -120,6 +120,7 @@ import {
   quantumProofs,
   determinismProofs,
   merkaba,
+  rhythm,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -280,6 +281,9 @@ ok(`determinism.proofs:${determinismProofs(matrix).matched}/${determinismProofs(
 
 // The merkaba: opposite rotation at all scales — the nested scales strictly alternate.
 ok(`merkaba:${merkaba(matrix).count}`, merkaba(matrix).counterRotating)
+
+// Keep the rhythm: a self-similar polyrhythm from the merkaba scales, steady downbeat.
+ok(`rhythm:${rhythm(matrix).bpm}bpm`, rhythm(matrix).keeps)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

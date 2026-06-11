@@ -1540,6 +1540,26 @@ export declare function merkaba(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function rhythm(matrix?: MindMatrix): {
+    keeps: boolean;
+    bpm: number;
+    beatMs: number;
+    voices: {
+        scale: string;
+        ratio: number;
+        periodMs: number;
+        frequency: number;
+        sign: 1 | -1;
+        offBeat: boolean;
+        onsets: number[];
+        receipt: string;
+    }[];
+    count: number;
+    onsetsPerBeat: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

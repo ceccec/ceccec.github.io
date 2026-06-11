@@ -58,6 +58,8 @@ head:
 
 <Merkaba />
 
+<Rhythm />
+
 ## 0. Payload
 
 ```text
