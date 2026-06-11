@@ -31,6 +31,27 @@ const phase = {
   radial: phaseOf('radial') * Math.PI * 2,
 }
 
+// A computed wavefield behind the torus: every pixel's colour is the superposition
+// of the torus's own waves, sampled at that point — all dry, derived from the
+// direction roots and the train's frequencies. Nothing is painted flat; colour
+// shifts across every pixel and drifts in realtime, the surface's own field made
+// visible. Sampled on a coarse buffer and bilinearly scaled, so it stays cheap.
+function seed6(text: string) {
+  return Number.parseInt(text.replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16)
+}
+const fieldSources = [0, 1, 2, 3, 4].map((k) => {
+  const axis = dirs.axes[k % dirs.axes.length]
+  const value = seed6((axis?.merged ?? dirs.root).slice(k))
+  const sample = data.coordinates[(k * 21) % data.coordinates.length]
+  return {
+    fx: ((value % 7) + 2) * Math.PI, // spatial frequency, x
+    fy: (((value >> 3) % 7) + 2) * Math.PI, // spatial frequency, y
+    speed: (((value % 5) + 2) / 9000) * (sample ? sample.frequency / 300 : 1), // temporal drift
+    ph: ((value % 360) / 360) * Math.PI * 2, // content-derived phase
+    amp: 0.7 + (value % 100) / 280, // weight in the superposition
+  }
+})
+
 // User interactions merge and affect the animation: the pointer warps the field,
 // clicks send ripples (and one through the opposite, merging the pair), and each
 // interaction folds — content-addressed — into a running root.
@@ -55,6 +76,12 @@ let width = 0
 let height = 0
 let dpr = 1
 const pointer = { x: -1, y: -1, active: false }
+// Coarse offscreen buffer for the per-pixel wavefield (scaled up smoothly).
+let field: HTMLCanvasElement | null = null
+let fieldCtx: CanvasRenderingContext2D | null = null
+let fieldData: ImageData | null = null
+let fCols = 0
+let fRows = 0
 
 // Map a frequency (174..513 Hz) to a hue; the two loops sit in two hue families.
 function hue(frequency: number, loop: string) {
@@ -70,6 +97,14 @@ function resize() {
   canvas.value.width = Math.round(width * dpr)
   canvas.value.height = Math.round(height * dpr)
   canvas.value.style.height = `${height}px`
+  // The wavefield buffer: one cell per ~12px, bilinearly scaled to every pixel.
+  fCols = Math.max(24, Math.round(width / 12))
+  fRows = Math.max(14, Math.round(height / 12))
+  if (!field) field = document.createElement('canvas')
+  field.width = fCols
+  field.height = fRows
+  fieldCtx = field.getContext('2d')
+  fieldData = fieldCtx ? fieldCtx.createImageData(fCols, fRows) : null
 }
 
 function draw(t: number) {
@@ -77,6 +112,33 @@ function draw(t: number) {
   if (!ctx) return
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   ctx.clearRect(0, 0, width, height)
+  // The computed wavefield: each cell's colour is the superposition of the torus's
+  // own waves sampled there, so colour changes across every pixel and drifts live.
+  // The pointer merges in, blooming the field where the user touches it.
+  if (field && fieldCtx && fieldData) {
+    const pixels = fieldData.data
+    for (let gy = 0; gy < fRows; gy += 1) {
+      for (let gx = 0; gx < fCols; gx += 1) {
+        const u = gx / fCols
+        const v = gy / fRows
+        let p = 0
+        for (const w of fieldSources) p += w.amp * Math.sin(u * w.fx + v * w.fy + t * w.speed + w.ph)
+        if (pointer.active) {
+          const dx = u * width - pointer.x
+          const dy = v * height - pointer.y
+          p += 1.2 * Math.exp(-(dx * dx + dy * dy) / (2 * 120 * 120))
+        }
+        const idx = (gy * fCols + gx) * 4
+        pixels[idx] = 128 + 110 * Math.sin(p)
+        pixels[idx + 1] = 128 + 110 * Math.sin(p + 2.0944) // +120°
+        pixels[idx + 2] = 128 + 110 * Math.sin(p + 4.1888) // +240°
+        pixels[idx + 3] = 56 // subtle: the torus stays in front
+      }
+    }
+    fieldCtx.putImageData(fieldData, 0, 0)
+    ctx.imageSmoothingEnabled = true
+    ctx.drawImage(field, 0, 0, width, height)
+  }
   // The torus moves in all directions, not only the spin: a left/right drift, an
   // up/down bob, and an in/out breath — each its own slow period and phase.
   const swayX = saveEnergy.value ? 0 : Math.sin(t / 5200 + phase.horizontal) * width * 0.03
@@ -86,9 +148,19 @@ function draw(t: number) {
   const cy = height / 2 + bobY
   const s = (Math.min(width, height * 2.1) / 150) * breath // fit the ~±60 range, breathing
   const focal = 240
-  const angle = saveEnergy.value ? 0.6 : (t / 9000) % (Math.PI * 2) // slow turn
-  const cos = Math.cos(angle)
-  const sin = Math.sin(angle)
+  // The torus moves analogue in all directions: not one spin but three continuous
+  // rotations at once — pitch (X), yaw (Y) and roll (Z) — each its own slow period
+  // and content-derived phase, so the surface tumbles smoothly through every
+  // direction rather than turning about a single axis.
+  const ax = saveEnergy.value ? 0.5 : t / 11300 + phase.vertical // pitch, about X
+  const ay = saveEnergy.value ? 0.6 : t / 9000 + phase.horizontal // yaw, about Y
+  const az = saveEnergy.value ? 0.2 : t / 13700 + phase.radial // roll, about Z
+  const cosX = Math.cos(ax)
+  const sinX = Math.sin(ax)
+  const cosY = Math.cos(ay)
+  const sinY = Math.sin(ay)
+  const cosZ = Math.cos(az)
+  const sinZ = Math.sin(az)
   // Two heads sweep the train, one each way (the bidirectional fold, live).
   const headF = saveEnergy.value ? -1 : (t / data.tempoMs) % data.count
   const headR = saveEnergy.value ? -1 : data.count - headF
@@ -103,8 +175,16 @@ function draw(t: number) {
   }
 
   const points = data.coordinates.map((c) => {
-    const rx = c.x * cos - c.z * sin
-    const rz = c.x * sin + c.z * cos
+    // Tumble analogue in all directions: rotate about X (pitch), then Y (yaw),
+    // then Z (roll). The composition moves the surface through every direction.
+    const x1 = c.x
+    const y1 = c.y * cosX - c.z * sinX
+    const z1 = c.y * sinX + c.z * cosX
+    const x2 = x1 * cosY + z1 * sinY
+    const z2 = -x1 * sinY + z1 * cosY
+    const rx = x2 * cosZ - y1 * sinZ
+    const ry = x2 * sinZ + y1 * cosZ
+    const rz = z2
     const persp = focal / (focal + rz)
     const pulse = saveEnergy.value ? 0.85 : 0.6 + 0.4 * Math.sin((t / c.vibrationMs) * Math.PI * 2)
     // proximity to a sweeping head -> a travelling glow, the nearer the brighter
@@ -114,7 +194,7 @@ function draw(t: number) {
     return {
       c,
       sx: cx + rx * s * persp,
-      sy: cy + c.y * s * persp,
+      sy: cy + ry * s * persp,
       persp,
       pulse,
       glow,

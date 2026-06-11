@@ -6576,12 +6576,26 @@ function computeDiamondLattice(matrix = buildMatrix()) {
     ];
 }
 function torusPoint(index, digit, total) {
-    const theta = (index / total) * Math.PI * 4;
+    // The double torus is genus 2: not one ring but a figure-eight with two holes.
+    // The spine is a lemniscate of Gerono (the ∞ curve); one pass threads both lobes,
+    // and a tube swept around it gives the two-holed surface — the actual double
+    // torus, not a single torus. theta runs once (0..2pi) over the whole figure eight.
+    const theta = (index / total) * Math.PI * 2;
     const phi = ((digit + index * 0.5) / 10) * Math.PI * 2;
     const major = 38;
     const minor = 14 + digit;
-    const x = (major + minor * Math.cos(phi)) * Math.cos(theta);
-    const y = (major + minor * Math.cos(phi)) * Math.sin(theta);
+    // Figure-eight spine in the XY plane: two lobes meeting at the neck (origin).
+    const spineX = Math.cos(theta);
+    const spineY = Math.sin(theta) * Math.cos(theta);
+    // Spine tangent, and its in-plane normal (perpendicular) — the frame the tube rides.
+    const tangentX = -Math.sin(theta);
+    const tangentY = Math.cos(2 * theta);
+    const tangentLength = Math.hypot(tangentX, tangentY) || 1;
+    const normalX = -tangentY / tangentLength;
+    const normalY = tangentX / tangentLength;
+    // Tube around the spine: cos(phi) along the in-plane normal, sin(phi) out of plane.
+    const x = major * spineX + minor * Math.cos(phi) * normalX;
+    const y = major * spineY + minor * Math.cos(phi) * normalY;
     const z = minor * Math.sin(phi);
     const scale = 0.72 + digit / 22;
     return { theta, phi, x, y, z, scale };
