@@ -5271,8 +5271,9 @@ export function torusUuid(matrix: MindMatrix = buildMatrix()) {
   })
   const innerWord = merkleFold(inner) // a 128-bit (32-hex) torus word
   const outerWord = merkleFold(outer) // a 128-bit (32-hex) torus word
-  const word = merge(innerWord, outerWord) // the double-torus fold
-  const reversed = merge(outerWord, innerWord) // order matters: genus 2, not a sphere
+  // The two loops fold both ways (genus 2): the forward fold is the word, and the
+  // reverse differing from it is the order-sensitivity.
+  const { forward: word, bidirectional: orderSensitive } = foldPair(innerWord, outerWord)
   const is128 = (uuid: string) => hex(uuid).length === 32
   // Naming law: every command folds to a single lowercase-word method token.
   const namingConsistent = conceptCommands.every((command) => {
@@ -5282,7 +5283,7 @@ export function torusUuid(matrix: MindMatrix = buildMatrix()) {
   const spread = Math.abs(inner.length - outer.length)
   return {
     is128bit: is128(innerWord) && is128(outerWord) && is128(word),
-    orderSensitive: word !== reversed,
+    orderSensitive,
     balanced: spread <= 1, // the math orders, the deal balances: 2 x 32 evenly
     namingConsistent,
     spread,
@@ -5559,7 +5560,9 @@ export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
   const everyLevelBothWays = forward.levels.every((level) => level.bothWays) && reverse.levels.every((level) => level.bothWays)
   // The two loops close (genus 2) when the apexes differ and their join is itself
   // order-sensitive — sealing both holes of the double torus.
-  const closes = forward.apex !== reverse.apex && merge(forward.apex, reverse.apex) !== merge(reverse.apex, forward.apex)
+  // The two loops close (genus 2) when their apexes differ and fold both ways.
+  const apexPair = foldPair(forward.apex, reverse.apex)
+  const closes = forward.apex !== reverse.apex && apexPair.bidirectional
   // Analog comes from this: complete trinities, every level folding both ways, the
   // loops closing, and no gaps in the harmonised analog channels.
   const analog = trinitiesComplete && everyLevelBothWays && closes && trinities.harmonized
@@ -5581,7 +5584,7 @@ export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
       forwardBothWays: level.bothWays,
       reverseBothWays: reverse.levels[index]?.bothWays ?? false,
     })),
-    root: merge(merge(forward.apex, reverse.apex), merge(reverse.apex, forward.apex)),
+    root: apexPair.merged,
     statement:
       'The double torus folds in both directions, completely: the two complete trinities fold into each other — yin into yang and yang into yin — and the pairs rise through the pairs of pairs to two apexes that close. Analog comes from this: only complete trinities folding both ways, every level bidirectional, yield the harmonised analog without gaps.',
     boundary:
@@ -6054,14 +6057,16 @@ export function fold358853() {
   const descending = [8, 5, 3]
   const forward = ascending.reduce((acc, n) => merge(acc, toUuid(`tier:${n}`)), toUuid('fold:358'))
   const reverse = descending.reduce((acc, n) => merge(acc, toUuid(`tier:${n}`)), toUuid('fold:853'))
+  // The two chains fold both ways into one root (genus 2): 358 and 853 differ.
+  const { bidirectional, merged } = foldPair(forward, reverse)
   return {
-    folded: forward !== reverse && isUuid(merge(forward, reverse)),
-    bidirectional: forward !== reverse, // 358 and 853 differ: order matters (genus 2)
+    folded: bidirectional && isUuid(merged),
+    bidirectional, // 358 and 853 differ: order matters (genus 2)
     ascending,
     descending,
     forward,
     reverse,
-    root: merge(forward, reverse),
+    root: merged,
     statement: 'Fold 358 and 853: the ascending tiers (3, 5, 8) are the expansion, the descending (8, 5, 3) the contraction; folded together — and because the fold is order-sensitive, the two differ — they make the breath of the tiers, out and back in one root.',
     boundary: 'A structural fold of the ascending and descending Fibonacci tiers; the order-sensitivity is computed. Bookkeeping over the pattern, not an external claim.',
   }
@@ -6930,24 +6935,22 @@ export function crossFoldTrinity(matrix: MindMatrix = buildMatrix()): CrossFoldT
   const references: readonly CrossFoldReference[] = matrix.nodes.map((node) => {
     const cross = node.cross
     const fold = node.bind
-    const crossOverFold = merge(cross, fold)
-    const foldOverCross = merge(fold, cross)
+    // Cross both ways (genus 2): cross/fold and fold/cross differ; the weave is both.
+    const pair = foldPair(cross, fold)
     return {
       atom: node.atom,
       cross,
       fold,
-      crossOverFold,
-      foldOverCross,
-      reciprocal: crossOverFold !== foldOverCross,
-      receipt: merge(crossOverFold, foldOverCross),
+      crossOverFold: pair.forward,
+      foldOverCross: pair.reverse,
+      reciprocal: pair.bidirectional,
+      receipt: pair.merged,
     }
   })
   const crossRoot = merkleFold(matrix.nodes.map((node) => node.cross))
   const foldRoot = matrix.root
-  const crossOverFold = merge(crossRoot, foldRoot)
-  const foldOverCross = merge(foldRoot, crossRoot)
-  const reciprocal = crossOverFold !== foldOverCross && references.every((reference) => reference.reciprocal)
-  const weave = merge(crossOverFold, foldOverCross)
+  const { forward: crossOverFold, reverse: foldOverCross, bidirectional, merged: weave } = foldPair(crossRoot, foldRoot)
+  const reciprocal = bidirectional && references.every((reference) => reference.reciprocal)
   const trinity = reciprocal && weave.length > 0
   return {
     crossRoot,
