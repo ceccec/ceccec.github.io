@@ -134,6 +134,7 @@ import {
   mcpCodebase,
   mathPaths,
   frontendMcpDuality,
+  scientists,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -337,6 +338,9 @@ ok(`math.paths:${mathPaths(matrix).count}`, mathPaths(matrix).educates && mathPa
 
 // Frontend-MCP duality, double-folded at all angles and polarities.
 ok(`frontend.mcp.dual:${frontendMcpDuality(matrix).angles}x${frontendMcpDuality(matrix).polarities}`, frontendMcpDuality(matrix).dual)
+
+// Waves of scientists challenge and develop: every adversarial challenge withstood.
+ok(`scientists:${scientists(matrix).withstood}/${scientists(matrix).count}`, scientists(matrix).robust)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

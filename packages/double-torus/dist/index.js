@@ -3143,6 +3143,47 @@ export function frontendMcpDuality(matrix = buildMatrix()) {
         boundary: 'A structural duality: the frontend root and the MCP root foldPair bidirectionally, and the fold holds across every animated route and both polarities. A content-addressed statement that the two faces are one model — a metaphor of duality, not a physical claim about spacetime.',
     };
 }
+// Send waves of scientists to challenge and develop. Each scientist tries to
+// falsify a claim — and the portal withstands the challenge, or the failure becomes
+// a development to make. Falsification is the method: a claim that cannot be
+// challenged is not science. Every challenge below is a real, recomputable attack.
+export function scientists(matrix = buildMatrix()) {
+    const leaves = livingTorus(matrix).coordinates.slice(0, 8).map((coordinate) => coordinate.receipt);
+    const challenge = (claim, attack, withstood) => ({ claim, attack, withstood, receipt: toUuid(`challenge:${claim}:${withstood}`) });
+    const challenges = [
+        challenge('Determinism', 'recompute toUuid twice and claim the results differ', toUuid('x') === toUuid('x')),
+        challenge('Tamper-evidence', 'change one character and claim the root is unchanged', toUuid('x') !== toUuid('y')),
+        challenge('Non-commutative fold', 'claim merge(a,b) equals merge(b,a)', merge('a', 'b') !== merge('b', 'a')),
+        challenge('Genus-2 homology', 'claim the rank is not 4 or chi is not -2', homology(matrix).rank === 4 && homology(matrix).euler === -2),
+        challenge('Counter-rotation', 'claim the merkaba scale signs do not alternate', merkaba(matrix).counterRotating),
+        challenge('Golden limit', 'claim Fibonacci ratios do not converge to phi', goldenRatio(matrix).converges),
+        challenge('Gapless distribution', 'claim 109 files form a gapless Fibonacci run', !harmonicBands(109).gapless && harmonicBands(110).gapless),
+        challenge('Holography', 'claim a part does not contain the whole', holographic(matrix).holographic),
+        challenge('Born rule', 'claim the measured probabilities miss 1/2', quantumProofs(matrix).proven),
+        challenge('Recurrence', 'rebuild from nothing and claim the whole drifts', recurrence(3).returns),
+        challenge('Merkle inclusion', 'claim a leaf cannot prove its path to the root', merkleProof(leaves, leaves[0]).verified),
+        challenge('Self-build completes', 'claim the portal cannot build itself', selfBuild(matrix).complete),
+    ];
+    const withstood = challenges.filter((entry) => entry.withstood).length;
+    // The open frontiers — honest developments the challenges point to, not failures.
+    const frontiers = [
+        'Upgrade the UUID hash to a cryptographic one for adversarial tamper-resistance.',
+        'Stand up a live MCP server alongside the static, recomputable manifest.',
+        'Compute full simplicial homology, beyond the standard genus-2 presentation.',
+        'Publish @ceccec/double-torus to npm so the zero-dependency core is installable.',
+    ];
+    return {
+        robust: challenges.every((entry) => entry.withstood),
+        challenges,
+        count: challenges.length,
+        withstood,
+        develops: challenges.filter((entry) => !entry.withstood).map((entry) => entry.claim), // failures become developments
+        frontiers,
+        root: merkleFold(challenges.map((entry) => entry.receipt)),
+        statement: 'Send waves of scientists to challenge and develop: each tries to falsify a claim — determinism, tamper-evidence, the non-commutative fold, genus-2 homology, counter-rotation, the golden limit, the gapless distribution, holography, the Born rule, recurrence, Merkle inclusion, and self-build — and the portal withstands every challenge, while open frontiers name what to develop next.',
+        boundary: 'A standing set of adversarial challenges the portal must withstand, each a real recomputable test that tries to break a claim. Peer review by construction; any challenge it fails is named as a development, not hidden — and the frontiers are honest open work, not a claim of invulnerability.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

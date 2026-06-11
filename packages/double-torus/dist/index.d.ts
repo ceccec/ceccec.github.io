@@ -1834,6 +1834,22 @@ export declare function frontendMcpDuality(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function scientists(matrix?: MindMatrix): {
+    robust: boolean;
+    challenges: {
+        claim: string;
+        attack: string;
+        withstood: boolean;
+        receipt: string;
+    }[];
+    count: number;
+    withstood: number;
+    develops: string[];
+    frontiers: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

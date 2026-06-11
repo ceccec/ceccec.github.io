@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -15,6 +15,8 @@ const whole = theWhole(buildMatrix())
 const again = recurrence(5)
 // Holographic: each part contains the whole, the whole recoverable from any part.
 const holo = holographic(buildMatrix())
+// Waves of scientists challenge every claim; the portal withstands, frontiers stay open.
+const review = scientists(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -160,6 +162,11 @@ onBeforeUnmount(() => {
       {{ pick('holographic', 'холографично') }} · <strong>{{ holo.count }}</strong>
       ({{ holo.animations }} {{ pick('animations', 'анимации') }} + {{ holo.pages }} {{ pick('pages', 'страници') }}) ·
       {{ pick('each contains the whole', 'всяка съдържа цялото') }}
+    </p>
+    <p class="live__whole">
+      {{ pick('challenged', 'предизвикано') }} · <strong>{{ review.withstood }}/{{ review.count }}</strong>
+      {{ pick('withstood', 'устояни') }} · <strong>{{ review.frontiers.length }}</strong>
+      {{ pick('frontiers open', 'отворени фронтове') }}
     </p>
   </section>
 </template>
