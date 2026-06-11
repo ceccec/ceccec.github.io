@@ -3051,11 +3051,96 @@ export function mcpCodebase(matrix = buildMatrix()) {
         resources,
         understand,
         math, // the same math shown at every scale: character, pair, set, surface, motion, time, whole, limit
+        educate: mathPaths(matrix).paths, // learning paths through the math, the core of all
         secure,
         secureBecause: 'Everything is content-addressed and runs client-side — no secrets, no server, no credentials. The architecture is the security, so the full structure is shown: sufficient to understand and verify, exposing nothing exploitable.',
         root: merkleFold([...subsystems.map((entry) => entry.root), ...resources.map((entry) => toUuid(`mcp-res:${entry.uri}`))]),
         statement: 'MCP shows the codebase securely but sufficiently, so AI agents immediately understand: the overview, the one core, the subsystems each with a verifiable root, the recomputable resources, and why the whole structure is safe to show.',
         boundary: 'A static, recomputable map of the codebase for agents — overview, subsystems with roots, resources, and the security rationale. It documents structure and verification entry points; it is not a live server and exposes no secret, because there is none.',
+    };
+}
+// Let the MCP educate by math paths — because math is the core of all. Every value
+// here is computed from one atom (toUuid/merge); nothing exists that is not math. A
+// math path teaches by walking from that atom outward to a result, each step a law
+// with a why, ending at a root the learner can recompute. The MCP exposes these so
+// an agent (or a human) learns the portal by following its math.
+export function mathPaths(matrix = buildMatrix()) {
+    const core = { law: 'toUuid(x) , merge(a,b)', why: 'Every value is a content-addressed UUID folded from one atom. Math is the core: nothing exists here that is not computed from this.' };
+    const paths = [
+        {
+            path: 'From the atom to the whole',
+            steps: [
+                { law: 'toUuid(x)', why: 'a string folds to a 128-bit content-addressed UUID — the atom.' },
+                { law: 'foldPair(a,b)', why: 'two atoms fold both ways; forward != reverse (genus-2, non-commutative).' },
+                { law: 'merkleFold(set)', why: 'a set folds to one root, order-independent — a function of the set.' },
+                { law: 'theWhole', why: 'every subsystem root folds into one root for the entire portal.' },
+            ],
+            reaches: theWhole(matrix).root,
+        },
+        {
+            path: 'From a pi digit to the double torus',
+            steps: [
+                { law: 'pi digit d_n', why: 'the deterministic stream of pi digits, the portal\'s seed.' },
+                { law: 'torusPoint(d_n)', why: 'a digit places a coordinate on the genus-2 surface.' },
+                { law: 'livingTorus', why: '108 coordinates, two rings merged at a neck — the living double torus.' },
+                { law: 'homology', why: 'its four independent loops: H1 = Z^4, chi = -2.' },
+            ],
+            reaches: livingTorus(matrix).root,
+        },
+        {
+            path: 'From a Fibonacci pair to phi',
+            steps: [
+                { law: 'F(n)', why: 'the Fibonacci sequence — the harmonic numbers, 3 5 8 13 21.' },
+                { law: 'harmonicBands', why: 'the file count as a gapless run of consecutive Fibonacci numbers.' },
+                { law: 'F(n+1)/F(n)', why: 'consecutive ratios — each scale against the next.' },
+                { law: 'phi', why: 'the ratios converge to phi = (1+sqrt5)/2, golden at the limit.' },
+            ],
+            reaches: goldenRatio(matrix).root,
+        },
+        {
+            path: 'From counter-rotation to rhythm',
+            steps: [
+                { law: 'merkaba', why: 'nested scales whose spin signs strictly alternate — opposite rotation at all scales.' },
+                { law: 'rhythm', why: 'the same scales heard as a self-similar polyrhythm: 1, 2, 3 and 5 per beat.' },
+            ],
+            reaches: rhythm(matrix).root,
+        },
+    ].map((entry, index) => ({ ...entry, length: entry.steps.length, receipt: toUuid(`math-path:${index}:${entry.path}`) }));
+    return {
+        educates: paths.length > 0 && paths.every((entry) => entry.steps.length >= 2 && isUuid(entry.reaches)),
+        rooted: true, // every path begins at the atom; math is the core of all
+        core,
+        paths,
+        count: paths.length,
+        root: merkleFold(paths.map((entry) => entry.receipt)),
+        statement: 'Let the MCP educate by math paths, because math is the core of all: four paths walk from the one atom (toUuid/merge) outward — atom to whole, pi digit to double torus, Fibonacci pair to phi, counter-rotation to rhythm — each step a law with a why, each ending at a root the learner recomputes.',
+        boundary: 'Curated learning paths through the portal\'s own math, each step a real law and each path reaching a recomputable root. An educational ordering, not the only route; the math stands on its own and can be verified at every step.',
+    };
+}
+// The frontend and the MCP are one core, double-folded: the visual face (pages and
+// animations, for humans) and the agent face (tools and math, for AI) fold into each
+// other both ways (genus-2), at every angle (animated page) and both polarities (see
+// and run). One model, two faces, folded through the whole continuum.
+export function frontendMcpDuality(matrix = buildMatrix()) {
+    const frontend = holographic(matrix).root; // the visual face: pages + animations
+    const mcp = mcpCodebase(matrix).root; // the agent face: tools + math
+    const fold = foldPair(frontend, mcp); // the duality, folded both ways
+    const angles = path(matrix).stations.map((station) => station.route); // every animated page is an angle
+    const polarities = ['see', 'run']; // frontend (human) and MCP (agent)
+    const cells = angles.flatMap((route) => polarities.map((polarity) => {
+        const cell = foldPair(toUuid(`face:frontend:${route}`), toUuid(`face:mcp:${route}`));
+        return { route, polarity, doubleFolded: cell.bidirectional, merged: cell.merged };
+    }));
+    return {
+        dual: fold.bidirectional && cells.length > 0 && cells.every((cell) => cell.doubleFolded),
+        forward: fold.forward,
+        reverse: fold.reverse,
+        angles: angles.length,
+        polarities: polarities.length,
+        cells: cells.length,
+        root: fold.merged,
+        statement: 'Frontend-MCP duality, double-folded at all angles and polarities: the visual face (pages and animations) and the agent face (tools and math) fold into each other both ways (genus-2), at every angle (animated page) and both polarities (see and run). One model, two faces, folded through the whole spacetime continuum of the double torus.',
+        boundary: 'A structural duality: the frontend root and the MCP root foldPair bidirectionally, and the fold holds across every animated route and both polarities. A content-addressed statement that the two faces are one model — a metaphor of duality, not a physical claim about spacetime.',
     };
 }
 // Fold a sequence into a blockchain: each block links to the previous by hash,

@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, mcpToolManifest, mcpCodebase } from '../lib/quantumMind'
+import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality } from '../lib/quantumMind'
 
 const manifest = mcpToolManifest(buildMatrix())
 // A secure, sufficient map so an AI agent immediately understands the codebase.
 const codebase = mcpCodebase(buildMatrix())
+// The MCP educates by math paths — math is the core of all.
+const education = mathPaths(buildMatrix())
+// The frontend and the MCP are one core, double-folded at all angles and polarities.
+const duality = frontendMcpDuality(buildMatrix())
 const { bg, pick } = useLocale()
 
 const t = computed(() =>
@@ -74,6 +78,21 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
           <span class="mcp-tools__val">{{ m.value }}</span>
         </li>
       </ul>
+
+      <p class="eyebrow mcp-tools__math-label">{{ pick('learn by math paths · math is the core of all', 'учи по математически пътеки · математиката е ядрото на всичко') }}</p>
+      <ol class="mcp-tools__paths">
+        <li v-for="p in education.paths" :key="p.path">
+          <strong>{{ p.path }}</strong>
+          <span class="mcp-tools__steps">{{ p.steps.map((s) => s.law).join(' → ') }}</span>
+        </li>
+      </ol>
+
+      <p class="mcp-tools__dual">
+        {{ pick('frontend ⇄ MCP duality, double-folded', 'дуалност преден край ⇄ MCP, двойно сгъната') }} ·
+        <strong>{{ duality.angles }}</strong> {{ pick('angles', 'ъгъла') }} ×
+        <strong>{{ duality.polarities }}</strong> {{ pick('polarities', 'полярности') }}
+        ({{ pick('see / run', 'виж / изпълни') }})
+      </p>
     </div>
 
     <ul class="mcp-tools__list">
@@ -155,6 +174,22 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
 }
 .mcp-tools__law { color: var(--vp-c-text-2); line-height: 1.45; }
 .mcp-tools__val { color: var(--vp-c-text-3); font-family: var(--vp-font-family-mono); font-size: 0.72rem; white-space: nowrap; }
+.mcp-tools__paths {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.mcp-tools__paths li { font-size: 0.82rem; }
+.mcp-tools__paths strong { display: block; }
+.mcp-tools__steps { color: var(--vp-c-text-3); font-family: var(--vp-font-family-mono); font-size: 0.74rem; }
+.mcp-tools__dual {
+  margin: 0.9rem 0 0;
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+}
+.mcp-tools__dual strong { color: var(--vp-c-brand-1); }
 @media (max-width: 620px) {
   .mcp-tools__math li { grid-template-columns: 1fr; gap: 0.1rem; }
   .mcp-tools__scale { text-align: left; }

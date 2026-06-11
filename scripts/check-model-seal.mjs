@@ -132,6 +132,8 @@ import {
   animationTamperingCost,
   holographic,
   mcpCodebase,
+  mathPaths,
+  frontendMcpDuality,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -329,6 +331,12 @@ ok(`holographic:${holographic(matrix).count}cells`, holographic(matrix).holograp
 
 // MCP shows the codebase securely but sufficiently, so AI agents immediately understand.
 ok(`mcp.codebase:${mcpCodebase(matrix).subsystems.length}+${mcpCodebase(matrix).resources.length}`, mcpCodebase(matrix).understandable)
+
+// Let the MCP educate by math paths — math is the core of all, every path rooted in the atom.
+ok(`math.paths:${mathPaths(matrix).count}`, mathPaths(matrix).educates && mathPaths(matrix).rooted)
+
+// Frontend-MCP duality, double-folded at all angles and polarities.
+ok(`frontend.mcp.dual:${frontendMcpDuality(matrix).angles}x${frontendMcpDuality(matrix).polarities}`, frontendMcpDuality(matrix).dual)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

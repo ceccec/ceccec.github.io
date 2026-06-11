@@ -1785,8 +1785,51 @@ export declare function mcpCodebase(matrix?: MindMatrix): {
         law: string;
         value: string;
     }[];
+    educate: {
+        length: number;
+        receipt: string;
+        path: string;
+        steps: {
+            law: string;
+            why: string;
+        }[];
+        reaches: string;
+    }[];
     secure: boolean;
     secureBecause: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function mathPaths(matrix?: MindMatrix): {
+    educates: boolean;
+    rooted: boolean;
+    core: {
+        law: string;
+        why: string;
+    };
+    paths: {
+        length: number;
+        receipt: string;
+        path: string;
+        steps: {
+            law: string;
+            why: string;
+        }[];
+        reaches: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function frontendMcpDuality(matrix?: MindMatrix): {
+    dual: boolean;
+    forward: string;
+    reverse: string;
+    angles: number;
+    polarities: number;
+    cells: number;
     root: string;
     statement: string;
     boundary: string;
