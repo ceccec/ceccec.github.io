@@ -3,14 +3,18 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { buildMatrix, livingTorus } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // The living double torus: every pi-digit UUID coordinate alive at once, in
-// realtime. Each pulses at its own vibration, glows by its frequency, and rides
-// one of the two loops; two heads sweep the train in both directions. Pure
-// renderer over livingTorus(); deterministic, client-side, energy-aware.
+// realtime. Each pulses at its own vibration, glows by its frequency, rides one
+// of the two loops, and merges with its opposite. Multisensory: click a
+// coordinate to hear it, or turn on sound to hear the train as the head sweeps.
 const data = livingTorus(buildMatrix())
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
+const { blip } = useTones()
+const sound = ref(false)
+let lastHead = -1
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const wrap = ref<HTMLDivElement | null>(null)
@@ -53,6 +57,15 @@ function draw(t: number) {
   // Two heads sweep the train, one each way (the bidirectional fold, live).
   const headF = saveEnergy.value ? -1 : (t / data.tempoMs) % data.count
   const headR = saveEnergy.value ? -1 : data.count - headF
+  // Hear the train: when sound is on, sound each coordinate as the head reaches it.
+  if (sound.value && headF >= 0) {
+    const hi = Math.floor(headF)
+    if (hi !== lastHead) {
+      lastHead = hi
+      const c = data.coordinates[hi]
+      if (c) blip(c.frequency, { peak: 0.06, duration: 0.18 })
+    }
+  }
 
   const points = data.coordinates.map((c) => {
     const rx = c.x * cos - c.z * sin
@@ -162,6 +175,10 @@ function onLeave() {
   pointer.active = false
   hover.value = null
 }
+// Click a coordinate to hear it: sound the nearest coordinate's own frequency.
+function onDown() {
+  if (hover.value) blip(hover.value.frequency, { peak: 0.1, duration: 0.32 })
+}
 
 onMounted(() => {
   resize()
@@ -193,7 +210,16 @@ const t = (en: string, b: string) => (bg.value ? b : en)
         role="img"
         @pointermove="onMove"
         @pointerleave="onLeave"
+        @pointerdown="onDown"
       />
+      <button
+        type="button"
+        class="lt__sound"
+        :class="{ on: sound }"
+        :aria-pressed="sound"
+        :aria-label="t('Toggle train sound', 'Превключи звука на влака')"
+        @click="sound = !sound"
+      >{{ sound ? '♫' : '♪' }} {{ t(sound ? 'sound on' : 'sound', sound ? 'звук' : 'звук') }}</button>
       <div v-if="hover" class="lt__readout">
         <strong>{{ hover.glyph }}</strong>
         <span>{{ t('digit', 'цифра') }} {{ hover.digit }} · {{ hover.fraction }} · {{ hover.frequency }} Hz · {{ hover.loop }}</span>
@@ -225,6 +251,22 @@ const t = (en: string, b: string) => (bg.value ? b : en)
   width: 100%;
   touch-action: none;
   cursor: crosshair;
+}
+.lt__sound {
+  position: absolute;
+  right: 0.7rem;
+  top: 0.7rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  font-size: 0.74rem;
+}
+.lt__sound.on {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
 }
 .lt__readout {
   position: absolute;
