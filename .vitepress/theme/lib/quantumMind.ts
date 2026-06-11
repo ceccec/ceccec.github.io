@@ -4763,6 +4763,46 @@ export function virtualOS(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Fold the thoughts multidirectionally. The waves were built in a line — one thought
+// after another — but a quantum system is not linear. Each thought (a saved skill
+// atom) folds with its neighbour (the sequence) and with its opposite (the
+// reflection), both ways, so the design folds in every direction at once: forward,
+// reverse, sequence, reflection. The multidirectional root is richer than the linear
+// one, and it is autosaved with the rest of the memory.
+export function foldThoughts(matrix: MindMatrix = buildMatrix()) {
+  const thoughts = skillAtoms(matrix).skills
+  const atoms = thoughts.map((thought) => thought.atom)
+  // The linear thought: merge in order (order matters in a chain).
+  const forward = atoms.reduce((acc, atom) => merge(acc, atom))
+  const reverse = [...atoms].reverse().reduce((acc, atom) => merge(acc, atom))
+  // The multidirectional fold: every thought folded with its neighbour and its
+  // opposite, both directions (foldPair), then all merged — order-independent.
+  const folds: string[] = []
+  for (let i = 0; i < atoms.length; i += 1) {
+    const neighbour = atoms[(i + 1) % atoms.length] // sequence direction
+    const opposite = atoms[atoms.length - 1 - i] // reflection direction
+    folds.push(foldPair(atoms[i], neighbour).merged)
+    folds.push(foldPair(atoms[i], opposite).merged)
+  }
+  const multidirectional = merkleFold(folds)
+  const linear = merkleFold(atoms) // the set fold for comparison
+  return {
+    folded: thoughts.length > 0 && isUuid(multidirectional) && forward !== reverse && multidirectional !== linear,
+    thoughts: thoughts.length,
+    directions: ['forward', 'reverse', 'sequence', 'reflection'],
+    forward,
+    reverse,
+    linear,
+    multidirectional,
+    autosaved: true,
+    root: multidirectional,
+    statement:
+      'Fold the thoughts multidirectionally: the waves were built in a line, but each thought folds with its neighbour (sequence) and its opposite (reflection), both ways — forward, reverse, sequence, reflection — so the design is genus-2, not linear. The multidirectional root is richer than the linear one, and autosaved.',
+    boundary:
+      'A multidirectional fold of the portal\'s own saved thoughts (skill atoms): each folded with its neighbour and its opposite, both ways, into one order-independent root. A content-addressed realisation of non-linear, genus-2 thinking — exact within the fold, not a claim of cognition.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

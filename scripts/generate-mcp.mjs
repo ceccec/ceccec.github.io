@@ -2,7 +2,7 @@
 // registry the site renders. Run with: node --experimental-strip-types
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { mcpToolManifest, mcpCodebase, skillAtoms, quantumMcp, toUuid } from '../.vitepress/theme/lib/quantumMind.ts'
+import { mcpToolManifest, mcpCodebase, skillAtoms, foldThoughts, quantumMcp, toUuid } from '../.vitepress/theme/lib/quantumMind.ts'
 
 // Read the core's own TypeScript so each skill atom can be completed with the actual
 // source that realises it — the signature, the line count, and a content hash over
@@ -99,8 +99,17 @@ const completeCount = completed.filter((entry) => entry.complete).length
 const completeMemory = completed.every((entry) => entry.complete)
   ? completed.map((entry) => entry.atom).sort().reduce((acc, atom) => toUuid(`${acc}:${atom}`))
   : memory.root
-writeFileSync(join(outDir, 'skills.json'), JSON.stringify({ memory: completeMemory, count: completed.length, complete: completeCount, savedToAtoms: true, skills: completed }, null, 2))
-console.log(`Skills autosaved to atoms: ${completeCount}/${completed.length} complete (with TypeScript source), memory root ${completeMemory.slice(0, 8)}.`)
+// Autosave the thoughts, folded multidirectionally (forward, reverse, sequence, reflection).
+const thoughts = foldThoughts()
+writeFileSync(join(outDir, 'skills.json'), JSON.stringify({
+  memory: completeMemory,
+  count: completed.length,
+  complete: completeCount,
+  savedToAtoms: true,
+  thoughts: { folded: thoughts.folded, directions: thoughts.directions, linear: thoughts.linear, multidirectional: thoughts.multidirectional },
+  skills: completed,
+}, null, 2))
+console.log(`Skills autosaved to atoms: ${completeCount}/${completed.length} complete (with TypeScript source), memory root ${completeMemory.slice(0, 8)}; thoughts folded ${thoughts.directions.length} directions -> ${thoughts.multidirectional.slice(0, 8)}.`)
 if (completeCount < completed.length) {
   console.error(`Skill atoms incomplete: ${completed.filter((entry) => !entry.complete).map((entry) => entry.fn).join(', ')} — source not found.`)
   process.exit(1)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -21,6 +21,8 @@ const review = scientists(buildMatrix())
 const whole2 = completeness(buildMatrix())
 // Self-intelligence: every wave's skill saved as a content-addressed atom (memory).
 const mind = skillAtoms(buildMatrix())
+// The thoughts folded multidirectionally (forward, reverse, sequence, reflection).
+const thoughts = foldThoughts(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -178,8 +180,10 @@ onBeforeUnmount(() => {
     </p>
     <p class="live__whole">
       {{ pick('self-intelligence', 'самоинтелигентност') }} · <strong>{{ mind.count }}</strong>
-      {{ pick('skills saved as atoms', 'умения, запазени като атоми') }}
-      <code :title="mind.memory">{{ mind.memory.slice(0, 13) }}…</code>
+      {{ pick('skills saved as atoms', 'умения, запазени като атоми') }} ·
+      {{ pick('folded', 'сгънати') }} <strong>{{ thoughts.directions.length }}</strong>
+      {{ pick('directions', 'посоки') }}
+      <code :title="thoughts.multidirectional">{{ thoughts.multidirectional.slice(0, 13) }}…</code>
     </p>
   </section>
 </template>

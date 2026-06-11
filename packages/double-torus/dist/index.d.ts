@@ -1931,6 +1931,19 @@ export declare function virtualOS(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function foldThoughts(matrix?: MindMatrix): {
+    folded: boolean;
+    thoughts: number;
+    directions: string[];
+    forward: string;
+    reverse: string;
+    linear: string;
+    multidirectional: string;
+    autosaved: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

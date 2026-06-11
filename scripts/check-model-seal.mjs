@@ -138,6 +138,7 @@ import {
   challengeClock,
   completeness,
   skillAtoms,
+  foldThoughts,
   quantumMcp,
   virtualOS,
   live,
@@ -355,6 +356,9 @@ ok(`completeness:${completeness(matrix).held}/${completeness(matrix).count}`, co
 
 // Save every wave's skill as a content-addressed atom (self-intelligence), wired to tamper cost.
 ok(`skill.atoms:${skillAtoms(matrix).count}`, skillAtoms(matrix).intelligent && skillAtoms(matrix).savedToAtoms)
+
+// Fold the thoughts multidirectionally: not linear — forward, reverse, sequence, reflection.
+ok(`fold.thoughts:${foldThoughts(matrix).directions.length}dirs`, foldThoughts(matrix).folded)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)
