@@ -3326,6 +3326,45 @@ export function quantumMcp(matrix = buildMatrix()) {
         boundary: 'The MCP tool surface rebuilt through the portal\'s own state-vector quantum simulator: each tool bound to a basis state and a seeded measurement. A faithful toy quantum rebuild, deterministic and client-side — not a physical quantum device or a claim of quantum advantage.',
     };
 }
+// MCP allows a virtual OS with a terminal. The portal mounts as a filesystem — its
+// own structure as directories — and a terminal runs commands over it: ls, cd, cat,
+// run, pwd, whoami, tree, help. Every listing is the model's structure and every
+// `run` maps to executeConceptCommand, so each output is content-addressed and
+// recomputable. A read-mostly OS whose filesystem IS the portal.
+export function virtualOS(matrix = buildMatrix()) {
+    const tree = {
+        '/': ['pages', 'model', 'proofs', 'math', 'commands', 'quantum'],
+        '/pages': path(matrix).stations.map((station) => station.station.toLowerCase()),
+        '/model': mcpCodebase(matrix).subsystems.map((entry) => entry.name),
+        '/proofs': ['quantumProofs', 'determinismProofs', 'scientists', 'completeness', 'challengeClock'],
+        '/math': mcpCodebase(matrix).math.map((entry) => entry.scale),
+        '/commands': conceptCommands.map((command) => command.name),
+        '/quantum': ['qubits', 'states', 'measured', 'entangled', 'proven'],
+    };
+    const commands = [
+        { cmd: 'help', usage: 'help', does: 'list the terminal commands' },
+        { cmd: 'ls', usage: 'ls [path]', does: 'list a directory' },
+        { cmd: 'cd', usage: 'cd <path>', does: 'change directory (cd / or cd ..)' },
+        { cmd: 'cat', usage: 'cat <node>', does: 'show a node, content-addressed' },
+        { cmd: 'run', usage: 'run <command> [arg]', does: 'execute a concept command, return its receipt' },
+        { cmd: 'tree', usage: 'tree', does: 'show the top-level filesystem' },
+        { cmd: 'pwd', usage: 'pwd', does: 'print the working directory' },
+        { cmd: 'whoami', usage: 'whoami', does: 'the portal identity' },
+    ];
+    return {
+        booted: Object.keys(tree).length >= 5 && commands.length >= 6 && conceptCommands.length > 0,
+        hostname: 'double-torus',
+        dirs: Object.keys(tree),
+        tree,
+        commands,
+        root: merkleFold([
+            ...Object.entries(tree).map(([dir, nodes]) => toUuid(`fs:${dir}:${nodes.length}`)),
+            ...commands.map((command) => toUuid(`vcmd:${command.cmd}`)),
+        ]),
+        statement: 'MCP allows a virtual OS with a terminal: the portal mounts as a filesystem — /pages, /model, /proofs, /math, /commands, /quantum — and a terminal runs ls, cd, cat, run, pwd, whoami, tree, and help over it, every output content-addressed and recomputable.',
+        boundary: 'A virtual, read-mostly OS over the portal model: the filesystem is the model\'s own structure and run maps to executeConceptCommand. Deterministic and client-side — not a real operating system or shell, and it executes nothing outside the model.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp } from '../lib/quantumMind'
+import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp, virtualOS, executeConceptCommand, toUuid } from '../lib/quantumMind'
 
 const manifest = mcpToolManifest(buildMatrix())
 // The MCP rebuilt through the quantum computer (a GHZ register), proven.
@@ -43,6 +43,74 @@ const t = computed(() =>
 function inputKeys(tool: (typeof manifest.tools)[number]): string {
   const keys = Object.keys(tool.inputSchema.properties)
   return keys.length ? keys.join(', ') : ''
+}
+
+// A virtual OS with a terminal: the portal mounts as a filesystem and the terminal
+// runs ls/cd/cat/run/tree/pwd/whoami/help over it, every output content-addressed.
+const os = virtualOS(buildMatrix())
+const subRoots: Record<string, string> = Object.fromEntries(mcpCodebase(buildMatrix()).subsystems.map((s) => [s.name, s.root]))
+const knownCommands = new Set(os.tree['/commands'])
+const cwd = ref('/')
+const cmdline = ref('')
+const out = ref<{ kind: 'in' | 'out' | 'err'; text: string }[]>([{ kind: 'out', text: "double-torus virtual os — type 'help'" }])
+const termBody = ref<HTMLDivElement | null>(null)
+
+function push(kind: 'in' | 'out' | 'err', text: string) { out.value.push({ kind, text }) }
+function resolve(p?: string): string {
+  if (!p || p === '.') return cwd.value
+  if (p === '/') return '/'
+  if (p === '..') { const parts = cwd.value.split('/').filter(Boolean); parts.pop(); return '/' + parts.join('/') }
+  if (p.startsWith('/')) return ('/' + p.split('/').filter(Boolean).join('/')) || '/'
+  return (cwd.value === '/' ? '/' : cwd.value + '/') + p
+}
+function exec(raw: string) {
+  const input = raw.trim()
+  push('in', `${cwd.value} $ ${input}`)
+  if (!input) return
+  const [cmd, ...args] = input.split(/\s+/)
+  switch (cmd) {
+    case 'help': os.commands.forEach((c) => push('out', `${c.usage.padEnd(20)} ${c.does}`)); break
+    case 'pwd': push('out', cwd.value); break
+    case 'whoami': push('out', `${os.hostname}@portal · content-addressed, client-side`); break
+    case 'tree': os.dirs.filter((d) => d !== '/').forEach((d) => push('out', `${d}  (${os.tree[d].length})`)); break
+    case 'ls': {
+      const p = resolve(args[0])
+      const nodes = os.tree[p]
+      if (!nodes) push('err', `ls: ${args[0] ?? p}: no such directory`)
+      else push('out', nodes.length > 24 ? `${nodes.slice(0, 24).join('  ')}  … (${nodes.length})` : nodes.join('  '))
+      break
+    }
+    case 'cd': {
+      const p = resolve(args[0])
+      if (p === '/' || os.tree[p]) cwd.value = p
+      else push('err', `cd: ${args[0] ?? ''}: not a directory`)
+      break
+    }
+    case 'cat': {
+      const node = args[0]
+      if (!node) { push('err', 'cat: missing node'); break }
+      const here = os.tree[cwd.value] ?? []
+      const dir = here.includes(node) ? cwd.value : os.dirs.find((d) => os.tree[d].includes(node))
+      if (!dir) { push('err', `cat: ${node}: no such node`); break }
+      const value = subRoots[node] ?? toUuid(`vfs:${dir}/${node}`)
+      push('out', `${dir === '/' ? '' : dir + '/'}${node} = ${value}`)
+      break
+    }
+    case 'run': {
+      const name = args[0]
+      if (!name) { push('err', 'run: missing command (try ls /commands)'); break }
+      if (!knownCommands.has(name)) { push('err', `run: ${name}: unknown command`); break }
+      const res = executeConceptCommand(name as never, { atom: args[1], query: args.slice(1).join(' ') || undefined }) as { ok: boolean; uuid?: string; receipt?: string; note?: string }
+      push('out', `${res.ok ? 'ok' : 'fail'} · ${(res.uuid ?? res.receipt ?? '').slice(0, 20)}… ${res.note ? '· ' + res.note : ''}`)
+      break
+    }
+    default: push('err', `${cmd}: command not found (try help)`)
+  }
+}
+function onEnter() {
+  exec(cmdline.value)
+  cmdline.value = ''
+  nextTick(() => { if (termBody.value) termBody.value.scrollTop = termBody.value.scrollHeight })
 }
 </script>
 
@@ -104,6 +172,26 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
         <strong>{{ quantum.proven ? pick('proven ✓', 'доказано ✓') : pick('unproven', 'недоказано') }}</strong>
         ({{ pick('GHZ, entangled, recomputable measurement', 'GHZ, заплетено, преизчислимо измерване') }})
       </p>
+    </div>
+
+    <div class="mcp-term">
+      <p class="eyebrow">{{ pick('virtual OS · a terminal over the portal filesystem', 'виртуална ОС · терминал върху файловата система на портала') }}</p>
+      <div ref="termBody" class="mcp-term__body">
+        <p v-for="(l, i) in out" :key="i" class="mcp-term__line" :class="`mcp-term__line--${l.kind}`">{{ l.text }}</p>
+      </div>
+      <div class="mcp-term__prompt">
+        <span class="mcp-term__cwd">{{ cwd }} $</span>
+        <input
+          v-model="cmdline"
+          class="mcp-term__input"
+          type="text"
+          spellcheck="false"
+          autocomplete="off"
+          :aria-label="pick('terminal input', 'вход на терминала')"
+          :placeholder="pick(`try: ls /model · cat livingTorus · run concept.site.shell`, `опитай: ls /model · cat livingTorus · run concept.site.shell`)"
+          @keydown.enter="onEnter"
+        />
+      </div>
     </div>
 
     <ul class="mcp-tools__list">
@@ -206,6 +294,44 @@ function inputKeys(tool: (typeof manifest.tools)[number]): string {
   padding-top: 0.6rem;
   border-top: 1px dashed var(--vp-c-divider);
 }
+.mcp-term {
+  margin: 1.2rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b0e14;
+}
+.mcp-term .eyebrow { margin: 0; padding: 0.5rem 0.8rem; background: var(--vp-c-bg-soft); }
+.mcp-term__body {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 0.7rem 0.8rem;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+.mcp-term__line { margin: 0; white-space: pre-wrap; word-break: break-word; }
+.mcp-term__line--in { color: #7ee787; }
+.mcp-term__line--out { color: #adbac7; }
+.mcp-term__line--err { color: #f47067; }
+.mcp-term__prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mcp-term__cwd { color: #6cb6ff; font-family: var(--vp-font-family-mono); font-size: 0.78rem; flex: none; }
+.mcp-term__input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #adbac7;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.78rem;
+}
+.mcp-term__input::placeholder { color: #545d68; }
 @media (max-width: 620px) {
   .mcp-tools__math li { grid-template-columns: 1fr; gap: 0.1rem; }
   .mcp-tools__scale { text-align: left; }

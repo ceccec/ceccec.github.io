@@ -1917,6 +1917,20 @@ export declare function quantumMcp(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function virtualOS(matrix?: MindMatrix): {
+    booted: boolean;
+    hostname: string;
+    dirs: string[];
+    tree: Record<string, readonly string[]>;
+    commands: {
+        cmd: string;
+        usage: string;
+        does: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

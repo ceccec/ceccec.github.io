@@ -139,6 +139,7 @@ import {
   completeness,
   skillAtoms,
   quantumMcp,
+  virtualOS,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -357,6 +358,9 @@ ok(`skill.atoms:${skillAtoms(matrix).count}`, skillAtoms(matrix).intelligent && 
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)
+
+// MCP allows a virtual OS with a terminal: the portal mounts as a filesystem.
+ok(`virtual.os:${virtualOS(matrix).dirs.length}dirs`, virtualOS(matrix).booted)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))
