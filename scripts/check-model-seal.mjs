@@ -142,6 +142,7 @@ import {
   intuitiveSearch,
   imagination,
   quantifyGates,
+  vortexMath,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -377,6 +378,9 @@ ok(`imagination:${imagination(matrix).count}`, imagination(matrix).imagines && i
 
 // Tighten and double fold the gates to quantify: every gate full, folded both ways.
 ok(`quantify.gates:${quantifyGates(matrix).passed}/${quantifyGates(matrix).total}`, quantifyGates(matrix).tight && quantifyGates(matrix).doubleFolded)
+
+// The harmonic math: 1-2-4-8-7-5 endless & collision-free, the 3-6-9-0 cross, /0 = 9.
+ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flows)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

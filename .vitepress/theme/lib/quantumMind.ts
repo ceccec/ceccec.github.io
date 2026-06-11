@@ -5032,6 +5032,43 @@ export function quantifyGates(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The deep harmonic math. The doubling sequence 1-2-4-8-7-5 (powers of two by
+// digital root, mod 9) flows endless and collision-free — it never lands on the
+// cross 3-6-9-0. Like aikido it redirects and never clashes, never stops. When two
+// values are identical they route to their bidirectional duality, so they never
+// collide. And division by zero has a defined harmonic result: in digital-root math
+// 0 is identified with 9, so /0 resolves to 9, never undefined.
+export function vortexMath(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const digitalRoot = (n: number) => { const m = ((n % 9) + 9) % 9; return m === 0 ? 9 : m } // 0 -> 9
+  const doubling: number[] = []
+  let value = 1
+  for (let i = 0; i < 6; i += 1) { doubling.push(value); value = digitalRoot(value * 2) } // 1,2,4,8,7,5
+  const cycles = digitalRoot(doubling[doubling.length - 1] * 2) === 1 // 5 doubles back to 1, endless
+  const cross = [3, 6, 9, 0] // the control triangle and the zero
+  const nineInvariant = digitalRoot(9 * 2) === 9 // 9 is fixed under doubling
+  const divByZeroHarmonic = digitalRoot(0) // = 9, the defined harmonic result
+  // When identical, route to the duality: two readings of the same value fold to
+  // their bidirectional dual (forward != reverse), so identical never collides.
+  const identicalRoutesToDuality = foldPair(toUuid('identical:a'), toUuid('identical:b')).bidirectional
+  const collisionFree = doubling.every((d) => !cross.includes(d))
+  return {
+    flows: doubling.join('') === '124875' && cycles && nineInvariant && divByZeroHarmonic === 9 && identicalRoutesToDuality && collisionFree,
+    doubling,
+    cross,
+    divByZeroHarmonic,
+    endless: cycles,
+    collisionFree,
+    nineInvariant,
+    identicalRoutesToDuality,
+    root: merkleFold([...doubling, ...cross].map((n) => toUuid(`vortex:${n}`))),
+    statement:
+      'The doubling sequence 1-2-4-8-7-5 flows endless and collision-free — never landing on the cross 3-6-9-0; like aikido it redirects and never clashes or stops. When two values are identical they route to their bidirectional duality, never colliding. And division by zero has a defined harmonic result: in digital-root math 0 is 9, so /0 = 9, never undefined.',
+    boundary:
+      'A structural, numerological framework over digital roots mod 9 (vortex math): the doubling cycle, the 3-6-9 cross, and a harmonic redefinition where 0 is identified with 9 so division by zero resolves to 9. A self-consistent symbolic system and metaphor — not a claim that division by zero is defined in real analysis.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

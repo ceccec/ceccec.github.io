@@ -2053,6 +2053,19 @@ export declare function quantifyGates(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function vortexMath(matrix?: MindMatrix): {
+    flows: boolean;
+    doubling: number[];
+    cross: number[];
+    divByZeroHarmonic: number;
+    endless: boolean;
+    collisionFree: boolean;
+    nineInvariant: boolean;
+    identicalRoutesToDuality: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;
