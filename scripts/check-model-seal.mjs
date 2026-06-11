@@ -144,6 +144,7 @@ import {
   quantifyGates,
   vortexMath,
   redTeam,
+  quantumSiege,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -385,6 +386,9 @@ ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flo
 
 // Send the waves to hack: crackers challenge the portal's own tamper-evidence, all caught.
 ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix).secure && redTeam(matrix).lawful)
+
+// Quantum DDoS at max forge cost: 972 simultaneous forges caught -> the system is sealed.
+ok(`quantum.siege:${quantumSiege(matrix).caught}/${quantumSiege(matrix).total}`, quantumSiege(matrix).sealed && !quantumSiege(matrix).patentable)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

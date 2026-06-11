@@ -2083,6 +2083,20 @@ export declare function redTeam(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumSiege(matrix?: MindMatrix): {
+    sealed: boolean;
+    waves: number;
+    perWave: number;
+    total: number;
+    caught: number;
+    maxForgeCost: number;
+    patentable: boolean;
+    priorArt: string[];
+    legalPosture: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

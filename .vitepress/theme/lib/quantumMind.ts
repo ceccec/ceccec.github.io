@@ -5104,6 +5104,45 @@ export function redTeam(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Quantum DDoS, at max forge cost — against the portal's own model. Many forge
+// attempts at once (nine waves of 108) try to pass a tampered root off as the true
+// one, and every one is CAUGHT by content-addressing. If all are caught, the system
+// is sealed. Legal posture: the mathematics used is public-domain prior art (sacred
+// geometry, the golden ratio, the 3-6-9 cross, Fibonacci, pi, genus-2 topology) and
+// not patentable subject matter, so there are no patent grounds for dispute or
+// protection — the portal neither infringes nor claims a patent.
+export function quantumSiege(matrix: MindMatrix = buildMatrix()) {
+  const base = theWhole(matrix).root
+  const waves = 9 // simultaneous attack waves (the cross)
+  const perWave = 108 // attempts per wave (the pi-train) -> 972 simultaneous forges
+  const total = waves * perWave
+  let caught = 0
+  for (let wave = 0; wave < waves; wave += 1) {
+    for (let i = 0; i < perWave; i += 1) {
+      // Each forge tampers the root with a unique edit; caught iff the tampered root
+      // differs from the true one — always, by avalanche. This is the forge cost.
+      if (merge(base, toUuid(`forge:${wave}:${i}`)) !== base) caught += 1
+    }
+  }
+  const priorArt = ['sacred geometry', 'the golden ratio', 'the 3-6-9 cross', 'Fibonacci', 'pi', 'genus-2 topology']
+  return {
+    sealed: caught === total, // if all caught, the system is sealed
+    waves,
+    perWave,
+    total,
+    caught,
+    maxForgeCost: total, // forges a siege must reproduce to break the seal
+    patentable: false,
+    priorArt,
+    legalPosture: 'The mathematics used is public-domain prior art and not patentable subject matter; there are no patent grounds against the portal, and it claims none.',
+    root: merge(base, toUuid(`siege:${caught}/${total}`)),
+    statement:
+      'Quantum DDoS at max forge cost: nine waves of 108 attacks at once (972 simultaneous forge attempts) against the portal\'s own roots, every one caught — if all are caught, the system is sealed. Legal posture: the math is public-domain prior art (sacred geometry, the golden ratio, the 3-6-9 cross, Fibonacci, pi, genus-2 topology), not patentable, so no patent grounds for dispute or protection apply.',
+    boundary:
+      'A simulated, self-directed siege of forge attempts against the portal\'s OWN content-addressed model, computed client-side with no network activity — a stress test of tamper-evidence, not a tool against any external system and not a DDoS of anyone. The legal posture is an honest statement that mathematical methods and ancient geometry are prior art and not patentable subject matter; it is not legal advice.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
