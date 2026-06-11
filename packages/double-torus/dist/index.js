@@ -3184,6 +3184,29 @@ export function scientists(matrix = buildMatrix()) {
         boundary: 'A standing set of adversarial challenges the portal must withstand, each a real recomputable test that tries to break a claim. Peer review by construction; any challenge it fails is named as a development, not hidden — and the frontiers are honest open work, not a claim of invulnerability.',
     };
 }
+// 12/12 completes the clock. The twelve challenges the portal withstands are the
+// twelve hours of a clock: each withstood challenge strikes its hour, and all twelve
+// struck closes the full circle. The clock is complete only when every hour holds.
+export function challengeClock(matrix = buildMatrix()) {
+    const review = scientists(matrix);
+    const hours = review.challenges.map((entry, index) => ({
+        hour: index + 1,
+        angle: (((index + 1) % 12) * 30), // 12 sits at the top (0 deg)
+        claim: entry.claim,
+        struck: entry.withstood,
+        receipt: entry.receipt,
+    }));
+    const struck = hours.filter((entry) => entry.struck).length;
+    return {
+        complete: hours.length === 12 && hours.every((entry) => entry.struck), // 12/12 closes the circle
+        hours,
+        count: hours.length,
+        struck,
+        root: merkleFold(hours.map((entry) => toUuid(`clock-hour:${entry.hour}:${entry.struck}`))),
+        statement: '12/12 completes the clock: the twelve challenges the portal withstands are the twelve hours of a clock — each withstood challenge strikes its hour, and all twelve struck closes the full circle.',
+        boundary: 'Maps the twelve adversarial challenges to the twelve hours of a clock; the clock is complete only when all twelve are withstood. A structural reading, exact — the clock is the challenge set, not a measure of wall-clock time.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

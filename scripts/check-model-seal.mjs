@@ -135,6 +135,7 @@ import {
   mathPaths,
   frontendMcpDuality,
   scientists,
+  challengeClock,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -341,6 +342,9 @@ ok(`frontend.mcp.dual:${frontendMcpDuality(matrix).angles}x${frontendMcpDuality(
 
 // Waves of scientists challenge and develop: every adversarial challenge withstood.
 ok(`scientists:${scientists(matrix).withstood}/${scientists(matrix).count}`, scientists(matrix).robust)
+
+// 12/12 completes the clock: the twelve withstood challenges are its twelve hours.
+ok(`challenge.clock:${challengeClock(matrix).struck}/${challengeClock(matrix).count}`, challengeClock(matrix).complete)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))
