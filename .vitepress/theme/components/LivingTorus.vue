@@ -161,6 +161,12 @@ function draw(t: number) {
   const sinY = Math.sin(ay)
   const cosZ = Math.cos(az)
   const sinZ = Math.sin(az)
+  // The double torus comes with opposite rotation: each lobe counter-spins about
+  // its own hole axis — like a merkaba's two tetrahedra — so the forward loop turns
+  // one way and the reverse loop the other, the genus-2 signature, at the same rate.
+  const spin = saveEnergy.value ? 0 : t / 2600
+  const cosS = Math.cos(spin)
+  const sinS = Math.sin(spin)
   // Two heads sweep the train, one each way (the bidirectional fold, live).
   const headF = saveEnergy.value ? -1 : (t / data.tempoMs) % data.count
   const headR = saveEnergy.value ? -1 : data.count - headF
@@ -175,11 +181,17 @@ function draw(t: number) {
   }
 
   const points = data.coordinates.map((c) => {
-    // Tumble analogue in all directions: rotate about X (pitch), then Y (yaw),
-    // then Z (roll). The composition moves the surface through every direction.
-    const x1 = c.x
-    const y1 = c.y * cosX - c.z * sinX
-    const z1 = c.y * sinX + c.z * cosX
+    // First the merkaba spin: rotate each lobe about its own hole axis (the z axis
+    // through its centre), opposite direction per lobe (c.lobe is -1 / +1). Then
+    // tumble the whole assembly analogue in all directions: about X (pitch), then
+    // Y (yaw), then Z (roll). The composition moves the surface everywhere.
+    const localX = c.x - c.cx
+    const swung = sinS * c.lobe
+    const mx = c.cx + localX * cosS - c.y * swung
+    const my = localX * swung + c.y * cosS
+    const x1 = mx
+    const y1 = my * cosX - c.z * sinX
+    const z1 = my * sinX + c.z * cosX
     const x2 = x1 * cosY + z1 * sinY
     const z2 = -x1 * sinY + z1 * cosY
     const rx = x2 * cosZ - y1 * sinZ

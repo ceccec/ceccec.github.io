@@ -1210,6 +1210,8 @@ export declare function livingTorus(matrix?: MindMatrix): {
         vibrationMs: number;
         selfCollision: boolean;
         loop: "forward" | "reverse";
+        lobe: -1 | 1;
+        cx: number;
         fraction: string;
         merged: string;
         receipt: string;

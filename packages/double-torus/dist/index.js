@@ -1577,6 +1577,9 @@ export function harmonicMap(matrix = buildMatrix()) {
         boundary: 'A harmonic placement of the components onto overtones of a fundamental, for visualization and sonification. Structural bookkeeping, not an acoustic or musical claim.',
     };
 }
+// The x-offset of each ring centre from the origin; the two lobes of the double
+// torus sit at -/+ this, close enough that their bodies merge into one neck.
+const TORUS_LOBE_OFFSET = 18;
 // The living double torus: every pi-digit UUID coordinate, prepared to be shown
 // alive at once. Each coordinate carries its place on the genus-2 surface
 // (theta, phi, x, y, z), the realtime drivers of its motion (its own vibration
@@ -1585,6 +1588,7 @@ export function harmonicMap(matrix = buildMatrix()) {
 // renderer and the whole is content-addressed and sealed.
 export function livingTorus(matrix = buildMatrix()) {
     const train = piTrainDiamonds(matrix);
+    const half = train.diamonds.length / 2;
     const coordinates = train.diamonds.map((diamond) => ({
         index: diamond.index,
         nextIndex: diamond.nextIndex,
@@ -1601,6 +1605,11 @@ export function livingTorus(matrix = buildMatrix()) {
         vibrationMs: diamond.vibrationMs,
         selfCollision: diamond.selfCollision,
         loop: (diamond.index <= diamond.reverseIndex ? 'forward' : 'reverse'),
+        // Which lobe of the double torus, and its centre on the x axis. The two lobes
+        // counter-rotate about their own hole axes — opposite spin, like a merkaba's
+        // two tetrahedra — so the sign drives the animation's per-lobe rotation.
+        lobe: (diamond.index < half ? -1 : 1),
+        cx: (diamond.index < half ? -1 : 1) * TORUS_LOBE_OFFSET,
         fraction: diamond.fraction,
         // The pair-merge: this coordinate's message folded into its opposite's, both
         // ways (genus 2), so every pair merges in the animated double torus.
@@ -1614,7 +1623,7 @@ export function livingTorus(matrix = buildMatrix()) {
         count: coordinates.length,
         tempoMs: train.tempoMs,
         root: merkleFold(coordinates.map((coordinate) => coordinate.receipt)),
-        statement: 'The living double torus: every pi-digit UUID coordinate placed on the genus-2 surface and alive at once — pulsing at its own vibration, glowing by its frequency, riding both loops in realtime.',
+        statement: 'The living double torus: every pi-digit UUID coordinate placed on the genus-2 surface — two rings merged at a neck, alive at once. Each pulses at its own vibration and glows by its frequency, and the two lobes counter-rotate about their own holes (opposite spin, like a merkaba) while one train threads both.',
         boundary: 'A realtime view of the computed pi-train coordinates; the motion is content-derived, each coordinate animating from its own vibration and frequency. A projection and a metaphor, not a physical torus.',
     };
 }
@@ -6890,9 +6899,9 @@ function torusPoint(index, digit, total) {
     // exactly at the handoff between lobes — the genus-2 join, not a stray bridge.
     const theta = (localIndex / Math.max(1, localCount)) * Math.PI * 2 + (onLeft ? 0 : Math.PI); // major angle, around the hole
     const phi = ((digit + index * 0.5) / 10) * Math.PI * 2; // minor angle, around the tube
-    const ringR = 22; // ring radius (sets the hole size)
-    const tubeR = 6.5 + digit * 0.55; // thin tube (6.5..11.5) so the hole stays open
-    const centerX = lobe * 24; // two ring centres, merged into one surface at the neck (x≈0)
+    const ringR = 20; // ring radius (sets the hole size)
+    const tubeR = 7 + digit * 0.4; // thin tube (7..10.6) so the hole stays open
+    const centerX = lobe * TORUS_LOBE_OFFSET; // two ring centres, brought close so the bodies merge at the neck
     // Each ring lies in the XY plane with its hole facing the viewer (the z axis), so
     // both holes are seen head-on at rest; the two centres sit left and right of x=0.
     const ribbon = ringR + tubeR * Math.cos(phi);
