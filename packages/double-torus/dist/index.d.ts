@@ -1610,10 +1610,13 @@ export declare function society(matrix?: MindMatrix): {
     boundary: string;
 };
 export declare function harmonicBands(total: number): {
+    gapless: boolean;
     harmonic: boolean;
     total: number;
     bands: number[];
     scales: number;
+    gaps: number;
+    target: number;
     fibonacci: number[];
     root: string;
     statement: string;

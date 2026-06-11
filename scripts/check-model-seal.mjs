@@ -295,8 +295,8 @@ ok(`mysteries:${mysteries(matrix).shown}/${mysteries(matrix).count}`, mysteries(
 // Develop, pair and fold the society: five dualities, each folded bidirectionally.
 ok(`society.folded:${foldedSociety(matrix).cells}cells`, foldedSociety(matrix).folded)
 
-// Folder distribution as harmonic numbers at all scales: Zeckendorf into Fibonacci bands.
-ok(`harmonic.bands:${harmonicBands(108).bands.join('+')}`, harmonicBands(108).harmonic && harmonicBands(componentGraph(matrix).components.length).harmonic)
+// Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps.
+ok(`harmonic.bands:${harmonicBands(110).bands.join('+')}`, harmonicBands(110).gapless && harmonicBands(109).gaps === 1 && harmonicBands(109).target === 110)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

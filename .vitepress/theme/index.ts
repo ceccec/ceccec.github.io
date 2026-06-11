@@ -24,6 +24,7 @@ import GovernanceVote from './components/GovernanceVote.vue'
 import HealingFrequencies from './components/HealingFrequencies.vue'
 import Hologram from './components/Hologram.vue'
 import HarmonicMap from './components/HarmonicMap.vue'
+import HarmonicSpiral from './components/HarmonicSpiral.vue'
 import HumanLens from './components/HumanLens.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
 import Live from './components/Live.vue'
@@ -121,6 +122,7 @@ export default {
     app.component('HealingFrequencies', HealingFrequencies)
     app.component('Hologram', Hologram)
     app.component('HarmonicMap', HarmonicMap)
+    app.component('HarmonicSpiral', HarmonicSpiral)
     app.component('HumanLens', HumanLens)
     app.component('LearnDeveloper', LearnDeveloper)
     app.component('Live', Live)

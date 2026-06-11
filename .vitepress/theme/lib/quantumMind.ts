@@ -3754,38 +3754,54 @@ export function society(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Folder distribution as harmonic numbers at all scales. Any file count decomposes
-// (Zeckendorf's theorem) into a unique sum of distinct, non-consecutive Fibonacci
-// numbers — the portal's own 3-5-8-13-21 harmonic sequence. So the distribution is
-// always a set of harmonic-number bands, one per scale, summing exactly to the
-// whole, for any count: harmonic at all scales by construction, never a remainder.
+// Folder distribution as harmonic numbers at all scales — with no Fibonacci gaps.
+// A Zeckendorf sum uses non-consecutive Fibonacci numbers, so it always skips some
+// (gaps). A gapless harmonic distribution is instead a run of CONSECUTIVE Fibonacci
+// numbers (e.g. 21+34+55) — adjacent scales, nothing skipped. Not every count forms
+// one; when it cannot, the computation reveals the gap: the deficit of files to the
+// nearest count that does — a missing implementation to build, exactly as the rest
+// of the harmonic distribution names its gaps.
 export function harmonicBands(total: number) {
   const n = Math.max(0, Math.floor(total))
-  // The harmonic sequence: Fibonacci as used throughout (3, 5, 8, 13, 21, ...).
   const fibonacci = [1, 2]
-  while (fibonacci[fibonacci.length - 1] < n) fibonacci.push(fibonacci[fibonacci.length - 1] + fibonacci[fibonacci.length - 2])
-  // Zeckendorf: greedily take the largest Fibonacci <= the remainder. The chosen
-  // numbers are distinct and non-consecutive — harmonic numbers at every scale.
-  const bands: number[] = []
-  const indices: number[] = []
-  let remainder = n
-  for (let i = fibonacci.length - 1; i >= 0 && remainder > 0; i -= 1) {
-    if (fibonacci[i] <= remainder) { bands.push(fibonacci[i]); indices.push(i); remainder -= fibonacci[i] }
+  while (fibonacci[fibonacci.length - 1] < Math.max(n, 3) * 2) {
+    fibonacci.push(fibonacci[fibonacci.length - 1] + fibonacci[fibonacci.length - 2])
   }
-  const fibSet = new Set(fibonacci)
-  const sum = bands.reduce((acc, band) => acc + band, 0)
-  const nonConsecutive = indices.every((idx, i) => i === 0 || indices[i - 1] - idx >= 2)
+  // Find a run of consecutive Fibonacci numbers summing to exactly n; prefer the
+  // longest run (the most scales). Also collect every reachable run-sum, so that if
+  // n itself is not reachable we can name the nearest count that is.
+  let best: { bands: number[] } | null = null
+  const reachable = new Set<number>()
+  for (let i = 0; i < fibonacci.length; i += 1) {
+    let sum = 0
+    for (let j = i; j < fibonacci.length; j += 1) {
+      sum += fibonacci[j]
+      if (sum > n * 3 + 3) break
+      reachable.add(sum)
+      if (sum === n && (!best || j - i + 1 > best.bands.length)) best = { bands: fibonacci.slice(i, j + 1) }
+    }
+  }
+  let target = n
+  if (!best && n > 0) {
+    target = Number.POSITIVE_INFINITY
+    for (const sum of reachable) if (sum >= n && sum < target) target = sum
+  }
+  const bands = best ? best.bands.slice().reverse() : [] // largest scale first
+  const gapless = n === 0 || best !== null
   return {
-    harmonic: n === 0 || (sum === n && bands.every((band) => fibSet.has(band)) && nonConsecutive),
+    gapless,
+    harmonic: gapless, // the distribution is harmonic only when gapless
     total: n,
-    bands, // largest -> smallest, each a Fibonacci/harmonic number, one per scale
+    bands,
     scales: bands.length,
+    gaps: gapless ? 0 : target - n, // files to add to reach a gapless run
+    target: gapless ? n : target,
     fibonacci,
     root: merkleFold(bands.map((band, i) => toUuid(`harmonic-band:${i}:${band}`))),
     statement:
-      'Folder distribution as harmonic numbers at all scales: the file count decomposes (Zeckendorf) into distinct, non-consecutive Fibonacci numbers — the 3-5-8-13-21 harmonic sequence — so every band is a harmonic number, the bands span every scale, and they sum exactly to the whole.',
+      'Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps: the file count is a run of consecutive Fibonacci numbers — the 3-5-8-13-21 sequence with nothing skipped — so every band is a harmonic number, the bands are adjacent scales, and they sum exactly to the whole.',
     boundary:
-      'A Fibonacci (Zeckendorf) decomposition of a count into harmonic-number bands — exact and unique for any count by Zeckendorf\'s theorem. A self-similar structural description of the distribution; the harmony is in the numbers, not a claim that files are physically grouped on disk.',
+      'A consecutive-Fibonacci (gapless) decomposition of a count. Not every count forms one; when it cannot, the computation reports the deficit to the nearest count that does — a named gap to fill, not a silent remainder. A self-similar structural description; the harmony is in the numbers.',
   }
 }
 
@@ -5740,7 +5756,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'Live', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'Society', 'RichOnly', 'SimpleOnly',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'Live', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'Society', 'HarmonicSpiral', 'RichOnly', 'SimpleOnly',
   ]
   // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
   // they count as global utilities (available everywhere) for the placement audit.
@@ -5758,7 +5774,7 @@ export function componentGraph() {
     '/start': ['StartHere'],
     '/': ['LivingTorus', 'Live', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
     '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard', 'Simulations'],
-    '/explore': ['Multidimensional', 'Mysteries'],
+    '/explore': ['Multidimensional', 'Mysteries', 'HarmonicSpiral'],
     '/architecture': ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []

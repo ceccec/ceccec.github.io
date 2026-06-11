@@ -74,10 +74,11 @@ for (const [route, components] of Object.entries(placedBy)) {
     if (!tag.test(bg)) gaps.push({ harmonic: 'fourth', kind: 'unmounted', detail: `${component} is placed at ${route} but not mounted in bg/${file}` })
   }
 }
-// The whole-octave harmonic: the distribution must be harmonic numbers at all
-// scales — a Zeckendorf sum of Fibonacci bands, summing exactly to the count.
-if (!harmonic.harmonic || harmonicAssignment.reduce((sum, band) => sum + band.size, 0) !== files.length) {
-  gaps.push({ harmonic: 'whole', kind: 'inharmonic', detail: `distribution ${files.length} is not a clean sum of Fibonacci harmonic bands` })
+// The whole harmonic: the distribution must be harmonic numbers at all scales with
+// no Fibonacci gaps — a run of CONSECUTIVE Fibonacci numbers summing to the count.
+// When it is not, the deficit to the nearest gapless count is a missing implementation.
+if (!harmonic.gapless) {
+  gaps.push({ harmonic: 'whole', kind: 'fibonacci-gap', detail: `distribution ${files.length} is not a gapless consecutive-Fibonacci run; build ${harmonic.gaps} more file(s) to reach ${harmonic.target}` })
 }
 
 // --- write the distribution + gaps next to the other build artifacts ---
@@ -100,4 +101,4 @@ if (gaps.length > 0) {
   for (const gap of gaps) console.error(`  [${gap.harmonic}/${gap.kind}] ${gap.detail}`)
   process.exit(1)
 }
-console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (Fibonacci harmonic bands, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)
+console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (consecutive Fibonacci, no gaps, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)

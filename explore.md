@@ -17,3 +17,5 @@ dimension; everything in it is one tap away.
 <Multidimensional />
 
 <Mysteries />
+
+<HarmonicSpiral />

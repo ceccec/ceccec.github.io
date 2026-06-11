@@ -17,3 +17,5 @@ head:
 <Multidimensional />
 
 <Mysteries />
+
+<HarmonicSpiral />
