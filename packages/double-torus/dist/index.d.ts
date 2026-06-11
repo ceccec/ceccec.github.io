@@ -1003,6 +1003,12 @@ export declare const atoms: readonly Atom[];
 export declare const conceptCommands: readonly ConceptCommand[];
 export declare function toUuid(seed: string): string;
 export declare function merge(a: string, b: string): string;
+export declare function foldPair(a: string, b: string): {
+    forward: string;
+    reverse: string;
+    bidirectional: boolean;
+    merged: string;
+};
 export declare function diamondLattice(matrix?: MindMatrix): readonly QuantumDiamond[];
 export declare function piTrainDiamonds(matrix?: MindMatrix, digits?: string): PiTrain;
 export declare function metatronCube(matrix?: MindMatrix): MetatronCubeReport;

@@ -1999,6 +1999,16 @@ export function merge(a: string, b: string): string {
   return toUuid(`${a}:${b}`)
 }
 
+// One bidirectional fold for every pair (genus 2): forward folds a into b, reverse
+// folds b into a; they differ when order matters (bidirectional); merged folds the
+// two into one. The single source for the area pairs, the trinity axes, the
+// dualities, the directions, and the double-torus fold — the genus-2 law, once.
+export function foldPair(a: string, b: string): { forward: string; reverse: string; bidirectional: boolean; merged: string } {
+  const forward = merge(a, b)
+  const reverse = merge(b, a)
+  return { forward, reverse, bidirectional: forward !== reverse, merged: merge(forward, reverse) }
+}
+
 function merkleFold(leaves: readonly string[]): string {
   let layer = [...leaves].sort()
   if (layer.length === 0) return toUuid('empty-mind')
@@ -2462,8 +2472,7 @@ export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualToru
     })
     // Fold the axis pair both ways — yin into yang and yang into yin — so the
     // trinities fold into each other in both directions (order-sensitive, genus 2).
-    const pairForward = merge(yinReceipt, yangReceipt)
-    const pairReverse = merge(yangReceipt, yinReceipt)
+    const pair = foldPair(yinReceipt, yangReceipt)
     pairs.push({
       axis: tri.axis,
       yin: tri.yin.step,
@@ -2471,10 +2480,10 @@ export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualToru
       analogChannels: [tri.yin.channel, tri.yang.channel],
       types: [tri.yin.type, tri.yang.type],
       closed: yinReceipt.length > 0 && yangReceipt.length > 0,
-      forward: pairForward,
-      reverse: pairReverse,
-      bidirectional: pairForward !== pairReverse,
-      receipt: merge(pairForward, pairReverse),
+      forward: pair.forward,
+      reverse: pair.reverse,
+      bidirectional: pair.bidirectional,
+      receipt: pair.merged,
     })
   }
 
@@ -2951,16 +2960,16 @@ export function directions(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => {
     const positiveRoot = toUuid(`direction:${entry.positive}:${base}`)
     const negativeRoot = toUuid(`direction:${entry.negative}:${base}`)
-    const forward = merge(positiveRoot, negativeRoot) // up into down
-    const reverse = merge(negativeRoot, positiveRoot) // down into up
+    // forward = up into down, reverse = down into up, merged = the pair merges.
+    const { forward, reverse, bidirectional, merged } = foldPair(positiveRoot, negativeRoot)
     return {
       ...entry,
       positiveRoot,
       negativeRoot,
       forward,
       reverse,
-      bidirectional: forward !== reverse, // both calculated and distinct
-      merged: merge(forward, reverse), // the pair merges
+      bidirectional,
+      merged,
       receipt: toUuid(`directions:${entry.axis}`),
     }
   })
@@ -4321,8 +4330,7 @@ export function dualities() {
       // Fold the duality both ways (genus 2): left into right and right into left.
       // The pair's root and receipt fold BOTH directions, not only the forward —
       // a duality that is only computed one way is not yet a two-sided pair.
-      const forward = merge(toUuid(left), toUuid(right))
-      const reverse = merge(toUuid(right), toUuid(left))
+      const { forward, reverse, bidirectional, merged } = foldPair(toUuid(left), toUuid(right))
       return {
         tier: tier.tier,
         kind: tier.kind,
@@ -4330,9 +4338,9 @@ export function dualities() {
         right,
         forward,
         reverse,
-        ordered: forward !== reverse,
-        bidirectional: forward !== reverse,
-        root: merge(forward, reverse),
+        ordered: bidirectional,
+        bidirectional,
+        root: merged,
         receipt: toUuid(`duality:${left}:${right}:${forward}:${reverse}`),
       }
     }),
@@ -4729,14 +4737,13 @@ export function areaPairs() {
   for (let index = 0; index + 1 < areas.length; index += 2) {
     const inner = areas[index]
     const outer = areas[index + 1]
-    const forward = merge(toUuid(`area:${inner}`), toUuid(`area:${outer}`))
-    const reverse = merge(toUuid(`area:${outer}`), toUuid(`area:${inner}`))
+    const { forward, reverse, bidirectional } = foldPair(toUuid(`area:${inner}`), toUuid(`area:${outer}`))
     pairs.push({
       inner,
       outer,
       forward,
       reverse,
-      bidirectional: forward !== reverse,
+      bidirectional,
       receipt: toUuid(`area-pair:${inner}:${outer}:${forward}:${reverse}`),
     })
   }
@@ -5525,10 +5532,9 @@ export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
     let bothWays = items.length > 1
     let pairs = 0
     for (let index = 0; index + 1 < items.length; index += 2) {
-      const forward = merge(items[index], items[index + 1])
-      const reverse = merge(items[index + 1], items[index])
-      if (forward === reverse) bothWays = false
-      risen.push(lead === 'forward' ? merge(forward, reverse) : merge(reverse, forward))
+      const { forward, reverse, bidirectional, merged } = foldPair(items[index], items[index + 1])
+      if (!bidirectional) bothWays = false
+      risen.push(lead === 'forward' ? merged : merge(reverse, forward))
       pairs += 1
     }
     const carried = items.length % 2 === 1
