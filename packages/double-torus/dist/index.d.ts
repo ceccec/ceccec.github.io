@@ -1560,6 +1560,22 @@ export declare function rhythm(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function mysteries(matrix?: MindMatrix): {
+    proven: boolean;
+    mysteries: {
+        receipt: string;
+        mystery: string;
+        proof: string;
+        evidence: boolean;
+        route: string;
+        glyph: string;
+    }[];
+    count: number;
+    shown: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

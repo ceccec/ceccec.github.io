@@ -15,3 +15,5 @@ learn · pattern · sense · create** — each a facet you can step into. Pick a
 dimension; everything in it is one tap away.
 
 <Multidimensional />
+
+<Mysteries />

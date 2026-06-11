@@ -30,6 +30,7 @@ import LivingTorus from './components/LivingTorus.vue'
 import Magnetometer from './components/Magnetometer.vue'
 import McpTools from './components/McpTools.vue'
 import Merkaba from './components/Merkaba.vue'
+import Mysteries from './components/Mysteries.vue'
 import Multidimensional from './components/Multidimensional.vue'
 import Nav358 from './components/Nav358.vue'
 import NothingToDo from './components/NothingToDo.vue'
@@ -124,6 +125,7 @@ export default {
     app.component('Magnetometer', Magnetometer)
     app.component('McpTools', McpTools)
     app.component('Merkaba', Merkaba)
+    app.component('Mysteries', Mysteries)
     app.component('Multidimensional', Multidimensional)
     app.component('Nav358', Nav358)
     app.component('NothingToDo', NothingToDo)

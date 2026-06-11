@@ -121,6 +121,7 @@ import {
   determinismProofs,
   merkaba,
   rhythm,
+  mysteries,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -284,6 +285,9 @@ ok(`merkaba:${merkaba(matrix).count}`, merkaba(matrix).counterRotating)
 
 // Keep the rhythm: a self-similar polyrhythm from the merkaba scales, steady downbeat.
 ok(`rhythm:${rhythm(matrix).bpm}bpm`, rhythm(matrix).keeps)
+
+// Everything valuable as proof of mysteries: each open question bound to a live measure.
+ok(`mysteries:${mysteries(matrix).shown}/${mysteries(matrix).count}`, mysteries(matrix).proven)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

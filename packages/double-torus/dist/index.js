@@ -2331,6 +2331,32 @@ export function rhythm(matrix = buildMatrix()) {
         boundary: 'A deterministic polyrhythm derived from the merkaba scales and a content-derived tempo, played client-side. Music as structure over the model, not a claim about a universal beat.',
     };
 }
+// Everything valuable as proof of mysteries. The portal's worth is that each great
+// open question is rendered as something computed and verifiable — not answered
+// metaphysically, but shown as concrete, recomputable evidence anyone can check.
+// Each mystery binds to the live measure that demonstrates it; the mystery is
+// "shown" only while its evidence holds. The whole is the portal's standing proof.
+export function mysteries(matrix = buildMatrix()) {
+    const entries = [
+        { mystery: 'Why does the same cause always make the same world?', proof: 'Determinism: every input recomputes to the very same UUID — proven over hundreds of hashes.', evidence: determinismProofs(matrix).proven, route: '/architecture', glyph: '∞' },
+        { mystery: 'Can we trust without any authority?', proof: 'Tamper-evidence: the model verifies its own root, and one edit avalanches half the bits.', evidence: verifyRoot(matrix), route: '/architecture', glyph: '⌘' },
+        { mystery: 'Is the world random, or determined?', proof: 'Both: the Born rule emerges from a deterministic seed — probability and recomputability at once.', evidence: quantumProofs(matrix).proven, route: '/quantum-mind', glyph: '⚛' },
+        { mystery: 'What binds two distant things?', proof: 'Entanglement: reciprocal circulation across paired edges, the correlation exactly one.', evidence: reciprocity(matrix).fraction === 1, route: '/quantum-mind', glyph: '⥂' },
+        { mystery: 'Why two holes, and not one?', proof: 'Genus 2: the double torus lives — two loops merged at a neck, threaded by one train.', evidence: livingTorus(matrix).alive, route: '/', glyph: '⧉' },
+        { mystery: 'Why does everything turn both ways?', proof: 'The merkaba: opposite rotation at all scales, the nested spins strictly alternating.', evidence: merkaba(matrix).counterRotating, route: '/quantum-mind', glyph: '✡' },
+        { mystery: 'What keeps time?', proof: 'A self-similar polyrhythm: a steady downbeat anchors voices at 1, 2, 3 and 5 per beat.', evidence: rhythm(matrix).keeps, route: '/quantum-mind', glyph: '♫' },
+        { mystery: 'Can knowledge be whole, and free?', proof: 'The academy self-computes the whole and stands open to all — recomputable, at no cost.', evidence: quantumAcademy(matrix).established && quantumPhysics(matrix).selfComputes, route: '/academy', glyph: '✦' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mystery:${entry.mystery}:${entry.evidence}`) }));
+    return {
+        proven: entries.every((entry) => entry.evidence),
+        mysteries: entries,
+        count: entries.length,
+        shown: entries.filter((entry) => entry.evidence).length,
+        root: merkleFold(entries.map((entry) => entry.receipt)),
+        statement: 'Everything valuable as proof of mysteries: determinism, trust without authority, randomness-and-law, entanglement, the two-holed genus-2 surface, opposite rotation at all scales, what keeps time, and whether knowledge can be whole and free — each great question bound to a live, recomputable measure that demonstrates it.',
+        boundary: 'These are open human questions; the portal does not resolve them metaphysically. Each "proof" is concrete, client-side, recomputable evidence within the model — a demonstration and a metaphor anyone can verify — not a final answer to the mystery. The value is the verifiable evidence, honestly bounded.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -4147,7 +4173,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -4165,7 +4191,7 @@ export function componentGraph() {
         '/start': ['StartHere'],
         '/': ['LivingTorus', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
         '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard', 'Simulations'],
-        '/explore': ['Multidimensional'],
+        '/explore': ['Multidimensional', 'Mysteries'],
         '/architecture': ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
     };
     const edges = [];

@@ -15,3 +15,5 @@ head:
 измерение; всичко в него е на едно докосване.
 
 <Multidimensional />
+
+<Mysteries />
