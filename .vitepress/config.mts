@@ -146,6 +146,32 @@ export default defineConfig({
         },
       }),
     ])
+    // Fold the academy into Course structured data — five recomputable courses
+    // (mirrors quantumAcademy().courses in the model), eligible for rich results.
+    if (relative.endsWith('academy.md')) {
+      const courses = ['Foundations', 'The Machine', 'The Senses', 'The Society', 'The Mind']
+      head.push([
+        'script',
+        { type: 'application/ld+json' },
+        JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: isBg ? 'Квантова академия — пет курса' : 'The Quantum Academy — five courses',
+          itemListElement: courses.map((course, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+              '@type': 'Course',
+              name: course,
+              description: 'A recomputable, content-addressed course over the portal\'s areas.',
+              inLanguage: isBg ? 'bg' : 'en',
+              isAccessibleForFree: true,
+              provider: { '@type': 'Organization', name: isBg ? siteTitleBg : siteTitle },
+            },
+          })),
+        }),
+      ])
+    }
   },
   themeConfig: {
     socialLinks: [],
