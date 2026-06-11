@@ -52,6 +52,8 @@ head:
 
 <QuantumPhysics />
 
+<QuantumSimulation />
+
 ## 0. Полезен товар
 
 ```text

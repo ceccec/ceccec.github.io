@@ -1747,6 +1747,88 @@ export function quantumPhysics(matrix = buildMatrix()) {
         boundary: 'A census binding named quantum phenomena to the model\'s own computed measures over the UUID stream. A computational metaphor and structural bookkeeping, not a simulation of physical quantum mechanics.',
     };
 }
+// Create the quantum simulation: a real state-vector simulator of a small
+// register. Start in |0...0>, apply Hadamard to the first qubit and a CNOT chain,
+// and the register lands in a GHZ entangled state — (|0...0> + |1...1>)/sqrt 2.
+// Probabilities follow the Born rule (|amplitude|^2); measurement is deterministic,
+// seeded by the model root, so the collapse is recomputable. A genuine toy quantum
+// simulator, run in the browser at no cost.
+export function quantumSimulation(matrix = buildMatrix(), qubits = 3) {
+    const n = Math.max(1, Math.min(6, Math.floor(qubits)));
+    const size = 1 << n;
+    const round = (value) => Math.round(value * 10000) / 10000;
+    const INV_SQRT2 = 1 / Math.sqrt(2);
+    // The state vector as real/imaginary amplitudes; start in the all-zero state.
+    let re = Array.from({ length: size }, (_, index) => (index === 0 ? 1 : 0));
+    let im = new Array(size).fill(0);
+    const hadamard = (q) => {
+        const nr = re.slice();
+        const ni = im.slice();
+        for (let i = 0; i < size; i += 1) {
+            if ((i >> q) & 1)
+                continue; // each pair processed once, from its bit-0 member
+            const j = i | (1 << q);
+            nr[i] = (re[i] + re[j]) * INV_SQRT2;
+            ni[i] = (im[i] + im[j]) * INV_SQRT2;
+            nr[j] = (re[i] - re[j]) * INV_SQRT2;
+            ni[j] = (im[i] - im[j]) * INV_SQRT2;
+        }
+        re = nr;
+        im = ni;
+    };
+    const cnot = (control, target) => {
+        const nr = re.slice();
+        const ni = im.slice();
+        for (let i = 0; i < size; i += 1) {
+            if (((i >> control) & 1) && !((i >> target) & 1)) {
+                const j = i | (1 << target);
+                nr[i] = re[j];
+                ni[i] = im[j];
+                nr[j] = re[i];
+                ni[j] = im[i];
+            }
+        }
+        re = nr;
+        im = ni;
+    };
+    // The circuit: superpose the first qubit, then entangle the chain -> GHZ.
+    const gates = ['H q0'];
+    hadamard(0);
+    for (let q = 0; q + 1 < n; q += 1) {
+        cnot(q, q + 1);
+        gates.push(`CNOT q${q},q${q + 1}`);
+    }
+    const probs = re.map((r, i) => r * r + im[i] * im[i]);
+    const total = probs.reduce((sum, p) => sum + p, 0);
+    // Deterministic measurement: a seed-derived value in [0,1), Born-rule pick.
+    const seed = toUuid(`quantum-sim:${matrix.root}:${n}`);
+    const draw = (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16) % 1_000_000) / 1_000_000;
+    let cumulative = 0;
+    let measured = 0;
+    for (let i = 0; i < size; i += 1) {
+        cumulative += probs[i];
+        if (draw < cumulative) {
+            measured = i;
+            break;
+        }
+    }
+    const basis = (i) => i.toString(2).padStart(n, '0');
+    const support = probs.filter((p) => p > 1e-9).length;
+    const states = re.map((r, i) => ({ basis: basis(i), re: round(r), im: round(im[i]), prob: round(probs[i]) }));
+    return {
+        simulated: Math.abs(total - 1) < 1e-9 && probs.every((p) => p >= -1e-12),
+        qubits: n,
+        size,
+        gates,
+        states,
+        measured: basis(measured),
+        normalized: Math.abs(total - 1) < 1e-9,
+        entangled: support === 2, // GHZ: only the all-zero and all-one basis states
+        root: merkleFold([...states.map((s) => toUuid(`amp:${s.basis}:${s.re}:${s.im}`)), seed]),
+        statement: 'The quantum simulation: a real state-vector simulator of a small register — Hadamard then a CNOT chain place it in a GHZ entangled state, probabilities follow the Born rule, and measurement is deterministic (seeded by the model root), so the collapse is recomputable.',
+        boundary: 'A genuine but small state-vector quantum simulator (the state is exponential in the qubit count, so it stays tiny), run client-side. Measurement is pseudo-random from a model seed, not a physical quantum process; a faithful toy, not a physical quantum device or a claim of quantum advantage.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3563,7 +3645,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -3571,7 +3653,7 @@ export function componentGraph() {
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
-        '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics'],
+        '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/academy': ['QuantumAcademy', 'Professionals'],
