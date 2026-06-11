@@ -2911,18 +2911,32 @@ export function dualities() {
         { tier: 8, kind: 'expressive', pairs: [['self', 'other'], ['question', 'answer'], ['sound', 'colour'], ['analog', 'digital'], ['premise', 'inference'], ['english', 'bulgarian'], ['symbol', 'number'], ['glyph', 'uuid']] },
     ];
     const pairs = tiers.flatMap((tier) => tier.pairs.map(([left, right]) => {
-        const ab = merge(toUuid(left), toUuid(right));
-        const ba = merge(toUuid(right), toUuid(left));
-        return { tier: tier.tier, kind: tier.kind, left, right, ordered: ab !== ba, root: ab, receipt: toUuid(`duality:${left}:${right}`) };
+        // Fold the duality both ways (genus 2): left into right and right into left.
+        // The pair's root and receipt fold BOTH directions, not only the forward —
+        // a duality that is only computed one way is not yet a two-sided pair.
+        const forward = merge(toUuid(left), toUuid(right));
+        const reverse = merge(toUuid(right), toUuid(left));
+        return {
+            tier: tier.tier,
+            kind: tier.kind,
+            left,
+            right,
+            forward,
+            reverse,
+            ordered: forward !== reverse,
+            bidirectional: forward !== reverse,
+            root: merge(forward, reverse),
+            receipt: toUuid(`duality:${left}:${right}:${forward}:${reverse}`),
+        };
     }));
     return {
-        compared: pairs.length === 16 && pairs.every((pair) => pair.ordered),
+        compared: pairs.length === 16 && pairs.every((pair) => pair.bidirectional),
         tiers: [3, 5, 8],
         fibonacci: 8 === 5 + 3,
         count: pairs.length,
         dualities: pairs,
         root: merkleFold(pairs.map((pair) => pair.receipt)),
-        statement: 'All dualities compared across the 3-5-8 Fibonacci tiers: 3 core, 5 structural, 8 expressive = 16 two-sided pairs, each order-sensitive (left-then-right differs from right-then-left) — the signature of a real duality.',
+        statement: 'All dualities compared across the 3-5-8 Fibonacci tiers: 3 core, 5 structural, 8 expressive = 16 two-sided pairs, each folded both ways — left into right and right into left differ (genus 2), and the pair root carries both — the signature of a real duality.',
         boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.',
     };
 }

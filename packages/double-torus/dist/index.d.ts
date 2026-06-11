@@ -1787,7 +1787,10 @@ export declare function dualities(): {
         kind: string;
         left: string;
         right: string;
+        forward: string;
+        reverse: string;
         ordered: boolean;
+        bidirectional: boolean;
         root: string;
         receipt: string;
     }[];
