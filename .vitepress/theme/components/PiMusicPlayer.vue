@@ -38,8 +38,8 @@ const t = computed(() =>
       <label>{{ t.join }}: {{ horo }}
         <input v-model.number="horo" type="range" min="1" max="9" step="1" />
       </label>
-      <button type="button" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
-      <button v-if="playing" type="button" class="pi-music__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
+      <button type="button" class="dt-btn" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
+      <button v-if="playing" type="button" class="dt-btn dt-btn--ghost" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
     </div>
     <p v-if="saveEnergy" class="pi-music__save">🔋 {{ t.save }}</p>
     <p class="pi-music__notes">
@@ -66,23 +66,6 @@ const t = computed(() =>
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-}
-.pi-music__row button {
-  padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
-}
-.pi-music__row button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.pi-music__row .pi-music__stop {
-  background: transparent;
-  border: 1px solid var(--vp-c-brand-1);
-  color: var(--vp-c-brand-1);
 }
 .pi-music__save {
   margin: 0.6rem 0 0;

@@ -47,8 +47,8 @@ const t = computed(() =>
       </article>
     </div>
     <div class="palette__row">
-      <button type="button" :disabled="playing" :aria-label="t.play" @click="playMelody">{{ playing ? t.playing : t.play }}</button>
-      <button v-if="playing" type="button" class="palette__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
+      <button type="button" class="dt-btn" :disabled="playing" :aria-label="t.play" @click="playMelody">{{ playing ? t.playing : t.play }}</button>
+      <button v-if="playing" type="button" class="dt-btn dt-btn--ghost" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
       <span class="palette__melody">
         <code v-for="(note, i) in phrase" :key="i" :class="{ sounding: current === i }">{{ note.note }}</code>
       </span>
@@ -112,23 +112,6 @@ const t = computed(() =>
   gap: 0.8rem;
   flex-wrap: wrap;
   margin-top: 0.8rem;
-}
-.palette__row button {
-  padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
-}
-.palette__row button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.palette__row .palette__stop {
-  background: transparent;
-  border: 1px solid var(--vp-c-brand-1);
-  color: var(--vp-c-brand-1);
 }
 .palette__melody {
   display: inline-flex;

@@ -39,8 +39,8 @@ const t = computed(() =>
           <option v-for="name in names" :key="name" :value="name">{{ name }}</option>
         </select>
       </label>
-      <button type="button" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
-      <button v-if="playing" type="button" class="chain-music__stop" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
+      <button type="button" class="dt-btn" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
+      <button v-if="playing" type="button" class="dt-btn dt-btn--ghost" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>
       <span class="chain-music__meta">{{ music.notes.length }} {{ t.blocks }} · {{ music.distinctTones }} {{ t.tones }}</span>
     </div>
     <p class="chain-music__notes">
@@ -71,23 +71,6 @@ const t = computed(() =>
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
-}
-.chain-music__row button {
-  padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
-}
-.chain-music__row button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.chain-music__row .chain-music__stop {
-  background: transparent;
-  border: 1px solid var(--vp-c-brand-1);
-  color: var(--vp-c-brand-1);
 }
 .chain-music__meta {
   font-size: 0.75rem;
