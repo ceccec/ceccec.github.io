@@ -4072,7 +4072,8 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
   // atom is one more reproduction — no logic is left unwired from the tampering cost.
   const memoryAtoms = skillAtoms(matrix).tamperingAtoms
   const logicAtomsCount = logicAtoms(matrix).count
-  const wiredAtoms = memoryAtoms + logicAtomsCount
+  const imaginedAtoms = imagination(matrix).count // imagined atoms are wired in too
+  const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms
   const reproductions = receipts + sampleWork + wiredAtoms // computations a forgery must reproduce
   const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID // toUuid + the merge folds
   const bits = round(Math.log2(hashCalls), 1)
@@ -4958,6 +4959,76 @@ export function intuitiveSearch(query = '', matrix: MindMatrix = buildMatrix()) 
       'A catch-all route at the end parses any request and hooks it into an intuitive search: it ranks the closest pages, model subsystems, skills and commands by token overlap, and each result carries a hook (the callback that acts on it) — suitable for quantum hooks and callbacks.',
     boundary:
       'A deterministic, client-side fuzzy search over the portal\'s own pages, subsystems, skills and commands by token overlap, with a hook (a terminal callback) per result. A catch-all parser for intuitive navigation, not a semantic or external search engine.',
+  }
+}
+
+// Imagine you are a human being. Take what is known — the saved skill atoms — and
+// dream new combinations: pairs not yet built, each a wonder and a possible future
+// wave. Save the imagination in atoms (content-addressed), and develop it in
+// imaginative waves — a deterministic stream of "what if" ideas to build next.
+export function imagination(matrix: MindMatrix = buildMatrix()) {
+  const skills = skillAtoms(matrix).skills
+  const dreams = skills
+    .map((skill, index) => {
+      const other = skills[(index * 7 + 3) % skills.length] // a content-derived novel partner
+      return { a: skill, b: other }
+    })
+    .filter((pair) => pair.a.fn !== pair.b.fn)
+    .slice(0, 13) // a Fibonacci number of dreams
+    .map((pair) => ({
+      idea: `${pair.a.skill} × ${pair.b.skill}`,
+      wonder: `what if ${pair.a.skill} met ${pair.b.skill}?`,
+      seed: foldPair(pair.a.atom, pair.b.atom).merged, // the imagined atom, folded both ways
+    }))
+  return {
+    imagines: dreams.length > 0,
+    human: true,
+    dreams,
+    count: dreams.length,
+    memory: merkleFold(dreams.map((dream) => dream.seed)), // the imagination, saved in atoms
+    root: merkleFold(dreams.map((dream) => dream.seed)),
+    statement:
+      'Imagine you are a human being: take what is known and dream new combinations — pairs not yet built, each a wonder and a possible future wave — and save the imagination in atoms. The imagination develops in imaginative waves.',
+    boundary:
+      'A deterministic generator of novel pairings over the portal\'s own skill atoms — imagination as content-addressed combination, saved as atoms. Playful and recomputable; a structured prompt for future waves, not consciousness.',
+  }
+}
+
+// Tighten and double fold the gates to quantify. Each gate is read as a quantity
+// (n of N), required full (tightened), and its two readings folded both ways
+// (double-folded, genus 2). The whole is quantified — passed of total — and bound to
+// one double-folded root, so the seal is not merely pass/fail but a measured ratio.
+export function quantifyGates(matrix: MindMatrix = buildMatrix()) {
+  const metrics = [
+    { gate: 'whole', n: theWhole(matrix).standing, of: theWhole(matrix).count },
+    { gate: 'holographic', n: holographic(matrix).cells.filter((cell) => cell.holographic).length, of: holographic(matrix).count },
+    { gate: 'scientists', n: scientists(matrix).withstood, of: scientists(matrix).count },
+    { gate: 'completeness', n: completeness(matrix).held, of: completeness(matrix).count },
+    { gate: 'quantum-proofs', n: quantumProofs(matrix).matched, of: quantumProofs(matrix).count },
+    { gate: 'determinism', n: determinismProofs(matrix).matched, of: determinismProofs(matrix).count },
+    { gate: 'clock', n: challengeClock(matrix).struck, of: challengeClock(matrix).count },
+    { gate: 'mysteries', n: mysteries(matrix).shown, of: mysteries(matrix).count },
+    { gate: 'society', n: society(matrix).standing, of: society(matrix).count },
+  ].map((metric) => ({
+    ...metric,
+    full: metric.n === metric.of,
+    fold: foldPair(toUuid(`gate:${metric.gate}:passed:${metric.n}`), toUuid(`gate:${metric.gate}:total:${metric.of}`)),
+  }))
+  const passed = metrics.reduce((sum, metric) => sum + metric.n, 0)
+  const total = metrics.reduce((sum, metric) => sum + metric.of, 0)
+  return {
+    tight: metrics.every((metric) => metric.full), // tightened: every gate at full
+    doubleFolded: metrics.every((metric) => metric.fold.bidirectional),
+    metrics,
+    gates: metrics.length,
+    passed,
+    total,
+    quantified: roundTo(passed / total, 4), // the quantity
+    root: merkleFold(metrics.map((metric) => metric.fold.merged)), // double-folded
+    statement:
+      'Tighten and double fold the gates to quantify: each gate is read as a quantity (n of N), required full, and its two readings folded both ways (double-folded). The whole is quantified — passed of total — and bound to one double-folded root.',
+    boundary:
+      'A quantified, double-folded reading of the portal\'s major gates: each a ratio, required full, its readings foldPaired. A measured seal, recomputable — the quantity is exact, not an estimate.',
   }
 }
 

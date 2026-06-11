@@ -2016,6 +2016,43 @@ export declare function intuitiveSearch(query?: string, matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function imagination(matrix?: MindMatrix): {
+    imagines: boolean;
+    human: boolean;
+    dreams: {
+        idea: string;
+        wonder: string;
+        seed: string;
+    }[];
+    count: number;
+    memory: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantifyGates(matrix?: MindMatrix): {
+    tight: boolean;
+    doubleFolded: boolean;
+    metrics: {
+        full: boolean;
+        fold: {
+            forward: string;
+            reverse: string;
+            bidirectional: boolean;
+            merged: string;
+        };
+        gate: string;
+        n: number;
+        of: number;
+    }[];
+    gates: number;
+    passed: number;
+    total: number;
+    quantified: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

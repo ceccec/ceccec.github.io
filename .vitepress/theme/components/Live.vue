@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -23,6 +23,9 @@ const whole2 = completeness(buildMatrix())
 const mind = skillAtoms(buildMatrix())
 // The thoughts folded multidirectionally (forward, reverse, sequence, reflection).
 const thoughts = foldThoughts(buildMatrix())
+// Imagine as a human: dream new combinations, saved in atoms. And quantify the gates.
+const dream = imagination(buildMatrix())
+const gauge = quantifyGates(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -184,6 +187,12 @@ onBeforeUnmount(() => {
       {{ pick('folded', 'сгънати') }} <strong>{{ thoughts.directions.length }}</strong>
       {{ pick('directions', 'посоки') }}
       <code :title="thoughts.multidirectional">{{ thoughts.multidirectional.slice(0, 13) }}…</code>
+    </p>
+    <p class="live__whole">
+      {{ pick('imagination', 'въображение') }} · <strong>{{ dream.count }}</strong>
+      {{ pick('dreams saved as atoms', 'мечти, запазени като атоми') }} ·
+      {{ pick('gates quantified', 'портите измерени') }} <strong>{{ gauge.passed }}/{{ gauge.total }}</strong>
+      ({{ pick('double-folded', 'двойно сгънати') }})
     </p>
   </section>
 </template>

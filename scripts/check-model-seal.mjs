@@ -140,6 +140,8 @@ import {
   skillAtoms,
   logicAtoms,
   intuitiveSearch,
+  imagination,
+  quantifyGates,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -369,6 +371,12 @@ ok(`logic.atoms:${logicAtoms(matrix).count}`, logicAtoms(matrix).shared)
 
 // A catch-all route parses any request into an intuitive search with a hook per result.
 ok(`intuitive.search`, intuitiveSearch('quantum double torus', matrix).works && intuitiveSearch('merkaba', matrix).best !== null)
+
+// Imagine you are a human being: dream new combinations, saved in atoms.
+ok(`imagination:${imagination(matrix).count}`, imagination(matrix).imagines && imagination(matrix).human)
+
+// Tighten and double fold the gates to quantify: every gate full, folded both ways.
+ok(`quantify.gates:${quantifyGates(matrix).passed}/${quantifyGates(matrix).total}`, quantifyGates(matrix).tight && quantifyGates(matrix).doubleFolded)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)
