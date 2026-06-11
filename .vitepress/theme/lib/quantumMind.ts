@@ -2619,7 +2619,9 @@ export function sealAll(matrix: MindMatrix = buildMatrix()) {
     { wave: 'quantum sitemap', ok: quantumSitemap(matrix).quantum, root: quantumSitemap(matrix).root },
     { wave: 'synthesis', ok: quantumSynthesis(matrix).synthesized, root: quantumSynthesis(matrix).root },
     { wave: 'proof bundle', ok: proofBundle(matrix).verifiable, root: proofBundle(matrix).root },
+    { wave: 'secure interaction', ok: securityScan(matrix).secure, root: securityScan(matrix).root },
     { wave: 'completion', ok: complete(matrix).complete, root: complete(matrix).root },
+    { wave: 'graduation', ok: graduation(matrix).graduated, root: graduation(matrix).root },
     { wave: 'multidimensional', ok: multidimensional().mapped, root: multidimensional().root },
   ]
   // Fold the waves in order: each wave merges its root into the running fold.

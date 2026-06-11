@@ -19,7 +19,9 @@ const bgWave: Record<string, string> = {
   'quantum sitemap': 'квантова карта',
   synthesis: 'синтез',
   'proof bundle': 'пакет доказателства',
+  'secure interaction': 'сигурно взаимодействие',
   completion: 'завършеност',
+  graduation: 'дипломиране',
   multidimensional: 'многоизмерност',
 }
 const waves = computed(() =>
