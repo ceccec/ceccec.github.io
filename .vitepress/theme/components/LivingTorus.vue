@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, livingTorus, merge, toUuid } from '../lib/quantumMind'
+import { buildMatrix, livingTorus, directions, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -15,6 +15,21 @@ const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
 const sound = ref(false)
 let lastHead = -1
+
+// All directions move the torus, not only the spin. Each axis gives a content-
+// derived phase so the surface drifts left/right, bobs up/down, and breathes
+// in/out — deterministic, seeded by the directions roots.
+const dirs = directions()
+function phaseOf(axis: string) {
+  const found = dirs.axes.find((entry) => entry.axis === axis)
+  const seed = found ? found.merged : dirs.root
+  return (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16) % 1000) / 1000
+}
+const phase = {
+  horizontal: phaseOf('horizontal') * Math.PI * 2,
+  vertical: phaseOf('vertical') * Math.PI * 2,
+  radial: phaseOf('radial') * Math.PI * 2,
+}
 
 // User interactions merge and affect the animation: the pointer warps the field,
 // clicks send ripples (and one through the opposite, merging the pair), and each
@@ -62,9 +77,14 @@ function draw(t: number) {
   if (!ctx) return
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   ctx.clearRect(0, 0, width, height)
-  const cx = width / 2
-  const cy = height / 2
-  const s = Math.min(width, height * 2.1) / 150 // fit the ~±60 coordinate range
+  // The torus moves in all directions, not only the spin: a left/right drift, an
+  // up/down bob, and an in/out breath — each its own slow period and phase.
+  const swayX = saveEnergy.value ? 0 : Math.sin(t / 5200 + phase.horizontal) * width * 0.03
+  const bobY = saveEnergy.value ? 0 : Math.sin(t / 6400 + phase.vertical) * height * 0.04
+  const breath = saveEnergy.value ? 1 : 1 + Math.sin(t / 7100 + phase.radial) * 0.05
+  const cx = width / 2 + swayX
+  const cy = height / 2 + bobY
+  const s = (Math.min(width, height * 2.1) / 150) * breath // fit the ~±60 range, breathing
   const focal = 240
   const angle = saveEnergy.value ? 0.6 : (t / 9000) % (Math.PI * 2) // slow turn
   const cos = Math.cos(angle)
