@@ -46,3 +46,5 @@ What the portal is *for*, by profession — each capability mapped to a concrete
 task, with a comparable tool named, grounded in research:
 
 <Professionals />
+
+<Solutions />

@@ -1310,6 +1310,20 @@ export declare function simulations(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function solutions(matrix?: MindMatrix): {
+    solved: boolean;
+    solutions: {
+        receipt: string;
+        problem: string;
+        solution: string;
+        capability: string;
+        route: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

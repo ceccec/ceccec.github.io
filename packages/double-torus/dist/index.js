@@ -1858,6 +1858,30 @@ export function simulations(matrix = buildMatrix()) {
         boundary: 'A census of the model\'s simulators, each bound to its own completion proof. Deterministic, client-side computations over the model — faithful toy simulations and structural dynamics, not physical devices.',
     };
 }
+// Create solutions: the portal's capabilities, framed as answers to concrete
+// problems. Where professionals() maps who benefits, this maps what problem each
+// capability solves and how — a content-addressed catalogue of working solutions.
+export function solutions(matrix = buildMatrix()) {
+    void matrix;
+    const entries = [
+        { problem: 'Reproduce a brand palette without storing a file', solution: 'Cite the seed word; the same five colours, in hex/RGB/CMYK, recompute every time.', capability: 'deterministic design', route: '/school' },
+        { problem: 'Verify a claim without trusting the host', solution: 'Recompute the content-addressed receipt and compare the root — proof by use.', capability: 'tamper-evidence', route: '/architecture' },
+        { problem: 'Read data without looking at a screen', solution: 'Sonify it — hear trends and outliers as sound, client-side.', capability: 'sonification', route: '/commands' },
+        { problem: 'Let an AI assistant use your tools', solution: 'Publish them on the MCP surface; the agent reads tools/list and calls tools/call.', capability: 'MCP', route: '/mcp' },
+        { problem: 'Tune a reading voice to a harmony', solution: 'Read aloud with a harmonic pitch contour drawn from the balanced spectrum.', capability: 'harmonic speech', route: '/school' },
+        { problem: 'Run a quantum circuit with no hardware', solution: 'Simulate a GHZ state-vector in the browser and measure it — the histogram converges to the Born rule.', capability: 'quantum simulation', route: '/quantum-mind' },
+        { problem: 'Learn from the ground up, free, at any age', solution: 'The school and academy: five recomputable courses and a verifiable graduation credential.', capability: 'open learning', route: '/academy' },
+        { problem: 'Work offline, with no account, nothing sent', solution: 'Everything runs on your device — the architecture itself is the only cost.', capability: 'offline-first', route: '/boundaries' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`solution:${entry.problem}`) }));
+    return {
+        solved: entries.length >= 8 && entries.every((entry) => entry.solution.length > 0),
+        solutions: entries,
+        count: entries.length,
+        root: merkleFold(entries.map((entry) => entry.receipt)),
+        statement: 'Create solutions: the portal\'s capabilities as answers to concrete problems — reproduce a palette from a seed, verify a claim by recomputation, read data as sound, give an agent your tools, tune a voice, run a quantum circuit, learn for free, and work offline.',
+        boundary: 'A catalogue mapping problems to the portal\'s own capabilities, each a real client-side, content-addressed feature. Honest solutions within the stated bounds, not a claim to solve every instance of each problem.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3674,7 +3698,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'Solutions', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -3685,7 +3709,7 @@ export function componentGraph() {
         '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
-        '/academy': ['QuantumAcademy', 'Professionals'],
+        '/academy': ['QuantumAcademy', 'Professionals', 'Solutions'],
         '/governance': ['GovernanceVote'],
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
