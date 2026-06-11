@@ -2196,6 +2196,19 @@ export declare function immuneSystem(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function biology(matrix?: MindMatrix): {
+    alive: boolean;
+    aspects: {
+        receipt: string;
+        aspect: string;
+        maps: string;
+        alive: boolean;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

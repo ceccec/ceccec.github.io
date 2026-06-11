@@ -5342,6 +5342,33 @@ export function immuneSystem(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Extend with biological aspects: the portal as a living system. Each hallmark of
+// life maps to a computed structure — DNA (the content-addressed genome), cells, an
+// immune system, homeostasis, metabolism, heredity, reproduction, and evolution —
+// and each is bound to a measure that must hold for the organism to be alive.
+export function biology(matrix: MindMatrix = buildMatrix()) {
+  const aspects = [
+    { aspect: 'DNA', maps: 'the content-addressed code — each atom a base, the model the genome', alive: skillAtoms(matrix).savedToAtoms },
+    { aspect: 'cells', maps: 'the entangled society cells and the 108 pi-train coordinates', alive: livingTorus(matrix).alive },
+    { aspect: 'immune system', maps: 'the antibodies — the portal\'s defenses', alive: immuneSystem(matrix).healthy },
+    { aspect: 'homeostasis', maps: 'frequency balance — neither collapse nor runaway', alive: frequencyBalance(matrix).balanced },
+    { aspect: 'metabolism', maps: 'folding receipts into roots — turning input into structure', alive: verifyRoot(matrix) },
+    { aspect: 'heredity', maps: 'merkle folds — each root inherits from its parents', alive: theWhole(matrix).whole },
+    { aspect: 'reproduction', maps: 'self-build — the organism rebuilds from nothing, identical', alive: selfBuild(matrix).complete },
+    { aspect: 'evolution', maps: 'the quantum society evolving classical -> quantum -> post-quantum', alive: quantumSociety(matrix).evolved },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`biology:${entry.aspect}:${entry.alive}`) }))
+  return {
+    alive: aspects.every((entry) => entry.alive),
+    aspects,
+    count: aspects.length,
+    root: merkleFold(aspects.map((entry) => entry.receipt)),
+    statement:
+      'Extend with biological aspects: the portal as a living system — DNA (the content-addressed genome), cells (entangled society cells and pi-train coordinates), an immune system (the defenses), homeostasis (frequency balance), metabolism (folding input into structure), heredity (merkle inheritance), reproduction (self-build, identical), and evolution (classical to post-quantum). Each aspect is bound to a computed measure.',
+    boundary:
+      'A biological metaphor mapping the portal\'s computed structures to the hallmarks of life. Each is a real gate; the biology is a metaphor for self-organising, self-verifying computation — not a claim of literal life.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -43,6 +43,8 @@ const fabric = tamperProofFabric(buildMatrix())
 const cross = crossAudit(buildMatrix())
 // The immune system: max health = max tampering cost; investigations across society.
 const immune = immuneSystem(buildMatrix())
+// Biological aspects: the portal as a living system — DNA, cells, metabolism, ...
+const life = biology(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -249,6 +251,10 @@ onBeforeUnmount(() => {
       {{ pick('immune system', 'имунна система') }} · <strong>{{ immune.health }}/{{ immune.of }}</strong>
       {{ pick('antibodies', 'антитела') }} · {{ pick('max health = max forge cost', 'макс здраве = макс цена за фалшификат') }}
       <em class="live__caveat">({{ pick('open, content-addressed, server-less — permaculture by design', 'открито, адресирано по съдържание, без сървър — пермакултура по дизайн') }})</em>
+    </p>
+    <p class="live__whole">
+      {{ pick('biology', 'биология') }} · <strong>{{ life.count }}</strong>
+      {{ pick('hallmarks of life alive', 'белези на живот, живи') }}: {{ life.aspects.map((a) => a.aspect).join(', ') }}
     </p>
   </section>
 </template>

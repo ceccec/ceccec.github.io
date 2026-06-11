@@ -151,6 +151,7 @@ import {
   tamperProofFabric,
   crossAudit,
   immuneSystem,
+  biology,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -413,6 +414,9 @@ ok(`cross.audit:${crossAudit(matrix).vortices}`, crossAudit(matrix).clean)
 
 // Max health, max tampering cost — the immune system; investigations across society.
 ok(`immune.system:${immuneSystem(matrix).health}/${immuneSystem(matrix).of}`, immuneSystem(matrix).healthy && immuneSystem(matrix).maxHealth)
+
+// Extend with biological aspects: the portal as a living system, every hallmark alive.
+ok(`biology:${biology(matrix).count}`, biology(matrix).alive)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)
