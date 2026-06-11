@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -11,6 +11,8 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 const data = live(buildMatrix())
 // The whole portal folded into one root: every wave run and gathered together.
 const whole = theWhole(buildMatrix())
+// The portal self-builds from nothing, again and again, returning identical.
+const again = recurrence(5)
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -147,6 +149,10 @@ onBeforeUnmount(() => {
       {{ pick('the whole', 'цялото') }} · <strong>{{ whole.standing }}/{{ whole.count }}</strong>
       {{ pick('waves folded into one root', 'вълни, слети в един корен') }}
       <code :title="whole.root">{{ whole.root.slice(0, 17) }}…</code>
+    </p>
+    <p class="live__whole">
+      {{ pick('self-build', 'самоизграждане') }} · <strong>×{{ again.times }}</strong>
+      {{ again.returns ? pick('identical every time', 'идентично всеки път') : pick('drift detected', 'установено разминаване') }}
     </p>
   </section>
 </template>

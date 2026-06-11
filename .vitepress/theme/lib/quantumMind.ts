@@ -3945,6 +3945,41 @@ export function theWhole(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Again — self build. The portal builds itself from nothing, and does it again and
+// again, returning identical every time: the same model root, the same self-build
+// root, the same whole. Eternal recurrence as determinism at the scale of the entire
+// portal — it can be regenerated from scratch and come back the same.
+export function recurrence(times = 5) {
+  const runs = times < 2 ? 2 : times
+  let firstModel = ''
+  let firstBuild = ''
+  let firstWhole = ''
+  let identical = true
+  const log: { run: number; model: string; build: string; whole: string }[] = []
+  for (let i = 0; i < runs; i += 1) {
+    const matrix = buildMatrix() // rebuild the model from scratch
+    const built = selfBuild(matrix) // it builds itself
+    const whole = theWhole(matrix) // and folds into the whole
+    if (i === 0) { firstModel = matrix.root; firstBuild = built.root; firstWhole = whole.root }
+    else if (matrix.root !== firstModel || built.root !== firstBuild || whole.root !== firstWhole) identical = false
+    if (!built.complete || !whole.whole) identical = false
+    log.push({ run: i, model: matrix.root.slice(0, 8), build: built.root.slice(0, 8), whole: whole.root.slice(0, 8) })
+  }
+  return {
+    returns: identical, // it returns the same, every time
+    times: runs,
+    modelRoot: firstModel,
+    buildRoot: firstBuild,
+    wholeRoot: firstWhole,
+    log,
+    root: merkleFold(log.map((entry) => toUuid(`recurrence:${entry.run}:${firstWhole}`))),
+    statement:
+      'Again, self build: the portal builds itself from nothing and returns identical every time — the same model root, the same self-build root, the same whole, across independent rebuilds. Eternal recurrence as determinism at the scale of the entire portal.',
+    boundary:
+      'Rebuilds the full model, its self-build, and the whole capstone several times within one run and checks every root matches. A determinism check at portal scale, client-side; "again" means recomputable and identical, not a claim about time or cosmology.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root

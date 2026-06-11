@@ -127,6 +127,7 @@ import {
   goldenRatio,
   humanise,
   theWhole,
+  recurrence,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -309,6 +310,9 @@ ok(`humanise:${humanise(matrix).breaths.length}breaths`, humanise(matrix).humane
 
 // Send the waves to do all: every wave run and folded into one whole portal root.
 ok(`the.whole:${theWhole(matrix).standing}/${theWhole(matrix).count}`, theWhole(matrix).whole)
+
+// Again, self build: the portal rebuilds itself from nothing and returns identical.
+ok(`recurrence:${recurrence().times}x`, recurrence().returns)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

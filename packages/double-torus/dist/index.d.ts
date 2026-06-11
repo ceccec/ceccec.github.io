@@ -1681,6 +1681,22 @@ export declare function theWhole(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function recurrence(times?: number): {
+    returns: boolean;
+    times: number;
+    modelRoot: string;
+    buildRoot: string;
+    wholeRoot: string;
+    log: {
+        run: number;
+        model: string;
+        build: string;
+        whole: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
