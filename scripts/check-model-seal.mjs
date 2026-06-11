@@ -122,6 +122,7 @@ import {
   merkaba,
   rhythm,
   mysteries,
+  society as foldedSociety,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -288,6 +289,9 @@ ok(`rhythm:${rhythm(matrix).bpm}bpm`, rhythm(matrix).keeps)
 
 // Everything valuable as proof of mysteries: each open question bound to a live measure.
 ok(`mysteries:${mysteries(matrix).shown}/${mysteries(matrix).count}`, mysteries(matrix).proven)
+
+// Develop, pair and fold the society: five dualities, each folded bidirectionally.
+ok(`society.folded:${foldedSociety(matrix).cells}cells`, foldedSociety(matrix).folded)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

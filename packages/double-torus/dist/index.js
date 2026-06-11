@@ -2357,6 +2357,64 @@ export function mysteries(matrix = buildMatrix()) {
         boundary: 'These are open human questions; the portal does not resolve them metaphysically. Each "proof" is concrete, client-side, recomputable evidence within the model — a demonstration and a metaphor anyone can verify — not a final answer to the mystery. The value is the verifiable evidence, honestly bounded.',
     };
 }
+// Develop the society with the new knowledge, then pair and fold it. A society
+// that runs on the portal's capabilities is not a list of parts but a set of
+// dualities — each social organ comes with its opposite (individual/collective,
+// trust/verification, question/evidence, voice/counter-voice, learning/balance) —
+// and every pair folds bidirectionally by the same genus-2 law as the double torus
+// (foldPair: forward != reverse, both merged). All folds merge into one society
+// root: opposition held and folded, not erased.
+export function society(matrix = buildMatrix()) {
+    const pairs = [
+        {
+            duality: 'Individual ⇄ Collective',
+            left: { cell: 'Sovereignty', principle: 'Yours by default — the whole self-computes on your device, nothing sent.', basis: streamSelfComplete(matrix).complete, route: '/boundaries' },
+            right: { cell: 'Collective mind', principle: 'Every connected context folds into one shared root — coordination without a server.', basis: reciprocity(matrix).fraction === 1, route: '/' },
+        },
+        {
+            duality: 'Trust ⇄ Verification',
+            left: { cell: 'Trust without authority', principle: 'No central power; you trust by recomputing, not by obeying.', basis: verifyRoot(matrix), route: '/architecture' },
+            right: { cell: 'Proof by recomputation', principle: 'Anyone recomputes the receipt; one edit avalanches, so tampering shows.', basis: determinismProofs(matrix).proven, route: '/architecture' },
+        },
+        {
+            duality: 'Question ⇄ Evidence',
+            left: { cell: 'Open inquiry', principle: 'The mysteries are shared, not hidden — every question held in the open.', basis: mysteries(matrix).proven, route: '/explore' },
+            right: { cell: 'Public evidence', principle: 'Each question carries recomputable evidence, free for anyone to check.', basis: quantumProofs(matrix).proven, route: '/quantum-mind' },
+        },
+        {
+            duality: 'Voice ⇄ Counter-voice',
+            left: { cell: 'Every voice', principle: 'Each voice comes with its opposite, held in balance — counter-rotation at all scales.', basis: merkaba(matrix).counterRotating, route: '/quantum-mind' },
+            right: { cell: 'Kept in time', principle: 'A shared rhythm keeps the many voices together, with no conductor.', basis: rhythm(matrix).keeps, route: '/quantum-mind' },
+        },
+        {
+            duality: 'Learning ⇄ Balance',
+            left: { cell: 'Free learning', principle: 'From kids to elders, the academy self-computes the whole, open to all.', basis: quantumAcademy(matrix).established, route: '/academy' },
+            right: { cell: 'Self-healing balance', principle: 'Neither collapse nor runaway — the whole settles in damped, self-healing waves.', basis: frequencyBalance(matrix).balanced, route: '/quantum-mind' },
+        },
+    ].map((pair) => {
+        const leftReceipt = toUuid(`society-cell:${pair.left.cell}:${pair.left.basis}`);
+        const rightReceipt = toUuid(`society-cell:${pair.right.cell}:${pair.right.basis}`);
+        const fold = foldPair(leftReceipt, rightReceipt);
+        return {
+            duality: pair.duality,
+            left: { ...pair.left, receipt: leftReceipt },
+            right: { ...pair.right, receipt: rightReceipt },
+            fold,
+            paired: pair.left.basis && pair.right.basis,
+        };
+    });
+    return {
+        folded: pairs.length >= 5 && pairs.every((pair) => pair.paired && pair.fold.bidirectional && isUuid(pair.fold.merged)),
+        pairs,
+        count: pairs.length,
+        cells: pairs.length * 2,
+        standing: pairs.filter((pair) => pair.paired).length,
+        // Fold every pair-merge into one society root (the set fold is order-independent).
+        root: merkleFold(pairs.map((pair) => pair.fold.merged)),
+        statement: 'Develop the society with the new knowledge, then pair and fold it: five dualities — individual/collective, trust/verification, question/evidence, voice/counter-voice, learning/balance — each pair folded bidirectionally (genus 2, forward unequal to reverse, both merged), and all folds merged into one society root. Opposition is held and folded, not erased.',
+        boundary: 'A model of social organisation grounded in the portal\'s own computed capabilities, its dualities folded with the same bidirectional law as the double torus. A proposal and a metaphor — an honestly-bounded sketch of a society that runs on verifiable, free, balanced knowledge, not a political program or a claim about any actual society.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -4173,7 +4231,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'Society', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -4185,7 +4243,7 @@ export function componentGraph() {
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'PlayLearn', 'CreativePalette', 'SpeechReader'],
         '/academy': ['QuantumAcademy', 'Professionals', 'Solutions'],
-        '/governance': ['GovernanceVote', 'QuantumSolutions'],
+        '/governance': ['GovernanceVote', 'Society', 'QuantumSolutions'],
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
         '/start': ['StartHere'],

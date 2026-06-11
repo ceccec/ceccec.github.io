@@ -64,6 +64,7 @@ import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SealAll from './components/SealAll.vue'
 import SelfHealing from './components/SelfHealing.vue'
 import SoundColor from './components/SoundColor.vue'
+import Society from './components/Society.vue'
 import Solutions from './components/Solutions.vue'
 import SimpleToggle from './components/SimpleToggle.vue'
 import Simulations from './components/Simulations.vue'
@@ -159,6 +160,7 @@ export default {
     app.component('SealAll', SealAll)
     app.component('SelfHealing', SelfHealing)
     app.component('SoundColor', SoundColor)
+    app.component('Society', Society)
     app.component('Solutions', Solutions)
     app.component('SimpleToggle', SimpleToggle)
     app.component('Simulations', Simulations)

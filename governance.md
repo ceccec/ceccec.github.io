@@ -21,6 +21,8 @@ can rate and approve it — that is the *approval*.
 
 <GovernanceVote />
 
+<Society />
+
 <QuantumSolutions />
 
 The roles are `rate · vote · approve · monitor`. A ballot is honest because it

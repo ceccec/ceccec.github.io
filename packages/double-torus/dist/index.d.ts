@@ -1576,6 +1576,39 @@ export declare function mysteries(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function society(matrix?: MindMatrix): {
+    folded: boolean;
+    pairs: {
+        duality: string;
+        left: {
+            receipt: string;
+            cell: string;
+            principle: string;
+            basis: boolean;
+            route: string;
+        };
+        right: {
+            receipt: string;
+            cell: string;
+            principle: string;
+            basis: boolean;
+            route: string;
+        };
+        fold: {
+            forward: string;
+            reverse: string;
+            bidirectional: boolean;
+            merged: string;
+        };
+        paired: boolean;
+    }[];
+    count: number;
+    cells: number;
+    standing: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

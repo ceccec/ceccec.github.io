@@ -21,6 +21,8 @@ head:
 
 <GovernanceVote />
 
+<Society />
+
 <QuantumSolutions />
 
 Ролите са `оценка · глас · одобрение · наблюдение`. Един глас е честен, защото
