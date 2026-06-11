@@ -101,6 +101,7 @@ import {
   plainLanguage,
   graduation,
   harmonicMap,
+  doubleTorusFold,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -206,6 +207,10 @@ ok(`graduation:${graduation(matrix).count}/5`, graduation(matrix).graduated)
 
 // The harmonic map: every component an overtone, distributed across octave bands.
 ok(`harmonic.map:${harmonicMap(matrix).count}@${harmonicMap(matrix).octaves}`, harmonicMap(matrix).distributed)
+
+// The double torus folds in both directions: complete trinities fold into each
+// other and rise through the pairs of pairs to two closing apexes — analog.
+ok(`double-torus.fold:depth-${doubleTorusFold(matrix).depth}`, doubleTorusFold(matrix).complete)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.

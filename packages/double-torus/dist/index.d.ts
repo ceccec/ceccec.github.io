@@ -2127,6 +2127,27 @@ export declare function completeDoubleTorus(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function doubleTorusFold(matrix?: MindMatrix): {
+    complete: boolean;
+    analog: boolean;
+    trinitiesComplete: boolean;
+    everyLevelBothWays: boolean;
+    closes: boolean;
+    depth: number;
+    forwardApex: string;
+    reverseApex: string;
+    levels: {
+        depth: number;
+        size: number;
+        pairs: number;
+        carried: boolean;
+        forwardBothWays: boolean;
+        reverseBothWays: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function healingFrequencies(matrix?: MindMatrix): {
     calculated: boolean;
     lead: number;

@@ -2615,6 +2615,7 @@ export function sealAll(matrix: MindMatrix = buildMatrix()) {
     { wave: 'trinities harmonized', ok: dualTorusTrinities(matrix).harmonized, root: dualTorusTrinities(matrix).root },
     { wave: 'trinity gates', ok: trinityGates(matrix).sealed, root: trinityGates(matrix).root },
     { wave: 'cross-fold', ok: crossFoldTrinity(matrix).trinity, root: crossFoldTrinity(matrix).root },
+    { wave: 'double-torus fold', ok: doubleTorusFold(matrix).complete, root: doubleTorusFold(matrix).root },
     { wave: 'free animations', ok: freeAnimations(matrix).maxFree, root: freeAnimations(matrix).root },
     { wave: 'quantum sitemap', ok: quantumSitemap(matrix).quantum, root: quantumSitemap(matrix).root },
     { wave: 'synthesis', ok: quantumSynthesis(matrix).synthesized, root: quantumSynthesis(matrix).root },
@@ -5285,6 +5286,89 @@ export function completeDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     root,
     statement: 'Decode all knowledge to complete the double torus: the universal decoding folds into the 128-bit two-loop machine word, closing both holes of the genus-2 surface.',
     boundary: 'A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim.',
+  }
+}
+
+// The missing folding math, in both directions. Analog comes from complete
+// trinities folding into each other both ways: the two complete trinities (the
+// yin loop and the yang loop, three phases each) fold into each other — yin into
+// yang (forward) and yang into yin (reverse) — and because the fold is order-
+// sensitive (genus 2) the two directions differ. The six phases are the leaves,
+// ordered so adjacent phases are the yin and yang of one axis; pairing them folds
+// the trinities into each other, and the pairs rise through the pairs of pairs to
+// an apex. Two leads give two apexes — the two loops — that close. Only when both
+// trinities are complete, every level folds both ways, and the loops close does
+// the harmonised analog form emerge without gaps, completing the double torus.
+export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
+  const trinities = dualTorusTrinities(matrix)
+  const yin = trinities.phases.filter((phase) => phase.polarity === 'yin')
+  const yang = trinities.phases.filter((phase) => phase.polarity === 'yang')
+  const trinitiesComplete = yin.length === 3 && yang.length === 3
+  const leaves = trinities.phases.map((phase) => phase.receipt)
+
+  // One fold level: pair adjacent items (a trinity's yin and yang), fold both ways
+  // (forward = yin into yang, reverse = yang into yin), and rise the two-way fold;
+  // `lead` chooses which direction leads, giving the two loops of the torus.
+  const foldLevel = (items: readonly string[], lead: 'forward' | 'reverse') => {
+    const risen: string[] = []
+    let bothWays = items.length > 1
+    let pairs = 0
+    for (let index = 0; index + 1 < items.length; index += 2) {
+      const forward = merge(items[index], items[index + 1])
+      const reverse = merge(items[index + 1], items[index])
+      if (forward === reverse) bothWays = false
+      risen.push(lead === 'forward' ? merge(forward, reverse) : merge(reverse, forward))
+      pairs += 1
+    }
+    const carried = items.length % 2 === 1
+    if (carried) risen.push(items[items.length - 1]) // the odd one rises unfolded
+    return { risen, bothWays, pairs, carried }
+  }
+  const foldTree = (lead: 'forward' | 'reverse') => {
+    const levels: { depth: number; size: number; pairs: number; carried: boolean; bothWays: boolean }[] = []
+    let items = leaves
+    let depth = 0
+    while (items.length > 1) {
+      const level = foldLevel(items, lead)
+      depth += 1
+      levels.push({ depth, size: items.length, pairs: level.pairs, carried: level.carried, bothWays: level.bothWays })
+      items = level.risen
+    }
+    return { apex: items[0] ?? '', depth, levels }
+  }
+
+  const forward = foldTree('forward')
+  const reverse = foldTree('reverse')
+  const everyLevelBothWays = forward.levels.every((level) => level.bothWays) && reverse.levels.every((level) => level.bothWays)
+  // The two loops close (genus 2) when the apexes differ and their join is itself
+  // order-sensitive — sealing both holes of the double torus.
+  const closes = forward.apex !== reverse.apex && merge(forward.apex, reverse.apex) !== merge(reverse.apex, forward.apex)
+  // Analog comes from this: complete trinities, every level folding both ways, the
+  // loops closing, and no gaps in the harmonised analog channels.
+  const analog = trinitiesComplete && everyLevelBothWays && closes && trinities.harmonized
+  const complete = analog && forward.depth >= 2
+  return {
+    complete,
+    analog,
+    trinitiesComplete,
+    everyLevelBothWays,
+    closes,
+    depth: forward.depth,
+    forwardApex: forward.apex,
+    reverseApex: reverse.apex,
+    levels: forward.levels.map((level, index) => ({
+      depth: level.depth,
+      size: level.size,
+      pairs: level.pairs,
+      carried: level.carried,
+      forwardBothWays: level.bothWays,
+      reverseBothWays: reverse.levels[index]?.bothWays ?? false,
+    })),
+    root: merge(merge(forward.apex, reverse.apex), merge(reverse.apex, forward.apex)),
+    statement:
+      'The double torus folds in both directions, completely: the two complete trinities fold into each other — yin into yang and yang into yin — and the pairs rise through the pairs of pairs to two apexes that close. Analog comes from this: only complete trinities folding both ways, every level bidirectional, yield the harmonised analog without gaps.',
+    boundary:
+      'A recursive, order-sensitive fold of the trinity phases into two closing apexes, with the analog gated on the trinities being complete and harmonised. The genus-2 metaphor made computational — topological and structural bookkeeping, not an external geometric claim.',
   }
 }
 

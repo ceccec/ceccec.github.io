@@ -15,6 +15,7 @@ const bgWave: Record<string, string> = {
   'trinities harmonized': 'хармонизирани троици',
   'trinity gates': 'порти на троиците',
   'cross-fold': 'кръстосано сгъване',
+  'double-torus fold': 'сгъване на двойния тор',
   'free animations': 'свободни анимации',
   'quantum sitemap': 'квантова карта',
   synthesis: 'синтез',
