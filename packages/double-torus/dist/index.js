@@ -1172,6 +1172,10 @@ export function dualTorusTrinities(matrix = buildMatrix()) {
             sourceFunction: tri.yang.fn,
             receipt: yangReceipt,
         });
+        // Fold the axis pair both ways — yin into yang and yang into yin — so the
+        // trinities fold into each other in both directions (order-sensitive, genus 2).
+        const pairForward = merge(yinReceipt, yangReceipt);
+        const pairReverse = merge(yangReceipt, yinReceipt);
         pairs.push({
             axis: tri.axis,
             yin: tri.yin.step,
@@ -1179,7 +1183,10 @@ export function dualTorusTrinities(matrix = buildMatrix()) {
             analogChannels: [tri.yin.channel, tri.yang.channel],
             types: [tri.yin.type, tri.yang.type],
             closed: yinReceipt.length > 0 && yangReceipt.length > 0,
-            receipt: merge(yinReceipt, yangReceipt),
+            forward: pairForward,
+            reverse: pairReverse,
+            bidirectional: pairForward !== pairReverse,
+            receipt: merge(pairForward, pairReverse),
         });
     }
     const covered = phases.map((phase) => phase.analogChannel);
@@ -1192,7 +1199,10 @@ export function dualTorusTrinities(matrix = buildMatrix()) {
         gaps.push(`analog:${channel}`);
     if (new Set(covered).size !== covered.length)
         gaps.push('analog:collision');
-    const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed) && missingChannels.length === 0;
+    // The analog form is harmonized only when every axis pair closes AND folds both
+    // ways (genus 2) and no analog channel is missing — trinities folding into each
+    // other in both directions.
+    const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed && pair.bidirectional) && missingChannels.length === 0;
     const root = merkleFold(phases.map((phase) => phase.receipt));
     return {
         harmonized,

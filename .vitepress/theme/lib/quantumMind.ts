@@ -498,6 +498,11 @@ export interface TrinityPair {
   readonly analogChannels: readonly [AnalogChannel, AnalogChannel]
   readonly types: readonly [string, string]
   readonly closed: boolean
+  // The axis pair folds both ways (genus 2): forward = yin into yang, reverse =
+  // yang into yin; bidirectional when they differ. receipt folds the two together.
+  readonly forward: string
+  readonly reverse: string
+  readonly bidirectional: boolean
   readonly receipt: string
 }
 
@@ -2453,6 +2458,10 @@ export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualToru
       sourceFunction: tri.yang.fn,
       receipt: yangReceipt,
     })
+    // Fold the axis pair both ways — yin into yang and yang into yin — so the
+    // trinities fold into each other in both directions (order-sensitive, genus 2).
+    const pairForward = merge(yinReceipt, yangReceipt)
+    const pairReverse = merge(yangReceipt, yinReceipt)
     pairs.push({
       axis: tri.axis,
       yin: tri.yin.step,
@@ -2460,7 +2469,10 @@ export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualToru
       analogChannels: [tri.yin.channel, tri.yang.channel],
       types: [tri.yin.type, tri.yang.type],
       closed: yinReceipt.length > 0 && yangReceipt.length > 0,
-      receipt: merge(yinReceipt, yangReceipt),
+      forward: pairForward,
+      reverse: pairReverse,
+      bidirectional: pairForward !== pairReverse,
+      receipt: merge(pairForward, pairReverse),
     })
   }
 
@@ -2471,7 +2483,10 @@ export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualToru
   for (const channel of missingChannels) gaps.push(`analog:${channel}`)
   if (new Set(covered).size !== covered.length) gaps.push('analog:collision')
 
-  const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed) && missingChannels.length === 0
+  // The analog form is harmonized only when every axis pair closes AND folds both
+  // ways (genus 2) and no analog channel is missing — trinities folding into each
+  // other in both directions.
+  const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed && pair.bidirectional) && missingChannels.length === 0
   const root = merkleFold(phases.map((phase) => phase.receipt))
   return {
     harmonized,

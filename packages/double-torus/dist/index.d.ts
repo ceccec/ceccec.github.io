@@ -342,6 +342,9 @@ export interface TrinityPair {
     readonly analogChannels: readonly [AnalogChannel, AnalogChannel];
     readonly types: readonly [string, string];
     readonly closed: boolean;
+    readonly forward: string;
+    readonly reverse: string;
+    readonly bidirectional: boolean;
     readonly receipt: string;
 }
 export interface DualTorusTrinities {
