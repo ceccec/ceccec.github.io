@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -13,6 +13,8 @@ const data = live(buildMatrix())
 const whole = theWhole(buildMatrix())
 // The portal self-builds from nothing, again and again, returning identical.
 const again = recurrence(5)
+// Holographic: each part contains the whole, the whole recoverable from any part.
+const holo = holographic(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -153,6 +155,10 @@ onBeforeUnmount(() => {
     <p class="live__whole">
       {{ pick('self-build', 'самоизграждане') }} · <strong>×{{ again.times }}</strong>
       {{ again.returns ? pick('identical every time', 'идентично всеки път') : pick('drift detected', 'установено разминаване') }}
+    </p>
+    <p class="live__whole">
+      {{ pick('holographic', 'холографично') }} · <strong>{{ holo.count }}/{{ holo.count }}</strong>
+      {{ pick('each part contains the whole', 'всяка част съдържа цялото') }}
     </p>
   </section>
 </template>

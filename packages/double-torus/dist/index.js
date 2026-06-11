@@ -2727,6 +2727,37 @@ export function animationTamperingCost(matrix = buildMatrix()) {
         boundary: 'A computed accounting of the content-addressed receipts the animations fold and the live recomputation they perform, in reproductions, per-second work, and bits. An honest lower bound on the reproduction cost of a convincing forgery — not a cryptographic security proof; the hash is a fast non-cryptographic UUID function, so the 128-bit figure is the structural width, not a guaranteed work factor against a dedicated adversary.',
     };
 }
+// Animations are holographic. In a hologram every part contains the whole, and the
+// whole is recoverable from any part. Here that is exact: the whole root folds from
+// the parts (the boundary encodes the volume), so each animation is provably
+// included in it — recoverable from the boundary by a Merkle path — while also
+// carrying the whole, folded bidirectionally with the whole root. Boundary <-> volume.
+export function holographic(matrix = buildMatrix()) {
+    const whole = theWhole(matrix);
+    const leaves = [matrix.root, ...whole.parts.map((part) => part.root)];
+    const wholeRoot = merkleFold(leaves); // the boundary root, folded from the parts
+    const cells = whole.parts.map((part) => {
+        const proof = merkleProof(leaves, part.root); // the part is recoverable from the boundary
+        const carry = foldPair(part.root, wholeRoot); // the part carries the whole, both ways
+        const includedInWhole = proof.verified && proof.root === wholeRoot;
+        return {
+            part: part.part,
+            includedInWhole, // the whole carries the part
+            carriesWhole: carry.bidirectional, // the part carries the whole
+            holographic: includedInWhole && carry.bidirectional,
+            cell: carry.merged,
+        };
+    });
+    return {
+        holographic: wholeRoot === whole.root && cells.length === whole.parts.length && cells.every((cell) => cell.holographic),
+        reconstructed: wholeRoot === whole.root, // the whole recovers from its parts
+        cells,
+        count: cells.length,
+        root: merkleFold(cells.map((cell) => toUuid(`holo:${cell.part}:${cell.holographic}`))),
+        statement: 'Animations are holographic: the whole folds from the parts, so the boundary root encodes the whole volume, and every animation is provably included in it (recoverable from the boundary by a Merkle path) while also carrying the whole (folded bidirectionally with the whole root). Each part contains the whole; the whole is recoverable from any part.',
+        boundary: 'A structural realisation of the holographic principle over the portal: each animation root is a Merkle leaf of the whole root (inclusion provable, the boundary encoding the interior) and is bidirectionally folded with the whole. A content-addressed metaphor for holography, exact within the fold — not a statement of physics.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;

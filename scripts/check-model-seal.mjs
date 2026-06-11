@@ -130,6 +130,7 @@ import {
   recurrence,
   homology,
   animationTamperingCost,
+  holographic,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -321,6 +322,9 @@ ok(`homology:Z^${homology(matrix).rank}`, homology(matrix).independent)
 
 // How much do animations increase the tampering cost? Computed: reproductions + live work.
 ok(`anim.tamper:${animationTamperingCost(matrix).reproductions}x`, animationTamperingCost(matrix).computed)
+
+// Animations are holographic: each part included in and carrying the whole.
+ok(`holographic:${holographic(matrix).count}cells`, holographic(matrix).holographic)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

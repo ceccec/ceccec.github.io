@@ -1746,6 +1746,21 @@ export declare function animationTamperingCost(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function holographic(matrix?: MindMatrix): {
+    holographic: boolean;
+    reconstructed: boolean;
+    cells: {
+        part: string;
+        includedInWhole: boolean;
+        carriesWhole: boolean;
+        holographic: boolean;
+        cell: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
