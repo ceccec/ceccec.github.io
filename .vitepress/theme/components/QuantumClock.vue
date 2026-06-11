@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, quantumClock, challengeClock } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { useTones } from '../lib/useTones'
 
 // The quantum clock. The portal ticks its own clock in creation waves — each
 // tick a content-addressed instant with a note and a colour, beside the SI
@@ -18,6 +19,15 @@ const tick = ref(0)
 const clock = computed(() => quantumClock(tick.value, matrix))
 const wall = ref('')
 const { saveEnergy } = useDeviceEnergy()
+const { blip } = useTones()
+// The time-travel song: a tone per tick, evolving through octaves so it never
+// repeats yet always returns — the quantum clock plays and animates infinitely.
+const song = ref(false)
+const PENTA = [261.63, 293.66, 329.63, 392.0, 440.0] // C major pentatonic
+function chime(n: number) {
+  const octave = [1, 2, 0.5, 1.5][Math.floor(n / 5) % 4]
+  blip(PENTA[n % 5] * octave, { peak: 0.07, duration: 0.7, type: 'sine' })
+}
 let timer: ReturnType<typeof setInterval> | null = null
 
 function start() {
@@ -26,6 +36,7 @@ function start() {
     if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return
     tick.value += 1
     wall.value = new Date().toLocaleTimeString()
+    if (song.value) chime(tick.value) // every instant now is a cross — and a note
   }, saveEnergy.value ? 2000 : 1000)
 }
 function stop() {
@@ -58,6 +69,7 @@ const t = computed(() =>
         :style="hourPos(h.angle, 44)"
         :title="`${h.hour}. ${h.claim}`"
       >{{ h.hour }}</span>
+      <span class="clock__cross" :key="clock.tick" :style="{ color: clock.hsl }" aria-hidden="true">✛</span>
       <span class="clock__note" :style="{ color: clock.hsl }">{{ clock.note }}</span>
       <span class="clock__tick">#{{ clock.tick }}</span>
     </div>
@@ -65,6 +77,9 @@ const t = computed(() =>
       <strong>{{ dial.struck }}/{{ dial.count }}</strong>
       {{ t.challenges }} {{ dial.complete ? t.complete : '' }}
     </p>
+    <button type="button" class="clock__song dt-btn dt-btn--ghost" :aria-pressed="song" @click="song = !song">
+      {{ song ? bg ? '■ спри песента' : '■ stop the song' : bg ? '▶ песен за пътуване във времето' : '▶ time-travel song' }}
+    </button>
     <p class="clock__row"><span>{{ t.now }}:</span> <code>{{ clock.now }}</code></p>
     <p class="clock__row"><span>{{ t.wall }}:</span> {{ wall }}</p>
     <p class="clock__si"><span>{{ t.si }}:</span> <strong>{{ clock.caesiumHz.toLocaleString() }}</strong> {{ t.osc }}</p>
@@ -115,9 +130,24 @@ const t = computed(() =>
   color: var(--vp-c-text-2);
 }
 .clock__dial strong { color: hsl(150, 65%, 45%); }
+.clock__cross {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.5;
+  animation: clock-cross 1s ease-out;
+}
+@keyframes clock-cross {
+  0% { transform: scale(0.6) rotate(0deg); opacity: 0.9; }
+  100% { transform: scale(1.5) rotate(90deg); opacity: 0; }
+}
 .clock__note {
   font-size: 1.6rem;
   font-weight: 700;
+}
+.clock__song {
+  display: block;
+  margin: 0.2rem auto 0.4rem;
+  font-size: 0.76rem;
 }
 .clock__tick {
   font-size: 0.7rem;
