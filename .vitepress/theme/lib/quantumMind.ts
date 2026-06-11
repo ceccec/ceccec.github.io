@@ -3912,6 +3912,39 @@ export function live(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Send the waves to do all. Every wave of the portal — the double torus, the
+// merkaba, the rhythm, the mysteries, the society, the harmonic distribution, the
+// golden ratio, the humanised motion, the live vitals, and the proofs — is run and
+// folded into one whole, with a single root for the entire portal. The whole holds
+// only while every part does, so this one root is the portal's complete fingerprint.
+export function theWhole(matrix: MindMatrix = buildMatrix()) {
+  const parts = [
+    { part: 'double torus', root: livingTorus(matrix).root, ok: livingTorus(matrix).alive },
+    { part: 'merkaba', root: merkaba(matrix).root, ok: merkaba(matrix).counterRotating },
+    { part: 'rhythm', root: rhythm(matrix).root, ok: rhythm(matrix).keeps },
+    { part: 'mysteries', root: mysteries(matrix).root, ok: mysteries(matrix).proven },
+    { part: 'society', root: society(matrix).root, ok: society(matrix).folded },
+    { part: 'harmonic', root: harmonicBands(110).root, ok: harmonicBands(110).gapless },
+    { part: 'golden ratio', root: goldenRatio(matrix).root, ok: goldenRatio(matrix).converges },
+    { part: 'humanise', root: humanise(matrix).root, ok: humanise(matrix).humane },
+    { part: 'live', root: live(matrix).root, ok: live(matrix).alive },
+    { part: 'quantum proofs', root: quantumProofs(matrix).root, ok: quantumProofs(matrix).proven },
+    { part: 'determinism', root: determinismProofs(matrix).root, ok: determinismProofs(matrix).proven },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`whole:${entry.part}:${entry.ok}`) }))
+  return {
+    whole: parts.every((entry) => entry.ok),
+    parts,
+    count: parts.length,
+    standing: parts.filter((entry) => entry.ok).length,
+    // One root for the entire portal: the model and every wave folded together.
+    root: merkleFold([matrix.root, ...parts.map((entry) => entry.root)]),
+    statement:
+      'Send the waves to do all: every wave of the portal — the double torus, the merkaba, the rhythm, the mysteries, the society, the harmonic distribution, the golden ratio, the humanised motion, the live vitals, and the proofs — run and folded into one whole, with a single root for the entire portal.',
+    boundary:
+      'A capstone that runs each subsystem and folds their roots into one. The whole holds only while every part does — a single verifiable fingerprint of the portal, honestly bounded: the sum of its waves, not a claim beyond them.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root

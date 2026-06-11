@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -9,6 +9,8 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 // so the live root keeps changing — being alive is something you watch happen. The
 // vitals are the gated invariants; the whole reads alive while every one holds.
 const data = live(buildMatrix())
+// The whole portal folded into one root: every wave run and gathered together.
+const whole = theWhole(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -141,6 +143,11 @@ onBeforeUnmount(() => {
       {{ pick('heartbeat', 'сърдечен ритъм') }} <strong>{{ beats }}</strong> ·
       {{ data.pulseMs }} ms · <code :title="liveRoot">{{ liveRoot.slice(0, 17) }}…</code>
     </p>
+    <p class="live__whole">
+      {{ pick('the whole', 'цялото') }} · <strong>{{ whole.standing }}/{{ whole.count }}</strong>
+      {{ pick('waves folded into one root', 'вълни, слети в един корен') }}
+      <code :title="whole.root">{{ whole.root.slice(0, 17) }}…</code>
+    </p>
   </section>
 </template>
 
@@ -214,4 +221,11 @@ onBeforeUnmount(() => {
   color: var(--vp-c-text-2);
 }
 .live__beat code { font-size: 0.72rem; color: hsl(272, 60%, 60%); }
+.live__whole {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--vp-c-text-2);
+}
+.live__whole strong { color: hsl(150, 65%, 45%); }
+.live__whole code { font-size: 0.72rem; color: hsl(150, 50%, 50%); }
 </style>

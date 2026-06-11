@@ -1667,6 +1667,20 @@ export declare function live(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function theWhole(matrix?: MindMatrix): {
+    whole: boolean;
+    parts: {
+        receipt: string;
+        part: string;
+        root: string;
+        ok: boolean;
+    }[];
+    count: number;
+    standing: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

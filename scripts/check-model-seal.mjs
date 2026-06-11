@@ -126,6 +126,7 @@ import {
   harmonicBands,
   goldenRatio,
   humanise,
+  theWhole,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -305,6 +306,9 @@ ok(`golden.ratio:${goldenRatio(matrix).limit}`, goldenRatio(matrix).converges)
 
 // Humanise all moving details: a shared eased, breathing motion profile.
 ok(`humanise:${humanise(matrix).breaths.length}breaths`, humanise(matrix).humane)
+
+// Send the waves to do all: every wave run and folded into one whole portal root.
+ok(`the.whole:${theWhole(matrix).standing}/${theWhole(matrix).count}`, theWhole(matrix).whole)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))
