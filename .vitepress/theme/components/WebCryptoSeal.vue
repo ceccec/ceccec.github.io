@@ -38,6 +38,54 @@ async function compute() {
 
 onMounted(compute)
 
+// Real client-side encryption — the first missing feature, developed. AES-256-GCM
+// with a PBKDF2-derived key (150k iterations, SHA-256). The passphrase and the
+// plaintext never leave the browser; the token packs salt | iv | ciphertext.
+const passphrase = ref('')
+const plaintext = ref('')
+const token = ref('')
+const decrypted = ref('')
+const cryptoErr = ref('')
+
+async function deriveKey(pass: string, salt: Uint8Array): Promise<CryptoKey> {
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey'])
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 150000, hash: 'SHA-256' },
+    base,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt', 'decrypt'],
+  )
+}
+async function encrypt() {
+  cryptoErr.value = ''
+  decrypted.value = ''
+  try {
+    const salt = crypto.getRandomValues(new Uint8Array(16))
+    const iv = crypto.getRandomValues(new Uint8Array(12))
+    const key = await deriveKey(passphrase.value, salt)
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(plaintext.value)))
+    const out = new Uint8Array(16 + 12 + ct.byteLength)
+    out.set(salt, 0); out.set(iv, 16); out.set(ct, 28)
+    token.value = btoa(String.fromCharCode(...out))
+  } catch (error) {
+    cryptoErr.value = String((error as Error).message ?? error)
+  }
+}
+async function decrypt() {
+  cryptoErr.value = ''
+  try {
+    const bin = Uint8Array.from(atob(token.value), (c) => c.charCodeAt(0))
+    const salt = bin.slice(0, 16)
+    const iv = bin.slice(16, 28)
+    const ct = bin.slice(28)
+    const key = await deriveKey(passphrase.value, salt)
+    decrypted.value = new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct))
+  } catch {
+    cryptoErr.value = bg.value ? 'Неуспешно дешифриране — грешна парола или повреден токен.' : 'Decryption failed — wrong passphrase or corrupted token.'
+  }
+}
+
 const t = computed(() =>
   bg.value
     ? {
@@ -70,6 +118,21 @@ const t = computed(() =>
       <button class="dt-btn" type="button" :disabled="computing" @click="compute">{{ t.recompute }}</button>
     </template>
     <p v-else class="wcs__unsupported">⚠ {{ t.unsupported }}</p>
+
+    <div v-if="supported" class="wcs__enc">
+      <p class="wcs__label">{{ bg ? 'Шифроване (AES-256-GCM, в браузъра)' : 'Encryption (AES-256-GCM, in your browser)' }}</p>
+      <input v-model="passphrase" class="wcs__in" type="password" autocomplete="off" :placeholder="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" />
+      <textarea v-model="plaintext" class="wcs__in wcs__ta" rows="2" :placeholder="bg ? 'текст за шифроване' : 'text to encrypt'"></textarea>
+      <div class="wcs__row">
+        <button class="dt-btn" type="button" @click="encrypt">{{ bg ? 'Шифровай ▸' : 'Encrypt ▸' }}</button>
+        <button class="dt-btn dt-btn--ghost" type="button" :disabled="!token" @click="decrypt">{{ bg ? '◂ Дешифровай' : '◂ Decrypt' }}</button>
+      </div>
+      <p v-if="token" class="wcs__token mono"><span>{{ bg ? 'токен:' : 'token:' }}</span> {{ token }}</p>
+      <p v-if="decrypted" class="wcs__token"><span>{{ bg ? 'дешифрирано:' : 'decrypted:' }}</span> {{ decrypted }}</p>
+      <p v-if="cryptoErr" class="wcs__err">⚠ {{ cryptoErr }}</p>
+      <p class="wcs__caveat">{{ bg ? 'Истинско AES-256-GCM, силно класическо шифроване, изцяло клиентско. Не е пост-квантово: ML-KEM още не е в Web Crypto — назован отворен фронт.' : 'Real AES-256-GCM — strong classical encryption, fully client-side. Not post-quantum: ML-KEM is not yet in Web Crypto — a named open frontier.' }}</p>
+    </div>
+
     <p class="wcs__roadmap-title">{{ t.roadmap }}</p>
     <ul class="wcs__roadmap">
       <li v-for="tool in data.tools" :key="tool.tool">
@@ -83,6 +146,36 @@ const t = computed(() =>
 </template>
 
 <style scoped>
+.wcs__enc {
+  margin: 0.8rem 0;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.wcs__in {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 0.84rem;
+}
+.wcs__ta { resize: vertical; font-family: inherit; }
+.wcs__row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.wcs__token {
+  margin: 0;
+  font-size: 0.74rem;
+  color: var(--vp-c-text-2);
+  word-break: break-all;
+}
+.wcs__token span { color: var(--vp-c-brand-1); margin-right: 0.3rem; }
+.wcs__err { margin: 0; font-size: 0.78rem; color: hsl(0, 70%, 58%); }
+.wcs__caveat { margin: 0.2rem 0 0; font-size: 0.72rem; color: var(--vp-c-text-3); line-height: 1.5; }
 .wcs {
   margin: 1.25rem 0;
   border-radius: 12px;
