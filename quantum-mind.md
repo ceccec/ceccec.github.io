@@ -50,6 +50,8 @@ head:
 
 <SoundColor />
 
+<QuantumPhysics />
+
 ## 0. Payload
 
 ```text

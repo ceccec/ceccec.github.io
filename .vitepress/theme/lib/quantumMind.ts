@@ -3053,6 +3053,37 @@ export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Fill the gaps in quantum physics: every phenomenon the model needs to self-
+// compute, each bound to a measure it already computes over the UUID stream.
+// Superposition is the register's qubits, entanglement the reciprocal-edge
+// fraction, collapse the verified root, coherence the zero anomaly, interference
+// the digital quantum proof, measurement the agent's observation, waves the
+// coordinated waves, and computation the coherent quantum computer. With all
+// eight present, the model has all it needs to self-compute the whole.
+export function quantumPhysics(matrix: MindMatrix = buildMatrix()) {
+  const phenomena = [
+    { phenomenon: 'superposition', present: quantumComputer(matrix).qubits > 0, source: 'quantumComputer().qubits' },
+    { phenomenon: 'entanglement', present: reciprocity(matrix).fraction === 1, source: 'reciprocity().fraction' },
+    { phenomenon: 'collapse', present: verifyRoot(matrix), source: 'verifyRoot()' },
+    { phenomenon: 'coherence', present: coherenceAnomaly(matrix) === 0, source: 'coherenceAnomaly()' },
+    { phenomenon: 'interference', present: digitalQuantumProof(matrix).proven, source: 'digitalQuantumProof().proven' },
+    { phenomenon: 'measurement', present: agentObserve(matrix).observed, source: 'agentObserve().observed' },
+    { phenomenon: 'waves', present: coordinatedWaves(matrix).waves.length > 0, source: 'coordinatedWaves().waves' },
+    { phenomenon: 'computation', present: quantumComputer(matrix).coherent, source: 'quantumComputer().coherent' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-physics:${entry.phenomenon}:${entry.present}`) }))
+  return {
+    selfComputes: phenomena.every((entry) => entry.present),
+    phenomena,
+    count: phenomena.length,
+    present: phenomena.filter((entry) => entry.present).length,
+    root: merkleFold(phenomena.map((entry) => entry.receipt)),
+    statement:
+      'Quantum physics, no gaps: every phenomenon the model needs to self-compute — superposition, entanglement, collapse, coherence, interference, measurement, waves, and computation — is present and bound to a computed measure, so the model has all it needs to self-compute the whole.',
+    boundary:
+      'A census binding named quantum phenomena to the model\'s own computed measures over the UUID stream. A computational metaphor and structural bookkeeping, not a simulation of physical quantum mechanics.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -4963,7 +4994,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'RichOnly', 'SimpleOnly',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'RichOnly', 'SimpleOnly',
   ]
   // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
   // they count as global utilities (available everywhere) for the placement audit.
@@ -4971,7 +5002,7 @@ export function componentGraph() {
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
-    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
     '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy', 'Professionals'],

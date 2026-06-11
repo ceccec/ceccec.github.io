@@ -111,6 +111,7 @@ import {
   directions,
   frequencyBalance,
   selfHealing,
+  quantumPhysics,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -244,6 +245,9 @@ ok(`frequency.balance:${frequencyBalance(matrix).center}hz`, frequencyBalance(ma
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)
+
+// Fill the gaps in quantum physics: every phenomenon present to self-compute all.
+ok(`quantum.physics:${quantumPhysics(matrix).present}/${quantumPhysics(matrix).count}`, quantumPhysics(matrix).selfComputes)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)
