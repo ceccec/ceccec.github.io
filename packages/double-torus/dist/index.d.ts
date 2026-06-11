@@ -2209,6 +2209,43 @@ export declare function biology(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function harmonicApparatus(matrix?: MindMatrix): {
+    proven: boolean;
+    shared: boolean;
+    apparatus: {
+        receipt: string;
+        instrument: string;
+        proves: string;
+        verified: boolean;
+    }[];
+    count: number;
+    modes: {
+        m: number;
+        n: number;
+        freq: number;
+    }[];
+    levels: {
+        n: number;
+        energy: number;
+    }[];
+    series: {
+        harmonic: number;
+        ratio: number;
+    }[];
+    sweep: {
+        w: number;
+        A: number;
+    }[];
+    chladni: {
+        m: number;
+        n: number;
+        N: number;
+        grid: number[][];
+    };
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

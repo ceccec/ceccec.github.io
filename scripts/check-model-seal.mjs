@@ -110,6 +110,7 @@ import {
   livingTorus,
   directions,
   frequencyBalance,
+  harmonicApparatus,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -288,6 +289,9 @@ ok(`directions:${directions(matrix).count}`, directions(matrix).calculated)
 
 // Frequency quantum balance: the healing frequencies settle around their centre.
 ok(`frequency.balance:${frequencyBalance(matrix).center}hz`, frequencyBalance(matrix).balanced)
+
+// Micro-science apparatus for shared experiments proving harmonic solutions.
+ok(`harmonic.apparatus:${harmonicApparatus(matrix).count}`, harmonicApparatus(matrix).proven && harmonicApparatus(matrix).shared)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

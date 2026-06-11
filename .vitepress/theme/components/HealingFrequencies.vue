@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, healingFrequencies, frequencyBalance } from '../lib/quantumMind'
+import { buildMatrix, healingFrequencies, frequencyBalance, harmonicApparatus } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
 
@@ -12,6 +12,10 @@ import { useTones } from '../lib/useTones'
 // yin (below) and yang (above) deviations balancing. Honest boundary, shown in
 // the UI: audio only; it alters no physical field, and makes no health claim.
 const matrix = buildMatrix()
+// The micro-science apparatus: a Chladni plate and friends, proving harmonic
+// solutions — shared, deterministic experiments anyone can recompute.
+const apparatus = harmonicApparatus(matrix)
+const chladniCells = apparatus.chladni.grid.flat()
 const data = computed(() => healingFrequencies(matrix))
 const balance = computed(() => frequencyBalance(matrix))
 const maxAbs = computed(() => Math.max(...balance.value.tones.map((tone) => Math.abs(tone.cents)), 1))
@@ -90,11 +94,60 @@ const t = computed(() =>
       <button class="dt-btn" type="button" :aria-label="playing ? t.stop : t.play" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
       <span v-if="saveEnergy" class="freq__save">🔋 {{ t.save }}</span>
     </div>
+    <div class="freq__apparatus">
+      <p class="eyebrow">{{ bg ? 'апаратура за споделени опити · доказва хармонични решения' : 'apparatus for shared experiments · proving harmonic solutions' }}</p>
+      <div class="freq__appgrid">
+        <div class="freq__chladni" :style="{ gridTemplateColumns: `repeat(${apparatus.chladni.N}, 1fr)` }" :aria-label="bg ? 'Хладни фигура, мода 3,2' : 'Chladni figure, mode 3,2'" role="img">
+          <span
+            v-for="(u, i) in chladniCells"
+            :key="i"
+            class="freq__cell"
+            :style="{ background: `hsl(${200 + u * 120}, 70%, ${12 + (1 - Math.abs(u)) * 70}%)` }"
+          />
+        </div>
+        <ul class="freq__instruments">
+          <li v-for="a in apparatus.apparatus" :key="a.instrument">
+            <span class="freq__ok">{{ a.verified ? '✓' : '×' }}</span>
+            <strong>{{ a.instrument }}</strong>
+            <small>{{ a.proves }}</small>
+          </li>
+        </ul>
+      </div>
+    </div>
     <p class="freq__boundary">⚠ {{ t.boundary }}</p>
   </section>
 </template>
 
 <style scoped>
+.freq__apparatus { margin: 1rem 0 0.4rem; }
+.freq__appgrid {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+.freq__chladni {
+  display: grid;
+  width: 168px;
+  height: 168px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+}
+.freq__cell { width: 100%; height: 100%; }
+.freq__instruments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.freq__instruments li { display: grid; grid-template-columns: 1rem auto; gap: 0.3rem 0.5rem; align-items: baseline; font-size: 0.82rem; }
+.freq__instruments small { grid-column: 2; color: var(--vp-c-text-3); font-size: 0.74rem; }
+.freq__ok { color: hsl(150, 65%, 45%); font-weight: 800; }
+@media (max-width: 520px) { .freq__appgrid { grid-template-columns: 1fr; } .freq__chladni { margin: 0 auto; } }
 .freq {
   margin: 1.25rem 0;
   border-radius: 12px;
