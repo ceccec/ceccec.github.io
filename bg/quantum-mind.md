@@ -48,6 +48,8 @@ head:
 
 <SelfHealing />
 
+<SoundColor />
+
 ## 0. Полезен товар
 
 ```text

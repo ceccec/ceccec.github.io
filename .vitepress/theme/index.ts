@@ -52,6 +52,7 @@ import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SealAll from './components/SealAll.vue'
 import SelfHealing from './components/SelfHealing.vue'
+import SoundColor from './components/SoundColor.vue'
 import SimpleToggle from './components/SimpleToggle.vue'
 import StartHere from './components/StartHere.vue'
 import SelfConsult from './components/SelfConsult.vue'
@@ -133,6 +134,7 @@ export default {
     app.component('SchoolCurriculum', SchoolCurriculum)
     app.component('SealAll', SealAll)
     app.component('SelfHealing', SelfHealing)
+    app.component('SoundColor', SoundColor)
     app.component('SimpleToggle', SimpleToggle)
     app.component('StartHere', StartHere)
     app.component('SelfConsult', SelfConsult)
