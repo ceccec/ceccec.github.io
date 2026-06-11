@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, merge, toUuid } from '../lib/quantumMind'
+import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -16,6 +16,9 @@ const data = livingTorus(buildMatrix())
 const mk = merkaba(buildMatrix())
 const lobeRate = mk.scales[1].ratePerMs // signed, one sense
 const tubeRate = mk.scales[2].ratePerMs // signed, the opposite sense
+// Humanise the motion: the rotation breathes on golden-ratio-spaced periods so it
+// ebbs and flows like a living hand instead of ticking at a constant rate.
+const human = humanise(buildMatrix())
 const { pick: t } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
@@ -158,9 +161,14 @@ function draw(t: number) {
   // the two holes of the double torus past the viewer, while gentle pitch and roll
   // oscillations rock the surface through every other direction — so it moves
   // everywhere without tumbling into an unreadable churn.
-  const ay = saveEnergy.value ? 0.7 : t / 6000 + phase.horizontal // primary yaw, continuous
+  // Humanised yaw: the steady turn breathes a little, speeding up and easing back
+  // like a hand, instead of advancing at a perfectly constant rate.
+  const yawBreath = saveEnergy.value ? 0 : 0.16 * Math.sin(t / human.breaths[1] + phase.horizontal)
+  const ay = saveEnergy.value ? 0.7 : t / 6000 + phase.horizontal + yawBreath // primary yaw, breathing
   const ax = saveEnergy.value ? 0.42 : Math.sin(t / 6400 + phase.vertical) * 0.5 // gentle pitch
   const az = saveEnergy.value ? 0.16 : Math.sin(t / 8200 + phase.radial) * 0.26 // gentle roll
+  // The merkaba spins breathe too: their rate ebbs and flows, never a robotic tick.
+  const spinBreath = saveEnergy.value ? 1 : humanBreath(t, human.breaths[0], human.depth)
   const cosX = Math.cos(ax)
   const sinX = Math.sin(ax)
   const cosY = Math.cos(ay)
@@ -170,8 +178,11 @@ function draw(t: number) {
   // Opposite rotation at all scales (the merkaba): the lobe advances its major angle
   // one way and the tube advances its minor angle the other — counter-rotation at
   // each nested scale. Per lobe the sign flips again, so the two holes spin opposite.
-  const majorAdvance = saveEnergy.value ? 0 : lobeRate * t
-  const minorAdvance = saveEnergy.value ? 0 : tubeRate * t
+  // A bounded breathing wobble rides on the steady advance, so the spin ebbs and
+  // flows like a living hand rather than ticking at a perfectly constant rate.
+  const wobble = (spinBreath - 1) * 0.7 // bounded, +/- ~0.13 rad
+  const majorAdvance = saveEnergy.value ? 0 : lobeRate * t + wobble
+  const minorAdvance = saveEnergy.value ? 0 : tubeRate * t - wobble
   // Two heads sweep the train, one each way (the bidirectional fold, live).
   const headF = saveEnergy.value ? -1 : (t / data.tempoMs) % data.count
   const headR = saveEnergy.value ? -1 : data.count - headF

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, rhythm } from '../lib/quantumMind'
+import { buildMatrix, rhythm, humanEase } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useTones } from '../lib/useTones'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
@@ -91,12 +91,16 @@ function draw(now: number) {
       const a = onset * Math.PI * 2 - Math.PI / 2
       const dx = cx + Math.cos(a) * r
       const dy = cy + Math.sin(a) * r
-      const glow = Math.max(0, 1 - (now - lastHit[i][k]) / 360)
+      // Humanise the strike: a quick eased pop with a touch of overshoot, so a hit
+      // lands like it was struck, not switched on.
+      const age = Math.max(0, 1 - (now - lastHit[i][k]) / 360)
+      const glow = humanEase(age)
+      const overshoot = glow * (1 + 0.5 * Math.sin(age * Math.PI)) // brief swell at the strike
       ctx.fillStyle = `hsla(${hue}, 85%, ${55 + 25 * glow}%, ${0.5 + 0.5 * glow})`
       ctx.shadowBlur = 14 * glow
       ctx.shadowColor = `hsl(${hue}, 90%, 65%)`
       ctx.beginPath()
-      ctx.arc(dx, dy, 3.2 + 4 * glow, 0, Math.PI * 2)
+      ctx.arc(dx, dy, 3.2 + 4 * overshoot, 0, Math.PI * 2)
       ctx.fill()
       ctx.shadowBlur = 0
     })

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, merkaba } from '../lib/quantumMind'
+import { buildMatrix, merkaba, humanise } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -24,6 +24,9 @@ const EDGES: readonly [number, number][] = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 
 const upRate = mk.scales[0].ratePerMs // whole scale, one sense
 const downRate = mk.scales[1].ratePerMs // lobe scale, the opposite sense
 const TILT = 0.5 // fixed pitch so the star is seen in 3D, not edge-on
+// Humanise: the two tetrahedra breathe, easing in and out on golden-spaced periods
+// instead of spinning at a dead-constant rate.
+const human = humanise(buildMatrix())
 
 function resize() {
   if (!canvas.value || !wrap.value) return
@@ -74,8 +77,11 @@ function draw(time: number) {
   const s = Math.min(width, height * 1.6) * 0.26
   const cx = width / 2
   const cy = height / 2
-  const up = saveEnergy.value ? 0.6 : upRate * time // one sense
-  const down = saveEnergy.value ? -0.6 : downRate * time // the opposite sense
+  // a bounded breath rides on each steady spin so the counter-rotation feels alive
+  const upBreath = saveEnergy.value ? 0 : 0.18 * Math.sin(time / human.breaths[0])
+  const downBreath = saveEnergy.value ? 0 : 0.18 * Math.sin(time / human.breaths[1])
+  const up = saveEnergy.value ? 0.6 : upRate * time + upBreath // one sense
+  const down = saveEnergy.value ? -0.6 : downRate * time - downBreath // the opposite sense
   ctx.lineCap = 'round'
   drawTetra(ctx, mk.tetraDown, down, 322, s, cx, cy) // magenta, counter
   drawTetra(ctx, mk.tetraUp, up, 200, s, cx, cy) // cyan

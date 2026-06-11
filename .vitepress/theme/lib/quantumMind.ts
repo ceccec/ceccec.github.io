@@ -3835,6 +3835,42 @@ export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Humanise all moving details. Machines tick at a constant rate; a living hand
+// eases, breathes, and never repeats exactly. These are the shared shaping
+// primitives every animation uses so its motion feels human: an ease (easeInOutSine,
+// the shape a hand makes), a slow breath to modulate any rate or size, and a touch
+// of variability. They shape motion only — no computed value, root or proof changes.
+export function humanEase(phase: number): number {
+  const clamped = phase <= 0 ? 0 : phase >= 1 ? 1 : phase
+  return -(Math.cos(Math.PI * clamped) - 1) / 2 // easeInOutSine
+}
+export function humanBreath(timeMs: number, periodMs: number, depth = 0.18): number {
+  return 1 + depth * Math.sin((timeMs / periodMs) * Math.PI * 2)
+}
+export function humanise(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const round = (value: number, digits: number) => { const f = 10 ** digits; return Math.round(value * f) / f }
+  const PHI = (1 + Math.sqrt(5)) / 2
+  // Breath periods spaced by the golden ratio, so no two cycles ever line up — the
+  // motion never resolves to a loop, the way a living thing never repeats exactly.
+  const breaths = [0, 1, 2].map((i) => Math.round(4200 * PHI ** i)) // ~4200, 6795, 10993
+  const ease = [0, 0.25, 0.5, 0.75, 1].map((p) => round(humanEase(p), 4))
+  return {
+    humane:
+      humanEase(0) === 0 && humanEase(1) === 1 && round(humanEase(0.5), 6) === 0.5 &&
+      ease.every((value, i) => i === 0 || value >= ease[i - 1]), // monotonic, fixed ends, symmetric middle
+    ease,
+    breaths,
+    depth: 0.18, // breath amplitude
+    variability: 0.06, // heart-rate-variability-like jitter fraction
+    root: merkleFold(breaths.map((period) => toUuid(`human-breath:${period}`))),
+    statement:
+      'Humanise all moving details: a shared motion profile — eased (easeInOutSine), breathing on golden-ratio-spaced periods so no two cycles line up, with a touch of variability — so every moving detail feels like a living hand, not a machine tick.',
+    boundary:
+      'A deterministic easing-and-breath profile applied to the animations\' moving details. Cosmetic motion shaping for a human feel; it changes no computed value, root, or proof — only how the motion is drawn.',
+  }
+}
+
 // Live. The portal's vital signs, computed in your browser right now: the seal
 // verifies, the double torus lives and counter-rotates, the rhythm keeps time, the
 // mysteries are shown, the society is folded, and the proofs hold. The whole is

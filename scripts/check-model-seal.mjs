@@ -125,6 +125,7 @@ import {
   society as foldedSociety,
   harmonicBands,
   goldenRatio,
+  humanise,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -301,6 +302,9 @@ ok(`harmonic.bands:${harmonicBands(110).bands.join('+')}`, harmonicBands(110).ga
 
 // The golden ratio: consecutive Fibonacci bands converge to phi = (1+sqrt5)/2.
 ok(`golden.ratio:${goldenRatio(matrix).limit}`, goldenRatio(matrix).converges)
+
+// Humanise all moving details: a shared eased, breathing motion profile.
+ok(`humanise:${humanise(matrix).breaths.length}breaths`, humanise(matrix).humane)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

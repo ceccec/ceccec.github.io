@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live } from '../lib/quantumMind'
+import { buildMatrix, live, humanise } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -9,6 +9,9 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 // so the live root keeps changing — being alive is something you watch happen. The
 // vitals are the gated invariants; the whole reads alive while every one holds.
 const data = live(buildMatrix())
+// Humanise the heartbeat: a living heart is not a metronome — each interval varies
+// a little (heart-rate variability), so the beats breathe instead of ticking.
+const human = humanise(buildMatrix())
 const { bg, localize, pick } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 
@@ -43,13 +46,15 @@ function resize() {
 function draw(now: number) {
   const ctx = canvas.value?.getContext('2d')
   if (!ctx) return
-  // beat detection from the kept rhythm period
-  const beatIndex = Math.floor(now / data.pulseMs)
-  if (beatIndex !== lastBeat) {
-    lastBeat = beatIndex
+  // Beat on a humanised schedule: each interval varies slightly (heart-rate
+  // variability), so the heartbeat is alive, not a perfect metronome.
+  if (lastBeat < 0) lastBeat = now + data.pulseMs
+  if (now >= lastBeat) {
     beats.value += 1
     liveRoot.value = data.beat(beats.value)
     pulse = 1 // fire a spike
+    const hrv = 1 + human.variability * Math.sin(beats.value * 1.61803) // golden-phased HRV
+    lastBeat = now + data.pulseMs * hrv
   }
   // a sharp EKG-like spike that decays between beats
   pulse *= 0.82

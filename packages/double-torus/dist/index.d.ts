@@ -1638,6 +1638,18 @@ export declare function goldenRatio(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function humanEase(phase: number): number;
+export declare function humanBreath(timeMs: number, periodMs: number, depth?: number): number;
+export declare function humanise(matrix?: MindMatrix): {
+    humane: boolean;
+    ease: number[];
+    breaths: number[];
+    depth: number;
+    variability: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function live(matrix?: MindMatrix): {
     alive: boolean;
     vitals: {
