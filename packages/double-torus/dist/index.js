@@ -6874,27 +6874,31 @@ function computeDiamondLattice(matrix = buildMatrix()) {
     ];
 }
 function torusPoint(index, digit, total) {
-    // The double torus is genus 2: not one ring but a figure-eight with two holes.
-    // The spine is a lemniscate of Gerono (the ∞ curve); one pass threads both lobes,
-    // and a tube swept around it gives the two-holed surface — the actual double
-    // torus, not a single torus. theta runs once (0..2pi) over the whole figure eight.
-    const theta = (index / total) * Math.PI * 2;
-    const phi = ((digit + index * 0.5) / 10) * Math.PI * 2;
-    const major = 38;
-    const minor = 14 + digit;
-    // Figure-eight spine in the XY plane: two lobes meeting at the neck (origin).
-    const spineX = Math.cos(theta);
-    const spineY = Math.sin(theta) * Math.cos(theta);
-    // Spine tangent, and its in-plane normal (perpendicular) — the frame the tube rides.
-    const tangentX = -Math.sin(theta);
-    const tangentY = Math.cos(2 * theta);
-    const tangentLength = Math.hypot(tangentX, tangentY) || 1;
-    const normalX = -tangentY / tangentLength;
-    const normalY = tangentX / tangentLength;
-    // Tube around the spine: cos(phi) along the in-plane normal, sin(phi) out of plane.
-    const x = major * spineX + minor * Math.cos(phi) * normalX;
-    const y = major * spineY + minor * Math.cos(phi) * normalY;
-    const z = minor * Math.sin(phi);
+    // The double torus is genus 2: two tori joined at a neck, two open holes. (A tube
+    // around a figure-eight CURVE is only a self-intersecting genus-1 torus; the real
+    // double torus is the thickened figure-eight — two rings merged.) The pi-train
+    // threads the left hole through the first half of its indices and the right hole
+    // through the second half, so one continuous train visits both holes; opposite
+    // indices pair across the neck. The tube is kept thin against the ring radius so
+    // each hole stays clearly open instead of filling in.
+    const half = total / 2;
+    const onLeft = index < half;
+    const localCount = onLeft ? Math.ceil(half) : total - Math.ceil(half);
+    const localIndex = onLeft ? index : index - Math.ceil(half);
+    const lobe = onLeft ? -1 : 1;
+    // Start the right ring at the neck (offset by pi) so the train crosses the neck
+    // exactly at the handoff between lobes — the genus-2 join, not a stray bridge.
+    const theta = (localIndex / Math.max(1, localCount)) * Math.PI * 2 + (onLeft ? 0 : Math.PI); // major angle, around the hole
+    const phi = ((digit + index * 0.5) / 10) * Math.PI * 2; // minor angle, around the tube
+    const ringR = 22; // ring radius (sets the hole size)
+    const tubeR = 6.5 + digit * 0.55; // thin tube (6.5..11.5) so the hole stays open
+    const centerX = lobe * 24; // two ring centres, merged into one surface at the neck (x≈0)
+    // Each ring lies in the XY plane with its hole facing the viewer (the z axis), so
+    // both holes are seen head-on at rest; the two centres sit left and right of x=0.
+    const ribbon = ringR + tubeR * Math.cos(phi);
+    const x = centerX + ribbon * Math.cos(theta);
+    const y = ribbon * Math.sin(theta);
+    const z = tubeR * Math.sin(phi);
     const scale = 0.72 + digit / 22;
     return { theta, phi, x, y, z, scale };
 }

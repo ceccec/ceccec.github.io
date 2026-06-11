@@ -148,13 +148,13 @@ function draw(t: number) {
   const cy = height / 2 + bobY
   const s = (Math.min(width, height * 2.1) / 150) * breath // fit the ~±60 range, breathing
   const focal = 240
-  // The torus moves analogue in all directions: not one spin but three continuous
-  // rotations at once — pitch (X), yaw (Y) and roll (Z) — each its own slow period
-  // and content-derived phase, so the surface tumbles smoothly through every
-  // direction rather than turning about a single axis.
-  const ax = saveEnergy.value ? 0.5 : t / 11300 + phase.vertical // pitch, about X
-  const ay = saveEnergy.value ? 0.6 : t / 9000 + phase.horizontal // yaw, about Y
-  const az = saveEnergy.value ? 0.2 : t / 13700 + phase.radial // roll, about Z
+  // Analogue motion in all directions, but coherent: a steady primary turn carries
+  // the two holes of the double torus past the viewer, while gentle pitch and roll
+  // oscillations rock the surface through every other direction — so it moves
+  // everywhere without tumbling into an unreadable churn.
+  const ay = saveEnergy.value ? 0.7 : t / 6000 + phase.horizontal // primary yaw, continuous
+  const ax = saveEnergy.value ? 0.42 : Math.sin(t / 6400 + phase.vertical) * 0.5 // gentle pitch
+  const az = saveEnergy.value ? 0.16 : Math.sin(t / 8200 + phase.radial) * 0.26 // gentle roll
   const cosX = Math.cos(ax)
   const sinX = Math.sin(ax)
   const cosY = Math.cos(ay)
