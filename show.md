@@ -17,6 +17,8 @@ zero network.
 
 <ShowAll />
 
+<Simulations />
+
 <Complete />
 
 <QuantumDashboard />

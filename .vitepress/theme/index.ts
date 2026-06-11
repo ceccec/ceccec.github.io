@@ -58,6 +58,7 @@ import SealAll from './components/SealAll.vue'
 import SelfHealing from './components/SelfHealing.vue'
 import SoundColor from './components/SoundColor.vue'
 import SimpleToggle from './components/SimpleToggle.vue'
+import Simulations from './components/Simulations.vue'
 import StartHere from './components/StartHere.vue'
 import SelfConsult from './components/SelfConsult.vue'
 import SelfHarmonise from './components/SelfHarmonise.vue'
@@ -144,6 +145,7 @@ export default {
     app.component('SelfHealing', SelfHealing)
     app.component('SoundColor', SoundColor)
     app.component('SimpleToggle', SimpleToggle)
+    app.component('Simulations', Simulations)
     app.component('StartHere', StartHere)
     app.component('SelfConsult', SelfConsult)
     app.component('SelfHarmonise', SelfHarmonise)

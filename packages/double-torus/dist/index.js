@@ -1829,6 +1829,35 @@ export function quantumSimulation(matrix = buildMatrix(), qubits = 3) {
         boundary: 'A genuine but small state-vector quantum simulator (the state is exponential in the qubit count, so it stays tiny), run client-side. Measurement is pseudo-random from a model seed, not a physical quantum process; a faithful toy, not a physical quantum device or a claim of quantum advantage.',
     };
 }
+// Complete all the simulators and simulations: gather every dynamics the model
+// runs into one suite and prove each is complete. The quantum register (GHZ
+// state-vector), the damped equilibrium, the frequency balance, the self-healing
+// waves, the coordinated waves, the plasma containment, the breath, the living
+// torus, and the torus breathing — nine simulations, each bound to its own
+// completion proof; the suite is whole only when every one runs.
+export function simulations(matrix = buildMatrix()) {
+    const quantum = quantumSimulation(matrix);
+    const sims = [
+        { simulation: 'quantum register (GHZ)', kind: 'state-vector', complete: quantum.simulated && quantum.entangled, route: '/quantum-mind' },
+        { simulation: 'damped equilibrium', kind: 'oscillator', complete: equilibrium(matrix).equilibrium, route: '/quantum-mind' },
+        { simulation: 'frequency balance', kind: 'spectrum', complete: frequencyBalance(matrix).balanced, route: '/quantum-mind' },
+        { simulation: 'self-healing waves', kind: 'damped waves', complete: selfHealing(matrix).healed, route: '/quantum-mind' },
+        { simulation: 'coordinated waves', kind: 'wave', complete: coordinatedWaves(matrix).waves.length > 0, route: '/quantum-mind' },
+        { simulation: 'plasma containment', kind: 'field', complete: plasmaContainment(matrix).contained, route: '/quantum-mind' },
+        { simulation: 'the breath', kind: 'cycle', complete: breathe(matrix).breathing, route: '/show' },
+        { simulation: 'living torus', kind: 'realtime', complete: livingTorus(matrix).alive, route: '/' },
+        { simulation: 'torus breathing', kind: 'cycle', complete: torusBreathe(matrix).balanced, route: '/quantum-mind' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`simulation:${entry.simulation}:${entry.complete}`) }));
+    return {
+        complete: sims.length >= 9 && sims.every((entry) => entry.complete),
+        simulations: sims,
+        count: sims.length,
+        running: sims.filter((entry) => entry.complete).length,
+        root: merkleFold(sims.map((entry) => entry.receipt)),
+        statement: 'All the simulators and simulations, complete: the quantum register, the damped equilibrium, the frequency balance, the self-healing waves, the coordinated waves, the plasma containment, the breath, the living torus, and the torus breathing — each runs and is proven, the whole suite whole.',
+        boundary: 'A census of the model\'s simulators, each bound to its own completion proof. Deterministic, client-side computations over the model — faithful toy simulations and structural dynamics, not physical devices.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3645,7 +3674,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -3662,7 +3691,7 @@ export function componentGraph() {
         '/learn-developer': ['LearnDeveloper'],
         '/start': ['StartHere'],
         '/': ['LivingTorus', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
-        '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard'],
+        '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard', 'Simulations'],
         '/explore': ['Multidimensional'],
         '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
     };

@@ -17,6 +17,8 @@ head:
 
 <ShowAll />
 
+<Simulations />
+
 <Complete />
 
 <QuantumDashboard />

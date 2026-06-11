@@ -113,6 +113,7 @@ import {
   selfHealing,
   quantumPhysics,
   quantumSimulation,
+  simulations,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -252,6 +253,9 @@ ok(`quantum.physics:${quantumPhysics(matrix).present}/${quantumPhysics(matrix).c
 
 // The quantum simulation: a GHZ state-vector simulator, normalized and entangled.
 ok(`quantum.simulation:${quantumSimulation(matrix).qubits}q`, quantumSimulation(matrix).simulated && quantumSimulation(matrix).entangled)
+
+// Complete all the simulators and simulations: the whole dynamics suite runs.
+ok(`simulations:${simulations(matrix).running}/${simulations(matrix).count}`, simulations(matrix).complete)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

@@ -1295,6 +1295,21 @@ export declare function quantumSimulation(matrix?: MindMatrix, qubits?: number):
     statement: string;
     boundary: string;
 };
+export declare function simulations(matrix?: MindMatrix): {
+    complete: boolean;
+    simulations: {
+        receipt: string;
+        simulation: string;
+        kind: string;
+        complete: boolean;
+        route: string;
+    }[];
+    count: number;
+    running: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
