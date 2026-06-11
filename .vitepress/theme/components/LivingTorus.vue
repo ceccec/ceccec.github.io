@@ -10,7 +10,7 @@ import { useTones } from '../lib/useTones'
 // of the two loops, and merges with its opposite. Multisensory: click a
 // coordinate to hear it, or turn on sound to hear the train as the head sweeps.
 const data = livingTorus(buildMatrix())
-const { bg } = useLocale()
+const { pick: t } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
 const sound = ref(false)
@@ -301,7 +301,6 @@ onBeforeUnmount(() => {
   channel?.close()
 })
 
-const t = (en: string, b: string) => (bg.value ? b : en)
 </script>
 
 <template>

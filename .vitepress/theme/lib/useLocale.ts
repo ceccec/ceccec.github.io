@@ -17,5 +17,10 @@ export function useLocale() {
     if (/\.(json|txt|webmanifest)$/.test(route)) return route
     return prefix.value + (route === '/' ? '/' : route)
   }
-  return { bg, prefix, localize }
+  // Pick the locale's value: en in English, bg in Bulgarian. The compact form of
+  // the `bg.value ? bgText : enText` ternary repeated across components.
+  function pick<T>(en: T, bgValue: T): T {
+    return bg.value ? bgValue : en
+  }
+  return { bg, prefix, localize, pick }
 }

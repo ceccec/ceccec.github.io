@@ -7,13 +7,12 @@ import { useTones } from '../lib/useTones'
 // frequency drives both a note and a colour. This surfaces it — click a swatch
 // to hear the frequency its colour was drawn from. Audio-visual, from one number.
 const data = soundColor(buildMatrix())
-const { bg } = useLocale()
+const { pick: t } = useLocale()
 const { blip } = useTones()
 
 function play(frequency: number) {
   blip(frequency, { peak: 0.1, duration: 0.32 })
 }
-const t = (en: string, b: string) => (bg.value ? b : en)
 </script>
 
 <template>
