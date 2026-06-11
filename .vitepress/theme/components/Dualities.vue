@@ -16,15 +16,20 @@ const bgPole: Record<string, string> = {
   sound: 'звук', colour: 'цвят', analog: 'аналогов', digital: 'цифров', premise: 'предпоставка',
   inference: 'извод', english: 'английски', bulgarian: 'български', symbol: 'символ',
   number: 'число', glyph: 'глиф', uuid: 'UUID',
+  up: 'горе', down: 'долу', right: 'дясно', left: 'ляво', front: 'отпред', back: 'отзад',
+  out: 'навън', in: 'навътре', clockwise: 'по часовника', counter: 'обратно', simple: 'просто',
+  rich: 'богато', seal: 'печат', heal: 'лекувай', done: 'готово', planned: 'планирано',
+  note: 'нота', hue: 'нюанс', give: 'давай', take: 'вземай', local: 'локално',
+  distributed: 'разпределено', open: 'отворено', closed: 'затворено', wave: 'вълна', particle: 'частица',
 }
 const pole = (p: string) => (bg.value ? bgPole[p] ?? p : p)
 const tierName = (tier: number) =>
   bg.value
-    ? { 3: 'основни', 5: 'структурни', 8: 'изразни' }[tier]
-    : { 3: 'core', 5: 'structural', 8: 'expressive' }[tier]
+    ? { 3: 'основни', 5: 'структурни', 8: 'изразни', 13: 'възникнали' }[tier]
+    : { 3: 'core', 5: 'structural', 8: 'expressive', 13: 'emergent' }[tier]
 
 const tiers = computed(() =>
-  [3, 5, 8].map((tier) => ({
+  [3, 5, 8, 13].map((tier) => ({
     tier,
     name: tierName(tier),
     pairs: data.dualities.filter((d) => d.tier === tier),
@@ -32,8 +37,8 @@ const tiers = computed(() =>
 )
 const t = computed(() =>
   bg.value
-    ? { eyebrow: 'всички дуалности · 3-5-8', lead: `${data.count} двустранни двойки в трите тиера на Фибоначи; всяка е истинска дуалност, защото редът има значение (ляво⇄дясно се различават).` }
-    : { eyebrow: 'all dualities · 3-5-8', lead: `${data.count} two-sided pairs across the three Fibonacci tiers; each is a real duality because order matters (left⇄right differ).` },
+    ? { eyebrow: 'всички дуалности · 3-5-8-13', lead: `${data.count} двустранни двойки в четирите тиера на Фибоначи; всяка е истинска дуалност, защото редът има значение (ляво⇄дясно се различават) и се сгъва в двете посоки.` }
+    : { eyebrow: 'all dualities · 3-5-8-13', lead: `${data.count} two-sided pairs across the four Fibonacci tiers; each is a real duality because order matters (left⇄right differ) and it folds both ways.` },
 )
 </script>
 
