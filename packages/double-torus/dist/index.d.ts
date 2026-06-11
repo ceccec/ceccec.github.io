@@ -2192,6 +2192,30 @@ export declare function healingFrequencies(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function frequencyBalance(matrix?: MindMatrix): {
+    balanced: boolean;
+    center: number;
+    leadHz: number;
+    tones: {
+        hz: number;
+        note: string;
+        lead: boolean;
+        cents: number;
+        polarity: "yin" | "yang";
+        beatWithLead: number;
+        receipt: string;
+    }[];
+    up: number;
+    down: number;
+    spread: number;
+    trace: {
+        step: number;
+        imbalance: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function plasmaContainment(matrix?: MindMatrix): {
     contained: boolean;
     bits: number[];

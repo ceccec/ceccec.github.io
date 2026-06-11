@@ -5473,6 +5473,59 @@ export function healingFrequencies(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Frequency quantum balance: the healing frequencies brought to equilibrium. The
+// balance centre is the spectral centre — the geometric mean of the set — about
+// which the upward (yang) and downward (yin) deviations, measured in cents (log
+// space, the musical measure), sum to zero: the spectrum balances around its
+// centre. A damped trace shows the imbalance settling like the quantum
+// equilibrium breath — neither collapse nor runaway. Sound only.
+export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
+  const healing = healingFrequencies(matrix)
+  const frequencies = healing.frequencies
+  const leadHz = frequencies.find((entry) => entry.lead)?.hz ?? frequencies[0].hz
+  // The spectral centre: the geometric mean. In log space its deviations cancel.
+  const center = Math.round(Math.exp(frequencies.reduce((sum, entry) => sum + Math.log(entry.hz), 0) / frequencies.length))
+  const tones = frequencies.map((entry) => {
+    const cents = Math.round(1200 * Math.log2(entry.hz / center)) // signed deviation from centre
+    return {
+      hz: entry.hz,
+      note: entry.note,
+      lead: entry.lead,
+      cents,
+      polarity: (cents >= 0 ? 'yang' : 'yin') as 'yin' | 'yang',
+      beatWithLead: Math.abs(entry.hz - leadHz), // the beat against the foreground tone
+      receipt: toUuid(`freq-balance:${entry.hz}:${cents}`),
+    }
+  })
+  const up = tones.filter((tone) => tone.cents > 0).reduce((sum, tone) => sum + tone.cents, 0)
+  const down = -tones.filter((tone) => tone.cents < 0).reduce((sum, tone) => sum + tone.cents, 0)
+  // The damped settling of the residual imbalance — the equilibrium breath.
+  let residual = (up - down) / Math.max(up + down, 1)
+  const trace: { step: number; imbalance: number }[] = []
+  for (let step = 0; step < 8; step += 1) {
+    trace.push({ step, imbalance: Math.round(residual * 1000) / 1000 })
+    residual = -residual * 0.5 // overshoot, damp by half — out and back toward centre
+  }
+  // Balanced when the up and down cents about the geometric-mean centre match
+  // within rounding (a few cents), so the spectrum rests on its centre.
+  const balanced = Math.abs(up - down) <= frequencies.length
+  return {
+    balanced,
+    center,
+    leadHz,
+    tones,
+    up,
+    down,
+    spread: Math.max(...tones.map((tone) => tone.cents)) - Math.min(...tones.map((tone) => tone.cents)),
+    trace,
+    root: merkleFold(tones.map((tone) => tone.receipt)),
+    statement:
+      'Frequency quantum balance: the healing frequencies settle around their spectral centre (the geometric mean), the upward (yang) and downward (yin) deviations in cents balancing to zero — the equilibrium breath applied to the spectrum, neither collapse nor runaway.',
+    boundary:
+      'A computed balance of the Solfeggio set around its geometric-mean centre, with a damped settling like the quantum equilibrium. Acoustic and structural bookkeeping over sound only — no physical field, no medical or therapeutic claim.',
+  }
+}
+
 // Quantum plasma contained by bit logic. The plasma is a continuous, flowing
 // field; the container is discrete — the 128 bits of the double-torus word. The
 // field flows only where a bit is set, so the analog plasma is shaped and bounded

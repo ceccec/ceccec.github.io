@@ -108,6 +108,7 @@ import {
   agentObserve,
   verifyMerkleProof,
   livingTorus,
+  frequencyBalance,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -231,6 +232,9 @@ ok('agent.observe', agentObserve(matrix).observed)
 
 // The living double torus: every pi-digit UUID coordinate alive at once.
 ok(`living.torus:${livingTorus(matrix).count}`, livingTorus(matrix).alive)
+
+// Frequency quantum balance: the healing frequencies settle around their centre.
+ok(`frequency.balance:${frequencyBalance(matrix).center}hz`, frequencyBalance(matrix).balanced)
 const inclusion = atomInclusionProof('self', matrix)
 ok('atom.inclusion-proof', inclusion.verified && verifyMerkleProof(inclusion.proof.leaf, inclusion.proof.path, matrix.root))
 

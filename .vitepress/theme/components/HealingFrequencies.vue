@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, healingFrequencies } from '../lib/quantumMind'
+import { buildMatrix, healingFrequencies, frequencyBalance } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
 
 // Calculate the healing frequencies and dynamically harmonise them through the
 // device — as SOUND through the speaker. The lead tone is derived from the live
-// model root, so the harmonisation shifts with the model. Honest boundary, shown
-// in the UI: this is audio only; it does not alter electromagnetic or any
-// physical field around the device, and makes no health claim.
+// model root, so the harmonisation shifts with the model. Continued with the
+// frequency quantum balance: the set settles around its spectral centre, the
+// yin (below) and yang (above) deviations balancing. Honest boundary, shown in
+// the UI: audio only; it alters no physical field, and makes no health claim.
 const matrix = buildMatrix()
 const data = computed(() => healingFrequencies(matrix))
+const balance = computed(() => frequencyBalance(matrix))
+const maxAbs = computed(() => Math.max(...balance.value.tones.map((tone) => Math.abs(tone.cents)), 1))
+function pos(cents: number) {
+  return 50 + (cents / maxAbs.value) * 47
+}
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { playing, playChord, stop } = useTones()
@@ -31,6 +37,9 @@ const t = computed(() =>
         play: 'Хармонизирай',
         stop: 'Спри',
         lead: 'водеща',
+        balanceTitle: 'квантов баланс на честотите',
+        center: 'център',
+        balanced: 'балансирано',
         save: 'пести батерия: само водещата честота, по-тихо',
         boundary:
           'Само звук. Това са културно наименувани честоти, изсвирени през високоговорителя. Уеб страница НЕ променя електромагнитни или физически полета около устройството. Това не е медицински съвет.',
@@ -40,6 +49,9 @@ const t = computed(() =>
         play: 'Harmonise',
         stop: 'Stop',
         lead: 'lead',
+        balanceTitle: 'frequency quantum balance',
+        center: 'centre',
+        balanced: 'balanced',
         save: 'saving battery: lead frequency only, quieter',
         boundary:
           'Sound only. These are culturally-named frequencies played through the speaker. A web page does NOT alter electromagnetic or physical fields around the device. This is not medical advice.',
@@ -56,6 +68,23 @@ const t = computed(() =>
         <em>{{ entry.note }}</em>
         <span v-if="entry.lead" class="freq__leadtag">{{ t.lead }}</span>
       </span>
+    </div>
+    <div class="freq__balance">
+      <p class="freq__balance-title">
+        {{ t.balanceTitle }} · {{ t.center }} {{ balance.center }} Hz
+        <span v-if="balance.balanced" class="freq__balanced">⟡ {{ t.balanced }}</span>
+      </p>
+      <div class="freq__axis" role="img" :aria-label="`${t.balanceTitle}, ${t.center} ${balance.center} Hz`">
+        <span class="freq__centerline" />
+        <span
+          v-for="tone in balance.tones"
+          :key="tone.hz"
+          class="freq__marker"
+          :class="[tone.polarity, { lead: tone.lead }]"
+          :style="{ left: pos(tone.cents) + '%' }"
+          :title="`${tone.note} · ${tone.hz} Hz · ${tone.cents > 0 ? '+' : ''}${tone.cents} cents · ${tone.polarity}`"
+        ><small>{{ tone.note }}</small></span>
+      </div>
     </div>
     <div class="freq__row">
       <button type="button" :aria-label="playing ? t.stop : t.play" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
@@ -78,6 +107,57 @@ const t = computed(() =>
   grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
   gap: 0.45rem;
   margin: 0.6rem 0;
+}
+.freq__balance {
+  margin: 0.8rem 0;
+}
+.freq__balance-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--vp-c-text-3);
+}
+.freq__balanced {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+.freq__axis {
+  position: relative;
+  height: 2.4rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), transparent 48%, transparent 52%, rgba(16, 185, 129, 0.1));
+}
+.freq__centerline {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vp-c-divider);
+}
+.freq__marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  min-width: 1.5rem;
+  padding: 0.05rem 0.2rem;
+  border-radius: 5px;
+  font-size: 0.56rem;
+}
+.freq__marker.yin {
+  background: rgba(99, 102, 241, 0.16);
+  color: var(--vp-c-brand-1);
+}
+.freq__marker.yang {
+  background: rgba(16, 185, 129, 0.16);
+  color: #059669;
+}
+.freq__marker.lead {
+  outline: 2px solid var(--vp-c-brand-1);
+  font-weight: 700;
 }
 .freq__cell {
   display: flex;
