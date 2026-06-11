@@ -308,13 +308,13 @@ function draw(t: number) {
       ctx.shadowBlur = 0
     }
     ctx.fillStyle = `hsla(${h}, 80%, ${light}%, ${alpha})`
-    // a small diamond (rotate 45deg) — the genus-2 diamond glyph
-    ctx.save()
-    ctx.translate(p.sx, p.sy)
-    ctx.rotate(Math.PI / 4)
-    const r = p.r * (p.c.selfCollision ? 1.4 : 1)
-    ctx.fillRect(-r, -r, r * 2, r * 2)
-    ctx.restore()
+    // The digit itself is the hologram: render the pi-digit in colour at its cross
+    // point, sized by perspective and pulse — no squares, the glyph is the coordinate.
+    const size = Math.max(7, p.r * 2.6 * (p.c.selfCollision ? 1.3 : 1))
+    ctx.font = `700 ${size.toFixed(1)}px ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, monospace`
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText(p.c.glyph, p.sx, p.sy)
     if (pointer.active) {
       const d = Math.hypot(p.sx - pointer.x, p.sy - pointer.y)
       if (d < nearDist) {
