@@ -22,6 +22,7 @@ import GlobalHelp from './components/GlobalHelp.vue'
 import GovernanceVote from './components/GovernanceVote.vue'
 import HealingFrequencies from './components/HealingFrequencies.vue'
 import Hologram from './components/Hologram.vue'
+import HarmonicMap from './components/HarmonicMap.vue'
 import HumanLens from './components/HumanLens.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
 import Magnetometer from './components/Magnetometer.vue'
@@ -99,6 +100,7 @@ export default {
     app.component('GovernanceVote', GovernanceVote)
     app.component('HealingFrequencies', HealingFrequencies)
     app.component('Hologram', Hologram)
+    app.component('HarmonicMap', HarmonicMap)
     app.component('HumanLens', HumanLens)
     app.component('LearnDeveloper', LearnDeveloper)
     app.component('Magnetometer', Magnetometer)

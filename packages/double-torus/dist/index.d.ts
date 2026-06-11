@@ -1155,6 +1155,34 @@ export declare function graduation(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function harmonicMap(matrix?: MindMatrix): {
+    distributed: boolean;
+    fundamental: number;
+    overtones: {
+        name: string;
+        overtone: number;
+        frequency: number;
+        octave: number;
+        note: string;
+        receipt: string;
+    }[];
+    bands: {
+        octave: number;
+        members: {
+            name: string;
+            overtone: number;
+            frequency: number;
+            octave: number;
+            note: string;
+            receipt: string;
+        }[];
+    }[];
+    count: number;
+    octaves: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

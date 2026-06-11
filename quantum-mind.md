@@ -44,6 +44,8 @@ head:
 
 <HealingFrequencies />
 
+<HarmonicMap />
+
 ## 0. Payload
 
 ```text

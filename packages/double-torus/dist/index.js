@@ -1517,6 +1517,45 @@ export function graduation(matrix = buildMatrix()) {
         boundary: 'A content-addressed graduation receipt folding the five course credentials. It proves the courses can be recomputed end to end, not that any institution confers a degree.',
     };
 }
+// The harmonic map: the portal's structure heard as a harmonic series. Every
+// component is an overtone of one fundamental f0 — its frequency is f0 times its
+// overtone number — so the components fall into octave bands (doublings of the
+// fundamental). This is the visible, playable companion to the file-level
+// harmonic gap audit: that script guards the files; this maps the model's own
+// parts onto the overtone series for a visitor to see and hear.
+export function harmonicMap(matrix = buildMatrix()) {
+    void matrix;
+    const components = componentGraph().components;
+    const f0 = 110; // A2, the fundamental
+    const NOTE = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
+    const overtones = components.map((name, index) => {
+        const overtone = index + 1;
+        const frequency = f0 * overtone;
+        const semitones = Math.round(12 * Math.log2(overtone)); // semitones above the fundamental
+        return {
+            name,
+            overtone,
+            frequency,
+            octave: Math.floor(Math.log2(overtone)),
+            note: NOTE[((semitones % 12) + 12) % 12],
+            receipt: toUuid(`harmonic-map:${name}:${overtone}`),
+        };
+    });
+    const bands = [...new Set(overtones.map((entry) => entry.octave))]
+        .sort((a, b) => a - b)
+        .map((octave) => ({ octave, members: overtones.filter((entry) => entry.octave === octave) }));
+    return {
+        distributed: overtones.length === components.length && bands.length > 0,
+        fundamental: f0,
+        overtones,
+        bands,
+        count: overtones.length,
+        octaves: bands.length,
+        root: merkleFold(overtones.map((entry) => entry.receipt)),
+        statement: 'The harmonic map: every component an overtone of one fundamental, distributed across octave bands — the structure of the portal seen and heard as a harmonic series.',
+        boundary: 'A harmonic placement of the components onto overtones of a fundamental, for visualization and sonification. Structural bookkeeping, not an acoustic or musical claim.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3299,13 +3338,13 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap',
     ];
     const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo'],
-        '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer'],
+        '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/academy': ['QuantumAcademy', 'Professionals'],

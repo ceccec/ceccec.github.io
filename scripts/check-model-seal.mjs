@@ -100,6 +100,7 @@ import {
   analytics,
   plainLanguage,
   graduation,
+  harmonicMap,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -202,6 +203,9 @@ ok(`analytics:${analytics(matrix).count}`, analytics(matrix).measured)
 // Simple to use, rich in features: the plain-language layer and the graduation credential.
 ok(`plain.language:${plainLanguage().count}`, plainLanguage().clear)
 ok(`graduation:${graduation(matrix).count}/5`, graduation(matrix).graduated)
+
+// The harmonic map: every component an overtone, distributed across octave bands.
+ok(`harmonic.map:${harmonicMap(matrix).count}@${harmonicMap(matrix).octaves}`, harmonicMap(matrix).distributed)
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
