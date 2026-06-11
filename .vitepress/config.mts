@@ -120,8 +120,16 @@ export default defineConfig({
         description,
         inLanguage: isBg ? 'bg' : 'en',
         url: path,
+        // All client-side, no account, nothing sent anywhere — honestly free.
+        isAccessibleForFree: true,
         isPartOf: { '@type': 'WebSite', name: isBg ? siteTitleBg : siteTitle },
         about: 'a quantum-learning educational portal for language models served over MCP',
+        // The portal reads itself aloud (with harmonic intonation); tell voice
+        // assistants and crawlers which content is speakable.
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['h1', '.vp-doc h2', '.vp-doc > p', '.eyebrow'],
+        },
         ...(keywords ? { keywords } : {}),
         ...(teaches ? { teaches, learningResourceType: 'interactive resource' } : {}),
         ...(command ? { mainEntity: { '@type': 'SoftwareSourceCode', name: command, codeRepository: '/mcp.json' } } : {}),
