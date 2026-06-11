@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -41,6 +41,8 @@ const qsociety = quantumSociety(buildMatrix())
 const fabric = tamperProofFabric(buildMatrix())
 // 6x7 and 7x6 vortices cross-check for gaps/violations; no rights arise from math.
 const cross = crossAudit(buildMatrix())
+// The immune system: max health = max tampering cost; investigations across society.
+const immune = immuneSystem(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -242,6 +244,11 @@ onBeforeUnmount(() => {
       {{ pick('cross-audit', 'кръстосан одит') }} · <strong>{{ cross.vortices }}</strong> ·
       <strong>{{ cross.violations.length + cross.rightsViolations.length }}</strong> {{ pick('violations', 'нарушения') }} ·
       {{ pick('no rights arise from math', 'няма права от математиката') }}
+    </p>
+    <p class="live__whole">
+      {{ pick('immune system', 'имунна система') }} · <strong>{{ immune.health }}/{{ immune.of }}</strong>
+      {{ pick('antibodies', 'антитела') }} · {{ pick('max health = max forge cost', 'макс здраве = макс цена за фалшификат') }}
+      <em class="live__caveat">({{ pick('open, content-addressed, server-less — permaculture by design', 'открито, адресирано по съдържание, без сървър — пермакултура по дизайн') }})</em>
     </p>
   </section>
 </template>

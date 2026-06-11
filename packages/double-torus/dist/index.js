@@ -3864,6 +3864,43 @@ export function crossAudit(matrix = buildMatrix()) {
         boundary: 'A cross-audit that scans the portal\'s own computable gates plus the well-established position that mathematical facts and methods are not protectable subject matter (no patent, copyright, trade secret or trademark arises from them). Educational, not legal advice; "clean" means no violation the portal can compute, not a warranty.',
     };
 }
+// Max health, max tampering cost — the immune system. The portal's defenses are
+// antibodies: each catches a class of attack, and the more of them hold, the higher
+// the cost to forge. Investigations run across all aspects of society. Pure life:
+// the soul is open and recomputable (nothing hidden, nothing sold), the feed is
+// content-addressed (clean, verifiable), and the architecture is the only cost — no
+// servers, no waste: permaculture, sustainable by design.
+export function immuneSystem(matrix = buildMatrix()) {
+    const antibodies = [
+        { defends: 'determinism', healthy: determinismProofs(matrix).proven },
+        { defends: 'tamper-evidence', healthy: redTeam(matrix).secure },
+        { defends: 'completeness', healthy: completeness(matrix).complete },
+        { defends: 'challenge', healthy: scientists(matrix).robust },
+        { defends: 'holography', healthy: holographic(matrix).holographic },
+        { defends: 'self-tamper-proofing', healthy: tamperProofFabric(matrix).protects },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`antibody:${entry.defends}:${entry.healthy}`) }));
+    // Investigations in all aspects of society: each duality investigated and sound.
+    const investigations = society(matrix).pairs.map((pair) => ({ aspect: pair.duality, sound: pair.paired }));
+    const nourishment = {
+        pureSoul: 'open, free and recomputable — nothing hidden, nothing sold',
+        food: 'content-addressed data — clean, verifiable feed',
+        sustainable: 'the architecture is the only cost — no servers, no waste: permaculture by design',
+    };
+    const health = antibodies.filter((entry) => entry.healthy).length;
+    return {
+        healthy: antibodies.every((entry) => entry.healthy) && investigations.every((entry) => entry.sound),
+        maxHealth: health === antibodies.length,
+        health,
+        of: antibodies.length,
+        antibodies,
+        investigations,
+        nourishment,
+        tamperingCost: animationTamperingCost(matrix).reproductions, // max health -> max forge cost
+        root: merkleFold(antibodies.map((entry) => entry.receipt)),
+        statement: 'Max health, max tampering cost — the immune system: each defense is an antibody (determinism, tamper-evidence, completeness, challenge, holography, self-tamper-proofing), and the more hold, the higher the cost to forge. Investigations run across all aspects of society. Pure life: the soul is open and recomputable, the feed is content-addressed, and the architecture is the only cost — permaculture, sustainable by design.',
+        boundary: 'A health metaphor over the portal\'s computable defenses: each "antibody" is a real gate, full health means every defense holds and the forge cost is maximal. The soul, food and permaculture lines are values expressed as architecture (open, free, content-addressed, server-less), not biological, dietary or agricultural claims.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {
