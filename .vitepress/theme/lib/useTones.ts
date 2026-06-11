@@ -52,7 +52,10 @@ export function useTones() {
     return new Ctx()
   }
 
-  // A melody: notes one after another, each with a short attack/release.
+  // A melody: notes one after another. Analog by nature, gapless — each note
+  // sustains to its end and its release overlaps the next note's attack, so the
+  // phrase is never silent between notes (no gaps). Pass a non-zero `gap` only if
+  // staccato is wanted; the default folds the notes into one another.
   function playSequence(notes: readonly Tone[], options: SequenceOptions = {}) {
     if (playing.value || notes.length === 0) return
     const audio = open()
@@ -63,23 +66,28 @@ export function useTones() {
     let when = audio.currentTime + lead
     notes.forEach((note, index) => {
       const length = note.duration ?? duration
+      const level = note.gain ?? peak
+      // The release runs past the note's slot to overlap the next note's attack,
+      // so the two crossfade and the sound never drops to silence between them.
+      const release = gap > 0 ? 0 : Math.min(0.09, length * 0.5)
       const osc = audio.createOscillator()
       const gain = audio.createGain()
       osc.type = note.type ?? type
       osc.frequency.value = note.frequency
       gain.gain.setValueAtTime(0.0001, when)
-      gain.gain.exponentialRampToValueAtTime(note.gain ?? peak, when + 0.02)
-      gain.gain.exponentialRampToValueAtTime(0.0001, when + length)
+      gain.gain.exponentialRampToValueAtTime(level, when + 0.02) // attack
+      gain.gain.setValueAtTime(level, when + length) // sustain to the note's end
+      gain.gain.exponentialRampToValueAtTime(0.0001, when + length + release) // release overlaps the next
       osc.connect(gain)
       gain.connect(audio.destination)
       osc.start(when)
-      osc.stop(when + length)
+      osc.stop(when + length + release + 0.01)
       active.push({ osc, gain })
       // Advance the playhead when this note begins.
       marks.push(setTimeout(() => (current.value = index), Math.max(0, (when - audio.currentTime) * 1000)))
       when += length + gap
     })
-    timer = setTimeout(finish, (when - audio.currentTime) * 1000 + 200)
+    timer = setTimeout(finish, (when - audio.currentTime) * 1000 + 250)
   }
 
   // A one-shot tone: fire and forget, on a single reused context. For rapid,
