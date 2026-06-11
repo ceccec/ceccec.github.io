@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, livingTorus } from '../lib/quantumMind'
+import { buildMatrix, livingTorus, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -15,6 +15,17 @@ const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
 const sound = ref(false)
 let lastHead = -1
+
+// User interactions merge and affect the animation: the pointer warps the field,
+// clicks send ripples (and one through the opposite, merging the pair), and each
+// interaction folds — content-addressed — into a running root.
+type Pt = { c: typeof data.coordinates[number]; sx: number; sy: number }
+const ripples: { x: number; y: number; t0: number }[] = []
+let nearPoint: Pt | null = null
+let oppositePoint: Pt | null = null
+let interactionRoot = toUuid('living-interactions:genesis')
+const interactions = ref(0)
+const mergedRoot = ref('')
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const wrap = ref<HTMLDivElement | null>(null)
@@ -86,6 +97,27 @@ function draw(t: number) {
       r: (2.4 + c.scale * 2.6) * s * 0.5 * persp * (0.7 + 0.5 * pulse),
     }
   })
+  // Interactions affect the field: the pointer warps nearby coordinates (they
+  // brighten and bow outward), and each click's ripple expands through the
+  // coordinates it passes. The animation merges the user in.
+  for (const p of points) {
+    let extra = 0
+    if (pointer.active) {
+      const d = Math.hypot(p.sx - pointer.x, p.sy - pointer.y)
+      const f = Math.exp(-(d * d) / (2 * 46 * 46))
+      extra += f * 0.7
+      p.sx += ((p.sx - pointer.x) / (d || 1)) * f * 7
+      p.sy += ((p.sy - pointer.y) / (d || 1)) * f * 7
+    }
+    for (const rp of ripples) {
+      const age = t - rp.t0
+      const radius = age * 0.22
+      const d = Math.hypot(p.sx - rp.x, p.sy - rp.y)
+      extra += Math.exp(-((d - radius) ** 2) / (2 * 16 * 16)) * Math.max(0, 1 - age / 1500)
+    }
+    p.glow = Math.min(1.7, p.glow + extra)
+  }
+  for (let i = ripples.length - 1; i >= 0; i -= 1) if (t - ripples[i].t0 > 1500) ripples.splice(i, 1)
   points.sort((a, b) => a.persp - b.persp) // painter's order, far first
 
   // The winding train path, faint, connecting each coordinate to the next.
@@ -150,11 +182,25 @@ function draw(t: number) {
   hover.value = near
     ? { glyph: near.c.glyph, digit: near.c.digit, fraction: near.c.fraction, frequency: near.c.frequency, loop: near.c.loop, receipt: near.c.receipt }
     : null
+  nearPoint = near ? { c: near.c, sx: near.sx, sy: near.sy } : null
+  const op = near ? points.find((q) => q.c.index === near.c.reverseIndex) : null
+  oppositePoint = op ? { c: op.c, sx: op.sx, sy: op.sy } : null
   if (near) {
     ctx.strokeStyle = `hsla(${hue(near.c.frequency, near.c.loop)}, 90%, 70%, 0.9)`
     ctx.lineWidth = 1.5
     ctx.beginPath()
     ctx.arc(near.sx, near.sy, near.r + 5, 0, Math.PI * 2)
+    ctx.stroke()
+  }
+
+  // The expanding rings of each interaction's ripple — the user, drawn into the field.
+  for (const rp of ripples) {
+    const age = t - rp.t0
+    const fade = Math.max(0, 1 - age / 1500)
+    ctx.strokeStyle = `hsla(272, 85%, 68%, ${0.4 * fade})`
+    ctx.lineWidth = 1.5
+    ctx.beginPath()
+    ctx.arc(rp.x, rp.y, age * 0.22, 0, Math.PI * 2)
     ctx.stroke()
   }
 }
@@ -175,9 +221,17 @@ function onLeave() {
   pointer.active = false
   hover.value = null
 }
-// Click a coordinate to hear it: sound the nearest coordinate's own frequency.
+// Click a coordinate: hear it, send a ripple through the field and one through
+// its opposite (the pair merges), and fold the interaction into a running root.
 function onDown() {
-  if (hover.value) blip(hover.value.frequency, { peak: 0.1, duration: 0.32 })
+  if (!nearPoint) return
+  const now = performance.now()
+  blip(nearPoint.c.frequency, { peak: 0.1, duration: 0.32 })
+  ripples.push({ x: nearPoint.sx, y: nearPoint.sy, t0: now })
+  if (oppositePoint) ripples.push({ x: oppositePoint.sx, y: oppositePoint.sy, t0: now })
+  interactionRoot = merge(interactionRoot, toUuid(`interact:${nearPoint.c.index}:${Math.round(now)}`))
+  interactions.value += 1
+  mergedRoot.value = interactionRoot
 }
 
 onMounted(() => {
@@ -220,6 +274,10 @@ const t = (en: string, b: string) => (bg.value ? b : en)
         :aria-label="t('Toggle train sound', 'Превключи звука на влака')"
         @click="sound = !sound"
       >{{ sound ? '♫' : '♪' }} {{ t(sound ? 'sound on' : 'sound', sound ? 'звук' : 'звук') }}</button>
+      <p v-if="interactions > 0" class="lt__merged">
+        {{ t(`${interactions} interactions merged`, `${interactions} взаимодействия слети`) }}
+        <code>{{ mergedRoot.slice(0, 13) }}…</code>
+      </p>
       <div v-if="hover" class="lt__readout">
         <strong>{{ hover.glyph }}</strong>
         <span>{{ t('digit', 'цифра') }} {{ hover.digit }} · {{ hover.fraction }} · {{ hover.frequency }} Hz · {{ hover.loop }}</span>
@@ -267,6 +325,24 @@ const t = (en: string, b: string) => (bg.value ? b : en)
 .lt__sound.on {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
+}
+.lt__merged {
+  position: absolute;
+  right: 0.7rem;
+  top: 2.7rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  font-size: 0.68rem;
+  color: var(--vp-c-text-3);
+  pointer-events: none;
+  text-align: right;
+}
+.lt__merged code {
+  font-size: 0.64rem;
+  color: hsl(272, 60%, 60%);
 }
 .lt__readout {
   position: absolute;
