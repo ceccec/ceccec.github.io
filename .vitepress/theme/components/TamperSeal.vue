@@ -109,7 +109,7 @@ const t = computed(() =>
       <article><span>seal</span><strong>{{ rootOk && proof.verifiable ? '✓' : '×' }}</strong></article>
     </div>
     <div class="seal__row">
-      <button type="button" @click="verify">{{ t.verify }}</button>
+      <button class="dt-btn" type="button" @click="verify">{{ t.verify }}</button>
       <span v-if="verified" class="seal__verified">✓ {{ t.verified }}</span>
     </div>
     <div class="seal__anim">
@@ -183,11 +183,6 @@ const t = computed(() =>
 }
 .seal__row button {
   padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .seal__verified {
   color: var(--vp-c-brand-1);

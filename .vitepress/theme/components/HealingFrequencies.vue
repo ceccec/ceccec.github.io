@@ -87,7 +87,7 @@ const t = computed(() =>
       </div>
     </div>
     <div class="freq__row">
-      <button type="button" :aria-label="playing ? t.stop : t.play" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
+      <button class="dt-btn" type="button" :aria-label="playing ? t.stop : t.play" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
       <span v-if="saveEnergy" class="freq__save">🔋 {{ t.save }}</span>
     </div>
     <p class="freq__boundary">⚠ {{ t.boundary }}</p>
@@ -197,11 +197,6 @@ const t = computed(() =>
 }
 .freq__row button {
   padding: 0.4rem 1.2rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .freq__save {
   font-size: 0.72rem;

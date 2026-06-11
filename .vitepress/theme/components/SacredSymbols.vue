@@ -49,7 +49,7 @@ const t = computed(() =>
         <p class="eyebrow">{{ t.title }}</p>
         <p>{{ t.sub }}</p>
       </div>
-      <button type="button" :aria-label="animated ? t.stop : t.animate" :aria-pressed="animated" @click="animated = !animated">{{ animated ? t.stop : t.animate }}</button>
+      <button class="dt-btn" type="button" :aria-label="animated ? t.stop : t.animate" :aria-pressed="animated" @click="animated = !animated">{{ animated ? t.stop : t.animate }}</button>
     </div>
 
     <svg viewBox="0 0 100 100" class="sacred-symbols__wheel" role="img" :aria-label="t.title">
@@ -111,11 +111,6 @@ const t = computed(() =>
 .sacred-symbols__head button {
   flex: none;
   padding: 0.4rem 0.9rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .sacred-symbols__wheel {
   display: block;

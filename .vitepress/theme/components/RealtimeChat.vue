@@ -90,7 +90,7 @@ const t = computed(() =>
     </div>
     <form class="chat__row" @submit.prevent="send">
       <input v-model="draft" type="text" :placeholder="t.placeholder" />
-      <button type="submit">{{ t.send }}</button>
+      <button class="dt-btn" type="submit">{{ t.send }}</button>
     </form>
     <p class="chat__note">{{ t.note }}</p>
   </section>
@@ -180,11 +180,6 @@ const t = computed(() =>
 }
 .chat__row button {
   padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .chat__note {
   margin: 0.7rem 0 0;

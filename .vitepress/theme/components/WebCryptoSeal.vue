@@ -67,7 +67,7 @@ const t = computed(() =>
     <template v-if="supported">
       <p class="wcs__label">{{ t.digest }}</p>
       <p class="wcs__digest mono">{{ computing ? t.computing : digest }}</p>
-      <button type="button" :disabled="computing" @click="compute">{{ t.recompute }}</button>
+      <button class="dt-btn" type="button" :disabled="computing" @click="compute">{{ t.recompute }}</button>
     </template>
     <p v-else class="wcs__unsupported">⚠ {{ t.unsupported }}</p>
     <p class="wcs__roadmap-title">{{ t.roadmap }}</p>
@@ -106,11 +106,6 @@ const t = computed(() =>
 }
 .wcs button {
   padding: 0.35rem 1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .wcs__unsupported {
   color: var(--vp-c-warning-1, #d97706);

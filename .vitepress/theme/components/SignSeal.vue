@@ -70,7 +70,7 @@ const t = computed(() =>
       <ol class="sign__steps">
         <li v-for="s in data.steps" :key="s.step"><strong>{{ s.step }}</strong> — {{ s.how }}</li>
       </ol>
-      <button type="button" :disabled="busy" @click="signAndVerify">{{ busy ? t.signing : t.sign }}</button>
+      <button class="dt-btn" type="button" :disabled="busy" @click="signAndVerify">{{ busy ? t.signing : t.sign }}</button>
       <template v-if="signature">
         <p class="sign__label">{{ t.pub }}</p>
         <p class="sign__hex mono">{{ publicKey.slice(0, 48) }}…</p>
@@ -103,11 +103,6 @@ const t = computed(() =>
 }
 .sign button {
   padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .sign__label {
   margin: 0.7rem 0 0.15rem;

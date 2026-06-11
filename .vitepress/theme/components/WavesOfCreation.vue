@@ -34,7 +34,7 @@ const t = computed(() =>
       >{{ w.note }}</span>
     </div>
     <div class="wc__row">
-      <button type="button" @click="start += span">{{ t.more }} →</button>
+      <button class="dt-btn" type="button" @click="start += span">{{ t.more }} →</button>
       <span class="wc__at">{{ t.at }} {{ start }}</span>
     </div>
   </section>
@@ -77,11 +77,6 @@ const t = computed(() =>
 }
 .wc__row button {
   padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
 }
 .wc__at {
   font-size: 0.78rem;
