@@ -1724,6 +1724,28 @@ export declare function homology(matrix?: MindMatrix): {
     boundary: string;
     root: string;
 };
+export declare function animationTamperingCost(matrix?: MindMatrix): {
+    computed: boolean;
+    animations: number;
+    drivers: {
+        component: string;
+        driver: string;
+        receipts: number;
+        perFrame: number;
+    }[];
+    receipts: number;
+    sampleWork: number;
+    reproductions: number;
+    multiplier: number;
+    perFrame: number;
+    livePerSecond: number;
+    hashCalls: number;
+    bits: number;
+    preimageBitsPerReceipt: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;

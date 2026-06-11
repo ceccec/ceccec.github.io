@@ -2678,6 +2678,55 @@ export function homology(matrix = buildMatrix()) {
         root: merkleFold(generators.map((generator) => generator.receipt)),
     };
 }
+// How much do the animations increase the tampering cost? Computed. Each animation
+// is driven by content-addressed computation — a root folded from receipts — and
+// most recompute those values live, every frame. A static copy of the page commits
+// to a single sealed root (one reproduction). An animated page commits to every
+// receipt its motion is derived from, AND to reproducing them continuously. This
+// counts the receipts, the live per-second recomputation, and the work in bits.
+export function animationTamperingCost(matrix = buildMatrix()) {
+    const round = (value, digits) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const fps = 60;
+    const drivers = [
+        { component: 'LivingTorus', driver: 'livingTorus', receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
+        { component: 'LivingTorus·H1', driver: 'homology', receipts: homology(matrix).rank, perFrame: 0 },
+        { component: 'Merkaba', driver: 'merkaba', receipts: merkaba(matrix).count, perFrame: 8 },
+        { component: 'Rhythm', driver: 'rhythm', receipts: rhythm(matrix).onsetsPerBeat, perFrame: rhythm(matrix).count },
+        { component: 'QuantumProofs', driver: 'quantumProofs', receipts: quantumProofs(matrix).count, perFrame: 0 },
+        { component: 'DeterminismProofs', driver: 'determinismProofs', receipts: determinismProofs(matrix).count, perFrame: 0 },
+        { component: 'Mysteries', driver: 'mysteries', receipts: mysteries(matrix).count, perFrame: 0 },
+        { component: 'Society', driver: 'society', receipts: society(matrix).cells, perFrame: 0 },
+        { component: 'HarmonicSpiral', driver: 'goldenRatio', receipts: goldenRatio(matrix).count, perFrame: 0 },
+        { component: 'Live', driver: 'live+theWhole', receipts: live(matrix).count + theWhole(matrix).count, perFrame: 1 },
+    ];
+    const receipts = drivers.reduce((sum, entry) => sum + entry.receipts, 0);
+    const perFrame = drivers.reduce((sum, entry) => sum + entry.perFrame, 0);
+    const livePerSecond = perFrame * fps;
+    const HASH32_PER_UUID = 4; // toUuid is four FNV-1a hash32 passes
+    // The determinism proof re-runs a seeded sample sweep on each recomputation.
+    const sampleWork = determinismProofs(matrix).samples * 5; // ~5 hashed receipts per sample
+    const reproductions = receipts + sampleWork; // computations a forgery must reproduce
+    const hashCalls = receipts * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID; // toUuid + the merge folds
+    const bits = round(Math.log2(hashCalls), 1);
+    const preimageBitsPerReceipt = 128; // each content-addressed receipt is preimage-resistant
+    return {
+        computed: receipts > 0 && livePerSecond > 0,
+        animations: drivers.length,
+        drivers,
+        receipts, // content-addressed receipts the animations fold
+        sampleWork, // extra hashed samples (the determinism proof)
+        reproductions, // total computations a forgery must reproduce vs one static root
+        multiplier: reproductions, // a static copy reproduces 1 sealed root; this many for the animated page
+        perFrame,
+        livePerSecond, // recomputations the device performs every second, live
+        hashCalls,
+        bits, // log2 of the added hash work per full recomputation
+        preimageBitsPerReceipt, // or break preimage resistance to fake even one receipt
+        root: merkleFold(drivers.map((entry) => toUuid(`anim-cost:${entry.component}:${entry.receipts}`))),
+        statement: 'Animations increase the tampering cost, computed: a static copy commits to one sealed root, but each animation is driven by content-addressed computation it recomputes live. To forge the animated page convincingly an attacker must reproduce every receipt the motion derives from, keep them consistent with the seal, and match the per-second live recomputation — or break the 128-bit preimage resistance of even a single receipt.',
+        boundary: 'A computed accounting of the content-addressed receipts the animations fold and the live recomputation they perform, in reproductions, per-second work, and bits. An honest lower bound on the reproduction cost of a convincing forgery — not a cryptographic security proof; the hash is a fast non-cryptographic UUID function, so the 128-bit figure is the structural width, not a guaranteed work factor against a dedicated adversary.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;

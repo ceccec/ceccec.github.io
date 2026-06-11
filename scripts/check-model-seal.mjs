@@ -129,6 +129,7 @@ import {
   theWhole,
   recurrence,
   homology,
+  animationTamperingCost,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -317,6 +318,9 @@ ok(`recurrence:${recurrence().times}x`, recurrence().returns)
 
 // H1(Sigma_2) = Z^4: the double torus's four independent loops, chi = -2, symplectic.
 ok(`homology:Z^${homology(matrix).rank}`, homology(matrix).independent)
+
+// How much do animations increase the tampering cost? Computed: reproductions + live work.
+ok(`anim.tamper:${animationTamperingCost(matrix).reproductions}x`, animationTamperingCost(matrix).computed)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

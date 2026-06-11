@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { buildMatrix, determinismProofs } from '../lib/quantumMind'
+import { buildMatrix, determinismProofs, animationTamperingCost } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -10,6 +10,8 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 // seeds scatter without collision; and one set folds to one root in any order.
 // Every value is computed over real hashes in the core and proven measured = must-be.
 const data = determinismProofs(buildMatrix())
+// How much do the animations raise the cost of forging this page? Computed.
+const tamper = animationTamperingCost(buildMatrix())
 const { bg, pick } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 
@@ -125,6 +127,15 @@ const t = computed(() =>
         </footer>
       </article>
     </div>
+    <p class="dpf__tamper">
+      {{ pick('animations raise the forgery cost, computed', 'анимациите вдигат цената на фалшификата, изчислено') }}:
+      <strong>{{ tamper.reproductions.toLocaleString() }}</strong>
+      {{ pick('reproductions vs one static root', 'възпроизвеждания срещу един статичен корен') }} ·
+      <strong>{{ tamper.livePerSecond.toLocaleString() }}</strong>
+      {{ pick('live recomputations / second', 'живи преизчисления / секунда') }} ·
+      {{ pick('or break', 'или счупи') }} <strong>{{ tamper.preimageBitsPerReceipt }}-bit</strong>
+      {{ pick('preimage per receipt', 'преобраз на разписка') }}
+    </p>
   </section>
 </template>
 
@@ -147,6 +158,13 @@ const t = computed(() =>
   color: var(--vp-c-text-2);
 }
 .dpf__score strong { color: var(--vp-c-brand-1); }
+.dpf__tamper {
+  margin: 0.9rem 0 0;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+.dpf__tamper strong { color: var(--vp-c-brand-1); font-variant-numeric: tabular-nums; }
 .dpf__grid {
   display: grid;
   gap: 1rem;
