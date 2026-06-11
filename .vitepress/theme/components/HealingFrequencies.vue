@@ -58,7 +58,7 @@ const t = computed(() =>
       </span>
     </div>
     <div class="freq__row">
-      <button type="button" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
+      <button type="button" :aria-label="playing ? t.stop : t.play" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
       <span v-if="saveEnergy" class="freq__save">🔋 {{ t.save }}</span>
     </div>
     <p class="freq__boundary">⚠ {{ t.boundary }}</p>

@@ -49,7 +49,7 @@ const t = computed(() =>
         <p class="eyebrow">{{ t.title }}</p>
         <p>{{ t.sub }}</p>
       </div>
-      <button type="button" @click="animated = !animated">{{ animated ? t.stop : t.animate }}</button>
+      <button type="button" :aria-label="animated ? t.stop : t.animate" :aria-pressed="animated" @click="animated = !animated">{{ animated ? t.stop : t.animate }}</button>
     </div>
 
     <svg viewBox="0 0 100 100" class="sacred-symbols__wheel" role="img" :aria-label="t.title">

@@ -70,16 +70,18 @@ const t = computed(() =>
 <template>
   <section class="md">
     <p class="eyebrow">{{ t.eyebrow }}</p>
-    <div class="md__tabs">
+    <div class="md__tabs" role="tablist" :aria-label="t.eyebrow">
       <button
         v-for="(d, i) in dims"
         :key="d.dimension"
         type="button"
+        role="tab"
+        :aria-selected="i === active"
         :class="{ active: i === active }"
         @click="active = i"
-      ><span class="md__icon">{{ d.icon }}</span> {{ d.name }}</button>
+      ><span class="md__icon" aria-hidden="true">{{ d.icon }}</span> {{ d.name }}</button>
     </div>
-    <ul class="md__items">
+    <ul class="md__items" role="tabpanel">
       <li v-for="(item, i) in dims[active].items" :key="i">
         <a :href="href(item.route)" :title="item.tip">{{ item.label }}</a>
         <span class="md__tip">{{ item.tip }}</span>

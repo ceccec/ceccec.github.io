@@ -146,21 +146,38 @@ export default defineConfig({
       description: siteDescription,
       themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
+        // Six top-level entries, the rest grouped into dropdowns — every page
+        // still one or two clicks away, but the bar stays calm on small screens.
         nav: [
           { text: 'Home', link: '/' },
           { text: 'Start', link: '/start' },
-          { text: 'Console', link: '/console' },
-          { text: 'Show', link: '/show' },
           { text: 'Explore', link: '/explore' },
-          { text: 'School', link: '/school' },
-          { text: 'Academy', link: '/academy' },
-          { text: 'Governance', link: '/governance' },
-          { text: 'MCP', link: '/mcp' },
-          { text: 'Developer', link: '/learn-developer' },
-          { text: 'Commands', link: '/commands' },
-          { text: 'Mind', link: '/quantum-mind' },
-          { text: 'Architecture', link: '/architecture' },
-          { text: 'Boundaries', link: '/boundaries' },
+          {
+            text: 'Learn',
+            items: [
+              { text: 'School (kids to elders)', link: '/school' },
+              { text: 'Academy', link: '/academy' },
+              { text: 'Developer', link: '/learn-developer' },
+            ],
+          },
+          {
+            text: 'Use',
+            items: [
+              { text: 'Console', link: '/console' },
+              { text: 'Commands', link: '/commands' },
+              { text: 'MCP tool surface', link: '/mcp' },
+              { text: 'Show', link: '/show' },
+            ],
+          },
+          {
+            text: 'Inside',
+            items: [
+              { text: 'Mind', link: '/quantum-mind' },
+              { text: 'Architecture', link: '/architecture' },
+              { text: 'Boundaries', link: '/boundaries' },
+              { text: 'Governance', link: '/governance' },
+            ],
+          },
         ],
         sidebar: [
           {
@@ -187,18 +204,33 @@ export default defineConfig({
         nav: [
           { text: 'Начало', link: '/bg/' },
           { text: 'Старт', link: '/bg/start' },
-          { text: 'Конзола', link: '/bg/console' },
-          { text: 'Покажи', link: '/bg/show' },
           { text: 'Изследвай', link: '/bg/explore' },
-          { text: 'Училище', link: '/bg/school' },
-          { text: 'Академия', link: '/bg/academy' },
-          { text: 'Управление', link: '/bg/governance' },
-          { text: 'MCP', link: '/bg/mcp' },
-          { text: 'Разработчик', link: '/bg/learn-developer' },
-          { text: 'Команди', link: '/bg/commands' },
-          { text: 'Ум', link: '/bg/quantum-mind' },
-          { text: 'Архитектура', link: '/bg/architecture' },
-          { text: 'Граници', link: '/bg/boundaries' },
+          {
+            text: 'Учи',
+            items: [
+              { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
+              { text: 'Академия', link: '/bg/academy' },
+              { text: 'Разработчик', link: '/bg/learn-developer' },
+            ],
+          },
+          {
+            text: 'Ползвай',
+            items: [
+              { text: 'Конзола', link: '/bg/console' },
+              { text: 'Команди', link: '/bg/commands' },
+              { text: 'MCP слой', link: '/bg/mcp' },
+              { text: 'Покажи', link: '/bg/show' },
+            ],
+          },
+          {
+            text: 'Отвътре',
+            items: [
+              { text: 'Ум', link: '/bg/quantum-mind' },
+              { text: 'Архитектура', link: '/bg/architecture' },
+              { text: 'Граници', link: '/bg/boundaries' },
+              { text: 'Управление', link: '/bg/governance' },
+            ],
+          },
         ],
         sidebar: [
           {

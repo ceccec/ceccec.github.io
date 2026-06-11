@@ -47,7 +47,12 @@ const t = computed(() =>
       <div v-for="band in data.bands" :key="band.octave" class="hmap__band">
         <div class="hmap__bandhead">
           <span class="hmap__octave">{{ t.octave }} {{ band.octave }}</span>
-          <button type="button" @click="playBand(band.octave, band.members)">
+          <button
+            type="button"
+            :aria-label="`${t.play}, ${t.octave} ${band.octave}`"
+            :aria-pressed="playing && activeOctave === band.octave"
+            @click="playBand(band.octave, band.members)"
+          >
             {{ playing && activeOctave === band.octave ? t.stop : t.play }}
           </button>
         </div>
