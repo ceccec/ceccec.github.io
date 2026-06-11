@@ -116,6 +116,7 @@ import {
   simulations,
   solutions,
   quantumSolutions,
+  playLearn,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -264,6 +265,9 @@ ok(`solutions:${solutions(matrix).count}`, solutions(matrix).solved)
 
 // Society already needs quantum solutions: needs answered by quantum capabilities.
 ok(`quantum.solutions:${quantumSolutions(matrix).count}`, quantumSolutions(matrix).ready)
+
+// Kids like to learn playing: a word maps to coloured, sounding tiles, deterministically.
+ok(`play.learn:${playLearn().count}`, playLearn().playable && playLearn('Mia').root === playLearn('Mia').root)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

@@ -21,6 +21,8 @@ head:
 
 <SchoolCurriculum />
 
+<PlayLearn />
+
 <CreativePalette />
 
 ## Как да използваш тази стълба

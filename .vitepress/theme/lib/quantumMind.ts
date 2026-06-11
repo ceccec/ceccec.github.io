@@ -3251,6 +3251,41 @@ export function quantumSolutions(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Kids like to learn playing. Type a word and every letter becomes a coloured
+// tile that sounds a friendly note (mapped onto a C-major scale, so any word is a
+// little tune). Deterministic: the same word always makes the same song and the
+// same colours — that is the lesson, learned by play. Tap to hear, or play the
+// whole word.
+export function playLearn(word = 'play') {
+  const SCALE = [261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88, 523.25] // C major, C4..C5
+  const NOTE = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
+  const letters = [...word].filter((ch) => ch.trim().length > 0).slice(0, 16).map((ch, index) => {
+    const seed = toUuid(`play:${ch.toLowerCase()}:${index}`)
+    const value = Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16)
+    const step = value % 8
+    return {
+      char: ch,
+      step,
+      note: NOTE[step],
+      frequency: SCALE[step],
+      hue: value % 360,
+      hsl: `hsl(${value % 360}, 72%, 62%)`,
+      receipt: seed,
+    }
+  })
+  return {
+    playable: letters.length > 0,
+    word,
+    letters,
+    count: letters.length,
+    root: merkleFold(letters.map((letter) => letter.receipt)),
+    statement:
+      'Kids like to learn playing: each letter of a word becomes a coloured tile and a note on a C-major scale, so any word is a little song. The same word always plays the same song — deterministic computation, learned by play.',
+    boundary:
+      'A playful deterministic mapping of letters to colours and notes (on a fixed major scale). A toy for learning that the same input gives the same output — not a claim about language, music theory, or synaesthesia.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -5160,7 +5195,7 @@ export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joi
 export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
-    'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
+    'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
     'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumSolutions', 'Solutions', 'RichOnly', 'SimpleOnly',
   ]
   // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
@@ -5171,7 +5206,7 @@ export function componentGraph() {
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
     '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
-    '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
+    '/school': ['SchoolCurriculum', 'PlayLearn', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy', 'Professionals', 'Solutions'],
     '/governance': ['GovernanceVote', 'QuantumSolutions'],
     '/mcp': ['McpTools'],

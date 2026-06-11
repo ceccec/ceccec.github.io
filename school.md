@@ -21,6 +21,8 @@ with an activity and the real command that grounds it.
 
 <SchoolCurriculum />
 
+<PlayLearn />
+
 <CreativePalette />
 
 ## How to use this ladder

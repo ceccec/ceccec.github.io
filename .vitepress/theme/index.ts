@@ -34,6 +34,7 @@ import NothingToDo from './components/NothingToDo.vue'
 import OpenQuestions from './components/OpenQuestions.vue'
 import PathGuide from './components/PathGuide.vue'
 import Professionals from './components/Professionals.vue'
+import PlayLearn from './components/PlayLearn.vue'
 import PiMusicPlayer from './components/PiMusicPlayer.vue'
 import QuantumAcademy from './components/QuantumAcademy.vue'
 import QuantumClock from './components/QuantumClock.vue'
@@ -123,6 +124,7 @@ export default {
     app.component('OpenQuestions', OpenQuestions)
     app.component('PathGuide', PathGuide)
     app.component('Professionals', Professionals)
+    app.component('PlayLearn', PlayLearn)
     app.component('PiMusicPlayer', PiMusicPlayer)
     app.component('QuantumAcademy', QuantumAcademy)
     app.component('QuantumClock', QuantumClock)
