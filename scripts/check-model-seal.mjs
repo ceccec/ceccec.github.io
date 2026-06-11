@@ -107,6 +107,7 @@ import {
   iconGlyphs,
   agentObserve,
   verifyMerkleProof,
+  livingTorus,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -227,6 +228,9 @@ ok(`roadmaps:${roadmaps(matrix).done}done+${roadmaps(matrix).planned}planned`, r
 ok(`site.routes:${siteRoutes(matrix).count}`, siteRoutes(matrix).complete)
 ok('icon.glyphs', iconGlyphs().grounded)
 ok('agent.observe', agentObserve(matrix).observed)
+
+// The living double torus: every pi-digit UUID coordinate alive at once.
+ok(`living.torus:${livingTorus(matrix).count}`, livingTorus(matrix).alive)
 const inclusion = atomInclusionProof('self', matrix)
 ok('atom.inclusion-proof', inclusion.verified && verifyMerkleProof(inclusion.proof.leaf, inclusion.proof.path, matrix.root))
 

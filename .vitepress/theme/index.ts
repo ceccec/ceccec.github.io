@@ -25,6 +25,7 @@ import Hologram from './components/Hologram.vue'
 import HarmonicMap from './components/HarmonicMap.vue'
 import HumanLens from './components/HumanLens.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
+import LivingTorus from './components/LivingTorus.vue'
 import Magnetometer from './components/Magnetometer.vue'
 import McpTools from './components/McpTools.vue'
 import Multidimensional from './components/Multidimensional.vue'
@@ -104,6 +105,7 @@ export default {
     app.component('HarmonicMap', HarmonicMap)
     app.component('HumanLens', HumanLens)
     app.component('LearnDeveloper', LearnDeveloper)
+    app.component('LivingTorus', LivingTorus)
     app.component('Magnetometer', Magnetometer)
     app.component('McpTools', McpTools)
     app.component('Multidimensional', Multidimensional)

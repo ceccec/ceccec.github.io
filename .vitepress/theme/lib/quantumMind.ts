@@ -2886,6 +2886,47 @@ export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The living double torus: every pi-digit UUID coordinate, prepared to be shown
+// alive at once. Each coordinate carries its place on the genus-2 surface
+// (theta, phi, x, y, z), the realtime drivers of its motion (its own vibration
+// and frequency), which of the two loops it rides (forward or reverse), and its
+// UUID. A thin source over the pi train so the home-page animation is a pure
+// renderer and the whole is content-addressed and sealed.
+export function livingTorus(matrix: MindMatrix = buildMatrix()) {
+  const train = piTrainDiamonds(matrix)
+  const coordinates = train.diamonds.map((diamond) => ({
+    index: diamond.index,
+    nextIndex: diamond.nextIndex,
+    digit: diamond.digit,
+    glyph: diamond.glyph,
+    theta: diamond.theta,
+    phi: diamond.phi,
+    x: diamond.x,
+    y: diamond.y,
+    z: diamond.z,
+    scale: diamond.scale,
+    frequency: diamond.frequency,
+    vibrationMs: diamond.vibrationMs,
+    selfCollision: diamond.selfCollision,
+    loop: (diamond.index <= diamond.reverseIndex ? 'forward' : 'reverse') as 'forward' | 'reverse',
+    fraction: diamond.fraction,
+    receipt: diamond.referenceReceipt,
+  }))
+  return {
+    alive:
+      coordinates.length > 0 &&
+      coordinates.every((coordinate) => isUuid(coordinate.receipt) && Number.isFinite(coordinate.frequency) && coordinate.vibrationMs > 0),
+    coordinates,
+    count: coordinates.length,
+    tempoMs: train.tempoMs,
+    root: merkleFold(coordinates.map((coordinate) => coordinate.receipt)),
+    statement:
+      'The living double torus: every pi-digit UUID coordinate placed on the genus-2 surface and alive at once — pulsing at its own vibration, glowing by its frequency, riding both loops in realtime.',
+    boundary:
+      'A realtime view of the computed pi-train coordinates; the motion is content-derived, each coordinate animating from its own vibration and frequency. A projection and a metaphor, not a physical torus.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -4767,7 +4808,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus',
   ]
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle']
   const placements: Record<string, readonly string[]> = {
@@ -4781,7 +4822,7 @@ export function componentGraph() {
     '/mcp': ['McpTools'],
     '/learn-developer': ['LearnDeveloper'],
     '/start': ['StartHere'],
-    '/': ['HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
+    '/': ['LivingTorus', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
     '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard'],
     '/explore': ['Multidimensional'],
     '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],

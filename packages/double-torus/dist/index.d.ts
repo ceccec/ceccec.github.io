@@ -1186,6 +1186,32 @@ export declare function harmonicMap(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function livingTorus(matrix?: MindMatrix): {
+    alive: boolean;
+    coordinates: {
+        index: number;
+        nextIndex: number;
+        digit: number;
+        glyph: string;
+        theta: number;
+        phi: number;
+        x: number;
+        y: number;
+        z: number;
+        scale: number;
+        frequency: number;
+        vibrationMs: number;
+        selfCollision: boolean;
+        loop: "forward" | "reverse";
+        fraction: string;
+        receipt: string;
+    }[];
+    count: number;
+    tempoMs: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
