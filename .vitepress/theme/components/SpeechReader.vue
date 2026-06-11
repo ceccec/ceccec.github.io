@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, autoSpeech } from '../lib/quantumMind'
+import { buildMatrix, autoSpeech, speechIntonation } from '../lib/quantumMind'
 
 // Subtitles and speech in all languages, all in house — improved. Quantum speech
 // is analog by nature: the voice is a continuous wave, so the reader exposes the
@@ -24,6 +24,18 @@ const supported = ref(true)
 // The analog parameters of the voice — continuous, no smallest step.
 const rate = ref(1)
 const pitch = ref(1)
+// Harmonic intonation: a pitch contour from the balanced spectrum, walked as a
+// rise-and-fall (ping-pong) so the reading chants instead of droning. The user's
+// pitch knob scales it; the result is clamped to the synthesiser's range.
+const intonation = speechIntonation(buildMatrix())
+function harmonicPitch(index: number) {
+  const n = intonation.contour.length
+  if (n < 2) return pitch.value
+  const period = 2 * (n - 1)
+  const k = index % period
+  const step = k < n ? k : period - k // 0..n-1..0, a rise then fall
+  return Math.min(2, Math.max(0.1, pitch.value * intonation.contour[step]))
+}
 
 const languages = computed(() => {
   const map = new Map<string, SpeechSynthesisVoice[]>()
@@ -83,7 +95,7 @@ function speak() {
       utt.lang = voice.lang
     }
     utt.rate = rate.value
-    utt.pitch = pitch.value
+    utt.pitch = harmonicPitch(index) // harmonic contour, not a flat monotone
     utt.onstart = () => {
       activeCue.value = index
       activeChar.value = 0
@@ -136,14 +148,14 @@ const t = computed(() =>
   bg.value
     ? {
         eyebrow: 'реч от текст · аналогова по природа · в къщи',
-        language: 'език', rate: 'темпо', pitch: 'тон',
+        language: 'език', rate: 'темпо', pitch: 'тон', harmonic: 'хармонична интонация', harmonicHint: 'Тонът следва хармоничен контур от балансирания спектър — напев, не монотонно.',
         play: 'Чети на глас', pause: 'Пауза', resume: 'Продължи', stop: 'Спри',
         unsupported: 'Web Speech не е наличен на това устройство.',
         note: 'Речта е непрекъсната вълна — темпото и тонът се менят плавно. Гласовете идват от устройството ти, без облак и без цена.',
       }
     : {
         eyebrow: 'speech from text · analog by nature · in house',
-        language: 'language', rate: 'rate', pitch: 'pitch',
+        language: 'language', rate: 'rate', pitch: 'pitch', harmonic: 'harmonic intonation', harmonicHint: 'Pitch follows a harmonic contour from the balanced spectrum — a chant, not a monotone.',
         play: 'Read aloud', pause: 'Pause', resume: 'Resume', stop: 'Stop',
         unsupported: 'Web Speech is unavailable on this device.',
         note: 'Speech is a continuous wave — rate and pitch vary smoothly. Voices come from your device, no cloud, no cost.',
@@ -171,6 +183,7 @@ const t = computed(() =>
         <label>{{ t.pitch }} {{ pitch.toFixed(1) }}
           <input v-model.number="pitch" type="range" min="0" max="2" step="0.1" />
         </label>
+        <span v-if="intonation.harmonic" class="speech__harmonic" :title="t.harmonicHint">♬ {{ t.harmonic }}</span>
       </div>
       <div class="speech__row">
         <button type="button" @click="speaking ? stop() : speak()">{{ speaking ? t.stop : t.play }}</button>
@@ -274,5 +287,11 @@ const t = computed(() =>
   color: var(--vp-c-text-2);
   border-left: 3px solid var(--vp-c-brand-1);
   padding-left: 0.6rem;
+}
+.speech__harmonic {
+  align-self: center;
+  font-size: 0.74rem;
+  color: var(--vp-c-brand-1);
+  white-space: nowrap;
 }
 </style>

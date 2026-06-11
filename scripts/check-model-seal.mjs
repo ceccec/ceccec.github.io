@@ -111,6 +111,7 @@ import {
   directions,
   frequencyBalance,
   selfHealing,
+  speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -243,6 +244,9 @@ ok(`frequency.balance:${frequencyBalance(matrix).center}hz`, frequencyBalance(ma
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)
+
+// Speech intonation made harmonic: a pitch contour from the balanced spectrum.
+ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)
 const inclusion = atomInclusionProof('self', matrix)
 ok('atom.inclusion-proof', inclusion.verified && verifyMerkleProof(inclusion.proof.leaf, inclusion.proof.path, matrix.root))
 

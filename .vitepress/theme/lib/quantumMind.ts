@@ -3017,6 +3017,33 @@ export function selfHealing(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Speech intonation, made harmonic. Read speech took one fixed pitch per
+// segment — a monotone. Here each segment takes its pitch from the balanced
+// healing spectrum (frequencyBalance): the cents above and below the centre map
+// to a gentle pitch multiplier, so the reading rises and falls along a harmonic
+// contour — a chant — instead of a flat line. The synthesiser reads the contour.
+export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
+  const balance = frequencyBalance(matrix)
+  const contour = balance.tones.map((tone) => {
+    // cents (~ -1800..+1200) compressed to a pleasant speech-pitch multiplier.
+    const norm = Math.max(-1, Math.min(1, tone.cents / 1500))
+    return Math.round((1 + norm * 0.2) * 100) / 100
+  })
+  const harmonic =
+    contour.length >= 3 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= 0.7 && pitch <= 1.4)
+  return {
+    harmonic,
+    contour,
+    center: balance.center,
+    count: contour.length,
+    root: merkleFold(contour.map((pitch, index) => toUuid(`intonation:${index}:${pitch}`))),
+    statement:
+      'Speech intonation made harmonic: each spoken segment takes its pitch from the balanced healing spectrum, so the reading rises and falls along a harmonic contour — a chant — rather than a flat monotone.',
+    boundary:
+      'A harmonic pitch contour mapped from the frequency balance onto the speech synthesiser\'s pitch control. The intonation is shaped per segment; finer word-level prosody is left to the platform voice.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
