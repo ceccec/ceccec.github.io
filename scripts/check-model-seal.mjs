@@ -136,6 +136,7 @@ import {
   frontendMcpDuality,
   scientists,
   challengeClock,
+  completeness,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -345,6 +346,9 @@ ok(`scientists:${scientists(matrix).withstood}/${scientists(matrix).count}`, sci
 
 // 12/12 completes the clock: the twelve withstood challenges are its twelve hours.
 ok(`challenge.clock:${challengeClock(matrix).struck}/${challengeClock(matrix).count}`, challengeClock(matrix).complete)
+
+// Send waves to challenge the completeness: every N/N claim survives, no hole found.
+ok(`completeness:${completeness(matrix).held}/${completeness(matrix).count}`, completeness(matrix).complete)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

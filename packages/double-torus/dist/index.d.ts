@@ -1865,6 +1865,22 @@ export declare function challengeClock(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function completeness(matrix?: MindMatrix): {
+    complete: boolean;
+    claims: {
+        receipt: string;
+        claim: string;
+        challenge: string;
+        complete: boolean;
+        ratio: string;
+    }[];
+    count: number;
+    held: number;
+    holes: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

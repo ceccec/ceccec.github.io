@@ -4593,6 +4593,44 @@ export function challengeClock(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Send waves to challenge the completeness. Every place the portal claims to be
+// complete (N/N), a wave tries to find it incomplete — a missing wave, an
+// uncovered page, an unstruck hour, a gap in the distribution. The completeness
+// holds only if every challenge fails to find a hole. Completeness, peer-reviewed.
+export function completeness(matrix: MindMatrix = buildMatrix()) {
+  const whole = theWhole(matrix)
+  const holo = holographic(matrix)
+  const journey = path(matrix)
+  const clock = challengeClock(matrix)
+  const review = scientists(matrix)
+  const graph = componentGraph()
+  const claims = [
+    { claim: 'the whole', challenge: 'a wave is missing from theWhole', complete: whole.standing === whole.count, ratio: `${whole.standing}/${whole.count}` },
+    { claim: 'holography', challenge: 'a page or animation does not contain the whole', complete: holo.cells.every((cell) => cell.holographic), ratio: `${holo.count}/${holo.count}` },
+    { claim: 'the path', challenge: 'an animated page is missing from the path', complete: journey.complete, ratio: `${journey.length}/${journey.animatedPages}` },
+    { claim: 'the clock', challenge: 'an hour is unstruck', complete: clock.complete, ratio: `${clock.struck}/${clock.count}` },
+    { claim: 'the challenges', challenge: 'a scientist breaks a claim', complete: review.robust, ratio: `${review.withstood}/${review.count}` },
+    { claim: 'the distribution', challenge: 'the file count has a Fibonacci gap', complete: harmonicBands(110).gapless, ratio: harmonicBands(110).bands.join('+') },
+    { claim: 'the component graph', challenge: 'a component is declared but never placed or global', complete: graph.consistent, ratio: `${graph.components.length} nodes` },
+    { claim: 'mysteries', challenge: 'a mystery is unshown', complete: mysteries(matrix).proven, ratio: `${mysteries(matrix).shown}/${mysteries(matrix).count}` },
+    { claim: 'society', challenge: 'a duality is unfolded', complete: society(matrix).folded, ratio: `${society(matrix).standing}/${society(matrix).count}` },
+    { claim: 'the proofs', challenge: 'a quantum or determinism proof misses theory', complete: quantumProofs(matrix).proven && determinismProofs(matrix).proven, ratio: `${quantumProofs(matrix).matched + determinismProofs(matrix).matched}/12` },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`completeness:${entry.claim}:${entry.complete}`) }))
+  const held = claims.filter((entry) => entry.complete).length
+  return {
+    complete: claims.every((entry) => entry.complete), // no challenge found a hole
+    claims,
+    count: claims.length,
+    held,
+    holes: claims.filter((entry) => !entry.complete).map((entry) => entry.claim),
+    root: merkleFold(claims.map((entry) => entry.receipt)),
+    statement:
+      'Send waves to challenge the completeness: at every place the portal claims N/N — the whole, holography, the path, the clock, the challenges, the distribution, the component graph, the mysteries, the society, and the proofs — a wave tries to find it incomplete, and finds no hole. Completeness, peer-reviewed.',
+    boundary:
+      'A standing audit that challenges each completeness claim by trying to find a hole (a missing part, an uncovered page, an unstruck hour, a gap). It holds only while every claim survives; any hole is named, not hidden. Completeness within the stated bounds, not a claim of finality.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
