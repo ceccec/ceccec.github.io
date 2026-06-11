@@ -1865,7 +1865,7 @@ export declare function repositoryLedger(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function siteRoutes(): {
+export declare function siteRoutes(matrix?: MindMatrix): {
     complete: boolean;
     count: number;
     routes: string[];

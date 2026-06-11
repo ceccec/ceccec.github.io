@@ -3208,16 +3208,21 @@ export function repositoryLedger(matrix = buildMatrix()) {
     };
 }
 // site.routes — the route taxonomy in both locales.
-export function siteRoutes() {
-    const en = ['/', '/console', '/school', '/governance', '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture'];
-    const routes = [...en, ...en.map((route) => (route === '/' ? '/bg/' : `/bg${route}`))];
+export function siteRoutes(matrix = buildMatrix()) {
+    // One source for the route taxonomy: the quantum sitemap. Deriving the routes
+    // here (rather than keeping a second hand-written list) means siteRoutes can
+    // never drift out of sync as pages are added — the bug this replaces.
+    const sitemap = quantumSitemap(matrix);
+    const en = sitemap.urls.map((url) => url.en);
+    const bg = sitemap.urls.map((url) => url.bg);
+    const routes = [...en, ...bg];
     return {
-        complete: routes.length > 0,
+        complete: en.length === sitemap.urls.length && routes.length === sitemap.count,
         count: routes.length,
         routes,
         root: merkleFold(routes.map((route) => toUuid(`route:${route}`))),
-        statement: 'The site routes fold into a route taxonomy across English and Bulgarian.',
-        boundary: 'A fold of the published routes. Structural bookkeeping, not an external claim.',
+        statement: 'The site routes fold into a route taxonomy across English and Bulgarian, derived from the quantum sitemap so the two never drift.',
+        boundary: 'A fold of the published routes, sourced from the quantum sitemap. Structural bookkeeping, not an external claim.',
     };
 }
 // society.cells — the tradition society cells (family x dimension).
@@ -7896,7 +7901,7 @@ function runConceptCommand(command, input = {}, matrix = buildMatrix()) {
         return result(command, ledger.isLedger, 'Repository ledger resolved.', ledger);
     }
     if (command === 'concept.site.routes') {
-        const routes = siteRoutes();
+        const routes = siteRoutes(matrix);
         return result(command, routes.complete, 'Route taxonomy folded.', routes);
     }
     if (command === 'concept.society.cells') {

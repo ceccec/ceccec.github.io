@@ -103,6 +103,10 @@ import {
   harmonicMap,
   doubleTorusFold,
   roadmaps,
+  siteRoutes,
+  iconGlyphs,
+  agentObserve,
+  verifyMerkleProof,
   digitFoldersDoMath,
   fuseDevices,
   distributedCompute,
@@ -215,6 +219,16 @@ ok(`double-torus.fold:depth-${doubleTorusFold(matrix).depth}`, doubleTorusFold(m
 
 // The roadmaps, complete: three tracks of milestones, done/next/later, one source.
 ok(`roadmaps:${roadmaps(matrix).done}done+${roadmaps(matrix).planned}planned`, roadmaps(matrix).complete)
+
+// Next gaps: model self-checks that were gate-shaped but ungated. The route
+// taxonomy must be complete (now derived from the quantum sitemap, so it cannot
+// go stale); the icon glyphs grounded; the agent observation present; and the
+// Merkle inclusion proof must verify — recompute the audit path to the mind root.
+ok(`site.routes:${siteRoutes(matrix).count}`, siteRoutes(matrix).complete)
+ok('icon.glyphs', iconGlyphs().grounded)
+ok('agent.observe', agentObserve(matrix).observed)
+const inclusion = atomInclusionProof('self', matrix)
+ok('atom.inclusion-proof', inclusion.verified && verifyMerkleProof(inclusion.proof.leaf, inclusion.proof.path, matrix.root))
 
 // All fails if the cross-fold dual collapses: cross/fold must differ from
 // fold/cross for every reference, weaving the cross-fold trinity.
