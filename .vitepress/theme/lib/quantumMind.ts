@@ -3574,6 +3574,51 @@ export function determinismProofs(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The double torus comes with opposite rotation at all scales — the same structure
+// as a merkaba: two interlocked tetrahedra spinning in opposite directions. Here
+// the principle is computed: four nested scales (whole, lobe, tube, spark), each
+// counter-rotating relative to the one above (the signs strictly alternate, so
+// every adjacent boundary is opposite), with content-derived periods. The same
+// signed rates drive the home animation's self-similar counter-rotation.
+export function merkaba(matrix: MindMatrix = buildMatrix()) {
+  const seed = (tag: string) => Number.parseInt(toUuid(`merkaba:${matrix.root}:${tag}`).replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16)
+  const names = ['whole', 'lobe', 'tube', 'spark']
+  const basePeriods = [6000, 2600, 1700, 1100]
+  const scales = names.map((scale, depth) => {
+    const sign = depth % 2 === 0 ? 1 : -1 // alternate, so adjacent scales counter-rotate
+    const jitter = 1 + (seed(scale) % 200) / 1000 // 1.000..1.199, content-derived
+    const periodMs = Math.round(basePeriods[depth] * jitter)
+    return {
+      scale,
+      depth,
+      sign: sign as 1 | -1,
+      periodMs,
+      ratePerMs: (sign * 2 * Math.PI) / periodMs, // signed angular rate
+      receipt: toUuid(`merkaba-scale:${scale}:${sign}:${periodMs}`),
+    }
+  })
+  // The star tetrahedron (stella octangula): two regular tetrahedra inscribed in a
+  // cube, one the negation of the other — interlocked, counter-rotating.
+  const tetraUp: readonly (readonly [number, number, number])[] = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]]
+  const tetraDown = tetraUp.map((v) => [-v[0], -v[1], -v[2]] as [number, number, number])
+  // Opposite at all scales: every adjacent pair of scales spins in opposite senses.
+  const alternating = scales.every((entry, i) => i === 0 || entry.sign * scales[i - 1].sign === -1)
+  // The two tetrahedra are exact opposites (the down is the negated up).
+  const dual = tetraUp.every((v, i) => tetraDown[i].every((c, k) => c === -v[k]))
+  return {
+    counterRotating: alternating && dual && scales.length >= 4,
+    scales,
+    count: scales.length,
+    tetraUp,
+    tetraDown,
+    root: merkleFold(scales.map((entry) => entry.receipt)),
+    statement:
+      'The merkaba: opposite rotation at all scales. Four nested scales — whole, lobe, tube, spark — each counter-rotating relative to the one above, like the star tetrahedron\'s two interlocked tetrahedra spinning in opposite directions. The same genus-2 signature as the double torus, made self-similar.',
+    boundary:
+      'A deterministic set of nested, strictly-alternating counter-rotating scales (content-derived periods) and the exact star-tetrahedron vertices, derived from the model root. A geometric and structural realisation that drives the animation\'s self-similar counter-rotation, not a physical field or an energy claim.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -5484,7 +5529,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'RichOnly', 'SimpleOnly',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'RichOnly', 'SimpleOnly',
   ]
   // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
   // they count as global utilities (available everywhere) for the placement audit.
@@ -5492,7 +5537,7 @@ export function componentGraph() {
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
-    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs'],
+    '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'Merkaba'],
     '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
     '/school': ['SchoolCurriculum', 'PlayLearn', 'CreativePalette', 'SpeechReader'],
     '/academy': ['QuantumAcademy', 'Professionals', 'Solutions'],
@@ -8496,14 +8541,29 @@ function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
   ] as const
 }
 
+// The genus-2 surface point for a lobe's (theta, phi). One shared source so the
+// model and the live animation place coordinates identically — the animation just
+// advances theta and phi over time to counter-rotate the lobes (see merkaba()).
+// Each ring lies in the XY plane with its hole facing the viewer (the z axis), the
+// two centres at -/+ TORUS_LOBE_OFFSET, a thin tube so each hole stays open.
+export function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): { x: number; y: number; z: number } {
+  const ringR = 20 // ring radius (sets the hole size)
+  const tubeR = 7 + digit * 0.4 // thin tube (7..10.6) so the hole stays open
+  const ribbon = ringR + tubeR * Math.cos(phi)
+  return {
+    x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),
+    y: ribbon * Math.sin(theta),
+    z: tubeR * Math.sin(phi),
+  }
+}
+
 function torusPoint(index: number, digit: number, total: number): { theta: number; phi: number; x: number; y: number; z: number; scale: number } {
   // The double torus is genus 2: two tori joined at a neck, two open holes. (A tube
   // around a figure-eight CURVE is only a self-intersecting genus-1 torus; the real
   // double torus is the thickened figure-eight — two rings merged.) The pi-train
   // threads the left hole through the first half of its indices and the right hole
   // through the second half, so one continuous train visits both holes; opposite
-  // indices pair across the neck. The tube is kept thin against the ring radius so
-  // each hole stays clearly open instead of filling in.
+  // indices pair across the neck.
   const half = total / 2
   const onLeft = index < half
   const localCount = onLeft ? Math.ceil(half) : total - Math.ceil(half)
@@ -8513,15 +8573,10 @@ function torusPoint(index: number, digit: number, total: number): { theta: numbe
   // exactly at the handoff between lobes — the genus-2 join, not a stray bridge.
   const theta = (localIndex / Math.max(1, localCount)) * Math.PI * 2 + (onLeft ? 0 : Math.PI) // major angle, around the hole
   const phi = ((digit + index * 0.5) / 10) * Math.PI * 2 // minor angle, around the tube
-  const ringR = 20 // ring radius (sets the hole size)
-  const tubeR = 7 + digit * 0.4 // thin tube (7..10.6) so the hole stays open
-  const centerX = lobe * TORUS_LOBE_OFFSET // two ring centres, brought close so the bodies merge at the neck
-  // Each ring lies in the XY plane with its hole facing the viewer (the z axis), so
-  // both holes are seen head-on at rest; the two centres sit left and right of x=0.
-  const ribbon = ringR + tubeR * Math.cos(phi)
-  const x = centerX + ribbon * Math.cos(theta)
-  const y = ribbon * Math.sin(theta)
-  const z = tubeR * Math.sin(phi)
+  const point = doubleTorusSurface(theta, phi, digit, lobe)
+  const x = point.x
+  const y = point.y
+  const z = point.z
   const scale = 0.72 + digit / 22
 
   return { theta, phi, x, y, z, scale }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, livingTorus, directions, merge, toUuid } from '../lib/quantumMind'
+import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -10,6 +10,12 @@ import { useTones } from '../lib/useTones'
 // of the two loops, and merges with its opposite. Multisensory: click a
 // coordinate to hear it, or turn on sound to hear the train as the head sweeps.
 const data = livingTorus(buildMatrix())
+// The merkaba's nested, strictly-alternating rates drive the self-similar counter-
+// rotation: the lobe (major angle) and the tube (minor angle) advance at opposite
+// signs, so every scale turns opposite the one above it.
+const mk = merkaba(buildMatrix())
+const lobeRate = mk.scales[1].ratePerMs // signed, one sense
+const tubeRate = mk.scales[2].ratePerMs // signed, the opposite sense
 const { pick: t } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
@@ -161,12 +167,11 @@ function draw(t: number) {
   const sinY = Math.sin(ay)
   const cosZ = Math.cos(az)
   const sinZ = Math.sin(az)
-  // The double torus comes with opposite rotation: each lobe counter-spins about
-  // its own hole axis — like a merkaba's two tetrahedra — so the forward loop turns
-  // one way and the reverse loop the other, the genus-2 signature, at the same rate.
-  const spin = saveEnergy.value ? 0 : t / 2600
-  const cosS = Math.cos(spin)
-  const sinS = Math.sin(spin)
+  // Opposite rotation at all scales (the merkaba): the lobe advances its major angle
+  // one way and the tube advances its minor angle the other — counter-rotation at
+  // each nested scale. Per lobe the sign flips again, so the two holes spin opposite.
+  const majorAdvance = saveEnergy.value ? 0 : lobeRate * t
+  const minorAdvance = saveEnergy.value ? 0 : tubeRate * t
   // Two heads sweep the train, one each way (the bidirectional fold, live).
   const headF = saveEnergy.value ? -1 : (t / data.tempoMs) % data.count
   const headR = saveEnergy.value ? -1 : data.count - headF
@@ -181,17 +186,14 @@ function draw(t: number) {
   }
 
   const points = data.coordinates.map((c) => {
-    // First the merkaba spin: rotate each lobe about its own hole axis (the z axis
-    // through its centre), opposite direction per lobe (c.lobe is -1 / +1). Then
-    // tumble the whole assembly analogue in all directions: about X (pitch), then
-    // Y (yaw), then Z (roll). The composition moves the surface everywhere.
-    const localX = c.x - c.cx
-    const swung = sinS * c.lobe
-    const mx = c.cx + localX * cosS - c.y * swung
-    const my = localX * swung + c.y * cosS
-    const x1 = mx
-    const y1 = my * cosX - c.z * sinX
-    const z1 = my * sinX + c.z * cosX
+    // Recompute the surface point with the merkaba advances: the lobe's major angle
+    // and the tube's minor angle each turn, opposite per lobe (c.lobe is -1 / +1)
+    // and opposite scale-to-scale. Then tumble the whole assembly analogue in all
+    // directions: about X (pitch), then Y (yaw), then Z (roll).
+    const p = doubleTorusSurface(c.theta + c.lobe * majorAdvance, c.phi + c.lobe * minorAdvance, c.digit, c.lobe)
+    const x1 = p.x
+    const y1 = p.y * cosX - p.z * sinX
+    const z1 = p.y * sinX + p.z * cosX
     const x2 = x1 * cosY + z1 * sinY
     const z2 = -x1 * sinY + z1 * cosY
     const rx = x2 * cosZ - y1 * sinZ

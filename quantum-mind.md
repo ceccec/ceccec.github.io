@@ -56,6 +56,8 @@ head:
 
 <QuantumProofs />
 
+<Merkaba />
+
 ## 0. Payload
 
 ```text

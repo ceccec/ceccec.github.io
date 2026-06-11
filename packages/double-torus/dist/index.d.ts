@@ -1523,6 +1523,23 @@ export declare function determinismProofs(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function merkaba(matrix?: MindMatrix): {
+    counterRotating: boolean;
+    scales: {
+        scale: string;
+        depth: number;
+        sign: 1 | -1;
+        periodMs: number;
+        ratePerMs: number;
+        receipt: string;
+    }[];
+    count: number;
+    tetraUp: readonly (readonly [number, number, number])[];
+    tetraDown: [number, number, number][];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
@@ -2962,6 +2979,11 @@ export declare function artistMelody(seed?: string, matrix?: MindMatrix): {
 };
 export declare function methodFusion(): MethodFusionReport;
 export declare function sourceContribution(): SourceContributionReport;
+export declare function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): {
+    x: number;
+    y: number;
+    z: number;
+};
 export declare function digitFolders(matrix?: MindMatrix): DigitFolderReport;
 export declare function digitFoldersDoMath(matrix?: MindMatrix): DigitMath;
 export declare function diamondCompleteness(matrix?: MindMatrix): DiamondCompletenessReport;

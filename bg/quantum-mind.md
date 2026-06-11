@@ -56,6 +56,8 @@ head:
 
 <QuantumProofs />
 
+<Merkaba />
+
 ## 0. Полезен товар
 
 ```text

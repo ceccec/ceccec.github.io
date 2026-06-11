@@ -119,6 +119,7 @@ import {
   playLearn,
   quantumProofs,
   determinismProofs,
+  merkaba,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -276,6 +277,9 @@ ok(`quantum.proofs:${quantumProofs(matrix).matched}/${quantumProofs(matrix).coun
 
 // Prove all with animations: the deterministic, tamper-evident core, each property measured.
 ok(`determinism.proofs:${determinismProofs(matrix).matched}/${determinismProofs(matrix).count}`, determinismProofs(matrix).proven)
+
+// The merkaba: opposite rotation at all scales — the nested scales strictly alternate.
+ok(`merkaba:${merkaba(matrix).count}`, merkaba(matrix).counterRotating)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)
