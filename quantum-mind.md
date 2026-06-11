@@ -54,6 +54,8 @@ head:
 
 <QuantumSimulation />
 
+<QuantumProofs />
+
 ## 0. Payload
 
 ```text

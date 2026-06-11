@@ -117,6 +117,7 @@ import {
   solutions,
   quantumSolutions,
   playLearn,
+  quantumProofs,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -268,6 +269,9 @@ ok(`quantum.solutions:${quantumSolutions(matrix).count}`, quantumSolutions(matri
 
 // Kids like to learn playing: a word maps to coloured, sounding tiles, deterministically.
 ok(`play.learn:${playLearn().count}`, playLearn().playable && playLearn('Mia').root === playLearn('Mia').root)
+
+// All quantum science proven in animation: each principle's measured value meets theory.
+ok(`quantum.proofs:${quantumProofs(matrix).matched}/${quantumProofs(matrix).count}`, quantumProofs(matrix).proven)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

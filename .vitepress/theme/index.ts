@@ -45,6 +45,7 @@ import QuantumFold3D from './components/QuantumFold3D.vue'
 import RealtimeChat from './components/RealtimeChat.vue'
 import QAEquilibrium from './components/QAEquilibrium.vue'
 import QuantumPhysics from './components/QuantumPhysics.vue'
+import QuantumProofs from './components/QuantumProofs.vue'
 import QuantumSimulation from './components/QuantumSimulation.vue'
 import QuantumSolutions from './components/QuantumSolutions.vue'
 import QuantumPlasma from './components/QuantumPlasma.vue'
@@ -134,6 +135,7 @@ export default {
     app.component('QuantumFold3D', QuantumFold3D)
     app.component('QAEquilibrium', QAEquilibrium)
     app.component('QuantumPhysics', QuantumPhysics)
+    app.component('QuantumProofs', QuantumProofs)
     app.component('QuantumSimulation', QuantumSimulation)
     app.component('QuantumSolutions', QuantumSolutions)
     app.component('QuantumPlasma', QuantumPlasma)
