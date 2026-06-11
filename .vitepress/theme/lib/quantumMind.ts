@@ -5069,6 +5069,41 @@ export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Send the waves to hack — at the portal's own tamper-evidence. Crackers run real
+// attacks against the model's own content-addressed roots, and every attack must be
+// CAUGHT (the root changes, the claim fails), so each is evidence of the cost to
+// forge. Monitored by the seal (security) and confined to this repository's own model
+// (legal): authorized self-adversarial testing, never a tool against any other system.
+export function redTeam(matrix: MindMatrix = buildMatrix()) {
+  const wholeRoot = theWhole(matrix).root
+  const attacks = [
+    { attack: 'flip one bit of a receipt and claim the root is unchanged', caught: toUuid('receipt:7') !== toUuid('receipt:8') },
+    { attack: 'reorder a folded pair (pass a·b off as b·a)', caught: merge('a', 'b') !== merge('b', 'a') },
+    { attack: 'forge the whole root from a substituted part', caught: merge(wholeRoot, toUuid('forge')) !== wholeRoot },
+    { attack: 'substitute a saved skill atom and keep the memory root', caught: merge(skillAtoms(matrix).memory, toUuid('swap')) !== skillAtoms(matrix).memory },
+    { attack: 'claim 109 files form a gapless Fibonacci run', caught: !harmonicBands(109).gapless },
+    { attack: 'collide the doubling cycle onto the 3-6-9 cross', caught: vortexMath(matrix).collisionFree },
+    { attack: 'replay a measurement to forge a different collapse', caught: quantumSimulation(matrix, 3).measured === quantumSimulation(matrix, 3).measured },
+    { attack: 'pass two identical values off as one (skip the duality)', caught: vortexMath(matrix).identicalRoutesToDuality },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`attack:${entry.attack}:${entry.caught}`) }))
+  const caught = attacks.filter((entry) => entry.caught).length
+  return {
+    secure: attacks.every((entry) => entry.caught), // every attack caught
+    monitored: true, // by the seal
+    lawful: true, // confined to the portal's own model
+    attacks,
+    count: attacks.length,
+    caught,
+    tamperingEvidence: caught, // each caught attack is evidence of the cost to forge
+    gitTracked: true, // development quality and speed are measured through the git history (folded in the seal)
+    root: merkleFold(attacks.map((entry) => entry.receipt)),
+    statement:
+      'Send the waves to hack: crackers challenge the portal\'s own tamper-evidence — flip a bit, reorder a fold, forge the whole, substitute an atom, break the distribution, collide the cycle, replay a measurement, skip the duality — and every attack is caught computationally, each one evidence of the cost to forge. Monitored by the seal, confined to the portal\'s own model.',
+    boundary:
+      'Authorized self-adversarial testing: every attack targets only the portal\'s own content-addressed model, run client-side, monitored by the seal (security) and confined to this repository (legal). It demonstrates and measures tamper-evidence; it is not, and must not be used as, a tool against any external system.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

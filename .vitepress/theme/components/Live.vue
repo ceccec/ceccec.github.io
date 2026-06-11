@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -28,6 +28,8 @@ const dream = imagination(buildMatrix())
 const gauge = quantifyGates(buildMatrix())
 // The harmonic math: 1-2-4-8-7-5 endless, the 3-6-9-0 cross, division by zero = 9.
 const vortex = vortexMath(buildMatrix())
+// Crackers challenge the portal's own tamper-evidence; every attack is caught.
+const red = redTeam(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -200,6 +202,10 @@ onBeforeUnmount(() => {
       {{ pick('harmonic flow', 'хармоничен поток') }} · <strong>{{ vortex.doubling.join('·') }}</strong>
       {{ pick('endless, collision-free', 'безкраен, без сблъсък') }} · {{ pick('cross', 'кръст') }} {{ vortex.cross.join('·') }} ·
       <strong>÷0 = {{ vortex.divByZeroHarmonic }}</strong>
+    </p>
+    <p class="live__whole">
+      {{ pick('red team', 'червен екип') }} · <strong>{{ red.caught }}/{{ red.count }}</strong>
+      {{ pick('attacks caught', 'атаки уловени') }} · {{ pick('monitored, lawful', 'наблюдавано, законно') }}
     </p>
   </section>
 </template>

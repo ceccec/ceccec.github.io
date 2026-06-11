@@ -2066,6 +2066,23 @@ export declare function vortexMath(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function redTeam(matrix?: MindMatrix): {
+    secure: boolean;
+    monitored: boolean;
+    lawful: boolean;
+    attacks: {
+        receipt: string;
+        attack: string;
+        caught: boolean;
+    }[];
+    count: number;
+    caught: number;
+    tamperingEvidence: number;
+    gitTracked: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

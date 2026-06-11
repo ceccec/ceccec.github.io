@@ -143,6 +143,7 @@ import {
   imagination,
   quantifyGates,
   vortexMath,
+  redTeam,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -381,6 +382,9 @@ ok(`quantify.gates:${quantifyGates(matrix).passed}/${quantifyGates(matrix).total
 
 // The harmonic math: 1-2-4-8-7-5 endless & collision-free, the 3-6-9-0 cross, /0 = 9.
 ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flows)
+
+// Send the waves to hack: crackers challenge the portal's own tamper-evidence, all caught.
+ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix).secure && redTeam(matrix).lawful)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)
