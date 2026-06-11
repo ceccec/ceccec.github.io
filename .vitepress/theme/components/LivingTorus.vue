@@ -20,12 +20,16 @@ let lastHead = -1
 // clicks send ripples (and one through the opposite, merging the pair), and each
 // interaction folds — content-addressed — into a running root.
 type Pt = { c: typeof data.coordinates[number]; sx: number; sy: number }
-const ripples: { x: number; y: number; t0: number }[] = []
+const ripples: { x: number; y: number; t0: number; peer?: boolean }[] = []
 let nearPoint: Pt | null = null
 let oppositePoint: Pt | null = null
 let interactionRoot = toUuid('living-interactions:genesis')
 const interactions = ref(0)
 const mergedRoot = ref('')
+// All connected users interact: a same-origin channel carries each interaction to
+// every other open tab/window, where it ripples and merges too. Zero network.
+let channel: BroadcastChannel | null = null
+const pendingPeer: number[] = []
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const wrap = ref<HTMLDivElement | null>(null)
@@ -118,6 +122,15 @@ function draw(t: number) {
     p.glow = Math.min(1.7, p.glow + extra)
   }
   for (let i = ripples.length - 1; i >= 0; i -= 1) if (t - ripples[i].t0 > 1500) ripples.splice(i, 1)
+  // A peer's interaction (from another tab) ripples here too — placed at its
+  // coordinate's current position on this surface.
+  if (pendingPeer.length) {
+    for (const idx of pendingPeer) {
+      const pp = points.find((q) => q.c.index === idx)
+      if (pp) ripples.push({ x: pp.sx, y: pp.sy, t0: t, peer: true })
+    }
+    pendingPeer.length = 0
+  }
   points.sort((a, b) => a.persp - b.persp) // painter's order, far first
 
   // The winding train path, faint, connecting each coordinate to the next.
@@ -197,7 +210,8 @@ function draw(t: number) {
   for (const rp of ripples) {
     const age = t - rp.t0
     const fade = Math.max(0, 1 - age / 1500)
-    ctx.strokeStyle = `hsla(272, 85%, 68%, ${0.4 * fade})`
+    // a peer's ripple (another tab) in green, your own in violet
+    ctx.strokeStyle = rp.peer ? `hsla(152, 70%, 50%, ${0.4 * fade})` : `hsla(272, 85%, 68%, ${0.4 * fade})`
     ctx.lineWidth = 1.5
     ctx.beginPath()
     ctx.arc(rp.x, rp.y, age * 0.22, 0, Math.PI * 2)
@@ -232,12 +246,25 @@ function onDown() {
   interactionRoot = merge(interactionRoot, toUuid(`interact:${nearPoint.c.index}:${Math.round(now)}`))
   interactions.value += 1
   mergedRoot.value = interactionRoot
+  channel?.postMessage({ index: nearPoint.c.index }) // merge into every connected tab
 }
 
 onMounted(() => {
   resize()
   ro = new ResizeObserver(() => resize())
   if (wrap.value) ro.observe(wrap.value)
+  // All connected users interact: receive peers' interactions and merge them.
+  if (typeof BroadcastChannel !== 'undefined') {
+    channel = new BroadcastChannel('living-torus-field')
+    channel.onmessage = (event) => {
+      const index = event.data?.index
+      if (typeof index !== 'number') return
+      if (!saveEnergy.value) pendingPeer.push(index)
+      interactionRoot = merge(interactionRoot, toUuid(`peer-interact:${index}:${Math.round(performance.now())}`))
+      interactions.value += 1
+      mergedRoot.value = interactionRoot
+    }
+  }
   if (saveEnergy.value) {
     // Reduced motion / low power: one static frame, no loop — still the whole map.
     requestAnimationFrame((t) => draw(t))
@@ -248,6 +275,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   cancelAnimationFrame(raf)
   ro?.disconnect()
+  channel?.close()
 })
 
 const t = (en: string, b: string) => (bg.value ? b : en)
