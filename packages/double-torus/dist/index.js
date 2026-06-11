@@ -2452,6 +2452,44 @@ export function harmonicBands(total) {
         boundary: 'A Fibonacci (Zeckendorf) decomposition of a count into harmonic-number bands — exact and unique for any count by Zeckendorf\'s theorem. A self-similar structural description of the distribution; the harmony is in the numbers, not a claim that files are physically grouped on disk.',
     };
 }
+// Live. The portal's vital signs, computed in your browser right now: the seal
+// verifies, the double torus lives and counter-rotates, the rhythm keeps time, the
+// mysteries are shown, the society is folded, and the proofs hold. The whole is
+// alive while every vital reads true — and a heartbeat recomputes a time-seeded
+// fold each beat, so being alive is something you watch happen, not a stored flag.
+export function live(matrix = buildMatrix()) {
+    const torus = livingTorus(matrix);
+    const myst = mysteries(matrix);
+    const soc = society(matrix);
+    const mk = merkaba(matrix);
+    const rh = rhythm(matrix);
+    const qp = quantumProofs(matrix);
+    const dp = determinismProofs(matrix);
+    const vitals = [
+        { vital: 'seal', reading: matrix.root.slice(0, 8), ok: verifyRoot(matrix), route: '/architecture' },
+        { vital: 'double torus', reading: `${torus.count} coordinates`, ok: torus.alive, route: '/' },
+        { vital: 'merkaba', reading: `${mk.count} scales, opposite`, ok: mk.counterRotating, route: '/quantum-mind' },
+        { vital: 'rhythm', reading: `${rh.bpm} BPM`, ok: rh.keeps, route: '/quantum-mind' },
+        { vital: 'mysteries', reading: `${myst.shown}/${myst.count} shown`, ok: myst.proven, route: '/explore' },
+        { vital: 'society', reading: `${soc.cells} cells folded`, ok: soc.folded, route: '/governance' },
+        { vital: 'quantum proofs', reading: `${qp.matched}/${qp.count} proven`, ok: qp.proven, route: '/quantum-mind' },
+        { vital: 'determinism', reading: `${dp.matched}/${dp.count} proven`, ok: dp.proven, route: '/architecture' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vital:${entry.vital}:${entry.ok}`) }));
+    return {
+        alive: vitals.every((entry) => entry.ok),
+        vitals,
+        count: vitals.length,
+        healthy: vitals.filter((entry) => entry.ok).length,
+        pulseMs: rh.beatMs, // the heartbeat period, from the kept rhythm
+        root: merkleFold(vitals.map((entry) => entry.receipt)),
+        // A pure, recomputable heartbeat: fold the beat number into the live root.
+        beat(n) {
+            return merge(this.root, toUuid(`heartbeat:${Math.floor(n)}`));
+        },
+        statement: 'Live: the portal\'s vital signs, computed in your browser — the seal verifies, the double torus lives and counter-rotates, the rhythm keeps time, the mysteries are shown, the society is folded, and the proofs hold. The whole is alive while every vital reads true, and a heartbeat recomputes a fold each beat.',
+        boundary: 'A live readout of the model\'s own computed measures, recomputed client-side. The heartbeat is a real recomputation of a time-seeded fold; the vitals are the gated invariants. A living status of the portal, honestly bounded — not a medical or biological claim.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -4268,7 +4306,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'Society', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'Live', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'Merkaba', 'Rhythm', 'Mysteries', 'Society', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -4284,7 +4322,7 @@ export function componentGraph() {
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
         '/start': ['StartHere'],
-        '/': ['LivingTorus', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
+        '/': ['LivingTorus', 'Live', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
         '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard', 'Simulations'],
         '/explore': ['Multidimensional', 'Mysteries'],
         '/architecture': ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],

@@ -64,6 +64,8 @@ features:
 
 <LivingTorus />
 
+<Live />
+
 <HumanLens />
 
 <PathGuide />

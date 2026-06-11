@@ -1,0 +1,212 @@
+<script setup lang="ts">
+import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { buildMatrix, live } from '../lib/quantumMind'
+import { useLocale } from '../lib/useLocale'
+import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+
+// Live: the portal's vital signs, computed in your browser. An EKG heartbeat beats
+// at the kept rhythm; on every beat it recomputes a time-seeded fold (live.beat),
+// so the live root keeps changing — being alive is something you watch happen. The
+// vitals are the gated invariants; the whole reads alive while every one holds.
+const data = live(buildMatrix())
+const { bg, localize, pick } = useLocale()
+const { saveEnergy } = useDeviceEnergy()
+
+const bgVital: Record<string, string> = {
+  seal: 'печат', 'double torus': 'двоен тор', merkaba: 'меркаба', rhythm: 'ритъм',
+  mysteries: 'мистерии', society: 'общество', 'quantum proofs': 'квантови доказателства', determinism: 'детерминизъм',
+}
+const beats = ref(0)
+const liveRoot = ref(data.beat(0))
+const wrap = ref<HTMLDivElement | null>(null)
+const canvas = ref<HTMLCanvasElement | null>(null)
+let raf = 0
+let ro: ResizeObserver | null = null
+let width = 0
+let height = 0
+let dpr = 1
+let lastBeat = -1
+const samples: number[] = []
+let pulse = 0 // current spike envelope
+
+function resize() {
+  if (!canvas.value || !wrap.value) return
+  dpr = Math.min(window.devicePixelRatio || 1, 2)
+  width = wrap.value.clientWidth
+  height = 84
+  canvas.value.width = Math.round(width * dpr)
+  canvas.value.height = Math.round(height * dpr)
+  canvas.value.style.height = `${height}px`
+  if (samples.length === 0) for (let i = 0; i < Math.ceil(width); i += 1) samples.push(0)
+}
+
+function draw(now: number) {
+  const ctx = canvas.value?.getContext('2d')
+  if (!ctx) return
+  // beat detection from the kept rhythm period
+  const beatIndex = Math.floor(now / data.pulseMs)
+  if (beatIndex !== lastBeat) {
+    lastBeat = beatIndex
+    beats.value += 1
+    liveRoot.value = data.beat(beats.value)
+    pulse = 1 // fire a spike
+  }
+  // a sharp EKG-like spike that decays between beats
+  pulse *= 0.82
+  const spike = pulse > 0.06 ? Math.sin(Math.min(1, (1 - pulse) * 6) * Math.PI) * pulse : 0
+  samples.push(spike)
+  while (samples.length > Math.ceil(width)) samples.shift()
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+  ctx.clearRect(0, 0, width, height)
+  const mid = height * 0.55
+  // baseline
+  ctx.strokeStyle = 'rgba(127, 127, 127, 0.9)'
+  ctx.globalAlpha = 0.35
+  ctx.beginPath()
+  ctx.moveTo(0, mid)
+  ctx.lineTo(width, mid)
+  ctx.stroke()
+  ctx.globalAlpha = 1
+  // the trace
+  ctx.strokeStyle = data.alive ? 'hsl(150, 70%, 48%)' : 'hsl(0, 75%, 58%)'
+  ctx.lineWidth = 1.8
+  ctx.lineJoin = 'round'
+  ctx.beginPath()
+  for (let i = 0; i < samples.length; i += 1) {
+    const x = i
+    const y = mid - samples[i] * height * 0.42
+    if (i === 0) ctx.moveTo(x, y)
+    else ctx.lineTo(x, y)
+  }
+  ctx.stroke()
+  // the live head
+  const hx = samples.length - 1
+  const hy = mid - samples[hx] * height * 0.42
+  ctx.fillStyle = data.alive ? 'hsl(150, 80%, 60%)' : 'hsl(0, 80%, 62%)'
+  ctx.beginPath()
+  ctx.arc(hx, hy, 3, 0, Math.PI * 2)
+  ctx.fill()
+}
+
+function loop(now: number) {
+  draw(now)
+  raf = requestAnimationFrame(loop)
+}
+
+onMounted(() => {
+  resize()
+  ro = new ResizeObserver(() => resize())
+  if (wrap.value) ro.observe(wrap.value)
+  if (saveEnergy.value) {
+    // Still alive, just not animated: record one beat so the readout is populated.
+    beats.value = 1
+    liveRoot.value = data.beat(1)
+    requestAnimationFrame((now) => draw(now))
+  } else {
+    raf = requestAnimationFrame(loop)
+  }
+})
+onBeforeUnmount(() => {
+  cancelAnimationFrame(raf)
+  ro?.disconnect()
+})
+</script>
+
+<template>
+  <section class="live dt-card" :class="{ dead: !data.alive }">
+    <header class="live__head">
+      <p class="eyebrow">
+        <span class="live__dot" :class="{ on: data.alive }" aria-hidden="true" />
+        {{ pick('live · the portal’s vital signs, in your browser', 'на живо · жизнените знаци на портала, в браузъра ти') }}
+      </p>
+      <p class="live__score"><strong>{{ data.healthy }}/{{ data.count }}</strong> {{ pick('alive', 'живи') }}</p>
+    </header>
+    <div ref="wrap" class="live__ekg">
+      <canvas ref="canvas" class="live__canvas" role="img" :aria-label="pick('A heartbeat trace', 'Линия на сърдечен ритъм')" />
+    </div>
+    <div class="live__vitals">
+      <a v-for="vital in data.vitals" :key="vital.vital" class="live__vital" :class="{ ok: vital.ok }" :href="localize(vital.route)">
+        <span class="live__pip" aria-hidden="true">{{ vital.ok ? '✓' : '×' }}</span>
+        <span class="live__name">{{ bg ? bgVital[vital.vital] ?? vital.vital : vital.vital }}</span>
+        <span class="live__read">{{ vital.reading }}</span>
+      </a>
+    </div>
+    <p class="live__beat">
+      {{ pick('heartbeat', 'сърдечен ритъм') }} <strong>{{ beats }}</strong> ·
+      {{ data.pulseMs }} ms · <code :title="liveRoot">{{ liveRoot.slice(0, 17) }}…</code>
+    </p>
+  </section>
+</template>
+
+<style scoped>
+.live {
+  margin: 1.5rem 0;
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+}
+.live__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.live__head .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.live__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vp-c-text-3);
+}
+.live__dot.on {
+  background: hsl(150, 70%, 48%);
+  box-shadow: 0 0 0 0 hsla(150, 70%, 48%, 0.6);
+  animation: live-ping 1.6s ease-out infinite;
+}
+@keyframes live-ping {
+  0% { box-shadow: 0 0 0 0 hsla(150, 70%, 48%, 0.55); }
+  100% { box-shadow: 0 0 0 7px hsla(150, 70%, 48%, 0); }
+}
+.live__score { margin: 0; font-size: 0.8rem; color: var(--vp-c-text-2); }
+.live__score strong { color: hsl(150, 65%, 45%); }
+.live.dead .live__score strong { color: hsl(0, 70%, 55%); }
+.live__ekg {
+  margin: 0.5rem 0 0.7rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg);
+  overflow: hidden;
+}
+.live__canvas { display: block; width: 100%; }
+.live__vitals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.4rem;
+}
+.live__vital {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+  text-decoration: none;
+  color: inherit;
+}
+.live__vital:hover { background: var(--vp-c-default-soft); }
+.live__pip { color: var(--vp-c-text-3); font-weight: 800; font-size: 0.78rem; }
+.live__vital.ok .live__pip { color: hsl(150, 65%, 45%); }
+.live__name { font-size: 0.8rem; color: var(--vp-c-text-1); }
+.live__read { margin-left: auto; font-size: 0.72rem; color: var(--vp-c-text-3); }
+.live__beat {
+  margin: 0.7rem 0 0;
+  font-size: 0.78rem;
+  color: var(--vp-c-text-2);
+}
+.live__beat code { font-size: 0.72rem; color: hsl(272, 60%, 60%); }
+</style>

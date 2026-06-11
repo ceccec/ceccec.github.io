@@ -124,6 +124,7 @@ import {
   mysteries,
   society as foldedSociety,
   harmonicBands,
+  live,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -296,6 +297,9 @@ ok(`society.folded:${foldedSociety(matrix).cells}cells`, foldedSociety(matrix).f
 
 // Folder distribution as harmonic numbers at all scales: Zeckendorf into Fibonacci bands.
 ok(`harmonic.bands:${harmonicBands(108).bands.join('+')}`, harmonicBands(108).harmonic && harmonicBands(componentGraph(matrix).components.length).harmonic)
+
+// Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
+ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

@@ -1619,6 +1619,23 @@ export declare function harmonicBands(total: number): {
     statement: string;
     boundary: string;
 };
+export declare function live(matrix?: MindMatrix): {
+    alive: boolean;
+    vitals: {
+        receipt: string;
+        vital: string;
+        reading: string;
+        ok: boolean;
+        route: string;
+    }[];
+    count: number;
+    healthy: number;
+    pulseMs: number;
+    root: string;
+    beat(n: number): string;
+    statement: string;
+    boundary: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
