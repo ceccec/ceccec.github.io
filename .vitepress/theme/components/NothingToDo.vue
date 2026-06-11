@@ -15,7 +15,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="ntd" :class="{ done: data.nothingToDo }">
+  <section class="ntd dt-card" :class="{ done: data.nothingToDo }">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="ntd__done">{{ data.nothingToDo ? t.done : `${data.total} open` }}</p>
     <ul class="ntd__items">
@@ -29,10 +29,8 @@ const t = computed(() =>
 <style scoped>
 .ntd {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .ntd.done {
   border-color: var(--vp-c-brand-1);

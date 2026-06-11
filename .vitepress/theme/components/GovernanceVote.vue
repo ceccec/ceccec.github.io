@@ -56,7 +56,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="governance-vote">
+  <section class="governance-vote dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="governance-vote__rate">
       <label>{{ t.rate }}: {{ rating }}/5
@@ -80,10 +80,8 @@ const t = computed(() =>
 <style scoped>
 .governance-vote {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .governance-vote__rate {
   display: flex;

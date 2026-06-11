@@ -120,7 +120,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="dna">
+  <section class="dna dt-card">
     <p class="eyebrow">{{ bg ? 'ДНК · двойна спирала · до бита' : 'dna · double helix · to the bit' }}</p>
     <canvas ref="canvas" class="dna__canvas" />
     <p class="dna__seq"><code>{{ data.sense }}</code></p>
@@ -131,10 +131,8 @@ const caption = computed(() =>
 <style scoped>
 .dna {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .dna__canvas {
   width: 100%;

@@ -24,7 +24,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="harm">
+  <section class="harm dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="harm__walk-label">{{ t.walk }} · {{ result.distinctStepsVisited }}/{{ result.steps }}</p>
     <ol class="harm__walk">
@@ -48,10 +48,8 @@ const t = computed(() =>
 <style scoped>
 .harm {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .harm__walk-label {
   font-size: 0.74rem;

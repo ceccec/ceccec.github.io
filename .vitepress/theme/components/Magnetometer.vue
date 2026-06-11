@@ -65,7 +65,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="emf">
+  <section class="emf dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="emf__reading">
       <template v-if="status === 'magnetometer' && field">
@@ -96,10 +96,8 @@ const t = computed(() =>
 <style scoped>
 .emf {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .emf__reading {
   text-align: center;

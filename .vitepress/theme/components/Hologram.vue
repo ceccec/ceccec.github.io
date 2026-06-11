@@ -113,7 +113,7 @@ const caption = computed(() => {
 </script>
 
 <template>
-  <section class="holo">
+  <section class="holo dt-card">
     <p class="eyebrow">{{ bg ? 'холограма · 3d+ · до бита' : 'hologram · 3d+ · to the bit' }}</p>
     <canvas ref="canvas" class="holo__canvas" />
     <p class="holo__caption">{{ caption }}</p>
@@ -123,10 +123,8 @@ const caption = computed(() => {
 <style scoped>
 .holo {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .holo__canvas {
   width: 100%;

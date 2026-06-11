@@ -16,7 +16,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="fb">
+  <section class="fb dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="fb__rows">
       <div class="fb__row expand">
@@ -37,10 +37,8 @@ const t = computed(() =>
 <style scoped>
 .fb {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .fb__rows {
   display: flex;

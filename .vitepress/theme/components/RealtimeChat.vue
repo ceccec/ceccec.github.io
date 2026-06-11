@@ -72,7 +72,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="chat">
+  <section class="chat dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="chat__log">
       <article v-for="(m, i) in messages" :key="i" class="chat__msg" :class="{ mine: m.mine }">
@@ -99,10 +99,8 @@ const t = computed(() =>
 <style scoped>
 .chat {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .chat__log {
   display: flex;

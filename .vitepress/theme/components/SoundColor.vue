@@ -16,7 +16,7 @@ function play(frequency: number) {
 </script>
 
 <template>
-  <section class="sc">
+  <section class="sc dt-card">
     <p class="eyebrow">{{ t('colour from sound · one frequency, a note and a hue', 'цвят от звук · една честота, нота и нюанс') }}</p>
     <ul class="sc__swatches">
       <li v-for="color in data.colors" :key="color.receipt">
@@ -39,10 +39,8 @@ function play(frequency: number) {
 <style scoped>
 .sc {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .sc__swatches {
   list-style: none;

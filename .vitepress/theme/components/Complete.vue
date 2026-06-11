@@ -23,7 +23,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="cmp" :class="{ done: data.complete }">
+  <section class="cmp dt-card" :class="{ done: data.complete }">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="cmp__lead">{{ t.lead }}</p>
     <ul class="cmp__checks">
@@ -38,10 +38,8 @@ const t = computed(() =>
 <style scoped>
 .cmp {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .cmp.done {
   border-color: var(--vp-c-brand-1);

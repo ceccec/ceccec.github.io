@@ -18,7 +18,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="reason">
+  <section class="reason dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <input v-model="goal" type="text" :placeholder="t.placeholder" class="reason__input" />
     <ol class="reason__chain">
@@ -36,10 +36,8 @@ const t = computed(() =>
 <style scoped>
 .reason {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .reason__input {
   width: 100%;

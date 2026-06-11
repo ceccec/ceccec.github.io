@@ -36,7 +36,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="seal-all" :class="{ ok: data.sealed }">
+  <section class="seal-all dt-card" :class="{ ok: data.sealed }">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <ol class="seal-all__waves">
       <li v-for="wave in waves" :key="wave.wave" :class="{ ok: wave.ok }">
@@ -55,10 +55,8 @@ const t = computed(() =>
 <style scoped>
 .seal-all {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .seal-all.ok {
   border-color: var(--vp-c-brand-1);

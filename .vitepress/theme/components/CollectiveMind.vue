@@ -86,7 +86,7 @@ const label = computed(() => {
 </script>
 
 <template>
-  <div class="collective-mind" :title="dev.statement" aria-live="polite">{{ label }}</div>
+  <div class="collective-mind dt-card" :title="dev.statement" aria-live="polite">{{ label }}</div>
 </template>
 
 <style scoped>
@@ -97,8 +97,6 @@ const label = computed(() => {
   z-index: 50;
   font-size: 0.68rem;
   color: var(--vp-c-text-3);
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
   border-radius: 999px;
   padding: 0.25rem 0.65rem;
   opacity: 0.85;

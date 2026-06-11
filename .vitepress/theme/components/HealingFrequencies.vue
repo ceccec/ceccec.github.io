@@ -60,7 +60,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="freq">
+  <section class="freq dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="freq__grid">
       <span v-for="entry in data.frequencies" :key="entry.hz" class="freq__cell" :class="{ lead: entry.lead }">
@@ -97,10 +97,8 @@ const t = computed(() =>
 <style scoped>
 .freq {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .freq__grid {
   display: grid;

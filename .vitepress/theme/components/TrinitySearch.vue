@@ -20,7 +20,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="ts">
+  <section class="ts dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <input v-model="query" type="text" :placeholder="t.placeholder" class="ts__input" />
     <template v-if="query.length">
@@ -44,10 +44,8 @@ const t = computed(() =>
 <style scoped>
 .ts {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .ts__input {
   width: 100%;

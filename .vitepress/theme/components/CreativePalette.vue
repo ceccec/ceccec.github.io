@@ -33,7 +33,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="palette">
+  <section class="palette dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <label class="palette__seed">{{ t.seedLabel }}:
       <input v-model="seed" type="text" spellcheck="false" />
@@ -59,10 +59,8 @@ const t = computed(() =>
 <style scoped>
 .palette {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .palette__seed {
   display: inline-flex;

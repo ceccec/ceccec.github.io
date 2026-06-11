@@ -42,7 +42,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="human">
+  <section class="human dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="human__lead">{{ t.lead }}</p>
     <ul class="human__list">
@@ -57,10 +57,8 @@ const t = computed(() =>
 <style scoped>
 .human {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .human__lead {
   margin: 0.2rem 0 0.9rem;

@@ -95,7 +95,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="seal" :class="{ pulse: pulsing, ok: verified }">
+  <section class="seal dt-card" :class="{ pulse: pulsing, ok: verified }">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="seal__grid">
       <article><span>{{ t.entropy }}</span><strong>{{ ent }}</strong></article>
@@ -135,10 +135,8 @@ const t = computed(() =>
 <style scoped>
 .seal {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .seal.ok {

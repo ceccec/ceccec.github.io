@@ -21,7 +21,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="wc">
+  <section class="wc dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="wc__tested">{{ test.tested ? '✓ ' : '' }}{{ t.tested }}</p>
     <div class="wc__stream">
@@ -43,10 +43,8 @@ const t = computed(() =>
 <style scoped>
 .wc {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .wc__tested {
   margin: 0.2rem 0 0.7rem;

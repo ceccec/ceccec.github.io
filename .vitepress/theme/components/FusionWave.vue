@@ -111,7 +111,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="fuse">
+  <section class="fuse dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <canvas ref="canvas" class="fuse__canvas" />
     <p class="fuse__summary">{{ data.count }} {{ t.parts }} → {{ t.wave }}: <code>{{ data.wave.slice(0, 13) }}…</code></p>
@@ -122,10 +122,8 @@ const t = computed(() =>
 <style scoped>
 .fuse {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .fuse__canvas {
   width: 100%;

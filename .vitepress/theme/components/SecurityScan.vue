@@ -17,7 +17,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="sec">
+  <section class="sec dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="sec__lead">{{ t.lead }}</p>
     <div v-for="tier in tiers" :key="tier.tier" class="sec__tier">
@@ -33,10 +33,8 @@ const t = computed(() =>
 <style scoped>
 .sec {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .sec__lead {
   margin: 0.2rem 0 0.7rem;

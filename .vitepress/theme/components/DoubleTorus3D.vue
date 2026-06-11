@@ -204,7 +204,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="dt3d">
+  <section class="dt3d dt-card">
     <p class="eyebrow">{{ bg ? 'двоен тор · повърхност · 3d 5d 8d' : 'double torus · surface · 3d 5d 8d' }}</p>
     <div class="dt3d__dims">
       <button
@@ -223,10 +223,8 @@ const caption = computed(() =>
 <style scoped>
 .dt3d {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .dt3d__dims {
   display: flex;

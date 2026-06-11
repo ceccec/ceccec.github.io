@@ -982,3 +982,14 @@ code {
 html[data-mode='simple'] .simple-only { display: revert; }
 html[data-mode='simple'] .rich-only { display: none !important; }
 
+/* -----------------------------------------------------------------------------
+ * The flat card — the panel surface repeated by almost every component. The two
+ * identical declarations (a divider border and the soft background) live here
+ * once; components keep only their own radius, padding, and margin. Add .dt-card
+ * to a component's root element instead of re-declaring these two lines.
+ * -------------------------------------------------------------------------- */
+.dt-card {
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+}
+

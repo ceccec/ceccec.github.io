@@ -64,7 +64,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="sign">
+  <section class="sign dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <template v-if="supported">
       <ol class="sign__steps">
@@ -89,10 +89,8 @@ const t = computed(() =>
 <style scoped>
 .sign {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .sign__steps {
   margin: 0.3rem 0 0.7rem;

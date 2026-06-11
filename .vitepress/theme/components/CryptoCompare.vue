@@ -36,7 +36,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="crypto">
+  <section class="crypto dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="crypto__banner">
       <span class="crypto__tag crypto__tag--no">{{ t.crypto }}: {{ t.no }}</span>
@@ -59,10 +59,8 @@ const t = computed(() =>
 <style scoped>
 .crypto {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .crypto__banner {
   display: flex;

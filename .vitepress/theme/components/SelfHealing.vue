@@ -30,7 +30,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="heal">
+  <section class="heal dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <ul class="heal__waves">
       <li v-for="wave in waves" :key="wave.wound" :class="{ ok: wave.balanced && wave.settled }">
@@ -52,10 +52,8 @@ const t = computed(() =>
 <style scoped>
 .heal {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .heal__waves {
   list-style: none;

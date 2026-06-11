@@ -188,7 +188,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="fold3d">
+  <section class="fold3d dt-card">
     <p class="eyebrow">{{ bg ? 'квантово сгъване · 3d+' : 'quantum folding · 3d+' }}</p>
     <canvas ref="canvas" class="fold3d__canvas" />
     <p class="fold3d__caption">{{ caption }}</p>
@@ -198,10 +198,8 @@ const caption = computed(() =>
 <style scoped>
 .fold3d {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .fold3d__canvas {
   width: 100%;

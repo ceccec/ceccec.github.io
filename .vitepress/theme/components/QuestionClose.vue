@@ -28,7 +28,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="qc">
+  <section class="qc dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="qc__lead">{{ t.lead }}</p>
     <div class="qc__stats">
@@ -44,10 +44,8 @@ const t = computed(() =>
 <style scoped>
 .qc {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .qc__lead {
   margin: 0.2rem 0 0.7rem;

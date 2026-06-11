@@ -38,7 +38,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="cos">
+  <section class="cos dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="cos__grid">
       <article v-for="d in domains" :key="d.key" class="cos__card" :class="{ belief: d.belief }">
@@ -60,10 +60,8 @@ const t = computed(() =>
 <style scoped>
 .cos {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .cos__grid {
   display: grid;

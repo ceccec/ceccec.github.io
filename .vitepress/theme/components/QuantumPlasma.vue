@@ -113,7 +113,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="plasma">
+  <section class="plasma dt-card">
     <p class="eyebrow">{{ bg ? 'квантова плазма · удържана от битове' : 'quantum plasma · contained by bits' }}</p>
     <canvas ref="canvas" class="plasma__canvas" />
     <p class="plasma__caption">{{ caption }}</p>
@@ -123,10 +123,8 @@ const caption = computed(() =>
 <style scoped>
 .plasma {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .plasma__canvas {
   width: 100%;

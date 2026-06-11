@@ -50,7 +50,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="dual">
+  <section class="dual dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="dual__lead">{{ t.lead }}</p>
     <div v-for="group in tiers" :key="group.tier" class="dual__tier">
@@ -70,10 +70,8 @@ const t = computed(() =>
 <style scoped>
 .dual {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .dual__lead {
   margin: 0.2rem 0 0.8rem;

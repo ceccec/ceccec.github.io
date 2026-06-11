@@ -32,7 +32,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="pi-music">
+  <section class="pi-music dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="pi-music__row">
       <label>{{ t.join }}: {{ horo }}
@@ -51,10 +51,8 @@ const t = computed(() =>
 <style scoped>
 .pi-music {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .pi-music__row {
   display: flex;

@@ -68,7 +68,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="md">
+  <section class="md dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="md__tabs" role="tablist" :aria-label="t.eyebrow">
       <button
@@ -94,10 +94,8 @@ const t = computed(() =>
 <style scoped>
 .md {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .md__tabs {
   display: flex;

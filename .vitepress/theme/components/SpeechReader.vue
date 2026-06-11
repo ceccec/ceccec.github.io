@@ -164,7 +164,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="speech">
+  <section class="speech dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <template v-if="supported">
       <div class="speech__row">
@@ -210,10 +210,8 @@ const t = computed(() =>
 <style scoped>
 .speech {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .speech__row {
   display: flex;

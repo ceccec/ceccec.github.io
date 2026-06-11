@@ -31,7 +31,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="chain-music">
+  <section class="chain-music dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="chain-music__row">
       <label>{{ t.chain }}:
@@ -52,10 +52,8 @@ const t = computed(() =>
 <style scoped>
 .chain-music {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .chain-music__row {
   display: flex;

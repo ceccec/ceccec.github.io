@@ -36,7 +36,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="consult">
+  <section class="consult dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="consult__flow">{{ t.flow }}</p>
     <input v-model="query" type="text" :placeholder="t.placeholder" class="consult__input" />
@@ -62,10 +62,8 @@ const t = computed(() =>
 <style scoped>
 .consult {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .consult__flow {
   font-size: 0.74rem;

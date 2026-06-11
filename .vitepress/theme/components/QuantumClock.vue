@@ -41,7 +41,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="clock">
+  <section class="clock dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="clock__face" :style="{ borderColor: clock.hsl }">
       <span class="clock__note" :style="{ color: clock.hsl }">{{ clock.note }}</span>
@@ -56,10 +56,8 @@ const t = computed(() =>
 <style scoped>
 .clock {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .clock__face {
   display: flex;

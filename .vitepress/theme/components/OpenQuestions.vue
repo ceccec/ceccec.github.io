@@ -37,7 +37,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="oq">
+  <section class="oq dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="oq__lead">{{ t.lead }}</p>
     <ul class="oq__list">
@@ -53,10 +53,8 @@ const t = computed(() =>
 <style scoped>
 .oq {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .oq__lead {
   margin: 0.2rem 0 0.8rem;

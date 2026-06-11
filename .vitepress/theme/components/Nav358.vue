@@ -38,7 +38,7 @@ const t = computed(() => (bg.value ? { eyebrow: 'навигация · 3-5-8', t
 </script>
 
 <template>
-  <section class="nav358">
+  <section class="nav358 dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="nav358__tiers">
       <div v-for="tier in data.tiers" :key="tier.tier" class="nav358__tier">
@@ -57,10 +57,8 @@ const t = computed(() => (bg.value ? { eyebrow: 'навигация · 3-5-8', t
 <style scoped>
 .nav358 {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .nav358__tiers {
   display: grid;

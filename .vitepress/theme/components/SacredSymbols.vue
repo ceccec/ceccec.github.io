@@ -43,7 +43,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="sacred-symbols" :class="{ animated }">
+  <section class="sacred-symbols dt-card" :class="{ animated }">
     <div class="sacred-symbols__head">
       <div>
         <p class="eyebrow">{{ t.title }}</p>
@@ -94,10 +94,8 @@ const t = computed(() =>
 <style scoped>
 .sacred-symbols {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .sacred-symbols__head {
   display: flex;

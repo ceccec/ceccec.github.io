@@ -24,7 +24,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="qae">
+  <section class="qae dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="qae__triptych">
       <div class="qae__side answers">
@@ -49,10 +49,8 @@ const t = computed(() =>
 <style scoped>
 .qae {
   margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   padding: 1.2rem 1.4rem;
-  background: var(--vp-c-bg-soft);
 }
 .qae__triptych {
   display: grid;

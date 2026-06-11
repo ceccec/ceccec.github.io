@@ -17,7 +17,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="eq">
+  <section class="eq dt-card">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="eq__lead">{{ t.lead }}</p>
     <div class="eq__chart">
@@ -42,10 +42,8 @@ const t = computed(() =>
 <style scoped>
 .eq {
   margin: 1.25rem 0;
-  border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  background: var(--vp-c-bg-soft);
 }
 .eq__lead {
   margin: 0.2rem 0 0.8rem;
