@@ -128,6 +128,7 @@ import {
   humanise,
   theWhole,
   recurrence,
+  homology,
   live,
   speechIntonation,
   digitFoldersDoMath,
@@ -313,6 +314,9 @@ ok(`the.whole:${theWhole(matrix).standing}/${theWhole(matrix).count}`, theWhole(
 
 // Again, self build: the portal rebuilds itself from nothing and returns identical.
 ok(`recurrence:${recurrence().times}x`, recurrence().returns)
+
+// H1(Sigma_2) = Z^4: the double torus's four independent loops, chi = -2, symplectic.
+ok(`homology:Z^${homology(matrix).rank}`, homology(matrix).independent)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

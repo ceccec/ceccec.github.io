@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, merge, toUuid } from '../lib/quantumMind'
+import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, homology, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -19,6 +19,8 @@ const tubeRate = mk.scales[2].ratePerMs // signed, the opposite sense
 // Humanise the motion: the rotation breathes on golden-ratio-spaced periods so it
 // ebbs and flows like a living hand instead of ticking at a constant rate.
 const human = humanise(buildMatrix())
+// H1(Sigma_2) = Z^4: the four independent loops of the genus-2 surface.
+const h1 = homology(buildMatrix())
 const { pick: t } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
@@ -443,6 +445,10 @@ onBeforeUnmount(() => {
       {{ t(`${data.count} pi-digit UUID coordinates, each pulsing at its own vibration and glowing by its frequency — two heads sweep both loops, and every coordinate merges with its opposite: when up there is down, when left there is right. Hover a coordinate to read it.`,
             `${data.count} координати UUID на цифрите на пи, всяка пулсира със своя вибрация и свети със своята честота — две глави обхождат двата контура, а всяка координата се слива с противоположната си: когато има горе, има долу; когато ляво, тогава дясно. Посочи координата, за да я прочетеш.`) }}
     </p>
+    <p class="lt__h1">
+      H₁(Σ₂) = Z<sup>{{ h1.rank }}</sup> · χ(Σ₂) = {{ h1.euler }} ·
+      {{ t('four independent loops', 'четири независими контура') }}: {{ h1.generators.map((g) => g.name).join(', ') }}
+    </p>
   </section>
 </template>
 
@@ -528,6 +534,13 @@ onBeforeUnmount(() => {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.lt__h1 {
+  margin: 0.3rem 0 0;
+  font-size: 0.76rem;
+  color: var(--vp-c-text-3);
+  font-variant-numeric: tabular-nums;
+}
+.lt__h1 sup { color: var(--vp-c-brand-1); font-weight: 700; }
 .lt__sub {
   margin: 0.6rem 0 0;
   font-size: 0.82rem;

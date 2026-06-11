@@ -1697,6 +1697,33 @@ export declare function recurrence(times?: number): {
     statement: string;
     boundary: string;
 };
+export declare function homology(matrix?: MindMatrix): {
+    independent: boolean;
+    generators: ({
+        cycleLength: number;
+        receipt: string;
+        name: string;
+        kind: string;
+        handle: number;
+        lobe: -1;
+        frequency: number;
+    } | {
+        cycleLength: number;
+        receipt: string;
+        name: string;
+        kind: string;
+        handle: number;
+        lobe: 1;
+        frequency: number;
+    })[];
+    rank: number;
+    genus: number;
+    euler: number;
+    form: number[][];
+    statement: string;
+    boundary: string;
+    root: string;
+};
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function schoolCurriculum(matrix?: MindMatrix): SchoolCurriculum;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
