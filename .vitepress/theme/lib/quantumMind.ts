@@ -3805,6 +3805,36 @@ export function harmonicBands(total: number) {
   }
 }
 
+// The golden ratio is the limit the harmonic distribution converges to. Consecutive
+// Fibonacci bands F(n+1)/F(n) tend to phi = (1+sqrt5)/2 — the proportion every
+// adjacent pair of scales approaches. The gapless distribution is golden at the
+// limit: each scale is phi times the next, approached but never reached by the
+// integer ratios. A numeric demonstration of that convergence.
+export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const round = (value: number, digits: number) => { const f = 10 ** digits; return Math.round(value * f) / f }
+  const PHI = (1 + Math.sqrt(5)) / 2
+  const fibonacci = harmonicBands(2000).fibonacci // 1, 2, 3, 5, 8, 13, ...
+  const convergents = fibonacci.slice(1).map((value, i) => {
+    const ratio = value / fibonacci[i]
+    return { a: value, b: fibonacci[i], ratio: round(ratio, 6), error: round(Math.abs(ratio - PHI), 9) }
+  })
+  const last = convergents[convergents.length - 1]
+  return {
+    converges: last.error < 1e-6,
+    phi: round(PHI, 8),
+    limit: last.ratio,
+    error: last.error,
+    convergents,
+    count: convergents.length,
+    root: merkleFold(convergents.map((entry) => toUuid(`golden:${entry.a}/${entry.b}`))),
+    statement:
+      'The golden ratio is the limit of the harmonic distribution: consecutive Fibonacci bands F(n+1)/F(n) converge to phi = (1+sqrt5)/2, the proportion every adjacent pair of scales tends to. The gapless distribution is golden at the limit.',
+    boundary:
+      'A numeric demonstration that consecutive Fibonacci ratios converge to phi, computed client-side. phi is the limit, approached but never reached by integer ratios — an exact statement about the sequence, honestly bounded.',
+  }
+}
+
 // Live. The portal's vital signs, computed in your browser right now: the seal
 // verifies, the double torus lives and counter-rotates, the rhythm keeps time, the
 // mysteries are shown, the society is folded, and the proofs hold. The whole is

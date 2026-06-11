@@ -1622,6 +1622,22 @@ export declare function harmonicBands(total: number): {
     statement: string;
     boundary: string;
 };
+export declare function goldenRatio(matrix?: MindMatrix): {
+    converges: boolean;
+    phi: number;
+    limit: number;
+    error: number;
+    convergents: {
+        a: number;
+        b: number;
+        ratio: number;
+        error: number;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function live(matrix?: MindMatrix): {
     alive: boolean;
     vitals: {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { harmonicBands } from '../lib/quantumMind'
+import { harmonicBands, goldenRatio } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 
 // Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps.
@@ -9,6 +9,7 @@ import { useLocale } from '../lib/useLocale'
 // This file is itself the one that brought the count to a gapless run.
 const { pick } = useLocale()
 const ladder = harmonicBands(150).fibonacci.slice(0, 9) // 1,2,3,5,8,13,21,34,55
+const golden = goldenRatio() // the limit the bands converge to
 const HUES = [48, 36, 28, 200, 190, 175, 150, 280, 322]
 
 // A golden spiral as chained quarter-arcs, each radius the next Fibonacci number.
@@ -78,6 +79,10 @@ const segments = computed(() => {
             'Every file finds its place on a run of consecutive Fibonacci numbers — adjacent scales, nothing skipped. The distribution is harmonic at all scales, with no gaps; when a count cannot form a gapless run, the build names the deficit to the nearest one that can.',
             'Всеки файл намира мястото си в редица от последователни числа на Фибоначи — съседни мащаби, без прескачане. Разпределението е хармонично на всички мащаби, без празнини; когато броят не образува плътна редица, компилацията назовава дефицита до най-близката, която образува.') }}
         </p>
+        <p class="hs__phi">
+          {{ pick('each scale is φ times the next', 'всеки мащаб е φ пъти следващия') }} ·
+          <strong>F(n+1)/F(n) → φ = {{ golden.phi }}</strong>
+        </p>
       </div>
     </div>
   </section>
@@ -130,6 +135,15 @@ const segments = computed(() => {
   font-size: 0.82rem;
   color: var(--vp-c-text-2);
   line-height: 1.55;
+}
+.hs__phi {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+}
+.hs__phi strong {
+  color: var(--vp-c-brand-1);
+  font-variant-numeric: tabular-nums;
 }
 @media (max-width: 560px) {
   .hs__row { grid-template-columns: 1fr; }
