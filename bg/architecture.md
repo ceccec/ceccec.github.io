@@ -20,6 +20,8 @@ head:
 
 <TamperSeal />
 
+<DeterminismProofs />
+
 ## 0. Символи
 
 ```text

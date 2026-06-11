@@ -9,6 +9,7 @@ import Complete from './components/Complete.vue'
 import Cosmology358 from './components/Cosmology358.vue'
 import CreativePalette from './components/CreativePalette.vue'
 import CryptoCompare from './components/CryptoCompare.vue'
+import DeterminismProofs from './components/DeterminismProofs.vue'
 import DnaHelix from './components/DnaHelix.vue'
 import DoubleTorus3D from './components/DoubleTorus3D.vue'
 import Dualities from './components/Dualities.vue'
@@ -100,6 +101,7 @@ export default {
     app.component('Cosmology358', Cosmology358)
     app.component('CreativePalette', CreativePalette)
     app.component('CryptoCompare', CryptoCompare)
+    app.component('DeterminismProofs', DeterminismProofs)
     app.component('DnaHelix', DnaHelix)
     app.component('DoubleTorus3D', DoubleTorus3D)
     app.component('Dualities', Dualities)

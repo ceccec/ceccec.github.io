@@ -118,6 +118,7 @@ import {
   quantumSolutions,
   playLearn,
   quantumProofs,
+  determinismProofs,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -272,6 +273,9 @@ ok(`play.learn:${playLearn().count}`, playLearn().playable && playLearn('Mia').r
 
 // All quantum science proven in animation: each principle's measured value meets theory.
 ok(`quantum.proofs:${quantumProofs(matrix).matched}/${quantumProofs(matrix).count}`, quantumProofs(matrix).proven)
+
+// Prove all with animations: the deterministic, tamper-evident core, each property measured.
+ok(`determinism.proofs:${determinismProofs(matrix).matched}/${determinismProofs(matrix).count}`, determinismProofs(matrix).proven)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

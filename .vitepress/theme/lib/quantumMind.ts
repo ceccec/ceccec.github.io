@@ -3432,6 +3432,138 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Prove all with animations: the portal's own thesis — deterministic, tamper-
+// evident computation — proven live the same way the quantum science is. Six
+// properties of the content-addressed core, each measured over real hashes and
+// matched to what it must be: determinism, the avalanche effect (tamper-evidence),
+// order sensitivity (genus 2), Merkle inclusion, collision-freedom, and the
+// order-independence of the set fold. The animation makes each visible.
+export function determinismProofs(matrix: MindMatrix = buildMatrix()) {
+  const round = (value: number, digits = 4) => { const f = 10 ** digits; return Math.round(value * f) / f }
+  const SAMPLES = 512
+  const base = 'double-torus:proof:'
+  const hex = (uuid: string) => uuid.replace(/-/g, '')
+  const toBits = (uuid: string) => [...hex(uuid)].flatMap((ch) => { const v = Number.parseInt(ch, 16); return [(v >> 3) & 1, (v >> 2) & 1, (v >> 1) & 1, v & 1] })
+  const strip = (uuid: string) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / 15)
+
+  // 1) Determinism: the same input always yields the same UUID.
+  let identical = 0
+  for (let i = 0; i < SAMPLES; i += 1) { const seed = base + i; if (toUuid(seed) === toUuid(seed)) identical += 1 }
+  const determinism = identical / SAMPLES
+
+  // 2) Avalanche (tamper-evidence): change one character and about half the 128
+  //    output bits flip — a tiny edit is unmissable.
+  let bitChange = 0
+  for (let i = 0; i < SAMPLES; i += 1) {
+    const a = toBits(toUuid(base + i))
+    const b = toBits(toUuid(base + i + '~'))
+    let differ = 0
+    for (let k = 0; k < 128; k += 1) if (a[k] !== b[k]) differ += 1
+    bitChange += differ / 128
+  }
+  const avalanche = bitChange / SAMPLES
+  const exampleA = toBits(toUuid(base + 'demo'))
+  const exampleB = toBits(toUuid(base + 'demo~'))
+  const flipped = exampleA.map((bit, k) => (bit === exampleB[k] ? 0 : 1))
+
+  // 3) Order sensitivity (genus 2): merge(a,b) differs from merge(b,a).
+  let ordered = 0
+  for (let i = 0; i < SAMPLES; i += 1) { const a = base + i; const b = base + (i + 1); if (merge(a, b) !== merge(b, a)) ordered += 1 }
+  const orderSensitivity = ordered / SAMPLES
+  const stripAB = strip(merge(base + 'a', base + 'b'))
+  const stripBA = strip(merge(base + 'b', base + 'a'))
+
+  // 4) Merkle inclusion: every leaf's audit path recomputes the root.
+  const leaves = livingTorus(matrix).coordinates.slice(0, 16).map((coordinate) => coordinate.receipt)
+  let verified = 0
+  for (const leaf of leaves) if (merkleProof(leaves, leaf).verified) verified += 1
+  const inclusion = verified / leaves.length
+  const foldLayers: number[] = []
+  for (let size = leaves.length; size >= 1; size = size === 1 ? 0 : Math.ceil(size / 2)) foldLayers.push(size)
+
+  // 5) Collision-freedom: distinct seeds give distinct UUIDs across the whole set.
+  const ids = livingTorus(matrix).coordinates.map((coordinate) => coordinate.receipt)
+  const uniqueness = new Set(ids).size / ids.length
+  const scatter = ids.slice(0, 36).map((id) => {
+    const h = hex(id)
+    return { x: Number.parseInt(h.slice(0, 3), 16) / 4095, y: Number.parseInt(h.slice(3, 6), 16) / 4095, hue: Number.parseInt(h.slice(6, 9), 16) % 360 }
+  })
+
+  // 6) Set-fold invariance: the same set folds to one root in any order (the fold
+  //    sorts its leaves, so it is a function of the set, not the sequence).
+  const reference = merkleFold(leaves)
+  let invariant = 0
+  const trials = 32
+  for (let i = 0; i < trials; i += 1) {
+    const shuffled = [...leaves].sort((a, b) => (toUuid(`${i}:${a}`) < toUuid(`${i}:${b}`) ? -1 : 1))
+    if (merkleFold(shuffled) === reference) invariant += 1
+  }
+  const setInvariance = invariant / trials
+  const rootStrip = strip(reference)
+
+  const blueprint = [
+    {
+      id: 'determinism', kind: 'twin' as const, same: true,
+      principle: 'Determinism', claim: 'The same input always yields the same UUID — verify by recomputation, not permission.',
+      formula: 'toUuid(x) = toUuid(x), for all x',
+      predicted: 1, measured: round(determinism), tol: 1e-9,
+      stripA: strip(toUuid(base + 'demo')), stripB: strip(toUuid(base + 'demo')), labels: ['run 1', 'run 2'],
+    },
+    {
+      id: 'avalanche', kind: 'avalanche' as const,
+      principle: 'Avalanche (tamper-evidence)', claim: 'Change one character and ~half the 128 output bits flip — any edit is unmissable.',
+      formula: 'mean Hamming(toUuid(x), toUuid(x′)) / 128 ≈ 1/2',
+      predicted: 0.5, measured: round(avalanche), tol: 0.06,
+      bits: flipped, labels: ['128 bits'],
+    },
+    {
+      id: 'order', kind: 'twin' as const, same: false,
+      principle: 'Order sensitivity (genus 2)', claim: 'merge(a,b) differs from merge(b,a): the fold is non-commutative, both directions distinct.',
+      formula: 'merge(a,b) ≠ merge(b,a)',
+      predicted: 1, measured: round(orderSensitivity), tol: 1e-9,
+      stripA: stripAB, stripB: stripBA, labels: ['a·b', 'b·a'],
+    },
+    {
+      id: 'inclusion', kind: 'merkle' as const,
+      principle: 'Merkle inclusion', claim: 'Every leaf carries an audit path that recomputes the root — inclusion provable without trusting the host.',
+      formula: 'fold(path(leaf)) = root',
+      predicted: 1, measured: round(inclusion), tol: 1e-9,
+      layers: foldLayers, labels: [`${leaves.length} leaves`],
+    },
+    {
+      id: 'collision', kind: 'scatter' as const,
+      principle: 'Collision-freedom', claim: 'Distinct seeds give distinct UUIDs across the whole pi-train — no two coordinates share a receipt.',
+      formula: '|{toUuid(s) : s ∈ set}| = |set|',
+      predicted: 1, measured: round(uniqueness), tol: 1e-9,
+      points: scatter, labels: [`${ids.length} ids`],
+    },
+    {
+      id: 'setfold', kind: 'twin' as const, same: true,
+      principle: 'Set-fold invariance', claim: 'The same set folds to one root in any order — the fold is a function of the set, not the sequence.',
+      formula: 'fold(set) independent of order',
+      predicted: 1, measured: round(setInvariance), tol: 1e-9,
+      stripA: rootStrip, stripB: rootStrip, labels: ['order A', 'order B'],
+    },
+  ]
+  const proofs = blueprint.map((proof) => ({
+    ...proof,
+    match: Math.abs(proof.measured - proof.predicted) <= proof.tol,
+    receipt: toUuid(`dproof:${proof.id}:${proof.predicted}:${proof.measured}`),
+  }))
+  return {
+    proven: proofs.every((proof) => proof.match),
+    proofs,
+    count: proofs.length,
+    matched: proofs.filter((proof) => proof.match).length,
+    samples: SAMPLES,
+    root: merkleFold(proofs.map((proof) => proof.receipt)),
+    statement:
+      'Prove all with animations: the portal\'s own thesis, proven live — determinism (same input, same UUID), the avalanche effect (one edit flips half the bits), order sensitivity (merge is non-commutative, genus 2), Merkle inclusion (every leaf recomputes the root), collision-freedom (distinct seeds, distinct UUIDs), and set-fold invariance (the fold is a function of the set).',
+    boundary:
+      'Properties of the content-addressed core measured over real hashes, client-side and deterministically. The hash is a fast non-cryptographic UUID function, so the avalanche and collision-freedom hold for this set and its scale — strong tamper-evidence for the portal, not a cryptographic security guarantee against an adversary.',
+  }
+}
+
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
   const cachedRoot = matrix.root
@@ -5342,7 +5474,7 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'PlayLearn', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'RichOnly', 'SimpleOnly',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutions', 'Solutions', 'DeterminismProofs', 'RichOnly', 'SimpleOnly',
   ]
   // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
   // they count as global utilities (available everywhere) for the placement audit.
@@ -5361,7 +5493,7 @@ export function componentGraph() {
     '/': ['LivingTorus', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358'],
     '/show': ['ShowAll', 'FusionWave', 'WavesOfCreation', 'Complete', 'QuantumDashboard', 'Simulations'],
     '/explore': ['Multidimensional'],
-    '/architecture': ['TamperSeal', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
+    '/architecture': ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
   }
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
