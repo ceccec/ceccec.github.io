@@ -40,7 +40,8 @@ function computePiDigits(count) {
   return digits
 }
 
-const piDigits = computePiDigits(101)
+// 108 — the complete coordinate count (matches PI_TRAIN_DIGITS in the model).
+const piDigits = computePiDigits(108)
 
 mkdirSync(outDir, { recursive: true })
 

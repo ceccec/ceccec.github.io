@@ -27,7 +27,9 @@ function computePiDigits(count) {
     }
     return digits;
 }
-const PI_TRAIN_DIGITS = computePiDigits(101);
+// 108 pi-digit coordinates — the complete count (the sacred 108: chakras x 12,
+// the mala). The train was short of it; this fills the missing coordinates.
+const PI_TRAIN_DIGITS = computePiDigits(108);
 const REQUIRED_DIAMOND_KINDS = [
     'agent',
     'ui',
