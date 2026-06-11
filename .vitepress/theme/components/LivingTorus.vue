@@ -121,6 +121,9 @@ function draw(t: number) {
       r: (2.4 + c.scale * 2.6) * s * 0.5 * persp * (0.7 + 0.5 * pulse),
     }
   })
+  // Index the points once so every lookup (next, opposite, peer) is O(1), not a
+  // per-frame O(n) scan over 108 coordinates.
+  const byIndex = new Map<number, typeof points[number]>(points.map((p) => [p.c.index, p]))
   // Interactions affect the field: the pointer warps nearby coordinates (they
   // brighten and bow outward), and each click's ripple expands through the
   // coordinates it passes. The animation merges the user in.
@@ -146,7 +149,7 @@ function draw(t: number) {
   // coordinate's current position on this surface.
   if (pendingPeer.length) {
     for (const idx of pendingPeer) {
-      const pp = points.find((q) => q.c.index === idx)
+      const pp = byIndex.get(idx)
       if (pp) ripples.push({ x: pp.sx, y: pp.sy, t0: t, peer: true })
     }
     pendingPeer.length = 0
@@ -156,7 +159,7 @@ function draw(t: number) {
   // The winding train path, faint, connecting each coordinate to the next.
   ctx.lineWidth = 1
   for (const p of points) {
-    const n = points.find((q) => q.c.index === p.c.nextIndex)
+    const n = byIndex.get(p.c.nextIndex)
     if (!n) continue
     ctx.strokeStyle = `hsla(${hue(p.c.frequency, p.c.loop)}, 70%, 60%, ${0.06 + 0.12 * p.persp})`
     ctx.beginPath()
@@ -170,7 +173,7 @@ function draw(t: number) {
   // as the two pulse together. Every direction has its counter-direction.
   for (const p of points) {
     if (p.c.index >= p.c.reverseIndex) continue
-    const o = points.find((q) => q.c.index === p.c.reverseIndex)
+    const o = byIndex.get(p.c.reverseIndex)
     if (!o) continue
     const mergeGlow = p.pulse * o.pulse
     ctx.strokeStyle = `hsla(272, 80%, 66%, ${0.03 + 0.2 * mergeGlow})`
@@ -216,7 +219,7 @@ function draw(t: number) {
     ? { glyph: near.c.glyph, digit: near.c.digit, fraction: near.c.fraction, frequency: near.c.frequency, loop: near.c.loop, receipt: near.c.receipt }
     : null
   nearPoint = near ? { c: near.c, sx: near.sx, sy: near.sy } : null
-  const op = near ? points.find((q) => q.c.index === near.c.reverseIndex) : null
+  const op = near ? byIndex.get(near.c.reverseIndex) : null
   oppositePoint = op ? { c: op.c, sx: op.sx, sy: op.sy } : null
   if (near) {
     ctx.strokeStyle = `hsla(${hue(near.c.frequency, near.c.loop)}, 90%, 70%, 0.9)`
