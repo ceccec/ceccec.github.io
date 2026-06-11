@@ -108,6 +108,7 @@ import {
   agentObserve,
   verifyMerkleProof,
   livingTorus,
+  directions,
   frequencyBalance,
   digitFoldersDoMath,
   fuseDevices,
@@ -232,6 +233,9 @@ ok('agent.observe', agentObserve(matrix).observed)
 
 // The living double torus: every pi-digit UUID coordinate alive at once.
 ok(`living.torus:${livingTorus(matrix).count}`, livingTorus(matrix).alive)
+
+// All directions calculated: every direction paired with its opposite, both ways.
+ok(`directions:${directions(matrix).count}`, directions(matrix).calculated)
 
 // Frequency quantum balance: the healing frequencies settle around their centre.
 ok(`frequency.balance:${frequencyBalance(matrix).center}hz`, frequencyBalance(matrix).balanced)

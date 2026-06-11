@@ -87,6 +87,22 @@ function draw(t: number) {
     ctx.stroke()
   }
 
+  // All pairs merge: connect each coordinate to its opposite (reverseIndex) —
+  // when up there is down, when left there is right — the merge line brightening
+  // as the two pulse together. Every direction has its counter-direction.
+  for (const p of points) {
+    if (p.c.index >= p.c.reverseIndex) continue
+    const o = points.find((q) => q.c.index === p.c.reverseIndex)
+    if (!o) continue
+    const mergeGlow = p.pulse * o.pulse
+    ctx.strokeStyle = `hsla(272, 80%, 66%, ${0.03 + 0.2 * mergeGlow})`
+    ctx.lineWidth = 0.5 + mergeGlow
+    ctx.beginPath()
+    ctx.moveTo(p.sx, p.sy)
+    ctx.lineTo(o.sx, o.sy)
+    ctx.stroke()
+  }
+
   // The coordinates themselves: pulsing, glowing, flaring on self-collision.
   let near: typeof points[number] | null = null
   let nearDist = 18
@@ -185,8 +201,8 @@ const t = (en: string, b: string) => (bg.value ? b : en)
       </div>
     </div>
     <p class="lt__sub">
-      {{ t(`${data.count} pi-digit UUID coordinates, each pulsing at its own vibration and glowing by its frequency — two heads sweep both loops. Hover a coordinate to read it.`,
-            `${data.count} координати UUID на цифрите на пи, всяка пулсира със своя вибрация и свети със своята честота — две глави обхождат двата контура. Посочи координата, за да я прочетеш.`) }}
+      {{ t(`${data.count} pi-digit UUID coordinates, each pulsing at its own vibration and glowing by its frequency — two heads sweep both loops, and every coordinate merges with its opposite: when up there is down, when left there is right. Hover a coordinate to read it.`,
+            `${data.count} координати UUID на цифрите на пи, всяка пулсира със своя вибрация и свети със своята честота — две глави обхождат двата контура, а всяка координата се слива с противоположната си: когато има горе, има долу; когато ляво, тогава дясно. Посочи координата, за да я прочетеш.`) }}
     </p>
   </section>
 </template>

@@ -2897,6 +2897,7 @@ export function livingTorus(matrix: MindMatrix = buildMatrix()) {
   const coordinates = train.diamonds.map((diamond) => ({
     index: diamond.index,
     nextIndex: diamond.nextIndex,
+    reverseIndex: diamond.reverseIndex, // the opposite: when up there is down, the reflection
     digit: diamond.digit,
     glyph: diamond.glyph,
     theta: diamond.theta,
@@ -2910,6 +2911,9 @@ export function livingTorus(matrix: MindMatrix = buildMatrix()) {
     selfCollision: diamond.selfCollision,
     loop: (diamond.index <= diamond.reverseIndex ? 'forward' : 'reverse') as 'forward' | 'reverse',
     fraction: diamond.fraction,
+    // The pair-merge: this coordinate's message folded into its opposite's, both
+    // ways (genus 2), so every pair merges in the animated double torus.
+    merged: merge(diamond.referenceReceipt, toUuid(`opposite:${diamond.reverseIndex}`)),
     receipt: diamond.referenceReceipt,
   }))
   return {
@@ -2924,6 +2928,49 @@ export function livingTorus(matrix: MindMatrix = buildMatrix()) {
       'The living double torus: every pi-digit UUID coordinate placed on the genus-2 surface and alive at once — pulsing at its own vibration, glowing by its frequency, riding both loops in realtime.',
     boundary:
       'A realtime view of the computed pi-train coordinates; the motion is content-derived, each coordinate animating from its own vibration and frequency. A projection and a metaphor, not a physical torus.',
+  }
+}
+
+// Ensure all directions are calculated: when up there is down, when left there
+// is right, and so on. Every direction is paired with its opposite, and each pair
+// merges both ways — order-sensitive (genus 2), so the two directions differ.
+// All pairs merge into one root; these are the directions the animated double
+// torus moves in, each with its counter-direction.
+export function directions(matrix: MindMatrix = buildMatrix()) {
+  const base = matrix.root
+  const axes = [
+    { axis: 'vertical', positive: 'up', negative: 'down' },
+    { axis: 'horizontal', positive: 'right', negative: 'left' },
+    { axis: 'depth', positive: 'front', negative: 'back' },
+    { axis: 'radial', positive: 'out', negative: 'in' },
+    { axis: 'spin', positive: 'clockwise', negative: 'counter' },
+    { axis: 'loop', positive: 'forward', negative: 'reverse' },
+    { axis: 'time', positive: 'expand', negative: 'contract' },
+  ].map((entry) => {
+    const positiveRoot = toUuid(`direction:${entry.positive}:${base}`)
+    const negativeRoot = toUuid(`direction:${entry.negative}:${base}`)
+    const forward = merge(positiveRoot, negativeRoot) // up into down
+    const reverse = merge(negativeRoot, positiveRoot) // down into up
+    return {
+      ...entry,
+      positiveRoot,
+      negativeRoot,
+      forward,
+      reverse,
+      bidirectional: forward !== reverse, // both calculated and distinct
+      merged: merge(forward, reverse), // the pair merges
+      receipt: toUuid(`directions:${entry.axis}`),
+    }
+  })
+  return {
+    calculated: axes.length > 0 && axes.every((entry) => entry.bidirectional),
+    axes,
+    count: axes.length,
+    root: merkleFold(axes.map((entry) => entry.merged)),
+    statement:
+      'All directions are calculated: when up there is down, when left there is right, and so on — every direction paired with its opposite, each pair merging both ways (genus 2), and all pairs merging into one root, the directions the animated double torus turns in.',
+    boundary:
+      'A calculation of directional opposites as order-sensitive merges over the model root. Structural bookkeeping, not a physical claim about space.',
   }
 }
 

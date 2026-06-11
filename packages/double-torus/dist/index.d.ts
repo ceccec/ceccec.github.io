@@ -1191,6 +1191,7 @@ export declare function livingTorus(matrix?: MindMatrix): {
     coordinates: {
         index: number;
         nextIndex: number;
+        reverseIndex: number;
         digit: number;
         glyph: string;
         theta: number;
@@ -1204,10 +1205,30 @@ export declare function livingTorus(matrix?: MindMatrix): {
         selfCollision: boolean;
         loop: "forward" | "reverse";
         fraction: string;
+        merged: string;
         receipt: string;
     }[];
     count: number;
     tempoMs: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function directions(matrix?: MindMatrix): {
+    calculated: boolean;
+    axes: {
+        positiveRoot: string;
+        negativeRoot: string;
+        forward: string;
+        reverse: string;
+        bidirectional: boolean;
+        merged: string;
+        receipt: string;
+        axis: string;
+        positive: string;
+        negative: string;
+    }[];
+    count: number;
     root: string;
     statement: string;
     boundary: string;
