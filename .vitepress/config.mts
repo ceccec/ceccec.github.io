@@ -14,6 +14,10 @@ export default defineConfig({
   // page. README.md and AGENTS.md are repo docs, not portal pages — exclude them
   // so they are not built as orphan, crawlable HTML.
   srcExclude: ['packages/**', 'README.md', 'AGENTS.md'],
+  // The model is the standalone agnostic core — deliberately one module, so the
+  // theme chunk is large by design. Raise the warning limit to keep build output
+  // clean while still flagging genuine bloat above the headroom.
+  vite: { build: { chunkSizeWarningLimit: 700 } },
   head: [
     ['meta', { name: 'application-name', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],
