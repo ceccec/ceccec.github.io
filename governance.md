@@ -21,6 +21,8 @@ can rate and approve it — that is the *approval*.
 
 <GovernanceVote />
 
+<QuantumSolutions />
+
 The roles are `rate · vote · approve · monitor`. A ballot is honest because it
 references the exact master seal it judges; if the model changes, old ballots no
 longer match the new seal.

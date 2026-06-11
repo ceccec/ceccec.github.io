@@ -45,6 +45,7 @@ import RealtimeChat from './components/RealtimeChat.vue'
 import QAEquilibrium from './components/QAEquilibrium.vue'
 import QuantumPhysics from './components/QuantumPhysics.vue'
 import QuantumSimulation from './components/QuantumSimulation.vue'
+import QuantumSolutions from './components/QuantumSolutions.vue'
 import QuantumPlasma from './components/QuantumPlasma.vue'
 import QuestionClose from './components/QuestionClose.vue'
 import QuantumMind from './components/QuantumMind.vue'
@@ -132,6 +133,7 @@ export default {
     app.component('QAEquilibrium', QAEquilibrium)
     app.component('QuantumPhysics', QuantumPhysics)
     app.component('QuantumSimulation', QuantumSimulation)
+    app.component('QuantumSolutions', QuantumSolutions)
     app.component('QuantumPlasma', QuantumPlasma)
     app.component('QuestionClose', QuestionClose)
     app.component('RealtimeChat', RealtimeChat)

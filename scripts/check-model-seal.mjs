@@ -115,6 +115,7 @@ import {
   quantumSimulation,
   simulations,
   solutions,
+  quantumSolutions,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -260,6 +261,9 @@ ok(`simulations:${simulations(matrix).running}/${simulations(matrix).count}`, si
 
 // Create solutions: problems mapped to the portal's capabilities.
 ok(`solutions:${solutions(matrix).count}`, solutions(matrix).solved)
+
+// Society already needs quantum solutions: needs answered by quantum capabilities.
+ok(`quantum.solutions:${quantumSolutions(matrix).count}`, quantumSolutions(matrix).ready)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

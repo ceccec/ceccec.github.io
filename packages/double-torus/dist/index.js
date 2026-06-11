@@ -1882,6 +1882,32 @@ export function solutions(matrix = buildMatrix()) {
         boundary: 'A catalogue mapping problems to the portal\'s own capabilities, each a real client-side, content-addressed feature. Honest solutions within the stated bounds, not a claim to solve every instance of each problem.',
     };
 }
+// Society already needs quantum solutions. Each societal need is answered now by
+// a quantum capability the portal already runs — read in the computational sense:
+// verification is collapse, the collective mind is entanglement, the academy is a
+// superposition of learners, provenance is measurement, and balance is coherence.
+// Real client-side, free capabilities mapped to what society needs today.
+export function quantumSolutions(matrix = buildMatrix()) {
+    void matrix;
+    const needs = [
+        { need: 'Trust without a central authority', solution: 'Content-addressed receipts anyone recomputes — verify by use, not by permission.', quantum: 'collapse', route: '/architecture' },
+        { need: 'Coordinate without a server', solution: 'A same-origin collective mind: every connected context folds into one distributed root.', quantum: 'entanglement', route: '/' },
+        { need: 'Equal access to learning', solution: 'A free, offline academy — five recomputable courses and a verifiable credential, at any age.', quantum: 'superposition', route: '/academy' },
+        { need: 'Provenance against misinformation', solution: 'Cite a source by its content hash; the exact version survives even if the host disappears.', quantum: 'measurement', route: '/architecture' },
+        { need: 'Quantum literacy for everyone', solution: 'Run a real quantum circuit in any browser and watch measurement collapse the state.', quantum: 'simulation', route: '/quantum-mind' },
+        { need: 'Privacy by default', solution: 'Everything client-side: no account, no telemetry, nothing sent anywhere.', quantum: 'no observation', route: '/boundaries' },
+        { need: 'Balance, not collapse or runaway', solution: 'Frequencies and the whole settle to equilibrium in damped, self-healing waves.', quantum: 'coherence', route: '/quantum-mind' },
+        { need: 'Inclusive access to information', solution: 'Hear data and read pages aloud — sonification and harmonic speech, on any device.', quantum: 'wave', route: '/commands' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-solution:${entry.need}`) }));
+    return {
+        ready: needs.length >= 8 && needs.every((entry) => entry.solution.length > 0),
+        needs,
+        count: needs.length,
+        root: merkleFold(needs.map((entry) => entry.receipt)),
+        statement: 'Society already needs quantum solutions: trust without authority, coordination without a server, equal learning, provenance, quantum literacy, privacy, balance, and inclusive access — each answered now by a quantum capability the portal already runs, client-side and free.',
+        boundary: 'Societal needs mapped to the portal\'s real capabilities, with the quantum terms read in the computational and structural sense (collapse = verification, entanglement = the collective fold). Honest solutions within their bounds, not a claim that quantum hardware fixes society.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;
@@ -3698,7 +3724,7 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'Solutions', 'RichOnly', 'SimpleOnly',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'Simulations', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumSolutions', 'Solutions', 'RichOnly', 'SimpleOnly',
     ];
     // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
     // they count as global utilities (available everywhere) for the placement audit.
@@ -3710,7 +3736,7 @@ export function componentGraph() {
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/academy': ['QuantumAcademy', 'Professionals', 'Solutions'],
-        '/governance': ['GovernanceVote'],
+        '/governance': ['GovernanceVote', 'QuantumSolutions'],
         '/mcp': ['McpTools'],
         '/learn-developer': ['LearnDeveloper'],
         '/start': ['StartHere'],
