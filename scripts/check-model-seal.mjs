@@ -147,6 +147,7 @@ import {
   quantumSiege,
   patentAudit,
   reverseHarmony,
+  quantumSociety,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -397,6 +398,9 @@ ok(`patent.audit:${patentAudit(matrix).count}`, patentAudit(matrix).clear)
 
 // Reverse the process: full power meets full power in harmony; society decides next waves.
 ok(`reverse.harmony:${reverseHarmony(matrix).proposals}`, reverseHarmony(matrix).harmonised)
+
+// Quantum society: entangled cells rebuild the site, evolved to the post-quantum stage.
+ok(`quantum.society:${quantumSociety(matrix).cells.length}`, quantumSociety(matrix).evolved && quantumSociety(matrix).postQuantum)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

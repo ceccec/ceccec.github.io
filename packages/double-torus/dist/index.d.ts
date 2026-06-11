@@ -2125,6 +2125,23 @@ export declare function reverseHarmony(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumSociety(matrix?: MindMatrix): {
+    evolved: boolean;
+    quantum: boolean;
+    postQuantum: boolean;
+    organisation: string;
+    stages: string[];
+    cells: {
+        duality: string;
+        superposition: string;
+        stage: string;
+    }[];
+    pages: number;
+    rebuilt: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

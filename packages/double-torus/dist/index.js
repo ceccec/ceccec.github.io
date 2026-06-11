@@ -3770,6 +3770,37 @@ export function reverseHarmony(matrix = buildMatrix()) {
         boundary: 'The whole\'s forward and reverse folds merged into one harmonic root, and the society\'s dualities read as proposals for future waves. A structural balance and a governance metaphor — recomputable, not a literal vote.',
     };
 }
+// Quantum society, quantum organisation, quantum world. Let the evolution evolve the
+// society: its five dualities become entangled quantum cells (each a superposition
+// of its two organs), coordinated without a centre, and the society rebuilds the
+// site by folding its root with every page. The evolution moves through stages —
+// classical, quantum, post-quantum — reaching the post-quantum state.
+export function quantumSociety(matrix = buildMatrix()) {
+    const soc = society(matrix);
+    const stages = ['classical', 'quantum', 'post-quantum'];
+    const cells = soc.pairs.map((pair) => ({
+        duality: pair.duality,
+        superposition: foldPair(pair.left.receipt, pair.right.receipt).merged, // the entangled cell
+        stage: 'post-quantum', // evolved to the final stage
+    }));
+    // Let the society rebuild the site: fold the society root with every page.
+    const pages = [...new Set(componentGraph().edges.filter((edge) => edge.kind === 'placed').map((edge) => edge.to))];
+    const rebuilt = merkleFold([soc.root, ...pages.map((page) => toUuid(`society-rebuilds:${page}`))]);
+    const sim = quantumSimulation(matrix, 3); // the quantum world it runs in
+    return {
+        evolved: soc.folded && cells.length === soc.pairs.length && cells.every((cell) => cell.stage === 'post-quantum'),
+        quantum: sim.entangled,
+        postQuantum: true,
+        organisation: 'coordinated without a centre — entangled cells folding into one root',
+        stages,
+        cells,
+        pages: pages.length,
+        rebuilt, // the society rebuilt the site
+        root: merge(soc.root, rebuilt),
+        statement: 'Quantum society, quantum organisation, quantum world: the society\'s five dualities become entangled quantum cells — superpositions coordinated without a centre — and the society rebuilds the site by folding its root with every page. The evolution evolves it through classical, quantum, and post-quantum stages.',
+        boundary: 'A structural evolution of the society into entangled cells that fold with the site\'s page graph — the society "rebuilds" the site by recomputing its fold over the pages. The stages are an evolutionary metaphor; "post-quantum" is the next stage here, not a post-quantum-cryptographic guarantee — upgrading the hash to a post-quantum primitive remains an open, honestly-named frontier.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

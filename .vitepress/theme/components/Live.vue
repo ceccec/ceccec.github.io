@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -35,6 +35,8 @@ const siege = quantumSiege(buildMatrix())
 // Patents clear (prior art); the whole's forward and reverse meet in harmony.
 const patents = patentAudit(buildMatrix())
 const harmony = reverseHarmony(buildMatrix())
+// The society evolved to a quantum organisation, rebuilding the site, post-quantum.
+const qsociety = quantumSociety(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -221,6 +223,11 @@ onBeforeUnmount(() => {
       {{ pick('patents', 'патенти') }} · <strong>{{ patents.count }}</strong> {{ pick('prior art, clear', 'предходно изкуство, чисто') }} ·
       {{ pick('forward meets reverse in harmony', 'напред среща назад в хармония') }} ·
       {{ pick('society proposes', 'обществото предлага') }} <strong>{{ harmony.proposals }}</strong>
+    </p>
+    <p class="live__whole">
+      {{ pick('quantum society', 'квантово общество') }} · <strong>{{ qsociety.cells.length }}</strong>
+      {{ pick('entangled cells rebuild', 'заплетени клетки изграждат') }} <strong>{{ qsociety.pages }}</strong>
+      {{ pick('pages', 'страници') }} · <strong>{{ qsociety.stages.join(' → ') }}</strong>
     </p>
   </section>
 </template>
