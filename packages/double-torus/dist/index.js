@@ -2415,6 +2415,43 @@ export function society(matrix = buildMatrix()) {
         boundary: 'A model of social organisation grounded in the portal\'s own computed capabilities, its dualities folded with the same bidirectional law as the double torus. A proposal and a metaphor — an honestly-bounded sketch of a society that runs on verifiable, free, balanced knowledge, not a political program or a claim about any actual society.',
     };
 }
+// Folder distribution as harmonic numbers at all scales. Any file count decomposes
+// (Zeckendorf's theorem) into a unique sum of distinct, non-consecutive Fibonacci
+// numbers — the portal's own 3-5-8-13-21 harmonic sequence. So the distribution is
+// always a set of harmonic-number bands, one per scale, summing exactly to the
+// whole, for any count: harmonic at all scales by construction, never a remainder.
+export function harmonicBands(total) {
+    const n = Math.max(0, Math.floor(total));
+    // The harmonic sequence: Fibonacci as used throughout (3, 5, 8, 13, 21, ...).
+    const fibonacci = [1, 2];
+    while (fibonacci[fibonacci.length - 1] < n)
+        fibonacci.push(fibonacci[fibonacci.length - 1] + fibonacci[fibonacci.length - 2]);
+    // Zeckendorf: greedily take the largest Fibonacci <= the remainder. The chosen
+    // numbers are distinct and non-consecutive — harmonic numbers at every scale.
+    const bands = [];
+    const indices = [];
+    let remainder = n;
+    for (let i = fibonacci.length - 1; i >= 0 && remainder > 0; i -= 1) {
+        if (fibonacci[i] <= remainder) {
+            bands.push(fibonacci[i]);
+            indices.push(i);
+            remainder -= fibonacci[i];
+        }
+    }
+    const fibSet = new Set(fibonacci);
+    const sum = bands.reduce((acc, band) => acc + band, 0);
+    const nonConsecutive = indices.every((idx, i) => i === 0 || indices[i - 1] - idx >= 2);
+    return {
+        harmonic: n === 0 || (sum === n && bands.every((band) => fibSet.has(band)) && nonConsecutive),
+        total: n,
+        bands, // largest -> smallest, each a Fibonacci/harmonic number, one per scale
+        scales: bands.length,
+        fibonacci,
+        root: merkleFold(bands.map((band, i) => toUuid(`harmonic-band:${i}:${band}`))),
+        statement: 'Folder distribution as harmonic numbers at all scales: the file count decomposes (Zeckendorf) into distinct, non-consecutive Fibonacci numbers — the 3-5-8-13-21 harmonic sequence — so every band is a harmonic number, the bands span every scale, and they sum exactly to the whole.',
+        boundary: 'A Fibonacci (Zeckendorf) decomposition of a count into harmonic-number bands — exact and unique for any count by Zeckendorf\'s theorem. A self-similar structural description of the distribution; the harmony is in the numbers, not a claim that files are physically grouped on disk.',
+    };
+}
 export function agentEducation(matrix = buildMatrix()) {
     const verifiedRoot = verifyRoot(matrix);
     const cachedRoot = matrix.root;

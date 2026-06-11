@@ -123,6 +123,7 @@ import {
   rhythm,
   mysteries,
   society as foldedSociety,
+  harmonicBands,
   speechIntonation,
   digitFoldersDoMath,
   fuseDevices,
@@ -292,6 +293,9 @@ ok(`mysteries:${mysteries(matrix).shown}/${mysteries(matrix).count}`, mysteries(
 
 // Develop, pair and fold the society: five dualities, each folded bidirectionally.
 ok(`society.folded:${foldedSociety(matrix).cells}cells`, foldedSociety(matrix).folded)
+
+// Folder distribution as harmonic numbers at all scales: Zeckendorf into Fibonacci bands.
+ok(`harmonic.bands:${harmonicBands(108).bands.join('+')}`, harmonicBands(108).harmonic && harmonicBands(componentGraph(matrix).components.length).harmonic)
 
 // Speech intonation made harmonic: a pitch contour from the balanced spectrum.
 ok(`speech.intonation:${speechIntonation(matrix).count}`, speechIntonation(matrix).harmonic)

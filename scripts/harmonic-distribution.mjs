@@ -8,7 +8,7 @@
 // Run: node --experimental-strip-types scripts/harmonic-distribution.mjs
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentGraph } from '../.vitepress/theme/lib/quantumMind.ts'
+import { componentGraph, harmonicBands } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const root = process.cwd()
 const read = (path) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
@@ -43,6 +43,18 @@ const distribution = files.map((entry, index) => {
   return { ...entry, overtone, frequency: Math.round(f0 * overtone), octave: Math.floor(Math.log2(overtone)) }
 })
 
+// Folder distribution as harmonic numbers at all scales: the file count decomposes
+// (Zeckendorf) into distinct, non-consecutive Fibonacci numbers — the 3-5-8-13-21
+// harmonic sequence — so every band is a harmonic number, one per scale, summing
+// exactly. Each file is assigned to a band, largest scale first.
+const harmonic = harmonicBands(files.length)
+let cursor = 0
+const harmonicAssignment = harmonic.bands.map((size, band) => {
+  const slice = distribution.slice(cursor, cursor + size).map((entry) => entry.file)
+  cursor += size
+  return { band, size, files: slice }
+})
+
 // --- gaps: a harmonic partner the structure predicts, but absent ---
 const gaps = []
 const bgSet = new Set(bgPages)
@@ -62,6 +74,11 @@ for (const [route, components] of Object.entries(placedBy)) {
     if (!tag.test(bg)) gaps.push({ harmonic: 'fourth', kind: 'unmounted', detail: `${component} is placed at ${route} but not mounted in bg/${file}` })
   }
 }
+// The whole-octave harmonic: the distribution must be harmonic numbers at all
+// scales — a Zeckendorf sum of Fibonacci bands, summing exactly to the count.
+if (!harmonic.harmonic || harmonicAssignment.reduce((sum, band) => sum + band.size, 0) !== files.length) {
+  gaps.push({ harmonic: 'whole', kind: 'inharmonic', detail: `distribution ${files.length} is not a clean sum of Fibonacci harmonic bands` })
+}
 
 // --- write the distribution + gaps next to the other build artifacts ---
 const out = join(root, '.vitepress', 'dist')
@@ -70,6 +87,9 @@ const payload = {
   fundamental: f0,
   count: distribution.length,
   octaves: Math.max(...distribution.map((entry) => entry.octave)) + 1,
+  harmonicBands: harmonic.bands,
+  harmonicScales: harmonic.scales,
+  harmonicAssignment,
   gaps,
   distribution,
 }
@@ -80,4 +100,4 @@ if (gaps.length > 0) {
   for (const gap of gaps) console.error(`  [${gap.harmonic}/${gap.kind}] ${gap.detail}`)
   process.exit(1)
 }
-console.log(`Harmonic distribution: ${distribution.length} files across ${payload.octaves} octave bands; 0 gaps, no missing implementations.`)
+console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (Fibonacci harmonic bands, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)
