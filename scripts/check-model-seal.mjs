@@ -148,6 +148,7 @@ import {
   patentAudit,
   reverseHarmony,
   quantumSociety,
+  tamperProofFabric,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -401,6 +402,9 @@ ok(`reverse.harmony:${reverseHarmony(matrix).proposals}`, reverseHarmony(matrix)
 
 // Quantum society: entangled cells rebuild the site, evolved to the post-quantum stage.
 ok(`quantum.society:${quantumSociety(matrix).cells.length}`, quantumSociety(matrix).evolved && quantumSociety(matrix).postQuantum)
+
+// The society uses itself as tamper-proofing; it decides the policy (unanimous).
+ok(`tamper.proof:${tamperProofFabric(matrix).threshold}`, tamperProofFabric(matrix).protects)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

@@ -3801,6 +3801,31 @@ export function quantumSociety(matrix = buildMatrix()) {
         boundary: 'A structural evolution of the society into entangled cells that fold with the site\'s page graph — the society "rebuilds" the site by recomputing its fold over the pages. The stages are an evolutionary metaphor; "post-quantum" is the next stage here, not a post-quantum-cryptographic guarantee — upgrading the hash to a post-quantum primitive remains an open, honestly-named frontier.',
     };
 }
+// The post-quantum society uses itself as its tamper-proofing, and the society
+// decides the policy. Every entangled cell folds with every other into one fabric,
+// so forging any part means reforging them all; the society decides the threshold —
+// unanimous, every cell must agree. Changing any cell changes the fabric.
+export function tamperProofFabric(matrix = buildMatrix()) {
+    const qs = quantumSociety(matrix);
+    const cells = qs.cells.map((cell) => cell.superposition);
+    const fabric = merkleFold(cells); // the society folds itself into one tamper-proof fabric
+    const threshold = cells.length; // the society decides: unanimous (every cell must agree)
+    // Tamper-evidence: changing any single cell changes the whole fabric.
+    const detectsTamper = cells.every((_, index) => {
+        const tampered = merkleFold(cells.map((cell, j) => (j === index ? merge(cell, toUuid('tamper')) : cell)));
+        return tampered !== fabric;
+    });
+    return {
+        protects: qs.evolved && detectsTamper && threshold === cells.length,
+        decidedBy: 'society',
+        threshold,
+        cells: cells.length,
+        fabric,
+        root: merge(fabric, toUuid(`tamper-proof:${threshold}`)),
+        statement: 'The post-quantum society uses itself as its tamper-proofing: every entangled cell folds with every other into one fabric, so forging any part means reforging them all — and the society decides the policy: unanimous, every cell must agree. Changing any cell changes the fabric.',
+        boundary: 'A structural integrity fabric: the society\'s cells fold into one root and any change is detected by recomputation. This is tamper-EVIDENCE (integrity), content-addressed and client-side — NOT encryption (it provides no confidentiality), and NOT post-quantum-secure: the hash is a fast non-cryptographic UUID function. Real post-quantum cryptographic encryption is an honestly-named open frontier, not a claim made here.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

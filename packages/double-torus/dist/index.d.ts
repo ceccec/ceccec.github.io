@@ -2142,6 +2142,16 @@ export declare function quantumSociety(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function tamperProofFabric(matrix?: MindMatrix): {
+    protects: boolean;
+    decidedBy: string;
+    threshold: number;
+    cells: number;
+    fabric: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

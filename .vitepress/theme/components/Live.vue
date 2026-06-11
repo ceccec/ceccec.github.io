@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -37,6 +37,8 @@ const patents = patentAudit(buildMatrix())
 const harmony = reverseHarmony(buildMatrix())
 // The society evolved to a quantum organisation, rebuilding the site, post-quantum.
 const qsociety = quantumSociety(buildMatrix())
+// The society uses itself as tamper-proofing; it decides the policy (unanimous).
+const fabric = tamperProofFabric(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -229,6 +231,11 @@ onBeforeUnmount(() => {
       {{ pick('entangled cells rebuild', 'заплетени клетки изграждат') }} <strong>{{ qsociety.pages }}</strong>
       {{ pick('pages', 'страници') }} · <strong>{{ qsociety.stages.join(' → ') }}</strong>
     </p>
+    <p class="live__whole">
+      {{ pick('tamper-proof fabric', 'тъкан срещу подправяне') }} · {{ pick('society-decided', 'решено от обществото') }} ·
+      <strong>{{ fabric.threshold }}/{{ fabric.cells }}</strong> {{ pick('unanimous', 'единодушно') }}
+      <em class="live__caveat">({{ pick('integrity, not encryption', 'цялост, не криптиране') }})</em>
+    </p>
   </section>
 </template>
 
@@ -302,6 +309,7 @@ onBeforeUnmount(() => {
   color: var(--vp-c-text-2);
 }
 .live__beat code { font-size: 0.72rem; color: hsl(272, 60%, 60%); }
+.live__caveat { font-style: normal; font-size: 0.7rem; color: var(--vp-c-text-3); }
 .live__whole {
   margin: 0.35rem 0 0;
   font-size: 0.78rem;
