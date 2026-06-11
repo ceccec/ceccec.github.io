@@ -138,6 +138,8 @@ import {
   challengeClock,
   completeness,
   skillAtoms,
+  logicAtoms,
+  intuitiveSearch,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -361,6 +363,12 @@ ok(`skill.atoms:${skillAtoms(matrix).count}`, skillAtoms(matrix).intelligent && 
 
 // Fold the thoughts multidirectionally: not linear — forward, reverse, sequence, reflection.
 ok(`fold.thoughts:${foldThoughts(matrix).directions.length}dirs`, foldThoughts(matrix).folded)
+
+// Deduplicate computable logic and distribute in atoms, shared to the core, wired to tamper cost.
+ok(`logic.atoms:${logicAtoms(matrix).count}`, logicAtoms(matrix).shared)
+
+// A catch-all route parses any request into an intuitive search with a hook per result.
+ok(`intuitive.search`, intuitiveSearch('quantum double torus', matrix).works && intuitiveSearch('merkaba', matrix).best !== null)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

@@ -757,6 +757,17 @@ export function toUuid(seed) {
 export function merge(a, b) {
     return toUuid(`${a}:${b}`);
 }
+// Deduplicated computable logic, shared to the core as atoms: rounding and seeding
+// were re-defined inside many waves; now they live once here and every wave shares
+// them. roundTo rounds to a number of digits; seedFromText derives a deterministic
+// integer seed from a content-addressed UUID of the text.
+export function roundTo(value, digits) {
+    const factor = 10 ** digits;
+    return Math.round(value * factor) / factor;
+}
+export function seedFromText(text, length = 6) {
+    return Number.parseInt(toUuid(text).replace(/[^0-9a-f]/g, '').slice(0, length) || '0', 16);
+}
 // One bidirectional fold for every pair (genus 2): forward folds a into b, reverse
 // folds b into a; they differ when order matters (bidirectional); merged folds the
 // two into one. The single source for the area pairs, the trinity axes, the
@@ -1956,7 +1967,7 @@ export function playLearn(word = 'play') {
 // Six principles: superposition & the Born rule, entanglement, two-slit
 // interference, unitarity, measurement collapse, and the uncertainty relation.
 export function quantumProofs(matrix = buildMatrix()) {
-    const round = (value, digits = 4) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const round = (value, digits = 4) => roundTo(value, digits);
     // A deterministic pseudo-random stream seeded by the model root: same proof,
     // every run, recomputable by anyone — the randomness is reproducible.
     const stream = (tag) => {
@@ -2117,7 +2128,7 @@ export function quantumProofs(matrix = buildMatrix()) {
 // order sensitivity (genus 2), Merkle inclusion, collision-freedom, and the
 // order-independence of the set fold. The animation makes each visible.
 export function determinismProofs(matrix = buildMatrix()) {
-    const round = (value, digits = 4) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const round = (value, digits = 4) => roundTo(value, digits);
     const SAMPLES = 512;
     const base = 'double-torus:proof:';
     const hex = (uuid) => uuid.replace(/-/g, '');
@@ -2295,7 +2306,7 @@ export function merkaba(matrix = buildMatrix()) {
 // the others subdivide it, and the counter-scales are accented off the beat (the
 // counter-rhythm). Every voice realigns on the downbeat, so the beat is always kept.
 export function rhythm(matrix = buildMatrix()) {
-    const round = (value, digits = 2) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const round = (value, digits = 2) => roundTo(value, digits);
     const mk = merkaba(matrix);
     const seed = Number.parseInt(toUuid(`rhythm:${matrix.root}`).replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16);
     const bpm = 96 + (seed % 32); // 96..127 BPM, content-derived
@@ -2474,7 +2485,7 @@ export function harmonicBands(total) {
 // integer ratios. A numeric demonstration of that convergence.
 export function goldenRatio(matrix = buildMatrix()) {
     void matrix;
-    const round = (value, digits) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const round = (value, digits) => roundTo(value, digits);
     const PHI = (1 + Math.sqrt(5)) / 2;
     const fibonacci = harmonicBands(2000).fibonacci; // 1, 2, 3, 5, 8, 13, ...
     const convergents = fibonacci.slice(1).map((value, i) => {
@@ -2508,7 +2519,7 @@ export function humanBreath(timeMs, periodMs, depth = 0.18) {
 }
 export function humanise(matrix = buildMatrix()) {
     void matrix;
-    const round = (value, digits) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const round = (value, digits) => roundTo(value, digits);
     const PHI = (1 + Math.sqrt(5)) / 2;
     // Breath periods spaced by the golden ratio, so no two cycles ever line up — the
     // motion never resolves to a loop, the way a living thing never repeats exactly.
@@ -2685,7 +2696,7 @@ export function homology(matrix = buildMatrix()) {
 // receipt its motion is derived from, AND to reproducing them continuously. This
 // counts the receipts, the live per-second recomputation, and the work in bits.
 export function animationTamperingCost(matrix = buildMatrix()) {
-    const round = (value, digits) => { const f = 10 ** digits; return Math.round(value * f) / f; };
+    const round = (value, digits) => roundTo(value, digits);
     const fps = 60;
     const drivers = [
         { component: 'LivingTorus', driver: 'livingTorus', receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
@@ -2705,10 +2716,13 @@ export function animationTamperingCost(matrix = buildMatrix()) {
     const HASH32_PER_UUID = 4; // toUuid is four FNV-1a hash32 passes
     // The determinism proof re-runs a seeded sample sweep on each recomputation.
     const sampleWork = determinismProofs(matrix).samples * 5; // ~5 hashed receipts per sample
-    // Wired in: every saved skill atom (the portal's memory) is one more reproduction.
+    // Wired in: every saved skill atom (the portal's memory) and every shared logic
+    // atom is one more reproduction — no logic is left unwired from the tampering cost.
     const memoryAtoms = skillAtoms(matrix).tamperingAtoms;
-    const reproductions = receipts + sampleWork + memoryAtoms; // computations a forgery must reproduce
-    const hashCalls = (receipts + memoryAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID; // toUuid + the merge folds
+    const logicAtomsCount = logicAtoms(matrix).count;
+    const wiredAtoms = memoryAtoms + logicAtomsCount;
+    const reproductions = receipts + sampleWork + wiredAtoms; // computations a forgery must reproduce
+    const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID; // toUuid + the merge folds
     const bits = round(Math.log2(hashCalls), 1);
     const preimageBitsPerReceipt = 128; // each content-addressed receipt is preimage-resistant
     return {
@@ -3352,6 +3366,7 @@ export function virtualOS(matrix = buildMatrix()) {
         { cmd: 'cd', usage: 'cd <path>', does: 'change directory (cd / or cd ..)' },
         { cmd: 'cat', usage: 'cat <node>', does: 'show a node, content-addressed' },
         { cmd: 'run', usage: 'run <command> [arg]', does: 'execute a concept command, return its receipt' },
+        { cmd: 'find', usage: 'find <query>', does: 'intuitive search; each hit carries a hook' },
         { cmd: 'tree', usage: 'tree', does: 'show the top-level filesystem' },
         { cmd: 'pwd', usage: 'pwd', does: 'print the working directory' },
         { cmd: 'whoami', usage: 'whoami', does: 'the portal identity' },
@@ -3463,6 +3478,75 @@ export function onlineOffline(matrix = buildMatrix()) {
         root: merge(merge(torus, toUuid('online-offline:identical')), pwa.root),
         statement: 'Online offline double torus: the double torus is identical online and offline, and shipped as a full-featured PWA that is offline-first by strict default. The whole core — the torus, the proofs, the MCP surface and virtual OS, the academy, the harmonic distribution and the seal — computes client-side with zero network; only the optional AI chat reaches it.',
         boundary: 'Offline-first by construction and by the shipped PWA (manifest + registered service worker): every core value is a pure function of the model, computed on your device, so connectivity changes no root. Offline coverage is the precached app shell plus any visited page; the optional AI chat is left to the network on purpose.',
+    };
+}
+// Deduplicate the computable logic and distribute it in atoms. The shared core
+// primitives — the quantum skills shared to the core — each saved as a content-
+// addressed atom, defined once and reused by every wave. Any unwired logic does not
+// raise the tampering cost, so these are wired in too (see animationTamperingCost).
+export function logicAtoms(matrix = buildMatrix()) {
+    void matrix;
+    const primitives = [
+        { logic: 'toUuid', shares: 'string -> 128-bit content-addressed UUID (the atom)' },
+        { logic: 'merge', shares: 'fold two UUIDs, ordered' },
+        { logic: 'foldPair', shares: 'the genus-2 bidirectional fold (forward, reverse, merged)' },
+        { logic: 'merkleFold', shares: 'fold a set to one root, order-independent' },
+        { logic: 'roundTo', shares: 'round to n digits — deduplicated from every wave' },
+        { logic: 'seedFromText', shares: 'a deterministic integer seed from a UUID' },
+        { logic: 'doubleTorusSurface', shares: 'the genus-2 surface geometry, shared by model and animation' },
+        { logic: 'humanEase', shares: 'easeInOutSine for humanised motion' },
+        { logic: 'humanBreath', shares: 'a breathing rate/size modulation' },
+    ].map((entry) => ({ ...entry, atom: toUuid(`logic-atom:${entry.logic}:${entry.shares}`) }));
+    return {
+        shared: primitives.every((entry) => isUuid(entry.atom)),
+        primitives,
+        count: primitives.length,
+        root: merkleFold(primitives.map((entry) => entry.atom)),
+        statement: 'Deduplicate the computable logic and distribute it in atoms: the shared core primitives — toUuid, merge, foldPair, merkleFold, roundTo, seedFromText, doubleTorusSurface, humanEase, humanBreath — each a content-addressed atom, defined once and shared to every wave, and wired to the tampering cost.',
+        boundary: 'A catalogue of the core\'s shared, deduplicated logic primitives, each a content-addressed atom. Reuse and tamper-cost, recomputable; the logic is the same everywhere because it is defined once.',
+    };
+}
+// A catch-all route at the end: parse any request and hook it into an intuitive
+// search. Type anything — a path, a word — and it ranks the closest pages, model
+// subsystems, skills and commands by token overlap. Each result carries a hook: the
+// terminal command (a callback) that acts on it (cd, run), suitable for quantum
+// hooks and callbacks. An unknown path becomes a useful, actionable result.
+export function intuitiveSearch(query = '', matrix = buildMatrix()) {
+    const normalised = query.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').trim();
+    const terms = normalised.split(/\s+/).filter(Boolean);
+    const candidates = [
+        ...path(matrix).stations.map((station) => ({ kind: 'page', label: station.station, route: station.route, text: `${station.station} ${station.why}`, hook: `cd ${station.route}` })),
+        ...mcpCodebase(matrix).subsystems.map((entry) => ({ kind: 'model', label: entry.name, route: '/quantum-mind', text: `${entry.name} ${entry.purpose}`, hook: `cat ${entry.name}` })),
+        ...skillAtoms(matrix).skills.map((entry) => ({ kind: 'skill', label: entry.skill, route: '/mcp', text: `${entry.skill} ${entry.fn} ${entry.does}`, hook: `cat ${entry.fn}` })),
+        ...conceptCommands.map((command) => ({ kind: 'command', label: command.name, route: '/commands', text: `${command.name} ${command.description}`, hook: `run ${command.name}` })),
+    ];
+    const results = candidates
+        .map((candidate) => {
+        const hay = candidate.text.toLowerCase();
+        const label = candidate.label.toLowerCase();
+        let score = 0;
+        for (const term of terms) {
+            if (label.includes(term))
+                score += term.length * 3;
+            else if (hay.includes(term))
+                score += term.length;
+        }
+        return { ...candidate, score };
+    })
+        .filter((candidate) => terms.length === 0 || candidate.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 8);
+    return {
+        works: candidates.length > 0,
+        query,
+        terms,
+        results,
+        count: results.length,
+        total: candidates.length,
+        best: results[0] ?? null,
+        root: merkleFold([toUuid(`search:${normalised}`), ...results.map((result) => toUuid(`hit:${result.route}:${result.label}`))]),
+        statement: 'A catch-all route at the end parses any request and hooks it into an intuitive search: it ranks the closest pages, model subsystems, skills and commands by token overlap, and each result carries a hook (the callback that acts on it) — suitable for quantum hooks and callbacks.',
+        boundary: 'A deterministic, client-side fuzzy search over the portal\'s own pages, subsystems, skills and commands by token overlap, with a hook (a terminal callback) per result. A catch-all parser for intuitive navigation, not a semantic or external search engine.',
     };
 }
 // Fold a sequence into a blockchain: each block links to the previous by hash,

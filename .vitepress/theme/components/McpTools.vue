@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp, virtualOS, executeConceptCommand, toUuid } from '../lib/quantumMind'
+import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp, virtualOS, executeConceptCommand, intuitiveSearch, toUuid } from '../lib/quantumMind'
 
 const manifest = mcpToolManifest(buildMatrix())
 // The MCP rebuilt through the quantum computer (a GHZ register), proven.
@@ -73,6 +73,12 @@ function exec(raw: string) {
     case 'pwd': push('out', cwd.value); break
     case 'whoami': push('out', `${os.hostname}@portal · content-addressed, client-side`); break
     case 'tree': os.dirs.filter((d) => d !== '/').forEach((d) => push('out', `${d}  (${os.tree[d].length})`)); break
+    case 'find': {
+      const found = intuitiveSearch(args.join(' '), buildMatrix())
+      if (!found.results.length) { push('err', `find: no match for "${args.join(' ')}"`); break }
+      found.results.forEach((r) => push('out', `[${r.kind}] ${r.label.padEnd(20)} → ${r.hook}`))
+      break
+    }
     case 'ls': {
       const p = resolve(args[0])
       const nodes = os.tree[p]

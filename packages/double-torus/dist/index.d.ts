@@ -1003,6 +1003,8 @@ export declare const atoms: readonly Atom[];
 export declare const conceptCommands: readonly ConceptCommand[];
 export declare function toUuid(seed: string): string;
 export declare function merge(a: string, b: string): string;
+export declare function roundTo(value: number, digits: number): number;
+export declare function seedFromText(text: string, length?: number): number;
 export declare function foldPair(a: string, b: string): {
     forward: string;
     reverse: string;
@@ -1972,6 +1974,44 @@ export declare function onlineOffline(matrix?: MindMatrix): {
     pwa: boolean;
     offline: string[];
     online: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function logicAtoms(matrix?: MindMatrix): {
+    shared: boolean;
+    primitives: {
+        atom: string;
+        logic: string;
+        shares: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function intuitiveSearch(query?: string, matrix?: MindMatrix): {
+    works: boolean;
+    query: string;
+    terms: string[];
+    results: {
+        score: number;
+        kind: string;
+        label: string;
+        route: string;
+        text: string;
+        hook: string;
+    }[];
+    count: number;
+    total: number;
+    best: {
+        score: number;
+        kind: string;
+        label: string;
+        route: string;
+        text: string;
+        hook: string;
+    };
     root: string;
     statement: string;
     boundary: string;
