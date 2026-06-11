@@ -10,8 +10,10 @@ export default defineConfig({
   title: siteTitle,
   description: siteDescription,
   cleanUrls: true,
-  // The published npm package lives under packages/; its README is not a site page.
-  srcExclude: ['packages/**'],
+  // The published npm package lives under packages/; its README is not a site
+  // page. README.md and AGENTS.md are repo docs, not portal pages — exclude them
+  // so they are not built as orphan, crawlable HTML.
+  srcExclude: ['packages/**', 'README.md', 'AGENTS.md'],
   head: [
     ['meta', { name: 'application-name', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],
