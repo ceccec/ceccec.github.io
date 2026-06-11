@@ -186,8 +186,8 @@ const t = computed(() =>
         <span v-if="intonation.harmonic" class="speech__harmonic" :title="t.harmonicHint">♬ {{ t.harmonic }}</span>
       </div>
       <div class="speech__row">
-        <button type="button" @click="speaking ? stop() : speak()">{{ speaking ? t.stop : t.play }}</button>
-        <button v-if="speaking" type="button" class="speech__alt" @click="togglePause">{{ paused ? t.resume : t.pause }}</button>
+        <button type="button" class="dt-btn" @click="speaking ? stop() : speak()">{{ speaking ? t.stop : t.play }}</button>
+        <button v-if="speaking" type="button" class="dt-btn dt-btn--outline" @click="togglePause">{{ paused ? t.resume : t.pause }}</button>
       </div>
       <ol class="speech__subs">
         <li v-for="cue in cues" :key="cue.index" :class="{ active: cue.index === activeCue }">
@@ -237,19 +237,6 @@ const t = computed(() =>
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
-}
-.speech__row button {
-  padding: 0.4rem 1.1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
-}
-.speech__row button.speech__alt {
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  border: 1px solid var(--vp-c-divider);
 }
 .speech__subs {
   list-style: none;

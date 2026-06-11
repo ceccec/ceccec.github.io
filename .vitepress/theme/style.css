@@ -1013,4 +1013,10 @@ html[data-mode='simple'] .rich-only { display: none !important; }
   border: 1px solid var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
 }
+/* The filled button's pair, discovered by dry-cleaning: a neutral outline pill. */
+.dt-btn--outline {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+}
 

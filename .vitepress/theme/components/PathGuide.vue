@@ -50,10 +50,10 @@ const t = computed(() =>
       </li>
     </ol>
     <div class="path__nav">
-      <button type="button" @click="step(-1)">← {{ t.prev }}</button>
+      <button type="button" class="dt-btn dt-btn--outline" @click="step(-1)">← {{ t.prev }}</button>
       <span class="path__pos">{{ here + 1 }} {{ t.of }} {{ items.length }}</span>
-      <a class="path__go" :href="current.link">{{ t.go }} → {{ current.label }}</a>
-      <button type="button" @click="step(1)">{{ t.next }} →</button>
+      <a class="path__go dt-btn" :href="current.link">{{ t.go }} → {{ current.label }}</a>
+      <button type="button" class="dt-btn dt-btn--outline" @click="step(1)">{{ t.next }} →</button>
     </div>
   </section>
 </template>
@@ -107,11 +107,6 @@ const t = computed(() =>
 }
 .path__nav button {
   padding: 0.35rem 0.9rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 999px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  cursor: pointer;
   font-size: 0.8rem;
 }
 .path__pos {
@@ -120,9 +115,6 @@ const t = computed(() =>
 }
 .path__go {
   padding: 0.35rem 1rem;
-  border-radius: 999px;
-  background: var(--vp-c-brand-1);
-  color: #fff;
   text-decoration: none;
   font-size: 0.82rem;
 }
