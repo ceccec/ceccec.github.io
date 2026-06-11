@@ -4925,9 +4925,11 @@ export function componentGraph() {
   const components = [
     'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
     'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor',
+    'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'RichOnly', 'SimpleOnly',
   ]
-  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle']
+  // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
+  // they count as global utilities (available everywhere) for the placement audit.
+  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle', 'RichOnly', 'SimpleOnly']
   const placements: Record<string, readonly string[]> = {
     '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
     '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],

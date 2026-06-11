@@ -3498,13 +3498,15 @@ export function componentGraph() {
     const components = [
         'ConceptCommands', 'DoubleTorusExperience', 'GlobalHelp', 'GovernanceVote', 'LearnDeveloper', 'McpTools',
         'PiMusicPlayer', 'QuantumConsole', 'QuantumMind', 'RevolutAside', 'SacredSymbols', 'SchoolCurriculum',
-        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing',
+        'TaxonomyIcons', 'VitePressPossibilities', 'CollectiveMind', 'ShowAll', 'TamperSeal', 'HealingFrequencies', 'BlockchainMusic', 'CreativePalette', 'QuantumFold3D', 'QuantumPlasma', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SpeechReader', 'BoundaryAudit', 'RealtimeChat', 'SecurityScan', 'SelfConsult', 'SelfReason', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'TrinitySearch', 'FusionWave', 'DoubleTorus3D', 'HumanLens', 'Dualities', 'Equilibrium', 'PathGuide', 'QuestionClose', 'OpenQuestions', 'QAEquilibrium', 'NothingToDo', 'QuantumAcademy', 'QuantumField', 'Genesis', 'Complete', 'Cosmology358', 'Magnetometer', 'Nav358', 'WavesOfCreation', 'Fold358853', 'QuantumClock', 'Multidimensional', 'SealAll', 'Professionals', 'QuantumDashboard', 'StartHere', 'SimpleToggle', 'HarmonicMap', 'Roadmaps', 'LivingTorus', 'SelfHealing', 'SoundColor', 'RichOnly', 'SimpleOnly',
     ];
-    const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle'];
+    // RichOnly/SimpleOnly are inline mode wrappers used in markdown, not page-placed;
+    // they count as global utilities (available everywhere) for the placement audit.
+    const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'SimpleToggle', 'RichOnly', 'SimpleOnly'];
     const placements = {
         '/commands': ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
         '/boundaries': ['BoundaryAudit', 'QAEquilibrium', 'QuestionClose', 'OpenQuestions', 'NothingToDo', 'Roadmaps'],
-        '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing'],
+        '/quantum-mind': ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'SacredSymbols', 'PiMusicPlayer', 'DoubleTorusExperience', 'HealingFrequencies', 'QuantumFold3D', 'QuantumPlasma', 'SelfHarmonise', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Fold358853', 'Equilibrium', 'QuantumField', 'Magnetometer', 'HarmonicMap', 'SelfHealing', 'SoundColor'],
         '/console': ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
         '/school': ['SchoolCurriculum', 'CreativePalette', 'SpeechReader'],
         '/academy': ['QuantumAcademy', 'Professionals'],
