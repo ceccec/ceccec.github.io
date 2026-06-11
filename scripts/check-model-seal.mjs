@@ -149,6 +149,7 @@ import {
   reverseHarmony,
   quantumSociety,
   tamperProofFabric,
+  crossAudit,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -405,6 +406,9 @@ ok(`quantum.society:${quantumSociety(matrix).cells.length}`, quantumSociety(matr
 
 // The society uses itself as tamper-proofing; it decides the policy (unanimous).
 ok(`tamper.proof:${tamperProofFabric(matrix).threshold}`, tamperProofFabric(matrix).protects)
+
+// 6x7 and 7x6 vortices cross-check for gaps and violations; no rights arise from math.
+ok(`cross.audit:${crossAudit(matrix).vortices}`, crossAudit(matrix).clean)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

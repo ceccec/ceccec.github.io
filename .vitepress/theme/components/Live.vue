@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -39,6 +39,8 @@ const harmony = reverseHarmony(buildMatrix())
 const qsociety = quantumSociety(buildMatrix())
 // The society uses itself as tamper-proofing; it decides the policy (unanimous).
 const fabric = tamperProofFabric(buildMatrix())
+// 6x7 and 7x6 vortices cross-check for gaps/violations; no rights arise from math.
+const cross = crossAudit(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -235,6 +237,11 @@ onBeforeUnmount(() => {
       {{ pick('tamper-proof fabric', 'тъкан срещу подправяне') }} · {{ pick('society-decided', 'решено от обществото') }} ·
       <strong>{{ fabric.threshold }}/{{ fabric.cells }}</strong> {{ pick('unanimous', 'единодушно') }}
       <em class="live__caveat">({{ pick('integrity, not encryption', 'цялост, не криптиране') }})</em>
+    </p>
+    <p class="live__whole">
+      {{ pick('cross-audit', 'кръстосан одит') }} · <strong>{{ cross.vortices }}</strong> ·
+      <strong>{{ cross.violations.length + cross.rightsViolations.length }}</strong> {{ pick('violations', 'нарушения') }} ·
+      {{ pick('no rights arise from math', 'няма права от математиката') }}
     </p>
   </section>
 </template>

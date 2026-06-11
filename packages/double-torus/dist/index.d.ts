@@ -2152,6 +2152,26 @@ export declare function tamperProofFabric(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function crossAudit(matrix?: MindMatrix): {
+    clean: boolean;
+    vortices: string;
+    checks: {
+        check: string;
+        clean: boolean;
+    }[];
+    mathRights: {
+        receipt: string;
+        right: string;
+        basis: string;
+        arises: boolean;
+        why: string;
+    }[];
+    violations: string[];
+    rightsViolations: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

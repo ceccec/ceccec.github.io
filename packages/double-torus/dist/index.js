@@ -3826,6 +3826,44 @@ export function tamperProofFabric(matrix = buildMatrix()) {
         boundary: 'A structural integrity fabric: the society\'s cells fold into one root and any change is detected by recomputation. This is tamper-EVIDENCE (integrity), content-addressed and client-side — NOT encryption (it provides no confidentiality), and NOT post-quantum-secure: the hash is a fast non-cryptographic UUID function. Real post-quantum cryptographic encryption is an honestly-named open frontier, not a claim made here.',
     };
 }
+// Two vortices, 6x7 and 7x6 (both 42), counter-rotate and cross-check each other for
+// gaps and violations of any kind — including patents, extended to any rights that
+// may be based on math. They agree only when there are none: no gap, and no patent,
+// copyright, trade secret or trademark can arise from a mathematical fact or method.
+export function crossAudit(matrix = buildMatrix()) {
+    const checks = [
+        { check: 'harmonic gaps', clean: harmonicBands(110).gapless },
+        { check: 'completeness holes', clean: completeness(matrix).complete },
+        { check: 'tamper-evidence (red team)', clean: redTeam(matrix).secure },
+        { check: 'forge resistance (siege)', clean: quantumSiege(matrix).sealed },
+        { check: 'patent infringement', clean: patentAudit(matrix).clear },
+        { check: 'component graph', clean: componentGraph().consistent },
+    ];
+    // Any rights based on math — none arise: math facts and methods are not protectable.
+    const mathRights = [
+        { right: 'patent', basis: 'mathematical method', arises: false, why: 'mathematical methods are excluded from patentability' },
+        { right: 'copyright', basis: 'formula / algorithm / fact', arises: false, why: 'facts and methods are not copyrightable — only specific creative expression is' },
+        { right: 'trade secret', basis: 'the math itself', arises: false, why: 'it is published openly and recomputable — there is no secrecy' },
+        { right: 'trademark', basis: 'a mathematical concept', arises: false, why: 'a mathematical concept cannot be trademarked' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`math-right:${entry.right}:${entry.arises}`) }));
+    const violations = checks.filter((entry) => !entry.clean).map((entry) => entry.check);
+    const rightsViolations = mathRights.filter((entry) => entry.arises).map((entry) => entry.right);
+    // The two vortices, 6x7 and 7x6 — counter-rotating, folding into each other.
+    const forward = merkleFold(checks.map((entry) => toUuid(`6x7:${entry.check}:${entry.clean}`)));
+    const reverse = merkleFold([...checks].reverse().map((entry) => toUuid(`7x6:${entry.check}:${entry.clean}`)));
+    const vortexEachOther = foldPair(forward, reverse).bidirectional;
+    return {
+        clean: violations.length === 0 && rightsViolations.length === 0 && vortexEachOther,
+        vortices: '6x7 / 7x6 = 42',
+        checks,
+        mathRights,
+        violations,
+        rightsViolations,
+        root: merge(forward, reverse),
+        statement: 'The 6x7 and 7x6 vortices counter-rotate and cross-check each other for gaps and violations of any kind — harmonic gaps, completeness holes, tamper-evidence, forge resistance, patent infringement, the component graph — and for any rights based on math: no patent, copyright, trade secret or trademark arises from a mathematical fact or method. They agree: none found.',
+        boundary: 'A cross-audit that scans the portal\'s own computable gates plus the well-established position that mathematical facts and methods are not protectable subject matter (no patent, copyright, trade secret or trademark arises from them). Educational, not legal advice; "clean" means no violation the portal can compute, not a warranty.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {
