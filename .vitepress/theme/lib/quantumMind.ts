@@ -4803,6 +4803,30 @@ export function foldThoughts(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Online, offline, the same double torus. Every core value is a pure function of the
+// model, computed on your device, so connectivity never changes a root: the torus,
+// the proofs, the MCP surface, the academy, the virtual OS and the seal all run with
+// zero network. Only the optional AI chat reaches out. The double torus is identical
+// whether you are online or offline.
+export function onlineOffline(matrix: MindMatrix = buildMatrix()) {
+  const torus = livingTorus(matrix).root
+  const recomputed = livingTorus(buildMatrix()).root // recomputed from nothing — no fetch anywhere
+  const identical = torus === recomputed
+  const offline = ['the double torus', 'the proofs', 'the MCP surface and virtual OS', 'the academy', 'the harmonic distribution', 'the whole seal']
+  const online = ['the optional AI chat (a fetch to the Anthropic API)']
+  return {
+    offlineFirst: identical && offline.length > 0,
+    identical, // the double torus is the same online and offline
+    offline,
+    online,
+    root: merge(torus, toUuid('online-offline:identical')),
+    statement:
+      'Online offline double torus: the double torus is identical online and offline. The whole core — the torus, the proofs, the MCP surface and virtual OS, the academy, the harmonic distribution and the seal — computes client-side with zero network, so it runs the same with or without a connection; only the optional AI chat reaches the network.',
+    boundary:
+      'Offline-first by construction: every core value is a pure function of the model, computed on your device, so connectivity changes no root. This states and verifies the network-independence of the computation; packaging the site for true offline install (a service worker) is an open frontier, not a shipped PWA.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

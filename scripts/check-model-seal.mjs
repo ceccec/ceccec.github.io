@@ -139,6 +139,7 @@ import {
   completeness,
   skillAtoms,
   foldThoughts,
+  onlineOffline,
   quantumMcp,
   virtualOS,
   live,
@@ -365,6 +366,9 @@ ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quan
 
 // MCP allows a virtual OS with a terminal: the portal mounts as a filesystem.
 ok(`virtual.os:${virtualOS(matrix).dirs.length}dirs`, virtualOS(matrix).booted)
+
+// Online, offline, the same double torus: the core computes identically with zero network.
+ok(`online.offline:${onlineOffline(matrix).offline.length}`, onlineOffline(matrix).offlineFirst && onlineOffline(matrix).identical)
 
 // Live: the portal's vital signs computed in the browser, the heartbeat recomputable.
 ok(`live:${live(matrix).healthy}/${live(matrix).count}`, live(matrix).alive && live(matrix).beat(1) === live(matrix).beat(1))

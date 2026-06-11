@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
+// Online or offline, the double torus is identical — it computes with zero network.
+const online = ref(true)
+function syncOnline() { if (typeof navigator !== 'undefined') online.value = navigator.onLine }
 import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, homology, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
@@ -381,6 +384,9 @@ function onDown() {
 
 onMounted(() => {
   resize()
+  syncOnline()
+  window.addEventListener('online', syncOnline)
+  window.addEventListener('offline', syncOnline)
   ro = new ResizeObserver(() => resize())
   if (wrap.value) ro.observe(wrap.value)
   // All connected users interact: receive peers' interactions and merge them.
@@ -406,13 +412,18 @@ onBeforeUnmount(() => {
   cancelAnimationFrame(raf)
   ro?.disconnect()
   channel?.close()
+  window.removeEventListener('online', syncOnline)
+  window.removeEventListener('offline', syncOnline)
 })
 
 </script>
 
 <template>
   <section class="lt">
-    <p class="eyebrow">{{ t('the living double torus · realtime', 'живият двоен тор · в реално време') }}</p>
+    <p class="eyebrow">
+      {{ t('the living double torus · realtime', 'живият двоен тор · в реално време') }}
+      <span class="lt__net" :class="{ off: !online }">{{ online ? t('online', 'на линия') : t('offline', 'офлайн') }} · {{ t('same torus', 'същият тор') }}</span>
+    </p>
     <div ref="wrap" class="lt__wrap">
       <canvas
         ref="canvas"
@@ -534,6 +545,15 @@ onBeforeUnmount(() => {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.lt__net {
+  margin-left: 0.5rem;
+  font-size: 0.66rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-divider);
+  color: hsl(150, 60%, 45%);
+}
+.lt__net.off { color: var(--vp-c-text-3); }
 .lt__h1 {
   margin: 0.3rem 0 0;
   font-size: 0.76rem;
