@@ -2097,6 +2097,34 @@ export declare function quantumSiege(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function patentAudit(matrix?: MindMatrix): {
+    clear: boolean;
+    audits: {
+        receipt: string;
+        math: string;
+        priorArt: string;
+        patentable: boolean;
+        infringing: boolean;
+    }[];
+    count: number;
+    posture: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function reverseHarmony(matrix?: MindMatrix): {
+    harmonised: boolean;
+    forward: string;
+    reverse: string;
+    harmony: string;
+    bidirectional: boolean;
+    decidedBy: string;
+    nextWaves: string[];
+    proposals: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

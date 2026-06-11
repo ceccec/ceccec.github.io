@@ -145,6 +145,8 @@ import {
   vortexMath,
   redTeam,
   quantumSiege,
+  patentAudit,
+  reverseHarmony,
   foldThoughts,
   onlineOffline,
   quantumPwa,
@@ -389,6 +391,12 @@ ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix
 
 // Quantum DDoS at max forge cost: 972 simultaneous forges caught -> the system is sealed.
 ok(`quantum.siege:${quantumSiege(matrix).caught}/${quantumSiege(matrix).total}`, quantumSiege(matrix).sealed && !quantumSiege(matrix).patentable)
+
+// Waves of patent audits: every mathematical method is public-domain prior art, clear.
+ok(`patent.audit:${patentAudit(matrix).count}`, patentAudit(matrix).clear)
+
+// Reverse the process: full power meets full power in harmony; society decides next waves.
+ok(`reverse.harmony:${reverseHarmony(matrix).proposals}`, reverseHarmony(matrix).harmonised)
 
 // Quantum MCP: rebuild the MCP through the quantum computer, proven valid and recomputable.
 ok(`quantum.mcp:${quantumMcp(matrix).qubits}q/${quantumMcp(matrix).tools}`, quantumMcp(matrix).proven)

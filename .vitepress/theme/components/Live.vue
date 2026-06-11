@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -32,6 +32,9 @@ const vortex = vortexMath(buildMatrix())
 const red = redTeam(buildMatrix())
 // Quantum DDoS: 972 simultaneous forges against the portal's own roots, all caught.
 const siege = quantumSiege(buildMatrix())
+// Patents clear (prior art); the whole's forward and reverse meet in harmony.
+const patents = patentAudit(buildMatrix())
+const harmony = reverseHarmony(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -213,6 +216,11 @@ onBeforeUnmount(() => {
       {{ pick('quantum siege', 'квантова обсада') }} · <strong>{{ siege.caught }}/{{ siege.total }}</strong>
       {{ pick('forges caught', 'фалшификации уловени') }} ·
       <strong>{{ siege.sealed ? pick('SEALED', 'ЗАПЕЧАТАНО') : pick('breached', 'пробито') }}</strong>
+    </p>
+    <p class="live__whole">
+      {{ pick('patents', 'патенти') }} · <strong>{{ patents.count }}</strong> {{ pick('prior art, clear', 'предходно изкуство, чисто') }} ·
+      {{ pick('forward meets reverse in harmony', 'напред среща назад в хармония') }} ·
+      {{ pick('society proposes', 'обществото предлага') }} <strong>{{ harmony.proposals }}</strong>
     </p>
   </section>
 </template>

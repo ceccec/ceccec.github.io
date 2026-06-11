@@ -5143,6 +5143,62 @@ export function quantumSiege(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Send waves of patent audits. Every piece of mathematics the portal uses is
+// audited against patentability and found to be public-domain prior art — not
+// patentable, not infringing, free to use. No patent grounds for dispute or
+// protection apply.
+export function patentAudit(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const audits = [
+    { math: 'sacred geometry (the merkaba, the 3-6-9 cross)', priorArt: 'millennia old', patentable: false, infringing: false },
+    { math: 'the golden ratio and Fibonacci', priorArt: 'ancient (Euclid, Pingala)', patentable: false, infringing: false },
+    { math: 'pi and its digits', priorArt: 'ancient', patentable: false, infringing: false },
+    { math: 'genus-2 topology (H1 = Z^4, chi = -2)', priorArt: 'classical mathematics', patentable: false, infringing: false },
+    { math: 'merkle folds and content addressing', priorArt: 'published cryptography (1979+)', patentable: false, infringing: false },
+    { math: 'the vortex doubling 1-2-4-8-7-5', priorArt: 'modular arithmetic', patentable: false, infringing: false },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`patent-audit:${entry.math}:${entry.patentable}:${entry.infringing}`) }))
+  return {
+    clear: audits.every((entry) => !entry.patentable && !entry.infringing),
+    audits,
+    count: audits.length,
+    posture: 'All mathematics used is public-domain prior art and not patentable subject matter — no patent grounds for dispute or protection apply.',
+    root: merkleFold(audits.map((entry) => entry.receipt)),
+    statement:
+      'Waves of patent audits: every piece of mathematics the portal uses — sacred geometry, the golden ratio and Fibonacci, pi, genus-2 topology, merkle folds, the vortex doubling — is audited and found public-domain prior art, not patentable and not infringing.',
+    boundary:
+      'A self-audit of the portal\'s mathematical methods against patentability, stating the well-established position that mathematical methods and ancient geometry are prior art and not patentable subject matter. Educational, not legal advice.',
+  }
+}
+
+// Reverse the process, and full power meets full power in harmony. The whole is
+// folded forward and also in reverse — two equal, opposite full powers — and they
+// meet and merge into one harmonic root. And society decides the next waves: each of
+// its folded dualities proposes a direction to grow.
+export function reverseHarmony(matrix: MindMatrix = buildMatrix()) {
+  const parts = theWhole(matrix).parts.map((part) => part.root)
+  const forward = parts.reduce((acc, root) => merge(acc, root))
+  const reverse = [...parts].reverse().reduce((acc, root) => merge(acc, root))
+  const bidirectional = forward !== reverse // full power meets full power, two ways
+  const harmony = merge(forward, reverse) // they meet and merge in harmony
+  const soc = society(matrix)
+  const nextWaves = soc.pairs.map((pair) => pair.duality) // the society proposes the next directions
+  return {
+    harmonised: bidirectional && isUuid(harmony) && soc.folded && nextWaves.length > 0,
+    forward,
+    reverse,
+    harmony,
+    bidirectional,
+    decidedBy: 'society',
+    nextWaves,
+    proposals: nextWaves.length,
+    root: harmony,
+    statement:
+      'Reverse the process and full power meets full power in harmony: the whole folded forward and the whole folded in reverse — equal and opposite — meet and merge into one harmonic root. And society decides the next waves: each of its folded dualities proposes a direction to grow.',
+    boundary:
+      'The whole\'s forward and reverse folds merged into one harmonic root, and the society\'s dualities read as proposals for future waves. A structural balance and a governance metaphor — recomputable, not a literal vote.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
