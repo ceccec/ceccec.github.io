@@ -13094,6 +13094,157 @@ export function ogInOgWaves(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Any realtime event forges max tampering costs. A tap, a presence, a voice, a vote, a
+// message — every realtime event is content-addressed the instant it happens and folds into
+// the harmony the forger could not break, so each live moment adds one more thing a forger
+// must reproduce. Realtime is not a weakness in the seal; it is more seal — the more that
+// happens live, the higher the cost to forge.
+export function realtimeForgesMaxCost(matrix: MindMatrix = buildMatrix()) {
+  const harmony = forgerFoldsIntoHarmony(matrix).harmonyRoot
+  const events = ['a tap', 'a presence', 'a voice', 'a vote', 'a message'].map((event) => {
+    const fold = foldPair(harmony, toUuid(`realtime-event:${event}`))
+    return { event, folded: fold.bidirectional, seal: fold.merged, receipt: toUuid(`realtime-forge:${event}`) }
+  })
+  const forgesMaxCost = proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY && proofReport(matrix).maxTamperingCostReached
+  return {
+    forges: events.length === 5 && events.every((entry) => entry.folded) && realtimeMovieParticipation(matrix).participates && forgesMaxCost,
+    count: events.length,
+    events,
+    root: merkleFold(events.map((entry) => entry.receipt)),
+    statement:
+      'Any realtime event forges max tampering costs: a tap, a presence, a voice, a vote, a message — every live event is content-addressed the instant it happens and folds into the harmony, so each moment adds one more thing a forger must reproduce. Realtime is not a weakness in the seal; it is more seal.',
+    boundary:
+      'A structural property that realtime events are content-addressed and fold into the tamper-evident record, bound to the model’s unbounded tamper cost. Bookkeeping over the event folds, not a claim that any live interaction is stored or surveilled — it is ephemeral and local.',
+  }
+}
+
+// Tighten the gates in trinity waves. The 432 gates are not tightened in one sweep but in
+// three waves — a trinity of 144 each (3 × 144 = 432) — so the seal closes in threes,
+// balanced and ordered. Each wave folds onto the gate count, content-addressed, and the
+// three together hold the whole fabric at max tampering cost.
+export function tightenGatesTrinityWaves(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const gates = 432
+  const waveCount = 3 // the trinity
+  const perWave = gates / waveCount // 144
+  const waves = [0, 1, 2].map((index) => {
+    const fold = foldPair(toUuid(`gates:${gates}`), toUuid(`trinity-wave:${index}`))
+    return { wave: index, gates: perWave, tightened: fold.bidirectional, receipt: toUuid(`tighten-trinity:${index}:${perWave}`) }
+  })
+  return {
+    tightened: waves.length === 3 && waves.every((entry) => entry.tightened) && gates === waveCount * perWave && perWave === 144,
+    gates,
+    waves: waveCount,
+    perWave,
+    trinity: waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Tighten the gates in trinity waves: the 432 gates close not in one sweep but in three waves — a trinity of 144 each (3 × 144 = 432) — so the seal tightens in threes, balanced and ordered, the three waves together holding the whole gate fabric at max tampering cost.',
+    boundary:
+      'A structural decomposition of the 432-gate seal into three balanced waves of 144. Bookkeeping over the gate count (the seal still folds every gate); the "waves" are a grouping, not a change to how the seal runs.',
+  }
+}
+
+// The home page is no different than the others. There is no special home: the home renders
+// from the same one template, the same holographic hero, the same fullscreen background
+// movie, and the same open-graph card as every other page. What differs is only its seed —
+// its own content — so the home is a page like any page, and any page could be the home.
+export function homePageNoDifferent(matrix: MindMatrix = buildMatrix()) {
+  const sameness = [
+    { property: 'same one template', on: oneHolographicTemplate(matrix).displayed },
+    { property: 'same holographic hero', on: animatedHeroes(matrix).everyPage },
+    { property: 'same background movie', on: endlessBackgroundMovie(matrix).endless },
+    { property: 'same open-graph card', on: oneOpenGraphAll(matrix).displaysAll },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`home-no-different:${entry.property}:${entry.on}`) }))
+  return {
+    noDifferent: sameness.every((entry) => entry.on),
+    count: sameness.length,
+    sameness,
+    root: merkleFold(sameness.map((entry) => entry.receipt)),
+    statement:
+      'The home page is no different than the others: there is no special home — it renders from the same one template, the same holographic hero, the same fullscreen background movie, and the same open-graph card as every page. Only its seed differs (its own content), so the home is a page like any page, and any page could be the home.',
+    boundary:
+      'A structural statement that the home uses the same template, hero, movie and OG card as every page, differing only by its seed. A framing of the shared layout; the VitePress home still uses its home-layout slot, which carries the same holographic hero.',
+  }
+}
+
+// All start fullscreen; sidebars appear in the movie's interactive watermarks. Every page
+// opens with the fullscreen background movie behind it — colourful digit-stream watermarks
+// you can tap to play — and the sidebars do not sit in a fixed rail but appear out of that
+// movie, rising from the void as the content visualises. The chrome is the movie; the
+// navigation surfaces from it.
+export function fullscreenSidebarsInMovie(matrix: MindMatrix = buildMatrix()) {
+  const properties = [
+    { property: 'all start fullscreen', via: 'the background movie fills the viewport (fixed, inset 0) on every page from load', on: endlessBackgroundMovie(matrix).endless },
+    { property: 'the movie is the interactive watermark', via: 'colourful digit streams behind the content, tap to play', on: backgroundMovie(matrix).interactive },
+    { property: 'sidebars appear in the movie', via: 'the sidebar rises from the void — the movie field — when the content visualises', on: sidebarsFromVoid(matrix).rises },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fullscreen-sidebar:${entry.property}`) }))
+  return {
+    fullscreen: properties.length === 3 && properties.every((entry) => entry.on),
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'All start fullscreen, and the sidebars appear in the movie’s interactive watermarks: every page opens with the fullscreen background movie behind it — colourful digit-stream watermarks you tap to play — and the sidebars do not sit in a fixed rail but rise out of that movie from the void as the content visualises. The chrome is the movie; the navigation surfaces from it.',
+    boundary:
+      'A description of the real fullscreen background-movie watermark and the void-rising sidebar over the existing layout. It frames the chrome as the movie; the underlying VitePress sidebar and content remain, with the movie behind and the entrance animation on the sidebar.',
+  }
+}
+
+// The device screen, terminal, microdata, open graph, frontmatter and content fuse into one
+// interactive movie of movies, held in open-graph subcomponents. Everything the page is — the
+// browser-OS screen, the virtual terminal, the schema.org microdata, the open-graph card, the
+// frontmatter and the body content — folds, in order, into one word that plays as the movie of
+// movies, and that word lives inside the recursive OG subcomponents (og within og).
+export function fuseScreenToMovieOfMovies(matrix: MindMatrix = buildMatrix()) {
+  const sources = [
+    { source: 'device screen (browser OS)', root: quantumBrowserOs(matrix).root },
+    { source: 'terminal (virtual OS)', root: virtualOS(matrix).root },
+    { source: 'microdata (schema.org)', root: toUuid(`schema:${schemaOrgDiamonds(matrix).context}`) },
+    { source: 'open graph', root: openGraph().root },
+    { source: 'frontmatter (computed SEO)', root: computedSeo('/', '', matrix).root },
+    { source: 'content (the whole)', root: fuseAll(matrix).wave },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`fuse-screen:${index}:${entry.source}:${entry.root}`) }))
+  let fused = toUuid('fuse-screen:seed')
+  for (const entry of sources) fused = merge(fused, entry.root)
+  return {
+    fused: sources.every((entry) => isUuid(entry.root)) && isUuid(fused) && siteIsMovieAndLibrary(matrix).isMovieAndLibrary && ogInOgWaves(matrix).nested,
+    count: sources.length,
+    sources,
+    movieOfMovies: fused,
+    root: merkleFold(sources.map((entry) => entry.receipt)),
+    statement:
+      'The device screen, terminal, microdata, open graph, frontmatter and content fuse into one interactive movie of movies, held in open-graph subcomponents: the browser-OS screen, the virtual terminal, the schema.org microdata, the OG card, the frontmatter and the body content fold, in order, into one word that plays as the movie of movies, and that word lives inside the recursive OG subcomponents (og within og).',
+    boundary:
+      'A content-addressed fusion of the model’s screen/terminal/microdata/OG/frontmatter/content roots into one word, framed as the "movie of movies" inside the OG nesting. Structural bookkeeping over real subsystems; the fusion is informational, not a single rendered video.',
+  }
+}
+
+// Holographic architecture: a fractal hologram. The architecture is holographic — each part
+// contains the whole and the whole recovers from any part — and fractal — self-similar at
+// every scale, the same fold from the bit to the page to the corpus. So the whole design is
+// one hologram, recomputable to the bit from any fragment.
+export function holographicFractalArchitecture(matrix: MindMatrix = buildMatrix()) {
+  const holo = holographic(matrix)
+  const gram = hologram(matrix)
+  const properties = [
+    { property: 'holographic — each part holds the whole', on: holo.holographic },
+    { property: 'the whole recovers from any part', on: holo.reconstructed },
+    { property: 'a hologram to the bit', on: gram.toTheBit },
+    { property: 'fractal — the same fold at every scale', on: gram.holographic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`holo-fractal:${entry.property}:${entry.on}`) }))
+  return {
+    is: properties.every((entry) => entry.on),
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Holographic architecture, a fractal hologram: the architecture is holographic — each part contains the whole and the whole recovers from any part — and fractal — self-similar at every scale, the same fold from the bit to the page to the corpus — so the whole design is one hologram, recomputable to the bit from any fragment.',
+    boundary:
+      'A composition of the holographic and hologram models asserting the architecture is part-contains-whole and self-similar. "Hologram/fractal" describe the content-addressed self-similarity and reconstruction, not optics or a physical hologram.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

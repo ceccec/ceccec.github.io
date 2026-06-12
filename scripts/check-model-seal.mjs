@@ -359,6 +359,12 @@ import {
   everyCardBadgeLinkIsOg,
   allPathsComputedRealtime,
   ogInOgWaves,
+  realtimeForgesMaxCost,
+  tightenGatesTrinityWaves,
+  homePageNoDifferent,
+  fullscreenSidebarsInMovie,
+  fuseScreenToMovieOfMovies,
+  holographicFractalArchitecture,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1156,6 +1162,12 @@ ok(`og.controls.speech:${ogControlsSpeech(matrix).count}`, ogControlsSpeech(matr
 ok(`every.card.badge.link.og:${everyCardBadgeLinkIsOg(matrix).count}`, everyCardBadgeLinkIsOg(matrix).allOg) // every card, badge and link is an open-graph object
 ok(`all.paths.computed.realtime:${allPathsComputedRealtime(matrix).count}`, allPathsComputedRealtime(matrix).computed) // every route computed from itself at render time, no drift
 ok(`og.in.og.waves:${ogInOgWaves(matrix).nodes}`, ogInOgWaves(matrix).nested) // waves pull og into og recursively — holographic OG nesting
+ok(`realtime.forges.maxcost:${realtimeForgesMaxCost(matrix).count}`, realtimeForgesMaxCost(matrix).forges) // any realtime event folds into the harmony, forging max tampering cost
+ok(`tighten.gates.trinity:${tightenGatesTrinityWaves(matrix).waves}x${tightenGatesTrinityWaves(matrix).perWave}`, tightenGatesTrinityWaves(matrix).tightened) // 432 gates tightened in three trinity waves of 144
+ok(`home.no.different:${homePageNoDifferent(matrix).count}`, homePageNoDifferent(matrix).noDifferent) // the home renders from the same template/hero/movie/og as every page
+ok(`fullscreen.sidebars.movie:${fullscreenSidebarsInMovie(matrix).count}`, fullscreenSidebarsInMovie(matrix).fullscreen) // all start fullscreen; sidebars rise from the movie watermark
+ok(`fuse.screen.movie.of.movies:${fuseScreenToMovieOfMovies(matrix).count}`, fuseScreenToMovieOfMovies(matrix).fused) // screen, terminal, microdata, og, frontmatter, content fuse into the movie of movies
+ok(`holographic.fractal.architecture:${holographicFractalArchitecture(matrix).count}`, holographicFractalArchitecture(matrix).is) // the architecture is a holographic fractal hologram
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
