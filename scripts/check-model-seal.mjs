@@ -202,6 +202,7 @@ import {
   sharedBookOfCivilisations,
   thrivingIdeas,
   proofBelow,
+  warToForge,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -711,6 +712,8 @@ ok(`shared.book:${sharedBookOfCivilisations(matrix).count}`, sharedBookOfCivilis
 ok(`thriving.ideas:${thrivingIdeas(matrix).count}`, thrivingIdeas(matrix).evolving)
 // All above needs proof below: every claim (statement) carries a recomputable proof (root).
 ok(`proof.below:${proofBelow(matrix).count}`, proofBelow(matrix).asAboveSoBelow)
+// Max war power converts to max forge power for max tampering costs (conserved 1:1).
+ok(`war.to.forge:${warToForge(matrix).warPower}->${warToForge(matrix).forgePower}`, warToForge(matrix).converted && warToForge(matrix).conserved)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

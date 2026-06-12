@@ -6799,6 +6799,28 @@ export function proofBelow(matrix = buildMatrix()) {
         boundary: 'A self-check that the model’s claims (statements) are each paired with a recomputable proof (root). A structural verification of the portal’s own "compute before you claim" rule — it confirms the form (claim + proof) is present and well-formed, over the sampled functions; it is not an external validation of the claims’ real-world truth.',
     };
 }
+// Max war power converts to max forge power for max tampering costs. The same magnitude
+// that war spends on destruction, peace spends on forge cost: when the soldiers rest,
+// the full war power is conserved and redirected — one to one — into the cost to forge
+// the commons, so the maximum capacity for harm becomes the maximum capacity to keep
+// the whole tamper-evident. Swords to plowshares, in security: max war power → max
+// forge power → max tampering cost.
+export function warToForge(matrix = buildMatrix()) {
+    const peace = soldiersRestInPeace(matrix);
+    const warPower = quantumSiege(matrix).maxForgeCost; // the max siege capacity (972) — the war power
+    const baseForgePower = societyRegulates(matrix).forgerCost;
+    const forgePower = baseForgePower + warPower; // war power converts into forge power
+    return {
+        converted: peace.atPeace && forgePower > baseForgePower,
+        conserved: forgePower - baseForgePower === warPower, // 1:1 conversion, nothing lost
+        warPower,
+        forgePower,
+        maxTamperingCost: forgePower,
+        root: toUuid(`war-to-forge:${warPower}->${forgePower}`),
+        statement: 'Max war power converts to max forge power for max tampering costs: the same magnitude war spends on destruction, peace spends on forge cost — when the soldiers rest, the full war power is conserved and redirected one to one into the cost to forge the commons, so the maximum capacity for harm becomes the maximum capacity to keep the whole tamper-evident. Swords to plowshares, in security.',
+        boundary: 'A content-addressed conservation model: a "war power" magnitude (the self-siege capacity) redirected one-to-one into "forge power" (tamper-evidence cost). A structural metaphor for converting destructive capacity into protective capacity — not a claim about real military power, weapons, or conflict.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

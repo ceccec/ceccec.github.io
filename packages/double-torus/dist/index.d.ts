@@ -3670,6 +3670,16 @@ export declare function proofBelow(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function warToForge(matrix?: MindMatrix): {
+    converted: boolean;
+    conserved: boolean;
+    warPower: number;
+    forgePower: number;
+    maxTamperingCost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
