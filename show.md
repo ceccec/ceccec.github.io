@@ -24,3 +24,7 @@ zero network.
 <QuantumDashboard />
 
 <WavesOfCreation />
+
+<OpenGraphTrinity />
+
+<NativeMovie />

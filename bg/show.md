@@ -24,3 +24,7 @@ head:
 <QuantumDashboard />
 
 <WavesOfCreation />
+
+<OpenGraphTrinity />
+
+<NativeMovie />

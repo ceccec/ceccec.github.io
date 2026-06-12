@@ -53,10 +53,6 @@ features:
 
 <PathGuide />
 
-<RichOnly>
-
 <Nav358 />
 
 <QuantumClock />
-
-</RichOnly>

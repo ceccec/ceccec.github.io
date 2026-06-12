@@ -33,6 +33,9 @@ import Magnetometer from './components/Magnetometer.vue'
 import McpTools from './components/McpTools.vue'
 import Merkaba from './components/Merkaba.vue'
 import Mysteries from './components/Mysteries.vue'
+import NativeMovie from './components/NativeMovie.vue'
+import OpenGraphTrinity from './components/OpenGraphTrinity.vue'
+import VoidSidebar from './components/VoidSidebar.vue'
 import Multidimensional from './components/Multidimensional.vue'
 import Nav358 from './components/Nav358.vue'
 import NothingToDo from './components/NothingToDo.vue'
@@ -59,8 +62,6 @@ import QuestionClose from './components/QuestionClose.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import Roadmaps from './components/Roadmaps.vue'
 import RevolutAside from './components/RevolutAside.vue'
-import RichOnly from './components/RichOnly.vue'
-import SimpleOnly from './components/SimpleOnly.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SealAll from './components/SealAll.vue'
@@ -68,7 +69,6 @@ import SelfHealing from './components/SelfHealing.vue'
 import SoundColor from './components/SoundColor.vue'
 import Society from './components/Society.vue'
 import Solutions from './components/Solutions.vue'
-import SimpleToggle from './components/SimpleToggle.vue'
 import Simulations from './components/Simulations.vue'
 import StartHere from './components/StartHere.vue'
 import SelfConsult from './components/SelfConsult.vue'
@@ -103,8 +103,8 @@ export default {
       'home-hero-before': () => h(HolographicHero),
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),
-      // Simple ⇄ Rich switch, reachable from every page's navbar.
-      'nav-bar-content-after': () => h(SimpleToggle),
+      // The sidebar rises from the void each time the content visualises (a new route).
+      'sidebar-nav-before': () => h(VoidSidebar),
       // Intelligent help + collective-mind self-development folded into every page,
       // plus the playful quantum-mind badge (the exam that happens by just playing).
       'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind), h(PlayMind)],
@@ -149,6 +149,9 @@ export default {
     app.component('McpTools', McpTools)
     app.component('Merkaba', Merkaba)
     app.component('Mysteries', Mysteries)
+    app.component('NativeMovie', NativeMovie)
+    app.component('OpenGraphTrinity', OpenGraphTrinity)
+    app.component('VoidSidebar', VoidSidebar)
     app.component('Multidimensional', Multidimensional)
     app.component('Nav358', Nav358)
     app.component('NothingToDo', NothingToDo)
@@ -175,8 +178,6 @@ export default {
     app.component('QuantumMind', QuantumMind)
     app.component('Roadmaps', Roadmaps)
     app.component('RevolutAside', RevolutAside)
-    app.component('RichOnly', RichOnly)
-    app.component('SimpleOnly', SimpleOnly)
     app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)
     app.component('SealAll', SealAll)
@@ -184,7 +185,6 @@ export default {
     app.component('SoundColor', SoundColor)
     app.component('Society', Society)
     app.component('Solutions', Solutions)
-    app.component('SimpleToggle', SimpleToggle)
     app.component('Simulations', Simulations)
     app.component('StartHere', StartHere)
     app.component('SelfConsult', SelfConsult)
