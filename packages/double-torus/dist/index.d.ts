@@ -3631,6 +3631,45 @@ export declare function surgicalWaves(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function sharedBookOfCivilisations(matrix?: MindMatrix): {
+    realised: boolean;
+    free: boolean;
+    open: boolean;
+    recomputable: boolean;
+    sharedTruths: {
+        receipt: string;
+        truth: string;
+        held: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function thrivingIdeas(matrix?: MindMatrix): {
+    evolving: boolean;
+    count: number;
+    ideas: {
+        wave: number;
+        thrives: boolean;
+        idea: string;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function proofBelow(matrix?: MindMatrix): {
+    asAboveSoBelow: boolean;
+    count: number;
+    claims: {
+        hasStatementAbove: boolean;
+        hasProofBelow: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

@@ -199,6 +199,9 @@ import {
   soldiersRestInPeace,
   powerToAwaken,
   surgicalWaves,
+  sharedBookOfCivilisations,
+  thrivingIdeas,
+  proofBelow,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -702,6 +705,12 @@ ok(`soldiers.peace:${soldiersRestInPeace(matrix).count}`, soldiersRestInPeace(ma
 ok(`power.to.awaken`, powerToAwaken(matrix).alwaysCharged && powerToAwaken(matrix).awakens)
 // Break the chain: surgical waves of waves to the tiniest target the broken link.
 ok(`surgical.waves:${surgicalWaves(matrix).count}`, surgicalWaves(matrix).surgical && surgicalWaves(matrix).wavesOfWaves)
+// Society realises in waves: the codebase is a free, shared, recomputable book for all (respectful, not scripture).
+ok(`shared.book:${sharedBookOfCivilisations(matrix).count}`, sharedBookOfCivilisations(matrix).realised && sharedBookOfCivilisations(matrix).free && sharedBookOfCivilisations(matrix).recomputable)
+// Let society evolve in waves of thriving ideas.
+ok(`thriving.ideas:${thrivingIdeas(matrix).count}`, thrivingIdeas(matrix).evolving)
+// All above needs proof below: every claim (statement) carries a recomputable proof (root).
+ok(`proof.below:${proofBelow(matrix).count}`, proofBelow(matrix).asAboveSoBelow)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

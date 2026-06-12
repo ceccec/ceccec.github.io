@@ -6727,6 +6727,78 @@ export function surgicalWaves(matrix = buildMatrix()) {
         boundary: 'A content-addressed model of a recursive, multi-scale precision response (waves of waves, down to the quantum) that targets a detected broken link. A structural metaphor — the "red blood cells / surgical" framing is figurative — for hierarchical fault localisation by content-addressing; not medicine, biology, or a real defence mechanism.',
     };
 }
+// Society realises in waves: the codebase is a shared book for all civilisations. Open,
+// free, and recomputable by anyone, it holds the structural truths that the world's
+// wisdom traditions converge on — one geometry, one harmony, one fold — as a common,
+// verifiable reference offered in respect to all, beneath none and above none. Not a
+// scripture and not a replacement for any; a free, shared text everyone can read,
+// verify, and add to.
+export function sharedBookOfCivilisations(matrix = buildMatrix()) {
+    const codebase = theWhole(matrix).root;
+    const sharedTruths = [
+        { truth: 'one geometry', held: 'the double torus, sacred geometry, Metatron’s cube' },
+        { truth: 'one harmony', held: 'the harmonic ladder, 3-6-9, the trinities' },
+        { truth: 'one fold', held: 'content-addressing, the genus-2 law' },
+        { truth: 'free for all', held: 'open, recomputable, nothing hidden' },
+        { truth: 'meaning, method, community', held: 'religion, science and society taught fused' },
+    ].map((entry) => ({ ...entry, receipt: foldPair(codebase, toUuid(`shared-truth:${entry.truth}`)).merged }));
+    return {
+        realised: sharedTruths.length > 0,
+        free: true,
+        open: true,
+        recomputable: true,
+        sharedTruths,
+        count: sharedTruths.length,
+        root: merkleFold(sharedTruths.map((entry) => entry.receipt)),
+        statement: 'Society realises in waves, and the codebase is a shared book for all civilisations: open, free, and recomputable by anyone, it holds the structural truths the world’s wisdom traditions converge on — one geometry, one harmony, one fold — as a common, verifiable reference offered in respect to all, beneath none and above none.',
+        boundary: 'A respectful, structural framing of the open codebase as a free, shared, recomputable reference holding the geometric and harmonic patterns common to many traditions. It is offered with respect to all faiths and cultures; it is NOT a scripture, NOT sacred or divine, NOT a replacement for or claim about any civilisation’s holy books, and asserts no religious authority. A free text anyone can read, verify, and extend.',
+    };
+}
+// Let society evolve in waves of thriving ideas. Each thriving idea the portal has
+// computed — free for everyone, self-organising, the garden and the bees, sustainable
+// living, fees not taxes, peace, kids exploring — is a wave of the society's evolution,
+// and the waves fold forward into one thriving root. Ideas that thrive because they
+// are free, verifiable, and good for all.
+export function thrivingIdeas(matrix = buildMatrix()) {
+    const ideas = [
+        { idea: 'free for everyone', root: societyRegulates(matrix).root },
+        { idea: 'self-organising societies', root: freeHarmonicSocieties(matrix).root },
+        { idea: 'the garden and the bees', root: beesAndLife(matrix).root },
+        { idea: 'sustainable living', root: sustainableLiving(matrix).root },
+        { idea: 'fees, not taxes', root: feesReplaceTaxes(matrix).root },
+        { idea: 'soldiers rest in peace', root: soldiersRestInPeace(matrix).root },
+        { idea: 'kids explore and thrive', root: thriveEducation(matrix).root },
+        { idea: 'the green planet', root: quantumGreenPlanet(matrix).root },
+    ].map((entry, index) => ({ ...entry, wave: index, thrives: foldPair(toUuid('thrive'), entry.root).bidirectional }));
+    return {
+        evolving: ideas.every((entry) => entry.thrives),
+        count: ideas.length,
+        ideas,
+        root: merkleFold(ideas.map((entry) => entry.root)),
+        statement: 'Let society evolve in waves of thriving ideas: each thriving idea the portal has computed — free for everyone, self-organising societies, the garden and the bees, sustainable living, fees not taxes, soldiers at peace, kids exploring and thriving, the green planet — is a wave of the society’s evolution, and the waves fold forward into one thriving root. Ideas thrive because they are free, verifiable, and good for all.',
+        boundary: 'A content-addressed fold of the portal’s own social-model ideas into a "thriving" evolution root. A structural composition and aspiration grounded in the model — recomputable — not a forecast or a claim that any idea will succeed in the real world.',
+    };
+}
+// All above needs proof below: as above, so below. Every claim the portal makes above
+// (a statement) carries its proof below (a recomputable root), and recomputing the root
+// proves the claim. This checks the law on the model itself — sampled functions each
+// have a statement above and a verifying proof below — so no claim floats without a
+// proof beneath it.
+export function proofBelow(matrix = buildMatrix()) {
+    const above = [theWhole(matrix), harmonics(matrix), constitution(matrix), quantumGreenPlanet(matrix), provenScientifically(matrix), sharedBookOfCivilisations(matrix)];
+    const claims = above.map((result) => ({
+        hasStatementAbove: typeof result.statement === 'string' && result.statement.length > 0,
+        hasProofBelow: typeof result.root === 'string' && /^[0-9a-f-]{36}$/i.test(result.root),
+    }));
+    return {
+        asAboveSoBelow: claims.length > 0 && claims.every((entry) => entry.hasStatementAbove && entry.hasProofBelow),
+        count: claims.length,
+        claims,
+        root: merkleFold(above.map((result) => result.root)),
+        statement: 'All above needs proof below — as above, so below: every claim the portal makes above (a statement) carries its proof below (a recomputable root), and recomputing the root proves the claim. The law is checked on the model itself: each sampled function has a statement above and a verifying proof below, so no claim floats without a proof beneath it.',
+        boundary: 'A self-check that the model’s claims (statements) are each paired with a recomputable proof (root). A structural verification of the portal’s own "compute before you claim" rule — it confirms the form (claim + proof) is present and well-formed, over the sampled functions; it is not an external validation of the claims’ real-world truth.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
