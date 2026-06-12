@@ -38,17 +38,18 @@ function resize() {
   canvas.value.style.height = `${height}px`
 }
 
-function project(v: readonly [number, number, number], angle: number) {
-  // spin about the vertical axis, then a fixed tilt about X to reveal depth
+function project(v: readonly [number, number, number], angle: number, tilt: number) {
+  // spin about the vertical axis (yaw), then tilt about X (pitch) — the pitch now
+  // varies in time so the star actually tumbles rather than spinning flat.
   const x1 = v[0] * Math.cos(angle) + v[2] * Math.sin(angle)
   const z1 = -v[0] * Math.sin(angle) + v[2] * Math.cos(angle)
-  const y2 = v[1] * Math.cos(TILT) - z1 * Math.sin(TILT)
-  const z2 = v[1] * Math.sin(TILT) + z1 * Math.cos(TILT)
+  const y2 = v[1] * Math.cos(tilt) - z1 * Math.sin(tilt)
+  const z2 = v[1] * Math.sin(tilt) + z1 * Math.cos(tilt)
   return { x: x1, y: y2, z: z2 }
 }
 
-function drawTetra(ctx: CanvasRenderingContext2D, verts: readonly (readonly [number, number, number])[], angle: number, hue: number, s: number, cx: number, cy: number) {
-  const pts = verts.map((v) => project(v, angle))
+function drawTetra(ctx: CanvasRenderingContext2D, verts: readonly (readonly [number, number, number])[], angle: number, hue: number, s: number, cx: number, cy: number, tilt: number) {
+  const pts = verts.map((v) => project(v, angle, tilt))
   for (const [a, b] of EDGES) {
     const pa = pts[a]
     const pb = pts[b]
@@ -82,9 +83,12 @@ function draw(time: number) {
   const downBreath = saveEnergy.value ? 0 : 0.18 * Math.sin(time / human.breaths[1])
   const up = saveEnergy.value ? 0.6 : upRate * time + upBreath // one sense
   const down = saveEnergy.value ? -0.6 : downRate * time - downBreath // the opposite sense
+  // The missing rotation: a slow, breathing pitch so the star tetrahedron tumbles
+  // in 3D instead of spinning flat — the two tetrahedra pitch in opposite senses.
+  const tilt = saveEnergy.value ? TILT : TILT + 0.45 * Math.sin(time / 5200)
   ctx.lineCap = 'round'
-  drawTetra(ctx, mk.tetraDown, down, 322, s, cx, cy) // magenta, counter
-  drawTetra(ctx, mk.tetraUp, up, 200, s, cx, cy) // cyan
+  drawTetra(ctx, mk.tetraDown, down, 322, s, cx, cy, TILT - 0.45 * Math.sin(time / 5200)) // magenta, counter
+  drawTetra(ctx, mk.tetraUp, up, 200, s, cx, cy, tilt) // cyan
 }
 
 function loop(time: number) {
