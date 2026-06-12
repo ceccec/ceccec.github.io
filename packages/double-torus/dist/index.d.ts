@@ -2381,6 +2381,43 @@ export declare function foldedCensus(unfolded: number, matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function papers(matrix?: MindMatrix, count?: number): {
+    expanded: boolean;
+    count: number;
+    fundamental: number;
+    octaves: number[];
+    nextHarmonic: number;
+    generators: number;
+    coordinates: number;
+    papers: {
+        number: number;
+        id: string;
+        title: string;
+        coordinateIndex: number;
+        digit: number;
+        glyph: string;
+        generator: string;
+        generatorName: string;
+        theta: number;
+        phi: number;
+        x: number;
+        y: number;
+        z: number;
+        frequency: number;
+        vibrationMs: number;
+        hue: number;
+        coordinateReceipt: string;
+        generatorUuid: string;
+        forward: string;
+        reverse: string;
+        bidirectional: boolean;
+        root: string;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

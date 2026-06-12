@@ -121,6 +121,8 @@ import {
   teleport,
   cellHomology,
   foldedCensus,
+  papers,
+  merkleProof,
   intelligenceComparison,
   astrology,
   generativeSpace,
@@ -327,6 +329,10 @@ ok(`teleport:${teleport(matrix).count}`, teleport(matrix).teleportable && telepo
 ok(`cell.homology:H1=Z^${cellHomology(matrix).betti[1]}`, cellHomology(matrix).closed && cellHomology(matrix).chainComplex)
 // Folded census: the gapless-Fibonacci 110 unfolded folds by chi = -2 to 108.
 ok(`folded.census:${foldedCensus(110, matrix).unfolded}->${foldedCensus(110, matrix).folded}`, foldedCensus(110, matrix).clean && foldedCensus(110, matrix).folded === 108)
+// Expand to the next harmonic: 432 folded papers (4 x 108), each a distinct,
+// recomputable result carrying a public Merkle inclusion proof into the corpus root.
+const corpus = papers(matrix)
+ok(`papers:${corpus.count}=4x${corpus.fundamental}`, corpus.expanded && corpus.nextHarmonic === 432 && merkleProof(corpus.papers.map((paper) => paper.receipt), corpus.papers[216].receipt).verified)
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)

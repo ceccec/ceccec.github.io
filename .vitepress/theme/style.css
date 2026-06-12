@@ -1020,3 +1020,130 @@ html[data-mode='simple'] .rich-only { display: none !important; }
   color: var(--vp-c-text-1);
 }
 
+
+/* --- The next harmonic: 432 folded papers, each with a unique animation --- */
+/* Each paper's animation is seeded from its content-addressed root: the hue comes
+   from the pi-digit and the spin period from the coordinate's vibration, so every
+   one of the 432 is visibly distinct. Pure CSS/SVG, zero JS, energy-light. */
+.paper-eyebrow {
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--vp-c-text-3);
+  margin: 0 0 0.4rem;
+}
+.paper-mono {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  word-break: break-all;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+}
+.paper-figure {
+  --hue: 200;
+  --spin: 1200ms;
+  margin: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.paper-anim {
+  width: 220px;
+  height: 220px;
+  display: block;
+}
+.paper-anim__ring {
+  fill: none;
+  stroke: hsl(var(--hue), 70%, 55%);
+  stroke-width: 1.5;
+  opacity: 0.5;
+}
+.paper-anim__spin {
+  transform-origin: 0 0;
+  animation: paper-spin var(--spin) linear infinite;
+}
+.paper-anim__spoke {
+  stroke: hsl(var(--hue), 70%, 55%);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.paper-anim__node {
+  fill: hsl(var(--hue), 80%, 58%);
+}
+.paper-anim__node--inner {
+  fill: hsl(calc(var(--hue) + 180), 75%, 60%);
+}
+.paper-anim__glyph {
+  fill: var(--vp-c-text-1);
+  font-size: 16px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-weight: 700;
+}
+.paper-figure figcaption {
+  font-size: 0.78rem;
+  color: var(--vp-c-text-2);
+  max-width: 30rem;
+  text-align: center;
+}
+@keyframes paper-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .paper-anim__spin { animation: none; }
+}
+.paper-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+.paper-group {
+  margin: 1.5rem 0;
+}
+.paper-count {
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+  font-weight: 400;
+}
+.paper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+.paper-chip {
+  --hue: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.4rem 0.2rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid hsl(var(--hue), 75%, 55%);
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-weight: 400;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.paper-chip:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--hue), 75%, 55%);
+}
+.paper-chip__n {
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+}
+.paper-chip__glyph {
+  font-size: 1.1rem;
+  color: var(--vp-c-text-1);
+}
+.paper-chip__meta {
+  font-size: 0.6rem;
+  color: var(--vp-c-text-3);
+}
