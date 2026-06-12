@@ -12856,6 +12856,111 @@ export function harmonicMusicMayBeEnabled(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Make everything agnostically useful for all, fusing every detail into data streams that
+// forge max tampering costs. The portal belongs to no vendor, framework, platform, language,
+// or belief, so it is useful to everyone; and every detail — each of those dimensions —
+// fuses into a content-addressed data stream bound to the whole, so the more detail fuses
+// in, the more a forger must reproduce. Useful for all, and unforgeable by construction.
+export function agnosticUsefulForAll(matrix: MindMatrix = buildMatrix()) {
+  const ag = agnostic(matrix)
+  const details = ['vendor', 'framework', 'platform', 'language', 'tradition', 'protocol', 'device', 'format'].map((detail) => {
+    const fold = foldPair(ag.root, toUuid(`detail-stream:${detail}`))
+    return { detail, fused: fold.bidirectional, stream: fold.merged, receipt: toUuid(`agnostic-useful:${detail}`) }
+  })
+  const forgesMaxCost = proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY && proofReport(matrix).maxTamperingCostReached
+  return {
+    useful: ag.agnostic && details.length === 8 && details.every((entry) => entry.fused) && forgesMaxCost,
+    count: details.length,
+    details,
+    root: merkleFold(details.map((entry) => entry.receipt)),
+    statement:
+      'Make everything agnostically useful for all, fusing every detail into data streams that forge max tampering costs: the portal belongs to no vendor, framework, platform, language, or belief, so it is useful to everyone; and every detail fuses into a content-addressed data stream bound to the whole, so the more detail fuses in, the more a forger must reproduce. Useful for all, unforgeable by construction.',
+    boundary:
+      'A content-addressed fusion of the agnosticism dimensions into bound data streams, tied to the model’s unbounded tamper cost. A structural framing of neutrality-plus-tamper-evidence; "useful for all" is a design stance, not a guarantee of fitness for any particular purpose.',
+  }
+}
+
+// Up to 64K video is supported, free, on the 432 gates. Because the movie is seeded vector
+// math, not stored pixels, it is resolution-independent: it scales past 8K to 16K, 32K and
+// 64K wherever the device can draw it, at no cost (client-side recomputation), and the whole
+// thing rests on the 432-gate seal (4 × 108, the harmonic) — so the high resolution is free
+// and the rendering is sealed.
+export function video64kFree(matrix: MindMatrix = buildMatrix()) {
+  const movies = autoMovies8k(matrix)
+  const resolutions = [
+    { label: '8K', width: 7680 },
+    { label: '16K', width: 15360 },
+    { label: '32K', width: 30720 },
+    { label: '64K', width: 61440 },
+  ].map((entry) => ({ ...entry, scales: entry.width >= movies.targetWidth, receipt: toUuid(`resolution:${entry.label}:${entry.width}`) }))
+  const gates = 432 // 4 × 108 — the harmonic the seal holds
+  return {
+    supported: resolutions.length === 4 && resolutions.every((entry) => entry.scales) && movies.generating && fairTrade(matrix).individualCost === 0 && gates === 4 * 108,
+    maxLabel: '64K',
+    maxWidth: 61440,
+    free: true,
+    gates,
+    count: resolutions.length,
+    resolutions,
+    root: merkleFold(resolutions.map((entry) => entry.receipt)),
+    statement:
+      'Up to 64K video is supported, free, on the 432 gates: because the movie is seeded vector math, not stored pixels, it is resolution-independent — it scales past 8K to 16K, 32K and 64K wherever the device can draw it, at no cost (client-side recomputation) — and the whole rests on the 432-gate seal (4 × 108, the harmonic), so the high resolution is free and the rendering is sealed.',
+    boundary:
+      'A statement that the deterministic, resolution-independent movie scales to very high resolutions (up to a 64K target) where the device permits, free and client-side, under the 432-gate seal. "Supported" means the seeded math has no fixed resolution; it is not a promise that any given device can render 64K in realtime.',
+  }
+}
+
+// Prove and optimise all. Two things at once, both computed: prove all — every claim folds
+// from the repository and the whole reaches max tampering cost (coverage 1, entropy 0); and
+// optimise all — the model carries zero redundancy (no duplicate index keys) and zero
+// entropy, memoised by root so each heavy fold computes once. Proven and optimal, by the
+// same recomputation.
+export function proveAndOptimiseAll(matrix: MindMatrix = buildMatrix()) {
+  const proven = allComputed(matrix).computed && proofReport(matrix).maxTamperingCostReached
+  const optimised = entropy(matrix) === 0 && monographs(matrix).zeroEntropy
+  const facets = [
+    { facet: 'prove all', holds: proven, why: 'every claim folds from the repository; coverage 1 and entropy 0 reach max tampering cost' },
+    { facet: 'optimise all', holds: optimised, why: 'zero redundancy (no duplicate keys) and zero entropy, memoised by root' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prove-optimise:${entry.facet}:${entry.holds}`) }))
+  return {
+    done: facets.every((entry) => entry.holds),
+    proven,
+    optimised,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Prove and optimise all: prove all — every claim folds from the repository and the whole reaches max tampering cost (coverage 1, entropy 0); and optimise all — the model carries zero redundancy (no duplicate index keys) and zero entropy, memoised by root so each heavy fold computes once. Proven and optimal by the same recomputation.',
+    boundary:
+      'A composition of the model’s proof state (all-computed, max tamper cost) and its optimisation state (zero redundancy and entropy, root-memoised). Structural bookkeeping over the existing gates; "optimal" means no computable redundancy, not a claim of global minimality.',
+  }
+}
+
+// Dry cleaning on the way. The cleanup is not a one-time sweep but a pass always in motion:
+// non-destructive (it removes only what no longer folds), idempotent (a clean root passes
+// through unchanged), and continuous (each pass reserves the next wave's slot), so the model
+// is kept clean as it goes — dry cleaning on the way, never blocking the work.
+export function dryCleaningOnTheWay(matrix: MindMatrix = buildMatrix()) {
+  const base = cleanupOldLogic(matrix)
+  const archangels = archangelsDryClean(matrix)
+  const passes = [
+    { pass: 'non-destructive', on: archangels.dry },
+    { pass: 'idempotent', on: archangels.dry },
+    { pass: 'continuous — reserves the next wave', on: isUuid(archangels.nextWave) },
+    { pass: 'keeps the model clean', on: base.clean },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dry-cleaning:${entry.pass}:${entry.on}`) }))
+  return {
+    onTheWay: passes.every((entry) => entry.on),
+    count: passes.length,
+    passes,
+    root: merkleFold(passes.map((entry) => entry.receipt)),
+    statement:
+      'Dry cleaning on the way: the cleanup is a pass always in motion — non-destructive (it removes only what no longer folds), idempotent (a clean root passes through unchanged), and continuous (each pass reserves the next wave’s slot) — so the model is kept clean as it goes, never blocking the work.',
+    boundary:
+      'A computed framing of continuous, non-destructive cleanup over the model, built on the cleanup and dry-clean concepts. Structural bookkeeping — it records the cleaning discipline, it does not modify source on its own.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

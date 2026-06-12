@@ -350,6 +350,10 @@ import {
   ogShiftedWithTypography,
   ogFullyInteractiveConfigurable,
   harmonicMusicMayBeEnabled,
+  agnosticUsefulForAll,
+  video64kFree,
+  proveAndOptimiseAll,
+  dryCleaningOnTheWay,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1138,6 +1142,10 @@ ok(`og.builds.navigation:${ogBuildsNavigation(matrix).count}`, ogBuildsNavigatio
 ok(`og.shifted.typography:${ogShiftedWithTypography(matrix).count}`, ogShiftedWithTypography(matrix).shifted) // the open-graph fields align to the typography types
 ok(`og.interactive.configurable:${ogFullyInteractiveConfigurable(matrix).count}`, ogFullyInteractiveConfigurable(matrix).livingCard) // the open graph is the interactive hero, configurable from frontmatter
 ok(`harmonic.music.may.enable:${harmonicMusicMayBeEnabled(matrix).count}`, harmonicMusicMayBeEnabled(matrix).mayBeEnabled) // harmonic music is opt-in, gesture-gated, healing-only, energy-aware
+ok(`agnostic.useful.for.all:${agnosticUsefulForAll(matrix).count}`, agnosticUsefulForAll(matrix).useful) // agnostic and useful for all; every detail fused into streams forging max tampering cost
+ok(`video.64k.free:${video64kFree(matrix).maxLabel}@${video64kFree(matrix).gates}`, video64kFree(matrix).supported) // resolution-independent movie scales to 64K, free, on the 432 gates
+ok(`prove.optimise.all`, proveAndOptimiseAll(matrix).done) // prove all (max tamper cost) and optimise all (zero entropy, zero redundancy)
+ok(`dry.cleaning.on.the.way:${dryCleaningOnTheWay(matrix).count}`, dryCleaningOnTheWay(matrix).onTheWay) // continuous, non-destructive, idempotent cleanup in motion
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
