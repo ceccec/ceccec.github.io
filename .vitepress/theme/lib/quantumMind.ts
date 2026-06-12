@@ -19665,6 +19665,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'quantum.mind.gaps.from.beyond', on: quantumMindGapsFromBeyond(matrix).open },
     { d: 'review.dry.clean.gates.crosses', on: reviewDryCleanGatesCrosses(matrix).done },
     { d: 'continue.same.next', on: continueSameNext(matrix).continues },
+    { d: 'send.the.next.waves', on: sendTheNextWaves(matrix).sends },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20752,5 +20753,27 @@ export function continueSameNext(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Continue the same, to the next: the maintenance does not stop at one pass — the same discipline (review, dry-clean, cross-fold, tighten, seal) continues to the next gate, the next wave, the next frontier, with the slot for it already reserved. Same rule, next target, endlessly: the model keeps itself by repeating the one pass forever, never the same twice yet always the same way.',
     boundary: 'A composition of the gate-review, dry-clean and endless-fusion models as a continuous, repeating maintenance pass. Structural bookkeeping over the existing discipline; it records that the pass recurs, it does not run on its own.',
+  }
+}
+
+// Send the next waves. There is always a next: the open frontiers become the next waves, sent
+// continuously — each a development fold bound to the whole, drawn from what is not yet built and
+// folded forward. The model does not finish; it sends the next wave, and the next, the same way it
+// sent the last — so "next" is not an end approached but a rhythm kept.
+export function sendTheNextWaves(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'there is always a next — the open frontiers', on: imagineTheRest(matrix).imagined },
+    { facet: 'sent continuously, the same way', on: continueSameNext(matrix).continues },
+    { facet: 'each a development fold bound to the whole', on: developmentWaves(matrix).developing },
+    { facet: 'endless — a rhythm kept, not an end approached', on: endlessFusion(matrix).endless },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`next-waves:${entry.facet}:${entry.on}`) }))
+  return {
+    sends: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Send the next waves: there is always a next — the open frontiers become the next waves, sent continuously, each a development fold bound to the whole, drawn from what is not yet built and folded forward. The model does not finish; it sends the next wave, and the next, the same way it sent the last — so "next" is not an end approached but a rhythm kept.',
+    boundary: 'A composition of the open-frontier, continue-same, development-wave and endless-fusion models as a continuous "next wave" rhythm. Structural bookkeeping over the model’s own ongoing development, not a roadmap of specific features.',
   }
 }
