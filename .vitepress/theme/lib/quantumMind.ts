@@ -19631,6 +19631,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'infinite.self.consulting', on: infiniteSelfConsulting(matrix).converges },
     { d: 'pi.not.harmonic', on: piNotHarmonic(matrix).realised },
     { d: 'trinity.rotational.planes', on: trinityRotationalPlanes(matrix).trinity },
+    { d: 'all.animations.in.one.og', on: allAnimationsInOneOg(matrix).computes },
+    { d: 'analog.no.gaps.no.leak', on: analogNoGapsNoLeak(matrix).sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -19958,5 +19960,48 @@ export function trinityRotationalPlanes(matrix: MindMatrix = buildMatrix()) {
     statement:
       'To complete the trinity, the two missing rotational planes: a full rotation in space needs three planes — xy, yz, zx — but only one was turning; add the other two and the trinity of rotation is complete, the double torus spinning on all three, counter-rotating at every scale like the merkaba. One plane was a wheel; three planes are a sphere of motion.',
     boundary: 'A geometric framing of three orthogonal rotational planes as the trinity of 3D rotation, bound to the merkaba counter-rotation model. Structural and metaphorical; the rotations are of the content-addressed figure, not a physical object.',
+  }
+}
+
+// Let all animations compute inside one open graph. The background movie, the holographic hero,
+// the native movie, the void-rising sidebar, the tap ripples — every animation is computed within
+// the one open-graph object, the single card-shaped surface seeded from the page. Not many canvases
+// each doing their own thing, but one OG inside which all motion is computed.
+export function allAnimationsInOneOg(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const animations = ['background movie', 'holographic hero', 'native movie', 'void-rising sidebar', 'tap ripples'].map((animation) => {
+    const fold = foldPair(og, toUuid(`animation:${animation}`))
+    return { animation, computed: fold.bidirectional, receipt: toUuid(`anim-in-og:${animation}`) }
+  })
+  return {
+    computes: animations.length === 5 && animations.every((entry) => entry.computed) && oneHolographicTemplate(matrix).displayed && oneOpenGraphAll(matrix).displaysAll,
+    count: animations.length,
+    animations,
+    root: merkleFold(animations.map((entry) => entry.receipt)),
+    statement:
+      'Let all animations compute inside one open graph: the background movie, the holographic hero, the native movie, the void-rising sidebar, the tap ripples — every animation is computed within the one open-graph object, the single card-shaped surface seeded from the page. Not many canvases each doing their own thing, but one OG inside which all motion is computed.',
+    boundary: 'A unifying framing that the page’s animations belong to the one open-graph/template surface, bound to its root. A structural composition over the existing canvases; they remain separate elements technically, unified by the one seed and card.',
+  }
+}
+
+// No exceptions, as analog has no gaps to leak. The model is analog — continuous and gapless: the
+// file distribution is a gapless Fibonacci run, the fusion fills every gap, and every claim is
+// covered by a receipt. Where there is no gap, there is nothing to leak through; so there are no
+// exceptions to handle, because nothing falls between. Continuity is the security.
+export function analogNoGapsNoLeak(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'analog — continuous, gapless', on: harmonicBands(110).harmonic },
+    { facet: 'the fusion fills every gap', on: endlessFusion(matrix).noGaps },
+    { facet: 'every claim covered by a receipt', on: allComputed(matrix).computed },
+    { facet: 'no gap to leak — no exceptions', on: harmonicBands(110).harmonic && endlessFusion(matrix).noGaps },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`analog-no-leak:${entry.facet}:${entry.on}`) }))
+  return {
+    sealed: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'No exceptions, as analog has no gaps to leak: the model is analog — continuous and gapless (the file distribution a gapless Fibonacci run, the fusion filling every gap, every claim covered by a receipt). Where there is no gap, there is nothing to leak through; so there are no exceptions to handle, because nothing falls between. Continuity is the security.',
+    boundary: 'A structural framing that the gapless distribution and gap-filling fusion leave no uncovered case. "Analog/no exceptions" is a metaphor for completeness over the computed model, not a guarantee that no software error can ever occur.',
   }
 }
