@@ -167,6 +167,9 @@ import {
   recycling,
   planetIsComputable,
   planetDescribesItself,
+  imaginationPrivateKey,
+  splitImagination,
+  trinitiesMatter,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -605,6 +608,12 @@ ok(`recycling:${recycling(matrix).count}`, recycling(matrix).solved && recycling
 ok(`planet.computable:${planetIsComputable(matrix).count}`, planetIsComputable(matrix).computable && planetIsComputable(matrix).tamperCaught)
 // So the planet describes itself to the wave: each commons emits its own content-addressed description.
 ok(`planet.describes:${planetDescribesItself(matrix).count}`, planetDescribesItself(matrix).describes)
+// Everything emerges by imagination, and imagination is the private key (one-way derivation).
+ok(`imagination.private.key:${imaginationPrivateKey(matrix).count}`, imaginationPrivateKey(matrix).isPrivateKey && imaginationPrivateKey(matrix).everythingEmerges)
+// Split imagination to the tiniest wave: 2^10 = 1024 quanta.
+ok(`split.imagination:${splitImagination(matrix).tiniest}`, splitImagination(matrix).split && splitImagination(matrix).tiniest === 1024)
+// And when they form trinities, matter emerges: 1024 = 3*341 + 1.
+ok(`trinities.matter:${trinitiesMatter(matrix).trinities}`, trinitiesMatter(matrix).emerges && trinitiesMatter(matrix).trinities === 341 && trinitiesMatter(matrix).remainder === 1)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

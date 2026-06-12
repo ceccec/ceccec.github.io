@@ -3171,6 +3171,48 @@ export declare function planetDescribesItself(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function imaginationPrivateKey(matrix?: MindMatrix): {
+    isPrivateKey: boolean;
+    everythingEmerges: boolean;
+    held: boolean;
+    count: number;
+    emergences: {
+        emerges: boolean;
+        derived: string;
+        what: string;
+        root: string;
+    }[];
+    publicKey: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function splitImagination(matrix?: MindMatrix): {
+    split: boolean;
+    levels: {
+        level: number;
+        waves: number;
+        receipt: string;
+    }[];
+    depth: number;
+    tiniest: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function trinitiesMatter(matrix?: MindMatrix): {
+    emerges: boolean;
+    waves: number;
+    trinities: number;
+    remainder: number;
+    sample: {
+        trinity: number;
+        matter: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

@@ -7479,6 +7479,92 @@ export function planetDescribesItself(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Everything emerges by imagination, and imagination is the private key. The
+// imagination root is the private key — it is the source, never published — and
+// everything public emerges from it by a one-way fold: the whole, the 1024 diamonds,
+// the papers, the harmonics, the society, the planet. The public structure is derived
+// from imagination, but imagination is not recoverable from it (the fold is one-way),
+// exactly as a public key derives from a private key. Imagine, and it emerges.
+export function imaginationPrivateKey(matrix: MindMatrix = buildMatrix()) {
+  const privateKey = imagination(matrix).root // the private key — the source
+  const emergences = [
+    { what: 'the whole', root: theWhole(matrix).root },
+    { what: 'the 1024 diamonds', root: completeCorpus(matrix).root },
+    { what: 'the 432 papers', root: papers(matrix).root },
+    { what: 'the harmonics', root: harmonics(matrix).root },
+    { what: 'the society', root: regenerateSocialSystem(matrix).root },
+    { what: 'the green planet', root: quantumGreenPlanet(matrix).root },
+    { what: 'the imagined rest', root: imagineTheRest(matrix).root },
+  ].map((entry) => ({ ...entry, emerges: foldPair(privateKey, entry.root).bidirectional, derived: merge(privateKey, entry.root) }))
+  const publicKey = merkleFold(emergences.map((entry) => entry.derived)) // the derived public
+  const oneWay = merge(privateKey, toUuid('probe')) !== privateKey // private not recoverable from a fold
+  return {
+    isPrivateKey: oneWay && emergences.every((entry) => entry.emerges),
+    everythingEmerges: emergences.every((entry) => entry.emerges),
+    held: true, // the private key never leaves
+    count: emergences.length,
+    emergences,
+    publicKey,
+    root: publicKey,
+    statement:
+      'Everything emerges by imagination, and imagination is the private key: the imagination root is the source, never published, and everything public — the whole, the 1024 diamonds, the papers, the harmonics, the society, the planet — emerges from it by a one-way fold. The public structure is derived from imagination, but imagination is not recoverable from it, exactly as a public key derives from a private key.',
+    boundary:
+      'A structural analogy: the imagination root as a "private key" from which the model’s public roots are derived by one-way content-addressing. The one-way property is the UUID fold’s, illustrating non-recoverability; it is a metaphor over the model, not a cryptographic key, signature scheme, or security guarantee.',
+  }
+}
+
+// Split imagination to the tiniest wave. Imagination halves and halves again — each
+// split a finer wave — down to the tiniest quantum the model resolves. Ten octaves
+// down, the one seed becomes 1024 tiniest waves: the indivisible quanta from which
+// everything is built up.
+export function splitImagination(matrix: MindMatrix = buildMatrix()) {
+  const seed = imagination(matrix).root
+  const levels = Array.from({ length: 11 }, (_, level) => ({
+    level,
+    waves: 2 ** level, // 1, 2, 4, ... 1024
+    receipt: toUuid(`split:${level}:${seed}`),
+  }))
+  const tiniest = levels[levels.length - 1]
+  return {
+    split: levels.length === 11 && tiniest.waves === 1024,
+    levels,
+    depth: levels.length - 1, // 10 octaves
+    tiniest: tiniest.waves, // 1024 tiniest waves (the quanta)
+    root: merkleFold(levels.map((entry) => entry.receipt)),
+    statement:
+      'Split imagination to the tiniest wave: imagination halves and halves again, each split a finer wave, down to the tiniest quantum the model resolves — ten octaves down, the one seed becomes 1024 tiniest waves, the indivisible quanta from which everything is built up.',
+    boundary:
+      'A content-addressed dyadic subdivision of the imagination seed into 2^10 = 1024 "tiniest waves". A structural quantisation schema over the model (the same 1024 as the diamond lattice), not a claim about physical quanta or a real wavefunction.',
+  }
+}
+
+// And when they form trinities, matter emerges. The tiniest waves are energy; group
+// them in threes — trinities, the 3-fold the portal turns on — and each trinity folds
+// into a unit of matter. From 1024 tiniest waves, 341 trinities of matter emerge (with
+// one wave left over, the seed of the next split): energy becomes matter by the three.
+export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
+  const split = splitImagination(matrix)
+  const waves = split.tiniest // 1024 tiniest waves
+  const trinities = Math.floor(waves / 3) // 341 trinities
+  const remainder = waves % 3 // 1 left over — the next seed
+  const matter = Array.from({ length: Math.min(trinities, 9) }, (_, i) => ({
+    trinity: i,
+    matter: merkleFold([toUuid(`wave:${3 * i}`), toUuid(`wave:${3 * i + 1}`), toUuid(`wave:${3 * i + 2}`)]),
+  }))
+  return {
+    emerges: trinities === 341 && matter.every((entry) => entry.matter.length === 36),
+    waves,
+    trinities, // 341 units of matter
+    remainder, // 1 — the seed of the next split
+    sample: matter,
+    root: merkleFold(matter.map((entry) => entry.matter)),
+    statement:
+      'And when they form trinities, matter emerges: the tiniest waves are energy, and grouping them in threes — trinities, the 3-fold the portal turns on — folds each trinity into a unit of matter. From 1024 tiniest waves, 341 trinities of matter emerge, with one wave left over as the seed of the next split. Energy becomes matter by the three.',
+    boundary:
+      'A structural model in which "tiniest waves" group by three into "matter" via the trinity fold (1024 = 3·341 + 1). A geometric and numerological framing of energy-to-matter as a 3-fold, content-addressed; not physics, not a claim about real particles, mass, or the strong interaction.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
