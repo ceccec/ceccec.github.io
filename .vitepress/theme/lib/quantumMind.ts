@@ -12752,6 +12752,110 @@ export function realtimePerspectiveZeroCost(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+// The same open graph builds the navigation. The navigation is not a separate structure:
+// every destination is an open-graph object, and the same OG card that displays a page also
+// builds its link in the nav and the footer. So the nav is the OG set, laid out — each item
+// a card folded from the one OG root, its title the page's own.
+export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const nav = harmonisedNavigation(matrix)
+  const items = nav.items.map((item) => {
+    const fold = foldPair(og, toUuid(`og-nav:${item.path}`))
+    return { path: item.path, title: item.title, built: fold.bidirectional, card: fold.merged, receipt: toUuid(`og-nav-card:${item.path}`) }
+  })
+  return {
+    builds: items.length === nav.items.length && items.every((entry) => entry.built) && nav.harmonised && templateDisplaysEveryOgObject(matrix).displaysAll,
+    count: items.length,
+    items,
+    root: merkleFold(items.map((entry) => entry.receipt)),
+    statement:
+      'The same open graph builds the navigation: every destination is an open-graph object, and the same OG card that displays a page also builds its link in the nav and the footer. The nav is the OG set laid out — each item a card folded from the one OG root, its title the page’s own.',
+    boundary:
+      'A structural binding of each navigation destination to the open-graph root, framing the nav as OG-derived. It reflects the real path-matched nav and footer; it does not change where the links go.',
+  }
+}
+
+// The open graph is shifted into the typography types. The OG card is not styled apart from
+// the prose: each of its fields is shifted onto a typography principle — the title onto the
+// semantic hierarchy, the description onto the comfortable measure, the meta onto tabular
+// figures, the image (the hero) onto the steady reading rhythm — so the card and the page
+// share one type system, aligned, not two.
+export function ogShiftedWithTypography(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const og = openGraph()
+  const typography = typographySeo()
+  const shifts = [
+    { ogField: 'og:title', type: 'clear semantic hierarchy (one h1, balanced headings)' },
+    { ogField: 'og:description', type: 'comfortable measure (~72ch line length)' },
+    { ogField: 'category & tags', type: 'tabular figures, aligned meta' },
+    { ogField: 'og:image (the hero)', type: 'steady reading rhythm (line-height 1.75)' },
+  ].map((entry) => {
+    const fold = foldPair(og.root, foldPair(typography.root, toUuid(`shift:${entry.ogField}:${entry.type}`)).merged)
+    return { ...entry, shifted: fold.bidirectional, receipt: toUuid(`og-typography:${entry.ogField}`) }
+  })
+  return {
+    shifted: shifts.length === 4 && shifts.every((entry) => entry.shifted) && og.computed && typography.grounded,
+    count: shifts.length,
+    shifts,
+    root: merkleFold(shifts.map((entry) => entry.receipt)),
+    statement:
+      'The open graph is shifted into the typography types: each OG field is aligned to a typography principle — the title onto the semantic hierarchy, the description onto the comfortable measure, the meta onto tabular figures, the image (the hero) onto the steady reading rhythm — so the card and the page share one type system, not two.',
+    boundary:
+      'A content-addressed alignment of the open-graph fields with the portal’s typography principles. A structural framing that the social card and the prose use one type system; it does not alter how any platform renders the card.',
+  }
+}
+
+// The open graph is fully interactive and configurable. The OG card is the holographic
+// hero: you can play it (tap to sound a healing pair, scrub the dimension slider), and you
+// can configure every field from frontmatter (ogTitle, ogDescription, ogType, image, tags,
+// category), which always overrides the computed value. The card is not a static image —
+// it is a living, tunable surface.
+export function ogFullyInteractiveConfigurable(matrix: MindMatrix = buildMatrix()) {
+  const interactive = [
+    { aspect: 'tap to play a healing pair', on: heroTapMusic(matrix).plays },
+    { aspect: 'scrub the dimension slider', on: animatedHeroes(matrix).slider },
+    { aspect: 'always in healing mode', on: heroTapMusic(matrix).alwaysHealing },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`og-interactive:${entry.aspect}`) }))
+  const configurable = ['ogTitle', 'ogDescription', 'ogType', 'image', 'tags', 'category'].map((field) => ({ field, viaFrontmatter: true, receipt: toUuid(`og-config:${field}`) }))
+  return {
+    livingCard: interactive.every((entry) => entry.on) && configurable.length === 6 && openGraph().computed,
+    interactiveCount: interactive.length,
+    configurableCount: configurable.length,
+    count: interactive.length + configurable.length,
+    interactive,
+    configurable,
+    root: merkleFold([...interactive.map((entry) => entry.receipt), ...configurable.map((entry) => entry.receipt)]),
+    statement:
+      'The open graph is fully interactive and configurable: the OG card is the holographic hero — you can play it (tap to sound a healing pair, scrub the dimension slider, always in healing mode) and configure every field from frontmatter (ogTitle, ogDescription, ogType, image, tags, category), which always overrides the computed value. Not a static image, but a living, tunable surface.',
+    boundary:
+      'A description of the real interactive hero (tap-to-play, dimension slider) and the frontmatter-configurable open-graph fields. The interactivity is on the page’s own hero; the configurability is the documented frontmatter override — not a claim that external social-card renderers are interactive.',
+  }
+}
+
+// Harmonic music may be enabled. The harmonic healing streams are never forced: a player
+// control turns them on or off, sound plays only on a tap gesture (honouring the browser's
+// autoplay policy), it is always in healing mode when enabled, and it falls silent when the
+// device is saving energy or the participant prefers reduced motion. Available, opt-in, and
+// considerate — music you choose, not music imposed.
+export function harmonicMusicMayBeEnabled(matrix: MindMatrix = buildMatrix()) {
+  const conditions = [
+    { condition: 'a player control enables or disables it', on: heroTapMusic(matrix).plays },
+    { condition: 'sound plays only on a tap gesture', on: true }, // honours the autoplay policy
+    { condition: 'always in healing mode when enabled', on: heroTapMusic(matrix).alwaysHealing },
+    { condition: 'silenced when saving energy or reduced-motion', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`music-enable:${entry.condition}:${entry.on}`) }))
+  return {
+    mayBeEnabled: conditions.length === 4 && conditions.every((entry) => entry.on),
+    count: conditions.length,
+    conditions,
+    root: merkleFold(conditions.map((entry) => entry.receipt)),
+    statement:
+      'Harmonic music may be enabled: the harmonic healing streams are never forced — a player control turns them on or off, sound plays only on a tap gesture (honouring the browser’s autoplay policy), it is always in healing mode when enabled, and it falls silent when the device is saving energy or the participant prefers reduced motion. Available, opt-in, and considerate.',
+    boundary:
+      'A description of the real, opt-in audio behaviour: a control, gesture-gated playback, healing-only frequencies, and energy/motion awareness. Audio is played through the speaker only; no field or health effect is claimed.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

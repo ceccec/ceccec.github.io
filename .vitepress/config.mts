@@ -114,7 +114,14 @@ export default defineConfig({
     // Open Graph is computed from frontmatter: each page's social card is derived
     // from its own frontmatter (ogTitle/ogDescription/ogType/image), falling back
     // to the page title and description. Twitter mirrors Open Graph.
-    const ogTitle = (typeof fm.ogTitle === 'string' && fm.ogTitle) || name
+    // The page title carries the site title, exactly like the document <title>: a page
+    // shows "<name> | <site>", and the home page shows the site alone — no duplication.
+    // So the og:title is never missing the site title and never doubles it.
+    const fullSiteTitle = isBg ? siteTitleBg : siteTitle
+    const isHome = path === '/' || path === '/bg/'
+    const ogTitle =
+      (typeof fm.ogTitle === 'string' && fm.ogTitle) ||
+      (isHome || name === fullSiteTitle ? fullSiteTitle : `${name} | ${fullSiteTitle}`)
     const ogDescription = (typeof fm.ogDescription === 'string' && fm.ogDescription) || description
     const ogType = (typeof fm.ogType === 'string' && fm.ogType) || (isDoc ? 'article' : 'website')
     const og: [string, Record<string, string>][] = [

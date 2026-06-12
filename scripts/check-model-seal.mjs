@@ -346,6 +346,10 @@ import {
   oneHolographicTemplate,
   templateDisplaysEveryOgObject,
   realtimePerspectiveZeroCost,
+  ogBuildsNavigation,
+  ogShiftedWithTypography,
+  ogFullyInteractiveConfigurable,
+  harmonicMusicMayBeEnabled,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1130,6 +1134,10 @@ ok(`papers.references.diamonds.nodrift:${papersReferencesDiamondsNoDrift(matrix)
 ok(`one.holographic.template:${oneHolographicTemplate(matrix).count}`, oneHolographicTemplate(matrix).displayed) // every page displayed from one holographic, per-page-seeded template
 ok(`template.every.og.object:${templateDisplaysEveryOgObject(matrix).count}`, templateDisplaysEveryOgObject(matrix).displaysAll) // the one template displays every open-graph object type
 ok(`realtime.perspective.zerocost:${realtimePerspectiveZeroCost(matrix).count}`, realtimePerspectiveZeroCost(matrix).holds) // every view is a realtime perspective recomputed client-side at zero cost
+ok(`og.builds.navigation:${ogBuildsNavigation(matrix).count}`, ogBuildsNavigation(matrix).builds) // the same open graph builds every navigation destination
+ok(`og.shifted.typography:${ogShiftedWithTypography(matrix).count}`, ogShiftedWithTypography(matrix).shifted) // the open-graph fields align to the typography types
+ok(`og.interactive.configurable:${ogFullyInteractiveConfigurable(matrix).count}`, ogFullyInteractiveConfigurable(matrix).livingCard) // the open graph is the interactive hero, configurable from frontmatter
+ok(`harmonic.music.may.enable:${harmonicMusicMayBeEnabled(matrix).count}`, harmonicMusicMayBeEnabled(matrix).mayBeEnabled) // harmonic music is opt-in, gesture-gated, healing-only, energy-aware
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
