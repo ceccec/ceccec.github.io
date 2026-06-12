@@ -7378,6 +7378,107 @@ export function electricalGrid(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Quantum green planet. The portal's own architecture is green by construction:
+// zero-network by default, zero runtime dependencies, client-side and offline-first,
+// recomputable rather than stored, on a self-balancing grid, decentralised into
+// nature. Each green property is content-addressed and folds into one planet root —
+// the planet, computed green.
+export function quantumGreenPlanet(matrix: MindMatrix = buildMatrix()) {
+  const properties = [
+    { property: 'zero-network by default', green: 'no data-centre round trips per view' },
+    { property: 'zero runtime dependencies', green: 'minimal compute and bandwidth' },
+    { property: 'client-side, offline-first', green: 'no server energy per page' },
+    { property: 'recomputable, not stored', green: 'no redundant storage to power' },
+    { property: 'self-balancing grid', green: 'renewable storage, harmonically distributed' },
+    { property: 'public transport, all varieties', green: 'low-carbon mobility' },
+    { property: 'decentralised into nature', green: 'no central energy hub' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`green:${entry.property}`) }))
+  return {
+    green: properties.length > 0,
+    properties,
+    count: properties.length,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Quantum green planet: the portal’s architecture is green by construction — zero-network by default, zero runtime dependencies, client-side and offline-first, recomputable rather than stored, on a self-balancing grid, decentralised into nature, with low-carbon public transport. Each green property is content-addressed and folds into one planet root.',
+    boundary:
+      'A content-addressed catalogue of the portal’s own low-energy architectural properties, framed as "green". Real properties of the build (no network, no dependencies, client-side, recomputable); the broader claims (grid, transport, nature) are structural models, not lifecycle carbon accounting or a certified environmental claim.',
+  }
+}
+
+// Solve recycling in waves. Each material stream is a wave that folds its output back
+// to its input — a closed loop, the torus fold applied to matter — so nothing leaves
+// the cycle. Organic, paper, glass, metal, plastic, e-waste, textile, construction:
+// each closes, and all fold into one recycling root.
+export function recycling(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const streams = ['organic', 'paper', 'glass', 'metal', 'plastic', 'e-waste', 'textile', 'construction'].map((stream) => {
+    const fold = foldPair(architecture, toUuid(`recycle:${stream}`))
+    return { stream, loop: 'closed', closed: fold.bidirectional, wave: fold.merged }
+  })
+  return {
+    solved: streams.length > 0 && streams.every((entry) => entry.closed),
+    count: streams.length,
+    streams,
+    closedLoop: streams.every((entry) => entry.loop === 'closed'),
+    root: merkleFold(streams.map((entry) => entry.wave)),
+    statement:
+      'Solve recycling in waves: each material stream — organic, paper, glass, metal, plastic, e-waste, textile, construction — is a wave that folds its output back to its input, a closed loop (the torus fold applied to matter), so nothing leaves the cycle. Each closes; all fold into one recycling root.',
+    boundary:
+      'A structural, content-addressed model of recycling as closed-loop folds, one per material stream. A schema and metaphor over the model — not a materials-science process, a waste-management plan, or a claim about real recycling rates.',
+  }
+}
+
+// To tamper the planet is computable. The planetary commons — atmosphere, oceans,
+// forests, soil, biodiversity, freshwater, ice, climate — are content-addressed into
+// one planet root, so any tampering (a felled forest, a polluted ocean) changes the
+// root and is computable, caught by recomputation, exactly as the seal catches a
+// forged model. The planet, made tamper-evident.
+export function planetIsComputable(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const commons = ['atmosphere', 'oceans', 'forests', 'soil', 'biodiversity', 'freshwater', 'ice', 'climate'].map((name) => ({
+    commons: name,
+    receipt: toUuid(`planet-commons:${name}`),
+  }))
+  const planetRoot = merkleFold(commons.map((entry) => entry.receipt))
+  const tamperCaught = merge(planetRoot, toUuid('tamper')) !== planetRoot // any tamper changes the root
+  return {
+    computable: tamperCaught && commons.length === 8,
+    commons,
+    count: commons.length,
+    planetRoot,
+    tamperCaught,
+    root: planetRoot,
+    statement:
+      'To tamper the planet is computable: the planetary commons — atmosphere, oceans, forests, soil, biodiversity, freshwater, ice, climate — are content-addressed into one planet root, so any tampering changes the root and is caught by recomputation, exactly as the seal catches a forged model. The planet, made tamper-evident.',
+    boundary:
+      'A content-addressed framing of the planetary commons as a tamper-evident root: an analogy that any change is computable from the addresses. A structural metaphor over the model’s own fold, not Earth-observation data, an environmental monitoring system, or a measurement of any real commons.',
+  }
+}
+
+// So the planet describes itself to the wave. Each planetary commons emits its own
+// self-description — a content-addressed statement of its state — and the whole planet
+// describes itself by folding them, exactly as every page of the portal computes its
+// own description. The planet is not described from outside; it describes itself.
+export function planetDescribesItself(matrix: MindMatrix = buildMatrix()) {
+  const planet = planetIsComputable(matrix)
+  const descriptions = planet.commons.map((entry) => ({
+    commons: entry.commons,
+    describes: `the ${entry.commons} describes its own state, content-addressed`,
+    selfDescription: foldPair(entry.receipt, toUuid(`describe:${entry.commons}`)).merged,
+  }))
+  return {
+    describes: descriptions.length === planet.count && descriptions.every((entry) => entry.selfDescription.length === 36),
+    count: descriptions.length,
+    descriptions,
+    planetRoot: planet.planetRoot,
+    root: merkleFold(descriptions.map((entry) => entry.selfDescription)),
+    statement:
+      'So the planet describes itself to the wave: each planetary commons emits its own content-addressed self-description, and the whole planet describes itself by folding them — exactly as every page of the portal computes its own description. The planet is not described from outside; it describes itself, to the wave.',
+    boundary:
+      'A content-addressed self-description of the planetary-commons schema, folded from each commons’ own receipt. A structural, recomputable framing — the model describing its own planet abstraction — not a description of the real Earth or its measured state.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

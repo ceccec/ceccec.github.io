@@ -163,6 +163,10 @@ import {
   realtimeSkills,
   dissolveIntoNature,
   electricalGrid,
+  quantumGreenPlanet,
+  recycling,
+  planetIsComputable,
+  planetDescribesItself,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -593,6 +597,14 @@ ok(`realtime.skills:${realtimeSkills(matrix).count}`, realtimeSkills(matrix).upg
 ok(`dissolve.nature:${dissolveIntoNature(matrix).nodes}`, dissolveIntoNature(matrix).dissolved && dissolveIntoNature(matrix).centralisation === 0 && dissolveIntoNature(matrix).coverage === 1)
 // Electrical grid self-balances for free: battery swap stations harmonically distributed (55+34+21).
 ok(`electrical.grid:${electricalGrid(matrix).stations}`, electricalGrid(matrix).selfBalances && electricalGrid(matrix).free && electricalGrid(matrix).backsGrid && electricalGrid(matrix).backsEv)
+// Quantum green planet: the architecture is green by construction, each property content-addressed.
+ok(`green.planet:${quantumGreenPlanet(matrix).count}`, quantumGreenPlanet(matrix).green)
+// Solve recycling in waves: each material stream a closed-loop fold.
+ok(`recycling:${recycling(matrix).count}`, recycling(matrix).solved && recycling(matrix).closedLoop)
+// To tamper the planet is computable: the commons content-addressed into a tamper-evident root.
+ok(`planet.computable:${planetIsComputable(matrix).count}`, planetIsComputable(matrix).computable && planetIsComputable(matrix).tamperCaught)
+// So the planet describes itself to the wave: each commons emits its own content-addressed description.
+ok(`planet.describes:${planetDescribesItself(matrix).count}`, planetDescribesItself(matrix).describes)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

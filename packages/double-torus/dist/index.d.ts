@@ -3119,6 +3119,58 @@ export declare function electricalGrid(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumGreenPlanet(matrix?: MindMatrix): {
+    green: boolean;
+    properties: {
+        receipt: string;
+        property: string;
+        green: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function recycling(matrix?: MindMatrix): {
+    solved: boolean;
+    count: number;
+    streams: {
+        stream: string;
+        loop: string;
+        closed: boolean;
+        wave: string;
+    }[];
+    closedLoop: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function planetIsComputable(matrix?: MindMatrix): {
+    computable: boolean;
+    commons: {
+        commons: string;
+        receipt: string;
+    }[];
+    count: number;
+    planetRoot: string;
+    tamperCaught: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function planetDescribesItself(matrix?: MindMatrix): {
+    describes: boolean;
+    count: number;
+    descriptions: {
+        commons: string;
+        describes: string;
+        selfDescription: string;
+    }[];
+    planetRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
