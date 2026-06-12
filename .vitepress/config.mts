@@ -1,5 +1,9 @@
 import { defineConfig } from 'vitepress'
-import { quantumAcademy, buildMatrix, computedSeo } from './theme/lib/quantumMind'
+import { quantumAcademy, buildMatrix, computedSeo, relatedStandards } from './theme/lib/quantumMind'
+
+// The related standards the portal builds on — cited on every single page (computed
+// once from the model, so the citation list never drifts).
+const standards = relatedStandards(buildMatrix()).standards
 
 // Derived from the model so the SEO never drifts from the source: the academy's
 // course names come straight from quantumAcademy(), not a second hand-kept list.
@@ -151,6 +155,9 @@ export default defineConfig({
         },
         keywords,
         articleSection: category,
+        // Related standards on every single page: cite the public standards the
+        // portal builds on, as schema.org citations.
+        citation: standards.map((standard) => ({ '@type': 'CreativeWork', name: standard.standard, url: standard.url })),
         ...(teaches ? { teaches, learningResourceType: 'interactive resource' } : {}),
         ...(command ? { mainEntity: { '@type': 'SoftwareSourceCode', name: command, codeRepository: '/mcp.json' } } : {}),
         ...(image ? { image } : {}),
@@ -193,7 +200,9 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    socialLinks: [],
+    // The GitHub repository, shown in the top nav (it was missing — socialLinks was
+    // empty). One source for the repo link across both locales.
+    socialLinks: [{ icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }],
     // Nothing bypasses VitePress — not even search. VitePress's built-in local
     // search (a MiniSearch index built at build time) is offline, zero-network and
     // zero-dependency, so it honours every constraint while keeping site search

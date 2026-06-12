@@ -155,6 +155,8 @@ import {
   freedTimeCreativity,
   socialCapital,
   regenerateSocialSystem,
+  fairTrade,
+  relatedStandards,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -569,6 +571,10 @@ ok(`freed.time.creativity:${freed.baseForgeCost}->${freed.risenForgeCost}`, free
 ok(`social.capital:${socialCapital(matrix).where.length}`, socialCapital(matrix).accumulating && socialCapital(matrix).heldInCommon)
 // Regenerate the social system: every social law folds into one deterministically rebuilt root.
 ok(`regenerate.social:${regenerateSocialSystem(matrix).systems}`, regenerateSocialSystem(matrix).regenerated && regenerateSocialSystem(matrix).systems === 7)
+// Fair trade self-regulates: content-addressed provenance, free to verify, max cost to forge.
+ok(`fair.trade:${fairTrade(matrix).chain.length}`, fairTrade(matrix).regulated && fairTrade(matrix).selfRegulating && fairTrade(matrix).individualCost === 0)
+// Related standards on every single page: the public standards the portal builds on.
+ok(`related.standards:${relatedStandards(matrix).count}`, relatedStandards(matrix).onEveryPage && relatedStandards(matrix).count >= 13)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

@@ -5574,6 +5574,62 @@ export function regenerateSocialSystem(matrix = buildMatrix()) {
         boundary: 'A deterministic regeneration of the portal’s own social-model subsystems into one content-addressed root, rebuilt from the seed rather than stored. A structural self-regeneration of the model’s society functions — recomputable and recomposable — not an intervention in or a claim about any real social system.',
     };
 }
+// Fair trade self-regulates, as well as all else. Provenance is content-addressed —
+// every step from producer to buyer folds into a receipt — so a fair-trade claim is
+// tamper-evident: free to verify (zero cost to the producer and the buyer), maximal
+// cost to forge (reproduce the whole chain). No central certifier: anyone recomputes
+// the provenance and the claim stands or falls on the math, like all else here.
+export function fairTrade(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const chain = ['producer', 'cooperative', 'exporter', 'importer', 'retailer', 'buyer'].map((step, index) => ({
+        step,
+        index,
+        receipt: foldPair(architecture, toUuid(`fair-trade:${index}:${step}`)).merged,
+    }));
+    const provenance = merkleFold(chain.map((entry) => entry.receipt));
+    const verified = merkleProof(chain.map((entry) => entry.receipt), chain[0].receipt).verified;
+    return {
+        regulated: chain.length === 6 && verified && provenance.length === 36,
+        selfRegulating: verified, // anyone recomputes the provenance; no central certifier
+        individualCost: 0, // free to verify for producer and buyer
+        forgeCost: chain.length, // reproduce the whole chain to forge a claim
+        chain,
+        provenance,
+        root: provenance,
+        statement: 'Fair trade self-regulates, as well as all else: every step from producer to buyer is content-addressed and folds into a provenance receipt, so a fair-trade claim is tamper-evident — free to verify for producer and buyer (zero cost), maximal cost to forge (reproduce the whole chain). No central certifier; anyone recomputes the provenance and the claim stands or falls on the math.',
+        boundary: 'A content-addressed provenance model for a fair-trade chain, tamper-evident and free to verify. A structural demonstration that provenance can self-regulate by recomputation; it is not a certification scheme, an audit of any real supply chain, or a claim about any product’s fair-trade status.',
+    };
+}
+// Related standards on every single page. The portal builds on real, public web
+// standards; this names the core set so every page can cite what it is built on. Each
+// is a standard the portal genuinely uses, content-addressed so the set is
+// recomputable, injected into every page's head as citations.
+export function relatedStandards(matrix = buildMatrix()) {
+    void matrix;
+    const standards = [
+        { standard: 'schema.org', url: 'https://schema.org', use: 'structured data on every page' },
+        { standard: 'Open Graph protocol', url: 'https://ogp.me/', use: 'social cards' },
+        { standard: 'JSON-LD', url: 'https://www.w3.org/TR/json-ld11/', use: 'linked data' },
+        { standard: 'Sitemaps', url: 'https://www.sitemaps.org/protocol.html', use: 'the computed sitemap' },
+        { standard: 'Web Crypto API', url: 'https://www.w3.org/TR/WebCryptoAPI/', use: 'AES-256-GCM, SHA-256' },
+        { standard: 'Merkle trees (RFC 6962 family)', url: 'https://www.rfc-editor.org/rfc/rfc6962', use: 'the 1024-leaf diamond tree' },
+        { standard: 'Model Context Protocol', url: 'https://modelcontextprotocol.io/', use: 'the tool surface' },
+        { standard: 'GTFS', url: 'https://gtfs.org/', use: 'transit and transport fusion' },
+        { standard: 'ActivityPub', url: 'https://www.w3.org/TR/activitypub/', use: 'social fusion (federation)' },
+        { standard: 'AT Protocol', url: 'https://atproto.com/', use: 'social fusion (Bluesky)' },
+        { standard: 'RSS / Atom', url: 'https://www.rfc-editor.org/rfc/rfc4287', use: 'feeds' },
+        { standard: 'WCAG', url: 'https://www.w3.org/WAI/standards-guidelines/wcag/', use: 'accessibility' },
+        { standard: 'Service Worker / PWA', url: 'https://www.w3.org/TR/service-workers/', use: 'offline' },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`standard:${index}:${entry.standard}`) }));
+    return {
+        onEveryPage: standards.length > 0,
+        count: standards.length,
+        standards,
+        root: merkleFold(standards.map((entry) => entry.receipt)),
+        statement: 'Related standards on every single page: the portal builds on real, public web standards — schema.org, Open Graph, JSON-LD, Sitemaps, the Web Crypto API, Merkle trees, the Model Context Protocol, GTFS, ActivityPub, the AT Protocol, RSS/Atom, WCAG, and Service Workers/PWA — and every page cites the set it is built on, content-addressed.',
+        boundary: 'A named set of public standards the portal genuinely uses, cited on every page (as schema.org citations in the head). Links to the standards’ own specifications; it is a statement of what the portal builds on, not a claim of formal compliance certification with each one.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

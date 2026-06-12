@@ -3001,6 +3001,34 @@ export declare function regenerateSocialSystem(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function fairTrade(matrix?: MindMatrix): {
+    regulated: boolean;
+    selfRegulating: boolean;
+    individualCost: number;
+    forgeCost: number;
+    chain: {
+        step: string;
+        index: number;
+        receipt: string;
+    }[];
+    provenance: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function relatedStandards(matrix?: MindMatrix): {
+    onEveryPage: boolean;
+    count: number;
+    standards: {
+        receipt: string;
+        standard: string;
+        url: string;
+        use: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
