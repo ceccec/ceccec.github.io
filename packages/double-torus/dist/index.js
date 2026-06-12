@@ -4429,6 +4429,35 @@ function papersImpl(matrix, count) {
         boundary: 'A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal\'s own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.',
     };
 }
+// The dynamic-route descriptors for the papers corpus, computed once and shared by
+// every locale's VitePress route loader (English and Bulgarian) — one source of the
+// per-paper params: the precomputed animation node positions and the public Merkle
+// inclusion proof into the corpus root. The route loaders are thin wrappers over
+// this; the rendered pages are unchanged.
+export function paperRoutes(matrix = buildMatrix(), count = 432) {
+    const corpus = papers(matrix, count);
+    const leaves = corpus.papers.map((paper) => paper.receipt);
+    const round = (value) => Math.round(value * 100) / 100;
+    return corpus.papers.map((paper) => {
+        const proof = merkleProof(leaves, paper.receipt);
+        return {
+            params: {
+                ...paper,
+                ax: round(46 * Math.cos(paper.theta)),
+                ay: round(46 * Math.sin(paper.theta)),
+                bx: round(28 * Math.cos(paper.phi)),
+                by: round(28 * Math.sin(paper.phi)),
+                total: corpus.count,
+                fundamental: corpus.fundamental,
+                octaves: corpus.octaves.join(' · '),
+                corpusRoot: corpus.root,
+                proofVerified: proof.verified,
+                proofDepth: proof.path.length,
+                leafCount: proof.leafCount,
+            },
+        };
+    });
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

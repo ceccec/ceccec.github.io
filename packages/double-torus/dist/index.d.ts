@@ -2418,6 +2418,44 @@ export declare function papers(matrix?: MindMatrix, count?: number): {
     statement: string;
     boundary: string;
 };
+export declare function paperRoutes(matrix?: MindMatrix, count?: number): {
+    params: {
+        ax: number;
+        ay: number;
+        bx: number;
+        by: number;
+        total: number;
+        fundamental: number;
+        octaves: string;
+        corpusRoot: string;
+        proofVerified: boolean;
+        proofDepth: number;
+        leafCount: number;
+        number: number;
+        id: string;
+        title: string;
+        coordinateIndex: number;
+        digit: number;
+        glyph: string;
+        generator: string;
+        generatorName: string;
+        theta: number;
+        phi: number;
+        x: number;
+        y: number;
+        z: number;
+        frequency: number;
+        vibrationMs: number;
+        hue: number;
+        coordinateReceipt: string;
+        generatorUuid: string;
+        forward: string;
+        reverse: string;
+        bidirectional: boolean;
+        root: string;
+        receipt: string;
+    };
+}[];
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

@@ -122,6 +122,7 @@ import {
   cellHomology,
   foldedCensus,
   papers,
+  paperRoutes,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -333,6 +334,10 @@ ok(`folded.census:${foldedCensus(110, matrix).unfolded}->${foldedCensus(110, mat
 // recomputable result carrying a public Merkle inclusion proof into the corpus root.
 const corpus = papers(matrix)
 ok(`papers:${corpus.count}=4x${corpus.fundamental}`, corpus.expanded && corpus.nextHarmonic === 432 && merkleProof(corpus.papers.map((paper) => paper.receipt), corpus.papers[216].receipt).verified)
+// One source for both locales' dynamic route loaders: every paper has a route
+// descriptor with a verifying public proof and precomputed animation positions.
+const routes = paperRoutes(matrix)
+ok(`paper.routes:${routes.length}`, routes.length === corpus.count && routes.every((route) => route.params.proofVerified))
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)
