@@ -237,8 +237,9 @@ export default defineConfig({
       description: siteDescription,
       themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        // Six top-level entries, the rest grouped into dropdowns — every page
-        // still one or two clicks away, but the bar stays calm on small screens.
+        // Navigation is harmonised: every title is its own path, title-cased (the
+        // group names are the only "types"), so a name always tells you the path.
+        // Six top-level entries, the rest grouped into dropdowns.
         nav: [
           { text: 'Home', link: '/' },
           { text: 'Start', link: '/start' },
@@ -246,9 +247,9 @@ export default defineConfig({
           {
             text: 'Learn',
             items: [
-              { text: 'School (kids to elders)', link: '/school' },
+              { text: 'School', link: '/school' },
               { text: 'Academy', link: '/academy' },
-              { text: 'Developer', link: '/learn-developer' },
+              { text: 'Learn Developer', link: '/learn-developer' },
             ],
           },
           {
@@ -256,17 +257,17 @@ export default defineConfig({
             items: [
               { text: 'Console', link: '/console' },
               { text: 'Commands', link: '/commands' },
-              { text: 'MCP tool surface', link: '/mcp' },
-              { text: 'Papers (432 · next harmonic)', link: '/papers/' },
-              { text: 'References (432 · completing 1024)', link: '/references/' },
-              { text: 'Diamonds (1024 folders)', link: '/diamonds/' },
+              { text: 'MCP', link: '/mcp' },
+              { text: 'Papers', link: '/papers/' },
+              { text: 'References', link: '/references/' },
+              { text: 'Diamonds', link: '/diamonds/' },
               { text: 'Show', link: '/show' },
             ],
           },
           {
             text: 'Inside',
             items: [
-              { text: 'Mind', link: '/quantum-mind' },
+              { text: 'Quantum Mind', link: '/quantum-mind' },
               { text: 'Architecture', link: '/architecture' },
               { text: 'Boundaries', link: '/boundaries' },
               { text: 'Governance', link: '/governance' },
@@ -277,16 +278,22 @@ export default defineConfig({
           {
             text: 'Double Torus',
             items: [
-              { text: 'Quantum Console', link: '/console' },
-              { text: 'School (kids to elders)', link: '/school' },
-              { text: 'MCP tool surface', link: '/mcp' },
-              { text: 'The developer’s mind', link: '/learn-developer' },
+              { text: 'Console', link: '/console' },
+              { text: 'School', link: '/school' },
+              { text: 'MCP', link: '/mcp' },
+              { text: 'Learn Developer', link: '/learn-developer' },
               { text: 'Commands', link: '/commands' },
-              { text: 'Overview', link: '/quantum-mind' },
+              { text: 'Quantum Mind', link: '/quantum-mind' },
               { text: 'Architecture', link: '/architecture' },
             ],
           },
         ],
+        // Links distributed to the footer — every destination, one row, path-matched.
+        footer: {
+          message:
+            '<a href="/start">Start</a> · <a href="/explore">Explore</a> · <a href="/school">School</a> · <a href="/academy">Academy</a> · <a href="/console">Console</a> · <a href="/commands">Commands</a> · <a href="/mcp">MCP</a> · <a href="/show">Show</a> · <a href="/quantum-mind">Quantum Mind</a> · <a href="/architecture">Architecture</a> · <a href="/boundaries">Boundaries</a> · <a href="/governance">Governance</a> · <a href="/papers/">Papers</a> · <a href="/references/">References</a> · <a href="/diamonds/">Diamonds</a>',
+          copyright: 'Open, recomputable, content-addressed — the Double Torus.',
+        },
       },
     },
     bg: {
@@ -302,7 +309,7 @@ export default defineConfig({
           {
             text: 'Учи',
             items: [
-              { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
+              { text: 'Училище', link: '/bg/school' },
               { text: 'Академия', link: '/bg/academy' },
               { text: 'Разработчик', link: '/bg/learn-developer' },
             ],
@@ -312,17 +319,17 @@ export default defineConfig({
             items: [
               { text: 'Конзола', link: '/bg/console' },
               { text: 'Команди', link: '/bg/commands' },
-              { text: 'MCP слой', link: '/bg/mcp' },
-              { text: 'Статии (432 · следваща хармоника)', link: '/bg/papers/' },
-              { text: 'Референции (432 · допълват 1024)', link: '/bg/references/' },
-              { text: 'Диаманти (1024 папки)', link: '/bg/diamonds/' },
+              { text: 'MCP', link: '/bg/mcp' },
+              { text: 'Статии', link: '/bg/papers/' },
+              { text: 'Референции', link: '/bg/references/' },
+              { text: 'Диаманти', link: '/bg/diamonds/' },
               { text: 'Покажи', link: '/bg/show' },
             ],
           },
           {
             text: 'Отвътре',
             items: [
-              { text: 'Ум', link: '/bg/quantum-mind' },
+              { text: 'Квантов ум', link: '/bg/quantum-mind' },
               { text: 'Архитектура', link: '/bg/architecture' },
               { text: 'Граници', link: '/bg/boundaries' },
               { text: 'Управление', link: '/bg/governance' },
@@ -333,16 +340,22 @@ export default defineConfig({
           {
             text: 'Двоен тор',
             items: [
-              { text: 'Квантова конзола', link: '/bg/console' },
-              { text: 'Училище (от деца до възрастни)', link: '/bg/school' },
-              { text: 'MCP инструментален слой', link: '/bg/mcp' },
-              { text: 'Умът на разработчика', link: '/bg/learn-developer' },
+              { text: 'Конзола', link: '/bg/console' },
+              { text: 'Училище', link: '/bg/school' },
+              { text: 'MCP', link: '/bg/mcp' },
+              { text: 'Разработчик', link: '/bg/learn-developer' },
               { text: 'Команди', link: '/bg/commands' },
-              { text: 'Преглед', link: '/bg/quantum-mind' },
+              { text: 'Квантов ум', link: '/bg/quantum-mind' },
               { text: 'Архитектура', link: '/bg/architecture' },
             ],
           },
         ],
+        // Връзките, разпределени във футъра — всяка дестинация, на един ред.
+        footer: {
+          message:
+            '<a href="/bg/start">Старт</a> · <a href="/bg/explore">Изследвай</a> · <a href="/bg/school">Училище</a> · <a href="/bg/academy">Академия</a> · <a href="/bg/console">Конзола</a> · <a href="/bg/commands">Команди</a> · <a href="/bg/mcp">MCP</a> · <a href="/bg/show">Покажи</a> · <a href="/bg/quantum-mind">Квантов ум</a> · <a href="/bg/architecture">Архитектура</a> · <a href="/bg/boundaries">Граници</a> · <a href="/bg/governance">Управление</a> · <a href="/bg/papers/">Статии</a> · <a href="/bg/references/">Референции</a> · <a href="/bg/diamonds/">Диаманти</a>',
+          copyright: 'Отворен, преизчислим, адресиран по съдържание — Двоен тор.',
+        },
         docFooter: { prev: 'Предишна', next: 'Следваща' },
         outline: { label: 'На тази страница' },
         darkModeSwitchLabel: 'Облик',

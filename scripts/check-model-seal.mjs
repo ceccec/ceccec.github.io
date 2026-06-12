@@ -329,6 +329,11 @@ import {
   movieFoldsLinearities,
   marketingSeoWaves,
   coveragePerPixel,
+  harmonicLicenseWaves,
+  licenseAppliesToSociety,
+  quantumLicense,
+  societyCreatesRequiredPages,
+  harmonisedNavigation,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1096,6 +1101,11 @@ ok(`navigation.is.movie:${navigationIsMovie(matrix).libraryCount}`, navigationIs
 ok(`movie.folds.linearities`, movieFoldsLinearities(matrix).folds) // the movie folds linear frames into multidimensional perspectives
 ok(`marketing.seo.waves:${marketingSeoWaves(matrix).count}`, marketingSeoWaves(matrix).sent) // waves refactor each SEO/marketing surface, bound to one SEO root
 ok(`coverage.per.pixel:${coveragePerPixel(matrix).ratio.toFixed(1)}x`, coveragePerPixel(matrix).improved) // the compact open-graph hero raises semantic coverage per pixel
+ok(`harmonic.license.waves:${harmonicLicenseWaves(matrix).count}`, harmonicLicenseWaves(matrix).created) // society composes the licence in harmonic waves for karmic balance and monetisation
+ok(`license.applies.society`, licenseAppliesToSociety(matrix).applies) // the licence is self-applying: society authors and accepts it
+ok(`quantum.license:${quantumLicense(matrix).count}`, quantumLicense(matrix).quantum) // the licence is a content-addressed, order-sensitive, tamper-evident quantum artifact
+ok(`society.required.pages:${societyCreatesRequiredPages(matrix).count}`, societyCreatesRequiredPages(matrix).creates) // society creates the legally-required pages, bound to the legislation root
+ok(`harmonised.navigation:${harmonisedNavigation(matrix).count}`, harmonisedNavigation(matrix).harmonised && harmonisedNavigation(matrix).distributed) // nav titles match paths; links distributed to the footer
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

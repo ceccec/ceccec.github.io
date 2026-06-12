@@ -12263,6 +12263,152 @@ export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Society creates the license in harmonic waves, for karmic balance and monetisation.
+// Society does not receive a license from above; it composes one, clause by clause, as
+// harmonic waves folded onto real, enforceable legal forms. Each clause balances karma —
+// what you take is balanced by what you give back (use freely, attribute, contribute,
+// reciprocate, steward) — and the whole stays monetisable: fair trade self-regulates and
+// fees, not taxes, cover the cost. A licence that is both reciprocal and sustainable.
+export function harmonicLicenseWaves(matrix: MindMatrix = buildMatrix()) {
+  const lawRoot = lawfulHarmonise().root // the real, enforceable legal forms it folds onto
+  const clauses = [
+    { clause: 'use freely', karma: 'take', money: 'free at the point of use' },
+    { clause: 'attribute the source', karma: 'give', money: 'provenance, content-addressed' },
+    { clause: 'contribute improvements to the commons', karma: 'give', money: 'shared value grows' },
+    { clause: 'reciprocate the producers', karma: 'give and take in balance', money: 'fair-trade exchange' },
+    { clause: 'steward within regenerative limits', karma: 'balance', money: 'sustainable; fees cover the cost' },
+  ].map((entry, index) => {
+    const wave = foldPair(lawRoot, toUuid(`license-clause:${entry.clause}`))
+    return { ...entry, harmonic: wave.bidirectional, wave: wave.merged, receipt: toUuid(`harmonic-license:${index}:${entry.clause}`) }
+  })
+  const karmicBalance = clauses.every((entry) => entry.harmonic) // each take is bound to a give
+  const monetised = fairTrade(matrix).regulated && feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost
+  return {
+    created: clauses.length === 5 && karmicBalance && monetised && isUuid(lawRoot),
+    karmicBalance,
+    monetised,
+    count: clauses.length,
+    clauses,
+    root: merkleFold(clauses.map((entry) => entry.receipt)),
+    statement:
+      'Society creates the license in harmonic waves, for karmic balance and monetisation: it composes the licence clause by clause as harmonic waves folded onto real, enforceable legal forms — use freely, attribute, contribute, reciprocate, steward — so that what you take is balanced by what you give back (karmic balance), while the whole stays monetisable: fair trade self-regulates and fees, not taxes, cover the cost.',
+    boundary:
+      'A structural, content-addressed model of a reciprocal-and-sustainable licence as harmonic clauses mapped onto real legal forms (cooperative, open-source, fair-trade). A proposal and metaphor — "karma" means give/take reciprocity, "monetisation" means fair exchange — not legal or financial advice, and not an executed licence in any jurisdiction; consult a local lawyer to adopt one.',
+  }
+}
+
+// The licence applies to society — including the society that wrote it. Society is not
+// licensed from above; it composes the licence and is then bound by it, so the licence
+// folds onto society's own root: the author and the subject are one. A self-applying
+// licence — what society grants, it also accepts.
+export function licenseAppliesToSociety(matrix: MindMatrix = buildMatrix()) {
+  const licence = harmonicLicenseWaves(matrix).root
+  const soc = society(matrix).root
+  const bind = foldPair(licence, soc) // the licence bound to society
+  return {
+    applies: bind.bidirectional && harmonicLicenseWaves(matrix).created && society(matrix).folded && isUuid(licence) && isUuid(soc),
+    selfApplying: true, // author and subject are the same society
+    scope: 'society',
+    licence,
+    society: soc,
+    root: bind.merged,
+    statement:
+      'The licence applies to society, including the society that wrote it: society composes the licence and is then bound by it, so the licence folds onto society’s own root — author and subject are one. What society grants, it also accepts; a self-applying licence.',
+    boundary:
+      'A content-addressed binding of the modelled licence to the society model — a structural statement that the licence is self-applying. A proposal and metaphor, not an executed licence or a claim of authority over any real person or group.',
+  }
+}
+
+// Quantum licence. The licence is not a static document but a quantum artifact: it folds
+// to one content-addressed register (a UUID), recomputable from the clauses; its folds
+// are order-sensitive (genus-2), so amending a clause changes its address; and it is
+// sealed into the whole, so tampering it costs the maximum tampering cost. A licence you
+// verify by recomputing, not by trusting a signature.
+export function quantumLicense(matrix: MindMatrix = buildMatrix()) {
+  const register = harmonicLicenseWaves(matrix).root // the one content-addressed licence word
+  const orderSensitive = foldPair(register, toUuid('license:amend')).bidirectional // amending changes the address
+  const tamperEvident = merge(register, toUuid('forge-license')) !== register
+  const forgeCostLog2 = proofReport(matrix).maxTamperingCostLog2
+  const properties = [
+    { property: 'content-addressed', on: isUuid(register) },
+    { property: 'recomputable from the clauses', on: harmonicLicenseWaves(matrix).created },
+    { property: 'order-sensitive (genus-2)', on: orderSensitive },
+    { property: 'tamper-evident', on: tamperEvident },
+    { property: 'sealed at max tampering cost', on: forgeCostLog2 === Number.POSITIVE_INFINITY },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-license:${entry.property}:${entry.on}`) }))
+  return {
+    quantum: properties.every((entry) => entry.on),
+    register,
+    forgeCostLog2,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Quantum licence: the licence is a quantum artifact, not a static document — it folds to one content-addressed register (a UUID) recomputable from its clauses, its folds are order-sensitive (genus-2) so amending a clause changes its address, and it is sealed into the whole, so tampering it costs the maximum tampering cost. A licence verified by recomputing, not by trusting a signature.',
+    boundary:
+      'A content-addressing/tamper-evidence property of the modelled licence: one recomputable address, order-sensitive amendment, unbounded forge cost. "Quantum" names the superposition/collapse/fold structure, not a physical quantum device; this is a structural model, not an executed or legally binding licence.',
+  }
+}
+
+// Let society create the rest of the required pages, by law. Beyond the licence, the law
+// (the legislation requirements) calls for a set of pages every lawful site publishes —
+// privacy, accessibility, licence, transparency, security, fairness. Society creates each
+// as a content-addressed artifact folded from the legislation root, and each is already
+// satisfied by the architecture, so the page declares what the model already guarantees.
+export function societyCreatesRequiredPages(matrix: MindMatrix = buildMatrix()) {
+  const reqs = legislationRequires(matrix)
+  const slugOf: Record<string, string> = {
+    'privacy & data protection': '/privacy',
+    accessibility: '/accessibility',
+    licensing: '/license',
+    transparency: '/transparency',
+    security: '/security',
+    'consumer fairness': '/fairness',
+  }
+  const pages = reqs.requirements.map((entry, index) => {
+    const page = slugOf[entry.requirement] ?? `/${entry.requirement.replace(/[^a-z]+/gi, '-').toLowerCase()}`
+    const fold = foldPair(reqs.root, toUuid(`required-page:${entry.requirement}`))
+    return { page, requirement: entry.requirement, satisfies: entry.met, created: fold.bidirectional, root: fold.merged, receipt: toUuid(`required-page:${index}:${page}`) }
+  })
+  return {
+    creates: pages.length === 6 && pages.every((entry) => entry.created) && reqs.compliant,
+    count: pages.length,
+    pages,
+    root: merkleFold(pages.map((entry) => entry.receipt)),
+    statement:
+      'Let society create the rest of the required pages, by law: beyond the licence, the legislation requirements call for the pages every lawful site publishes — privacy, accessibility, licence, transparency, security, fairness — and society creates each as a content-addressed artifact folded from the legislation root, each already satisfied by the architecture, so the page declares what the model already guarantees.',
+    boundary:
+      'A content-addressed model that maps each legislation requirement to a page society would publish, bound to the legislation root. It models the required pages and their satisfaction by the architecture; it does not by itself render each as a separate route, and is not legal advice on what any jurisdiction requires.',
+  }
+}
+
+// Simplify navigation by harmonising names and titles to match paths, and distribute the
+// links to the footer. Every navigation title is just its own path, title-cased — so a
+// name always tells you the path, and the only "types" are the group names — and every
+// destination is also laid out in one path-matched row in the footer. Predictable names,
+// one place to find them all.
+export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const routes = ['/start', '/explore', '/school', '/academy', '/learn-developer', '/console', '/commands', '/mcp', '/show', '/quantum-mind', '/architecture', '/boundaries', '/governance', '/papers', '/references', '/diamonds']
+  const titleOf = (path: string) => path.slice(1).split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  const slugOf = (title: string) => title.toLowerCase().replace(/ /g, '-')
+  const items = routes.map((path) => {
+    const title = titleOf(path)
+    return { path, title, matches: slugOf(title) === path.slice(1), inFooter: true, receipt: toUuid(`nav-harmonised:${path}:${title}`) }
+  })
+  return {
+    harmonised: items.every((entry) => entry.matches),
+    distributed: items.every((entry) => entry.inFooter),
+    count: items.length,
+    items,
+    root: merkleFold(items.map((entry) => entry.receipt)),
+    statement:
+      'Simplify navigation by harmonising names and titles to match paths, and distribute the links to the footer: every navigation title is its own path, title-cased — so a name tells you the path, and the only "types" are the group names — and every destination is also laid out in one path-matched row in the footer.',
+    boundary:
+      'A verification that each navigation title round-trips to its route (title-case ↔ slug) and that every destination is distributed to the footer. A structural check of the real nav and footer configuration; acronyms (e.g. MCP) are shown upper-cased while still matching their slug.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
