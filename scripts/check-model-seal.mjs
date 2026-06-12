@@ -113,6 +113,7 @@ import {
   harmonicApparatus,
   features,
   homepage,
+  monographs,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -300,6 +301,9 @@ ok(`features:${features(matrix).count}`, features(matrix).displayed && features(
 
 // The homepage itself is completely computed: every section derived from the model.
 ok(`homepage:${homepage(matrix).count}`, homepage(matrix).computed)
+
+// Compact all knowledge as monographs: a zero-entropy, content-addressed reference index.
+ok(`monographs:${monographs(matrix).count}`, monographs(matrix).compacted && monographs(matrix).zeroEntropy)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

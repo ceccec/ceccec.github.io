@@ -4039,6 +4039,29 @@ export function homepage(matrix = buildMatrix()) {
         boundary: 'A census that every computed section of the home page holds. The hero copy in frontmatter remains editorial; everything below it is computed from the model and verifiable.',
     };
 }
+// Compact all knowledge as monographs for a zero-entropy reference index. Every
+// skill and every scale of the math is distilled to a titled one-line essence with
+// a content-addressed index key. No two monographs are identical (zero redundancy),
+// and the index root is order-independent — a compact, searchable, recomputable
+// reference (paired with the intuitive search).
+export function monographs(matrix = buildMatrix()) {
+    const skills = skillAtoms(matrix).skills;
+    const math = mcpCodebase(matrix).math;
+    const entries = [
+        ...skills.map((skill) => ({ title: skill.skill, essence: skill.does, ref: skill.fn })),
+        ...math.map((scale) => ({ title: scale.scale, essence: scale.law, ref: scale.value })),
+    ].map((entry) => ({ ...entry, index: toUuid(`monograph:${entry.title}:${entry.essence}`) }));
+    const keys = new Set(entries.map((entry) => entry.index));
+    return {
+        compacted: entries.length > 0 && keys.size === entries.length, // zero redundancy
+        zeroEntropy: keys.size === entries.length,
+        monographs: entries,
+        count: entries.length,
+        root: merkleFold([...keys].sort()), // order-independent reference-index root
+        statement: 'Compact all knowledge as monographs for a zero-entropy reference index: every skill and every scale of the math distilled to a titled one-line essence with a content-addressed index key. No two monographs are identical (zero redundancy), and the index root is order-independent — a compact, searchable, recomputable reference.',
+        boundary: 'A compact reference index of the portal\'s knowledge, each entry content-addressed (so "zero entropy" means no duplicate keys, not thermodynamics). Searchable via the intuitive search; a distilled index, not the full text.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {
