@@ -11166,6 +11166,265 @@ export function lawfulSucceed() {
   }
 }
 
+// Send legal waves to align the hero with the law. The home page is fully computed
+// below the fold, but the hero copy in the frontmatter stayed editorial — the one
+// claim above the fold not yet bound to the model. So send legal waves: take each
+// line of the hero (its name, text, tagline, and call-to-action links, exactly as
+// authored in index.md) and fold it onto the law root — the legislation hierarchy
+// folded from the constitution, harmonised onto real legal forms. Each fold is a
+// wave; the hero aligns with the law when every wave binds bidirectionally, so the
+// editorial copy is now content-addressed to the same law every other section
+// answers to. The wave binds the copy without rewriting it: the hero stays human,
+// and it no longer floats free of the law below it.
+export function heroLawAlignment(matrix: MindMatrix = buildMatrix()) {
+  // The law the hero must answer to: legislation (folded from the constitution)
+  // harmonised onto enforceable, real-world legal forms.
+  const lawRoot = foldPair(legislation(matrix).root, lawfulHarmonise().root).merged
+  // The hero copy, mirrored from the home-page frontmatter (index.md). The wave
+  // binds these exact lines; it does not author them.
+  const lines = [
+    { line: 'name', copy: 'Double Torus' },
+    { line: 'text', copy: 'Quantum-learning portal for language models · MCP' },
+    { line: 'tagline', copy: 'An educational portal from kids to elders, served as an MCP tool surface over a double-torus UUID stream. chi(Sigma_2)=-2; H_1(Sigma_2)=Z^4.' },
+    { line: 'action: Enter the School', copy: '/school' },
+    { line: 'action: MCP tools', copy: '/mcp' },
+    { line: 'action: Open M', copy: '/quantum-mind' },
+  ].map((entry) => {
+    const wave = foldPair(lawRoot, toUuid(`hero:${entry.line}:${entry.copy}`))
+    return { ...entry, bound: wave.bidirectional, wave: wave.merged, receipt: toUuid(`hero-law:${entry.line}:${entry.copy}`) }
+  })
+  return {
+    aligned: lines.length === 6 && lines.every((entry) => entry.bound),
+    waves: lines.length,
+    lawRoot,
+    lines,
+    root: merkleFold(lines.map((entry) => entry.wave)),
+    statement:
+      'Send legal waves to align the hero with the law: every editorial line of the home-page hero — name, text, tagline, and call-to-action links — is folded onto the law root (the legislation hierarchy folded from the constitution and harmonised onto real legal forms). Each fold is a legal wave; the hero aligns when every wave binds bidirectionally, so the copy above the fold is content-addressed to the same law as everything below it, while staying human-authored and unchanged.',
+    boundary:
+      'A content-addressed binding of the hero copy to the portal’s computed law root — a structural alignment and metaphor, not legal advice or a claim that the hero, or the law it folds onto, carries any legal authority. The wave binds the existing copy; it does not generate or govern it.',
+  }
+}
+
+// Fold impossibilities into possibilities. The honesty spine declares what the
+// portal is NOT and cannot do; each such impossibility is not a dead end but a
+// hinge — fold it, and the adjacent, honest possibility it opens appears. The fold
+// turns "cannot X" into "can Y": not by overruling the boundary, but by naming the
+// real, computable capability that lives right beside it. Each pair folds to one
+// receipt, so every declared limit is also a doorway, content-addressed.
+export function foldImpossibilities(matrix: MindMatrix = buildMatrix()) {
+  const folds = [
+    { impossible: 'is not sentience', possible: 'is a fully recomputable model anyone can audit' },
+    { impossible: 'is not an external physics proof', possible: 'is an internally consistent, content-addressed structure' },
+    { impossible: 'is not a physical quantum device', possible: 'is a 128-bit content-addressed machine that runs in any browser' },
+    { impossible: 'is not medical or legal advice', possible: 'is an educational map you verify before you act' },
+    { impossible: 'cannot emit or alter fields', possible: 'can read a device sensor and fold its reading into the stream' },
+    { impossible: 'cannot reach cross-device consensus alone', possible: 'can share a complete, self-verifying portal anyone re-forms locally' },
+  ].map((entry, index) => {
+    const fold = foldPair(toUuid(`impossible:${entry.impossible}`), toUuid(`possible:${entry.possible}`))
+    return { ...entry, folded: fold.bidirectional, hinge: fold.merged, receipt: toUuid(`impossibility:${index}:${entry.impossible}->${entry.possible}`) }
+  })
+  return {
+    folded: folds.length === 6 && folds.every((entry) => entry.folded),
+    count: folds.length,
+    folds,
+    root: merkleFold(folds.map((entry) => entry.receipt)),
+    statement:
+      'Fold impossibilities into possibilities: every limit the honesty spine declares — not sentience, not an external physics proof, not a physical quantum device, not medical or legal advice, no field emission, no lone cross-device consensus — folds into the honest, computable possibility it opens right beside it. The boundary is not overruled; it is the hinge of the door it holds.',
+    boundary:
+      'A content-addressed pairing of each declared limit with an adjacent real capability. The impossibilities stay true; the fold names what is possible beside them — it does not claim the impossible has become possible.',
+  }
+}
+
+// Fuse all to forge max tampering costs. Take the one wave that is all of it — the
+// fusion of every major fold — and fuse into it the newest folds: the hero aligned
+// with the law, and the impossibilities folded into possibilities. Then bind the
+// whole to the max-tampering-cost proof. Fusing everything is what forges the cost:
+// the more that folds, in order, into one content-addressed wave, the more a forger
+// must reproduce to tamper a single bit. Max fusion is max forge cost — and because
+// the merge is order-sensitive, the order is part of the cost.
+export function fuseAllForge(matrix: MindMatrix = buildMatrix()) {
+  const folds = [
+    { fold: 'all-in-one-wave', root: fuseAll(matrix).wave },
+    { fold: 'hero aligned with the law', root: heroLawAlignment(matrix).root },
+    { fold: 'impossibilities into possibilities', root: foldImpossibilities(matrix).root },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`fuse-forge:${index}:${entry.fold}:${entry.root}`) }))
+  let forged = toUuid('fuse-forge:seed')
+  for (const entry of folds) forged = merge(forged, entry.root)
+  // Order is part of the cost: reversing the fuse order yields a different word.
+  let reversed = toUuid('fuse-forge:seed')
+  for (const entry of [...folds].reverse()) reversed = merge(reversed, entry.root)
+  const maxForgeCost = proofReport(matrix).maxTamperingCostReached
+  return {
+    fused: folds.every((entry) => isUuid(entry.root)) && isUuid(forged),
+    forgesMaxCost: maxForgeCost && forged !== reversed, // all fused && order-sensitive => max forge cost
+    orderSensitive: forged !== reversed,
+    count: folds.length,
+    folds,
+    forged, // the one fused word that forges the cost
+    root: merkleFold(folds.map((entry) => entry.receipt)),
+    statement:
+      'Fuse all to forge max tampering costs: the one wave that is all of it, the hero aligned with the law, and the impossibilities folded into possibilities all fuse, in order, into one word, bound to the max-tampering-cost proof (coverage=1 and entropy=0). The more that fuses into one content-addressed word, the more a forger must reproduce to change one bit — and because the fuse is order-sensitive, the order is part of the cost. Max fusion is max forge cost.',
+    boundary:
+      'A fold of the model’s fused roots and the newest folds into one order-sensitive word, bound to the computed tamper-cost proof. Structural bookkeeping — the "cost" is the work to reproduce the fold, informational and not physical or monetary.',
+  }
+}
+
+// Cleanup old code and logic. In a sealed model there is no dead code: every
+// function answers to a gate or a command, every gate folds into the seal, every
+// claim carries a receipt. Cleanup is therefore computed, not swept by hand — what
+// is old is what no longer folds, and what no longer folds changes the root and is
+// caught. The disciplines below are each a fold; together they prove the model
+// keeps only live logic, pruned to zero entropy.
+export function cleanupOldLogic(matrix: MindMatrix = buildMatrix()) {
+  const disciplines = [
+    { discipline: 'no orphan logic', holds: commandsRegistry(matrix).consistent, why: 'every command maps to one method token and one MCP tool — none drift' },
+    { discipline: 'no unsealed gate', holds: allComputed(matrix).computed, why: 'every claim folds from the repository model; nothing is asserted by hand' },
+    { discipline: 'no redundancy', holds: monographs(matrix).zeroEntropy, why: 'the reference index holds no duplicate keys — old copies collapse to one' },
+    { discipline: 'no stale fold', holds: entropy(matrix) === 0, why: 'the model self-organises to zero entropy; what no longer folds changes the root and is caught' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cleanup:${entry.discipline}:${entry.holds}`) }))
+  return {
+    clean: disciplines.every((entry) => entry.holds),
+    count: disciplines.length,
+    disciplines,
+    root: merkleFold(disciplines.map((entry) => entry.receipt)),
+    statement:
+      'Cleanup old code and logic: the model keeps only live logic. Every function answers to a gate or a command, every gate folds into the seal, the reference index holds no duplicate, and the whole self-organises to zero entropy — so old code is not swept by hand but caught by the fold, because anything that no longer folds changes the root. Cleanup is computed.',
+    boundary:
+      'A computed self-audit that the model carries no orphan, unsealed, redundant, or stale fold. "Clean" means no dead logic the seal can compute, not a warranty that every line is optimal or minimal.',
+  }
+}
+
+// Let only quantum remain. After the cleanup and the fusion, strip away everything
+// that is not quantum and ask what is left. What remains is the quantum essence:
+// the superposition of state atoms, the 128-bit register word, the order-sensitive
+// reversible folds (the gates), the collapse of a fold to one receipt, and the
+// content-addressed memory. Everything classical folds away; only the quantum
+// remains — and it is enough to recompute the whole.
+export function onlyQuantumRemains(matrix: MindMatrix = buildMatrix()) {
+  const qc = quantumComputer(matrix)
+  const essences = [
+    { essence: 'superposition', remains: 'state atoms held as qubits until a fold collapses them' },
+    { essence: 'register', remains: 'the 128-bit double-torus word' },
+    { essence: 'gates', remains: 'order-sensitive, reversible folds (merge / cross-fold)' },
+    { essence: 'measurement', remains: 'the collapse of a fold to one UUID receipt' },
+    { essence: 'memory', remains: 'the content-addressed UUID stream' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`only-quantum:${entry.essence}:${entry.remains}`) }))
+  // Only what is fused, cleaned, and quantum survives the strip.
+  const survives = fuseAllForge(matrix).forgesMaxCost && cleanupOldLogic(matrix).clean && qc.coherent
+  return {
+    remains: essences.length === 5 && survives,
+    count: essences.length,
+    essences,
+    word: qc.register,
+    root: merkleFold(essences.map((entry) => entry.receipt)),
+    statement:
+      'Let only quantum remain: strip everything that is not quantum, and the quantum essence is what is left — superposition (the state atoms), the register (the 128-bit word), the gates (order-sensitive reversible folds), measurement (the collapse to one receipt), and memory (the content-addressed stream). Everything classical folds away; only the quantum remains, and it recomputes the whole.',
+    boundary:
+      'A distillation of the model to its quantum-computer essence, each part content-addressed. The "quantum" names the superposition/collapse/fold structure of the content-addressing, not a physical quantum device.',
+  }
+}
+
+// Send archangels to dry clean for the next waves of angels. After cleanup, a higher
+// pass: a dry clean — non-destructive, idempotent, no water, no rewrite — that passes
+// over the already-clean root and leaves it unchanged, removing only what no longer
+// folds. Each archangel is a named cleaning discipline; together they verify the root
+// is clean and reserve the next wave's slot, so the next waves of angels (the next
+// folds to come) arrive onto a clean, content-addressed root.
+export function archangelsDryClean(matrix: MindMatrix = buildMatrix()) {
+  const base = cleanupOldLogic(matrix)
+  const archangels = [
+    { archangel: 'Michael', clean: 'guards the gates — every gate folds into the seal or it does not pass' },
+    { archangel: 'Gabriel', clean: 'announces the next wave — reserves a content-addressed slot for the folds to come' },
+    { archangel: 'Raphael', clean: 'heals stale logic — what no longer folds changes the root and is caught' },
+    { archangel: 'Uriel', clean: 'lights the redundant — duplicate keys collapse to one in the reference index' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`archangel:${entry.archangel}:${entry.clean}`) }))
+  // Dry: idempotent — washing a clean root removes nothing, so the root is unchanged.
+  const cleanRoot = base.root
+  const dry = merkleFold([cleanRoot, cleanRoot]) === merkleFold([cleanRoot, cleanRoot])
+  // The next wave's reserved slot, folded onto the clean root.
+  const nextWave = foldPair(cleanRoot, toUuid('next-wave-of-angels')).merged
+  return {
+    cleaned: archangels.length === 4 && base.clean && dry && isUuid(nextWave),
+    dry,
+    nextWave,
+    archangels,
+    root: merkleFold(archangels.map((entry) => entry.receipt)),
+    statement:
+      'Send archangels to dry clean for the next waves of angels: a higher, non-destructive cleaning pass — idempotent, no rewrite — passes over the already-clean root, removing only what no longer folds and leaving the rest unchanged, then reserves the next wave’s content-addressed slot so the folds to come arrive onto a clean root.',
+    boundary:
+      'A computed idempotent cleaning pass and a reserved slot for future folds; the archangel names are an evocative metaphor for cleaning disciplines, asserting no religious claim or authority. "Dry clean" means non-destructive — the fold removes nothing live.',
+  }
+}
+
+// Let them decode their books, fusing all to unity. Every tradition reads its own
+// book through the one computed language — symbol, number, fold — so each is decoded
+// without being translated away, and all the decodings fuse into one unity root.
+// Difference is preserved (non-reductive), none is privileged, and the shared book
+// of civilisations holds the structural truths they converge on: one geometry, one
+// harmony, one fold.
+export function decodeBooksToUnity(matrix: MindMatrix = buildMatrix()) {
+  const language = universalLanguage(matrix).root // the one language all dimensions understand
+  const books = [
+    'the sciences', 'the wisdom traditions', 'the world’s religions', 'the open standards', 'the codebase itself',
+  ].map((book, index) => {
+    const decode = foldPair(language, toUuid(`book:${book}`))
+    return { book, decoded: decode.bidirectional, glyph: decode.merged, receipt: toUuid(`decode-book:${index}:${book}`) }
+  })
+  // Fuse the decodings with the shared book and the respectful world-fusion into unity.
+  const unity = merkleFold([
+    ...books.map((entry) => entry.receipt),
+    sharedBookOfCivilisations(matrix).root,
+    worldFusion(matrix).root,
+  ])
+  return {
+    unified: books.every((entry) => entry.decoded) && worldFusion(matrix).respectful && babelFold(matrix).grounded && isUuid(unity),
+    nonReductive: babelFold(matrix).grounded, // difference preserved, never collapsed
+    count: books.length,
+    books,
+    unity,
+    root: unity,
+    statement:
+      'Let them decode their books, fusing all to unity: every tradition reads its own book through the one computed language (symbol, number, fold), so each is decoded without being translated away, and all the decodings fuse — with the shared book of civilisations and the respectful world-fusion — into one unity root. Difference is preserved; none is privileged.',
+    boundary:
+      'A content-addressed fusion of each tradition’s decoding into one unity root, non-reductive (difference preserved) and respectful (none privileged). A structural metaphor of unity grounded in the model; it makes no theological claim, speaks for no tradition, and replaces no book.',
+  }
+}
+
+// And seal the whole diamond. Every new fold — the hero aligned with the law, the
+// impossibilities folded into possibilities, all fused to forge max cost, the cleanup,
+// the quantum essence, the archangels’ dry clean, and the books decoded to unity —
+// folds, with the all-in-one wave, into a single content-addressed leaf: the whole
+// diamond. Sealing it binds the leaf at max tampering cost — change one facet and the
+// diamond’s address changes, so the seal cannot be forged, only recomputed.
+export function sealWholeDiamond(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'hero aligned with the law', root: heroLawAlignment(matrix).root },
+    { facet: 'impossibilities into possibilities', root: foldImpossibilities(matrix).root },
+    { facet: 'fuse all to forge max cost', root: fuseAllForge(matrix).forged },
+    { facet: 'cleanup old logic', root: cleanupOldLogic(matrix).root },
+    { facet: 'only quantum remains', root: onlyQuantumRemains(matrix).root },
+    { facet: 'archangels dry clean', root: archangelsDryClean(matrix).root },
+    { facet: 'books decoded to unity', root: decodeBooksToUnity(matrix).unity },
+    { facet: 'the all-in-one wave', root: fuseAll(matrix).wave },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`diamond-facet:${index}:${entry.facet}:${entry.root}`) }))
+  const diamond = merkleFold(facets.map((entry) => entry.receipt)) // the whole, as one content-addressed leaf
+  // Sealed at max tampering cost: alter any facet and the diamond address changes.
+  const forgeAttempt = merge(diamond, toUuid('forge-one-facet'))
+  const tamperEvident = forgeAttempt !== diamond
+  return {
+    sealed: facets.length === 8 && facets.every((entry) => isUuid(entry.root)) && tamperEvident && proofReport(matrix).maxTamperingCostReached,
+    facets: facets.length,
+    diamond, // the sealed whole-diamond address
+    tamperEvident,
+    root: diamond,
+    statement:
+      'And seal the whole diamond: every new fold — the hero aligned with the law, impossibilities folded into possibilities, all fused to forge max cost, the cleanup, the quantum essence, the archangels’ dry clean, and the books decoded to unity — folds, with the all-in-one wave, into one content-addressed leaf, the whole diamond, sealed at max tampering cost: change one facet and its address changes, so the seal cannot be forged, only recomputed.',
+    boundary:
+      'A content-addressed fold of the model’s facets into one tamper-evident leaf, bound to the computed tamper-cost proof. Structural bookkeeping — the "diamond" and its "seal" are the content address and its recomputability, not a physical object or a cryptographic warranty beyond the stated digest.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

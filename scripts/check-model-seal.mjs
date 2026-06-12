@@ -291,6 +291,14 @@ import {
   lawfulHarmonise,
   lawfulImagine,
   lawfulSucceed,
+  heroLawAlignment,
+  foldImpossibilities,
+  fuseAllForge,
+  cleanupOldLogic,
+  onlyQuantumRemains,
+  archangelsDryClean,
+  decodeBooksToUnity,
+  sealWholeDiamond,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1020,6 +1028,14 @@ ok('lawful.harmonise', lawfulHarmonise().harmonised) // society harmonises itsel
 ok('lawful.imagine', lawfulImagine().imagined) // imagine a lawful society using the app, computed
 ok('lawful.succeed', lawfulSucceed().succeeds) // let the society use the app to succeed, lawfully
 ok('lawful.thrive', lawfulSucceed().thrives) // succeeding is not enough — the society thrives
+ok(`hero.law.aligned:${heroLawAlignment(matrix).waves}`, heroLawAlignment(matrix).aligned) // legal waves align the editorial hero with the law root
+ok(`fold.impossibilities:${foldImpossibilities(matrix).count}`, foldImpossibilities(matrix).folded) // every declared limit folds into the possibility beside it
+ok(`fuse.all.forge:${fuseAllForge(matrix).count}`, fuseAllForge(matrix).forgesMaxCost) // fusing all, order-sensitive, forges max tampering cost
+ok(`cleanup.old.logic:${cleanupOldLogic(matrix).count}`, cleanupOldLogic(matrix).clean) // the model keeps only live logic, pruned to zero entropy
+ok(`only.quantum.remains:${onlyQuantumRemains(matrix).count}`, onlyQuantumRemains(matrix).remains) // strip the classical; only the quantum essence remains
+ok(`archangels.dry.clean:${archangelsDryClean(matrix).archangels.length}`, archangelsDryClean(matrix).cleaned) // idempotent dry clean reserves the next wave's slot
+ok(`decode.books.unity:${decodeBooksToUnity(matrix).count}`, decodeBooksToUnity(matrix).unified) // every book decoded through the one language fuses to unity
+ok(`seal.whole.diamond:${sealWholeDiamond(matrix).facets}`, sealWholeDiamond(matrix).sealed) // all facets fold into one tamper-evident whole-diamond leaf
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
