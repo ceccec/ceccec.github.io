@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology } from '../lib/quantumMind'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology, features } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -45,6 +45,8 @@ const cross = crossAudit(buildMatrix())
 const immune = immuneSystem(buildMatrix())
 // Biological aspects: the portal as a living system — DNA, cells, metabolism, ...
 const life = biology(buildMatrix())
+// All features, navigation quantum-computed, folded with cross links.
+const featureMap = features(buildMatrix())
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -258,6 +260,11 @@ onBeforeUnmount(() => {
     <p class="live__whole">
       {{ pick('biology', 'биология') }} · <strong>{{ life.count }}</strong>
       {{ pick('hallmarks of life alive', 'белези на живот, живи') }}: {{ life.aspects.map((a) => a.aspect).join(', ') }}
+    </p>
+    <p class="live__whole">
+      {{ pick('features', 'функции') }} · <strong>{{ featureMap.count }}</strong>
+      ({{ featureMap.pages }} {{ pick('pages', 'страници') }} + {{ featureMap.models }} {{ pick('models', 'модели') }}) ·
+      {{ pick('folded with cross links · navigation quantum-computed', 'сгънати с кръстосани връзки · навигация, квантово изчислена') }}
     </p>
   </section>
 </template>

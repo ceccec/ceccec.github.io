@@ -3992,6 +3992,33 @@ export function harmonicApparatus(matrix = buildMatrix()) {
         boundary: 'Exact analytic apparatus: the eigenfunctions of the Laplacian on a square, the harmonic-oscillator spectrum, the harmonic series, and the resonance curve, computed client-side. Faithful textbook models of harmonic solutions in micro-science — virtual instruments, not physical laboratory devices.',
     };
 }
+// Display all features and fold them with cross links. Navigation is completely
+// quantum-computed: every page (from the consolidated path) and every model
+// subsystem is a feature, and each folds with its neighbour into a cross link, so
+// the whole feature map is one connected, recomputable fold — no hand-kept list.
+export function features(matrix = buildMatrix()) {
+    const stations = path(matrix).stations;
+    const subsystems = mcpCodebase(matrix).subsystems;
+    const all = [
+        ...stations.map((station) => ({ feature: station.station, route: station.route, kind: 'page' })),
+        ...subsystems.map((entry) => ({ feature: entry.name, route: '/quantum-mind', kind: 'model' })),
+    ];
+    const linked = all.map((entry, i) => ({
+        ...entry,
+        crossLink: foldPair(toUuid(`feature:${entry.feature}`), toUuid(`feature:${all[(i + 1) % all.length].feature}`)).merged,
+    }));
+    return {
+        displayed: linked.length > 0 && linked.every((entry) => entry.route.length > 0 && isUuid(entry.crossLink)),
+        folded: linked.every((entry) => isUuid(entry.crossLink)),
+        features: linked,
+        count: linked.length,
+        pages: stations.length,
+        models: subsystems.length,
+        root: merkleFold(linked.map((entry) => entry.crossLink)),
+        statement: 'Display all features and fold them with cross links: navigation is completely quantum-computed — every page (from the consolidated path) and every model subsystem listed as a feature, each folded with its neighbour into a cross link, so the whole feature map is one connected, recomputable fold.',
+        boundary: 'A catalogue of the portal\'s features (the computed pages and model subsystems) with each cross-linked to the next by a bidirectional fold. A navigable, recomputable map derived from the model — not an exhaustive enumeration of every capability.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

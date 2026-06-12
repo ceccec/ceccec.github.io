@@ -2246,6 +2246,27 @@ export declare function harmonicApparatus(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function features(matrix?: MindMatrix): {
+    displayed: boolean;
+    folded: boolean;
+    features: ({
+        crossLink: string;
+        feature: string;
+        route: string;
+        kind: "page";
+    } | {
+        crossLink: string;
+        feature: string;
+        route: string;
+        kind: "model";
+    })[];
+    count: number;
+    pages: number;
+    models: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;
