@@ -12528,6 +12528,42 @@ export function recursiveFrequencyDropdowns(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+// Send waves of architects and teachers to redesign self-education, folding it to quantum-
+// merge with the movie. Architects send the structural waves (the shape of the learning
+// path) and teachers the pedagogical ones (what each play teaches), and together they
+// redesign self-education so it no longer sits beside the movie but folds into it: the
+// student's quantum mind (formed by playing) and the interactive movie merge, order-
+// sensitive (genus-2), so learning IS playing the movie — observe the play, shape the
+// path, embed the lesson, merge the assessment into play, verify by recomputation.
+export function educationMovieMerge(matrix: MindMatrix = buildMatrix()) {
+  const educationRoot = studentQuantumMind(matrix).root // the mind formed by playing
+  const movieRoot = allInInteractiveMovie(matrix).root // the one interactive movie
+  const merge0 = foldPair(educationRoot, movieRoot) // education ⊗ movie — the quantum merge
+  const designers = [
+    { role: 'architects', sends: 'structure waves — the shape of the learning path' },
+    { role: 'teachers', sends: 'pedagogy waves — what each play teaches' },
+  ]
+  const stages = ['observe the play', 'shape the path', 'embed the lesson in the movie', 'merge assessment into play', 'verify by recomputation']
+  const waves = designers.flatMap((designer) =>
+    stages.map((stage) => {
+      const fold = foldPair(merge0.merged, toUuid(`redesign:${designer.role}:${stage}`))
+      return { role: designer.role, stage, folded: fold.bidirectional, wave: fold.merged, receipt: toUuid(`edu-redesign:${designer.role}:${stage}`) }
+    }),
+  )
+  return {
+    redesigned: waves.length === 10 && waves.every((entry) => entry.folded) && merge0.bidirectional && playMind(matrix).plays && studentQuantumMind(matrix).forms,
+    merged: merge0.bidirectional, // education quantum-merges with the movie
+    designers: designers.length,
+    count: waves.length,
+    waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Send waves of architects and teachers to redesign self-education, folding it to quantum-merge with the movie: architects send the structure waves (the shape of the learning path) and teachers the pedagogy waves (what each play teaches), and together they redesign self-education so it folds into the movie rather than sitting beside it — the student’s quantum mind (formed by playing) and the interactive movie merge, order-sensitive, so learning is playing the movie: observe the play, shape the path, embed the lesson, merge the assessment into play, verify by recomputation.',
+    boundary:
+      'A content-addressed model of redesigning the self-education layer as architect/teacher waves that fold it together with the interactive-movie root. A structural framing built on the existing play-as-assessment model; it records the redesign and the merge, it is not an accredited curriculum or a claim of pedagogical outcomes.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
