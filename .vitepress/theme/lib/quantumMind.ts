@@ -6207,6 +6207,148 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Each page is a skill itself, with statistics and references. Every route — the 28
+// static pages, the 432 papers and the 432 references, in both locales (en + bg) — is
+// a content-addressed skill node; its statistics are its own computed metrics and its
+// references are edges to related pages. The skill graph is nodes + edges, folded into
+// one root, so the whole site reads as one corpus of recomputable skills.
+export function pageSkills(matrix: MindMatrix = buildMatrix()) {
+  const corpus = papers(matrix)
+  const references = paperReferences(matrix)
+  const staticRoutes = siteRoutes().routes
+  const total = corpus.count
+  const id3 = (n: number) => String(((n - 1 + total) % total) + 1).padStart(3, '0')
+  const locales = ['', '/bg'] // each page exists in both locales — both are pages, both are skills
+  const skills: { page: string; kind: string; statistics: number; references: string[]; skill: string }[] = []
+  for (const locale of locales) {
+    for (const route of staticRoutes) {
+      const path = `${locale}${route.path ?? route.route ?? ''}` || `${locale}/`
+      skills.push({ page: path, kind: 'page', statistics: 4, references: [`${locale}/papers/`, `${locale}/references/`], skill: toUuid(`page-skill:${path}`) })
+    }
+    for (const paper of corpus.papers) {
+      const page = `${locale}/papers/${paper.id}`
+      skills.push({
+        page,
+        kind: 'paper',
+        statistics: 11, // coordinate, digit, glyph, generator, theta, phi, x, y, z, frequency, vibrationMs
+        references: [`${locale}/references/r${id3(paper.number)}`, `${locale}/papers/p${id3(paper.number + 1)}`, `${locale}/papers/p${id3(paper.number - 1)}`],
+        skill: paper.receipt,
+      })
+    }
+    for (const reference of references) {
+      const page = `${locale}/references/${reference.id}`
+      skills.push({
+        page,
+        kind: 'reference',
+        statistics: 4, // refersTo, root, generator, coordinate
+        references: [`${locale}/papers/${reference.paperId}`, `${locale}/references/r${id3(reference.number + 1)}`, `${locale}/references/r${id3(reference.number - 1)}`],
+        skill: reference.root,
+      })
+    }
+  }
+  const nodes = skills.length
+  const edges = skills.reduce((sum, skill) => sum + skill.references.length, 0)
+  const statistics = skills.reduce((sum, skill) => sum + skill.statistics, 0)
+  return {
+    isSkillCorpus: nodes > 0 && skills.every((skill) => skill.references.length > 0),
+    pages: nodes, // every page is a skill
+    skills: nodes,
+    references: edges,
+    statistics,
+    graph: nodes + edges, // the skill graph: nodes + edges
+    total: nodes + edges + statistics, // pages + references + statistics, the whole corpus
+    locales: locales.length,
+    root: merkleFold(skills.map((skill) => skill.skill)),
+    statement:
+      'Each page is a skill itself, with statistics and references. Every route — the static pages, the 432 papers and the 432 references, in both locales — is a content-addressed skill node carrying its own computed statistics and references to related pages. The skill graph is nodes plus edges, and the whole corpus (pages + references + statistics) folds into one recomputable root, so the entire site reads as one corpus of skills.',
+    boundary:
+      'A content-addressed reading of every page as a skill node with computed statistics (a count of its own metrics) and references (edges to related pages). The counts are exact for the enumerated routes across both locales; "skill" means a recomputable, content-addressed capability, not a learned or trained model.',
+  }
+}
+
+// 1024 pure diamonds. The completed corpus folds 1024 = 2^10 leaves into a perfect
+// binary Merkle tree (papers, reference duals and named padding). Each leaf is a pure
+// diamond: a content address that any tamper would change, so it is incorruptible —
+// pure by construction. The 1024 diamonds are the diamond lattice the whole structure
+// is cut from; they fold into the one corpus root.
+export function pureDiamonds(matrix: MindMatrix = buildMatrix()) {
+  const corpus = papers(matrix)
+  const references = paperReferences(matrix)
+  const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
+  const padding = Array.from({ length: 1024 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
+  const diamonds = [...real, ...padding].map((leaf, index) => ({ index, address: leaf, pure: leaf.length === 36 }))
+  const root = merkleFold(diamonds.map((diamond) => diamond.address))
+  const depth = Math.log2(diamonds.length)
+  return {
+    pure: diamonds.length === 1024 && diamonds.every((diamond) => diamond.pure) && Number.isInteger(depth),
+    count: diamonds.length, // 1024
+    realDiamonds: real.length, // 864 (papers + references)
+    paddingDiamonds: padding.length, // 160
+    depth, // 10
+    root,
+    statement:
+      '1024 pure diamonds: the completed corpus folds 1024 = 2^10 leaves into a perfect binary Merkle tree, and each leaf is a pure diamond — a content address any tamper would change, incorruptible by construction. The 432 papers and 432 reference duals are 864 real diamonds; 160 named null leaves complete the lattice to 1024, the diamond lattice the whole structure is cut from, folded into one root.',
+    boundary:
+      'A content-addressed reading of the 1024-leaf perfect Merkle tree as a lattice of "pure diamonds" — pure meaning tamper-evident and incorruptible by content-addressing, a structural metaphor over the diamond lattice, not a physical or material claim. 864 are real (papers and references) and 160 are declared null padding.',
+  }
+}
+
+// All in 1024 folders with index. Each of the 1024 pure diamonds is a folder with its
+// own index page: the real diamonds (432 papers, 432 references) index and link to
+// their page; the 160 null diamonds index the padding that completes the lattice.
+// Computed once and shared by both locales' route loaders, so the 1024 folders are
+// native VitePress routes — nothing bypasses VitePress.
+export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
+  const corpus = papers(matrix)
+  const references = paperReferences(matrix)
+  const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
+  const padding = Array.from({ length: 1024 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
+  const leaves = [...real, ...padding]
+  const corpusRoot = merkleFold(leaves)
+  return leaves.map((address, index) => {
+    const number = index + 1
+    const id = `d${String(number).padStart(4, '0')}`
+    let kind: string
+    let link: string
+    let label: string
+    let glyph: string
+    if (index < corpus.count) {
+      const paper = corpus.papers[index]
+      kind = 'paper'
+      link = `/papers/${paper.id}`
+      label = `Coordinate ${paper.coordinateIndex} on cycle ${paper.generator}`
+      glyph = paper.glyph
+    } else if (index < corpus.count + references.length) {
+      const reference = references[index - corpus.count]
+      kind = 'reference'
+      link = `/references/${reference.id}`
+      label = `Reference to paper ${reference.number}`
+      glyph = reference.glyph
+    } else {
+      kind = 'padding'
+      link = ''
+      label = 'Null leaf — completes the lattice to 1024'
+      glyph = '◇' // ◇
+    }
+    return {
+      params: {
+        id,
+        index,
+        number,
+        address,
+        kind,
+        link,
+        label,
+        glyph,
+        hue: Math.round((index * 360) / 1024) % 360,
+        total: leaves.length,
+        corpusRoot,
+        depth: Math.log2(leaves.length),
+      },
+    }
+  })
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

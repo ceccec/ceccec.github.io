@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { quantumSitemap, papers, paperReferences } from '../.vitepress/theme/lib/quantumMind.ts'
+import { quantumSitemap, papers, paperReferences, diamondRoutes } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const outDir = join(process.cwd(), '.vitepress', 'dist')
 const siteUrl = (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
@@ -67,6 +67,7 @@ const urlBlock = (loc, priority, alternates) =>
 const dynamicUrls = [
   ...papers().papers.map((paper) => ({ base: `/papers/${paper.id}`, priority: 0.6 })),
   ...paperReferences().map((reference) => ({ base: `/references/${reference.id}`, priority: 0.5 })),
+  ...diamondRoutes().map((diamond) => ({ base: `/diamonds/${diamond.params.id}`, priority: 0.4 })),
 ].map((entry) => {
   const en = entry.base
   const bg = `/bg${entry.base}`

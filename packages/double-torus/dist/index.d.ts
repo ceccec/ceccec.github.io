@@ -2618,6 +2618,45 @@ export declare function vitepressFusion(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function pageSkills(matrix?: MindMatrix): {
+    isSkillCorpus: boolean;
+    pages: number;
+    skills: number;
+    references: number;
+    statistics: number;
+    graph: number;
+    total: number;
+    locales: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function pureDiamonds(matrix?: MindMatrix): {
+    pure: boolean;
+    count: number;
+    realDiamonds: number;
+    paddingDiamonds: number;
+    depth: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function diamondRoutes(matrix?: MindMatrix): {
+    params: {
+        id: string;
+        index: number;
+        number: number;
+        address: string;
+        kind: string;
+        link: string;
+        label: string;
+        glyph: string;
+        hue: number;
+        total: number;
+        corpusRoot: string;
+        depth: number;
+    };
+}[];
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

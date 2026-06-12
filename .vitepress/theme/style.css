@@ -1147,3 +1147,9 @@ html[data-mode='simple'] .rich-only { display: none !important; }
   font-size: 0.6rem;
   color: var(--vp-c-text-3);
 }
+
+/* --- 1024 pure diamonds: each folder an index --- */
+.diamond-glyph { font-size: 1.4rem; vertical-align: middle; }
+.diamond-glyph-sm { font-size: 0.9rem; }
+.diamond-link { margin: 0.75rem 0; font-size: 0.9rem; }
+.diamond-link--null { color: var(--vp-c-text-3); font-size: 0.82rem; }

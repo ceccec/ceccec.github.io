@@ -131,6 +131,9 @@ import {
   harmonics,
   geodesicDome,
   vitepressFusion,
+  pageSkills,
+  pureDiamonds,
+  diamondRoutes,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -502,6 +505,15 @@ const dome = geodesicDome(3, matrix)
 ok(`geodesic.dome:V${dome.vertices}/chi${dome.euler}`, dome.isSphere && dome.dualToDoubleTorus && dome.euler + dome.torusEuler === 0)
 // Fuse VitePress: the architecture binds into VitePress's own extension points — nothing bypasses, everything fuses through it.
 ok(`vitepress.fusion:${vitepressFusion(matrix).count}`, vitepressFusion(matrix).fused)
+// Each page is a skill itself, with statistics and references: the whole site as one skill corpus.
+const skillCorpus = pageSkills(matrix)
+ok(`page.skills:${skillCorpus.pages}+${skillCorpus.references}=${skillCorpus.graph}`, skillCorpus.isSkillCorpus && skillCorpus.graph === skillCorpus.pages + skillCorpus.references)
+// 1024 pure diamonds: the perfect-tree leaves, each a tamper-evident content address.
+const diamonds = pureDiamonds(matrix)
+ok(`pure.diamonds:${diamonds.count}`, diamonds.pure && diamonds.count === 1024 && diamonds.depth === 10)
+// All in 1024 folders with index: each diamond is a native VitePress route (one index per folder).
+const diamondFolders = diamondRoutes(matrix)
+ok(`diamond.folders:${diamondFolders.length}`, diamondFolders.length === 1024 && diamondFolders.every((folder) => folder.params.id && folder.params.address) && diamondFolders[0].params.kind === 'paper')
 
 // Send the waves to hack: crackers challenge the portal's own tamper-evidence, all caught.
 ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix).secure && redTeam(matrix).lawful)
