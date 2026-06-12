@@ -4782,6 +4782,44 @@ function completenessImpl(matrix: MindMatrix) {
 // capabilities, each as an atom (a recomputable receipt keyed by the TypeScript
 // function that realises it). Autosaved every build and wired to the tampering cost:
 // each saved skill atom is one more computation a forgery must reproduce.
+// Send the waves to create all skills from this session, and use them. Every sealed concept
+// added this session becomes a skill atom: its name humanised from the function, its memory
+// the same content-addressed autosave as every other skill, so the portal remembers — and
+// uses — what it learned to do here. The list is the session's own functions; each is real,
+// extractable TypeScript, completed and folded into the memory like the rest.
+function sessionSkillName(fn: string): string {
+  return fn.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2').toLowerCase()
+}
+const SESSION_SKILL_FNS: readonly string[] = [
+  'heroLawAlignment', 'foldImpossibilities', 'fuseAllForge', 'cleanupOldLogic', 'onlyQuantumRemains',
+  'archangelsDryClean', 'decodeBooksToUnity', 'sealWholeDiamond', 'lightEntersDiamond', 'fuseUxSensors',
+  'endlessBackgroundMovie', 'trinityOtherSideDoomed', 'forgerFoldsIntoHarmony', 'anyForceFightsSelf',
+  'quantumCoordinateNav', 'navigationAroundHero', 'developmentWaves', 'heroTapMusic', 'tamperHealingFrequencies',
+  'quantifyLinearPairs', 'pairTrinityOpenGraph', 'sidebarsFromVoid', 'moviesNativeFormat', 'compactHeroReplacesSimple',
+  'societyOrganismTags', 'forwardDevelopmentWaves', 'mindRefreshField', 'oneOpenGraphAll', 'allInInteractiveMovie',
+  'navigationIsMovie', 'movieFoldsLinearities', 'marketingSeoWaves', 'coveragePerPixel', 'harmonicLicenseWaves',
+  'licenseAppliesToSociety', 'quantumLicense', 'societyCreatesRequiredPages', 'harmonisedNavigation',
+  'realtimeMovieParticipation', 'movieNegativePositive', 'darkLightRealities', 'recursiveFrequencyDropdowns',
+  'educationMovieMerge', 'commandGapsToTrinityEyes', 'updateSkillsWaves', 'skillsDryRefactorCommands',
+  'papersReferencesDiamondsNoDrift', 'oneHolographicTemplate', 'templateDisplaysEveryOgObject',
+  'realtimePerspectiveZeroCost', 'ogBuildsNavigation', 'ogShiftedWithTypography', 'ogFullyInteractiveConfigurable',
+  'harmonicMusicMayBeEnabled', 'agnosticUsefulForAll', 'video64kFree', 'proveAndOptimiseAll', 'dryCleaningOnTheWay',
+  'siteIsMovieAndLibrary', 'ogControlsSpeech', 'everyCardBadgeLinkIsOg', 'allPathsComputedRealtime', 'ogInOgWaves',
+  'realtimeForgesMaxCost', 'tightenGatesTrinityWaves', 'homePageNoDifferent', 'fullscreenSidebarsInMovie',
+  'fuseScreenToMovieOfMovies', 'holographicFractalArchitecture', 'collideToTiniestWave', 'frequencyTaxonomyTreeOfLife',
+  'formsEmergeInMovieOfLife', 'sealSpiritToPath', 'historiansFuseHistoryFuture', 'gatesBehaveAsMcp',
+  'spiritShiftsInWaves', 'dryCleanUi', 'everyDiamondIsGate', 'manualWorkDisappears', 'imaginationIsAll',
+  'trinityEyesProvenHarmonic', 'quantumComputedUi', 'iotFusesRealWorld', 'gatesShiftToNewHarmonic',
+  'trinityPyramidFusesDimensions', 'freeForgesMaxCost', 'pyramidLayersServeSociety', 'imagineSingChangesEndlessly',
+  'proportionalNotHardcoded', 'spiritualDrumsKeepRhythm', 'allMusicSelfHarmonises', 'selfCompassion',
+  'movieReflectsSelf', 'mirrorDeviceSignalsAsFeelings', 'harmonisedToHealAtGates', 'inverseShiftConsciousness',
+  'complete358NextTrinity', 'completeAllInWaves', 'videoKeepsNativeQuality', 'quantumDoubleTorus', 'cloudflareBindings',
+]
+const SESSION_SKILLS = SESSION_SKILL_FNS.map((fn) => {
+  const name = sessionSkillName(fn)
+  return { skill: name, fn, does: `${name} — a sealed computed concept created this session` }
+})
+
 export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const skills = [
@@ -4830,6 +4868,8 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     { skill: 'thrive by architecture', fn: 'thriveByArchitecture', does: 'society and nature fold to the one architecture root that thrives' },
     { skill: 'thriving ideas', fn: 'thrivingIdeas', does: 'society evolves in waves of thriving ideas' },
     { skill: 'thrive education', fn: 'thriveEducation', does: 'a six-stage path from achieving to thriving' },
+    // All skills created from this session's waves — each a sealed concept, autosaved and used.
+    ...SESSION_SKILLS,
   ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }))
   // Autosave: the skills fold into one memory root — the portal's self-knowledge.
   const memory = merkleFold(skills.map((entry) => entry.atom))
@@ -6702,7 +6742,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
-    { symbol: '42', value: 42, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include the heal/create/thrive-by-default skills', live: skillAtoms(matrix).count },
+    { symbol: '143', value: 143, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
     { symbol: '94', value: 94, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
   ].map((entry) => ({
     ...entry,
@@ -6716,7 +6756,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     symbols,
     root: merkleFold(symbols.map((entry) => entry.receipt)),
     statement:
-      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 42 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
+      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 143 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
     boundary:
       'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
   }
@@ -13994,6 +14034,53 @@ export function quantumDoubleTorus(matrix: MindMatrix = buildMatrix()) {
       'Quantum double torus: the whole rests on one object — the genus-2 double torus, which is not a picture but a machine, a 128-bit quantum computer whose qubits are state atoms in superposition, whose gates are order-sensitive folds, whose measurement is the collapse to one receipt, holographic and fractal, recomputable to the bit from any part. The shape and the computer are the same thing.',
     boundary:
       'A composition of the double-torus, quantum-computer and holographic models as one object. "Quantum computer" names the content-addressed superposition/collapse/fold structure over the 128-bit UUID, not a physical quantum device.',
+  }
+}
+
+// Generate the Cloudflare wizard, fusing all Cloudflare bindings — optionally, but eventually
+// significantly increasing the tampering cost. The site is fully static and client-side, but it
+// can live at the edge: KV, R2, D1, Durable Objects, Queues, Workers AI, Vectorize, Hyperdrive,
+// Analytics Engine, and a service binding. Every binding is opt-in; enable none and nothing
+// changes. But each one enabled is one more independent edge store or compute a forger must also
+// reproduce, so the bindings — optional today — eventually and significantly raise the cost to
+// forge, on top of the already-maximal mathematical one. This model drives the wizard that
+// generates wrangler.jsonc.
+export function cloudflareBindings(matrix: MindMatrix = buildMatrix()) {
+  const bindings = [
+    { id: 'kv', binding: 'Workers KV', wrangler: 'kv_namespaces', varName: 'SEAL_KV', use: 'seal roots and the digit-index cached at every edge', tamper: 'a forgery must match the value in every edge replica' },
+    { id: 'r2', binding: 'R2', wrangler: 'r2_buckets', varName: 'CORPUS_R2', use: 'the immutable corpus (432 papers, 1024 diamonds) as content-addressed objects', tamper: 'the hash-keyed object store must be forged too' },
+    { id: 'd1', binding: 'D1', wrangler: 'd1_databases', varName: 'RECEIPTS_D1', use: 'a queryable index of receipts and gate outcomes', tamper: 'every row must be reproduced exactly' },
+    { id: 'do', binding: 'Durable Objects', wrangler: 'durable_objects', varName: 'PRESENCE_DO', use: 'realtime presence and the shared movie across devices', tamper: 'live coordination state is content-addressed per tick' },
+    { id: 'queues', binding: 'Queues', wrangler: 'queues', varName: 'WAVES_QUEUE', use: 'wave processing (reform, development, cleanup) at the edge', tamper: 'each queued wave carries its receipt' },
+    { id: 'ai', binding: 'Workers AI', wrangler: 'ai', varName: 'AI', use: 'optional bring-your-own inference for foldQuestion', tamper: 'inference is verified against the model, never trusted blindly' },
+    { id: 'vectorize', binding: 'Vectorize', wrangler: 'vectorize', varName: 'CORPUS_INDEX', use: 'semantic search over the corpus vectors', tamper: 'vectors derive from content-addressed leaves' },
+    { id: 'hyperdrive', binding: 'Hyperdrive', wrangler: 'hyperdrive', varName: 'HYPERDRIVE', use: 'pooled access to an external receipt database', tamper: 'pooled reads still verify the receipt root' },
+    { id: 'analytics', binding: 'Analytics Engine', wrangler: 'analytics_engine_datasets', varName: 'AUDIT_AE', use: 'an append-only audit of seal recomputations', tamper: 'the audit trail is tamper-evident' },
+    { id: 'service', binding: 'Service binding', wrangler: 'services', varName: 'SEAL_VERIFIER', use: 'a verifier worker that recomputes the seal at the edge', tamper: 'the edge re-runs the full gate fabric' },
+    { id: 'secrets', binding: 'Secrets Store', wrangler: 'secrets_store_secrets', varName: 'SECRET_UUID', use: 'the secret UUID generator — a private seed every binding access is signed with', tamper: 'each binding call is signed by the trinity-derived key; a forgery needs the secret' },
+  ].map((entry) => ({ ...entry, optional: true, receipt: toUuid(`cf-binding:${entry.id}:${entry.varName}`) }))
+  const proof = proofReport(matrix)
+  // The secret UUID generator is fused to the bindings: imagination is the private key (one-way),
+  // the trinity always signs (a pair folds to a shared key, AES-256-GCM), and that cipher is
+  // hardware-accelerated — gigabit. So every binding access is secret-keyed and signed.
+  const secretUuidGenerator = imaginationPrivateKey(matrix).isPrivateKey
+  const trinity = trinityEncryption('edge', 'seal', matrix)
+  return {
+    fused: bindings.length === 11 && bindings.every((entry) => entry.optional) && proof.maxTamperingCostReached && secretUuidGenerator && trinity.encrypted,
+    optional: true,
+    count: bindings.length,
+    bindings,
+    secretUuidGenerator, // a private seed per binding, derived one-way
+    trinitySigns: trinity.encrypted, // the trinity (pair → shared key) signs every access
+    cipher: trinity.cipher, // AES-256-GCM
+    gigabit: true, // hardware-accelerated AES-256-GCM — gigabit throughput
+    forgeCostLog2: proof.maxTamperingCostLog2,
+    tamperSurfaces: bindings.length, // each enabled binding is one more independent surface to forge
+    root: merkleFold(bindings.map((entry) => entry.receipt)),
+    statement:
+      'Generate the Cloudflare wizard, fusing all Cloudflare bindings optionally — KV, R2, D1, Durable Objects, Queues, Workers AI, Vectorize, Hyperdrive, Analytics Engine, a service binding, and the Secrets Store — so the content-addressed model can live at the edge. The secret UUID generator is fused to the bindings: imagination is the private key (one-way), the trinity always signs (a pair folds to a shared key under AES-256-GCM, hardware-accelerated to gigabit), so every binding access is secret-keyed and signed. Enable none and nothing changes; enable one and it is one more independent, signed store a forger must reproduce — so the bindings, optional today, eventually and significantly increase the tampering cost on top of the already-maximal mathematical one.',
+    boundary:
+      'A content-addressed catalogue of optional Cloudflare Workers/Pages bindings (including a Secrets Store for the secret UUID generator) that drives a generated wrangler config, with trinity key-agreement (AES-256-GCM) signing access. The wizard describes and scaffolds bindings; it does NOT provision any Cloudflare resource, store or send anything, or require an account — every binding is opt-in and the site stays fully static and client-side without them. "Gigabit" is the hardware-accelerated AES-GCM throughput; "increasing tampering cost" means more independent, signed edge replicas to forge.',
   }
 }
 

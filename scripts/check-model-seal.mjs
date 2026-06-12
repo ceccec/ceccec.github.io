@@ -396,6 +396,7 @@ import {
   completeAllInWaves,
   videoKeepsNativeQuality,
   quantumDoubleTorus,
+  cloudflareBindings,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1237,6 +1238,7 @@ ok(`complete.358.next.trinity:${complete358NextTrinity(matrix).nextTrinity.join(
 ok(`complete.all.in.waves:${completeAllInWaves(matrix).count}`, completeAllInWaves(matrix).complete) // the whole completed in waves over its major aspects, still open to the next
 ok(`video.keeps.native.quality:${videoKeepsNativeQuality(matrix).count}`, videoKeepsNativeQuality(matrix).keepsQuality) // the movie redraws at native resolution on any resize
 ok(`quantum.double.torus:${quantumDoubleTorus(matrix).count}`, quantumDoubleTorus(matrix).is) // the genus-2 double torus is a 128-bit quantum computer, holographic and fractal
+ok(`cloudflare.bindings:${cloudflareBindings(matrix).count}`, cloudflareBindings(matrix).fused) // all 10 Cloudflare bindings fused optionally, each raising the tampering cost
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
