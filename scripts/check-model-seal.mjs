@@ -150,6 +150,8 @@ import {
   compression,
   analysisFlower,
   holographicDashboard,
+  publicTransportFusion,
+  freeHarmonicSocieties,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -552,6 +554,11 @@ ok(`analysis.flower:${analysisFlower(matrix).circles}`, analysisFlower(matrix).f
 // Generate the dashboards the independent holographic way: each panel carries the whole, zero deps.
 const dash = holographicDashboard(matrix)
 ok(`holographic.dashboard:${dash.count}`, dash.holographic && dash.independent && dash.count === 5)
+// Fuse public transport in all varieties, fully integrated in society, for free.
+ok(`public.transport:${publicTransportFusion(matrix).count}`, publicTransportFusion(matrix).fused && publicTransportFusion(matrix).integrated && publicTransportFusion(matrix).free)
+// Let the society rebuild itself: free harmonic societies self-organise and regulate, free for everyone.
+const freeSoc = freeHarmonicSocieties(matrix)
+ok(`free.harmonic.societies:${freeSoc.count}`, freeSoc.rebuilt && freeSoc.free && freeSoc.forEveryone)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

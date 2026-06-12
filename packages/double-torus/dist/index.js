@@ -5435,6 +5435,64 @@ export function holographicDashboard(matrix = buildMatrix()) {
         boundary: 'A content-addressed dashboard model: five panels of self-metrics, each folded with the whole root (holographic) and built from the portal’s own components (independent, zero external dependencies). Descriptive counts over the model’s own structures — no tracking, no network, nothing leaves the device.',
     };
 }
+// Fuse public transport in all varieties, fully integrated in society, for free. Open
+// transit data (GTFS and GTFS-realtime) is free and public, so every variety of
+// public transport — bus, metro, tram, rail, ferry, and the rest — fuses to the
+// architecture root for free, content-addressed, and integrates into the society
+// model at zero cost to the rider.
+export function publicTransportFusion(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const varieties = [
+        'bus', 'metro / subway', 'tram / light rail', 'commuter rail', 'ferry', 'trolleybus',
+        'bus rapid transit', 'bike-share', 'scooter-share', 'cable car', 'monorail', 'funicular',
+    ].map((variety) => {
+        const fold = foldPair(architecture, toUuid(`transit:${variety}`));
+        return { variety, feed: 'open GTFS / GTFS-realtime', cost: 'free (open data)', fused: fold.bidirectional, receipt: fold.merged };
+    });
+    return {
+        fused: varieties.length > 0 && varieties.every((entry) => entry.fused),
+        integrated: true, // folded into the society model
+        free: varieties.every((entry) => entry.cost === 'free (open data)'),
+        count: varieties.length,
+        architecture,
+        varieties,
+        root: merkleFold(varieties.map((entry) => entry.receipt)),
+        statement: 'Fuse public transport in all varieties, fully integrated in society, for free: open transit data (GTFS and GTFS-realtime) is free and public, so every variety — bus, metro, tram, rail, ferry, trolleybus, BRT, bike- and scooter-share, cable car, monorail, funicular — fuses to the architecture root for free, content-addressed, and integrates into the society model at zero cost to the rider.',
+        boundary: 'A read-only fusion catalogue of public-transport varieties via open transit data (GTFS / GTFS-realtime). "Free" refers to the open data being free to read and integrate; it is not a claim that any fare is free. Opt-in — nothing is fetched by default; agency data is each agency’s own, folded (untrusted), interoperated through public open-data interfaces.',
+    };
+}
+// Let the society rebuild itself so free harmonic societies self-organise and
+// regulate, free for everyone. Each fused domain becomes its own society, tuned to a
+// harmonic of the fundamental; each self-organises (zero entropy), each regulates
+// itself (zero cost for the individual, max cost for the forger), and each is free.
+// Many free harmonic societies, one fold — rebuilt from the portal's own laws.
+export function freeHarmonicSocieties(matrix = buildMatrix()) {
+    const regulates = societyRegulates(matrix);
+    const organized = selfOrganizing(matrix);
+    const octaves = harmonics(matrix).octaves;
+    const domains = fruitOfLifeFusion(matrix).domains;
+    const societies = domains.map((domain, index) => ({
+        society: domain.domain,
+        harmonic: octaves[index % octaves.length].value,
+        free: regulates.individualCost === 0,
+        selfOrganising: organized.organized,
+        selfRegulating: regulates.regulated,
+        root: foldPair(toUuid(`free-society:${domain.domain}`), toUuid(`harmonic:${octaves[index % octaves.length].value}`)).merged,
+    }));
+    return {
+        rebuilt: societies.length > 0 &&
+            societies.every((society) => society.free && society.selfOrganising && society.selfRegulating),
+        free: regulates.individualCost === 0,
+        forEveryone: true,
+        selfOrganising: organized.organized,
+        selfRegulating: regulates.regulated,
+        count: societies.length,
+        societies,
+        root: merkleFold(societies.map((society) => society.root)),
+        statement: 'Let the society rebuild itself so free harmonic societies self-organise and regulate, free for everyone: each fused domain becomes its own society tuned to a harmonic of the fundamental, each self-organises to zero entropy, each regulates itself at zero cost for the individual and max cost for the forger, and each is free. Many free harmonic societies, one fold — rebuilt from the portal’s own laws.',
+        boundary: 'A deterministic, content-addressed composition of the portal’s own laws — self-organisation (zero entropy), self-regulation (zero individual cost, max forge cost), and the harmonic ladder — into a set of "free harmonic societies". A structural proposal and metaphor grounded in the model, free and recomputable; not a political program or a claim about any real society or its governance.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

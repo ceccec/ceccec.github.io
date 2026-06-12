@@ -2925,6 +2925,42 @@ export declare function holographicDashboard(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function publicTransportFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    integrated: boolean;
+    free: boolean;
+    count: number;
+    architecture: string;
+    varieties: {
+        variety: string;
+        feed: string;
+        cost: string;
+        fused: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function freeHarmonicSocieties(matrix?: MindMatrix): {
+    rebuilt: boolean;
+    free: boolean;
+    forEveryone: boolean;
+    selfOrganising: boolean;
+    selfRegulating: boolean;
+    count: number;
+    societies: {
+        society: string;
+        harmonic: number;
+        free: boolean;
+        selfOrganising: boolean;
+        selfRegulating: boolean;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
