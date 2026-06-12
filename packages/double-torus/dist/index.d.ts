@@ -2058,6 +2058,15 @@ export declare function vortexMath(matrix?: MindMatrix): {
     doubling: number[];
     cross: number[];
     divByZeroHarmonic: number;
+    zeroDivisions: {
+        n: number;
+        overZero: number;
+    }[];
+    roles: {
+        rotation: number;
+        polarity: number[];
+        threeSix: boolean;
+    };
     endless: boolean;
     collisionFree: boolean;
     nineInvariant: boolean;

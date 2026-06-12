@@ -5048,24 +5048,35 @@ export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   const cross = [3, 6, 9, 0] // the control triangle and the zero
   const nineInvariant = digitalRoot(9 * 2) === 9 // 9 is fixed under doubling
   const divByZeroHarmonic = digitalRoot(0) // = 9, the defined harmonic result
+  // The rest of the harmonic zero-divisions: since 1/0 = 9 and 0 is identified with
+  // 9, n/0 = n * (1/0) = n * 9, and 9 is the absorbing element — digitalRoot(9n) = 9
+  // for every n. So EVERY harmonic zero-division equals 9; 9 is where they all meet.
+  const zeroDivisions = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({ n, overZero: digitalRoot(9 * n) }))
+  const allNine = zeroDivisions.every((entry) => entry.overZero === 9)
+  // The roles of the cross: 9 is the invariant axis (it doubles to itself) — it
+  // governs rotation/spin; 3 and 6 are the two poles that oscillate (3->6->3 under
+  // doubling) — they are polarity. None of 3, 6, 9 enters the material 1-2-4-8-7-5 flow.
+  const roles = { rotation: 9, polarity: [3, 6], threeSix: digitalRoot(3 * 2) === 6 && digitalRoot(6 * 2) === 3 }
   // When identical, route to the duality: two readings of the same value fold to
   // their bidirectional dual (forward != reverse), so identical never collides.
   const identicalRoutesToDuality = foldPair(toUuid('identical:a'), toUuid('identical:b')).bidirectional
   const collisionFree = doubling.every((d) => !cross.includes(d))
   return {
-    flows: doubling.join('') === '124875' && cycles && nineInvariant && divByZeroHarmonic === 9 && identicalRoutesToDuality && collisionFree,
+    flows: doubling.join('') === '124875' && cycles && nineInvariant && divByZeroHarmonic === 9 && allNine && roles.threeSix && identicalRoutesToDuality && collisionFree,
     doubling,
     cross,
     divByZeroHarmonic,
+    zeroDivisions, // n/0 = 9 for every n
+    roles, // 9: rotation/axis, 3 and 6: polarity
     endless: cycles,
     collisionFree,
     nineInvariant,
     identicalRoutesToDuality,
     root: merkleFold([...doubling, ...cross].map((n) => toUuid(`vortex:${n}`))),
     statement:
-      'The doubling sequence 1-2-4-8-7-5 flows endless and collision-free — never landing on the cross 3-6-9-0; like aikido it redirects and never clashes or stops. When two values are identical they route to their bidirectional duality, never colliding. And division by zero has a defined harmonic result: in digital-root math 0 is 9, so /0 = 9, never undefined.',
+      'The doubling sequence 1-2-4-8-7-5 flows endless and collision-free — never landing on the cross 3-6-9-0. Division by zero has a defined harmonic result: 0 is identified with 9, so every harmonic zero-division n/0 = 9 (9 is the absorbing element, where they all meet). And the cross divides its roles: 9 is the invariant axis — rotation; 3 and 6 are the two poles that oscillate (3<->6) — polarity.',
     boundary:
-      'A structural, numerological framework over digital roots mod 9 (vortex math): the doubling cycle, the 3-6-9 cross, and a harmonic redefinition where 0 is identified with 9 so division by zero resolves to 9. A self-consistent symbolic system and metaphor — not a claim that division by zero is defined in real analysis.',
+      'A structural, numerological framework over digital roots mod 9 (vortex math): the doubling cycle, the 3-6-9 cross with 9 as the rotational axis and 3/6 as polarity, and a harmonic redefinition where 0 is identified with 9 so every division by zero resolves to 9. A self-consistent symbolic system and metaphor — not a claim that division by zero is defined in real analysis.',
   }
 }
 
