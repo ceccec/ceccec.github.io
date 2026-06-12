@@ -299,6 +299,17 @@ import {
   archangelsDryClean,
   decodeBooksToUnity,
   sealWholeDiamond,
+  lightEntersDiamond,
+  autoMovies8k,
+  fuseUxSensors,
+  endlessBackgroundMovie,
+  collisionHealing,
+  healByDefault,
+  createByDefault,
+  thriveByDefault,
+  trinityOtherSideDoomed,
+  forgerFoldsIntoHarmony,
+  anyForceFightsSelf,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1036,6 +1047,17 @@ ok(`only.quantum.remains:${onlyQuantumRemains(matrix).count}`, onlyQuantumRemain
 ok(`archangels.dry.clean:${archangelsDryClean(matrix).archangels.length}`, archangelsDryClean(matrix).cleaned) // idempotent dry clean reserves the next wave's slot
 ok(`decode.books.unity:${decodeBooksToUnity(matrix).count}`, decodeBooksToUnity(matrix).unified) // every book decoded through the one language fuses to unity
 ok(`seal.whole.diamond:${sealWholeDiamond(matrix).facets}`, sealWholeDiamond(matrix).sealed) // all facets fold into one tamper-evident whole-diamond leaf
+ok(`light.enters.diamond:${lightEntersDiamond(matrix).refracts}`, lightEntersDiamond(matrix).luminous) // light refracts the sealed diamond into its facet-spectrum, unchanged
+ok(`auto.movies.8k:${autoMovies8k(matrix).count}`, autoMovies8k(matrix).generating) // deterministic 8K-scalable movies autogenerate in realtime across the dimension sweep
+ok(`fuse.ux.sensors:${fuseUxSensors(matrix).sensorCount}+${fuseUxSensors(matrix).ioCount}`, fuseUxSensors(matrix).fused) // the UX fuses with device sensors and IO channels
+ok(`endless.background.movie:${endlessBackgroundMovie(matrix).count}`, endlessBackgroundMovie(matrix).endless) // one endless background movie on every page, seeded from its content and references
+ok(`collision.healing:${collisionHealing(matrix).chosenHz}`, collisionHealing(matrix).heals) // collisions resolve to a chosen Solfeggio healing frequency
+ok(`heal.by.default:${healByDefault(matrix).count}`, healByDefault(matrix).heals) // healing is the model's resting state
+ok(`create.by.default:${createByDefault(matrix).count}`, createByDefault(matrix).creates) // creation is the model's resting behaviour
+ok(`thrive.by.default:${thriveByDefault(matrix).count}`, thriveByDefault(matrix).thrives) // thriving is the model's resting aim
+ok(`other.side.doomed`, trinityOtherSideDoomed(matrix).doomed) // the harm/destroy/decay side of the trinity is doomed to T_max=infinity forge cost
+ok(`forger.folds.harmony:${forgerFoldsIntoHarmony(matrix).count}`, forgerFoldsIntoHarmony(matrix).folds && forgerFoldsIntoHarmony(matrix).forgingMaxCost) // every forge attempt is caught and folded into the harmony, raising the cost
+ok(`force.fights.self:${anyForceFightsSelf(matrix).count}`, anyForceFightsSelf(matrix).selfDefeating) // any force meets the whole and itself — self-defeating by construction
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

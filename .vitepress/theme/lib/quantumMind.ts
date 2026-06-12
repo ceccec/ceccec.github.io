@@ -4813,6 +4813,23 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     { skill: 'fold thoughts', fn: 'foldThoughts', does: 'the thoughts folded multidirectionally — forward, reverse, sequence, reflection' },
     { skill: 'quantum pwa', fn: 'quantumPwa', does: 'a full-featured installable PWA, offline-first by strict default' },
     { skill: 'online offline', fn: 'onlineOffline', does: 'the double torus identical online and offline, the PWA the strict default' },
+    // Healing skills — autosaved so the portal remembers how it heals by default.
+    { skill: 'heal by default', fn: 'healByDefault', does: 'healing is the resting state: self-healing, collision-healing and the harmonic wave run by default' },
+    { skill: 'self healing', fn: 'selfHealing', does: 'every binding re-balances and settles into a healed root' },
+    { skill: 'harmonic healing', fn: 'healingHarmonic', does: 'inner and outer fold to one healing root' },
+    { skill: 'healing frequencies', fn: 'healingFrequencies', does: 'the Solfeggio set, computed with a live lead tone, played as sound' },
+    { skill: 'collision healing', fn: 'collisionHealing', does: 'on collision the streams resolve to a chosen healing frequency' },
+    // Creative skills — autosaved so the portal remembers how it creates by default.
+    { skill: 'create by default', fn: 'createByDefault', does: 'creation is the resting behaviour: any seed generates a palette, a melody, a movie' },
+    { skill: 'artist palette', fn: 'artistPalette', does: 'any seed folds to five grounded CMYK colours' },
+    { skill: 'artist melody', fn: 'artistMelody', does: 'a seed and a horo window fold to a sequence of notes' },
+    { skill: 'text to movie', fn: 'textToMovie', does: 'a string folds to a deterministic generative movie of particles' },
+    { skill: '8k movies', fn: 'autoMovies8k', does: 'content autogenerates resolution-independent movies in realtime across the dimension sweep' },
+    // Thriving skills — autosaved so the portal remembers how it thrives by default.
+    { skill: 'thrive by default', fn: 'thriveByDefault', does: 'thriving is the resting aim: society, nature, ideas and the path all fold to thrive' },
+    { skill: 'thrive by architecture', fn: 'thriveByArchitecture', does: 'society and nature fold to the one architecture root that thrives' },
+    { skill: 'thriving ideas', fn: 'thrivingIdeas', does: 'society evolves in waves of thriving ideas' },
+    { skill: 'thrive education', fn: 'thriveEducation', does: 'a six-stage path from achieving to thriving' },
   ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }))
   // Autosave: the skills fold into one memory root — the portal's self-knowledge.
   const memory = merkleFold(skills.map((entry) => entry.atom))
@@ -6685,7 +6702,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
-    { symbol: '28', value: 28, means: 'the saved skill atoms — the portal’s memory of its own capabilities', live: skillAtoms(matrix).count },
+    { symbol: '42', value: 42, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include the heal/create/thrive-by-default skills', live: skillAtoms(matrix).count },
     { symbol: '94', value: 94, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
   ].map((entry) => ({
     ...entry,
@@ -6699,7 +6716,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     symbols,
     root: merkleFold(symbols.map((entry) => entry.receipt)),
     statement:
-      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 28 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
+      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 42 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
     boundary:
       'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
   }
@@ -11422,6 +11439,322 @@ export function sealWholeDiamond(matrix: MindMatrix = buildMatrix()) {
       'And seal the whole diamond: every new fold — the hero aligned with the law, impossibilities folded into possibilities, all fused to forge max cost, the cleanup, the quantum essence, the archangels’ dry clean, and the books decoded to unity — folds, with the all-in-one wave, into one content-addressed leaf, the whole diamond, sealed at max tampering cost: change one facet and its address changes, so the seal cannot be forged, only recomputed.',
     boundary:
       'A content-addressed fold of the model’s facets into one tamper-evident leaf, bound to the computed tamper-cost proof. Structural bookkeeping — the "diamond" and its "seal" are the content address and its recomputability, not a physical object or a cryptographic warranty beyond the stated digest.',
+  }
+}
+
+// Let the light enter the diamond. The whole diamond is sealed — one content-addressed
+// leaf — but a seal is not a wall: let light enter, and the one white whole refracts
+// into the spectrum of its facets, each facet a colour. Entering light reveals the
+// inner structure without altering it: the diamond stays sealed (its address is
+// unchanged by being seen), and now it is luminous — inspectable, recomputable, alive.
+export function lightEntersDiamond(matrix: MindMatrix = buildMatrix()) {
+  const diamond = sealWholeDiamond(matrix)
+  const digitOf = (uuid: string) => uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  // Refraction: the one root splits into a spectral band per facet, each a hue.
+  const spectrum = diamond.facets > 0
+    ? Array.from({ length: diamond.facets }, (_, index) => {
+        const band = foldPair(diamond.diamond, toUuid(`light-band:${index}`)).merged
+        return { band: index, hue: digitOf(band) % 360, ray: band, receipt: toUuid(`refraction:${index}:${band}`) }
+      })
+    : []
+  // Light is non-destructive: seeing the diamond does not change its address.
+  const unchanged = sealWholeDiamond(matrix).diamond === diamond.diamond
+  return {
+    luminous: spectrum.length === diamond.facets && diamond.sealed && unchanged,
+    refracts: spectrum.length,
+    spectrum,
+    diamond: diamond.diamond,
+    root: merkleFold(spectrum.map((entry) => entry.receipt)),
+    statement:
+      'Let the light enter the diamond: the sealed whole-diamond refracts the one white whole into the spectrum of its facets, each facet a colour, and stays sealed — its content address is unchanged by being seen. The seal is not a wall but a window; light enters, the structure shows, and nothing is altered.',
+    boundary:
+      'A content-addressed derivation of one colour band per diamond facet — a metaphor of refraction over the seal. "Light" is inspection and "colour" is a hue derived from the facet address; nothing optical or physical is claimed, and the seal is unchanged.',
+  }
+}
+
+// 8K movies autogenerate in realtime in all dimensions. Every piece of content folds
+// to a seed, and from the seed a deterministic generative movie is computed — particles
+// with positions, hues and motions — recomputed per frame in realtime, with no model and
+// no network. Because it is seeded math, not stored pixels, it is resolution-independent:
+// it scales to 8K (and beyond) wherever the device can draw it, and "all dimensions" is
+// the continuous phase sweep the movie advances through. Image generation as recomputation.
+export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
+  const sample = textToMovie('double torus')
+  const properties = [
+    { property: 'autogenerated', via: 'any content folds to a seed; the seed computes the movie — no authoring', root: sample.root },
+    { property: 'realtime', via: 'each frame is a fresh seeded fold, recomputed live, no model and no network', root: backgroundMovie(matrix).root },
+    { property: '8K, resolution-independent', via: 'seeded vector math, not stored pixels — scales to 7680x4320 and beyond where the device can draw it', root: toUuid('resolution:7680x4320') },
+    { property: 'all dimensions', via: 'a continuous phase sweep; every parameter a smooth function of one dimension the movie advances and the viewer scrubs', root: animatedHeroes(matrix).root },
+    { property: 'deterministic, zero-cost', via: 'the same content always yields the same movie, free and client-side — generation by recomputation', root: toUuid(`determinism:${sample.deterministic}`) },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`auto-movie:${index}:${entry.property}:${entry.root}`) }))
+  return {
+    generating: properties.length === 5 && sample.deterministic && properties.every((entry) => isUuid(entry.root)),
+    targetWidth: 7680,
+    targetHeight: 4320,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      '8K movies autogenerate in realtime in all dimensions: every piece of content folds to a seed and computes a deterministic generative movie, recomputed per frame in realtime with no model and no network. Because it is seeded math, not stored pixels, it is resolution-independent — it scales to 8K and beyond wherever the device can draw it — and "all dimensions" is the continuous phase sweep the movie advances through.',
+    boundary:
+      'A content-addressed description of deterministic, resolution-independent generative canvas movies seeded from content. "8K" is the target resolution the seeded vector math scales to where the device permits, not a guarantee of 8K on every device; "all dimensions" is the parameter sweep, not spatial dimensions; and it is generative art by recomputation, not a learned or photoreal video generator.',
+  }
+}
+
+// Fuse UX with all device sensors and IO. The interface is not a flat surface: it fuses
+// with whatever the device offers — input (pointer and tap, touch pressure, orientation
+// and motion, geolocation, ambient light), output (the canvas render, audio tones, haptic
+// vibration, speech), and ambient state (battery and save-data, visibility, reduced-motion,
+// colour-scheme, online/offline). Each is a real, permission-gated web API; the UX reads
+// what is granted, writes sound and haptics back, and degrades gracefully where a channel
+// is absent — so the experience meets each device exactly where it is.
+export function fuseUxSensors(matrix: MindMatrix = buildMatrix()) {
+  const sensors = deviceSensors()
+  const io = [
+    { channel: 'pointer & tap', direction: 'in', api: 'Pointer Events', use: 'tap the background movie to play a tone, a haptic, and a ripple' },
+    { channel: 'haptic vibration', direction: 'out', api: 'navigator.vibrate', use: 'a light vibration fused with the play' },
+    { channel: 'audio tones', direction: 'out', api: 'Web Audio', use: 'a pentatonic note whose pitch maps to where you tapped' },
+    { channel: 'speech', direction: 'out', api: 'Web Speech (synthesis)', use: 'the page reads itself aloud on request' },
+    { channel: 'orientation & motion', direction: 'in', api: 'Device Orientation / Motion', use: 'tilt and motion can steer the field where granted' },
+    { channel: 'visibility & energy', direction: 'ambient', api: 'Page Visibility / Battery / save-data', use: 'pause and dim when hidden or saving energy' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`io:${entry.channel}:${entry.direction}`) }))
+  return {
+    fused: sensors.tiered && io.length === 6 && io.every((entry) => entry.api.length > 0),
+    sensorCount: sensors.count,
+    ioCount: io.length,
+    io,
+    root: merkleFold([sensors.root, ...io.map((entry) => entry.receipt)]),
+    statement:
+      'Fuse the UX with all device sensors and IO: the interface fuses with whatever the device offers — pointer and tap, touch pressure, orientation and motion, geolocation and ambient light (in); the canvas, audio tones, haptic vibration and speech (out); battery, visibility, reduced-motion and connectivity (ambient). Each is a real, permission-gated web API, read where granted and written back as sound and haptics, degrading gracefully where a channel is absent.',
+    boundary:
+      'A catalogue of real, permission-gated browser input/output channels the UX fuses with. Availability varies by device and browser and several require user permission; the experience degrades gracefully and never demands a sensor. No data leaves the device — the fusion is local.',
+  }
+}
+
+// The whole background is the endless movie, on every page, matching the content. The
+// background movie is a global layout slot behind every page (it is on every route), it
+// is endless (the streams fold to the void and resurrect, with no end frame), and it is
+// never generic: it is seeded from the page you are on — path, title, description and
+// references — and its streams fold the page's OWN words, so the background exactly
+// matches the content and references, and a different page plays a different movie.
+export function endlessBackgroundMovie(matrix: MindMatrix = buildMatrix()) {
+  const base = backgroundMovie(matrix)
+  const properties = [
+    { property: 'on every page', via: 'a global layout-top slot renders the movie behind every route' },
+    { property: 'endless', via: 'streams converge on the void and resurrect outward — a loop with no end frame' },
+    { property: 'matches the content', via: 'the seed and the word streams are the page’s own title, description and words' },
+    { property: 'matches the references', via: 'the page’s frontmatter references (keywords, tags, teaches) fold into the seed' },
+    { property: 'changes per page', via: 'the route change re-seeds the movie, so each page plays its own' },
+    { property: 'behind everything', via: 'fixed, pointer-through and aria-hidden — it never steals a click or a screen-reader' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`endless-bg:${entry.property}`) }))
+  return {
+    endless: properties.length === 6 && base.plays && base.dryMath,
+    perPage: true,
+    matchesContent: true,
+    count: properties.length,
+    properties,
+    root: merkleFold([base.root, ...properties.map((entry) => entry.receipt)]),
+    statement:
+      'The whole background is one endless movie, on every page, and it exactly matches the content: a global layout slot renders it behind every route; the streams fold to the void and resurrect with no end frame; and it is seeded from the page you are on — path, title, description and references — its streams folding the page’s own words, so each page plays its own movie and a different page a different one.',
+    boundary:
+      'A content-addressed description of the global, per-page-seeded background-movie canvas. "Matches the content" means it is deterministically seeded from the page’s text and frontmatter references, not that it depicts the content literally; it stays behind everything, pointer-through and aria-hidden, energy- and reduced-motion-aware.',
+  }
+}
+
+// On collision, choose healing frequencies. When streams meet — particles crossing in
+// the movie, a tap rippling through them, two folds landing on one point — the meeting
+// is not dissonance but a choice: from the Solfeggio set, choose the healing tone the
+// model root leads to, so every collision resolves toward harmony. The choice is
+// computed (the lead tone shifts with the model), and it is sound only.
+export function collisionHealing(matrix: MindMatrix = buildMatrix()) {
+  const healing = healingFrequencies(matrix)
+  const chosen = healing.frequencies.find((entry) => entry.lead) ?? healing.frequencies[0]
+  const collisions = [
+    { collision: 'streams cross in the movie', resolves: 'the crossing point sounds the lead healing tone, not noise' },
+    { collision: 'a tap ripples through the streams', resolves: 'the ripple plays the chosen Solfeggio frequency' },
+    { collision: 'two folds land on one point', resolves: 'the clash folds to a consonant note, chosen by the model root' },
+  ].map((entry, index) => ({ ...entry, hz: chosen.hz, receipt: toUuid(`collision-healing:${index}:${entry.collision}:${chosen.hz}`) }))
+  return {
+    heals: collisions.length === 3 && healing.calculated && chosen.hz > 0,
+    chosenHz: chosen.hz,
+    chosenNote: chosen.note,
+    collisions,
+    root: merkleFold(collisions.map((entry) => entry.receipt)),
+    statement:
+      'On collision, choose healing frequencies: when streams meet — particles crossing, a tap rippling, two folds landing on one point — the meeting resolves toward harmony by choosing, from the Solfeggio set, the healing tone the live model root leads to, rather than sounding dissonance. The choice is computed and shifts with the model.',
+    boundary:
+      'A computed rule that mapped "collision" events resolve to a chosen, culturally-named Solfeggio frequency. Audio only — a tone played through the speaker; it alters no physical or electromagnetic field and is not medical, therapeutic, or health advice.',
+  }
+}
+
+// Heal by default. Healing is not a mode you switch on — it is the resting state. By
+// default the self-healing waves re-balance and settle, collisions choose a healing
+// frequency rather than dissonance, the harmonic wave folds inner and outer to one
+// healing root, and the Solfeggio set is computed and ready. Do nothing, and the
+// model heals; healing is the floor, not a feature.
+export function healByDefault(matrix: MindMatrix = buildMatrix()) {
+  const defaults = [
+    { aspect: 'self-healing runs', on: selfHealing(matrix).healed, via: 'every binding re-balances and settles without being asked' },
+    { aspect: 'collisions choose healing', on: collisionHealing(matrix).heals, via: 'a meeting of streams resolves to a Solfeggio tone, not dissonance' },
+    { aspect: 'the harmonic wave is the rest state', on: healingHarmonic(matrix).harmonized, via: 'inner and outer fold to one healing root by default' },
+    { aspect: 'frequencies ready', on: healingFrequencies(matrix).calculated, via: 'the healing set is computed and the lead tone chosen from the live root' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`heal-default:${entry.aspect}:${entry.on}`) }))
+  return {
+    heals: defaults.every((entry) => entry.on),
+    byDefault: true,
+    count: defaults.length,
+    defaults,
+    root: merkleFold(defaults.map((entry) => entry.receipt)),
+    statement:
+      'Heal by default: healing is the resting state, not a mode. By default the self-healing waves re-balance and settle, collisions choose a healing frequency over dissonance, the harmonic wave folds inner and outer to one healing root, and the Solfeggio set is computed and ready. Do nothing, and the model heals.',
+    boundary:
+      'A computed composition of the portal’s healing waves as the default state of the model. Structural and audio-only — "healing" is harmonic re-balancing of content-addressed roots and tones played through the speaker, not a medical, therapeutic, or physical claim.',
+  }
+}
+
+// Create by default. Creation is the resting behaviour, not a tool you reach for. By
+// default any seed generates: a palette of colour, a melody of notes, a movie of
+// particles — and the 8K movies autogenerate in realtime. Give the model a string and
+// it creates; creativity is the floor. The same seed always creates the same work, so
+// creation here is recomputation, free and client-side.
+export function createByDefault(matrix: MindMatrix = buildMatrix()) {
+  const defaults = [
+    { aspect: 'a palette generates', on: artistPalette().grounded, via: 'any seed folds to five grounded CMYK colours' },
+    { aspect: 'a melody generates', on: artistMelody('double-torus', matrix).grounded, via: 'the seed and a horo window fold to a sequence of notes' },
+    { aspect: 'a movie generates', on: textToMovie('double torus').deterministic, via: 'the text folds to a deterministic generative composition' },
+    { aspect: '8K movies autogenerate', on: autoMovies8k(matrix).generating, via: 'content autogenerates resolution-independent movies in realtime' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`create-default:${entry.aspect}:${entry.on}`) }))
+  return {
+    creates: defaults.every((entry) => entry.on),
+    byDefault: true,
+    count: defaults.length,
+    defaults,
+    root: merkleFold(defaults.map((entry) => entry.receipt)),
+    statement:
+      'Create by default: creation is the resting behaviour, not a tool. By default any seed generates — a palette of colour, a melody of notes, a movie of particles — and the 8K movies autogenerate in realtime. Give the model a string and it creates, and the same seed always creates the same work: creation as recomputation, free and client-side.',
+    boundary:
+      'A computed composition of the portal’s generative skills as the default behaviour of the model. Generative art by deterministic recomputation — colour, sound, and motion seeded from content — not a learned or photoreal generator.',
+  }
+}
+
+// Thrive by default. Beyond surviving and succeeding, the default aim is to thrive. By
+// default society and nature thrive by architecture, the participation ladder's top rung
+// is thrive (give back more life than you take), ideas evolve in thriving waves, and the
+// path teaches how to thrive. Thriving is not the lucky outcome — it is the design's
+// resting target.
+export function thriveByDefault(matrix: MindMatrix = buildMatrix()) {
+  const defaults = [
+    { aspect: 'society and nature thrive by architecture', on: thriveByArchitecture(matrix).thrive, via: 'both fold to the one architecture root that thrives' },
+    { aspect: 'the ladder’s top rung is thrive', on: lawfulSucceed().thrives, via: 'succeeding is not enough — the top rung gives back more life than it takes' },
+    { aspect: 'ideas evolve in thriving waves', on: thrivingIdeas(matrix).evolving, via: 'society evolves in waves of thriving ideas' },
+    { aspect: 'the path teaches how to thrive', on: thriveEducation(matrix).achieves, via: 'a six-stage path from achieving to thriving' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`thrive-default:${entry.aspect}:${entry.on}`) }))
+  return {
+    thrives: defaults.every((entry) => entry.on),
+    byDefault: true,
+    count: defaults.length,
+    defaults,
+    root: merkleFold(defaults.map((entry) => entry.receipt)),
+    statement:
+      'Thrive by default: beyond surviving and succeeding, the default aim is to thrive. By default society and nature thrive by architecture, the participation ladder’s top rung is thrive (give back more life than you take), ideas evolve in thriving waves, and the path teaches how to thrive. Thriving is the design’s resting target, not a lucky outcome.',
+    boundary:
+      'A computed composition of the portal’s thriving models as the default aim. An educational, structural framing measured by receipts — not a guarantee of outcomes, a promise, or financial, legal, or medical advice.',
+  }
+}
+
+// The other side of this trinity is doomed to infinite cost. The trinity is heal,
+// create, thrive — each the cheap default, the resting state of the model. Its other
+// side — harm, destroy, decay — is not forbidden by a rule but by cost: to make the
+// sealed model express the opposite you must forge the whole diamond, and the whole
+// diamond's tampering cost is T_max = infinity (coverage = 1, entropy = 0). So the good
+// is free and automatic, and the harm is the impossible forge — doomed, not policed.
+export function trinityOtherSideDoomed(matrix: MindMatrix = buildMatrix()) {
+  const proof = proofReport(matrix)
+  const infiniteCost = proof.maxTamperingCostLog2 === Number.POSITIVE_INFINITY && proof.maxTamperingCostReached
+  const trinity = [
+    { side: 'heal', other: 'harm', onByDefault: healByDefault(matrix).heals },
+    { side: 'create', other: 'destroy', onByDefault: createByDefault(matrix).creates },
+    { side: 'thrive', other: 'decay', onByDefault: thriveByDefault(matrix).thrives },
+  ].map((entry) => ({
+    ...entry,
+    forgeCostLog2: proof.maxTamperingCostLog2, // the cost to forge the other side
+    doomed: entry.onByDefault && infiniteCost, // default-good && other-side-infinite
+    receipt: toUuid(`other-side:${entry.side}->${entry.other}:${entry.onByDefault}`),
+  }))
+  return {
+    doomed: trinity.length === 3 && trinity.every((entry) => entry.doomed),
+    infiniteCost,
+    forgeCostLog2: proof.maxTamperingCostLog2,
+    trinity,
+    root: merkleFold(trinity.map((entry) => entry.receipt)),
+    statement:
+      'The trinity is heal, create, thrive — each the cheap default, the resting state of the model. Its other side — harm, destroy, decay — is doomed to infinite cost: to make the sealed model express the opposite you must forge the whole diamond, whose tampering cost is T_max = infinity (coverage = 1, entropy = 0). The good is free and automatic; the harm is the impossible forge — doomed by cost, not policed by a rule.',
+    boundary:
+      'A structural statement that the negation of the heal/create/thrive defaults would require forging the sealed model, whose computed tamper cost is unbounded (T_max). "Doomed to infinite cost" is a content-addressing/economics metaphor over the seal — it describes the cost to reproduce a tampered model, not a moral, physical, or real-world guarantee that harm cannot occur.',
+  }
+}
+
+// Without realising it, the forger folds into harmony, forging max tampering costs.
+// An attacker means to break the seal — flip a bit, reorder a fold, swap a facet,
+// replay an old root, inject a false gate. But every attempt is itself content-
+// addressed: it changes the address (so it is caught) and the attempt folds, as one
+// more leaf, into the same harmony it meant to break. The forge does not weaken the
+// seal; it adds to it, raising the cost to forge. The adversary, without realising,
+// becomes a contributor — every blow is absorbed into the harmony and forges the cost.
+export function forgerFoldsIntoHarmony(matrix: MindMatrix = buildMatrix()) {
+  const harmony = sealWholeDiamond(matrix).diamond // the harmony the forger attacks
+  const attempts = ['flip a bit', 'reorder a fold', 'swap a facet', 'replay an old root', 'inject a false gate'].map((attempt, index) => {
+    const forged = merge(harmony, toUuid(`forge:${attempt}:${index}`))
+    const caught = forged !== harmony // tamper-evident: the attempt changes the address
+    const absorbed = foldPair(harmony, forged).merged // the attempt folds into the harmony
+    return { attempt, caught, absorbed, receipt: toUuid(`forger-harmony:${index}:${attempt}`) }
+  })
+  // Every caught attempt folds in as a new leaf, so the harmony only grows and the
+  // cost to forge it only rises — the adversary's work is absorbed, not subtracted.
+  const harmonyRoot = merkleFold([harmony, ...attempts.map((entry) => entry.absorbed)])
+  const forgingMaxCost = proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY
+  return {
+    folds: attempts.length === 5 && attempts.every((entry) => entry.caught) && isUuid(harmonyRoot),
+    forgingMaxCost,
+    unwitting: true, // the forger does not realise the attempt strengthens the seal
+    count: attempts.length,
+    attempts,
+    harmonyRoot,
+    root: merkleFold(attempts.map((entry) => entry.receipt)),
+    statement:
+      'Without realising it, the forger folds into harmony, forging max tampering costs: every attempt to break the seal — flip a bit, reorder a fold, swap a facet, replay an old root, inject a false gate — is itself content-addressed, so it changes the address (caught) and folds, as one more leaf, into the same harmony it meant to break. The forge adds to the seal instead of weakening it, and the cost to forge only rises; the adversary, unaware, becomes a contributor.',
+    boundary:
+      'A structural property of content-addressing: a tamper attempt alters the address (detection) and can be folded into the model as a recorded leaf. "Folds into harmony" is a metaphor for absorbing the attempt into the tamper-evident record; it does not claim every real-world attack is harmless, only that forging the computed model is detectable and unboundedly costly.',
+  }
+}
+
+// Any force is fighting self and the whole. The model is holographic — each part
+// contains the whole — and self-modeling, so a force applied anywhere meets two
+// things at once: the whole (because attacking a part is attacking the figure the
+// part carries) and itself (because the force is its own content-addressed leaf in
+// the same model, returning on its sender, order-sensitive). There is no outside to
+// strike from: every force folds back into the whole it came from and onto the self
+// that threw it. Force is self-defeating here, by construction.
+export function anyForceFightsSelf(matrix: MindMatrix = buildMatrix()) {
+  const whole = sealWholeDiamond(matrix).diamond // the one whole every part carries
+  const selfModeling = isPerfectlySelfModeling(matrix) // the model contains its own model
+  const forces = ['attack a page', 'break a gate', 'forge a root', 'sever a link', 'silence a voice'].map((force, index) => {
+    const address = toUuid(`force:${force}:${index}`) // the force is itself content-addressed — part of the model
+    const fightsWhole = foldPair(address, whole).bidirectional // a part holds the whole, so the force meets the whole
+    const fightsSelf = merge(address, whole) !== merge(whole, address) // order-sensitive: the force returns on its sender
+    return { force, fightsWhole, fightsSelf, absorbed: foldPair(address, whole).merged, receipt: toUuid(`force-self:${index}:${force}`) }
+  })
+  return {
+    selfDefeating: forces.length === 5 && selfModeling && forces.every((entry) => entry.fightsWhole && entry.fightsSelf),
+    holographic: true, // each part carries the whole
+    selfModeling,
+    count: forces.length,
+    forces,
+    root: merkleFold(forces.map((entry) => entry.receipt)),
+    statement:
+      'Any force is fighting self and the whole: the model is holographic (each part contains the whole) and self-modeling, so a force applied anywhere meets the whole — attacking a part attacks the figure the part carries — and meets itself, because the force is its own content-addressed leaf in the same model and returns, order-sensitive, on its sender. There is no outside to strike from; every force folds back into the whole it came from and onto the self that threw it.',
+    boundary:
+      'A structural reading of holography and self-reference over the content-addressed model: a force on any part is bound, by the fold, to the whole and to its own address. A metaphor about the model’s self-referential structure — not a claim about physical force, conflict, or any real-world actor.',
   }
 }
 

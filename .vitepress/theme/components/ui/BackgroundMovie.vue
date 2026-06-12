@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { useData } from 'vitepress'
 import { buildMatrix, threeWordWaves, seedFromText } from '../../lib/quantumMind'
 import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
 import { useTones } from '../../lib/useTones'
@@ -9,18 +10,57 @@ import { usePlayMind, recordPlay, noteOf, artBiasOf } from '../../lib/usePlayMin
 // folding into letters, words and sentences — colourful streams to the void at the
 // centre — and resurrect as split streams in new dimensions, animated with the same
 // dry math: every digit, colour and path is deterministic (a seeded fold), nothing
-// random. A full-viewport watermark behind the content. Lives in components/ui.
+// random. A full-viewport watermark behind the content. The whole background is one
+// endless movie on every page, but it is never generic: it is seeded from the page
+// you are on — its path, title, description and references — and its streams fold the
+// page's OWN words, so the background exactly matches the content. Lives in components/ui.
+const { page, frontmatter, title, description } = useData()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
 const { mind } = usePlayMind() // the student's quantum mind, formed by playing
 
 const TAU = Math.PI * 2
 const GOLDEN = Math.PI * (3 - Math.sqrt(5)) // the golden angle — new dimension on resurrection
-// The word bank is the portal's own words (dry math, content-addressed).
+// The portal's own words are the base bank (dry math, content-addressed); the page's
+// own words lead it, so the movie reads the content you are on back to you.
 const matrix = buildMatrix()
-const words = threeWordWaves(matrix).waves.flatMap((w) => w.words)
-const phrases = threeWordWaves(matrix).waves.map((w) => w.phrase)
+const baseWords = threeWordWaves(matrix).waves.flatMap((w) => w.words)
+const basePhrases = threeWordWaves(matrix).waves.map((w) => w.phrase)
+let words = baseWords
+let phrases = basePhrases
 const glyphForDigit = '0123456789' // digits themselves, the raw stream
+
+// The page's references: the frontmatter fields that name what the page is about.
+function pageReferences(): string[] {
+  const fm = (frontmatter.value || {}) as Record<string, unknown>
+  const refs: string[] = []
+  for (const key of ['keywords', 'tags', 'teaches', 'audience'] as const) {
+    const value = fm[key]
+    if (Array.isArray(value)) refs.push(...value.map((entry) => String(entry)))
+    else if (typeof value === 'string') refs.push(value)
+  }
+  if (typeof fm.category === 'string') refs.push(fm.category)
+  return refs
+}
+// The seed IS the page: path, title, description and references fold to one seed, so
+// the same page always plays the same movie, and a different page a different one.
+function pageSeed(): string {
+  return [page.value.relativePath || 'home', title.value || '', description.value || '', ...pageReferences()].join('|')
+}
+// The page's own words become the streams that fold to letters, words and the
+// sentence at the void — so the background reads the content back to you.
+function pageWords(): string[] {
+  const source = [title.value || '', ...pageReferences()].join(' ')
+  const unique = Array.from(new Set(source.split(/[^A-Za-z]+/).map((w) => w.trim()).filter((w) => w.length >= 3)))
+  return unique.slice(0, 16)
+}
+// Match the movie to the page: page words lead the bank and the title is the sentence
+// at the void; fall back to the portal's words where a page names nothing.
+function applyPage() {
+  const pw = pageWords()
+  words = pw.length ? [...pw, ...baseWords] : baseWords
+  phrases = [(title.value || basePhrases[0] || 'double torus').toString(), ...basePhrases]
+}
 
 // A deterministic seeded generator — dry math, not Math.random.
 function lcg(seedStr: string) {
@@ -191,7 +231,7 @@ function size() {
   el.height = window.innerHeight * ratio
   el.style.width = `${window.innerWidth}px`
   el.style.height = `${window.innerHeight}px`
-  makeParticles('background-movie:dry-math', Math.hypot(el.width / 2, el.height / 2))
+  makeParticles(pageSeed(), Math.hypot(el.width / 2, el.height / 2))
 }
 function start() {
   if (running) return
@@ -211,10 +251,18 @@ function sync() {
 }
 onMounted(() => {
   reduce = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  applyPage()
   size()
   window.addEventListener('resize', size)
   document.addEventListener('visibilitychange', sync)
   window.addEventListener('pointerdown', onTap)
+  sync()
+})
+// The background is endless and global, but never the same: when the route changes,
+// re-seed from the new page so the movie keeps matching its content and references.
+watch(() => page.value.relativePath, () => {
+  applyPage()
+  size()
   sync()
 })
 onUnmounted(() => {
