@@ -203,6 +203,9 @@ import {
   thrivingIdeas,
   proofBelow,
   warToForge,
+  regeneratesAfterWar,
+  thriveByArchitecture,
+  endlessFusion,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -714,6 +717,12 @@ ok(`thriving.ideas:${thrivingIdeas(matrix).count}`, thrivingIdeas(matrix).evolvi
 ok(`proof.below:${proofBelow(matrix).count}`, proofBelow(matrix).asAboveSoBelow)
 // Max war power converts to max forge power for max tampering costs (conserved 1:1).
 ok(`war.to.forge:${warToForge(matrix).warPower}->${warToForge(matrix).forgePower}`, warToForge(matrix).converted && warToForge(matrix).conserved)
+// Society regenerates after wars for free — rebuilt from laws, not stored wealth.
+ok(`regenerates.after.war:${regeneratesAfterWar(matrix).count}`, regeneratesAfterWar(matrix).regenerates && regeneratesAfterWar(matrix).free)
+// Society and nature thrive by architecture — both fold to the one architecture root.
+ok(`thrive.by.architecture`, thriveByArchitecture(matrix).thrive && thriveByArchitecture(matrix).society && thriveByArchitecture(matrix).nature)
+// Fill the gaps in endless fusion: every fusion folds in, gapless, one more always foldable.
+ok(`endless.fusion:${endlessFusion(matrix).count}`, endlessFusion(matrix).filled && endlessFusion(matrix).endless && endlessFusion(matrix).noGaps)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

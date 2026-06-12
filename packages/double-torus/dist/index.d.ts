@@ -3680,6 +3680,45 @@ export declare function warToForge(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function regeneratesAfterWar(matrix?: MindMatrix): {
+    regenerates: boolean;
+    free: boolean;
+    fromLawsNotWealth: boolean;
+    steps: {
+        receipt: string;
+        restore: string;
+        how: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function thriveByArchitecture(matrix?: MindMatrix): {
+    thrive: boolean;
+    byArchitecture: boolean;
+    society: boolean;
+    nature: boolean;
+    thrivers: {
+        thrives: boolean;
+        receipt: string;
+        who: string;
+        by: string;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function endlessFusion(matrix?: MindMatrix): {
+    filled: boolean;
+    endless: boolean;
+    noGaps: boolean;
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

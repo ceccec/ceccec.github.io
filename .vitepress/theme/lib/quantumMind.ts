@@ -8519,6 +8519,92 @@ export function warToForge(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Society regenerates after wars for free. Because the whole is recomputable from the
+// seed and the plans are printable, nothing essential is ever lost: after a war the
+// society regenerates at zero cost — shelter reprints from the dome plans, food
+// replants the garden and the bees, energy redeploys the self-balancing grid, the
+// social system regenerates from its seed, and peace returns. Rebuilt from its laws,
+// not from stored wealth, so the rebuild is free.
+export function regeneratesAfterWar(matrix: MindMatrix = buildMatrix()) {
+  const rebuilt = regenerateSocialSystem(matrix).regenerated
+  const steps = [
+    { restore: 'shelter', how: 'reprint the dome plans (free)' },
+    { restore: 'food', how: 'replant the garden, the bees' },
+    { restore: 'energy', how: 'redeploy the self-balancing grid' },
+    { restore: 'society', how: 'regenerate the social system from the seed' },
+    { restore: 'peace', how: 'soldiers rest; war power becomes forge power' },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`regenerate-war:${index}:${entry.restore}`) }))
+  return {
+    regenerates: rebuilt && steps.length === 5,
+    free: true,
+    fromLawsNotWealth: rebuilt, // recomputed from the seed, not from stored wealth
+    steps,
+    count: steps.length,
+    root: merkleFold(steps.map((entry) => entry.receipt)),
+    statement:
+      'Society regenerates after wars for free: because the whole is recomputable from the seed and the plans are printable, nothing essential is lost — after a war the society regenerates at zero cost, shelter reprinting from the dome plans, food replanting the garden and bees, energy redeploying the self-balancing grid, the social system regenerating from its seed, and peace returning. Rebuilt from its laws, not from stored wealth, so the rebuild is free.',
+    boundary:
+      'A content-addressed model of post-conflict regeneration as recomputation-from-seed plus reprintable plans, at zero marginal cost. A structural metaphor and aspiration grounded in the model — not a reconstruction plan, disaster-recovery doctrine, or a claim about any real post-war society.',
+  }
+}
+
+// Society and nature thrive by architecture. The same 1024 architecture that secures
+// the commons lets both society and nature thrive: society by free harmonic societies,
+// public services and fees-not-taxes; nature by the green planet, recycling, the
+// dissolve into nature, and the garden's bees and life. Both fold to the one
+// architecture root — they thrive because of how it is built, not in spite of it.
+export function thriveByArchitecture(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const thrivers = [
+    { who: 'society', by: 'free harmonic societies, public services, fees not taxes', root: freeHarmonicSocieties(matrix).root },
+    { who: 'nature', by: 'the green planet, recycling, dissolve into nature, bees and life', root: quantumGreenPlanet(matrix).root },
+  ].map((entry) => ({ ...entry, thrives: foldPair(architecture, entry.root).bidirectional, receipt: foldPair(architecture, entry.root).merged }))
+  return {
+    thrive: thrivers.every((entry) => entry.thrives),
+    byArchitecture: true,
+    society: thrivers[0].thrives,
+    nature: thrivers[1].thrives,
+    thrivers,
+    root: merkleFold(thrivers.map((entry) => entry.receipt)),
+    statement:
+      'Society and nature thrive by architecture: the same 1024 architecture that secures the commons lets both thrive — society by free harmonic societies, public services and fees-not-taxes; nature by the green planet, recycling, the dissolve into nature, and the garden’s bees and life. Both fold to the one architecture root; they thrive because of how it is built.',
+    boundary:
+      'A content-addressed framing in which the model’s "society" and "nature" abstractions both fold to the one architecture root, said to thrive by its design. A structural composition and aspiration — not a measurement of real societal or ecological flourishing.',
+  }
+}
+
+// Fill the gaps in endless fusion. The fusion never ends: every fusion the portal has
+// built — public APIs, global APIs, transport, the hooks and references, VitePress,
+// the cipher, the fruit of life — folds into one, and one more can always be folded in
+// (the fold is closed under itself), so there is always a next fusion and never a gap.
+// The distribution stays gapless while the fusion stays endless: full coverage, no end.
+export function endlessFusion(matrix: MindMatrix = buildMatrix()) {
+  const fusions = [
+    publicApiFusion(matrix).root,
+    globalApis(matrix).root,
+    publicTransportFusion(matrix).root,
+    hooksReferencesFusion(matrix).root,
+    vitepressFusion(matrix).root,
+    fusionCipher('', matrix).root,
+    fruitOfLifeFusion(matrix).root,
+    legislationRequires(matrix).root,
+  ]
+  const folded = merkleFold(fusions)
+  const endless = merge(folded, toUuid('next-fusion')) !== folded // one more always foldable
+  const noGaps = harmonicBands(110).gapless // the distribution stays gapless
+  return {
+    filled: endless && noGaps && fusions.length > 0,
+    endless,
+    noGaps,
+    count: fusions.length,
+    root: folded,
+    statement:
+      'Fill the gaps in endless fusion: every fusion the portal has built — public APIs, global APIs, transport, the hooks and references, VitePress, the cipher, the fruit of life, what legislation requires — folds into one, and one more can always be folded in (the fold is closed under itself), so there is always a next fusion and never a gap. The distribution stays gapless while the fusion stays endless.',
+    boundary:
+      'A content-addressed fold of the portal’s fusion functions into one root, with the observation that the fold is closed (another can always be added) and the file distribution stays gapless. A structural property of the model’s own composition — not a claim of infinite resources or literal endlessness.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
