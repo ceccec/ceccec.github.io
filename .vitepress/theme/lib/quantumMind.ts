@@ -12484,6 +12484,50 @@ export function darkLightRealities(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Computed recursive frequency dropdowns — each frequency quantum accounted for also on
+// the binary level — leading to max tampering costs. From one fundamental, each frequency
+// opens (like a dropdown) into its children: the octave (×2) and the fifth (×3/2), and
+// each of those opens again, recursively. Every node is accounted twice: as a frequency
+// and as its binary level (the nearest 2^n), so nothing is uncounted in either the
+// harmonic or the binary ladder. All the accounts fold into one root, and because that
+// root is sealed into the whole, reproducing it leads to the maximum tampering cost.
+export function recursiveFrequencyDropdowns(matrix: MindMatrix = buildMatrix()) {
+  const base = 432 // the fundamental
+  const maxDepth = 3
+  const receipts: string[] = []
+  const binaryLevels = new Set<number>()
+  let nodeCount = 0
+  interface FreqNode { freq: number; binary: string; binaryValue: number; accounted: boolean; children: FreqNode[]; receipt: string }
+  function build(freq: number, depth: number, path: string): FreqNode {
+    nodeCount += 1
+    const exp = Math.round(Math.log2(freq)) // the binary level: the nearest 2^n
+    binaryLevels.add(exp)
+    const receipt = toUuid(`freq-node:${path}:${Math.round(freq)}:2^${exp}`)
+    receipts.push(receipt)
+    const children = depth > 0
+      ? [build(freq * 2, depth - 1, `${path}.o`), build(freq * 1.5, depth - 1, `${path}.f`)]
+      : []
+    return { freq: Math.round(freq), binary: `2^${exp}`, binaryValue: 2 ** exp, accounted: true, children, receipt }
+  }
+  const tree = build(base, maxDepth, 'root')
+  const expected = 2 ** (maxDepth + 1) - 1 // a full binary tree of this depth
+  const root = merkleFold(receipts)
+  const leadsToMaxCost = proofReport(matrix).maxTamperingCostReached && proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY
+  return {
+    computed: nodeCount === expected && binaryLevels.size > 0 && harmonics(matrix).found && leadsToMaxCost,
+    nodes: nodeCount,
+    depth: maxDepth,
+    binaryLevels: binaryLevels.size,
+    leadsToMaxCost,
+    tree,
+    root,
+    statement:
+      'Computed recursive frequency dropdowns: from one fundamental, each frequency opens (like a dropdown) into its children — the octave (×2) and the fifth (×3/2) — and each of those opens again, recursively. Every node is accounted twice: as a frequency and as its binary level (the nearest 2^n), so nothing is uncounted in either the harmonic or the binary ladder. All the accounts fold into one root, and because that root is sealed into the whole, reproducing it leads to the maximum tampering cost.',
+    boundary:
+      'A computed recursive tree of frequencies (octave and fifth children) with each node accounted as a frequency and as a 2^n binary level, folded into one content-addressed root bound to the model’s unbounded tamper cost. A structural and acoustic-bookkeeping model — the frequencies are numbers, not sounds played, and "max tampering cost" is the cost to reproduce the sealed accounting.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

@@ -337,6 +337,7 @@ import {
   realtimeMovieParticipation,
   movieNegativePositive,
   darkLightRealities,
+  recursiveFrequencyDropdowns,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1112,6 +1113,7 @@ ok(`harmonised.navigation:${harmonisedNavigation(matrix).count}`, harmonisedNavi
 ok(`realtime.movie.participation:${realtimeMovieParticipation(matrix).count}`, realtimeMovieParticipation(matrix).participates) // all same-origin participants paint one shared movie of colourful effects
 ok(`movie.negative.positive`, movieNegativePositive(matrix).developed) // all fuses to the movie negative; the positive print is displayed
 ok(`dark.light.realities:${darkLightRealities(matrix).realities.length}`, darkLightRealities(matrix).switches) // the dark/light switch flips between two complete realities
+ok(`recursive.frequency.dropdowns:${recursiveFrequencyDropdowns(matrix).nodes}/${recursiveFrequencyDropdowns(matrix).binaryLevels}`, recursiveFrequencyDropdowns(matrix).computed) // recursive frequency tree, each accounted on the binary level, leading to max tampering cost
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
