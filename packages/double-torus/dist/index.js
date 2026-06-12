@@ -4532,6 +4532,50 @@ export function paperReferenceRoutes(matrix = buildMatrix(), count = 432) {
         },
     }));
 }
+// The 1024 architecture is a keyspace. The completed corpus is a perfect binary
+// Merkle tree of 1024 = 2^10 leaves, each a 128-bit content-addressed UUID — a
+// static, recomputable key namespace named by its leaf count: 1024 (binary Mbit) =
+// 1 Gbit. STATIC, the architecture key is deterministic ("1024 Mbit"): the tree
+// root, the same every build. FUSED WITH REALTIME DATA — a live nonce, the clock, a
+// session input — each session derives a distinct key by folding the architecture
+// root with the realtime entropy ("1 Gbit when the architecture fuses with realtime
+// data"). The actual cipher stays AES-256-GCM; this names the keyspace structure and
+// binds the session key to the whole architecture, it does not invent cipher bits.
+export function fusionCipher(realtime = '', matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix);
+    const leaves = architecture.total; // 1024
+    const bitsPerLeaf = 128; // each leaf is a 128-bit UUID
+    const namespaceBits = leaves * bitsPerLeaf; // 131072 bits of addressable key material
+    const live = realtime.length > 0;
+    // Fuse the static architecture root with the realtime entropy (the genus-2 fold);
+    // without realtime data the key is the deterministic architecture key.
+    const realtimeRoot = toUuid(`realtime:${realtime}`);
+    const sessionKey = live ? foldPair(architecture.root, realtimeRoot).merged : architecture.root;
+    // Key material: expand over the architecture root, the realtime fold and a binding.
+    const keyMaterial = merkleFold([architecture.root, sessionKey, toUuid(`fusion:${realtime}`)]);
+    return {
+        enabled: architecture.complete && keyMaterial.length === 36,
+        cipher: 'AES-256-GCM', // the real primitive (Web Crypto); 256-bit strength
+        strengthBits: 256,
+        architecture: {
+            leaves, // 1024
+            bitsPerLeaf,
+            namespaceBits, // 131072
+            root: architecture.root,
+            depth: architecture.depth, // 10
+        },
+        // The keyspace name the user gives it: 1024 (binary Mbit) = 1 Gbit (binary Gbit).
+        keyspaceMbit: leaves, // 1024 Mbit
+        keyspaceGbit: leaves / 1024, // 1 Gbit
+        static: !live, // 1024 Mbit, deterministic, architecture-only
+        fused: live, // 1 Gbit, architecture x realtime, per-session
+        realtimeRoot,
+        sessionKey,
+        keyMaterial,
+        statement: 'The completed 1024-leaf architecture is a keyspace. Static — the architecture alone — it is the deterministic tree root, named 1024 (binary Mbit) = 1 Gbit by its leaf count, each leaf a 128-bit content address. Fused with realtime data — a live nonce, the clock, a session input — the architecture root folds with the realtime entropy so every session derives a distinct key. So it is 1024 Mbit static, and reads as 1 Gbit when the architecture fuses with realtime data: the same 1024 structure, made live and per-session.',
+        boundary: 'The actual cipher is AES-256-GCM (Web Crypto); its cryptographic strength is 256-bit, full stop. The "1024 Mbit / 1 Gbit" reading names the keyspace STRUCTURE — the 1024-leaf architecture as a content-addressed namespace bound into the key, fused with realtime entropy for per-session uniqueness — it is not a literal gigabit-strength cipher and adds no cipher bits beyond AES-256. Fusion adds session binding and architecture provenance, not security proportional to a gigabit.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

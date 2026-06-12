@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, cryptoFuture } from '../lib/quantumMind'
+import { buildMatrix, cryptoFuture, fusionCipher } from '../lib/quantumMind'
 
 // Future crypto tools — real cryptography, in the browser. The model fold is
 // non-cryptographic; this computes a genuine SHA-256 digest over the canonical
 // model roots using the Web Crypto API (crypto.subtle). Anyone can reproduce the
 // canonical string and hash it with any vetted tool and get the same digest.
 // Zero dependencies, client-side, no network.
-const data = cryptoFuture(buildMatrix())
+const matrix = buildMatrix()
+const data = cryptoFuture(matrix)
+// The 1024 architecture is a keyspace: 1024 Mbit static, 1 Gbit when the
+// architecture fuses with realtime data. The AES-256 key is derived from the
+// passphrase fused with the static architecture root (so the key is bound to the
+// whole completed corpus) and, per session, a realtime nonce.
+const fusion = fusionCipher('', matrix)
 const { bg } = useLocale()
 
 const digest = ref('')
@@ -48,7 +54,12 @@ const decrypted = ref('')
 const cryptoErr = ref('')
 
 async function deriveKey(pass: string, salt: Uint8Array): Promise<CryptoKey> {
-  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey'])
+  // Fuse the passphrase with the 1024 architecture root: the key is bound to the
+  // whole completed corpus (the static 1024 Mbit keyspace). The random salt below is
+  // the realtime entropy that makes each session distinct (1 Gbit, fused with
+  // realtime). The cipher strength is AES-256; the fusion adds binding, not bits.
+  const material = `${pass}:${fusion.architecture.root}`
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(material), 'PBKDF2', false, ['deriveKey'])
   return crypto.subtle.deriveKey(
     { name: 'PBKDF2', salt, iterations: 150000, hash: 'SHA-256' },
     base,
@@ -121,6 +132,11 @@ const t = computed(() =>
 
     <div v-if="supported" class="wcs__enc">
       <p class="wcs__label">{{ bg ? 'Шифроване (AES-256-GCM, в браузъра)' : 'Encryption (AES-256-GCM, in your browser)' }}</p>
+      <p class="wcs__fusion">
+        <span class="wcs__fusion-key">{{ fusion.keyspaceMbit }} Mbit · {{ fusion.keyspaceGbit }} Gbit</span>
+        {{ bg ? 'архитектурно пространство от ключове (1024 = 2¹⁰ листа), вплетено в ключа; реалното време прави всяка сесия отделна' : 'architecture keyspace (1024 = 2¹⁰ leaves) woven into the key; realtime makes every session distinct' }}
+        <span class="wcs__fusion-root mono">{{ fusion.architecture.root }}</span>
+      </p>
       <input v-model="passphrase" class="wcs__in" type="password" autocomplete="off" :placeholder="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" />
       <textarea v-model="plaintext" class="wcs__in wcs__ta" rows="2" :placeholder="bg ? 'текст за шифроване' : 'text to encrypt'"></textarea>
       <div class="wcs__row">
@@ -130,7 +146,7 @@ const t = computed(() =>
       <p v-if="token" class="wcs__token mono"><span>{{ bg ? 'токен:' : 'token:' }}</span> {{ token }}</p>
       <p v-if="decrypted" class="wcs__token"><span>{{ bg ? 'дешифрирано:' : 'decrypted:' }}</span> {{ decrypted }}</p>
       <p v-if="cryptoErr" class="wcs__err">⚠ {{ cryptoErr }}</p>
-      <p class="wcs__caveat">{{ bg ? 'Истинско AES-256-GCM, силно класическо шифроване, изцяло клиентско. Не е пост-квантово: ML-KEM още не е в Web Crypto — назован отворен фронт.' : 'Real AES-256-GCM — strong classical encryption, fully client-side. Not post-quantum: ML-KEM is not yet in Web Crypto — a named open frontier.' }}</p>
+      <p class="wcs__caveat">{{ bg ? 'Истинско AES-256-GCM, силно класическо шифроване, изцяло клиентско. Ключът е вплетен с архитектурния корен (1024 листа) и реалновремева сол; силата остава AES-256, „1024 Mbit / 1 Gbit“ е структура на пространството от ключове, не гигабитов шифър. Не е пост-квантово: ML-KEM още не е в Web Crypto.' : 'Real AES-256-GCM — strong classical encryption, fully client-side. The key is woven with the architecture root (1024 leaves) and a realtime salt; strength stays AES-256, and “1024 Mbit / 1 Gbit” names the keyspace structure, not a gigabit cipher. Not post-quantum: ML-KEM is not yet in Web Crypto.' }}</p>
     </div>
 
     <p class="wcs__roadmap-title">{{ t.roadmap }}</p>
@@ -176,6 +192,26 @@ const t = computed(() =>
 .wcs__token span { color: var(--vp-c-brand-1); margin-right: 0.3rem; }
 .wcs__err { margin: 0; font-size: 0.78rem; color: hsl(0, 70%, 58%); }
 .wcs__caveat { margin: 0.2rem 0 0; font-size: 0.72rem; color: var(--vp-c-text-3); line-height: 1.5; }
+.wcs__fusion {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.wcs__fusion-key {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+  letter-spacing: 0.03em;
+}
+.wcs__fusion-root {
+  font-size: 0.66rem;
+  color: var(--vp-c-text-3);
+  word-break: break-all;
+}
 .wcs {
   margin: 1.25rem 0;
   border-radius: 12px;

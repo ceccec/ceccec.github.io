@@ -2502,6 +2502,27 @@ export declare function paperReferenceRoutes(matrix?: MindMatrix, count?: number
         bidirectional: boolean;
     };
 }[];
+export declare function fusionCipher(realtime?: string, matrix?: MindMatrix): {
+    enabled: boolean;
+    cipher: string;
+    strengthBits: number;
+    architecture: {
+        leaves: number;
+        bitsPerLeaf: number;
+        namespaceBits: number;
+        root: string;
+        depth: number;
+    };
+    keyspaceMbit: number;
+    keyspaceGbit: number;
+    static: boolean;
+    fused: boolean;
+    realtimeRoot: string;
+    sessionKey: string;
+    keyMaterial: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

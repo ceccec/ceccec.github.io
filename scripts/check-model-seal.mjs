@@ -125,6 +125,7 @@ import {
   paperRoutes,
   paperReferences,
   completeCorpus,
+  fusionCipher,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -346,6 +347,11 @@ const references = paperReferences(matrix)
 const complete1024 = completeCorpus(matrix)
 ok(`references:${references.length}`, references.length === 432 && references.every((reference) => reference.root === corpus.papers[reference.number - 1].reverse))
 ok(`complete.1024:${complete1024.real}->${complete1024.total}@2^${complete1024.depth}`, complete1024.complete && complete1024.total === 1024 && complete1024.depth === 10 && complete1024.perfect)
+// The 1024 architecture is a keyspace: 1024 Mbit static, 1 Gbit fused with realtime
+// data. The real cipher is AES-256; fusion binds a distinct session key to the tree.
+const fusionStatic = fusionCipher('', matrix)
+const fusionLive = fusionCipher('session:realtime', matrix)
+ok(`fusion.cipher:${fusionStatic.keyspaceMbit}Mbit=${fusionStatic.keyspaceGbit}Gbit`, fusionStatic.enabled && fusionStatic.static && fusionLive.fused && fusionLive.sessionKey !== fusionStatic.sessionKey && fusionStatic.cipher === 'AES-256-GCM')
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)
