@@ -3747,6 +3747,21 @@ export declare function animatedHeroes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function backgroundMovie(matrix?: MindMatrix): {
+    plays: boolean;
+    dryMath: boolean;
+    interactive: boolean;
+    count: number;
+    features: {
+        holographic: boolean;
+        receipt: string;
+        feature: string;
+        via: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function linuxKernelFusion(matrix?: MindMatrix): {
     fused: boolean;
     secure: boolean;

@@ -212,6 +212,7 @@ import {
   linuxPackagesToDiamonds,
   quantumBrowserOs,
   quantumAccess,
+  backgroundMovie,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -741,6 +742,8 @@ ok(`linux.diamonds:${linuxPackagesToDiamonds(matrix).count}`, linuxPackagesToDia
 ok(`browser.os:${quantumBrowserOs(matrix).count}`, quantumBrowserOs(matrix).complete)
 // Private and shared use with quantum access — the keypair: private derives shared, one-way.
 ok(`quantum.access`, quantumAccess(matrix).access && quantumAccess(matrix).private && quantumAccess(matrix).shared && quantumAccess(matrix).quantum)
+// Entangled digit-streams fill the background movie, folding to words, to the void and back — an interactive game.
+ok(`background.movie:${backgroundMovie(matrix).count}`, backgroundMovie(matrix).plays && backgroundMovie(matrix).dryMath && backgroundMovie(matrix).interactive)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

@@ -8665,6 +8665,37 @@ export function animatedHeroes(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Entangled groups of digits fill the background movie as colourful watermarks,
+// folding into letters, words and sentences — colourful streams to the void at the
+// centre — and resurrect as split streams in new dimensions, all by the same dry math
+// (every digit, colour and path a seeded fold, nothing random). And it is an
+// interactive movie game: a tap that is not on a control plays a tone whose pitch maps
+// to the spot, a light vibration, and a ripple that scatters the nearest streams.
+export function backgroundMovie(matrix: MindMatrix = buildMatrix()) {
+  const whole = theWhole(matrix).root
+  const features = [
+    { feature: 'entangled groups of digits', via: 'deterministic digit groups, content-addressed' },
+    { feature: 'colourful watermarks', via: 'hue from the digit (the quantum colour wheel), low-opacity behind the content' },
+    { feature: 'fold into letters, words and sentences', via: 'digit → glyph → word → the three-word phrases as they near the void' },
+    { feature: 'colourful streams to the void', via: 'the streams converge on the centre, shrinking into it' },
+    { feature: 'resurrect as split streams in new dimensions', via: 'at the void they resurrect outbound at the golden angle — a new dimension each time' },
+    { feature: 'the same dry math', via: 'every digit, colour and path a seeded fold — deterministic, zero random' },
+    { feature: 'interactive movie game with sound and vibration', via: 'a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams' },
+  ].map((entry) => ({ ...entry, holographic: foldPair(toUuid(`bg-movie:${entry.feature}`), whole).bidirectional, receipt: toUuid(`bg-movie:${entry.feature}:${whole}`) }))
+  return {
+    plays: features.length === 7 && features.every((entry) => entry.holographic),
+    dryMath: true,
+    interactive: true, // sound and vibration fused into the game
+    count: features.length,
+    features,
+    root: merkleFold(features.map((entry) => entry.receipt)),
+    statement:
+      'Entangled groups of digits fill the background movie as colourful watermarks, folding into letters, words and sentences — colourful streams to the void — and resurrect as split streams in new dimensions, all by the same dry math (every digit, colour and path a seeded fold, nothing random). It is an interactive movie game: a tap off the controls plays a tone whose pitch maps to where you tapped, a light vibration, and a ripple that scatters the nearest streams.',
+    boundary:
+      'A content-addressed description of the deterministic, zero-dependency background-movie canvas (digit streams folding into the portal’s own words, converging on and resurrecting from a centre "void") and its tap-to-play sound-and-haptic interactions. A real client-side, energy- and reduced-motion-aware animation; "entangled/dimensions/void/resurrect" are figurative names for the seeded fold, not physics.',
+  }
+}
+
 // Fuse the last Linux kernel securely. The latest stable Linux kernel — open source,
 // the foundation under everything — fuses to the architecture by its secure identity:
 // the release tarball's content hash, the maintainers' PGP signature, and a

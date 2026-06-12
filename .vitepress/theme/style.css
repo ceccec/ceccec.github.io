@@ -1153,3 +1153,16 @@ html[data-mode='simple'] .rich-only { display: none !important; }
 .diamond-glyph-sm { font-size: 0.9rem; }
 .diamond-link { margin: 0.75rem 0; font-size: 0.9rem; }
 .diamond-link--null { color: var(--vp-c-text-3); font-size: 0.82rem; }
+
+/* The background movie (entangled digit-streams) is a fixed watermark at z-index 0;
+   keep the VitePress chrome and content above it so text stays readable, while the
+   colourful streams show through the transparent content area behind the text. */
+.VPNav,
+.VPLocalNav,
+.VPSidebar,
+.VPContent,
+.VPFooter,
+.VPDocAside {
+  position: relative;
+  z-index: 1;
+}
