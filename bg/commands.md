@@ -4,7 +4,7 @@ description: "Алгебра на командите за двойния тор 
 head:
   - - meta
     - property: og:title
-      content: "Алгебра на командите | Двоен тор"
+      content: "Алгебра на командите | Двоен торус"
   - - meta
     - property: og:description
       content: "Алгебра на командите за двойния тор UUID поток: cmd -> result -> receipt."

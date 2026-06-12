@@ -4,7 +4,7 @@ description: "Гръбнакът на честността: всяка гран�
 head:
   - - meta
     - property: og:title
-      content: "Граници | Двоен тор"
+      content: "Граници | Двоен торус"
 ---
 
 # Граници

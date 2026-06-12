@@ -13,7 +13,7 @@ const groups = ['a1', 'b1', 'a2', 'b2'].map((id) => ({
 }))
 </script>
 
-<p class="paper-eyebrow">Двоен тор · само референции · допълване на двоичната октава {{ corpus.target }} (2¹⁰)</p>
+<p class="paper-eyebrow">Двоен торус · само референции · допълване на двоичната октава {{ corpus.target }} (2¹⁰)</p>
 
 # {{ references.length }} референции, допълващи 1024
 

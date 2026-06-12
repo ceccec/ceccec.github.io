@@ -13,7 +13,7 @@ const kinds = ['paper', 'reference', 'padding'].map((kind) => ({
 }))
 </script>
 
-<p class="paper-eyebrow">Двоен тор · 1024 чисти диаманта · диамантената решетка</p>
+<p class="paper-eyebrow">Двоен торус · 1024 чисти диаманта · диамантената решетка</p>
 
 # {{ summary.count }} папки, всяка с индекс
 

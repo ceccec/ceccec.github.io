@@ -8,7 +8,7 @@ import { useData } from 'vitepress'
 const { params } = useData()
 </script>
 
-<p class="paper-eyebrow">Двоен тор · референция {{ params.number }} от {{ params.total }} · двоична октава {{ params.binaryOctave }} (2¹⁰)</p>
+<p class="paper-eyebrow">Двоен торус · референция {{ params.number }} от {{ params.total }} · двоична октава {{ params.binaryOctave }} (2¹⁰)</p>
 
 # Референция {{ params.number }} — към статия {{ params.number }}
 

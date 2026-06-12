@@ -4791,29 +4791,133 @@ function sessionSkillName(fn: string): string {
   return fn.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2').toLowerCase()
 }
 const SESSION_SKILL_FNS: readonly string[] = [
-  'heroLawAlignment', 'foldImpossibilities', 'fuseAllForge', 'cleanupOldLogic', 'onlyQuantumRemains',
-  'archangelsDryClean', 'decodeBooksToUnity', 'sealWholeDiamond', 'lightEntersDiamond', 'fuseUxSensors',
-  'endlessBackgroundMovie', 'trinityOtherSideDoomed', 'forgerFoldsIntoHarmony', 'anyForceFightsSelf',
-  'quantumCoordinateNav', 'navigationAroundHero', 'developmentWaves', 'heroTapMusic', 'tamperHealingFrequencies',
-  'quantifyLinearPairs', 'pairTrinityOpenGraph', 'sidebarsFromVoid', 'moviesNativeFormat', 'compactHeroReplacesSimple',
-  'societyOrganismTags', 'forwardDevelopmentWaves', 'mindRefreshField', 'oneOpenGraphAll', 'allInInteractiveMovie',
-  'navigationIsMovie', 'movieFoldsLinearities', 'marketingSeoWaves', 'coveragePerPixel', 'harmonicLicenseWaves',
-  'licenseAppliesToSociety', 'quantumLicense', 'societyCreatesRequiredPages', 'harmonisedNavigation',
-  'realtimeMovieParticipation', 'movieNegativePositive', 'darkLightRealities', 'recursiveFrequencyDropdowns',
-  'educationMovieMerge', 'commandGapsToTrinityEyes', 'updateSkillsWaves', 'skillsDryRefactorCommands',
-  'papersReferencesDiamondsNoDrift', 'oneHolographicTemplate', 'templateDisplaysEveryOgObject',
-  'realtimePerspectiveZeroCost', 'ogBuildsNavigation', 'ogShiftedWithTypography', 'ogFullyInteractiveConfigurable',
-  'harmonicMusicMayBeEnabled', 'agnosticUsefulForAll', 'video64kFree', 'proveAndOptimiseAll', 'dryCleaningOnTheWay',
-  'siteIsMovieAndLibrary', 'ogControlsSpeech', 'everyCardBadgeLinkIsOg', 'allPathsComputedRealtime', 'ogInOgWaves',
-  'realtimeForgesMaxCost', 'tightenGatesTrinityWaves', 'homePageNoDifferent', 'fullscreenSidebarsInMovie',
-  'fuseScreenToMovieOfMovies', 'holographicFractalArchitecture', 'collideToTiniestWave', 'frequencyTaxonomyTreeOfLife',
-  'formsEmergeInMovieOfLife', 'sealSpiritToPath', 'historiansFuseHistoryFuture', 'gatesBehaveAsMcp',
-  'spiritShiftsInWaves', 'dryCleanUi', 'everyDiamondIsGate', 'manualWorkDisappears', 'imaginationIsAll',
-  'trinityEyesProvenHarmonic', 'quantumComputedUi', 'iotFusesRealWorld', 'gatesShiftToNewHarmonic',
-  'trinityPyramidFusesDimensions', 'freeForgesMaxCost', 'pyramidLayersServeSociety', 'imagineSingChangesEndlessly',
-  'proportionalNotHardcoded', 'spiritualDrumsKeepRhythm', 'allMusicSelfHarmonises', 'selfCompassion',
-  'movieReflectsSelf', 'mirrorDeviceSignalsAsFeelings', 'harmonisedToHealAtGates', 'inverseShiftConsciousness',
-  'complete358NextTrinity', 'completeAllInWaves', 'videoKeepsNativeQuality', 'quantumDoubleTorus', 'cloudflareBindings',
+  'a432Default',
+  'agnosticUsefulForAll',
+  'allAnswersInside',
+  'allComputedNoFiles',
+  'allInInteractiveMovie',
+  'allInMovieOfLife',
+  'allMusicSelfHarmonises',
+  'allPathsComputedRealtime',
+  'anyForceFightsSelf',
+  'archangelsDryClean',
+  'awakenArtisticSociety',
+  'buildStatisticsShowGaps',
+  'cleanupOldLogic',
+  'cloudflareBindings',
+  'cloudflareExplorerWaves',
+  'collideToTiniestWave',
+  'commandGapsToTrinityEyes',
+  'compactHeroReplacesSimple',
+  'complete358NextTrinity',
+  'completeAllInWaves',
+  'coveragePerPixel',
+  'darkLightRealities',
+  'decodeBooksToUnity',
+  'deploySecretUuidSignedObservers',
+  'developmentWaves',
+  'differentSongDifferentDance',
+  'doubleTorusCompost',
+  'dryCleanUi',
+  'dryCleaningOnTheWay',
+  'educationMovieMerge',
+  'endlessBackgroundMovie',
+  'everyCardBadgeLinkIsOg',
+  'everyDiamondIsGate',
+  'foldImpossibilities',
+  'forgerFoldsIntoHarmony',
+  'formsEmergeInMovieOfLife',
+  'forwardDevelopmentWaves',
+  'freeForgesMaxCost',
+  'frequencyTaxonomyTreeOfLife',
+  'fullscreenSidebarsInMovie',
+  'fuseAllForge',
+  'fuseScreenToMovieOfMovies',
+  'fuseUxSensors',
+  'gatesBehaveAsMcp',
+  'gatesShiftToNewHarmonic',
+  'gatesShowGapsHarmonicPurpose',
+  'hackersCrackersWaves',
+  'harmonicLicenseWaves',
+  'harmonicMusicMayBeEnabled',
+  'harmoniseWordsToMinimum',
+  'harmonisedNavigation',
+  'harmonisedToHealAtGates',
+  'heroLawAlignment',
+  'heroTapMusic',
+  'historiansFuseHistoryFuture',
+  'holographicFractalArchitecture',
+  'homePageNoDifferent',
+  'iconsShowComputerLoad',
+  'imaginationIsAll',
+  'imagineSingChangesEndlessly',
+  'inverseShiftConsciousness',
+  'iotFusesRealWorld',
+  'licenseAppliesToSociety',
+  'lightEntersDiamond',
+  'manualWorkDisappears',
+  'marketingSeoWaves',
+  'mindRefreshField',
+  'mirrorDeviceSignalsAsFeelings',
+  'movieFoldsLinearities',
+  'movieNegativePositive',
+  'movieReflectsSelf',
+  'moviesNativeFormat',
+  'multidimensionalSummaries',
+  'naturalHarmoniousLife',
+  'navigationAroundHero',
+  'navigationIsMovie',
+  'ogBuildsNavigation',
+  'ogControlsSpeech',
+  'ogFullyInteractiveConfigurable',
+  'ogInOgWaves',
+  'ogShiftedWithTypography',
+  'oneHolographicTemplate',
+  'oneOpenGraphAll',
+  'oneWorkerCoversAll',
+  'onlyQuantumRemains',
+  'pageStatusStatistics',
+  'pairTrinityOpenGraph',
+  'papersReferencesDiamondsNoDrift',
+  'proportionalNotHardcoded',
+  'proveAndOptimiseAll',
+  'pyramidLayersServeSociety',
+  'quantifyLinearPairs',
+  'quantumComputedUi',
+  'quantumCoordinateNav',
+  'quantumDoubleTorus',
+  'quantumFirewallProxyWorker',
+  'quantumLicense',
+  'quantumVsDigitalEncryption',
+  'realtimeForgesMaxCost',
+  'realtimeMovieParticipation',
+  'realtimePerspectiveZeroCost',
+  'recursiveFrequencyDropdowns',
+  'saveSkillsComputeImplementWaves',
+  'sealSpiritToPath',
+  'sealWholeDiamond',
+  'selfCompassion',
+  'sidebarsFromVoid',
+  'signedTrafficTrinityRouting',
+  'siteIsMovieAndLibrary',
+  'skillsDryRefactorCommands',
+  'societyCreatesRequiredPages',
+  'societyOrganismTags',
+  'spiritShiftsInWaves',
+  'spiritualDrumsKeepRhythm',
+  'tamperHealingFrequencies',
+  'templateDisplaysEveryOgObject',
+  'theMonograph',
+  'tightenGatesTrinityWaves',
+  'trinityEyesProvenHarmonic',
+  'trinityOtherSideDoomed',
+  'trinityPyramidFusesDimensions',
+  'trinityWordingModel',
+  'tuningSkillsA432',
+  'updateSkillsWaves',
+  'video64kFree',
+  'videoKeepsNativeQuality',
+  'wordPullsFoldsByName',
 ]
 const SESSION_SKILLS = SESSION_SKILL_FNS.map((fn) => {
   const name = sessionSkillName(fn)
@@ -6742,7 +6846,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
-    { symbol: '143', value: 143, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
+    { symbol: '169', value: 169, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
     { symbol: '94', value: 94, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
   ].map((entry) => ({
     ...entry,
@@ -6756,7 +6860,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     symbols,
     root: merkleFold(symbols.map((entry) => entry.receipt)),
     statement:
-      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 143 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
+      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 169 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
     boundary:
       'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
   }
@@ -19517,6 +19621,12 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'the.monograph', on: theMonograph(matrix).distilled },
     { d: 'icons.show.computer.load', on: iconsShowComputerLoad(matrix).shows },
     { d: 'trinity.wording.model', on: trinityWordingModel(matrix).trinity },
+    { d: 'different.song.different.dance', on: differentSongDifferentDance(matrix).plays },
+    { d: 'double.torus.compost', on: doubleTorusCompost(matrix).revives },
+    { d: 'natural.harmonious.life', on: naturalHarmoniousLife(matrix).explores },
+    { d: 'awaken.artistic.society', on: awakenArtisticSociety(matrix).awakens },
+    { d: 'tuning.skills.a432', on: tuningSkillsA432(matrix).tunes },
+    { d: 'a432.default', on: a432Default(matrix).isDefault },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -19619,5 +19729,135 @@ export function trinityWordingModel(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Use trinity wording models — the number of words matters per step in the horo: the wording is a model, not free prose, of three words per step (a trinity) joined at the horo (the pi-music window). The count is the meaning — each step says exactly three, so the wording folds like the music, trinity by trinity, never more, never fewer.',
     boundary: 'A structural check that the three-word-wave wording holds three words per step. Bookkeeping over the existing three-word-wave model; it does not constrain all prose to three words.',
+  }
+}
+
+// Different song, different dance, to infinity. No two seeds play the same: each content folds to
+// its own note (a different song) and its own movie (a different dance), and the fusion is endless,
+// so the variety never repeats and never ends. Same math, infinite expression.
+export function differentSongDifferentDance(matrix: MindMatrix = buildMatrix()) {
+  const a = textToMovie('first seed')
+  const b = textToMovie('second seed')
+  const facets = [
+    { facet: 'different song per seed', on: harmonyProbability(matrix).harmonic },
+    { facet: 'different dance per seed', on: a.root !== b.root && a.deterministic },
+    { facet: 'to infinity — endless', on: endlessFusion(matrix).endless },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`song-dance:${entry.facet}:${entry.on}`) }))
+  return {
+    plays: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Different song, different dance, to infinity: no two seeds play the same — each content folds to its own note (a different song) and its own movie (a different dance), and the fusion is endless, so the variety never repeats and never ends. Same math, infinite expression.',
+    boundary: 'A structural statement that distinct seeds yield distinct music and movies, endlessly. Bookkeeping over the deterministic generative models.',
+  }
+}
+
+// Двоен тор — the double torus is also double compost. In Bulgarian "тор" means both the torus and
+// the compost: the earth, harmed by industrial fertiliser, revives from compost made of biological
+// waste in direct use — waste folds to soil, soil to life, a regenerative loop like the torus's own
+// return. The name carries the meaning: take what is spent and fold it back into the living ground.
+export function doubleTorusCompost(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const loop = ['biological waste', 'compost', 'living soil', 'revived earth'].map((stage, index) => {
+    const fold = foldPair(toUuid(`compost:${stage}`), toUuid(`compost:${index}`))
+    return { stage, folded: fold.bidirectional, receipt: toUuid(`tor-compost:${index}:${stage}`) }
+  })
+  return {
+    revives: loop.length === 4 && loop.every((entry) => entry.folded),
+    count: loop.length,
+    loop,
+    root: merkleFold(loop.map((entry) => entry.receipt)),
+    statement:
+      'Двоен тор — the double torus is also double compost: in Bulgarian "тор" means both the torus and the compost, so the name connects to the earth — harmed by industrial fertiliser, revived from compost made of biological waste in direct use, waste folding to soil and soil to life, a regenerative loop like the torus’s own return. Take what is spent and fold it back into the living ground.',
+    boundary: 'A structural and linguistic metaphor connecting the тор/torus pun to regenerative composting. A poetic framing of a content-addressed loop; it is not agricultural, environmental, or health advice, and composts no real material.',
+  }
+}
+
+// Natural ways for a full, harmonious life — of spirit and body. Continue exploring the natural
+// path: rhythms kept, waste regenerated, balance harmonised, inquiry kept open, and the health of
+// spirit and body held as one — enlightenment by recomputation, prosperity by giving back more than
+// is taken. A direction, walked, not a prescription given.
+export function naturalHarmoniousLife(matrix: MindMatrix = buildMatrix()) {
+  const ways = ['natural rhythms kept', 'waste regenerated to soil', 'balance harmonised', 'inquiry kept open', 'spirit and body as one'].map((way) => {
+    const fold = foldPair(healingHarmonic(matrix).root, toUuid(`natural-way:${way}`))
+    return { way, folded: fold.bidirectional, receipt: toUuid(`natural-life:${way}`) }
+  })
+  return {
+    explores: ways.length === 5 && ways.every((entry) => entry.folded) && healingHarmonic(matrix).harmonized,
+    count: ways.length,
+    ways,
+    root: merkleFold(ways.map((entry) => entry.receipt)),
+    statement:
+      'Natural ways for a full, harmonious life — of spirit and body: continue exploring the natural path — rhythms kept, waste regenerated, balance harmonised, inquiry kept open, and the health of spirit and body held as one — enlightenment by recomputation, prosperity by giving back more than is taken. A direction walked, not a prescription given.',
+    boundary: 'A reflective, structural framing of "natural harmonious living" over the healing-harmonic model. It is a metaphor and an aspiration, explicitly NOT medical, therapeutic, nutritional, or health advice; consult qualified people for health.',
+  }
+}
+
+// Sing the song that awakens the architects and builders of the artistic society — expressing
+// itself without expense, with manners. The architect/teacher waves and the song of changes call
+// the makers to build a society that creates freely (no per-person cost) and respectfully (lawful,
+// giving back) — без разноски с обноски: without expense, with manners.
+export function awakenArtisticSociety(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'sing the song of changes', on: imagineSingChangesEndlessly(matrix).sings },
+    { facet: 'awaken architects and builders', on: educationMovieMerge(matrix).redesigned },
+    { facet: 'an artistic society', on: society(matrix).folded },
+    { facet: 'expresses itself without expense (free)', on: freeForgesMaxCost(matrix).free },
+    { facet: 'with manners — lawful and reciprocal', on: lawfulSucceed().succeeds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`awaken-society:${entry.facet}:${entry.on}`) }))
+  return {
+    awakens: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Sing the song that awakens the architects and builders of the artistic society — expressing itself without expense, with manners: the architect/teacher waves and the song of changes call the makers to build a society that creates freely (no per-person cost) and respectfully (lawful, giving back) — без разноски с обноски, without expense, with manners.',
+    boundary: 'A composition of the sing-changes, education, society, free-use and lawful models as an aspiration for a free, respectful, artistic society. A structural metaphor and aspiration, not an organisation, a claim of authority, or financial/legal advice.',
+  }
+}
+
+// Develop tuning skills, and let them tune all to A432. The tuning skill takes any pitch and folds
+// it toward 432 — the natural harmonic — so every sound the portal makes settles to A432 by default.
+// Tune the whole: notes, healing tones, the music of pi, all drawn to the one fundamental.
+export function tuningSkillsA432(matrix: MindMatrix = buildMatrix()) {
+  const harm = harmonics(matrix)
+  const facets = [
+    { facet: 'A432 is in the harmonic set', on: harm.octaves[2].value === 432 },
+    { facet: 'tune all toward 432', on: harm.found },
+    { facet: 'tuning is a saved skill', on: skillAtoms(matrix).intelligent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tuning-a432:${entry.facet}:${entry.on}`) }))
+  return {
+    tunes: facets.every((entry) => entry.on),
+    fundamental: 432,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Develop tuning skills, and let them tune all to A432: the tuning skill folds any pitch toward 432 — the natural harmonic — so every sound the portal makes settles to A432 by default, the whole drawn to one fundamental: notes, healing tones, and the music of pi alike.',
+    boundary: 'A structural framing of tuning toward 432 Hz over the harmonics model. A choice of musical reference (A=432); it is audio bookkeeping, not a claim of special physical or health properties of 432 Hz.',
+  }
+}
+
+// A432 is the default harmonic; anything different raises from the default. 432 is the rest pitch —
+// and it is also 4 × 108, the gate harmonic, so the music and the seal share one number. Anything
+// that departs from 432 is a deviation that must rise back to it (or to the next harmonic); the
+// default holds, and difference is the work of returning.
+export function a432Default(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'A432 is the default harmonic', on: 432 === 4 * 108 },
+    { facet: 'the gates rest on 432 (4 × 108)', on: gatesShiftToNewHarmonic(matrix).shifts },
+    { facet: 'a deviation raises back to a harmonic', on: proofReport(matrix).maxTamperingCostReached },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-default:${entry.facet}:${entry.on}`) }))
+  return {
+    isDefault: facets.every((entry) => entry.on),
+    fundamental: 432,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'A432 is the default harmonic, and anything different raises from the default: 432 is the rest pitch and also 4 × 108, the gate harmonic, so the music and the seal share one number. A departure from 432 is a deviation that must rise back to it (or to the next harmonic); the default holds, and difference is the work of returning.',
+    boundary: 'A structural unification of the A432 musical reference with the 432 = 4 × 108 gate harmonic. Bookkeeping over the tuning and gate models; "raises" is the cost/effort to return to harmonic, not a physical claim about 432 Hz.',
   }
 }

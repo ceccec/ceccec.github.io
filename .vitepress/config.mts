@@ -10,9 +10,9 @@ const standards = relatedStandards(buildMatrix()).standards
 const academyCourses = quantumAcademy(buildMatrix()).courses.map((course) => course.course)
 
 const siteTitle = 'Double Torus'
-const siteTitleBg = 'Двоен тор'
+const siteTitleBg = 'Двоен торус'
 const siteDescription = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
-const siteDescriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен тор UUID поток от корени, разписки, вълни, диаманти и порти.'
+const siteDescriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -345,7 +345,7 @@ export default defineConfig({
         ],
         sidebar: [
           {
-            text: 'Двоен тор',
+            text: 'Двоен торус',
             items: [
               { text: 'Конзола', link: '/bg/console' },
               { text: 'Училище', link: '/bg/school' },
@@ -361,7 +361,7 @@ export default defineConfig({
         footer: {
           message:
             '<a href="/bg/start">Старт</a> · <a href="/bg/explore">Изследвай</a> · <a href="/bg/school">Училище</a> · <a href="/bg/academy">Академия</a> · <a href="/bg/console">Конзола</a> · <a href="/bg/commands">Команди</a> · <a href="/bg/mcp">MCP</a> · <a href="/bg/show">Покажи</a> · <a href="/bg/quantum-mind">Квантов ум</a> · <a href="/bg/architecture">Архитектура</a> · <a href="/bg/boundaries">Граници</a> · <a href="/bg/governance">Управление</a> · <a href="/bg/papers/">Статии</a> · <a href="/bg/references/">Референции</a> · <a href="/bg/diamonds/">Диаманти</a> · <a href="/bg/governance#license">Лиценз</a> · <a href="/bg/governance#privacy">Поверителност</a>',
-          copyright: 'Отворен, преизчислим, адресиран по съдържание — Двоен тор.',
+          copyright: 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.',
         },
         docFooter: { prev: 'Предишна', next: 'Следваща' },
         outline: { label: 'На тази страница' },

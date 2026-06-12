@@ -4,7 +4,7 @@ description: "Математически модел на Sigma_2, UUID пото�
 head:
   - - meta
     - property: og:title
-      content: "Математика на квантовия ум | Двоен тор"
+      content: "Математика на квантовия ум | Двоен торус"
   - - meta
     - property: og:description
       content: "Математически модел на Sigma_2, UUID потоци, диаманти, вълни, порти и maxComputedBuild."
@@ -106,7 +106,7 @@ C = { site.shell, self.build, self.complete, agent.streamWire, ui.doubleTorus,
       torus.vector, torus.flow, repository.api, proof.verify }
 ```
 
-## 3. Двоен тор
+## 3. Двоен торус
 
 ```text
 Sigma_2 := closed orientable genus-2 surface

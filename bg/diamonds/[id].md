@@ -8,7 +8,7 @@ import { useData } from 'vitepress'
 const { params } = useData()
 </script>
 
-<p class="paper-eyebrow">Двоен тор · диамант {{ params.number }} от {{ params.total }} · перфектно дърво, дълбочина {{ params.depth }}</p>
+<p class="paper-eyebrow">Двоен торус · диамант {{ params.number }} от {{ params.total }} · перфектно дърво, дълбочина {{ params.depth }}</p>
 
 # <span class="diamond-glyph" :style="{ color: `hsl(${params.hue}, 75%, 55%)` }">◆</span> Диамант {{ params.number }} — {{ params.id }}
 

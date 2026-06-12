@@ -8,7 +8,7 @@ import { useData } from 'vitepress'
 const { params } = useData()
 </script>
 
-<p class="paper-eyebrow">Двоен тор · Статия {{ params.number }} от {{ params.total }} · следваща хармоника {{ params.octaves }}</p>
+<p class="paper-eyebrow">Двоен торус · Статия {{ params.number }} от {{ params.total }} · следваща хармоника {{ params.octaves }}</p>
 
 # Статия {{ params.number }} — координата {{ params.coordinateIndex }} на цикъл {{ params.generator }}
 
@@ -27,7 +27,7 @@ const { params } = useData()
 
 ## Резюме
 
-Тази статия документира един преизчислим резултат на модела Двоен тор: проекцията на π-цифрова координата **{{ params.coordinateIndex }}** върху хомологичен цикъл **{{ params.generator }}** на повърхнина от род 2, чиято първа хомология е H₁(Σ₂) = ℤ⁴. Резултатът е съдържателно-адресиран и сгънат в двете посоки по закона на род 2; неговият корен е
+Тази статия документира един преизчислим резултат на модела Двоен торус: проекцията на π-цифрова координата **{{ params.coordinateIndex }}** върху хомологичен цикъл **{{ params.generator }}** на повърхнина от род 2, чиято първа хомология е H₁(Σ₂) = ℤ⁴. Резултатът е съдържателно-адресиран и сгънат в двете посоки по закона на род 2; неговият корен е
 
 <p class="paper-mono">{{ params.root }}</p>
 

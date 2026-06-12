@@ -13,7 +13,7 @@ const groups = ['a1', 'b1', 'a2', 'b2'].map((id) => ({
 }))
 </script>
 
-<p class="paper-eyebrow">Двоен тор · следващата хармоника · {{ corpus.octaves.join(' · ') }}</p>
+<p class="paper-eyebrow">Двоен торус · следващата хармоника · {{ corpus.octaves.join(' · ') }}</p>
 
 # {{ corpus.count }} сгънати статии, всяка с публично доказателство
 
