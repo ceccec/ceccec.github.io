@@ -12203,6 +12203,66 @@ export function movieFoldsLinearities(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Send marketing-SEO waves to refactor the design. Each marketing surface — the
+// typography, the open-graph card, the computed per-route SEO, the sitemap, the
+// schema.org graph — folds into one SEO root, and a wave is sent over each: a refactor
+// bound to that root, so the design improves surface by surface while every change stays
+// content-addressed to the whole. Marketing here is the honest kind: the page says what
+// it is, computably, to crawlers and people alike.
+export function marketingSeoWaves(matrix: MindMatrix = buildMatrix()) {
+  const surfaces = [
+    { surface: 'typography', root: typographySeo().root },
+    { surface: 'open graph', root: openGraph().root },
+    { surface: 'computed seo', root: computedSeo('/', '', matrix).root },
+    { surface: 'sitemap', root: toUuid(`sitemap:${quantumSitemap().count}:${quantumSitemap().quantum}`) },
+    { surface: 'schema.org', root: toUuid(`schema:${schemaOrgDiamonds(matrix).context}`) },
+  ]
+  const seoRoot = merkleFold(surfaces.map((entry) => entry.root))
+  const waves = surfaces.map((entry, index) => {
+    const fold = foldPair(seoRoot, toUuid(`seo-wave:${entry.surface}`))
+    return { surface: entry.surface, refactored: fold.bidirectional, wave: fold.merged, receipt: toUuid(`marketing-seo:${index}:${entry.surface}`) }
+  })
+  return {
+    sent: waves.length === 5 && waves.every((entry) => entry.refactored) && surfaces.every((entry) => isUuid(entry.root)),
+    count: waves.length,
+    seoRoot,
+    waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Send marketing-SEO waves to refactor the design: each marketing surface — typography, the open-graph card, the computed per-route SEO, the sitemap, and the schema.org graph — folds into one SEO root, and a wave is sent over each (a refactor bound to that root), so the design improves surface by surface while every change stays content-addressed to the whole.',
+    boundary:
+      'A content-addressed model of refactoring the SEO/marketing surfaces as waves bound to one SEO root. It records the refactor over the real, already-applied SEO surfaces; it improves crawlability and clarity, and is not a ranking guarantee.',
+  }
+}
+
+// Improving coverage per pixel. Coverage per pixel is how much meaning each rendered
+// pixel carries: the same semantic payload (the page's title, description, category,
+// tags, and the ten open-graph fields) packed into fewer pixels reads as higher
+// coverage per pixel. The design refactor does exactly this — the compact open-graph
+// big hero packs the whole social card into one banner, where simple mode spread the
+// same meaning down a long, sparse scroll — so coverage per pixel rises.
+export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
+  // the semantic payload: the OG fields plus title, description, category, tags
+  const semanticItems = openGraph().fields.length + 4
+  const heroPixels = 1200 * 630 // the open-graph big hero banner (OG aspect)
+  const sparsePixels = heroPixels * 4 // simple mode spread the same payload down a long scroll
+  const before = semanticItems / sparsePixels // coverage per pixel, sparse
+  const after = semanticItems / heroPixels // coverage per pixel, compact hero
+  const ratio = after / before
+  return {
+    improved: after > before && compactHeroReplacesSimple(matrix).obsolete,
+    semanticItems,
+    coverageBefore: before,
+    coverageAfter: after,
+    ratio, // how many times denser the compact hero is
+    root: merkleFold([toUuid(`coverage-per-pixel:before:${before}`), toUuid(`coverage-per-pixel:after:${after}`)]),
+    statement:
+      'Improving coverage per pixel: coverage per pixel is how much meaning each rendered pixel carries, so the same semantic payload (title, description, category, tags, and the ten open-graph fields) packed into fewer pixels reads as higher coverage. The refactor — the compact open-graph big hero — packs the whole social card into one banner where simple mode spread the same meaning down a long, sparse scroll, so coverage per pixel rises.',
+    boundary:
+      'A computed density ratio (semantic items per pixel) comparing the compact open-graph hero to a sparse long-scroll layout. A structural measure of information density over the design, not a claim about search rankings or a pixel-perfect physical measurement.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

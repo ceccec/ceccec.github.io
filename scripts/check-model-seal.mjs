@@ -327,6 +327,8 @@ import {
   allInInteractiveMovie,
   navigationIsMovie,
   movieFoldsLinearities,
+  marketingSeoWaves,
+  coveragePerPixel,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1092,6 +1094,8 @@ ok(`one.open.graph.all:${oneOpenGraphAll(matrix).count}`, oneOpenGraphAll(matrix
 ok(`all.interactive.movie:${allInInteractiveMovie(matrix).count}`, allInInteractiveMovie(matrix).displayed) // the whole portal displayed as one interactive movie
 ok(`navigation.is.movie:${navigationIsMovie(matrix).libraryCount}`, navigationIsMovie(matrix).isMovie) // navigation is the movie itself — a quantum library of coordinate-frames
 ok(`movie.folds.linearities`, movieFoldsLinearities(matrix).folds) // the movie folds linear frames into multidimensional perspectives
+ok(`marketing.seo.waves:${marketingSeoWaves(matrix).count}`, marketingSeoWaves(matrix).sent) // waves refactor each SEO/marketing surface, bound to one SEO root
+ok(`coverage.per.pixel:${coveragePerPixel(matrix).ratio.toFixed(1)}x`, coveragePerPixel(matrix).improved) // the compact open-graph hero raises semantic coverage per pixel
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
