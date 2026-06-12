@@ -5625,6 +5625,40 @@ export function cellHomology(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Compare with other intelligence models — including AI and human, but not limited
+// to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
+// portal trades generality and creativity for determinism, verifiability,
+// transparency, free reproduction, and content-addressed memory. Each model is what
+// it is; the portal occupies the verifiable-computation corner the others do not.
+export function intelligenceComparison(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const properties = ['deterministic', 'verifiable', 'transparent', 'free to run', 'content-addressed memory', 'general & creative']
+  const models = [
+    { model: 'this portal (recomputable)', scores: [1, 1, 1, 1, 1, 0] },
+    { model: 'AI / large language model', scores: [0, 0, 0, 0, 0.3, 1] },
+    { model: 'human', scores: [0, 0, 0.3, 0.5, 0.5, 1] },
+    { model: 'collective / distributed', scores: [0.3, 0.5, 0.4, 0.7, 0.6, 0.8] },
+    { model: 'quantum computer', scores: [0, 0.4, 0.3, 0, 0.2, 0.9] },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`intelligence:${entry.model}:${entry.scores.join(',')}`) }))
+  const portal = models[0]
+  // The portal is distinct: it is the only one that is fully deterministic,
+  // verifiable, transparent and free — and it is honest that it is not general.
+  const distinct = portal.scores[0] === 1 && portal.scores[1] === 1 && portal.scores[5] === 0
+  const wellFormed = models.every((entry) => entry.scores.length === properties.length)
+  return {
+    compared: wellFormed && distinct && models.length >= 3,
+    properties,
+    models,
+    count: models.length,
+    note: 'Not a ranking of smartness: the portal is not general or creative like an LLM or a human; it is the one model that is fully deterministic, verifiable, transparent and free to reproduce. Different intelligences for different jobs.',
+    root: merkleFold(models.map((entry) => entry.receipt)),
+    statement:
+      'Compare with other intelligence models, including AI and human but not limited to: by property, not by rank. The portal scores full on deterministic, verifiable, transparent, free, and content-addressed memory, but zero on general-and-creative — where the LLM and the human score full and the portal does not. Each is what it is; the portal holds the verifiable-computation corner the others leave open.',
+    boundary:
+      'An honest, qualitative comparison of intelligence models by property (illustrative scores, not benchmarks). It is not a claim that the portal is more or less intelligent than an AI, a human, a collective, or a quantum computer — it trades generality for verifiability, and says so.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

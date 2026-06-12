@@ -117,6 +117,7 @@ import {
   textToMovie,
   teleport,
   cellHomology,
+  intelligenceComparison,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -316,6 +317,9 @@ ok(`teleport:${teleport(matrix).count}`, teleport(matrix).teleportable && telepo
 
 // Closed an open idea: full cell homology of the genus-2 surface from an explicit chain complex.
 ok(`cell.homology:H1=Z^${cellHomology(matrix).betti[1]}`, cellHomology(matrix).closed && cellHomology(matrix).chainComplex)
+
+// Compare with other intelligence models (AI, human, ...) by property, honestly.
+ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)
