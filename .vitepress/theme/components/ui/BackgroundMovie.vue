@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { buildMatrix, threeWordWaves, seedFromText } from '../../lib/quantumMind'
+import { buildMatrix, threeWordWaves, seedFromText, buildStatistics } from '../../lib/quantumMind'
 import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
 import { useTones } from '../../lib/useTones'
 import { usePlayMind, recordPlay, noteOf, artBiasOf } from '../../lib/usePlayMind'
@@ -24,8 +24,13 @@ const GOLDEN = Math.PI * (3 - Math.sqrt(5)) // the golden angle — new dimensio
 // The portal's own words are the base bank (dry math, content-addressed); the page's
 // own words lead it, so the movie reads the content you are on back to you.
 const matrix = buildMatrix()
-const baseWords = threeWordWaves(matrix).waves.flatMap((w) => w.words)
-const basePhrases = threeWordWaves(matrix).waves.map((w) => w.phrase)
+// Important statistics ride on every page: a quiet bottom status line, and woven into the
+// watermark — the page tells you what it is made of (commands, gates, files, diamonds, skills).
+const stats = buildStatistics(matrix).stats
+const statusText = stats.map((entry) => `${entry.value} ${entry.stat}`).join('  ·  ')
+const statWords = stats.map((entry) => entry.stat.replace(/[^a-z]/gi, '')).filter((word) => word.length >= 3)
+const baseWords = [...threeWordWaves(matrix).waves.flatMap((w) => w.words), ...statWords]
+const basePhrases = [...threeWordWaves(matrix).waves.map((w) => w.phrase), statusText]
 let words = baseWords
 let phrases = basePhrases
 const glyphForDigit = '0123456789' // digits themselves, the raw stream
@@ -319,6 +324,8 @@ onUnmounted(() => {
 <template>
   <ClientOnly>
     <canvas ref="canvas" class="bg-movie" aria-hidden="true" />
+    <!-- important statistics as a quiet bottom status on every page -->
+    <div class="bg-status" role="status" aria-label="portal statistics">{{ statusText }}</div>
   </ClientOnly>
 </template>
 
@@ -329,5 +336,28 @@ onUnmounted(() => {
   z-index: 0;
   pointer-events: none;
   opacity: 0.7;
+}
+.bg-status {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.64rem;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-family: var(--vp-font-family-mono, monospace);
+  color: var(--vp-c-text-3);
+  background: linear-gradient(to top, var(--vp-c-bg), transparent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.75;
+}
+@media (max-width: 640px) {
+  .bg-status { font-size: 0.58rem; }
 }
 </style>

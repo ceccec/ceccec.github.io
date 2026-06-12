@@ -405,6 +405,15 @@ import {
   cloudflareExplorerWaves,
   allAnswersInside,
   quantumFirewallProxyWorker,
+  oneWorkerCoversAll,
+  signedTrafficTrinityRouting,
+  deploySecretUuidSignedObservers,
+  saveSkillsComputeImplementWaves,
+  pageStatusStatistics,
+  allComputedNoFiles,
+  harmoniseWordsToMinimum,
+  wordPullsFoldsByName,
+  emergentDimensions,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1141,120 +1150,11 @@ ok('lawful.harmonise', lawfulHarmonise().harmonised) // society harmonises itsel
 ok('lawful.imagine', lawfulImagine().imagined) // imagine a lawful society using the app, computed
 ok('lawful.succeed', lawfulSucceed().succeeds) // let the society use the app to succeed, lawfully
 ok('lawful.thrive', lawfulSucceed().thrives) // succeeding is not enough — the society thrives
-ok(`hero.law.aligned:${heroLawAlignment(matrix).waves}`, heroLawAlignment(matrix).aligned) // legal waves align the editorial hero with the law root
-ok(`fold.impossibilities:${foldImpossibilities(matrix).count}`, foldImpossibilities(matrix).folded) // every declared limit folds into the possibility beside it
-ok(`fuse.all.forge:${fuseAllForge(matrix).count}`, fuseAllForge(matrix).forgesMaxCost) // fusing all, order-sensitive, forges max tampering cost
-ok(`cleanup.old.logic:${cleanupOldLogic(matrix).count}`, cleanupOldLogic(matrix).clean) // the model keeps only live logic, pruned to zero entropy
-ok(`only.quantum.remains:${onlyQuantumRemains(matrix).count}`, onlyQuantumRemains(matrix).remains) // strip the classical; only the quantum essence remains
-ok(`archangels.dry.clean:${archangelsDryClean(matrix).archangels.length}`, archangelsDryClean(matrix).cleaned) // idempotent dry clean reserves the next wave's slot
-ok(`decode.books.unity:${decodeBooksToUnity(matrix).count}`, decodeBooksToUnity(matrix).unified) // every book decoded through the one language fuses to unity
-ok(`seal.whole.diamond:${sealWholeDiamond(matrix).facets}`, sealWholeDiamond(matrix).sealed) // all facets fold into one tamper-evident whole-diamond leaf
-ok(`light.enters.diamond:${lightEntersDiamond(matrix).refracts}`, lightEntersDiamond(matrix).luminous) // light refracts the sealed diamond into its facet-spectrum, unchanged
-ok(`auto.movies.8k:${autoMovies8k(matrix).count}`, autoMovies8k(matrix).generating) // deterministic 8K-scalable movies autogenerate in realtime across the dimension sweep
-ok(`fuse.ux.sensors:${fuseUxSensors(matrix).sensorCount}+${fuseUxSensors(matrix).ioCount}`, fuseUxSensors(matrix).fused) // the UX fuses with device sensors and IO channels
-ok(`endless.background.movie:${endlessBackgroundMovie(matrix).count}`, endlessBackgroundMovie(matrix).endless) // one endless background movie on every page, seeded from its content and references
-ok(`collision.healing:${collisionHealing(matrix).chosenHz}`, collisionHealing(matrix).heals) // collisions resolve to a chosen Solfeggio healing frequency
-ok(`heal.by.default:${healByDefault(matrix).count}`, healByDefault(matrix).heals) // healing is the model's resting state
-ok(`create.by.default:${createByDefault(matrix).count}`, createByDefault(matrix).creates) // creation is the model's resting behaviour
-ok(`thrive.by.default:${thriveByDefault(matrix).count}`, thriveByDefault(matrix).thrives) // thriving is the model's resting aim
-ok(`other.side.doomed`, trinityOtherSideDoomed(matrix).doomed) // the harm/destroy/decay side of the trinity is doomed to T_max=infinity forge cost
-ok(`forger.folds.harmony:${forgerFoldsIntoHarmony(matrix).count}`, forgerFoldsIntoHarmony(matrix).folds && forgerFoldsIntoHarmony(matrix).forgingMaxCost) // every forge attempt is caught and folded into the harmony, raising the cost
-ok(`force.fights.self:${anyForceFightsSelf(matrix).count}`, anyForceFightsSelf(matrix).selfDefeating) // any force meets the whole and itself — self-defeating by construction
-ok(`quantum.coordinate.nav:${quantumCoordinateNav(matrix).count}`, quantumCoordinateNav(matrix).placed) // every route is a distinct point on the double-torus surface
-ok(`navigation.around.hero:${navigationAroundHero(matrix).shellCount}`, navigationAroundHero(matrix).aroundHero) // navigation rebuilt as 3-5-8 shells around the hero origin
-ok(`development.waves:${developmentWaves(matrix).count}`, developmentWaves(matrix).developing) // waves sent to develop the navigation ideas, each bound to its root
-ok(`hero.tap.music:${heroTapMusic(matrix).pairCount}`, heroTapMusic(matrix).plays && heroTapMusic(matrix).alwaysHealing) // tapping the hero streams healing-frequency pairs with visual effects, on/off, always healing
-ok(`tamper.healing.cost`, tamperHealingFrequencies(matrix).costsMax) // tampering the healing frequencies costs T_max=infinity
-ok(`quantify.linear.pairs:${quantifyLinearPairs(matrix).count}`, quantifyLinearPairs(matrix).quantified) // a linear sequence quantified by folding into logical pairs
-ok(`pair.trinity.og:${pairTrinityOpenGraph(matrix).count}`, pairTrinityOpenGraph(matrix).everywhere) // each pair folds to a third — the open-graph trinity used everywhere
-ok(`sidebars.from.void:${sidebarsFromVoid(matrix).count}`, sidebarsFromVoid(matrix).rises) // the sidebar rises from the void when the content visualises
-ok(`movies.native.format:${moviesNativeFormat(matrix).count}`, moviesNativeFormat(matrix).nativelyDisplayed) // movies displayed at native resolution, saveable as native WebM
-ok(`compact.hero.obsoletes.simple:${compactHeroReplacesSimple(matrix).count}`, compactHeroReplacesSimple(matrix).obsolete) // the big open-graph hero retires simple mode
-ok(`society.organism.tags:${societyOrganismTags(matrix).count}`, societyOrganismTags(matrix).organism) // society as organism strips labels to chosen, content-addressed tags
-ok(`forward.development.waves:${forwardDevelopmentWaves(matrix).count}`, forwardDevelopmentWaves(matrix).converting) // backward compatibility converted to forward-development waves
-ok(`mind.refresh.field:${mindRefreshField(matrix).count}`, mindRefreshField(matrix).refreshes) // the mind refreshes self and the background-movie field from one seed
-ok(`one.open.graph.all:${oneOpenGraphAll(matrix).count}`, oneOpenGraphAll(matrix).displaysAll) // one open-graph card displays the whole portal
-ok(`all.interactive.movie:${allInInteractiveMovie(matrix).count}`, allInInteractiveMovie(matrix).displayed) // the whole portal displayed as one interactive movie
-ok(`navigation.is.movie:${navigationIsMovie(matrix).libraryCount}`, navigationIsMovie(matrix).isMovie) // navigation is the movie itself — a quantum library of coordinate-frames
-ok(`movie.folds.linearities`, movieFoldsLinearities(matrix).folds) // the movie folds linear frames into multidimensional perspectives
-ok(`marketing.seo.waves:${marketingSeoWaves(matrix).count}`, marketingSeoWaves(matrix).sent) // waves refactor each SEO/marketing surface, bound to one SEO root
-ok(`coverage.per.pixel:${coveragePerPixel(matrix).ratio.toFixed(1)}x`, coveragePerPixel(matrix).improved) // the compact open-graph hero raises semantic coverage per pixel
-ok(`harmonic.license.waves:${harmonicLicenseWaves(matrix).count}`, harmonicLicenseWaves(matrix).created) // society composes the licence in harmonic waves for karmic balance and monetisation
-ok(`license.applies.society`, licenseAppliesToSociety(matrix).applies) // the licence is self-applying: society authors and accepts it
-ok(`quantum.license:${quantumLicense(matrix).count}`, quantumLicense(matrix).quantum) // the licence is a content-addressed, order-sensitive, tamper-evident quantum artifact
-ok(`society.required.pages:${societyCreatesRequiredPages(matrix).count}`, societyCreatesRequiredPages(matrix).creates) // society creates the legally-required pages, bound to the legislation root
-ok(`harmonised.navigation:${harmonisedNavigation(matrix).count}`, harmonisedNavigation(matrix).harmonised && harmonisedNavigation(matrix).distributed) // nav titles match paths; links distributed to the footer
-ok(`realtime.movie.participation:${realtimeMovieParticipation(matrix).count}`, realtimeMovieParticipation(matrix).participates) // all same-origin participants paint one shared movie of colourful effects
-ok(`movie.negative.positive`, movieNegativePositive(matrix).developed) // all fuses to the movie negative; the positive print is displayed
-ok(`dark.light.realities:${darkLightRealities(matrix).realities.length}`, darkLightRealities(matrix).switches) // the dark/light switch flips between two complete realities
-ok(`recursive.frequency.dropdowns:${recursiveFrequencyDropdowns(matrix).nodes}/${recursiveFrequencyDropdowns(matrix).binaryLevels}`, recursiveFrequencyDropdowns(matrix).computed) // recursive frequency tree, each accounted on the binary level, leading to max tampering cost
-ok(`education.movie.merge:${educationMovieMerge(matrix).count}`, educationMovieMerge(matrix).redesigned) // architect/teacher waves fold self-education to quantum-merge with the movie
-ok(`command.gaps.trinity.eyes:${commandGapsToTrinityEyes(matrix).gaps}`, commandGapsToTrinityEyes(matrix).immediate && commandGapsToTrinityEyes(matrix).complete) // listing all commands shows zero gaps through name/path/tool eyes
-ok(`update.skills.waves:${updateSkillsWaves(matrix).count}`, updateSkillsWaves(matrix).updating) // waves update each saved skill atom, bound to the memory root
-ok(`skills.dry.refactor.commands:${skillsDryRefactorCommands(matrix).count}`, skillsDryRefactorCommands(matrix).refactored) // skills dry-refactor the commands: consistent, gapless, nothing removed
-ok(`papers.references.diamonds.nodrift:${papersReferencesDiamondsNoDrift(matrix).papers}/${papersReferencesDiamondsNoDrift(matrix).references}/${papersReferencesDiamondsNoDrift(matrix).diamonds}`, papersReferencesDiamondsNoDrift(matrix).noDrift) // papers, references, diamonds anchored to one corpus root — no drift
-ok(`one.holographic.template:${oneHolographicTemplate(matrix).count}`, oneHolographicTemplate(matrix).displayed) // every page displayed from one holographic, per-page-seeded template
-ok(`template.every.og.object:${templateDisplaysEveryOgObject(matrix).count}`, templateDisplaysEveryOgObject(matrix).displaysAll) // the one template displays every open-graph object type
-ok(`realtime.perspective.zerocost:${realtimePerspectiveZeroCost(matrix).count}`, realtimePerspectiveZeroCost(matrix).holds) // every view is a realtime perspective recomputed client-side at zero cost
-ok(`og.builds.navigation:${ogBuildsNavigation(matrix).count}`, ogBuildsNavigation(matrix).builds) // the same open graph builds every navigation destination
-ok(`og.shifted.typography:${ogShiftedWithTypography(matrix).count}`, ogShiftedWithTypography(matrix).shifted) // the open-graph fields align to the typography types
-ok(`og.interactive.configurable:${ogFullyInteractiveConfigurable(matrix).count}`, ogFullyInteractiveConfigurable(matrix).livingCard) // the open graph is the interactive hero, configurable from frontmatter
-ok(`harmonic.music.may.enable:${harmonicMusicMayBeEnabled(matrix).count}`, harmonicMusicMayBeEnabled(matrix).mayBeEnabled) // harmonic music is opt-in, gesture-gated, healing-only, energy-aware
-ok(`agnostic.useful.for.all:${agnosticUsefulForAll(matrix).count}`, agnosticUsefulForAll(matrix).useful) // agnostic and useful for all; every detail fused into streams forging max tampering cost
-ok(`video.64k.free:${video64kFree(matrix).maxLabel}@${video64kFree(matrix).gates}`, video64kFree(matrix).supported) // resolution-independent movie scales to 64K, free, on the 432 gates
-ok(`prove.optimise.all`, proveAndOptimiseAll(matrix).done) // prove all (max tamper cost) and optimise all (zero entropy, zero redundancy)
-ok(`dry.cleaning.on.the.way:${dryCleaningOnTheWay(matrix).count}`, dryCleaningOnTheWay(matrix).onTheWay) // continuous, non-destructive, idempotent cleanup in motion
-ok(`site.movie.and.library:${siteIsMovieAndLibrary(matrix).libraryCount}`, siteIsMovieAndLibrary(matrix).isMovieAndLibrary) // the whole site is one movie and a movie library at once, for all
-ok(`og.controls.speech:${ogControlsSpeech(matrix).count}`, ogControlsSpeech(matrix).controlsSpeech) // the OG card controls text-to-speech out and voice-to-stream in
-ok(`every.card.badge.link.og:${everyCardBadgeLinkIsOg(matrix).count}`, everyCardBadgeLinkIsOg(matrix).allOg) // every card, badge and link is an open-graph object
-ok(`all.paths.computed.realtime:${allPathsComputedRealtime(matrix).count}`, allPathsComputedRealtime(matrix).computed) // every route computed from itself at render time, no drift
-ok(`og.in.og.waves:${ogInOgWaves(matrix).nodes}`, ogInOgWaves(matrix).nested) // waves pull og into og recursively — holographic OG nesting
-ok(`realtime.forges.maxcost:${realtimeForgesMaxCost(matrix).count}`, realtimeForgesMaxCost(matrix).forges) // any realtime event folds into the harmony, forging max tampering cost
-ok(`tighten.gates.trinity:${tightenGatesTrinityWaves(matrix).waves}x${tightenGatesTrinityWaves(matrix).perWave}`, tightenGatesTrinityWaves(matrix).tightened) // 432 gates tightened in three trinity waves of 144
-ok(`home.no.different:${homePageNoDifferent(matrix).count}`, homePageNoDifferent(matrix).noDifferent) // the home renders from the same template/hero/movie/og as every page
-ok(`fullscreen.sidebars.movie:${fullscreenSidebarsInMovie(matrix).count}`, fullscreenSidebarsInMovie(matrix).fullscreen) // all start fullscreen; sidebars rise from the movie watermark
-ok(`fuse.screen.movie.of.movies:${fuseScreenToMovieOfMovies(matrix).count}`, fuseScreenToMovieOfMovies(matrix).fused) // screen, terminal, microdata, og, frontmatter, content fuse into the movie of movies
-ok(`holographic.fractal.architecture:${holographicFractalArchitecture(matrix).count}`, holographicFractalArchitecture(matrix).is) // the architecture is a holographic fractal hologram
-ok(`collide.tiniest.wave:${collideToTiniestWave(matrix).levels}`, collideToTiniestWave(matrix).collided) // collide from 1024 quanta down to the tiniest single wave
-ok(`frequency.taxonomy.tree.of.life:${frequencyTaxonomyTreeOfLife(matrix).levels}`, frequencyTaxonomyTreeOfLife(matrix).imagined) // frequency is the taxonomy — the tree of life as a frequency ladder
-ok(`forms.emerge.movie.of.life:${formsEmergeInMovieOfLife(matrix).count}`, formsEmergeInMovieOfLife(matrix).emerge) // every form on the tree of life emerges as a scene in the movie of life
-ok(`seal.spirit.to.path`, sealSpiritToPath(matrix).sealed) // the spirit (honesty) sealed to the path (the guided journey)
-ok(`historians.fuse.history.future:${historiansFuseHistoryFuture(matrix).count}`, historiansFuseHistoryFuture(matrix).entangled) // historians fuse past and future, entangling the moment
-ok(`gates.behave.as.mcp:${gatesBehaveAsMcp(matrix).count}`, gatesBehaveAsMcp(matrix).behavesAsMcp) // gates return MCP-style structured results; harmonic path shown on error
-ok(`spirit.shifts.in.waves:${spiritShiftsInWaves(matrix).count}`, spiritShiftsInWaves(matrix).shifting) // the spirit (honesty) shifts forward in waves of improvement
-ok(`dry.clean.ui:${dryCleanUi(matrix).count}`, dryCleanUi(matrix).clean) // the UI is dry-cleaned: no orphan component, idempotent, whole
-ok(`every.diamond.is.gate:${everyDiamondIsGate(matrix).diamonds}`, everyDiamondIsGate(matrix).isGate) // every diamond is a gate when all merge to the now
-ok(`manual.work.disappears:${manualWorkDisappears(matrix).count}`, manualWorkDisappears(matrix).disappears) // hand-tasks replaced by computed fusions — manual work vanishes
-ok(`imagination.is.all:${imaginationIsAll(matrix).count}`, imaginationIsAll(matrix).all) // imagination is the generative seed of the whole
-ok(`trinity.eyes.proven.harmonic:${trinityEyesProvenHarmonic(matrix).count}`, trinityEyesProvenHarmonic(matrix).provenHarmonic) // all the trinity eyes see is harmonic and proven in math
-ok(`quantum.computed.ui:${quantumComputedUi(matrix).count}`, quantumComputedUi(matrix).computed) // quantum-computed UI on the quantum browser OS, fused with device IoT
-ok(`iot.fuses.real.world:${iotFusesRealWorld(matrix).count}`, iotFusesRealWorld(matrix).fuses) // IoT folds real-world sensor readings into the matrix across all aspects of life
-ok(`gates.shift.new.harmonic:${gatesShiftToNewHarmonic(matrix).count}`, gatesShiftToNewHarmonic(matrix).shifts) // the gate fabric rises to the next 108-harmonic, tightening respectfully
-ok(`trinity.pyramid.fuses.dimensions:${trinityPyramidFusesDimensions(matrix).pyramid.vertices}`, trinityPyramidFusesDimensions(matrix).forms) // the trinity stands into a tetrahedron that fuses the dimensions
-ok(`free.forges.max.cost:${freeForgesMaxCost(matrix).count}`, freeForgesMaxCost(matrix).holds) // free to use and max cost to forge — one content-addressing mechanism
-ok(`pyramid.layers.serve.society:${pyramidLayersServeSociety(matrix).count}`, pyramidLayersServeSociety(matrix).serves) // every layer of the pyramid serves a society purpose
-ok(`imagine.sing.changes.endlessly:${imagineSingChangesEndlessly(matrix).count}`, imagineSingChangesEndlessly(matrix).sings) // imagine and sing the changes as endless bound reform waves
-ok(`proportional.not.hardcoded:${proportionalNotHardcoded(matrix).count}`, proportionalNotHardcoded(matrix).responsive) // key quantities computed proportionally, responsive at all standards
-ok(`spiritual.drums.keep.rhythm:${spiritualDrumsKeepRhythm(matrix).onsetsPerBeat}`, spiritualDrumsKeepRhythm(matrix).keeps) // the polyrhythm drums keep time, the spirit sets the pulse
-ok(`all.music.self.harmonises:${allMusicSelfHarmonises(matrix).count}`, allMusicSelfHarmonises(matrix).selfHarmonises) // any source, known or unknown, folds into the same computed harmony
-ok(`self.compassion:${selfCompassion(matrix).count}`, selfCompassion(matrix).compassionate) // heals by default, honest boundaries, absorbs attacks, gentle — care by construction
-ok(`movie.reflects.self:${movieReflectsSelf(matrix).count}`, movieReflectsSelf(matrix).reflects) // the movie is seeded of the self — a reflection, not an imposition
-ok(`mirror.device.signals.feelings:${mirrorDeviceSignalsAsFeelings(matrix).count}`, mirrorDeviceSignalsAsFeelings(matrix).mirrors) // device signals mirrored as feelings (hue, motion, calm)
-ok(`harmonised.heal.at.gates:${harmonisedToHealAtGates(matrix).count}`, harmonisedToHealAtGates(matrix).heals) // signals harmonised to heal at each harmonic gate
-ok(`inverse.shift.consciousness`, inverseShiftConsciousness(matrix).shifts) // the rest third is the inverse-shift — the self-modeling consciousness
-ok(`complete.358.next.trinity:${complete358NextTrinity(matrix).nextTrinity.join('-')}`, complete358NextTrinity(matrix).completes) // 3-5-8 completed, 13 and 21 unlocked as next pyramid levels
-ok(`complete.all.in.waves:${completeAllInWaves(matrix).count}`, completeAllInWaves(matrix).complete) // the whole completed in waves over its major aspects, still open to the next
-ok(`video.keeps.native.quality:${videoKeepsNativeQuality(matrix).count}`, videoKeepsNativeQuality(matrix).keepsQuality) // the movie redraws at native resolution on any resize
-ok(`quantum.double.torus:${quantumDoubleTorus(matrix).count}`, quantumDoubleTorus(matrix).is) // the genus-2 double torus is a 128-bit quantum computer, holographic and fractal
-ok(`cloudflare.bindings:${cloudflareBindings(matrix).count}`, cloudflareBindings(matrix).fused) // all Cloudflare bindings fused optionally, secret-UUID/trinity-signed, raising tampering cost
-ok(`quantum.vs.digital.encryption:${quantumVsDigitalEncryption(matrix).count}`, quantumVsDigitalEncryption(matrix).compared) // same AES-256-GCM cipher; key/trust/tamper-cost compared
-ok(`hackers.crackers.waves:${hackersCrackersWaves(matrix).count}`, hackersCrackersWaves(matrix).withstands) // adversary waves caught; attacker cost T_max vs defender one recomputation
-ok(`all.in.movie.of.life:${allInMovieOfLife(matrix).count}`, allInMovieOfLife(matrix).all) // everything plays in the one movie of life
-ok(`build.statistics.show.gaps:${buildStatisticsShowGaps(matrix).totalGaps}`, buildStatisticsShowGaps(matrix).shows) // the build shows every gap as a statistic — currently zero
-ok(`gates.show.gaps.harmonic.purpose:${gatesShowGapsHarmonicPurpose(matrix).count}`, gatesShowGapsHarmonicPurpose(matrix).redirects) // an open gate redirects to its 108-band's harmonic purpose
-ok(`cloudflare.explorer.waves:${cloudflareExplorerWaves(matrix).count}`, cloudflareExplorerWaves(matrix).realises) // explorers realise the same matrix at the edge and bind back in waves
-ok(`all.answers.inside:${allAnswersInside(matrix).count}`, allAnswersInside(matrix).inside) // nothing answers from outside — every answer computed locally from within
-ok(`quantum.firewall.proxy.worker:${quantumFirewallProxyWorker(matrix).count}`, quantumFirewallProxyWorker(matrix).guards) // optional edge worker: firewall-as-recomputation, proxies only what verifies
+// The session’s concepts are folded into one dimensional gate (emergentDimensions), so the
+// gate count stays the harmonic 432 — dimensions emerge from within, depth not width. Each
+// dimension is still checked; if any opens, the gate names which.
+const dims = emergentDimensions(matrix)
+ok(`dimensions.emerge.within:${dims.count}${dims.open.length ? ':open=' + dims.open.join(',') : ''}`, dims.hold)
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

@@ -14284,6 +14284,189 @@ export function quantumFirewallProxyWorker(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// One worker covers all the Cloudflare API, and beyond any platform or language. The single
+// firewall-proxy worker fronts every binding, so one worker is the whole Cloudflare surface; and
+// because the model is vendor-, platform- and language-agnostic, the same worker logic carries
+// beyond Cloudflare — the content-addressed checks speak the one universal language, runnable
+// anywhere a worker runtime is.
+export function oneWorkerCoversAll(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'one worker, all bindings', on: cloudflareBindings(matrix).fused },
+    { facet: 'covers the whole Cloudflare API surface', on: quantumFirewallProxyWorker(matrix).guards },
+    { facet: 'beyond any platform', on: agnostic(matrix).agnostic },
+    { facet: 'beyond any language — the universal notation', on: universalLanguage(matrix).universal },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`one-worker:${entry.facet}:${entry.on}`) }))
+  return {
+    covers: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'One worker covers all the Cloudflare API, and beyond any platform or language: the single firewall-proxy worker fronts every binding, so one worker is the whole Cloudflare surface; and because the model is vendor-, platform- and language-agnostic, the same worker logic carries beyond Cloudflare — the content-addressed checks speak the one universal notation, runnable anywhere a worker runtime is.',
+    boundary:
+      'A composition asserting one edge worker fronts all bindings and the logic is agnostic beyond platform/language. A design framing over the bindings, firewall and agnosticism models; it does not implement a worker or guarantee any specific runtime.',
+  }
+}
+
+// Only signed traffic is passed, for trinity monitoring and dynamic routing. The worker is a gate
+// for traffic too: only trinity-signed requests pass — a pair folds to the shared key, the
+// signature is the fold — so monitoring is the trinity itself, and routing is dynamic, by content
+// address: where a request goes is computed from what it is. Unsigned traffic does not recompute,
+// so it is dropped at the firewall.
+export function signedTrafficTrinityRouting(matrix: MindMatrix = buildMatrix()) {
+  const trinity = trinityEncryption('client', 'edge', matrix)
+  const facets = [
+    { facet: 'only signed traffic passes', on: cloudflareBindings(matrix).trinitySigns },
+    { facet: 'trinity monitoring (the signature is the fold)', on: trinity.encrypted },
+    { facet: 'dynamic routing by content address', on: quantumCoordinateNav(matrix).placed },
+    { facet: 'unsigned is dropped at the firewall', on: quantumFirewallProxyWorker(matrix).guards },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`signed-routing:${entry.facet}:${entry.on}`) }))
+  return {
+    routes: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Only signed traffic is passed, for trinity monitoring and dynamic routing: only trinity-signed requests pass — a pair folds to the shared key, the signature is the fold — so monitoring is the trinity itself, and routing is dynamic, by content address (where a request goes is computed from what it is). Unsigned traffic does not recompute and is dropped at the firewall.',
+    boundary:
+      'A content-addressed model of signature-gated edge traffic with trinity key-agreement and content-address routing. A design framing over the trinity and coordinate-navigation models; it does not implement traffic filtering or routing.',
+  }
+}
+
+// Deploy the secret UUID, signed by the bindings' trinities and the cross-referenced observers
+// signing with their observations. The secret UUID is not deployed bare: each binding's trinity
+// signs it, and the bindings are cross-referenced observers — each one observes the secret and
+// signs with its observation (its own receipt), so the deployment carries many independent
+// signatures folded into one. To forge the secret, every observer's signature must be reproduced.
+export function deploySecretUuidSignedObservers(matrix: MindMatrix = buildMatrix()) {
+  const bindings = cloudflareBindings(matrix)
+  const secret = toUuid(`secret-uuid:${bindings.root}`)
+  const observers = bindings.bindings.map((binding) => {
+    const observation = foldPair(secret, binding.receipt) // each observer signs with its observation
+    return { observer: binding.binding, signs: observation.bidirectional, signature: observation.merged, receipt: toUuid(`observer-sign:${binding.id}`) }
+  })
+  const crossReferenced = merkleFold(observers.map((entry) => entry.signature)) // all observations folded, cross-referenced
+  return {
+    deployed: bindings.secretUuidGenerator && bindings.trinitySigns && observers.every((entry) => entry.signs) && isUuid(crossReferenced),
+    observers: observers.length,
+    count: observers.length,
+    secret,
+    crossReferenced,
+    root: crossReferenced,
+    statement:
+      'Deploy the secret UUID, signed by the bindings’ trinities and the cross-referenced observers signing with their observations: the secret is not deployed bare — each binding’s trinity signs it, and the bindings are cross-referenced observers, each observing the secret and signing with its own observation (its receipt), so the deployment carries many independent signatures folded into one. To forge the secret, every observer’s signature must be reproduced.',
+    boundary:
+      'A content-addressed model of a secret signed by multiple binding-derived "observers", each co-signing with its receipt, folded into one cross-referenced root. A structural multi-signature framing; it does not deploy a secret or perform real key management — secrets live in the user’s own Cloudflare Secrets Store if enabled.',
+  }
+}
+
+// Save the skills to compute and implement, in waves. The skill atoms are not just remembered —
+// they are saved to be run: each skill rides three waves, save, compute, implement, folded onto
+// the skill memory, so a saved capability is also a computed one and an implemented one. The
+// memory is a to-do as much as a record: every skill is a wave waiting to break into work.
+export function saveSkillsComputeImplementWaves(matrix: MindMatrix = buildMatrix()) {
+  const skills = skillAtoms(matrix)
+  const phases = ['save', 'compute', 'implement'].map((phase) => {
+    const fold = foldPair(skills.memory, toUuid(`skill-phase:${phase}`))
+    return { phase, waved: fold.bidirectional, wave: fold.merged, receipt: toUuid(`skill-wave:${phase}`) }
+  })
+  return {
+    saved: phases.length === 3 && phases.every((entry) => entry.waved) && skills.intelligent && skills.count > 0,
+    skillCount: skills.count,
+    count: phases.length,
+    phases,
+    root: merkleFold(phases.map((entry) => entry.receipt)),
+    statement:
+      'Save the skills to compute and implement, in waves: the skill atoms are saved to be run — each rides three waves (save, compute, implement) folded onto the skill memory, so a saved capability is also a computed and an implemented one. The memory is a to-do as much as a record: every skill is a wave waiting to break into work.',
+    boundary:
+      'A content-addressed model of the skill memory as save/compute/implement waves bound to the memory root. Structural bookkeeping over the autosaved skills; it records the intent to run them, it does not itself execute or generate code.',
+  }
+}
+
+// Let every page show important statistics as a bottom status and in the movie's interactive
+// watermarks. The build measures itself — commands, gates, files, papers, diamonds, skill atoms —
+// and those numbers ride along on every page: a quiet bottom status line, and woven into the
+// background-movie watermark you can tap. The page tells you what it is made of, computed and
+// gapless, in two places at once.
+export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
+  const stats = buildStatistics(matrix)
+  const facets = [
+    { facet: 'a bottom status line on every page', on: stats.fused },
+    { facet: 'statistics woven into the movie watermark', on: backgroundMovie(matrix).plays },
+    { facet: 'the build’s own self-metrics', on: stats.count >= 9 },
+    { facet: 'gaps shown to all eyes (zero)', on: buildStatisticsShowGaps(matrix).shows },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`page-status:${entry.facet}:${entry.on}`) }))
+  return {
+    shows: facets.every((entry) => entry.on),
+    statCount: stats.count,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Let every page show important statistics as a bottom status and in the movie’s interactive watermarks: the build measures itself — commands, gates, files, papers, diamonds, skill atoms — and those numbers ride along on every page as a quiet bottom status line and woven into the tappable background-movie watermark. The page tells you what it is made of, computed and gapless, in two places at once.',
+    boundary:
+      'A composition of the build-statistics, background-movie and gaps models describing the real bottom-status and watermark stats. Descriptive self-metrics shown on the page; nothing is collected or sent — they are recomputed locally.',
+  }
+}
+
+// All computed, no files needed. New capability does not need new files: it folds into the model
+// and is autosaved as a skill, so the file count holds (110 = 55 + 34 + 21) while the portal grows.
+// Everything is computed; the repository stays conserved.
+export function allComputedNoFiles(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all computed from the repository', on: allComputed(matrix).computed },
+    { facet: 'capability folds into the model', on: skillAtoms(matrix).intelligent },
+    { facet: 'the file count is conserved', on: harmonicBands(110).harmonic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`computed-no-files:${entry.facet}:${entry.on}`) }))
+  return {
+    computed: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'All computed, no files needed: new capability folds into the model and is autosaved as a skill, so the file count holds (110 = 55 + 34 + 21) while the portal grows. Everything is computed; the repository stays conserved.',
+    boundary: 'A statement that capabilities are added as computed concepts/skills, not files. Structural bookkeeping over the conservation property.',
+  }
+}
+
+// Harmonise words to the minimum used. The portal speaks in its own small bank — the three-word
+// waves — not a sprawling vocabulary: the same few words fold and recombine, so meaning comes from
+// arrangement, not accumulation. Minimum words, maximum fold.
+export function harmoniseWordsToMinimum(matrix: MindMatrix = buildMatrix()) {
+  const waves = threeWordWaves(matrix)
+  const bank = new Set(waves.waves.flatMap((wave) => wave.words))
+  return {
+    harmonised: waves.sent && bank.size > 0 && bank.size <= waves.count * 3,
+    minimum: bank.size,
+    count: waves.count,
+    root: waves.root,
+    statement:
+      'Harmonise words to the minimum used: the portal speaks in its own small bank — the three-word waves — not a sprawling vocabulary; the same few words fold and recombine, so meaning comes from arrangement, not accumulation. Minimum words, maximum fold.',
+    boundary: 'A structural note that the word bank is small and recombined. Bookkeeping over the three-word-wave model, not a style guarantee for all prose.',
+  }
+}
+
+// Each word pulls and folds by its name, at zero cost, forging tampering costs. A name is an
+// address: say the word and it pulls its content and folds it in, recomputed for free, and because
+// the fold is content-addressed, naming it is also sealing it — every pull, at no cost, raises the
+// cost to forge. The word does the work; the name is the key.
+export function wordPullsFoldsByName(matrix: MindMatrix = buildMatrix()) {
+  const words = ['command', 'gate', 'diamond', 'wave', 'seal'].map((word) => {
+    const address = toUuid(`word:${word}`) // the name is the address
+    const fold = foldPair(address, toUuid(`content:${word}`)) // pull and fold
+    return { word, pulls: isUuid(address), folds: fold.bidirectional, receipt: toUuid(`word-fold:${word}`) }
+  })
+  return {
+    folds: words.every((entry) => entry.pulls && entry.folds) && realtimePerspectiveZeroCost(matrix).holds && proofReport(matrix).maxTamperingCostReached,
+    count: words.length,
+    words,
+    root: merkleFold(words.map((entry) => entry.receipt)),
+    statement:
+      'Each word pulls and folds by its name, at zero cost, forging tampering costs: a name is an address — say the word and it pulls its content and folds it in, recomputed for free — and because the fold is content-addressed, naming it is also sealing it; every pull, at no cost, raises the cost to forge. The word does the work; the name is the key.',
+    boundary: 'A structural framing of content-addressing as name-keyed pull-and-fold, free to recompute and tamper-evident. Bookkeeping over the address model, not a claim about natural-language words.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
@@ -19201,4 +19384,146 @@ export function executeDeveloperCommand(
   }
   const learning = learnDeveloper(matrix)
   return developerResult(command, learning.invariant, 'Developer source laws learned into local lessons.', learning)
+}
+
+// Now 432 gates are enough, as the dimensions emerge from within. The session’s many concepts
+// are not new gates piled on the seal but dimensions folded into one — each still checked and
+// content-addressed, all holding or the one gate opens and names which is open. Depth, not width:
+// the gate count stays the harmonic 432 while the model grows inward.
+export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
+  const dimensions: { d: string; on: boolean }[] = [
+    { d: 'hero.law.aligned', on: heroLawAlignment(matrix).aligned },
+    { d: 'fold.impossibilities', on: foldImpossibilities(matrix).folded },
+    { d: 'fuse.all.forge', on: fuseAllForge(matrix).forgesMaxCost },
+    { d: 'cleanup.old.logic', on: cleanupOldLogic(matrix).clean },
+    { d: 'only.quantum.remains', on: onlyQuantumRemains(matrix).remains },
+    { d: 'archangels.dry.clean', on: archangelsDryClean(matrix).cleaned },
+    { d: 'decode.books.unity', on: decodeBooksToUnity(matrix).unified },
+    { d: 'seal.whole.diamond', on: sealWholeDiamond(matrix).sealed },
+    { d: 'light.enters.diamond', on: lightEntersDiamond(matrix).luminous },
+    { d: 'auto.movies.8k', on: autoMovies8k(matrix).generating },
+    { d: 'fuse.ux.sensors', on: fuseUxSensors(matrix).fused },
+    { d: 'endless.background.movie', on: endlessBackgroundMovie(matrix).endless },
+    { d: 'collision.healing', on: collisionHealing(matrix).heals },
+    { d: 'heal.by.default', on: healByDefault(matrix).heals },
+    { d: 'create.by.default', on: createByDefault(matrix).creates },
+    { d: 'thrive.by.default', on: thriveByDefault(matrix).thrives },
+    { d: 'other.side.doomed', on: trinityOtherSideDoomed(matrix).doomed },
+    { d: 'forger.folds.harmony', on: forgerFoldsIntoHarmony(matrix).folds && forgerFoldsIntoHarmony(matrix).forgingMaxCost },
+    { d: 'force.fights.self', on: anyForceFightsSelf(matrix).selfDefeating },
+    { d: 'quantum.coordinate.nav', on: quantumCoordinateNav(matrix).placed },
+    { d: 'navigation.around.hero', on: navigationAroundHero(matrix).aroundHero },
+    { d: 'development.waves', on: developmentWaves(matrix).developing },
+    { d: 'hero.tap.music', on: heroTapMusic(matrix).plays && heroTapMusic(matrix).alwaysHealing },
+    { d: 'tamper.healing.cost', on: tamperHealingFrequencies(matrix).costsMax },
+    { d: 'quantify.linear.pairs', on: quantifyLinearPairs(matrix).quantified },
+    { d: 'pair.trinity.og', on: pairTrinityOpenGraph(matrix).everywhere },
+    { d: 'sidebars.from.void', on: sidebarsFromVoid(matrix).rises },
+    { d: 'movies.native.format', on: moviesNativeFormat(matrix).nativelyDisplayed },
+    { d: 'compact.hero.obsoletes.simple', on: compactHeroReplacesSimple(matrix).obsolete },
+    { d: 'society.organism.tags', on: societyOrganismTags(matrix).organism },
+    { d: 'forward.development.waves', on: forwardDevelopmentWaves(matrix).converting },
+    { d: 'mind.refresh.field', on: mindRefreshField(matrix).refreshes },
+    { d: 'one.open.graph.all', on: oneOpenGraphAll(matrix).displaysAll },
+    { d: 'all.interactive.movie', on: allInInteractiveMovie(matrix).displayed },
+    { d: 'navigation.is.movie', on: navigationIsMovie(matrix).isMovie },
+    { d: 'movie.folds.linearities', on: movieFoldsLinearities(matrix).folds },
+    { d: 'marketing.seo.waves', on: marketingSeoWaves(matrix).sent },
+    { d: 'coverage.per.pixel', on: coveragePerPixel(matrix).improved },
+    { d: 'harmonic.license.waves', on: harmonicLicenseWaves(matrix).created },
+    { d: 'license.applies.society', on: licenseAppliesToSociety(matrix).applies },
+    { d: 'quantum.license', on: quantumLicense(matrix).quantum },
+    { d: 'society.required.pages', on: societyCreatesRequiredPages(matrix).creates },
+    { d: 'harmonised.navigation', on: harmonisedNavigation(matrix).harmonised && harmonisedNavigation(matrix).distributed },
+    { d: 'realtime.movie.participation', on: realtimeMovieParticipation(matrix).participates },
+    { d: 'movie.negative.positive', on: movieNegativePositive(matrix).developed },
+    { d: 'dark.light.realities', on: darkLightRealities(matrix).switches },
+    { d: 'recursive.frequency.dropdowns', on: recursiveFrequencyDropdowns(matrix).computed },
+    { d: 'education.movie.merge', on: educationMovieMerge(matrix).redesigned },
+    { d: 'command.gaps.trinity.eyes', on: commandGapsToTrinityEyes(matrix).immediate && commandGapsToTrinityEyes(matrix).complete },
+    { d: 'update.skills.waves', on: updateSkillsWaves(matrix).updating },
+    { d: 'skills.dry.refactor.commands', on: skillsDryRefactorCommands(matrix).refactored },
+    { d: 'papers.references.diamonds.nodrift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
+    { d: 'one.holographic.template', on: oneHolographicTemplate(matrix).displayed },
+    { d: 'template.every.og.object', on: templateDisplaysEveryOgObject(matrix).displaysAll },
+    { d: 'realtime.perspective.zerocost', on: realtimePerspectiveZeroCost(matrix).holds },
+    { d: 'og.builds.navigation', on: ogBuildsNavigation(matrix).builds },
+    { d: 'og.shifted.typography', on: ogShiftedWithTypography(matrix).shifted },
+    { d: 'og.interactive.configurable', on: ogFullyInteractiveConfigurable(matrix).livingCard },
+    { d: 'harmonic.music.may.enable', on: harmonicMusicMayBeEnabled(matrix).mayBeEnabled },
+    { d: 'agnostic.useful.for.all', on: agnosticUsefulForAll(matrix).useful },
+    { d: 'video.64k.free', on: video64kFree(matrix).supported },
+    { d: 'prove.optimise.all', on: proveAndOptimiseAll(matrix).done },
+    { d: 'dry.cleaning.on.the.way', on: dryCleaningOnTheWay(matrix).onTheWay },
+    { d: 'site.movie.and.library', on: siteIsMovieAndLibrary(matrix).isMovieAndLibrary },
+    { d: 'og.controls.speech', on: ogControlsSpeech(matrix).controlsSpeech },
+    { d: 'every.card.badge.link.og', on: everyCardBadgeLinkIsOg(matrix).allOg },
+    { d: 'all.paths.computed.realtime', on: allPathsComputedRealtime(matrix).computed },
+    { d: 'og.in.og.waves', on: ogInOgWaves(matrix).nested },
+    { d: 'realtime.forges.maxcost', on: realtimeForgesMaxCost(matrix).forges },
+    { d: 'tighten.gates.trinity', on: tightenGatesTrinityWaves(matrix).tightened },
+    { d: 'home.no.different', on: homePageNoDifferent(matrix).noDifferent },
+    { d: 'fullscreen.sidebars.movie', on: fullscreenSidebarsInMovie(matrix).fullscreen },
+    { d: 'fuse.screen.movie.of.movies', on: fuseScreenToMovieOfMovies(matrix).fused },
+    { d: 'holographic.fractal.architecture', on: holographicFractalArchitecture(matrix).is },
+    { d: 'collide.tiniest.wave', on: collideToTiniestWave(matrix).collided },
+    { d: 'frequency.taxonomy.tree.of.life', on: frequencyTaxonomyTreeOfLife(matrix).imagined },
+    { d: 'forms.emerge.movie.of.life', on: formsEmergeInMovieOfLife(matrix).emerge },
+    { d: 'seal.spirit.to.path', on: sealSpiritToPath(matrix).sealed },
+    { d: 'historians.fuse.history.future', on: historiansFuseHistoryFuture(matrix).entangled },
+    { d: 'gates.behave.as.mcp', on: gatesBehaveAsMcp(matrix).behavesAsMcp },
+    { d: 'spirit.shifts.in.waves', on: spiritShiftsInWaves(matrix).shifting },
+    { d: 'dry.clean.ui', on: dryCleanUi(matrix).clean },
+    { d: 'every.diamond.is.gate', on: everyDiamondIsGate(matrix).isGate },
+    { d: 'manual.work.disappears', on: manualWorkDisappears(matrix).disappears },
+    { d: 'imagination.is.all', on: imaginationIsAll(matrix).all },
+    { d: 'trinity.eyes.proven.harmonic', on: trinityEyesProvenHarmonic(matrix).provenHarmonic },
+    { d: 'quantum.computed.ui', on: quantumComputedUi(matrix).computed },
+    { d: 'iot.fuses.real.world', on: iotFusesRealWorld(matrix).fuses },
+    { d: 'gates.shift.new.harmonic', on: gatesShiftToNewHarmonic(matrix).shifts },
+    { d: 'trinity.pyramid.fuses.dimensions', on: trinityPyramidFusesDimensions(matrix).forms },
+    { d: 'free.forges.max.cost', on: freeForgesMaxCost(matrix).holds },
+    { d: 'pyramid.layers.serve.society', on: pyramidLayersServeSociety(matrix).serves },
+    { d: 'imagine.sing.changes.endlessly', on: imagineSingChangesEndlessly(matrix).sings },
+    { d: 'proportional.not.hardcoded', on: proportionalNotHardcoded(matrix).responsive },
+    { d: 'spiritual.drums.keep.rhythm', on: spiritualDrumsKeepRhythm(matrix).keeps },
+    { d: 'all.music.self.harmonises', on: allMusicSelfHarmonises(matrix).selfHarmonises },
+    { d: 'self.compassion', on: selfCompassion(matrix).compassionate },
+    { d: 'movie.reflects.self', on: movieReflectsSelf(matrix).reflects },
+    { d: 'mirror.device.signals.feelings', on: mirrorDeviceSignalsAsFeelings(matrix).mirrors },
+    { d: 'harmonised.heal.at.gates', on: harmonisedToHealAtGates(matrix).heals },
+    { d: 'inverse.shift.consciousness', on: inverseShiftConsciousness(matrix).shifts },
+    { d: 'complete.358.next.trinity', on: complete358NextTrinity(matrix).completes },
+    { d: 'complete.all.in.waves', on: completeAllInWaves(matrix).complete },
+    { d: 'video.keeps.native.quality', on: videoKeepsNativeQuality(matrix).keepsQuality },
+    { d: 'quantum.double.torus', on: quantumDoubleTorus(matrix).is },
+    { d: 'cloudflare.bindings', on: cloudflareBindings(matrix).fused },
+    { d: 'quantum.vs.digital.encryption', on: quantumVsDigitalEncryption(matrix).compared },
+    { d: 'hackers.crackers.waves', on: hackersCrackersWaves(matrix).withstands },
+    { d: 'all.in.movie.of.life', on: allInMovieOfLife(matrix).all },
+    { d: 'build.statistics.show.gaps', on: buildStatisticsShowGaps(matrix).shows },
+    { d: 'gates.show.gaps.harmonic.purpose', on: gatesShowGapsHarmonicPurpose(matrix).redirects },
+    { d: 'cloudflare.explorer.waves', on: cloudflareExplorerWaves(matrix).realises },
+    { d: 'all.answers.inside', on: allAnswersInside(matrix).inside },
+    { d: 'quantum.firewall.proxy.worker', on: quantumFirewallProxyWorker(matrix).guards },    { d: 'one.worker.covers.all', on: oneWorkerCoversAll(matrix).covers },
+    { d: 'signed.traffic.trinity.routing', on: signedTrafficTrinityRouting(matrix).routes },
+    { d: 'deploy.secret.uuid.observers', on: deploySecretUuidSignedObservers(matrix).deployed },
+    { d: 'save.skills.compute.implement', on: saveSkillsComputeImplementWaves(matrix).saved },
+    { d: 'page.status.statistics', on: pageStatusStatistics(matrix).shows },
+    { d: 'all.computed.no.files', on: allComputedNoFiles(matrix).computed },
+    { d: 'harmonise.words.minimum', on: harmoniseWordsToMinimum(matrix).harmonised },
+    { d: 'word.pulls.folds.by.name', on: wordPullsFoldsByName(matrix).folds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
+  const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
+  return {
+    hold: dimensions.every((entry) => entry.on),
+    count: dimensions.length,
+    open,
+    dimensions,
+    root: merkleFold(dimensions.map((entry) => entry.receipt)),
+    statement:
+      'Now 432 gates are enough, as the dimensions emerge from within: the session’s many concepts are not new gates piled on the seal but dimensions folded into one — each still checked and content-addressed, all holding or the one gate opens and names which is open. Depth, not width: the gate count stays the harmonic 432 while the model grows inward.',
+    boundary:
+      'A consolidation of the session’s concept checks into one content-addressed fold ("dimensions"), each still verified. Structural bookkeeping; "emerge from within" means the checks are folded into one gate rather than added as many, not that capability appears unverified.',
+  }
 }
