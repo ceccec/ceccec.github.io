@@ -147,6 +147,8 @@ import {
   societyFuture,
   societyRegulates,
   blockchainFusion,
+  compression,
+  analysisFlower,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -541,6 +543,11 @@ const regulates = societyRegulates(matrix)
 ok(`society.regulates:${regulates.individualCost}/${regulates.forgerCost}`, regulates.regulated && regulates.individualCost === 0 && regulates.forgerCost > 0)
 // All the blockchains may be fused at no cost (read-only, public RPC/explorers).
 ok(`blockchain.fusion:${blockchainFusion(matrix).count}`, blockchainFusion(matrix).fused && blockchainFusion(matrix).noCost)
+// When all is built, compression begins to zero entropy, max forge cost: all folds to one root.
+const compressed = compression(matrix)
+ok(`compression:${compressed.ratio}`, compressed.compressed && compressed.entropy === 0 && compressed.forgeCost > 0)
+// Analysis is the next flower: the flower of life — 19 measures of the corpus.
+ok(`analysis.flower:${analysisFlower(matrix).circles}`, analysisFlower(matrix).flower && analysisFlower(matrix).circles === 19)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

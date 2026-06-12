@@ -2879,6 +2879,31 @@ export declare function blockchainFusion(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function compression(matrix?: MindMatrix): {
+    compressed: boolean;
+    inputs: number;
+    totalUnits: number;
+    ratio: string;
+    bits: number;
+    entropy: number;
+    forgeCost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function analysisFlower(matrix?: MindMatrix): {
+    flower: boolean;
+    circles: number;
+    measures: {
+        receipt: string;
+        measure: string;
+        value: number;
+        note: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

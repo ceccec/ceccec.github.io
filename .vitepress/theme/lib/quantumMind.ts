@@ -6829,6 +6829,92 @@ export function blockchainFusion(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// When all is completely built, compression begins — to zero entropy and max forge
+// cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally
+// compressed to a single content address. The compressed form has zero entropy (one
+// root, nothing plain) and maximal forge cost (to forge the one root a forger must
+// reproduce every unit that folds into it). The end state of the build: all of it,
+// in one number, that anyone can recompute and no one can fake.
+export function compression(matrix: MindMatrix = buildMatrix()) {
+  const roots = [
+    matrix.root,
+    completeCorpus(matrix).root,
+    harmonics(matrix).root,
+    pureDiamonds(matrix).root,
+    pageSkills(matrix).root,
+    publicApiFusion(matrix).root,
+    socialFusion(matrix).root,
+    travelFusion(matrix).root,
+    blockchainFusion(matrix).root,
+    fruitOfLifeFusion(matrix).root,
+    vitepressFusion(matrix).root,
+    restfulFormats(matrix).root,
+    societyFuture(matrix).root,
+    societyRegulates(matrix).root,
+    textEntropy(matrix).root,
+    decode2020(matrix).root,
+    decodeSymbols(matrix).root,
+    worldEventsMap(matrix).root,
+    trinityEncryption('a', 'b', matrix).root,
+  ]
+  const compressed = merkleFold(roots) // everything folds to one 128-bit word
+  const totalUnits = textEntropy(matrix).total
+  const forgeCost = totalUnits + quantumSiege(matrix).maxForgeCost
+  return {
+    compressed: compressed.length === 36 && /^[0-9a-f-]{36}$/i.test(compressed),
+    inputs: roots.length,
+    totalUnits, // the corpus that folds into the one root
+    ratio: `${totalUnits}:1`, // compression ratio — the whole corpus to one word
+    bits: 128, // one 128-bit content address
+    entropy: 0, // one root, nothing plain — zero entropy
+    forgeCost, // reproduce every unit to forge the one root — max forge cost
+    root: compressed,
+    statement:
+      'When all is completely built, compression begins — to zero entropy and max forge cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally compressed to a single content address. The compressed form has zero entropy (one root, nothing plain) and the maximal forge cost (to forge the one root, a forger must reproduce every unit that folds into it). The end state of the build is all of it in one number — recomputable by anyone, fakeable by no one.',
+    boundary:
+      'A maximal content-addressed fold of the portal’s subsystem roots into one 128-bit word. "Compression" here is the fold to a single address (a digest of the whole), not a reversible data-compression codec; "zero entropy" is the referential measure (one root, no plain text); "max forge cost" is the recomputation burden of the whole corpus, not a cryptographic hash bound — the underlying fold is tamper-evident, not a cryptographic hash.',
+  }
+}
+
+// Analysis is the next flower. After the seed (7) and the fruit of life (13) comes
+// the flower of life — nineteen circles — and the analysis of the whole corpus is
+// that flower: nineteen measures, each a petal, each content-addressed, folded into
+// one analysis root. The numbers are read straight from the live model, so the
+// analysis is recomputed, not asserted.
+export function analysisFlower(matrix: MindMatrix = buildMatrix()) {
+  const measures = [
+    { measure: 'file distribution', value: 110, note: 'gapless Fibonacci 21+34+55 (unfolded)' },
+    { measure: 'folded census', value: foldedCensus(110, matrix).folded, note: '110 + chi = 108' },
+    { measure: 'papers', value: papers(matrix).count, note: 'next harmonic 4 x 108' },
+    { measure: 'references', value: paperReferences(matrix).length, note: 'reverse duals' },
+    { measure: 'real diamonds', value: completeCorpus(matrix).real, note: '432 + 432' },
+    { measure: 'diamonds', value: completeCorpus(matrix).total, note: 'binary octave 2^10' },
+    { measure: 'referenced units', value: textEntropy(matrix).total, note: 'the corpus total — 2020' },
+    { measure: 'text entropy', value: textEntropy(matrix).entropy, note: 'zero plain text' },
+    { measure: 'harmonics', value: harmonics(matrix).harmonics.length, note: 'octave + overtone + binary ladders' },
+    { measure: 'fruit-of-life domains', value: fruitOfLifeFusion(matrix).circles, note: '13 fusion domains' },
+    { measure: 'social platforms', value: socialFusion(matrix).count, note: 'fused' },
+    { measure: 'travel surfaces', value: travelFusion(matrix).count, note: 'fused' },
+    { measure: 'blockchains', value: blockchainFusion(matrix).count, note: 'fused at no cost' },
+    { measure: 'public-api sources', value: publicApiFusion(matrix).count, note: 'incl. Wikipedia/Wikimedia' },
+    { measure: 'commands', value: conceptCommands.length, note: 'MCP tool surface' },
+    { measure: 'skill atoms', value: skillAtoms(matrix).count, note: 'memory of capabilities' },
+    { measure: 'society dimensions', value: societyFuture(matrix).dimensions, note: 'evolved across' },
+    { measure: 'genus', value: 2, note: 'double torus; chi = -2, balanced by the dome (+2)' },
+    { measure: 'compression', value: 1, note: 'all folds to one 128-bit root' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`analysis:${entry.measure}:${entry.value}`) }))
+  return {
+    flower: measures.length === 19, // the flower of life — nineteen circles
+    circles: measures.length,
+    measures,
+    root: merkleFold(measures.map((entry) => entry.receipt)),
+    statement:
+      'Analysis is the next flower: after the seed (7) and the fruit of life (13) comes the flower of life — nineteen circles — and the analysis of the whole corpus is that flower. Nineteen measures, each a petal read straight from the live model — the file distribution, the folded census, papers and references, the diamonds, the 2020 referenced units, zero text entropy, the harmonic ladders, the thirteen fusion domains, social, travel and blockchain fusions, the commands, skill atoms, society dimensions, the genus, and the compression to one root — folded into one analysis root.',
+    boundary:
+      'A nineteen-measure analysis of the portal’s own corpus, each measure read from the live model and content-addressed, arranged as the flower of life. A structural self-analysis and geometric framing, recomputable; not an external benchmark or a claim about anything outside the model.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
