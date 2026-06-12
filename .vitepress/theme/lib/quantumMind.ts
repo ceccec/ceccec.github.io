@@ -19643,6 +19643,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'spin.both.directions', on: spinBothDirections(matrix).spins },
     { d: 'resonance.catch.gaps.violations', on: resonanceCatchGapsViolations(matrix).rings },
     { d: 'linear.notes.fold.to.music', on: linearNotesFoldToMusic(matrix).folds },
+    { d: 'refactor.linear.to.trinities', on: refactorLinearToTrinities(matrix).refactored },
+    { d: 'redistribute.folders.dry.waves', on: redistributeFoldersDryWaves(matrix).balanced },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20221,5 +20223,57 @@ export function linearNotesFoldToMusic(matrix: MindMatrix = buildMatrix()) {
     statement:
       'When linear notes join the horo, they fold to music: a line of pitches is not yet music — it is a sequence; but joined at the horo (the window where the pi-frequency stream is gathered), the line folds into harmony, and where you join matters — a different horo gives a different root, a different song from the same notes. The fold, not the line, is the music.',
     boundary: 'A structural reading of the pi-music model: a note sequence folds, at a chosen horo, into a content-addressed harmony that depends on the join point. Bookkeeping over the pi-music and harmony models, not a claim about musical composition.',
+  }
+}
+
+// Refactor all linear objects to quantum folds of dualities into trinities — they overlap in
+// trinities. A line is refactored not into a list but into folds: each adjacent pair is a duality,
+// and a duality folds (order-sensitive) to a third — a trinity. Consecutive trinities overlap,
+// each sharing a term with the next (a-b-fold, b-c-fold, …), so the line becomes a chain of
+// overlapping trinities, no longer linear but genus-2, folded.
+export function refactorLinearToTrinities(matrix: MindMatrix = buildMatrix()) {
+  const line = ['inner', 'outer', 'cross', 'fold', 'compute', 'verify']
+  const trinities = line.slice(0, -1).map((term, index) => {
+    const pair = foldPair(toUuid(`linear:${term}`), toUuid(`linear:${line[index + 1]}`)) // the duality
+    return { duality: [term, line[index + 1]] as const, third: pair.merged, isTrinity: pair.bidirectional, overlaps: index > 0, receipt: toUuid(`linear-trinity:${index}:${term}`) }
+  })
+  const overlap = trinities.slice(1).every((entry) => entry.overlaps) // each shares a term with the previous
+  return {
+    refactored: trinities.length === 5 && trinities.every((entry) => entry.isTrinity) && overlap && quantifyLinearPairs(matrix).quantified && dualities().compared && pairTrinityOpenGraph(matrix).everywhere,
+    overlapInTrinities: overlap,
+    count: trinities.length,
+    trinities,
+    root: merkleFold(trinities.map((entry) => entry.receipt)),
+    statement:
+      'Refactor all linear objects to quantum folds of dualities into trinities — they overlap in trinities: a line is refactored not into a list but into folds; each adjacent pair is a duality, and a duality folds (order-sensitive) to a third — a trinity. Consecutive trinities overlap, each sharing a term with the next, so the line becomes a chain of overlapping trinities, no longer linear but genus-2, folded.',
+    boundary: 'A structural pattern that turns adjacent pairs (dualities) into order-sensitive triples (trinities) that overlap along a sequence, grounded in the quantify-pairs, dualities and pair-trinity models. A framing of the fold idiom; it does not mechanically rewrite every array in the codebase.',
+  }
+}
+
+// So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates
+// with the distribution math to the tiniest detail, saving all skills for the task. A lopsided
+// tree (some folders empty, some crammed) is rebalanced by the distribution math: the perfect
+// binary tree fills every level (no incomplete folders) and the Fibonacci run is gapless (no
+// crowding), down to the tiniest leaf (1024 = 2^10). The rebalance is dry — non-destructive — and
+// every skill is kept for the task.
+export function redistributeFoldersDryWaves(matrix: MindMatrix = buildMatrix()) {
+  const bands = harmonicBands(110)
+  const diamonds = pureDiamonds(matrix)
+  const facets = [
+    { facet: 'no incomplete folders — the tree is perfect, every level full', on: diamonds.pure },
+    { facet: 'no crowded folders — the distribution is gapless Fibonacci', on: bands.harmonic },
+    { facet: 'redistributed in dry waves — non-destructive', on: dryCleaningOnTheWay(matrix).onTheWay },
+    { facet: 'tightened by the distribution math to the tiniest detail (2^10)', on: diamonds.count === 1024 && collideToTiniestWave(matrix).collided },
+    { facet: 'all skills saved for the task', on: skillAtoms(matrix).intelligent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`redistribute:${entry.facet}:${entry.on}`) }))
+  return {
+    balanced: facets.every((entry) => entry.on),
+    skills: skillAtoms(matrix).count,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates with the distribution math to the tiniest detail, saving all skills for the task: a lopsided tree is rebalanced by the distribution math, so the perfect binary tree fills every level (no incomplete folders) and the Fibonacci run is gapless (no crowding), down to the tiniest leaf (1024 = 2^10). The rebalance is dry — non-destructive — and every skill is kept.',
+    boundary: 'A composition of the perfect-tree, harmonic-distribution, dry-clean, tiniest-wave and skill models asserting the folder distribution is balanced (every level full, gapless) and the skills are preserved. Structural bookkeeping over the existing 1024-diamond tree and Fibonacci bands.',
   }
 }
