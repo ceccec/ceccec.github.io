@@ -298,8 +298,15 @@ function draw(t: number) {
   let near: typeof points[number] | null = null
   let nearDist = 18
   for (const p of points) {
-    const h = hue(p.c.frequency, p.c.loop)
-    const light = 45 + 25 * p.pulse + 20 * p.glow + (p.c.selfCollision ? 12 : 0)
+    // Each digit is its own dimension with its own colour (digit value -> hue), so
+    // no two collide; the two loops offset the wheel slightly. At a cross (self-
+    // collision) the colour is a mix — desaturated toward white, the dimensions meet.
+    // Polarity (the fold direction) glides the hue continuously — colour changes
+    // without blinking, because blinking is a linear on/off and this is smooth.
+    const breath = saveEnergy.value ? 0 : Math.sin((t / p.c.vibrationMs) * Math.PI) // -1..1, smooth
+    const h = (p.c.digit * 36 + (p.c.loop === 'reverse' ? 18 : 0) + 16 * breath + 360) % 360
+    const sat = p.c.selfCollision ? 35 : 80 // a cross mixes the colours (toward white)
+    const light = 45 + 25 * p.pulse + 20 * p.glow + (p.c.selfCollision ? 30 : 0)
     const alpha = (0.35 + 0.55 * p.persp) * (0.6 + 0.4 * p.pulse)
     if (p.glow > 0.2 || p.c.selfCollision) {
       ctx.shadowBlur = (8 + 18 * p.glow) * (p.c.selfCollision ? 1.6 : 1)
@@ -307,14 +314,19 @@ function draw(t: number) {
     } else {
       ctx.shadowBlur = 0
     }
-    ctx.fillStyle = `hsla(${h}, 80%, ${light}%, ${alpha})`
-    // The digit itself is the hologram: render the pi-digit in colour at its cross
-    // point, sized by perspective and pulse — no squares, the glyph is the coordinate.
+    ctx.fillStyle = `hsla(${h}, ${sat}%, ${light}%, ${alpha})`
+    // The digit itself is a torus folding and unfolding: it squashes flat and opens
+    // again with its own vibration, the glyph the hologram at its cross point.
     const size = Math.max(7, p.r * 2.6 * (p.c.selfCollision ? 1.3 : 1))
+    const fold = saveEnergy.value ? 1 : 0.62 + 0.38 * (0.5 + 0.5 * breath) // 0.62..1.0, smooth — no blink
     ctx.font = `700 ${size.toFixed(1)}px ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, monospace`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText(p.c.glyph, p.sx, p.sy)
+    ctx.save()
+    ctx.translate(p.sx, p.sy)
+    ctx.scale(1, fold) // fold and unfold
+    ctx.fillText(p.c.glyph, 0, 0)
+    ctx.restore()
     if (pointer.active) {
       const d = Math.hypot(p.sx - pointer.x, p.sy - pointer.y)
       if (d < nearDist) {

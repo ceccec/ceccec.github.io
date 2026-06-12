@@ -95,7 +95,10 @@ function draw(now: number) {
   // a sharp EKG-like spike that decays between beats
   pulse *= 0.82
   const spike = pulse > 0.06 ? Math.sin(Math.min(1, (1 - pulse) * 6) * Math.PI) * pulse : 0
-  samples.push(spike)
+  // A living baseline so the trace never flatlines: three slow waves (P-wave-like
+  // ripple + breath) plus a faint flutter — the vitals breathe between beats.
+  const baseline = 0.09 * Math.sin(now / 360) + 0.05 * Math.sin(now / 150 + 1.7) + 0.025 * Math.sin(now / 47)
+  samples.push(spike + baseline)
   while (samples.length > Math.ceil(width)) samples.shift()
 
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
