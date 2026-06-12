@@ -230,12 +230,13 @@ let cssWidth = 1200
 function size() {
   const el = canvas.value
   if (!el) return
-  const ratio = Math.min(window.devicePixelRatio || 1, 2)
+  // Native resolution, uncapped to the device's full pixel ratio (guarded by a 64K ceiling).
+  const ratio = window.devicePixelRatio || 1
   const w = el.clientWidth
   cssWidth = w
   const h = Math.min(Math.round((w * 630) / 1200), 460) // OG 1200x630, capped to a banner
-  el.width = w * ratio
-  el.height = h * ratio
+  el.width = Math.min(61440, w * ratio)
+  el.height = Math.min(61440, h * ratio)
   el.style.height = `${h}px`
 }
 function start() {

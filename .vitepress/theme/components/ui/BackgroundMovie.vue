@@ -267,9 +267,11 @@ function loop(time: number) {
 function size() {
   const el = canvas.value
   if (!el) return
-  const ratio = Math.min(window.devicePixelRatio || 1, 1.5)
-  el.width = window.innerWidth * ratio
-  el.height = window.innerHeight * ratio
+  // Native resolution, uncapped to the device's full pixel ratio — guarded only by a 64K ceiling
+  // (a movie can be up to 64K). The seeded vector math is resolution-independent, so it scales.
+  const ratio = window.devicePixelRatio || 1
+  el.width = Math.min(61440, Math.round(window.innerWidth * ratio))
+  el.height = Math.min(61440, Math.round(window.innerHeight * ratio))
   el.style.width = `${window.innerWidth}px`
   el.style.height = `${window.innerHeight}px`
   makeParticles(pageSeed(), Math.hypot(el.width / 2, el.height / 2))

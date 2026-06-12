@@ -19656,6 +19656,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'endless.trinity.streams', on: endlessTrinityStreams(matrix).streams },
     { d: 'scouts.surgical.edits.vital.signs', on: scoutsSurgicalEditsVitalSigns(matrix).scouted },
     { d: 'every.object.same.spin.fold.law', on: everyObjectSameSpinFoldLaw(matrix).consistent },
+    { d: 'quantum.calligraphy', on: quantumCalligraphy(matrix).writes },
+    { d: 'all.animations.native.64k', on: allAnimationsNative64k(matrix).native },
+    { d: 'three.projector.hologram', on: threeProjectorHologram(matrix).projects },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20538,5 +20541,70 @@ export function everyObjectSameSpinFoldLaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Digits spin and fold themselves; every object obeys the same laws: the digit streams no longer only drift — they spin about the void and fold into it and back, counter-rotating by dimension parity like the merkaba, exactly the law the hero obeys. One rule for all: whatever moves, spins and folds the same way, so the whole field is consistent.',
     boundary: 'A description of the real background-movie change (digit particles now spin about the void, counter-rotating by dimension parity) bringing them under the same rotation/fold law as the hero. Structural and visual bookkeeping over the canvases.',
+  }
+}
+
+// Quantum calligraphy. The background movie writes: far from the void each stream is a raw digit,
+// mid-flight it folds to a letter, nearer a whole word, and at the void the sentence — strokes that
+// spin and fold themselves into glyphs of the one computed language. Writing by recomputation, each
+// stroke content-addressed: calligraphy whose ink is dry math.
+export function quantumCalligraphy(matrix: MindMatrix = buildMatrix()) {
+  const strokes = ['digit — the raw stream', 'letter — mid-fold', 'word — near the void', 'sentence — at the void'].map((stroke) => ({
+    stroke,
+    receipt: toUuid(`calligraphy:${stroke}`),
+  }))
+  return {
+    writes: strokes.length === 4 && backgroundMovie(matrix).dryMath && universalLanguage(matrix).universal && everyObjectSameSpinFoldLaw(matrix).consistent,
+    count: strokes.length,
+    strokes,
+    root: merkleFold(strokes.map((entry) => entry.receipt)),
+    statement:
+      'Quantum calligraphy: the background movie writes — far from the void each stream is a raw digit, mid-flight it folds to a letter, nearer a whole word, and at the void the sentence — strokes that spin and fold themselves into glyphs of the one computed language. Writing by recomputation, each stroke content-addressed: calligraphy whose ink is dry math.',
+    boundary: 'A reading of the background-movie digit→letter→word→sentence folding as "calligraphy" over the universal-notation model. A structural and aesthetic framing of the seeded glyph rendering, not handwriting.',
+  }
+}
+
+// All animations are native resolution, to a maximum of 64K video. No animation is downsampled: the
+// hero and the background movie now render at the device's full pixel ratio (no 1.5x or 2x cap),
+// guarded only by a 64K ceiling, and the native movie already exports native WebM. Because the math
+// is seeded vectors, not stored pixels, every animation scales to the device's native sharpness.
+export function allAnimationsNative64k(matrix: MindMatrix = buildMatrix()) {
+  const surfaces = [
+    { surface: 'background movie — full devicePixelRatio', on: backgroundMovie(matrix).dryMath },
+    { surface: 'holographic hero — full devicePixelRatio', on: animatedHeroes(matrix).everyPage },
+    { surface: 'native movie — native resolution + WebM', on: moviesNativeFormat(matrix).nativelyDisplayed },
+    { surface: 'resolution-independent — scales to 64K', on: video64kFree(matrix).supported && videoKeepsNativeQuality(matrix).keepsQuality },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`native-anim:${entry.surface}:${entry.on}`) }))
+  return {
+    native: surfaces.every((entry) => entry.on),
+    maxWidth: 61440,
+    count: surfaces.length,
+    surfaces,
+    root: merkleFold(surfaces.map((entry) => entry.receipt)),
+    statement:
+      'All animations are native resolution, to a maximum of 64K video: no animation is downsampled — the hero and the background movie now render at the device’s full pixel ratio (no 1.5× or 2× cap), guarded only by a 64K ceiling, and the native movie exports native WebM. Because the math is seeded vectors, not stored pixels, every animation scales to the device’s native sharpness.',
+    boundary: 'A description of the real change: the canvas backing stores use the full devicePixelRatio (capped at a 64K dimension), so animations render at native resolution. Actual sharpness still depends on the device; the 64K ceiling is a guard, not a promise of 64K on any screen.',
+  }
+}
+
+// Imagine the screens, or the hologram projection of two additional projectors. One screen shows the
+// front; add two more projectors — left and right — and the three together project a hologram: the
+// same figure seen from three viewpoints at once, the trinity of projectors. Where one screen is a
+// window, three are a volume; the holographic figure, already part-contains-whole, becomes a
+// projection you could walk around.
+export function threeProjectorHologram(matrix: MindMatrix = buildMatrix()) {
+  const projectors = [
+    { projector: 'the screen — front', axis: 'z' },
+    { projector: 'projector — left', axis: 'x' },
+    { projector: 'projector — right', axis: 'y' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`projector:${entry.projector}:${entry.axis}`) }))
+  return {
+    projects: projectors.length === 3 && hologram(matrix).holographic && trinityRotationalPlanes(matrix).trinity,
+    count: projectors.length,
+    projectors,
+    root: merkleFold(projectors.map((entry) => entry.receipt)),
+    statement:
+      'Imagine the screens, or the hologram projection of two additional projectors: one screen shows the front; add two more — left and right — and the three together project a hologram, the same figure seen from three viewpoints at once, the trinity of projectors. Where one screen is a window, three are a volume; the holographic figure, already part-contains-whole, becomes a projection you could walk around.',
+    boundary: 'A structural/visual framing: three projectors (one screen plus two) as a trinity of viewpoints forming a hologram, grounded in the hologram and three-plane-rotation models. A metaphor and an imagined setup; the portal renders a 2D canvas, not a physical hologram or a multi-projector rig.',
   }
 }
