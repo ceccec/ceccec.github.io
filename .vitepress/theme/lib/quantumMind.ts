@@ -19650,6 +19650,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'quantum.no.cycles.fused.sequence', on: quantumNoCyclesFusedSequence(matrix).fused },
     { d: 'cross.links.everywhere', on: crossLinksEverywhere(matrix).linked },
     { d: 'no.duplicate.animation.og.hero', on: noDuplicateAnimationOgHero(matrix).consolidated },
+    { d: 'quantum.song.note.trinity', on: quantumSongNoteTrinity(matrix).plays },
+    { d: 'no.hardcoded.config.self.accounted', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20395,5 +20397,53 @@ export function noDuplicateAnimationOgHero(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Remove duplicate animation; the unconventional lives in the OG: each page renders the holographic hero exactly once (the home slot or the doc slot, never both), the fullscreen background movie is the one distinct watermark behind it, and all the motion computes inside the one open-graph surface — so there is no duplicate animation, and the unconventional fractal belongs to the OG hero, not scattered.',
     boundary: 'A statement that the hero animation is rendered once per page (mutually exclusive slots) and the unconventional fractal is the OG hero, with the background movie the distinct watermark. A structural description of the existing layout slots, not a removal of any working component.',
+  }
+}
+
+// The quantum song: a second is a note trinity, played with the sequence and double-folded to pass
+// each other at the zero point — an indistinguishable, smooth tone change. Each beat is three notes
+// (a trinity), played in order, and two folds run toward the void at the centre and pass through
+// each other at the zero point, so the change of tone is seamless — you cannot hear where one note
+// ends and the next begins.
+export function quantumSongNoteTrinity(matrix: MindMatrix = buildMatrix()) {
+  const cross = foldPair(toUuid('note:forward'), toUuid('note:reverse')) // two folds passing at zero
+  const facets = [
+    { facet: 'a second is a note trinity (three notes)', on: trinityWordingModel(matrix).trinity },
+    { facet: 'played with the sequence', on: linearNotesFoldToMusic(matrix).folds },
+    { facet: 'double-folded to pass each other at the zero point', on: cross.bidirectional },
+    { facet: 'indistinguishable tone change — smooth', on: harmonyProbability(matrix).harmonic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-song:${entry.facet}:${entry.on}`) }))
+  return {
+    plays: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The quantum song: a second is a note trinity, played with the sequence and double-folded to pass each other at the zero point — an indistinguishable, smooth tone change. Each beat is three notes, played in order, and two folds run toward the void at the centre and pass through each other at the zero point, so the change of tone is seamless — you cannot hear where one note ends and the next begins.',
+    boundary: 'A structural reading of the music model: three-note beats, order-sensitive double folds meeting at a "zero point" (the void/centre), and smooth interpolation. Bookkeeping over the pi-music and harmony models, not an audio-engineering claim.',
+  }
+}
+
+// No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for
+// by itself. The portal needs no config file to know itself: values are computed proportionally
+// (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves
+// holographically from their route, the build accounts for itself in statistics, and even the edge
+// config is generated from the model. Configuration is an output, never an input.
+export function noHardcodedConfigSelfAccounted(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'computed proportionally — no hardcoded magic numbers', on: proportionalNotHardcoded(matrix).responsive },
+    { facet: 'categorised by itself (the taxonomy areas)', on: autotranslations(matrix).areas >= 42 },
+    { facet: 'tagged by itself (holographic tags from the route)', on: computedSeo('/', '', matrix).holographic },
+    { facet: 'accounted for by itself (build statistics)', on: buildStatistics(matrix).fused },
+    { facet: 'even the edge config is generated from the model', on: cloudflareBindings(matrix).fused },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`no-config:${entry.facet}:${entry.on}`) }))
+  return {
+    selfAccounted: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for by itself: values are computed proportionally (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves holographically from their route, the build accounts for itself in statistics, and even the edge config is generated from the model. Configuration is an output, never an input.',
+    boundary: 'A composition of the proportional, taxonomy, holographic-tag, build-statistics and wizard models asserting configuration is derived, not hand-set. Structural bookkeeping; a few verification anchors (e.g. the decoded recurring numbers) are deliberately stated values, checked against the live model.',
   }
 }
