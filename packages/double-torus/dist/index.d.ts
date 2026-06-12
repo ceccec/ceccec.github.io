@@ -2738,6 +2738,25 @@ export declare function societyEvolves(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function textEntropy(matrix?: MindMatrix): {
+    zeroEntropy: boolean;
+    total: number;
+    referenced: number;
+    plain: number;
+    plainRatio: number;
+    entropy: number;
+    referencedRatio: number;
+    units: {
+        referenced: number;
+        plain: number;
+        receipt: string;
+        unit: string;
+        count: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

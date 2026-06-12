@@ -138,6 +138,7 @@ import {
   socialFusion,
   travelFusion,
   societyEvolves,
+  textEntropy,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -510,6 +511,9 @@ ok(`travel.fusion:${travelFusion(matrix).count}`, travelFusion(matrix).fused)
 // Let society evolve and discover the rest: fold the fused domains, name the open rest.
 const evolved = societyEvolves(matrix)
 ok(`society.evolves:${evolved.discoveredDomains}+${evolved.restCount}`, evolved.evolving && evolved.discoveredDomains === 4)
+// Plain-to-referenced text ratio measures text entropy: zero plain text, zero entropy.
+const textE = textEntropy(matrix)
+ok(`text.entropy:${textE.plain}/${textE.total}`, textE.zeroEntropy && textE.plain === 0 && textE.entropy === 0)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

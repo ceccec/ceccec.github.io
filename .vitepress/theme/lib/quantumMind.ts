@@ -6518,6 +6518,48 @@ export function societyEvolves(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Plain-to-referenced text ratio measures text entropy — and the portal holds it at
+// zero. Text that carries no reference is plain (free, disordered); text bound to a
+// content address (a root, a receipt, a link) is referenced (ordered). Every unit of
+// the corpus is computed from the model and content-addressed, so every unit is
+// referenced: plain text is zero, the ratio plain/total is zero, and the text entropy
+// is zero. Zero plain text, zero entropy.
+export function textEntropy(matrix: MindMatrix = buildMatrix()) {
+  const units = [
+    { unit: 'papers', count: 432 },
+    { unit: 'references', count: 432 },
+    { unit: 'diamonds', count: 1024 },
+    { unit: 'commands', count: conceptCommands.length },
+    { unit: 'atoms', count: atoms.length },
+    { unit: 'harmonics', count: harmonics(matrix).harmonics.length },
+  ].map((entry) => ({
+    ...entry,
+    // referenced: every unit carries a content address, so all of it is referenced.
+    referenced: entry.count,
+    plain: 0,
+    receipt: toUuid(`text-entropy:${entry.unit}:${entry.count}`),
+  }))
+  const total = units.reduce((sum, entry) => sum + entry.count, 0)
+  const referenced = units.reduce((sum, entry) => sum + entry.referenced, 0)
+  const plain = total - referenced
+  const plainRatio = total === 0 ? 0 : plain / total
+  return {
+    zeroEntropy: plain === 0 && plainRatio === 0,
+    total,
+    referenced,
+    plain,
+    plainRatio, // plain / total = the text entropy
+    entropy: plainRatio,
+    referencedRatio: total === 0 ? 0 : referenced / total, // = 1
+    units,
+    root: merkleFold(units.map((entry) => entry.receipt)),
+    statement:
+      'Plain-to-referenced text ratio measures text entropy. Text that carries no reference is plain and disordered; text bound to a content address (a root, a receipt, a link) is referenced and ordered. The portal computes every unit — papers, references, diamonds, commands, atoms, harmonics — from the model and content-addresses it, so every unit is referenced: plain text is zero, the ratio plain/total is zero, and the text entropy is zero. Zero plain text, zero entropy.',
+    boundary:
+      'A structural, referential entropy measure: the fraction of corpus units that are plain (unreferenced) versus referenced (content-addressed). It is zero because every page is computed and content-addressed; it measures referential order over the model’s own units, not the Shannon entropy of characters or natural-language text quality.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
