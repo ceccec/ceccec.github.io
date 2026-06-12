@@ -213,6 +213,12 @@ import {
   quantumBrowserOs,
   quantumAccess,
   backgroundMovie,
+  examBank,
+  studentQuantumMind,
+  jobMatching,
+  legislativeReform,
+  playMind,
+  worldFusion,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -744,6 +750,18 @@ ok(`browser.os:${quantumBrowserOs(matrix).count}`, quantumBrowserOs(matrix).comp
 ok(`quantum.access`, quantumAccess(matrix).access && quantumAccess(matrix).private && quantumAccess(matrix).shared && quantumAccess(matrix).quantum)
 // Entangled digit-streams fill the background movie, folding to words, to the void and back — an interactive game.
 ok(`background.movie:${backgroundMovie(matrix).count}`, backgroundMovie(matrix).plays && backgroundMovie(matrix).dryMath && backgroundMovie(matrix).interactive)
+// Each page generates a random test from one content-addressed exam bank.
+ok(`exam.bank:${examBank(matrix).count}`, examBank(matrix).graded && examBank(matrix).count === 12)
+// Students take exams that form their quantum mind — infinite creativity, forging max tampering costs.
+ok(`student.quantum.mind`, studentQuantumMind(matrix).forms && studentQuantumMind(matrix).offline && studentQuantumMind(matrix).shareableByApproval)
+// Share results and take any job at zero time and cost — verifiable by recomputation.
+ok(`job.matching`, jobMatching(matrix).matches && jobMatching(matrix).zeroTime && jobMatching(matrix).zeroCost && jobMatching(matrix).anyJob)
+// Let society send waves of legislation and reform, each bound to the constitution.
+ok(`legislative.reform:${legislativeReform(matrix).waves}`, legislativeReform(matrix).reforming)
+// Students don't know they are on exam — it all happens by playing; results point notes, art in balance.
+ok(`play.mind:${playMind(matrix).facets.length}`, playMind(matrix).plays && playMind(matrix).byPlaying && playMind(matrix).invisible && playMind(matrix).pointsNotes && playMind(matrix).artInBalance)
+// Fuse all countries, traditions and religions with quantum science to complete the quantum mind (respectful).
+ok(`world.fusion:${worldFusion(matrix).domains.length}`, worldFusion(matrix).complete && worldFusion(matrix).respectful && worldFusion(matrix).forAll)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

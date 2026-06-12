@@ -86,6 +86,7 @@ import WavesOfCreation from './components/WavesOfCreation.vue'
 import WebCryptoSeal from './components/WebCryptoSeal.vue'
 import HolographicHero from './components/ui/HolographicHero.vue'
 import BackgroundMovie from './components/ui/BackgroundMovie.vue'
+import PlayMind from './components/ui/PlayMind.vue'
 import './style.css'
 
 export default {
@@ -104,8 +105,9 @@ export default {
       'aside-outline-before': () => h(VitePressPossibilities),
       // Simple ⇄ Rich switch, reachable from every page's navbar.
       'nav-bar-content-after': () => h(SimpleToggle),
-      // Intelligent help + collective-mind self-development folded into every page.
-      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind)],
+      // Intelligent help + collective-mind self-development folded into every page,
+      // plus the playful quantum-mind badge (the exam that happens by just playing).
+      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind), h(PlayMind)],
     })
   },
   enhanceApp({ app }) {

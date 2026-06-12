@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { buildMatrix, threeWordWaves, seedFromText } from '../../lib/quantumMind'
 import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
 import { useTones } from '../../lib/useTones'
+import { usePlayMind, recordPlay, noteOf, artBiasOf } from '../../lib/usePlayMind'
 
 // Entangled groups of digits fill the background movie as colourful watermarks,
 // folding into letters, words and sentences — colourful streams to the void at the
@@ -11,6 +12,7 @@ import { useTones } from '../../lib/useTones'
 // random. A full-viewport watermark behind the content. Lives in components/ui.
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
+const { mind } = usePlayMind() // the student's quantum mind, formed by playing
 
 const TAU = Math.PI * 2
 const GOLDEN = Math.PI * (3 - Math.sqrt(5)) // the golden angle — new dimension on resurrection
@@ -99,9 +101,11 @@ function onTap(event: PointerEvent) {
     const py = cy + Math.sin(p.theta) * p.r * 0.62
     if (Math.hypot(px - ix, py - iy) < 90 * ratio) p.dir = 1
   }
+  // playing IS the exam: fold this play into the quantum mind (silent, offline),
+  // and let the results point the musical note the play now sounds.
+  const m = recordPlay('movie')
   if (!saveEnergy.value) {
-    const note = PENTA[Math.floor((1 - k) * PENTA.length) % PENTA.length]
-    blip(196 * Math.pow(2, note / 12), { duration: 0.18, type: 'sine' }) // pitch maps to the tap
+    blip(noteOf(m), { duration: 0.18, type: 'sine' }) // the results point the note
     if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
       navigator.vibrate([8, 16, 8]) // a light haptic, fused with the sound
     }
@@ -144,7 +148,10 @@ function draw(time: number) {
     const k = p.r / R // 0 at the void, 1 at the edge
     const x = cx + Math.cos(p.theta) * p.r
     const y = cy + Math.sin(p.theta) * p.r * 0.62 // squash → perspective toward the void
-    const hue = (p.digit * 36 + p.dim * 90 + t * 12) % 360
+    // the stream of art continues in balance with the individual: a gentle hue bias
+    // from the student's own quantum mind (a third of the way, never overwhelming).
+    const bias = artBiasOf(mind.value) * 0.33
+    const hue = (p.digit * 36 + p.dim * 90 + t * 12 + bias) % 360
     const alpha = 0.5 * (1 - k) + 0.06 // brightest folding into the void
     const size = 8 + (1 - k) * 18 // grows folding into the void
     ctx.fillStyle = `hsla(${hue}, 80%, 60%, ${alpha * 0.42})`

@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
 import { useTones } from '../../lib/useTones'
+import { recordPlay, noteOf } from '../../lib/usePlayMind'
 
 // Every page has an animated hero that merges all the page's related items —
 // its category and holographic tags — in a holographic fractal: a self-similar
@@ -198,10 +199,10 @@ function tap(event: PointerEvent | MouseEvent) {
   manual.value = true
   slider.value = Math.round(x * 1000)
   if (!running) requestAnimationFrame((t) => draw(t))
+  // playing the hero is play too: fold into the quantum mind; the results point the note.
+  const m = recordPlay('hero')
   if (!saveEnergy.value) {
-    const note = PENTA[Math.floor(x * PENTA.length) % PENTA.length]
-    const octave = Math.floor(x * 2)
-    blip(220 * Math.pow(2, (note + octave * 12) / 12), { duration: 0.16, type: 'triangle' }) // pitch follows the dimension
+    blip(noteOf(m), { duration: 0.16, type: 'triangle' }) // the results point the note
   }
 }
 </script>

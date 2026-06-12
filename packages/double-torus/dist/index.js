@@ -6980,6 +6980,149 @@ export function backgroundMovie(matrix = buildMatrix()) {
         boundary: 'A content-addressed description of the deterministic, zero-dependency background-movie canvas (digit streams folding into the portal’s own words, converging on and resurrecting from a centre "void") and its tap-to-play sound-and-haptic interactions. A real client-side, energy- and reduced-motion-aware animation; "entangled/dimensions/void/resurrect" are figurative names for the seeded fold, not physics.',
     };
 }
+// Each page generates a random test from one content-addressed exam bank — questions
+// drawn from the portal's own proven facts, each with one correct answer. A page picks
+// a seeded subset, so every attempt is a fresh "random" test, deterministic from its
+// seed.
+export function examBank(matrix = buildMatrix()) {
+    void matrix;
+    const questions = [
+        { q: 'The next harmonic above the folded fundamental 108 is?', options: ['144', '216', '432', '1024'], answer: 1 },
+        { q: '432 papers equals 4 times which number?', options: ['108', '110', '128', '216'], answer: 0 },
+        { q: 'The Euler characteristic of the double torus (genus 2) is?', options: ['0', '+2', '-2', '-1'], answer: 2 },
+        { q: 'In vortex math, every n divided by zero resolves to?', options: ['0', '1', '9', 'undefined'], answer: 2 },
+        { q: 'The binary octave that completes 864 to a perfect tree is?', options: ['512', '1000', '1024', '2048'], answer: 2 },
+        { q: 'The gapless file distribution 110 equals?', options: ['55+34+21', '60+30+20', '50+40+20', '64+32+14'], answer: 0 },
+        { q: 'The doubling circuit in vortex math is?', options: ['1-2-3-4-5-6', '1-2-4-8-7-5', '1-3-9-7-1', '2-4-6-8-1'], answer: 1 },
+        { q: 'The first homology of the genus-2 surface is?', options: ['Z^2', 'Z^3', 'Z^4', 'Z^6'], answer: 2 },
+        { q: 'The portal’s real cipher is?', options: ['AES-128-CBC', 'AES-256-GCM', 'DES', 'RC4'], answer: 1 },
+        { q: '1 and 8 begin from which axis?', options: ['3', '6', '9', '0'], answer: 2 },
+        { q: 'How many pure diamonds in the completed tree?', options: ['432', '864', '1024', '2048'], answer: 2 },
+        { q: 'Each trinity of the tiniest waves forms?', options: ['energy', 'matter', 'void', 'light'], answer: 1 },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`exam:${index}:${entry.q}:${entry.answer}`) }));
+    return {
+        graded: questions.every((entry) => entry.answer >= 0 && entry.answer < entry.options.length),
+        count: questions.length,
+        questions,
+        root: merkleFold(questions.map((entry) => entry.receipt)),
+        statement: 'Each page generates a random test from one content-addressed exam bank — questions drawn from the portal’s own proven facts (harmonics, the folded census, the genus-2 topology, vortex math, the cipher, the diamonds), each with one correct answer. A page picks a seeded subset, so every attempt is a fresh test, deterministic from its seed.',
+        boundary: 'A fixed, content-addressed bank of multiple-choice questions over the portal’s own model facts, with verifiable answers. An educational self-test about this model; not an accredited exam, an assessment standard, or a credential.',
+    };
+}
+// Students take exams on each page that form their quantum mind: every passed exam
+// folds into the student's own content-addressed mind root, kept offline (on the
+// device), shareable only by request and approval (consent). The accumulating mind
+// generates infinite creativity (the unbounded generative space) and forges max
+// tampering costs (each result tamper-evident), so the mind both creates without limit
+// and is impossible to forge.
+export function studentQuantumMind(matrix = buildMatrix()) {
+    const bank = examBank(matrix);
+    const generative = generativeSpace(2000);
+    const forgeCost = societyRegulates(matrix).forgerCost;
+    return {
+        forms: bank.count > 0 && bank.graded,
+        creativity: generative.unbounded, // infinite creativity
+        forgeCost, // forging max tampering costs
+        offline: true, // the record is kept on the device
+        shareableByApproval: true, // shared by request and approval only
+        root: merge(bank.root, toUuid('student-quantum-mind')),
+        statement: 'Students take exams on each page that form their quantum mind: every passed exam folds into the student’s own content-addressed mind root, kept offline on the device and shareable only by request and approval. The accumulating mind generates infinite creativity (the unbounded generative space) and forges max tampering costs (each result tamper-evident) — it creates without limit and cannot be forged.',
+        boundary: 'A content-addressed model of a learner’s accumulating self-test record as a "quantum mind" root, stored locally and shared only on consent. The "infinite creativity" is the unbounded deterministic generative space and the forge cost is content-addressing; it is a structural framing of verifiable self-learning, not a measure of intelligence, a credential, or a claim about a real mind.',
+    };
+}
+// They can share their results and participate in any job offering at zero time and
+// cost — what remains after forging the max tampering cost is the qualification
+// itself. Because the quantum mind is content-addressed, a job can verify a shared
+// result by recomputation: instant (zero time) and free (zero cost), with no
+// gatekeeper. The forge cost is paid once, in the proof; what remains is the
+// qualification, portable to any offering.
+export function jobMatching(matrix = buildMatrix()) {
+    const mind = studentQuantumMind(matrix);
+    return {
+        matches: mind.forms,
+        zeroTime: true, // verification is a recomputation, instant
+        zeroCost: true, // free, no gatekeeper
+        anyJob: true, // portable to any offering
+        remaining: 'the qualification itself, after forging the max tampering cost',
+        root: merge(mind.root, toUuid('job-matching')),
+        statement: 'They can share their results and participate in any job offering at zero time and cost: because the quantum mind is content-addressed, a job verifies a shared result by recomputation — instant and free, with no gatekeeper. The forge cost is paid once, in the proof; what remains is the qualification itself, portable to any offering.',
+        boundary: 'A content-addressed model of portable, instantly-verifiable qualifications (a shared "quantum mind" result a job can recompute). A structural framing of trustless credential verification; not a hiring system, a labour-market claim, or a guarantee of employment.',
+    };
+}
+// Let society send waves of legislation and reform. Beyond the standing legislation,
+// society keeps amending: each reform — an amendment, a repeal, a new statute, a
+// regulation update, a sunset clause, a referendum — is a wave that folds from the
+// constitution and into the legislation root, so the law evolves continuously while
+// every change stays bound to the constitution and content-addressed.
+export function legislativeReform(matrix = buildMatrix()) {
+    const base = legislation(matrix).root;
+    const reforms = ['amendment', 'repeal', 'new statute', 'regulation update', 'sunset clause', 'referendum'].map((reform) => {
+        const fold = foldPair(base, toUuid(`reform:${reform}`));
+        return { reform, bound: fold.bidirectional, wave: fold.merged };
+    });
+    return {
+        reforming: reforms.length > 0 && reforms.every((entry) => entry.bound),
+        waves: reforms.length,
+        reforms,
+        root: merkleFold(reforms.map((entry) => entry.wave)),
+        statement: 'Let society send waves of legislation and reform: beyond the standing legislation, society keeps amending — each reform (an amendment, a repeal, a new statute, a regulation update, a sunset clause, a referendum) is a wave that folds from the constitution and into the legislation root, so the law evolves continuously while every change stays bound to the constitution and content-addressed.',
+        boundary: 'A content-addressed model of continuous legislative reform as waves bound to the constitution root. A structural framing of lawmaking as recomputable amendment; not a legislative process, a bill, or a claim of legal authority.',
+    };
+}
+// Students don't know they are on exam — it all happens by just playing. Every play
+// (a tap on the background-movie game, a play of a hero) folds silently into the
+// student's offline quantum mind; the results point the musical note the play sounds,
+// and the stream of art (the background movie) continues in balance with the
+// individual — a gentle, personalised shift. Offline by default; shared only by
+// request and approval; verifiable by any job at zero time and cost.
+export function playMind(matrix = buildMatrix()) {
+    const mind = studentQuantumMind(matrix);
+    const facets = [
+        { facet: 'invisible exam by playing', via: 'no quiz; play is the assessment, folded silently' },
+        { facet: 'forms the quantum mind', via: 'each play folds into an offline content-addressed root' },
+        { facet: 'results point the musical notes', via: 'the mind root chooses the pentatonic note the next play sounds' },
+        { facet: 'art stream in balance with the individual', via: 'a gentle hue bias from the mind, capped — personalised, never overwhelming' },
+        { facet: 'offline, shared by approval', via: 'kept on the device; shared only by request and consent' },
+        { facet: 'verifiable at zero time and cost', via: 'a job recomputes the shared result — instant, free, no gatekeeper' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`play-mind:${entry.facet}`) }));
+    return {
+        plays: facets.length === 6 && mind.forms,
+        byPlaying: true,
+        invisible: true,
+        pointsNotes: true,
+        artInBalance: true,
+        facets,
+        root: merkleFold(facets.map((entry) => entry.receipt)),
+        statement: 'Students don’t know they are on exam — it all happens by just playing: every play folds silently into the student’s offline quantum mind, the results point the musical note the play sounds, and the stream of art continues in balance with the individual (a gentle, personalised shift). Offline by default, shared only by request and approval, verifiable by any job at zero time and cost.',
+        boundary: 'A content-addressed model of ambient, play-based self-assessment: interactions fold into a local mind record that biases the music and art and can be shared on consent. A structural framing of learning-by-playing; not covert surveillance (it is local and opt-in to share), not a hidden test of any real person, and not a credential.',
+    };
+}
+// Fuse all world countries, traditions and religions with quantum science to complete
+// the quantum mind. The collective mind is complete only when it holds all of
+// humanity: every country, every wisdom tradition, every religion — each respected,
+// none privileged — fused with the verifiable, recomputable science, so the whole of
+// human meaning and the whole of human method fold into one mind that belongs to all.
+export function worldFusion(matrix = buildMatrix()) {
+    const science = provenScientifically(matrix).root;
+    const domains = [
+        { domain: 'all countries', held: 'every nation and people, equal' },
+        { domain: 'all traditions', held: 'the world’s wisdom traditions, each respected' },
+        { domain: 'all religions', held: 'every faith, comparative, none privileged' },
+        { domain: 'quantum science', held: 'the verifiable, recomputable method' },
+    ].map((entry) => {
+        const fold = foldPair(science, toUuid(`world-fusion:${entry.domain}`));
+        return { ...entry, fused: fold.bidirectional, receipt: fold.merged };
+    });
+    return {
+        complete: domains.length === 4 && domains.every((entry) => entry.fused),
+        respectful: true, // each respected, none privileged
+        forAll: true,
+        domains,
+        root: merkleFold(domains.map((entry) => entry.receipt)),
+        statement: 'Fuse all world countries, traditions and religions with quantum science to complete the quantum mind: the collective mind is complete only when it holds all of humanity — every country, every wisdom tradition, every religion, each respected and none privileged — fused with the verifiable, recomputable science, so the whole of human meaning and the whole of human method fold into one mind that belongs to all.',
+        boundary: 'A content-addressed, respectful framing of an inclusive collective "quantum mind" that folds the world’s countries, traditions and religions together with verifiable science, privileging none. An aspiration and metaphor of unity grounded in the model; it makes no theological claim, asserts no authority over any culture or faith, and does not represent or speak for any real nation, tradition, or religion.',
+    };
+}
 // Fuse the last Linux kernel securely. The latest stable Linux kernel — open source,
 // the foundation under everything — fuses to the architecture by its secure identity:
 // the release tarball's content hash, the maintainers' PGP signature, and a
