@@ -6077,7 +6077,7 @@ export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
     return {
       params: {
         ...paper,
-        skill: paper.id, // the dynamic segment: the page is this skill, addressed by its id
+        index: paper.id, // the dynamic segment: every page file is an index file, addressed by its id
         ax: round(46 * Math.cos(paper.theta)),
         ay: round(46 * Math.sin(paper.theta)),
         bx: round(28 * Math.cos(paper.phi)),
@@ -6166,7 +6166,7 @@ export function paperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count =
   return references.map((reference) => ({
     params: {
       ...reference,
-      skill: reference.id, // the dynamic segment: the page is this skill, addressed by its id
+      index: reference.id, // the dynamic segment: every page file is an index file, addressed by its id
       total: references.length,
       corpusRoot: corpus.root,
       binaryOctave: corpus.target,
@@ -6352,7 +6352,7 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
   const architecture = completeCorpus(matrix).root
   const points = [
     { point: 'transformPageData', api: 'config hook', binds: 'computed SEO, holographic tags and categories into every page' },
-    { point: 'dynamic routes', api: '[skill].paths.ts', binds: 'the 432 papers and 432 references as native pages' },
+    { point: 'dynamic routes', api: '[index].paths.ts', binds: 'the 432 papers and 432 references as native pages' },
     { point: 'enhanceApp', api: 'theme', binds: 'component registration and the service worker' },
     { point: 'SSR render', api: 'build', binds: 'the computed model into static HTML' },
     { point: 'local search', api: 'themeConfig.search', binds: 'a MiniSearch index over the fused content' },
@@ -6501,8 +6501,8 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
     return {
       params: {
         id,
-        skill: id, // the dynamic segment: the page is this skill, addressed by its id
-        index,
+        index: id, // the dynamic segment: every page file is an index file, addressed by its id
+        leaf: index, // the position in the 1024-leaf lattice
         number,
         address,
         kind,
@@ -19673,6 +19673,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.computed.type.of.use', on: allComputedByTypeOfUse(matrix).computed },
     { d: 'only.main.remains', on: onlyMainRemains(matrix).remains },
     { d: 'folder.law.word.digit.index.skill', on: folderLawWordDigitIndexSkill(matrix).lawful },
+    { d: 'only.index.files.no.exceptions', on: onlyIndexFilesNoExceptions(matrix).only },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20869,24 +20870,32 @@ export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The folder law, declared once: every folder of the page tree is named by one lowercase word or
-// one number, and a skill folder — one that binds computed pages through a dynamic route — holds
-// exactly two things: its index and its skill (the dynamic page and its paths, both named skill).
-// The harmonic-distribution wave enforces this against the real tree and exits non-zero on any
-// violation: the tests fail, without exception. Machinery the site itself excludes (dot-folders,
-// node_modules, srcExclude) is outside the page tree — not an exception to the law.
+// The folder law, declared once and tightened: below the roots there can be only index files and
+// word-or-digit folders — no exceptions. The two roots (the English root and its Bulgarian mirror
+// bg) are the trunk; their own pages are governed by the octave-parity harmonic. Every folder
+// below them must be named by one lowercase word or one number, and may contain only index files:
+// index.md, and the computed pair [index].md + [index].paths.ts — the dynamic page is itself an
+// index file, the bracketed index of the computed corpus. The harmonic-distribution wave enforces
+// this against the real tree and exits non-zero on any violation, each failure carrying a
+// detailed why. Machinery the site itself excludes (dot-folders, node_modules, srcExclude) is
+// outside the page tree — not an exception to the law.
 export function folderLaw() {
   return {
     word: '^[a-z]+$',
     digit: '^[0-9]+$',
-    stems: ['index', 'skill'],
-    skillFiles: ['index.md', '[skill].md', '[skill].paths.ts'],
-    skillFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
+    stems: ['index'],
+    indexFiles: ['index.md', '[index].md', '[index].paths.ts'],
+    computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
+    roots: ['.', 'bg'], // the trunk: the English root and the Bulgarian mirror
     outsidePageTree: ['packages'], // mirrors config srcExclude; the wave checks they agree
+    why: {
+      name: 'a folder is an address in the page tree, and an address must be one word or one number — a compound or decorated name is two thoughts where the law allows one; rename the folder to a single lowercase word or a digit, or fold its contents into a folder that already obeys',
+      contents: 'below the roots every file must be an index: index.md is the folder’s own index, and the computed pair [index].md + [index].paths.ts is the bracketed index of the corpus — any other file is a second kind, a duplication the dryness forbids; move its content into the index, the computed corpus, or the theme',
+    },
     statement:
-      'The folder law: every page-tree folder is named one word or one digit, and a skill folder contains nothing but the index and the skill. Tests fail, without exception, on any violation.',
+      'The folder law: below the roots there can be only index files and word-or-digit folders, with no exceptions. Tests fail on any violation, and each failure explains in detail why.',
     boundary:
-      'The law is declared here (the name patterns, the two stems, the skill folders and their three files) and enforced by the harmonic-distribution check against the real tree. It governs the page tree the site renders; what the site excludes is outside the tree, not exempted from the law.',
+      'The law is declared here (the name patterns, the one stem, the index files, the roots) and enforced by the harmonic-distribution check against the real tree. It governs the page tree the site renders; the two roots are the trunk whose pages the octave-parity harmonic governs, and what the site excludes is outside the tree, not exempted from the law.',
   }
 }
 
@@ -20902,16 +20911,16 @@ export function folderLawWordDigitIndexSkill(matrix: MindMatrix = buildMatrix())
   const stemOf = (file: string) => file.replace(/\.paths\.ts$|\.md$/, '').replace(/^\[(.+)\]$/, '$1')
   const facets = [
     {
-      facet: 'every page folder named one word — bg and the skill folders',
-      on: ['bg', ...law.skillFolders.flatMap((folder) => folder.split('/'))].every((name) => word.test(name) || digit.test(name)),
+      facet: 'every page folder named one word — bg and the computed folders',
+      on: ['bg', ...law.computedFolders.flatMap((folder) => folder.split('/'))].every((name) => word.test(name) || digit.test(name)),
     },
     {
       facet: 'every digit folder named by digits',
       on: digitFolders(matrix).folders.every((entry) => entry.folder.split('/').every((part) => digit.test(part))),
     },
     {
-      facet: 'a skill folder holds only the index and the skill',
-      on: law.skillFiles.every((file) => law.stems.includes(stemOf(file))),
+      facet: 'a computed folder holds only index files',
+      on: law.indexFiles.every((file) => law.stems.includes(stemOf(file))),
     },
     { facet: 'folders redistributed dry — one source, no drift', on: redistributeFoldersDryWaves(matrix).balanced },
     { facet: 'violations ring the resonance — the tests fail, no exception', on: resonanceCatchGapsViolations(matrix).rings },
@@ -20922,8 +20931,35 @@ export function folderLawWordDigitIndexSkill(matrix: MindMatrix = buildMatrix())
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Tests fail without exception if a folder name is different than a word or a digit, or the folder contains other files than index and skill: the folder law is declared once — word-or-digit names, index-and-skill contents — and enforced by the harmonic wave against the real tree, exiting non-zero on any violation. No warning mode, no exempted folder; the dynamic pages are the skills, so each skill folder is exactly an index and a skill.',
+      'Tests fail without exception if a folder name is different than a word or a digit, or the folder contains other files than its indexes: the folder law is declared once — word-or-digit names, index-only contents — and enforced by the harmonic wave against the real tree, exiting non-zero on any violation. No warning mode, no exempted folder; the dynamic pages are bracketed indexes, so each computed folder is nothing but index files.',
     boundary:
       'A gate over the declared folder law, the digit-folder model, the dry redistribution and the violation-catching resonance. The real enforcement is the harmonic-distribution check at build time; this gate folds the law into the dimensions so a broken law also opens the seal.',
+  }
+}
+
+// There can be only index files and word-or-digit folders, with no exceptions — and when the
+// tests fail they say in detail why. The law tightened to one stem: below the two roots every
+// file is an index (the folder's index.md, or the computed pair [index].md + [index].paths.ts —
+// the dynamic page is itself a bracketed index of the corpus), and every folder is one word or
+// one number. Each violation the wave reports carries the law, the offender, the pattern it
+// failed, and the fix — a detailed why, not a bare failure.
+export function onlyIndexFilesNoExceptions(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const facets = [
+    { facet: 'one stem only — every file below the roots is an index', on: law.stems.length === 1 && law.stems[0] === 'index' },
+    { facet: 'the computed pair is itself an index — [index].md + [index].paths.ts', on: law.indexFiles.every((file) => file.includes('index')) },
+    { facet: 'every folder one word or one digit — the law gate holds', on: folderLawWordDigitIndexSkill(matrix).lawful },
+    { facet: 'failures carry a detailed why — name and contents', on: law.why.name.length > 0 && law.why.contents.length > 0 },
+    { facet: 'words harmonised to the minimum — one name, one kind', on: harmoniseWordsToMinimum(matrix).harmonised },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`only-index:${entry.facet}:${entry.on}`) }))
+  return {
+    only: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'There can be only index files and word-or-digit folders, with no exceptions — tests fail with a detailed why: below the two roots every file is an index (the folder’s index.md or the computed pair [index].md + [index].paths.ts, the bracketed index of the corpus) and every folder is one word or one number; the harmonic wave enforces the law against the real tree and every violation it reports explains the law, the offender, the failed pattern, and the fix.',
+    boundary:
+      'The tightened folder law: one stem (index), word-or-digit folder names, detailed why-texts carried by the law itself. The two roots are the trunk whose own pages the octave-parity harmonic governs; below them the law is absolute. Enforcement is the harmonic-distribution check; this fold seals the law into the dimensions.',
   }
 }

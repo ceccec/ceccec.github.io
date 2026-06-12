@@ -21,7 +21,7 @@ the **{{ params.kind }}** diamond.
 ## This folder
 
 - **Kind** — {{ params.kind }} <span class="diamond-glyph-sm">{{ params.glyph }}</span>
-- **Index** — {{ params.index }} of {{ params.total }} (2¹⁰)
+- **Index** — {{ params.leaf }} of {{ params.total }} (2¹⁰)
 - **{{ params.label }}**
 - **Corpus root** — <span class="paper-mono">{{ params.corpusRoot }}</span>
 

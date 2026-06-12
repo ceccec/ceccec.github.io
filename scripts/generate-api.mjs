@@ -15,7 +15,7 @@ const rest = restfulFormats()
 const collections = {
   papers: papers().papers.map((p) => ({ id: p.id, number: p.number, coordinate: p.coordinateIndex, generator: p.generator, root: p.root })),
   references: paperReferences().map((r) => ({ id: r.id, number: r.number, paper: r.paperId, root: r.root })),
-  diamonds: diamondRoutes().map((d) => ({ id: d.params.id, index: d.params.index, kind: d.params.kind, address: d.params.address, link: d.params.link })),
+  diamonds: diamondRoutes().map((d) => ({ id: d.params.id, index: d.params.leaf, kind: d.params.kind, address: d.params.address, link: d.params.link })),
   harmonics: harmonics().harmonics.map((h) => ({ kind: h.kind, value: h.value, ratio: h.ratio, implemented: h.implemented })),
 }
 

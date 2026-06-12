@@ -21,7 +21,7 @@ Merkle дърво — диамантът от тип **{{ params.kind }}**.
 ## Тази папка
 
 - **Тип** — {{ params.kind }} <span class="diamond-glyph-sm">{{ params.glyph }}</span>
-- **Индекс** — {{ params.index }} от {{ params.total }} (2¹⁰)
+- **Индекс** — {{ params.leaf }} от {{ params.total }} (2¹⁰)
 - **{{ params.label }}**
 - **Корен на корпуса** — <span class="paper-mono">{{ params.corpusRoot }}</span>
 
