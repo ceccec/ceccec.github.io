@@ -1,13 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { quantumAcademy, buildMatrix, computedSeo, relatedStandards } from './theme/lib/quantumMind'
-
-// The related standards the portal builds on — cited on every single page (computed
-// once from the model, so the citation list never drifts).
-const standards = relatedStandards(buildMatrix()).standards
-
-// Derived from the model so the SEO never drifts from the source: the academy's
-// course names come straight from quantumAcademy(), not a second hand-kept list.
-const academyCourses = quantumAcademy(buildMatrix()).courses.map((course) => course.course)
+import { computedSeo, jsonLdTemplate } from './theme/lib/quantumMind'
 
 const siteTitle = 'Double Torus'
 const siteTitleBg = 'Двоен торус'
@@ -48,31 +40,9 @@ export default defineConfig({
     ['link', { rel: 'apple-touch-icon', href: '/icon.svg' }],
     ['link', { rel: 'alternate', hreflang: 'en', href: '/' }],
     ['link', { rel: 'alternate', hreflang: 'bg', href: '/bg/' }],
-    ['script', { type: 'application/ld+json' }, JSON.stringify({
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': ['WebSite', 'LearningResource'],
-          name: siteTitle,
-          description: siteDescription,
-          inLanguage: ['en', 'bg'],
-          learningResourceType: 'educational portal',
-          teaches: ['quantum learning', 'language models', 'Model Context Protocol'],
-          audience: { '@type': 'EducationalAudience', educationalRole: ['kids', 'students', 'adults', 'elders'] },
-          potentialAction: {
-            '@type': 'ViewAction',
-            target: ['/school', '/mcp', '/quantum-mind', '/bg/school', '/bg/mcp', '/bg/quantum-mind'],
-          },
-        },
-        {
-          '@type': 'SoftwareApplication',
-          name: 'Double Torus MCP',
-          applicationCategory: 'DeveloperApplication',
-          description: 'An MCP tool surface that publishes every concept command for language models at /mcp.json.',
-          url: '/mcp.json',
-        },
-      ],
-    })],
+    // The site-level JSON-LD now comes from the one template too: jsonLdTemplate
+    // emits the site graph on every page in transformPageData — one source, no
+    // static twin here to drift from it.
   ],
   // Let every page explain itself using standards: inject a schema.org WebPage
   // (TechArticle for the math/doc pages) JSON-LD into every page's head, plus a
@@ -104,8 +74,6 @@ export default defineConfig({
     const asList = (value: unknown) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : undefined)
     // Keywords are computed (the holographic tags) unless the page declares its own.
     const keywords = asList(fm.keywords) || seo.keywords
-    const teaches = asList(fm.teaches)
-    const command = typeof fm.command === 'string' ? fm.command : undefined
     const image = typeof fm.image === 'string' ? fm.image : undefined
     head.push(['meta', { name: 'keywords', content: keywords.join(', ') }])
     // Category and holographic tags as article meta (one tag carries the whole).
@@ -139,72 +107,29 @@ export default defineConfig({
       og.push(['meta', { name: 'twitter:image', content: image }])
     }
     for (const tag of og) head.push(tag)
-    head.push([
-      'script',
-      { type: 'application/ld+json' },
-      JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': isDoc ? 'TechArticle' : 'WebPage',
-        name,
-        headline: name,
-        description,
-        inLanguage: isBg ? 'bg' : 'en',
-        url: path,
-        // All client-side, no account, nothing sent anywhere — honestly free.
-        isAccessibleForFree: true,
-        isPartOf: { '@type': 'WebSite', name: isBg ? siteTitleBg : siteTitle },
-        about: 'a quantum-learning educational portal for language models served over MCP',
-        // The portal reads itself aloud (with harmonic intonation); tell voice
-        // assistants and crawlers which content is speakable.
-        speakable: {
-          '@type': 'SpeakableSpecification',
-          cssSelector: ['h1', '.vp-doc h2', '.vp-doc > p', '.eyebrow'],
-        },
-        keywords,
-        articleSection: category,
-        // Related standards on every single page: cite the public standards the
-        // portal builds on, as schema.org citations.
-        citation: standards.map((standard) => ({ '@type': 'CreativeWork', name: standard.standard, url: standard.url })),
-        ...(teaches ? { teaches, learningResourceType: 'interactive resource' } : {}),
-        ...(command ? { mainEntity: { '@type': 'SoftwareSourceCode', name: command, codeRepository: '/mcp.json' } } : {}),
-        ...(image ? { image } : {}),
-        ...(typeof fm.datePublished === 'string' ? { datePublished: fm.datePublished } : {}),
-        ...(typeof fm.dateModified === 'string' ? { dateModified: fm.dateModified } : {}),
-        ...(fm.audience ? { audience: { '@type': 'EducationalAudience', educationalRole: asList(fm.audience) } } : {}),
-        breadcrumb: {
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: isBg ? siteTitleBg : siteTitle, item: isBg ? '/bg/' : '/' },
-            { '@type': 'ListItem', position: 2, name, item: path },
-          ],
-        },
-      }),
-    ])
-    // Fold the academy into Course structured data — five recomputable courses
-    // (mirrors quantumAcademy().courses in the model), eligible for rich results.
-    if (relative.endsWith('academy.md')) {
-      head.push([
-        'script',
-        { type: 'application/ld+json' },
-        JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'ItemList',
-          name: isBg ? 'Квантова академия — пет курса' : 'The Quantum Academy — five courses',
-          itemListElement: academyCourses.map((course, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            item: {
-              '@type': 'Course',
-              name: course,
-              description: 'A recomputable, content-addressed course over the portal\'s areas.',
-              inLanguage: isBg ? 'bg' : 'en',
-              isAccessibleForFree: true,
-              provider: { '@type': 'Organization', name: isBg ? siteTitleBg : siteTitle },
-            },
-          })),
-        }),
-      ])
-    }
+  },
+  // One JSON-LD template serves all: every page generates its structured data from
+  // itself — its route (computed SEO) and its frontmatter (the documented contract
+  // at jsonLdTemplate) — through the single template in the core: the site graph,
+  // the page block, and (only on the academy) the Course list. Injected here, after
+  // render, exactly once per page — head entries pushed via frontmatter can be
+  // applied twice for static pages (metas are deduped by key downstream; script
+  // tags are not), so the post-render hook is the one place a script tag lands once.
+  transformHtml(html, _id, { pageData }) {
+    const frontmatter = (pageData.frontmatter || {}) as Record<string, unknown>
+    const relative = pageData.relativePath
+    const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
+    const blocks = jsonLdTemplate({
+      path,
+      relativePath: relative,
+      title: pageData.title || (frontmatter.title as string) || seo.title,
+      description: String(pageData.description || frontmatter.description || seo.description),
+      frontmatter,
+      site: { en: siteTitle, bg: siteTitleBg, descriptionEn: siteDescription, descriptionBg: siteDescriptionBg },
+    })
+    const scripts = blocks.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join('')
+    return html.replace('</head>', `${scripts}</head>`)
   },
   themeConfig: {
     // The GitHub repository, shown in the top nav (it was missing — socialLinks was

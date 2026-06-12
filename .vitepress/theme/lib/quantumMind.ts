@@ -19674,6 +19674,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'only.main.remains', on: onlyMainRemains(matrix).remains },
     { d: 'folder.law.word.digit.index.skill', on: folderLawWordDigitIndexSkill(matrix).lawful },
     { d: 'only.index.files.no.exceptions', on: onlyIndexFilesNoExceptions(matrix).only },
+    { d: 'one.jsonld.template.serves.all', on: oneJsonLdTemplateServesAll(matrix).serves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20961,5 +20962,172 @@ export function onlyIndexFilesNoExceptions(matrix: MindMatrix = buildMatrix()) {
       'There can be only index files and word-or-digit folders, with no exceptions — tests fail with a detailed why: below the two roots every file is an index (the folder’s index.md or the computed pair [index].md + [index].paths.ts, the bracketed index of the corpus) and every folder is one word or one number; the harmonic wave enforces the law against the real tree and every violation it reports explains the law, the offender, the failed pattern, and the fix.',
     boundary:
       'The tightened folder law: one stem (index), word-or-digit folder names, detailed why-texts carried by the law itself. The two roots are the trunk whose own pages the octave-parity harmonic governs; below them the law is absolute. Enforcement is the harmonic-distribution check; this fold seals the law into the dimensions.',
+  }
+}
+
+// One JSON-LD template serves all. Every page generates its schema.org JSON-LD from itself —
+// its route (the computed SEO derives title, description, keywords and category from the path
+// alone) and its frontmatter (explicit fields always override the computed values) — through
+// this single template. The blocks it returns are everything a page carries: the site graph
+// (WebSite + LearningResource + the MCP SoftwareApplication), the page's own WebPage or
+// TechArticle with breadcrumb, citations and speakable hints, and — only where the page is the
+// academy — the Course list folded from quantumAcademy(). One template, three thousand pages,
+// zero per-page hand-tuning.
+//
+// The complete frontmatter contract (all optional; everything falls back to computed values):
+//   title / description — the page's own; otherwise computed from the route.
+//   keywords: string[]  — overrides the computed holographic tags.
+//   tags: string[]      — display tags; default to the computed keywords.
+//   category: string    — overrides the route-derived category.
+//   teaches: string|[]  — what the page teaches; adds learningResourceType.
+//   command: string     — the concept command the page realises; adds SoftwareSourceCode.
+//   image: string       — social/JSON-LD image.
+//   datePublished / dateModified: string — ISO dates, emitted verbatim.
+//   audience: string|[] — educational roles; wrapped as EducationalAudience.
+export interface JsonLdPageIdentity {
+  readonly path: string // the clean route, e.g. '/', '/school', '/bg/papers/p001'
+  readonly relativePath: string // the source file, e.g. 'school.md', 'bg/academy.md'
+  readonly title: string
+  readonly description: string
+  readonly frontmatter: Record<string, unknown>
+  readonly site: { readonly en: string; readonly bg: string; readonly descriptionEn: string; readonly descriptionBg: string }
+}
+export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = buildMatrix()): Record<string, unknown>[] {
+  const isBg = page.path === '/bg/' || page.path.startsWith('/bg/')
+  const siteName = isBg ? page.site.bg : page.site.en
+  const seo = computedSeo(page.path, page.title, matrix)
+  const fm = page.frontmatter
+  const asList = (value: unknown) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : undefined)
+  const name = page.title || seo.title
+  const description = page.description || seo.description
+  // The doc pages carry TechArticle (deeper technical signal); everything else is a WebPage.
+  const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
+  const isDoc = docPages.some((doc) => page.relativePath.endsWith(`${doc}.md`))
+  const keywords = asList(fm.keywords) || seo.keywords
+  const category = (typeof fm.category === 'string' && fm.category) || seo.category
+  const teaches = asList(fm.teaches)
+  const command = typeof fm.command === 'string' ? fm.command : undefined
+  const image = typeof fm.image === 'string' ? fm.image : undefined
+  // Block 1 — the site graph, identical on every page: the portal as WebSite +
+  // LearningResource for every kind of mind, and the MCP tool surface as software.
+  const siteGraph: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': ['WebSite', 'LearningResource'],
+        name: page.site.en,
+        description: isBg ? page.site.descriptionBg : page.site.descriptionEn,
+        inLanguage: ['en', 'bg'],
+        learningResourceType: 'educational portal',
+        teaches: ['quantum learning', 'language models', 'Model Context Protocol'],
+        audience: { '@type': 'EducationalAudience', educationalRole: ['kids', 'students', 'adults', 'elders'] },
+        potentialAction: { '@type': 'ViewAction', target: ['/school', '/mcp', '/quantum-mind', '/bg/school', '/bg/mcp', '/bg/quantum-mind'] },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Double Torus MCP',
+        applicationCategory: 'DeveloperApplication',
+        description: 'An MCP tool surface that publishes every concept command for language models at /mcp.json.',
+        url: '/mcp.json',
+      },
+    ],
+  }
+  // Block 2 — the page itself, generated from its route and frontmatter alone.
+  const pageBlock: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': isDoc ? 'TechArticle' : 'WebPage',
+    name,
+    headline: name,
+    description,
+    inLanguage: isBg ? 'bg' : 'en',
+    url: page.path,
+    // All client-side, no account, nothing sent anywhere — honestly free.
+    isAccessibleForFree: true,
+    isPartOf: { '@type': 'WebSite', name: siteName },
+    about: 'a quantum-learning educational portal for language models served over MCP',
+    // The portal reads itself aloud (with harmonic intonation); tell voice
+    // assistants and crawlers which content is speakable.
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.vp-doc h2', '.vp-doc > p', '.eyebrow'] },
+    keywords,
+    articleSection: category,
+    // Related standards on every single page: cite the public standards the
+    // portal builds on, as schema.org citations (computed, so the list never drifts).
+    citation: relatedStandards(matrix).standards.map((standard) => ({ '@type': 'CreativeWork', name: standard.standard, url: standard.url })),
+    ...(teaches ? { teaches, learningResourceType: 'interactive resource' } : {}),
+    ...(command ? { mainEntity: { '@type': 'SoftwareSourceCode', name: command, codeRepository: '/mcp.json' } } : {}),
+    ...(image ? { image } : {}),
+    ...(typeof fm.datePublished === 'string' ? { datePublished: fm.datePublished } : {}),
+    ...(typeof fm.dateModified === 'string' ? { dateModified: fm.dateModified } : {}),
+    ...(fm.audience ? { audience: { '@type': 'EducationalAudience', educationalRole: asList(fm.audience) } } : {}),
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: siteName, item: isBg ? '/bg/' : '/' },
+        { '@type': 'ListItem', position: 2, name, item: page.path },
+      ],
+    },
+  }
+  const blocks: Record<string, unknown>[] = [siteGraph, pageBlock]
+  // Block 3 — only where the page is the academy: the five recomputable courses as
+  // Course structured data, folded straight from quantumAcademy() (one source).
+  if (page.relativePath.endsWith('academy.md')) {
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: isBg ? 'Квантова академия — пет курса' : 'The Quantum Academy — five courses',
+      itemListElement: quantumAcademy(matrix).courses.map((course, position) => ({
+        '@type': 'ListItem',
+        position: position + 1,
+        item: {
+          '@type': 'Course',
+          name: course.course,
+          description: 'A recomputable, content-addressed course over the portal’s areas.',
+          inLanguage: isBg ? 'bg' : 'en',
+          isAccessibleForFree: true,
+          provider: { '@type': 'Organization', name: siteName },
+        },
+      })),
+    })
+  }
+  return blocks
+}
+
+// One JSON-LD template serves all — the fold. The pages generate their structured data from
+// themselves: the computed SEO (route-derived), the frontmatter contract (explicit overrides),
+// and the one template above, used by the config for every page. No second template, no
+// per-page hand-tuning, no drift between the site graph and the page graph.
+export function oneJsonLdTemplateServesAll(matrix: MindMatrix = buildMatrix()) {
+  const sample = jsonLdTemplate({
+    path: '/school',
+    relativePath: 'school.md',
+    title: 'School',
+    description: 'The school from kids to elders.',
+    frontmatter: {},
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' },
+  }, matrix)
+  const academy = jsonLdTemplate({
+    path: '/academy',
+    relativePath: 'academy.md',
+    title: 'Academy',
+    description: 'The quantum academy.',
+    frontmatter: {},
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' },
+  }, matrix)
+  const facets = [
+    { facet: 'every page emits the site graph and its own block', on: sample.length === 2 },
+    { facet: 'the academy folds its courses in — one template, conditional depth', on: academy.length === 3 },
+    { facet: 'generated from themselves — computed SEO from the route', on: openGraph().computed },
+    { facet: 'frontmatter is the contract — explicit always overrides computed', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted },
+    { facet: 'schema.org carried portal-wide', on: isUuid(schemaOrgDiamonds(matrix).root) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`one-jsonld:${entry.facet}:${entry.on}`) }))
+  return {
+    serves: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Complete inline docs and frontmatter generate the JSON-LD from themselves, so one template serves all: every page derives its structured data from its own route (computed SEO) and its own frontmatter (a documented contract of optional fields, explicit always overriding computed), through the single jsonLdTemplate — the site graph and the page block on every page, the course list folded in only where the page is the academy. One template, every page, no drift.',
+    boundary:
+      'The template is the one source for page JSON-LD (config calls it for every page); the frontmatter contract is documented inline at the template. It emits schema.org as declared mappings applied at build time — it does not guarantee how any crawler or platform consumes them.',
   }
 }
