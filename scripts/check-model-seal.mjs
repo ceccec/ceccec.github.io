@@ -161,6 +161,8 @@ import {
   publicServices,
   occupiedPopulation,
   realtimeSkills,
+  dissolveIntoNature,
+  electricalGrid,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -587,6 +589,10 @@ ok(`public.services:${publicServices(matrix).count}`, publicServices(matrix).dev
 ok(`occupied.population:${occupiedPopulation(matrix).benefits}`, occupiedPopulation(matrix).proven && occupiedPopulation(matrix).forEveryone)
 // Upgrade all skills for realtime communication, at max tampering costs — the necessary bindings fused.
 ok(`realtime.skills:${realtimeSkills(matrix).count}`, realtimeSkills(matrix).upgraded && realtimeSkills(matrix).maxTamperingCost)
+// Dissolve society groups in nature: coverage rises to full, centralisation falls to zero.
+ok(`dissolve.nature:${dissolveIntoNature(matrix).nodes}`, dissolveIntoNature(matrix).dissolved && dissolveIntoNature(matrix).centralisation === 0 && dissolveIntoNature(matrix).coverage === 1)
+// Electrical grid self-balances for free: battery swap stations harmonically distributed (55+34+21).
+ok(`electrical.grid:${electricalGrid(matrix).stations}`, electricalGrid(matrix).selfBalances && electricalGrid(matrix).free && electricalGrid(matrix).backsGrid && electricalGrid(matrix).backsEv)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

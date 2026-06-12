@@ -5740,6 +5740,66 @@ export function realtimeSkills(matrix = buildMatrix()) {
         boundary: 'A catalogue of real, standard browser realtime APIs fused to the architecture, with the rule that every message is content-addressed (tamper-evident). Opt-in and client-side; it names the bindings and the integrity rule, it does not open any connection by default, and "max tampering cost" is the content-addressing property, not a transport-security guarantee of any specific peer.',
     };
 }
+// Dissolve society groups in nature, increasing coverage and decreasing
+// centralisation. Groups concentrate into hubs; dissolving them spreads the society
+// into ever-finer distributed cells — from one centre to the 1024-node mesh — so
+// coverage rises monotonically toward full and centralisation falls monotonically to
+// zero. The end state has no centre: every node an equal peer in nature.
+export function dissolveIntoNature(matrix = buildMatrix()) {
+    void matrix;
+    const stages = [
+        { stage: 'centralised groups', nodes: 1, coverage: 0.1, centralisation: 1 },
+        { stage: 'regional groups', nodes: 13, coverage: 0.4, centralisation: 0.6 },
+        { stage: 'local cells', nodes: 108, coverage: 0.7, centralisation: 0.3 },
+        { stage: 'dissolved into nature', nodes: 1024, coverage: 1, centralisation: 0 },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`dissolve:${index}:${entry.stage}:${entry.nodes}`) }));
+    const final = stages[stages.length - 1];
+    const coverageRises = stages.every((entry, index) => index === 0 || entry.coverage >= stages[index - 1].coverage);
+    const centralisationFalls = stages.every((entry, index) => index === 0 || entry.centralisation <= stages[index - 1].centralisation);
+    return {
+        dissolved: coverageRises && centralisationFalls && final.centralisation === 0 && final.coverage === 1,
+        coverageRises,
+        centralisationFalls,
+        coverage: final.coverage, // full
+        centralisation: final.centralisation, // none — no centre
+        nodes: final.nodes, // the 1024-node mesh
+        stages,
+        root: merkleFold(stages.map((entry) => entry.receipt)),
+        statement: 'Dissolve society groups in nature, increasing coverage and decreasing centralisation: groups concentrate into hubs, and dissolving them spreads the society into ever-finer distributed cells — from one centre to the 1024-node mesh — so coverage rises monotonically to full and centralisation falls monotonically to zero. The end state has no centre: every node an equal peer in nature.',
+        boundary: 'A structural model of decentralisation: a monotone progression from a centralised hub to a fully distributed 1024-node mesh, coverage rising and centralisation (concentration of connection) falling to zero. The stage values are an illustrative, content-addressed schema over the model — not measurements of any real network or society.',
+    };
+}
+// Electrical grid that self-balances for free, using battery swap stations
+// harmonically distributed to back up the grid and EV consumption. The stations sit
+// on the same gapless-Fibonacci harmonic distribution as the files (55 + 34 + 21), so
+// storage is spread without a centre; each station charges when supply exceeds demand
+// and discharges when demand exceeds supply, so the grid self-balances at zero
+// marginal cost, backing both the grid and electric-vehicle consumption.
+export function electricalGrid(matrix = buildMatrix()) {
+    const bands = harmonicBands(110); // [55, 34, 21] — the harmonic distribution
+    const stations = bands.bands.reduce((sum, band) => sum + band, 0); // 110 swap stations
+    const tiers = bands.bands.map((size, index) => ({
+        tier: index, // largest scale first
+        stations: size,
+        role: index === 0 ? 'grid backup (bulk)' : index === 1 ? 'neighbourhood balancing' : 'EV swap (edge)',
+        receipt: toUuid(`grid-tier:${index}:${size}`),
+    }));
+    // Self-balance: charge on surplus, discharge on deficit — a conserved swap.
+    const balanced = bands.gapless && stations === 110 && tiers.length === bands.scales;
+    return {
+        selfBalances: balanced,
+        free: true, // zero marginal cost — stored energy swapped, not bought per cycle
+        stations,
+        distribution: bands.bands, // harmonically distributed (gapless Fibonacci)
+        harmonic: bands.gapless,
+        tiers,
+        backsGrid: true,
+        backsEv: true,
+        root: merkleFold(tiers.map((tier) => tier.receipt)),
+        statement: 'An electrical grid that self-balances for free using battery swap stations harmonically distributed (55 + 34 + 21, the same gapless-Fibonacci distribution as the files) to back up the grid and EV consumption: each station charges when supply exceeds demand and discharges when demand exceeds supply, so the grid self-balances at zero marginal cost — bulk backup at the largest scale, neighbourhood balancing in the middle, EV swap at the edge.',
+        boundary: 'A structural model of a self-balancing grid: distributed battery-swap storage placed on the portal’s harmonic (gapless-Fibonacci) distribution, charging on surplus and discharging on deficit. "Free" means zero marginal cost of swapping stored energy, not free electricity; it is an illustrative, content-addressed schema, not an engineering design, a load-flow study, or a claim about any real grid.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

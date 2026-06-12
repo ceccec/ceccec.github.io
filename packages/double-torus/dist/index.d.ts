@@ -3083,6 +3083,42 @@ export declare function realtimeSkills(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function dissolveIntoNature(matrix?: MindMatrix): {
+    dissolved: boolean;
+    coverageRises: boolean;
+    centralisationFalls: boolean;
+    coverage: number;
+    centralisation: number;
+    nodes: number;
+    stages: {
+        receipt: string;
+        stage: string;
+        nodes: number;
+        coverage: number;
+        centralisation: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function electricalGrid(matrix?: MindMatrix): {
+    selfBalances: boolean;
+    free: boolean;
+    stations: number;
+    distribution: number[];
+    harmonic: boolean;
+    tiers: {
+        tier: number;
+        stations: number;
+        role: string;
+        receipt: string;
+    }[];
+    backsGrid: boolean;
+    backsEv: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
