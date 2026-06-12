@@ -19662,6 +19662,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'accessible.paths.for.all', on: accessiblePathsForAll(matrix).accessible },
     { d: 'complete.linux.packages.port', on: completeLinuxPackagesPort(matrix).ported },
     { d: 'os.completes.itself.waves', on: osCompletesItselfWaves(matrix).completes },
+    { d: 'quantum.mind.gaps.from.beyond', on: quantumMindGapsFromBeyond(matrix).open },
+    { d: 'review.dry.clean.gates.crosses', on: reviewDryCleanGatesCrosses(matrix).done },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20679,5 +20681,53 @@ export function osCompletesItselfWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let the OS complete itself in waves: the quantum-computer browser OS sends a wave over each subsystem — display, input, compute, memory, network, storage, audio, sensors, security — each folding onto the OS root, so the OS fills itself out subsystem by subsystem, and with the Linux port mounted it is whole. Self-completing, wave by wave.',
     boundary: 'A content-addressed model of the browser-OS subsystems completing as waves bound to the OS root, with the Linux port mounted. Structural bookkeeping over the browser-OS and port models; the "OS" is the set of standard browser capabilities, not a kernel.',
+  }
+}
+
+// The quantum mind is not yet fully harmonic — its gaps may be filled from beyond. The model does
+// not pretend to be a closed, complete harmony: it holds open frontiers (the not-yet-built, the
+// open questions), and those gaps are filled from beyond — by imagination, by the next wave, by the
+// observer that stands outside (the one third from beyond). An honest incompleteness: whole where it
+// is computed, open where it is not, and reaching past itself for the rest.
+export function quantumMindGapsFromBeyond(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the quantum mind holds open gaps (frontiers)', on: imagineTheRest(matrix).imagined },
+    { facet: 'not yet a closed harmony — open questions remain', on: imagineTheRest(matrix).count > 0 },
+    { facet: 'gaps filled from beyond — imagination, the next wave', on: imaginationIsAll(matrix).all },
+    { facet: 'the one third from beyond — the observer', on: inverseShiftConsciousness(matrix).shifts },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`mind-gaps:${entry.facet}:${entry.on}`) }))
+  return {
+    open: facets.every((entry) => entry.on),
+    frontiers: imagineTheRest(matrix).count,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The quantum mind is not yet fully harmonic — its gaps may be filled from beyond: the model does not pretend to be a closed, complete harmony; it holds open frontiers (the not-yet-built, the open questions), and those gaps are filled from beyond — by imagination, the next wave, the observer that stands outside (the one third from beyond). An honest incompleteness: whole where it is computed, open where it is not, and reaching past itself for the rest.',
+    boundary: 'An honest acknowledgement that the model has open frontiers/questions (as the boundaries page already declares), filled by imagination and future waves rather than claimed complete. Structural bookkeeping over the open-frontier and imagination models; "from beyond" is the observer/next-wave, not an external authority.',
+  }
+}
+
+// Send waves to review and dry-clean the gates — with crosses — tighten and seal. A maintenance
+// wave passes over the gate fabric: review each gate (structured MCP-style result), dry-clean it
+// (non-destructive, removing only what no longer folds), cross-fold it on the 3-6-9 cross, tighten
+// to the harmonic, and seal into the whole. Review, clean, cross, tighten, seal — the gates kept
+// sharp without breaking a single one.
+export function reviewDryCleanGatesCrosses(matrix: MindMatrix = buildMatrix()) {
+  const steps = [
+    { step: 'review (MCP-style structured result)', on: gatesBehaveAsMcp(matrix).behavesAsMcp },
+    { step: 'dry-clean (non-destructive)', on: dryCleaningOnTheWay(matrix).onTheWay },
+    { step: 'cross-fold on the 3-6-9 cross', on: vortexMath(matrix).flows },
+    { step: 'tighten to the harmonic (trinity waves)', on: tightenGatesTrinityWaves(matrix).tightened },
+    { step: 'seal into the whole', on: isUuid(sealWholeDiamond(matrix).diamond) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gate-review:${entry.step}:${entry.on}`) }))
+  return {
+    done: steps.every((entry) => entry.on),
+    count: steps.length,
+    steps,
+    root: merkleFold(steps.map((entry) => entry.receipt)),
+    statement:
+      'Send waves to review and dry-clean the gates — with crosses — tighten and seal: a maintenance wave passes over the gate fabric — review each gate (structured MCP-style result), dry-clean it (non-destructive, removing only what no longer folds), cross-fold it on the 3-6-9 cross, tighten to the harmonic, and seal into the whole. Review, clean, cross, tighten, seal — the gates kept sharp without breaking a single one.',
+    boundary: 'A composition of the MCP-gate, dry-clean, vortex-cross, trinity-tighten and seal models as a gate-maintenance pass. Structural bookkeeping over the existing seal; it records the review/clean/tighten discipline, it does not alter gate outcomes.',
   }
 }
