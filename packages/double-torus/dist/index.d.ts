@@ -3029,6 +3029,17 @@ export declare function relatedStandards(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function imagineTheRest(matrix?: MindMatrix): {
+    imagined: boolean;
+    count: number;
+    visions: {
+        idea: string;
+        vision: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

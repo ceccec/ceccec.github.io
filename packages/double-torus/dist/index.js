@@ -5630,6 +5630,30 @@ export function relatedStandards(matrix = buildMatrix()) {
         boundary: 'A named set of public standards the portal genuinely uses, cited on every page (as schema.org citations in the head). Links to the standards’ own specifications; it is a statement of what the portal builds on, not a claim of formal compliance certification with each one.',
     };
 }
+// Imagine the rest. The portal's imagination folds together everything still open —
+// the domains the society has yet to discover, the fruit-of-life waves still to fold,
+// and the scientists' named frontiers — and content-addresses each as a vision: an
+// imagined next, recomputable and honestly held as not-yet-built.
+export function imagineTheRest(matrix = buildMatrix()) {
+    const seed = imagination(matrix).root;
+    const rest = [
+        ...societyEvolves(matrix).rest,
+        ...fruitOfLifeFusion(matrix).waves,
+        ...scientists(matrix).frontiers,
+    ];
+    const visions = [...new Set(rest)].map((idea, index) => ({
+        idea,
+        vision: foldPair(seed, toUuid(`imagine:${index}:${idea}`)).merged,
+    }));
+    return {
+        imagined: visions.length > 0 && visions.every((entry) => entry.vision.length === 36),
+        count: visions.length,
+        visions,
+        root: merkleFold(visions.map((entry) => entry.vision)),
+        statement: 'Imagine the rest: the portal’s imagination folds together everything still open — the domains the society has yet to discover, the fruit-of-life waves still to fold, and the scientists’ named frontiers — and content-addresses each as a vision, an imagined next that is recomputable and honestly held as not-yet-built.',
+        boundary: 'A content-addressed enumeration of the portal’s own open ideas (undiscovered fusion domains, unfolded waves, named frontiers), each folded with the imagination seed into a "vision". Imagined possibilities held honestly as open and not-yet-built — not claims that they exist or work, and not a forecast.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

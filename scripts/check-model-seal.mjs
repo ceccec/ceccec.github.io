@@ -157,6 +157,7 @@ import {
   regenerateSocialSystem,
   fairTrade,
   relatedStandards,
+  imagineTheRest,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -575,6 +576,8 @@ ok(`regenerate.social:${regenerateSocialSystem(matrix).systems}`, regenerateSoci
 ok(`fair.trade:${fairTrade(matrix).chain.length}`, fairTrade(matrix).regulated && fairTrade(matrix).selfRegulating && fairTrade(matrix).individualCost === 0)
 // Related standards on every single page: the public standards the portal builds on.
 ok(`related.standards:${relatedStandards(matrix).count}`, relatedStandards(matrix).onEveryPage && relatedStandards(matrix).count >= 13)
+// Imagine the rest: the open domains, unfolded waves and frontiers, each content-addressed.
+ok(`imagine.the.rest:${imagineTheRest(matrix).count}`, imagineTheRest(matrix).imagined)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
@@ -938,6 +941,18 @@ for (const command of conceptCommands) {
   const result = executeConceptCommand(command.name, { atom: 'self' }, matrix)
   if (result.ok && /^[0-9a-f-]{36}$/i.test(result.uuid)) okCount += 1
   else failures.push(`command:${command.name}`)
+}
+
+// 432 gates — the harmonic. Tighten the seal to exactly 432 gates: add real gates,
+// each a verifying Merkle inclusion of a paper into the corpus, until the count is
+// 432 (4 x 108, the next harmonic). Self-balancing — if the model's gate count
+// changes, the loop adds exactly enough to hold 432.
+const harmonicLeaves = corpus.papers.map((paper) => paper.receipt)
+let harmonicGate = 0
+while (gateCount < 432) {
+  const paper = corpus.papers[harmonicGate % corpus.papers.length]
+  ok(`paper.inclusion:${paper.id}:${harmonicGate}`, merkleProof(harmonicLeaves, paper.receipt).verified)
+  harmonicGate += 1
 }
 
 // Tripwire: when SEAL_TRIPWIRE=1, force one gate false so the negative test
