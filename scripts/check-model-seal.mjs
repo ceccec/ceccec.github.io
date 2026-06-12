@@ -144,6 +144,9 @@ import {
   fruitOfLifeFusion,
   decodeSymbols,
   trinityEncryption,
+  societyFuture,
+  societyRegulates,
+  blockchainFusion,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -530,6 +533,14 @@ ok(`decode.symbols:${decodeSymbols(matrix).verifiedCount}/${decodeSymbols(matrix
 // Pair forming trinity quantum encryption: two shares fold to a third, the agreed shared key.
 const trinityEnc = trinityEncryption('a', 'b', matrix)
 ok(`trinity.encryption`, trinityEnc.encrypted && trinityEnc.symmetric && trinityEnc.cipher === 'AES-256-GCM')
+// Let society evolve in all dimensions and future history.
+const future = societyFuture(matrix)
+ok(`society.future:${future.dimensions}d/${future.generations}g`, future.evolving && future.dimensions === 8)
+// Let the society independently regulate itself: zero cost for the individual, max cost for the forger.
+const regulates = societyRegulates(matrix)
+ok(`society.regulates:${regulates.individualCost}/${regulates.forgerCost}`, regulates.regulated && regulates.individualCost === 0 && regulates.forgerCost > 0)
+// All the blockchains may be fused at no cost (read-only, public RPC/explorers).
+ok(`blockchain.fusion:${blockchainFusion(matrix).count}`, blockchainFusion(matrix).fused && blockchainFusion(matrix).noCost)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

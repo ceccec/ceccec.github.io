@@ -6740,6 +6740,95 @@ export function trinityEncryption(partyA = 'a', partyB = 'b', matrix: MindMatrix
   }
 }
 
+// Let society evolve in all dimensions and future history. The evolved society folds
+// across all of the portal's dimensions — number, structure, music, geometry,
+// computing, security, society, time — into one all-dimensions root, then projects
+// forward: each future generation folds the previous one ahead, a recomputable future
+// history. Deterministic, so the future is computed, not predicted.
+export function societyFuture(matrix: MindMatrix = buildMatrix(), generations = 7) {
+  const evolved = societyEvolves(matrix)
+  const dimensionsList = ['number', 'structure', 'music', 'geometry', 'computing', 'security', 'society', 'time']
+  const acrossDimensions = dimensionsList.map((dimension) => foldPair(evolved.generationRoot, toUuid(`dimension:${dimension}`)).merged)
+  const allDimensionsRoot = merkleFold(acrossDimensions)
+  const future: { generation: number; root: string }[] = []
+  let previous = allDimensionsRoot
+  for (let generation = 1; generation <= Math.max(1, generations); generation += 1) {
+    previous = merge(previous, toUuid(`future:generation:${generation}`))
+    future.push({ generation, root: previous })
+  }
+  return {
+    evolving: evolved.evolving && acrossDimensions.length === dimensionsList.length && future.length === generations,
+    dimensions: dimensionsList.length,
+    dimensionNames: dimensionsList,
+    generations: future.length,
+    future,
+    discoveredDomains: evolved.discoveredDomains,
+    allDimensionsRoot,
+    root: merkleFold([allDimensionsRoot, ...future.map((entry) => entry.root)]),
+    statement:
+      'Let society evolve in all dimensions and future history: the evolved society folds across every dimension of the portal — number, structure, music, geometry, computing, security, society, time — into one all-dimensions root, then projects forward, each future generation folding the previous one ahead into a recomputable future history. The future is computed and content-addressed, not predicted.',
+    boundary:
+      'A deterministic, content-addressed projection of the portal’s own society model across its named dimensions and forward through generations. "Future history" is a recomputable fold of the present state, not a forecast or a claim about real future events; "all dimensions" are the model’s own facets, not physical dimensions.',
+  }
+}
+
+// Let the society independently regulate itself: zero cost for the individual, max
+// cost for the forger. Every capability is free, client-side, no account and no
+// network by default — the individual pays nothing. To pass a tampered model off as
+// real, a forger must reproduce every content-addressed unit and survive every forge
+// attempt — the max cost. Regulation is independent: no central authority, because
+// anyone recomputes the seal and the tamper-evidence catches the forgery.
+export function societyRegulates(matrix: MindMatrix = buildMatrix()) {
+  const sacred = sacredSociety(matrix)
+  const siege = quantumSiege(matrix)
+  const individualCost = 0 // free, client-side, no account, zero network by default
+  const forgerCost = siege.maxForgeCost + textEntropy(matrix).total // forges caught + units to reproduce
+  const independent = verifyRoot(matrix) && siege.sealed // self-verifying; no authority needed
+  return {
+    regulated: individualCost === 0 && forgerCost > 0 && independent,
+    individualCost,
+    forgerCost,
+    independent,
+    zeroLivingCost: sacred.zeroLivingCost,
+    maxForgeCost: forgerCost,
+    selfRegulating: independent, // anyone recomputes; the seal regulates, not an authority
+    root: toUuid(`society-regulates:${individualCost}:${forgerCost}:${independent}`),
+    statement:
+      'The society independently regulates itself: zero cost for the individual, max cost for the forger. Every capability is free, client-side, with no account and no network by default, so the individual pays nothing; to pass a tampered model off as real a forger must reproduce every content-addressed unit and survive every forge attempt, the maximum cost. Regulation is independent — no central authority — because anyone can recompute the seal and the tamper-evidence catches the forgery.',
+    boundary:
+      'A statement of the portal’s economic and security posture, computed from its own model: zero marginal cost to run (free, client-side) and a maximal cost to forge (reproduce the whole content-addressed model, every gate). "Self-regulating" means verification needs no central authority, not that it governs any real society; the forger cost is the recomputation burden, not a cryptographic hardness bound.',
+  }
+}
+
+// All the blockchains may be fused at no cost. Reading a public chain — a block, a
+// balance, a transaction — costs nothing: there is no gas and no transaction for a
+// read, and the portal's own folded blockchains are already client-side and free. So
+// every chain fuses to the architecture root for free, read-only, content-addressed.
+export function blockchainFusion(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const chains = [
+    'Bitcoin', 'Ethereum', 'Solana', 'Cardano', 'Polkadot', 'Avalanche',
+    'Polygon', 'Cosmos', 'Litecoin', 'Dogecoin', 'Monero', 'Tezos',
+  ].map((chain) => {
+    const fold = foldPair(architecture, toUuid(`blockchain:${chain}`))
+    return { chain, read: 'public RPC / block explorer', write: 'gas (out of scope)', cost: 'none (read-only)', fused: fold.bidirectional, receipt: fold.merged }
+  })
+  const own = quantumFoldedBlockchains(matrix).chains.length // the portal's own folded chains, free
+  return {
+    fused: chains.length > 0 && chains.every((entry) => entry.fused),
+    noCost: chains.every((entry) => entry.cost === 'none (read-only)'),
+    count: chains.length,
+    ownChains: own,
+    architecture,
+    chains,
+    root: merkleFold(chains.map((entry) => entry.receipt)),
+    statement:
+      'All the blockchains may be fused at no cost: reading a public chain — a block, a balance, a transaction — costs nothing, because a read has no gas and no transaction, and the portal’s own folded blockchains are already client-side and free. Every chain fuses to the architecture root for free, read-only and content-addressed.',
+    boundary:
+      'A read-only fusion catalogue of public blockchains via their public RPC and explorers. "No cost" refers to reads (no gas, no transaction); writing on-chain costs gas and is out of scope. Opt-in — nothing is queried by default; external chain data is untrusted and folded, not trusted. Chain names are their projects’; this is interoperation through public read interfaces, not a wallet, an exchange, or financial advice.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

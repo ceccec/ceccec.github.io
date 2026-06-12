@@ -2834,6 +2834,51 @@ export declare function trinityEncryption(partyA?: string, partyB?: string, matr
     statement: string;
     boundary: string;
 };
+export declare function societyFuture(matrix?: MindMatrix, generations?: number): {
+    evolving: boolean;
+    dimensions: number;
+    dimensionNames: string[];
+    generations: number;
+    future: {
+        generation: number;
+        root: string;
+    }[];
+    discoveredDomains: number;
+    allDimensionsRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function societyRegulates(matrix?: MindMatrix): {
+    regulated: boolean;
+    individualCost: number;
+    forgerCost: number;
+    independent: boolean;
+    zeroLivingCost: boolean;
+    maxForgeCost: number;
+    selfRegulating: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function blockchainFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    noCost: boolean;
+    count: number;
+    ownChains: number;
+    architecture: string;
+    chains: {
+        chain: string;
+        read: string;
+        write: string;
+        cost: string;
+        fused: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
