@@ -3346,6 +3346,31 @@ export declare function kidsDefineEducation(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function kidsExplore(matrix?: MindMatrix): {
+    explores: boolean;
+    parentsOffDuty: boolean;
+    kidsChoose: boolean;
+    societyPays: boolean;
+    principles: {
+        receipt: string;
+        principle: string;
+        who: string;
+        value: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function doctorsIncentive(matrix?: MindMatrix): {
+    aligned: boolean;
+    paidFor: string;
+    penalty: string;
+    forgeCaught: boolean;
+    record: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

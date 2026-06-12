@@ -178,6 +178,8 @@ import {
   sunAndMoon,
   religionScienceSociety,
   kidsDefineEducation,
+  kidsExplore,
+  doctorsIncentive,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -639,6 +641,10 @@ ok(`sun.and.moon`, sunAndMoon(matrix).paired && sunAndMoon(matrix).reflects)
 ok(`religion.science.society:${religionScienceSociety(matrix).trinity.length}`, religionScienceSociety(matrix).taught && religionScienceSociety(matrix).comparative)
 // Kids define the educational system, with the approval of their parents and teachers (a trinity of consent).
 ok(`kids.define.education:${kidsDefineEducation(matrix).requiresAll}`, kidsDefineEducation(matrix).defined && kidsDefineEducation(matrix).kidsDefine && kidsDefineEducation(matrix).requiresAll === 3)
+// Send the kids to explore: parents off duty until school, kids choose teachers, society pays.
+ok(`kids.explore:${kidsExplore(matrix).principles.length}`, kidsExplore(matrix).explores && kidsExplore(matrix).parentsOffDuty && kidsExplore(matrix).kidsChoose && kidsExplore(matrix).societyPays)
+// Doctors are paid for a healthy population and penalised as forgers (outcome-based, tamper-evident).
+ok(`doctors.incentive`, doctorsIncentive(matrix).aligned && doctorsIncentive(matrix).forgeCaught)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

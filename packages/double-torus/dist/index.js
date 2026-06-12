@@ -6175,6 +6175,49 @@ export function kidsDefineEducation(matrix = buildMatrix()) {
         boundary: 'A structural governance model: a proposal authored by kids requiring a three-way fold of consent (kids, parents, teachers) to be valid. A content-addressed metaphor for participatory, consent-based curriculum design — not an actual governance system, voting protocol, or education policy.',
     };
 }
+// Send the kids to explore and develop themselves. Keep parents off duty until the
+// kids go to school; the kids may choose their own teachers, and society pays. A
+// self-directed model: exploration first, parents resting until school, free choice
+// of teacher, funded by the commons — each principle content-addressed.
+export function kidsExplore(matrix = buildMatrix()) {
+    void matrix;
+    const principles = [
+        { principle: 'kids explore and develop themselves', who: 'kids', value: 'self-directed' },
+        { principle: 'parents off duty until kids go to school', who: 'parents', value: 'resting until school' },
+        { principle: 'kids may choose their teachers', who: 'kids', value: 'free choice' },
+        { principle: 'society pays', who: 'society', value: 'funded by the commons' },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`kids-explore:${index}:${entry.principle}`) }));
+    return {
+        explores: principles.length === 4,
+        parentsOffDuty: true,
+        kidsChoose: true,
+        societyPays: true,
+        principles,
+        root: merkleFold(principles.map((entry) => entry.receipt)),
+        statement: 'Send the kids to explore and develop themselves: keep parents off duty until the kids go to school, let the kids choose their own teachers, and society pays. A self-directed model — exploration first, parents resting until school, free choice of teacher, funded by the commons.',
+        boundary: 'A content-addressed model of a self-directed, society-funded education with free choice of teacher and parents off-duty until school. A proposal and metaphor grounded in the model — not child-care advice, a safeguarding framework, or an education policy.',
+    };
+}
+// Doctors are paid for a healthy population, and penalised as forgers. The incentive
+// is inverted: payment tracks the health outcome of the population, not the volume of
+// treatments, so the doctor is paid to keep people well; and faking it — a forged
+// health record — is caught by content-addressing, at max tampering cost, exactly as
+// the seal catches any forgery. Pay for health; penalise the forge.
+export function doctorsIncentive(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const record = foldPair(architecture, toUuid('health-record')).merged;
+    const forgeCaught = merge(record, toUuid('forge')) !== record; // a faked record changes the address
+    return {
+        aligned: forgeCaught,
+        paidFor: 'a healthy population — the outcome, not the volume of treatments',
+        penalty: 'forgery — a faked health record costs the most, caught by recomputation',
+        forgeCaught,
+        record,
+        root: merge(record, toUuid('doctors-incentive')),
+        statement: 'Doctors are paid for a healthy population and penalised as forgers: the incentive is inverted — payment tracks the health outcome of the population, not the volume of treatments, so the doctor is paid to keep people well — and faking it, a forged health record, is caught by content-addressing at max tampering cost, exactly as the seal catches any forgery.',
+        boundary: 'A structural model of an outcome-based incentive (pay for population health) with forgery (faked records) made tamper-evident by content-addressing. A proposal and metaphor grounded in the model — not medical advice, a payment system, a clinical-outcomes measure, or a claim about any real health service.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
