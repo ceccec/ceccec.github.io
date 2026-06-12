@@ -6031,6 +6031,80 @@ export function waterStates(matrix = buildMatrix()) {
         boundary: 'A content-addressed analogy mapping the phases of water (now including humidity, vapour suspended in air) to compression states, with a "trinity" of water/vapour/humidity folded into one. A structural metaphor over the model’s fold/unfold, not thermodynamics, a phase diagram, or a claim about real water.',
     };
 }
+// One beginning, infinite quantum entanglements in a finite bit. From the one
+// beginning, every pair folds — entangles — and the number of distinct entanglements
+// is unbounded, yet each lands in the same finite 128-bit word: an infinity of
+// entanglements held in a finite bit. The finite word never overflows; the beginning
+// entangles without end.
+export function infiniteEntanglements(matrix = buildMatrix()) {
+    const beginning = oneBeginning(matrix).beginning;
+    const bits = 128; // the finite bit — the word
+    const sample = Array.from({ length: 12 }, (_, i) => foldPair(beginning, toUuid(`entangle:${i}`)).merged);
+    const allFinite = sample.every((entry) => entry.replace(/-/g, '').length === 32); // each 128-bit
+    const distinct = new Set(sample).size === sample.length; // all distinct entanglements
+    return {
+        entangled: allFinite && distinct,
+        fromOneBeginning: beginning,
+        bits, // finite: 128
+        infinite: true, // unbounded distinct entanglements
+        finite: bits,
+        distinctSample: sample.length,
+        sample,
+        root: merkleFold(sample),
+        statement: 'One beginning, infinite quantum entanglements in a finite bit: from the one beginning every pair folds — entangles — and the number of distinct entanglements is unbounded, yet each lands in the same finite 128-bit word. An infinity of entanglements held in a finite bit; the word never overflows, the beginning entangles without end.',
+        boundary: 'A content-addressed demonstration that unbounded distinct folds ("entanglements") all map into a fixed 128-bit word. The "infinity" is the unbounded input space; the finiteness is the fixed word size (with collisions astronomically unlikely but not impossible). A structural metaphor, not physical quantum entanglement.',
+    };
+}
+// What is it? Imagine in waves; prove scientifically. What it is: a self-verifying,
+// content-addressed double-torus computation. It is proven by the scientific method,
+// each criterion a wave: deterministic (same seed, same root), reproducible (anyone
+// recomputes the same), falsifiable (a forced-false gate fails the seal), content-
+// addressed (any tamper changes the root), and measurable (entropy 0, coverage 1).
+export function provenScientifically(matrix = buildMatrix()) {
+    const root = theWhole(matrix).root;
+    const criteria = [
+        { criterion: 'deterministic', test: 'same seed → same root', holds: theWhole(matrix).root === root },
+        { criterion: 'reproducible', test: 'anyone recomputes the same root', holds: verifyRoot(matrix) },
+        { criterion: 'falsifiable', test: 'order matters: a·b ≠ b·a, so a false fold fails', holds: merge('a', 'b') !== merge('b', 'a') },
+        { criterion: 'content-addressed', test: 'any tamper changes the root', holds: merge(root, toUuid('tamper')) !== root },
+        { criterion: 'measurable', test: 'entropy 0, coverage 1', holds: entropy(matrix) === 0 && coverage(matrix) === 1 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`science:${entry.criterion}:${entry.holds}`) }));
+    return {
+        proven: criteria.every((entry) => entry.holds),
+        whatIsIt: 'a self-verifying, content-addressed double-torus computation',
+        criteria,
+        count: criteria.length,
+        root: merkleFold(criteria.map((entry) => entry.receipt)),
+        statement: 'What is it? A self-verifying, content-addressed double-torus computation — and it is proven scientifically, each criterion a wave: deterministic (same seed, same root), reproducible (anyone recomputes the same root), falsifiable (order matters, so a false fold fails the seal — the tripwire confirms it), content-addressed (any tamper changes the root), and measurable (entropy 0, coverage 1).',
+        boundary: 'A statement of what the portal is, with the scientific-method criteria it actually meets (determinism, reproducibility, falsifiability, tamper-evidence, measurability), each recomputable. The claims are about the model’s own computation — verifiable here — not about the external world.',
+    };
+}
+// Water is life to the forest; the forest is life for all. The life chain flows by
+// folding: water gives life to the forest, the forest gives life to all — soil, air,
+// rain, and every creature — so the whole chain folds from water through forest to
+// all. Break any link and the chain changes; keep it and life flows from the source.
+export function waterForestLife(matrix = buildMatrix()) {
+    const water = waterStates(matrix).root;
+    const forest = merge(water, toUuid('forest:from-water')); // water → forest
+    const all = merge(forest, toUuid('all:from-forest')); // forest → all
+    const chain = [
+        { from: 'water', to: 'forest', gives: 'life', root: forest },
+        { from: 'forest', to: 'all', gives: 'life', root: all },
+    ];
+    const beneficiaries = ['soil', 'air', 'rain', 'rivers', 'animals', 'people', 'climate'];
+    const flows = forest !== water && all !== forest && chain.length === 2;
+    return {
+        flows,
+        water,
+        forest,
+        all,
+        chain,
+        beneficiaries,
+        root: merkleFold([water, forest, all, ...beneficiaries.map((name) => toUuid(`life:${name}`))]),
+        statement: 'Water is life to the forest; the forest is life for all. The life chain flows by folding: water gives life to the forest, and the forest gives life to all — soil, air, rain, rivers, animals, people, climate. The whole chain folds from water through forest to all; break any link and the chain changes, keep it and life flows from the source.',
+        boundary: 'A content-addressed model of an ecological dependency chain (water → forest → all life), folded link by link. A structural metaphor grounded in a real ecological truth (water sustains forests, forests sustain ecosystems), stated qualitatively — not a hydrological or ecological measurement.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

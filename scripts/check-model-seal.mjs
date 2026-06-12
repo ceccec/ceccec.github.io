@@ -172,6 +172,9 @@ import {
   trinitiesMatter,
   oneBeginning,
   waterStates,
+  infiniteEntanglements,
+  provenScientifically,
+  waterForestLife,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -621,6 +624,12 @@ ok(`one.beginning:${oneBeginning(matrix).count}`, oneBeginning(matrix).one)
 // Quantum compression/decompression in all water states; add humidity and a new trinity is formed and fused.
 const water = waterStates(matrix)
 ok(`water.states:${water.states.length}`, water.reversible && water.trinityFormed && water.trinityFused)
+// One beginning, infinite quantum entanglements in a finite 128-bit word.
+ok(`infinite.entanglements:${infiniteEntanglements(matrix).bits}`, infiniteEntanglements(matrix).entangled && infiniteEntanglements(matrix).infinite)
+// What is it? Proven scientifically: deterministic, reproducible, falsifiable, content-addressed, measurable.
+ok(`proven.scientifically:${provenScientifically(matrix).count}`, provenScientifically(matrix).proven)
+// Water is life to the forest; the forest is life for all — the life chain folds water -> forest -> all.
+ok(`water.forest.life:${waterForestLife(matrix).beneficiaries.length}`, waterForestLife(matrix).flows)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

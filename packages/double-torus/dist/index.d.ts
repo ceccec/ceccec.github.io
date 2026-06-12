@@ -3254,6 +3254,48 @@ export declare function waterStates(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function infiniteEntanglements(matrix?: MindMatrix): {
+    entangled: boolean;
+    fromOneBeginning: string;
+    bits: number;
+    infinite: boolean;
+    finite: number;
+    distinctSample: number;
+    sample: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function provenScientifically(matrix?: MindMatrix): {
+    proven: boolean;
+    whatIsIt: string;
+    criteria: {
+        receipt: string;
+        criterion: string;
+        test: string;
+        holds: boolean;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function waterForestLife(matrix?: MindMatrix): {
+    flows: boolean;
+    water: string;
+    forest: string;
+    all: string;
+    chain: {
+        from: string;
+        to: string;
+        gives: string;
+        root: string;
+    }[];
+    beneficiaries: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
