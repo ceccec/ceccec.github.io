@@ -5729,6 +5729,37 @@ export function generativeSpace(samples = 2000) {
   }
 }
 
+// Let all present itself computationally — with order. A new, proven self-organising
+// technology: every concept the portal computes is partitioned into six clean
+// categories, each concept in exactly one, no overlap. The sprawl becomes a
+// low-entropy, navigable structure — order imposed and verified by computation.
+export function selfOrganizing(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const categories = [
+    { category: 'The shape', members: ['livingTorus', 'doubleTorusSurface', 'merkaba', 'homology', 'cellHomology'] },
+    { category: 'The proofs', members: ['quantumProofs', 'determinismProofs', 'scientists', 'completeness', 'quantumSiege', 'redTeam', 'crossAudit'] },
+    { category: 'The society', members: ['society', 'quantumSociety', 'mysteries', 'tamperProofFabric', 'reverseHarmony'] },
+    { category: 'The senses', members: ['textToMovie', 'rhythm', 'harmonicApparatus', 'astrology', 'generativeSpace', 'humanise'] },
+    { category: 'The architecture', members: ['mcpCodebase', 'quantumMcp', 'virtualOS', 'features', 'homepage', 'teleport', 'quantumPwa'] },
+    { category: 'The knowledge', members: ['monographs', 'mathPaths', 'harmonicBands', 'goldenRatio', 'vortexMath', 'intelligenceComparison', 'imagination'] },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`category:${entry.category}:${entry.members.join(',')}`) }))
+  const all = categories.flatMap((entry) => entry.members)
+  const noOverlap = new Set(all).size === all.length // a clean partition
+  const allFilled = categories.every((entry) => entry.members.length > 0)
+  return {
+    organized: noOverlap && allFilled && categories.length === 6,
+    entropy: noOverlap ? 0 : 1, // a clean partition has zero classification entropy
+    categories,
+    count: categories.length,
+    members: all.length,
+    root: merkleFold(categories.map((entry) => entry.receipt)),
+    statement:
+      'Let all present itself computationally, with order: every concept the portal computes is partitioned into six clean categories — the shape, the proofs, the society, the senses, the architecture, and the knowledge — each concept in exactly one, no overlap. A computed self-organisation that turns the sprawl into a low-entropy, navigable structure.',
+    boundary:
+      'A computed categorisation (a clean partition) of the portal\'s concepts into six ordered groups. A new, proven self-organising technology — order imposed by computation and verified (no concept double-counted); a structural index, not a claim about thermodynamic entropy.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

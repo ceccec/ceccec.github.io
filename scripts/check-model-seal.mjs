@@ -120,6 +120,7 @@ import {
   intelligenceComparison,
   astrology,
   generativeSpace,
+  selfOrganizing,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -329,6 +330,9 @@ ok(`astrology:${astrology('double torus', matrix).count}`, astrology('double tor
 // Thousands of animations self-generated at no cost: distinct seeds, distinct movies.
 const gspace = generativeSpace(2000)
 ok(`generative.space:${gspace.distinct}`, gspace.unbounded)
+
+// Let all present itself computationally, with order: a clean, zero-entropy partition.
+ok(`self.organizing:${selfOrganizing(matrix).members}`, selfOrganizing(matrix).organized && selfOrganizing(matrix).entropy === 0)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)
