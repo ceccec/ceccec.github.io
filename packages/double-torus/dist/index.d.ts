@@ -2904,6 +2904,27 @@ export declare function analysisFlower(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function holographicDashboard(matrix?: MindMatrix): {
+    holographic: boolean;
+    independent: boolean;
+    count: number;
+    panels: {
+        holographic: boolean;
+        root: string;
+        panel: string;
+        icon: string;
+        metrics: ({
+            label: string;
+            value: number;
+        } | {
+            label: string;
+            value: string;
+        })[];
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

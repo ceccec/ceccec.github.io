@@ -5380,6 +5380,61 @@ export function analysisFlower(matrix = buildMatrix()) {
         boundary: 'A nineteen-measure analysis of the portal’s own corpus, each measure read from the live model and content-addressed, arranged as the flower of life. A structural self-analysis and geometric framing, recomputable; not an external benchmark or a claim about anything outside the model.',
     };
 }
+// Generate the dashboards the independent, holographic way — ceccec's own approach,
+// no external toolkit. Each panel is holographic: folded with the whole root so a
+// single panel carries the whole; and independent: built from the portal's own
+// zero-dependency components. Five panels read the whole corpus — the model itself
+// is the dashboard, content-addressed, nothing tracked and nothing fetched.
+export function holographicDashboard(matrix = buildMatrix()) {
+    const whole = theWhole(matrix).root;
+    const corpus = completeCorpus(matrix);
+    const text = textEntropy(matrix);
+    const panels = [
+        { panel: 'corpus', icon: '◆', metrics: [
+                { label: 'referenced units', value: text.total },
+                { label: 'text entropy', value: text.entropy },
+                { label: 'diamonds', value: corpus.total },
+                { label: 'real diamonds', value: corpus.real },
+            ] },
+        { panel: 'harmonics', icon: '♪', metrics: [
+                { label: 'fundamental', value: foldedCensus(110, matrix).folded },
+                { label: 'next harmonic', value: papers(matrix).count },
+                { label: 'binary octave', value: corpus.total },
+                { label: 'ladder rungs', value: harmonics(matrix).harmonics.length },
+            ] },
+        { panel: 'fusions', icon: '✦', metrics: [
+                { label: 'fruit-of-life domains', value: fruitOfLifeFusion(matrix).circles },
+                { label: 'public apis', value: publicApiFusion(matrix).count },
+                { label: 'social', value: socialFusion(matrix).count },
+                { label: 'blockchains', value: blockchainFusion(matrix).count },
+            ] },
+        { panel: 'society', icon: '☯', metrics: [
+                { label: 'dimensions', value: societyFuture(matrix).dimensions },
+                { label: 'future generations', value: societyFuture(matrix).generations },
+                { label: 'individual cost', value: societyRegulates(matrix).individualCost },
+                { label: 'forger cost', value: societyRegulates(matrix).forgerCost },
+            ] },
+        { panel: 'seal', icon: '◇', metrics: [
+                { label: 'commands', value: conceptCommands.length },
+                { label: 'skill atoms', value: skillAtoms(matrix).count },
+                { label: 'compression', value: `${text.total}:1` },
+                { label: 'analysis circles', value: analysisFlower(matrix).circles },
+            ] },
+    ].map((entry) => ({
+        ...entry,
+        holographic: foldPair(toUuid(`holo-dashboard:${entry.panel}`), whole).bidirectional,
+        root: toUuid(`holo-dashboard:${entry.panel}:${whole}`),
+    }));
+    return {
+        holographic: panels.every((panel) => panel.holographic), // each panel contains the whole
+        independent: true, // zero external dependencies — the portal's own components
+        count: panels.length,
+        panels,
+        root: merkleFold(panels.map((panel) => panel.root)),
+        statement: 'Generate the dashboards the independent, holographic way: each panel is holographic — folded with the whole root, so a single panel carries the whole — and independent, built from the portal’s own zero-dependency components. Five panels — corpus, harmonics, fusions, society, seal — read the whole corpus, each content-addressed; the model itself is the dashboard, nothing tracked and nothing fetched.',
+        boundary: 'A content-addressed dashboard model: five panels of self-metrics, each folded with the whole root (holographic) and built from the portal’s own components (independent, zero external dependencies). Descriptive counts over the model’s own structures — no tracking, no network, nothing leaves the device.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

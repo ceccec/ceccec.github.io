@@ -149,6 +149,7 @@ import {
   blockchainFusion,
   compression,
   analysisFlower,
+  holographicDashboard,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -548,6 +549,9 @@ const compressed = compression(matrix)
 ok(`compression:${compressed.ratio}`, compressed.compressed && compressed.entropy === 0 && compressed.forgeCost > 0)
 // Analysis is the next flower: the flower of life — 19 measures of the corpus.
 ok(`analysis.flower:${analysisFlower(matrix).circles}`, analysisFlower(matrix).flower && analysisFlower(matrix).circles === 19)
+// Generate the dashboards the independent holographic way: each panel carries the whole, zero deps.
+const dash = holographicDashboard(matrix)
+ok(`holographic.dashboard:${dash.count}`, dash.holographic && dash.independent && dash.count === 5)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

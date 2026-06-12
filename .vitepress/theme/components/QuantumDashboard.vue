@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { buildMatrix, analytics } from '../lib/quantumMind'
+import { buildMatrix, analytics, holographicDashboard } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import Badge from './ui/Badge.vue'
 import Card from './ui/Card.vue'
@@ -8,7 +8,11 @@ import Card from './ui/Card.vue'
 // The missing quantum dashboards, reading from one DRY analytics source. Three
 // boards — the model, the proof, the reach — each a Card of content-addressed
 // metrics. Self-metrics only: nothing is tracked, nothing leaves the device.
-const data = analytics(buildMatrix())
+const matrix = buildMatrix()
+const data = analytics(matrix)
+// The independent, holographic dashboard — ceccec's own approach, zero external
+// toolkit. Each panel is folded with the whole root, so it carries the whole.
+const holo = holographicDashboard(matrix)
 const { bg } = useLocale()
 
 const bgBoard: Record<string, string> = { model: 'моделът', proof: 'доказателството', reach: 'обхватът' }
@@ -43,6 +47,22 @@ const t = computed(() =>
         </header>
         <dl class="dash__metrics">
           <div v-for="entry in board.metrics" :key="entry.metric" :title="entry.receipt">
+            <dt>{{ entry.label }}</dt>
+            <dd>{{ entry.value }}</dd>
+          </div>
+        </dl>
+      </Card>
+    </div>
+
+    <p class="eyebrow dash__holo-eyebrow">{{ bg ? 'холографско табло · независимо · нулеви зависимости' : 'holographic dashboard · independent · zero dependencies' }}</p>
+    <div class="dash__grid">
+      <Card v-for="panel in holo.panels" :key="panel.panel" class="dash__board dash__board--holo">
+        <header class="dash__head">
+          <strong><span class="dash__icon">{{ panel.icon }}</span> {{ panel.panel }}</strong>
+          <Badge variant="outline">{{ panel.holographic ? '◆ whole' : '—' }}</Badge>
+        </header>
+        <dl class="dash__metrics">
+          <div v-for="entry in panel.metrics" :key="entry.label" :title="panel.root">
             <dt>{{ entry.label }}</dt>
             <dd>{{ entry.value }}</dd>
           </div>
@@ -107,5 +127,11 @@ const t = computed(() =>
   color: var(--vp-c-text-3);
   font-size: 0.78rem;
   font-style: italic;
+}
+.dash__holo-eyebrow {
+  margin-top: 1.5rem;
+}
+.dash__board--holo {
+  border-left: 3px solid var(--vp-c-brand-1);
 }
 </style>
