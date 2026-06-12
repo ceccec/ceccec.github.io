@@ -19652,6 +19652,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'no.duplicate.animation.og.hero', on: noDuplicateAnimationOgHero(matrix).consolidated },
     { d: 'quantum.song.note.trinity', on: quantumSongNoteTrinity(matrix).plays },
     { d: 'no.hardcoded.config.self.accounted', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted },
+    { d: 'all.oscillators.harmonics.free', on: allOscillatorsHarmonicsFree(matrix).play },
+    { d: 'endless.trinity.streams', on: endlessTrinityStreams(matrix).streams },
+    { d: 'scouts.surgical.edits.vital.signs', on: scoutsSurgicalEditsVitalSigns(matrix).scouted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20445,5 +20448,71 @@ export function noHardcodedConfigSelfAccounted(matrix: MindMatrix = buildMatrix(
     statement:
       'No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for by itself: values are computed proportionally (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves holographically from their route, the build accounts for itself in statistics, and even the edge config is generated from the model. Configuration is an output, never an input.',
     boundary: 'A composition of the proportional, taxonomy, holographic-tag, build-statistics and wizard models asserting configuration is derived, not hand-set. Structural bookkeeping; a few verification anchors (e.g. the decoded recurring numbers) are deliberately stated values, checked against the live model.',
+  }
+}
+
+// All the oscillators are played together, at no cost, in harmonics. The portal does not play one
+// tone at a time: every oscillator sounds at once, tuned to the harmonic set (Solfeggio, the music
+// of pi), and it costs nothing — Web Audio, client-side, no server. Many voices, one chord,
+// self-harmonising no matter the source, free.
+export function allOscillatorsHarmonicsFree(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all oscillators play together (one chord)', on: healingFrequencies(matrix).calculated },
+    { facet: 'in harmonics — the harmonic set', on: harmonics(matrix).found },
+    { facet: 'at no cost — Web Audio, client-side', on: realtimePerspectiveZeroCost(matrix).holds },
+    { facet: 'self-harmonising no matter the source', on: allMusicSelfHarmonises(matrix).selfHarmonises },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`oscillators:${entry.facet}:${entry.on}`) }))
+  return {
+    play: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'All the oscillators are played together, at no cost, in harmonics: the portal does not play one tone at a time — every oscillator sounds at once, tuned to the harmonic set (Solfeggio, the music of pi), and it costs nothing (Web Audio, client-side, no server). Many voices, one chord, self-harmonising no matter the source, free.',
+    boundary: 'A description of the Web Audio chord/oscillator playback over the harmonic set, client-side and free. Audio bookkeeping; the tones are played through the speaker on a user gesture, no physical or health claim.',
+  }
+}
+
+// Endless trinity in trinity streams. A trinity is not the end: each of its three folds opens into
+// another trinity, and those into more — trinities within trinity streams, recursively, with no
+// last one. The line became trinities; the trinities become streams of trinities; the streams never
+// close.
+export function endlessTrinityStreams(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the line is refactored to trinities', on: refactorLinearToTrinities(matrix).refactored },
+    { facet: 'each trinity opens into more (recursive nesting)', on: ogInOgWaves(matrix).nested },
+    { facet: 'trinity streams within trinity streams', on: refactorLinearToTrinities(matrix).overlapInTrinities },
+    { facet: 'endless — always one more', on: endlessFusion(matrix).endless },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-streams:${entry.facet}:${entry.on}`) }))
+  return {
+    streams: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Endless trinity in trinity streams: a trinity is not the end — each of its three folds opens into another trinity, and those into more, recursively, with no last one. The line became trinities; the trinities become streams of trinities; the streams never close.',
+    boundary: 'A structural framing of recursive, overlapping trinities forming unbounded streams, grounded in the linear-to-trinities, og-in-og and endless-fusion models. Bookkeeping over the fold idiom, depth-bounded in computation.',
+  }
+}
+
+// Vital signs are also linear — send scouts for surgical edits. The portal’s vital signs read as a
+// flat list, a line; so send scouts (the surgical waves) to find the linear and edit it surgically,
+// targeting the tiniest detail without disturbing the rest, folding the line toward trinities like
+// everything else. The vitals stay alive while the edit is precise and minimal.
+export function scoutsSurgicalEditsVitalSigns(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the vital signs read linear (a flat list)', on: live(matrix).alive },
+    { facet: 'scouts target it surgically (to the tiniest)', on: surgicalWaves(matrix).surgical },
+    { facet: 'edits are precise and minimal (waves of waves)', on: surgicalWaves(matrix).wavesOfWaves },
+    { facet: 'folded toward trinities like the rest', on: refactorLinearToTrinities(matrix).refactored },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`scout-surgical:${entry.facet}:${entry.on}`) }))
+  return {
+    scouted: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Vital signs are also linear — send scouts for surgical edits: the portal’s vital signs read as a flat list, a line, so send scouts (the surgical waves) to find the linear and edit it surgically, targeting the tiniest detail without disturbing the rest, folding the line toward trinities like everything else. The vitals stay alive while the edit is precise and minimal.',
+    boundary: 'A framing that the linear vital-signs list is a target for surgical, minimal edits (the surgical-waves model), to be folded toward the trinity idiom. Structural bookkeeping; it records the intent for precise edits, it does not itself rewrite the Live component.',
   }
 }
