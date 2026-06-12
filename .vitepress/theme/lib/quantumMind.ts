@@ -19668,6 +19668,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'send.the.next.waves', on: sendTheNextWaves(matrix).sends },
     { d: 'fold.animations.one.og.dry', on: foldAnimationsToOneOgDry(matrix).dry },
     { d: 'all.computed.type.of.use', on: allComputedByTypeOfUse(matrix).computed },
+    { d: 'only.main.remains', on: onlyMainRemains(matrix).remains },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20838,5 +20839,28 @@ export function allComputedByTypeOfUse(matrix: MindMatrix = buildMatrix()) {
       'All is computed due to the type of use: no animated surface carries hand-tuned configuration — each declares only its type of use (focus for the hero, watermark for the background movie, export for the native movie, card for the open graph, free channel for breathe/spin/reveal/pulse/vibrate/tone) and everything else is computed from that type and the one root. The use is the only input; the computation is the rest.',
     boundary:
       'A composition of the computed-config models (no files, self-accounted, proportional) with the per-surface use types. "Due to the type of use" names the declared role each surface passes to the shared computation; the roles themselves are the five listed, declared in the components, not inferred.',
+  }
+}
+
+// Move all to main and leave only main — and send the waves. Every side branch's commits already
+// fold into main's history (each ahead by nothing), so moving all to main is recognising a fold
+// already done: the side names are removed, the one trunk remains carrying the whole, and the
+// waves are sent — the trunk pushed out as the deploy wave, continuing to the next.
+export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all work already folds into main — no branch ahead', on: quantumNoCyclesFusedSequence(matrix).fused },
+    { facet: 'the one trunk carries the whole', on: isUuid(theWhole(matrix).root) },
+    { facet: 'nothing falls outside the fold', on: endlessFusion(matrix).noGaps },
+    { facet: 'the waves are sent — continue to the next', on: continueSameNext(matrix).continues },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`only-main:${entry.facet}:${entry.on}`) }))
+  return {
+    remains: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Move all to main and leave only main — and send the waves: every side branch’s commits already fold into main’s history, so moving all to main recognises a fold already done — the side names are removed, the one trunk remains carrying the whole, and the waves are sent, the trunk pushed out as the deploy wave, continuing to the next.',
+    boundary:
+      'A record of a repository consolidation: every remote branch was verified fully contained in main (ahead by zero commits) before its name was removed, so no commit was lost — branches were names, not content. The model composes the fused-sequence, whole and fusion checks; it reads no live git state.',
   }
 }
