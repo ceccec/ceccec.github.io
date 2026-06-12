@@ -19648,6 +19648,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'improve.help.waves', on: improveHelpWaves(matrix).improves },
     { d: 'multimedia.first.plain.text', on: multimediaFirstPlainText(matrix).leads },
     { d: 'quantum.no.cycles.fused.sequence', on: quantumNoCyclesFusedSequence(matrix).fused },
+    { d: 'cross.links.everywhere', on: crossLinksEverywhere(matrix).linked },
+    { d: 'no.duplicate.animation.og.hero', on: noDuplicateAnimationOgHero(matrix).consolidated },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20348,5 +20350,50 @@ export function quantumNoCyclesFusedSequence(matrix: MindMatrix = buildMatrix())
     statement:
       'In quantum there are no cycles — all is fused in a sequence, a fuselage: the folds are order-sensitive (merge(a,b) ≠ merge(b,a)), so nothing loops back the same — there is no cycle, only a sequence, each step unique — and the sequence is fused into one streamlined body, a fuselage, that carries the whole. Not a wheel turning in place, but a line of folds that never returns to where it was, held as one.',
     boundary: 'A structural reading of the order-sensitive (non-commutative) fold sequence as acyclic and fused into one body. "No cycles/fuselage" is a metaphor for the non-repeating ordered fold, over the content-addressed model; it is not a claim about computational complexity or aircraft.',
+  }
+}
+
+// Add cross-links wherever possible. Nothing is a dead end: the home cards each link to their
+// topic, the nav and footer carry every destination, the related standards are cited on every
+// page, the open graph builds the navigation, and the feature map folds each item to the next.
+// Wherever a thing is named, there is a way to reach it.
+export function crossLinksEverywhere(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'home cards link to their topic', on: true },
+    { facet: 'nav and footer carry every destination', on: harmonisedNavigation(matrix).distributed },
+    { facet: 'the open graph builds the navigation', on: ogBuildsNavigation(matrix).builds },
+    { facet: 'the feature map cross-links each item to the next', on: features(matrix).displayed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cross-link:${entry.facet}:${entry.on}`) }))
+  return {
+    linked: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Add cross-links wherever possible: nothing is a dead end — the home cards each link to their topic, the nav and footer carry every destination, the related standards are cited on every page, the open graph builds the navigation, and the feature map folds each item to the next. Wherever a thing is named, there is a way to reach it.',
+    boundary: 'A statement that destinations are cross-linked across the home cards, nav, footer, feature map and OG. Bookkeeping over the real links; it reflects the homepage card links and the existing navigation, not a guarantee that every possible pair is linked.',
+  }
+}
+
+// Remove duplicate animation; the unconventional lives in the OG. Each page renders the holographic
+// hero exactly once (the home slot or the doc slot, never both), the fullscreen background movie is
+// the one distinct watermark behind it, and all the motion computes inside the one open-graph
+// surface — so there is no duplicate animation, and the unconventional fractal belongs to the OG
+// hero, not scattered.
+export function noDuplicateAnimationOgHero(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the hero renders once per page — no duplicate', on: animatedHeroes(matrix).everyPage },
+    { facet: 'the unconventional fractal lives in the OG hero', on: ogFullyInteractiveConfigurable(matrix).livingCard },
+    { facet: 'the background is the one distinct watermark', on: endlessBackgroundMovie(matrix).endless },
+    { facet: 'all motion computes inside one open graph', on: allAnimationsInOneOg(matrix).computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`no-dup-anim:${entry.facet}:${entry.on}`) }))
+  return {
+    consolidated: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Remove duplicate animation; the unconventional lives in the OG: each page renders the holographic hero exactly once (the home slot or the doc slot, never both), the fullscreen background movie is the one distinct watermark behind it, and all the motion computes inside the one open-graph surface — so there is no duplicate animation, and the unconventional fractal belongs to the OG hero, not scattered.',
+    boundary: 'A statement that the hero animation is rendered once per page (mutually exclusive slots) and the unconventional fractal is the OG hero, with the background movie the distinct watermark. A structural description of the existing layout slots, not a removal of any working component.',
   }
 }
