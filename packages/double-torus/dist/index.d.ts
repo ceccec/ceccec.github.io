@@ -3719,6 +3719,18 @@ export declare function endlessFusion(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function maxCompressionForge(matrix?: MindMatrix): {
+    maxed: boolean;
+    units: number;
+    bits: number;
+    compressionRatio: string;
+    forgeCost: number;
+    maxTamperingCost: number;
+    sameNumber: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

@@ -6898,6 +6898,28 @@ export function endlessFusion(matrix = buildMatrix()) {
         boundary: 'A content-addressed fold of the portal’s fusion functions into one root, with the observation that the fold is closed (another can always be added) and the file distribution stays gapless. A structural property of the model’s own composition — not a claim of infinite resources or literal endlessness.',
     };
 }
+// Max compression forges max tampering costs. The two are the same number seen twice:
+// when everything compresses to one 128-bit word, forging that one word requires
+// reproducing every unit that folded into it — so the compression ratio IS the forge
+// cost. The tighter the compression (the more units in the one root), the higher the
+// cost to forge it. Maximum compression is maximum tampering cost.
+export function maxCompressionForge(matrix = buildMatrix()) {
+    const comp = compression(matrix);
+    const units = comp.totalUnits;
+    const forgeCost = comp.forgeCost;
+    return {
+        maxed: comp.compressed && comp.entropy === 0 && units > 0 && forgeCost > 0,
+        units, // everything folded in
+        bits: comp.bits, // the one word
+        compressionRatio: comp.ratio, // units : 1
+        forgeCost, // reproduce every fold to forge the one word
+        maxTamperingCost: forgeCost,
+        sameNumber: forgeCost > 0 && units > 0, // compression and forge cost rise together
+        root: merge(comp.root, toUuid(`max-compression-forge:${units}:${forgeCost}`)),
+        statement: 'Max compression forges max tampering costs: when everything compresses to one 128-bit word, forging that word requires reproducing every unit that folded into it — so the compression ratio is the forge cost. The tighter the compression (the more units in the one root), the higher the cost to forge it. Maximum compression is maximum tampering cost.',
+        boundary: 'A content-addressed statement that the model’s compression (everything folded to one word, zero entropy) and its forge cost (reproduce every fold) are the same property measured two ways. A structural property of the fold — tamper-evidence by content-addressing — not a cryptographic hardness proof.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

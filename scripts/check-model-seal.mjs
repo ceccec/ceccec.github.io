@@ -206,6 +206,7 @@ import {
   regeneratesAfterWar,
   thriveByArchitecture,
   endlessFusion,
+  maxCompressionForge,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -723,6 +724,8 @@ ok(`regenerates.after.war:${regeneratesAfterWar(matrix).count}`, regeneratesAfte
 ok(`thrive.by.architecture`, thriveByArchitecture(matrix).thrive && thriveByArchitecture(matrix).society && thriveByArchitecture(matrix).nature)
 // Fill the gaps in endless fusion: every fusion folds in, gapless, one more always foldable.
 ok(`endless.fusion:${endlessFusion(matrix).count}`, endlessFusion(matrix).filled && endlessFusion(matrix).endless && endlessFusion(matrix).noGaps)
+// Max compression forges max tampering costs: the compression ratio is the forge cost.
+ok(`max.compression.forge:${maxCompressionForge(matrix).units}->${maxCompressionForge(matrix).forgeCost}`, maxCompressionForge(matrix).maxed && maxCompressionForge(matrix).sameNumber)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
