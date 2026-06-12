@@ -208,6 +208,8 @@ import {
   endlessFusion,
   maxCompressionForge,
   animatedHeroes,
+  linuxKernelFusion,
+  linuxPackagesToDiamonds,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -729,6 +731,10 @@ ok(`endless.fusion:${endlessFusion(matrix).count}`, endlessFusion(matrix).filled
 ok(`max.compression.forge:${maxCompressionForge(matrix).units}->${maxCompressionForge(matrix).forgeCost}`, maxCompressionForge(matrix).maxed && maxCompressionForge(matrix).sameNumber)
 // Every page has an animated holographic-fractal hero — a dimension slider (a movie) with sound and tap gestures.
 ok(`animated.heroes:${animatedHeroes(matrix).count}`, animatedHeroes(matrix).everyPage && animatedHeroes(matrix).slider && animatedHeroes(matrix).interactive)
+// Fuse the last Linux kernel securely: content hash, signature, reproducible build, opt-in.
+ok(`linux.kernel:${linuxKernelFusion(matrix).count}`, linuxKernelFusion(matrix).fused && linuxKernelFusion(matrix).secure)
+// And collide Linux packages into diamonds: every format a pure, tamper-evident content-hash leaf.
+ok(`linux.diamonds:${linuxPackagesToDiamonds(matrix).count}`, linuxPackagesToDiamonds(matrix).collided)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

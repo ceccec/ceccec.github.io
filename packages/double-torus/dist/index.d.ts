@@ -3747,6 +3747,34 @@ export declare function animatedHeroes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function linuxKernelFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    secure: boolean;
+    kernel: string;
+    open: boolean;
+    security: {
+        fused: boolean;
+        receipt: string;
+        property: string;
+        how: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function linuxPackagesToDiamonds(matrix?: MindMatrix): {
+    collided: boolean;
+    count: number;
+    diamonds: {
+        format: string;
+        diamond: string;
+        pure: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
