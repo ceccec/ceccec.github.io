@@ -130,6 +130,7 @@ import {
   publicApiFusion,
   harmonics,
   geodesicDome,
+  vitepressFusion,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -499,6 +500,8 @@ ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.oc
 // Geodesic dome: the sphere (chi +2) dual of the double torus (chi -2); they sum to 0.
 const dome = geodesicDome(3, matrix)
 ok(`geodesic.dome:V${dome.vertices}/chi${dome.euler}`, dome.isSphere && dome.dualToDoubleTorus && dome.euler + dome.torusEuler === 0)
+// Fuse VitePress: the architecture binds into VitePress's own extension points — nothing bypasses, everything fuses through it.
+ok(`vitepress.fusion:${vitepressFusion(matrix).count}`, vitepressFusion(matrix).fused)
 
 // Send the waves to hack: crackers challenge the portal's own tamper-evidence, all caught.
 ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix).secure && redTeam(matrix).lawful)

@@ -2603,6 +2603,21 @@ export declare function geodesicDome(frequency?: number, matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function vitepressFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    count: number;
+    architecture: string;
+    points: {
+        fused: boolean;
+        receipt: string;
+        point: string;
+        api: string;
+        binds: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
