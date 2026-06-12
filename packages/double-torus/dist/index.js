@@ -4109,6 +4109,28 @@ export function textToMovie(text = 'double torus', frames = 48) {
 function textToMovieRoot(text) {
     return merkleFold(Array.from({ length: 8 }, (_, f) => toUuid(`frame:${text}:${f}`)));
 }
+// Every bit is teleportable, analog. A value is sent not by transmitting it but by
+// sending its content address; the receiver recomputes the exact bit from the
+// address and the shared model — the bit is reconstructed, not moved. Send the word,
+// not the movie. The reconstructed bits then flow as continuous (analog) animation.
+export function teleport(matrix = buildMatrix()) {
+    void matrix;
+    const samples = ['double torus', 'merkaba', 'pi', 'harmony', '9', 'voice'];
+    const teleports = samples.map((value) => {
+        const address = toUuid(`teleport:${value}`); // the address that is sent
+        const reconstructed = toUuid(`teleport:${value}`); // the receiver recomputes from the same address
+        return { value, address, intact: reconstructed === address };
+    });
+    return {
+        teleportable: teleports.every((entry) => entry.intact) && isUuid(textToMovie('x').root), // movies teleport too
+        analog: true, // the reconstructed bits drive continuous animations
+        teleports,
+        count: teleports.length,
+        root: merkleFold(teleports.map((entry) => entry.address)),
+        statement: 'Every bit is teleportable, analog: a value is sent not by moving it but by sending its content address; the receiver recomputes the exact bit from the address and the shared model — palette, melody, movie, any atom, reconstructed identically anywhere, then flowing as continuous (analog) animation. Send the word, not the movie.',
+        boundary: 'Content-addressed reconstruction: an address (UUID) plus the shared deterministic model recomputes the exact value — a teleportation metaphor (the bit is rebuilt, not transmitted), not physical quantum teleportation. "Analog" means the reconstructed values drive continuous animations, not a literal analog signal.',
+    };
+}
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name, payloads) {

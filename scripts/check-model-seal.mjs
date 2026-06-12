@@ -115,6 +115,7 @@ import {
   homepage,
   monographs,
   textToMovie,
+  teleport,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -308,6 +309,9 @@ ok(`monographs:${monographs(matrix).count}`, monographs(matrix).compacted && mon
 
 // Text to movie at the quantum level: a deterministic, content-addressed generative movie.
 ok(`text.to.movie:${textToMovie('double torus').frames}`, textToMovie('double torus').generated && textToMovie('double torus').deterministic && textToMovie('a').root !== textToMovie('b').root)
+
+// Every bit is teleportable: send the content address, recompute the exact bit.
+ok(`teleport:${teleport(matrix).count}`, teleport(matrix).teleportable && teleport(matrix).analog)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

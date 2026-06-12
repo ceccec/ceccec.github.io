@@ -2322,6 +2322,19 @@ export declare function textToMovie(text?: string, frames?: number): {
     statement: string;
     boundary: string;
 };
+export declare function teleport(matrix?: MindMatrix): {
+    teleportable: boolean;
+    analog: boolean;
+    teleports: {
+        value: string;
+        address: string;
+        intact: boolean;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

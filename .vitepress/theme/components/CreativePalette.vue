@@ -70,7 +70,32 @@ function playMelody() {
   playSequence(phrase.value.map((note) => ({ frequency: note.frequency })), { duration: 0.28, peak: 0.16 })
 }
 
+// Voice to movie: speak, and the words become the seed — which generates the movie
+// (and palette and melody). Uses the browser's speech recognition; if unavailable,
+// the button is hidden. Nothing is sent anywhere — recognition runs in the browser.
+const voiceSupported = ref(false)
+const listening = ref(false)
+function voiceToMovie() {
+  const SR = (window as unknown as { SpeechRecognition?: new () => any; webkitSpeechRecognition?: new () => any })
+  const Recognition = SR.SpeechRecognition ?? SR.webkitSpeechRecognition
+  if (!Recognition) return
+  const rec = new Recognition()
+  rec.lang = bg.value ? 'bg-BG' : 'en-US'
+  rec.interimResults = false
+  rec.maxAlternatives = 1
+  listening.value = true
+  rec.onresult = (event: { results: { 0: { 0: { transcript: string } } } }) => {
+    const said = event.results[0][0].transcript.trim()
+    if (said) seed.value = said // the voice becomes the seed -> the movie regenerates
+  }
+  rec.onend = () => { listening.value = false }
+  rec.onerror = () => { listening.value = false }
+  rec.start()
+}
+
 onMounted(() => {
+  const SR = window as unknown as { SpeechRecognition?: unknown; webkitSpeechRecognition?: unknown }
+  voiceSupported.value = Boolean(SR.SpeechRecognition ?? SR.webkitSpeechRecognition)
   filmResize()
   ro = new ResizeObserver(() => filmResize())
   if (filmWrap.value) ro.observe(filmWrap.value)
@@ -94,6 +119,14 @@ const t = computed(() =>
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <label class="palette__seed">{{ t.seedLabel }}:
       <input v-model="seed" type="text" spellcheck="false" />
+      <button
+        v-if="voiceSupported"
+        type="button"
+        class="palette__voice dt-btn dt-btn--ghost"
+        :class="{ listening }"
+        :aria-pressed="listening"
+        @click="voiceToMovie"
+      >{{ listening ? (bg ? '🎙 слуша…' : '🎙 listening…') : (bg ? '🎤 глас към филм' : '🎤 voice to movie') }}</button>
     </label>
     <div class="palette__swatches">
       <article v-for="(color, i) in palette.colors" :key="i" class="palette__swatch">
@@ -137,6 +170,8 @@ const t = computed(() =>
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
 }
+.palette__voice { font-size: 0.74rem; }
+.palette__voice.listening { color: hsl(0, 70%, 58%); border-color: hsl(0, 70%, 58%); }
 .palette__swatches {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
