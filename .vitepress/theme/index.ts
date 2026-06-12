@@ -95,6 +95,8 @@ export default {
       // Every page opens with an animated holographic-fractal hero that merges all
       // the page's related items (category and tags), seeded from the page itself.
       'doc-before': () => h(HolographicHero),
+      // Let quantum present itself as fractals on the holographic homepage too.
+      'home-hero-before': () => h(HolographicHero),
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),
       // Simple ⇄ Rich switch, reachable from every page's navbar.

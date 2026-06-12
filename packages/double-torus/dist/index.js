@@ -6935,9 +6935,13 @@ export function animatedHeroes(matrix = buildMatrix()) {
         { property: 'merges all related', via: 'the page category and tags orbit and join the core' },
         { property: 'slider through dimensions', via: 'a phase the movie advances and the viewer can scrub — every parameter a smooth function of the phase, so dimensions change continuously, an animated movie' },
         { property: 'sound and tap gestures', via: 'tapping the hero sets the dimension by position and sounds a pentatonic tone whose pitch maps to it — play the movie like an instrument' },
+        { property: 'big, fits the open graph', via: 'sized to the Open Graph 1200x630 aspect ratio so the hero fits the social card' },
+        { property: 'quantum responsiveness', via: 'the fractal’s depth and arm count adapt smoothly to the available width' },
+        { property: 'on the holographic homepage', via: 'quantum presents itself as fractals on the home hero too' },
+        { property: 'displays anything definable as OG', via: 'the hero is the page’s own Open Graph card — og:title, og:description, category and tags over the fractal og:image' },
     ].map((entry) => ({ ...entry, holographic: foldPair(toUuid(`hero:${entry.property}`), whole).bidirectional, receipt: toUuid(`hero:${entry.property}:${whole}`) }));
     return {
-        everyPage: properties.length === 7 && properties.every((entry) => entry.holographic),
+        everyPage: properties.length === 11 && properties.every((entry) => entry.holographic),
         holographic: properties.every((entry) => entry.holographic),
         slider: true, // a smooth dimension slider — the experience is an animated movie
         interactive: true, // sound and tap gestures

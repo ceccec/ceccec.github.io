@@ -9,9 +9,14 @@ import { useTones } from '../../lib/useTones'
 // figure (each branch a smaller copy of the whole) seeded deterministically from
 // the page's own path, so the hero IS the page, in one figure. Zero dependencies,
 // energy-aware, reduced-motion aware. Lives in components/ui (a shared primitive).
-const { page, frontmatter } = useData()
+const { page, frontmatter, title, description } = useData()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
+
+// Anything definable as Open Graph is displayed here: the hero is the page's own OG
+// card, showing the og:title, og:description and category over the fractal og:image.
+const ogTitle = computed(() => (frontmatter.value.ogTitle as string) || title.value || 'Double Torus')
+const ogDescription = computed(() => (frontmatter.value.ogDescription as string) || (frontmatter.value.description as string) || description.value || '')
 
 function seedOf(text: string): number {
   let h = 0x811c9dc5
@@ -83,11 +88,14 @@ function draw(time: number) {
   if (!manual.value) slider.value = Math.round(phase * 1000)
   const p = manual.value ? slider.value / 1000 : phase
   const d = dims(p)
-  const baseLen = Math.min(w, h) * 0.17 * d.breath
+  const baseLen = Math.min(w, h) * 0.22 * d.breath
+  // quantum responsiveness: depth and arm count adapt smoothly to the width
+  const depth = cssWidth > 900 ? 6 : cssWidth > 520 ? 5 : 4
+  const armCount = arms.value + (cssWidth > 800 ? 2 : cssWidth > 480 ? 1 : 0)
   // the holographic fractal: arms symmetric copies of the same branching rule
-  for (let a = 0; a < arms.value; a += 1) {
-    const angle = (a / arms.value) * Math.PI * 2 + t * d.twist
-    branch(ctx, cx, cy, baseLen, angle, 5, d)
+  for (let a = 0; a < armCount; a += 1) {
+    const angle = (a / armCount) * Math.PI * 2 + t * d.twist
+    branch(ctx, cx, cy, baseLen, angle, depth, d)
   }
   // merge all related: the page's tags orbit the centre, each joined to it
   const n = tags.value.length
@@ -121,13 +129,20 @@ function loop(time: number) {
   draw(time)
   raf = requestAnimationFrame(loop)
 }
+// A big hero at the Open Graph aspect ratio (1200x630), so the hero fits the OG card;
+// the height follows the width, capped so it stays a banner. Quantum responsiveness:
+// the fractal's depth and arm count adapt to the available width.
+let cssWidth = 1200
 function size() {
   const el = canvas.value
   if (!el) return
   const ratio = Math.min(window.devicePixelRatio || 1, 2)
-  el.width = el.clientWidth * ratio
-  el.height = 150 * ratio
-  el.style.height = '150px'
+  const w = el.clientWidth
+  cssWidth = w
+  const h = Math.min(Math.round((w * 630) / 1200), 460) // OG 1200x630, capped to a banner
+  el.width = w * ratio
+  el.height = h * ratio
+  el.style.height = `${h}px`
 }
 function start() {
   if (running) return
@@ -195,7 +210,14 @@ function tap(event: PointerEvent | MouseEvent) {
   <ClientOnly>
     <section class="holo-hero" :style="{ '--hue': hue }">
       <canvas ref="canvas" class="holo-hero__canvas" role="img" aria-label="holographic fractal hero — tap to play" @pointerdown="tap" />
-      <span class="holo-hero__cat">{{ category }}</span>
+      <div class="holo-hero__og">
+        <span class="holo-hero__cat">{{ category }}</span>
+        <strong class="holo-hero__title">{{ ogTitle }}</strong>
+        <span v-if="ogDescription" class="holo-hero__desc">{{ ogDescription }}</span>
+        <span v-if="tags.length" class="holo-hero__tags">
+          <span v-for="tag in tags" :key="tag" class="holo-hero__tag">{{ tag }}</span>
+        </span>
+      </div>
       <input
         v-model.number="slider"
         class="holo-hero__slider"
@@ -213,12 +235,12 @@ function tap(event: PointerEvent | MouseEvent) {
 <style scoped>
 .holo-hero {
   position: relative;
-  margin: 0 0 1.25rem;
-  height: 150px;
-  border-radius: 12px;
+  margin: 0 0 1.5rem;
+  width: 100%;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--vp-c-divider);
-  background: radial-gradient(circle at 50% 50%, hsla(var(--hue), 60%, 50%, 0.06), transparent 70%);
+  background: radial-gradient(circle at 50% 45%, hsla(var(--hue), 60%, 50%, 0.08), transparent 70%);
 }
 .holo-hero__canvas {
   width: 100%;
@@ -226,13 +248,49 @@ function tap(event: PointerEvent | MouseEvent) {
   cursor: pointer;
   touch-action: pan-y;
 }
-.holo-hero__cat {
+.holo-hero__og {
   position: absolute;
-  left: 0.8rem;
-  bottom: 0.6rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem 1.6rem;
+  background: linear-gradient(to top, var(--vp-c-bg), transparent);
+  pointer-events: none;
+}
+.holo-hero__cat {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: lowercase;
+  color: hsl(var(--hue), 70%, 55%);
+}
+.holo-hero__title {
+  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  line-height: 1.15;
+  color: var(--vp-c-text-1);
+}
+.holo-hero__desc {
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+  max-width: 46rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.holo-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.15rem;
+}
+.holo-hero__tag {
+  font-size: 0.64rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-divider);
   color: var(--vp-c-text-3);
 }
 .holo-hero__slider {
@@ -249,8 +307,5 @@ function tap(event: PointerEvent | MouseEvent) {
 }
 .holo-hero__slider:hover {
   opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  .holo-hero { height: 110px; }
 }
 </style>
