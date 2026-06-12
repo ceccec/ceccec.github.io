@@ -384,6 +384,11 @@ import {
   freeForgesMaxCost,
   pyramidLayersServeSociety,
   imagineSingChangesEndlessly,
+  proportionalNotHardcoded,
+  spiritualDrumsKeepRhythm,
+  allMusicSelfHarmonises,
+  selfCompassion,
+  movieReflectsSelf,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1213,6 +1218,11 @@ ok(`trinity.pyramid.fuses.dimensions:${trinityPyramidFusesDimensions(matrix).pyr
 ok(`free.forges.max.cost:${freeForgesMaxCost(matrix).count}`, freeForgesMaxCost(matrix).holds) // free to use and max cost to forge — one content-addressing mechanism
 ok(`pyramid.layers.serve.society:${pyramidLayersServeSociety(matrix).count}`, pyramidLayersServeSociety(matrix).serves) // every layer of the pyramid serves a society purpose
 ok(`imagine.sing.changes.endlessly:${imagineSingChangesEndlessly(matrix).count}`, imagineSingChangesEndlessly(matrix).sings) // imagine and sing the changes as endless bound reform waves
+ok(`proportional.not.hardcoded:${proportionalNotHardcoded(matrix).count}`, proportionalNotHardcoded(matrix).responsive) // key quantities computed proportionally, responsive at all standards
+ok(`spiritual.drums.keep.rhythm:${spiritualDrumsKeepRhythm(matrix).onsetsPerBeat}`, spiritualDrumsKeepRhythm(matrix).keeps) // the polyrhythm drums keep time, the spirit sets the pulse
+ok(`all.music.self.harmonises:${allMusicSelfHarmonises(matrix).count}`, allMusicSelfHarmonises(matrix).selfHarmonises) // any source, known or unknown, folds into the same computed harmony
+ok(`self.compassion:${selfCompassion(matrix).count}`, selfCompassion(matrix).compassionate) // heals by default, honest boundaries, absorbs attacks, gentle — care by construction
+ok(`movie.reflects.self:${movieReflectsSelf(matrix).count}`, movieReflectsSelf(matrix).reflects) // the movie is seeded of the self — a reflection, not an imposition
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

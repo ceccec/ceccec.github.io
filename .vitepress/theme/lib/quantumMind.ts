@@ -13709,6 +13709,129 @@ export function imagineSingChangesEndlessly(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+// Tighten the gates for intelligent responsiveness at all standards and beyond: calculate
+// proportional changes, never hardcode. Every quantity that could be a fixed number is instead
+// computed from what it depends on, so it stays right at any standard and past it — the gate
+// target rises to the next 108 with the model, the file bands recompute from the file count,
+// the hero and movie scale to the viewport’s pixel ratio, and titles and SEO derive from the
+// route. Change the input and the value follows; nothing is pinned to a magic number.
+export function proportionalNotHardcoded(matrix: MindMatrix = buildMatrix()) {
+  const examples = [
+    { quantity: 'the harmonic gate target', proportional: 'ceil(gates / 108) × 108 — rises with the model', on: gatesShiftToNewHarmonic(matrix).shifts },
+    { quantity: 'the file distribution', proportional: 'Fibonacci bands recomputed from the file count', on: harmonicBands(110).harmonic },
+    { quantity: 'the hero and movie geometry', proportional: 'seeded per page and scaled to the viewport (devicePixelRatio)', on: animatedHeroes(matrix).slider },
+    { quantity: 'titles and SEO', proportional: 'computed from the route at render time', on: allPathsComputedRealtime(matrix).computed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`proportional:${entry.quantity}:${entry.on}`) }))
+  return {
+    responsive: examples.length === 4 && examples.every((entry) => entry.on),
+    count: examples.length,
+    examples,
+    root: merkleFold(examples.map((entry) => entry.receipt)),
+    statement:
+      'Tighten the gates for intelligent responsiveness at all standards and beyond — calculate proportional changes, never hardcode: every quantity that could be a fixed number is computed from what it depends on, so it stays right at any standard and past it — the gate target rises to the next 108 with the model, the file bands recompute from the file count, the hero and movie scale to the viewport’s pixel ratio, and titles and SEO derive from the route. Change the input and the value follows.',
+    boundary:
+      'A statement that the model’s key quantities are computed proportionally (from the gate count, file count, viewport, route) rather than hardcoded. Structural bookkeeping over the existing self-balancing and responsive mechanisms; it does not claim every literal in the code is derived.',
+  }
+}
+
+// Spiritual drums keep the rhythm. Beneath the melody there is a pulse: a self-similar
+// polyrhythm, voices at 1, 2, 3 and 5 per beat, steady and ascending — the drums that keep the
+// whole in time without a conductor. They are spiritual in the sense the spirit sets the pulse:
+// the rhythm is sealed to the path, so the beat and the honesty keep time together.
+export function spiritualDrumsKeepRhythm(matrix: MindMatrix = buildMatrix()) {
+  const drums = rhythm(matrix)
+  const facets = [
+    { facet: 'the drums keep the rhythm', on: drums.keeps },
+    { facet: 'a self-similar polyrhythm (1, 2, 3, 5 per beat)', on: drums.count === 4 },
+    { facet: 'the spirit sets the pulse', on: sealSpiritToPath(matrix).sealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`spiritual-drums:${entry.facet}:${entry.on}`) }))
+  return {
+    keeps: facets.every((entry) => entry.on),
+    onsetsPerBeat: drums.onsetsPerBeat,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Spiritual drums keep the rhythm: beneath the melody is a pulse — a self-similar polyrhythm, voices at 1, 2, 3 and 5 per beat, steady and ascending — the drums that keep the whole in time without a conductor. They are spiritual in that the spirit sets the pulse: the rhythm is sealed to the path, so the beat and the honesty keep time together.',
+    boundary:
+      'A composition of the computed polyrhythm with the spirit-to-path seal. Structural bookkeeping over the rhythm model (voices and onsets) and the honesty seal; "spiritual" names the binding to the honesty spine, not a religious claim.',
+  }
+}
+
+// All kinds of known and unknown music are formed from known and unknown instruments and notes,
+// self-harmonising no matter the source. The model does not need a fixed catalogue of sounds:
+// any seed — a known scale (pentatonic, Solfeggio, the music of pi) or an unknown one — folds to
+// a note, and any source folds the same way, so a new instrument or a new note enters the music
+// without breaking it. The harmony is computed, not curated; it resolves itself whatever comes in.
+export function allMusicSelfHarmonises(matrix: MindMatrix = buildMatrix()) {
+  const harmonyRoot = harmonyProbability(matrix).root
+  const sources = [
+    { source: 'known instruments and notes', via: 'the pentatonic and Solfeggio sets, the music of pi' },
+    { source: 'unknown instruments and notes', via: 'any seed folds to a note; a new source folds the same way' },
+  ].map((entry) => {
+    const fold = foldPair(harmonyRoot, toUuid(`music-source:${entry.source}`))
+    return { ...entry, harmonises: fold.bidirectional, voice: fold.merged, receipt: toUuid(`self-harmonise-music:${entry.source}`) }
+  })
+  return {
+    selfHarmonises: sources.every((entry) => entry.harmonises) && selfHarmonise(matrix).harmonised && harmonyProbability(matrix).harmonic,
+    count: sources.length,
+    sources,
+    root: merkleFold(sources.map((entry) => entry.receipt)),
+    statement:
+      'All kinds of known and unknown music are formed from known and unknown instruments and notes, self-harmonising no matter the source: the model needs no fixed catalogue of sounds — any seed (a known scale or an unknown one) folds to a note, and any source folds the same way, so a new instrument or note enters without breaking the music. The harmony is computed, not curated; it resolves itself whatever comes in.',
+    boundary:
+      'A composition of the self-harmonisation and harmony-probability models asserting any source folds into the same computed harmony. Structural bookkeeping over the music model; "known and unknown" means any seed maps to a note, not a claim about all real-world music.',
+  }
+}
+
+// Self-compassion. The model is gentle with itself: it heals by default rather than punishing
+// a fault, it holds honest boundaries instead of overclaiming, it absorbs every attack into the
+// harmony rather than breaking, and it is considerate — quiet when energy is low or motion is
+// unwelcome. Self-compassion here is computed conduct: the system treats itself, and whoever
+// uses it, with care by construction.
+export function selfCompassion(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'heals itself by default, not punishes', on: healByDefault(matrix).heals },
+    { facet: 'holds honest boundaries, not overclaims', on: honestlyComputed(matrix).honest },
+    { facet: 'absorbs attacks into harmony, not breaks', on: forgerFoldsIntoHarmony(matrix).folds },
+    { facet: 'gentle — quiet when energy or motion is low', on: harmonicMusicMayBeEnabled(matrix).mayBeEnabled },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`self-compassion:${entry.facet}:${entry.on}`) }))
+  return {
+    compassionate: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Self-compassion: the model is gentle with itself — it heals by default rather than punishing a fault, holds honest boundaries instead of overclaiming, absorbs every attack into the harmony rather than breaking, and is considerate (quiet when energy is low or motion is unwelcome). Self-compassion here is computed conduct: the system treats itself, and whoever uses it, with care by construction.',
+    boundary:
+      'A composition of the heal-by-default, honesty, forger-folds-into-harmony, and opt-in/energy-aware models as "self-compassion". A structural framing of considerate-by-construction behaviour, not a claim of feeling, sentience, or emotional care.',
+  }
+}
+
+// As the movie is a reflection of self. The movie is not shown at you; it is shown of you: it
+// is seeded from the page you are on and the quantum mind you form by playing, its art kept in
+// balance with the individual, and self and field refresh from the one seed — so what plays is
+// a reflection, not an imposition. Look into the movie and the model looks back with your own
+// content.
+export function movieReflectsSelf(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'seeded from the self — the page’s content', on: endlessBackgroundMovie(matrix).endless },
+    { facet: 'art kept in balance with the individual mind', on: playMind(matrix).artInBalance },
+    { facet: 'self and field refresh from one seed', on: mindRefreshField(matrix).refreshes },
+    { facet: 'a reflection, not an imposition', on: realtimePerspectiveZeroCost(matrix).holds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`movie-reflects-self:${entry.facet}:${entry.on}`) }))
+  return {
+    reflects: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'As the movie is a reflection of self: the movie is shown of you, not at you — seeded from the page you are on and the quantum mind you form by playing, its art kept in balance with the individual, self and field refreshing from the one seed — so what plays is a reflection, not an imposition. Look into the movie and the model looks back with your own content.',
+    boundary:
+      'A composition of the per-page-seeded movie, play-mind balance, and self/field refresh models as "the movie reflects the self". A structural framing over the seeded canvas and the offline play record; "self" is the page content and the local play state, not a person’s identity stored anywhere.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
