@@ -179,6 +179,31 @@ export default defineConfig({
   },
   themeConfig: {
     socialLinks: [],
+    // Nothing bypasses VitePress — not even search. VitePress's built-in local
+    // search (a MiniSearch index built at build time) is offline, zero-network and
+    // zero-dependency, so it honours every constraint while keeping site search
+    // inside VitePress rather than in a custom component. The TrinitySearch and
+    // QuantumConsole searches remain as model-specific tools, not a replacement for
+    // the portal's own search. Labels are localised for English and Bulgarian.
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          bg: {
+            translations: {
+              button: { buttonText: 'Търсене', buttonAriaLabel: 'Търсене' },
+              modal: {
+                displayDetails: 'Покажи подробности',
+                resetButtonTitle: 'Изчисти търсенето',
+                backButtonTitle: 'Затвори търсенето',
+                noResultsText: 'Няма резултати за',
+                footer: { selectText: 'избери', navigateText: 'навигирай', closeText: 'затвори' },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   locales: {
     root: {

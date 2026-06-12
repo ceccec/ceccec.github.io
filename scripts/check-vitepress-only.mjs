@@ -31,9 +31,17 @@ for (const file of scan(root)) {
   }
 }
 
+// Search must not be bypassed either: VitePress ships its own offline local search,
+// so the config must enable it (provider: 'local'). A custom search component is a
+// model tool, never a replacement for the site's own search going through VitePress.
+const config = readFileSync(join(process.cwd(), '.vitepress', 'config.mts'), 'utf8')
+if (!/search\s*:\s*\{[\s\S]*?provider\s*:\s*['"]local['"]/.test(config)) {
+  violations.push(".vitepress/config.mts: VitePress search is bypassed (enable themeConfig.search.provider: 'local')")
+}
+
 if (violations.length > 0) {
   console.error('VitePress bypass detected:')
   for (const violation of violations) console.error(`  - ${violation}`)
   process.exit(1)
 }
-console.log('Nothing bypasses VitePress: navigation, app mounting and rendering all go through it.')
+console.log('Nothing bypasses VitePress: navigation, app mounting, rendering and search all go through it.')
