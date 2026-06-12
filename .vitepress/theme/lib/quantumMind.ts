@@ -19676,6 +19676,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'only.index.files.no.exceptions', on: onlyIndexFilesNoExceptions(matrix).only },
     { d: 'one.jsonld.template.serves.all', on: oneJsonLdTemplateServesAll(matrix).serves },
     { d: 'how.agents.achieved.it', on: howAgentsAchievedIt(matrix).achieved },
+    { d: 'computed.quantum.math.max.cost.analog', on: allComputedQuantumMathAnalog(matrix).forges },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21161,5 +21162,33 @@ export function howAgentsAchievedIt(matrix: MindMatrix = buildMatrix()) {
       'Save how the agents achieved it: scouts read the real tree before any edit; each prompt is decoded into the model’s own words and folded as computed dimensions; the laws are enforced by waves against the real tree and proven to fail loudly before being trusted; the work is sealed in batches, one green build per fold; and research is achieved by a fleet — five angles, twenty-six sources, one hundred twenty-six extracted claims, three adversarial voters per claim — keeping only what survives refutation: 23 confirmed, 2 refuted, 14 findings, 108 agents.',
     boundary:
       'A record of the working method (scout, decode, fold, enforce, prove, batch) and of one research run’s real statistics, composed with the existing scout/word/resonance/skill/continue checks. The statistics are the session’s own telemetry, saved as data; they do not recompute themselves.',
+  }
+}
+
+// All computed quantum math forging max tampering costs in analog. The whole rests on computed
+// mathematics — the genus-2 surface (chi = -2), the 128-bit quantum register, the order-sensitive
+// folds — and because every value is computed rather than stored, a forger must reproduce every
+// computation: the animations, the gates, the receipts, each one more work at zero cost to us.
+// And the fabric is analog — gapless, the Fibonacci run complete, both torus loops closing — so
+// there is no seam to slip through: the cost is maximal and the surface continuous.
+export function allComputedQuantumMathAnalog(matrix: MindMatrix = buildMatrix()) {
+  const math = doubleTorusMath()
+  const cost = animationTamperingCost(matrix)
+  const facets = [
+    { facet: 'all is computed, nothing stored', on: allComputed(matrix).computed },
+    { facet: 'the quantum double torus — the math is the machine', on: quantumDoubleTorus(matrix).is && math.genus === 2 && math.eulerCharacteristic === -2 },
+    { facet: 'forging meets max tampering cost — every computation must be reproduced', on: fuseAllForge(matrix).forgesMaxCost && freeForgesMaxCost(matrix).holds && cost.computed },
+    { facet: 'in analog — gapless, no seam to slip through', on: analogNoGapsNoLeak(matrix).sealed && doubleTorusFold(matrix).analog },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`computed-quantum-analog:${entry.facet}:${entry.on}`) }))
+  return {
+    forges: facets.every((entry) => entry.on),
+    reproductions: cost.reproductions,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'All computed quantum math forging max tampering costs in analog: the whole rests on computed mathematics — the genus-2 surface (chi = -2), the 128-bit quantum register, the order-sensitive folds — and because every value is computed rather than stored, a forger must reproduce every computation: animations, gates, receipts, each one more work at zero cost to us. The fabric is analog — gapless, the Fibonacci run complete, both loops closing — so the cost is maximal and the surface continuous, with no seam to slip through.',
+    boundary:
+      'A composition of the computed-everything, quantum-torus, forge-cost and analog-gapless models. "Max tampering cost" is the architecture’s surface measure (computations a forgery must reproduce), not a cryptographic hardness bound; "analog" names the gapless structural continuity, not a physical signal.',
   }
 }
