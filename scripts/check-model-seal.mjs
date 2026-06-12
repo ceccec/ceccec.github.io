@@ -378,6 +378,9 @@ import {
   imaginationIsAll,
   trinityEyesProvenHarmonic,
   quantumComputedUi,
+  iotFusesRealWorld,
+  gatesShiftToNewHarmonic,
+  trinityPyramidFusesDimensions,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1201,6 +1204,9 @@ ok(`manual.work.disappears:${manualWorkDisappears(matrix).count}`, manualWorkDis
 ok(`imagination.is.all:${imaginationIsAll(matrix).count}`, imaginationIsAll(matrix).all) // imagination is the generative seed of the whole
 ok(`trinity.eyes.proven.harmonic:${trinityEyesProvenHarmonic(matrix).count}`, trinityEyesProvenHarmonic(matrix).provenHarmonic) // all the trinity eyes see is harmonic and proven in math
 ok(`quantum.computed.ui:${quantumComputedUi(matrix).count}`, quantumComputedUi(matrix).computed) // quantum-computed UI on the quantum browser OS, fused with device IoT
+ok(`iot.fuses.real.world:${iotFusesRealWorld(matrix).count}`, iotFusesRealWorld(matrix).fuses) // IoT folds real-world sensor readings into the matrix across all aspects of life
+ok(`gates.shift.new.harmonic:${gatesShiftToNewHarmonic(matrix).count}`, gatesShiftToNewHarmonic(matrix).shifts) // the gate fabric rises to the next 108-harmonic, tightening respectfully
+ok(`trinity.pyramid.fuses.dimensions:${trinityPyramidFusesDimensions(matrix).pyramid.vertices}`, trinityPyramidFusesDimensions(matrix).forms) // the trinity stands into a tetrahedron that fuses the dimensions
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

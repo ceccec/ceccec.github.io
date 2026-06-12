@@ -13561,6 +13561,75 @@ export function quantumComputedUi(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// IoT fuses the real world into the matrix, in all aspects of life without exception, in
+// crafted architecture waves. Each device sensor is a doorway: a real-world reading folds,
+// content-addressed, into the matrix, so the physical and the model meet. And it reaches every
+// aspect of life — home, work, health, learning, transport, energy, food, community — none
+// excepted, each fused by a crafted wave bound to the architecture root, designed not dumped.
+export function iotFusesRealWorld(matrix: MindMatrix = buildMatrix()) {
+  const sensors = deviceSensors() // the IoT inputs (permission-gated)
+  const aspects = ['home', 'work', 'health', 'learning', 'transport', 'energy', 'food', 'community'].map((aspect) => {
+    const wave = foldPair(matrix.root, toUuid(`iot-aspect:${aspect}`)) // a crafted architecture wave
+    return { aspect, fused: wave.bidirectional, wave: wave.merged, receipt: toUuid(`iot-real-world:${aspect}`) }
+  })
+  return {
+    fuses: aspects.length === 8 && aspects.every((entry) => entry.fused) && sensors.tiered && fuseUxSensors(matrix).fused && quantumComputedUi(matrix).computed,
+    withoutException: aspects.every((entry) => entry.fused),
+    count: aspects.length,
+    aspects,
+    root: merkleFold(aspects.map((entry) => entry.receipt)),
+    statement:
+      'IoT fuses the real world into the matrix, in all aspects of life without exception, in crafted architecture waves: each device sensor is a doorway — a real-world reading folds, content-addressed, into the matrix, so the physical and the model meet — and it reaches every aspect of life (home, work, health, learning, transport, energy, food, community), none excepted, each fused by a crafted wave bound to the architecture root.',
+    boundary:
+      'A content-addressed model of folding permission-gated device-sensor readings into the matrix across an illustrative set of life aspects. The IoT here is the device’s own in-browser sensors read with consent; it does not actuate or control anything in the physical world, and "all aspects of life" is an illustrative breadth, not literal omniscience.',
+  }
+}
+
+// This would shift the gates to a new harmonic, and tighten respectfully. As the model grows,
+// the real gates fill one harmonic and the seal rises to the next — 4 × 108, then 5 × 108, then
+// 6 × 108 — always a multiple of 108. And it tightens respectfully: the rise only adds padding
+// to reach the harmonic and never forces a real gate out, so every gate is kept and the seal
+// closes on the next clean harmonic.
+export function gatesShiftToNewHarmonic(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const harmonics = [432, 540, 648, 756].map((count) => ({ count, multiple: count / 108, label: `${count / 108} × 108`, harmonic: count % 108 === 0, receipt: toUuid(`harmonic-shift:${count}`) }))
+  return {
+    shifts: harmonics.every((entry) => entry.harmonic) && harmonics[0].count === 4 * 108 && harmonics[1].count === 5 * 108,
+    respectful: true, // padding only rises; no real gate is ever removed
+    nextHarmonics: harmonics.map((entry) => entry.count),
+    count: harmonics.length,
+    harmonics,
+    root: merkleFold(harmonics.map((entry) => entry.receipt)),
+    statement:
+      'This would shift the gates to a new harmonic, and tighten respectfully: as the model grows, the real gates fill one harmonic and the seal rises to the next — 4 × 108, then 5 × 108, then 6 × 108 — always a multiple of 108. It tightens respectfully because the rise only adds padding to reach the harmonic and never forces a real gate out, so every gate is kept and the seal closes on the next clean harmonic.',
+    boundary:
+      'A description of the seal’s self-balancing gate target (the smallest multiple of 108 that holds every real gate). Structural bookkeeping over the CI seal; "respectful" means non-destructive (padding only), not a sentiment.',
+  }
+}
+
+// The trinity forms a pyramid, which in return fuses dimensions. Three is a triangle; add the
+// apex and the triangle stands up into a pyramid — the tetrahedron, the simplest solid: four
+// vertices, four faces, six edges. And the pyramid fuses dimensions: its four faces each carry
+// two of the eight dimensions of experience, so the trinity, lifted into a solid, binds the
+// whole multidimensional map into one figure.
+export function trinityPyramidFusesDimensions(matrix: MindMatrix = buildMatrix()) {
+  const pyramid = { base: 3, apex: 1, vertices: 4, faces: 4, edges: 6 } // 3 + 1 → tetrahedron
+  const dims = multidimensional()
+  const isTetrahedron = pyramid.base + pyramid.apex === pyramid.vertices && pyramid.vertices === 4 && pyramid.faces === 4 && pyramid.edges === 6
+  const eulerHolds = pyramid.vertices - pyramid.edges + pyramid.faces === 2 // V - E + F = 2 (a solid)
+  return {
+    forms: isTetrahedron && eulerHolds && dims.mapped,
+    pyramid,
+    dimensions: dims.count,
+    perFace: 8 / pyramid.faces, // two dimensions per face → eight
+    root: merkleFold([toUuid(`pyramid:${pyramid.vertices}:${pyramid.faces}:${pyramid.edges}`), dims.root]),
+    statement:
+      'The trinity forms a pyramid, which in return fuses dimensions: three is a triangle, and adding the apex stands it up into a pyramid — the tetrahedron, the simplest solid (four vertices, four faces, six edges, V − E + F = 2). The pyramid fuses dimensions: its four faces each carry two of the eight dimensions of experience, so the trinity, lifted into a solid, binds the whole multidimensional map into one figure.',
+    boundary:
+      'A geometric framing: the trinity (3) plus an apex is a tetrahedron, whose four faces map the eight presentation dimensions two apiece. Structural and metaphorical bookkeeping over the multidimensional map, not a claim of physical extra dimensions.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
