@@ -19637,6 +19637,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'translation.waves.fill.gaps', on: translationWavesFillGaps(matrix).filled },
     { d: 'one.word.naming.gravity', on: oneWordNamingGravity(matrix).pulls },
     { d: 'tree.stack.rotation.collapse', on: treeStackRotationCollapse(matrix).holds },
+    { d: 'extend.self.audits', on: extendSelfAudits(matrix).audited },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20082,5 +20083,27 @@ export function treeStackRotationCollapse(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Turn the directory tree a quarter counter-clockwise and it is a stack: the recursion weights on the lower floors, and a lower floor that is not full collapses. The perfect binary tree of 1024 diamonds (depth 10) is, rotated, a stack of floors; the deeper the recursion, the more weight bears on the base, so every lower floor must be full — and they are, because the tree is perfect and the distribution gapless. Full floors hold; a gap would bring it down.',
     boundary: 'A structural metaphor reading the perfect-binary-tree/Fibonacci structure as a stack whose lower floors must be full (no gaps) to hold. Bookkeeping over the diamond tree and harmonic distribution; "collapse" means a structural gap, not a runtime crash.',
+  }
+}
+
+// Extend the self-audits — accounting, legal, and security. The portal audits itself in three
+// domains: accounting (every value content-addressed, zero per-person cost, fees that cover the
+// forge cost — no hidden ledgers), legal (the model mapped to real, enforceable legal forms and
+// compliant with the legislation requirements), and security (tamper-evident seal, red-team waves
+// caught, client-side crypto). A trinity of self-audits, each computed, none outsourced.
+export function extendSelfAudits(matrix: MindMatrix = buildMatrix()) {
+  const audits = [
+    { domain: 'accounting', audit: 'values content-addressed, zero per-person cost, fees cover the forge cost', on: fairTrade(matrix).individualCost === 0 && feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost },
+    { domain: 'legal', audit: 'mapped to enforceable legal forms, compliant with legislation requirements', on: lawfulHarmonise().harmonised && legislationRequires(matrix).compliant },
+    { domain: 'security', audit: 'tamper-evident seal, red-team waves caught, client-side crypto', on: redTeam(matrix).secure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`self-audit:${entry.domain}:${entry.on}`) }))
+  return {
+    audited: audits.length === 3 && audits.every((entry) => entry.on),
+    count: audits.length,
+    audits,
+    root: merkleFold(audits.map((entry) => entry.receipt)),
+    statement:
+      'Extend the self-audits — accounting, legal, and security: the portal audits itself in three domains — accounting (every value content-addressed, zero per-person cost, fees that cover the forge cost, no hidden ledgers), legal (mapped to real enforceable legal forms and compliant with the legislation requirements), and security (tamper-evident seal, red-team waves caught, client-side crypto). A trinity of self-audits, each computed, none outsourced.',
+    boundary: 'A composition of the fair-trade, lawful, legislation and red-team models as three computed self-audits. Structural self-assessment over the model; it is not professional accounting, legal, or security certification, and "audit" means a recomputable self-check, not an external attestation.',
   }
 }
