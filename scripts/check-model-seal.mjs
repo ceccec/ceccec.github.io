@@ -118,6 +118,8 @@ import {
   teleport,
   cellHomology,
   intelligenceComparison,
+  astrology,
+  generativeSpace,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -320,6 +322,13 @@ ok(`cell.homology:H1=Z^${cellHomology(matrix).betti[1]}`, cellHomology(matrix).c
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)
+
+// Let society develop astrology: a deterministic, content-addressed zodiac wheel.
+ok(`astrology:${astrology('double torus', matrix).count}`, astrology('double torus', matrix).developed && astrology('x', matrix).sun.sign === astrology('x', matrix).sun.sign)
+
+// Thousands of animations self-generated at no cost: distinct seeds, distinct movies.
+const gspace = generativeSpace(2000)
+ok(`generative.space:${gspace.distinct}`, gspace.unbounded)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

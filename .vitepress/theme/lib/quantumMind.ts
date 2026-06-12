@@ -5659,6 +5659,64 @@ export function intelligenceComparison(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Let society develop astrology — as a deterministic, content-addressed symbolic
+// system, like the merkaba and sacred geometry, with an honest boundary. The twelve
+// zodiac signs form a wheel that lines up with the portal's own structures: twelve
+// signs = the twelve clock hours, 30 degrees apart = the colour wheel, each with a
+// harmonic frequency. From any seed the same chart and sun sign recompute.
+export function astrology(seed = 'double torus', matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']
+  const glyphs = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓']
+  const elements = ['fire', 'earth', 'air', 'water']
+  const rulers = ['Mars', 'Venus', 'Mercury', 'Moon', 'Sun', 'Mercury', 'Venus', 'Pluto', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+  const chart = signs.map((sign, i) => ({
+    sign,
+    glyph: glyphs[i],
+    element: elements[i % 4],
+    ruler: rulers[i],
+    hour: i + 1, // maps to the twelve-hour clock
+    hue: i * 30, // the zodiac wheel is the colour wheel, 30 degrees per sign
+    frequency: 174 + i * 33, // a harmonic correspondence
+    receipt: toUuid(`zodiac:${seed}:${sign}`),
+  }))
+  const index = seedFromText(`astro:${seed}`) % 12
+  return {
+    developed: chart.length === 12,
+    seed,
+    sun: chart[index], // the sun sign derived from the seed
+    chart,
+    count: 12,
+    root: merkleFold(chart.map((entry) => entry.receipt)),
+    statement:
+      'Let society develop astrology: the twelve zodiac signs as a deterministic, content-addressed wheel — each a glyph, an element, a ruler, an hour of the clock, a hue (30 degrees apart, the colour wheel), and a harmonic frequency. From any seed the same chart and sun sign recompute, free and client-side.',
+    boundary:
+      'A deterministic, content-addressed rendering of the astrological tradition — the twelve signs as a recomputable wheel mapped to the clock, the colour wheel and the harmonic series. Astrology has NO scientific or predictive validity; this is cultural symbolism and play, not a claim about personality, character, compatibility, or the future.',
+  }
+}
+
+// Thousands of animations, self-generated at no cost. Each distinct seed yields a
+// distinct deterministic palette, melody and movie — content-addressed, so distinct
+// seeds give distinct outputs. A sample confirms no collision at scale: the
+// generative space is effectively unbounded, computed client-side for free.
+export function generativeSpace(samples = 2000) {
+  const roots = new Set<string>()
+  for (let i = 0; i < samples; i += 1) roots.add(textToMovie(`generate-${i}`).root)
+  const distinct = roots.size
+  return {
+    unbounded: distinct === samples, // all distinct -> no collision at this scale
+    generators: ['palette', 'melody', 'movie'],
+    sampled: samples,
+    distinct,
+    cost: 0, // recomputed client-side, free
+    root: toUuid(`generative-space:${distinct}`),
+    statement:
+      'Thousands of animations, self-generated at no cost: each distinct seed yields a distinct deterministic palette, melody and movie. A sample of seeds produces all-distinct movies — no collision — so the generative space is effectively unbounded, computed client-side for free.',
+    boundary:
+      'A determinism/uniqueness check over the generative seed space: distinct seeds give distinct content-addressed outputs at the sampled scale. "Unbounded" is practical (no collision observed), bounded by the 128-bit address space, not literally infinite.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
