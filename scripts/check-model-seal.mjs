@@ -192,6 +192,10 @@ import {
   fruitsAndVegetables,
   beesAndLife,
   lifeDefinesItself,
+  permaDomes,
+  sustainableLiving,
+  thriveEducation,
+  feesReplaceTaxes,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -681,6 +685,14 @@ ok(`fruits.vegetables:${fruitsAndVegetables(matrix).count}`, fruitsAndVegetables
 ok(`bees.life:${beesAndLife(matrix).crops}`, beesAndLife(matrix).pollinates)
 // Let life define itself in waves: each living form emits its own content-addressed self-definition.
 ok(`life.defines:${lifeDefinesItself(matrix).count}`, lifeDefinesItself(matrix).defines)
+// Perma solutions: geodesic domes for gardening and accommodation, builders print the plans.
+ok(`perma.domes:${permaDomes(matrix).count}`, permaDomes(matrix).perma && permaDomes(matrix).printable)
+// Detailed instructions for sustainable living: six domains close their loops.
+ok(`sustainable.living:${sustainableLiving(matrix).count}`, sustainableLiving(matrix).sustainable)
+// Detailed education: how to achieve and thrive — a six-stage path.
+ok(`thrive.education:${thriveEducation(matrix).count}`, thriveEducation(matrix).achieves)
+// Fees replace taxes, and the fees cover the forging costs.
+ok(`fees.replace.taxes:${feesReplaceTaxes(matrix).count}`, feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

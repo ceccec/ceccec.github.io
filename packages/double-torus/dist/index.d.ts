@@ -3533,6 +3533,66 @@ export declare function lifeDefinesItself(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function permaDomes(matrix?: MindMatrix): {
+    perma: boolean;
+    plans: {
+        printable: boolean;
+        plan: string;
+        use: string;
+        frequency: number;
+        struts: number;
+        hubs: number;
+        panels: number;
+    }[];
+    count: number;
+    printable: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function sustainableLiving(matrix?: MindMatrix): {
+    sustainable: boolean;
+    steps: {
+        step: number;
+        receipt: string;
+        domain: string;
+        instruction: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function thriveEducation(matrix?: MindMatrix): {
+    achieves: boolean;
+    curriculum: {
+        order: number;
+        receipt: string;
+        stage: string;
+        how: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function feesReplaceTaxes(matrix?: MindMatrix): {
+    replaces: boolean;
+    transparent: boolean;
+    count: number;
+    fees: {
+        transparent: boolean;
+        traceable: boolean;
+        receipt: string;
+        fee: string;
+        funds: string;
+    }[];
+    forgeCost: number;
+    coversForgeCost: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

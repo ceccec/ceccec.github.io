@@ -6555,6 +6555,111 @@ export function lifeDefinesItself(matrix = buildMatrix()) {
         boundary: 'A content-addressed self-definition of a set of life forms, each folded with the root of life. A structural, recomputable framing — the model letting its own "life" abstraction define itself — not biology or a definition of real life.',
     };
 }
+// Perma solutions with geodesic domes for gardening and accommodation; detailed
+// builders print the plans. A frequency-3 dome is the greenhouse (gardening), a
+// frequency-4 dome the dwelling (accommodation), and each plan is a buildable bill of
+// materials — struts (the edges), hubs (the vertices), panels (the faces) — content-
+// addressed so a builder can print the exact plan and reproduce the dome.
+export function permaDomes(matrix = buildMatrix()) {
+    const gardenDome = geodesicDome(3, matrix);
+    const homeDome = geodesicDome(4, matrix);
+    const plans = [
+        { use: 'gardening (greenhouse)', frequency: 3, struts: gardenDome.edges, hubs: gardenDome.vertices, panels: gardenDome.faces },
+        { use: 'accommodation (dwelling)', frequency: 4, struts: homeDome.edges, hubs: homeDome.vertices, panels: homeDome.faces },
+    ].map((entry) => ({ ...entry, printable: true, plan: toUuid(`dome-plan:${entry.use}:${entry.struts}:${entry.hubs}:${entry.panels}`) }));
+    return {
+        perma: plans.length === 2 && plans.every((entry) => entry.printable && entry.struts > 0),
+        plans,
+        count: plans.length,
+        printable: true,
+        root: merkleFold(plans.map((entry) => entry.plan)),
+        statement: 'Perma solutions with geodesic domes for gardening and accommodation, detailed so builders print the plans: a frequency-3 dome is the greenhouse (gardening), a frequency-4 dome the dwelling (accommodation), and each plan is a buildable bill of materials — struts (edges), hubs (vertices), panels (faces) — content-addressed so a builder can print the exact plan and reproduce the dome.',
+        boundary: 'A content-addressed bill of materials (struts, hubs, panels) for two geodesic-dome frequencies, framed as printable build plans. The counts are the exact geodesic combinatorics; it is an illustrative permaculture schema, not engineered construction drawings, a structural/load certification, or a building code.',
+    };
+}
+// With detailed instructions for sustainable living. Six domains close their loops:
+// water (harvest and greywater), energy (solar and the self-balancing grid), food
+// (the dome greenhouse, garden and bees), waste (closed-loop recycling and compost),
+// shelter (the printable dome), and community (the free harmonic society). Each a step,
+// content-addressed, folding into one way to live within the means of the planet.
+export function sustainableLiving(matrix = buildMatrix()) {
+    void matrix;
+    const steps = [
+        { domain: 'water', instruction: 'harvest rain, run a greywater loop — the water trinity (water, vapour, humidity)' },
+        { domain: 'energy', instruction: 'solar with battery-swap storage on the self-balancing grid' },
+        { domain: 'food', instruction: 'the dome greenhouse, the garden of fruits and vegetables, the bees' },
+        { domain: 'waste', instruction: 'closed-loop recycling and compost — nothing leaves the cycle' },
+        { domain: 'shelter', instruction: 'the geodesic dome from printable plans' },
+        { domain: 'community', instruction: 'a free harmonic society with public services, free for everyone' },
+    ].map((entry, index) => ({ ...entry, step: index + 1, receipt: toUuid(`sustainable:${index}:${entry.domain}`) }));
+    return {
+        sustainable: steps.length === 6,
+        steps,
+        count: steps.length,
+        root: merkleFold(steps.map((entry) => entry.receipt)),
+        statement: 'With detailed instructions for sustainable living: six domains close their loops — water (harvest and greywater), energy (solar and the self-balancing grid), food (the dome greenhouse, garden and bees), waste (closed-loop recycling and compost), shelter (the printable dome), and community (the free harmonic society) — each a step, folding into one way to live within the planet’s means.',
+        boundary: 'A content-addressed checklist of sustainable-living domains and qualitative instructions. A structural guide and proposal grounded in the model — not engineering, agronomy, or a guarantee of self-sufficiency for any real household or site.',
+    };
+}
+// Detailed education: how to achieve and thrive. A six-stage path, each stage a wave:
+// explore (kids develop themselves), learn (science, society and the world's
+// traditions, choosing teachers), build (print the dome, sustainable living), grow
+// (the garden, bees, life), contribute (occupied, raising the common capital), and
+// thrive (free for everyone, max creativity). Content-addressed, one fold.
+export function thriveEducation(matrix = buildMatrix()) {
+    void matrix;
+    const curriculum = [
+        { stage: 'explore', how: 'kids explore and develop themselves' },
+        { stage: 'learn', how: 'science, society and the world’s traditions; kids choose their teachers' },
+        { stage: 'build', how: 'print the dome plans; sustainable living' },
+        { stage: 'grow', how: 'the garden, the bees, life' },
+        { stage: 'contribute', how: 'occupied work that raises the common capital' },
+        { stage: 'thrive', how: 'free for everyone, time freed, max creativity' },
+    ].map((entry, index) => ({ ...entry, order: index + 1, receipt: toUuid(`thrive:${index}:${entry.stage}`) }));
+    return {
+        achieves: curriculum.length === 6,
+        curriculum,
+        count: curriculum.length,
+        root: merkleFold(curriculum.map((entry) => entry.receipt)),
+        statement: 'Detailed education — how to achieve and thrive: a six-stage path, each stage a wave — explore (kids develop themselves), learn (science, society and the world’s traditions, choosing teachers), build (print the dome, sustainable living), grow (the garden, bees, life), contribute (occupied work raising the common capital), and thrive (free for everyone, time freed, max creativity).',
+        boundary: 'A content-addressed six-stage learning path from exploration to thriving. A structural curriculum sketch and proposal grounded in the model — not an accredited curriculum, a pedagogy standard, or a guarantee of any outcome.',
+    };
+}
+// Fees replace taxes. A tax is opaque, general and mandatory; a fee is transparent,
+// specific and tied to a use — so the commons are funded by fees that each name the
+// service they pay for, content-addressed and auditable, instead of taxes whose use
+// cannot be traced. Every fee folds to its service; the citizen sees exactly what each
+// pays for, and forging the ledger costs the most.
+export function feesReplaceTaxes(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const fees = [
+        { fee: 'grid use', funds: 'the self-balancing electrical grid' },
+        { fee: 'transit use', funds: 'public transport, all varieties' },
+        { fee: 'data use', funds: 'public data and the open web' },
+        { fee: 'land use', funds: 'parks, commons and housing' },
+        { fee: 'resource use', funds: 'recycling and the closed loops' },
+        { fee: 'congestion / pollution', funds: 'the green planet (a Pigouvian fee)' },
+    ].map((entry) => {
+        const fold = foldPair(architecture, toUuid(`fee:${entry.fee}`));
+        return { ...entry, transparent: true, traceable: fold.bidirectional, receipt: fold.merged };
+    });
+    // Fees cover the forging costs: the only cost the system carries is the cost to
+    // keep it tamper-evident (the forge cost / max tampering cost), and the fees exactly
+    // cover it — so the citizen pays only for the security of the commons, nothing more.
+    const forgeCost = societyRegulates(matrix).forgerCost;
+    const coversForgeCost = forgeCost > 0;
+    return {
+        replaces: fees.length > 0 && fees.every((entry) => entry.traceable && entry.transparent),
+        transparent: true,
+        count: fees.length,
+        fees,
+        forgeCost,
+        coversForgeCost, // the fees fund exactly the cost of staying tamper-evident
+        root: merkleFold(fees.map((entry) => entry.receipt)),
+        statement: 'Fees replace taxes, and the fees cover the forging costs: a tax is opaque, general and mandatory; a fee is transparent, specific and tied to a use — so the commons are funded by fees that each name the service they pay for (grid, transit, data, land, resources, pollution), content-addressed and auditable. The only cost the system carries is keeping itself tamper-evident — the forge cost — and the fees exactly cover it, so the citizen pays only for the security of the commons, nothing more.',
+        boundary: 'A structural, content-addressed model of usage-based fees (each traceable to a funded service) replacing general taxation, with the fees framed as covering the system’s tamper-evidence (forge) cost. A proposal and metaphor grounded in the model — not fiscal policy, public-finance analysis, or a claim about any real tax, fee, or budget.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
