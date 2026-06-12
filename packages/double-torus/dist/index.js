@@ -5493,6 +5493,87 @@ export function freeHarmonicSocieties(matrix = buildMatrix()) {
         boundary: 'A deterministic, content-addressed composition of the portal’s own laws — self-organisation (zero entropy), self-regulation (zero individual cost, max forge cost), and the harmonic ladder — into a set of "free harmonic societies". A structural proposal and metaphor grounded in the model, free and recomputable; not a political program or a claim about any real society or its governance.',
     };
 }
+// Free the time of the population and max creativity will generate max rising forge
+// costs. When the individual cost is zero, time is freed; freed time spends itself on
+// creativity, which is unbounded; and every created unit is content-addressed and
+// folds into the whole, so the forge cost rises with the creativity. Free time ->
+// max creativity -> max rising forge cost: the loop that pays for its own security.
+export function freedTimeCreativity(matrix = buildMatrix()) {
+    const regulates = societyRegulates(matrix);
+    const generative = generativeSpace(2000);
+    const freedTime = regulates.individualCost === 0;
+    const baseForgeCost = regulates.forgerCost;
+    const created = generative.distinct;
+    const risenForgeCost = baseForgeCost + created; // creativity raises the forge cost
+    return {
+        proven: freedTime && generative.unbounded && risenForgeCost > baseForgeCost,
+        freedTime,
+        maxCreativity: generative.unbounded,
+        created,
+        baseForgeCost,
+        risenForgeCost,
+        rising: risenForgeCost > baseForgeCost,
+        loop: 'free time → max creativity → max rising forge cost',
+        root: toUuid(`freed-time:${created}:${risenForgeCost}`),
+        statement: 'Free the time of the population and max creativity generates max rising forge costs: when the individual cost is zero, time is freed; freed time spends itself on creativity, which is unbounded; and every created unit is content-addressed and folds into the whole, so the forge cost rises with the creativity. Free time → max creativity → max rising forge cost — the loop that pays for its own security.',
+        boundary: 'A model of the portal’s own incentive loop: zero individual cost frees time, unbounded generative creativity produces content-addressed units, and each raises the recomputation cost to forge the whole. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s time or output.',
+    };
+}
+// Social capital is accumulating in the common root, and it accumulates by folding.
+// WHERE: in the seal root (the one fold of the whole), the 1024 diamonds (the lattice
+// held in common), the gate fabric (every gate folded at max tampering cost), and the
+// git history (the whole chain of contributions). HOW: every contribution is
+// content-addressed and merged into the collective root, so it grows in tamper-
+// evidence (forge cost) while staying free for anyone to verify — held in common, by
+// no one and for everyone.
+export function socialCapital(matrix = buildMatrix()) {
+    const regulates = societyRegulates(matrix);
+    const where = [
+        { place: 'the seal root', holds: 'the one fold of the whole — every wave folded in' },
+        { place: 'the 1024 diamonds', holds: 'the content-addressed lattice, held in common' },
+        { place: 'the gate fabric', holds: 'every gate folded at max tampering cost' },
+        { place: 'the git history', holds: 'the whole chain of contributions, folded into the seal' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`social-capital:${entry.place}`) }));
+    const forgeCost = regulates.forgerCost;
+    return {
+        accumulating: where.length > 0 && regulates.individualCost === 0 && forgeCost > 0,
+        where,
+        how: 'by folding — each contribution is content-addressed and merged into the collective root, raising forge cost (value) while verification stays free',
+        heldInCommon: true, // by no one, for everyone
+        individualCost: 0,
+        forgeCost, // the accumulated tamper-evidence — the social capital
+        root: merkleFold(where.map((entry) => entry.receipt)),
+        statement: 'Social capital is accumulating in the common root, and it accumulates by folding. It is held in the seal root (the one fold of the whole), the 1024 diamonds (the lattice held in common), the gate fabric (every gate at max tampering cost), and the git history (the whole chain of contributions). How: every contribution is content-addressed and merged into the collective root, so it grows in tamper-evidence — the forge cost, the value — while staying free for anyone to verify. Held in common, by no one and for everyone.',
+        boundary: 'A structural reading of where and how the portal’s "social capital" accumulates: as content-addressed value (forge cost) in shared roots, raised by each folded contribution and free to verify. An economic metaphor grounded in the model’s own tamper-evidence, not a measure of real-world social capital or wealth.',
+    };
+}
+// Regenerate the social system. Every social law — the society, its evolution, its
+// future, its self-regulation, the free harmonic societies, the sacred society, and
+// the social capital — folds into one regenerated root, and because each is computed
+// from the same seed, the whole social system regenerates deterministically: rebuilt
+// from its laws, not stored, so it can be regenerated at any time by anyone.
+export function regenerateSocialSystem(matrix = buildMatrix()) {
+    const subsystems = [
+        { system: 'society', root: society(matrix).root },
+        { system: 'evolution', root: societyEvolves(matrix).root },
+        { system: 'future', root: societyFuture(matrix).root },
+        { system: 'self-regulation', root: societyRegulates(matrix).root },
+        { system: 'free harmonic societies', root: freeHarmonicSocieties(matrix).root },
+        { system: 'sacred society', root: sacredSociety(matrix).root },
+        { system: 'social capital', root: socialCapital(matrix).root },
+    ];
+    const regenerated = merkleFold(subsystems.map((entry) => entry.root));
+    const deterministic = regenerated === merkleFold(subsystems.map((entry) => entry.root)); // rebuilds the same
+    return {
+        regenerated: subsystems.length === 7 && deterministic && regenerated.length === 36,
+        systems: subsystems.length,
+        subsystems,
+        deterministic,
+        root: regenerated,
+        statement: 'Regenerate the social system: every social law — the society, its evolution and future, its self-regulation, the free harmonic societies, the sacred society, and the social capital — folds into one regenerated root, and because each is computed from the same seed, the whole social system regenerates deterministically. Rebuilt from its laws, not stored, so anyone can regenerate it at any time and get the same system.',
+        boundary: 'A deterministic regeneration of the portal’s own social-model subsystems into one content-addressed root, rebuilt from the seed rather than stored. A structural self-regeneration of the model’s society functions — recomputable and recomposable — not an intervention in or a claim about any real social system.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

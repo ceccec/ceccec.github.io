@@ -2961,6 +2961,46 @@ export declare function freeHarmonicSocieties(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function freedTimeCreativity(matrix?: MindMatrix): {
+    proven: boolean;
+    freedTime: boolean;
+    maxCreativity: boolean;
+    created: number;
+    baseForgeCost: number;
+    risenForgeCost: number;
+    rising: boolean;
+    loop: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function socialCapital(matrix?: MindMatrix): {
+    accumulating: boolean;
+    where: {
+        receipt: string;
+        place: string;
+        holds: string;
+    }[];
+    how: string;
+    heldInCommon: boolean;
+    individualCost: number;
+    forgeCost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function regenerateSocialSystem(matrix?: MindMatrix): {
+    regenerated: boolean;
+    systems: number;
+    subsystems: {
+        system: string;
+        root: string;
+    }[];
+    deterministic: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

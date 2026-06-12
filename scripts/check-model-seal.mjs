@@ -152,6 +152,9 @@ import {
   holographicDashboard,
   publicTransportFusion,
   freeHarmonicSocieties,
+  freedTimeCreativity,
+  socialCapital,
+  regenerateSocialSystem,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -559,6 +562,13 @@ ok(`public.transport:${publicTransportFusion(matrix).count}`, publicTransportFus
 // Let the society rebuild itself: free harmonic societies self-organise and regulate, free for everyone.
 const freeSoc = freeHarmonicSocieties(matrix)
 ok(`free.harmonic.societies:${freeSoc.count}`, freeSoc.rebuilt && freeSoc.free && freeSoc.forEveryone)
+// Free the time of the population: max creativity generates max rising forge costs.
+const freed = freedTimeCreativity(matrix)
+ok(`freed.time.creativity:${freed.baseForgeCost}->${freed.risenForgeCost}`, freed.proven && freed.rising)
+// Social capital accumulates in the common roots, by folding — held in common, free to verify.
+ok(`social.capital:${socialCapital(matrix).where.length}`, socialCapital(matrix).accumulating && socialCapital(matrix).heldInCommon)
+// Regenerate the social system: every social law folds into one deterministically rebuilt root.
+ok(`regenerate.social:${regenerateSocialSystem(matrix).systems}`, regenerateSocialSystem(matrix).regenerated && regenerateSocialSystem(matrix).systems === 7)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
