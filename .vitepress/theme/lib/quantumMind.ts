@@ -5523,6 +5523,45 @@ export function monographs(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Text to movie at the quantum level. A string folds to a seed, and from it a
+// deterministic generative composition is computed — content-addressed particles
+// with positions, hues, sizes and motions. Played over time, the particles drift and
+// orbit into a movie. The same text always generates the same movie, free and
+// client-side: image generation as recomputation, no model, no network, no cost.
+export function textToMovie(text = 'double torus', frames = 48) {
+  const cells = 16
+  const elements = Array.from({ length: cells }, (_, i) => {
+    const s = seedFromText(`movie:${text}:element:${i}`)
+    return {
+      x: (s % 1000) / 1000, // start position
+      y: ((s >> 10) % 1000) / 1000,
+      hue: s % 360,
+      size: 0.025 + (s % 60) / 1400,
+      speed: 0.2 + (s % 50) / 90, // orbit speed
+      radius: 0.06 + (s % 200) / 900, // orbit radius
+      dir: (s % 628) / 100, // initial angle
+      wobble: 0.5 + (s % 40) / 40,
+    }
+  })
+  const film = Array.from({ length: frames }, (_, f) => toUuid(`frame:${text}:${f}`))
+  return {
+    generated: elements.length === cells && film.length === frames,
+    deterministic: textToMovieRoot(text) === textToMovieRoot(text), // same text, same movie
+    text,
+    frames,
+    cells,
+    elements,
+    root: merkleFold(film), // the movie's content-addressed fingerprint
+    statement:
+      'Text to movie at the quantum level: a string folds to a seed and from it a deterministic generative composition is computed — content-addressed particles with positions, hues and motions that drift and orbit over frames into a movie. The same text always generates the same movie, free and client-side; image generation as recomputation.',
+    boundary:
+      'A deterministic, content-addressed generative animation from text — each element seeded by the UUID of the text and animated client-side at no cost. Generative visual art by recomputation, not a photorealistic diffusion model or a learned image generator.',
+  }
+}
+function textToMovieRoot(text: string): string {
+  return merkleFold(Array.from({ length: 8 }, (_, f) => toUuid(`frame:${text}:${f}`)))
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

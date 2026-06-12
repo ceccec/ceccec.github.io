@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, artistPalette, artistMelody } from '../lib/quantumMind'
+import { buildMatrix, artistPalette, artistMelody, textToMovie } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
 
@@ -13,6 +13,51 @@ const matrix = buildMatrix()
 const seed = ref('double-torus')
 const palette = computed(() => artistPalette(seed.value || 'double-torus'))
 const melody = computed(() => artistMelody(seed.value || 'double-torus', matrix))
+// Text to movie: the same seed generates the same deterministic generative movie —
+// content-addressed particles that drift and orbit, computed client-side at no cost.
+const movie = computed(() => textToMovie(seed.value || 'double-torus'))
+const film = ref<HTMLCanvasElement | null>(null)
+const filmWrap = ref<HTMLDivElement | null>(null)
+let raf = 0
+let ro: ResizeObserver | null = null
+let fw = 0
+let fh = 0
+let fdpr = 1
+function filmResize() {
+  if (!film.value || !filmWrap.value) return
+  fdpr = Math.min(window.devicePixelRatio || 1, 2)
+  fw = filmWrap.value.clientWidth
+  fh = Math.max(160, Math.round(fw * 0.42))
+  film.value.width = Math.round(fw * fdpr)
+  film.value.height = Math.round(fh * fdpr)
+  film.value.style.height = `${fh}px`
+  const ctx = film.value.getContext('2d')
+  if (ctx) { ctx.setTransform(fdpr, 0, 0, fdpr, 0, 0); ctx.fillStyle = '#0b0e14'; ctx.fillRect(0, 0, fw, fh) }
+}
+function filmDraw(time: number) {
+  const ctx = film.value?.getContext('2d')
+  if (!ctx) return
+  ctx.setTransform(fdpr, 0, 0, fdpr, 0, 0)
+  ctx.fillStyle = 'rgba(11, 14, 20, 0.16)' // fade for trails — the movie
+  ctx.fillRect(0, 0, fw, fh)
+  for (const el of movie.value.elements) {
+    const angle = time * 0.0006 * el.speed + el.dir
+    const px = (el.x + el.radius * Math.cos(angle)) * fw
+    const py = (el.y + el.radius * Math.sin(angle * el.wobble)) * fh
+    const r = el.size * Math.min(fw, fh)
+    ctx.shadowBlur = r * 2.2
+    ctx.shadowColor = `hsl(${el.hue}, 85%, 62%)`
+    ctx.fillStyle = `hsl(${el.hue}, 80%, 62%)`
+    ctx.beginPath()
+    ctx.arc(px, py, r, 0, Math.PI * 2)
+    ctx.fill()
+  }
+  ctx.shadowBlur = 0
+}
+function filmLoop(time: number) {
+  filmDraw(time)
+  raf = requestAnimationFrame(filmLoop)
+}
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
@@ -24,6 +69,18 @@ const phrase = computed(() => (saveEnergy.value ? melody.value.notes.slice(0, 4)
 function playMelody() {
   playSequence(phrase.value.map((note) => ({ frequency: note.frequency })), { duration: 0.28, peak: 0.16 })
 }
+
+onMounted(() => {
+  filmResize()
+  ro = new ResizeObserver(() => filmResize())
+  if (filmWrap.value) ro.observe(filmWrap.value)
+  if (saveEnergy.value) requestAnimationFrame((time) => filmDraw(time))
+  else raf = requestAnimationFrame(filmLoop)
+})
+onBeforeUnmount(() => {
+  cancelAnimationFrame(raf)
+  ro?.disconnect()
+})
 
 const t = computed(() =>
   bg.value
@@ -45,6 +102,10 @@ const t = computed(() =>
         <small>{{ color.rgb }}</small>
         <small class="palette__cmyk">{{ color.cmyk }}</small>
       </article>
+    </div>
+    <p class="palette__movielabel">{{ bg ? 'текст към филм · същото семе, същият филм, безплатно' : 'text to movie · same seed, same movie, at no cost' }}</p>
+    <div ref="filmWrap" class="palette__film">
+      <canvas ref="film" class="palette__filmcanvas" role="img" :aria-label="bg ? 'генеративен филм от семето' : 'a generative movie from the seed'" />
     </div>
     <div class="palette__row">
       <button type="button" class="dt-btn" :disabled="playing" :aria-label="t.play" @click="playMelody">{{ playing ? t.playing : t.play }}</button>
@@ -106,6 +167,20 @@ const t = computed(() =>
 .palette__cmyk {
   color: var(--vp-c-brand-1) !important;
 }
+.palette__movielabel {
+  margin: 0.9rem 0 0.3rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--vp-c-brand-1);
+}
+.palette__film {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0b0e14;
+}
+.palette__filmcanvas { display: block; width: 100%; }
 .palette__row {
   display: flex;
   align-items: center;

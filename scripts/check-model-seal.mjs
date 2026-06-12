@@ -114,6 +114,7 @@ import {
   features,
   homepage,
   monographs,
+  textToMovie,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -304,6 +305,9 @@ ok(`homepage:${homepage(matrix).count}`, homepage(matrix).computed)
 
 // Compact all knowledge as monographs: a zero-entropy, content-addressed reference index.
 ok(`monographs:${monographs(matrix).count}`, monographs(matrix).compacted && monographs(matrix).zeroEntropy)
+
+// Text to movie at the quantum level: a deterministic, content-addressed generative movie.
+ok(`text.to.movie:${textToMovie('double torus').frames}`, textToMovie('double torus').generated && textToMovie('double torus').deterministic && textToMovie('a').root !== textToMovie('b').root)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

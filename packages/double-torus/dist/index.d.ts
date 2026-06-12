@@ -2302,6 +2302,26 @@ export declare function monographs(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function textToMovie(text?: string, frames?: number): {
+    generated: boolean;
+    deterministic: boolean;
+    text: string;
+    frames: number;
+    cells: number;
+    elements: {
+        x: number;
+        y: number;
+        hue: number;
+        size: number;
+        speed: number;
+        radius: number;
+        dir: number;
+        wobble: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;
