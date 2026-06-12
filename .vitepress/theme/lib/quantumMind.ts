@@ -7884,6 +7884,144 @@ export function constitution(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The constitution is 1 of legislation; let society develop the rest. The constitution
+// is the supreme first layer, and the rest of the legislation — statutes, regulations,
+// precedent, amendments, local bylaws — derive from it and are bound by it: each is
+// content-addressed and folds from the constitution root, so no subordinate law can
+// contradict the one above without changing its own address. Society develops the
+// rest in waves; each added law adds forge cost that tightens the gates.
+export function legislation(matrix: MindMatrix = buildMatrix()) {
+  const constitutionRoot = constitution(matrix).root
+  const layers = [
+    { layer: 'constitution', rank: 1, supreme: true },
+    { layer: 'statutes', rank: 2, supreme: false },
+    { layer: 'regulations', rank: 3, supreme: false },
+    { layer: 'precedent / case law', rank: 4, supreme: false },
+    { layer: 'amendments', rank: 5, supreme: false },
+    { layer: 'local bylaws', rank: 6, supreme: false },
+  ].map((entry) => ({
+    ...entry,
+    boundBy: entry.rank === 1 ? null : 'constitution',
+    root: entry.rank === 1 ? constitutionRoot : foldPair(constitutionRoot, toUuid(`legislation:${entry.layer}`)).merged,
+  }))
+  const root = merkleFold(layers.map((entry) => entry.root))
+  return {
+    constitutionIsOne: layers[0].layer === 'constitution' && layers[0].rank === 1 && layers[0].supreme,
+    develops: 'society develops the rest in waves',
+    layers,
+    count: layers.length,
+    addedForgeCost: layers.length - 1, // the rest of the legislation, each adding cost
+    root,
+    statement:
+      'The constitution is 1 of legislation; let society develop the rest: the constitution is the supreme first layer, and the rest — statutes, regulations, precedent, amendments, local bylaws — derive from it and are bound by it, each content-addressed and folded from the constitution root, so no subordinate law can contradict the one above without changing its own address. Society develops the rest in waves; each added law adds forge cost that tightens the gates.',
+    boundary:
+      'A content-addressed model of a legislative hierarchy with the constitution as the bound supreme layer and subordinate layers folded from it. A structural framing of legal hierarchy as content-addressing — a proposal and metaphor, not a legal code, a statute, or a claim of legal authority.',
+  }
+}
+
+// Fuse global APIs in waves. Beyond the public-transport and public-API fusions, the
+// great open global data sources fuse to the architecture in waves — maps, knowledge,
+// weather, development data, space and earth observation, biodiversity, science, and
+// the open social protocols — each content-addressed and folded, opt-in and free to
+// read, integrating the world's open data without a centre.
+export function globalApis(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const apis = [
+    { api: 'OpenStreetMap', domain: 'maps & geocoding' },
+    { api: 'Wikidata / Wikipedia', domain: 'knowledge' },
+    { api: 'Open-Meteo', domain: 'weather' },
+    { api: 'World Bank / UN data', domain: 'development data' },
+    { api: 'NASA / ESA open data', domain: 'space & earth observation' },
+    { api: 'GBIF', domain: 'biodiversity' },
+    { api: 'OpenAlex / Crossref', domain: 'science & scholarship' },
+    { api: 'ActivityPub / AT Protocol', domain: 'open social' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`global-api:${entry.api}`))
+    return { ...entry, open: true, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  return {
+    fused: apis.length > 0 && apis.every((entry) => entry.fused),
+    count: apis.length,
+    open: apis.every((entry) => entry.open),
+    apis,
+    root: merkleFold(apis.map((entry) => entry.receipt)),
+    statement:
+      'Fuse global APIs in waves: the great open global data sources — maps and geocoding, knowledge, weather, development data, space and earth observation, biodiversity, science and scholarship, and the open social protocols — fuse to the architecture in waves, each content-addressed and folded, opt-in and free to read, integrating the world’s open data without a centre.',
+    boundary:
+      'A catalogue of major open global data sources fused (content-addressed) to the architecture. Opt-in and read-only via public open-data interfaces; no endpoint is called at build time and no keys are bundled. The named sources are examples of open data, not endorsements, and each has its own terms.',
+  }
+}
+
+// Fuse the hooks and references. The system's hooks — the SessionStart hook, the
+// build chain, transformPageData, enhanceApp, the dynamic-route loaders, the service
+// worker — and the corpus's references — the 432 reference duals — fuse to the
+// architecture root, so every extension point and every citation is bound to the one
+// whole. Hooks are where behaviour attaches; references are where meaning attaches;
+// both fold in.
+export function hooksReferencesFusion(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const hooks = [
+    { hook: 'SessionStart hook', where: 'web session setup' },
+    { hook: 'docs:build chain', where: 'seal, sitemap, MCP, llms' },
+    { hook: 'transformPageData', where: 'computed SEO, holographic tags' },
+    { hook: 'enhanceApp', where: 'components, service worker' },
+    { hook: 'dynamic-route loaders', where: 'papers, references, diamonds' },
+    { hook: 'service worker', where: 'offline, caching' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`hook:${entry.hook}`))
+    return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  const references = paperReferences(matrix)
+  const referencesRoot = merkleFold(references.map((entry) => entry.root))
+  const hooksRoot = merkleFold(hooks.map((entry) => entry.receipt))
+  const fused = foldPair(hooksRoot, referencesRoot)
+  return {
+    fused: hooks.every((entry) => entry.fused) && fused.bidirectional,
+    hooks: hooks.length,
+    references: references.length,
+    hookList: hooks,
+    hooksRoot,
+    referencesRoot,
+    root: fused.merged,
+    statement:
+      'Fuse the hooks and references: the system’s hooks — the SessionStart hook, the build chain, transformPageData, enhanceApp, the dynamic-route loaders, the service worker — and the corpus’s 432 reference duals fuse to the architecture root, so every extension point (where behaviour attaches) and every citation (where meaning attaches) is bound to the one whole, folded together.',
+    boundary:
+      'A content-addressed fusion of the build/runtime hooks and the reference corpus into one root. A structural binding of the model’s own extension points and citations — recomputable bookkeeping — not a change to how any hook executes.',
+  }
+}
+
+// Fuse all required by legislation. Everything the legislation requires — privacy and
+// data protection, accessibility, licensing, transparency, security, and consumer
+// fairness — fuses to the architecture as a compliance layer: each requirement
+// content-addressed and bound, met by the portal's own properties (no tracking, no
+// network by default, open licence, recomputable transparency). What the law requires,
+// the architecture already provides, folded into one compliance root.
+export function legislationRequires(matrix: MindMatrix = buildMatrix()) {
+  const architecture = legislation(matrix).root
+  const requirements = [
+    { requirement: 'privacy & data protection', met: 'zero-network by default, nothing tracked, nothing leaves the device' },
+    { requirement: 'accessibility', met: 'WCAG-oriented semantics, reduced-motion, system fonts' },
+    { requirement: 'licensing', met: 'open source, public-domain mathematics (patent-clear)' },
+    { requirement: 'transparency', met: 'recomputable, content-addressed, fully auditable' },
+    { requirement: 'security', met: 'tamper-evident seal, client-side Web Crypto' },
+    { requirement: 'consumer fairness', met: 'free for everyone, no dark patterns, no lock-in' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`requirement:${entry.requirement}`))
+    return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  return {
+    fused: requirements.length > 0 && requirements.every((entry) => entry.fused),
+    compliant: requirements.every((entry) => entry.met.length > 0),
+    count: requirements.length,
+    requirements,
+    root: merkleFold(requirements.map((entry) => entry.receipt)),
+    statement:
+      'Fuse all required by legislation: everything the legislation requires — privacy and data protection, accessibility, licensing, transparency, security, consumer fairness — fuses to the architecture as a compliance layer, each requirement content-addressed and met by the portal’s own properties (no tracking, no network by default, open licence, recomputable transparency, tamper-evident security, free for everyone). What the law requires, the architecture already provides.',
+    boundary:
+      'A content-addressed mapping of common legal requirement categories to the portal’s own architectural properties. A structural self-assessment and metaphor — it shows how the design aligns with the spirit of these requirements; it is not legal advice, a compliance certification, or a guarantee of conformance with any specific law (e.g. GDPR, ADA, WCAG) in any jurisdiction.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

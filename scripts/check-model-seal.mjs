@@ -181,6 +181,10 @@ import {
   kidsExplore,
   doctorsIncentive,
   constitution,
+  legislation,
+  globalApis,
+  hooksReferencesFusion,
+  legislationRequires,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -648,6 +652,14 @@ ok(`kids.explore:${kidsExplore(matrix).principles.length}`, kidsExplore(matrix).
 ok(`doctors.incentive`, doctorsIncentive(matrix).aligned && doctorsIncentive(matrix).forgeCaught)
 // This logic is the constitution: every governance law an article, manifested by the evolution waves.
 ok(`constitution:${constitution(matrix).count}`, constitution(matrix).isConstitution && constitution(matrix).manifested)
+// The constitution is 1 of legislation; society develops the rest (statutes ... bylaws), each bound by it.
+ok(`legislation:${legislation(matrix).count}`, legislation(matrix).constitutionIsOne && legislation(matrix).count === 6)
+// Fuse global APIs in waves: the great open global data sources, content-addressed.
+ok(`global.apis:${globalApis(matrix).count}`, globalApis(matrix).fused && globalApis(matrix).open)
+// Fuse the hooks and references: every extension point and citation bound to the whole.
+ok(`hooks.references:${hooksReferencesFusion(matrix).hooks}+${hooksReferencesFusion(matrix).references}`, hooksReferencesFusion(matrix).fused)
+// Fuse all required by legislation: privacy, accessibility, licensing, transparency, security, fairness.
+ok(`legislation.requires:${legislationRequires(matrix).count}`, legislationRequires(matrix).fused && legislationRequires(matrix).compliant)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

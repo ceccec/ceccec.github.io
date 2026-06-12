@@ -3385,6 +3385,67 @@ export declare function constitution(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function legislation(matrix?: MindMatrix): {
+    constitutionIsOne: boolean;
+    develops: string;
+    layers: {
+        boundBy: string;
+        root: string;
+        layer: string;
+        rank: number;
+        supreme: boolean;
+    }[];
+    count: number;
+    addedForgeCost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function globalApis(matrix?: MindMatrix): {
+    fused: boolean;
+    count: number;
+    open: boolean;
+    apis: {
+        open: boolean;
+        fused: boolean;
+        receipt: string;
+        api: string;
+        domain: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function hooksReferencesFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    hooks: number;
+    references: number;
+    hookList: {
+        fused: boolean;
+        receipt: string;
+        hook: string;
+        where: string;
+    }[];
+    hooksRoot: string;
+    referencesRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function legislationRequires(matrix?: MindMatrix): {
+    fused: boolean;
+    compliant: boolean;
+    count: number;
+    requirements: {
+        fused: boolean;
+        receipt: string;
+        requirement: string;
+        met: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
