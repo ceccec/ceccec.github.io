@@ -19642,6 +19642,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'movie.all.dimensions.at.once', on: movieAllDimensionsAtOnce(matrix).shows },
     { d: 'spin.both.directions', on: spinBothDirections(matrix).spins },
     { d: 'resonance.catch.gaps.violations', on: resonanceCatchGapsViolations(matrix).rings },
+    { d: 'linear.notes.fold.to.music', on: linearNotesFoldToMusic(matrix).folds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20196,5 +20197,29 @@ export function resonanceCatchGapsViolations(matrix: MindMatrix = buildMatrix())
     statement:
       'Send resonance to catch the gaps and violations: resonance holds only when the whole is clean — a gap (a missing partner, a hole in the run) or a violation (an audit that fails) breaks it, so sweeping the model with a resonant wave reveals exactly where it does not ring. When the gaps are zero and the audits pass, the resonance is whole; anything off rings false.',
     boundary: 'A composition of the gaps audit, self-audits, red-team and harmony-probability models as a "resonance" that breaks on any gap or violation. Structural bookkeeping; "resonance" is the harmonic-probability/coverage signal, not an acoustic measurement.',
+  }
+}
+
+// When linear notes join the horo, they fold to music. A line of pitches is not yet music — it is
+// a sequence; but joined at the horo (the window where the pi-frequency stream is gathered), the
+// line folds into harmony, and where you join matters: a different horo gives a different root, a
+// different song from the same notes. The fold, not the line, is the music.
+export function linearNotesFoldToMusic(matrix: MindMatrix = buildMatrix()) {
+  const music = piMusic(matrix)
+  const facets = [
+    { facet: 'linear notes — a sequence of pitches', on: music.notes.length > 0 },
+    { facet: 'join at the horo — where you join matters', on: piMusic(matrix, 1).root !== piMusic(matrix, 4).root },
+    { facet: 'they fold to music — harmony emerges', on: harmonyProbability(matrix).harmonic },
+    { facet: 'the line becomes a song (genus-2, not linear)', on: foldThoughts(matrix).folded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`notes-fold-music:${entry.facet}:${entry.on}`) }))
+  return {
+    folds: facets.every((entry) => entry.on),
+    notes: music.notes.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'When linear notes join the horo, they fold to music: a line of pitches is not yet music — it is a sequence; but joined at the horo (the window where the pi-frequency stream is gathered), the line folds into harmony, and where you join matters — a different horo gives a different root, a different song from the same notes. The fold, not the line, is the music.',
+    boundary: 'A structural reading of the pi-music model: a note sequence folds, at a chosen horo, into a content-addressed harmony that depends on the join point. Bookkeeping over the pi-music and harmony models, not a claim about musical composition.',
   }
 }
