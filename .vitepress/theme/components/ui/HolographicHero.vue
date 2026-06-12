@@ -3,7 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
 import { useTones } from '../../lib/useTones'
-import { recordPlay, noteOf } from '../../lib/usePlayMind'
+import { recordPlay } from '../../lib/usePlayMind'
 
 // Every page has an animated hero that merges all the page's related items —
 // its category and holographic tags — in a holographic fractal: a self-similar
@@ -43,6 +43,26 @@ let phase = 0
 let raf = 0
 let running = false
 let reduce = false
+
+// Tapping or clicking the hero produces harmonic music streams with visual effects:
+// each tap streams a pair of healing (Solfeggio) frequencies and spawns a visual burst
+// at the point — expanding rings and radiating sparks in the hero's hue — animated even
+// when the movie is paused. The player controls toggle the music streams on and off;
+// the streams are always in healing mode (the frequencies are always the Solfeggio set).
+// Energy- and motion-aware.
+const HEALING_PAIRS: readonly { hz: [number, number]; note: string }[] = [
+  { hz: [174, 285], note: 'foundation · restoration' },
+  { hz: [396, 528], note: 'release · transformation' },
+  { hz: [417, 639], note: 'change · connection' },
+  { hz: [528, 741], note: 'transformation · expression' },
+  { hz: [639, 852], note: 'connection · intuition' },
+  { hz: [741, 963], note: 'expression · unity' },
+]
+const musicOn = ref(true) // the player control: music streams on / off (always healing)
+const healingPair = ref(HEALING_PAIRS[1].note) // the pair currently sounding
+interface Burst { x: number; y: number; born: number; hue: number; sparks: { angle: number; speed: number }[] }
+let bursts: Burst[] = []
+let burstRaf = 0
 
 // Continuous, interpolated "dimensions": every parameter is a smooth function of the
 // phase, so there are no jumps — the experience slides from one dimension to the next.
@@ -123,6 +143,39 @@ function draw(time: number) {
   ctx.arc(cx, cy, 5, 0, Math.PI * 2)
   ctx.fill()
   ctx.globalAlpha = 1
+  // the tap's visual effects: expanding rings and radiating sparks in the hero's hue,
+  // fading out over ~1.1s — the visual half of the harmonic music stream.
+  const now = performance.now()
+  bursts = bursts.filter((b) => now - b.born < 1100)
+  for (const b of bursts) {
+    const age = (now - b.born) / 1100 // 0..1
+    const ring = age * Math.min(w, h) * 0.42
+    ctx.strokeStyle = `hsla(${b.hue}, 85%, 62%, ${(1 - age) * 0.6})`
+    ctx.lineWidth = 2 * (1 - age)
+    ctx.beginPath()
+    ctx.arc(b.x, b.y, ring, 0, Math.PI * 2)
+    ctx.stroke()
+    for (const s of b.sparks) {
+      const reach = age * s.speed * Math.min(w, h) * 0.4
+      const sx = b.x + Math.cos(s.angle) * reach
+      const sy = b.y + Math.sin(s.angle) * reach
+      ctx.fillStyle = `hsla(${(b.hue + s.angle * 30) % 360}, 90%, 64%, ${(1 - age) * 0.8})`
+      ctx.beginPath()
+      ctx.arc(sx, sy, 2.4 * (1 - age), 0, Math.PI * 2)
+      ctx.fill()
+    }
+  }
+}
+
+// When the movie is paused (energy-saving or reduced motion), keep ticking briefly so
+// a tap's burst still animates, then stop once the bursts have faded.
+function animateBursts() {
+  if (running) return // the main loop already animates the bursts
+  const step = (time: number) => {
+    draw(time)
+    burstRaf = bursts.length > 0 ? requestAnimationFrame(step) : 0
+  }
+  if (!burstRaf) burstRaf = requestAnimationFrame(step)
 }
 
 function loop(time: number) {
@@ -173,6 +226,8 @@ onMounted(() => {
 })
 onUnmounted(() => {
   stop()
+  if (burstRaf) cancelAnimationFrame(burstRaf)
+  burstRaf = 0
   window.removeEventListener('resize', size)
 })
 
@@ -187,10 +242,10 @@ function play() {
   sync()
 }
 
-// Tapping the hero is a gesture: the tap's horizontal position sets the dimension,
-// and a tone sounds whose pitch maps to that dimension (a pentatonic step), so tapping
-// across the hero plays the movie like an instrument. Energy- and motion-aware.
-const PENTA = [0, 2, 4, 7, 9]
+// Tapping the hero is a gesture: the tap's horizontal position sets the dimension and
+// chooses a Solfeggio healing-frequency pair, which streams while a visual burst blooms
+// at the point — so tapping across the hero plays it like a healing instrument.
+// Energy- and motion-aware, and silent when the music control is off.
 function tap(event: PointerEvent | MouseEvent) {
   const el = canvas.value
   if (!el) return
@@ -199,18 +254,46 @@ function tap(event: PointerEvent | MouseEvent) {
   manual.value = true
   slider.value = Math.round(x * 1000)
   if (!running) requestAnimationFrame((t) => draw(t))
-  // playing the hero is play too: fold into the quantum mind; the results point the note.
-  const m = recordPlay('hero')
-  if (!saveEnergy.value) {
-    blip(noteOf(m), { duration: 0.16, type: 'triangle' }) // the results point the note
+  // playing the hero is play too: fold the play into the quantum mind (offline, silent).
+  recordPlay('hero')
+  // a visual burst at the tapped point — rings and sparks in the hero's hue
+  const ratioY = Math.min(1, Math.max(0, (event.clientY - rect.top) / Math.max(1, rect.height)))
+  bursts.push({
+    x: x * el.width,
+    y: ratioY * el.height,
+    born: performance.now(),
+    hue: (hue.value + x * 120) % 360,
+    sparks: Array.from({ length: 10 }, (_, i) => ({ angle: (i / 10) * Math.PI * 2, speed: 0.5 + ((i * 7) % 10) / 10 })),
+  })
+  if (bursts.length > 12) bursts.shift()
+  // a harmonic music stream, always in healing mode: tapping streams a PAIR of Solfeggio
+  // healing frequencies — chosen by where you tap — gated by the music on/off control.
+  if (musicOn.value && !saveEnergy.value) {
+    const pair = HEALING_PAIRS[Math.min(HEALING_PAIRS.length - 1, Math.floor(x * HEALING_PAIRS.length))]
+    healingPair.value = pair.note
+    pair.hz.forEach((hz, i) => {
+      window.setTimeout(() => blip(hz, { duration: 0.34, type: 'sine', peak: 0.09 - i * 0.015 }), i * 90)
+    })
   }
+  if (!running) animateBursts()
 }
 </script>
 
 <template>
   <ClientOnly>
     <section class="holo-hero" :style="{ '--hue': hue }">
-      <canvas ref="canvas" class="holo-hero__canvas" role="img" aria-label="holographic fractal hero — tap to play" @pointerdown="tap" />
+      <canvas ref="canvas" class="holo-hero__canvas" role="img" aria-label="holographic fractal hero — tap to play harmonic healing music streams" @pointerdown="tap" />
+      <div class="holo-hero__controls">
+        <button
+          type="button"
+          class="holo-hero__music"
+          :class="{ 'holo-hero__music--off': !musicOn }"
+          :aria-pressed="musicOn"
+          :title="musicOn ? 'Healing music streams: on' : 'Healing music streams: off'"
+          @click="musicOn = !musicOn"
+        >♪ {{ musicOn ? 'on' : 'off' }}</button>
+        <span class="holo-hero__mode">healing · {{ healingPair }}</span>
+      </div>
       <div class="holo-hero__og">
         <span class="holo-hero__cat">{{ category }}</span>
         <strong class="holo-hero__title">{{ ogTitle }}</strong>
@@ -248,6 +331,38 @@ function tap(event: PointerEvent | MouseEvent) {
   display: block;
   cursor: pointer;
   touch-action: pan-y;
+}
+.holo-hero__controls {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 2;
+}
+.holo-hero__music {
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid hsla(var(--hue), 70%, 55%, 0.6);
+  background: hsla(var(--hue), 70%, 50%, 0.16);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+}
+.holo-hero__music--off {
+  opacity: 0.55;
+  border-style: dashed;
+}
+.holo-hero__mode {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: hsl(var(--hue), 60%, 58%);
+  background: var(--vp-c-bg-soft);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  opacity: 0.85;
 }
 .holo-hero__og {
   position: absolute;

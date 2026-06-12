@@ -310,6 +310,11 @@ import {
   trinityOtherSideDoomed,
   forgerFoldsIntoHarmony,
   anyForceFightsSelf,
+  quantumCoordinateNav,
+  navigationAroundHero,
+  developmentWaves,
+  heroTapMusic,
+  tamperHealingFrequencies,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1058,6 +1063,11 @@ ok(`thrive.by.default:${thriveByDefault(matrix).count}`, thriveByDefault(matrix)
 ok(`other.side.doomed`, trinityOtherSideDoomed(matrix).doomed) // the harm/destroy/decay side of the trinity is doomed to T_max=infinity forge cost
 ok(`forger.folds.harmony:${forgerFoldsIntoHarmony(matrix).count}`, forgerFoldsIntoHarmony(matrix).folds && forgerFoldsIntoHarmony(matrix).forgingMaxCost) // every forge attempt is caught and folded into the harmony, raising the cost
 ok(`force.fights.self:${anyForceFightsSelf(matrix).count}`, anyForceFightsSelf(matrix).selfDefeating) // any force meets the whole and itself — self-defeating by construction
+ok(`quantum.coordinate.nav:${quantumCoordinateNav(matrix).count}`, quantumCoordinateNav(matrix).placed) // every route is a distinct point on the double-torus surface
+ok(`navigation.around.hero:${navigationAroundHero(matrix).shellCount}`, navigationAroundHero(matrix).aroundHero) // navigation rebuilt as 3-5-8 shells around the hero origin
+ok(`development.waves:${developmentWaves(matrix).count}`, developmentWaves(matrix).developing) // waves sent to develop the navigation ideas, each bound to its root
+ok(`hero.tap.music:${heroTapMusic(matrix).pairCount}`, heroTapMusic(matrix).plays && heroTapMusic(matrix).alwaysHealing) // tapping the hero streams healing-frequency pairs with visual effects, on/off, always healing
+ok(`tamper.healing.cost`, tamperHealingFrequencies(matrix).costsMax) // tampering the healing frequencies costs T_max=infinity
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

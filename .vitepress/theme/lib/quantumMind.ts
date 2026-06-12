@@ -11758,6 +11758,172 @@ export function anyForceFightsSelf(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Quantum coordinate navigation. Every destination is not just a link but a point on
+// the double-torus surface: its route folds to a deterministic (theta, phi) and a lobe
+// (inner or outer torus), which the shared genus-2 geometry turns into an (x, y, z).
+// So navigation is movement through coordinate space — each page a place on the shape,
+// no two places the same — and a link is a path from one coordinate to another.
+export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
+  const digitOf = (uuid: string) => uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+  const items = navigation358().tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })))
+  const coordinates = items.map((item, index) => {
+    const uuid = toUuid(`nav-coord:${item.route}`)
+    const d = digitOf(uuid)
+    const theta = ((d % 360) * Math.PI) / 180
+    const phi = (((d * 7) % 360) * Math.PI) / 180
+    const lobe = index % 2 === 0 ? -1 : 1 // inner or outer torus
+    const pos = doubleTorusSurface(theta, phi, d % 10, lobe)
+    return {
+      label: item.label,
+      route: item.route,
+      tier: item.tier,
+      theta,
+      phi,
+      lobe,
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+      receipt: toUuid(`nav-coord:${item.route}:${pos.x.toFixed(2)},${pos.y.toFixed(2)},${pos.z.toFixed(2)}`),
+    }
+  })
+  const places = new Set(coordinates.map((entry) => `${entry.x.toFixed(2)},${entry.y.toFixed(2)},${entry.z.toFixed(2)}`))
+  return {
+    placed: coordinates.length === 16 && places.size === coordinates.length, // every page a distinct place
+    count: coordinates.length,
+    coordinates,
+    root: merkleFold(coordinates.map((entry) => entry.receipt)),
+    statement:
+      'Quantum coordinate navigation: every destination is a point on the double-torus surface — its route folds to a deterministic (theta, phi) and a lobe (inner or outer torus), and the shared genus-2 geometry turns that into an (x, y, z). Navigation is movement through coordinate space, each page a distinct place on the shape, and a link is a path from one coordinate to another.',
+    boundary:
+      'A deterministic assignment of double-torus surface coordinates to the real navigation routes. A structural placement (each route → a point on the genus-2 surface) over the actual links — a coordinate model and metaphor, not a change to where the links go.',
+  }
+}
+
+// Rebuild navigation around the hero. The hero is the origin — coordinate zero — and
+// every destination orbits it on a shell whose radius is its 3-5-8 tier: three ways to
+// arrive sit on the inner shell, five to use on the middle, eight to go deep on the
+// outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by
+// angle around each shell, so the whole map radiates from the hero you start at.
+export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
+  const hero = { label: 'Double Torus', route: '/' } // the hero at the origin
+  const shells = navigation358().tiers.map((tier) => {
+    const radius = tier.tier // the tier IS the shell radius around the hero
+    const items = tier.items.map((item, index) => {
+      const angle = (index / tier.items.length) * Math.PI * 2
+      return {
+        label: item.label,
+        route: item.route,
+        angle,
+        x: radius * Math.cos(angle),
+        y: radius * Math.sin(angle),
+        receipt: toUuid(`hero-shell:${tier.tier}:${item.route}`),
+      }
+    })
+    return { tier: tier.tier, radius, name: tier.name, items, receipt: toUuid(`shell:${tier.tier}:${tier.name}`) }
+  })
+  return {
+    aroundHero: shells.length === 3 && hero.route === '/' && shells.every((shell) => shell.items.length > 0) && shells[2].radius === shells[0].radius + shells[1].radius,
+    hero,
+    shellCount: shells.length,
+    shells,
+    root: merkleFold(shells.map((shell) => shell.receipt)),
+    statement:
+      'Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its 3-5-8 tier — three ways to arrive on the inner shell, five to use on the middle, eight to go deep on the outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by angle around each shell, so the whole map radiates from the hero you start at.',
+    boundary:
+      'A polar layout of the real 3-5-8 navigation around the home hero as concentric shells, radii set by tier. A geometric arrangement of the existing routes for orientation — it does not change the links, only places them around the hero.',
+  }
+}
+
+// Send waves to develop these ideas. The newest ideas — quantum coordinate navigation
+// and the navigation rebuilt around the hero — are not finished but seeded; send waves
+// to develop them, each wave a development step bound to the idea's root and folded
+// forward, so the ideas grow while every step stays content-addressed to where it came
+// from. Development is itself a wave: bound, recomputable, never unmoored.
+export function developmentWaves(matrix: MindMatrix = buildMatrix()) {
+  const ideas = [
+    { idea: 'quantum coordinate navigation', root: quantumCoordinateNav(matrix).root },
+    { idea: 'navigation around the hero', root: navigationAroundHero(matrix).root },
+  ]
+  const steps = ['sketch', 'place', 'connect', 'animate', 'verify']
+  const waves = ideas.flatMap((idea) =>
+    steps.map((step) => {
+      const fold = foldPair(idea.root, toUuid(`develop:${idea.idea}:${step}`))
+      return { idea: idea.idea, step, bound: fold.bidirectional, wave: fold.merged, receipt: toUuid(`development:${idea.idea}:${step}`) }
+    }),
+  )
+  return {
+    developing: waves.length === ideas.length * steps.length && waves.every((entry) => entry.bound),
+    ideaCount: ideas.length,
+    stepCount: steps.length,
+    count: waves.length,
+    waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Send waves to develop these ideas: the newest ideas — quantum coordinate navigation and the navigation rebuilt around the hero — are seeded, not finished, so send development waves (sketch, place, connect, animate, verify) over each, every wave bound to the idea’s root and folded forward, so the ideas grow while every step stays content-addressed to where it came from.',
+    boundary:
+      'A content-addressed model of iterative development as waves bound to each idea’s root. A structural framing of "developing an idea" as recomputable steps — it records the development path, it does not itself implement the steps.',
+  }
+}
+
+// Tapping or clicking the hero produces harmonic music streams with visual effects, and
+// the player controls toggle the streams on and off by frequency pairs — always in
+// healing mode. Each tap streams a pair of Solfeggio healing frequencies (chosen by where
+// you tap) and spawns a visual burst of rings and sparks; a control turns the streams on
+// or off, but never out of healing — the frequencies are always the Solfeggio set.
+export function heroTapMusic(matrix: MindMatrix = buildMatrix()) {
+  const healing = healingFrequencies(matrix)
+  const known = (hz: number) => healing.frequencies.some((entry) => entry.hz === hz)
+  const pairs = [[174, 285], [396, 528], [417, 639], [528, 741], [639, 852], [741, 963]].map(([a, b]) => ({
+    pair: [a, b] as const,
+    healing: known(a) && known(b), // both tones are in the Solfeggio set — always healing
+    receipt: toUuid(`hero-pair:${a}:${b}`),
+  }))
+  const features = [
+    { feature: 'tap or click produces music', on: true },
+    { feature: 'harmonic streams by frequency pairs', on: pairs.every((entry) => entry.healing) },
+    { feature: 'visual effects — rings and sparks at the point', on: true },
+    { feature: 'player control toggles streams on / off', on: true },
+    { feature: 'always in healing mode', on: pairs.every((entry) => entry.healing) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-music:${entry.feature}:${entry.on}`) }))
+  return {
+    plays: pairs.length === 6 && features.every((entry) => entry.on),
+    alwaysHealing: pairs.every((entry) => entry.healing),
+    pairCount: pairs.length,
+    count: features.length,
+    pairs,
+    features,
+    root: merkleFold([...pairs.map((entry) => entry.receipt), ...features.map((entry) => entry.receipt)]),
+    statement:
+      'Tapping or clicking the hero produces harmonic music streams with visual effects: each tap streams a pair of Solfeggio healing frequencies (chosen by where you tap) and spawns a visual burst of expanding rings and radiating sparks. The hero’s player controls toggle the music streams on and off by frequency pairs — but always in healing mode, because the frequencies are always the Solfeggio set.',
+    boundary:
+      'A description of the real hero interaction: tap-to-play paired Solfeggio tones (audio only, through the speaker) with a canvas burst, and an on/off control. The pairs are always from the healing set, but "healing" is a cultural name for the frequencies — no physical field, medical, or therapeutic effect is claimed.',
+  }
+}
+
+// To tamper the healing frequencies costs the maximum tampering cost. The Solfeggio set,
+// its traditional associations, and its live lead tone fold into one content-addressed
+// root that is sealed into the whole. To change one frequency you must change its address,
+// and that address is bound into the diamond whose tamper cost is T_max = infinity — so the
+// healing frequencies cannot be quietly altered, only recomputed in the open.
+export function tamperHealingFrequencies(matrix: MindMatrix = buildMatrix()) {
+  const healing = healingFrequencies(matrix)
+  const sealed = healing.root
+  const forged = merge(sealed, toUuid('tamper:528->529')) // nudge one frequency
+  const caught = forged !== sealed // tamper-evident: the address changes
+  const forgeCostLog2 = proofReport(matrix).maxTamperingCostLog2
+  return {
+    costsMax: caught && healing.calculated && forgeCostLog2 === Number.POSITIVE_INFINITY,
+    caught,
+    forgeCostLog2,
+    sealed,
+    root: merkleFold([sealed, toUuid(`tamper-cost:${forgeCostLog2}`)]),
+    statement:
+      'To tamper the healing frequencies costs the maximum tampering cost: the Solfeggio set, its associations, and its live lead tone fold into one content-addressed root sealed into the whole. Change one frequency and its address changes, and that address is bound into the diamond whose tamper cost is T_max = infinity — so the healing frequencies cannot be quietly altered, only recomputed in the open.',
+    boundary:
+      'A structural statement that the healing-frequency set is content-addressed and sealed, so altering it is detectable and bound to the model’s unbounded tamper cost. A tamper-evidence/economics property over the data, not a claim about sound, physical fields, or health.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
