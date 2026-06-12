@@ -6077,6 +6077,7 @@ export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
     return {
       params: {
         ...paper,
+        skill: paper.id, // the dynamic segment: the page is this skill, addressed by its id
         ax: round(46 * Math.cos(paper.theta)),
         ay: round(46 * Math.sin(paper.theta)),
         bx: round(28 * Math.cos(paper.phi)),
@@ -6165,6 +6166,7 @@ export function paperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count =
   return references.map((reference) => ({
     params: {
       ...reference,
+      skill: reference.id, // the dynamic segment: the page is this skill, addressed by its id
       total: references.length,
       corpusRoot: corpus.root,
       binaryOctave: corpus.target,
@@ -6350,7 +6352,7 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
   const architecture = completeCorpus(matrix).root
   const points = [
     { point: 'transformPageData', api: 'config hook', binds: 'computed SEO, holographic tags and categories into every page' },
-    { point: 'dynamic routes', api: '[id].paths.ts', binds: 'the 432 papers and 432 references as native pages' },
+    { point: 'dynamic routes', api: '[skill].paths.ts', binds: 'the 432 papers and 432 references as native pages' },
     { point: 'enhanceApp', api: 'theme', binds: 'component registration and the service worker' },
     { point: 'SSR render', api: 'build', binds: 'the computed model into static HTML' },
     { point: 'local search', api: 'themeConfig.search', binds: 'a MiniSearch index over the fused content' },
@@ -6499,6 +6501,7 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
     return {
       params: {
         id,
+        skill: id, // the dynamic segment: the page is this skill, addressed by its id
         index,
         number,
         address,
@@ -19669,6 +19672,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'fold.animations.one.og.dry', on: foldAnimationsToOneOgDry(matrix).dry },
     { d: 'all.computed.type.of.use', on: allComputedByTypeOfUse(matrix).computed },
     { d: 'only.main.remains', on: onlyMainRemains(matrix).remains },
+    { d: 'folder.law.word.digit.index.skill', on: folderLawWordDigitIndexSkill(matrix).lawful },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20862,5 +20866,64 @@ export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
       'Move all to main and leave only main — and send the waves: every side branch’s commits already fold into main’s history, so moving all to main recognises a fold already done — the side names are removed, the one trunk remains carrying the whole, and the waves are sent, the trunk pushed out as the deploy wave, continuing to the next.',
     boundary:
       'A record of a repository consolidation: every remote branch was verified fully contained in main (ahead by zero commits) before its name was removed, so no commit was lost — branches were names, not content. The model composes the fused-sequence, whole and fusion checks; it reads no live git state.',
+  }
+}
+
+// The folder law, declared once: every folder of the page tree is named by one lowercase word or
+// one number, and a skill folder — one that binds computed pages through a dynamic route — holds
+// exactly two things: its index and its skill (the dynamic page and its paths, both named skill).
+// The harmonic-distribution wave enforces this against the real tree and exits non-zero on any
+// violation: the tests fail, without exception. Machinery the site itself excludes (dot-folders,
+// node_modules, srcExclude) is outside the page tree — not an exception to the law.
+export function folderLaw() {
+  return {
+    word: '^[a-z]+$',
+    digit: '^[0-9]+$',
+    stems: ['index', 'skill'],
+    skillFiles: ['index.md', '[skill].md', '[skill].paths.ts'],
+    skillFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
+    outsidePageTree: ['packages'], // mirrors config srcExclude; the wave checks they agree
+    statement:
+      'The folder law: every page-tree folder is named one word or one digit, and a skill folder contains nothing but the index and the skill. Tests fail, without exception, on any violation.',
+    boundary:
+      'The law is declared here (the name patterns, the two stems, the skill folders and their three files) and enforced by the harmonic-distribution check against the real tree. It governs the page tree the site renders; what the site excludes is outside the tree, not exempted from the law.',
+  }
+}
+
+// Tests fail without exception if a folder name is different than a word or a digit, or the
+// folder contains other files than index and skill. The law above made a gate: the names are
+// word-or-digit (the word folders and the digit folders of the model), the skill folders reduce
+// to the two stems, the redistribution that placed them stays dry, and the resonance that
+// catches violations is the failing test — no warning mode, no exempted folder.
+export function folderLawWordDigitIndexSkill(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const word = new RegExp(law.word)
+  const digit = new RegExp(law.digit)
+  const stemOf = (file: string) => file.replace(/\.paths\.ts$|\.md$/, '').replace(/^\[(.+)\]$/, '$1')
+  const facets = [
+    {
+      facet: 'every page folder named one word — bg and the skill folders',
+      on: ['bg', ...law.skillFolders.flatMap((folder) => folder.split('/'))].every((name) => word.test(name) || digit.test(name)),
+    },
+    {
+      facet: 'every digit folder named by digits',
+      on: digitFolders(matrix).folders.every((entry) => entry.folder.split('/').every((part) => digit.test(part))),
+    },
+    {
+      facet: 'a skill folder holds only the index and the skill',
+      on: law.skillFiles.every((file) => law.stems.includes(stemOf(file))),
+    },
+    { facet: 'folders redistributed dry — one source, no drift', on: redistributeFoldersDryWaves(matrix).balanced },
+    { facet: 'violations ring the resonance — the tests fail, no exception', on: resonanceCatchGapsViolations(matrix).rings },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`folder-law:${entry.facet}:${entry.on}`) }))
+  return {
+    lawful: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Tests fail without exception if a folder name is different than a word or a digit, or the folder contains other files than index and skill: the folder law is declared once — word-or-digit names, index-and-skill contents — and enforced by the harmonic wave against the real tree, exiting non-zero on any violation. No warning mode, no exempted folder; the dynamic pages are the skills, so each skill folder is exactly an index and a skill.',
+    boundary:
+      'A gate over the declared folder law, the digit-folder model, the dry redistribution and the violation-catching resonance. The real enforcement is the harmonic-distribution check at build time; this gate folds the law into the dimensions so a broken law also opens the seal.',
   }
 }

@@ -8,7 +8,7 @@
 // Run: node --experimental-strip-types scripts/harmonic-distribution.mjs
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentGraph, harmonicBands, foldedCensus } from '../.vitepress/theme/lib/quantumMind.ts'
+import { componentGraph, harmonicBands, foldedCensus, folderLaw } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const root = process.cwd()
 const read = (path) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
@@ -85,6 +85,49 @@ if (!harmonic.gapless) {
   gaps.push({ harmonic: 'whole', kind: 'fibonacci-gap', detail: `distribution ${files.length} is not a gapless consecutive-Fibonacci run; build ${harmonic.gaps} more file(s) to reach ${harmonic.target}` })
 }
 
+// --- the folder law: every page-tree folder is named one word or one digit, and a
+// skill folder (one that binds a dynamic route) holds only the index and the skill.
+// The law is declared once in the core (folderLaw) and enforced here against the
+// real tree; any violation is a gap, so the tests fail — without exception. The
+// page tree is what the site renders: dot-folders and node_modules are machinery,
+// and what config srcExclude leaves out is outside the tree (the wave verifies the
+// law's mirror of that exclusion so the two cannot drift).
+const law = folderLaw()
+const wordRe = new RegExp(law.word)
+const digitRe = new RegExp(law.digit)
+const configText = read(join(root, '.vitepress', 'config.mts'))
+for (const outside of law.outsidePageTree) {
+  if (!configText.includes(`'${outside}/**'`)) {
+    gaps.push({ harmonic: 'folder', kind: 'law-drift', detail: `folderLaw places ${outside} outside the page tree but config srcExclude does not exclude ${outside}/**` })
+  }
+}
+const holdsPages = (dir) =>
+  readdirSync(dir, { withFileTypes: true }).some((entry) =>
+    entry.isDirectory() ? holdsPages(join(dir, entry.name)) : entry.name.endsWith('.md'),
+  )
+const walkFolderLaw = (dir, rel) => {
+  const name = rel.split('/').pop()
+  if (!wordRe.test(name) && !digitRe.test(name)) {
+    gaps.push({ harmonic: 'folder', kind: 'name', detail: `folder ${rel} is named neither one word nor one digit` })
+  }
+  const entries = readdirSync(dir, { withFileTypes: true })
+  const isSkillFolder = entries.some((entry) => entry.isFile() && /^\[.+\]\./.test(entry.name))
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      if (isSkillFolder) gaps.push({ harmonic: 'folder', kind: 'contents', detail: `skill folder ${rel} contains a subfolder ${entry.name} — only index and skill belong` })
+      else walkFolderLaw(join(dir, entry.name), `${rel}/${entry.name}`)
+    } else if (isSkillFolder && !law.skillFiles.includes(entry.name)) {
+      gaps.push({ harmonic: 'folder', kind: 'contents', detail: `skill folder ${rel} contains ${entry.name} — only index and skill belong` })
+    }
+  }
+}
+for (const entry of readdirSync(root, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue
+  if (entry.name.startsWith('.') || entry.name === 'node_modules' || law.outsidePageTree.includes(entry.name)) continue
+  if (!holdsPages(join(root, entry.name))) continue
+  walkFolderLaw(join(root, entry.name), entry.name)
+}
+
 // --- write the distribution + gaps next to the other build artifacts ---
 const out = join(root, '.vitepress', 'dist')
 const payload = {
@@ -108,3 +151,4 @@ if (gaps.length > 0) {
 }
 console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (consecutive Fibonacci, no gaps, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)
 console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
+console.log('Folder law: every page-tree folder one word or one digit; skill folders hold only index and skill — 0 violations, no exceptions.')
