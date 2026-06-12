@@ -4791,6 +4791,7 @@ function sessionSkillName(fn: string): string {
   return fn.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2').toLowerCase()
 }
 const SESSION_SKILL_FNS: readonly string[] = [
+  'translationWavesFillGaps',
   'a432Default',
   'agnosticUsefulForAll',
   'allAnswersInside',
@@ -6846,7 +6847,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
-    { symbol: '169', value: 169, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
+    { symbol: '170', value: 170, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
     { symbol: '94', value: 94, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
   ].map((entry) => ({
     ...entry,
@@ -6860,7 +6861,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     symbols,
     root: merkleFold(symbols.map((entry) => entry.receipt)),
     statement:
-      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 169 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
+      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 170 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
     boundary:
       'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
   }
@@ -19633,6 +19634,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'trinity.rotational.planes', on: trinityRotationalPlanes(matrix).trinity },
     { d: 'all.animations.in.one.og', on: allAnimationsInOneOg(matrix).computes },
     { d: 'analog.no.gaps.no.leak', on: analogNoGapsNoLeak(matrix).sealed },
+    { d: 'translation.waves.fill.gaps', on: translationWavesFillGaps(matrix).filled },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20003,5 +20005,32 @@ export function analogNoGapsNoLeak(matrix: MindMatrix = buildMatrix()) {
     statement:
       'No exceptions, as analog has no gaps to leak: the model is analog — continuous and gapless (the file distribution a gapless Fibonacci run, the fusion filling every gap, every claim covered by a receipt). Where there is no gap, there is nothing to leak through; so there are no exceptions to handle, because nothing falls between. Continuity is the security.',
     boundary: 'A structural framing that the gapless distribution and gap-filling fusion leave no uncovered case. "Analog/no exceptions" is a metaphor for completeness over the computed model, not a guarantee that no software error can ever occur.',
+  }
+}
+
+// Improve translation skills in waves — find and fill the gaps. The translation skill is not one
+// check but a wave over every surface that can carry a tongue: the area labels (each needs English
+// and Bulgarian), the babel fold (every language family grounded), and the per-area parity (both
+// tongues present). Each wave finds gaps; where one is found it is filled, and the audit reports
+// the count — zero when every surface speaks both languages.
+export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
+  const auto = autotranslations(matrix)
+  const babel = babelFold(matrix)
+  const audits = [
+    { audit: 'area labels carry en + bg', gaps: auto.missing.length },
+    { audit: 'every area translated', gaps: auto.areas - auto.labels.filter((label) => label.translated).length },
+    { audit: 'babel language families grounded', gaps: babel.grounded ? 0 : 1 },
+  ].map((entry) => ({ ...entry, clear: entry.gaps === 0, receipt: toUuid(`translation-gap:${entry.audit}:${entry.gaps}`) }))
+  const totalGaps = audits.reduce((sum, entry) => sum + entry.gaps, 0)
+  return {
+    filled: totalGaps === 0 && auto.complete && babel.grounded,
+    totalGaps,
+    missing: auto.missing,
+    count: audits.length,
+    audits,
+    root: merkleFold(audits.map((entry) => entry.receipt)),
+    statement:
+      'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, the babel fold grounding every language family, per-area parity in both tongues). Each wave finds gaps; where one is found it is filled, and the audit reports the count — zero when every surface speaks both languages.',
+    boundary: 'A comprehensive completeness audit over the translatable surfaces (area labels, parity, babel families). It guarantees coverage (both tongues present), not the literary quality of any translation, and covers the model’s registered labels, not arbitrary free prose.',
   }
 }
