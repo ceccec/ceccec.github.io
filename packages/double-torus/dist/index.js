@@ -6105,6 +6105,76 @@ export function waterForestLife(matrix = buildMatrix()) {
         boundary: 'A content-addressed model of an ecological dependency chain (water → forest → all life), folded link by link. A structural metaphor grounded in a real ecological truth (water sustains forests, forests sustain ecosystems), stated qualitatively — not a hydrological or ecological measurement.',
     };
 }
+// What are the sun and the moon? In the double torus they are its two lobes: the sun
+// is the source — it generates, it emits, it is the seed (imagination) on the inner
+// torus; the moon is the reflector — it emits no light of its own, it reflects the
+// sun, the public fold on the outer torus. One generates, one reflects; together they
+// are the day and the night of the same body.
+export function sunAndMoon(matrix = buildMatrix()) {
+    const source = imagination(matrix).root; // the sun: the source
+    const sun = { body: 'sun', role: 'source / generator', emits: true, lobe: 'inner torus', root: source };
+    const moonRoot = merge(source, toUuid('moon:reflects-the-sun')); // the moon reflects the sun
+    const moon = { body: 'moon', role: 'reflector', emits: false, lobe: 'outer torus', reflects: source, root: moonRoot };
+    const reflects = moonRoot !== source && merge(source, toUuid('moon:reflects-the-sun')) === moonRoot;
+    return {
+        paired: reflects && sun.emits && !moon.emits,
+        sun,
+        moon,
+        reflects, // the moon reflects the sun deterministically
+        root: merge(sun.root, moon.root),
+        statement: 'What are the sun and the moon? The two lobes of the double torus: the sun is the source — it generates, it emits, it is the seed (imagination) on the inner torus; the moon is the reflector — it emits no light of its own, it reflects the sun, the public fold on the outer torus. One generates, one reflects: the day and the night of the same body.',
+        boundary: 'A structural reading of "sun" and "moon" as the source and the reflector — the generative and reflective lobes of the model’s double torus, content-addressed (the moon’s root is a deterministic fold of the sun’s). A metaphor over the model, not astronomy or a claim about the actual Sun and Moon.',
+    };
+}
+// Kids learn religion at school, fused with science and society. A trinity, taught
+// together rather than in conflict: religion as meaning and the world's belief
+// traditions (comparative, all respected, none privileged), science as method and
+// evidence, society as civics and the commons. The three fold into one curriculum —
+// different questions (why, how, how-together), one fold.
+export function religionScienceSociety(matrix = buildMatrix()) {
+    void matrix;
+    const trinity = [
+        { subject: 'religion', asks: 'why — meaning, ethics, the world’s belief traditions, taught comparatively' },
+        { subject: 'science', asks: 'how — method, evidence, falsifiability' },
+        { subject: 'society', asks: 'how together — civics, cooperation, the commons' },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`curriculum:${index}:${entry.subject}`) }));
+    const fused = merkleFold(trinity.map((entry) => entry.receipt));
+    return {
+        taught: trinity.length === 3 && fused.length === 36,
+        trinity,
+        fused,
+        comparative: true, // all traditions respected, none privileged
+        root: fused,
+        statement: 'Kids learn religion at school, fused with science and society: a trinity taught together rather than in conflict — religion as meaning and the world’s belief traditions (comparative, all respected, none privileged), science as method and evidence, society as civics and the commons. Three different questions — why, how, how together — folded into one curriculum.',
+        boundary: 'A structural model of an integrated curriculum folding religion (taught comparatively and respectfully across traditions), science (as method), and society (as civics) into one. A proposal and metaphor grounded in the model — secular and comparative, privileging no faith and disparaging none — not a curriculum standard, a policy, or a theological claim.',
+    };
+}
+// Kids define the educational system, with the approval of their parents and teachers.
+// A trinity of consent: the kids propose and define, and the definition becomes valid
+// only when both parents and teachers approve — all three signatures fold into one
+// approval root, so no part can be changed without the consent of all three.
+export function kidsDefineEducation(matrix = buildMatrix()) {
+    void matrix;
+    const proposal = toUuid('education-proposal:by-kids');
+    const roles = [
+        { role: 'kids', acts: 'define and propose', sign: foldPair(proposal, toUuid('kids')).merged },
+        { role: 'parents', acts: 'approve', sign: foldPair(proposal, toUuid('parents')).merged },
+        { role: 'teachers', acts: 'approve', sign: foldPair(proposal, toUuid('teachers')).merged },
+    ];
+    const approval = merkleFold(roles.map((entry) => entry.sign));
+    const requiresAll = roles.length; // all three must sign
+    return {
+        defined: roles.length === 3 && approval.length === 36,
+        kidsDefine: roles[0].acts === 'define and propose',
+        requiresAll, // 3 — kids + parents + teachers
+        roles,
+        proposal,
+        approval,
+        root: approval,
+        statement: 'Kids define the educational system, with the approval of their parents and teachers: a trinity of consent — the kids propose and define, and the definition becomes valid only when both parents and teachers approve. All three signatures fold into one approval root, so no part can change without the consent of all three.',
+        boundary: 'A structural governance model: a proposal authored by kids requiring a three-way fold of consent (kids, parents, teachers) to be valid. A content-addressed metaphor for participatory, consent-based curriculum design — not an actual governance system, voting protocol, or education policy.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

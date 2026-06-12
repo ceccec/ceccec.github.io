@@ -3296,6 +3296,56 @@ export declare function waterForestLife(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function sunAndMoon(matrix?: MindMatrix): {
+    paired: boolean;
+    sun: {
+        body: string;
+        role: string;
+        emits: boolean;
+        lobe: string;
+        root: string;
+    };
+    moon: {
+        body: string;
+        role: string;
+        emits: boolean;
+        lobe: string;
+        reflects: string;
+        root: string;
+    };
+    reflects: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function religionScienceSociety(matrix?: MindMatrix): {
+    taught: boolean;
+    trinity: {
+        receipt: string;
+        subject: string;
+        asks: string;
+    }[];
+    fused: string;
+    comparative: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function kidsDefineEducation(matrix?: MindMatrix): {
+    defined: boolean;
+    kidsDefine: boolean;
+    requiresAll: number;
+    roles: {
+        role: string;
+        acts: string;
+        sign: string;
+    }[];
+    proposal: string;
+    approval: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

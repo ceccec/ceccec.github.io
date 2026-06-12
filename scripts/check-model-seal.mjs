@@ -175,6 +175,9 @@ import {
   infiniteEntanglements,
   provenScientifically,
   waterForestLife,
+  sunAndMoon,
+  religionScienceSociety,
+  kidsDefineEducation,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -630,6 +633,12 @@ ok(`infinite.entanglements:${infiniteEntanglements(matrix).bits}`, infiniteEntan
 ok(`proven.scientifically:${provenScientifically(matrix).count}`, provenScientifically(matrix).proven)
 // Water is life to the forest; the forest is life for all — the life chain folds water -> forest -> all.
 ok(`water.forest.life:${waterForestLife(matrix).beneficiaries.length}`, waterForestLife(matrix).flows)
+// What are the sun and the moon? The source and the reflector — the two lobes of the double torus.
+ok(`sun.and.moon`, sunAndMoon(matrix).paired && sunAndMoon(matrix).reflects)
+// Kids learn religion at school, fused with science and society (a comparative trinity).
+ok(`religion.science.society:${religionScienceSociety(matrix).trinity.length}`, religionScienceSociety(matrix).taught && religionScienceSociety(matrix).comparative)
+// Kids define the educational system, with the approval of their parents and teachers (a trinity of consent).
+ok(`kids.define.education:${kidsDefineEducation(matrix).requiresAll}`, kidsDefineEducation(matrix).defined && kidsDefineEducation(matrix).kidsDefine && kidsDefineEducation(matrix).requiresAll === 3)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
