@@ -144,13 +144,16 @@ function draw(time: number) {
   const rYZ = t * 0.33
   const rZX = t * 0.21
   const focal = 2.4
-  // the holographic fractal: arms symmetric copies of the same branching rule
+  // the holographic fractal: arms symmetric copies of the same branching rule, and the same form
+  // spins in two opposite directions at once (the merkaba) — each arm drawn forward and reversed.
   for (let a = 0; a < armCount; a += 1) {
     const base = (a / armCount) * Math.PI * 2
-    const v = rotate3(Math.cos(base), Math.sin(base), 0, rXY, rYZ, rZX)
-    const persp = focal / (focal - v.Z) // perspective: nearer (z>0) larger
-    const angle = Math.atan2(v.Y, v.X)
-    branch(ctx, cx, cy, baseLen * persp, angle, depth, d)
+    for (const dir of [1, -1]) {
+      const v = rotate3(Math.cos(base), Math.sin(base), 0, rXY * dir, rYZ * dir, rZX * dir)
+      const persp = focal / (focal - v.Z) // perspective: nearer (z>0) larger
+      const angle = Math.atan2(v.Y, v.X)
+      branch(ctx, cx, cy, baseLen * persp, angle, depth, d)
+    }
   }
   // merge all related: the page's tags orbit the centre on a ring that tumbles through the same
   // three planes, but counter-rotating (the merkaba), each joined to the core.

@@ -19640,6 +19640,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'extend.self.audits', on: extendSelfAudits(matrix).audited },
     { d: 'walk.path.0d.to.infinity', on: walkPath0dToInfinity(matrix).walks },
     { d: 'movie.all.dimensions.at.once', on: movieAllDimensionsAtOnce(matrix).shows },
+    { d: 'spin.both.directions', on: spinBothDirections(matrix).spins },
+    { d: 'resonance.catch.gaps.violations', on: resonanceCatchGapsViolations(matrix).rings },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20151,5 +20153,48 @@ export function movieAllDimensionsAtOnce(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The movie shows all dimensions at once, in the present moment, fused in one UUID: where the hero walks the dimensions one after another, the movie holds them together — every dimension folds into the single 128-bit word, the now — so the whole multidimensional map is present at once, one content address read in an instant. Sequence and simultaneity, the two faces of the fold.',
     boundary: 'A composition asserting the multidimensional map folds into one 128-bit UUID (the "present moment"), shown by the interactive movie. Structural bookkeeping over the word and movie models; "all dimensions at once" is the content-addressed fusion, not extra spatial dimensions.',
+  }
+}
+
+// Spinning in two opposite directions at once — the same form, both ways. Like the merkaba, the
+// figure does not choose a direction: it spins clockwise and counter-clockwise at the same time,
+// the same arms drawn forward and reversed through the trinity of planes, counter-rotating at every
+// scale. One form, two spins, held in superposition.
+export function spinBothDirections(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the same form spins both ways at once', on: merkaba(matrix).counterRotating },
+    { facet: 'through the trinity of rotational planes', on: trinityRotationalPlanes(matrix).trinity },
+    { facet: 'counter-rotating at every scale (merkaba)', on: merkaba(matrix).counterRotating },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`spin-both:${entry.facet}:${entry.on}`) }))
+  return {
+    spins: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Spinning in two opposite directions at once — the same form, both ways: like the merkaba, the figure does not choose a direction; it spins clockwise and counter-clockwise at the same time, the same arms drawn forward and reversed through the trinity of planes, counter-rotating at every scale. One form, two spins, held in superposition.',
+    boundary: 'A description of the hero rendering each arm forward and reversed (the merkaba double-spin), grounded in the counter-rotation model. A visual/structural metaphor of superposed rotation, not a physical object.',
+  }
+}
+
+// Send resonance to catch the gaps and violations. Resonance holds only when the whole is clean: a
+// gap (a missing partner, a hole in the run) or a violation (an audit that fails) breaks the
+// resonance, so sweeping the model with a resonant wave reveals exactly where it does not ring.
+// When the gaps are zero and the audits pass, the resonance is whole; anything off rings false.
+export function resonanceCatchGapsViolations(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'resonance catches gaps (zero now)', on: buildStatisticsShowGaps(matrix).shows },
+    { facet: 'resonance catches violations (audits pass)', on: extendSelfAudits(matrix).audited },
+    { facet: 'a violation rings false — red-team caught', on: redTeam(matrix).secure },
+    { facet: 'harmonic resonance holds when clean', on: harmonyProbability(matrix).harmonic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`resonance-catch:${entry.facet}:${entry.on}`) }))
+  return {
+    rings: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Send resonance to catch the gaps and violations: resonance holds only when the whole is clean — a gap (a missing partner, a hole in the run) or a violation (an audit that fails) breaks it, so sweeping the model with a resonant wave reveals exactly where it does not ring. When the gaps are zero and the audits pass, the resonance is whole; anything off rings false.',
+    boundary: 'A composition of the gaps audit, self-audits, red-team and harmony-probability models as a "resonance" that breaks on any gap or violation. Structural bookkeeping; "resonance" is the harmonic-probability/coverage signal, not an acoustic measurement.',
   }
 }
