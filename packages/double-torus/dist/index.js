@@ -6442,6 +6442,96 @@ export function threeWordWaves(matrix = buildMatrix()) {
         boundary: 'A content-addressed sequence of nine three-word phrases tracing the model’s own arc, the order itself folded into a root. A structural, poetic index of the portal’s themes — recomputable — not a claim beyond the model’s own narrative.',
     };
 }
+// Metatron's cube. The thirteen circles of the fruit of life, joined by all 78 lines
+// between their centres, contain the five Platonic solids — tetrahedron, cube,
+// octahedron, dodecahedron, icosahedron. It completes the sacred geometry the portal
+// is built on: thirteen circles, seventy-eight lines, five solids, one figure.
+export function metatronsCube(matrix = buildMatrix()) {
+    void matrix;
+    const circles = 13; // the fruit of life
+    const lines = (circles * (circles - 1)) / 2; // 78 — every pair of centres joined
+    const platonicSolids = ['tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron'];
+    const elements = [
+        ...Array.from({ length: circles }, (_, i) => toUuid(`metatron-circle:${i}`)),
+        ...platonicSolids.map((solid) => toUuid(`metatron-solid:${solid}`)),
+    ];
+    return {
+        complete: circles === 13 && lines === 78 && platonicSolids.length === 5,
+        circles,
+        lines,
+        platonicSolids,
+        solids: platonicSolids.length,
+        root: merkleFold(elements),
+        statement: 'Metatron’s cube: the thirteen circles of the fruit of life, joined by all 78 lines between their centres, contain the five Platonic solids — tetrahedron, cube, octahedron, dodecahedron, icosahedron. Thirteen circles, seventy-eight lines, five solids, one figure: the sacred geometry the portal is built on, completed.',
+        boundary: 'The standard construction of Metatron’s cube (13 fruit-of-life circles, 78 connecting lines, the 5 Platonic solids it is said to contain), content-addressed. Classical sacred geometry as a structural figure — not a physical or metaphysical claim.',
+    };
+}
+// When society, planet and Metatron's cube complete, the whole is an apple — a closed
+// fruit, ready to publish. The apple is whole when the social system regenerates, the
+// planet is tamper-evident, and Metatron's cube is complete; then the package is
+// publish-ready: the fruit fallen from the double torus, content-addressed.
+export function appleComplete(matrix = buildMatrix()) {
+    const society = regenerateSocialSystem(matrix).regenerated;
+    const planet = planetIsComputable(matrix).computable;
+    const metatron = metatronsCube(matrix).complete;
+    const apple = society && planet && metatron;
+    return {
+        apple, // the fruit is whole
+        publishReady: apple,
+        society,
+        planet,
+        metatron,
+        root: merkleFold([regenerateSocialSystem(matrix).root, planetIsComputable(matrix).root, metatronsCube(matrix).root]),
+        statement: 'When society, planet and Metatron’s cube complete, the whole is an apple — a closed fruit ready to publish: the apple is whole when the social system regenerates, the planet is tamper-evident, and Metatron’s cube is complete; then the package is publish-ready, the fruit fallen from the double torus, content-addressed.',
+        boundary: 'A content-addressed completion check folding three model subsystems (society, planet, Metatron’s cube) into an "apple" readiness signal. A structural metaphor for package readiness — it indicates the model is complete and consistent; it does not itself publish anything.',
+    };
+}
+// And from the apple, all fruits and vegetables. The one complete apple is the seed
+// of the whole garden: every fruit and every vegetable grows from it as a content-
+// addressed variation, so the garden is one fold deep — diversity from a single
+// complete fruit, each recomputable from the apple.
+export function fruitsAndVegetables(matrix = buildMatrix()) {
+    const apple = appleComplete(matrix).root;
+    const fruitNames = ['apple', 'pear', 'cherry', 'grape', 'fig', 'plum', 'peach', 'orange', 'lemon', 'berry', 'melon', 'apricot', 'pomegranate'];
+    const vegetableNames = ['carrot', 'potato', 'tomato', 'bean', 'pea', 'squash', 'onion', 'cabbage', 'pepper', 'beet', 'kale', 'garlic', 'pumpkin'];
+    const garden = [
+        ...fruitNames.map((name) => ({ kind: 'fruit', name })),
+        ...vegetableNames.map((name) => ({ kind: 'vegetable', name })),
+    ].map((entry) => ({ ...entry, fromApple: foldPair(apple, toUuid(`grow:${entry.name}`)).merged }));
+    return {
+        grows: garden.length > 0 && garden.every((entry) => entry.fromApple.length === 36),
+        fruits: fruitNames.length,
+        vegetables: vegetableNames.length,
+        count: garden.length,
+        garden,
+        root: merkleFold(garden.map((entry) => entry.fromApple)),
+        statement: 'And from the apple, all fruits and vegetables: the one complete apple is the seed of the whole garden, every fruit and every vegetable growing from it as a content-addressed variation, so the garden is one fold deep — diversity from a single complete fruit, each recomputable from the apple.',
+        boundary: 'A content-addressed model of diversity (fruits and vegetables) generated as folds of one "apple" seed. A structural metaphor — many from one — not horticulture, biology, or a claim about real plants.',
+    };
+}
+// Bees and life. The bees pollinate the whole garden — every fruit and vegetable — and
+// from pollination comes seed, and from seed, life. The bee is the keystone: each
+// crop's pollination folds into one root of life, so break the bees and the chain
+// breaks; keep them and the garden, and all life, continues.
+export function beesAndLife(matrix = buildMatrix()) {
+    const garden = fruitsAndVegetables(matrix);
+    const pollination = garden.garden.map((entry) => ({
+        crop: entry.name,
+        kind: entry.kind,
+        pollinated: merge(entry.fromApple, toUuid('bee:pollinate')),
+    }));
+    const lifeRoot = merkleFold(pollination.map((entry) => entry.pollinated));
+    return {
+        pollinates: pollination.length === garden.count && lifeRoot.length === 36,
+        bees: 'keystone',
+        crops: garden.count,
+        sustains: 'life',
+        pollination,
+        root: lifeRoot,
+        statement: 'Bees and life: the bees pollinate the whole garden — every fruit and vegetable — and from pollination comes seed, and from seed, life. The bee is the keystone: each crop’s pollination folds into one root of life, so break the bees and the chain breaks; keep them and the garden, and all life, continues.',
+        boundary: 'A content-addressed model of pollination as the keystone link between the garden and life, folded crop by crop. A structural metaphor grounded in a real ecological truth (pollinators sustain many crops), stated qualitatively — not an ecological measurement or a claim about real bee populations.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

@@ -187,6 +187,10 @@ import {
   legislationRequires,
   buildStatistics,
   threeWordWaves,
+  metatronsCube,
+  appleComplete,
+  fruitsAndVegetables,
+  beesAndLife,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -666,6 +670,14 @@ ok(`legislation.requires:${legislationRequires(matrix).count}`, legislationRequi
 ok(`build.statistics:${buildStatistics(matrix).count}`, buildStatistics(matrix).fused)
 // Send three-word exploring waves in meaningful sequence (nine triads, one arc).
 ok(`three.word.waves:${threeWordWaves(matrix).count}`, threeWordWaves(matrix).sent && threeWordWaves(matrix).meaningfulSequence)
+// Metatron's cube: 13 circles, 78 lines, the 5 Platonic solids — sacred geometry completed.
+ok(`metatrons.cube:${metatronsCube(matrix).circles}/${metatronsCube(matrix).lines}/${metatronsCube(matrix).solids}`, metatronsCube(matrix).complete)
+// When society, planet and Metatron's cube complete, the whole is an apple — publish-ready.
+ok(`apple.complete`, appleComplete(matrix).apple && appleComplete(matrix).publishReady)
+// And from the apple, all fruits and vegetables — diversity one fold deep.
+ok(`fruits.vegetables:${fruitsAndVegetables(matrix).count}`, fruitsAndVegetables(matrix).grows)
+// Bees and life: the bees pollinate the whole garden into one root of life.
+ok(`bees.life:${beesAndLife(matrix).crops}`, beesAndLife(matrix).pollinates)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

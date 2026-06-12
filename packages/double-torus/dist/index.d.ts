@@ -3474,6 +3474,54 @@ export declare function threeWordWaves(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function metatronsCube(matrix?: MindMatrix): {
+    complete: boolean;
+    circles: number;
+    lines: number;
+    platonicSolids: string[];
+    solids: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function appleComplete(matrix?: MindMatrix): {
+    apple: boolean;
+    publishReady: boolean;
+    society: boolean;
+    planet: boolean;
+    metatron: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function fruitsAndVegetables(matrix?: MindMatrix): {
+    grows: boolean;
+    fruits: number;
+    vegetables: number;
+    count: number;
+    garden: {
+        fromApple: string;
+        kind: string;
+        name: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function beesAndLife(matrix?: MindMatrix): {
+    pollinates: boolean;
+    bees: string;
+    crops: number;
+    sustains: string;
+    pollination: {
+        crop: string;
+        kind: string;
+        pollinated: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
