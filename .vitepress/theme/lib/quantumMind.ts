@@ -2187,7 +2187,18 @@ function horo(uuid: string): number {
   return ((total - 1) % 9) + 1
 }
 
+// Memoise the default build: buildMatrix is a pure function of the fixed atoms, but
+// dozens of components and model functions call it at setup. Computing it once and
+// sharing it is why the animations no longer wait to load — the model streams from a
+// single cached matrix instead of being rebuilt per caller.
+let defaultMatrix: MindMatrix | null = null
 export function buildMatrix(source: readonly Atom[] = atoms): MindMatrix {
+  if (source === atoms && defaultMatrix) return defaultMatrix
+  const built = computeMatrix(source)
+  if (source === atoms) defaultMatrix = built
+  return built
+}
+function computeMatrix(source: readonly Atom[]): MindMatrix {
   const nodes = source.map((atom, index) => {
     const uuid = toUuid(`atom:${atom.name}:${atom.body}`)
     const prev = toUuid(`atom:${source[(index - 1 + source.length) % source.length].name}`)
@@ -4073,7 +4084,8 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
   const memoryAtoms = skillAtoms(matrix).tamperingAtoms
   const logicAtomsCount = logicAtoms(matrix).count
   const imaginedAtoms = imagination(matrix).count // imagined atoms are wired in too
-  const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms
+  const astrologyAtoms = astrology('double torus', matrix).count // rebuilt astrologically into the architecture
+  const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms + astrologyAtoms
   const reproductions = receipts + sampleWork + wiredAtoms // computations a forgery must reproduce
   const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID // toUuid + the merge folds
   const bits = round(Math.log2(hashCalls), 1)
