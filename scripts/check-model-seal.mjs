@@ -358,6 +358,7 @@ import {
   ogControlsSpeech,
   everyCardBadgeLinkIsOg,
   allPathsComputedRealtime,
+  ogInOgWaves,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1154,6 +1155,7 @@ ok(`site.movie.and.library:${siteIsMovieAndLibrary(matrix).libraryCount}`, siteI
 ok(`og.controls.speech:${ogControlsSpeech(matrix).count}`, ogControlsSpeech(matrix).controlsSpeech) // the OG card controls text-to-speech out and voice-to-stream in
 ok(`every.card.badge.link.og:${everyCardBadgeLinkIsOg(matrix).count}`, everyCardBadgeLinkIsOg(matrix).allOg) // every card, badge and link is an open-graph object
 ok(`all.paths.computed.realtime:${allPathsComputedRealtime(matrix).count}`, allPathsComputedRealtime(matrix).computed) // every route computed from itself at render time, no drift
+ok(`og.in.og.waves:${ogInOgWaves(matrix).nodes}`, ogInOgWaves(matrix).nested) // waves pull og into og recursively — holographic OG nesting
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

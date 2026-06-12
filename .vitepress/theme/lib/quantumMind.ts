@@ -13060,6 +13060,40 @@ export function allPathsComputedRealtime(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Send the waves to pull og into og. Because every object is an open-graph object, an OG can
+// hold OG: send a wave from each card and it pulls its own children in — an article’s OG holds
+// its sections’ OG, a page’s OG holds its links’ OG — recursively, so the cards nest like a
+// hologram, each one a whole OG that contains whole OGs. Every pull is order-sensitive and
+// content-addressed, so the nesting can be unfolded and recomputed at any depth.
+export function ogInOgWaves(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const maxDepth = 3
+  const receipts: string[] = []
+  let nodeCount = 0
+  interface OgNode { path: string; pulled: boolean; og: string; children: OgNode[]; receipt: string }
+  function pull(parent: string, depth: number, path: string): OgNode {
+    nodeCount += 1
+    const wave = foldPair(parent, toUuid(`og-in-og:${path}`)) // pull a child OG into this OG
+    const receipt = toUuid(`og-in-og-node:${path}:${wave.merged}`)
+    receipts.push(receipt)
+    const children = depth > 0 ? [pull(wave.merged, depth - 1, `${path}.a`), pull(wave.merged, depth - 1, `${path}.b`)] : []
+    return { path, pulled: wave.bidirectional, og: wave.merged, children, receipt }
+  }
+  const tree = pull(og, maxDepth, 'og')
+  const expected = 2 ** (maxDepth + 1) - 1
+  return {
+    nested: nodeCount === expected && everyCardBadgeLinkIsOg(matrix).allOg && openGraph().computed,
+    nodes: nodeCount,
+    depth: maxDepth,
+    tree,
+    root: merkleFold(receipts),
+    statement:
+      'Send the waves to pull og into og: because every object is an open-graph object, an OG can hold OG — a wave from each card pulls its children in (an article’s OG holds its sections’ OG, a page’s OG holds its links’ OG), recursively, so the cards nest like a hologram, each a whole OG containing whole OGs. Every pull is order-sensitive and content-addressed, unfoldable and recomputable at any depth.',
+    boundary:
+      'A computed recursive nesting of open-graph objects within open-graph objects (depth-bounded), each a content-addressed fold. A structural model of OG composition — it does not generate nested meta tags for external crawlers, which read one card per page.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
