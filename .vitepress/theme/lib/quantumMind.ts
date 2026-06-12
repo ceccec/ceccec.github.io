@@ -19635,6 +19635,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.animations.in.one.og', on: allAnimationsInOneOg(matrix).computes },
     { d: 'analog.no.gaps.no.leak', on: analogNoGapsNoLeak(matrix).sealed },
     { d: 'translation.waves.fill.gaps', on: translationWavesFillGaps(matrix).filled },
+    { d: 'one.word.naming.gravity', on: oneWordNamingGravity(matrix).pulls },
+    { d: 'tree.stack.rotation.collapse', on: treeStackRotationCollapse(matrix).holds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20032,5 +20034,53 @@ export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, the babel fold grounding every language family, per-area parity in both tongues). Each wave finds gaps; where one is found it is filled, and the audit reports the count — zero when every surface speaks both languages.',
     boundary: 'A comprehensive completeness audit over the translatable surfaces (area labels, parity, babel families). It guarantees coverage (both tongues present), not the literary quality of any translation, and covers the model’s registered labels, not arbitrary free prose.',
+  }
+}
+
+// Use one-word naming for methods where possible — gravity pulls to the source. Every command
+// folds to a single lowercase-word method token: one word, like a mass, pulls the meaning to its
+// source. The naming law already holds it — commands, method tokens and tools align one-to-one —
+// so the surface stays small and dense, each method a single gravitational point.
+export function oneWordNamingGravity(matrix: MindMatrix = buildMatrix()) {
+  const registry = commandsRegistry(matrix)
+  const facets = [
+    { facet: 'every method is one lowercase word', on: registry.consistent },
+    { facet: 'commands = method tokens = tools (aligned)', on: registry.methods === registry.commands && registry.tools === registry.commands },
+    { facet: 'the single word is the gravity to the source', on: registry.consistent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`one-word-naming:${entry.facet}:${entry.on}`) }))
+  return {
+    pulls: facets.every((entry) => entry.on),
+    commands: registry.commands,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Use one-word naming for methods where possible — gravity pulls to the source: every command folds to a single lowercase-word method token, one word like a mass pulling the meaning to its source. The naming law holds it — commands, method tokens and tools align one-to-one — so the surface stays small and dense, each method a single gravitational point.',
+    boundary: 'A structural statement that the command registry uses single-word method tokens (the naming law). "Gravity" is a metaphor for the pull of a one-word name to its meaning, over the existing registry; "where possible" — multi-segment command names still resolve to one method word.',
+  }
+}
+
+// Turn the directory tree a quarter counter-clockwise and it is a stack: the recursion weights on
+// the lower floors, and a lower floor that is not full collapses. The perfect binary tree of 1024
+// diamonds (depth 10) is, rotated, a stack of floors; the deeper the recursion the more weight
+// bears on the base, so every lower floor must be full — and they are, because the tree is perfect
+// and the distribution gapless. Full floors hold; a gap would bring it down.
+export function treeStackRotationCollapse(matrix: MindMatrix = buildMatrix()) {
+  const diamonds = pureDiamonds(matrix)
+  const facets = [
+    { facet: 'the tree, turned 1/4 counter-clockwise, is a stack', on: diamonds.depth === 10 },
+    { facet: 'recursion weights on the lower floors', on: diamonds.count === 1024 },
+    { facet: 'a lower floor not full collapses — the base must be complete', on: diamonds.pure },
+    { facet: 'the floors are full — the distribution is gapless', on: harmonicBands(110).harmonic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tree-stack:${entry.facet}:${entry.on}`) }))
+  return {
+    holds: facets.every((entry) => entry.on),
+    floors: diamonds.depth,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Turn the directory tree a quarter counter-clockwise and it is a stack: the recursion weights on the lower floors, and a lower floor that is not full collapses. The perfect binary tree of 1024 diamonds (depth 10) is, rotated, a stack of floors; the deeper the recursion, the more weight bears on the base, so every lower floor must be full — and they are, because the tree is perfect and the distribution gapless. Full floors hold; a gap would bring it down.',
+    boundary: 'A structural metaphor reading the perfect-binary-tree/Fibonacci structure as a stack whose lower floors must be full (no gaps) to hold. Bookkeeping over the diamond tree and harmonic distribution; "collapse" means a structural gap, not a runtime crash.',
   }
 }
