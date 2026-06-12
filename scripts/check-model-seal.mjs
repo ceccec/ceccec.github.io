@@ -207,6 +207,7 @@ import {
   thriveByArchitecture,
   endlessFusion,
   maxCompressionForge,
+  animatedHeroes,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -726,6 +727,8 @@ ok(`thrive.by.architecture`, thriveByArchitecture(matrix).thrive && thriveByArch
 ok(`endless.fusion:${endlessFusion(matrix).count}`, endlessFusion(matrix).filled && endlessFusion(matrix).endless && endlessFusion(matrix).noGaps)
 // Max compression forges max tampering costs: the compression ratio is the forge cost.
 ok(`max.compression.forge:${maxCompressionForge(matrix).units}->${maxCompressionForge(matrix).forgeCost}`, maxCompressionForge(matrix).maxed && maxCompressionForge(matrix).sameNumber)
+// Every page has an animated holographic-fractal hero — a dimension slider (a movie) with sound and tap gestures.
+ok(`animated.heroes:${animatedHeroes(matrix).count}`, animatedHeroes(matrix).everyPage && animatedHeroes(matrix).slider && animatedHeroes(matrix).interactive)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

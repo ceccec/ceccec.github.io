@@ -84,6 +84,7 @@ import TrinitySearch from './components/TrinitySearch.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import WavesOfCreation from './components/WavesOfCreation.vue'
 import WebCryptoSeal from './components/WebCryptoSeal.vue'
+import HolographicHero from './components/ui/HolographicHero.vue'
 import './style.css'
 
 export default {
@@ -91,6 +92,9 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      // Every page opens with an animated holographic-fractal hero that merges all
+      // the page's related items (category and tags), seeded from the page itself.
+      'doc-before': () => h(HolographicHero),
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),
       // Simple ⇄ Rich switch, reachable from every page's navbar.

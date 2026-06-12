@@ -3731,6 +3731,22 @@ export declare function maxCompressionForge(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function animatedHeroes(matrix?: MindMatrix): {
+    everyPage: boolean;
+    holographic: boolean;
+    slider: boolean;
+    interactive: boolean;
+    count: number;
+    properties: {
+        holographic: boolean;
+        receipt: string;
+        property: string;
+        via: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
