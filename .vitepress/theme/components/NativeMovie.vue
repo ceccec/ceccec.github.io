@@ -47,15 +47,23 @@ function build() {
 function size() {
   const el = canvas.value
   if (!el) return
-  // NATIVE resolution: the backing store is full devicePixelRatio, not capped.
+  // NATIVE resolution at any browser size: the backing store is full devicePixelRatio,
+  // re-read live (it changes with zoom or moving between screens), so the video keeps its
+  // native quality no matter how the browser is resized.
   const ratio = window.devicePixelRatio || 1
   const cssW = el.clientWidth
   const cssH = Math.round((cssW * 9) / 16)
-  el.width = Math.round(cssW * ratio)
-  el.height = Math.round(cssH * ratio)
+  const w = Math.round(cssW * ratio)
+  const h = Math.round(cssH * ratio)
   el.style.height = `${cssH}px`
-  nativeWidth.value = el.width
-  nativeHeight.value = el.height
+  if (el.width === w && el.height === h) return // unchanged — don't clear the canvas
+  el.width = w
+  el.height = h
+  nativeWidth.value = w
+  nativeHeight.value = h
+  // Resizing the backing store clears the canvas — redraw at once, even when the movie is
+  // paused, so a resize never drops to blank or to a stale low-resolution frame.
+  if (!running) requestAnimationFrame(draw)
 }
 
 function draw(time: number) {

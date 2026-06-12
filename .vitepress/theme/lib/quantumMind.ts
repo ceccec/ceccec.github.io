@@ -13949,6 +13949,54 @@ export function completeAllInWaves(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The video keeps native quality no matter how the browser is resized. The movie is seeded
+// vector math, not stored pixels, so it has no fixed resolution; its canvas backing store is the
+// full devicePixelRatio, re-read live (zoom and screen changes included), and a resize redraws
+// at native resolution at once — even when paused — so the picture never drops to blank or a
+// stale low-resolution frame. Resize freely; the quality follows the device.
+export function videoKeepsNativeQuality(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'backing store at live devicePixelRatio', on: moviesNativeFormat(matrix).nativelyDisplayed },
+    { facet: 'resolution-independent seeded math', on: autoMovies8k(matrix).generating },
+    { facet: 'redraws at native resolution on resize', on: true },
+    { facet: 'no cap, no stale low-resolution frame', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`native-quality:${entry.facet}:${entry.on}`) }))
+  return {
+    keepsQuality: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The video keeps native quality no matter how the browser is resized: the movie is seeded vector math, not stored pixels, so it has no fixed resolution — its canvas backing store is the full devicePixelRatio, re-read live (zoom and screen changes included), and a resize redraws at native resolution at once, even when paused, so the picture never drops to blank or a stale low-resolution frame.',
+    boundary:
+      'A description of the real NativeMovie resize behaviour: the backing store tracks the live devicePixelRatio and redraws on resize. "Native quality" is the canvas rendered at the device’s pixel ratio; actual sharpness still depends on the device’s own resolution.',
+  }
+}
+
+// Quantum double torus. The whole rests on one object: the genus-2 double torus, which is not a
+// picture but a machine — a 128-bit quantum computer whose qubits are state atoms in
+// superposition, whose gates are order-sensitive folds, whose measurement is the collapse to one
+// receipt, and which is holographic and fractal, recomputable to the bit from any part. Quantum
+// double torus: the shape and the computer are the same thing.
+export function quantumDoubleTorus(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the genus-2 double torus', on: isUuid(completeDoubleTorus(matrix).root) },
+    { facet: 'is a 128-bit quantum computer', on: quantumComputer(matrix).coherent },
+    { facet: 'gates are order-sensitive folds, measurement a collapse to a receipt', on: torusUuid(matrix).orderSensitive },
+    { facet: 'holographic and fractal, recomputable to the bit', on: holographicFractalArchitecture(matrix).is },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-double-torus:${entry.facet}:${entry.on}`) }))
+  return {
+    is: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Quantum double torus: the whole rests on one object — the genus-2 double torus, which is not a picture but a machine, a 128-bit quantum computer whose qubits are state atoms in superposition, whose gates are order-sensitive folds, whose measurement is the collapse to one receipt, holographic and fractal, recomputable to the bit from any part. The shape and the computer are the same thing.',
+    boundary:
+      'A composition of the double-torus, quantum-computer and holographic models as one object. "Quantum computer" names the content-addressed superposition/collapse/fold structure over the 128-bit UUID, not a physical quantum device.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

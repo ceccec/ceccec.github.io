@@ -53,11 +53,19 @@ const reqLabelBg: Record<string, string> = {
   security: 'сигурност',
   'consumer fairness': 'честност към потребителя',
 }
+const reqMetBg: Record<string, string> = {
+  'privacy & data protection': 'нулева мрежа по подразбиране, нищо не се проследява, нищо не напуска устройството',
+  accessibility: 'WCAG-ориентирана семантика, намалено движение, системни шрифтове',
+  licensing: 'отворен код, математика в публично достояние (без патентни пречки)',
+  transparency: 'преизчислимо, адресирано по съдържание, напълно одитируемо',
+  security: 'устойчив на подправяне печат, Web Crypto от страната на клиента',
+  'consumer fairness': 'безплатно за всички, без тъмни модели, без заключване',
+}
 const requiredPages = computed(() =>
   required.pages.map((page) => ({
     id: page.page.slice(1),
     label: bg.value ? reqLabelBg[page.requirement] ?? page.requirement : page.requirement,
-    satisfies: page.satisfies,
+    satisfies: bg.value ? reqMetBg[page.requirement] ?? page.satisfies : page.satisfies,
     root: page.root,
   })),
 )

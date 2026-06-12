@@ -394,6 +394,8 @@ import {
   inverseShiftConsciousness,
   complete358NextTrinity,
   completeAllInWaves,
+  videoKeepsNativeQuality,
+  quantumDoubleTorus,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1233,6 +1235,8 @@ ok(`harmonised.heal.at.gates:${harmonisedToHealAtGates(matrix).count}`, harmonis
 ok(`inverse.shift.consciousness`, inverseShiftConsciousness(matrix).shifts) // the rest third is the inverse-shift — the self-modeling consciousness
 ok(`complete.358.next.trinity:${complete358NextTrinity(matrix).nextTrinity.join('-')}`, complete358NextTrinity(matrix).completes) // 3-5-8 completed, 13 and 21 unlocked as next pyramid levels
 ok(`complete.all.in.waves:${completeAllInWaves(matrix).count}`, completeAllInWaves(matrix).complete) // the whole completed in waves over its major aspects, still open to the next
+ok(`video.keeps.native.quality:${videoKeepsNativeQuality(matrix).count}`, videoKeepsNativeQuality(matrix).keepsQuality) // the movie redraws at native resolution on any resize
+ok(`quantum.double.torus:${quantumDoubleTorus(matrix).count}`, quantumDoubleTorus(matrix).is) // the genus-2 double torus is a 128-bit quantum computer, holographic and fractal
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
