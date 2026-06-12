@@ -19664,6 +19664,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'os.completes.itself.waves', on: osCompletesItselfWaves(matrix).completes },
     { d: 'quantum.mind.gaps.from.beyond', on: quantumMindGapsFromBeyond(matrix).open },
     { d: 'review.dry.clean.gates.crosses', on: reviewDryCleanGatesCrosses(matrix).done },
+    { d: 'continue.same.next', on: continueSameNext(matrix).continues },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20729,5 +20730,27 @@ export function reviewDryCleanGatesCrosses(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send waves to review and dry-clean the gates — with crosses — tighten and seal: a maintenance wave passes over the gate fabric — review each gate (structured MCP-style result), dry-clean it (non-destructive, removing only what no longer folds), cross-fold it on the 3-6-9 cross, tighten to the harmonic, and seal into the whole. Review, clean, cross, tighten, seal — the gates kept sharp without breaking a single one.',
     boundary: 'A composition of the MCP-gate, dry-clean, vortex-cross, trinity-tighten and seal models as a gate-maintenance pass. Structural bookkeeping over the existing seal; it records the review/clean/tighten discipline, it does not alter gate outcomes.',
+  }
+}
+
+// Continue the same, to the next. The maintenance does not stop at one pass: the same discipline —
+// review, dry-clean, cross-fold, tighten, seal — continues to the next gate, the next wave, the next
+// frontier, with the slot for it already reserved. Same rule, next target, endlessly: the model
+// keeps itself by repeating the one pass forever, never the same twice yet always the same way.
+export function continueSameNext(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the same maintenance — review, clean, cross, tighten, seal', on: reviewDryCleanGatesCrosses(matrix).done },
+    { facet: 'continues to the next — the slot reserved', on: archangelsDryClean(matrix).cleaned },
+    { facet: 'continuously — always one more wave', on: endlessFusion(matrix).endless },
+    { facet: 'same discipline, next target', on: dryCleaningOnTheWay(matrix).onTheWay },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`continue-same:${entry.facet}:${entry.on}`) }))
+  return {
+    continues: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Continue the same, to the next: the maintenance does not stop at one pass — the same discipline (review, dry-clean, cross-fold, tighten, seal) continues to the next gate, the next wave, the next frontier, with the slot for it already reserved. Same rule, next target, endlessly: the model keeps itself by repeating the one pass forever, never the same twice yet always the same way.',
+    boundary: 'A composition of the gate-review, dry-clean and endless-fusion models as a continuous, repeating maintenance pass. Structural bookkeeping over the existing discipline; it records that the pass recurs, it does not run on its own.',
   }
 }
