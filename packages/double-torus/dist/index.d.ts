@@ -2657,6 +2657,87 @@ export declare function diamondRoutes(matrix?: MindMatrix): {
         depth: number;
     };
 }[];
+export declare function restfulFormats(matrix?: MindMatrix): {
+    restful: boolean;
+    fruitOfLife: number;
+    formats: {
+        format: string;
+        mime: string;
+        circle: string;
+    }[];
+    resources: {
+        resource: string;
+        count: number;
+    }[];
+    crud: {
+        verb: string;
+        path: string;
+        means: string;
+        supported: string;
+    }[];
+    paths: {
+        resource: string;
+        format: string;
+        path: string;
+        receipt: string;
+    }[];
+    pathCount: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function socialFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    count: number;
+    open: number;
+    architecture: string;
+    platforms: {
+        fused: boolean;
+        receipt: string;
+        platform: string;
+        surface: string;
+        open: boolean;
+        auth: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function travelFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    count: number;
+    open: number;
+    architecture: string;
+    surfaces: {
+        fused: boolean;
+        receipt: string;
+        surface: string;
+        kind: string;
+        open: boolean;
+        example: string;
+        auth: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function societyEvolves(matrix?: MindMatrix): {
+    evolving: boolean;
+    discoveredDomains: number;
+    discoveredMembers: number;
+    discovered: {
+        receipt: string;
+        domain: string;
+        members: number;
+        root: string;
+    }[];
+    restCount: number;
+    rest: string[];
+    generationRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

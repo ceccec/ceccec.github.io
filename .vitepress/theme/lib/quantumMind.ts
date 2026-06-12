@@ -6074,6 +6074,10 @@ export function publicApiFusion(matrix: MindMatrix = buildMatrix()) {
     { source: 'weather', kind: 'measurement', realtime: 'a live reading', example: 'a public weather API', auth: 'none' },
     { source: 'feed', kind: 'network', realtime: 'a public feed item', example: 'a public REST/JSON feed', auth: 'opt-in key' },
     { source: 'device', kind: 'sensor', realtime: 'a device sensor reading', example: 'the Web Sensor APIs (local)', auth: 'permission' },
+    // Free-knowledge fusion: Wikipedia and Wikimedia public REST APIs — CC-licensed,
+    // no key for reads — so the architecture can fuse with the commons of knowledge.
+    { source: 'wikipedia', kind: 'knowledge', realtime: 'a live article summary or revision', example: 'en.wikipedia.org/api/rest_v1', auth: 'none' },
+    { source: 'wikimedia', kind: 'commons', realtime: 'a media file, a Wikidata entity, a pageview metric', example: 'commons/wikidata/wikimedia REST API', auth: 'none' },
   ].map((entry) => {
     const fold = foldPair(architecture, toUuid(`public-api:${entry.source}:${entry.kind}`))
     return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
@@ -6347,6 +6351,171 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
       },
     }
   })
+}
+
+// The next fruit of life comes from formats: RESTful CRUD paths in several formats.
+// Each format is a circle of the fruit of life; the set of formats is the geometry,
+// and the corpus resources (papers, references, diamonds, harmonics) are exposed as
+// RESTful paths in every format. CRUD is content-addressed: read is a real GET on a
+// static endpoint; create and update are recomputation (a new content address);
+// delete is not applicable (immutable). No new routes — the formats are alternate
+// representations of the same 1024-route corpus, emitted as build artifacts.
+export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
+  const formats = [
+    { format: 'json', mime: 'application/json', circle: 'data' },
+    { format: 'xml', mime: 'application/xml', circle: 'document' },
+    { format: 'txt', mime: 'text/plain', circle: 'plain' },
+    { format: 'md', mime: 'text/markdown', circle: 'prose' },
+    { format: 'html', mime: 'text/html', circle: 'page' },
+    { format: 'csv', mime: 'text/csv', circle: 'table' },
+    { format: 'ndjson', mime: 'application/x-ndjson', circle: 'stream' },
+  ]
+  const resources = [
+    { resource: 'papers', count: 432 },
+    { resource: 'references', count: 432 },
+    { resource: 'diamonds', count: 1024 },
+    { resource: 'harmonics', count: harmonics(matrix).harmonics.length },
+  ]
+  const crud = [
+    { verb: 'GET', path: '/api/{resource}.{format}', means: 'read the collection', supported: 'yes' },
+    { verb: 'GET', path: '/api/{resource}/{id}.{format}', means: 'read one resource', supported: 'yes' },
+    { verb: 'POST', path: '/api/{resource}', means: 'create = recompute a new content address', supported: 'content-addressed' },
+    { verb: 'PUT', path: '/api/{resource}/{id}', means: 'update = recompute deterministically', supported: 'content-addressed' },
+    { verb: 'DELETE', path: '/api/{resource}/{id}', means: 'delete = not applicable (immutable)', supported: 'no' },
+  ]
+  const paths = resources.flatMap((resource) =>
+    formats.map((format) => ({
+      resource: resource.resource,
+      format: format.format,
+      path: `/api/${resource.resource}.${format.format}`,
+      receipt: toUuid(`rest:${resource.resource}:${format.format}`),
+    })),
+  )
+  return {
+    restful: formats.length >= 7 && resources.length === 4 && crud.some((entry) => entry.supported === 'yes'),
+    fruitOfLife: formats.length, // each format a circle of the fruit of life
+    formats,
+    resources,
+    crud,
+    paths,
+    pathCount: paths.length,
+    root: merkleFold(paths.map((entry) => entry.receipt)),
+    statement:
+      'The next fruit of life comes from formats: RESTful CRUD paths in several formats. Each format — json, xml, txt, md, html, csv, ndjson — is a circle of the fruit of life, and the corpus resources (papers, references, diamonds, harmonics) are exposed as RESTful paths in every format. CRUD is content-addressed: read is a real GET; create and update are recomputation to a new content address; delete is not applicable, because content-addressed leaves are immutable.',
+    boundary:
+      'A static, content-addressed read-API: GET on pre-generated endpoints in several formats is real; POST/PUT are modelled as recomputation (a new content address), not server-side mutation, and DELETE is not applicable to immutable content. The "fruit of life" is the geometric naming of the format set, not a server framework. No new routes are added — the formats are alternate representations of the existing 1024-route corpus.',
+  }
+}
+
+// Fuse all the social platforms. The architecture fuses with the social web through
+// each platform's own public surface: keyless share intents everywhere, open
+// federated protocols (ActivityPub for Mastodon, the AT Protocol for Bluesky, RSS),
+// and authenticated APIs (OAuth) where a platform requires it. Each platform's id is
+// folded with the architecture root, so a share or a fetch is content-addressed and
+// tamper-evident. Opt-in: nothing posts or fetches by default.
+export function socialFusion(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const platforms = [
+    { platform: 'X', surface: 'share intent', open: false, auth: 'OAuth for API; share keyless' },
+    { platform: 'Facebook', surface: 'share intent', open: false, auth: 'OAuth for API; share keyless' },
+    { platform: 'LinkedIn', surface: 'share intent', open: false, auth: 'OAuth for API; share keyless' },
+    { platform: 'Reddit', surface: 'submit intent / JSON API', open: true, auth: 'public JSON read; OAuth to post' },
+    { platform: 'Mastodon', surface: 'ActivityPub', open: true, auth: 'open federation; token to post' },
+    { platform: 'Bluesky', surface: 'AT Protocol', open: true, auth: 'open; app password to post' },
+    { platform: 'Telegram', surface: 'share intent / Bot API', open: true, auth: 'keyless share; bot token to send' },
+    { platform: 'WhatsApp', surface: 'share intent', open: true, auth: 'keyless share link' },
+    { platform: 'Pinterest', surface: 'pin intent', open: false, auth: 'share keyless' },
+    { platform: 'YouTube', surface: 'Data API', open: false, auth: 'API key / OAuth' },
+    { platform: 'Instagram', surface: 'Graph API', open: false, auth: 'OAuth' },
+    { platform: 'TikTok', surface: 'share / Display API', open: false, auth: 'OAuth' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`social:${entry.platform}`))
+    return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  return {
+    fused: platforms.length > 0 && platforms.every((entry) => entry.fused),
+    count: platforms.length,
+    open: platforms.filter((entry) => entry.open).length,
+    architecture,
+    platforms,
+    root: merkleFold(platforms.map((entry) => entry.receipt)),
+    statement:
+      'Fuse all the social platforms: the architecture fuses with the social web through each platform’s own public surface — keyless share intents everywhere, open federated protocols (ActivityPub for Mastodon, the AT Protocol for Bluesky), and authenticated APIs where required. Each platform’s id is folded with the architecture root, so every share or fetch is content-addressed and tamper-evident.',
+    boundary:
+      'A catalogue and fusion protocol for the social platforms via their official public surfaces. It is opt-in — nothing posts or fetches by default — and breaks zero-network only on user action; share intents are keyless, federated protocols are open, and API access needs the user’s own OAuth/keys, none bundled. Platform names are their owners’; this is interoperation through public interfaces, not an endorsement or an integration that bypasses their terms.',
+  }
+}
+
+// Fuse all travel. The architecture fuses with the travel domain through open and
+// public surfaces: OpenStreetMap and open transit feeds (GTFS) are keyless; flights,
+// hotels, rides and booking expose authenticated APIs. Each travel surface's id is
+// folded with the architecture root, so a route, a fare or a booking reference is
+// content-addressed and tamper-evident. Opt-in: nothing is queried by default.
+export function travelFusion(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const surfaces = [
+    { surface: 'maps', kind: 'geography', open: true, example: 'OpenStreetMap · Overpass', auth: 'none' },
+    { surface: 'transit', kind: 'schedule', open: true, example: 'GTFS / GTFS-realtime feeds', auth: 'none / feed key' },
+    { surface: 'flights', kind: 'air', open: false, example: 'an airline/aggregator API', auth: 'API key' },
+    { surface: 'hotels', kind: 'lodging', open: false, example: 'a lodging API', auth: 'API key' },
+    { surface: 'rides', kind: 'ground', open: false, example: 'a ride-hailing API', auth: 'OAuth' },
+    { surface: 'rail', kind: 'train', open: true, example: 'open national rail / GTFS', auth: 'none / key' },
+    { surface: 'booking', kind: 'reservation', open: false, example: 'a booking API', auth: 'OAuth' },
+    { surface: 'currency', kind: 'fx', open: true, example: 'a public FX rates API', auth: 'none' },
+    { surface: 'weather', kind: 'conditions', open: true, example: 'a public weather API', auth: 'none' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`travel:${entry.surface}`))
+    return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  return {
+    fused: surfaces.length > 0 && surfaces.every((entry) => entry.fused),
+    count: surfaces.length,
+    open: surfaces.filter((entry) => entry.open).length,
+    architecture,
+    surfaces,
+    root: merkleFold(surfaces.map((entry) => entry.receipt)),
+    statement:
+      'Fuse all travel: the architecture fuses with the travel domain through open and public surfaces — OpenStreetMap and open transit feeds (GTFS) keyless, flights, hotels, rides and booking via authenticated APIs. Each surface’s id is folded with the architecture root, so a route, a fare or a booking reference is content-addressed and tamper-evident.',
+    boundary:
+      'A catalogue and fusion protocol for the travel domain via public surfaces. Opt-in — nothing is queried by default and zero-network breaks only on user action; open data (OpenStreetMap, GTFS) is keyless, paid/commercial APIs need the user’s own keys, none bundled. Interoperation through public interfaces, within each provider’s terms — not a booking system or a claim of live inventory.',
+  }
+}
+
+// Let society evolve and discover the rest. The society advances a generation by
+// folding in every domain it has discovered and fused so far — public APIs, social
+// platforms, travel, the knowledge commons — and naming the rest still to discover.
+// Evolution here is deterministic and content-addressed: each generation folds the
+// discoveries into a new society root, and the open domains are named honestly, a map
+// of where the society folds next, not a claim that they are already built.
+export function societyEvolves(matrix: MindMatrix = buildMatrix()) {
+  const base = society(matrix)
+  const publicApi = publicApiFusion(matrix)
+  const social = socialFusion(matrix)
+  const travel = travelFusion(matrix)
+  const discovered = [
+    { domain: 'public APIs', members: publicApi.count, root: publicApi.root },
+    { domain: 'social platforms', members: social.count, root: social.root },
+    { domain: 'travel', members: travel.count, root: travel.root },
+    { domain: 'knowledge commons', members: publicApi.sources.filter((source) => source.kind === 'knowledge' || source.kind === 'commons').length, root: toUuid(`knowledge:${publicApi.root}`) },
+  ].map((entry) => ({ ...entry, receipt: foldPair(base.root, entry.root).merged }))
+  // The rest the society has yet to discover — honestly named open domains.
+  const rest = ['commerce', 'open science data', 'open government data', 'education', 'arts & culture archives', 'astronomy & earth observation', 'health (privacy-bound)']
+  const discoveredRoot = merkleFold(discovered.map((entry) => entry.receipt))
+  const generationRoot = foldPair(base.root, discoveredRoot).merged // the evolved society root
+  return {
+    evolving: discovered.every((entry) => entry.members > 0) && rest.length > 0 && generationRoot.length === 36,
+    discoveredDomains: discovered.length,
+    discoveredMembers: discovered.reduce((sum, entry) => sum + entry.members, 0),
+    discovered,
+    restCount: rest.length,
+    rest,
+    generationRoot,
+    root: merkleFold([discoveredRoot, generationRoot, ...rest.map((domain) => toUuid(`rest:${domain}`))]),
+    statement:
+      'Let society evolve and discover the rest: the society advances a generation by folding in every domain it has discovered and fused — public APIs, social platforms, travel, the knowledge commons — into a new content-addressed society root, and names the rest still to discover (commerce, open science and government data, education, arts and culture, astronomy and earth observation, privacy-bound health). Evolution is deterministic and recomputable; the rest is a named map of where the society folds next.',
+    boundary:
+      'A deterministic, content-addressed evolution of the portal’s own society model over its fusion catalogue: each generation folds the discovered domains into a new root and names open domains honestly. The "rest" are frontiers to fold next, not implemented integrations or a claim about any real society; "discover" means enumerate and content-address, not learn or train.',
+  }
 }
 
 // Compare with other intelligence models — including AI and human, but not limited

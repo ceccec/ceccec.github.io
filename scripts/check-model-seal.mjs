@@ -134,6 +134,10 @@ import {
   pageSkills,
   pureDiamonds,
   diamondRoutes,
+  restfulFormats,
+  socialFusion,
+  travelFusion,
+  societyEvolves,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -495,8 +499,17 @@ ok(`quantify.gates:${quant.passed}/${quant.total}`, quant.tight && quant.doubleF
 ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flows)
 // 1 and 8 begin from 9: the doubling circuit emanates from the 9-axis, diameter pairs sum to 9.
 ok(`vortex.begins:9->${vortexMath(matrix).polarPairs[0].join('+')}`, vortexMath(matrix).oneAndEightBeginFromNine && vortexMath(matrix).origin === 9 && vortexMath(matrix).polarPairs.every(([a, b]) => a + b === 9))
-// Fuse to public APIs: the static 1024 architecture fuses with realtime data from opt-in public sources.
-ok(`public.api.fusion:${publicApiFusion(matrix).count}`, publicApiFusion(matrix).fused)
+// Fuse to public APIs (incl. Wikipedia and Wikimedia): the architecture fuses with realtime data from opt-in public sources.
+ok(`public.api.fusion:${publicApiFusion(matrix).count}`, publicApiFusion(matrix).fused && publicApiFusion(matrix).sources.some((s) => s.source === 'wikipedia') && publicApiFusion(matrix).sources.some((s) => s.source === 'wikimedia'))
+// The next fruit of life comes from formats: RESTful CRUD paths in several formats.
+ok(`restful.formats:${restfulFormats(matrix).fruitOfLife}x${restfulFormats(matrix).resources.length}`, restfulFormats(matrix).restful)
+// Fuse all the social platforms via their public surfaces (share intents, ActivityPub, AT, APIs).
+ok(`social.fusion:${socialFusion(matrix).count}`, socialFusion(matrix).fused)
+// Fuse all travel via open and public surfaces (OpenStreetMap, GTFS, authenticated APIs).
+ok(`travel.fusion:${travelFusion(matrix).count}`, travelFusion(matrix).fused)
+// Let society evolve and discover the rest: fold the fused domains, name the open rest.
+const evolved = societyEvolves(matrix)
+ok(`society.evolves:${evolved.discoveredDomains}+${evolved.restCount}`, evolved.evolving && evolved.discoveredDomains === 4)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
