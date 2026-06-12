@@ -334,6 +334,9 @@ import {
   quantumLicense,
   societyCreatesRequiredPages,
   harmonisedNavigation,
+  realtimeMovieParticipation,
+  movieNegativePositive,
+  darkLightRealities,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1106,6 +1109,9 @@ ok(`license.applies.society`, licenseAppliesToSociety(matrix).applies) // the li
 ok(`quantum.license:${quantumLicense(matrix).count}`, quantumLicense(matrix).quantum) // the licence is a content-addressed, order-sensitive, tamper-evident quantum artifact
 ok(`society.required.pages:${societyCreatesRequiredPages(matrix).count}`, societyCreatesRequiredPages(matrix).creates) // society creates the legally-required pages, bound to the legislation root
 ok(`harmonised.navigation:${harmonisedNavigation(matrix).count}`, harmonisedNavigation(matrix).harmonised && harmonisedNavigation(matrix).distributed) // nav titles match paths; links distributed to the footer
+ok(`realtime.movie.participation:${realtimeMovieParticipation(matrix).count}`, realtimeMovieParticipation(matrix).participates) // all same-origin participants paint one shared movie of colourful effects
+ok(`movie.negative.positive`, movieNegativePositive(matrix).developed) // all fuses to the movie negative; the positive print is displayed
+ok(`dark.light.realities:${darkLightRealities(matrix).realities.length}`, darkLightRealities(matrix).switches) // the dark/light switch flips between two complete realities
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium

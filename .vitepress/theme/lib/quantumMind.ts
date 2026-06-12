@@ -12409,6 +12409,81 @@ export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Let all realtime participants participate in the movie. Every participant on the same
+// origin shares one canvas of effects: each tap is broadcast on a same-origin channel and
+// blooms in every other participant's movie as a colourful, rainbow-ringed ripple, so the
+// movie is collective — made of everyone's touches. No server, no network beyond the local
+// channel; presence is ephemeral and anonymous; remote effects honour each participant's
+// own reduced-motion and energy choice.
+export function realtimeMovieParticipation(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const properties = [
+    { property: 'all participants share one movie', via: 'a same-origin BroadcastChannel (double-torus-movie)' },
+    { property: 'each tap blooms in everyone’s movie', via: 'normalised coordinates broadcast and re-rendered per viewport' },
+    { property: 'colourful rainbow effects', via: 'a participant’s ripple draws hue-shifted rainbow rings' },
+    { property: 'no server, zero network', via: 'the channel is local to the origin; nothing leaves the device' },
+    { property: 'ephemeral and anonymous', via: 'no identity, no persistence — presence is the live touch only' },
+    { property: 'energy- and motion-aware', via: 'remote effects honour the local participant’s reduced-motion and energy choice' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`realtime-movie:${entry.property}`) }))
+  return {
+    participates: properties.length === 6,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Let all realtime participants participate in the movie: every participant on the same origin shares one canvas of effects — each tap is broadcast on a same-origin channel and blooms in every other participant’s movie as a colourful, rainbow-ringed ripple, so the movie is collective, made of everyone’s touches. No server, no network beyond the local channel; presence is ephemeral and anonymous, and remote effects honour each participant’s own reduced-motion and energy choice.',
+    boundary:
+      'A description of the real shared-movie feature over a same-origin BroadcastChannel — it connects tabs and windows of the same origin on one device/browser profile, not arbitrary remote users; cross-device presence would need a relay, which is not added. Anonymous and ephemeral, energy- and motion-aware.',
+  }
+}
+
+// Fuse all to the movie negative, and display it in positive. Like film: the whole — every
+// fold of the model, plus the participants' touches — fuses into one compressed negative
+// (a single content-addressed word that holds it all), and what you see is the positive
+// developed from it. The negative is the source that holds everything inverted and small;
+// the positive is the print, the rendered movie. Develop is one-way and order-sensitive,
+// so the positive is distinct from the negative — you display the print, not the source.
+export function movieNegativePositive(matrix: MindMatrix = buildMatrix()) {
+  const negative = fuseAll(matrix).wave // all fused into one — the negative holds the whole
+  const positive = foldPair(toUuid('develop:positive'), negative).merged // the print, developed from the negative
+  const inverseOrder = foldPair(negative, toUuid('develop:positive')).merged // the other fold order
+  const oneWay = positive !== inverseOrder // develop is order-sensitive: positive ≠ its inverse
+  return {
+    developed: fuseAll(matrix).fused && isUuid(negative) && isUuid(positive) && oneWay,
+    negative,
+    positive,
+    root: merkleFold([negative, positive]),
+    statement:
+      'Fuse all to the movie negative, and display it in positive: the whole — every fold of the model plus the participants’ touches — fuses into one compressed negative (a single content-addressed word that holds it all), and what you see is the positive developed from it. The negative is the source that holds everything; the positive is the print, the rendered movie. Develop is one-way and order-sensitive, so you display the print, not the source.',
+    boundary:
+      'A content-addressing metaphor borrowing from film: the fused-all word is the "negative" (the compressed whole) and a developed fold is the "positive" (the displayed print). Structural bookkeeping over roots — no optical negative, no colour inversion of the actual canvas is claimed.',
+  }
+}
+
+// The dark/light switch switches realities. Dark and light are not two skins of one page
+// but two complete realities — two whole renderings of the portal, like the two lobes of
+// the double torus or the sun and its reflection. One control flips between them, and the
+// flip is order-sensitive; each reality holds the entire content (holographic), so nothing
+// is lost in the switch — only the light changes, and with it the whole world.
+export function darkLightRealities(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const realities = [
+    { reality: 'dark', world: 'the void lit from within — bright streams on a dark field' },
+    { reality: 'light', world: 'the day — dark glyphs on a bright field' },
+  ].map((entry) => ({ ...entry, holdsWhole: true, receipt: toUuid(`reality:${entry.reality}:${entry.world}`) }))
+  const flip = foldPair(toUuid('reality:dark'), toUuid('reality:light')) // the switch between realities
+  return {
+    switches: realities.length === 2 && flip.bidirectional && realities.every((entry) => entry.holdsWhole),
+    dual: flip.bidirectional, // the two realities are distinct and order-sensitive
+    realities,
+    root: flip.merged,
+    statement:
+      'The dark/light switch switches realities: dark and light are two complete realities — two whole renderings of the portal, like the two lobes of the double torus or the sun and its reflection — and one order-sensitive control flips between them. Each reality holds the entire content (holographic), so nothing is lost in the switch; only the light changes, and with it the whole world.',
+    boundary:
+      'A framing of the standard dark/light colour-scheme toggle as a switch between two complete renderings. "Realities" is a metaphor for the two themes, each showing the same content; it is the ordinary VitePress appearance switch, not a change of data or a claim of parallel worlds.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

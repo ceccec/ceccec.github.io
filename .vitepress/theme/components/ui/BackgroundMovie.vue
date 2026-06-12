@@ -110,9 +110,32 @@ let R = 600
 // The interactive movie game: a tap anywhere that isn't a control plays the movie —
 // a tone whose pitch maps to where you tapped, a light vibration, and a ripple that
 // scatters the nearest streams. Sound and vibration fused into the game.
-interface Ripple { x: number; y: number; born: number; hue: number }
+interface Ripple { x: number; y: number; born: number; hue: number; remote?: boolean }
 let ripples: Ripple[] = []
-const PENTA = [0, 2, 4, 7, 9, 12]
+
+// Let all realtime participants participate in the movie. Every participant on the same
+// origin shares one canvas of effects: each tap is broadcast on a same-origin channel,
+// and every other participant's tap blooms here as a colourful, rainbow-ringed ripple —
+// so the movie is collective, made of everyone's touches. No server, no network beyond
+// the local BroadcastChannel; presence is ephemeral and anonymous, energy- and
+// reduced-motion-aware (a participant at rest sees no remote motion either).
+let movieChannel: BroadcastChannel | null = null
+function spawnRemoteRipple(nx: number, ny: number, hue: number) {
+  if (reduce || saveEnergy.value) return // honour the local participant's motion/energy choice
+  const el = canvas.value
+  if (!el) return
+  const ix = nx * el.width
+  const iy = ny * el.height
+  ripples.push({ x: ix, y: iy, born: performance.now(), hue, remote: true })
+  if (ripples.length > 32) ripples.shift()
+  // a participant's touch scatters the nearest streams here too — shared motion
+  for (const p of particles) {
+    const px = cx + Math.cos(p.theta) * p.r
+    const py = cy + Math.sin(p.theta) * p.r * 0.62
+    if (Math.hypot(px - ix, py - iy) < 90) p.dir = 1
+  }
+  if (!running) requestAnimationFrame((t) => draw(t))
+}
 function isControl(el: EventTarget | null): boolean {
   let node = el as HTMLElement | null
   for (let i = 0; node && i < 6; i += 1) {
@@ -135,6 +158,8 @@ function onTap(event: PointerEvent) {
   const hue = Math.round((1 - k) * 320)
   ripples.push({ x: ix, y: iy, born: performance.now(), hue })
   if (ripples.length > 24) ripples.shift()
+  // broadcast this touch so every realtime participant sees it bloom in their movie
+  movieChannel?.postMessage({ x: x / window.innerWidth, y: y / window.innerHeight, hue })
   // scatter the nearest streams outward — the streams react to the tap
   for (const p of particles) {
     const px = cx + Math.cos(p.theta) * p.r
@@ -208,13 +233,20 @@ function draw(time: number) {
   // the game's ripples: expanding rings where the player tapped
   const now = performance.now()
   ripples = ripples.filter((rp) => now - rp.born < 900)
+  const dpr = window.devicePixelRatio || 1
   for (const rp of ripples) {
     const age = (now - rp.born) / 900
-    ctx.strokeStyle = `hsla(${rp.hue}, 85%, 62%, ${(1 - age) * 0.5})`
-    ctx.lineWidth = 2 * (1 - age)
-    ctx.beginPath()
-    ctx.arc(rp.x, rp.y, age * 120 * (window.devicePixelRatio || 1), 0, TAU)
-    ctx.stroke()
+    const baseR = age * 120 * dpr
+    // a participant's ripple blooms in colourful rainbow rings; your own is one ring
+    const rings = rp.remote ? 3 : 1
+    for (let ring = 0; ring < rings; ring += 1) {
+      const radius = Math.max(0, baseR - ring * 14 * dpr)
+      ctx.strokeStyle = `hsla(${(rp.hue + ring * 40) % 360}, 90%, 62%, ${(1 - age) * (rp.remote ? 0.55 : 0.5)})`
+      ctx.lineWidth = (rp.remote ? 2.4 : 2) * (1 - age)
+      ctx.beginPath()
+      ctx.arc(rp.x, rp.y, radius, 0, TAU)
+      ctx.stroke()
+    }
   }
 }
 
@@ -256,6 +288,16 @@ onMounted(() => {
   window.addEventListener('resize', size)
   document.addEventListener('visibilitychange', sync)
   window.addEventListener('pointerdown', onTap)
+  // open the shared movie channel: all same-origin participants paint into one movie
+  if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+    movieChannel = new BroadcastChannel('double-torus-movie')
+    movieChannel.onmessage = (event: MessageEvent) => {
+      const data = event.data as { x?: number; y?: number; hue?: number }
+      if (typeof data?.x === 'number' && typeof data?.y === 'number') {
+        spawnRemoteRipple(data.x, data.y, Number(data.hue) || 200)
+      }
+    }
+  }
   sync()
 })
 // The background is endless and global, but never the same: when the route changes,
@@ -270,6 +312,7 @@ onUnmounted(() => {
   window.removeEventListener('resize', size)
   document.removeEventListener('visibilitychange', sync)
   window.removeEventListener('pointerdown', onTap)
+  movieChannel?.close()
 })
 </script>
 
