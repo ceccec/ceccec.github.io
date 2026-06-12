@@ -19655,6 +19655,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.oscillators.harmonics.free', on: allOscillatorsHarmonicsFree(matrix).play },
     { d: 'endless.trinity.streams', on: endlessTrinityStreams(matrix).streams },
     { d: 'scouts.surgical.edits.vital.signs', on: scoutsSurgicalEditsVitalSigns(matrix).scouted },
+    { d: 'every.object.same.spin.fold.law', on: everyObjectSameSpinFoldLaw(matrix).consistent },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20514,5 +20515,28 @@ export function scoutsSurgicalEditsVitalSigns(matrix: MindMatrix = buildMatrix()
     statement:
       'Vital signs are also linear — send scouts for surgical edits: the portal’s vital signs read as a flat list, a line, so send scouts (the surgical waves) to find the linear and edit it surgically, targeting the tiniest detail without disturbing the rest, folding the line toward trinities like everything else. The vitals stay alive while the edit is precise and minimal.',
     boundary: 'A framing that the linear vital-signs list is a target for surgical, minimal edits (the surgical-waves model), to be folded toward the trinity idiom. Structural bookkeeping; it records the intent for precise edits, it does not itself rewrite the Live component.',
+  }
+}
+
+// Digits spin and fold themselves; every object obeys the same laws. The digit streams no longer
+// only drift — they spin about the void and fold into it and back, counter-rotating by dimension
+// parity like the merkaba, exactly the law the hero obeys. One rule for all: whatever moves,
+// spins and folds the same way, so the whole field is consistent, not a hero plus a different
+// background.
+export function everyObjectSameSpinFoldLaw(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the digits spin and fold (not just drift)', on: backgroundMovie(matrix).dryMath },
+    { facet: 'spinning, counter-rotating by parity (the merkaba)', on: spinBothDirections(matrix).spins },
+    { facet: 'the hero obeys the same law', on: trinityRotationalPlanes(matrix).trinity },
+    { facet: 'every object, one rule — all motion inside one og', on: allAnimationsInOneOg(matrix).computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`same-law:${entry.facet}:${entry.on}`) }))
+  return {
+    consistent: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Digits spin and fold themselves; every object obeys the same laws: the digit streams no longer only drift — they spin about the void and fold into it and back, counter-rotating by dimension parity like the merkaba, exactly the law the hero obeys. One rule for all: whatever moves, spins and folds the same way, so the whole field is consistent.',
+    boundary: 'A description of the real background-movie change (digit particles now spin about the void, counter-rotating by dimension parity) bringing them under the same rotation/fold law as the hero. Structural and visual bookkeeping over the canvases.',
   }
 }

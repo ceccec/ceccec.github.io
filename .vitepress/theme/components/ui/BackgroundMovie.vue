@@ -216,8 +216,12 @@ function draw(time: number) {
       p.theta += 0.2
     }
     const k = p.r / R // 0 at the void, 1 at the edge
-    const x = cx + Math.cos(p.theta) * p.r
-    const y = cy + Math.sin(p.theta) * p.r * 0.62 // squash → perspective toward the void
+    // Every object obeys the same law: the digits spin and fold like the hero — a continuous
+    // rotation about the void (the fold), counter-rotating by dimension parity (the merkaba).
+    const spin = reduce ? 0 : t * 0.06 * (p.dim % 2 === 0 ? 1 : -1) * (1 + p.dim * 0.2)
+    const a = p.theta + spin
+    const x = cx + Math.cos(a) * p.r
+    const y = cy + Math.sin(a) * p.r * 0.62 // squash → perspective toward the void
     // the stream of art continues in balance with the individual: a gentle hue bias
     // from the student's own quantum mind (a third of the way, never overwhelming).
     const bias = artBiasOf(mind.value) * 0.33
