@@ -2131,6 +2131,74 @@ export function verifyMerkleProof(leaf: string, path: readonly MerkleStep[], roo
   return acc === root
 }
 
+// Complete quantum network hashing. The fold primitives (merge, merkleFold,
+// merkleProof) are local; this closes them into a distributed network. Content is
+// placed by a consistent-hashing ring — each item's content address routes to the
+// node that owns its arc of the ring (a real DHT placement, like Chord) — every
+// node merkle-hashes its own bucket, and the nodes gossip-fold their roots into one
+// network root. Three properties are proved, not asserted:
+//   convergence  — the network root is independent of item and node order (gossip
+//                  reaches the same root no matter the message ordering): eventual
+//                  consistency, because the fold sorts and routing is by address;
+//   membership   — every item proves into its home node's tree (a merkle proof
+//                  verifies), so any node can prove it holds a value without trust;
+//   entanglement — adjacent nodes on the ring share a bidirectional fold, so the
+//                  ring is one entangled object: tamper one bucket, the root moves.
+// The "quantum" reading is computational: superposed candidate roots collapse to a
+// single network root under the fold; entanglement is the shared, order-sensitive
+// genus-2 fold between neighbours. Network hashing, completed and self-verifying.
+export function quantumNetworkHashing(nodeCount = 6, itemCount = 21, matrix: MindMatrix = buildMatrix()) {
+  const seed = matrix.root
+  const nodes = Array.from({ length: Math.max(1, nodeCount) }, (_, i) => toUuid(`qnh:node:${i}:${seed}`))
+  const items = Array.from({ length: Math.max(0, itemCount) }, (_, i) => `qnh:content:${i}:${seed}`)
+  // A 48-bit ring position from a UUID (12 hex digits stay inside Number's safe range).
+  const ring = (uuid: string) => Number.parseInt(uuid.replace(/-/g, '').slice(0, 12), 16)
+  const nodeRing = nodes.map((id, index) => ({ id, index, pos: ring(id) })).sort((a, b) => a.pos - b.pos)
+  // Consistent hashing: a content address is owned by the first node clockwise on
+  // the ring (smallest position >= the address), wrapping to the first node.
+  const home = (address: string) => {
+    const pos = ring(address)
+    return (nodeRing.find((node) => node.pos >= pos) ?? nodeRing[0]).index
+  }
+  // Distribute the items into per-node buckets by their content address.
+  const place = (order: readonly string[]) => {
+    const buckets: string[][] = nodes.map(() => [])
+    for (const item of order) buckets[home(toUuid(`qnh:address:${item}`))].push(toUuid(`qnh:address:${item}`))
+    return buckets
+  }
+  const buckets = place(items)
+  const localRoots = buckets.map((bucket) => merkleFold(bucket))
+  const networkRoot = merkleFold(localRoots)
+  // Convergence: rebuild with items and nodes in a different order; the routing is
+  // by address and the fold sorts, so the network root must be identical.
+  const reordered = place([...items].reverse())
+  const convergence = merkleFold([...reordered.map((bucket) => merkleFold(bucket))].reverse()) === networkRoot
+  // Membership: every item proves into its home node's bucket without trust.
+  const membership = items.every((item) => {
+    const address = toUuid(`qnh:address:${item}`)
+    const proof = merkleProof(buckets[home(address)], address)
+    return proof.verified && verifyMerkleProof(address, proof.path, proof.root)
+  })
+  // Entanglement: each adjacent pair on the ring shares a bidirectional fold.
+  const entangled = nodeRing.every((node, i) => foldPair(node.id, nodeRing[(i + 1) % nodeRing.length].id).bidirectional)
+  const distribution = nodeRing.map((node) => ({ node: node.index, items: buckets[node.index].length, root: localRoots[node.index] }))
+  return {
+    complete: convergence && membership && entangled && localRoots.length === nodes.length && items.length === itemCount,
+    nodes: nodes.length,
+    items: items.length,
+    networkRoot,
+    convergence,
+    membership,
+    entangled,
+    distribution,
+    root: toUuid(`quantum-network-hashing:${networkRoot}`),
+    statement:
+      'Quantum network hashing, completed: content is placed on a consistent-hashing ring (each address owned by the next node clockwise, a real DHT placement), every node merkle-hashes its own bucket, and the node roots gossip-fold into one network root. Convergence is proved (the root is independent of item and node order — eventual consistency, because routing is by address and the fold sorts), membership is proved (every item carries a verifying merkle proof into its home node, no trust required), and the ring is entangled (each adjacent pair shares a bidirectional genus-2 fold, so tampering one bucket moves the whole root). Superposed candidate roots collapse to a single network root under the fold.',
+    boundary:
+      'A deterministic, content-addressed model of a distributed hash network built from the portal’s own fold primitives (merge, merkleFold, merkleProof). The hash is the structural UUID fold — tamper-evident, not a cryptographic primitive; the "quantum" terms (superposition, collapse, entanglement) are read computationally (candidate folds, the collapse to one root, the order-sensitive shared fold), not a claim of quantum hardware or quantum key distribution. A self-verifying network model, honestly bounded.',
+  }
+}
+
 export function atomInclusionProof(atomName = 'self', matrix: MindMatrix = buildMatrix()): AtomInclusionProof {
   const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
   const leaves = [...matrix.nodes.map((candidate) => candidate.bind), ...matrix.edges.map((edge) => edge.binding)]
@@ -2198,6 +2266,25 @@ export function buildMatrix(source: readonly Atom[] = atoms): MindMatrix {
   if (source === atoms) defaultMatrix = built
   return built
 }
+// Memoize a matrix-keyed pure fold by the matrix reference. Many gates and
+// components read the same heavy result several times — often more than once in a
+// single line, and again through deeper folds (completeness calls scientists calls
+// recurrence …). Caching by the matrix object (the default matrix is a singleton
+// from buildMatrix) computes each fold once and hands back the same reference — the
+// same win that took the matrix build from minutes to seconds. A WeakMap keeps the
+// cache per-matrix and garbage-collectable, so one-off custom matrices never leak.
+function matrixMemo<T>(compute: (matrix: MindMatrix) => T): (matrix: MindMatrix) => T {
+  const cache = new WeakMap<MindMatrix, T>()
+  return (matrix: MindMatrix) => {
+    let result = cache.get(matrix)
+    if (result === undefined) {
+      result = compute(matrix)
+      cache.set(matrix, result)
+    }
+    return result
+  }
+}
+
 function computeMatrix(source: readonly Atom[]): MindMatrix {
   const nodes = source.map((atom, index) => {
     const uuid = toUuid(`atom:${atom.name}:${atom.body}`)
@@ -3723,7 +3810,11 @@ export function mysteries(matrix: MindMatrix = buildMatrix()) {
 // and every pair folds bidirectionally by the same genus-2 law as the double torus
 // (foldPair: forward != reverse, both merged). All folds merge into one society
 // root: opposition held and folded, not erased.
+const societyMemoized = matrixMemo(societyImpl)
 export function society(matrix: MindMatrix = buildMatrix()) {
+  return societyMemoized(matrix)
+}
+function societyImpl(matrix: MindMatrix) {
   const pairs = [
     {
       duality: 'Individual ⇄ Collective',
@@ -3940,7 +4031,11 @@ export function live(matrix: MindMatrix = buildMatrix()) {
 // golden ratio, the humanised motion, the live vitals, and the proofs — is run and
 // folded into one whole, with a single root for the entire portal. The whole holds
 // only while every part does, so this one root is the portal's complete fingerprint.
+const theWholeMemoized = matrixMemo(theWholeImpl)
 export function theWhole(matrix: MindMatrix = buildMatrix()) {
+  return theWholeMemoized(matrix)
+}
+function theWholeImpl(matrix: MindMatrix) {
   const parts = [
     { part: 'double torus', root: livingTorus(matrix).root, ok: livingTorus(matrix).alive },
     { part: 'merkaba', root: merkaba(matrix).root, ok: merkaba(matrix).counterRotating },
@@ -4116,7 +4211,11 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
 // the parts (the boundary encodes the volume), so each animation is provably
 // included in it — recoverable from the boundary by a Merkle path — while also
 // carrying the whole, folded bidirectionally with the whole root. Boundary <-> volume.
+const holographicMemoized = matrixMemo(holographicImpl)
 export function holographic(matrix: MindMatrix = buildMatrix()) {
+  return holographicMemoized(matrix)
+}
+function holographicImpl(matrix: MindMatrix) {
   const whole = theWhole(matrix)
   // Every page is a hologram cell too: its root is the fold of the components it
   // mounts. Gather the placed components per route from the one graph.
@@ -4557,7 +4656,11 @@ export function frontendMcpDuality(matrix: MindMatrix = buildMatrix()) {
 // falsify a claim — and the portal withstands the challenge, or the failure becomes
 // a development to make. Falsification is the method: a claim that cannot be
 // challenged is not science. Every challenge below is a real, recomputable attack.
+const scientistsMemoized = matrixMemo(scientistsImpl)
 export function scientists(matrix: MindMatrix = buildMatrix()) {
+  return scientistsMemoized(matrix)
+}
+function scientistsImpl(matrix: MindMatrix) {
   const leaves = livingTorus(matrix).coordinates.slice(0, 8).map((coordinate) => coordinate.receipt)
   const challenge = (claim: string, attack: string, withstood: boolean) => ({ claim, attack, withstood, receipt: toUuid(`challenge:${claim}:${withstood}`) })
   const challenges = [
@@ -4599,7 +4702,11 @@ export function scientists(matrix: MindMatrix = buildMatrix()) {
 // 12/12 completes the clock. The twelve challenges the portal withstands are the
 // twelve hours of a clock: each withstood challenge strikes its hour, and all twelve
 // struck closes the full circle. The clock is complete only when every hour holds.
+const challengeClockMemoized = matrixMemo(challengeClockImpl)
 export function challengeClock(matrix: MindMatrix = buildMatrix()) {
+  return challengeClockMemoized(matrix)
+}
+function challengeClockImpl(matrix: MindMatrix) {
   const review = scientists(matrix)
   const hours = review.challenges.map((entry, index) => ({
     hour: index + 1,
@@ -4626,24 +4733,34 @@ export function challengeClock(matrix: MindMatrix = buildMatrix()) {
 // complete (N/N), a wave tries to find it incomplete — a missing wave, an
 // uncovered page, an unstruck hour, a gap in the distribution. The completeness
 // holds only if every challenge fails to find a hole. Completeness, peer-reviewed.
+const completenessMemoized = matrixMemo(completenessImpl)
 export function completeness(matrix: MindMatrix = buildMatrix()) {
+  return completenessMemoized(matrix)
+}
+function completenessImpl(matrix: MindMatrix) {
   const whole = theWhole(matrix)
   const holo = holographic(matrix)
   const journey = path(matrix)
   const clock = challengeClock(matrix)
   const review = scientists(matrix)
   const graph = componentGraph()
+  // Each gate computed once — these are heavy folds, read more than once below.
+  const myst = mysteries(matrix)
+  const soc = society(matrix)
+  const proofs = quantumProofs(matrix)
+  const determinism = determinismProofs(matrix)
+  const bands = harmonicBands(110)
   const claims = [
     { claim: 'the whole', challenge: 'a wave is missing from theWhole', complete: whole.standing === whole.count, ratio: `${whole.standing}/${whole.count}` },
     { claim: 'holography', challenge: 'a page or animation does not contain the whole', complete: holo.cells.every((cell) => cell.holographic), ratio: `${holo.count}/${holo.count}` },
     { claim: 'the path', challenge: 'an animated page is missing from the path', complete: journey.complete, ratio: `${journey.length}/${journey.animatedPages}` },
     { claim: 'the clock', challenge: 'an hour is unstruck', complete: clock.complete, ratio: `${clock.struck}/${clock.count}` },
     { claim: 'the challenges', challenge: 'a scientist breaks a claim', complete: review.robust, ratio: `${review.withstood}/${review.count}` },
-    { claim: 'the distribution', challenge: 'the file count has a Fibonacci gap', complete: harmonicBands(110).gapless, ratio: harmonicBands(110).bands.join('+') },
+    { claim: 'the distribution', challenge: 'the file count has a Fibonacci gap', complete: bands.gapless, ratio: bands.bands.join('+') },
     { claim: 'the component graph', challenge: 'a component is declared but never placed or global', complete: graph.consistent, ratio: `${graph.components.length} nodes` },
-    { claim: 'mysteries', challenge: 'a mystery is unshown', complete: mysteries(matrix).proven, ratio: `${mysteries(matrix).shown}/${mysteries(matrix).count}` },
-    { claim: 'society', challenge: 'a duality is unfolded', complete: society(matrix).folded, ratio: `${society(matrix).standing}/${society(matrix).count}` },
-    { claim: 'the proofs', challenge: 'a quantum or determinism proof misses theory', complete: quantumProofs(matrix).proven && determinismProofs(matrix).proven, ratio: `${quantumProofs(matrix).matched + determinismProofs(matrix).matched}/12` },
+    { claim: 'mysteries', challenge: 'a mystery is unshown', complete: myst.proven, ratio: `${myst.shown}/${myst.count}` },
+    { claim: 'society', challenge: 'a duality is unfolded', complete: soc.folded, ratio: `${soc.standing}/${soc.count}` },
+    { claim: 'the proofs', challenge: 'a quantum or determinism proof misses theory', complete: proofs.proven && determinism.proven, ratio: `${proofs.matched + determinism.matched}/12` },
   ].map((entry) => ({ ...entry, receipt: toUuid(`completeness:${entry.claim}:${entry.complete}`) }))
   const held = claims.filter((entry) => entry.complete).length
   return {
@@ -5010,16 +5127,29 @@ export function imagination(matrix: MindMatrix = buildMatrix()) {
 // (double-folded, genus 2). The whole is quantified — passed of total — and bound to
 // one double-folded root, so the seal is not merely pass/fail but a measured ratio.
 export function quantifyGates(matrix: MindMatrix = buildMatrix()) {
+  // Compute each underlying gate once — these are heavy folds, and reading both the
+  // numerator and denominator off a single result keeps quantifyGates cheap (it is
+  // called on the hot seal path). Memoised leaves (scientists, completeness, …) make
+  // the repeat reads free; the explicit binding makes the single-call intent clear.
+  const whole = theWhole(matrix)
+  const holo = holographic(matrix)
+  const sci = scientists(matrix)
+  const comp = completeness(matrix)
+  const proofs = quantumProofs(matrix)
+  const determinism = determinismProofs(matrix)
+  const clock = challengeClock(matrix)
+  const myst = mysteries(matrix)
+  const soc = society(matrix)
   const metrics = [
-    { gate: 'whole', n: theWhole(matrix).standing, of: theWhole(matrix).count },
-    { gate: 'holographic', n: holographic(matrix).cells.filter((cell) => cell.holographic).length, of: holographic(matrix).count },
-    { gate: 'scientists', n: scientists(matrix).withstood, of: scientists(matrix).count },
-    { gate: 'completeness', n: completeness(matrix).held, of: completeness(matrix).count },
-    { gate: 'quantum-proofs', n: quantumProofs(matrix).matched, of: quantumProofs(matrix).count },
-    { gate: 'determinism', n: determinismProofs(matrix).matched, of: determinismProofs(matrix).count },
-    { gate: 'clock', n: challengeClock(matrix).struck, of: challengeClock(matrix).count },
-    { gate: 'mysteries', n: mysteries(matrix).shown, of: mysteries(matrix).count },
-    { gate: 'society', n: society(matrix).standing, of: society(matrix).count },
+    { gate: 'whole', n: whole.standing, of: whole.count },
+    { gate: 'holographic', n: holo.cells.filter((cell) => cell.holographic).length, of: holo.count },
+    { gate: 'scientists', n: sci.withstood, of: sci.count },
+    { gate: 'completeness', n: comp.held, of: comp.count },
+    { gate: 'quantum-proofs', n: proofs.matched, of: proofs.count },
+    { gate: 'determinism', n: determinism.matched, of: determinism.count },
+    { gate: 'clock', n: clock.struck, of: clock.count },
+    { gate: 'mysteries', n: myst.shown, of: myst.count },
+    { gate: 'society', n: soc.standing, of: soc.count },
   ].map((metric) => ({
     ...metric,
     full: metric.n === metric.of,

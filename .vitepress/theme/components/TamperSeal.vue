@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations } from '../lib/quantumMind'
+import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations, quantumNetworkHashing } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
 
@@ -23,6 +23,10 @@ const rootOk = computed(() => verifyRoot(matrix))
 // Max free animations for max tampering cost: each channel breathes with an
 // amplitude seeded from the synthesis root, so the motion itself encodes the seal.
 const anim = computed(() => freeAnimations(matrix))
+// The seal is a network too: content placed on a consistent-hashing ring, each
+// node merkle-hashes its bucket, and the node roots gossip-fold into one network
+// root — convergence, membership and entanglement all proved, recomputed here.
+const net = computed(() => quantumNetworkHashing(6, 21, matrix))
 
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
@@ -75,6 +79,13 @@ const t = computed(() =>
         animCost: 'цена на подправяне',
         animNote: 'Всяка анимация е безплатна — изпълнява се в браузъра, без мрежа — и е засята от корена на синтеза, така че фалшификаторът трябва да възпроизведе всеки анимиран канал.',
         save: 'пести батерия: без звук и вибрация',
+        net: 'квантово мрежово хеширане',
+        netNote: 'Съдържанието е разпределено по пръстен с консистентно хеширане; всеки възел хешира своята кофа, а корените се сливат в един мрежов корен. Доказани: сходимост, членство, заплитане.',
+        netConv: 'сходимост',
+        netMem: 'членство',
+        netEnt: 'заплитане',
+        netNodes: 'възли',
+        netItems: 'елементи',
       }
     : {
         eyebrow: 'quantum synthesis · tamper seal',
@@ -90,6 +101,13 @@ const t = computed(() =>
         animCost: 'tampering cost',
         animNote: 'Every animation is free — it runs in the browser with no network — and is seeded from the synthesis root, so a forger must reproduce every animated channel.',
         save: 'saving battery: no sound or vibration',
+        net: 'quantum network hashing',
+        netNote: 'Content is placed on a consistent-hashing ring; each node merkle-hashes its bucket and the node roots gossip-fold into one network root. Proved: convergence, membership, entanglement.',
+        netConv: 'convergence',
+        netMem: 'membership',
+        netEnt: 'entanglement',
+        netNodes: 'nodes',
+        netItems: 'items',
       },
 )
 </script>
@@ -126,7 +144,25 @@ const t = computed(() =>
         />
       </span>
     </div>
+    <div class="seal__net">
+      <span class="seal__net-head">
+        {{ t.net }} · {{ net.nodes }} {{ t.netNodes }} · {{ net.items }} {{ t.netItems }}
+        <span class="seal__net-flag" :class="{ ok: net.convergence }">{{ net.convergence ? '✓' : '×' }} {{ t.netConv }}</span>
+        <span class="seal__net-flag" :class="{ ok: net.membership }">{{ net.membership ? '✓' : '×' }} {{ t.netMem }}</span>
+        <span class="seal__net-flag" :class="{ ok: net.entangled }">{{ net.entangled ? '✓' : '×' }} {{ t.netEnt }}</span>
+      </span>
+      <span class="seal__net-ring" :title="net.networkRoot">
+        <span
+          v-for="d in net.distribution"
+          :key="d.node"
+          class="seal__net-node"
+          :style="{ '--n': d.items }"
+          :title="`node ${d.node} · ${d.items}`"
+        >{{ d.items }}</span>
+      </span>
+    </div>
     <p v-if="saveEnergy" class="seal__save">🔋 {{ t.save }}</p>
+    <p class="seal__cost">{{ t.netNote }}</p>
     <p class="seal__cost">{{ t.cost }}</p>
     <p class="seal__cost">{{ t.animNote }}</p>
   </section>
@@ -218,6 +254,46 @@ const t = computed(() =>
   margin: 0.6rem 0 0;
   font-size: 0.75rem;
   color: var(--vp-c-text-3);
+}
+.seal__net {
+  margin: 0.7rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.seal__net-head {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.seal__net-flag {
+  color: var(--vp-c-text-2);
+}
+.seal__net-flag.ok {
+  color: var(--vp-c-brand-1);
+}
+.seal__net-ring {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+.seal__net-node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: calc(14px + var(--n) * 3px);
+  padding: 0 0.3rem;
+  border-radius: 6px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 .seal__cost {
   margin: 0.7rem 0 0;

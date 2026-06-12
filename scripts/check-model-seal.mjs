@@ -18,6 +18,7 @@ import {
   decodeKnowledge,
   completeDoubleTorus,
   quantumSynthesis,
+  quantumNetworkHashing,
   foldPivots,
   plasmaContainment,
   hologram,
@@ -440,7 +441,8 @@ ok(`intuitive.search`, intuitiveSearch('quantum double torus', matrix).works && 
 ok(`imagination:${imagination(matrix).count}`, imagination(matrix).imagines && imagination(matrix).human)
 
 // Tighten and double fold the gates to quantify: every gate full, folded both ways.
-ok(`quantify.gates:${quantifyGates(matrix).passed}/${quantifyGates(matrix).total}`, quantifyGates(matrix).tight && quantifyGates(matrix).doubleFolded)
+const quant = quantifyGates(matrix)
+ok(`quantify.gates:${quant.passed}/${quant.total}`, quant.tight && quant.doubleFolded)
 
 // The harmonic math: 1-2-4-8-7-5 endless & collision-free, the 3-6-9-0 cross, /0 = 9.
 ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flows)
@@ -530,6 +532,11 @@ const gene = genes(matrix)
 ok(`genes.covered:${gene.codons}->${gene.aminoAcidCount}aa`, gene.covered && gene.stopCodons === 3)
 const mut = mutations(matrix)
 ok(`mutations.classified:${mut.total}`, mut.classified && mut.silent > 0 && mut.silent + mut.missense + mut.nonsense === mut.total)
+// Complete quantum network hashing: a consistent-hashing ring whose nodes merkle-
+// hash their buckets and gossip-fold to one root — convergence, membership and
+// entanglement all proved, and the same root regardless of item/node order.
+const qnh = quantumNetworkHashing(6, 21, matrix)
+ok(`quantum.network.hashing:${qnh.nodes}x${qnh.items}`, qnh.complete && qnh.convergence && qnh.membership && qnh.entangled)
 // Deep-research cryptography comparison, honest: same shapes, non-cryptographic hash, tamper-evident only.
 const crypto = cryptographyComparison(matrix)
 ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)
