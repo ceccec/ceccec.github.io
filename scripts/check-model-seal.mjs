@@ -158,6 +158,7 @@ import {
   fairTrade,
   relatedStandards,
   imagineTheRest,
+  publicServices,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -578,6 +579,8 @@ ok(`fair.trade:${fairTrade(matrix).chain.length}`, fairTrade(matrix).regulated &
 ok(`related.standards:${relatedStandards(matrix).count}`, relatedStandards(matrix).onEveryPage && relatedStandards(matrix).count >= 13)
 // Imagine the rest: the open domains, unfolded waves and frontiers, each content-addressed.
 ok(`imagine.the.rest:${imagineTheRest(matrix).count}`, imagineTheRest(matrix).imagined)
+// Develop public schools and services in waves: each public good free and self-regulating.
+ok(`public.services:${publicServices(matrix).count}`, publicServices(matrix).developed && publicServices(matrix).free)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

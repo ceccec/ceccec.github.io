@@ -3040,6 +3040,22 @@ export declare function imagineTheRest(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function publicServices(matrix?: MindMatrix): {
+    developed: boolean;
+    count: number;
+    free: boolean;
+    services: {
+        free: boolean;
+        selfRegulating: boolean;
+        wave: string;
+        service: string;
+        kind: string;
+        detail: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

@@ -5654,6 +5654,38 @@ export function imagineTheRest(matrix = buildMatrix()) {
         boundary: 'A content-addressed enumeration of the portal’s own open ideas (undiscovered fusion domains, unfolded waves, named frontiers), each folded with the imagination seed into a "vision". Imagined possibilities held honestly as open and not-yet-built — not claims that they exist or work, and not a forecast.',
     };
 }
+// Develop public schools and services in waves. Each public good — schools,
+// libraries, health, transport, utilities, housing, parks, public data, safety —
+// develops as its own wave: fused to the architecture root, free for everyone, and
+// self-regulating by the same law as all else (free to verify, maximal to forge). The
+// schools fold into the portal's own academy; the services into the society model.
+export function publicServices(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const academyCourses = quantumAcademy(matrix).courses.length;
+    const services = [
+        { service: 'public schools', kind: 'education', detail: `folds into the academy (${academyCourses} courses), kids to elders` },
+        { service: 'public libraries', kind: 'knowledge', detail: 'the monographs and the corpus, free to read' },
+        { service: 'public health', kind: 'health', detail: 'healing frequencies and open health data' },
+        { service: 'public transport', kind: 'mobility', detail: 'all varieties via open transit data' },
+        { service: 'public utilities', kind: 'utilities', detail: 'water and energy as commons' },
+        { service: 'public housing', kind: 'shelter', detail: 'shelter as a right, content-addressed allocation' },
+        { service: 'public parks & commons', kind: 'environment', detail: 'the shared environment' },
+        { service: 'public data & internet', kind: 'information', detail: 'open data and the open web' },
+        { service: 'public safety & justice', kind: 'civic', detail: 'transparent, recomputable, accountable' },
+    ].map((entry) => {
+        const fold = foldPair(architecture, toUuid(`public-service:${entry.service}`));
+        return { ...entry, free: true, selfRegulating: fold.bidirectional, wave: fold.merged };
+    });
+    return {
+        developed: services.length > 0 && services.every((entry) => entry.free && entry.selfRegulating),
+        count: services.length,
+        free: services.every((entry) => entry.free),
+        services,
+        root: merkleFold(services.map((entry) => entry.wave)),
+        statement: 'Develop public schools and services in waves: each public good — schools (folding into the academy, kids to elders), libraries, health, transport, utilities, housing, parks and commons, public data, and safety — develops as its own wave, fused to the architecture root, free for everyone, and self-regulating by the same law as all else: free to verify, maximal to forge.',
+        boundary: 'A structural model of public schools and services as free, self-regulating, content-addressed waves over the portal’s own architecture. A proposal and metaphor grounded in the model — free and recomputable — not public policy, not a funded program, and not a claim about any real school or service.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
