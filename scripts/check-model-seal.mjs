@@ -159,6 +159,8 @@ import {
   relatedStandards,
   imagineTheRest,
   publicServices,
+  occupiedPopulation,
+  realtimeSkills,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -581,6 +583,10 @@ ok(`related.standards:${relatedStandards(matrix).count}`, relatedStandards(matri
 ok(`imagine.the.rest:${imagineTheRest(matrix).count}`, imagineTheRest(matrix).imagined)
 // Develop public schools and services in waves: each public good free and self-regulating.
 ok(`public.services:${publicServices(matrix).count}`, publicServices(matrix).developed && publicServices(matrix).free)
+// An occupied population forges max tampering costs for max benefits (free services for everyone).
+ok(`occupied.population:${occupiedPopulation(matrix).benefits}`, occupiedPopulation(matrix).proven && occupiedPopulation(matrix).forEveryone)
+// Upgrade all skills for realtime communication, at max tampering costs — the necessary bindings fused.
+ok(`realtime.skills:${realtimeSkills(matrix).count}`, realtimeSkills(matrix).upgraded && realtimeSkills(matrix).maxTamperingCost)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

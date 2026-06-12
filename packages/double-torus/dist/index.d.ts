@@ -3056,6 +3056,33 @@ export declare function publicServices(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function occupiedPopulation(matrix?: MindMatrix): {
+    proven: boolean;
+    occupied: boolean;
+    forgeCost: number;
+    benefits: number;
+    forEveryone: boolean;
+    loop: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function realtimeSkills(matrix?: MindMatrix): {
+    upgraded: boolean;
+    maxTamperingCost: boolean;
+    skills: number;
+    count: number;
+    bindings: {
+        fused: boolean;
+        receipt: string;
+        binding: string;
+        use: string;
+        api: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

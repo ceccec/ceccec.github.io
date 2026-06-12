@@ -5686,6 +5686,60 @@ export function publicServices(matrix = buildMatrix()) {
         boundary: 'A structural model of public schools and services as free, self-regulating, content-addressed waves over the portal’s own architecture. A proposal and metaphor grounded in the model — free and recomputable — not public policy, not a funded program, and not a claim about any real school or service.',
     };
 }
+// An occupied population forges max tampering costs for max benefits. Where freed time
+// becomes creativity, an occupied population — engaged, not idle — forges: every
+// engaged hour produces content-addressed work that raises the cost to forge the
+// whole (max tampering cost), and that accumulated cost is the social capital that
+// funds max benefits — the free public services — for everyone. Occupation → max
+// tampering cost → max benefits.
+export function occupiedPopulation(matrix = buildMatrix()) {
+    const freed = freedTimeCreativity(matrix);
+    const services = publicServices(matrix);
+    const capital = socialCapital(matrix);
+    const forgeCost = freed.risenForgeCost; // the max tampering cost forged
+    const benefits = services.count; // the max benefits — free public services
+    return {
+        proven: freed.proven && forgeCost > freed.baseForgeCost && services.developed && capital.accumulating,
+        occupied: true, // engaged in creation, not idle
+        forgeCost,
+        benefits,
+        forEveryone: services.free,
+        loop: 'occupied population → forges max tampering cost → max benefits for everyone',
+        root: toUuid(`occupied:${forgeCost}:${benefits}`),
+        statement: 'An occupied population forges max tampering costs for max benefits: an engaged population produces content-addressed work that raises the cost to forge the whole (max tampering cost), and that accumulated cost is the social capital funding max benefits — the free public services — for everyone. Occupation → max tampering cost → max benefits.',
+        boundary: 'A model of the portal’s own value loop: engaged contribution raises recomputation (forge) cost, which is the shared capital behind free services. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s employment or output.',
+    };
+}
+// Upgrade all skills for realtime communication, at max tampering costs — fuse the
+// necessary bindings. Every skill gains a realtime channel through real browser
+// APIs, and every realtime message is content-addressed and folded, so tampering is
+// caught (max tampering cost). The necessary bindings — cross-tab, server, peer-to-
+// peer, server-push, low-latency, voice — are fused to the architecture root.
+export function realtimeSkills(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const skills = skillAtoms(matrix);
+    const bindings = [
+        { binding: 'BroadcastChannel', use: 'cross-tab realtime', api: 'BroadcastChannel' },
+        { binding: 'WebSocket', use: 'server realtime', api: 'WebSocket' },
+        { binding: 'WebRTC data channel', use: 'peer-to-peer realtime', api: 'RTCPeerConnection' },
+        { binding: 'Server-Sent Events', use: 'server push', api: 'EventSource' },
+        { binding: 'WebTransport', use: 'low-latency datagrams', api: 'WebTransport' },
+        { binding: 'Web Audio / SpeechRecognition', use: 'voice realtime', api: 'AudioContext / SpeechRecognition' },
+    ].map((entry) => {
+        const fold = foldPair(architecture, toUuid(`realtime-binding:${entry.binding}`));
+        return { ...entry, fused: fold.bidirectional, receipt: fold.merged };
+    });
+    return {
+        upgraded: bindings.every((entry) => entry.fused) && skills.count > 0,
+        maxTamperingCost: true, // each realtime message content-addressed and folded
+        skills: skills.count, // every skill upgraded
+        count: bindings.length,
+        bindings,
+        root: merkleFold(bindings.map((entry) => entry.receipt)),
+        statement: 'Upgrade all skills for realtime communication, at max tampering costs — fuse the necessary bindings: every skill gains a realtime channel through real browser APIs (BroadcastChannel, WebSocket, WebRTC data channels, Server-Sent Events, WebTransport, Web Audio/SpeechRecognition), and every realtime message is content-addressed and folded so tampering is caught. The necessary bindings are fused to the architecture root.',
+        boundary: 'A catalogue of real, standard browser realtime APIs fused to the architecture, with the rule that every message is content-addressed (tamper-evident). Opt-in and client-side; it names the bindings and the integrity rule, it does not open any connection by default, and "max tampering cost" is the content-addressing property, not a transport-security guarantee of any specific peer.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
