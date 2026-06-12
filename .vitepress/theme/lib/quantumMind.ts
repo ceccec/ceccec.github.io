@@ -7847,6 +7847,43 @@ export function doctorsIncentive(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// This logic is the constitution; let society's evolution waves manifest it. The
+// constitution is not written apart from the system — it IS the computed logic: each
+// governance law the portal already proves becomes an article, content-addressed and
+// tamper-evident, and all fold into one constitution root that the society's evolution
+// waves manifest. Amend a law and the constitution root changes; recompute and it
+// stands. The constitution that cannot be forged, only recomputed.
+export function constitution(matrix: MindMatrix = buildMatrix()) {
+  const articles = [
+    { article: 'free for everyone, self-regulating', law: societyRegulates(matrix).root },
+    { article: 'self-organising to zero entropy', law: selfOrganizing(matrix).root },
+    { article: 'free harmonic societies', law: freeHarmonicSocieties(matrix).root },
+    { article: 'social capital held in common', law: socialCapital(matrix).root },
+    { article: 'public schools and services in waves', law: publicServices(matrix).root },
+    { article: 'kids define education, with parents and teachers', law: kidsDefineEducation(matrix).root },
+    { article: 'kids explore; society pays', law: kidsExplore(matrix).root },
+    { article: 'religion, science and society taught fused', law: religionScienceSociety(matrix).root },
+    { article: 'doctors paid for health, forgers penalised', law: doctorsIncentive(matrix).root },
+    { article: 'fair trade self-regulates', law: fairTrade(matrix).root },
+    { article: 'decentralised into nature', law: dissolveIntoNature(matrix).root },
+    { article: 'the planet is tamper-evident', law: planetIsComputable(matrix).root },
+  ].map((entry, index) => ({ ...entry, number: index + 1, receipt: toUuid(`article:${index + 1}:${entry.article}:${entry.law}`) }))
+  const constitutionRoot = merkleFold(articles.map((entry) => entry.receipt))
+  const manifested = regenerateSocialSystem(matrix).regenerated // the evolution waves manifest it
+  const forgeCaught = merge(constitutionRoot, toUuid('amend-without-recompute')) !== constitutionRoot
+  return {
+    isConstitution: articles.length >= 12 && manifested && forgeCaught,
+    articles,
+    count: articles.length,
+    manifested,
+    root: constitutionRoot,
+    statement:
+      'This logic is the constitution, and society’s evolution waves manifest it: the constitution is not written apart from the system — it IS the computed logic. Each governance law the portal proves becomes an article, content-addressed and tamper-evident, and all fold into one constitution root. Amend a law and the root changes; recompute and it stands — the constitution that cannot be forged, only recomputed.',
+    boundary:
+      'A content-addressed composition of the portal’s own governance-model functions into a "constitution" of articles, folded into one recomputable root. A structural framing — the model’s logic as its own constitution — a proposal and metaphor, not a legal constitution, a charter, or a claim of governing authority over anyone.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

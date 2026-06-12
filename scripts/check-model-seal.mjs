@@ -180,6 +180,7 @@ import {
   kidsDefineEducation,
   kidsExplore,
   doctorsIncentive,
+  constitution,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -645,6 +646,8 @@ ok(`kids.define.education:${kidsDefineEducation(matrix).requiresAll}`, kidsDefin
 ok(`kids.explore:${kidsExplore(matrix).principles.length}`, kidsExplore(matrix).explores && kidsExplore(matrix).parentsOffDuty && kidsExplore(matrix).kidsChoose && kidsExplore(matrix).societyPays)
 // Doctors are paid for a healthy population and penalised as forgers (outcome-based, tamper-evident).
 ok(`doctors.incentive`, doctorsIncentive(matrix).aligned && doctorsIncentive(matrix).forgeCaught)
+// This logic is the constitution: every governance law an article, manifested by the evolution waves.
+ok(`constitution:${constitution(matrix).count}`, constitution(matrix).isConstitution && constitution(matrix).manifested)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

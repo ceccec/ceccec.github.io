@@ -3371,6 +3371,20 @@ export declare function doctorsIncentive(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function constitution(matrix?: MindMatrix): {
+    isConstitution: boolean;
+    articles: {
+        number: number;
+        receipt: string;
+        article: string;
+        law: string;
+    }[];
+    count: number;
+    manifested: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
