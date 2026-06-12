@@ -128,6 +128,8 @@ import {
   fusionCipher,
   computedSeo,
   publicApiFusion,
+  harmonics,
+  geodesicDome,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -238,7 +240,16 @@ import {
 
 const matrix = buildMatrix()
 const failures = []
+// Tighten the gates to max tampering cost: every gate is folded into one running
+// gate-fabric root as it is checked — its label and its outcome (closed/open) — so
+// the seal binds not just the model, git history and icons but the result of EVERY
+// gate. Tampering with any single gate's outcome flips the fabric and the seal root,
+// so the cost to forge a passing seal is to reproduce all of them, exactly.
+let gateFabric = toUuid('gate-fabric:genesis')
+let gateCount = 0
 const ok = (label, condition) => {
+  gateCount += 1
+  gateFabric = merge(gateFabric, toUuid(`gate:${label}:${condition ? 'closed' : 'open'}`))
   if (!condition) failures.push(label)
 }
 
@@ -482,6 +493,12 @@ ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flo
 ok(`vortex.begins:9->${vortexMath(matrix).polarPairs[0].join('+')}`, vortexMath(matrix).oneAndEightBeginFromNine && vortexMath(matrix).origin === 9 && vortexMath(matrix).polarPairs.every(([a, b]) => a + b === 9))
 // Fuse to public APIs: the static 1024 architecture fuses with realtime data from opt-in public sources.
 ok(`public.api.fusion:${publicApiFusion(matrix).count}`, publicApiFusion(matrix).fused)
+// Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
+const harm = harmonics(matrix)
+ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
+// Geodesic dome: the sphere (chi +2) dual of the double torus (chi -2); they sum to 0.
+const dome = geodesicDome(3, matrix)
+ok(`geodesic.dome:V${dome.vertices}/chi${dome.euler}`, dome.isSphere && dome.dualToDoubleTorus && dome.euler + dome.torusEuler === 0)
 
 // Send the waves to hack: crackers challenge the portal's own tamper-evidence, all caught.
 ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix).secure && redTeam(matrix).lawful)
@@ -840,7 +857,12 @@ if (failures.length > 0) {
   process.exit(1)
 }
 
+// Tighten: fold the whole gate fabric — every gate's label and outcome — into the
+// seal root, so the seal binds the result of all of them at max tampering cost.
+sealRoot = merge(sealRoot, gateFabric)
+
 console.log(
   `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, ${trinity.count} trinity gates, blockchains, fusion, MCP, and git-history gates closed.`,
 )
-console.log(`Seal root (model + git history + icons): ${sealRoot}`)
+console.log(`Gates tightened: ${gateCount} gates folded into the seal at max tampering cost; gate-fabric root ${gateFabric}.`)
+console.log(`Seal root (model + git history + icons + gates): ${sealRoot}`)

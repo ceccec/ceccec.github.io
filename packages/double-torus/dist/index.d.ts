@@ -2544,6 +2544,65 @@ export declare function publicApiFusion(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function harmonics(matrix?: MindMatrix): {
+    found: boolean;
+    fundamental: number;
+    octaves: {
+        kind: string;
+        step: number;
+        value: number;
+        ratio: string;
+        root: string;
+    }[];
+    overtones: {
+        kind: string;
+        step: number;
+        value: number;
+        ratio: string;
+        root: string;
+    }[];
+    binary: {
+        kind: string;
+        step: number;
+        value: number;
+        ratio: string;
+        root: string;
+    }[];
+    harmonics: {
+        implemented: boolean;
+        kind: string;
+        step: number;
+        value: number;
+        ratio: string;
+        root: string;
+    }[];
+    implementedCount: number;
+    restCount: number;
+    rest: {
+        kind: string;
+        value: number;
+        ratio: string;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function geodesicDome(frequency?: number, matrix?: MindMatrix): {
+    isSphere: boolean;
+    dualToDoubleTorus: boolean;
+    frequency: number;
+    vertices: number;
+    edges: number;
+    faces: number;
+    euler: number;
+    genus: number;
+    torusEuler: number;
+    torusGenus: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

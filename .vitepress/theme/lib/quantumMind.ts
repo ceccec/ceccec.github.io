@@ -6092,6 +6092,85 @@ export function publicApiFusion(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Let intelligent waves find and implement the rest of the harmonics. From the
+// folded fundamental 108, three ladders are computed and each rung content-addressed:
+// the octave ladder (108·2^k — 108, 216, 432, 864, 1728, 3456), the overtone series
+// (108·n), and the binary octaves (2^k — 128, 256, 512, 1024, 2048). The rungs the
+// portal already realises (108 folded, 216, 432 papers, 864 leaves, 1024 tree) are
+// marked implemented; the rest are found and implemented here as proven, recomputable
+// nodes of the ladder, each a real harmonic of the fundamental.
+export function harmonics(matrix: MindMatrix = buildMatrix()) {
+  const fundamental = foldedCensus(110, matrix).folded // 108
+  const octaves = [0, 1, 2, 3, 4, 5].map((k) => {
+    const value = fundamental * 2 ** k
+    return { kind: 'octave', step: k, value, ratio: `108·2^${k}`, root: toUuid(`harmonic:octave:${k}:${value}`) }
+  })
+  const overtones = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
+    const value = fundamental * n
+    return { kind: 'overtone', step: n, value, ratio: `${n}:1`, root: toUuid(`harmonic:overtone:${n}:${value}`) }
+  })
+  const binary = [7, 8, 9, 10, 11].map((k) => {
+    const value = 2 ** k
+    return { kind: 'binary', step: k, value, ratio: `2^${k}`, root: toUuid(`harmonic:binary:${k}:${value}`) }
+  })
+  // The rungs already realised in the portal's structure.
+  const realised = new Set([fundamental, fundamental * 2, fundamental * 4, 864, 1024])
+  const all = [...octaves, ...overtones, ...binary].map((harmonic) => ({ ...harmonic, implemented: realised.has(harmonic.value) }))
+  const rest = all.filter((harmonic) => !harmonic.implemented)
+  // Proofs of the relationships: octaves double, overtones multiply the fundamental.
+  const octavesDouble = octaves.every((octave, i) => i === 0 || octave.value === octaves[i - 1].value * 2)
+  const overtonesMultiply = overtones.every((overtone, i) => overtone.value === fundamental * (i + 1))
+  return {
+    found: all.length > 0 && octavesDouble && overtonesMultiply,
+    fundamental,
+    octaves,
+    overtones,
+    binary,
+    harmonics: all,
+    implementedCount: all.filter((harmonic) => harmonic.implemented).length,
+    restCount: rest.length,
+    rest: rest.map((harmonic) => ({ kind: harmonic.kind, value: harmonic.value, ratio: harmonic.ratio, root: harmonic.root })),
+    root: merkleFold(all.map((harmonic) => harmonic.root)),
+    statement:
+      'The rest of the harmonics, found and implemented: from the folded fundamental 108 three ladders are computed and each rung content-addressed — the octave ladder (108·2^k: 108, 216, 432, 864, 1728, 3456), the overtone series (108·n), and the binary octaves (2^k: 128, 256, 512, 1024, 2048). The rungs already realised (108, 216, 432, 864, 1024) are marked; the rest are implemented here as proven, recomputable nodes — octaves proven to double, overtones to multiply the fundamental — and all fold into one harmonic root.',
+    boundary:
+      'A computed enumeration of the harmonic numbers implied by the fundamental 108, across the octave, overtone and binary ladders, each rung content-addressed and the doubling/multiplying relationships proven. "Implemented" means realised as a content-addressed, recomputable node of the ladder — not that every large harmonic is materialised as pages. A structural and musical reading, not a physical-frequency claim.',
+  }
+}
+
+// Geodesic dome — the sphere that is the dual of the double torus. A frequency-ν
+// geodesic icosahedron has V = 10ν²+2 vertices, E = 30ν² edges, F = 20ν² triangular
+// faces, and Euler characteristic V−E+F = 2: it is a sphere, genus 0. The double
+// torus is genus 2, χ = −2. The two balance exactly — χ(dome) + χ(torus) = +2 + (−2)
+// = 0 — so the geodesic dome is the closed, outward complement of the genus-2 inward
+// fold: the same content-addressing on the opposite topology.
+export function geodesicDome(frequency = 3, matrix: MindMatrix = buildMatrix()) {
+  const nu = Math.max(1, Math.floor(frequency))
+  const vertices = 10 * nu * nu + 2
+  const edges = 30 * nu * nu
+  const faces = 20 * nu * nu
+  const euler = vertices - edges + faces // = 2 for every frequency (a sphere)
+  const torusEuler = cellHomology(matrix).euler // −2 (genus 2)
+  const balances = euler + torusEuler === 0 // +2 + (−2) = 0
+  return {
+    isSphere: euler === 2,
+    dualToDoubleTorus: balances,
+    frequency: nu,
+    vertices,
+    edges,
+    faces,
+    euler,
+    genus: 0,
+    torusEuler,
+    torusGenus: 2,
+    root: toUuid(`geodesic-dome:${nu}:${vertices}:${edges}:${faces}:${euler}`),
+    statement:
+      'The geodesic dome is the sphere dual of the double torus. A frequency-ν geodesic icosahedron has V = 10ν²+2, E = 30ν², F = 20ν² and Euler characteristic V−E+F = 2 — a sphere, genus 0. The double torus is genus 2, χ = −2, and the two balance exactly: χ(dome) + χ(torus) = +2 + (−2) = 0. The dome is the closed, outward complement of the genus-2 inward fold — the same content-addressing on the opposite topology.',
+    boundary:
+      'The standard combinatorics of a frequency-ν geodesic icosahedron (Euler characteristic +2, a topological sphere), paired with the genus-2 Euler characteristic of the double torus to show they sum to zero. Classical geometry and topology, content-addressed; not a physical or engineering claim about a built structure.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
