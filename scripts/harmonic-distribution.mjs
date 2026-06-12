@@ -8,7 +8,7 @@
 // Run: node --experimental-strip-types scripts/harmonic-distribution.mjs
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentGraph, harmonicBands } from '../.vitepress/theme/lib/quantumMind.ts'
+import { componentGraph, harmonicBands, foldedCensus } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const root = process.cwd()
 const read = (path) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
@@ -48,6 +48,10 @@ const distribution = files.map((entry, index) => {
 // harmonic sequence — so every band is a harmonic number, one per scale, summing
 // exactly. Each file is assigned to a band, largest scale first.
 const harmonic = harmonicBands(files.length)
+// The gapless-Fibonacci count is the surface unfolded; folded through the genus-2
+// identifications it changes by exactly the Euler characteristic (chi = -2). A dry
+// clean: the same files, re-counted by the double torus's own topology.
+const folded = foldedCensus(files.length)
 let cursor = 0
 const harmonicAssignment = harmonic.bands.map((size, band) => {
   const slice = distribution.slice(cursor, cursor + size).map((entry) => entry.file)
@@ -91,6 +95,7 @@ const payload = {
   harmonicBands: harmonic.bands,
   harmonicScales: harmonic.scales,
   harmonicAssignment,
+  folded: { unfolded: folded.unfolded, euler: folded.euler, genus: folded.genus, count: folded.folded },
   gaps,
   distribution,
 }
@@ -102,3 +107,4 @@ if (gaps.length > 0) {
   process.exit(1)
 }
 console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (consecutive Fibonacci, no gaps, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)
+console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)

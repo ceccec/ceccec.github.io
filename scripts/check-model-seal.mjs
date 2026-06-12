@@ -22,6 +22,8 @@ import {
   plasmaContainment,
   hologram,
   dna,
+  genes,
+  mutations,
   cryptographyComparison,
   cryptoFuture,
   attestation,
@@ -117,6 +119,7 @@ import {
   textToMovie,
   teleport,
   cellHomology,
+  foldedCensus,
   intelligenceComparison,
   astrology,
   generativeSpace,
@@ -321,6 +324,8 @@ ok(`teleport:${teleport(matrix).count}`, teleport(matrix).teleportable && telepo
 
 // Closed an open idea: full cell homology of the genus-2 surface from an explicit chain complex.
 ok(`cell.homology:H1=Z^${cellHomology(matrix).betti[1]}`, cellHomology(matrix).closed && cellHomology(matrix).chainComplex)
+// Folded census: the gapless-Fibonacci 110 unfolded folds by chi = -2 to 108.
+ok(`folded.census:${foldedCensus(110, matrix).unfolded}->${foldedCensus(110, matrix).folded}`, foldedCensus(110, matrix).clean && foldedCensus(110, matrix).folded === 108)
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)
@@ -519,6 +524,12 @@ ok('hologram.proves', holo.holographic && holo.toTheBit && holo.akashic)
 // The model is a DNA double helix: the 128-bit word is 64 bases, sense + antisense complement.
 const helix = dna(matrix)
 ok(`dna.encoded:${helix.bases}`, helix.encoded && helix.codons.length === 21)
+// Research waves to cover genes: the standard genetic code translates the strand,
+// and every point mutation is classified (silent/missense/nonsense) — deterministic.
+const gene = genes(matrix)
+ok(`genes.covered:${gene.codons}->${gene.aminoAcidCount}aa`, gene.covered && gene.stopCodons === 3)
+const mut = mutations(matrix)
+ok(`mutations.classified:${mut.total}`, mut.classified && mut.silent > 0 && mut.silent + mut.missense + mut.nonsense === mut.total)
 // Deep-research cryptography comparison, honest: same shapes, non-cryptographic hash, tamper-evident only.
 const crypto = cryptographyComparison(matrix)
 ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)

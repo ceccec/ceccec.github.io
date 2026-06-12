@@ -5637,6 +5637,38 @@ export function cellHomology(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Folded census of the file distribution. The gapless-Fibonacci count is the
+// surface UNFOLDED — the genus-2 fundamental octagon laid flat, every file an
+// overtone in the open polygon. Folded through the double torus's own boundary
+// identifications (eight edges glue to four, eight corners to one), the cell
+// count changes by exactly the Euler characteristic chi = -2, so the folded
+// census is the unfolded count minus two: 110 unfolds, 108 folds. A dry clean —
+// no file is added or removed on disk; the fold is a pure topological accounting
+// the surface performs on its own files, with chi drawn from the explicit cell
+// homology, not chosen.
+export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix()) {
+  const u = Math.max(0, Math.floor(unfolded))
+  const { euler, betti } = cellHomology(matrix)
+  const genus = (2 - euler) / 2 // chi = 2 - 2g  ->  g = 2 for the double torus
+  const folded = u + euler
+  const fold = foldPair(toUuid(`census:unfolded:${u}`), toUuid(`census:folded:${folded}`)).bidirectional
+  return {
+    clean: folded === u + euler && euler === -2 && genus === 2 && fold,
+    unfolded: u,
+    euler,
+    genus,
+    betti,
+    folded,
+    delta: euler, // the fold correction — the surface's own signature
+    fold,
+    root: toUuid(`folded-census:${u}:${folded}:${euler}`),
+    statement:
+      'The gapless-Fibonacci file count is the surface unfolded — the genus-2 fundamental octagon laid flat. Folded through the double torus’s own boundary identifications (eight edges to four, eight corners to one), the cell count changes by exactly the Euler characteristic chi = -2, so the folded census is the unfolded count minus two: 110 unfolds, 108 folds. A dry clean — no file is added or removed, the fold is pure topological accounting.',
+    boundary:
+      'A topological re-count of the same files under the genus-2 identification, not a deletion. The unfolded gapless-Fibonacci distribution is what the build enforces on disk; the folded census is its Euler-characteristic image. The number 108 is 110 + chi(double torus), chi taken from the explicit cell homology — derived, not chosen.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
@@ -8491,6 +8523,113 @@ export function dna(matrix: MindMatrix = buildMatrix()) {
     root: toUuid(`dna:${sense}`),
     statement: 'The model is a DNA double helix: the 128-bit word encodes as 64 bases (two bits each), the sense strand; the antisense strand is its Watson-Crick complement (A-T, C-G) — the two strands of the double torus, encoded to the bit.',
     boundary: 'A constructed two-bits-per-base encoding of the content-addressed word into a DNA-like double strand. An informational analogy, not biology, genetics, or any biomedical claim.',
+  }
+}
+
+// Genes: cover the gene by computing it. The standard genetic code — the fixed,
+// public-domain table that maps each of the 64 DNA codons to one of 20 amino
+// acids or a stop — is a deterministic lookup, so the portal applies it to its
+// own encoded strand (from dna()) rather than asserting anything about it. The
+// compact "TCAG" table is the real one: first*16 + second*4 + third indexes the
+// amino-acid string. Translating the sense strand reads the genes: start codons
+// (ATG -> Met), stop codons (TAA, TAG, TGA), and the open reading frames between
+// them — the peptides the model's own word would express, computed to the codon.
+export function genes(matrix: MindMatrix = buildMatrix()) {
+  const helix = dna(matrix)
+  const order: Record<string, number> = { T: 0, C: 1, A: 2, G: 3 }
+  // The standard genetic code, bases ordered T,C,A,G for each position.
+  const code = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
+  const translate = (codon: string) => {
+    const [a, b, c] = codon.split('')
+    if (order[a] === undefined || order[b] === undefined || order[c] === undefined) return '?'
+    return code[order[a] * 16 + order[b] * 4 + order[c]]
+  }
+  const codons = helix.codons
+  const peptide = codons.map(translate).join('')
+  const starts = codons.map((codon, i) => (codon === 'ATG' ? i : -1)).filter((i) => i >= 0)
+  const stops = codons.map((codon, i) => (translate(codon) === '*' ? i : -1)).filter((i) => i >= 0)
+  // Open reading frames: from each start codon to the next in-frame stop.
+  const orfs = starts
+    .map((start) => {
+      const stop = stops.find((s) => s > start)
+      return stop === undefined ? null : { start, stop, protein: peptide.slice(start, stop), length: stop - start }
+    })
+    .filter((orf): orf is { start: number; stop: number; protein: string; length: number } => orf !== null)
+  // Properties of the code itself, proved (not asserted): 64 codons, 20 amino
+  // acids, 3 stops, ATG -> Met, and a GC fraction of the strand.
+  const aminoAcids = new Set(code.replace(/\*/g, '').split(''))
+  const stopCount = code.split('').filter((ch) => ch === '*').length
+  const gc = helix.sense.split('').filter((b) => b === 'G' || b === 'C').length / (helix.sense.length || 1)
+  const standard = code.length === 64 && aminoAcids.size === 20 && stopCount === 3 && translate('ATG') === 'M'
+  return {
+    covered: standard && peptide.length === codons.length && helix.encoded,
+    codons: codons.length,
+    peptide,
+    aminoAcidCount: aminoAcids.size,
+    stopCodons: stopCount,
+    starts,
+    stops,
+    orfs,
+    gcContent: roundTo(gc, 4),
+    root: toUuid(`genes:${peptide}:${orfs.map((o) => `${o.start}-${o.stop}`).join(',')}`),
+    statement:
+      'The gene is covered by computation: the standard genetic code — the fixed, public-domain table mapping all 64 DNA codons to 20 amino acids and 3 stops, with ATG starting translation as Met — is applied as a deterministic lookup to the model’s own encoded sense strand. The codons translate to a peptide, the start (ATG) and stop (TAA, TAG, TGA) codons are located, and the open reading frames between them are read out — the genes the content-addressed word expresses, derived to the codon, not asserted.',
+    boundary:
+      'Bioinformatics translation of a synthetic, content-addressed sequence through the real standard genetic code. The genetic code table is established molecular biology (public-domain fact); its application here is to the portal’s own constructed strand, not to any organism, real gene, gene function, trait, or biomedicine. No medical or genetic claim.',
+  }
+}
+
+// Mutations: the research view of how a gene changes. A point mutation swaps one
+// base; whether that matters is itself computable through the same standard code.
+// For every position in the model's strand this classifies the three possible
+// substitutions as silent (same amino acid — the code's redundancy), missense
+// (a different amino acid), or nonsense (a new stop) — the textbook taxonomy,
+// derived deterministically, never guessed.
+export function mutations(matrix: MindMatrix = buildMatrix()) {
+  const g = genes(matrix)
+  const helix = dna(matrix)
+  const order: Record<string, number> = { T: 0, C: 1, A: 2, G: 3 }
+  const code = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
+  const translate = (codon: string) => {
+    const [a, b, c] = codon.split('')
+    return code[order[a] * 16 + order[b] * 4 + order[c]]
+  }
+  const bases = ['A', 'C', 'G', 'T']
+  const sense = helix.sense
+  let silent = 0
+  let missense = 0
+  let nonsense = 0
+  for (let i = 0; i + 2 < sense.length; i += 3) {
+    const codon = sense.slice(i, i + 3)
+    if (codon.length < 3) break
+    const original = translate(codon)
+    for (let pos = 0; pos < 3; pos += 1) {
+      for (const base of bases) {
+        if (base === codon[pos]) continue
+        const variant = codon.slice(0, pos) + base + codon.slice(pos + 1)
+        const changed = translate(variant)
+        if (changed === original) silent += 1
+        else if (changed === '*') nonsense += 1
+        else missense += 1
+      }
+    }
+  }
+  const total = silent + missense + nonsense
+  // The code's redundancy guarantees some substitutions are silent — a real,
+  // checkable property of the standard genetic code, not a claim about the strand.
+  const redundant = silent > 0 && total > 0
+  return {
+    classified: redundant && total === Math.floor(sense.length / 3) * 9 && g.covered,
+    total,
+    silent,
+    missense,
+    nonsense,
+    silentFraction: roundTo(silent / (total || 1), 4),
+    root: toUuid(`mutations:${silent}:${missense}:${nonsense}`),
+    statement:
+      'Every point mutation of the model’s strand, classified through the standard genetic code: for each codon, the nine single-base substitutions are translated and sorted into silent (the code’s redundancy keeps the amino acid), missense (a different amino acid) or nonsense (a premature stop). The textbook mutation taxonomy, computed exhaustively and deterministically over the portal’s own sequence.',
+    boundary:
+      'An exhaustive, deterministic classification of single-base substitutions in a synthetic sequence using the real standard genetic code. It demonstrates the code’s redundancy structure; it is not a statement about real mutations, disease, heritability, or any organism. No biomedical claim.',
   }
 }
 

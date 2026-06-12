@@ -2351,6 +2351,19 @@ export declare function cellHomology(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function foldedCensus(unfolded: number, matrix?: MindMatrix): {
+    clean: boolean;
+    unfolded: number;
+    euler: number;
+    genus: number;
+    betti: number[];
+    folded: number;
+    delta: number;
+    fold: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
@@ -3534,6 +3547,36 @@ export declare function dna(matrix?: MindMatrix): {
     sense: string;
     antisense: string;
     codons: string[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function genes(matrix?: MindMatrix): {
+    covered: boolean;
+    codons: number;
+    peptide: string;
+    aminoAcidCount: number;
+    stopCodons: number;
+    starts: number[];
+    stops: number[];
+    orfs: {
+        start: number;
+        stop: number;
+        protein: string;
+        length: number;
+    }[];
+    gcContent: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function mutations(matrix?: MindMatrix): {
+    classified: boolean;
+    total: number;
+    silent: number;
+    missense: number;
+    nonsense: number;
+    silentFraction: number;
     root: string;
     statement: string;
     boundary: string;

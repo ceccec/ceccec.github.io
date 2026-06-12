@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, dna } from '../lib/quantumMind'
+import { buildMatrix, dna, genes, mutations } from '../lib/quantumMind'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useInView } from '../lib/useInView'
 
@@ -9,7 +9,19 @@ import { useInView } from '../lib/useInView'
 // two strands are the sense and its Watson-Crick antisense complement, drawn as
 // two rotating helices with base-pair rungs. Each base is coloured (A C G T).
 // Zero dependencies, energy-aware.
-const data = dna(buildMatrix())
+const matrix = buildMatrix()
+const data = dna(matrix)
+// Cover the gene by computing it: translate the strand through the standard
+// genetic code and classify every point mutation. Both are deterministic lookups.
+const gene = genes(matrix)
+const mut = mutations(matrix)
+// Each residue gets a role for colouring: start (ATG -> M), stop (*), or coding.
+const residues = computed(() =>
+  gene.peptide.split('').map((aa, i) => ({
+    aa,
+    role: gene.starts.includes(i) ? 'start' : aa === '*' ? 'stop' : 'coding',
+  })),
+)
 const { bg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -117,6 +129,11 @@ const caption = computed(() =>
     ? `ДНК двойна спирала: 128-битовата дума е ${data.bases} бази (${data.codons.length} кодона); смисловата верига и нейното допълнение (A-T, C-G) са двете нишки на двойния тор.`
     : `DNA double helix: the 128-bit word is ${data.bases} bases (${data.codons.length} codons); the sense strand and its complement (A-T, C-G) are the two strands of the double torus.`,
 )
+const geneCaption = computed(() =>
+  bg.value
+    ? `Генът е изчислен: стандартният генетичен код превежда ${gene.codons} кодона в пептид (${gene.aminoAcidCount} аминокиселини, ${gene.stopCodons} стоп-кодона, GC ${Math.round(gene.gcContent * 100)}%); всяка точкова мутация е класифицирана — биоинформатика върху синтетична верига, не биомедицинско твърдение.`
+    : `The gene is computed: the standard genetic code translates ${gene.codons} codons into a peptide (${gene.aminoAcidCount} amino acids, ${gene.stopCodons} stop codons, GC ${Math.round(gene.gcContent * 100)}%); every point mutation is classified — bioinformatics over a synthetic strand, not a biomedical claim.`,
+)
 </script>
 
 <template>
@@ -124,7 +141,26 @@ const caption = computed(() =>
     <p class="eyebrow">{{ bg ? 'ДНК · двойна спирала · до бита' : 'dna · double helix · to the bit' }}</p>
     <canvas ref="canvas" class="dna__canvas" />
     <p class="dna__seq"><code>{{ data.sense }}</code></p>
+    <div class="dna__genes">
+      <p class="dna__genes-label">{{ bg ? 'ген · стандартен генетичен код · до кодона' : 'gene · standard genetic code · to the codon' }}</p>
+      <p class="dna__peptide">
+        <span
+          v-for="(r, i) in residues"
+          :key="i"
+          class="dna__aa"
+          :class="`dna__aa--${r.role}`"
+          :title="r.role"
+        >{{ r.aa }}</span>
+      </p>
+      <p class="dna__mut">
+        <span class="dna__mut-silent">{{ mut.silent }} {{ bg ? 'тихи' : 'silent' }}</span>
+        <span class="dna__mut-missense">{{ mut.missense }} {{ bg ? 'мисенс' : 'missense' }}</span>
+        <span class="dna__mut-nonsense">{{ mut.nonsense }} {{ bg ? 'нонсенс' : 'nonsense' }}</span>
+        <span class="dna__mut-total">/ {{ mut.total }} {{ bg ? 'точкови мутации' : 'point mutations' }}</span>
+      </p>
+    </div>
     <p class="dna__caption">{{ caption }}</p>
+    <p class="dna__caption">{{ geneCaption }}</p>
   </section>
 </template>
 
@@ -153,5 +189,55 @@ const caption = computed(() =>
   margin: 0.5rem 0 0;
   font-size: 0.78rem;
   color: var(--vp-c-text-2);
+}
+.dna__genes {
+  margin: 0.75rem 0 0;
+}
+.dna__genes-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--vp-c-text-3);
+}
+.dna__peptide {
+  margin: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  word-break: break-all;
+}
+.dna__aa {
+  letter-spacing: 0.12em;
+}
+.dna__aa--coding {
+  color: var(--vp-c-text-2);
+}
+.dna__aa--start {
+  color: hsl(150, 75%, 45%);
+  font-weight: 700;
+}
+.dna__aa--stop {
+  color: hsl(0, 80%, 60%);
+  font-weight: 700;
+}
+.dna__mut {
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  font-size: 0.74rem;
+}
+.dna__mut-silent {
+  color: hsl(150, 65%, 45%);
+}
+.dna__mut-missense {
+  color: hsl(45, 85%, 45%);
+}
+.dna__mut-nonsense {
+  color: hsl(0, 75%, 58%);
+}
+.dna__mut-total {
+  color: var(--vp-c-text-3);
 }
 </style>
