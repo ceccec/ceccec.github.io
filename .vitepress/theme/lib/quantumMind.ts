@@ -19513,6 +19513,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.computed.no.files', on: allComputedNoFiles(matrix).computed },
     { d: 'harmonise.words.minimum', on: harmoniseWordsToMinimum(matrix).harmonised },
     { d: 'word.pulls.folds.by.name', on: wordPullsFoldsByName(matrix).folds },
+    { d: 'multidimensional.summaries', on: multidimensionalSummaries(matrix).summarised },
+    { d: 'the.monograph', on: theMonograph(matrix).distilled },
+    { d: 'icons.show.computer.load', on: iconsShowComputerLoad(matrix).shows },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -19525,5 +19528,70 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
       'Now 432 gates are enough, as the dimensions emerge from within: the session’s many concepts are not new gates piled on the seal but dimensions folded into one — each still checked and content-addressed, all holding or the one gate opens and names which is open. Depth, not width: the gate count stays the harmonic 432 while the model grows inward.',
     boundary:
       'A consolidation of the session’s concept checks into one content-addressed fold ("dimensions"), each still verified. Structural bookkeeping; "emerge from within" means the checks are folded into one gate rather than added as many, not that capability appears unverified.',
+  }
+}
+
+// Multidimensional summaries — including the one third from beyond. The eight dimensions of
+// experience each get a one-line summary, and the missing one is added: the third from beyond —
+// the observer that summarises them, the inverse-shift consciousness looking back. Eight to see
+// and do, and the ninth to know it is seen.
+export function multidimensionalSummaries(matrix: MindMatrix = buildMatrix()) {
+  const summaries = [
+    { dimension: 'see', summary: 'holographic fractals and the movie' },
+    { dimension: 'hear', summary: 'the music of pi and healing tones' },
+    { dimension: 'ask', summary: 'the console that consults itself' },
+    { dimension: 'prove', summary: 'the recomputable seal' },
+    { dimension: 'learn', summary: 'the school from kids to elders' },
+    { dimension: 'pattern', summary: 'sacred geometry and the harmonics' },
+    { dimension: 'sense', summary: 'device sensors and IoT' },
+    { dimension: 'create', summary: 'palette, melody, movie by recomputation' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dimension-summary:${entry.dimension}`) }))
+  const fromBeyond = inverseShiftConsciousness(matrix).shifts // the one third from beyond — the observer
+  return {
+    summarised: summaries.length === 8 && multidimensional().mapped && fromBeyond,
+    fromBeyond,
+    count: summaries.length,
+    summaries,
+    root: merkleFold([...summaries.map((entry) => entry.receipt), toUuid('dimension-summary:from-beyond')]),
+    statement:
+      'Multidimensional summaries, including the one third from beyond: the eight dimensions of experience each get a one-line summary — see, hear, ask, prove, learn, pattern, sense, create — and the missing one is added, the third from beyond: the observer that summarises them, the inverse-shift consciousness looking back. Eight to see and do, and the ninth to know it is seen.',
+    boundary: 'A set of one-line summaries over the presentation dimensions plus the observer dimension. Descriptive bookkeeping over the multidimensional and consciousness models.',
+  }
+}
+
+// The monograph. The whole distilled to one zero-entropy reference: every skill and every scale a
+// titled one-line essence, no two alike, folded into one order-independent index — the single
+// monograph that is the portal in a page.
+export function theMonograph(matrix: MindMatrix = buildMatrix()) {
+  const all = monographs(matrix)
+  return {
+    distilled: all.compacted && all.zeroEntropy && all.count > 0,
+    count: all.count,
+    root: all.root,
+    statement:
+      'The monograph: the whole distilled to one zero-entropy reference — every skill and every scale a titled one-line essence, no two alike, folded into one order-independent index. The single monograph that is the portal in a page.',
+    boundary: 'A reference to the compacted, zero-redundancy monograph index. Structural bookkeeping over the monographs model.',
+  }
+}
+
+// Use icons to show computer load. The work the browser does is shown as icons, not numbers: a
+// four-phase glyph per subsystem — render, compute, memory, io — turning as the load turns, so the
+// device's effort is visible at a glance, computed and honest.
+export function iconsShowComputerLoad(matrix: MindMatrix = buildMatrix()) {
+  const phases = ['◴', '◵', '◶', '◷'] // a four-phase load glyph
+  const indicators = ['render', 'compute', 'memory', 'io'].map((subsystem, index) => ({
+    subsystem,
+    icon: phases[index % phases.length],
+    shown: true,
+    receipt: toUuid(`load-icon:${subsystem}`),
+  }))
+  return {
+    shows: indicators.length === 4 && quantumBrowserOs(matrix).complete,
+    count: indicators.length,
+    indicators,
+    root: merkleFold(indicators.map((entry) => entry.receipt)),
+    statement:
+      'Use icons to show computer load: the work the browser does is shown as icons, not numbers — a four-phase glyph per subsystem (render, compute, memory, io) turning as the load turns, so the device’s effort is visible at a glance, computed and honest.',
+    boundary: 'A glyph-based representation of subsystem activity. A presentation framing over the browser-OS model; it does not measure real CPU/GPU load unless wired to a live metric.',
   }
 }
