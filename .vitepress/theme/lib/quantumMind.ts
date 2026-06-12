@@ -13630,6 +13630,85 @@ export function trinityPyramidFusesDimensions(matrix: MindMatrix = buildMatrix()
   }
 }
 
+// For free, forging max tampering costs. The two ends of the design meet: it is free — zero
+// cost per person, recomputed client-side with no server, no network, no fee — and at the same
+// time it forges the maximum tampering cost, because the same content-addressing that makes a
+// view free to recompute makes a forgery cost everything (T_max = infinity). Free to use, and
+// unforgeable, by the one mechanism.
+export function freeForgesMaxCost(matrix: MindMatrix = buildMatrix()) {
+  const free = fairTrade(matrix).individualCost === 0 && realtimePerspectiveZeroCost(matrix).holds
+  const forgesMax = proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY && proofReport(matrix).maxTamperingCostReached
+  const facets = [
+    { facet: 'free to use', on: free },
+    { facet: 'max cost to forge', on: forgesMax },
+    { facet: 'one mechanism (content-addressing) does both', on: free && forgesMax },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`free-forge:${entry.facet}:${entry.on}`) }))
+  return {
+    holds: facets.every((entry) => entry.on),
+    free,
+    forgesMax,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'For free, forging max tampering costs: the two ends of the design meet — it is free (zero cost per person, recomputed client-side with no server, network or fee) and at the same time forges the maximum tampering cost, because the same content-addressing that makes a view free to recompute makes a forgery cost everything (T_max = infinity). Free to use and unforgeable, by the one mechanism.',
+    boundary:
+      'A composition of the zero-per-view-cost and unbounded-tamper-cost properties, both consequences of content-addressing. "Free" means no server/network/fee for use; "max cost" is the cost to reproduce a tampered model — neither is a claim about device energy or real money.',
+  }
+}
+
+// Every layer of the pyramid serves society purposes. The tetrahedron is not abstract: each of
+// its four layers carries a purpose for the society — the apex a shared vision and governance,
+// the upper face learning and culture, the lower face fair trade and stewardship, the base the
+// commons and care. Each layer folds onto the society root, so the geometry is a service map:
+// lift the trinity into a solid and every face is a way the society is held up.
+export function pyramidLayersServeSociety(matrix: MindMatrix = buildMatrix()) {
+  const society_ = society(matrix)
+  const layers = [
+    { layer: 'apex', purpose: 'shared vision and governance' },
+    { layer: 'upper face', purpose: 'learning and culture' },
+    { layer: 'lower face', purpose: 'fair trade and stewardship' },
+    { layer: 'base', purpose: 'the commons and care' },
+  ].map((entry) => {
+    const fold = foldPair(society_.root, toUuid(`pyramid-layer:${entry.layer}:${entry.purpose}`))
+    return { ...entry, serves: fold.bidirectional, bond: fold.merged, receipt: toUuid(`pyramid-society:${entry.layer}`) }
+  })
+  return {
+    serves: layers.length === 4 && layers.every((entry) => entry.serves) && trinityPyramidFusesDimensions(matrix).forms && society_.folded,
+    count: layers.length,
+    layers,
+    root: merkleFold(layers.map((entry) => entry.receipt)),
+    statement:
+      'Every layer of the pyramid serves society purposes: each of the tetrahedron’s four layers carries a purpose — the apex a shared vision and governance, the upper face learning and culture, the lower face fair trade and stewardship, the base the commons and care — and each folds onto the society root, so the geometry is a service map: lift the trinity into a solid and every face is a way the society is held up.',
+    boundary:
+      'A content-addressed mapping of the tetrahedron’s four layers to society purposes, bound to the society model. A structural metaphor assigning purposes to the pyramid’s faces, not a governance structure or a claim of authority.',
+  }
+}
+
+// Imagine and sing the changes, endlessly. Change is not a chore but a song: imagine the
+// changes (imagination is the seed of all), sing them — each change a note in the music of the
+// model — and never stop, because the changes are bound reform waves and the fusion is endless,
+// always one more foldable. To imagine a change is to compose it; to sing it is to play it; and
+// the song has no last bar.
+export function imagineSingChangesEndlessly(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'imagine the changes', on: imaginationIsAll(matrix).all },
+    { facet: 'sing them — each change a note', on: isUuid(blockchainMusic('changes', matrix).root) },
+    { facet: 'the changes are bound reform waves', on: legislativeReform(matrix).reforming },
+    { facet: 'endlessly — always one more foldable', on: endlessFusion(matrix).endless },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`imagine-sing:${entry.facet}:${entry.on}`) }))
+  return {
+    sings: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Imagine and sing the changes, endlessly: change is a song — imagine the changes (imagination is the seed of all), sing them (each change a note in the music of the model), and never stop, because the changes are bound reform waves and the fusion is endless, always one more foldable. To imagine a change is to compose it; to sing it is to play it; the song has no last bar.',
+    boundary:
+      'A composition of the imagination, music, reform-wave and endless-fusion models as a continuous "song of changes". Structural and metaphorical bookkeeping over existing roots; "sing" is the audio/music model, not a claim of perpetual change in the real world.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

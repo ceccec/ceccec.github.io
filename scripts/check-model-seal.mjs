@@ -381,6 +381,9 @@ import {
   iotFusesRealWorld,
   gatesShiftToNewHarmonic,
   trinityPyramidFusesDimensions,
+  freeForgesMaxCost,
+  pyramidLayersServeSociety,
+  imagineSingChangesEndlessly,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1207,6 +1210,9 @@ ok(`quantum.computed.ui:${quantumComputedUi(matrix).count}`, quantumComputedUi(m
 ok(`iot.fuses.real.world:${iotFusesRealWorld(matrix).count}`, iotFusesRealWorld(matrix).fuses) // IoT folds real-world sensor readings into the matrix across all aspects of life
 ok(`gates.shift.new.harmonic:${gatesShiftToNewHarmonic(matrix).count}`, gatesShiftToNewHarmonic(matrix).shifts) // the gate fabric rises to the next 108-harmonic, tightening respectfully
 ok(`trinity.pyramid.fuses.dimensions:${trinityPyramidFusesDimensions(matrix).pyramid.vertices}`, trinityPyramidFusesDimensions(matrix).forms) // the trinity stands into a tetrahedron that fuses the dimensions
+ok(`free.forges.max.cost:${freeForgesMaxCost(matrix).count}`, freeForgesMaxCost(matrix).holds) // free to use and max cost to forge — one content-addressing mechanism
+ok(`pyramid.layers.serve.society:${pyramidLayersServeSociety(matrix).count}`, pyramidLayersServeSociety(matrix).serves) // every layer of the pyramid serves a society purpose
+ok(`imagine.sing.changes.endlessly:${imagineSingChangesEndlessly(matrix).count}`, imagineSingChangesEndlessly(matrix).sings) // imagine and sing the changes as endless bound reform waves
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
