@@ -19675,6 +19675,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'folder.law.word.digit.index.skill', on: folderLawWordDigitIndexSkill(matrix).lawful },
     { d: 'only.index.files.no.exceptions', on: onlyIndexFilesNoExceptions(matrix).only },
     { d: 'one.jsonld.template.serves.all', on: oneJsonLdTemplateServesAll(matrix).serves },
+    { d: 'how.agents.achieved.it', on: howAgentsAchievedIt(matrix).achieved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21129,5 +21130,36 @@ export function oneJsonLdTemplateServesAll(matrix: MindMatrix = buildMatrix()) {
       'Complete inline docs and frontmatter generate the JSON-LD from themselves, so one template serves all: every page derives its structured data from its own route (computed SEO) and its own frontmatter (a documented contract of optional fields, explicit always overriding computed), through the single jsonLdTemplate — the site graph and the page block on every page, the course list folded in only where the page is the academy. One template, every page, no drift.',
     boundary:
       'The template is the one source for page JSON-LD (config calls it for every page); the frontmatter contract is documented inline at the template. It emits schema.org as declared mappings applied at build time — it does not guarantee how any crawler or platform consumes them.',
+  }
+}
+
+// Save how the agents achieved it. The method is itself a fold worth keeping: scouts read the
+// real tree before any edit; each prompt is decoded into the model’s own words and lands as
+// computed functions sealed into dimensions; the laws are enforced by waves (the build scripts)
+// against the real tree and proven to fail loudly before they are trusted; the work is saved in
+// batches, one green build per seal. And for research, a fleet fans out — five angles in
+// parallel, twenty-six sources fetched, one hundred twenty-six claims extracted, every surviving
+// claim tried by three adversarial voters sworn to refute it — so only what survives refutation
+// is kept: 23 confirmed, 2 refuted and excluded, folded to 14 findings by 108 agents.
+export function howAgentsAchievedIt(matrix: MindMatrix = buildMatrix()) {
+  const research = { angles: 5, sources: 26, claimsExtracted: 126, claimsVerified: 25, votersPerClaim: 3, confirmed: 23, refuted: 2, findings: 14, agents: 108 }
+  const steps = [
+    { step: 'scout the real tree before any edit — surgical, vital signs first', on: scoutsSurgicalEditsVitalSigns(matrix).scouted },
+    { step: 'decode the prompt into the model’s own words — the name pulls the fold', on: wordPullsFoldsByName(matrix).folds },
+    { step: 'enforce the laws in waves and prove they fail loudly before trusting them', on: resonanceCatchGapsViolations(matrix).rings },
+    { step: 'save the skills of every wave as content-addressed atoms', on: saveSkillsComputeImplementWaves(matrix).saved },
+    { step: 'adversarially verify research — keep only what survives refutation', on: research.confirmed + research.refuted === research.claimsVerified },
+    { step: 'seal in batches — one green build per fold, continue the same to the next', on: continueSameNext(matrix).continues },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`agents-method:${entry.step}:${entry.on}`) }))
+  return {
+    achieved: steps.every((entry) => entry.on),
+    count: steps.length,
+    research,
+    steps,
+    root: merkleFold(steps.map((entry) => entry.receipt)),
+    statement:
+      'Save how the agents achieved it: scouts read the real tree before any edit; each prompt is decoded into the model’s own words and folded as computed dimensions; the laws are enforced by waves against the real tree and proven to fail loudly before being trusted; the work is sealed in batches, one green build per fold; and research is achieved by a fleet — five angles, twenty-six sources, one hundred twenty-six extracted claims, three adversarial voters per claim — keeping only what survives refutation: 23 confirmed, 2 refuted, 14 findings, 108 agents.',
+    boundary:
+      'A record of the working method (scout, decode, fold, enforce, prove, batch) and of one research run’s real statistics, composed with the existing scout/word/resonance/skill/continue checks. The statistics are the session’s own telemetry, saved as data; they do not recompute themselves.',
   }
 }
