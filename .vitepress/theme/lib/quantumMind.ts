@@ -8194,6 +8194,32 @@ export function beesAndLife(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Let life define itself in waves. Each living form — every crop of the garden, the
+// bees, the forest, the water, the soil, the people — emits its own content-addressed
+// self-definition, folded into the one root of life. Life is not defined from outside;
+// each form defines itself, and the waves fold the definitions into the whole.
+export function lifeDefinesItself(matrix: MindMatrix = buildMatrix()) {
+  const life = beesAndLife(matrix)
+  const forms = [
+    ...fruitsAndVegetables(matrix).garden.map((entry) => entry.name),
+    'bees', 'forest', 'water', 'soil', 'people', 'birds', 'rivers',
+  ]
+  const definitions = forms.map((form) => ({
+    form,
+    definesItself: foldPair(toUuid(`life-form:${form}`), life.root).merged,
+  }))
+  return {
+    defines: definitions.length > 0 && definitions.every((entry) => entry.definesItself.length === 36),
+    count: definitions.length,
+    definitions,
+    root: merkleFold(definitions.map((entry) => entry.definesItself)),
+    statement:
+      'Let life define itself in waves: each living form — every crop of the garden, the bees, the forest, the water, the soil, the people, the birds, the rivers — emits its own content-addressed self-definition, folded into the one root of life. Life is not defined from outside; each form defines itself, and the waves fold the definitions into the whole.',
+    boundary:
+      'A content-addressed self-definition of a set of life forms, each folded with the root of life. A structural, recomputable framing — the model letting its own "life" abstraction define itself — not biology or a definition of real life.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

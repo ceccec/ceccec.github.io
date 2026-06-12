@@ -3522,6 +3522,17 @@ export declare function beesAndLife(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function lifeDefinesItself(matrix?: MindMatrix): {
+    defines: boolean;
+    count: number;
+    definitions: {
+        form: string;
+        definesItself: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

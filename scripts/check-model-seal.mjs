@@ -191,6 +191,7 @@ import {
   appleComplete,
   fruitsAndVegetables,
   beesAndLife,
+  lifeDefinesItself,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -678,6 +679,8 @@ ok(`apple.complete`, appleComplete(matrix).apple && appleComplete(matrix).publis
 ok(`fruits.vegetables:${fruitsAndVegetables(matrix).count}`, fruitsAndVegetables(matrix).grows)
 // Bees and life: the bees pollinate the whole garden into one root of life.
 ok(`bees.life:${beesAndLife(matrix).crops}`, beesAndLife(matrix).pollinates)
+// Let life define itself in waves: each living form emits its own content-addressed self-definition.
+ok(`life.defines:${lifeDefinesItself(matrix).count}`, lifeDefinesItself(matrix).defines)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
