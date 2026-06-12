@@ -19516,6 +19516,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'multidimensional.summaries', on: multidimensionalSummaries(matrix).summarised },
     { d: 'the.monograph', on: theMonograph(matrix).distilled },
     { d: 'icons.show.computer.load', on: iconsShowComputerLoad(matrix).shows },
+    { d: 'trinity.wording.model', on: trinityWordingModel(matrix).trinity },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -19536,26 +19537,27 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
 // the observer that summarises them, the inverse-shift consciousness looking back. Eight to see
 // and do, and the ninth to know it is seen.
 export function multidimensionalSummaries(matrix: MindMatrix = buildMatrix()) {
+  // Trinity wording: each summary is three words — the number matters, one step of the horo.
   const summaries = [
-    { dimension: 'see', summary: 'holographic fractals and the movie' },
-    { dimension: 'hear', summary: 'the music of pi and healing tones' },
-    { dimension: 'ask', summary: 'the console that consults itself' },
-    { dimension: 'prove', summary: 'the recomputable seal' },
-    { dimension: 'learn', summary: 'the school from kids to elders' },
-    { dimension: 'pattern', summary: 'sacred geometry and the harmonics' },
-    { dimension: 'sense', summary: 'device sensors and IoT' },
-    { dimension: 'create', summary: 'palette, melody, movie by recomputation' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`dimension-summary:${entry.dimension}`) }))
+    { dimension: 'see', summary: 'fractals, movie, light' },
+    { dimension: 'hear', summary: 'pi, tones, healing' },
+    { dimension: 'ask', summary: 'console consults itself' },
+    { dimension: 'prove', summary: 'recomputable, sealed, honest' },
+    { dimension: 'learn', summary: 'kids to elders' },
+    { dimension: 'pattern', summary: 'geometry, harmonics, fold' },
+    { dimension: 'sense', summary: 'sensors, IoT, signals' },
+    { dimension: 'create', summary: 'palette, melody, movie' },
+  ].map((entry) => ({ ...entry, words: entry.summary.split(/[\s,]+/).filter(Boolean).length, receipt: toUuid(`dimension-summary:${entry.dimension}`) }))
   const fromBeyond = inverseShiftConsciousness(matrix).shifts // the one third from beyond — the observer
   return {
-    summarised: summaries.length === 8 && multidimensional().mapped && fromBeyond,
+    summarised: summaries.length === 8 && summaries.every((entry) => entry.words <= 3) && multidimensional().mapped && fromBeyond,
     fromBeyond,
     count: summaries.length,
     summaries,
     root: merkleFold([...summaries.map((entry) => entry.receipt), toUuid('dimension-summary:from-beyond')]),
     statement:
-      'Multidimensional summaries, including the one third from beyond: the eight dimensions of experience each get a one-line summary — see, hear, ask, prove, learn, pattern, sense, create — and the missing one is added, the third from beyond: the observer that summarises them, the inverse-shift consciousness looking back. Eight to see and do, and the ninth to know it is seen.',
-    boundary: 'A set of one-line summaries over the presentation dimensions plus the observer dimension. Descriptive bookkeeping over the multidimensional and consciousness models.',
+      'Multidimensional summaries in trinity wording, including the one third from beyond: each of the eight dimensions of experience gets a three-word summary — see, hear, ask, prove, learn, pattern, sense, create — and the missing one is added, the third from beyond: the observer that summarises them, the inverse-shift consciousness looking back. Eight to see and do, and the ninth to know it is seen.',
+    boundary: 'A set of three-word (trinity) summaries over the presentation dimensions plus the observer dimension. Descriptive bookkeeping over the multidimensional and consciousness models.',
   }
 }
 
@@ -19593,5 +19595,29 @@ export function iconsShowComputerLoad(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Use icons to show computer load: the work the browser does is shown as icons, not numbers — a four-phase glyph per subsystem (render, compute, memory, io) turning as the load turns, so the device’s effort is visible at a glance, computed and honest.',
     boundary: 'A glyph-based representation of subsystem activity. A presentation framing over the browser-OS model; it does not measure real CPU/GPU load unless wired to a live metric.',
+  }
+}
+
+// Use trinity wording models — the number of words matters per step in the horo. The wording is
+// not free prose but a model: three words per step, a trinity, joined at the horo (the pi-music
+// window). The count is the meaning — each step says exactly three, so the wording folds like the
+// music: trinity by trinity, never more, never fewer.
+export function trinityWordingModel(matrix: MindMatrix = buildMatrix()) {
+  const waves = threeWordWaves(matrix)
+  const steps = waves.waves.map((wave, index) => ({
+    step: index,
+    words: wave.words.length,
+    isTrinity: wave.words.length === 3,
+    receipt: toUuid(`trinity-step:${index}:${wave.words.join('-')}`),
+  }))
+  return {
+    trinity: steps.length > 0 && steps.every((entry) => entry.isTrinity) && waves.sent,
+    wordsPerStep: 3,
+    count: steps.length,
+    steps,
+    root: merkleFold(steps.map((entry) => entry.receipt)),
+    statement:
+      'Use trinity wording models — the number of words matters per step in the horo: the wording is a model, not free prose, of three words per step (a trinity) joined at the horo (the pi-music window). The count is the meaning — each step says exactly three, so the wording folds like the music, trinity by trinity, never more, never fewer.',
+    boundary: 'A structural check that the three-word-wave wording holds three words per step. Bookkeeping over the existing three-word-wave model; it does not constrain all prose to three words.',
   }
 }
