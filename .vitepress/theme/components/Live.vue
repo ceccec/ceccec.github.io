@@ -43,6 +43,9 @@ const bgVital: Record<string, string> = {
   mysteries: 'мистерии', society: 'общество', 'quantum proofs': 'квантови доказателства', determinism: 'детерминизъм',
 }
 const beats = ref(0)
+// Reduce entropy: the full system report is collapsed by default so the home page
+// stays calm — the EKG and the eight vitals are the signal; the rest is on request.
+const showReport = ref(false)
 const liveRoot = ref(data.beat(0))
 const wrap = ref<HTMLDivElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -170,7 +173,12 @@ onBeforeUnmount(() => {
       {{ data.pulseMs }} ms · <code :title="liveRoot">{{ liveRoot.slice(0, 17) }}…</code>
     </p>
     <ClientOnly>
-      <template v-if="summary">
+      <p v-if="summary" class="live__whole live__headline">
+        {{ pick('the whole', 'цялото') }} · <strong>{{ summary.whole.standing }}/{{ summary.whole.count }}</strong>
+        {{ pick('waves whole · alive', 'вълни, цели · живи') }}
+        <button type="button" class="live__toggle" :aria-expanded="showReport" @click="showReport = !showReport">{{ showReport ? pick('▾ hide report', '▾ скрий отчета') : pick('▸ full report', '▸ пълен отчет') }}</button>
+      </p>
+      <template v-if="summary && showReport">
         <p class="live__whole">
           {{ pick('the whole', 'цялото') }} · <strong>{{ summary.whole.standing }}/{{ summary.whole.count }}</strong>
           {{ pick('waves folded into one root', 'вълни, слети в един корен') }}
@@ -338,4 +346,16 @@ onBeforeUnmount(() => {
 }
 .live__whole strong { color: hsl(150, 65%, 45%); }
 .live__whole code { font-size: 0.72rem; color: hsl(150, 50%, 50%); }
+.live__headline { margin-top: 0.6rem; font-size: 0.82rem; }
+.live__toggle {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.72rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+}
+.live__toggle:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
 </style>
