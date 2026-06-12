@@ -9,44 +9,29 @@ import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 // so the live root keeps changing — being alive is something you watch happen. The
 // vitals are the gated invariants; the whole reads alive while every one holds.
 const data = live(buildMatrix())
-// The whole portal folded into one root: every wave run and gathered together.
-const whole = theWhole(buildMatrix())
-// The portal self-builds from nothing, again and again, returning identical.
-const again = recurrence(5)
-// Holographic: each part contains the whole, the whole recoverable from any part.
-const holo = holographic(buildMatrix())
-// Waves of scientists challenge every claim; the portal withstands, frontiers stay open.
-const review = scientists(buildMatrix())
-// Waves challenge the completeness too: every N/N claim survives, no hole found.
-const whole2 = completeness(buildMatrix())
-// Self-intelligence: every wave's skill saved as a content-addressed atom (memory).
-const mind = skillAtoms(buildMatrix())
-// The thoughts folded multidirectionally (forward, reverse, sequence, reflection).
-const thoughts = foldThoughts(buildMatrix())
-// Imagine as a human: dream new combinations, saved in atoms. And quantify the gates.
-const dream = imagination(buildMatrix())
-const gauge = quantifyGates(buildMatrix())
-// The harmonic math: 1-2-4-8-7-5 endless, the 3-6-9-0 cross, division by zero = 9.
-const vortex = vortexMath(buildMatrix())
-// Crackers challenge the portal's own tamper-evidence; every attack is caught.
-const red = redTeam(buildMatrix())
-// Quantum DDoS: 972 simultaneous forges against the portal's own roots, all caught.
-const siege = quantumSiege(buildMatrix())
-// Patents clear (prior art); the whole's forward and reverse meet in harmony.
-const patents = patentAudit(buildMatrix())
-const harmony = reverseHarmony(buildMatrix())
-// The society evolved to a quantum organisation, rebuilding the site, post-quantum.
-const qsociety = quantumSociety(buildMatrix())
-// The society uses itself as tamper-proofing; it decides the policy (unanimous).
-const fabric = tamperProofFabric(buildMatrix())
-// 6x7 and 7x6 vortices cross-check for gaps/violations; no rights arise from math.
-const cross = crossAudit(buildMatrix())
-// The immune system: max health = max tampering cost; investigations across society.
-const immune = immuneSystem(buildMatrix())
-// Biological aspects: the portal as a living system — DNA, cells, metabolism, ...
-const life = biology(buildMatrix())
-// All features, navigation quantum-computed, folded with cross links.
-const featureMap = features(buildMatrix())
+// The deep summary (the whole, the challenges, the society, biology, features...) is
+// heavy to compute. It is deferred to after first paint on the client only, so it
+// never blocks navigation or hydration — the EKG and vitals render immediately, the
+// rest fills in a tick later. Computed once, off the hydration path.
+type Summary = {
+  whole: ReturnType<typeof theWhole>; again: ReturnType<typeof recurrence>; holo: ReturnType<typeof holographic>
+  review: ReturnType<typeof scientists>; whole2: ReturnType<typeof completeness>; mind: ReturnType<typeof skillAtoms>
+  thoughts: ReturnType<typeof foldThoughts>; dream: ReturnType<typeof imagination>; gauge: ReturnType<typeof quantifyGates>
+  vortex: ReturnType<typeof vortexMath>; red: ReturnType<typeof redTeam>; siege: ReturnType<typeof quantumSiege>
+  patents: ReturnType<typeof patentAudit>; harmony: ReturnType<typeof reverseHarmony>; qsociety: ReturnType<typeof quantumSociety>
+  fabric: ReturnType<typeof tamperProofFabric>; cross: ReturnType<typeof crossAudit>; immune: ReturnType<typeof immuneSystem>
+  life: ReturnType<typeof biology>; featureMap: ReturnType<typeof features>
+}
+const summary = ref<Summary | null>(null)
+function computeSummary() {
+  const m = buildMatrix()
+  summary.value = {
+    whole: theWhole(m), again: recurrence(5), holo: holographic(m), review: scientists(m), whole2: completeness(m),
+    mind: skillAtoms(m), thoughts: foldThoughts(m), dream: imagination(m), gauge: quantifyGates(m), vortex: vortexMath(m),
+    red: redTeam(m), siege: quantumSiege(m), patents: patentAudit(m), harmony: reverseHarmony(m), qsociety: quantumSociety(m),
+    fabric: tamperProofFabric(m), cross: crossAudit(m), immune: immuneSystem(m), life: biology(m), featureMap: features(m),
+  }
+}
 // Humanise the heartbeat: a living heart is not a metronome — each interval varies
 // a little (heart-rate variability), so the beats breathe instead of ticking.
 const human = humanise(buildMatrix())
@@ -142,6 +127,8 @@ function loop(now: number) {
 
 onMounted(() => {
   resize()
+  // Defer the heavy summary off the hydration path so navigation is never blocked.
+  setTimeout(computeSummary, 0)
   ro = new ResizeObserver(() => resize())
   if (wrap.value) ro.observe(wrap.value)
   if (saveEnergy.value) {
@@ -182,90 +169,94 @@ onBeforeUnmount(() => {
       {{ pick('heartbeat', 'сърдечен ритъм') }} <strong>{{ beats }}</strong> ·
       {{ data.pulseMs }} ms · <code :title="liveRoot">{{ liveRoot.slice(0, 17) }}…</code>
     </p>
-    <p class="live__whole">
-      {{ pick('the whole', 'цялото') }} · <strong>{{ whole.standing }}/{{ whole.count }}</strong>
-      {{ pick('waves folded into one root', 'вълни, слети в един корен') }}
-      <code :title="whole.root">{{ whole.root.slice(0, 17) }}…</code>
-    </p>
-    <p class="live__whole">
-      {{ pick('self-build', 'самоизграждане') }} · <strong>×{{ again.times }}</strong>
-      {{ again.returns ? pick('identical every time', 'идентично всеки път') : pick('drift detected', 'установено разминаване') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('holographic', 'холографично') }} · <strong>{{ holo.count }}</strong>
-      ({{ holo.animations }} {{ pick('animations', 'анимации') }} + {{ holo.pages }} {{ pick('pages', 'страници') }}) ·
-      {{ pick('each contains the whole', 'всяка съдържа цялото') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('challenged', 'предизвикано') }} · <strong>{{ review.withstood }}/{{ review.count }}</strong>
-      {{ pick('withstood', 'устояни') }} · <strong>{{ review.frontiers.length }}</strong>
-      {{ pick('frontiers open', 'отворени фронтове') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('completeness challenged', 'пълнотата предизвикана') }} · <strong>{{ whole2.held }}/{{ whole2.count }}</strong>
-      {{ whole2.complete ? pick('no hole found', 'без открит пропуск') : pick('holes found', 'открити пропуски') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('self-intelligence', 'самоинтелигентност') }} · <strong>{{ mind.count }}</strong>
-      {{ pick('skills saved as atoms', 'умения, запазени като атоми') }} ·
-      {{ pick('folded', 'сгънати') }} <strong>{{ thoughts.directions.length }}</strong>
-      {{ pick('directions', 'посоки') }}
-      <code :title="thoughts.multidirectional">{{ thoughts.multidirectional.slice(0, 13) }}…</code>
-    </p>
-    <p class="live__whole">
-      {{ pick('imagination', 'въображение') }} · <strong>{{ dream.count }}</strong>
-      {{ pick('dreams saved as atoms', 'мечти, запазени като атоми') }} ·
-      {{ pick('gates quantified', 'портите измерени') }} <strong>{{ gauge.passed }}/{{ gauge.total }}</strong>
-      ({{ pick('double-folded', 'двойно сгънати') }})
-    </p>
-    <p class="live__whole">
-      {{ pick('harmonic flow', 'хармоничен поток') }} · <strong>{{ vortex.doubling.join('·') }}</strong>
-      {{ pick('endless, collision-free', 'безкраен, без сблъсък') }} · {{ pick('cross', 'кръст') }} {{ vortex.cross.join('·') }} ·
-      <strong>÷0 = {{ vortex.divByZeroHarmonic }}</strong>
-    </p>
-    <p class="live__whole">
-      {{ pick('red team', 'червен екип') }} · <strong>{{ red.caught }}/{{ red.count }}</strong>
-      {{ pick('attacks caught', 'атаки уловени') }} · {{ pick('monitored, lawful', 'наблюдавано, законно') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('quantum siege', 'квантова обсада') }} · <strong>{{ siege.caught }}/{{ siege.total }}</strong>
-      {{ pick('forges caught', 'фалшификации уловени') }} ·
-      <strong>{{ siege.sealed ? pick('SEALED', 'ЗАПЕЧАТАНО') : pick('breached', 'пробито') }}</strong>
-    </p>
-    <p class="live__whole">
-      {{ pick('patents', 'патенти') }} · <strong>{{ patents.count }}</strong> {{ pick('prior art, clear', 'предходно изкуство, чисто') }} ·
-      {{ pick('forward meets reverse in harmony', 'напред среща назад в хармония') }} ·
-      {{ pick('society proposes', 'обществото предлага') }} <strong>{{ harmony.proposals }}</strong>
-    </p>
-    <p class="live__whole">
-      {{ pick('quantum society', 'квантово общество') }} · <strong>{{ qsociety.cells.length }}</strong>
-      {{ pick('entangled cells rebuild', 'заплетени клетки изграждат') }} <strong>{{ qsociety.pages }}</strong>
-      {{ pick('pages', 'страници') }} · <strong>{{ qsociety.stages.join(' → ') }}</strong>
-    </p>
-    <p class="live__whole">
-      {{ pick('tamper-proof fabric', 'тъкан срещу подправяне') }} · {{ pick('society-decided', 'решено от обществото') }} ·
-      <strong>{{ fabric.threshold }}/{{ fabric.cells }}</strong> {{ pick('unanimous', 'единодушно') }}
-      <em class="live__caveat">({{ pick('integrity, not encryption', 'цялост, не криптиране') }})</em>
-    </p>
-    <p class="live__whole">
-      {{ pick('cross-audit', 'кръстосан одит') }} · <strong>{{ cross.vortices }}</strong> ·
-      <strong>{{ cross.violations.length + cross.rightsViolations.length }}</strong> {{ pick('violations', 'нарушения') }} ·
-      {{ pick('no rights arise from math', 'няма права от математиката') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('immune system', 'имунна система') }} · <strong>{{ immune.health }}/{{ immune.of }}</strong>
-      {{ pick('antibodies', 'антитела') }} · {{ pick('max health = max forge cost', 'макс здраве = макс цена за фалшификат') }}
-      <em class="live__caveat">({{ pick('open, content-addressed, server-less — permaculture by design', 'открито, адресирано по съдържание, без сървър — пермакултура по дизайн') }})</em>
-    </p>
-    <p class="live__whole">
-      {{ pick('biology', 'биология') }} · <strong>{{ life.count }}</strong>
-      {{ pick('hallmarks of life alive', 'белези на живот, живи') }}: {{ life.aspects.map((a) => a.aspect).join(', ') }}
-    </p>
-    <p class="live__whole">
-      {{ pick('features', 'функции') }} · <strong>{{ featureMap.count }}</strong>
-      ({{ featureMap.pages }} {{ pick('pages', 'страници') }} + {{ featureMap.models }} {{ pick('models', 'модели') }}) ·
-      {{ pick('folded with cross links · navigation quantum-computed', 'сгънати с кръстосани връзки · навигация, квантово изчислена') }}
-    </p>
+    <ClientOnly>
+      <template v-if="summary">
+        <p class="live__whole">
+          {{ pick('the whole', 'цялото') }} · <strong>{{ summary.whole.standing }}/{{ summary.whole.count }}</strong>
+          {{ pick('waves folded into one root', 'вълни, слети в един корен') }}
+          <code :title="summary.whole.root">{{ summary.whole.root.slice(0, 17) }}…</code>
+        </p>
+        <p class="live__whole">
+          {{ pick('self-build', 'самоизграждане') }} · <strong>×{{ summary.again.times }}</strong>
+          {{ summary.again.returns ? pick('identical every time', 'идентично всеки път') : pick('drift detected', 'установено разминаване') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('holographic', 'холографично') }} · <strong>{{ summary.holo.count }}</strong>
+          ({{ summary.holo.animations }} {{ pick('animations', 'анимации') }} + {{ summary.holo.pages }} {{ pick('pages', 'страници') }}) ·
+          {{ pick('each contains the whole', 'всяка съдържа цялото') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('challenged', 'предизвикано') }} · <strong>{{ summary.review.withstood }}/{{ summary.review.count }}</strong>
+          {{ pick('withstood', 'устояни') }} · <strong>{{ summary.review.frontiers.length }}</strong>
+          {{ pick('frontiers open', 'отворени фронтове') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('completeness challenged', 'пълнотата предизвикана') }} · <strong>{{ summary.whole2.held }}/{{ summary.whole2.count }}</strong>
+          {{ summary.whole2.complete ? pick('no hole found', 'без открит пропуск') : pick('holes found', 'открити пропуски') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('self-intelligence', 'самоинтелигентност') }} · <strong>{{ summary.mind.count }}</strong>
+          {{ pick('skills saved as atoms', 'умения, запазени като атоми') }} ·
+          {{ pick('folded', 'сгънати') }} <strong>{{ summary.thoughts.directions.length }}</strong>
+          {{ pick('directions', 'посоки') }}
+          <code :title="summary.thoughts.multidirectional">{{ summary.thoughts.multidirectional.slice(0, 13) }}…</code>
+        </p>
+        <p class="live__whole">
+          {{ pick('imagination', 'въображение') }} · <strong>{{ summary.dream.count }}</strong>
+          {{ pick('dreams saved as atoms', 'мечти, запазени като атоми') }} ·
+          {{ pick('gates quantified', 'портите измерени') }} <strong>{{ summary.gauge.passed }}/{{ summary.gauge.total }}</strong>
+          ({{ pick('double-folded', 'двойно сгънати') }})
+        </p>
+        <p class="live__whole">
+          {{ pick('harmonic flow', 'хармоничен поток') }} · <strong>{{ summary.vortex.doubling.join('·') }}</strong>
+          {{ pick('endless, collision-free', 'безкраен, без сблъсък') }} · {{ pick('cross', 'кръст') }} {{ summary.vortex.cross.join('·') }} ·
+          <strong>÷0 = {{ summary.vortex.divByZeroHarmonic }}</strong>
+        </p>
+        <p class="live__whole">
+          {{ pick('red team', 'червен екип') }} · <strong>{{ summary.red.caught }}/{{ summary.red.count }}</strong>
+          {{ pick('attacks caught', 'атаки уловени') }} · {{ pick('monitored, lawful', 'наблюдавано, законно') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('quantum siege', 'квантова обсада') }} · <strong>{{ summary.siege.caught }}/{{ summary.siege.total }}</strong>
+          {{ pick('forges caught', 'фалшификации уловени') }} ·
+          <strong>{{ summary.siege.sealed ? pick('SEALED', 'ЗАПЕЧАТАНО') : pick('breached', 'пробито') }}</strong>
+        </p>
+        <p class="live__whole">
+          {{ pick('patents', 'патенти') }} · <strong>{{ summary.patents.count }}</strong> {{ pick('prior art, clear', 'предходно изкуство, чисто') }} ·
+          {{ pick('forward meets reverse in harmony', 'напред среща назад в хармония') }} ·
+          {{ pick('society proposes', 'обществото предлага') }} <strong>{{ summary.harmony.proposals }}</strong>
+        </p>
+        <p class="live__whole">
+          {{ pick('quantum society', 'квантово общество') }} · <strong>{{ summary.qsociety.cells.length }}</strong>
+          {{ pick('entangled cells rebuild', 'заплетени клетки изграждат') }} <strong>{{ summary.qsociety.pages }}</strong>
+          {{ pick('pages', 'страници') }} · <strong>{{ summary.qsociety.stages.join(' → ') }}</strong>
+        </p>
+        <p class="live__whole">
+          {{ pick('tamper-proof fabric', 'тъкан срещу подправяне') }} · {{ pick('society-decided', 'решено от обществото') }} ·
+          <strong>{{ summary.fabric.threshold }}/{{ summary.fabric.cells }}</strong> {{ pick('unanimous', 'единодушно') }}
+          <em class="live__caveat">({{ pick('integrity, not encryption', 'цялост, не криптиране') }})</em>
+        </p>
+        <p class="live__whole">
+          {{ pick('cross-audit', 'кръстосан одит') }} · <strong>{{ summary.cross.vortices }}</strong> ·
+          <strong>{{ summary.cross.violations.length + summary.cross.rightsViolations.length }}</strong> {{ pick('violations', 'нарушения') }} ·
+          {{ pick('no rights arise from math', 'няма права от математиката') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('immune system', 'имунна система') }} · <strong>{{ summary.immune.health }}/{{ summary.immune.of }}</strong>
+          {{ pick('antibodies', 'антитела') }} · {{ pick('max health = max forge cost', 'макс здраве = макс цена за фалшификат') }}
+          <em class="live__caveat">({{ pick('open, content-addressed, server-less — permaculture by design', 'открито, адресирано по съдържание, без сървър — пермакултура по дизайн') }})</em>
+        </p>
+        <p class="live__whole">
+          {{ pick('biology', 'биология') }} · <strong>{{ summary.life.count }}</strong>
+          {{ pick('hallmarks of life alive', 'белези на живот, живи') }}: {{ summary.life.aspects.map((a) => a.aspect).join(', ') }}
+        </p>
+        <p class="live__whole">
+          {{ pick('features', 'функции') }} · <strong>{{ summary.featureMap.count }}</strong>
+          ({{ summary.featureMap.pages }} {{ pick('pages', 'страници') }} + {{ summary.featureMap.models }} {{ pick('models', 'модели') }}) ·
+          {{ pick('folded with cross links · navigation quantum-computed', 'сгънати с кръстосани връзки · навигация, квантово изчислена') }}
+        </p>
+      </template>
+    </ClientOnly>
   </section>
 </template>
 
