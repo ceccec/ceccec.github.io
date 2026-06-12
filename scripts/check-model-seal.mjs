@@ -170,6 +170,8 @@ import {
   imaginationPrivateKey,
   splitImagination,
   trinitiesMatter,
+  oneBeginning,
+  waterStates,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -614,6 +616,11 @@ ok(`imagination.private.key:${imaginationPrivateKey(matrix).count}`, imagination
 ok(`split.imagination:${splitImagination(matrix).tiniest}`, splitImagination(matrix).split && splitImagination(matrix).tiniest === 1024)
 // And when they form trinities, matter emerges: 1024 = 3*341 + 1.
 ok(`trinities.matter:${trinitiesMatter(matrix).trinities}`, trinitiesMatter(matrix).emerges && trinitiesMatter(matrix).trinities === 341 && trinitiesMatter(matrix).remainder === 1)
+// Extend cosmology in waves, fusing all together as one beginning.
+ok(`one.beginning:${oneBeginning(matrix).count}`, oneBeginning(matrix).one)
+// Quantum compression/decompression in all water states; add humidity and a new trinity is formed and fused.
+const water = waterStates(matrix)
+ok(`water.states:${water.states.length}`, water.reversible && water.trinityFormed && water.trinityFused)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

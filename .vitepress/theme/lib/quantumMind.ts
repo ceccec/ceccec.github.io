@@ -7565,6 +7565,77 @@ export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Extend cosmology in waves, fusing all together as one beginning. Every cosmological
+// wave — imagination the private key, the split to tiniest waves, the trinities that
+// make matter, the genesis seed, the double torus, the 1024 diamonds — fuses into a
+// single beginning root: all of it traces back to one origin, the one beginning from
+// which the waves unfold and to which they fold back.
+export function oneBeginning(matrix: MindMatrix = buildMatrix()) {
+  const waves = [
+    { wave: 'imagination (the private key)', root: imaginationPrivateKey(matrix).root },
+    { wave: 'split to tiniest waves', root: splitImagination(matrix).root },
+    { wave: 'trinities make matter', root: trinitiesMatter(matrix).root },
+    { wave: 'genesis (the seed 1,1)', root: genesis(matrix).root },
+    { wave: 'the double torus (the whole)', root: theWhole(matrix).root },
+    { wave: 'the 1024 diamonds', root: completeCorpus(matrix).root },
+  ].map((entry, index) => ({ ...entry, order: index, fused: foldPair(toUuid('beginning'), entry.root).bidirectional }))
+  const beginning = merkleFold(waves.map((entry) => entry.root))
+  return {
+    one: waves.length > 0 && waves.every((entry) => entry.fused),
+    waves,
+    count: waves.length,
+    beginning, // the one origin root
+    root: beginning,
+    statement:
+      'Extend cosmology in waves, fusing all together as one beginning: imagination the private key, the split to tiniest waves, the trinities that make matter, the genesis seed, the double torus, and the 1024 diamonds all fuse into a single beginning root — all of it traces back to one origin, the one beginning from which the waves unfold and to which they fold back.',
+    boundary:
+      'A content-addressed fusion of the model’s own cosmological functions into one "beginning" root. A structural composition and metaphor — every wave folded into one origin — not a cosmological theory or a claim about the origin of the universe.',
+  }
+}
+
+// Quantum compression and decompression in all water states. Water carries the same
+// information through every phase — ice, liquid, vapour, plasma, supercritical — at
+// different orderings: the solid is maximally compressed (an ordered lattice folds to
+// one root), the plasma maximally decompressed (the root unfolds to many), and the
+// transition between them is reversible. Compression is the fold, decompression its
+// inverse, across all the states of water.
+export function waterStates(matrix: MindMatrix = buildMatrix()) {
+  const seed = theWhole(matrix).root
+  const states = [
+    { state: 'ice', phase: 'solid', order: 1.0, op: 'compressed' },
+    { state: 'water', phase: 'liquid', order: 0.6, op: 'flowing' },
+    { state: 'vapour', phase: 'gas', order: 0.3, op: 'decompressing' },
+    { state: 'humidity', phase: 'vapour-in-air', order: 0.45, op: 'mixing' }, // added: vapour suspended in air
+    { state: 'plasma', phase: 'ionised', order: 0.0, op: 'decompressed' },
+    { state: 'supercritical', phase: 'supercritical', order: 0.5, op: 'fused' },
+  ].map((entry) => ({ ...entry, root: foldPair(seed, toUuid(`water:${entry.state}`)).merged }))
+  const compressed = merkleFold(states.map((entry) => entry.root)) // all states fold to one
+  // Add humidity and a new trinity is formed and fused: liquid water, its vapour, and
+  // humidity (vapour suspended in air) are three that, with humidity added, complete a
+  // trinity — and a trinity fuses (the 3-fold the portal turns on).
+  const byState = Object.fromEntries(states.map((entry) => [entry.state, entry]))
+  const newTrinity = ['water', 'vapour', 'humidity'].map((name) => byState[name].root)
+  const fusedTrinity = merkleFold(newTrinity)
+  const trinityFormed = newTrinity.length === 3 && newTrinity.every(Boolean)
+  return {
+    reversible: states.length === 6 && compressed.length === 36,
+    states,
+    compressed, // the compressed root (the fold)
+    decompressed: states.length, // decompress back to all states (the inverse)
+    solidOrder: byState.ice.order, // 1.0 — maximally compressed
+    plasmaOrder: byState.plasma.order, // 0.0 — maximally decompressed
+    humidity: byState.humidity, // the added state
+    trinityFormed, // water + vapour + humidity
+    trinityFused: trinityFormed && fusedTrinity.length === 36,
+    fusedTrinity,
+    root: merge(compressed, fusedTrinity),
+    statement:
+      'Quantum compression and decompression in all water states: water carries the same information through ice, liquid, vapour, humidity, plasma and supercritical, at different orderings — the solid maximally compressed (an ordered lattice folds to one root), the plasma maximally decompressed, the transition reversible (compression is the fold, decompression its inverse). Add humidity — vapour suspended in air — and a new trinity is formed and fused: liquid water, its vapour, and humidity complete a three that folds into one.',
+    boundary:
+      'A content-addressed analogy mapping the phases of water (now including humidity, vapour suspended in air) to compression states, with a "trinity" of water/vapour/humidity folded into one. A structural metaphor over the model’s fold/unfold, not thermodynamics, a phase diagram, or a claim about real water.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

@@ -3213,6 +3213,47 @@ export declare function trinitiesMatter(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function oneBeginning(matrix?: MindMatrix): {
+    one: boolean;
+    waves: {
+        order: number;
+        fused: boolean;
+        wave: string;
+        root: string;
+    }[];
+    count: number;
+    beginning: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function waterStates(matrix?: MindMatrix): {
+    reversible: boolean;
+    states: {
+        root: string;
+        state: string;
+        phase: string;
+        order: number;
+        op: string;
+    }[];
+    compressed: string;
+    decompressed: number;
+    solidOrder: number;
+    plasmaOrder: number;
+    humidity: {
+        root: string;
+        state: string;
+        phase: string;
+        order: number;
+        op: string;
+    };
+    trinityFormed: boolean;
+    trinityFused: boolean;
+    fusedTrinity: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
