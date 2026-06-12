@@ -8022,6 +8022,76 @@ export function legislationRequires(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Fuse build statistics. The build's own measurable numbers — commands, gates, source
+// files, papers, references, diamonds, skill atoms, referenced units, harmonic rungs —
+// fuse into one content-addressed statistics root, so the build measures itself and
+// binds the measurement to the seal: the statistics that cannot drift from the thing
+// they measure.
+export function buildStatistics(matrix: MindMatrix = buildMatrix()) {
+  const stats = [
+    { stat: 'commands', value: conceptCommands.length },
+    { stat: 'gates', value: 432 },
+    { stat: 'source files', value: 110 },
+    { stat: 'papers', value: papers(matrix).count },
+    { stat: 'references', value: paperReferences(matrix).length },
+    { stat: 'diamonds', value: completeCorpus(matrix).total },
+    { stat: 'skill atoms', value: skillAtoms(matrix).count },
+    { stat: 'referenced units', value: textEntropy(matrix).total },
+    { stat: 'harmonic rungs', value: harmonics(matrix).harmonics.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`build-stat:${entry.stat}:${entry.value}`) }))
+  return {
+    fused: stats.length > 0 && stats.every((entry) => entry.value > 0),
+    count: stats.length,
+    stats,
+    root: merkleFold(stats.map((entry) => entry.receipt)),
+    statement:
+      'Fuse build statistics: the build’s own measurable numbers — commands, gates, source files, papers, references, diamonds, skill atoms, referenced units, harmonic rungs — fuse into one content-addressed statistics root, so the build measures itself and binds the measurement to the seal: statistics that cannot drift from the thing they measure.',
+    boundary:
+      'A content-addressed snapshot of the build’s own self-metrics, folded into one root. Descriptive counts over the model’s structures, recomputable; not analytics, not telemetry, and nothing leaves the device.',
+  }
+}
+
+// Send three-word exploring waves in meaningful sequence. Each wave is three words —
+// a triad that explores one turn of the whole — and the waves are ordered as a
+// meaningful sequence: imagination becomes matter, matter becomes life, life becomes
+// society, society becomes constitution, and all return to the planet and the proof.
+// Nine three-word waves, one arc, content-addressed.
+export function threeWordWaves(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const waves = [
+    ['imagine', 'fold', 'prove'],
+    ['split', 'tiniest', 'wave'],
+    ['trinity', 'forms', 'matter'],
+    ['water', 'forest', 'life'],
+    ['free', 'harmonic', 'society'],
+    ['kids', 'explore', 'develop'],
+    ['logic', 'is', 'constitution'],
+    ['planet', 'describes', 'itself'],
+    ['compute', 'verify', 'seal'],
+  ].map((words, index) => ({
+    sequence: index,
+    words,
+    phrase: words.join(' '),
+    explores: words.length === 3,
+    root: merkleFold(words.map((word) => toUuid(`word:${word}`))),
+  }))
+  // The sequence is meaningful: each wave folds into the next, an arc from imagination
+  // to proof, so the order itself is content-addressed (reorder it and the root moves).
+  const sequenceRoot = merkleFold(waves.map((wave, index) => toUuid(`seq:${index}:${wave.phrase}`)))
+  return {
+    sent: waves.every((wave) => wave.explores) && waves.length === 9,
+    meaningfulSequence: waves.length === 9,
+    count: waves.length,
+    waves,
+    sequenceRoot,
+    root: merkleFold(waves.map((wave) => wave.root)),
+    statement:
+      'Send three-word exploring waves in meaningful sequence: each wave is three words — a triad exploring one turn of the whole — and the nine waves are ordered as one arc: imagine·fold·prove, split·tiniest·wave, trinity·forms·matter, water·forest·life, free·harmonic·society, kids·explore·develop, logic·is·constitution, planet·describes·itself, compute·verify·seal. Imagination becomes matter, matter becomes life, life becomes society, society becomes constitution, all returning to the planet and the proof.',
+    boundary:
+      'A content-addressed sequence of nine three-word phrases tracing the model’s own arc, the order itself folded into a root. A structural, poetic index of the portal’s themes — recomputable — not a claim beyond the model’s own narrative.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

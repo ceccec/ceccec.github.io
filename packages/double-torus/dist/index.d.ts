@@ -3446,6 +3446,34 @@ export declare function legislationRequires(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function buildStatistics(matrix?: MindMatrix): {
+    fused: boolean;
+    count: number;
+    stats: {
+        receipt: string;
+        stat: string;
+        value: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function threeWordWaves(matrix?: MindMatrix): {
+    sent: boolean;
+    meaningfulSequence: boolean;
+    count: number;
+    waves: {
+        sequence: number;
+        words: string[];
+        phrase: string;
+        explores: boolean;
+        root: string;
+    }[];
+    sequenceRoot: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

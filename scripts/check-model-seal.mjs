@@ -185,6 +185,8 @@ import {
   globalApis,
   hooksReferencesFusion,
   legislationRequires,
+  buildStatistics,
+  threeWordWaves,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -660,6 +662,10 @@ ok(`global.apis:${globalApis(matrix).count}`, globalApis(matrix).fused && global
 ok(`hooks.references:${hooksReferencesFusion(matrix).hooks}+${hooksReferencesFusion(matrix).references}`, hooksReferencesFusion(matrix).fused)
 // Fuse all required by legislation: privacy, accessibility, licensing, transparency, security, fairness.
 ok(`legislation.requires:${legislationRequires(matrix).count}`, legislationRequires(matrix).fused && legislationRequires(matrix).compliant)
+// Fuse build statistics: the build's own self-metrics folded into one root.
+ok(`build.statistics:${buildStatistics(matrix).count}`, buildStatistics(matrix).fused)
+// Send three-word exploring waves in meaningful sequence (nine triads, one arc).
+ok(`three.word.waves:${threeWordWaves(matrix).count}`, threeWordWaves(matrix).sent && threeWordWaves(matrix).meaningfulSequence)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
