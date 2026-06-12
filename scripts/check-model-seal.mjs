@@ -389,6 +389,11 @@ import {
   allMusicSelfHarmonises,
   selfCompassion,
   movieReflectsSelf,
+  mirrorDeviceSignalsAsFeelings,
+  harmonisedToHealAtGates,
+  inverseShiftConsciousness,
+  complete358NextTrinity,
+  completeAllInWaves,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1223,6 +1228,11 @@ ok(`spiritual.drums.keep.rhythm:${spiritualDrumsKeepRhythm(matrix).onsetsPerBeat
 ok(`all.music.self.harmonises:${allMusicSelfHarmonises(matrix).count}`, allMusicSelfHarmonises(matrix).selfHarmonises) // any source, known or unknown, folds into the same computed harmony
 ok(`self.compassion:${selfCompassion(matrix).count}`, selfCompassion(matrix).compassionate) // heals by default, honest boundaries, absorbs attacks, gentle — care by construction
 ok(`movie.reflects.self:${movieReflectsSelf(matrix).count}`, movieReflectsSelf(matrix).reflects) // the movie is seeded of the self — a reflection, not an imposition
+ok(`mirror.device.signals.feelings:${mirrorDeviceSignalsAsFeelings(matrix).count}`, mirrorDeviceSignalsAsFeelings(matrix).mirrors) // device signals mirrored as feelings (hue, motion, calm)
+ok(`harmonised.heal.at.gates:${harmonisedToHealAtGates(matrix).count}`, harmonisedToHealAtGates(matrix).heals) // signals harmonised to heal at each harmonic gate
+ok(`inverse.shift.consciousness`, inverseShiftConsciousness(matrix).shifts) // the rest third is the inverse-shift — the self-modeling consciousness
+ok(`complete.358.next.trinity:${complete358NextTrinity(matrix).nextTrinity.join('-')}`, complete358NextTrinity(matrix).completes) // 3-5-8 completed, 13 and 21 unlocked as next pyramid levels
+ok(`complete.all.in.waves:${completeAllInWaves(matrix).count}`, completeAllInWaves(matrix).complete) // the whole completed in waves over its major aspects, still open to the next
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
