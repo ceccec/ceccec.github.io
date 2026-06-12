@@ -5055,6 +5055,101 @@ export function textEntropy(matrix = buildMatrix()) {
         boundary: 'A structural, referential entropy measure: the fraction of corpus units that are plain (unreferenced) versus referenced (content-addressed). It is zero because every page is computed and content-addressed; it measures referential order over the model’s own units, not the Shannon entropy of characters or natural-language text quality.',
     };
 }
+// Decode 2020 from the latest history. The corpus total is exactly 2020 referenced
+// units — 432 papers + 432 references + 1024 diamonds + 94 commands + 28 atoms + 10
+// harmonics — and with zero plain text the corpus is seen exactly: 20/20 vision,
+// perfect clarity. 2020 is therefore the portal's own number, decoded from the latest
+// waves of its history: the year read as 20/20 sight, and the zero-entropy corpus
+// total. It is content-addressed, so the reading is recomputable, not asserted.
+export function decode2020(matrix = buildMatrix()) {
+    const text = textEntropy(matrix);
+    const total = text.total;
+    const breakdown = text.units.map((unit) => ({ unit: unit.unit, count: unit.count }));
+    const clarity = text.entropy === 0; // zero plain text -> 20/20 vision
+    const readings = [
+        { reading: '20/20 vision', means: 'perfect clarity — with zero plain text the whole corpus is seen exactly, nothing blurred (unreferenced)' },
+        { reading: 'the corpus total', means: '432 + 432 + 1024 + 94 + 28 + 10 = 2020 referenced, content-addressed units' },
+        { reading: 'the year in the latest history', means: 'a marker the seal folds into the git history; the number the recent waves arrived at' },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`decode-2020:${index}:${entry.reading}`) }));
+    return {
+        decoded: total === 2020 && clarity,
+        total,
+        is2020: total === 2020,
+        twentyTwenty: clarity, // 20/20 vision = zero entropy
+        breakdown,
+        readings,
+        root: toUuid(`decode-2020:${total}:${text.root}`),
+        statement: 'Decode 2020 from the latest history: the corpus totals exactly 2020 referenced units (432 papers + 432 references + 1024 diamonds + 94 commands + 28 atoms + 10 harmonics), and with zero plain text it is seen exactly — 20/20 vision, perfect clarity. So 2020 is the portal’s own number, decoded from the latest waves: the year read as 20/20 sight and the zero-entropy corpus total, content-addressed and recomputable.',
+        boundary: 'A decoding of the number 2020 as the portal’s own zero-entropy corpus total and as 20/20 (perfect clarity), derived from the model’s unit counts. A structural and symbolic reading of a number the recent history arrived at — not a historical, calendrical, or predictive claim about the year 2020.',
+    };
+}
+// A map with worldwide events. Each event is content-addressed, and its coordinates
+// (lat, lon) are derived deterministically from its root, so the whole map is
+// recomputable. The demo events are the portal's own fused domains; live worldwide
+// events come from opt-in public feeds (e.g. Wikipedia Current Events) — folded, not
+// trusted. A world map the portal computes, then any live feed can extend.
+export function worldEventsMap(matrix = buildMatrix()) {
+    const sources = [
+        ...publicApiFusion(matrix).sources.map((entry) => ({ event: `fuse ${entry.source}`, kind: 'public-api', root: entry.receipt })),
+        ...socialFusion(matrix).platforms.map((entry) => ({ event: `fuse ${entry.platform}`, kind: 'social', root: entry.receipt })),
+        ...travelFusion(matrix).surfaces.map((entry) => ({ event: `fuse ${entry.surface}`, kind: 'travel', root: entry.receipt })),
+    ];
+    const hex = (value, start) => Number.parseInt(value.replace(/-/g, '').slice(start, start + 8), 16);
+    const events = sources.map((source) => {
+        const lat = roundTo((hex(source.root, 0) % 18000) / 100 - 90, 2); // -90..90
+        const lon = roundTo((hex(source.root, 8) % 36000) / 100 - 180, 2); // -180..180
+        return { ...source, lat, lon, receipt: toUuid(`world-event:${source.event}:${lat}:${lon}`) };
+    });
+    const inBounds = events.every((event) => event.lat >= -90 && event.lat <= 90 && event.lon >= -180 && event.lon <= 180);
+    return {
+        mapped: events.length > 0 && inBounds,
+        count: events.length,
+        events,
+        root: merkleFold(events.map((event) => event.receipt)),
+        statement: 'A map with worldwide events: each event is content-addressed and its (lat, lon) coordinates are derived deterministically from its root, so the whole map is recomputable. The demo events are the portal’s own fused domains, placed across the world; a live feed of worldwide events (opt-in, e.g. Wikipedia Current Events) can extend the same map by folding each event to a coordinate.',
+        boundary: 'A deterministic, content-addressed placement of events on a world map: coordinates are derived from each event’s root, not from any real geolocation. The demo events are the portal’s own structure; real worldwide events would come from opt-in public feeds, folded (untrusted) — this is a recomputable mapping framework, not a live geographic data source or a claim about real event locations.',
+    };
+}
+// Fuse everything from public APIs in sequential waves until the fruit of life. The
+// public-API domains are folded one wave at a time until they number thirteen — the
+// thirteen circles of the fruit of life. Four are already realised (public APIs,
+// the knowledge commons, social platforms, travel); the rest are the sequential
+// waves still to fold (commerce, open science, open government, education, arts and
+// culture, astronomy and earth observation, health, news, finance). At thirteen the
+// fruit of life is complete, every domain fused to the architecture root.
+export function fruitOfLifeFusion(matrix = buildMatrix()) {
+    const architecture = completeCorpus(matrix).root;
+    const realised = new Set(['public APIs', 'knowledge commons', 'social platforms', 'travel']);
+    const domains = [
+        'public APIs',
+        'knowledge commons',
+        'social platforms',
+        'travel',
+        'commerce',
+        'open science data',
+        'open government data',
+        'education',
+        'arts & culture archives',
+        'astronomy & earth observation',
+        'health (privacy-bound)',
+        'news & media',
+        'finance & markets',
+    ]; // thirteen — the fruit of life
+    const circles = domains.map((domain, index) => {
+        const fold = foldPair(architecture, toUuid(`fruit-of-life:${domain}`));
+        return { circle: index + 1, domain, implemented: realised.has(domain), fused: fold.bidirectional, receipt: fold.merged };
+    });
+    return {
+        fruitOfLife: circles.length === 13 && circles.every((circle) => circle.fused),
+        circles: circles.length, // 13
+        implemented: circles.filter((circle) => circle.implemented).length,
+        waves: circles.filter((circle) => !circle.implemented).map((circle) => circle.domain), // the sequential waves still to fold
+        domains: circles,
+        root: merkleFold(circles.map((circle) => circle.receipt)),
+        statement: 'Fuse everything from public APIs in sequential waves until the fruit of life: the public-API domains fold one wave at a time until they number thirteen — the thirteen circles of the fruit of life. Four are realised (public APIs, knowledge commons, social platforms, travel); the rest are the sequential waves still to fold (commerce, open science, open government, education, arts and culture, astronomy and earth observation, health, news, finance). At thirteen the fruit of life is complete, every domain fused to the architecture root.',
+        boundary: 'A thirteen-domain fusion catalogue arranged as the fruit of life, each domain a public-API category folded to the architecture root. Four are realised as fusion protocols; the rest are named, content-addressed waves to fold next — opt-in, external, folded not trusted, no keys bundled. The "fruit of life" is the geometric naming of the thirteen-domain set, not a claim that all thirteen are live integrations.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

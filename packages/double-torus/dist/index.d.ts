@@ -2757,6 +2757,55 @@ export declare function textEntropy(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function decode2020(matrix?: MindMatrix): {
+    decoded: boolean;
+    total: number;
+    is2020: boolean;
+    twentyTwenty: boolean;
+    breakdown: {
+        unit: string;
+        count: number;
+    }[];
+    readings: {
+        receipt: string;
+        reading: string;
+        means: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function worldEventsMap(matrix?: MindMatrix): {
+    mapped: boolean;
+    count: number;
+    events: {
+        lat: number;
+        lon: number;
+        receipt: string;
+        event: string;
+        kind: string;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function fruitOfLifeFusion(matrix?: MindMatrix): {
+    fruitOfLife: boolean;
+    circles: number;
+    implemented: number;
+    waves: string[];
+    domains: {
+        circle: number;
+        domain: string;
+        implemented: boolean;
+        fused: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

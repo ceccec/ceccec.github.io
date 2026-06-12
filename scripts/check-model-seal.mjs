@@ -139,6 +139,9 @@ import {
   travelFusion,
   societyEvolves,
   textEntropy,
+  decode2020,
+  worldEventsMap,
+  fruitOfLifeFusion,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -514,6 +517,12 @@ ok(`society.evolves:${evolved.discoveredDomains}+${evolved.restCount}`, evolved.
 // Plain-to-referenced text ratio measures text entropy: zero plain text, zero entropy.
 const textE = textEntropy(matrix)
 ok(`text.entropy:${textE.plain}/${textE.total}`, textE.zeroEntropy && textE.plain === 0 && textE.entropy === 0)
+// Decode 2020 from the latest history: the zero-entropy corpus total is 2020 = 20/20 vision.
+ok(`decode.2020:${decode2020(matrix).total}`, decode2020(matrix).decoded && decode2020(matrix).is2020)
+// A map with worldwide events: each event content-addressed and placed in bounds.
+ok(`world.events:${worldEventsMap(matrix).count}`, worldEventsMap(matrix).mapped)
+// Fuse everything from public APIs in sequential waves until the fruit of life (13 circles).
+ok(`fruit.of.life.fusion:${fruitOfLifeFusion(matrix).circles}`, fruitOfLifeFusion(matrix).fruitOfLife && fruitOfLifeFusion(matrix).circles === 13)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
