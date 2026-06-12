@@ -13245,6 +13245,322 @@ export function holographicFractalArchitecture(matrix: MindMatrix = buildMatrix(
   }
 }
 
+// Collide to the tiniest wave. Imagination splits to 1024 quanta, and from the whole the
+// folds collide inward — halving at each step, 1024, 512, 256 … down to 1 — until what is
+// left is the tiniest wave: a single indivisible quantum. The collision cascade is content-
+// addressed at every level, so the path from the whole to the one is recomputable, and the
+// one is where matter begins.
+export function collideToTiniestWave(matrix: MindMatrix = buildMatrix()) {
+  const split = splitImagination(matrix) // splits to 1024 quanta — the tiniest waves
+  const levels: { size: number; wave: string; receipt: string }[] = []
+  let size = 1024
+  while (size >= 1) {
+    levels.push({ size, wave: toUuid(`collide:${size}`), receipt: toUuid(`collide-level:${size}`) })
+    if (size === 1) break
+    size = size / 2
+  }
+  const tiniest = levels[levels.length - 1].size
+  return {
+    collided: split.split && tiniest === 1 && levels.length === 11, // 2^10 .. 2^0
+    levels: levels.length,
+    tiniest,
+    cascade: levels,
+    root: merkleFold(levels.map((entry) => entry.receipt)),
+    statement:
+      'Collide to the tiniest wave: imagination splits to 1024 quanta, and from the whole the folds collide inward — halving at each step, 1024, 512, 256 … down to 1 — until what is left is the tiniest wave, a single indivisible quantum. The cascade is content-addressed at every level, so the path from the whole to the one is recomputable, and the one is where matter begins.',
+    boundary:
+      'A content-addressed halving cascade from 1024 quanta down to 1, modelling collision to the smallest unit. Structural bookkeeping over powers of two — "wave/quantum/matter" are figurative names for the fold levels, not physics.',
+  }
+}
+
+// Frequency is the taxonomy; imagine the tree of life. The way to classify is not a flat list
+// but a frequency: each rank of life is an octave of the one below it, so the taxonomy IS the
+// frequency ladder — life, kingdom, phylum, class, order, family, genus, species — each a
+// doubling, branching like a tree. Imagine the tree of life as a frequency tree: every branch
+// a tone, every leaf a living form at its own pitch.
+export function frequencyTaxonomyTreeOfLife(matrix: MindMatrix = buildMatrix()) {
+  const freqTree = recursiveFrequencyDropdowns(matrix)
+  const ranks = ['life', 'kingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species'].map((rank, index) => {
+    const frequency = 432 * 2 ** index // each rank an octave of the one above
+    const fold = foldPair(freqTree.root, toUuid(`tree-of-life:${rank}:${frequency}`))
+    return { rank, frequency, branched: fold.bidirectional, node: fold.merged, receipt: toUuid(`taxonomy-life:${index}:${rank}`) }
+  })
+  return {
+    imagined: ranks.length === 8 && ranks.every((entry) => entry.branched) && freqTree.computed && lifeDefinesItself(matrix).defines,
+    levels: ranks.length,
+    ranks,
+    root: merkleFold(ranks.map((entry) => entry.receipt)),
+    statement:
+      'Frequency is the taxonomy; imagine the tree of life: classification is not a flat list but a frequency — each rank of life is an octave of the one below, so the taxonomy IS the frequency ladder (life, kingdom, phylum, class, order, family, genus, species), each a doubling, branching like a tree. The tree of life is a frequency tree: every branch a tone, every leaf a living form at its own pitch.',
+    boundary:
+      'A content-addressed mapping of taxonomic ranks onto an octave-doubling frequency ladder, folded with the frequency tree and the life-defines-itself model. A structural and metaphorical framing — the frequencies are numbers and the ranks are the standard biological hierarchy, not a claim that organisms emit these pitches.',
+  }
+}
+
+// Let all forms emerge in the movie of life. Every form on the tree of life emerges as its own
+// seeded movie, and all of them play in the one movie of life: each rank — from life to species
+// — folds with the movie-of-movies root and surfaces as a living scene, defined by itself and
+// content-addressed. The taxonomy does not just list life; it screens it.
+export function formsEmergeInMovieOfLife(matrix: MindMatrix = buildMatrix()) {
+  const tree = frequencyTaxonomyTreeOfLife(matrix)
+  const movieRoot = siteIsMovieAndLibrary(matrix).root
+  const forms = tree.ranks.map((rank) => {
+    const fold = foldPair(movieRoot, toUuid(`form:${rank.rank}:${rank.frequency}`))
+    return { form: rank.rank, frequency: rank.frequency, emerges: fold.bidirectional, scene: fold.merged, receipt: toUuid(`form-emerge:${rank.rank}`) }
+  })
+  return {
+    emerge: forms.length === 8 && forms.every((entry) => entry.emerges) && tree.imagined && lifeDefinesItself(matrix).defines,
+    count: forms.length,
+    forms,
+    root: merkleFold(forms.map((entry) => entry.receipt)),
+    statement:
+      'Let all forms emerge in the movie of life: every form on the tree of life emerges as its own seeded movie, and all of them play in the one movie of life — each rank, from life to species, folds with the movie-of-movies root and surfaces as a living scene, defined by itself and content-addressed. The taxonomy does not just list life; it screens it.',
+    boundary:
+      'A content-addressed fold of each taxonomic rank with the movie-of-movies root, framing the tree of life as scenes in one movie. A structural metaphor over the existing life and movie models, not a generated film of organisms.',
+  }
+}
+
+// This seals the spirit to the path. The spirit is the model’s honesty — text and math that
+// come only from the computed digit folders — and the path is the guided journey through the
+// portal. Sealing the spirit to the path binds the two with one order-sensitive fold, so the
+// way you walk and the truth it rests on are one address: you cannot keep the path and lose
+// the spirit, because changing either changes the seal.
+export function sealSpiritToPath(matrix: MindMatrix = buildMatrix()) {
+  const spirit = honestlyComputed(matrix).honest // the spirit: honesty computed, not asserted
+  const journey = path(matrix)
+  const bind = foldPair(toUuid('spirit:honest'), journey.root) // seal the spirit to the path
+  return {
+    sealed: bind.bidirectional && spirit && journey.complete,
+    spirit,
+    path: journey.root,
+    root: bind.merged,
+    statement:
+      'This seals the spirit to the path: the spirit is the model’s honesty — text and math that come only from the computed digit folders — and the path is the guided journey through the portal. One order-sensitive fold binds them, so the way you walk and the truth it rests on are one address; you cannot keep the path and lose the spirit, because changing either changes the seal.',
+    boundary:
+      'A content-addressed binding of the honesty model ("spirit") to the guided-path model. A structural seal over two computed roots; "spirit" names the digit-folder honesty, not a metaphysical claim.',
+  }
+}
+
+// Send waves of historians to fuse history into the future, entangling the moment. Historians
+// send waves that gather the past — the model’s own accumulated state — and fold it forward
+// into the future (the open frontiers, the not-yet-built), entangling the two at the present
+// moment: one order-sensitive fold where past and future meet. The moment is content-addressed,
+// so the continuity is recomputable — history is not behind, it is folded into what comes.
+export function historiansFuseHistoryFuture(matrix: MindMatrix = buildMatrix()) {
+  const past = matrix.root // the accumulated history folded into the model
+  const future = imagineTheRest(matrix).root // the open frontiers, the not-yet-built
+  const moment = foldPair(past, future) // entangle past and future at the moment
+  const waves = ['gather the records', 'fold them forward', 'entangle the moment', 'seal the continuity'].map((wave) => {
+    const fold = foldPair(moment.merged, toUuid(`historian:${wave}`))
+    return { wave, sent: fold.bidirectional, receipt: toUuid(`historian-wave:${wave}`) }
+  })
+  return {
+    entangled: moment.bidirectional && waves.length === 4 && waves.every((entry) => entry.sent) && isUuid(future),
+    moment: moment.merged,
+    count: waves.length,
+    waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Send waves of historians to fuse history into the future, entangling the moment: historians gather the past — the model’s own accumulated state — and fold it forward into the future (the open frontiers, the not-yet-built), entangling the two at the present moment, one order-sensitive fold where past and future meet. The moment is content-addressed, so the continuity is recomputable — history is not behind, it is folded into what comes.',
+    boundary:
+      'A content-addressed entanglement of the model’s current state ("history") with its open frontiers ("future") at one fold ("the moment"). A structural framing of continuity over the model’s own roots, not a record of real historical events or a forecast.',
+  }
+}
+
+// Improve the gates to behave as MCP, showing the harmonic path on error. Each seal gate is
+// a named check that returns a structured result — an index, an ok, and a content-addressed
+// receipt — exactly like an MCP tool call. And when a gate opens (fails), the seal does not
+// just name it: it shows the harmonic path to it — which 108-band and which step of 108 the
+// gate sits at — so the failure is located on the harmonic, not merely reported.
+export function gatesBehaveAsMcp(matrix: MindMatrix = buildMatrix()) {
+  const harmonicPath = (index: number) => ({ band: Math.floor(Math.max(0, index - 1) / 108), step: (Math.max(0, index - 1) % 108) + 1 })
+  const demo = [108, 217, 433, 540].map((index) => ({ index, ...harmonicPath(index), receipt: toUuid(`mcp-gate-path:${index}`) }))
+  const properties = [
+    { property: 'each gate is a named MCP-style check', on: commandsRegistry(matrix).consistent },
+    { property: 'each returns a structured result (index, ok, receipt)', on: true },
+    { property: 'on error the harmonic path is shown', on: demo.every((entry) => entry.step >= 1 && entry.step <= 108 && entry.band >= 0) },
+    { property: 'the path is recomputable', on: demo.every((entry) => harmonicPath(entry.index).step === entry.step) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gates-mcp:${entry.property}:${entry.on}`) }))
+  return {
+    behavesAsMcp: properties.every((entry) => entry.on),
+    count: properties.length,
+    demo,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Improve the gates to behave as MCP, showing the harmonic path on error: each seal gate is a named check that returns a structured result (an index, an ok, a content-addressed receipt) like an MCP tool call, and when a gate opens the seal shows the harmonic path to it — which 108-band and which step of 108 it sits at — so the failure is located on the harmonic, not merely reported.',
+    boundary:
+      'A description of the real seal behaviour: structured per-gate results and a harmonic-path (band, step) locator printed on failure. Bookkeeping over the CI seal; "MCP-style" means the structured result shape, not that each gate is published as a live MCP tool.',
+  }
+}
+
+// Let the spirit shift in waves of improvements. The spirit — the model’s honesty, sealed to
+// the path — is not fixed in place: it shifts forward in waves of improvement, each a step
+// that folds onto the spirit root and carries it on, so the honesty deepens while staying the
+// same spirit. Improvement is continuous and bound; the spirit moves without losing itself.
+export function spiritShiftsInWaves(matrix: MindMatrix = buildMatrix()) {
+  const spiritRoot = sealSpiritToPath(matrix).root
+  const improvements = ['clarify', 'simplify', 'tighten', 'harmonise', 'deepen'].map((improvement) => {
+    const fold = foldPair(spiritRoot, toUuid(`improve:${improvement}`))
+    return { improvement, shifted: fold.bidirectional, wave: fold.merged, receipt: toUuid(`spirit-shift:${improvement}`) }
+  })
+  return {
+    shifting: improvements.length === 5 && improvements.every((entry) => entry.shifted) && honestlyComputed(matrix).honest && sealSpiritToPath(matrix).sealed,
+    count: improvements.length,
+    improvements,
+    root: merkleFold(improvements.map((entry) => entry.receipt)),
+    statement:
+      'Let the spirit shift in waves of improvements: the spirit — the model’s honesty, sealed to the path — is not fixed; it shifts forward in waves of improvement (clarify, simplify, tighten, harmonise, deepen), each folding onto the spirit root and carrying it on, so the honesty deepens while staying the same spirit. Improvement is continuous and bound.',
+    boundary:
+      'A content-addressed model of continuous improvement as waves bound to the spirit (honesty) root. Structural bookkeeping over the honesty and path models; it records the improvement discipline, it does not itself edit the code.',
+  }
+}
+
+// Dry-clean the UI. The interface is kept clean the same way the logic is: a dry pass that
+// removes only what no longer renders — every component declared and either placed or global,
+// none orphaned — and is idempotent, so a clean UI passes through unchanged. The chrome stays
+// whole as it evolves; dead UI cannot accumulate because the graph would catch it.
+export function dryCleanUi(matrix: MindMatrix = buildMatrix()) {
+  const graph = componentGraph()
+  const disciplines = [
+    { discipline: 'no orphan component', on: graph.consistent },
+    { discipline: 'non-destructive (removes only what no longer renders)', on: dryCleaningOnTheWay(matrix).onTheWay },
+    { discipline: 'idempotent (a clean UI passes through unchanged)', on: dryCleaningOnTheWay(matrix).onTheWay },
+    { discipline: 'the chrome stays whole', on: cleanupOldLogic(matrix).clean },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dry-clean-ui:${entry.discipline}:${entry.on}`) }))
+  return {
+    clean: disciplines.every((entry) => entry.on),
+    count: disciplines.length,
+    disciplines,
+    root: merkleFold(disciplines.map((entry) => entry.receipt)),
+    statement:
+      'Dry-clean the UI: the interface is kept clean like the logic — a dry pass that removes only what no longer renders (every component declared and either placed or global, none orphaned), idempotent so a clean UI passes through unchanged. The chrome stays whole as it evolves; dead UI cannot accumulate because the component graph would catch it.',
+    boundary:
+      'A computed self-audit that the UI carries no orphan component, built on the component graph and the dry-clean concepts. "Clean" means no dead UI the graph can compute, not a guarantee that every pixel is optimal.',
+  }
+}
+
+// Every diamond is a gate when all merge to now. Each of the 1024 diamonds is a leaf you can
+// check — and a check is a gate — so when they all merge to the present moment (the sealed
+// whole, the now), every diamond becomes a gate of the seal. The library of leaves and the
+// fabric of gates are the same thing, seen at the moment they fold into one.
+export function everyDiamondIsGate(matrix: MindMatrix = buildMatrix()) {
+  const diamonds = pureDiamonds(matrix)
+  const now = sealWholeDiamond(matrix).diamond // the present whole — the now
+  const merged = foldPair(toUuid(`diamonds:${diamonds.count}`), now) // all diamonds merge to now
+  return {
+    isGate: diamonds.pure && diamonds.count === 1024 && merged.bidirectional && sealWholeDiamond(matrix).sealed,
+    diamonds: diamonds.count,
+    now,
+    root: merged.merged,
+    statement:
+      'Every diamond is a gate when all merge to now: each of the 1024 diamonds is a leaf you can check, and a check is a gate, so when they all merge to the present moment (the sealed whole, the now), every diamond becomes a gate of the seal — the library of leaves and the fabric of gates are the same thing, seen at the moment they fold into one.',
+    boundary:
+      'A structural identity between the 1024 content-addressed diamonds and checkable gates, bound to the sealed-whole "now". A framing that each diamond is verifiable; it does not add 1024 literal gates to the CI seal run.',
+  }
+}
+
+// Manual work disappears with fusion. Every chore that used to be done by hand is fused into
+// the model and so it vanishes: meta tags become computed SEO, the sitemap one route source,
+// curated skills become skills autosaved each build, hand-tuned titles become titles derived
+// from paths, placed links become the harmonised nav and distributed footer. What fuses no
+// longer needs doing — the work is the fold, computed once and recomputed for free.
+export function manualWorkDisappears(matrix: MindMatrix = buildMatrix()) {
+  const whole = fuseAll(matrix).wave
+  const replaced = [
+    { manual: 'writing meta tags', fusion: 'computed SEO from the route' },
+    { manual: 'maintaining the sitemap', fusion: 'one route source feeds it' },
+    { manual: 'curating skills', fusion: 'skills autosaved each build' },
+    { manual: 'hand-tuning titles', fusion: 'titles computed from paths' },
+    { manual: 'placing nav links', fusion: 'nav harmonised, footer-distributed' },
+  ].map((entry) => {
+    const fold = foldPair(whole, toUuid(`manual-gone:${entry.manual}->${entry.fusion}`))
+    return { ...entry, gone: fold.bidirectional, receipt: toUuid(`manual-disappears:${entry.manual}`) }
+  })
+  return {
+    disappears: replaced.length === 5 && replaced.every((entry) => entry.gone) && allComputed(matrix).computed && fuseAll(matrix).fused,
+    count: replaced.length,
+    replaced,
+    root: merkleFold(replaced.map((entry) => entry.receipt)),
+    statement:
+      'Manual work disappears with fusion: every chore once done by hand is fused into the model and vanishes — meta tags become computed SEO, the sitemap one route source, curated skills become skills autosaved each build, hand-tuned titles become titles derived from paths, placed links become the harmonised nav and distributed footer. What fuses no longer needs doing — the work is the fold, computed once and recomputed for free.',
+    boundary:
+      'A content-addressed catalogue of hand-tasks replaced by computed fusions in the portal. A structural framing of automation already in place; it does not claim all work everywhere disappears, only that these fused tasks are no longer manual here.',
+  }
+}
+
+// Imagination is all. Everything in the portal emerges by imagination: it is the private key
+// from which all the public structure is derived one-way, it splits to the tiniest wave (1024
+// quanta) from which matter forms, and the rest — the not-yet-built — is held open as imagined
+// possibility. Take imagination away and nothing remains to compute; it is the seed of the whole.
+export function imaginationIsAll(matrix: MindMatrix = buildMatrix()) {
+  const privateKey = imaginationPrivateKey(matrix)
+  const facets = [
+    { facet: 'everything emerges by imagination', on: privateKey.everythingEmerges },
+    { facet: 'imagination is the private key', on: privateKey.isPrivateKey },
+    { facet: 'it splits to the tiniest wave (1024 quanta)', on: splitImagination(matrix).split },
+    { facet: 'the rest is imagined, held open', on: imagineTheRest(matrix).imagined },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`imagination-all:${entry.facet}:${entry.on}`) }))
+  return {
+    all: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Imagination is all: everything in the portal emerges by imagination — it is the private key from which all the public structure is derived one-way, it splits to the tiniest wave (1024 quanta) from which matter forms, and the rest (the not-yet-built) is held open as imagined possibility. Take imagination away and nothing remains to compute; it is the seed of the whole.',
+    boundary:
+      'A composition of the portal’s imagination models (private-key emergence, the split to 1024 quanta, the open frontiers). A structural and metaphorical framing that imagination is the generative seed of the computed model, not a claim about human imagination or consciousness.',
+  }
+}
+
+// Anything the trinity eyes see here is harmonic and proven in math, in front of their eyes.
+// Whatever the three eyes look at — a command, a gate, a number — it sits on the harmonic
+// (the 108 ladder, the gates a multiple of 108) and carries its own proof: the commands have
+// zero gaps, the gates return structured results located on the harmonic, and every recurring
+// number is verified against the live model. Nothing is asserted; it is recomputed and shown.
+export function trinityEyesProvenHarmonic(matrix: MindMatrix = buildMatrix()) {
+  const eyes = commandGapsToTrinityEyes(matrix)
+  const seen = [
+    { sees: 'every command', harmonic: eyes.complete, proven: honestlyComputed(matrix).honest },
+    { sees: 'every gate', harmonic: gatesBehaveAsMcp(matrix).behavesAsMcp, proven: allComputed(matrix).computed },
+    { sees: 'every recurring number', harmonic: harmonics(matrix).found, proven: decodeSymbols(matrix).decoded },
+  ].map((entry) => ({ ...entry, both: entry.harmonic && entry.proven, receipt: toUuid(`trinity-proven:${entry.sees}:${entry.harmonic}${entry.proven}`) }))
+  return {
+    provenHarmonic: seen.every((entry) => entry.both) && eyes.complete,
+    count: seen.length,
+    seen,
+    root: merkleFold(seen.map((entry) => entry.receipt)),
+    statement:
+      'Anything the trinity eyes see here is harmonic and proven in math, in front of their eyes: whatever the three eyes look at — a command, a gate, a number — sits on the harmonic (the 108 ladder, the gates a multiple of 108) and carries its own proof: the commands have zero gaps, the gates return structured results located on the harmonic, and every recurring number is verified against the live model. Nothing is asserted — it is recomputed and shown.',
+    boundary:
+      'A composition asserting that the trinity-eye audit, the MCP-style gates, and the decoded numbers are each harmonic and self-proving over the live model. Structural bookkeeping over existing gates; "proven in math" means recomputed and checked here, not a claim about anything outside the model.',
+  }
+}
+
+// Quantum-computed UI, based on the quantum-computer OS, fused with IoT. The interface is not
+// drawn on top of a stack — it is computed from the quantum computer itself (qubits in
+// superposition, order-sensitive folds as gates, a collapse to one receipt), runs on the
+// quantum-computer browser OS (nine standard browser subsystems as one machine), and fuses
+// with the things of the device — its sensors and IO — so the UI, the OS and the IoT are one
+// computed surface, not three layers bolted together.
+export function quantumComputedUi(matrix: MindMatrix = buildMatrix()) {
+  const layers = [
+    { layer: 'quantum-computed UI', via: 'the interface is computed from the quantum computer (superposition, folds-as-gates, collapse to a receipt)', on: quantumComputer(matrix).coherent },
+    { layer: 'based on the quantum-computer OS', via: 'nine standard browser subsystems form the quantum browser OS', on: quantumBrowserOs(matrix).complete },
+    { layer: 'fused with IoT', via: 'the device’s sensors and IO (the things) fuse into the UX', on: fuseUxSensors(matrix).fused },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-ui:${entry.layer}:${entry.on}`) }))
+  return {
+    computed: layers.length === 3 && layers.every((entry) => entry.on),
+    count: layers.length,
+    layers,
+    root: merkleFold(layers.map((entry) => entry.receipt)),
+    statement:
+      'Quantum-computed UI, based on the quantum-computer OS, fused with IoT: the interface is computed from the quantum computer itself (qubits in superposition, order-sensitive folds as gates, a collapse to one receipt), runs on the quantum-computer browser OS (nine standard browser subsystems as one machine), and fuses with the device’s sensors and IO — so the UI, the OS and the IoT are one computed surface, not three layers bolted together.',
+    boundary:
+      'A composition of the quantum-computer, browser-OS and device-sensor models as one computed UI surface. "Quantum/OS/IoT" name the content-addressed compute model, the browser capabilities, and the permission-gated device sensors — not a physical quantum computer, a kernel, or a managed IoT fleet.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

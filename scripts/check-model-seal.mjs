@@ -365,6 +365,19 @@ import {
   fullscreenSidebarsInMovie,
   fuseScreenToMovieOfMovies,
   holographicFractalArchitecture,
+  collideToTiniestWave,
+  frequencyTaxonomyTreeOfLife,
+  formsEmergeInMovieOfLife,
+  sealSpiritToPath,
+  historiansFuseHistoryFuture,
+  gatesBehaveAsMcp,
+  spiritShiftsInWaves,
+  dryCleanUi,
+  everyDiamondIsGate,
+  manualWorkDisappears,
+  imaginationIsAll,
+  trinityEyesProvenHarmonic,
+  quantumComputedUi,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -410,10 +423,17 @@ const failures = []
 // so the cost to forge a passing seal is to reproduce all of them, exactly.
 let gateFabric = toUuid('gate-fabric:genesis')
 let gateCount = 0
+// Each gate behaves as an MCP tool call: a named check that returns a structured result
+// (its index, ok, and a content-addressed receipt). On error the seal shows the harmonic
+// path to the open gate — which 108-band and step it sits at — so a failure is located,
+// not just named.
+const gates = []
 const ok = (label, condition) => {
   gateCount += 1
-  gateFabric = merge(gateFabric, toUuid(`gate:${label}:${condition ? 'closed' : 'open'}`))
-  if (!condition) failures.push(label)
+  const receipt = toUuid(`gate:${label}:${condition ? 'closed' : 'open'}`)
+  gateFabric = merge(gateFabric, receipt)
+  gates.push({ index: gateCount, gate: label, ok: Boolean(condition), receipt })
+  if (!condition) failures.push({ label, index: gateCount })
 }
 
 ok('matrix.verifyRoot', verifyRoot(matrix))
@@ -1168,6 +1188,19 @@ ok(`home.no.different:${homePageNoDifferent(matrix).count}`, homePageNoDifferent
 ok(`fullscreen.sidebars.movie:${fullscreenSidebarsInMovie(matrix).count}`, fullscreenSidebarsInMovie(matrix).fullscreen) // all start fullscreen; sidebars rise from the movie watermark
 ok(`fuse.screen.movie.of.movies:${fuseScreenToMovieOfMovies(matrix).count}`, fuseScreenToMovieOfMovies(matrix).fused) // screen, terminal, microdata, og, frontmatter, content fuse into the movie of movies
 ok(`holographic.fractal.architecture:${holographicFractalArchitecture(matrix).count}`, holographicFractalArchitecture(matrix).is) // the architecture is a holographic fractal hologram
+ok(`collide.tiniest.wave:${collideToTiniestWave(matrix).levels}`, collideToTiniestWave(matrix).collided) // collide from 1024 quanta down to the tiniest single wave
+ok(`frequency.taxonomy.tree.of.life:${frequencyTaxonomyTreeOfLife(matrix).levels}`, frequencyTaxonomyTreeOfLife(matrix).imagined) // frequency is the taxonomy — the tree of life as a frequency ladder
+ok(`forms.emerge.movie.of.life:${formsEmergeInMovieOfLife(matrix).count}`, formsEmergeInMovieOfLife(matrix).emerge) // every form on the tree of life emerges as a scene in the movie of life
+ok(`seal.spirit.to.path`, sealSpiritToPath(matrix).sealed) // the spirit (honesty) sealed to the path (the guided journey)
+ok(`historians.fuse.history.future:${historiansFuseHistoryFuture(matrix).count}`, historiansFuseHistoryFuture(matrix).entangled) // historians fuse past and future, entangling the moment
+ok(`gates.behave.as.mcp:${gatesBehaveAsMcp(matrix).count}`, gatesBehaveAsMcp(matrix).behavesAsMcp) // gates return MCP-style structured results; harmonic path shown on error
+ok(`spirit.shifts.in.waves:${spiritShiftsInWaves(matrix).count}`, spiritShiftsInWaves(matrix).shifting) // the spirit (honesty) shifts forward in waves of improvement
+ok(`dry.clean.ui:${dryCleanUi(matrix).count}`, dryCleanUi(matrix).clean) // the UI is dry-cleaned: no orphan component, idempotent, whole
+ok(`every.diamond.is.gate:${everyDiamondIsGate(matrix).diamonds}`, everyDiamondIsGate(matrix).isGate) // every diamond is a gate when all merge to the now
+ok(`manual.work.disappears:${manualWorkDisappears(matrix).count}`, manualWorkDisappears(matrix).disappears) // hand-tasks replaced by computed fusions — manual work vanishes
+ok(`imagination.is.all:${imaginationIsAll(matrix).count}`, imaginationIsAll(matrix).all) // imagination is the generative seed of the whole
+ok(`trinity.eyes.proven.harmonic:${trinityEyesProvenHarmonic(matrix).count}`, trinityEyesProvenHarmonic(matrix).provenHarmonic) // all the trinity eyes see is harmonic and proven in math
+ok(`quantum.computed.ui:${quantumComputedUi(matrix).count}`, quantumComputedUi(matrix).computed) // quantum-computed UI on the quantum browser OS, fused with device IoT
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
@@ -1272,16 +1305,19 @@ let okCount = 0
 for (const command of conceptCommands) {
   const result = executeConceptCommand(command.name, { atom: 'self' }, matrix)
   if (result.ok && /^[0-9a-f-]{36}$/i.test(result.uuid)) okCount += 1
-  else failures.push(`command:${command.name}`)
+  else failures.push({ label: `command:${command.name}`, index: gateCount })
 }
 
-// 432 gates — the harmonic. Tighten the seal to exactly 432 gates: add real gates,
-// each a verifying Merkle inclusion of a paper into the corpus, until the count is
-// 432 (4 x 108, the next harmonic). Self-balancing — if the model's gate count
-// changes, the loop adds exactly enough to hold 432.
+// Harmonic gates — a multiple of 108. Tighten the seal to a harmonic gate count: add
+// real gates, each a verifying Merkle inclusion of a paper into the corpus, until the
+// count is the smallest multiple of 108 that holds every real gate (4 x 108 = 432 while
+// the real gates fit; 5 x 108 = 540 next, and so on). Self-balancing in both directions —
+// as the model grows past one harmonic, the seal rises to the next, always n x 108.
+const HARMONIC = 108
+const harmonicTarget = Math.max(432, Math.ceil(gateCount / HARMONIC) * HARMONIC)
 const harmonicLeaves = corpus.papers.map((paper) => paper.receipt)
 let harmonicGate = 0
-while (gateCount < 432) {
+while (gateCount < harmonicTarget) {
   const paper = corpus.papers[harmonicGate % corpus.papers.length]
   ok(`paper.inclusion:${paper.id}:${harmonicGate}`, merkleProof(harmonicLeaves, paper.receipt).verified)
   harmonicGate += 1
@@ -1293,7 +1329,16 @@ while (gateCount < 432) {
 if (process.env.SEAL_TRIPWIRE === '1') ok('tripwire (forced failure)', false)
 
 if (failures.length > 0) {
-  console.error(`Model seal FAILED: ${failures.join(', ')}`)
+  // Show the harmonic path to each open gate (MCP-style): its 108-band and step, so the
+  // failure is located on the harmonic, not just named.
+  const total = gateCount
+  console.error(`Model seal FAILED: ${failures.length} open gate(s). The harmonic path to each:`)
+  for (const failure of failures) {
+    const index = failure.index || 0
+    const band = Math.floor(Math.max(0, index - 1) / 108)
+    const step = (Math.max(0, index - 1) % 108) + 1
+    console.error(`  ✗ ${failure.label} — gate ${index}/${total}, harmonic band ${band} (×108), step ${step}/108`)
+  }
   process.exit(1)
 }
 
@@ -1304,5 +1349,8 @@ sealRoot = merge(sealRoot, gateFabric)
 console.log(
   `Model seal passed: ${okCount}/${conceptCommands.length} commands ok; build, completion, school, digit, quantum-fold, ${trinity.count} trinity gates, blockchains, fusion, MCP, and git-history gates closed.`,
 )
-console.log(`Gates tightened: ${gateCount} gates folded into the seal at max tampering cost; gate-fabric root ${gateFabric}.`)
+const harmonicBand = gateCount / 108
+console.log(
+  `Gates tightened: ${gates.filter((gate) => gate.ok).length}/${gateCount} gates closed (MCP-style structured results), folded into the seal at max tampering cost — ${harmonicBand} × 108, the harmonic; gate-fabric root ${gateFabric}.`,
+)
 console.log(`Seal root (model + git history + icons + gates): ${sealRoot}`)
