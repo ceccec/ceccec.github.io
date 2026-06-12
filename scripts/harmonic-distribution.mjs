@@ -8,7 +8,7 @@
 // Run: node --experimental-strip-types scripts/harmonic-distribution.mjs
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentGraph, harmonicBands, foldedCensus, folderLaw } from '../.vitepress/theme/lib/quantumMind.ts'
+import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const root = process.cwd()
 const read = (path) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
@@ -146,6 +146,67 @@ for (const entry of readdirSync(root, { withFileTypes: true })) {
   walkFolderLaw(join(root, entry.name), entry.name, law.roots.includes(entry.name))
 }
 
+// --- the JSON-LD path audit: tests fail unless the JSON-LD contains valid paths.
+// The rules are declared once in the core (jsonLdPathRules) and enforced here over
+// every ld+json block in the rendered dist: a rooted path must resolve to a built
+// artifact (clean route .html, folder index.html, or a literal file like /mcp.json),
+// and an external citation must be a well-formed URL. Every violation is a gap with
+// a detailed why — a promise to crawlers that points at nothing fails the build.
+const ldRules = jsonLdPathRules()
+const internalRe = new RegExp(ldRules.internal)
+const externalRe = new RegExp(ldRules.external)
+const dist = join(root, '.vitepress', 'dist')
+let ldBlocks = 0
+let ldInternal = 0
+let ldExternal = 0
+const resolvesInDist = (path) => {
+  const clean = path.replace(/[#?].*$/, '').replace(/^\//, '')
+  if (clean === '') return existsSync(join(dist, 'index.html'))
+  if (clean.endsWith('/')) return existsSync(join(dist, clean, 'index.html'))
+  return existsSync(join(dist, `${clean}.html`)) || existsSync(join(dist, clean)) || existsSync(join(dist, clean, 'index.html'))
+}
+const collectStrings = (value, found) => {
+  if (typeof value === 'string') found.push(value)
+  else if (Array.isArray(value)) for (const item of value) collectStrings(item, found)
+  else if (value && typeof value === 'object') for (const item of Object.values(value)) collectStrings(item, found)
+  return found
+}
+const seenLdPaths = new Map() // path -> first page that promised it (dedup: one why per path)
+if (existsSync(dist)) {
+  const pages = readdirSync(dist, { recursive: true }).filter((file) => String(file).endsWith('.html'))
+  for (const page of pages) {
+    const html = readFileSync(join(dist, String(page)), 'utf8')
+    for (const match of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
+      ldBlocks += 1
+      let parsed
+      try {
+        parsed = JSON.parse(match[1])
+      } catch {
+        gaps.push({ harmonic: 'jsonld', kind: 'parse', detail: `page ${page} carries an ld+json block that does not parse as JSON — why this fails: structured data that cannot be parsed is invisible to every crawler and agent it was written for` })
+        continue
+      }
+      for (const value of collectStrings(parsed, [])) {
+        if (internalRe.test(value)) {
+          ldInternal += 1
+          if (!seenLdPaths.has(value)) seenLdPaths.set(value, String(page))
+        } else if (externalRe.test(value)) {
+          ldExternal += 1
+          try {
+            new URL(value)
+          } catch {
+            gaps.push({ harmonic: 'jsonld', kind: 'external', detail: `page ${page} cites ${value}, which is not a well-formed URL — why this fails: ${ldRules.why.external}` })
+          }
+        }
+      }
+    }
+  }
+  for (const [path, page] of seenLdPaths) {
+    if (!resolvesInDist(path)) {
+      gaps.push({ harmonic: 'jsonld', kind: 'path', detail: `JSON-LD on ${page} promises ${path}, which resolves to no built artifact (tried ${ldRules.resolutions.join(', ')}) — why this fails: ${ldRules.why.internal}` })
+    }
+  }
+}
+
 // --- write the distribution + gaps next to the other build artifacts ---
 const out = join(root, '.vitepress', 'dist')
 const payload = {
@@ -170,3 +231,4 @@ if (gaps.length > 0) {
 console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (consecutive Fibonacci, no gaps, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)
 console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
 console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
+console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)

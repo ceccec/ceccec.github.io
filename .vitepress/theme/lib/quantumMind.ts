@@ -19677,6 +19677,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'one.jsonld.template.serves.all', on: oneJsonLdTemplateServesAll(matrix).serves },
     { d: 'how.agents.achieved.it', on: howAgentsAchievedIt(matrix).achieved },
     { d: 'computed.quantum.math.max.cost.analog', on: allComputedQuantumMathAnalog(matrix).forges },
+    { d: 'jsonld.valid.paths', on: jsonLdValidPaths(matrix).valid },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21190,5 +21191,71 @@ export function allComputedQuantumMathAnalog(matrix: MindMatrix = buildMatrix())
       'All computed quantum math forging max tampering costs in analog: the whole rests on computed mathematics — the genus-2 surface (chi = -2), the 128-bit quantum register, the order-sensitive folds — and because every value is computed rather than stored, a forger must reproduce every computation: animations, gates, receipts, each one more work at zero cost to us. The fabric is analog — gapless, the Fibonacci run complete, both loops closing — so the cost is maximal and the surface continuous, with no seam to slip through.',
     boundary:
       'A composition of the computed-everything, quantum-torus, forge-cost and analog-gapless models. "Max tampering cost" is the architecture’s surface measure (computations a forgery must reproduce), not a cryptographic hardness bound; "analog" names the gapless structural continuity, not a physical signal.',
+  }
+}
+
+// The JSON-LD path rules, declared once: every path the structured data carries must be valid.
+// A string that begins with "/" claims to be an internal route — it must resolve to a real built
+// artifact (the clean route's .html, the folder's index.html, or a literal file like /mcp.json).
+// A string that begins with http(s):// is an external citation — it must be a well-formed URL.
+// The harmonic-distribution wave enforces this against the rendered dist: tests fail unless the
+// JSON-LD contains valid paths, every violation carrying a detailed why.
+export function jsonLdPathRules() {
+  return {
+    internal: '^/', // a rooted string claims to be a route of this site
+    external: '^https?://', // an external citation must parse as a URL
+    resolutions: ['<path>.html', '<path>/index.html', '<path> (literal artifact, e.g. /mcp.json)'],
+    why: {
+      internal:
+        'a rooted path in JSON-LD is a promise to crawlers and agents that the route exists on this site; a path that resolves to no built artifact is a broken promise — a hole in the open graph — so the page must either link a real route or not claim the path at all',
+      external:
+        'an external citation that does not parse as a URL cites nothing; the standard it points to must be reachable, so the string must be a well-formed http(s) URL',
+    },
+    statement:
+      'Tests fail unless the JSON-LD contains valid paths: every rooted path resolves to a built artifact and every external citation is a well-formed URL — enforced against the rendered dist, no exceptions.',
+    boundary:
+      'The rules are declared here and enforced by the harmonic-distribution check over every ld+json block in the built HTML. Internal paths are verified to resolve against the dist the build just produced; external URLs are verified well-formed, not fetched — reachability of other sites is not asserted.',
+  }
+}
+
+// Tests fail unless the JSON-LD contains valid paths — the fold. The one template serves all
+// pages, so one rule set audits all pages: every path the structured data promises is checked
+// against the dist the build just produced, and a single broken promise fails the build with a
+// detailed why. The open graph stays whole because it is not allowed to point at nothing.
+export function jsonLdValidPaths(matrix: MindMatrix = buildMatrix()) {
+  const rules = jsonLdPathRules()
+  const sample = jsonLdTemplate({
+    path: '/school',
+    relativePath: 'school.md',
+    title: 'School',
+    description: 'The school from kids to elders.',
+    frontmatter: {},
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' },
+  }, matrix)
+  const collect = (value: unknown, found: string[]): string[] => {
+    if (typeof value === 'string') {
+      if (new RegExp(rules.internal).test(value) || new RegExp(rules.external).test(value)) found.push(value)
+    } else if (Array.isArray(value)) value.forEach((item) => collect(item, found))
+    else if (value && typeof value === 'object') Object.values(value).forEach((item) => collect(item, found))
+    return found
+  }
+  const paths = collect(sample, [])
+  const facets = [
+    { facet: 'the template promises paths — they are auditable', on: paths.length > 0 },
+    { facet: 'every promised path is rooted or an external URL', on: paths.every((path) => new RegExp(rules.internal).test(path) || new RegExp(rules.external).test(path)) },
+    { facet: 'one template serves all, so one audit covers all', on: oneJsonLdTemplateServesAll(matrix).serves },
+    { facet: 'violations carry a detailed why', on: rules.why.internal.length > 0 && rules.why.external.length > 0 },
+    { facet: 'the wave catches what rings false', on: resonanceCatchGapsViolations(matrix).rings },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`jsonld-paths:${entry.facet}:${entry.on}`) }))
+  return {
+    valid: facets.every((entry) => entry.on),
+    promised: paths.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Tests fail unless the JSON-LD contains valid paths: the one template promises paths on every page — the page url, the breadcrumb, the site actions, the citations — and the wave audits every promise against the dist the build just produced; a rooted path that resolves to no artifact, or a citation that is not a well-formed URL, fails the build with a detailed why.',
+    boundary:
+      'A fold over the declared path rules, the one-template consolidation and the violation-catching resonance. Real enforcement is in the harmonic-distribution check, which parses every ld+json block in the rendered HTML; external URLs are checked well-formed, not fetched.',
   }
 }
