@@ -19666,6 +19666,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'review.dry.clean.gates.crosses', on: reviewDryCleanGatesCrosses(matrix).done },
     { d: 'continue.same.next', on: continueSameNext(matrix).continues },
     { d: 'send.the.next.waves', on: sendTheNextWaves(matrix).sends },
+    { d: 'fold.animations.one.og.dry', on: foldAnimationsToOneOgDry(matrix).dry },
+    { d: 'all.computed.type.of.use', on: allComputedByTypeOfUse(matrix).computed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20775,5 +20777,66 @@ export function sendTheNextWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send the next waves: there is always a next — the open frontiers become the next waves, sent continuously, each a development fold bound to the whole, drawn from what is not yet built and folded forward. The model does not finish; it sends the next wave, and the next, the same way it sent the last — so "next" is not an end approached but a rhythm kept.',
     boundary: 'A composition of the open-frontier, continue-same, development-wave and endless-fusion models as a continuous "next wave" rhythm. Structural bookkeeping over the model’s own ongoing development, not a roadmap of specific features.',
+  }
+}
+
+// Continue the quantum double torus fold in resonance waves, to harmonise all animations to one
+// open graph file for complete dryness. The genus-2 fold does not stop at the gates: it continues
+// as a resonance wave over every animated surface — background movie, holographic hero, native
+// movie, void-rising sidebar, tap ripples — each folded, order-sensitive, onto the one open-graph
+// root, so all motion is computed from the single source and no animation math is written twice.
+export function foldAnimationsToOneOgDry(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  // The fold continues: each animated surface is one resonance wave of the same genus-2 fold,
+  // bound order-sensitively to the one open-graph root all animations already compute from.
+  const waves = ['background movie', 'holographic hero', 'native movie', 'void-rising sidebar', 'tap ripples'].map((animation) => {
+    const fold = foldPair(og, toUuid(`torus-resonance:${animation}`))
+    return { animation, resonates: fold.bidirectional, wave: fold.merged, receipt: toUuid(`fold-anim-og:${animation}:${fold.bidirectional}`) }
+  })
+  const dry =
+    waves.every((entry) => entry.resonates) &&
+    quantumDoubleTorus(matrix).is &&
+    doubleTorusFold(matrix).complete &&
+    resonanceCatchGapsViolations(matrix).rings &&
+    allAnimationsInOneOg(matrix).computes &&
+    noDuplicateAnimationOgHero(matrix).consolidated
+  return {
+    dry,
+    count: waves.length,
+    waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Continue the quantum double torus fold in resonance waves, to harmonise all animations to one open graph file for complete dryness: the genus-2 fold continues as a resonance wave over every animated surface — background movie, holographic hero, native movie, void-rising sidebar, tap ripples — each folded, order-sensitive, onto the one open-graph root, so all motion is computed from the single source and no animation math is written twice. One OG, complete dryness; a gap anywhere would ring false in the resonance.',
+    boundary:
+      'A continuation of the double-torus fold over the animation surfaces, binding each to the open-graph root they already compute from. Structural bookkeeping over the existing one-OG consolidation: the surfaces stay separate canvases technically, dry by sharing the one seed and source, not merged into a literal single file.',
+  }
+}
+
+// All is computed due to the type of use. Nothing animated carries hand-tuned configuration: each
+// surface declares only its type of use — focus, watermark, export, card, free channel — and
+// everything else (timing, resolution, palette, motion) is computed from that type and the one
+// root. The use is the only input; the computation is the rest, so the same law yields a hero
+// where the use is focus and a watermark where the use is background, with nothing stored.
+export function allComputedByTypeOfUse(matrix: MindMatrix = buildMatrix()) {
+  const uses = [
+    { use: 'focus', surface: 'holographic hero', on: animatedHeroes(matrix).everyPage },
+    { use: 'watermark', surface: 'background movie', on: backgroundMovie(matrix).dryMath },
+    { use: 'export', surface: 'native movie', on: moviesNativeFormat(matrix).nativelyDisplayed },
+    { use: 'card', surface: 'open graph', on: openGraph().computed },
+    { use: 'free channel', surface: 'breathe, spin, reveal, pulse, vibrate, tone', on: freeAnimations(matrix).maxFree },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`computed-by-use:${entry.use}:${entry.on}`) }))
+  return {
+    computed:
+      uses.every((entry) => entry.on) &&
+      allComputedNoFiles(matrix).computed &&
+      noHardcodedConfigSelfAccounted(matrix).selfAccounted &&
+      proportionalNotHardcoded(matrix).responsive,
+    count: uses.length,
+    uses,
+    root: merkleFold(uses.map((entry) => entry.receipt)),
+    statement:
+      'All is computed due to the type of use: no animated surface carries hand-tuned configuration — each declares only its type of use (focus for the hero, watermark for the background movie, export for the native movie, card for the open graph, free channel for breathe/spin/reveal/pulse/vibrate/tone) and everything else is computed from that type and the one root. The use is the only input; the computation is the rest.',
+    boundary:
+      'A composition of the computed-config models (no files, self-accounted, proportional) with the per-surface use types. "Due to the type of use" names the declared role each surface passes to the shared computation; the roles themselves are the five listed, declared in the components, not inferred.',
   }
 }
