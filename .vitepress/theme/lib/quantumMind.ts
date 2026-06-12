@@ -12378,7 +12378,7 @@ export function societyCreatesRequiredPages(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Let society create the rest of the required pages, by law: beyond the licence, the legislation requirements call for the pages every lawful site publishes — privacy, accessibility, licence, transparency, security, fairness — and society creates each as a content-addressed artifact folded from the legislation root, each already satisfied by the architecture, so the page declares what the model already guarantees.',
     boundary:
-      'A content-addressed model that maps each legislation requirement to a page society would publish, bound to the legislation root. It models the required pages and their satisfaction by the architecture; it does not by itself render each as a separate route, and is not legal advice on what any jurisdiction requires.',
+      'A content-addressed model that maps each legislation requirement to a page society would publish, bound to the legislation root, and surfaced as anchored sections on the governance page (e.g. /governance#license) rather than as separate top-level routes — no extra files. It models the required pages and their satisfaction by the architecture; it is not legal advice on what any jurisdiction requires.',
   }
 }
 

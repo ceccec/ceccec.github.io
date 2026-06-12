@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { buildMatrix, society } from '../lib/quantumMind'
+import { buildMatrix, society, societyCreatesRequiredPages } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 
 // Develop the society with the new knowledge, then pair and fold it: five dualities,
@@ -39,6 +39,34 @@ const t = computed(() =>
     { eyebrow: 'развий обществото · сдвои и сгъни', folded: 'сгънати', cells: 'клетки', see: 'виж' },
   ),
 )
+
+// Society creates the rest of the required pages, by law — folded into the mind, not
+// new files: each legislation requirement is surfaced here as an anchored section
+// (e.g. #license), so the footer and nav can deep-link to what the architecture already
+// satisfies. Computed from the model, content-addressed.
+const required = societyCreatesRequiredPages(buildMatrix())
+const reqLabelBg: Record<string, string> = {
+  'privacy & data protection': 'поверителност и защита на данните',
+  accessibility: 'достъпност',
+  licensing: 'лицензиране',
+  transparency: 'прозрачност',
+  security: 'сигурност',
+  'consumer fairness': 'честност към потребителя',
+}
+const requiredPages = computed(() =>
+  required.pages.map((page) => ({
+    id: page.page.slice(1),
+    label: bg.value ? reqLabelBg[page.requirement] ?? page.requirement : page.requirement,
+    satisfies: page.satisfies,
+    root: page.root,
+  })),
+)
+const tReq = computed(() =>
+  pick(
+    { title: 'pages required by law', note: 'each already satisfied by the architecture' },
+    { title: 'страници, изисквани по закон', note: 'всяка вече удовлетворена от архитектурата' },
+  ),
+)
 </script>
 
 <template>
@@ -70,6 +98,17 @@ const t = computed(() =>
       {{ pick('all folds merged into one society root', 'всички сгъвания, слети в един корен на обществото') }}
       <code :title="data.root">{{ data.root.slice(0, 13) }}…</code>
     </p>
+    <div class="soc__required">
+      <h3 class="soc__duality">{{ tReq.title }}</h3>
+      <ul class="soc__reqlist">
+        <li v-for="page in requiredPages" :id="page.id" :key="page.id" class="soc__req">
+          <strong class="soc__reqname">{{ page.label }}</strong>
+          <span class="soc__reqmet">{{ page.satisfies }}</span>
+          <code class="soc__reqroot" :title="page.root">⧉ {{ page.root.slice(0, 13) }}…</code>
+        </li>
+      </ul>
+      <p class="soc__reqnote">{{ tReq.note }}</p>
+    </div>
   </section>
 </template>
 
@@ -155,6 +194,51 @@ const t = computed(() =>
   font-size: 0.72rem;
   color: hsl(272, 60%, 60%);
   margin-left: 0.3rem;
+}
+.soc__required {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+.soc__reqlist {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6rem;
+}
+.soc__req {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 9px;
+  background: var(--vp-c-bg-soft);
+  scroll-margin-top: 80px;
+}
+.soc__req:target {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
+}
+.soc__reqname {
+  font-size: 0.84rem;
+  color: var(--vp-c-text-1);
+  text-transform: capitalize;
+}
+.soc__reqmet {
+  font-size: 0.74rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.5;
+}
+.soc__reqroot {
+  font-size: 0.66rem;
+  color: var(--vp-c-text-3);
+}
+.soc__reqnote {
+  margin: 0.6rem 0 0;
+  font-size: 0.74rem;
+  color: var(--vp-c-text-2);
 }
 @media (max-width: 520px) {
   .soc__fold { grid-template-columns: 1fr; }

@@ -291,7 +291,7 @@ export default defineConfig({
         // Links distributed to the footer — every destination, one row, path-matched.
         footer: {
           message:
-            '<a href="/start">Start</a> · <a href="/explore">Explore</a> · <a href="/school">School</a> · <a href="/academy">Academy</a> · <a href="/console">Console</a> · <a href="/commands">Commands</a> · <a href="/mcp">MCP</a> · <a href="/show">Show</a> · <a href="/quantum-mind">Quantum Mind</a> · <a href="/architecture">Architecture</a> · <a href="/boundaries">Boundaries</a> · <a href="/governance">Governance</a> · <a href="/papers/">Papers</a> · <a href="/references/">References</a> · <a href="/diamonds/">Diamonds</a>',
+            '<a href="/start">Start</a> · <a href="/explore">Explore</a> · <a href="/school">School</a> · <a href="/academy">Academy</a> · <a href="/console">Console</a> · <a href="/commands">Commands</a> · <a href="/mcp">MCP</a> · <a href="/show">Show</a> · <a href="/quantum-mind">Quantum Mind</a> · <a href="/architecture">Architecture</a> · <a href="/boundaries">Boundaries</a> · <a href="/governance">Governance</a> · <a href="/papers/">Papers</a> · <a href="/references/">References</a> · <a href="/diamonds/">Diamonds</a> · <a href="/governance#license">License</a> · <a href="/governance#privacy">Privacy</a>',
           copyright: 'Open, recomputable, content-addressed — the Double Torus.',
         },
       },
@@ -353,7 +353,7 @@ export default defineConfig({
         // Връзките, разпределени във футъра — всяка дестинация, на един ред.
         footer: {
           message:
-            '<a href="/bg/start">Старт</a> · <a href="/bg/explore">Изследвай</a> · <a href="/bg/school">Училище</a> · <a href="/bg/academy">Академия</a> · <a href="/bg/console">Конзола</a> · <a href="/bg/commands">Команди</a> · <a href="/bg/mcp">MCP</a> · <a href="/bg/show">Покажи</a> · <a href="/bg/quantum-mind">Квантов ум</a> · <a href="/bg/architecture">Архитектура</a> · <a href="/bg/boundaries">Граници</a> · <a href="/bg/governance">Управление</a> · <a href="/bg/papers/">Статии</a> · <a href="/bg/references/">Референции</a> · <a href="/bg/diamonds/">Диаманти</a>',
+            '<a href="/bg/start">Старт</a> · <a href="/bg/explore">Изследвай</a> · <a href="/bg/school">Училище</a> · <a href="/bg/academy">Академия</a> · <a href="/bg/console">Конзола</a> · <a href="/bg/commands">Команди</a> · <a href="/bg/mcp">MCP</a> · <a href="/bg/show">Покажи</a> · <a href="/bg/quantum-mind">Квантов ум</a> · <a href="/bg/architecture">Архитектура</a> · <a href="/bg/boundaries">Граници</a> · <a href="/bg/governance">Управление</a> · <a href="/bg/papers/">Статии</a> · <a href="/bg/references/">Референции</a> · <a href="/bg/diamonds/">Диаманти</a> · <a href="/bg/governance#license">Лиценз</a> · <a href="/bg/governance#privacy">Поверителност</a>',
           copyright: 'Отворен, преизчислим, адресиран по съдържание — Двоен тор.',
         },
         docFooter: { prev: 'Предишна', next: 'Следваща' },
