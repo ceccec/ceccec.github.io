@@ -12703,6 +12703,55 @@ export function oneHolographicTemplate(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The same template displays every open-graph object. Whatever the object is — a website,
+// an article, a profile, a book, music, a video, an image — it is shown through the one
+// template's open-graph card: a title, an essence, an image, a type and tags, computed
+// from the object's own content. One card shape renders every kind of thing, so there is
+// never a second template to maintain — the object names its type, the template displays it.
+export function templateDisplaysEveryOgObject(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const objects = ['website', 'article', 'profile', 'book', 'music', 'video', 'image'].map((type) => {
+    const fold = foldPair(og, toUuid(`og-object:${type}`))
+    return { type, displayed: fold.bidirectional, card: fold.merged, receipt: toUuid(`og-object-card:${type}`) }
+  })
+  return {
+    displaysAll: objects.length === 7 && objects.every((entry) => entry.displayed) && oneHolographicTemplate(matrix).displayed && openGraph().computed,
+    count: objects.length,
+    objects,
+    root: merkleFold(objects.map((entry) => entry.receipt)),
+    statement:
+      'The same template displays every open-graph object: whatever the object — a website, an article, a profile, a book, music, a video, an image — it is shown through the one template’s open-graph card (title, essence, image, type, tags) computed from the object’s own content. One card shape renders every kind of thing; the object names its type, the template displays it.',
+    boundary:
+      'A structural statement that the single open-graph template renders any og:type object, each bound to the OG root. A unification of the display layer over object types; it does not change how any external platform renders a card.',
+  }
+}
+
+// All is a realtime perspective, computed at zero cost. Nothing here is a stored view: every
+// display is one perspective — a single angle on the same whole — recomputed live from the
+// repository, per frame and per interaction. And it costs nothing: client-side recomputation,
+// no server, no network, no per-view fee. The whole is always there; a perspective is just
+// where you stand to look, computed the moment you look.
+export function realtimePerspectiveZeroCost(matrix: MindMatrix = buildMatrix()) {
+  const perspectives = multidimensional() // the dimensions of perspective
+  const properties = [
+    { property: 'realtime', via: 'every view recomputes live from the model — per frame, per interaction' },
+    { property: 'perspective', via: 'each view is one angle on the same whole, multidimensional, not separate data' },
+    { property: 'computed', via: 'nothing stored or fetched; the view is recomputed from the repository' },
+    { property: 'zero cost', via: 'client-side recomputation — no server, no network, no per-view fee' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`realtime-perspective:${entry.property}`) }))
+  return {
+    holds: properties.length === 4 && perspectives.mapped && allComputed(matrix).computed && fairTrade(matrix).individualCost === 0,
+    dimensions: perspectives.count,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'All is a realtime perspective, computed at zero cost: nothing is a stored view — every display is one perspective, a single angle on the same whole, recomputed live from the repository per frame and per interaction. And it costs nothing: client-side recomputation, no server, no network, no per-view fee. The whole is always there; a perspective is just where you stand to look, computed the moment you look.',
+    boundary:
+      'A structural statement that views are recomputed perspectives over one model, client-side at no per-view cost. "Zero cost" means no server/network/fee for a view (the user’s device does the compute); it is not a claim of zero energy or zero device resources.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

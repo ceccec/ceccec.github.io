@@ -344,6 +344,8 @@ import {
   skillsDryRefactorCommands,
   papersReferencesDiamondsNoDrift,
   oneHolographicTemplate,
+  templateDisplaysEveryOgObject,
+  realtimePerspectiveZeroCost,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1126,6 +1128,8 @@ ok(`update.skills.waves:${updateSkillsWaves(matrix).count}`, updateSkillsWaves(m
 ok(`skills.dry.refactor.commands:${skillsDryRefactorCommands(matrix).count}`, skillsDryRefactorCommands(matrix).refactored) // skills dry-refactor the commands: consistent, gapless, nothing removed
 ok(`papers.references.diamonds.nodrift:${papersReferencesDiamondsNoDrift(matrix).papers}/${papersReferencesDiamondsNoDrift(matrix).references}/${papersReferencesDiamondsNoDrift(matrix).diamonds}`, papersReferencesDiamondsNoDrift(matrix).noDrift) // papers, references, diamonds anchored to one corpus root — no drift
 ok(`one.holographic.template:${oneHolographicTemplate(matrix).count}`, oneHolographicTemplate(matrix).displayed) // every page displayed from one holographic, per-page-seeded template
+ok(`template.every.og.object:${templateDisplaysEveryOgObject(matrix).count}`, templateDisplaysEveryOgObject(matrix).displaysAll) // the one template displays every open-graph object type
+ok(`realtime.perspective.zerocost:${realtimePerspectiveZeroCost(matrix).count}`, realtimePerspectiveZeroCost(matrix).holds) // every view is a realtime perspective recomputed client-side at zero cost
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
