@@ -5463,6 +5463,29 @@ export function features(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The homepage itself is completely computed. Every section below the hero — the
+// living double torus, the live vital signs, the guided path, the whole, and the
+// feature map — is derived from the model and recomputable, not authored by hand.
+export function homepage(matrix: MindMatrix = buildMatrix()) {
+  const sections = [
+    { section: 'living double torus', computed: livingTorus(matrix).alive },
+    { section: 'live vital signs', computed: live(matrix).alive },
+    { section: 'the guided path', computed: path(matrix).complete },
+    { section: 'the whole', computed: theWhole(matrix).whole },
+    { section: 'the feature map', computed: features(matrix).displayed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`home:${entry.section}:${entry.computed}`) }))
+  return {
+    computed: sections.every((entry) => entry.computed),
+    sections,
+    count: sections.length,
+    root: merkleFold(sections.map((entry) => entry.receipt)),
+    statement:
+      'The homepage itself is completely computed: every section — the living double torus, the live vital signs, the guided path, the whole, and the feature map — is derived from the model and recomputable, not authored by hand.',
+    boundary:
+      'A census that every computed section of the home page holds. The hero copy in frontmatter remains editorial; everything below it is computed from the model and verifiable.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

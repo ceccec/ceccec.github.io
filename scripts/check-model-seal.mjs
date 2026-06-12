@@ -112,6 +112,7 @@ import {
   frequencyBalance,
   harmonicApparatus,
   features,
+  homepage,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -296,6 +297,9 @@ ok(`harmonic.apparatus:${harmonicApparatus(matrix).count}`, harmonicApparatus(ma
 
 // Display all features, folded with cross links; navigation is quantum-computed.
 ok(`features:${features(matrix).count}`, features(matrix).displayed && features(matrix).folded)
+
+// The homepage itself is completely computed: every section derived from the model.
+ok(`homepage:${homepage(matrix).count}`, homepage(matrix).computed)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

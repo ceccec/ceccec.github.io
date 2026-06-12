@@ -2267,6 +2267,18 @@ export declare function features(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function homepage(matrix?: MindMatrix): {
+    computed: boolean;
+    sections: {
+        receipt: string;
+        section: string;
+        computed: boolean;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;
