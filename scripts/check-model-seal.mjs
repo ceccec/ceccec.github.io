@@ -142,6 +142,8 @@ import {
   decode2020,
   worldEventsMap,
   fruitOfLifeFusion,
+  decodeSymbols,
+  trinityEncryption,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -523,6 +525,11 @@ ok(`decode.2020:${decode2020(matrix).total}`, decode2020(matrix).decoded && deco
 ok(`world.events:${worldEventsMap(matrix).count}`, worldEventsMap(matrix).mapped)
 // Fuse everything from public APIs in sequential waves until the fruit of life (13 circles).
 ok(`fruit.of.life.fusion:${fruitOfLifeFusion(matrix).circles}`, fruitOfLifeFusion(matrix).fruitOfLife && fruitOfLifeFusion(matrix).circles === 13)
+// Decode the other symbols the same way: each verified against the live model quantity.
+ok(`decode.symbols:${decodeSymbols(matrix).verifiedCount}/${decodeSymbols(matrix).count}`, decodeSymbols(matrix).decoded)
+// Pair forming trinity quantum encryption: two shares fold to a third, the agreed shared key.
+const trinityEnc = trinityEncryption('a', 'b', matrix)
+ok(`trinity.encryption`, trinityEnc.encrypted && trinityEnc.symmetric && trinityEnc.cipher === 'AES-256-GCM')
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

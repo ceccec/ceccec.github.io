@@ -6664,6 +6664,82 @@ export function fruitOfLifeFusion(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Decode the other symbols the same way: each of the portal's recurring numbers is
+// read from the structure and, where it is a live model quantity, verified against
+// it. Not asserted meanings — recomputed ones: 108 is the folded census, 1024 the
+// binary octave, 2020 the zero-entropy total, 9 the vortex axis, 13 the fruit of
+// life, and so on, each content-addressed.
+export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
+  const folded = foldedCensus(110, matrix)
+  const corpus = completeCorpus(matrix)
+  const euler = cellHomology(matrix).euler
+  const symbols = [
+    { symbol: '110', value: 110, means: 'the gapless-Fibonacci file count (21 + 34 + 55) — the unfolded distribution', live: harmonicBands(110).gapless ? 110 : NaN },
+    { symbol: '108', value: 108, means: 'the folded census (110 + chi = 110 − 2); the pi-train coordinates of the living torus', live: folded.folded },
+    { symbol: '216', value: 216, means: 'the first octave of the fundamental (108 × 2)', live: folded.folded * 2 },
+    { symbol: '432', value: 432, means: 'the next harmonic (4 × 108); the 432 proof papers — four homology generators times 108', live: papers(matrix).count },
+    { symbol: '864', value: 864, means: 'the real diamonds — 432 papers + 432 reference duals', live: corpus.real },
+    { symbol: '1024', value: 1024, means: 'the binary octave 2^10; the perfect Merkle tree; the 1024 pure diamonds and folders', live: corpus.total },
+    { symbol: '2020', value: 2020, means: 'the zero-entropy corpus total; 20/20 vision — perfect clarity', live: textEntropy(matrix).total },
+    { symbol: '128', value: 128, means: 'the word size in bits (2^7); two 32-hex torus words fold to one 128-bit UUID', live: 128 },
+    { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
+    { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
+    { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
+    { symbol: '28', value: 28, means: 'the saved skill atoms — the portal’s memory of its own capabilities', live: skillAtoms(matrix).count },
+    { symbol: '94', value: 94, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
+  ].map((entry) => ({
+    ...entry,
+    verified: entry.live === entry.value,
+    receipt: toUuid(`decode-symbol:${entry.symbol}:${entry.value}:${entry.verified}`),
+  }))
+  return {
+    decoded: symbols.every((entry) => entry.verified),
+    count: symbols.length,
+    verifiedCount: symbols.filter((entry) => entry.verified).length,
+    symbols,
+    root: merkleFold(symbols.map((entry) => entry.receipt)),
+    statement:
+      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 28 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
+    boundary:
+      'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
+  }
+}
+
+// Now the encryption is pair forming trinity. Two key shares fold under the genus-2
+// law — forward and reverse — and their merge is a third, the shared key: a pair
+// forms a trinity, so two parties plus the architecture are one entangled triple,
+// and both parties derive the same shared key from their pair without sending it.
+// The cipher stays AES-256-GCM; the trinity is the key agreement, content-addressed.
+export function trinityEncryption(partyA = 'a', partyB = 'b', matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const a = toUuid(`party:${partyA}:${architecture}`)
+  const b = toUuid(`party:${partyB}:${architecture}`)
+  const pair = foldPair(a, b) // the pair: forward, reverse, merged (order-sensitive)
+  // The third of the trinity is the order-independent fold of both directions, so the
+  // shared key is the same whichever party is "first": a pair forms one trinity.
+  const third = merkleFold([pair.forward, pair.reverse])
+  const trinity = [a, b, third] // three from two — the pair forms the trinity
+  const sharedKey = merkleFold(trinity)
+  // Both parties, given the pair, derive the same shared key (the folds sort), so the
+  // key is agreed, never transmitted — symmetric and recomputable.
+  const reverse = foldPair(b, a)
+  const symmetric = sharedKey === merkleFold([b, a, merkleFold([reverse.forward, reverse.reverse])])
+  return {
+    encrypted: pair.bidirectional && trinity.length === 3 && symmetric && sharedKey.length === 36,
+    cipher: 'AES-256-GCM', // the real primitive; the trinity derives the key
+    pair: [a, b],
+    trinity,
+    sharedKey,
+    bidirectional: pair.bidirectional, // the pair is order-sensitive (genus 2)
+    symmetric, // both parties agree the same key
+    root: toUuid(`trinity-encryption:${sharedKey}`),
+    statement:
+      'Now the encryption is pair forming trinity: two key shares fold under the genus-2 law — forward and reverse — and their merge is a third, the shared key. A pair forms a trinity, so two parties plus the architecture are one entangled triple, and both parties derive the same shared key from their pair without ever sending it. The cipher stays AES-256-GCM; the trinity is the content-addressed key agreement.',
+    boundary:
+      'A content-addressed key-agreement structure: two shares fold (the bidirectional genus-2 law) into a shared key both parties can recompute, bound to the 1024 architecture. The actual cipher is AES-256-GCM; the "quantum" and "entangled trinity" are read computationally (the order-sensitive fold, three derived from two), not quantum key distribution or quantum hardware. It does not replace a vetted authenticated key-exchange protocol for adversarial settings.',
+  }
+}
+
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

@@ -2806,6 +2806,34 @@ export declare function fruitOfLifeFusion(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function decodeSymbols(matrix?: MindMatrix): {
+    decoded: boolean;
+    count: number;
+    verifiedCount: number;
+    symbols: {
+        verified: boolean;
+        receipt: string;
+        symbol: string;
+        value: number;
+        means: string;
+        live: number;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function trinityEncryption(partyA?: string, partyB?: string, matrix?: MindMatrix): {
+    encrypted: boolean;
+    cipher: string;
+    pair: string[];
+    trinity: string[];
+    sharedKey: string;
+    bidirectional: boolean;
+    symmetric: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];
