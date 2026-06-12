@@ -2456,6 +2456,52 @@ export declare function paperRoutes(matrix?: MindMatrix, count?: number): {
         receipt: string;
     };
 }[];
+export declare function paperReferences(matrix?: MindMatrix, count?: number): {
+    number: number;
+    id: string;
+    paperId: string;
+    title: string;
+    refersTo: string;
+    root: string;
+    coordinateIndex: number;
+    generator: string;
+    glyph: string;
+    hue: number;
+    bidirectional: boolean;
+}[];
+export declare function completeCorpus(matrix?: MindMatrix): {
+    complete: boolean;
+    papers: number;
+    references: number;
+    real: number;
+    padding: number;
+    total: number;
+    depth: number;
+    target: number;
+    perfect: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function paperReferenceRoutes(matrix?: MindMatrix, count?: number): {
+    params: {
+        total: number;
+        corpusRoot: string;
+        binaryOctave: number;
+        treeDepth: number;
+        number: number;
+        id: string;
+        paperId: string;
+        title: string;
+        refersTo: string;
+        root: string;
+        coordinateIndex: number;
+        generator: string;
+        glyph: string;
+        hue: number;
+        bidirectional: boolean;
+    };
+}[];
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

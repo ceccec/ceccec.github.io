@@ -123,6 +123,8 @@ import {
   foldedCensus,
   papers,
   paperRoutes,
+  paperReferences,
+  completeCorpus,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -338,6 +340,12 @@ ok(`papers:${corpus.count}=4x${corpus.fundamental}`, corpus.expanded && corpus.n
 // descriptor with a verifying public proof and precomputed animation positions.
 const routes = paperRoutes(matrix)
 ok(`paper.routes:${routes.length}`, routes.length === corpus.count && routes.every((route) => route.params.proofVerified))
+// The other 432 files are references only, completing the binary octave: 432 papers
+// + 432 reference duals = 864 real leaves, padded to 2^10 = 1024 (perfect tree).
+const references = paperReferences(matrix)
+const complete1024 = completeCorpus(matrix)
+ok(`references:${references.length}`, references.length === 432 && references.every((reference) => reference.root === corpus.papers[reference.number - 1].reverse))
+ok(`complete.1024:${complete1024.real}->${complete1024.total}@2^${complete1024.depth}`, complete1024.complete && complete1024.total === 1024 && complete1024.depth === 10 && complete1024.perfect)
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)

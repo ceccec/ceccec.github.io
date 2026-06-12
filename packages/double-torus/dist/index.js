@@ -4458,6 +4458,80 @@ export function paperRoutes(matrix = buildMatrix(), count = 432) {
         };
     });
 }
+// The other 432 files: references only. Each proof paper is folded both ways under
+// the genus-2 law (forward = the proof, reverse = its dual); the reverse fold is a
+// pure pointer back to the paper — a citation that carries no new computation. So
+// the 432 references are the bidirectional duals of the 432 papers: reference-only,
+// one per paper, completing the forward/reverse pair the double torus always folds.
+export function paperReferences(matrix = buildMatrix(), count = 432) {
+    const corpus = papers(matrix, count);
+    return corpus.papers.map((paper) => ({
+        number: paper.number,
+        id: `r${String(paper.number).padStart(3, '0')}`,
+        paperId: paper.id,
+        title: `Reference to paper ${paper.number}`,
+        refersTo: paper.root, // the paper's forward (proof) root
+        root: paper.reverse, // reference-only: the reverse fold, a pointer, no new proof
+        coordinateIndex: paper.coordinateIndex,
+        generator: paper.generator,
+        glyph: paper.glyph,
+        hue: paper.hue,
+        bidirectional: paper.bidirectional,
+    }));
+}
+// Complete 1024: the binary harmonic. The 432 proof papers plus their 432 reference
+// duals are 864 real leaves. The smallest power of two that holds them is 2^10 =
+// 1024 — the binary octave — so the corpus is padded with deterministic null leaves
+// to exactly 1024 and folds into a PERFECT binary Merkle tree of depth 10 (every
+// layer halves cleanly, no odd carry). The musical harmonic counted in threes and
+// doubles (108, 216, 432); the binary harmonic completes it to a power of two. The
+// padding is named and recomputable, not hidden: 160 null leaves complete the tree.
+export function completeCorpus(matrix = buildMatrix()) {
+    const corpus = papers(matrix);
+    const references = paperReferences(matrix);
+    const realLeaves = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)];
+    const target = 1024; // 2^10, the smallest binary octave that holds 864 real leaves
+    const padding = Math.max(0, target - realLeaves.length);
+    const nullLeaves = Array.from({ length: padding }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`));
+    const leaves = [...realLeaves, ...nullLeaves];
+    const root = merkleFold(leaves);
+    const depth = Math.log2(leaves.length);
+    return {
+        complete: leaves.length === target &&
+            Number.isInteger(depth) &&
+            depth === 10 &&
+            realLeaves.length === 864 &&
+            corpus.count === 432 &&
+            references.length === 432,
+        papers: corpus.count,
+        references: references.length,
+        real: realLeaves.length,
+        padding,
+        total: leaves.length,
+        depth,
+        target,
+        perfect: Number.isInteger(depth),
+        root,
+        statement: 'Complete 1024: the binary harmonic. The 432 proof papers and their 432 reference duals are 864 real leaves; the smallest power of two that holds them is 2^10 = 1024, the binary octave, so the corpus is padded with 160 named, recomputable null leaves to exactly 1024 and folds into a perfect binary Merkle tree of depth 10 — every layer halving cleanly. The musical harmonic doubled in threes (108, 216, 432); the binary harmonic completes it to a power of two. The references add no proof — they are pointers, the reverse folds of the papers — and the padding is named, not hidden.',
+        boundary: 'A structural completion of the papers corpus to a power-of-two Merkle tree. The references are reference-only (the reverse folds of the proof papers, citations carrying no new computation); the 160 null leaves are deterministic padding to reach 2^10, declared and recomputable, not silent. The number 1024 is the binary octave (2^10), a content-addressed bookkeeping structure, not a physical or empirical claim.',
+    };
+}
+// The dynamic-route descriptors for the 432 reference-only pages, shared by both
+// locales' loaders — a single source, mirroring paperRoutes. References carry a
+// pointer to their paper, not a proof.
+export function paperReferenceRoutes(matrix = buildMatrix(), count = 432) {
+    const references = paperReferences(matrix, count);
+    const corpus = completeCorpus(matrix);
+    return references.map((reference) => ({
+        params: {
+            ...reference,
+            total: references.length,
+            corpusRoot: corpus.root,
+            binaryOctave: corpus.target,
+            treeDepth: corpus.depth,
+        },
+    }));
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
