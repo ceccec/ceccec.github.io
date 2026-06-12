@@ -1971,7 +1971,7 @@ export function quantumProofs(matrix = buildMatrix()) {
     // A deterministic pseudo-random stream seeded by the model root: same proof,
     // every run, recomputable by anyone — the randomness is reproducible.
     const stream = (tag) => {
-        let state = Number.parseInt(toUuid(`qproof:${matrix.root}:${tag}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '1', 16) || 1;
+        let state = seedFromText(`qproof:${matrix.root}:${tag}`, 8) || 1;
         return () => { state = (state * 1103515245 + 12345) & 0x7fffffff; return state / 0x7fffffff; };
     };
     const SHOTS = 4096;
@@ -2265,7 +2265,7 @@ export function determinismProofs(matrix = buildMatrix()) {
 // every adjacent boundary is opposite), with content-derived periods. The same
 // signed rates drive the home animation's self-similar counter-rotation.
 export function merkaba(matrix = buildMatrix()) {
-    const seed = (tag) => Number.parseInt(toUuid(`merkaba:${matrix.root}:${tag}`).replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16);
+    const seed = (tag) => seedFromText(`merkaba:${matrix.root}:${tag}`);
     const names = ['whole', 'lobe', 'tube', 'spark'];
     const basePeriods = [6000, 2600, 1700, 1100];
     const scales = names.map((scale, depth) => {
@@ -2308,7 +2308,7 @@ export function merkaba(matrix = buildMatrix()) {
 export function rhythm(matrix = buildMatrix()) {
     const round = (value, digits = 2) => roundTo(value, digits);
     const mk = merkaba(matrix);
-    const seed = Number.parseInt(toUuid(`rhythm:${matrix.root}`).replace(/[^0-9a-f]/g, '').slice(0, 6) || '0', 16);
+    const seed = seedFromText(`rhythm:${matrix.root}`);
     const bpm = 96 + (seed % 32); // 96..127 BPM, content-derived
     const beatMs = round(60000 / bpm, 1);
     const ratios = [1, 2, 3, 5]; // a steady pulse, then self-similar subdivisions
