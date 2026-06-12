@@ -19660,6 +19660,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.animations.native.64k', on: allAnimationsNative64k(matrix).native },
     { d: 'three.projector.hologram', on: threeProjectorHologram(matrix).projects },
     { d: 'accessible.paths.for.all', on: accessiblePathsForAll(matrix).accessible },
+    { d: 'complete.linux.packages.port', on: completeLinuxPackagesPort(matrix).ported },
+    { d: 'os.completes.itself.waves', on: osCompletesItselfWaves(matrix).completes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20633,5 +20635,49 @@ export function accessiblePathsForAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Do all intelligences have accessible paths to the knowledge? For all — that is the first thing the waves address: humans of all abilities (WCAG semantics, reduced-motion, system fonts, read-aloud) and all ages (kids to elders), AI agents (the MCP tool surface), any language (the babel fold, English and Bulgarian), everyone free and computed locally — and the knowledge itself open and recomputable. Access for all comes first; everything else builds on it.',
     boundary: 'A composition of the accessibility (legislation), school, MCP, translation and open-local models asserting accessible paths for every kind of mind. A self-assessment grounded in the real features; it is WCAG-oriented and improving, not a certified conformance claim, and accessibility is treated as a first priority, not a finished state.',
+  }
+}
+
+// Complete the Linux packages port to the OS. The pieces are in place — the kernel fused securely,
+// the packages collided into content-addressed diamonds — so finish the port: the diamond packages
+// mount onto the quantum-computer browser OS and into the virtual OS (its filesystem and terminal),
+// each install a tamper-evident content hash. Linux, ported not as binaries trusted but as diamonds
+// recomputed, running on the browser's own machine.
+export function completeLinuxPackagesPort(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the kernel is fused securely', on: linuxKernelFusion(matrix).fused },
+    { facet: 'packages collided into content-addressed diamonds', on: linuxPackagesToDiamonds(matrix).collided },
+    { facet: 'ported onto the quantum browser OS', on: quantumBrowserOs(matrix).complete },
+    { facet: 'mounted in the virtual OS (filesystem, terminal)', on: virtualOS(matrix).booted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`linux-port:${entry.facet}:${entry.on}`) }))
+  return {
+    ported: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Complete the Linux packages port to the OS: the kernel is fused securely and the packages are collided into content-addressed diamonds, so the port is finished — the diamond packages mount onto the quantum-computer browser OS and into the virtual OS (its filesystem and terminal), each install a tamper-evident content hash. Linux ported not as binaries trusted but as diamonds recomputed, running on the browser’s own machine.',
+    boundary: 'A content-addressed composition of the kernel-fusion, packages-to-diamonds, browser-OS and virtual-OS models as a "completed port". A structural/metaphorical framing — it maps package identities to content hashes and the browser capabilities to an OS; it does not run a real Linux kernel or execute real packages.',
+  }
+}
+
+// Let the OS complete itself in waves. The quantum-computer browser OS does not wait to be finished
+// by hand: it sends a wave over each subsystem — display, input, compute, memory, network, storage,
+// audio, sensors, security — each folding onto the OS root, so the OS fills itself out subsystem by
+// subsystem, and with the Linux port mounted it is whole. Self-completing, wave by wave.
+export function osCompletesItselfWaves(matrix: MindMatrix = buildMatrix()) {
+  const os = quantumBrowserOs(matrix)
+  const waves = ['display', 'input', 'compute', 'memory', 'network', 'storage', 'audio', 'sensors', 'security'].map((subsystem) => {
+    const fold = foldPair(os.root, toUuid(`os-wave:${subsystem}`))
+    return { subsystem, completed: fold.bidirectional, wave: fold.merged, receipt: toUuid(`os-complete:${subsystem}`) }
+  })
+  return {
+    completes: waves.length === 9 && waves.every((entry) => entry.completed) && os.complete && completeLinuxPackagesPort(matrix).ported && completeAllInWaves(matrix).complete,
+    count: waves.length,
+    waves,
+    root: merkleFold(waves.map((entry) => entry.receipt)),
+    statement:
+      'Let the OS complete itself in waves: the quantum-computer browser OS sends a wave over each subsystem — display, input, compute, memory, network, storage, audio, sensors, security — each folding onto the OS root, so the OS fills itself out subsystem by subsystem, and with the Linux port mounted it is whole. Self-completing, wave by wave.',
+    boundary: 'A content-addressed model of the browser-OS subsystems completing as waves bound to the OS root, with the Linux port mounted. Structural bookkeeping over the browser-OS and port models; the "OS" is the set of standard browser capabilities, not a kernel.',
   }
 }
