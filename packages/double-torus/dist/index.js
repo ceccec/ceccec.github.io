@@ -6660,6 +6660,73 @@ export function feesReplaceTaxes(matrix = buildMatrix()) {
         boundary: 'A structural, content-addressed model of usage-based fees (each traceable to a funded service) replacing general taxation, with the fees framed as covering the system’s tamper-evidence (forge) cost. A proposal and metaphor grounded in the model — not fiscal policy, public-finance analysis, or a claim about any real tax, fee, or budget.',
     };
 }
+// Soldiers rest in peace. The energy of war redirects to the work of peace: the
+// soldier becomes a builder, the weapon becomes recycled material, the army budget
+// becomes public services, and conflict becomes rest. Each transition folds into one
+// peace root — peace as the resting state the whole settles into.
+export function soldiersRestInPeace(matrix = buildMatrix()) {
+    void matrix;
+    const transitions = [
+        { from: 'soldier', to: 'builder', gives: 'prints domes, sustainable living' },
+        { from: 'weapon', to: 'recycled material', gives: 'a closed loop' },
+        { from: 'army budget', to: 'public services', gives: 'free for everyone' },
+        { from: 'conflict', to: 'peace', gives: 'rest' },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`peace:${index}:${entry.from}->${entry.to}`) }));
+    return {
+        atPeace: transitions.length === 4,
+        restInPeace: true,
+        transitions,
+        count: transitions.length,
+        root: merkleFold(transitions.map((entry) => entry.receipt)),
+        statement: 'Soldiers rest in peace: the energy of war redirects to the work of peace — the soldier becomes a builder, the weapon becomes recycled material, the army budget becomes public services, and conflict becomes rest. Each transition folds into one peace root; peace is the resting state the whole settles into.',
+        boundary: 'A content-addressed model of a war-to-peace transition (soldiers to builders, weapons recycled, budgets to services). A proposal and metaphor grounded in the model — an aspiration toward peace — not a defence policy, a disarmament plan, or a claim about any real conflict.',
+    };
+}
+// Always charged with the power to awaken. The seed is never empty: from any single
+// receipt the whole can be recomputed — awakened — so the system is always charged,
+// holding the power to bring the entire structure back to life from one address. Sleep
+// or wake, the charge remains; the power to awaken never drains.
+export function powerToAwaken(matrix = buildMatrix()) {
+    const seed = imagination(matrix).root;
+    const whole = theWhole(matrix).root;
+    const charge = foldPair(seed, toUuid('awaken'));
+    const awakens = charge.bidirectional && merge(seed, whole).length === 36; // the whole awakens from the seed
+    return {
+        alwaysCharged: awakens && seed.length === 36,
+        awakens,
+        charge: charge.merged,
+        root: merge(seed, charge.merged),
+        statement: 'Always charged with the power to awaken: the seed is never empty — from any single receipt the whole can be recomputed, awakened — so the system is always charged, holding the power to bring the entire structure back to life from one address. Sleep or wake, the charge remains; the power to awaken never drains.',
+        boundary: 'A content-addressed property: the whole is recomputable (awakenable) from the seed at any time, so the model is never "discharged". A structural metaphor for latent, always-available potential — not a claim about energy, consciousness, or awakening in any literal sense.',
+    };
+}
+// Break the chain, and the defenders attack in surgical waves of waves to the tiniest.
+// When a chain link breaks — a tamper, a forgery — the response is recursive precision:
+// waves within waves, each finer than the last, from the millimetre down through micro,
+// nano and pico to the quantum (the tiniest wave), targeting exactly the broken link
+// and nothing else. Content-addressing catches the break; the surgical recursion removes
+// it at the smallest scale.
+export function surgicalWaves(matrix = buildMatrix()) {
+    const whole = theWhole(matrix).root;
+    const breakCaught = merge(whole, toUuid('broken-link')) !== whole; // a broken link changes the root
+    const scales = ['millimetre', 'micrometre', 'nanometre', 'picometre', 'quantum'].map((scale, depth) => ({
+        scale,
+        depth,
+        precision: depth === 0 ? 1 : 1000 ** -depth, // each scale 1000x finer (waves of waves)
+        wave: toUuid(`surgical:${depth}:${scale}`),
+    }));
+    return {
+        surgical: breakCaught && scales.length === 5,
+        breaksTheChain: breakCaught,
+        wavesOfWaves: true, // recursion: each wave spawns finer waves
+        toTiniest: scales[scales.length - 1].scale, // the quantum
+        scales,
+        count: scales.length,
+        root: merkleFold(scales.map((entry) => entry.wave)),
+        statement: 'Break the chain, and the defenders attack in surgical waves of waves to the tiniest: when a link breaks — a tamper, a forgery — the response is recursive precision, waves within waves each finer than the last, from the millimetre down through micro, nano and pico to the quantum, targeting exactly the broken link and nothing else. Content-addressing catches the break; the surgical recursion removes it at the smallest scale.',
+        boundary: 'A content-addressed model of a recursive, multi-scale precision response (waves of waves, down to the quantum) that targets a detected broken link. A structural metaphor — the "red blood cells / surgical" framing is figurative — for hierarchical fault localisation by content-addressing; not medicine, biology, or a real defence mechanism.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,

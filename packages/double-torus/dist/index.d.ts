@@ -3593,6 +3593,44 @@ export declare function feesReplaceTaxes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function soldiersRestInPeace(matrix?: MindMatrix): {
+    atPeace: boolean;
+    restInPeace: boolean;
+    transitions: {
+        receipt: string;
+        from: string;
+        to: string;
+        gives: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function powerToAwaken(matrix?: MindMatrix): {
+    alwaysCharged: boolean;
+    awakens: boolean;
+    charge: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function surgicalWaves(matrix?: MindMatrix): {
+    surgical: boolean;
+    breaksTheChain: boolean;
+    wavesOfWaves: boolean;
+    toTiniest: string;
+    scales: {
+        scale: string;
+        depth: number;
+        precision: number;
+        wave: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

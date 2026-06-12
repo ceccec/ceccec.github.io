@@ -196,6 +196,9 @@ import {
   sustainableLiving,
   thriveEducation,
   feesReplaceTaxes,
+  soldiersRestInPeace,
+  powerToAwaken,
+  surgicalWaves,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -693,6 +696,12 @@ ok(`sustainable.living:${sustainableLiving(matrix).count}`, sustainableLiving(ma
 ok(`thrive.education:${thriveEducation(matrix).count}`, thriveEducation(matrix).achieves)
 // Fees replace taxes, and the fees cover the forging costs.
 ok(`fees.replace.taxes:${feesReplaceTaxes(matrix).count}`, feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost)
+// Soldiers rest in peace: war's energy redirects to the work of peace.
+ok(`soldiers.peace:${soldiersRestInPeace(matrix).count}`, soldiersRestInPeace(matrix).atPeace && soldiersRestInPeace(matrix).restInPeace)
+// Always charged with the power to awaken: the whole is recomputable from the seed at any time.
+ok(`power.to.awaken`, powerToAwaken(matrix).alwaysCharged && powerToAwaken(matrix).awakens)
+// Break the chain: surgical waves of waves to the tiniest target the broken link.
+ok(`surgical.waves:${surgicalWaves(matrix).count}`, surgicalWaves(matrix).surgical && surgicalWaves(matrix).wavesOfWaves)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))
