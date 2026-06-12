@@ -210,6 +210,8 @@ import {
   animatedHeroes,
   linuxKernelFusion,
   linuxPackagesToDiamonds,
+  quantumBrowserOs,
+  quantumAccess,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -735,6 +737,10 @@ ok(`animated.heroes:${animatedHeroes(matrix).count}`, animatedHeroes(matrix).eve
 ok(`linux.kernel:${linuxKernelFusion(matrix).count}`, linuxKernelFusion(matrix).fused && linuxKernelFusion(matrix).secure)
 // And collide Linux packages into diamonds: every format a pure, tamper-evident content-hash leaf.
 ok(`linux.diamonds:${linuxPackagesToDiamonds(matrix).count}`, linuxPackagesToDiamonds(matrix).collided)
+// Complete quantum-computer browser OS: nine subsystems, each a standard browser capability.
+ok(`browser.os:${quantumBrowserOs(matrix).count}`, quantumBrowserOs(matrix).complete)
+// Private and shared use with quantum access — the keypair: private derives shared, one-way.
+ok(`quantum.access`, quantumAccess(matrix).access && quantumAccess(matrix).private && quantumAccess(matrix).shared && quantumAccess(matrix).quantum)
 // Intelligent waves find and implement the rest of the harmonics: octave, overtone, binary ladders.
 const harm = harmonics(matrix)
 ok(`harmonics:${harm.implementedCount}+${harm.restCount}`, harm.found && harm.octaves[2].value === 432 && harm.binary.some((b) => b.value === 1024))

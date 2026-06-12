@@ -3775,6 +3775,34 @@ export declare function linuxPackagesToDiamonds(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function quantumBrowserOs(matrix?: MindMatrix): {
+    complete: boolean;
+    subsystems: {
+        receipt: string;
+        subsystem: string;
+        via: string;
+    }[];
+    count: number;
+    quantum: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumAccess(matrix?: MindMatrix): {
+    access: boolean;
+    private: boolean;
+    shared: boolean;
+    quantum: boolean;
+    modes: {
+        receipt: string;
+        mode: string;
+        access: string;
+        root: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function intelligenceComparison(matrix?: MindMatrix): {
     compared: boolean;
     properties: string[];

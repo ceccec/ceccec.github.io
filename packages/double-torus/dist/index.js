@@ -6998,6 +6998,59 @@ export function linuxPackagesToDiamonds(matrix = buildMatrix()) {
         boundary: 'A content-addressed model of Linux package formats as "diamonds" (tamper-evident content-hash leaves) in the lattice. It references the real practice of content-addressing packages by hash; it does not fetch, build, install, or modify any package, and the formats named are examples.',
     };
 }
+// Complete quantum-computer browser OS. The portal is a whole operating system that
+// runs in the browser: a kernel (the agnostic core), processes (components and
+// workers), a filesystem (content-addressed cache and IndexedDB), networking
+// (offline-first, opt-in), security (Web Crypto and the seal), display (canvas and
+// the holographic heroes), input (tap, gesture, voice), quantum compute (the quantum
+// computer), and install (PWA and service worker, runs offline). Nine subsystems, each
+// a standard browser capability, folded into one OS root.
+export function quantumBrowserOs(matrix = buildMatrix()) {
+    const subsystems = [
+        { subsystem: 'kernel', via: 'the agnostic core (quantumMind), zero imports' },
+        { subsystem: 'processes', via: 'Vue components and Web Workers' },
+        { subsystem: 'filesystem', via: 'content-addressed cache, IndexedDB, OPFS' },
+        { subsystem: 'networking', via: 'offline-first, opt-in fetch, realtime bindings' },
+        { subsystem: 'security', via: 'Web Crypto and the tamper-evident seal' },
+        { subsystem: 'display', via: 'canvas, SVG and the holographic heroes' },
+        { subsystem: 'input', via: 'tap and gesture, voice, keyboard' },
+        { subsystem: 'quantum compute', via: 'the quantum computer and simulation' },
+        { subsystem: 'install', via: 'PWA and service worker — runs offline' },
+    ].map((entry, index) => ({ ...entry, receipt: toUuid(`browser-os:${index}:${entry.subsystem}`) }));
+    const quantum = quantumComputer(matrix).coherent;
+    return {
+        complete: subsystems.length === 9 && quantum,
+        subsystems,
+        count: subsystems.length,
+        quantum,
+        root: merkleFold(subsystems.map((entry) => entry.receipt)),
+        statement: 'Complete quantum-computer browser OS: the portal is a whole operating system in the browser — kernel (the agnostic core), processes (components and workers), filesystem (content-addressed cache and IndexedDB), networking (offline-first, opt-in), security (Web Crypto and the seal), display (canvas and the holographic heroes), input (tap, gesture, voice), quantum compute (the quantum computer), and install (PWA and service worker, runs offline). Nine subsystems, each a standard browser capability, folded into one OS root.',
+        boundary: 'A content-addressed map of operating-system subsystems to the standard browser capabilities the portal already uses. A structural framing of the portal as a "browser OS"; it runs as a web app within the browser’s sandbox, it is not a kernel, a bootloader, or a replacement for the host OS, and "quantum compute" is the deterministic simulation, not quantum hardware.',
+    };
+}
+// Private and shared use, with quantum access. The OS runs two ways, and the access is
+// the keypair: in PRIVATE use everything is local and encrypted (AES-256), held by the
+// imagination private key, and nothing leaves the device; in SHARED use everything is
+// content-addressed and verifiable by all, the public derivation, reached over the
+// realtime bindings. Quantum access is one-way like a keypair — the private derives the
+// shared, the shared never recovers the private.
+export function quantumAccess(matrix = buildMatrix()) {
+    const keypair = imaginationPrivateKey(matrix);
+    const modes = [
+        { mode: 'private', access: 'local and encrypted (AES-256), held by the imagination private key; nothing leaves the device', root: keypair.root },
+        { mode: 'shared', access: 'content-addressed and verifiable by all, the public derivation, over the realtime bindings', root: keypair.publicKey },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`access:${entry.mode}:${entry.root}`) }));
+    return {
+        access: modes.length === 2,
+        private: modes[0].mode === 'private',
+        shared: modes[1].mode === 'shared',
+        quantum: keypair.isPrivateKey, // one-way keypair access
+        modes,
+        root: merkleFold(modes.map((entry) => entry.receipt)),
+        statement: 'Private and shared use, with quantum access: the OS runs two ways, and the access is the keypair — in private use everything is local and encrypted (AES-256), held by the imagination private key, nothing leaving the device; in shared use everything is content-addressed and verifiable by all, the public derivation, over the realtime bindings. Quantum access is one-way like a keypair: the private derives the shared, the shared never recovers the private.',
+        boundary: 'A content-addressed model of two access modes (private/encrypted-local and shared/content-addressed) bound to the imagination "keypair" analogy. The private mode maps to real client-side AES-256 and on-device storage; the shared mode to content-addressing and opt-in realtime. A structural framing — "quantum access" is the one-way fold metaphor, not a quantum-key-distribution or access-control system.',
+    };
+}
 // Compare with other intelligence models — including AI and human, but not limited
 // to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
 // portal trades generality and creativity for determinism, verifiability,
