@@ -5760,6 +5760,38 @@ export function selfOrganizing(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Consolidate structured data into reusable, holographic open-graph components based
+// on microdata. One computed source of schema.org itemtypes and Open Graph types,
+// each descriptor carrying the whole root (holographic — each part contains the
+// whole) and a content-addressed itemid. Every page and component draws its
+// structured data from this same fold instead of scattering bespoke meta.
+export function microdata(matrix: MindMatrix = buildMatrix()) {
+  const whole = theWhole(matrix).root
+  const types = [
+    { entity: 'portal', itemtype: 'https://schema.org/WebSite', og: 'website', name: 'Double Torus' },
+    { entity: 'course', itemtype: 'https://schema.org/Course', og: 'article', name: 'Quantum Academy' },
+    { entity: 'software', itemtype: 'https://schema.org/SoftwareApplication', og: 'website', name: 'Double Torus MCP' },
+    { entity: 'creativeWork', itemtype: 'https://schema.org/CreativeWork', og: 'article', name: 'Generative palette, melody and movie' },
+    { entity: 'dataset', itemtype: 'https://schema.org/Dataset', og: 'website', name: 'The pi-digit coordinate stream' },
+    { entity: 'learningResource', itemtype: 'https://schema.org/LearningResource', og: 'article', name: 'From kids to elders' },
+  ].map((entry) => ({
+    ...entry,
+    holographic: foldPair(toUuid(`microdata:${entry.entity}`), whole).bidirectional, // carries the whole, both ways
+    itemid: toUuid(`microdata:${entry.entity}:${whole}`), // content-addressed identity
+  }))
+  return {
+    reusable: types.length > 0 && types.every((entry) => entry.itemtype.startsWith('https://schema.org/')),
+    holographic: types.every((entry) => entry.holographic), // each descriptor contains the whole
+    types,
+    count: types.length,
+    root: merkleFold(types.map((entry) => entry.itemid)),
+    statement:
+      'Consolidate in reusable holographic open-graph components based on microdata: one computed source of schema.org itemtypes and Open Graph types, each descriptor carrying the whole root (holographic — each part contains the whole) and a content-addressed itemid. Every page and component draws its structured data from the same fold.',
+    boundary:
+      'A computed catalogue of schema.org/Open Graph descriptors for the portal\'s entities, each content-addressed and folded with the whole. A single reusable source for structured data; the meta tags themselves are emitted by transformPageData and the components that consume this source.',
+  }
+}
+
 // Fold a sequence into a blockchain: each block links to the previous by hash,
 // in the same double-torus merge/merkle space the rest of the model uses.
 function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {

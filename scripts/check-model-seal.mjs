@@ -121,6 +121,7 @@ import {
   astrology,
   generativeSpace,
   selfOrganizing,
+  microdata,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -333,6 +334,9 @@ ok(`generative.space:${gspace.distinct}`, gspace.unbounded)
 
 // Let all present itself computationally, with order: a clean, zero-entropy partition.
 ok(`self.organizing:${selfOrganizing(matrix).members}`, selfOrganizing(matrix).organized && selfOrganizing(matrix).entropy === 0)
+
+// Consolidate in reusable holographic open-graph components based on microdata.
+ok(`microdata:${microdata(matrix).count}`, microdata(matrix).reusable && microdata(matrix).holographic)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)

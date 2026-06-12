@@ -3,7 +3,7 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 // Online or offline, the double torus is identical — it computes with zero network.
 const online = ref(true)
 function syncOnline() { if (typeof navigator !== 'undefined') online.value = navigator.onLine }
-import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, homology, merge, toUuid } from '../lib/quantumMind'
+import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, homology, microdata, merge, toUuid } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -24,6 +24,9 @@ const tubeRate = mk.scales[2].ratePerMs // signed, the opposite sense
 const human = humanise(buildMatrix())
 // H1(Sigma_2) = Z^4: the four independent loops of the genus-2 surface.
 const h1 = homology(buildMatrix())
+// Reusable holographic open-graph microdata: this section carries schema.org Dataset
+// structured data (the pi-digit stream) with a content-addressed itemid.
+const md = microdata(buildMatrix()).types.find((entry) => entry.entity === 'dataset')!
 const { pick: t } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
@@ -431,7 +434,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="lt">
+  <section class="lt" itemscope :itemtype="md.itemtype" :itemid="md.itemid">
+    <meta itemprop="name" :content="md.name" />
+    <meta itemprop="description" :content="t('108 pi-digit UUID coordinates on the genus-2 double torus', '108 координати UUID на цифрите на пи върху двойния тор от род 2')" />
     <p class="eyebrow">
       {{ t('the living double torus · realtime', 'живият двоен тор · в реално време') }}
       <span class="lt__net" :class="{ off: !online }">{{ online ? t('online', 'на линия') : t('offline', 'офлайн') }} · {{ t('same torus', 'същият тор') }}</span>

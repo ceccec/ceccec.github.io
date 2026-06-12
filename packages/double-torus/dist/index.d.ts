@@ -2335,6 +2335,104 @@ export declare function teleport(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function cellHomology(matrix?: MindMatrix): {
+    closed: boolean;
+    cells: {
+        c0: number;
+        c1: number;
+        c2: number;
+    };
+    boundary1: number[][];
+    boundary2: number[][];
+    chainComplex: boolean;
+    betti: number[];
+    euler: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function intelligenceComparison(matrix?: MindMatrix): {
+    compared: boolean;
+    properties: string[];
+    models: {
+        receipt: string;
+        model: string;
+        scores: number[];
+    }[];
+    count: number;
+    note: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function astrology(seed?: string, matrix?: MindMatrix): {
+    developed: boolean;
+    seed: string;
+    sun: {
+        sign: string;
+        glyph: string;
+        element: string;
+        ruler: string;
+        hour: number;
+        hue: number;
+        frequency: number;
+        receipt: string;
+    };
+    chart: {
+        sign: string;
+        glyph: string;
+        element: string;
+        ruler: string;
+        hour: number;
+        hue: number;
+        frequency: number;
+        receipt: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function generativeSpace(samples?: number): {
+    unbounded: boolean;
+    generators: string[];
+    sampled: number;
+    distinct: number;
+    cost: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function selfOrganizing(matrix?: MindMatrix): {
+    organized: boolean;
+    entropy: number;
+    categories: {
+        receipt: string;
+        category: string;
+        members: string[];
+    }[];
+    count: number;
+    members: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function microdata(matrix?: MindMatrix): {
+    reusable: boolean;
+    holographic: boolean;
+    types: {
+        holographic: boolean;
+        itemid: string;
+        entity: string;
+        itemtype: string;
+        og: string;
+        name: string;
+    }[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function quantumFoldedBlockchains(matrix?: MindMatrix): QuantumFoldedBlockchains;
 export declare function blockchainMusic(name?: string, matrix?: MindMatrix): {
     plays: boolean;

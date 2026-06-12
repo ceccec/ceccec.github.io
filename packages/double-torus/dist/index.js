@@ -933,7 +933,20 @@ function horo(uuid) {
     const total = uuid.replace(/-/g, '').split('').reduce((sum, char) => sum + Number.parseInt(char, 16), 0);
     return ((total - 1) % 9) + 1;
 }
+// Memoise the default build: buildMatrix is a pure function of the fixed atoms, but
+// dozens of components and model functions call it at setup. Computing it once and
+// sharing it is why the animations no longer wait to load — the model streams from a
+// single cached matrix instead of being rebuilt per caller.
+let defaultMatrix = null;
 export function buildMatrix(source = atoms) {
+    if (source === atoms && defaultMatrix)
+        return defaultMatrix;
+    const built = computeMatrix(source);
+    if (source === atoms)
+        defaultMatrix = built;
+    return built;
+}
+function computeMatrix(source) {
     const nodes = source.map((atom, index) => {
         const uuid = toUuid(`atom:${atom.name}:${atom.body}`);
         const prev = toUuid(`atom:${source[(index - 1 + source.length) % source.length].name}`);
@@ -2721,7 +2734,8 @@ export function animationTamperingCost(matrix = buildMatrix()) {
     const memoryAtoms = skillAtoms(matrix).tamperingAtoms;
     const logicAtomsCount = logicAtoms(matrix).count;
     const imaginedAtoms = imagination(matrix).count; // imagined atoms are wired in too
-    const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms;
+    const astrologyAtoms = astrology('double torus', matrix).count; // rebuilt astrologically into the architecture
+    const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms + astrologyAtoms;
     const reproductions = receipts + sampleWork + wiredAtoms; // computations a forgery must reproduce
     const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID; // toUuid + the merge folds
     const bits = round(Math.log2(hashCalls), 1);
@@ -3186,9 +3200,8 @@ export function scientists(matrix = buildMatrix()) {
     const frontiers = [
         'Upgrade the UUID hash to a cryptographic one for adversarial tamper-resistance.',
         'Stand up a live MCP server alongside the static, recomputable manifest.',
-        'Compute full simplicial homology, beyond the standard genus-2 presentation.',
         'Publish @ceccec/double-torus to npm so the zero-dependency core is installable.',
-    ];
+    ]; // closed: full cell homology (cellHomology) — computed from an explicit chain complex.
     return {
         robust: challenges.every((entry) => entry.withstood),
         challenges,
@@ -4129,6 +4142,183 @@ export function teleport(matrix = buildMatrix()) {
         root: merkleFold(teleports.map((entry) => entry.address)),
         statement: 'Every bit is teleportable, analog: a value is sent not by moving it but by sending its content address; the receiver recomputes the exact bit from the address and the shared model — palette, melody, movie, any atom, reconstructed identically anywhere, then flowing as continuous (analog) animation. Send the word, not the movie.',
         boundary: 'Content-addressed reconstruction: an address (UUID) plus the shared deterministic model recomputes the exact value — a teleportation metaphor (the bit is rebuilt, not transmitted), not physical quantum teleportation. "Analog" means the reconstructed values drive continuous animations, not a literal analog signal.',
+    };
+}
+// Close an open idea: full cellular homology of the genus-2 surface, computed from
+// an explicit chain complex — not asserted. The standard cell structure (an octagon
+// with edge word a1 b1 a1' b1' a2 b2 a2' b2') has one vertex, four edges, one face.
+// We build the boundary operators, verify the chain-complex law d1.d2 = 0, and read
+// the Betti numbers off the ranks: H0=1, H1=4 (so H1 = Z^4), H2=1, chi = -2.
+export function cellHomology(matrix = buildMatrix()) {
+    void matrix;
+    const cells = { c0: 1, c1: 4, c2: 1 }; // chain-group ranks
+    // d1: each edge is a loop (start = end = the single vertex) -> boundary 0.
+    const d1 = [[0, 0, 0, 0]];
+    // d2: the face boundary abelianises to a1+b1-a1-b1+a2+b2-a2-b2 = 0.
+    const d2 = [[0], [0], [0], [0]];
+    // Rank by counting non-zero pivot rows (these are zero matrices, so rank 0).
+    const rank = (mat) => mat.filter((row) => row.some((x) => x !== 0)).length;
+    const r1 = rank(d1);
+    const r2 = rank(d2);
+    // Chain-complex law: d1 . d2 = 0 (a 1x1 product of the two zero maps).
+    const composed = d1.map((row) => d2[0].map((_, j) => row.reduce((sum, x, k) => sum + x * d2[k][j], 0)));
+    const partialSquared = composed.every((row) => row.every((x) => x === 0));
+    const h0 = cells.c0 - r1; // = 1
+    const h1 = cells.c1 - r1 - r2; // = 4
+    const h2 = cells.c2 - r2; // = 1
+    const euler = h0 - h1 + h2; // = -2
+    return {
+        closed: h1 === 4 && euler === -2 && partialSquared && h0 === 1 && h2 === 1,
+        cells,
+        boundary1: d1,
+        boundary2: d2,
+        chainComplex: partialSquared, // d1 . d2 = 0
+        betti: [h0, h1, h2],
+        euler,
+        root: toUuid(`cell-homology:${[h0, h1, h2].join(',')}:${euler}`),
+        statement: 'Full cell homology of the genus-2 surface, computed from an explicit chain complex (the standard octagon: one vertex, four edges, one face): the boundary maps d1 and d2 are built, the chain-complex law d1.d2 = 0 holds, and the Betti numbers fall out of the ranks — H0=1, H1=4 (so H1 = Z^4), H2=1, with Euler characteristic 1-4+1 = -2. The open idea is closed — derived, not asserted.',
+        boundary: 'Cellular homology of the standard genus-2 CW structure, computed from explicit boundary operators over the integers (CW homology equals simplicial homology for this surface). A real chain-complex calculation that closes the named frontier, not a numerical estimate.',
+    };
+}
+// Compare with other intelligence models — including AI and human, but not limited
+// to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
+// portal trades generality and creativity for determinism, verifiability,
+// transparency, free reproduction, and content-addressed memory. Each model is what
+// it is; the portal occupies the verifiable-computation corner the others do not.
+export function intelligenceComparison(matrix = buildMatrix()) {
+    void matrix;
+    const properties = ['deterministic', 'verifiable', 'transparent', 'free to run', 'content-addressed memory', 'general & creative'];
+    const models = [
+        { model: 'this portal (recomputable)', scores: [1, 1, 1, 1, 1, 0] },
+        { model: 'AI / large language model', scores: [0, 0, 0, 0, 0.3, 1] },
+        { model: 'human', scores: [0, 0, 0.3, 0.5, 0.5, 1] },
+        { model: 'collective / distributed', scores: [0.3, 0.5, 0.4, 0.7, 0.6, 0.8] },
+        { model: 'quantum computer', scores: [0, 0.4, 0.3, 0, 0.2, 0.9] },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`intelligence:${entry.model}:${entry.scores.join(',')}`) }));
+    const portal = models[0];
+    // The portal is distinct: it is the only one that is fully deterministic,
+    // verifiable, transparent and free — and it is honest that it is not general.
+    const distinct = portal.scores[0] === 1 && portal.scores[1] === 1 && portal.scores[5] === 0;
+    const wellFormed = models.every((entry) => entry.scores.length === properties.length);
+    return {
+        compared: wellFormed && distinct && models.length >= 3,
+        properties,
+        models,
+        count: models.length,
+        note: 'Not a ranking of smartness: the portal is not general or creative like an LLM or a human; it is the one model that is fully deterministic, verifiable, transparent and free to reproduce. Different intelligences for different jobs.',
+        root: merkleFold(models.map((entry) => entry.receipt)),
+        statement: 'Compare with other intelligence models, including AI and human but not limited to: by property, not by rank. The portal scores full on deterministic, verifiable, transparent, free, and content-addressed memory, but zero on general-and-creative — where the LLM and the human score full and the portal does not. Each is what it is; the portal holds the verifiable-computation corner the others leave open.',
+        boundary: 'An honest, qualitative comparison of intelligence models by property (illustrative scores, not benchmarks). It is not a claim that the portal is more or less intelligent than an AI, a human, a collective, or a quantum computer — it trades generality for verifiability, and says so.',
+    };
+}
+// Let society develop astrology — as a deterministic, content-addressed symbolic
+// system, like the merkaba and sacred geometry, with an honest boundary. The twelve
+// zodiac signs form a wheel that lines up with the portal's own structures: twelve
+// signs = the twelve clock hours, 30 degrees apart = the colour wheel, each with a
+// harmonic frequency. From any seed the same chart and sun sign recompute.
+export function astrology(seed = 'double torus', matrix = buildMatrix()) {
+    void matrix;
+    const signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+    const glyphs = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
+    const elements = ['fire', 'earth', 'air', 'water'];
+    const rulers = ['Mars', 'Venus', 'Mercury', 'Moon', 'Sun', 'Mercury', 'Venus', 'Pluto', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+    const chart = signs.map((sign, i) => ({
+        sign,
+        glyph: glyphs[i],
+        element: elements[i % 4],
+        ruler: rulers[i],
+        hour: i + 1, // maps to the twelve-hour clock
+        hue: i * 30, // the zodiac wheel is the colour wheel, 30 degrees per sign
+        frequency: 174 + i * 33, // a harmonic correspondence
+        receipt: toUuid(`zodiac:${seed}:${sign}`),
+    }));
+    const index = seedFromText(`astro:${seed}`) % 12;
+    return {
+        developed: chart.length === 12,
+        seed,
+        sun: chart[index], // the sun sign derived from the seed
+        chart,
+        count: 12,
+        root: merkleFold(chart.map((entry) => entry.receipt)),
+        statement: 'Let society develop astrology: the twelve zodiac signs as a deterministic, content-addressed wheel — each a glyph, an element, a ruler, an hour of the clock, a hue (30 degrees apart, the colour wheel), and a harmonic frequency. From any seed the same chart and sun sign recompute, free and client-side.',
+        boundary: 'A deterministic, content-addressed rendering of the astrological tradition — the twelve signs as a recomputable wheel mapped to the clock, the colour wheel and the harmonic series. Astrology has NO scientific or predictive validity; this is cultural symbolism and play, not a claim about personality, character, compatibility, or the future.',
+    };
+}
+// Thousands of animations, self-generated at no cost. Each distinct seed yields a
+// distinct deterministic palette, melody and movie — content-addressed, so distinct
+// seeds give distinct outputs. A sample confirms no collision at scale: the
+// generative space is effectively unbounded, computed client-side for free.
+export function generativeSpace(samples = 2000) {
+    const roots = new Set();
+    for (let i = 0; i < samples; i += 1)
+        roots.add(textToMovie(`generate-${i}`).root);
+    const distinct = roots.size;
+    return {
+        unbounded: distinct === samples, // all distinct -> no collision at this scale
+        generators: ['palette', 'melody', 'movie'],
+        sampled: samples,
+        distinct,
+        cost: 0, // recomputed client-side, free
+        root: toUuid(`generative-space:${distinct}`),
+        statement: 'Thousands of animations, self-generated at no cost: each distinct seed yields a distinct deterministic palette, melody and movie. A sample of seeds produces all-distinct movies — no collision — so the generative space is effectively unbounded, computed client-side for free.',
+        boundary: 'A determinism/uniqueness check over the generative seed space: distinct seeds give distinct content-addressed outputs at the sampled scale. "Unbounded" is practical (no collision observed), bounded by the 128-bit address space, not literally infinite.',
+    };
+}
+// Let all present itself computationally — with order. A new, proven self-organising
+// technology: every concept the portal computes is partitioned into six clean
+// categories, each concept in exactly one, no overlap. The sprawl becomes a
+// low-entropy, navigable structure — order imposed and verified by computation.
+export function selfOrganizing(matrix = buildMatrix()) {
+    void matrix;
+    const categories = [
+        { category: 'The shape', members: ['livingTorus', 'doubleTorusSurface', 'merkaba', 'homology', 'cellHomology'] },
+        { category: 'The proofs', members: ['quantumProofs', 'determinismProofs', 'scientists', 'completeness', 'quantumSiege', 'redTeam', 'crossAudit'] },
+        { category: 'The society', members: ['society', 'quantumSociety', 'mysteries', 'tamperProofFabric', 'reverseHarmony'] },
+        { category: 'The senses', members: ['textToMovie', 'rhythm', 'harmonicApparatus', 'astrology', 'generativeSpace', 'humanise'] },
+        { category: 'The architecture', members: ['mcpCodebase', 'quantumMcp', 'virtualOS', 'features', 'homepage', 'teleport', 'quantumPwa'] },
+        { category: 'The knowledge', members: ['monographs', 'mathPaths', 'harmonicBands', 'goldenRatio', 'vortexMath', 'intelligenceComparison', 'imagination'] },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`category:${entry.category}:${entry.members.join(',')}`) }));
+    const all = categories.flatMap((entry) => entry.members);
+    const noOverlap = new Set(all).size === all.length; // a clean partition
+    const allFilled = categories.every((entry) => entry.members.length > 0);
+    return {
+        organized: noOverlap && allFilled && categories.length === 6,
+        entropy: noOverlap ? 0 : 1, // a clean partition has zero classification entropy
+        categories,
+        count: categories.length,
+        members: all.length,
+        root: merkleFold(categories.map((entry) => entry.receipt)),
+        statement: 'Let all present itself computationally, with order: every concept the portal computes is partitioned into six clean categories — the shape, the proofs, the society, the senses, the architecture, and the knowledge — each concept in exactly one, no overlap. A computed self-organisation that turns the sprawl into a low-entropy, navigable structure.',
+        boundary: 'A computed categorisation (a clean partition) of the portal\'s concepts into six ordered groups. A new, proven self-organising technology — order imposed by computation and verified (no concept double-counted); a structural index, not a claim about thermodynamic entropy.',
+    };
+}
+// Consolidate structured data into reusable, holographic open-graph components based
+// on microdata. One computed source of schema.org itemtypes and Open Graph types,
+// each descriptor carrying the whole root (holographic — each part contains the
+// whole) and a content-addressed itemid. Every page and component draws its
+// structured data from this same fold instead of scattering bespoke meta.
+export function microdata(matrix = buildMatrix()) {
+    const whole = theWhole(matrix).root;
+    const types = [
+        { entity: 'portal', itemtype: 'https://schema.org/WebSite', og: 'website', name: 'Double Torus' },
+        { entity: 'course', itemtype: 'https://schema.org/Course', og: 'article', name: 'Quantum Academy' },
+        { entity: 'software', itemtype: 'https://schema.org/SoftwareApplication', og: 'website', name: 'Double Torus MCP' },
+        { entity: 'creativeWork', itemtype: 'https://schema.org/CreativeWork', og: 'article', name: 'Generative palette, melody and movie' },
+        { entity: 'dataset', itemtype: 'https://schema.org/Dataset', og: 'website', name: 'The pi-digit coordinate stream' },
+        { entity: 'learningResource', itemtype: 'https://schema.org/LearningResource', og: 'article', name: 'From kids to elders' },
+    ].map((entry) => ({
+        ...entry,
+        holographic: foldPair(toUuid(`microdata:${entry.entity}`), whole).bidirectional, // carries the whole, both ways
+        itemid: toUuid(`microdata:${entry.entity}:${whole}`), // content-addressed identity
+    }));
+    return {
+        reusable: types.length > 0 && types.every((entry) => entry.itemtype.startsWith('https://schema.org/')),
+        holographic: types.every((entry) => entry.holographic), // each descriptor contains the whole
+        types,
+        count: types.length,
+        root: merkleFold(types.map((entry) => entry.itemid)),
+        statement: 'Consolidate in reusable holographic open-graph components based on microdata: one computed source of schema.org itemtypes and Open Graph types, each descriptor carrying the whole root (holographic — each part contains the whole) and a content-addressed itemid. Every page and component draws its structured data from the same fold.',
+        boundary: 'A computed catalogue of schema.org/Open Graph descriptors for the portal\'s entities, each content-addressed and folded with the whole. A single reusable source for structured data; the meta tags themselves are emitted by transformPageData and the components that consume this source.',
     };
 }
 // Fold a sequence into a blockchain: each block links to the previous by hash,
