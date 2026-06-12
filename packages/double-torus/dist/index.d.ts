@@ -2084,6 +2084,9 @@ export declare function vortexMath(matrix?: MindMatrix): {
         polarity: number[];
         threeSix: boolean;
     };
+    origin: number;
+    polarPairs: number[][];
+    oneAndEightBeginFromNine: boolean;
     endless: boolean;
     collisionFree: boolean;
     nineInvariant: boolean;
@@ -2520,6 +2523,24 @@ export declare function fusionCipher(realtime?: string, matrix?: MindMatrix): {
     realtimeRoot: string;
     sessionKey: string;
     keyMaterial: string;
+    statement: string;
+    boundary: string;
+};
+export declare function publicApiFusion(matrix?: MindMatrix): {
+    fused: boolean;
+    count: number;
+    architecture: string;
+    sources: {
+        fused: boolean;
+        receipt: string;
+        source: string;
+        kind: string;
+        realtime: string;
+        example: string;
+        auth: string;
+    }[];
+    protocol: string;
+    root: string;
     statement: string;
     boundary: string;
 };

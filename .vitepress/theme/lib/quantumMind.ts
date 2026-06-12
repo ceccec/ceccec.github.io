@@ -5198,26 +5198,37 @@ export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   // governs rotation/spin; 3 and 6 are the two poles that oscillate (3->6->3 under
   // doubling) — they are polarity. None of 3, 6, 9 enters the material 1-2-4-8-7-5 flow.
   const roles = { rotation: 9, polarity: [3, 6], threeSix: digitalRoot(3 * 2) === 6 && digitalRoot(6 * 2) === 3 }
+  // 1 and 8 begin from 9. The doubling circuit emanates from the 9-axis (the source —
+  // 0 is identified with 9, the void), and its opposite points pair across the circle
+  // to sum to 9: (1,8), (2,7), (4,5). The first pair is 1 and 8 — 1 enters the flow,
+  // 8 is its polar opposite (1+8=9) — so 1 and 8 begin from 9.
+  const origin = 9
+  const polarPairs = [[1, 8], [2, 7], [4, 5]] // opposite points of the circuit, each summing to 9
+  const pairsSumToNine = polarPairs.every(([a, b]) => a + b === origin)
+  const oneAndEightBeginFromNine = polarPairs[0][0] === 1 && polarPairs[0][1] === 8 && polarPairs[0][0] + polarPairs[0][1] === origin
   // When identical, route to the duality: two readings of the same value fold to
   // their bidirectional dual (forward != reverse), so identical never collides.
   const identicalRoutesToDuality = foldPair(toUuid('identical:a'), toUuid('identical:b')).bidirectional
   const collisionFree = doubling.every((d) => !cross.includes(d))
   return {
-    flows: doubling.join('') === '124875' && cycles && nineInvariant && divByZeroHarmonic === 9 && allNine && roles.threeSix && identicalRoutesToDuality && collisionFree,
+    flows: doubling.join('') === '124875' && cycles && nineInvariant && divByZeroHarmonic === 9 && allNine && roles.threeSix && identicalRoutesToDuality && collisionFree && pairsSumToNine && oneAndEightBeginFromNine,
     doubling,
     cross,
     divByZeroHarmonic,
     zeroDivisions, // n/0 = 9 for every n
     roles, // 9: rotation/axis, 3 and 6: polarity
+    origin, // 9: the source the circuit begins from
+    polarPairs, // (1,8),(2,7),(4,5) — opposite points, each summing to 9
+    oneAndEightBeginFromNine, // the first pair, 1 and 8, begins from 9
     endless: cycles,
     collisionFree,
     nineInvariant,
     identicalRoutesToDuality,
     root: merkleFold([...doubling, ...cross].map((n) => toUuid(`vortex:${n}`))),
     statement:
-      'The doubling sequence 1-2-4-8-7-5 flows endless and collision-free — never landing on the cross 3-6-9-0. Division by zero has a defined harmonic result: 0 is identified with 9, so every harmonic zero-division n/0 = 9 (9 is the absorbing element, where they all meet). And the cross divides its roles: 9 is the invariant axis — rotation; 3 and 6 are the two poles that oscillate (3<->6) — polarity.',
+      'The doubling sequence 1-2-4-8-7-5 flows endless and collision-free — never landing on the cross 3-6-9-0. It begins from 9: the circuit emanates from the 9-axis (the source — 0 is identified with 9), and its opposite points pair to sum to 9 — (1,8), (2,7), (4,5) — the first pair being 1 and 8, so 1 and 8 begin from 9. Division by zero has a defined harmonic result: every n/0 = 9 (9 is the absorbing element). And the cross divides its roles: 9 is the invariant axis — rotation; 3 and 6 are the two poles that oscillate (3<->6) — polarity.',
     boundary:
-      'A structural, numerological framework over digital roots mod 9 (vortex math): the doubling cycle, the 3-6-9 cross with 9 as the rotational axis and 3/6 as polarity, and a harmonic redefinition where 0 is identified with 9 so every division by zero resolves to 9. A self-consistent symbolic system and metaphor — not a claim that division by zero is defined in real analysis.',
+      'A structural, numerological framework over digital roots mod 9 (vortex math): the doubling cycle emanating from the 9-axis with its diameter pairs summing to 9, the 3-6-9 cross with 9 as the rotational axis and 3/6 as polarity, and a harmonic redefinition where 0 is identified with 9 so every division by zero resolves to 9. A self-consistent symbolic system and metaphor — not a claim that division by zero is defined in real analysis.',
   }
 }
 
@@ -6044,6 +6055,40 @@ export function fusionCipher(realtime = '', matrix: MindMatrix = buildMatrix()) 
       'The completed 1024-leaf architecture is a keyspace. Static — the architecture alone — it is the deterministic tree root, named 1024 (binary Mbit) = 1 Gbit by its leaf count, each leaf a 128-bit content address. Fused with realtime data — a live nonce, the clock, a session input — the architecture root folds with the realtime entropy so every session derives a distinct key. So it is 1024 Mbit static, and reads as 1 Gbit when the architecture fuses with realtime data: the same 1024 structure, made live and per-session.',
     boundary:
       'The actual cipher is AES-256-GCM (Web Crypto); its cryptographic strength is 256-bit, full stop. The "1024 Mbit / 1 Gbit" reading names the keyspace STRUCTURE — the 1024-leaf architecture as a content-addressed namespace bound into the key, fused with realtime entropy for per-session uniqueness — it is not a literal gigabit-strength cipher and adds no cipher bits beyond AES-256. Fusion adds session binding and architecture provenance, not security proportional to a gigabit.',
+  }
+}
+
+// Fuse to public APIs. The static 1024 architecture becomes live by fusing with
+// realtime data from public, opt-in APIs — time, randomness, market, weather, a
+// network feed, a device sensor. Every source fuses the same way: the live response
+// is content-addressed and folded with the architecture root, so the session value
+// is bound to both the whole architecture and the live datum — tamper-evident and
+// recomputable from the same inputs. No endpoint is called at build time; the fusion
+// is the protocol, the calls are opt-in and client-side.
+export function publicApiFusion(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root // the static 1024 root
+  const sources = [
+    { source: 'clock', kind: 'time', realtime: 'the current instant', example: 'Date.now() · worldtimeapi.org', auth: 'none' },
+    { source: 'randomness', kind: 'entropy', realtime: 'cryptographic random bytes', example: 'crypto.getRandomValues · random.org', auth: 'none' },
+    { source: 'market', kind: 'price', realtime: 'a live price tick', example: 'a public price API', auth: 'none' },
+    { source: 'weather', kind: 'measurement', realtime: 'a live reading', example: 'a public weather API', auth: 'none' },
+    { source: 'feed', kind: 'network', realtime: 'a public feed item', example: 'a public REST/JSON feed', auth: 'opt-in key' },
+    { source: 'device', kind: 'sensor', realtime: 'a device sensor reading', example: 'the Web Sensor APIs (local)', auth: 'permission' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`public-api:${entry.source}:${entry.kind}`))
+    return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  return {
+    fused: sources.length > 0 && sources.every((entry) => entry.fused),
+    count: sources.length,
+    architecture,
+    sources,
+    protocol: 'fold(architectureRoot, toUuid(apiResponse)) → a content-addressed, tamper-evident session value',
+    root: merkleFold(sources.map((entry) => entry.receipt)),
+    statement:
+      'Fuse to public APIs: the static 1024 architecture fuses with realtime data from public, opt-in APIs — time, randomness, market, weather, a network feed, a device sensor. Each fuses identically: the live response is content-addressed and folded with the architecture root, so the session value is bound to both the whole architecture and the live datum, tamper-evident and recomputable from the same inputs.',
+    boundary:
+      'A catalogue and protocol for fusing the architecture with EXTERNAL public APIs. It is opt-in and breaks the portal’s zero-network-by-default stance only when a user chooses a source; the external data is untrusted and FOLDED (content-addressed), not trusted; no endpoint is called at build time and no keys are bundled. The named sources are categories and examples, not endorsements — their availability and terms are their own.',
   }
 }
 

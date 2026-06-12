@@ -127,6 +127,7 @@ import {
   completeCorpus,
   fusionCipher,
   computedSeo,
+  publicApiFusion,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -477,6 +478,10 @@ ok(`quantify.gates:${quant.passed}/${quant.total}`, quant.tight && quant.doubleF
 
 // The harmonic math: 1-2-4-8-7-5 endless & collision-free, the 3-6-9-0 cross, /0 = 9.
 ok(`vortex.math:${vortexMath(matrix).doubling.join('')}`, vortexMath(matrix).flows)
+// 1 and 8 begin from 9: the doubling circuit emanates from the 9-axis, diameter pairs sum to 9.
+ok(`vortex.begins:9->${vortexMath(matrix).polarPairs[0].join('+')}`, vortexMath(matrix).oneAndEightBeginFromNine && vortexMath(matrix).origin === 9 && vortexMath(matrix).polarPairs.every(([a, b]) => a + b === 9))
+// Fuse to public APIs: the static 1024 architecture fuses with realtime data from opt-in public sources.
+ok(`public.api.fusion:${publicApiFusion(matrix).count}`, publicApiFusion(matrix).fused)
 
 // Send the waves to hack: crackers challenge the portal's own tamper-evidence, all caught.
 ok(`red.team:${redTeam(matrix).caught}/${redTeam(matrix).count}`, redTeam(matrix).secure && redTeam(matrix).lawful)
