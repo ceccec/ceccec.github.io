@@ -78,6 +78,26 @@ function dims(p: number) {
   }
 }
 
+// The trinity of rotation: a vector turned through all three planes — xy, yz, zx — so the hero
+// tumbles in space, not just spins in the plane. Returns the rotated point; z drives perspective.
+function rotate3(x: number, y: number, z: number, rxy: number, ryz: number, rzx: number) {
+  // xy plane (about z)
+  let X = x * Math.cos(rxy) - y * Math.sin(rxy)
+  let Y = x * Math.sin(rxy) + y * Math.cos(rxy)
+  let Z = z
+  // yz plane (about x)
+  const Y1 = Y * Math.cos(ryz) - Z * Math.sin(ryz)
+  const Z1 = Y * Math.sin(ryz) + Z * Math.cos(ryz)
+  Y = Y1
+  Z = Z1
+  // zx plane (about y)
+  const Z2 = Z * Math.cos(rzx) - X * Math.sin(rzx)
+  const X2 = Z * Math.sin(rzx) + X * Math.cos(rzx)
+  Z = Z2
+  X = X2
+  return { X, Y, Z }
+}
+
 function branch(ctx: CanvasRenderingContext2D, x: number, y: number, len: number, angle: number, depth: number, d: ReturnType<typeof dims>) {
   if (depth <= 0 || len < 3) return
   const x2 = x + Math.cos(angle) * len
@@ -109,23 +129,40 @@ function draw(time: number) {
   if (!manual.value) slider.value = Math.round(phase * 1000)
   const p = manual.value ? slider.value / 1000 : phase
   const d = dims(p)
-  const baseLen = Math.min(w, h) * 0.22 * d.breath
+  // Walk the path from 0d to infinity and back, beyond: a smooth out-and-back envelope that
+  // collapses the figure toward a point (0d) at the path's ends and opens it fully toward the
+  // middle, while the trinity rotation carries on, so it never returns identical — beyond.
+  const dimWalk = 0.5 - 0.5 * Math.cos(p * Math.PI * 2) // 0 at the ends (a point), 1 at the middle
+  const baseLen = Math.min(w, h) * 0.22 * d.breath * (0.16 + 0.84 * dimWalk)
   // quantum responsiveness: depth and arm count adapt smoothly to the width
   const depth = cssWidth > 900 ? 6 : cssWidth > 520 ? 5 : 4
   const armCount = arms.value + (cssWidth > 800 ? 2 : cssWidth > 480 ? 1 : 0)
+  // The trinity of rotational planes: three angles turning at distinct rates (xy, yz, zx), so the
+  // fractal ring tumbles through space. Each arm is a 3D direction rotated through all three and
+  // projected with perspective — arms turning toward the viewer grow, those turning away recede.
+  const rXY = t * d.twist
+  const rYZ = t * 0.33
+  const rZX = t * 0.21
+  const focal = 2.4
   // the holographic fractal: arms symmetric copies of the same branching rule
   for (let a = 0; a < armCount; a += 1) {
-    const angle = (a / armCount) * Math.PI * 2 + t * d.twist
-    branch(ctx, cx, cy, baseLen, angle, depth, d)
+    const base = (a / armCount) * Math.PI * 2
+    const v = rotate3(Math.cos(base), Math.sin(base), 0, rXY, rYZ, rZX)
+    const persp = focal / (focal - v.Z) // perspective: nearer (z>0) larger
+    const angle = Math.atan2(v.Y, v.X)
+    branch(ctx, cx, cy, baseLen * persp, angle, depth, d)
   }
-  // merge all related: the page's tags orbit the centre, each joined to it
+  // merge all related: the page's tags orbit the centre on a ring that tumbles through the same
+  // three planes, but counter-rotating (the merkaba), each joined to the core.
   const n = tags.value.length
+  const r = Math.min(w, h) * 0.34
   for (let i = 0; i < n; i += 1) {
-    const angle = (i / Math.max(1, n)) * Math.PI * 2 - t * 0.5
-    const r = Math.min(w, h) * 0.34
-    const x = cx + Math.cos(angle) * r
-    const y = cy + Math.sin(angle) * r
-    ctx.strokeStyle = `hsla(${(hue.value + 180) % 360}, 70%, 62%, 0.35)`
+    const base = (i / Math.max(1, n)) * Math.PI * 2
+    const v = rotate3(Math.cos(base), Math.sin(base), 0, -rXY, -rYZ, -rZX) // counter-rotating ring
+    const persp = focal / (focal - v.Z)
+    const x = cx + v.X * r * persp
+    const y = cy + v.Y * r * persp
+    ctx.strokeStyle = `hsla(${(hue.value + 180) % 360}, 70%, 62%, ${0.18 + 0.22 * persp})`
     ctx.lineWidth = 1
     ctx.beginPath()
     ctx.moveTo(cx, cy)
@@ -133,7 +170,7 @@ function draw(time: number) {
     ctx.stroke()
     ctx.fillStyle = `hsl(${(hue.value + i * 24) % 360}, 80%, 60%)`
     ctx.beginPath()
-    ctx.arc(x, y, 3.5, 0, Math.PI * 2)
+    ctx.arc(x, y, Math.max(1, 3.5 * persp), 0, Math.PI * 2)
     ctx.fill()
   }
   // the holographic core

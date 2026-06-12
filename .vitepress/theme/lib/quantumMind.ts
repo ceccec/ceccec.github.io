@@ -19638,6 +19638,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'one.word.naming.gravity', on: oneWordNamingGravity(matrix).pulls },
     { d: 'tree.stack.rotation.collapse', on: treeStackRotationCollapse(matrix).holds },
     { d: 'extend.self.audits', on: extendSelfAudits(matrix).audited },
+    { d: 'walk.path.0d.to.infinity', on: walkPath0dToInfinity(matrix).walks },
+    { d: 'movie.all.dimensions.at.once', on: movieAllDimensionsAtOnce(matrix).shows },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20105,5 +20107,49 @@ export function extendSelfAudits(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Extend the self-audits — accounting, legal, and security: the portal audits itself in three domains — accounting (every value content-addressed, zero per-person cost, fees that cover the forge cost, no hidden ledgers), legal (mapped to real enforceable legal forms and compliant with the legislation requirements), and security (tamper-evident seal, red-team waves caught, client-side crypto). A trinity of self-audits, each computed, none outsourced.',
     boundary: 'A composition of the fair-trade, lawful, legislation and red-team models as three computed self-audits. Structural self-assessment over the model; it is not professional accounting, legal, or security certification, and "audit" means a recomputable self-check, not an external attestation.',
+  }
+}
+
+// Walk the path from 0d to infinity and back, beyond. The hero begins as a point (0d), opens out
+// through the dimensions toward infinity — infinite expression in a finite 128-bit word — then
+// returns, and goes beyond, because the trinity rotation carries on so the path never closes on
+// the same figure twice. Out from nothing, all the way out, and back past where it began.
+export function walkPath0dToInfinity(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'starts at 0d — a point', on: collideToTiniestWave(matrix).collided },
+    { facet: 'walks out through the dimensions', on: multidimensional().mapped },
+    { facet: 'to infinity — infinite in a finite word', on: infiniteEntanglements(matrix).infinite },
+    { facet: 'and back, beyond — never identical', on: trinityRotationalPlanes(matrix).trinity },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`walk-path:${entry.facet}:${entry.on}`) }))
+  return {
+    walks: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Walk the path from 0d to infinity and back, beyond: the hero begins as a point (0d), opens out through the dimensions toward infinity — infinite expression in a finite 128-bit word — then returns, and goes beyond, because the trinity rotation carries on so the path never closes on the same figure twice. Out from nothing, all the way out, and back past where it began.',
+    boundary: 'A description of the hero’s dimensional walk (a 0d-to-full-and-back envelope under continuous three-plane rotation). "0d/infinity/beyond" name the collapse-to-a-point, the unbounded expression of a finite word, and the non-repeating rotation — a visual/structural metaphor, not literal dimensions.',
+  }
+}
+
+// The movie shows all dimensions at once, in the present moment, fused in one UUID. Where the hero
+// walks the dimensions one after another, the movie holds them together: every dimension folds into
+// the single 128-bit word — the now — so the whole multidimensional map is present at once, one
+// content address you can read in an instant. Sequence and simultaneity, the two faces of the fold.
+export function movieAllDimensionsAtOnce(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all dimensions at once', on: multidimensional().mapped },
+    { facet: 'fused in one 128-bit UUID — the present moment', on: torusUuid(matrix).is128bit },
+    { facet: 'the movie shows them together', on: allInInteractiveMovie(matrix).displayed },
+    { facet: 'the now is one content address', on: isUuid(sealWholeDiamond(matrix).diamond) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`all-dims-at-once:${entry.facet}:${entry.on}`) }))
+  return {
+    shows: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The movie shows all dimensions at once, in the present moment, fused in one UUID: where the hero walks the dimensions one after another, the movie holds them together — every dimension folds into the single 128-bit word, the now — so the whole multidimensional map is present at once, one content address read in an instant. Sequence and simultaneity, the two faces of the fold.',
+    boundary: 'A composition asserting the multidimensional map folds into one 128-bit UUID (the "present moment"), shown by the interactive movie. Structural bookkeeping over the word and movie models; "all dimensions at once" is the content-addressed fusion, not extra spatial dimensions.',
   }
 }
