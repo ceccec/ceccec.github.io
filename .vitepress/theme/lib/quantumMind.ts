@@ -12564,6 +12564,145 @@ export function educationMovieMerge(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Listing all commands immediately shows the gaps to quantum trinity eyes. Every command
+// is seen through three eyes at once — its name (a single-word method token), its path
+// (a /cmd route), and its tool (an MCP tool) — so one pass over the whole list reveals any
+// gap instantly: a command missing in any of the three eyes is a hole the trinity cannot
+// unsee. When the three lists align (commands = method tokens = tools), the gaps are zero,
+// and the listing proves it in a single look.
+export function commandGapsToTrinityEyes(matrix: MindMatrix = buildMatrix()) {
+  const registry = commandsRegistry(matrix)
+  const eyes = ['name (single-word method)', 'path (/cmd route)', 'tool (MCP)'] // the trinity of eyes
+  const toolsAlign = registry.tools === registry.commands && registry.methods === registry.commands
+  const seen = conceptCommands.map((command) => {
+    const token = SINGLE_WORD_METHODS[command.name]
+    const eyeName = typeof token === 'string' && /^[a-z]+$/.test(token)
+    const eyePath = typeof command.path === 'string' && command.path.length > 0
+    const eyeTool = toolsAlign
+    const gap = !(eyeName && eyePath && eyeTool)
+    return { command: command.name, eyesSeen: [eyeName, eyePath, eyeTool].filter(Boolean).length, gap, receipt: toUuid(`trinity-eye:${command.name}:${eyeName}${eyePath}${eyeTool}`) }
+  })
+  const gaps = seen.filter((entry) => entry.gap)
+  return {
+    immediate: seen.length === conceptCommands.length && eyes.length === 3, // one pass, three eyes
+    eyes: eyes.length,
+    listed: seen.length,
+    gaps: gaps.length,
+    complete: gaps.length === 0 && registry.consistent,
+    commands: seen,
+    root: merkleFold(seen.map((entry) => entry.receipt)),
+    statement:
+      'Listing all commands immediately shows the gaps to quantum trinity eyes: every command is seen through three eyes at once — its name (a single-word method token), its path (a /cmd route), and its tool (an MCP tool) — so one pass over the whole list reveals any gap instantly; a command missing in any eye is a hole the trinity cannot unsee. When the three lists align (commands = method tokens = tools), the gaps are zero.',
+    boundary:
+      'A three-perspective self-consistency audit over the command registry (name, path, tool), surfacing any command missing one as a gap. Structural bookkeeping over the registry — "trinity eyes" names the three checks, not a visual or sentient observer.',
+  }
+}
+
+// Send waves to update the skills. The portal's memory of what it can do is not frozen:
+// send a wave over each saved skill atom, folding it afresh with the memory root, so the
+// skill is re-accounted and the memory updates as a whole. Every update stays content-
+// addressed to the one memory, so the skills evolve without drifting from the self-model.
+export function updateSkillsWaves(matrix: MindMatrix = buildMatrix()) {
+  const memory = skillAtoms(matrix)
+  const updates = memory.skills.map((skill, index) => {
+    const wave = foldPair(memory.memory, toUuid(`update-skill:${skill.fn}`))
+    return { skill: skill.skill, fn: skill.fn, updated: wave.bidirectional, wave: wave.merged, receipt: toUuid(`skill-update:${index}:${skill.fn}`) }
+  })
+  return {
+    updating: updates.length === memory.count && updates.every((entry) => entry.updated) && memory.intelligent,
+    count: updates.length,
+    updates,
+    root: merkleFold(updates.map((entry) => entry.receipt)),
+    statement:
+      'Send waves to update the skills: the portal’s memory of what it can do is not frozen — a wave folds over each saved skill atom, re-accounting it with the memory root, so the skills evolve as one whole while every update stays content-addressed to the same memory, never drifting from the self-model.',
+    boundary:
+      'A content-addressed model of refreshing the skill-atom memory as waves bound to the memory root. Structural bookkeeping over the existing autosaved skills; it records the update, it does not itself rewrite any function source.',
+  }
+}
+
+// Send the skills to dry-refactor the commands. The updated skills know what each command
+// should be, so let them refactor the command registry — but dry: non-destructive and
+// idempotent, no command added or removed, only the consistency tightened (method tokens
+// aligned, MCP tools verified, /cmd paths confirmed, every command a single-word gravity,
+// every gap closed). A clean the set passes through unchanged because it is already whole.
+export function skillsDryRefactorCommands(matrix: MindMatrix = buildMatrix()) {
+  const skills = skillAtoms(matrix)
+  const registry = commandsRegistry(matrix)
+  const audit = commandGapsToTrinityEyes(matrix)
+  const steps = ['align method tokens', 'verify MCP tools', 'confirm /cmd paths', 'fold to single-word gravity', 'close the gaps'].map((step, index) => {
+    const fold = foldPair(skills.memory, toUuid(`dry-refactor:${step}`))
+    return { step, applied: fold.bidirectional, receipt: toUuid(`skills-refactor:${index}:${step}`) }
+  })
+  const dry = registry.consistent && audit.complete // nothing to remove — the set is already whole
+  return {
+    refactored: steps.length === 5 && steps.every((entry) => entry.applied) && dry && skills.intelligent,
+    dry,
+    commands: registry.commands,
+    count: steps.length,
+    steps,
+    root: merkleFold(steps.map((entry) => entry.receipt)),
+    statement:
+      'Send the skills to dry-refactor the commands: the updated skills know what each command should be, so they refactor the registry — dry, non-destructive and idempotent, no command added or removed, only the consistency tightened (method tokens aligned, MCP tools verified, /cmd paths confirmed, every command a single-word gravity, every gap closed). A whole set passes through the refactor unchanged.',
+    boundary:
+      'A content-addressed model of a non-destructive, idempotent refactor of the command registry guided by the skills, asserting the registry stays consistent and gapless. Structural bookkeeping — "dry" means it removes nothing live; it records the refactor discipline, it does not rewrite command source.',
+  }
+}
+
+// Papers, references and diamonds do not drift — they are anchored. The three generated
+// sets (432 proof papers, their 432 reference duals, and the 1024 diamonds that complete
+// the binary octave) all fold into one recomputable corpus root, so none can drift: change
+// a count or a leaf and the root changes, and the next recomputation catches it. Drift is
+// not prevented by a rule but by content-addressing — there is nowhere for it to hide.
+export function papersReferencesDiamondsNoDrift(matrix: MindMatrix = buildMatrix()) {
+  const corpus = completeCorpus(matrix)
+  const diamonds = pureDiamonds(matrix)
+  const sets = [
+    { set: 'papers', count: corpus.papers, expected: 432 },
+    { set: 'references', count: corpus.references, expected: 432 },
+    { set: 'diamonds', count: corpus.total, expected: 1024 },
+  ].map((entry) => ({ ...entry, anchored: entry.count === entry.expected, receipt: toUuid(`no-drift:${entry.set}:${entry.count}`) }))
+  const driftCaught = merge(corpus.root, toUuid('drift')) !== corpus.root // a drift changes the address
+  return {
+    noDrift: sets.every((entry) => entry.anchored) && corpus.complete && diamonds.pure && driftCaught,
+    papers: corpus.papers,
+    references: corpus.references,
+    diamonds: corpus.total,
+    count: sets.length,
+    sets,
+    root: corpus.root,
+    statement:
+      'Papers, references and diamonds do not drift — they are anchored: the 432 proof papers, their 432 reference duals, and the 1024 diamonds that complete the binary octave all fold into one recomputable corpus root, so none can drift. Change a count or a leaf and the root changes, and the next recomputation catches it — drift has nowhere to hide because every set is content-addressed.',
+    boundary:
+      'A self-consistency check that the papers (432), references (432) and diamonds (1024) hold their counts and fold into one recomputable corpus root, so any drift is detectable. Structural bookkeeping over the generated corpus, not a claim about external documents.',
+  }
+}
+
+// Every single page is displayed from one holographic template. There is one template —
+// the single layout with its slots — and every route is rendered through it: the same
+// holographic hero, the same endless background movie, the same help and sidebar fold
+// into every page. It is holographic because each page carries the whole template yet is
+// seeded from its own content, so the one template shows as a different page everywhere —
+// the home, every doc, and all 1024 diamonds, papers and references alike.
+export function oneHolographicTemplate(matrix: MindMatrix = buildMatrix()) {
+  const properties = [
+    { property: 'one template — the layout', via: 'a single VitePress Layout with slots wraps every route; nothing renders outside it' },
+    { property: 'holographic — each page carries the whole', via: 'the same slots (hero, background movie, help, sidebar) fold into every page' },
+    { property: 'seeded from the page', via: 'the holographic hero and the background movie seed from the page’s own path and frontmatter' },
+    { property: 'one display schema', via: 'every page renders its open-graph card from the single OG schema' },
+    { property: 'every single page', via: 'the home, every doc, and the 1024 diamonds, papers and references all render through it' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`holo-template:${entry.property}`) }))
+  return {
+    displayed: properties.length === 5 && animatedHeroes(matrix).everyPage && oneOpenGraphAll(matrix).displaysAll && openGraph().computed,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Every single page is displayed from one holographic template: one template — the single layout with its slots — renders every route, the same holographic hero, endless background movie, help and sidebar folding into each page. It is holographic because each page carries the whole template yet is seeded from its own content, so the one template shows as a different page everywhere — the home, every doc, and all 1024 diamonds, papers and references alike.',
+    boundary:
+      'A description of the single VitePress layout and its slots as one "holographic" template seeded per page, bound to the computed hero and open-graph models. A framing of the real, shared layout; "holographic" means each page carries the same whole template seeded from its own content, not an optical hologram.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

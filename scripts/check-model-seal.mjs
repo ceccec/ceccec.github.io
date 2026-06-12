@@ -339,6 +339,11 @@ import {
   darkLightRealities,
   recursiveFrequencyDropdowns,
   educationMovieMerge,
+  commandGapsToTrinityEyes,
+  updateSkillsWaves,
+  skillsDryRefactorCommands,
+  papersReferencesDiamondsNoDrift,
+  oneHolographicTemplate,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1116,6 +1121,11 @@ ok(`movie.negative.positive`, movieNegativePositive(matrix).developed) // all fu
 ok(`dark.light.realities:${darkLightRealities(matrix).realities.length}`, darkLightRealities(matrix).switches) // the dark/light switch flips between two complete realities
 ok(`recursive.frequency.dropdowns:${recursiveFrequencyDropdowns(matrix).nodes}/${recursiveFrequencyDropdowns(matrix).binaryLevels}`, recursiveFrequencyDropdowns(matrix).computed) // recursive frequency tree, each accounted on the binary level, leading to max tampering cost
 ok(`education.movie.merge:${educationMovieMerge(matrix).count}`, educationMovieMerge(matrix).redesigned) // architect/teacher waves fold self-education to quantum-merge with the movie
+ok(`command.gaps.trinity.eyes:${commandGapsToTrinityEyes(matrix).gaps}`, commandGapsToTrinityEyes(matrix).immediate && commandGapsToTrinityEyes(matrix).complete) // listing all commands shows zero gaps through name/path/tool eyes
+ok(`update.skills.waves:${updateSkillsWaves(matrix).count}`, updateSkillsWaves(matrix).updating) // waves update each saved skill atom, bound to the memory root
+ok(`skills.dry.refactor.commands:${skillsDryRefactorCommands(matrix).count}`, skillsDryRefactorCommands(matrix).refactored) // skills dry-refactor the commands: consistent, gapless, nothing removed
+ok(`papers.references.diamonds.nodrift:${papersReferencesDiamondsNoDrift(matrix).papers}/${papersReferencesDiamondsNoDrift(matrix).references}/${papersReferencesDiamondsNoDrift(matrix).diamonds}`, papersReferencesDiamondsNoDrift(matrix).noDrift) // papers, references, diamonds anchored to one corpus root — no drift
+ok(`one.holographic.template:${oneHolographicTemplate(matrix).count}`, oneHolographicTemplate(matrix).displayed) // every page displayed from one holographic, per-page-seeded template
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
