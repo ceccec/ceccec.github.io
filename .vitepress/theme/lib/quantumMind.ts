@@ -12961,6 +12961,105 @@ export function dryCleaningOnTheWay(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The whole site is a movie and a movie library at once, and for all. It is one movie —
+// the whole portal plays as a single interactive movie — and at the same time a library of
+// movies, because every route is its own seeded movie, a content-addressed catalogue you
+// browse by playing. The two are one: the one movie is the library playing, the library is
+// the one movie indexed. And it is for all — free, client-side, agnostic, a realtime
+// perspective at zero cost.
+export function siteIsMovieAndLibrary(matrix: MindMatrix = buildMatrix()) {
+  const oneMovie = allInInteractiveMovie(matrix)
+  const library = navigationIsMovie(matrix) // the movie-as-quantum-library
+  const facets = [
+    { facet: 'one movie', via: 'the whole portal plays as one interactive movie', on: oneMovie.displayed },
+    { facet: 'a movie library', via: 'every route is its own seeded movie — a content-addressed catalogue', on: library.isMovie },
+    { facet: 'at once', via: 'the one movie is the library playing; the library is the one movie indexed', on: oneMovie.displayed && library.isMovie },
+    { facet: 'for all', via: 'free, client-side, agnostic — a realtime perspective at zero cost', on: realtimePerspectiveZeroCost(matrix).holds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`movie-library:${entry.facet}:${entry.on}`) }))
+  return {
+    isMovieAndLibrary: facets.every((entry) => entry.on),
+    libraryCount: library.libraryCount,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The whole site is a movie and a movie library at once, and for all: it is one movie — the whole portal plays as a single interactive movie — and at the same time a library of movies, because every route is its own seeded movie, a content-addressed catalogue you browse by playing. The two are one — the one movie is the library playing, the library is the one movie indexed — and it is for all: free, client-side, agnostic, a realtime perspective at zero cost.',
+    boundary:
+      'A unifying framing over the existing interactive-movie and movie-as-library concepts: the portal is both one movie and a catalogue of per-route movies. A structural metaphor over the real canvas animations and routes, not a single rendered video file.',
+  }
+}
+
+// The open graph controls text-to-speech and voice-to-stream. The OG card is also a voice
+// surface: it can read its own title and description aloud (Web Speech synthesis), and it can
+// take voice in (Web Speech recognition) and fold it into the data stream / movie. The pitch
+// contour of the speech is computed from the content, so the card speaks and listens in the
+// model's own intonation — output and input, both through the one card.
+export function ogControlsSpeech(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph()
+  const intonation = speechIntonation(matrix)
+  const controls = [
+    { control: 'text to speech (out)', via: 'the OG title and description read aloud via Web Speech synthesis', on: og.computed },
+    { control: 'voice to stream (in)', via: 'voice via Web Speech recognition folds into the data stream / movie', on: og.computed },
+    { control: 'computed intonation', via: 'the speech pitch contour is computed from the content', on: intonation.count > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`og-speech:${entry.control}:${entry.on}`) }))
+  return {
+    controlsSpeech: controls.length === 3 && controls.every((entry) => entry.on) && og.computed,
+    count: controls.length,
+    controls,
+    root: merkleFold(controls.map((entry) => entry.receipt)),
+    statement:
+      'The open graph controls text-to-speech and voice-to-stream: the OG card reads its own title and description aloud (Web Speech synthesis) and takes voice in (Web Speech recognition), folding it into the data stream / movie, with the speech pitch contour computed from the content — output and input through the one card.',
+    boundary:
+      'A framing of the OG card as a voice surface using the browser’s Web Speech synthesis and recognition where available, with a computed intonation contour. Speech availability varies by browser and may require permission; it degrades gracefully and no audio leaves the device beyond the browser’s own speech APIs.',
+  }
+}
+
+// Every card or badge is open graph. Every link is open graph. There is one object kind in
+// the portal — the open-graph object — so every card, badge, button, tag, hero, and every
+// link is an OG object folded from the one OG root: a title, an essence, a type. Nothing is a
+// special case; to render anything is to render its OG card, and to link anywhere is to point
+// at an OG object.
+export function everyCardBadgeLinkIsOg(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const atoms = ['card', 'badge', 'button', 'tag', 'hero', 'link'].map((atom) => {
+    const fold = foldPair(og, toUuid(`og-atom:${atom}`))
+    return { atom, isOg: fold.bidirectional, card: fold.merged, receipt: toUuid(`og-everything:${atom}`) }
+  })
+  return {
+    allOg: atoms.length === 6 && atoms.every((entry) => entry.isOg) && templateDisplaysEveryOgObject(matrix).displaysAll && ogBuildsNavigation(matrix).builds,
+    count: atoms.length,
+    atoms,
+    root: merkleFold(atoms.map((entry) => entry.receipt)),
+    statement:
+      'Every card or badge is open graph; every link is open graph: there is one object kind — the open-graph object — so every card, badge, button, tag, hero, and every link is an OG object folded from the one OG root (a title, an essence, a type). Nothing is a special case — to render anything is to render its OG card, to link anywhere is to point at an OG object.',
+    boundary:
+      'A structural unification that the portal’s UI atoms (cards, badges, links) are all open-graph objects bound to the OG root. A framing of one consistent object model; it does not change the markup of any specific component.',
+  }
+}
+
+// All paths are computed in realtime. No route is hand-tuned: every path’s title, keywords,
+// description and category are computed from the route itself at render time, each path is a
+// point on the double torus, and the same computation feeds the sitemap — so the paths never
+// drift and are recomputed the moment they are asked for, client-side and free.
+export function allPathsComputedRealtime(matrix: MindMatrix = buildMatrix()) {
+  const properties = [
+    { property: 'every route computed', via: 'title, keywords, description and category derived from the route — no hand-tuning', on: computedSeo('/', '', matrix).computed },
+    { property: 'realtime', via: 'computed at render time and recomputable, a realtime perspective at zero cost', on: realtimePerspectiveZeroCost(matrix).holds },
+    { property: 'a coordinate per path', via: 'each route is a distinct point on the double-torus surface', on: quantumCoordinateNav(matrix).placed },
+    { property: 'no drift', via: 'the same route feeds the SEO and the sitemap, content-addressed', on: quantumSitemap().quantum },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`all-paths:${entry.property}:${entry.on}`) }))
+  return {
+    computed: properties.length === 4 && properties.every((entry) => entry.on),
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'All paths are computed in realtime: no route is hand-tuned — every path’s title, keywords, description and category are computed from the route itself at render time, each path is a distinct point on the double torus, and the same computation feeds the sitemap, so the paths never drift and are recomputed the moment they are asked for, client-side and free.',
+    boundary:
+      'A composition of the computed-SEO, quantum-coordinate and sitemap models asserting every route is derived (not hand-authored) and recomputable. Structural bookkeeping over the real routing and SEO; "realtime" means computed at render time, not a streaming claim.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
