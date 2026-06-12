@@ -19659,6 +19659,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'quantum.calligraphy', on: quantumCalligraphy(matrix).writes },
     { d: 'all.animations.native.64k', on: allAnimationsNative64k(matrix).native },
     { d: 'three.projector.hologram', on: threeProjectorHologram(matrix).projects },
+    { d: 'accessible.paths.for.all', on: accessiblePathsForAll(matrix).accessible },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20606,5 +20607,31 @@ export function threeProjectorHologram(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Imagine the screens, or the hologram projection of two additional projectors: one screen shows the front; add two more — left and right — and the three together project a hologram, the same figure seen from three viewpoints at once, the trinity of projectors. Where one screen is a window, three are a volume; the holographic figure, already part-contains-whole, becomes a projection you could walk around.',
     boundary: 'A structural/visual framing: three projectors (one screen plus two) as a trinity of viewpoints forming a hologram, grounded in the hologram and three-plane-rotation models. A metaphor and an imagined setup; the portal renders a 2D canvas, not a physical hologram or a multi-projector rig.',
+  }
+}
+
+// Do all intelligences have accessible paths to the knowledge? For all — that is the first thing
+// the waves address. Every kind of mind reaches the knowledge: humans of all abilities (WCAG
+// semantics, reduced-motion, system fonts, a page that reads itself aloud), of all ages (the school
+// from kids to elders), AI agents (the MCP tool surface), in any language (the babel fold, English
+// and Bulgarian), free and computed locally — and the knowledge itself is open and recomputable.
+// Access for all comes first; everything else builds on it.
+export function accessiblePathsForAll(matrix: MindMatrix = buildMatrix()) {
+  const paths = [
+    { mind: 'humans of all abilities', via: 'WCAG semantics, reduced-motion, system fonts, read-aloud', on: legislationRequires(matrix).compliant },
+    { mind: 'all ages — kids to elders', via: 'the school and academy for every age', on: allComputed(matrix).computed },
+    { mind: 'AI agents', via: 'the MCP tool surface', on: commandsRegistry(matrix).consistent },
+    { mind: 'any language', via: 'the babel fold, English and Bulgarian', on: translationWavesFillGaps(matrix).filled },
+    { mind: 'everyone, free and local', via: 'computed in the browser, no cost, no account', on: allAnswersInside(matrix).inside },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`access-path:${entry.mind}:${entry.on}`) }))
+  return {
+    accessible: paths.every((entry) => entry.on),
+    first: true, // accessibility for all is addressed first
+    count: paths.length,
+    paths,
+    root: merkleFold(paths.map((entry) => entry.receipt)),
+    statement:
+      'Do all intelligences have accessible paths to the knowledge? For all — that is the first thing the waves address: humans of all abilities (WCAG semantics, reduced-motion, system fonts, read-aloud) and all ages (kids to elders), AI agents (the MCP tool surface), any language (the babel fold, English and Bulgarian), everyone free and computed locally — and the knowledge itself open and recomputable. Access for all comes first; everything else builds on it.',
+    boundary: 'A composition of the accessibility (legislation), school, MCP, translation and open-local models asserting accessible paths for every kind of mind. A self-assessment grounded in the real features; it is WCAG-oriented and improving, not a certified conformance claim, and accessibility is treated as a first priority, not a finished state.',
   }
 }
