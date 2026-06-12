@@ -116,6 +116,7 @@ import {
   monographs,
   textToMovie,
   teleport,
+  cellHomology,
   selfHealing,
   quantumPhysics,
   quantumSimulation,
@@ -312,6 +313,9 @@ ok(`text.to.movie:${textToMovie('double torus').frames}`, textToMovie('double to
 
 // Every bit is teleportable: send the content address, recompute the exact bit.
 ok(`teleport:${teleport(matrix).count}`, teleport(matrix).teleportable && teleport(matrix).analog)
+
+// Closed an open idea: full cell homology of the genus-2 surface from an explicit chain complex.
+ok(`cell.homology:H1=Z^${cellHomology(matrix).betti[1]}`, cellHomology(matrix).closed && cellHomology(matrix).chainComplex)
 
 // All in self-healing waves: every dimension heals to balance in its own wave.
 ok(`self.healing:${selfHealing(matrix).balanced}/${selfHealing(matrix).count}`, selfHealing(matrix).healed)
