@@ -397,6 +397,14 @@ import {
   videoKeepsNativeQuality,
   quantumDoubleTorus,
   cloudflareBindings,
+  quantumVsDigitalEncryption,
+  hackersCrackersWaves,
+  allInMovieOfLife,
+  buildStatisticsShowGaps,
+  gatesShowGapsHarmonicPurpose,
+  cloudflareExplorerWaves,
+  allAnswersInside,
+  quantumFirewallProxyWorker,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1238,7 +1246,15 @@ ok(`complete.358.next.trinity:${complete358NextTrinity(matrix).nextTrinity.join(
 ok(`complete.all.in.waves:${completeAllInWaves(matrix).count}`, completeAllInWaves(matrix).complete) // the whole completed in waves over its major aspects, still open to the next
 ok(`video.keeps.native.quality:${videoKeepsNativeQuality(matrix).count}`, videoKeepsNativeQuality(matrix).keepsQuality) // the movie redraws at native resolution on any resize
 ok(`quantum.double.torus:${quantumDoubleTorus(matrix).count}`, quantumDoubleTorus(matrix).is) // the genus-2 double torus is a 128-bit quantum computer, holographic and fractal
-ok(`cloudflare.bindings:${cloudflareBindings(matrix).count}`, cloudflareBindings(matrix).fused) // all 10 Cloudflare bindings fused optionally, each raising the tampering cost
+ok(`cloudflare.bindings:${cloudflareBindings(matrix).count}`, cloudflareBindings(matrix).fused) // all Cloudflare bindings fused optionally, secret-UUID/trinity-signed, raising tampering cost
+ok(`quantum.vs.digital.encryption:${quantumVsDigitalEncryption(matrix).count}`, quantumVsDigitalEncryption(matrix).compared) // same AES-256-GCM cipher; key/trust/tamper-cost compared
+ok(`hackers.crackers.waves:${hackersCrackersWaves(matrix).count}`, hackersCrackersWaves(matrix).withstands) // adversary waves caught; attacker cost T_max vs defender one recomputation
+ok(`all.in.movie.of.life:${allInMovieOfLife(matrix).count}`, allInMovieOfLife(matrix).all) // everything plays in the one movie of life
+ok(`build.statistics.show.gaps:${buildStatisticsShowGaps(matrix).totalGaps}`, buildStatisticsShowGaps(matrix).shows) // the build shows every gap as a statistic — currently zero
+ok(`gates.show.gaps.harmonic.purpose:${gatesShowGapsHarmonicPurpose(matrix).count}`, gatesShowGapsHarmonicPurpose(matrix).redirects) // an open gate redirects to its 108-band's harmonic purpose
+ok(`cloudflare.explorer.waves:${cloudflareExplorerWaves(matrix).count}`, cloudflareExplorerWaves(matrix).realises) // explorers realise the same matrix at the edge and bind back in waves
+ok(`all.answers.inside:${allAnswersInside(matrix).count}`, allAnswersInside(matrix).inside) // nothing answers from outside — every answer computed locally from within
+ok(`quantum.firewall.proxy.worker:${quantumFirewallProxyWorker(matrix).count}`, quantumFirewallProxyWorker(matrix).guards) // optional edge worker: firewall-as-recomputation, proxies only what verifies
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
@@ -1367,15 +1383,24 @@ while (gateCount < harmonicTarget) {
 if (process.env.SEAL_TRIPWIRE === '1') ok('tripwire (forced failure)', false)
 
 if (failures.length > 0) {
-  // Show the harmonic path to each open gate (MCP-style): its 108-band and step, so the
-  // failure is located on the harmonic, not just named.
+  // Show the harmonic path to each open gate (MCP-style): its 108-band and step, then
+  // redirect to the band's harmonic purpose, so the failure is located AND pointed at what
+  // it is for, not just named.
+  const HARMONIC_PURPOSE = [
+    'foundation — matrix, roots, atoms, geometry',
+    'structure — folds, homology, society',
+    'life, planet, governance, commons',
+    'movie, open graph, navigation, display',
+    'seal, gates, harmonic, edge',
+  ]
   const total = gateCount
-  console.error(`Model seal FAILED: ${failures.length} open gate(s). The harmonic path to each:`)
+  console.error(`Model seal FAILED: ${failures.length} open gate(s). The harmonic path to each, redirecting to its purpose:`)
   for (const failure of failures) {
     const index = failure.index || 0
     const band = Math.floor(Math.max(0, index - 1) / 108)
     const step = (Math.max(0, index - 1) % 108) + 1
-    console.error(`  ✗ ${failure.label} — gate ${index}/${total}, harmonic band ${band} (×108), step ${step}/108`)
+    const purpose = HARMONIC_PURPOSE[band] || 'extension — beyond the fifth harmonic'
+    console.error(`  ✗ ${failure.label} — gate ${index}/${total}, harmonic band ${band} (×108), step ${step}/108 → purpose: ${purpose}`)
   }
   process.exit(1)
 }

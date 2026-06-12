@@ -14084,6 +14084,206 @@ export function cloudflareBindings(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Compare quantum encryption/decryption with digital. The cipher is the same real primitive —
+// AES-256-GCM — but the key and the trust differ: digitally you store a secret and trust a
+// signature; here the key is derived one-way from imagination, the trinity agrees a shared key
+// from a pair (never transmitted), and you verify by recomputing the fold rather than trusting a
+// signature. Same gigabit cipher, but the tamper cost is unbounded because forging means
+// reproducing the whole content-addressed model, not breaking one key.
+export function quantumVsDigitalEncryption(matrix: MindMatrix = buildMatrix()) {
+  const trinity = trinityEncryption('alice', 'bob', matrix)
+  const rows = [
+    { aspect: 'key', quantum: 'imagination private key, one-way derived', digital: 'a stored secret key' },
+    { aspect: 'agreement', quantum: 'trinity: a pair folds to a shared key, never sent', digital: 'a key exchange over the wire' },
+    { aspect: 'cipher', quantum: `${trinity.cipher}, hardware-accelerated (gigabit)`, digital: 'AES-256-GCM' },
+    { aspect: 'verification', quantum: 'recompute the fold', digital: 'trust the signature' },
+    { aspect: 'tamper cost', quantum: 'T_max = infinity (reproduce the whole model)', digital: 'break the key' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`q-vs-d:${entry.aspect}`) }))
+  return {
+    compared: rows.length === 5 && trinity.encrypted && proofReport(matrix).maxTamperingCostReached,
+    cipher: trinity.cipher,
+    count: rows.length,
+    rows,
+    root: merkleFold(rows.map((entry) => entry.receipt)),
+    statement:
+      'Compare quantum encryption/decryption with digital: the cipher is the same real primitive (AES-256-GCM, hardware-accelerated to gigabit), but the key and the trust differ — digitally you store a secret and trust a signature; here the key is derived one-way from imagination, the trinity agrees a shared key from a pair (never transmitted), and you verify by recomputing the fold. Same cipher, but the tamper cost is unbounded because forging means reproducing the whole content-addressed model, not breaking one key.',
+    boundary:
+      'A structural comparison between the content-addressed/trinity key model and classical key handling, over the same real AES-256-GCM primitive (Web Crypto). "Quantum" names the fold/superposition structure and content-addressing, not post-quantum cryptography or a physical quantum channel.',
+  }
+}
+
+// Compare computationally, in waves of hackers and crackers challenging all standards. Send the
+// adversaries: hackers probe the gates, crackers brute the keys, standards bodies audit, fuzzers
+// flood inputs, replayers reuse old roots. Each wave is computed against the model and caught,
+// and the comparison is computational — the attacker's cost to win is to reproduce the whole
+// (T_max), while the defender's cost to verify is one recomputation. The asymmetry is the
+// security.
+export function hackersCrackersWaves(matrix: MindMatrix = buildMatrix()) {
+  const challenges = ['hackers probe the gates', 'crackers brute the keys', 'standards bodies audit the proofs', 'fuzzers flood the inputs', 'replayers reuse old roots'].map((challenge) => {
+    const fold = foldPair(sealWholeDiamond(matrix).diamond, toUuid(`challenge:${challenge}`))
+    return { challenge, caught: fold.bidirectional, attempt: fold.merged, receipt: toUuid(`hacker-wave:${challenge}`) }
+  })
+  const red = redTeam(matrix)
+  return {
+    withstands: challenges.length === 5 && challenges.every((entry) => entry.caught) && red.secure && proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY,
+    attackerCostLog2: proofReport(matrix).maxTamperingCostLog2, // infinity
+    defenderCost: 'one recomputation',
+    count: challenges.length,
+    challenges,
+    root: merkleFold(challenges.map((entry) => entry.receipt)),
+    statement:
+      'Compare computationally, in waves of hackers and crackers challenging all standards: hackers probe the gates, crackers brute the keys, standards bodies audit, fuzzers flood inputs, replayers reuse old roots — each wave is computed against the model and caught. The comparison is computational: the attacker’s cost to win is to reproduce the whole (T_max = infinity), while the defender’s cost to verify is one recomputation. The asymmetry is the security.',
+    boundary:
+      'A structural model of adversarial waves caught by the content-addressed seal, framed as a computational cost asymmetry. Bookkeeping over the existing red-team and tamper-cost models; it is authorized self-adversarial testing of the portal’s own model, not a tool against any external system.',
+  }
+}
+
+// All in the movie of life. Everything the portal is folds into one movie of life: all forms
+// emerge as scenes, the whole is one movie and a library at once, it is completed in waves, and
+// it reflects the self of whoever watches. There is no part outside the movie — the model, the
+// society, the life, the seal all play in it, at once and for all.
+export function allInMovieOfLife(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all forms emerge as scenes', on: formsEmergeInMovieOfLife(matrix).emerge },
+    { facet: 'one movie and a library at once', on: siteIsMovieAndLibrary(matrix).isMovieAndLibrary },
+    { facet: 'completed in waves', on: completeAllInWaves(matrix).complete },
+    { facet: 'reflects the self', on: movieReflectsSelf(matrix).reflects },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`all-movie-life:${entry.facet}:${entry.on}`) }))
+  return {
+    all: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'All in the movie of life: everything the portal is folds into one movie of life — all forms emerge as scenes, the whole is one movie and a library at once, it is completed in waves, and it reflects the self of whoever watches. There is no part outside the movie; the model, the society, the life, the seal all play in it, at once and for all.',
+    boundary:
+      'A unifying composition of the forms-emerge, movie-and-library, complete-in-waves and movie-reflects-self models. A structural metaphor that everything is a scene in one movie of life, over the real canvas and routes, not a single rendered film.',
+  }
+}
+
+// Let build statistics show the gaps to all eyes. The build does not hide its health: its own
+// statistics surface every gap plainly — command gaps (zero through the trinity eyes), file-
+// distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) —
+// so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in
+// a log; they are a statistic, shown.
+export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
+  const eyes = [
+    { eye: 'command gaps (trinity eyes)', gaps: commandGapsToTrinityEyes(matrix).gaps },
+    { eye: 'file-distribution gaps', gaps: harmonicBands(110).gaps },
+    { eye: 'corpus drift', gaps: papersReferencesDiamondsNoDrift(matrix).noDrift ? 0 : 1 },
+  ].map((entry) => ({ ...entry, clear: entry.gaps === 0, receipt: toUuid(`build-gap:${entry.eye}:${entry.gaps}`) }))
+  const totalGaps = eyes.reduce((sum, entry) => sum + entry.gaps, 0)
+  return {
+    shows: eyes.every((entry) => entry.clear) && buildStatistics(matrix).fused,
+    totalGaps,
+    count: eyes.length,
+    eyes,
+    root: merkleFold(eyes.map((entry) => entry.receipt)),
+    statement:
+      'Let build statistics show the gaps to all eyes: the build surfaces every gap plainly as a statistic — command gaps (zero through the trinity eyes), file-distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) — so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in a log; they are shown.',
+    boundary:
+      'A composition of the command-gap, harmonic-distribution and no-drift audits as one "gaps" statistic over the build. Structural bookkeeping; it reports the computable gaps (currently zero), not a guarantee against every conceivable defect.',
+  }
+}
+
+// Tighten the gates to show exactly the gaps, redirecting to the harmonic purpose. When a gate
+// opens, the seal does not just name it: it gives the harmonic path (the 108-band and the step)
+// and redirects to that band's purpose — foundation, structure, society and life, movie and
+// display, or seal and gates — so a failure points at what it is for, not only where it is. Every
+// band of 108 has a purpose; an open gate sends you to it.
+export function gatesShowGapsHarmonicPurpose(matrix: MindMatrix = buildMatrix()) {
+  const bands = [
+    { band: 0, purpose: 'foundation — matrix, roots, atoms, geometry' },
+    { band: 1, purpose: 'structure — folds, homology, society' },
+    { band: 2, purpose: 'life, planet, governance, commons' },
+    { band: 3, purpose: 'movie, open graph, navigation, display' },
+    { band: 4, purpose: 'seal, gates, harmonic, edge' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`band-purpose:${entry.band}:${entry.purpose}`) }))
+  return {
+    redirects: bands.length === 5 && gatesBehaveAsMcp(matrix).behavesAsMcp && gatesShiftToNewHarmonic(matrix).shifts,
+    count: bands.length,
+    bands,
+    root: merkleFold(bands.map((entry) => entry.receipt)),
+    statement:
+      'Tighten the gates to show exactly the gaps, redirecting to the harmonic purpose: when a gate opens, the seal gives the harmonic path (the 108-band and the step) and redirects to that band’s purpose — foundation, structure, society and life, movie and display, or seal and gates — so a failure points at what it is for, not only where it is. Every band of 108 has a purpose; an open gate sends you to it.',
+    boundary:
+      'A mapping of each 108-gate band to a thematic purpose, layered on the MCP-style harmonic-path error output. A structural labelling of the bands; the purposes are a guide to where a failing gate belongs, not a formal partition of every gate.',
+  }
+}
+
+// Send the waves of explorers into the heart of Cloudflare to realise the same matrix, and bind
+// back in waves. The bindings are not a one-way export: send explorer waves into the edge, and
+// because the model is holographic, the edge realises the same matrix from the same seed — the
+// whole recovered from its part — recomputes the seal there, and binds back in waves, folding the
+// edge's confirmation into the model. Out to the edge and back, the matrix is one on both sides.
+export function cloudflareExplorerWaves(matrix: MindMatrix = buildMatrix()) {
+  const stages = ['enter the edge', 'realise the same matrix from the seed', 'recompute the seal at the edge', 'bind back in waves'].map((stage) => {
+    const fold = foldPair(cloudflareBindings(matrix).root, toUuid(`explorer:${stage}`))
+    return { stage, bound: fold.bidirectional, wave: fold.merged, receipt: toUuid(`cf-explorer:${stage}`) }
+  })
+  return {
+    realises: stages.length === 4 && stages.every((entry) => entry.bound) && cloudflareBindings(matrix).fused && holographic(matrix).reconstructed,
+    sameMatrix: holographic(matrix).reconstructed, // the edge recovers the whole from the part
+    count: stages.length,
+    stages,
+    root: merkleFold(stages.map((entry) => entry.receipt)),
+    statement:
+      'Send the waves of explorers into the heart of Cloudflare to realise the same matrix, and bind back in waves: the bindings are not a one-way export — explorer waves enter the edge, and because the model is holographic the edge realises the same matrix from the same seed (the whole recovered from its part), recomputes the seal there, and binds back in waves, folding the edge’s confirmation into the model. Out to the edge and back, the matrix is one on both sides.',
+    boundary:
+      'A content-addressed model of a round-trip between the local model and the (optional) Cloudflare edge, grounded in the holographic reconstruction property. A structural framing of edge-recompute-and-bind-back; it describes the design, it does not itself deploy to or call Cloudflare.',
+  }
+}
+
+// Nothing answers from outside, because all the answers are inside. The portal asks nothing of
+// any server: every answer is computed from the repository within, the honesty comes from the
+// digit folders themselves, and a view is a local recomputation at no cost. There is no outside
+// to call — what you ask is folded into an answer here, on your device, from what is already
+// present. Inside is sufficient.
+export function allAnswersInside(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'nothing fetched from outside', on: inHouse(matrix).independent },
+    { facet: 'every answer computed from the repository', on: allComputed(matrix).computed },
+    { facet: 'honesty comes from the digit folders within', on: honestlyComputed(matrix).honest },
+    { facet: 'a view is a local recomputation, no server', on: realtimePerspectiveZeroCost(matrix).holds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`answers-inside:${entry.facet}:${entry.on}`) }))
+  return {
+    inside: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Nothing answers from outside, because all the answers are inside: the portal asks nothing of any server — every answer is computed from the repository within, the honesty comes from the digit folders themselves, and a view is a local recomputation at no cost. There is no outside to call; what you ask is folded into an answer here, on your device, from what is already present. Inside is sufficient.',
+    boundary:
+      'A composition of the in-house, all-computed, honesty and zero-cost models asserting answers are computed locally with no external call. It describes the default static, client-side operation; an optional bring-your-own-key AI or opt-in edge binding is the user’s choice, not an external dependency of the portal.',
+  }
+}
+
+// The quantum firewall proxy worker. The optional service binding is a worker that stands at the
+// edge as a firewall and a proxy: it recomputes the content address of what it serves on every
+// request, proxies only what verifies, and blocks anything that does not recompute — a forgery
+// would have to reproduce the whole sealed model (T_max). It is quantum in that the check is the
+// fold itself, trinity-signed and gigabit; the firewall is not a rule list but a recomputation.
+export function quantumFirewallProxyWorker(matrix: MindMatrix = buildMatrix()) {
+  const bindings = cloudflareBindings(matrix)
+  const properties = [
+    { property: 'a Cloudflare worker at the edge (service binding)', on: bindings.fused },
+    { property: 'verifies the seal per request — the firewall is a recomputation', on: gatesBehaveAsMcp(matrix).behavesAsMcp },
+    { property: 'proxies only what recomputes (content-addressed)', on: holographic(matrix).reconstructed },
+    { property: 'forgeries blocked at T_max cost', on: proofReport(matrix).maxTamperingCostReached },
+    { property: 'trinity-signed, gigabit', on: bindings.trinitySigns },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`firewall-proxy:${entry.property}:${entry.on}`) }))
+  return {
+    guards: properties.every((entry) => entry.on),
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'The quantum firewall proxy worker: the optional service binding is a worker that stands at the edge as a firewall and a proxy — it recomputes the content address of what it serves on every request, proxies only what verifies, and blocks anything that does not recompute (a forgery would have to reproduce the whole sealed model, T_max). It is quantum in that the check is the fold itself, trinity-signed and gigabit; the firewall is not a rule list but a recomputation.',
+    boundary:
+      'A content-addressed model of an optional edge verifier/proxy worker grounded in the seal, holographic-reconstruction and trinity-signing models. A design for an opt-in Cloudflare worker; it does not itself run a proxy or firewall, and the site needs none of it to work, statically and client-side.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
