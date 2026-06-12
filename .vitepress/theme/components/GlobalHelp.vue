@@ -29,6 +29,7 @@ const t = computed(() =>
         none: 'Няма съвпадение. Опитай дума като proof, school, mcp, chain.',
         tool: 'инструмент',
         close: 'Затвори',
+        tryLabel: 'Опитай:',
       }
     : {
         open: 'Help',
@@ -44,6 +45,7 @@ const t = computed(() =>
         none: 'No match. Try a word like proof, school, mcp, chain.',
         tool: 'tool',
         close: 'Close',
+        tryLabel: 'Try:',
       },
 )
 
@@ -102,6 +104,15 @@ async function ask() {
     busy.value = false
   }
 }
+
+// Improve help in waves: suggested starter topics so the first question is one tap away.
+// Each is a term the local intelligence resolves well; tapping it asks straight away.
+const suggestions = ['proof', 'school', 'mcp', 'governance', 'healing', 'diamonds']
+function askChip(text: string) {
+  if (busy.value) return
+  input.value = text
+  ask()
+}
 </script>
 
 <template>
@@ -125,6 +136,10 @@ async function ask() {
         </form>
       </div>
       <div class="global-help__log">
+        <div v-if="lines.length === 0 && mode === 'local'" class="global-help__suggest">
+          <span class="global-help__try">{{ t.tryLabel }}</span>
+          <button v-for="s in suggestions" :key="s" type="button" @click="askChip(s)">{{ s }}</button>
+        </div>
         <p v-for="(line, i) in lines" :key="i" :class="['global-help__msg', line.role]">{{ line.text }}</p>
         <p v-if="busy" class="global-help__msg note">{{ t.thinking }}</p>
       </div>
@@ -223,6 +238,29 @@ async function ask() {
   max-height: 40vh;
   overflow: auto;
   font-size: 0.82rem;
+}
+.global-help__suggest {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0 0.4rem;
+}
+.global-help__try {
+  font-size: 0.74rem;
+  color: var(--vp-c-text-3);
+}
+.global-help__suggest button {
+  font-size: 0.74rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-brand-1);
+  cursor: pointer;
+}
+.global-help__suggest button:hover {
+  border-color: var(--vp-c-brand-1);
 }
 .global-help__msg {
   margin: 0.3rem 0;

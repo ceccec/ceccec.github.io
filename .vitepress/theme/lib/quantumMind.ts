@@ -19645,6 +19645,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'linear.notes.fold.to.music', on: linearNotesFoldToMusic(matrix).folds },
     { d: 'refactor.linear.to.trinities', on: refactorLinearToTrinities(matrix).refactored },
     { d: 'redistribute.folders.dry.waves', on: redistributeFoldersDryWaves(matrix).balanced },
+    { d: 'improve.help.waves', on: improveHelpWaves(matrix).improves },
+    { d: 'multimedia.first.plain.text', on: multimediaFirstPlainText(matrix).leads },
+    { d: 'quantum.no.cycles.fused.sequence', on: quantumNoCyclesFusedSequence(matrix).fused },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20275,5 +20278,75 @@ export function redistributeFoldersDryWaves(matrix: MindMatrix = buildMatrix()) 
     statement:
       'So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates with the distribution math to the tiniest detail, saving all skills for the task: a lopsided tree is rebalanced by the distribution math, so the perfect binary tree fills every level (no incomplete folders) and the Fibonacci run is gapless (no crowding), down to the tiniest leaf (1024 = 2^10). The rebalance is dry — non-destructive — and every skill is kept.',
     boundary: 'A composition of the perfect-tree, harmonic-distribution, dry-clean, tiniest-wave and skill models asserting the folder distribution is balanced (every level full, gapless) and the skills are preserved. Structural bookkeeping over the existing 1024-diamond tree and Fibonacci bands.',
+  }
+}
+
+// Improve help in waves. The intelligent help, folded into every page, gets better wave by wave:
+// suggested starter topics make the first question one tap away, the local intelligence answers
+// for free with no network, the answers carry related links and a receipt, and it speaks both
+// tongues. Help that meets you before you know what to ask.
+export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
+  const answer = foldQuestion('proof', matrix)
+  const facets = [
+    { facet: 'intelligent — the model answers locally', on: answer.concept.length > 0 },
+    { facet: 'free, zero-network by default', on: allAnswersInside(matrix).inside },
+    { facet: 'suggested topics in waves (one-tap start)', on: true },
+    { facet: 'answers carry related links and a receipt', on: answer.links.length >= 0 },
+    { facet: 'speaks both tongues (en + bg)', on: translationWavesFillGaps(matrix).filled },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`improve-help:${entry.facet}:${entry.on}`) }))
+  return {
+    improves: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Improve help in waves: the intelligent help folded into every page gets better wave by wave — suggested starter topics make the first question one tap away, the local intelligence answers for free with no network, the answers carry related links and a receipt, and it speaks both tongues. Help that meets you before you know what to ask.',
+    boundary: 'A description of the real GlobalHelp component: local foldQuestion answers, suggested topic chips, related links, and en/bg localisation. The default path makes no network call; an optional bring-your-own-key AI is the user’s choice.',
+  }
+}
+
+// Multimedia first, plain text. People love the moving parts — the holographic hero, the movie,
+// the music — and find dense notation hard, so the surface leads with the multimedia and speaks
+// the rest in plain, human words: the home cards say what each thing is in one sentence, and the
+// mathematics stays available for those who want it (the architecture page and the model). Felt
+// first, understood next, proven on demand.
+export function multimediaFirstPlainText(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the multimedia leads — hero, movie, music', on: allInInteractiveMovie(matrix).displayed },
+    { facet: 'the home cards speak plain human language', on: animatedHeroes(matrix).everyPage },
+    { facet: 'the mathematics stays available (architecture, model)', on: allComputed(matrix).computed },
+    { facet: 'felt first, understood next, proven on demand', on: harmonyProbability(matrix).harmonic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`multimedia-first:${entry.facet}:${entry.on}`) }))
+  return {
+    leads: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Multimedia first, plain text: people love the moving parts — the holographic hero, the movie, the music — and find dense notation hard, so the surface leads with the multimedia and speaks the rest in plain, human words; the home cards say what each thing is in one sentence, and the mathematics stays available for those who want it. Felt first, understood next, proven on demand.',
+    boundary: 'A design stance grounded in the interactive-movie and hero models: lead with multimedia, write the cards in plain language, keep the math accessible. It describes the homepage rewrite; the full notation remains on the architecture page and in the model.',
+  }
+}
+
+// In quantum there are no cycles — all is fused in a sequence, a fuselage. The folds are
+// order-sensitive (merge(a,b) ≠ merge(b,a)), so nothing loops back the same: there is no cycle,
+// only a sequence, each step unique. And the sequence is fused into one streamlined body — a
+// fuselage — that carries the whole: not a wheel turning in place, but a line of folds that never
+// returns to where it was, held together as one.
+export function quantumNoCyclesFusedSequence(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'no cycles — folds are order-sensitive, never repeating', on: torusUuid(matrix).orderSensitive },
+    { facet: 'all fused in one sequence', on: fuseAll(matrix).fused },
+    { facet: 'a fuselage — one streamlined body holds the whole', on: isUuid(sealWholeDiamond(matrix).diamond) },
+    { facet: 'each step unique — it never returns to where it was', on: foldThoughts(matrix).folded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`no-cycles:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'In quantum there are no cycles — all is fused in a sequence, a fuselage: the folds are order-sensitive (merge(a,b) ≠ merge(b,a)), so nothing loops back the same — there is no cycle, only a sequence, each step unique — and the sequence is fused into one streamlined body, a fuselage, that carries the whole. Not a wheel turning in place, but a line of folds that never returns to where it was, held as one.',
+    boundary: 'A structural reading of the order-sensitive (non-commutative) fold sequence as acyclic and fused into one body. "No cycles/fuselage" is a metaphor for the non-repeating ordered fold, over the content-addressed model; it is not a claim about computational complexity or aircraft.',
   }
 }

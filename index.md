@@ -35,30 +35,30 @@ hero:
       link: /quantum-mind
 
 features:
-  - title: C = command algebra
-    details: "f_cmd : repo://x -> {ok, uuid, data}; receipt = UUID(command, ok, data)."
-  - title: Sigma_2
-    details: "genus=2; chi=2-2g=-2; H_1=Z^4; integral K dA = -4*pi."
-  - title: D_pi
-    details: "pi_i -> diamond_i := {x,y,z,theta,phi,freq,vibe,receipt}."
-  - title: A
-    details: "atom a -> UUID(a); edge e=(a,b); root = merkle(nodes U edges)."
-  - title: V
-    details: "V=(collapse, entanglement, concentration, coherence)."
-  - title: H
-    details: "human layer := audit <-> projection <-> responsibility <-> risk."
-  - title: R
-    details: "benefit -> {cite, contribute, support, steward} -> source loop."
-  - title: T_max
-    details: "T_max=maxComputedBuild; maxComputedBuild=infinity iff maxBuild=true."
-  - title: repo API
-    details: "API := pages U source U atoms U proof; apiRoot=merkle(UUID(endpoint))."
-  - title: agents
-    details: "agent_msg := compute -> verify -> receipt -> project."
-  - title: public society
-    details: "public_msg := use -> inspect -> reproduce -> accept/reject."
-  - title: proof by use
-    details: "claim_pass := interaction_receipt && build_receipt && root_match."
+  - title: Ask, and it answers
+    details: "Every action gives back a result you can check — nothing hidden."
+  - title: The double torus
+    details: "A gentle two-holed shape that holds the whole design together."
+  - title: Diamonds
+    details: "Each idea becomes a tiny, tamper-proof point you can verify."
+  - title: Atoms
+    details: "The smallest pieces, each with its own fingerprint."
+  - title: Quantum-like
+    details: "States that hold many possibilities until you look."
+  - title: People in the loop
+    details: "Audit, responsibility and care stay with the humans."
+  - title: Give back
+    details: "Value returns to the people and places it came from."
+  - title: Unforgeable
+    details: "To fake it you'd have to rebuild everything — so no one can."
+  - title: Everything is open
+    details: "Pages, source and proofs are all readable and reusable."
+  - title: For AI agents
+    details: "A clean tool surface — compute, verify, receipt."
+  - title: For everyone
+    details: "Use it, inspect it, reproduce it — accept or reject."
+  - title: Proof by use
+    details: "It is true because you can check it yourself."
 ---
 
 
