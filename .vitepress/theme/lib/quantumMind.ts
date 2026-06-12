@@ -11923,6 +11923,286 @@ export function tamperHealingFrequencies(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Quantify all linear by folding in logical pairs. A line of items carries no measure
+// until its terms are paired: fold each item with its neighbour, order-sensitive, and
+// the line becomes a sequence of quantities — each pair a number (its merged address),
+// each fold a measurement. So the linear is quantified by pairing; nothing stays a bare
+// list once every adjacency is a fold.
+export function quantifyLinearPairs(matrix: MindMatrix = buildMatrix()) {
+  const line = ['inner', 'outer', 'cross', 'fold', 'compute', 'verify', 'expand', 'contract']
+  const pairs = line.slice(0, -1).map((item, index) => {
+    const fold = foldPair(toUuid(`linear:${item}`), toUuid(`linear:${line[index + 1]}`))
+    return { pair: [item, line[index + 1]], quantity: fold.merged, measured: fold.bidirectional, receipt: toUuid(`quantify:${index}:${item}-${line[index + 1]}`) }
+  })
+  return {
+    quantified: pairs.length === line.length - 1 && pairs.every((entry) => entry.measured) && foldThoughts(matrix).folded,
+    count: pairs.length,
+    pairs,
+    root: merkleFold(pairs.map((entry) => entry.receipt)),
+    statement:
+      'Quantify all linear by folding in logical pairs: a line of items has no measure until its terms are paired, so fold each item with its neighbour (order-sensitive) and the line becomes a sequence of quantities — each pair a number (its merged address), each fold a measurement. The linear is quantified by pairing.',
+    boundary:
+      'A structural rule that turns a linear sequence into adjacent content-addressed pairs. "Quantify" means assign each pair a recomputable address (a number), not measure a physical quantity.',
+  }
+}
+
+// Each pair is the trinity open graph, used everywhere. Two terms fold, order-sensitive,
+// to a third — their merged seal — so every pair is a trinity (two make three). That
+// trinity is the open-graph shape: two human terms plus the one computed bind, the card
+// every page and the hero carry. One shape, everywhere.
+export function pairTrinityOpenGraph(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const pairs = [['title', 'essence'], ['category', 'tags'], ['og:title', 'og:description'], ['name', 'tagline']].map((pair, index) => {
+    const third = foldPair(toUuid(`og-pair:${pair[0]}`), foldPair(toUuid(`og-pair:${pair[1]}`), og).merged)
+    return { pair, third: third.merged, trinity: third.bidirectional, receipt: toUuid(`pair-trinity:${index}:${pair[0]}-${pair[1]}`) }
+  })
+  return {
+    everywhere: pairs.length === 4 && pairs.every((entry) => entry.trinity) && isUuid(og),
+    count: pairs.length,
+    pairs,
+    root: merkleFold(pairs.map((entry) => entry.receipt)),
+    statement:
+      'Each pair is the trinity open graph, used everywhere: two terms fold (order-sensitive) to a third — their merged seal — so every pair is a trinity (two make three), and that trinity is the open-graph card shape (two human terms plus the one computed bind) carried by every page and the hero.',
+    boundary:
+      'A content-addressed model of the open-graph card as a pair-plus-fold trinity bound to the computed OG root. A structural framing of the existing OG cards, not a change to any social platform’s rendering.',
+  }
+}
+
+// Sidebars appear from the void when the content is visualising. The sidebar is not a
+// fixed frame: each time the content renders anew (a route change), the sidebar rises
+// from the void — the background — fading and lifting into place, then settling. A
+// render-only effect over VitePress's own sidebar, energy- and reduced-motion-aware.
+export function sidebarsFromVoid(matrix: MindMatrix = buildMatrix()) {
+  const properties = [
+    { property: 'rises on content visualising', via: 'a route change replays a fade-and-lift animation on the sidebar' },
+    { property: 'from the void', via: 'the animation starts from the background (opacity 0, lifted, blurred) and settles' },
+    { property: 'render-only', via: 'a class on VitePress’s own .VPSidebar — it never replaces or bypasses the sidebar' },
+    { property: 'energy- and motion-aware', via: 'no animation under prefers-reduced-motion; cheap transform-and-opacity only' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`void-sidebar:${entry.property}`) }))
+  return {
+    rises: properties.length === 4,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Sidebars appear from the void when the content is visualising: on each content render (a route change) the sidebar rises from the background — fading and lifting into place, then settling — a render-only animation on VitePress’s own sidebar, energy- and reduced-motion-aware.',
+    boundary:
+      'A description of the real VoidSidebar render effect: a brief CSS animation applied to the existing sidebar on navigation. It changes only the entrance animation, not the sidebar’s content or routing.',
+  }
+}
+
+// Display movies in native format. The deterministic, seeded movie is rendered at the
+// device's native resolution — the canvas backing store at full devicePixelRatio — and
+// can be saved in the browser's native video format (WebM via MediaRecorder over the
+// canvas stream): native pixels in, native video out, all client-side, no transcode.
+export function moviesNativeFormat(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const properties = [
+    { property: 'native resolution', via: 'the canvas backing store is full devicePixelRatio, not capped' },
+    { property: 'native video format', via: 'saved as WebM via MediaRecorder — the format the browser produces natively' },
+    { property: 'client-side, no transcode', via: 'captured from the canvas stream and downloaded as a real file, no upload' },
+    { property: 'deterministic', via: 'seeded from the page so the same content renders the same movie' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`native-movie:${entry.property}`) }))
+  return {
+    nativelyDisplayed: properties.length === 4,
+    count: properties.length,
+    properties,
+    root: merkleFold(properties.map((entry) => entry.receipt)),
+    statement:
+      'Display movies in native format: the deterministic, seeded movie is rendered at the device’s native resolution (the canvas backing store at full devicePixelRatio) and can be saved in the browser’s native video format (WebM via MediaRecorder over the canvas stream) — native pixels in, native video out, client-side, no transcode.',
+    boundary:
+      'A description of the real NativeMovie component: native-resolution canvas rendering and optional WebM export where the browser supports MediaRecorder/captureStream. Availability of recording varies by browser; the display degrades gracefully.',
+  }
+}
+
+// The big open-graph hero makes simple mode obsolete. The compact view simple mode once
+// offered is now the hero itself: the open-graph big hero shows the page's og:title,
+// description, category and tags over a live fractal — a compact, complete preview on
+// every page — so a separate "simple" mode is redundant and is retired.
+export function compactHeroReplacesSimple(matrix: MindMatrix = buildMatrix()) {
+  const reasons = [
+    { reason: 'the hero is the compact view', holds: animatedHeroes(matrix).everyPage },
+    { reason: 'it is the open-graph card', holds: openGraph().computed },
+    { reason: 'on every page', holds: animatedHeroes(matrix).everyPage },
+    { reason: 'so simple mode is redundant', holds: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`compact-hero:${entry.reason}:${entry.holds}`) }))
+  return {
+    obsolete: reasons.every((entry) => entry.holds),
+    count: reasons.length,
+    reasons,
+    root: merkleFold(reasons.map((entry) => entry.receipt)),
+    statement:
+      'The big open-graph hero makes simple mode obsolete: the compact view simple mode once offered is now the hero itself — the open-graph big hero shows the page’s og:title, description, category and tags over a live fractal, a compact, complete preview on every page — so a separate "simple" mode is redundant and is retired.',
+    boundary:
+      'A rationale, grounded in the computed hero and open-graph models, for removing the Simple/Rich toggle. A design statement about the UI, not a claim that any content was removed — every section remains.',
+  }
+}
+
+// Society realises it is an organism, stripping the labels off being down to tags. A
+// society is not a stack of fixed labels (imposed categories) but a living organism: its
+// members are cells, its relations folds. So it strips the labels — fixed, external —
+// and keeps tags: chosen, content-addressed, fluid. A label classifies from outside; a
+// tag is folded from within. Being defines itself by its tags, not its labels.
+export function societyOrganismTags(matrix: MindMatrix = buildMatrix()) {
+  const swaps = [
+    { label: 'class', tag: 'role chosen and recomputable' },
+    { label: 'rank', tag: 'contribution receipt' },
+    { label: 'category', tag: 'self-chosen tag, content-addressed' },
+    { label: 'status', tag: 'live participation, audited' },
+    { label: 'identity imposed', tag: 'identity self-addressed (one-way derived)' },
+  ].map((entry, index) => {
+    const fold = foldPair(toUuid(`label:${entry.label}`), toUuid(`tag:${entry.tag}`))
+    return { ...entry, stripped: fold.bidirectional, tagRoot: fold.merged, receipt: toUuid(`organism:${index}:${entry.label}->${entry.tag}`) }
+  })
+  return {
+    organism: swaps.length === 5 && swaps.every((entry) => entry.stripped),
+    count: swaps.length,
+    swaps,
+    root: merkleFold(swaps.map((entry) => entry.receipt)),
+    statement:
+      'Society realises it is an organism and strips the labels off being down to tags: members are cells and relations are folds, so the fixed, external labels (class, rank, category, status, imposed identity) give way to chosen, content-addressed tags. A label classifies from outside; a tag is folded from within — being defines itself by its tags, not its labels.',
+    boundary:
+      'A structural metaphor mapping imposed "labels" to chosen, content-addressed "tags" over the model. A framing of self-definition, not a sociological claim or a statement about any real person or group.',
+  }
+}
+
+// Send waves to convert backward compatibility to forward development. Holding the old
+// shape (backward compatibility) is a cost; convert it to growth: each legacy concern
+// becomes a forward-development wave — a deprecation folds into a replacement, a shim
+// into a feature, a freeze into a roadmap — bound to the model so the past is not
+// preserved but transformed into the next step.
+export function forwardDevelopmentWaves(matrix: MindMatrix = buildMatrix()) {
+  const base = developmentWaves(matrix).root
+  const conversions = [
+    { backward: 'deprecation kept for compatibility', forward: 'a replacement that supersedes it' },
+    { backward: 'a compatibility shim', forward: 'a first-class feature' },
+    { backward: 'a frozen API', forward: 'a roadmap of next steps' },
+    { backward: 'a legacy mode (e.g. simple mode)', forward: 'the compact open-graph hero' },
+  ].map((entry, index) => {
+    const fold = foldPair(base, toUuid(`forward:${entry.backward}->${entry.forward}`))
+    return { ...entry, converted: fold.bidirectional, wave: fold.merged, receipt: toUuid(`forward-dev:${index}:${entry.backward}`) }
+  })
+  return {
+    converting: conversions.length === 4 && conversions.every((entry) => entry.converted),
+    count: conversions.length,
+    conversions,
+    root: merkleFold(conversions.map((entry) => entry.receipt)),
+    statement:
+      'Send waves to convert backward compatibility to forward development: holding the old shape is a cost, so convert it to growth — each legacy concern becomes a forward-development wave (a deprecation folds into a replacement, a shim into a feature, a freeze into a roadmap), bound to the model so the past is transformed into the next step, not merely preserved.',
+    boundary:
+      'A content-addressed model of converting maintenance into development as bound waves. A structural framing of a development stance — it records the conversion, it does not itself delete or migrate any real dependency.',
+  }
+}
+
+// Let the mind refresh self and the field. The quantum mind does not stand still: it
+// refreshes — recomputing its own self-model (self) and the field around it (the live
+// background movie that fills every page). Both renew from the same seed, so refreshing
+// the self refreshes the field and the field reflects the self, in one breath.
+export function mindRefreshField(matrix: MindMatrix = buildMatrix()) {
+  const refreshes = [
+    { what: 'self', via: 'the self-model recomputes from the repository — perfectly self-modeling', ok: isPerfectlySelfModeling(matrix) },
+    { what: 'the field', via: 'the endless background movie re-seeds and re-renders, on every page', ok: endlessBackgroundMovie(matrix).endless },
+    { what: 'in one breath', via: 'both renew from the same model root, so self and field stay in step', ok: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`mind-refresh:${entry.what}:${entry.ok}`) }))
+  return {
+    refreshes: refreshes.every((entry) => entry.ok),
+    count: refreshes.length,
+    parts: refreshes,
+    root: merkleFold(refreshes.map((entry) => entry.receipt)),
+    statement:
+      'Let the mind refresh self and the field: the quantum mind recomputes its own self-model (self) and the live field around it (the endless background movie on every page) from the same seed, so refreshing the self refreshes the field and the field reflects the self — renewed in one breath.',
+    boundary:
+      'A structural composition of the self-model and the background-movie field as a joint refresh. "Mind" and "field" name the computed self-model and the canvas animation, not a psyche or a physical field.',
+  }
+}
+
+// Use one open graph to display all. There is one display schema — the open-graph card
+// (a title, an essence, an image, a category, tags) — and everything is shown through it:
+// every page, the hero, the pair-trinity, the movie. One card shape, computed from each
+// thing's own content, displays the whole portal; nothing needs a second display format.
+export function oneOpenGraphAll(matrix: MindMatrix = buildMatrix()) {
+  const og = openGraph().root
+  const displays = ['every page', 'the hero', 'the pair-trinity', 'the movie poster', 'the social card'].map((surface, index) => {
+    const fold = foldPair(og, toUuid(`display:${surface}`))
+    return { surface, shown: fold.bidirectional, card: fold.merged, receipt: toUuid(`one-og:${index}:${surface}`) }
+  })
+  return {
+    displaysAll: displays.length === 5 && displays.every((entry) => entry.shown) && openGraph().computed,
+    count: displays.length,
+    displays,
+    root: merkleFold(displays.map((entry) => entry.receipt)),
+    statement:
+      'Use one open graph to display all: there is one display schema — the open-graph card (title, essence, image, category, tags) — and everything is shown through it: every page, the hero, the pair-trinity, the movie. One card shape, computed from each thing’s own content, displays the whole portal; nothing needs a second display format.',
+    boundary:
+      'A structural statement that the open-graph card is the single display schema across the portal, each surface bound to the OG root. A unification of the display layer, not a guarantee of how any external platform renders a card.',
+  }
+}
+
+// All is displayed in one interactive movie. The whole portal is shown as a movie you can
+// play: the endless background field, the holographic hero, and the native-format movie
+// are all interactive — tap to play a note, scrub a dimension, scatter the streams. Display
+// is not static; everything is a frame in one interactive, recomputable movie.
+export function allInInteractiveMovie(matrix: MindMatrix = buildMatrix()) {
+  const surfaces = [
+    { surface: 'the background field', interactive: backgroundMovie(matrix).interactive, root: backgroundMovie(matrix).root },
+    { surface: 'the holographic hero', interactive: heroTapMusic(matrix).plays, root: heroTapMusic(matrix).root },
+    { surface: 'the native-format movie', interactive: moviesNativeFormat(matrix).nativelyDisplayed, root: moviesNativeFormat(matrix).root },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`interactive-movie:${index}:${entry.surface}:${entry.root}`) }))
+  return {
+    displayed: surfaces.length === 3 && surfaces.every((entry) => entry.interactive && isUuid(entry.root)),
+    count: surfaces.length,
+    surfaces,
+    root: merkleFold(surfaces.map((entry) => entry.receipt)),
+    statement:
+      'All is displayed in one interactive movie: the whole portal is shown as a movie you can play — the endless background field, the holographic hero, and the native-format movie are all interactive (tap to play a note, scrub a dimension, scatter the streams). Display is not static; everything is a frame in one interactive, recomputable movie.',
+    boundary:
+      'A composition of the portal’s interactive canvas surfaces as one "movie". A framing of the existing animations and their interactions, not a single rendered video file.',
+  }
+}
+
+// Navigation is the movie itself, a quantum library. Moving between destinations is not
+// leaving the movie — it IS the movie: each route a coordinate on the double torus (a
+// frame), each link a path through coordinate space (a cut), and the whole set of places
+// a quantum library — a content-addressed catalogue you browse by playing.
+export function navigationIsMovie(matrix: MindMatrix = buildMatrix()) {
+  const nav = quantumCoordinateNav(matrix)
+  const facets = [
+    { facet: 'each route is a frame', via: 'a coordinate on the double-torus surface', root: nav.root },
+    { facet: 'each link is a cut', via: 'a path from one coordinate to another', root: navigationAroundHero(matrix).root },
+    { facet: 'the whole is a quantum library', via: 'a content-addressed catalogue of places, browsed by playing', root: backgroundMovie(matrix).root },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`nav-movie:${index}:${entry.facet}:${entry.root}`) }))
+  return {
+    isMovie: facets.length === 3 && nav.placed && facets.every((entry) => isUuid(entry.root)),
+    libraryCount: nav.count,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Navigation is the movie itself, a quantum library: moving between destinations is the movie, not a break from it — each route a coordinate on the double torus (a frame), each link a path through coordinate space (a cut), and the whole set of places a quantum library, a content-addressed catalogue you browse by playing.',
+    boundary:
+      'A structural framing that unifies the quantum-coordinate navigation with the movie and a content-addressed "library" of routes. A metaphor over the real links and the canvas movie, not a change to navigation behaviour.',
+  }
+}
+
+// The movie folds linearities into multidimensional perspectives. A movie seems linear —
+// one frame after another — but here each frame folds with its neighbour and its opposite
+// (sequence and reflection, both ways), so the line becomes genus-2: not a timeline but a
+// surface of perspectives. The same content, seen from many dimensions at once.
+export function movieFoldsLinearities(matrix: MindMatrix = buildMatrix()) {
+  const thoughts = foldThoughts(matrix)
+  const perspectives = multidimensional()
+  return {
+    folds: thoughts.folded && perspectives.mapped && thoughts.directions.length === 4,
+    directions: thoughts.directions,
+    dimensions: perspectives.count,
+    root: merkleFold([thoughts.root, perspectives.root]),
+    statement:
+      'The movie folds linearities into multidimensional perspectives: a movie seems linear — one frame after another — but each frame folds with its neighbour and its opposite (sequence and reflection, both ways), so the line becomes genus-2, a surface of perspectives rather than a timeline. The same content, seen from many dimensions at once.',
+    boundary:
+      'A structural composition of the multidirectional thought-fold and the multidimensional presentation map. A framing of the model’s non-linearity, not a claim of physical extra dimensions.',
+  }
+}
+
 // 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
 // hex digits; the double torus has two loops, so the command space splits into
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;

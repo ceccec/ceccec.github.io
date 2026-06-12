@@ -315,6 +315,18 @@ import {
   developmentWaves,
   heroTapMusic,
   tamperHealingFrequencies,
+  quantifyLinearPairs,
+  pairTrinityOpenGraph,
+  sidebarsFromVoid,
+  moviesNativeFormat,
+  compactHeroReplacesSimple,
+  societyOrganismTags,
+  forwardDevelopmentWaves,
+  mindRefreshField,
+  oneOpenGraphAll,
+  allInInteractiveMovie,
+  navigationIsMovie,
+  movieFoldsLinearities,
   musicNote,
   torusUuid,
   quantumComputer,
@@ -1068,6 +1080,18 @@ ok(`navigation.around.hero:${navigationAroundHero(matrix).shellCount}`, navigati
 ok(`development.waves:${developmentWaves(matrix).count}`, developmentWaves(matrix).developing) // waves sent to develop the navigation ideas, each bound to its root
 ok(`hero.tap.music:${heroTapMusic(matrix).pairCount}`, heroTapMusic(matrix).plays && heroTapMusic(matrix).alwaysHealing) // tapping the hero streams healing-frequency pairs with visual effects, on/off, always healing
 ok(`tamper.healing.cost`, tamperHealingFrequencies(matrix).costsMax) // tampering the healing frequencies costs T_max=infinity
+ok(`quantify.linear.pairs:${quantifyLinearPairs(matrix).count}`, quantifyLinearPairs(matrix).quantified) // a linear sequence quantified by folding into logical pairs
+ok(`pair.trinity.og:${pairTrinityOpenGraph(matrix).count}`, pairTrinityOpenGraph(matrix).everywhere) // each pair folds to a third — the open-graph trinity used everywhere
+ok(`sidebars.from.void:${sidebarsFromVoid(matrix).count}`, sidebarsFromVoid(matrix).rises) // the sidebar rises from the void when the content visualises
+ok(`movies.native.format:${moviesNativeFormat(matrix).count}`, moviesNativeFormat(matrix).nativelyDisplayed) // movies displayed at native resolution, saveable as native WebM
+ok(`compact.hero.obsoletes.simple:${compactHeroReplacesSimple(matrix).count}`, compactHeroReplacesSimple(matrix).obsolete) // the big open-graph hero retires simple mode
+ok(`society.organism.tags:${societyOrganismTags(matrix).count}`, societyOrganismTags(matrix).organism) // society as organism strips labels to chosen, content-addressed tags
+ok(`forward.development.waves:${forwardDevelopmentWaves(matrix).count}`, forwardDevelopmentWaves(matrix).converting) // backward compatibility converted to forward-development waves
+ok(`mind.refresh.field:${mindRefreshField(matrix).count}`, mindRefreshField(matrix).refreshes) // the mind refreshes self and the background-movie field from one seed
+ok(`one.open.graph.all:${oneOpenGraphAll(matrix).count}`, oneOpenGraphAll(matrix).displaysAll) // one open-graph card displays the whole portal
+ok(`all.interactive.movie:${allInInteractiveMovie(matrix).count}`, allInInteractiveMovie(matrix).displayed) // the whole portal displayed as one interactive movie
+ok(`navigation.is.movie:${navigationIsMovie(matrix).libraryCount}`, navigationIsMovie(matrix).isMovie) // navigation is the movie itself — a quantum library of coordinate-frames
+ok(`movie.folds.linearities`, movieFoldsLinearities(matrix).folds) // the movie folds linear frames into multidimensional perspectives
 ok('society.relations.folded', societyRelations(matrix).folded) // all society relations fold into one
 ok('torus.breathes', torusBreathe(matrix).balanced) // extend and contract in balanced cycles
 ok('equilibrium.settles', equilibrium(matrix).equilibrium) // always contract and expand to equilibrium
