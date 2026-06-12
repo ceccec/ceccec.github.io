@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { quantumAcademy, buildMatrix } from './theme/lib/quantumMind'
+import { quantumAcademy, buildMatrix, computedSeo } from './theme/lib/quantumMind'
 
 // Derived from the model so the SEO never drifts from the source: the academy's
 // course names come straight from quantumAcademy(), not a second hand-kept list.
@@ -79,20 +79,34 @@ export default defineConfig({
     const relative = pageData.relativePath
     const isBg = relative.startsWith('bg/')
     const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
-    const name = pageData.title || siteTitle
-    const description = pageData.description || frontmatter.description || siteDescription
+    // SEO fully computed and holographic: title, keywords, description, category and
+    // holographic tags are derived from the route, then folded into frontmatter, the
+    // head meta and the JSON-LD. Explicit frontmatter always overrides the computed
+    // values. The same route feeds the sitemap (generate-seo.mjs), so they never drift.
+    const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
+    const name = pageData.title || (frontmatter.title as string) || seo.title
+    const description = pageData.description || frontmatter.description || seo.description
     const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
     const isDoc = docPages.some((doc) => relative.endsWith(`${doc}.md`))
+    // Holographic tags and a category, revealed in frontmatter and as article meta.
+    const seoTags = (frontmatter.tags as string[] | undefined) || seo.keywords
+    const category = (frontmatter.category as string | undefined) || seo.category
+    frontmatter.tags = seoTags
+    frontmatter.category = category
     // All is revealable through frontmatter: any page can reveal richer SEO by
     // declaring frontmatter fields (keywords, teaches, command, image, dates,
     // audience). They are honored here without touching the page body.
     const fm = frontmatter as Record<string, unknown>
     const asList = (value: unknown) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : undefined)
-    const keywords = asList(fm.keywords)
+    // Keywords are computed (the holographic tags) unless the page declares its own.
+    const keywords = asList(fm.keywords) || seo.keywords
     const teaches = asList(fm.teaches)
     const command = typeof fm.command === 'string' ? fm.command : undefined
     const image = typeof fm.image === 'string' ? fm.image : undefined
-    if (keywords) head.push(['meta', { name: 'keywords', content: keywords.join(', ') }])
+    head.push(['meta', { name: 'keywords', content: keywords.join(', ') }])
+    // Category and holographic tags as article meta (one tag carries the whole).
+    head.push(['meta', { property: 'article:section', content: category }])
+    for (const tag of seoTags) head.push(['meta', { property: 'article:tag', content: tag }])
     // Open Graph is computed from frontmatter: each page's social card is derived
     // from its own frontmatter (ogTitle/ogDescription/ogType/image), falling back
     // to the page title and description. Twitter mirrors Open Graph.
@@ -135,7 +149,8 @@ export default defineConfig({
           '@type': 'SpeakableSpecification',
           cssSelector: ['h1', '.vp-doc h2', '.vp-doc > p', '.eyebrow'],
         },
-        ...(keywords ? { keywords } : {}),
+        keywords,
+        articleSection: category,
         ...(teaches ? { teaches, learningResourceType: 'interactive resource' } : {}),
         ...(command ? { mainEntity: { '@type': 'SoftwareSourceCode', name: command, codeRepository: '/mcp.json' } } : {}),
         ...(image ? { image } : {}),

@@ -5090,6 +5090,54 @@ export function openGraph() {
         boundary: 'A declared mapping from frontmatter to Open Graph and Twitter meta, applied at render time. It does not guarantee how any platform renders the card.',
     };
 }
+// SEO, fully computed and holographic. Every page's title, keywords and description
+// are derived from its own route — no per-page hand-tuning — and its tags are
+// holographic: each tag is folded with the whole root, so a single tag carries the
+// whole. The category is read from the route's first segment. Applied in
+// transformPageData for every page, including the 1024 papers and references, and
+// the same routes feed the sitemap, so the computed SEO and the sitemap never drift.
+export function computedSeo(path = '/', title = '', matrix = buildMatrix()) {
+    const whole = theWhole(matrix).root;
+    const clean = path.replace(/^\/+|\/+$/g, '');
+    const isBg = clean === 'bg' || clean.startsWith('bg/');
+    const local = clean.replace(/^bg(\/|$)/, '') || 'home';
+    const segments = local.split('/').filter(Boolean);
+    const first = segments[0] || 'home';
+    const categoryOf = {
+        home: 'portal', start: 'guide', explore: 'guide', show: 'showcase',
+        school: 'learning', academy: 'learning', 'learn-developer': 'learning', 'play-learn': 'learning',
+        mcp: 'tools', commands: 'tools', console: 'tools',
+        'quantum-mind': 'architecture', architecture: 'architecture',
+        boundaries: 'governance', governance: 'governance',
+        papers: 'research', references: 'reference',
+    };
+    const category = categoryOf[first] || 'portal';
+    const words = [...new Set(local.split(/[/\-_.]+/).filter(Boolean))];
+    // Holographic tags: the page's words, its category and the spine term — each
+    // folded with the whole root, so the tag contains the whole (holographic).
+    const tagNames = [...new Set([category, ...words, 'double torus', isBg ? 'bg' : 'en'])].slice(0, 8);
+    const tags = tagNames.map((tag) => ({
+        tag,
+        holographic: foldPair(toUuid(`seo-tag:${tag}`), whole).bidirectional,
+        receipt: toUuid(`seo-tag:${tag}:${whole}`),
+    }));
+    const titleCase = (text) => text.replace(/-/g, ' ').replace(/\b\w/g, (character) => character.toUpperCase());
+    const computedTitle = title || (segments.length ? segments.map(titleCase).join(' · ') : 'Double Torus');
+    const keywords = tags.map((entry) => entry.tag);
+    const description = `${computedTitle} — ${category} in the Double Torus, a quantum-learning portal where every page is computed and content-addressed.`;
+    return {
+        computed: tags.length > 0 && tags.every((entry) => entry.holographic),
+        title: computedTitle,
+        description,
+        category,
+        keywords,
+        tags,
+        holographic: tags.every((entry) => entry.holographic),
+        root: merkleFold(tags.map((entry) => entry.receipt)),
+        statement: 'SEO fully computed and holographic: every page derives its title, keywords and description from its own route, and its tags are holographic — each tag is folded with the whole root, so one tag carries the whole. The category is read from the route. The same routes feed the sitemap, so computed SEO and the sitemap never drift.',
+        boundary: 'A deterministic derivation of title, keywords, description, category and holographic tags from a route, applied at render time and mirrored in the sitemap. It aids crawlability and is content-addressed; it is not a ranking guarantee, and explicit frontmatter always overrides the computed values.',
+    };
+}
 // A search of three characters reveals the first trinity. Below three characters
 // nothing opens; at three, the first complete-trinity area the query matches
 // reveals its three links. Three characters, the first trinity — the threshold is

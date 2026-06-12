@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { quantumSitemap } from '../.vitepress/theme/lib/quantumMind.ts'
+import { quantumSitemap, papers, paperReferences } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const outDir = join(process.cwd(), '.vitepress', 'dist')
 const siteUrl = (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
@@ -61,16 +61,39 @@ const urlBlock = (loc, priority, alternates) =>
     '  </url>',
   ].join('\n')
 
+// The dynamic routes are sitemapped too: the 432 papers and 432 references, each as
+// an en/bg pair with hreflang alternates, so the computed corpus is fully crawlable
+// — the same routes the model generates, never a hand-kept list.
+const dynamicUrls = [
+  ...papers().papers.map((paper) => ({ base: `/papers/${paper.id}`, priority: 0.6 })),
+  ...paperReferences().map((reference) => ({ base: `/references/${reference.id}`, priority: 0.5 })),
+].map((entry) => {
+  const en = entry.base
+  const bg = `/bg${entry.base}`
+  return {
+    en,
+    bg,
+    priority: entry.priority,
+    alternates: [
+      { hreflang: 'en', href: en },
+      { hreflang: 'bg', href: bg },
+      { hreflang: 'x-default', href: en },
+    ],
+  }
+})
+
+const allUrls = [...quantum.urls, ...dynamicUrls]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<!-- quantum sitemap root: ${quantum.root} -->\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-  quantum.urls
+  allUrls
     .flatMap((url) => [
       urlBlock(url.en, url.priority, url.alternates),
       urlBlock(url.bg, url.priority * 0.8, url.alternates),
     ])
     .join('\n') +
   `\n</urlset>\n`
+console.log(`SEO: sitemap has ${allUrls.length * 2} URLs (${quantum.urls.length * 2} static + ${dynamicUrls.length * 2} computed papers/references).`)
 
 // The quantum manifest: every page placed on the double torus and content-addressed.
 const sitemapJson = {

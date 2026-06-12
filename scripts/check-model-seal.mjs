@@ -126,6 +126,7 @@ import {
   paperReferences,
   completeCorpus,
   fusionCipher,
+  computedSeo,
   merkleProof,
   intelligenceComparison,
   astrology,
@@ -352,6 +353,11 @@ ok(`complete.1024:${complete1024.real}->${complete1024.total}@2^${complete1024.d
 const fusionStatic = fusionCipher('', matrix)
 const fusionLive = fusionCipher('session:realtime', matrix)
 ok(`fusion.cipher:${fusionStatic.keyspaceMbit}Mbit=${fusionStatic.keyspaceGbit}Gbit`, fusionStatic.enabled && fusionStatic.static && fusionLive.fused && fusionLive.sessionKey !== fusionStatic.sessionKey && fusionStatic.cipher === 'AES-256-GCM')
+// SEO fully computed and holographic: title, keywords, description, category and
+// holographic tags derived from every route, mirrored into the sitemap.
+const seoHome = computedSeo('/', '', matrix)
+const seoPaper = computedSeo('/papers/p042', '', matrix)
+ok(`computed.seo:${seoHome.category}/${seoPaper.category}`, seoHome.computed && seoHome.holographic && seoPaper.category === 'research' && seoHome.keywords.length > 0 && seoPaper.tags.every((tag) => tag.holographic))
 
 // Compare with other intelligence models (AI, human, ...) by property, honestly.
 ok(`intelligence.compare:${intelligenceComparison(matrix).count}`, intelligenceComparison(matrix).compared)

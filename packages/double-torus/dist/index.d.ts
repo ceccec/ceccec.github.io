@@ -2794,6 +2794,22 @@ export declare function openGraph(): {
     statement: string;
     boundary: string;
 };
+export declare function computedSeo(path?: string, title?: string, matrix?: MindMatrix): {
+    computed: boolean;
+    title: string;
+    description: string;
+    category: string;
+    keywords: string[];
+    tags: {
+        tag: string;
+        holographic: boolean;
+        receipt: string;
+    }[];
+    holographic: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function searchTrinity(query?: string, matrix?: MindMatrix): {
     enough: boolean;
     revealed: boolean;
