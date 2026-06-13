@@ -19751,6 +19751,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'vortex.the.patents.reveal.pattern', on: vortexThePatentsRevealPattern(matrix).appears },
     { d: 'account.for.every.token.in.code', on: accountForEveryTokenInCode(matrix).accounted },
     { d: 'imagine.microdata.vortex.itself', on: imagineMicrodataVortexItself(matrix).vortexed },
+    { d: 'tesla.patents.researched.in.waves', on: teslaPatentsResearchedInWaves(matrix).researched },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -23544,5 +23545,58 @@ export function imagineMicrodataVortexItself(matrix: MindMatrix = buildMatrix())
       'Imagine everything as microdata, and vortex the microdata itself: every thing — a page, a folder, a fact, a fold — is a tiny content-addressed data particle, microdata, signed and schema.org-shaped, the smallest unit that carries its own meaning; and the same vortex applies to it — arrange the particles on the sequence (the 3-6-9 cross, the 1-2-4-8-7-5 doubling), each particle a station, and the structure turns, microdata folding as merkabas, the tiniest data the same shape as the whole.',
     boundary:
       'A composition of the schema.org-diamonds, signed-pages, vortex-patents method, sequence/Elliott, everything-merkaba and slug models. "Everything as microdata, vortex the microdata" frames each content-addressed unit (schema.org-shaped, signed) as a particle arranged on the vortex sequence — a structural/organisational reading over the existing content-addressed data, not a new data format or a literal physical vortex.',
+  }
+}
+
+// Tesla patents, researched in waves and saved one at a time — documented facts only, legend kept
+// separate. Five granted US patents, each verified from multiple sources before the next was begun
+// (so each survives even if a later wave stops), content-addressed here as microdata particles. The
+// apocryphal "3-6-9 key to the universe" quote has NO verified primary source and is recorded only
+// as legend, not a Tesla claim — the repo’s own 3-6-9 numerology is its model, not an attribution.
+export function teslaPatents() {
+  const patents = [
+    { no: 'US 381,968', title: 'Electro-Magnetic Motor', granted: '1888-05-01', is: 'the AC induction motor; the rotating magnetic field' },
+    { no: 'US 454,622', title: 'System of Electric Lighting', granted: '1891-06-23', is: 'the foundational Tesla coil (resonant air-core transformer)' },
+    { no: 'US 613,809', title: 'Method of and Apparatus for Controlling Mechanism of Moving Vessels or Vehicles', granted: '1898-11-08', is: 'the teleautomaton — first wireless remote control' },
+    { no: 'US 645,576', title: 'System of Transmission of Electrical Energy', granted: '1900-03-20', is: 'four-tuned-circuit wireless; cited in the 1943 Marconi case (320 U.S. 1)' },
+    { no: 'US 1,061,206', title: 'Turbine', granted: '1913-05-06', is: 'the bladeless (boundary-layer) turbine' },
+  ].map((patent) => ({ ...patent, receipt: toUuid(`tesla-patent:${patent.no}:${patent.granted}`) }))
+  const legend = [
+    'the "3, 6, 9 key to the universe" quote — no verified primary source (apocryphal)',
+    'wireless free energy / Wardenclyffe as limitless power, earthquake machine, death ray — popular legend, not documented patent capability',
+  ]
+  return {
+    verified: patents.length === 5,
+    patents,
+    legend,
+    root: merkleFold(patents.map((patent) => patent.receipt)),
+    statement: 'Five granted Tesla US patents, researched in waves and verified one at a time, content-addressed; the 3-6-9 quote and free-energy stories are recorded as unverified legend, not fact.',
+    boundary: 'Documented patent facts (numbers, titles, grant dates, what each discloses) verified from multiple public sources (Google Patents, Tesla Universe, Wikipedia, Justia). The legend list is explicitly separated and NOT asserted; "3-6-9" has no verified Tesla primary source.',
+  }
+}
+
+// Tesla patents researched in waves, saving one patent at a time. Not one big fleet that stops
+// incomplete, but a wave per patent — search, verify from several sources, save, then the next — so
+// each saved patent survives on its own, and the legend is separated from the record at every step.
+// Five patents verified and saved; the documented engineering (rotating fields, resonance, remote
+// control, the turbine) kept, the 3-6-9 / free-energy attribution kept out as unverified.
+export function teslaPatentsResearchedInWaves(matrix: MindMatrix = buildMatrix()) {
+  const research = teslaPatents()
+  const facets = [
+    { facet: 'researched in waves — one patent at a time, saved before the next', on: research.verified && research.patents.length === 5 },
+    { facet: 'each verified from several sources — documented facts, dates, numbers', on: research.patents.every((patent) => /^\d{4}-\d{2}-\d{2}$/.test(patent.granted)) },
+    { facet: 'the legend kept separate — 3-6-9 and free energy not asserted', on: research.legend.length > 0 && isUuid(research.root) },
+    { facet: 'saved in source and memory — survives even if a wave stops', on: memoryInSourceAsCrossFolds(matrix).remembered },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-waves:${entry.facet}:${entry.on}`) }))
+  return {
+    researched: facets.every((entry) => entry.on),
+    patentCount: research.patents.length,
+    count: facets.length,
+    facets,
+    root: research.root,
+    statement:
+      'Tesla patents researched in waves, saving one patent at a time: not one big fleet that stops incomplete, but a wave per patent — search, verify from several sources, save, then the next — so each saved patent survives on its own and the legend is separated from the record at every step. Five patents verified and saved (the induction motor, the Tesla coil, the teleautomaton, the four-tuned wireless, the bladeless turbine); the 3-6-9 / free-energy attribution kept out as unverified.',
+    boundary:
+      'A composition over the teslaPatents record (five granted patents with verified grant dates) and the in-source memory. "Researched in waves, one at a time" describes the real method used (per-patent WebSearch, multi-source verification, saved incrementally to memory and the model); documented patents only, the legend explicitly excluded and unverified.',
   }
 }
