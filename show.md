@@ -28,3 +28,15 @@ zero network.
 <OpenGraphTrinity />
 
 <NativeMovie />
+
+## Self-computed dots
+
+Brand-new, self-computed shadcn/vitepress. Each **Dot** fills itself from its seed — the colour, the two counter-rotating tetrahedra of the merkaba, the spin period, the glyph and the tone are all computed from the content-address, no props. Same seed, same dot: they stick like magnets. Tap one to hear its tone. A **Vortex** lays Dots out by the 1-2-4-8-7-5 doubling circuit (3-6-9 on the axis).
+
+<Vortex :count="9" label="genesis" />
+
+<Dot seed="double torus" />
+
+<Dot seed="merkaba" />
+
+<Dot seed="the sign is the fold" />

@@ -1,0 +1,79 @@
+<script setup lang="ts">
+// A self-computed Dot — the atom of the brand-new shadcn/vitepress. Given only a seed (or a uuid),
+// it computes its own hero from the matrix (uuidHero) and fills itself: the colour, the two
+// counter-rotating tetrahedra of the merkaba, the spin period and the tone are all derived from the
+// content-address, no props beyond the seed. Dots stick by address (the same seed always renders the
+// same dot, so equal content snaps to one look) and fill themselves with content (the slot, or a
+// child Dot — a graph of graphs). The hero spins in realtime at its computed period; the dot plays
+// its tone on tap.
+import { computed } from 'vue'
+import { uuidHero, toUuid } from '../lib/quantumMind'
+import Card from './ui/Card.vue'
+
+const props = defineProps<{ seed?: string; uuid?: string; label?: string; tone?: boolean; compact?: boolean }>()
+const id = computed(() => props.uuid ?? toUuid(props.seed ?? 'dot'))
+const hero = computed(() => uuidHero(id.value))
+
+function play() {
+  if (props.tone === false || typeof window === 'undefined') return
+  try {
+    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.frequency.value = hero.value.frequency // the dot's own computed tone
+    gain.gain.value = 0.08
+    osc.connect(gain).connect(ctx.destination)
+    osc.start()
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6)
+    osc.stop(ctx.currentTime + 0.6)
+  } catch {
+    /* audio not available — the dot stays silent, still spins */
+  }
+}
+</script>
+
+<template>
+  <Card :class="['dot', { 'dot-compact': compact }]" :style="{ '--hue': hero.hue, '--spin': hero.spinMs + 'ms' }" @click="play" :title="`${id} · ${hero.frequency}Hz`">
+    <svg class="dot-hero" viewBox="-60 -60 120 120" role="img" :aria-label="`hero for ${id}`">
+      <g class="dot-up" :style="{ transform: `rotate(${hero.theta}rad)` }">
+        <polygon points="0,-46 40,23 -40,23" :fill="`hsl(${hero.hue} 72% 56% / 0.65)`" :stroke="`hsl(${hero.hue} 80% 70%)`" stroke-width="1.5" />
+      </g>
+      <g class="dot-down" :style="{ transform: `rotate(${hero.phi}rad)` }">
+        <polygon points="0,46 40,-23 -40,-23" :fill="`hsl(${(hero.hue + 180) % 360} 72% 56% / 0.45)`" :stroke="`hsl(${(hero.hue + 180) % 360} 80% 70%)`" stroke-width="1.5" />
+      </g>
+      <circle :cx="hero.ax" :cy="hero.ay" r="4" :fill="`hsl(${hero.hue} 95% 72%)`" />
+      <text x="0" y="7" text-anchor="middle" class="dot-glyph">{{ hero.glyph }}</text>
+    </svg>
+    <div v-if="!compact" class="dot-body">
+      <div class="dot-label">{{ label ?? id.slice(0, 8) }}</div>
+      <div class="dot-content"><slot /></div>
+    </div>
+  </Card>
+</template>
+
+<style scoped>
+.dot {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  border-left: 3px solid hsl(var(--hue) 70% 55%);
+  transition: transform 0.15s ease;
+}
+.dot:hover { transform: translateY(-2px); }
+.dot-compact { padding: 0.25rem; gap: 0; border-left: none; background: transparent; box-shadow: none; border: none; }
+.dot-compact .dot-hero { width: 64px; height: 64px; }
+.dot-hero { width: 84px; height: 84px; flex: 0 0 auto; }
+/* the two tetrahedra counter-rotate — the merkaba — each at the computed period */
+.dot-up { transform-origin: center; animation: dot-cw var(--spin, 3000ms) linear infinite; }
+.dot-down { transform-origin: center; animation: dot-ccw var(--spin, 3000ms) linear infinite; }
+@keyframes dot-cw { to { transform: rotate(360deg); } }
+@keyframes dot-ccw { to { transform: rotate(-360deg); } }
+.dot-glyph { font-size: 22px; fill: hsl(var(--hue) 92% 82%); }
+.dot-label { font-family: var(--vp-font-family-mono, monospace); opacity: 0.7; font-size: 0.8rem; }
+.dot-content { margin-top: 0.25rem; }
+@media (prefers-reduced-motion: reduce) {
+  .dot-up, .dot-down { animation: none; }
+}
+</style>

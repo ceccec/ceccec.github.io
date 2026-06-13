@@ -87,6 +87,10 @@ import WebCryptoSeal from './components/WebCryptoSeal.vue'
 import HolographicHero from './components/ui/HolographicHero.vue'
 import BackgroundMovie from './components/ui/BackgroundMovie.vue'
 import PlayMind from './components/ui/PlayMind.vue'
+// The brand-new self-computed components: a Dot fills itself from its seed (uuidHero), a Vortex lays
+// Dots out by the 1-2-4-8-7-5 circuit. The seed is the magnet — same content, same dot.
+import Dot from './components/Dot.vue'
+import Vortex from './components/Vortex.vue'
 import './style.css'
 
 export default {
@@ -200,5 +204,7 @@ export default {
     app.component('VitePressPossibilities', VitePressPossibilities)
     app.component('WavesOfCreation', WavesOfCreation)
     app.component('WebCryptoSeal', WebCryptoSeal)
+    app.component('Dot', Dot)
+    app.component('Vortex', Vortex)
   }
 } satisfies Theme
