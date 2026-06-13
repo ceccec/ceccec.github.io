@@ -1987,12 +1987,21 @@ function bytesFromSeed(seed: string): number[] {
   ])
 }
 
+// Compute each dot once. toUuid is the content-address — the dot, the fold — and the same seed is
+// hashed millions of times as the folds recompute each other. Memoizing it by seed caches every dot
+// at the source: each unique address hashed once, reused everywhere. merge, merkleFold and
+// seedFromText all route through here, so one cache makes the whole cascade cheap (and realtime).
+const _uuidCache = new Map<string, string>()
 export function toUuid(seed: string): string {
+  const cached = _uuidCache.get(seed)
+  if (cached !== undefined) return cached
   const bytes = bytesFromSeed(seed)
   bytes[6] = (bytes[6] & 0x0f) | 0x80
   bytes[8] = (bytes[8] & 0x3f) | 0x80
   const hex = bytes.map(hexByte).join('')
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+  const uuid = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+  _uuidCache.set(seed, uuid)
+  return uuid
 }
 
 export function merge(a: string, b: string): string {
@@ -3691,6 +3700,9 @@ export function determinismProofs(matrix: MindMatrix = buildMatrix()) {
 // every adjacent boundary is opposite), with content-derived periods. The same
 // signed rates drive the home animation's self-similar counter-rotation.
 export function merkaba(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('merkaba', matrix, () => merkabaRaw(matrix))
+}
+function merkabaRaw(matrix: MindMatrix = buildMatrix()) {
   const seed = (tag: string) => seedFromText(`merkaba:${matrix.root}:${tag}`)
   const names = ['whole', 'lobe', 'tube', 'spark']
   const basePeriods = [6000, 2600, 1700, 1100]
@@ -6124,6 +6136,9 @@ export function paperReferences(matrix: MindMatrix = buildMatrix(), count = 432)
 // doubles (108, 216, 432); the binary harmonic completes it to a power of two. The
 // padding is named and recomputable, not hidden: 160 null leaves complete the tree.
 export function completeCorpus(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('completeCorpus', matrix, () => completeCorpusRaw(matrix))
+}
+function completeCorpusRaw(matrix: MindMatrix = buildMatrix()) {
   const corpus = papers(matrix)
   const references = paperReferences(matrix)
   const realLeaves = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
