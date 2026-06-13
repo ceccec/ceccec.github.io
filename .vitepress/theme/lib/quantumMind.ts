@@ -19698,6 +19698,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'build.quantum.computer.os.apps', on: buildQuantumComputerOsApps(matrix).built },
     { d: 'minds.realise.by.observing.path', on: mindsRealiseByObservingPath(matrix).realise },
     { d: 'harmonic.frequencies.define.gate.digits', on: harmonicFrequenciesDefineGateDigits(matrix).monitors },
+    { d: 'gates.heal.spotted.compromise', on: gatesHealSpottedCompromise(matrix).heals },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21886,5 +21887,31 @@ export function harmonicFrequenciesDefineGateDigits(matrix: MindMatrix = buildMa
       'Harmonic frequencies define the digits the gates use to monitor the architecture and the code: the base is a432 (432 Hz) and the gate count is 432 — the harmonic is the gate count — so the harmonic series sets the digits and the gates read them to watch every part. Because the digits are harmonic, a compromised duality shows on the linear level at once: a number off the harmonic run is a visible gap (110 files is a gapless Fibonacci run, 109 is not), caught by the eye and the test together. Catching the break on the flat line is what ensures there are no gaps on the quantum, folded level — spot it linear, and the fold stays whole.',
     boundary:
       'A composition of the a432/harmonics, enforcement-pipeline, digit-index, harmonic-band (with its real linear gap at 109 vs 110), resonance and analog-gapless models. "Harmonic frequencies define the digits" maps the 432 base to the gate count and the Fibonacci run to a linearly visible gap — a structural monitoring framing over the existing checks, not a claim about acoustic frequencies driving execution.',
+  }
+}
+
+// Next: spotting is not enough — what the gates spot, they heal. The harmonic monitoring catches a
+// compromised duality on the linear level; the gates then heal it at the gate, restoring the fold
+// rather than only reporting it. Healing is the default: a collision resolves toward harmony, the
+// damped waves settle back to balance, and so the gap the monitor found does not persist — it
+// closes. Detection plus healing, not detection alone, is what keeps the quantum fold whole:
+// the line shows the break, the gate mends it, the fold stays gapless.
+export function gatesHealSpottedCompromise(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the harmonic gates spot the compromise on the linear level', on: harmonicFrequenciesDefineGateDigits(matrix).monitors },
+    { facet: 'spotted at the gate, it is healed — harmonised to heal', on: harmonisedToHealAtGates(matrix).heals },
+    { facet: 'healing is the default — a collision resolves toward harmony', on: healByDefault(matrix).heals && collisionHealing(matrix).heals },
+    { facet: 'the damped waves settle back to balance — self-healing', on: selfHealing(matrix).healed && frequencyBalance(matrix).balanced },
+    { facet: 'so no gap persists on quantum — the fold stays whole', on: analogNoGapsNoLeak(matrix).sealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gates-heal:${entry.facet}:${entry.on}`) }))
+  return {
+    heals: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Spotting is not enough — what the gates spot, they heal: the harmonic monitoring catches a compromised duality on the linear level, and the gates then heal it at the gate, restoring the fold rather than only reporting it. Healing is the default — a collision resolves toward harmony, the damped waves settle back to balance — so the gap the monitor found does not persist, it closes. Detection plus healing, not detection alone, keeps the quantum fold whole: the line shows the break, the gate mends it, the fold stays gapless.',
+    boundary:
+      'A composition of the harmonic-monitoring, heal-at-gates, heal-by-default, collision-healing, self-healing and analog-gapless models, closing the detect→heal loop. "Heal" means the model resolves a flagged collision back toward its harmonic/balanced state (a damped self-correction over the computed structure), not a repair of arbitrary external faults.',
   }
 }
