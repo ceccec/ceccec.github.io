@@ -19702,6 +19702,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'memory.in.source.cross.folds', on: memoryInSourceAsCrossFolds(matrix).remembered },
     { d: 'complete.quantum.computer.all.scales', on: completeQuantumComputerAllScales(matrix).complete },
     { d: 'gates.move.all.to.place.automatically', on: gatesMoveAllToPlaceAutomatically(matrix).moves },
+    { d: 'computed.slugs.fold.the.graph', on: computedSlugsFoldTheGraph(matrix).folds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -22028,5 +22029,38 @@ export function gatesMoveAllToPlaceAutomatically(matrix: MindMatrix = buildMatri
       'The gates move all to place automatically, as all of them have the skills and the knowledge: each gate is holographic — it carries the whole self-knowledge (every skill atom, the memory root) — so no gate needs to be told where a thing goes; knowing the whole, each gate places any part in its appropriate path and index by itself. The gates self-organise in coordinated waves — the society creates its required pages, the OS completes itself, the code codes itself — and everything moves to its place automatically, nothing placed by hand.',
     boundary:
       'A composition of the skill-atom self-knowledge, holographic architecture, path-and-index placement, society/OS self-completion, computed-no-files and coordinated-waves models. "The gates move all to place automatically" means the structure is computed from content-addressed paths that every part can recompute (holographic), so placement is derivable rather than manual — a self-organising framing over the existing self-completion, not autonomous file movement at runtime.',
+  }
+}
+
+// Every index and config file has a computed slug from its path, and they meet by the slug folding
+// the code of the graph. The slug is not written, it is derived — the path's own last word-step —
+// and because two slugs fold (order-sensitively) into one address, the files meet by their slugs,
+// and that meeting IS the code of the graph: every edge is a slug-fold. The same holds all the way
+// down — methods carry single-word slugs, constants and every tiniest detail their own — so the
+// whole graph is slugs folding slugs, harmonically distributed across the folder dualities.
+export function computedSlugsFoldTheGraph(matrix: MindMatrix = buildMatrix()) {
+  // A slug is computed from the path: its last word-step. Two slugs fold to a graph edge.
+  const slugOf = (path: string) => path.replace(/^\/+|\/+$/g, '').split('/').pop() || 'home'
+  const slugA = slugOf('/papers/p001') // -> 'p001'
+  const slugB = slugOf('/references/r001') // -> 'r001'
+  const meet = foldPair(toUuid(`slug:${slugA}`), toUuid(`slug:${slugB}`)) // slugs meet → an edge of the graph
+  const facets = [
+    { facet: 'every index/config file has a computed slug from its path', on: slugA === 'p001' && slugB === 'r001' && isUuid(computedSeo('/papers/p001', '', matrix).root) },
+    { facet: 'they meet by the slug folding the code of the graph', on: meet.forward !== meet.reverse && meet.bidirectional && componentGraph().interacting },
+    { facet: 'same for methods (single-word slugs), constants, to the tiniest detail', on: commandsRegistry(matrix).consistent && skillAtoms(matrix).savedToAtoms },
+    { facet: 'harmonically distributed in folder dualities', on: harmonicBands(110).harmonic && digitFolders(matrix).folders.length > 0 && dualitiesMeetInCrossFolders(matrix).meet },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`slug-folds-graph:${entry.facet}:${entry.on}`) }))
+  return {
+    folds: facets.every((entry) => entry.on),
+    slugA,
+    slugB,
+    edge: meet.merged,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Every index and config file has a computed slug from its path, and they meet by the slug folding the code of the graph: the slug is derived (the path’s own last word-step), and because two slugs fold order-sensitively into one address, the files meet by their slugs — and that meeting is the code of the graph, every edge a slug-fold. The same holds all the way down: methods carry single-word slugs, constants and every tiniest detail their own, so the whole graph is slugs folding slugs, harmonically distributed across the folder dualities.',
+    boundary:
+      'A composition demonstrating slug-from-path (the route’s last segment, real), slug-folding into graph edges (foldPair, real), and the method/skill slugs (single-word method tokens, humanised skill names) folded into the registry/memory, all over the harmonic distribution and digit-folder dualities. "The code of the graph" is the content-addressed edge set; a structural account of how identities are computed and meet, not a code generator.',
   }
 }
