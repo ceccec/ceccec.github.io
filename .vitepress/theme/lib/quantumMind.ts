@@ -19678,6 +19678,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'how.agents.achieved.it', on: howAgentsAchievedIt(matrix).achieved },
     { d: 'computed.quantum.math.max.cost.analog', on: allComputedQuantumMathAnalog(matrix).forges },
     { d: 'jsonld.valid.paths', on: jsonLdValidPaths(matrix).valid },
+    { d: 'enforcement.law.fabric', on: enforcementLawFabric(matrix).enforced },
+    { d: 'every.law.proves.its.tripwire', on: everyLawProvesItsTripwire(matrix).proves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21257,5 +21259,61 @@ export function jsonLdValidPaths(matrix: MindMatrix = buildMatrix()) {
       'Tests fail unless the JSON-LD contains valid paths: the one template promises paths on every page — the page url, the breadcrumb, the site actions, the citations — and the wave audits every promise against the dist the build just produced; a rooted path that resolves to no artifact, or a citation that is not a well-formed URL, fails the build with a detailed why.',
     boundary:
       'A fold over the declared path rules, the one-template consolidation and the violation-catching resonance. Real enforcement is in the harmonic-distribution check, which parses every ld+json block in the rendered HTML; external URLs are checked well-formed, not fetched.',
+  }
+}
+
+// Continue the same, to the next — and gather the laws into one fabric. The session added many
+// laws of the form "tests fail unless X": the folder law (only index files and word-or-digit
+// folders), the JSON-LD path law (every promised path resolves), atop the older harmonic census
+// and the whole-diamond seal. Each was declared once in the mind and enforced by a wave against
+// the real tree, but they stood apart; here they are cross-folded into one fabric, so the model
+// knows its own enforcement surface as a single set — the laws that, broken, fail the build.
+export function enforcementLawFabric(matrix: MindMatrix = buildMatrix()) {
+  const laws = [
+    { law: 'folder law — only index files and word-or-digit folders', declared: folderLaw().stems.length > 0, holds: onlyIndexFilesNoExceptions(matrix).only },
+    { law: 'JSON-LD path law — every promised path is valid', declared: jsonLdPathRules().resolutions.length > 0, holds: jsonLdValidPaths(matrix).valid },
+    { law: 'harmonic census — the file count is a gapless Fibonacci run', declared: true, holds: harmonicBands(110).gapless },
+    { law: 'whole-diamond seal — every part folds to the one root', declared: true, holds: sealWholeDiamond(matrix).sealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`law-fabric:${entry.law}:${entry.declared}:${entry.holds}`) }))
+  // The fabric is falsifiable as a whole: the model carries real negative tests that fire —
+  // 109 files are rejected as non-gapless, order matters (a·b ≠ b·a), and every red-team
+  // forgery is caught — so a broken law cannot pass unnoticed.
+  const falsifiable = !harmonicBands(109).gapless && provenScientifically(matrix).proven && redTeam(matrix).secure
+  return {
+    enforced: laws.every((entry) => entry.declared && entry.holds) && falsifiable && resonanceCatchGapsViolations(matrix).rings,
+    falsifiable,
+    count: laws.length,
+    laws,
+    root: merkleFold(laws.map((entry) => entry.receipt)),
+    statement:
+      'Continue the same, to the next — gather the laws into one fabric: the session’s "tests fail unless X" laws (the folder law, the JSON-LD path law) and the older harmonic census and whole-diamond seal are cross-folded into one set, each declared once and enforced by a wave; the model now knows its own enforcement surface as a single fabric — the laws that, broken, fail the build — and the fabric is falsifiable as a whole because the model carries real negative tests that fire.',
+    boundary:
+      'A cross-fold gathering the existing enforcement laws (folder, JSON-LD path, harmonic census, seal) into one declared set, each still enforced by its own build-time wave. Structural bookkeeping; the per-law tripwires are proven at build time, recorded here as one fabric, not re-run by this fold.',
+  }
+}
+
+// To the next again: every law proves its own tripwire. A law is not trusted because it passes —
+// it is trusted because it has been shown to fail loudly when broken. The honest-verification
+// discipline, made a checked invariant: the model holds real negative tests that must fire — the
+// census rejects a non-Fibonacci count, order-sensitivity rejects a swapped fold, a tamper
+// changes the root, and every red-team forgery is caught — so each enforcement law has a tripwire
+// that bites, not merely a green path that passes.
+export function everyLawProvesItsTripwire(matrix: MindMatrix = buildMatrix()) {
+  const tripwires = [
+    { tripwire: 'the census rejects 109 — not a gapless Fibonacci run', fires: !harmonicBands(109).gapless },
+    { tripwire: 'order-sensitivity rejects a swapped fold (a·b ≠ b·a)', fires: merge('a', 'b') !== merge('b', 'a') },
+    { tripwire: 'a tamper changes the root — content-addressed', fires: provenScientifically(matrix).proven },
+    { tripwire: 'every red-team forgery is caught', fires: redTeam(matrix).secure },
+    { tripwire: 'the seal tripwire — a forced-false gate fails the seal', fires: redTeam(matrix).monitored && sealWholeDiamond(matrix).sealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`law-tripwire:${entry.tripwire}:${entry.fires}`) }))
+  return {
+    proves: tripwires.every((entry) => entry.fires) && enforcementLawFabric(matrix).enforced,
+    count: tripwires.length,
+    tripwires,
+    root: merkleFold(tripwires.map((entry) => entry.receipt)),
+    statement:
+      'To the next again — every law proves its own tripwire: a law is trusted not because it passes but because it has been shown to fail loudly when broken, and the model holds the real negative tests that fire (the census rejects a non-Fibonacci count, order rejects a swapped fold, a tamper changes the root, every forgery is caught, a forced-false gate fails the seal). The honest-verification discipline as a checked invariant — each law has a tripwire that bites.',
+    boundary:
+      'A composition of the model’s real negative tests (the 109 census rejection, order-sensitivity, tamper-evidence, red-team, the seal tripwire) asserting that the enforcement laws fail loudly, not silently. The build-time tripwires (planted violations exiting non-zero) are the live proof; this fold records the invariant over the model’s own falsifiability checks.',
   }
 }
