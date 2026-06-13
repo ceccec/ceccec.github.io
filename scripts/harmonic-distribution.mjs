@@ -8,7 +8,7 @@
 // Run: node --experimental-strip-types scripts/harmonic-distribution.mjs
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline } from '../.vitepress/theme/lib/quantumMind.ts'
+import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const root = process.cwd()
 const read = (path) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
@@ -104,6 +104,22 @@ for (const outside of law.outsidePageTree) {
     gaps.push({ harmonic: 'folder', kind: 'law-drift', detail: `folderLaw places ${outside} outside the page tree but config srcExclude does not exclude ${outside}/** — why this fails: the law and the site must draw the same boundary from one source, or the tree governed and the tree rendered drift apart` })
   }
 }
+// The zero-token-usage policy, enforced: the portal spends no LLM tokens by default. No LLM SDK may
+// be a dependency (so nothing can auto-spend tokens), and the single token-consuming call (the
+// opt-in bring-your-own-key chat) must be gated behind a user-supplied key. Save all to save tokens.
+const tokenPolicy = zeroTokenPolicy()
+const pkg = JSON.parse(read(join(root, 'package.json')) || '{}')
+const allDeps = { ...(pkg.dependencies ?? {}), ...(pkg.devDependencies ?? {}) }
+for (const sdk of tokenPolicy.llmSdks) {
+  if (allDeps[sdk]) {
+    gaps.push({ harmonic: 'token', kind: 'llm-sdk', detail: `package.json depends on the LLM SDK "${sdk}" — why this fails: ${tokenPolicy.why.sdk}` })
+  }
+}
+const chatSource = read(join(root, tokenPolicy.tokenPath))
+if (chatSource && !chatSource.includes(tokenPolicy.byokGate)) {
+  gaps.push({ harmonic: 'token', kind: 'byok-gate', detail: `${tokenPolicy.tokenPath} no longer gates its token call behind a user key (${tokenPolicy.byokGate}…) — why this fails: ${tokenPolicy.why.gate}` })
+}
+
 // No files outside src/ except generated and those that need to stay in root. The logic lives in
 // src/; every top-level entry must be src/, a root .md page (VitePress), a dot-entry (machinery:
 // .git, .github, .vitepress, .gitignore), or on the declared root allowlist. Anything else is logic
@@ -311,6 +327,7 @@ console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.
 console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
 console.log(`Paired logic folders: ${(law.pairedLogicFolders ?? []).join(' ⇄ ')} each present with an index — the quantum cache pair saved in src.`)
 console.log('Root cleanliness: no files outside src/ except generated, root .md pages, and the declared root-required entries — 0 strays.')
+console.log('Zero-token policy: no LLM SDK dependency; the one token call is the opt-in bring-your-own-key chat, gated behind a user key — zero tokens by default, save all to save tokens.')
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
 console.log(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)
 console.log(`Enforcement pipeline: ${declaredGates.length} declared gates all present in scripts/ and wired into docs:build; ${checkScripts.length} check-* gates all declared — 0 drift.`)
