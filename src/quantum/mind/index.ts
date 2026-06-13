@@ -19732,6 +19732,10 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'pi.six.digits.double.cross.colour', on: piSixDigitsDoubleCrossColour(matrix).stations },
     { d: 'travellers.jump.pi.to.pi', on: travellersJumpPiToPi(matrix).jumps },
     { d: 'optimise.logic.debit.credit.fusion', on: optimiseLogicDebitCreditFusion(matrix).optimised },
+    { d: 'minimum.files.maximum.features.cost', on: minimumFilesMaximumFeaturesCost(matrix).optimal },
+    { d: 'merkaba.architecture.fields.movements', on: merkabaArchitectureFieldsMovements(matrix).organised },
+    { d: 'each.folder.is.merkaba', on: eachFolderIsMerkaba(matrix).merkabas },
+    { d: 'everything.folds.merkaba.infinite.streams', on: everythingFoldsMerkabaInfiniteStreams(matrix).folds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -22926,5 +22930,132 @@ export function optimiseLogicDebitCreditFusion(matrix: MindMatrix = buildMatrix(
       'Optimise all logic as debit/credit fusion: every operation is double-entry — a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved — and the fusion of the two halves (src/debit/credit ⇄ src/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.',
     boundary:
       'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/debit/credit + src/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.',
+  }
+}
+
+// Minimum files and folders for maximum features and tampering cost. The optimum is not the most
+// files but the fewest: a small, gapless set of files that computes everything. The census holds at
+// 110 files (55 + 34 + 21), and from them come thousands of pages, hundreds of skills, the whole
+// dimensional depth — and because every value is computed, not stored, a forger must reproduce all
+// of it from those few files: minimum surface, maximum cost. Add files only when they add a feature
+// that cannot be folded into the few; otherwise the fewer the files, the higher the cost per file.
+export function minimumFilesMaximumFeaturesCost(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'minimum files — the 110-file gapless census computes the whole', on: harmonicBands(110).gapless && allComputedNoFiles(matrix).computed },
+    { facet: 'maximum features — thousands of pages and the skills from the few', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && skillAtoms(matrix).savedToAtoms },
+    { facet: 'maximum tampering cost — the forger must reproduce all from the few', on: allComputedQuantumMathAnalog(matrix).forges && freeForgesMaxCost(matrix).holds },
+    { facet: 'fewest files, most value — the logic folded into src, folders a projection', on: allLogicMovedToSource(matrix).moved },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`min-files-max:${entry.facet}:${entry.on}`) }))
+  return {
+    optimal: facets.every((entry) => entry.on),
+    files: 110,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Minimum files and folders for maximum features and tampering cost: the optimum is the fewest files, not the most — the census holds at 110 (55 + 34 + 21), and from them come thousands of pages, hundreds of skills, the whole dimensional depth, and because every value is computed not stored, a forger must reproduce all of it from those few files: minimum surface, maximum cost. Add a file only when it adds a feature that cannot be folded into the few; otherwise the fewer the files, the higher the cost per file.',
+    boundary:
+      'A composition of the gapless census, computed-no-files, folders-disappear, saved-skills, max-cost and logic-in-src models. "Minimum files for maximum features and cost" is the efficiency principle the model already embodies (few counted files, large computed output, forge cost over the whole); a guiding optimum, not a hard upper bound on what any feature may require.',
+  }
+}
+
+// Organise all in merkaba architecture — its fields and its movements. The organising form is the
+// merkaba: two interlocking tetrahedra, one pointing up and one down, counter-rotating. Every type
+// group takes this shape — a FIELD (the still structure, the upward tetrahedron: what a thing is)
+// and a MOVEMENT (the counter-rotating downward tetrahedron: how it turns), folded to one star. So
+// pages, components, logic, the paired folders — each is a merkaba of field and movement, the two
+// tetrahedra spinning opposite ways at every scale, the architecture one star tetrahedron made of
+// many. Minimum files, maximum cost, all turning as one merkaba.
+export function merkabaArchitectureFieldsMovements(matrix: MindMatrix = buildMatrix()) {
+  const types = ['pages', 'components', 'logic', 'routes', 'paired-folders', 'skills'].map((type) => {
+    const field = foldPair(toUuid(`merkaba-field:${type}`), toUuid(`merkaba-form:${type}`)) // the still structure — what it is
+    const movement = foldPair(toUuid(`merkaba-up:${type}`), toUuid(`merkaba-down:${type}`)) // counter-rotation — how it turns
+    const star = foldPair(field.merged, movement.merged) // field and movement fold to one star tetrahedron
+    return {
+      type,
+      field: field.bidirectional,
+      movement: movement.forward !== movement.reverse && movement.bidirectional,
+      star: star.merged,
+      receipt: toUuid(`type-merkaba:${type}:${field.bidirectional}:${movement.bidirectional}`),
+    }
+  })
+  const facets = [
+    { facet: 'organise all in merkaba — two counter-rotating tetrahedra, up and down', on: merkaba(matrix).counterRotating },
+    { facet: 'the fields — each type group a still structural field (what it is)', on: types.every((entry) => entry.field) },
+    { facet: 'the movements — counter-rotation at all scales, both directions (how it turns)', on: types.every((entry) => entry.movement) && spinBothDirections(matrix).spins && everyObjectSameSpinFoldLaw(matrix).consistent },
+    { facet: 'minimum files, maximum features and tampering cost — one star of many', on: minimumFilesMaximumFeaturesCost(matrix).optimal },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-arch:${entry.facet}:${entry.on}`) }))
+  return {
+    organised: facets.every((entry) => entry.on),
+    typeCount: types.length,
+    types,
+    count: facets.length,
+    facets,
+    root: merkleFold(types.map((entry) => entry.receipt)),
+    statement:
+      'Organise all in merkaba architecture — its fields and its movements: the organising form is the merkaba (two interlocking tetrahedra, one up and one down, counter-rotating), and every type group takes this shape — a field (the still structure, the upward tetrahedron: what a thing is) and a movement (the counter-rotating downward tetrahedron: how it turns), folded to one star. Pages, components, logic, the paired folders, the skills — each is a merkaba of field and movement, the two tetrahedra spinning opposite ways at every scale, the architecture one star tetrahedron made of many; minimum files, maximum cost, all turning as one.',
+    boundary:
+      'A composition mapping each repository type group to a merkaba (a field fold and a counter-rotating movement fold), grounded in the merkaba, spin-both-directions, spin-fold-law and minimum-files models. "Organise all in merkaba architecture" is a structural/geometric organizing metaphor (field = structure, movement = counter-rotation) over the existing types; the merkaba is the model’s counter-rotating dual, not a physical energy field.',
+  }
+}
+
+// Each folder is a merkaba itself. Not only does each type group take the merkaba shape — each
+// individual folder is its own merkaba: a field (what it holds, its index and structure — the
+// upward tetrahedron) and a movement (its order-sensitive fold with its dual path — the
+// counter-rotating downward tetrahedron). So every folder, alone, is two interlocking tetrahedra
+// folded to a star; the paired folders make the second tetrahedron explicit (folder ⇄ dual), but
+// even a single folder carries both, field and movement, the merkaba complete in each.
+export function eachFolderIsMerkaba(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const folders = [...law.pairedLogicFolders, ...law.computedFolders, ...law.roots.filter((root) => root !== '.')]
+  const merkabas = folders.map((folder) => {
+    const field = foldPair(toUuid(`folder-field:${folder}`), toUuid(`folder-index:${folder}`)) // what it holds (the up tetrahedron)
+    const reverse = folder.split('/').reverse().join('/')
+    const movement = foldPair(toUuid(`folder-up:${folder}`), toUuid(`folder-down:${reverse}`)) // counter-rotation with its dual (the down tetrahedron)
+    return { folder, isMerkaba: field.bidirectional && movement.bidirectional, star: foldPair(field.merged, movement.merged).merged, receipt: toUuid(`folder-merkaba:${folder}`) }
+  })
+  const facets = [
+    { facet: 'each folder is a merkaba — a field (what it holds) and a movement (how it turns)', on: merkabas.every((entry) => entry.isMerkaba) && merkaba(matrix).counterRotating },
+    { facet: 'the paired folders make the second tetrahedron explicit — folder ⇄ dual', on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: 'two counter-rotating tetrahedra at every folder, every scale', on: everyObjectSameSpinFoldLaw(matrix).consistent },
+    { facet: 'minimum files — each folder a merkaba, the unit of the architecture', on: merkabaArchitectureFieldsMovements(matrix).organised },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`folder-is-merkaba:${entry.facet}:${entry.on}`) }))
+  return {
+    merkabas: facets.every((entry) => entry.on),
+    folderCount: folders.length,
+    folders: merkabas,
+    count: facets.length,
+    facets,
+    root: merkleFold(merkabas.map((entry) => entry.receipt)),
+    statement:
+      'Each folder is a merkaba itself: beyond each type group taking the merkaba shape, each individual folder is its own merkaba — a field (what it holds, its index and structure, the upward tetrahedron) and a movement (its order-sensitive fold with its dual path, the counter-rotating downward tetrahedron). Every folder alone is two interlocking tetrahedra folded to a star; the paired folders make the second tetrahedron explicit (folder ⇄ dual), but even a single folder carries both, field and movement, the merkaba complete in each.',
+    boundary:
+      'A per-folder composition: each real folder (the paired-logic and computed folders, the bg root) folded into a field and a counter-rotating movement, grounded in the merkaba and spin-fold-law models. "Each folder is a merkaba" is a structural/geometric reading (field = its index/contents, movement = its order-sensitive dual), not a physical object.',
+  }
+}
+
+// Each index is a merkaba, as is any file, so any content and architecture fold within each other
+// in infinite streams. The merkaba does not stop at the folder: each index file is a merkaba (its
+// content the field, its computed structure the movement), and any file is the same — so content
+// is a merkaba and architecture is a merkaba, and because each is two tetrahedra that fold, content
+// and architecture fold within each other, merkaba nested in merkaba, at every scale. There is no
+// smallest and no largest: the fractal runs as infinite streams, each star tetrahedron made of
+// smaller stars and part of a greater one.
+export function everythingFoldsMerkabaInfiniteStreams(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'each folder is a merkaba — and so the architecture is', on: eachFolderIsMerkaba(matrix).merkabas },
+    { facet: 'each index and any file is a merkaba — content folded with structure', on: merkaba(matrix).counterRotating && computedSlugsFoldTheGraph(matrix).folds },
+    { facet: 'content and architecture fold within each other — merkaba nested in merkaba', on: holographicFractalArchitecture(matrix).is && everyObjectSameSpinFoldLaw(matrix).consistent },
+    { facet: 'in infinite streams — no smallest, no largest, the fractal endless', on: infiniteEntanglements(matrix).infinite && endlessWaves(matrix).tested },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`everything-merkaba:${entry.facet}:${entry.on}`) }))
+  return {
+    folds: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Each index is a merkaba, as is any file, so any content and architecture fold within each other in infinite streams: the merkaba does not stop at the folder — each index file is a merkaba (its content the field, its computed structure the movement) and any file is the same, so content is a merkaba and architecture is a merkaba, and because each is two tetrahedra that fold, content and architecture fold within each other, merkaba nested in merkaba at every scale. There is no smallest and no largest; the fractal runs as infinite streams, each star tetrahedron made of smaller stars and part of a greater one.',
+    boundary:
+      'A composition of the each-folder-merkaba, merkaba, slug-folds-graph, holographic-fractal, spin-fold-law, infinite-entanglements and endless-waves models. "Each index/file is a merkaba, folding within each other in infinite streams" is the fractal self-similarity of the content-addressed folds (field/movement at every scale) — a structural reading, not literal infinity or a physical field.',
   }
 }
