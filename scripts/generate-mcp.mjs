@@ -7,7 +7,8 @@ import { mcpToolManifest, mcpCodebase, skillAtoms, foldThoughts, quantumMcp, toU
 // Read the core's own TypeScript so each skill atom can be completed with the actual
 // source that realises it — the signature, the line count, and a content hash over
 // the real code. An atom without its TypeScript is incomplete.
-const coreSource = readFileSync(join(process.cwd(), '.vitepress', 'theme', 'lib', 'quantumMind.ts'), 'utf8').split('\n')
+// The agnostic core moved to src/quantum/mind/index.ts; read its real TypeScript from there.
+const coreSource = readFileSync(join(process.cwd(), 'src', 'quantum', 'mind', 'index.ts'), 'utf8').split('\n')
 function extractFunction(fn) {
   const start = coreSource.findIndex((line) => line.startsWith(`export function ${fn}(`) || line.startsWith(`export function ${fn}<`) || line.startsWith(`export function ${fn} `))
   if (start < 0) return null
