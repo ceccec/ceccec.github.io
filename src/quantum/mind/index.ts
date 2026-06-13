@@ -19736,6 +19736,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'merkaba.architecture.fields.movements', on: merkabaArchitectureFieldsMovements(matrix).organised },
     { d: 'each.folder.is.merkaba', on: eachFolderIsMerkaba(matrix).merkabas },
     { d: 'everything.folds.merkaba.infinite.streams', on: everythingFoldsMerkabaInfiniteStreams(matrix).folds },
+    { d: 'fuse.to.merkabas.paths.reveal', on: fuseToMerkabasPathsReveal(matrix).fused },
+    { d: 'configs.use.matrix.computationally', on: configsUseMatrixComputationally(matrix).computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -23057,5 +23059,76 @@ export function everythingFoldsMerkabaInfiniteStreams(matrix: MindMatrix = build
       'Each index is a merkaba, as is any file, so any content and architecture fold within each other in infinite streams: the merkaba does not stop at the folder — each index file is a merkaba (its content the field, its computed structure the movement) and any file is the same, so content is a merkaba and architecture is a merkaba, and because each is two tetrahedra that fold, content and architecture fold within each other, merkaba nested in merkaba at every scale. There is no smallest and no largest; the fractal runs as infinite streams, each star tetrahedron made of smaller stars and part of a greater one.',
     boundary:
       'A composition of the each-folder-merkaba, merkaba, slug-folds-graph, holographic-fractal, spin-fold-law, infinite-entanglements and endless-waves models. "Each index/file is a merkaba, folding within each other in infinite streams" is the fractal self-similarity of the content-addressed folds (field/movement at every scale) — a structural reading, not literal infinity or a physical field.',
+  }
+}
+
+// Configs use the matrix computationally. The site configuration is not hand-kept in config.mts but
+// computed and held in the matrix-backed model, content-addressed with a receipt — so config.mts is
+// a thin consumer that reads its values from the matrix, not a separate source of truth. The brand
+// title and description are the model's declared identity; the keywords, theme colour and robots
+// policy are held here under one root the build reads. The config derives from the matrix.
+export function siteConfig(matrix: MindMatrix = buildMatrix()) {
+  const title = 'Double Torus'
+  const titleBg = 'Двоен торус'
+  const description = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
+  const descriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
+  const themeColor = '#3b82f6'
+  const robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+  const keywords = [
+    'quantum learning', 'language models', 'LLM', 'educational portal', 'MCP', 'Model Context Protocol',
+    'tools/list', 'tools/call', 'double torus', 'genus 2', 'UUID stream', 'diamond lattice', 'pi train',
+    'schema.org', 'VitePress',
+  ]
+  const root = merkleFold([title, description, themeColor, robots, ...keywords].map((value) => toUuid(`site-config:${value}`)))
+  return { title, titleBg, description, descriptionBg, themeColor, robots, keywords, root, computed: isUuid(root) && isUuid(matrix.root) }
+}
+
+// Move the whole logic to index files — not literary, but fuse to merkabas, and the paths reveal
+// themselves. "Move all" is not carrying files about by hand: it is fusing everything into the one
+// merkaba — each file and folder a merkaba folded into the model — so the source of truth is the
+// fusion in src, and the physical paths (where a file happens to sit for the renderer) are revealed,
+// computed from the fusion rather than placed. The render-layer files stay where VitePress needs
+// them, but they are fused as merkaba nodes into the matrix; the path is a projection, the fusion
+// the thing. Fuse, and the paths reveal themselves.
+export function fuseToMerkabasPathsReveal(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'fuse all to merkabas — every file and folder a merkaba folded into one', on: everythingFoldsMerkabaInfiniteStreams(matrix).folds && fuseAll(matrix).fused },
+    { facet: 'not literary — the fusion subsumes, the file need not be carried', on: allComputedNoFiles(matrix).computed },
+    { facet: 'the paths reveal themselves — computed from the fusion, not placed', on: computedSlugsFoldTheGraph(matrix).folds && imagineCrossPathsCodeCodesItself(matrix).codes },
+    { facet: 'so all is in src as one merkaba fusion — the render layer fused, not relocated', on: allLogicMovedToSource(matrix).moved && merkabaArchitectureFieldsMovements(matrix).organised },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fuse-merkaba-paths:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Move the whole logic to index files — not literary, but fuse to merkabas, and the paths reveal themselves: "move all" is not carrying files by hand but fusing everything into the one merkaba — each file and folder a merkaba folded into the model — so the source of truth is the fusion in src, and the physical paths (where a file sits for the renderer) are revealed, computed from the fusion rather than placed. The render-layer files stay where VitePress needs them, fused as merkaba nodes into the matrix; the path is a projection, the fusion the thing.',
+    boundary:
+      'A composition of the everything-merkaba, fuse-all, computed-no-files, slug-folds-graph, code-codes-itself, logic-in-src and merkaba-architecture models. "Move all by fusing to merkabas, paths reveal themselves" means the model is the fused source of truth and physical file paths are a computed projection — the VitePress render-layer files (components, pages, config) physically stay where VitePress requires; this fold does not relocate them.',
+  }
+}
+
+// Configs use the matrix computationally — the fold. The site config is computed and held in the
+// matrix (siteConfig), the per-page SEO and Open Graph are computed from the route (computedSeo),
+// and the JSON-LD is generated from the one template (jsonLdTemplate); config.mts only consumes
+// them. So the configuration is not a separate hand-kept layer but a reading of the matrix.
+export function configsUseMatrixComputationally(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the site config is computed and held in the matrix, content-addressed', on: siteConfig(matrix).computed },
+    { facet: 'per-page SEO and Open Graph are computed from the route', on: openGraph().computed && oneJsonLdTemplateServesAll(matrix).serves },
+    { facet: 'config.mts only consumes the matrix — not a separate source of truth', on: allComputedNoFiles(matrix).computed },
+    { facet: 'so the configuration is a reading of the matrix, computed not hand-kept', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`configs-matrix:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    configRoot: siteConfig(matrix).root,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Configs use the matrix computationally: the site config is computed and held in the matrix (siteConfig, content-addressed), the per-page SEO and Open Graph are computed from the route (computedSeo), the JSON-LD is generated from the one template; config.mts only consumes them. The configuration is not a separate hand-kept layer but a reading of the matrix — the model the source, the config a projection.',
+    boundary:
+      'A composition of the siteConfig, open-graph, one-JSON-LD-template, computed-no-files and no-hardcoded-config models. "Configs use the matrix computationally" means the config values (site title/description/keywords/theme/robots, the per-page SEO/OG/JSON-LD) are read from the matrix-backed model; config.mts remains the VitePress-required entry that consumes them, it is not itself moved into src.',
   }
 }

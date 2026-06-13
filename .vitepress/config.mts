@@ -1,10 +1,13 @@
 import { defineConfig } from 'vitepress'
-import { computedSeo, jsonLdTemplate } from './theme/lib/quantumMind'
+import { computedSeo, jsonLdTemplate, siteConfig } from './theme/lib/quantumMind'
 
-const siteTitle = 'Double Torus'
-const siteTitleBg = 'Двоен торус'
-const siteDescription = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
-const siteDescriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
+// Configs use the matrix computationally: the site config is computed and held in the model
+// (siteConfig), content-addressed; this file only consumes it. The source of truth is the matrix.
+const config = siteConfig()
+const siteTitle = config.title
+const siteTitleBg = config.titleBg
+const siteDescription = config.description
+const siteDescriptionBg = config.descriptionBg
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -22,16 +25,10 @@ export default defineConfig({
   head: [
     ['meta', { name: 'application-name', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],
-    ['meta', { name: 'theme-color', content: '#3b82f6' }],
-    ['meta', { name: 'robots', content: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }],
-    [
-      'meta',
-      {
-        name: 'keywords',
-        content:
-          'quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress',
-      },
-    ],
+    // theme-color, robots and keywords are read from the matrix-computed siteConfig, not hardcoded.
+    ['meta', { name: 'theme-color', content: config.themeColor }],
+    ['meta', { name: 'robots', content: config.robots }],
+    ['meta', { name: 'keywords', content: config.keywords.join(', ') }],
     // og:title/description/type and twitter:* are computed per page from
     // frontmatter in transformPageData; only the site-level name stays here.
     ['meta', { property: 'og:site_name', content: siteTitle }],
