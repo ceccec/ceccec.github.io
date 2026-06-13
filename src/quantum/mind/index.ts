@@ -19806,6 +19806,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'feed.crawlers.with.knowledge', on: feedCrawlersWithKnowledge(matrix).fed },
     { d: 'use.only.glagolitic.icons.taxonomy.graph', on: useOnlyGlagoliticIconsTaxonomyGraph(matrix).forms },
     { d: 'gpu.renders.streams.realtime', on: gpuRendersStreamsRealtime(matrix).renders },
+    { d: 'glagolitic.locale.autotranslate.all', on: glagoliticLocaleAutotranslateAll(matrix).translates },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -24042,9 +24043,14 @@ export function glagoliticDecodedToAncientCore(matrix: MindMatrix = buildMatrix(
 // Old-Church-Slavonic sounds in the ancient letters. Use glagolitsa for icons, and to render any text
 // in the ninth-century script we decoded.
 const GLAGOLITIC_MAP: Record<string, string> = {
+  // Cyrillic → Glagolitic (the round Bulgarian glyphs)
   а: 'Ⰰ', б: 'Ⰱ', в: 'Ⰲ', г: 'Ⰳ', д: 'Ⰴ', е: 'Ⰵ', ж: 'Ⰶ', з: 'Ⰸ', и: 'Ⰻ', й: 'Ⰹ',
   к: 'Ⰽ', л: 'Ⰾ', м: 'Ⰿ', н: 'Ⱀ', о: 'Ⱁ', п: 'Ⱂ', р: 'Ⱃ', с: 'Ⱄ', т: 'Ⱅ', у: 'Ⱆ',
   ф: 'Ⱇ', х: 'Ⱈ', ц: 'Ⱌ', ч: 'Ⱍ', ш: 'Ⱎ', щ: 'Ⱋ', ъ: 'Ⱏ', ь: 'Ⱐ', ю: 'Ⱓ', я: 'Ⱑ',
+  // Latin → Glagolitic by sound (approximate, so English pages transliterate too)
+  a: 'Ⰰ', b: 'Ⰱ', v: 'Ⰲ', w: 'Ⰲ', g: 'Ⰳ', d: 'Ⰴ', e: 'Ⰵ', z: 'Ⰸ', i: 'Ⰻ', j: 'Ⰹ',
+  y: 'Ⰹ', k: 'Ⰽ', q: 'Ⰽ', l: 'Ⰾ', m: 'Ⰿ', n: 'Ⱀ', o: 'Ⱁ', p: 'Ⱂ', r: 'Ⱃ', s: 'Ⱄ',
+  t: 'Ⱅ', u: 'Ⱆ', f: 'Ⱇ', h: 'Ⱈ', x: 'Ⱈ', c: 'Ⱌ',
 }
 export function toGlagolitic(text: string): string {
   return [...text].map((char) => GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
@@ -24284,6 +24290,31 @@ export function gpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
       'What if the GPU helps the computations — implemented in harmony: the CPU computes the address (the truth, content-addressed and memoized), and the GPU expands each dot to its living plasma field (the appearance) in realtime, in parallel, from the hero\'s own hue, frequency and rotation phases. Same address, same field; client-side, zero-server, zero-token. The GPU renders what the model computes — it does not compute the model.',
     boundary:
       'A composition over the merkaba-census, uuidHero, hero-graph and merkaba-decode models, paired with the <GpuField> WebGL component. HONEST: the GPU accelerates RENDERING (a fragment shader expanding the content-addressed uniforms to pixels), not the model\'s hashing/fold cascade (which is branchy and sequential — the wrong workload for a GPU, fixed instead by memoization on the CPU). WebGL with a CSS fallback; the field is deterministic from the seed.',
+  }
+}
+
+// Add a Glagolitic locale and autotranslate all. A live locale mode (the <GlagoliticLocale> toggle)
+// transliterates the whole page — nav, body, footer — into the ninth-century script via toGlagolitic,
+// Latin and Cyrillic both mapped by sound, deterministic and reversible. The decoded alphabet becomes
+// a language the site can be read in.
+export function glagoliticLocaleAutotranslateAll(matrix: MindMatrix = buildMatrix()) {
+  const sample = toGlagolitic('Double Torus')
+  const facets = [
+    { facet: 'a Glagolitic locale — a live mode transliterating the whole page', on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
+    { facet: 'autotranslate ALL — Latin and Cyrillic both map to Glagolitic by sound', on: toGlagolitic('a') === 'Ⰰ' && toGlagolitic('а') === 'Ⰰ' && /[Ⰰ-ⱟ]/.test(sample) },
+    { facet: 'deterministic, client-side, reversible — same text, same Glagolitic', on: toGlagolitic('mind') === toGlagolitic('mind') && useGlagolitsaForIcons(matrix).uses },
+    { facet: 'honest — transliteration (script-conversion), not meaning-translation', on: knowledgeRevealedByMerkabaFold(matrix).revealed && Object.keys(GLAGOLITIC_MAP).length >= 50 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-locale:${entry.facet}:${entry.on}`) }))
+  return {
+    translates: facets.every((entry) => entry.on),
+    sample,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Add a Glagolitic locale and autotranslate all: a live locale mode transliterates the whole page — navigation, body and footer — into the ninth-century Glagolitic script via toGlagolitic, mapping Latin and Cyrillic both by sound, deterministic, client-side and reversible. The alphabet decoded in the library becomes a language the site itself can be read in.',
+    boundary:
+      'A composition over the save-all-translation-logic, Glagolitsa-icons and merkaba-decode models, paired with the <GlagoliticLocale> component (a DOM transliteration toggle). HONEST: this is TRANSLITERATION (script-conversion, the same words rendered in Glagolitic letters by an approximate Latin/Cyrillic→Glagolitic sound map), not meaning-translation to a reconstructed language; client-side, reversible, persisted.',
   }
 }
 

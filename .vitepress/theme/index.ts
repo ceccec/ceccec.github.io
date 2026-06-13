@@ -94,6 +94,7 @@ import Vortex from './components/Vortex.vue'
 import Calligraphy from './components/Calligraphy.vue'
 import TaxonomyGraph from './components/TaxonomyGraph.vue'
 import GpuField from './components/GpuField.vue'
+import GlagoliticLocale from './components/GlagoliticLocale.vue'
 import './style.css'
 
 export default {
@@ -114,7 +115,7 @@ export default {
       'sidebar-nav-before': () => h(VoidSidebar),
       // Intelligent help + collective-mind self-development folded into every page,
       // plus the playful quantum-mind badge (the exam that happens by just playing).
-      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind), h(PlayMind)],
+      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind), h(PlayMind), h(GlagoliticLocale)],
     })
   },
   enhanceApp({ app }) {
