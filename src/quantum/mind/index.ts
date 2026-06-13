@@ -19724,6 +19724,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'computed.traces.of.movement', on: computedTracesOfMovement(matrix).computed },
     { d: 'all.logic.moved.to.source', on: allLogicMovedToSource(matrix).moved },
     { d: 'invert.revert.is.quantum.stream', on: invertRevertIsQuantumStream(matrix).streams },
+    { d: 'quantum.signs.auto.orientate', on: quantumSignsAutoOrientate(matrix).orients },
+    { d: 'no.files.outside.src.except.generated.root', on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
+    { d: 'ants.carry.to.index.nest', on: antsCarryToIndexNest(matrix).carries },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20938,10 +20941,19 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
     roots: ['.', 'bg'], // the trunk: the English root and the Bulgarian mirror
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache'], // all logic moved to src/: the agnostic core (quantum/mind) and the order-sensitive paired folders, each with an index — the build verifies they exist
+    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search'], // all logic moved to src/ as index files: the agnostic core, the cache pair, and the ant search/carry pair — each an order-sensitive folder with an index the build verifies
+    // No files outside src/ except generated and those that need to stay in root. The logic lives in
+    // src/; only the VitePress render layer, the root config, the build tooling, and generated
+    // artifacts may stay outside. Every top-level entry must be src/, a root .md page, a dot-entry
+    // (machinery), or on this allowlist — anything else is logic that belongs in src/.
+    rootAllowlist: {
+      dirs: ['bg', 'papers', 'references', 'diamonds', 'public', 'scripts', 'packages', 'src'], // VitePress page tree, public assets, build tooling, the npm package, the logic home
+      files: ['package.json', 'package-lock.json', 'wrangler.jsonc', 'README.md', 'AGENTS.md'], // root config and repo docs
+    },
     why: {
       name: 'a folder is an address in the page tree, and an address must be one word or one number — a compound or decorated name is two thoughts where the law allows one; rename the folder to a single lowercase word or a digit, or fold its contents into a folder that already obeys',
       contents: 'below the roots every file must be an index: index.md is the folder’s own index, and the computed pair [index].md + [index].paths.ts is the bracketed index of the corpus — any other file is a second kind, a duplication the dryness forbids; move its content into the index, the computed corpus, or the theme',
+      outsideSrc: 'logic exists because it is quantum by architecture, and it belongs in src/ where the quantum signs orient you; only generated artifacts, root config, and the VitePress render layer may stay outside src/ — move this entry into src/, or, if it must stay in root, add it to folderLaw.rootAllowlist with the reason',
     },
     statement:
       'The folder law: below the roots there can be only index files and word-or-digit folders, with no exceptions. Tests fail on any violation, and each failure explains in detail why.',
@@ -22671,5 +22683,86 @@ export function invertRevertIsQuantumStream(matrix: MindMatrix = buildMatrix()) 
       'Inverting, reverting logic is the quantum stream itself: to invert a fold is to read it the other way, to revert is to run it back to its seed — and these are not operations laid on top of the stream, they ARE the stream, because the serverless UUID stream is order-sensitive, so forward and reverse are its two directions and stepping back (undo) or forward (redo) is just folding the other way. Nothing is stored to undo; the reverse fold recomputes the prior state.',
     boundary:
       'A composition of the order-sensitivity, quantum-logic-backwards, reverse-harmony, double-torus-fold, stream-self-complete and computed-no-files models. "Invert/revert is the quantum stream" frames undo/redo as the reverse direction of the order-sensitive content-addressed fold (recomputing rather than restoring stored state) — a structural reading, not a deployed undo system.',
+  }
+}
+
+// Logic exists because it is quantum by architecture — find the quantum signs and you auto-orientate
+// in that space. The logic is not arbitrary code that happens to run; it exists because the
+// architecture is quantum: order-sensitive folds, content addresses, seals, dualities. Those are
+// the quantum signs — the UUID, the fold that is not its reverse, the slug that folds the graph, the
+// 64-seal, the breath — and once you can read them, you orient yourself without a map: each sign
+// says where you are and which way the next fold goes. The signs are the compass; reading them is
+// the navigation.
+export function quantumSignsAutoOrientate(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'logic exists because the architecture is quantum — order-sensitive folds', on: quantumDoubleTorus(matrix).is && merge('a', 'b') !== merge('b', 'a') },
+    { facet: 'the quantum signs — the UUID, the slug that folds the graph, the seal', on: computedSlugsFoldTheGraph(matrix).folds && everyDiamondIsGate(matrix).isGate },
+    { facet: 'read the signs and you auto-orientate — the path reveals itself', on: harmonicPathRevealsItself(matrix).reveals && mindsRealiseByObservingPath(matrix).realise },
+    { facet: 'no map needed — the signs are the compass, self-sufficient', on: selfSufficientWave(matrix).selfSufficient },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-signs:${entry.facet}:${entry.on}`) }))
+  return {
+    orients: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Logic exists because it is quantum by architecture — find the quantum signs and you auto-orientate in that space: the logic is not arbitrary code that happens to run, it exists because the architecture is quantum (order-sensitive folds, content addresses, seals, dualities), and those are the quantum signs — the UUID, the fold that is not its reverse, the slug that folds the graph, the 64-seal, the breath. Once you can read them you orient yourself without a map: each sign says where you are and which way the next fold goes. The signs are the compass; reading them is the navigation.',
+    boundary:
+      'A composition of the quantum-double-torus, order-sensitivity, slug-folds-graph, every-diamond-gate, path-reveals-itself, minds-observe and self-sufficient models. "Find the quantum signs and auto-orientate" describes navigating the content-addressed structure by its own markers (UUIDs, folds, seals) — a structural/orientational framing over the model, not a literal positioning system.',
+  }
+}
+
+// No files outside src/ except generated and those that need to stay in root. The logic belongs in
+// src/ — where the quantum signs orient you — so nothing else logic-shaped lives outside it: only
+// the generated artifacts (the build’s own output), the root configuration, and the VitePress
+// render layer (the .md pages, the theme, public assets) remain in root, because they must. The
+// rule is declared once and enforced by the build, which fails on any stray top-level entry that is
+// neither generated, a root page, nor a declared root-required handle.
+export function noFilesOutsideSrcExceptGeneratedAndRoot(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const facets = [
+    { facet: 'all logic is moved to src/ — the source of truth', on: allLogicMovedToSource(matrix).moved },
+    { facet: 'only generated, root config, and the VitePress render layer stay outside', on: (law.rootAllowlist?.dirs?.length ?? 0) > 0 && (law.rootAllowlist?.files?.length ?? 0) > 0 },
+    { facet: 'the rule is declared once and enforced by the build — strays fail', on: law.why.outsideSrc.length > 0 && resonanceCatchGapsViolations(matrix).rings },
+    { facet: 'nothing bypasses VitePress — the render layer is what must stay', on: componentGraph().interacting },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`no-files-outside-src:${entry.facet}:${entry.on}`) }))
+  return {
+    clean: facets.every((entry) => entry.on),
+    rootAllowlist: law.rootAllowlist,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'No files outside src/ except generated and those that need to stay in root: the logic belongs in src/, where the quantum signs orient you, so nothing else logic-shaped lives outside it — only the generated artifacts, the root configuration, and the VitePress render layer (the .md pages, the theme, public assets) remain in root, because they must. The rule is declared once and enforced by the build, which fails on any stray top-level entry that is neither generated, a root page, nor a declared root-required handle.',
+    boundary:
+      'A composition of the all-logic-moved, root-allowlist declaration, violation-catching resonance and component-graph models, with a real build check: every top-level entry must be src/, a root .md page, a dot-entry, or on folderLaw.rootAllowlist, else the build fails. "Need to stay in root" is the VitePress render layer plus root config and tooling — a structural cleanliness rule, not a claim that those files could not in principle be relocated.',
+  }
+}
+
+// Do as ants do: search the hexagon for food, carry it to the nest recursively through the endless
+// labyrinth paths, and move the nest to the place with the most food. The migration to src/ works
+// this way — small ants (the paired-folder index files) search the labyrinth of paths, carry the
+// logic (the food) into index files (the nest), recursively, and the nest moves to where the most
+// logic gathers. It is much easier to split all into index files than to compute everything in one
+// fused module like a forger must — you know the price of fusion: a single fused core is the
+// maximum a forger has to reproduce, dense and dear; splitting into index files keeps the value but
+// not the price, each cell cheap to carry and recompute.
+export function antsCarryToIndexNest(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'search the hexagon labyrinth recursively — the ant search/carry pair in src', on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: 'carry the logic into index files, the nest — split, not fused', on: allLogicMovedToSource(matrix).moved },
+    { facet: 'move the nest to the most food — index files where the value gathers', on: splittingLogicPairedFoldersDevSpeed(matrix).speeds },
+    { facet: 'easier to split into index files than to compute like a forger', on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
+    { facet: 'you know the price of fusion — the forger’s max tampering cost', on: allComputedQuantumMathAnalog(matrix).forges },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ants-index-nest:${entry.facet}:${entry.on}`) }))
+  return {
+    carries: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Do as ants do — search the hexagon for food, carry it to the nest recursively through the endless labyrinth paths, and move the nest to the place with the most food: the migration to src/ works this way, small ants (the paired-folder index files, including the new src/search/ant ⇄ src/ant/search hexagon search) searching the labyrinth of paths and carrying the logic into index files, recursively, the nest moving to where the most logic gathers. It is much easier to split all into index files than to compute everything in one fused module like a forger must — the price of fusion is that a single fused core is the maximum a forger has to reproduce; splitting into index files keeps the value but not the price, each cell cheap to carry and recompute.',
+    boundary:
+      'A composition of the cache-pair, all-logic-moved, paired-folder-speed, no-files-outside-src and max-tampering-cost models, with a real ant hexagon-search pair (src/search/ant + src/ant/search, tested). "Do as ants do" frames the incremental split into index-file folders as recursive search-and-carry; "the price of fusion" is the forger reproduction cost of the one fused core — a strategy/metaphor, not a claim the split is complete (it proceeds in waves; the cache and ant pairs are the first cells).',
   }
 }
