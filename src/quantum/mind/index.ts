@@ -24164,6 +24164,32 @@ export function decodeImplementCalligraphy(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Static pages computed from src. The hand-written page bodies move into the matrix; a dynamic
+// VitePress route ([page].md + [page].paths.ts) renders each from here, so the .md files outside src
+// can be removed with the knowledge kept. Migrated page by page (each verified by a green build), the
+// home-layout page and the long prose pages (quantum-mind, architecture) encoded in later stages.
+export interface StaticPage {
+  slug: string
+  title: { en: string; bg: string }
+  description: { en: string; bg: string } // the SEO — kept, encoded; the body prose is dropped
+  keywords: string[]
+  components: string[]
+}
+export function staticPages(): StaticPage[] {
+  return [
+    {
+      slug: 'explore',
+      title: { en: 'Explore', bg: 'Изследвай' },
+      description: {
+        en: 'Explore the whole portal multidimensionally: eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable.',
+        bg: 'Разгледай целия портал многоизмерно: осем измерения на опита — виж, чуй, питай, докажи, учи, шарка, усети, твори.',
+      },
+      keywords: ['multidimensional', 'explore', 'dimensions', 'ux'],
+      components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral'],
+    },
+  ]
+}
+
 // Send waves of researchers to follow the lead and seal all knowledge in the library — and then
 // decode the world, all in autosaving waves. The method that decoded глаголица is the method for
 // everything: a wave of researchers per topic, each following the lead, research folded with verify

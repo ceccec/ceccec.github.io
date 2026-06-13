@@ -51,6 +51,16 @@ export default defineConfig({
   transformPageData(pageData) {
     const frontmatter = (pageData.frontmatter ||= {})
     const head = (frontmatter.head ||= [])
+    // Computed static pages (the dynamic [page] route) carry their SEO in the route params — the .md
+    // file is purged, the body prose dropped, but the SEO is kept: lift the page-specific title,
+    // description and keywords here so the ratings stay top, not the generic site fallback.
+    const params = pageData.params as { title?: string; description?: string; keywords?: string[] } | undefined
+    if (params?.title) pageData.title = params.title
+    if (params?.description) {
+      pageData.description = params.description // the <meta description> reads pageData.description
+      if (!frontmatter.description) frontmatter.description = params.description
+    }
+    if (params?.keywords && !frontmatter.keywords) frontmatter.keywords = params.keywords
     const relative = pageData.relativePath
     const isBg = relative.startsWith('bg/')
     const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
