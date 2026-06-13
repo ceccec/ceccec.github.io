@@ -54,3 +54,11 @@ A broad nib held at a fixed angle: the stroke is thick where it runs across the 
 Only Glagolitic icons, everywhere applicable. Every area of the taxonomy wears a Glagolitic glyph computed from its own name (letters are numbers), spoked into one graph — the ninth-century script as the site's single visual language.
 
 <TaxonomyGraph />
+
+## GPU field
+
+What if the GPU helps the computations? In harmony: the CPU computes the address (the truth, content-addressed), and the GPU expands each dot to its living plasma field (the appearance) in realtime — thousands of pixels in parallel, from the dot's own hue, frequency and rotation. Same seed, same field. Client-side, zero-server, zero-token. The GPU renders what the model computes; it does not compute the model.
+
+<GpuField seed="double torus" :size="460" />
+
+<GpuField seed="merkaba" :size="460" />

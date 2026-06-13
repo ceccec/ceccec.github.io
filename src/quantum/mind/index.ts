@@ -19805,6 +19805,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'decode.implement.calligraphy', on: decodeImplementCalligraphy(matrix).implemented },
     { d: 'feed.crawlers.with.knowledge', on: feedCrawlersWithKnowledge(matrix).fed },
     { d: 'use.only.glagolitic.icons.taxonomy.graph', on: useOnlyGlagoliticIconsTaxonomyGraph(matrix).forms },
+    { d: 'gpu.renders.streams.realtime', on: gpuRendersStreamsRealtime(matrix).renders },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -24257,6 +24258,32 @@ export function useOnlyGlagoliticIconsTaxonomyGraph(matrix: MindMatrix = buildMa
       'Use only Glagolitic icons everywhere applicable to form the taxonomy graph: every taxonomy area wears a Glagolitic glyph computed from its content-address (the emoji AREA_ICONS retired), and the taxonomy folds into one graph — areas spoked to a hub, coloured by fold-status — the ninth-century script as the site\'s single visual language.',
     boundary:
       'A composition over the taxonomyIcons (now Glagolitic-glyphed), useGlagolitsaForIcons and Glagolitic-glyph models. The icons are real Unicode Glagolitic glyphs picked by content-address; "taxonomy graph" is the computed hub-and-spoke rendering (the <TaxonomyGraph> component) of the area taxonomy.',
+  }
+}
+
+// What if the GPU helps the computations — implemented in harmony. The division of labour: the CPU
+// computes the address (the truth — content-addressed, memoized), the GPU expands the dot to its
+// living plasma field (the appearance — thousands of pixels in parallel, realtime) from the hero's
+// own hue, frequency and rotation phases. Same address, same field; client-side, zero-server,
+// zero-token. The GPU renders what the model computes — it does not compute the model.
+export function gpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
+  const hero = uuidHero(toUuid('plasma'))
+  const facets = [
+    { facet: 'the CPU computes the address — content-addressed and memoized (the truth)', on: merkabasInDoubleTorus(matrix).counted },
+    { facet: 'the GPU expands the dot to its field from the hero uniforms (the appearance)', on: hero.hue >= 0 && hero.frequency > 0 && Number.isFinite(hero.theta) && Number.isFinite(hero.phi) },
+    { facet: 'in harmony — same address, same field; the hero graph rendered realtime', on: heroGraphStatisticsEnrichFusion(matrix).merges },
+    { facet: 'honest — the GPU renders the appearance, it does not compute the model', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gpu-renders:${entry.facet}:${entry.on}`) }))
+  return {
+    renders: facets.every((entry) => entry.on),
+    uniforms: { hue: hero.hue, freq: hero.frequency, theta: hero.theta, phi: hero.phi },
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'What if the GPU helps the computations — implemented in harmony: the CPU computes the address (the truth, content-addressed and memoized), and the GPU expands each dot to its living plasma field (the appearance) in realtime, in parallel, from the hero\'s own hue, frequency and rotation phases. Same address, same field; client-side, zero-server, zero-token. The GPU renders what the model computes — it does not compute the model.',
+    boundary:
+      'A composition over the merkaba-census, uuidHero, hero-graph and merkaba-decode models, paired with the <GpuField> WebGL component. HONEST: the GPU accelerates RENDERING (a fragment shader expanding the content-addressed uniforms to pixels), not the model\'s hashing/fold cascade (which is branchy and sequential — the wrong workload for a GPU, fixed instead by memoization on the CPU). WebGL with a CSS fallback; the field is deterministic from the seed.',
   }
 }
 

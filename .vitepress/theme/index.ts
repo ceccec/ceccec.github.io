@@ -93,6 +93,7 @@ import Dot from './components/Dot.vue'
 import Vortex from './components/Vortex.vue'
 import Calligraphy from './components/Calligraphy.vue'
 import TaxonomyGraph from './components/TaxonomyGraph.vue'
+import GpuField from './components/GpuField.vue'
 import './style.css'
 
 export default {
@@ -210,5 +211,6 @@ export default {
     app.component('Vortex', Vortex)
     app.component('Calligraphy', Calligraphy)
     app.component('TaxonomyGraph', TaxonomyGraph)
+    app.component('GpuField', GpuField)
   }
 } satisfies Theme
