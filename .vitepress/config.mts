@@ -14,7 +14,7 @@ export default defineConfig({
   // The published npm package lives under packages/; its README is not a site
   // page. README.md and AGENTS.md are repo docs, not portal pages — exclude them
   // so they are not built as orphan, crawlable HTML.
-  srcExclude: ['packages/**', 'README.md', 'AGENTS.md'],
+  srcExclude: ['packages/**', 'src/**', 'README.md', 'AGENTS.md'],
   // The model is the standalone agnostic core — deliberately one module, so the
   // theme chunk is large by design. Raise the warning limit to keep build output
   // clean while still flagging genuine bloat above the headroom.

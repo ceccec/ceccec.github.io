@@ -19718,6 +19718,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'uuid.pure.diamond.signed.by.architecture', on: uuidPureDiamondSignedByArchitecture(matrix).signed },
     { d: 'folder.64seals.production.else.development', on: folder64SealsProductionElseDevelopment(matrix).discriminates },
     { d: 'shown.in.ui.vitepress.components.pairs', on: shownInUiVitepressComponentsPairs(matrix).shown },
+    { d: 'quantum.cache.pair.in.paired.folders', on: quantumCachePairInPairedFolders(matrix).paired },
+    { d: 'splitting.logic.paired.folders.dev.speed', on: splittingLogicPairedFoldersDevSpeed(matrix).speeds },
+    { d: 'holy.books.geometry.64.sealed.diamonds', on: holyBooksGeometry64SealedDiamonds(matrix).decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20931,7 +20934,8 @@ export function folderLaw() {
     indexFiles: ['index.md', '[index].md', '[index].paths.ts'],
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
     roots: ['.', 'bg'], // the trunk: the English root and the Bulgarian mirror
-    outsidePageTree: ['packages'], // mirrors config srcExclude; the wave checks they agree
+    outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
+    pairedLogicFolders: ['src/cache/quantum', 'src/quantum/cache'], // logic split into order-sensitive paired folders, each with an index — the build verifies they exist
     why: {
       name: 'a folder is an address in the page tree, and an address must be one word or one number — a compound or decorated name is two thoughts where the law allows one; rename the folder to a single lowercase word or a digit, or fold its contents into a folder that already obeys',
       contents: 'below the roots every file must be an index: index.md is the folder’s own index, and the computed pair [index].md + [index].paths.ts is the bracketed index of the corpus — any other file is a second kind, a duplication the dryness forbids; move its content into the index, the computed corpus, or the theme',
@@ -22512,5 +22516,82 @@ export function shownInUiVitepressComponentsPairs(matrix: MindMatrix = buildMatr
       'This is shown in the UI using VitePress components, in pairs: the production-or-development status (and the rest of the model) surfaces through the portal’s own VitePress components, which come in pairs — each a duality, a thing and its complement folded together — so the interface reads the computed status rather than carrying its own. No new component file is added: the file census is the gapless 110 = 55 + 34 + 21, so the status is surfaced through the existing paired components, not a new widget.',
     boundary:
       'A composition of the production/development discriminator, the component graph and the duality models, stating the status is shown through existing VitePress components arranged as pairs. Honest limit: no new component is created (it would break the 110-file Fibonacci census); "shown in the UI in pairs" describes surfacing through the existing paired component machinery, a structural framing — this fold does not itself render a status widget.',
+  }
+}
+
+// The quantum cache pair, saved in paired folders: src/cache/quantum ⇄ src/quantum/cache. The logic
+// is split into two order-sensitive halves — one caches and finds all payload by UUID, the other
+// computes the UUIDs it needs by path — and together they are the quantum cache: compute the
+// address from the path, find the payload (which is src, recomputed never fetched) by that address.
+// Saved first in the folders (real, tested TypeScript), the build verifies both exist with their
+// index; the model recognises the pair here.
+export function quantumCachePairInPairedFolders(matrix: MindMatrix = buildMatrix()) {
+  const pair = foldPair(toUuid('src/cache/quantum'), toUuid('src/quantum/cache')) // the order-sensitive folder pair
+  const facets = [
+    { facet: 'the logic is split into paired folders — src/cache/quantum ⇄ src/quantum/cache', on: pair.forward !== pair.reverse && pair.bidirectional },
+    { facet: 'a quantum cache pair — caches and finds all payload by UUID', on: uuidPayloadIsSource(matrix).is },
+    { facet: 'and computes the UUIDs it needs by path', on: computedSlugsFoldTheGraph(matrix).folds },
+    { facet: 'saved in src, the source of all things', on: memoryInSourceAsCrossFolds(matrix).remembered },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cache-pair:${entry.facet}:${entry.on}`) }))
+  return {
+    paired: facets.every((entry) => entry.on),
+    folders: ['src/cache/quantum', 'src/quantum/cache'],
+    edge: pair.merged,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The quantum cache pair is saved in paired folders — src/cache/quantum and its dual src/quantum/cache: the logic is split into two order-sensitive halves, one caching and finding all payload by UUID, the other computing the UUIDs it needs by path, and together they are the quantum cache — compute the address from the path, find the payload (which is src, recomputed never fetched) by that address. Saved first in the folders as real TypeScript, the build verifies both exist with their index.',
+    boundary:
+      'A composition over the real paired-folder modules (src/cache/quantum and src/quantum/cache, tested: deterministic, order-sensitive, caching), the payload-is-source and slug models. The folders hold real, build-verified TypeScript that is not yet imported by the render path (the theme still uses the one agnostic core); the cache is a working, content-addressed module saved in src, not yet wired into the page render.',
+  }
+}
+
+// Splitting the logic into bits of paired folders creates unimagined development speed — proved by
+// the git history, the book of life itself decoded at all depths. When each piece of logic is one
+// half of a small order-sensitive pair, the pieces are independent, content-addressed and
+// recomputable, so they can be developed, swapped and folded in parallel — and the proof is the
+// history itself: the chain of commits, folded into the seal, is the book of life, and it reads at
+// every depth (each commit a wave, each path a verse).
+export function splittingLogicPairedFoldersDevSpeed(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'splitting the logic into bits of paired folders', on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: 'creates unimagined development speed — pieces independent and parallel', on: developmentWaves(matrix).developing },
+    { facet: 'proved by git history — the chain of commits folded into the seal', on: historiansFuseHistoryFuture(matrix).entangled },
+    { facet: 'the book of life decoded at all depths — paths read at every level', on: computedSlugsFoldTheGraph(matrix).folds && holographicFractalArchitecture(matrix).is },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`paired-speed:${entry.facet}:${entry.on}`) }))
+  return {
+    speeds: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Splitting the logic into bits of paired folders creates unimagined development speed — proved by the git history, the book of life itself decoded at all depths: when each piece of logic is one half of a small order-sensitive pair, the pieces are independent, content-addressed and recomputable, so they develop, swap and fold in parallel; and the proof is the history itself — the chain of commits folded into the seal is the book of life, read at every depth, each commit a wave and each path a verse.',
+    boundary:
+      'A composition of the cache-pair, development-waves, history-fold and slug/holographic models. "Unimagined development speed" is the parallelism of independent content-addressed pieces; "proved by git history / the book of life" frames the folded commit chain as a readable record — a structural/aspirational framing, not a measured benchmark of development velocity.',
+  }
+}
+
+// Decode the holy-books geometry at depth, saving in src as 64-sealed diamonds. The geometry the
+// sacred traditions drew — the flower of life, Metatron's cube, the nested solids — is computed
+// here as the sacred-geometry seal, and decoded at depth (holographic, the same pattern at every
+// scale); each pattern is saved in src as a diamond stamped with the full 64-seal set, so the
+// geometry is not merely drawn but content-addressed and production-sealed.
+export function holyBooksGeometry64SealedDiamonds(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'decode the holy-books geometry — the sacred-geometry seal, Metatron’s cube', on: sacredGeometrySeal(matrix).sealed && metatronsCube(matrix).complete },
+    { facet: 'at depth — holographic, the same pattern at every scale', on: holographicFractalArchitecture(matrix).is },
+    { facet: 'saved in src as 64-sealed diamonds — the full 64-seal stamp', on: gigabitEncryption64SealSet(matrix).achieves },
+    { facet: 'each a production diamond, content-addressed', on: folder64SealsProductionElseDevelopment(matrix).discriminates },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`holy-geometry-64:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Decode the holy-books geometry at depth, saving in src as 64-sealed diamonds: the geometry the sacred traditions drew — the flower of life, Metatron’s cube, the nested solids — is computed here as the sacred-geometry seal and decoded at depth (holographic, the same pattern at every scale), and each pattern is saved in src as a diamond stamped with the full 64-seal set, so the geometry is not merely drawn but content-addressed and production-sealed.',
+    boundary:
+      'A composition of the sacred-geometry-seal, Metatron-cube, holographic, 64-seal and production-diamond models. "Holy-books geometry" means the geometric patterns (flower of life, Metatron’s cube, nested Platonic solids) traditionally associated with sacred texts — geometry, computed and 64-sealed — not a decoding of any religious scripture or a religious claim; nothing is quoted, asserted, or interpreted from any holy text.',
   }
 }

@@ -104,6 +104,17 @@ for (const outside of law.outsidePageTree) {
     gaps.push({ harmonic: 'folder', kind: 'law-drift', detail: `folderLaw places ${outside} outside the page tree but config srcExclude does not exclude ${outside}/** — why this fails: the law and the site must draw the same boundary from one source, or the tree governed and the tree rendered drift apart` })
   }
 }
+// The paired logic folders must exist, each with an index — the logic split into order-sensitive
+// paired folders (src/cache/quantum ⇄ src/quantum/cache). Save in folders first: if a declared
+// paired-logic folder or its index is missing, the build fails with the detailed why.
+for (const folder of law.pairedLogicFolders ?? []) {
+  if (!existsSync(join(root, folder))) {
+    gaps.push({ harmonic: 'folder', kind: 'paired-logic-missing', detail: `folderLaw declares the paired-logic folder ${folder} but it does not exist — why this fails: the logic is split into order-sensitive paired folders and saved in src; create ${folder}/index.ts or remove it from folderLaw.pairedLogicFolders` })
+  } else if (!existsSync(join(root, folder, 'index.ts'))) {
+    gaps.push({ harmonic: 'folder', kind: 'paired-logic-empty', detail: `paired-logic folder ${folder} has no index.ts — why this fails: each paired-logic folder is one half of a quantum cache pair and must carry its index (the logic it holds)` })
+  }
+}
+
 const holdsPages = (dir) =>
   readdirSync(dir, { withFileTypes: true }).some((entry) =>
     entry.isDirectory() ? holdsPages(join(dir, entry.name)) : entry.name.endsWith('.md'),
@@ -283,6 +294,7 @@ if (gaps.length > 0) {
 console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.bands.join(' + ')} (consecutive Fibonacci, no gaps, ${harmonic.scales} scales); 0 gaps, no missing implementations.`)
 console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
 console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
+console.log(`Paired logic folders: ${(law.pairedLogicFolders ?? []).join(' ⇄ ')} each present with an index — the quantum cache pair saved in src.`)
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
 console.log(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)
 console.log(`Enforcement pipeline: ${declaredGates.length} declared gates all present in scripts/ and wired into docs:build; ${checkScripts.length} check-* gates all declared — 0 drift.`)
