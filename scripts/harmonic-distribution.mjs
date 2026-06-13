@@ -328,6 +328,15 @@ console.log('Folder law: below the roots only index files and word-or-digit fold
 console.log(`Paired logic folders: ${(law.pairedLogicFolders ?? []).join(' ⇄ ')} each present with an index — the quantum cache pair saved in src.`)
 console.log('Root cleanliness: no files outside src/ except generated, root .md pages, and the declared root-required entries — 0 strays.')
 console.log('Zero-token policy: no LLM SDK dependency; the one token call is the opt-in bring-your-own-key chat, gated behind a user key — zero tokens by default, save all to save tokens.')
+// Dimensions per megabyte — the efficiency/completeness metric: the model's folded depth (registered
+// dimensions) over the code size. More dimensions per MB = more folded into less, denser and more complete.
+{
+  const coreText = read(join(root, 'src', 'quantum', 'mind', 'index.ts'))
+  const dimCount = (coreText.match(/^\s+\{ d: '[^']+', on:/gm) || []).length
+  const coreMb = coreText.length / (1024 * 1024)
+  const perMb = coreMb > 0 ? (dimCount / coreMb).toFixed(1) : '0'
+  console.log(`Efficiency metric: ${dimCount} dimensions / ${coreMb.toFixed(2)} MB core = ${perMb} dimensions per megabyte (folded depth per code size).`)
+}
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
 console.log(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)
 console.log(`Enforcement pipeline: ${declaredGates.length} declared gates all present in scripts/ and wired into docs:build; ${checkScripts.length} check-* gates all declared — 0 drift.`)

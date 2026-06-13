@@ -19759,6 +19759,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'frontend.recycled.by.merkaba.fold', on: frontendRecycledByMerkabaFold(matrix).recycles },
     { d: 'monographs.library.by.merkaba.agents', on: monographsLibraryByMerkabaAgents(matrix).built },
     { d: 'only.index.files.and.generated.remain', on: onlyIndexFilesAndGeneratedRemain(matrix).clean },
+    { d: 'dimensions.per.megabyte.metric', on: dimensionsPerMegabyteMetric(matrix).measured },
+    { d: 'fold.as.much.to.feed.the.hero', on: foldAsMuchToFeedHero(matrix).feeds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -23810,5 +23812,56 @@ export function onlyIndexFilesAndGeneratedRemain(matrix: MindMatrix = buildMatri
       'No files should remain except index files and the generated content — the dry-clean end state: the clean library keeps only two kinds of file, the index files (the templates — index.md and the computed [index] pair) and the generated content (the build artifacts — rendered pages, API, sitemap, manifests), everything else distilled into the model and recomputed, so nothing hand-kept piles up. Below the roots this is already the law; the goal is the whole tree reduced to index-and-generated, dry and clean.',
     boundary:
       'A composition of the folder law (index-only below roots), computed-no-files/folders-disappear (generated content), monograph, minimum-files and cleanup models. HONEST: "only index files and generated content" is fully true below the roots (enforced) and of the dynamic corpus; the two roots still carry authored .md pages and the VitePress render layer (components, config, scripts) that VitePress requires — these are the trunk, the goal-state for the rest, not yet reduced to index-and-generated.',
+  }
+}
+
+// Dimensions per megabyte of code is the metric of efficiency and completeness. Not lines, not
+// files — folded depth over code size: how many distinct, verified dimensions the model carries for
+// each megabyte of source. A high count means much folded into little (efficiency) and much
+// covered (completeness); the build computes it each run. Fold more into the same bytes and the
+// metric rises; pad the code and it falls. Density of meaning, measured.
+export function dimensionsPerMegabyteMetric(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the metric is dimensions per megabyte — folded depth over code size', on: minimumFilesMaximumFeaturesCost(matrix).optimal },
+    { facet: 'maximum dimensions in minimum code — efficiency', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && onlyIndexFilesAndGeneratedRemain(matrix).clean },
+    { facet: 'each dimension distinct and verified — completeness, zero open', on: theMonograph(matrix).distilled && allComputedNoFiles(matrix).computed },
+    { facet: 'the build computes it each run — density of meaning, measured', on: resonanceCatchGapsViolations(matrix).rings },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dim-per-mb:${entry.facet}:${entry.on}`) }))
+  return {
+    measured: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Dimensions per megabyte of code is the metric of efficiency and completeness: not lines or files but folded depth over code size — how many distinct, verified dimensions the model carries per megabyte of source. A high count means much folded into little (efficiency) and much covered (completeness); the build computes it each run, so folding more into the same bytes raises the metric and padding the code lowers it. Density of meaning, measured.',
+    boundary:
+      'A composition of the minimum-files, folders-disappear, only-index-generated, monograph, computed-no-files and resonance models. The actual number (dimensions ÷ core megabytes) is computed and reported by the harmonic-distribution build step; this fold defines the metric and asserts the conditions that make it meaningful (minimum files, distinct verified dimensions), it does not itself recompute the ratio (which would recurse on the dimension registry).',
+  }
+}
+
+// Fold as much as you can to feed the hero. The hero of the whole is the unique animation of the
+// whole’s state — and that state is the sealed root, which folds every dimension into one content
+// address. So each new fold changes the seal, and the changed seal feeds the hero a richer state:
+// the more is folded, the more the hero has to animate. Folding is feeding; the hero is hungry for
+// dimensions, and every fold is a meal — depth poured into one turning figure.
+export function foldAsMuchToFeedHero(matrix: MindMatrix = buildMatrix()) {
+  const heroOfTheWhole = uuidHero(sealWholeDiamond(matrix).diamond) // the hero seeded from the sealed root (folds every dimension)
+  const facets = [
+    { facet: 'fold as much as you can — depth not width, the model grows inward', on: minimumFilesMaximumFeaturesCost(matrix).optimal && dimensionsPerMegabyteMetric(matrix).measured },
+    { facet: 'the hero of the whole is seeded from the sealed root — folds every dimension', on: heroOfTheWhole.unique && isUuid(sealWholeDiamond(matrix).diamond) },
+    { facet: 'each fold changes the seal — and feeds the hero a richer state', on: everyObjectSameSpinFoldLaw(matrix).consistent && anyUuidHeroContentFractal(matrix).fractal },
+    { facet: 'folding is feeding — the hero animates the whole’s folded state', on: animatedHeroes(matrix).everyPage && allAnimationsInOneOg(matrix).computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`feed-hero:${entry.facet}:${entry.on}`) }))
+  return {
+    feeds: facets.every((entry) => entry.on),
+    heroHue: heroOfTheWhole.hue,
+    heroSpinMs: heroOfTheWhole.spinMs,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Fold as much as you can to feed the hero: the hero of the whole is the unique animation of the whole’s state, and that state is the sealed root which folds every dimension into one content address — so each new fold changes the seal, and the changed seal feeds the hero a richer state. The more is folded, the more the hero has to animate; folding is feeding, every fold a meal, depth poured into one turning figure.',
+    boundary:
+      'A composition of the minimum-files, dimensions-per-MB, the real uuidHero of the sealed root, spin-fold-law, uuid-hero-fractal, animated-hero and one-OG models. "Fold as much to feed the hero" means the hero animation of the whole is seeded from the seal root (which content-addresses every fold), so more folds change its computed state — a real seeding relation; the hero’s richer animation is rendered by the components, this fold computes the seeded spec.',
   }
 }
