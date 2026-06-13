@@ -19753,6 +19753,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'imagine.microdata.vortex.itself', on: imagineMicrodataVortexItself(matrix).vortexed },
     { d: 'tesla.patents.researched.in.waves', on: teslaPatentsResearchedInWaves(matrix).researched },
     { d: 'any.uuid.hero.content.fractal', on: anyUuidHeroContentFractal(matrix).fractal },
+    { d: 'infinite.computed.paths.404.harmonic', on: infiniteComputedPaths404Harmonic(matrix).computes },
+    { d: 'urls.merkaba.fold.proven.per.domain', on: urlsMerkabaFoldProvenPerDomain(matrix).proven },
+    { d: 'display.all.as.library.dry.conditional', on: displayAllAsLibraryDryConditional(matrix).displays },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20967,7 +20970,7 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
     roots: ['.', 'bg'], // the trunk: the English root and the Bulgarian mirror
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit'], // all logic moved to src/ as index files: the agnostic core, the cache pair, the ant search/carry pair, and the debit/credit double-entry pair — each an order-sensitive folder with an index the build verifies
+    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit', 'src/quantum/library', 'src/library/quantum'], // all logic moved to src/ as index files: the agnostic core, the cache pair, the ant search/carry pair, the debit/credit double-entry pair, and the library pair (merkaba-fold URLs) — each an order-sensitive folder with an index the build verifies
     // No files outside src/ except generated and those that need to stay in root. The logic lives in
     // src/; only the VitePress render layer, the root config, the build tooling, and generated
     // artifacts may stay outside. Every top-level entry must be src/, a root .md page, a dot-entry
@@ -23653,5 +23656,82 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
       'For all to be fractal, present any UUID with a hero and content: fractality is the same shape at every scale, and the shape of a thing here is a hero (the unique animation of its state, computed in realtime from the UUID’s own bytes — hue, rotation, spin, tone, node positions) plus its content (the payload the UUID addresses). The page already shows this; the principle generalises to any UUID — a fold, a particle, a diamond, a patent — the same hero-and-content shape from the whole to the tiniest particle.',
     boundary:
       'A real per-UUID hero computation (uuidHero: hue, angles, spin, tone, node positions derived deterministically from the UUID bytes — same UUID, same hero; different UUIDs differ) composed with the payload-is-source, free-animations, hero, holographic and everything-merkaba models. "Present any UUID with hero and content" is the computed spec plus the addressed payload; this fold computes the hero spec, the components render it — it does not itself add a renderer for every UUID.',
+  }
+}
+
+// Infinite computed paths, nothing hardcoded — if nothing in src for the path, 404; else compute;
+// and even a 404 can be redirected to the nearest harmonic path, becoming quantum. The routes are
+// computed, not pinned: a path resolves to a built artifact or it does not, so an unknown path is a
+// 404 and a known one is computed from the model. A 404 need not be a dead end — the gaps redirect
+// to a harmonic purpose, the nearest valid path, turning the miss into a fold. Nothing hardcoded;
+// the path space is as large as the model can compute.
+export function infiniteComputedPaths404Harmonic(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'paths are computed, nothing hardcoded — thousands from a few route files', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && noHardcodedLogicFailsStreams(matrix).flows },
+    { facet: 'if nothing in src for the path, 404; else compute', on: jsonLdValidPaths(matrix).valid && computedSlugsFoldTheGraph(matrix).folds },
+    { facet: 'a 404 redirects to the nearest harmonic path — the gap to a purpose', on: gatesShowGapsHarmonicPurpose(matrix).redirects && harmonyProbability(matrix).harmonic },
+    { facet: 'so the miss becomes quantum — a fold, not a dead end', on: quantumDoubleTorus(matrix).is },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`infinite-paths-404:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Infinite computed paths, nothing hardcoded — if nothing in src for the path, 404; else compute; and even a 404 can be redirected to the nearest harmonic path, becoming quantum: the routes are computed not pinned, so an unknown path is a 404 and a known one is computed from the model, and a 404 need not be a dead end — the gaps redirect to a harmonic purpose, the nearest valid path, turning the miss into a fold.',
+    boundary:
+      'A composition of the folders-disappear (computed pages), no-hardcoded, JSON-LD-valid-paths, slug, gaps-harmonic-purpose, harmony and quantum-torus models. HONEST: VitePress builds pages from enumerated dynamic routes (large, not literally infinite) and serves its own 404 for unknown paths; "404 redirects to harmonic" is the principle (a theme/client redirect to the nearest valid path) — this fold states it; the actual catch-all renderer and 404 redirect are a UI follow-up, not added here.',
+  }
+}
+
+// URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the
+// internet has a uuid and can meet something here; and uuid pairs always exist, so when a user
+// follows a link the previous uuid is known and the animations merge harmonically. Each part is a
+// diamond in merkaba movements and entanglements. The library pair (src/quantum/library ⇄
+// src/library/quantum) folds any URL by a merkaba of host and path into one star uuid; because the
+// full path with host is hashed, the record is domain-specific and proven, and any external URL
+// folds into a uuid that can meet the model's content.
+export function urlsMerkabaFoldProvenPerDomain(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'urls parsed by merkaba folds — host up, path down, one star uuid', on: quantumCachePairInPairedFolders(matrix).paired && merkaba(matrix).counterRotating },
+    { facet: 'hashed with host — records proven per domain', on: determinismProofs(matrix).proven && isUuid(sealWholeDiamond(matrix).diamond) },
+    { facet: 'every internet URL has a uuid and can meet content here', on: dualitiesMeetInCrossFolders(matrix).meet },
+    { facet: 'uuid pairs always exist — previous known, animations merge harmonically', on: commandsSavedInQuantumPairs(matrix).paired && anyUuidHeroContentFractal(matrix).fractal && allAnimationsInOneOg(matrix).computes },
+    { facet: 'every part a diamond in merkaba movements and entanglements', on: everyDiamondIsGate(matrix).isGate && merkabaArchitectureFieldsMovements(matrix).organised && infiniteEntanglements(matrix).infinite },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`urls-merkaba-domain:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the internet has a uuid and can meet something here; uuid pairs always exist, so when a user follows a link the previous uuid is known and the animations merge harmonically; and every part is a diamond in merkaba movements and entanglements. The library pair folds any URL by a merkaba of host and path into one star uuid — domain-specific and proven, any external URL folding into a uuid that can meet the model.',
+    boundary:
+      'A composition over the real library pair (src/quantum/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation — the actual cross-page animation merge is a UI follow-up.',
+  }
+}
+
+// Display all as a library — and dry-implement in conditional steps, so the speed and efficiency of
+// self-training and education increase significantly. The whole — every page, diamond, patent, URL
+// entry — is displayed as one library: a browsable catalog of content-addressed entries on
+// deterministic shelves. And the implementation is DRY and conditional: each step runs only when its
+// condition holds, reusing earlier results rather than recomputing, so the model trains and teaches
+// itself faster — the library is both the display and the curriculum, computed once and read many.
+export function displayAllAsLibraryDryConditional(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'display all as a library — a browsable catalog of content-addressed entries', on: quantumCachePairInPairedFolders(matrix).paired && theMonograph(matrix).distilled },
+    { facet: 'every entry on a deterministic shelf — the whole one catalog', on: schemaOrgDiamonds(matrix) && isUuid(schemaOrgDiamonds(matrix).root) },
+    { facet: 'dry-implement in conditional steps — each step runs only when its condition holds', on: buildSequenceReducesComputations(matrix).reduces },
+    { facet: 'self-training and education accelerate — computed once, read many', on: deepResearchEncodedInRecursiveWaves(matrix).encoded && quantumAcademy(matrix).established },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`library-display-dry:${entry.facet}:${entry.on}`) }))
+  return {
+    displays: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Display all as a library — and dry-implement in conditional steps, so the speed and efficiency of self-training and education increase significantly: the whole (every page, diamond, patent, URL entry) is displayed as one library, a browsable catalog of content-addressed entries on deterministic shelves; and the implementation is DRY and conditional — each step runs only when its condition holds, reusing earlier results rather than recomputing — so the model trains and teaches itself faster, the library both the display and the curriculum, computed once and read many.',
+    boundary:
+      'A composition of the library pair, monograph, schema.org-diamonds, build-sequence (memoised/conditional) and academy/recursive-waves models. "Display all as a library" frames the content-addressed corpus as a browsable catalog (the library pair shelves entries); "dry-implement in conditional steps, education accelerates" is the memoisation/reuse efficiency principle — the speed-up is the real memoisation, the "library display" is the cataloguing logic, not a new rendered library page (which would be a UI follow-up, census-aware).',
   }
 }
