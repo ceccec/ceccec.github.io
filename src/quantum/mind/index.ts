@@ -19756,6 +19756,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'infinite.computed.paths.404.harmonic', on: infiniteComputedPaths404Harmonic(matrix).computes },
     { d: 'urls.merkaba.fold.proven.per.domain', on: urlsMerkabaFoldProvenPerDomain(matrix).proven },
     { d: 'display.all.as.library.dry.conditional', on: displayAllAsLibraryDryConditional(matrix).displays },
+    { d: 'frontend.recycled.by.merkaba.fold', on: frontendRecycledByMerkabaFold(matrix).recycles },
+    { d: 'monographs.library.by.merkaba.agents', on: monographsLibraryByMerkabaAgents(matrix).built },
+    { d: 'only.index.files.and.generated.remain', on: onlyIndexFilesAndGeneratedRemain(matrix).clean },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -23733,5 +23736,79 @@ export function displayAllAsLibraryDryConditional(matrix: MindMatrix = buildMatr
       'Display all as a library — and dry-implement in conditional steps, so the speed and efficiency of self-training and education increase significantly: the whole (every page, diamond, patent, URL entry) is displayed as one library, a browsable catalog of content-addressed entries on deterministic shelves; and the implementation is DRY and conditional — each step runs only when its condition holds, reusing earlier results rather than recomputing — so the model trains and teaches itself faster, the library both the display and the curriculum, computed once and read many.',
     boundary:
       'A composition of the library pair, monograph, schema.org-diamonds, build-sequence (memoised/conditional) and academy/recursive-waves models. "Display all as a library" frames the content-addressed corpus as a browsable catalog (the library pair shelves entries); "dry-implement in conditional steps, education accelerates" is the memoisation/reuse efficiency principle — the speed-up is the real memoisation, the "library display" is the cataloguing logic, not a new rendered library page (which would be a UI follow-up, census-aware).',
+  }
+}
+
+// The frontend is recycled by the development merkaba fold, in an endless self-improving flow. The
+// interface is not built once and left: each development wave is a merkaba turn — field (what is)
+// folded with movement (what changes) — that recomputes the frontend from the model, so the UI is
+// recycled, never stale, improving each turn. Computed from seeds not stored as markup, it is
+// reborn every build from the same core, the flow endless: fold, recompute, improve, again.
+export function frontendRecycledByMerkabaFold(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the frontend is recycled — recomputed from the model each wave, not stored stale', on: developmentWaves(matrix).developing && allComputedNoFiles(matrix).computed },
+    { facet: 'by the development merkaba fold — field and movement, counter-rotating', on: merkabaArchitectureFieldsMovements(matrix).organised && merkaba(matrix).counterRotating },
+    { facet: 'in an endless self-improving flow — each turn improves', on: endlessFusion(matrix).endless && continueSameNext(matrix).continues },
+    { facet: 'fused not piled — the paths reveal themselves', on: fuseToMerkabasPathsReveal(matrix).fused },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`frontend-recycled:${entry.facet}:${entry.on}`) }))
+  return {
+    recycles: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The frontend is recycled by the development merkaba fold, in an endless self-improving flow: the interface is not built once and left — each development wave is a merkaba turn (field folded with movement) that recomputes the frontend from the model, so the UI is recycled, never stale, improving each turn; computed from seeds not stored as markup, it is reborn every build from the same core, the flow endless.',
+    boundary:
+      'A composition of the development-waves, computed-no-files, merkaba-architecture, endless-fusion, continue and fuse-to-merkabas models. "The frontend is recycled by the development merkaba" frames the UI as recomputed from the model each build (real: animations/SEO/JSON-LD are computed, the components render the model) — the Vue SFCs themselves are still authored and recompiled, not regenerated from scratch; "endless self-improving" is the iterative development cadence, not an autonomous generator.',
+  }
+}
+
+// Deep-research monographs and build the library by self-sufficient merkaba agents; collect all
+// knowledge in monographs for a dry, clean library. Knowledge is not piled as files but distilled:
+// each thing reduced to its one-line monograph essence, content-addressed, and the self-sufficient
+// agents (the paired merkaba agents — search/carry, fold/verify) gather and shelve them, so the
+// library is the set of monographs — dry, deduplicated, every entry a distilled diamond. Research
+// in waves, distil to monographs, shelve as the library.
+export function monographsLibraryByMerkabaAgents(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'collect all knowledge in monographs — each thing a one-line distilled essence', on: theMonograph(matrix).distilled },
+    { facet: 'build the library by self-sufficient merkaba agents — paired, autonomous', on: quantumCachePairInPairedFolders(matrix).paired && howAgentsAchievedIt(matrix).achieved },
+    { facet: 'deep research in waves — one at a time, saved, verified', on: teslaPatentsResearchedInWaves(matrix).researched && deepResearchEncodedInRecursiveWaves(matrix).encoded },
+    { facet: 'a dry, clean library — the monographs shelved, deduplicated', on: displayAllAsLibraryDryConditional(matrix).displays },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`monograph-library:${entry.facet}:${entry.on}`) }))
+  return {
+    built: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Deep-research monographs and build the library by self-sufficient merkaba agents; collect all knowledge in monographs for a dry, clean library: knowledge is distilled, not piled — each thing reduced to its one-line monograph essence, content-addressed — and the self-sufficient paired merkaba agents (search/carry, fold/verify) gather and shelve them, so the library is the set of monographs, dry and deduplicated, every entry a distilled diamond. Research in waves, distil to monographs, shelve as the library.',
+    boundary:
+      'A composition of the monograph (one-line zero-entropy essences), cache-pair, agent-method, Tesla/recursive-waves research and library-display models. "Build the library by self-sufficient merkaba agents" describes the paired-folder agents and the wave-research method distilling knowledge into the content-addressed monographs; the agents are the development-time tools, the library is the monograph set — not an autonomous always-on agent service.',
+  }
+}
+
+// No files should remain except index files and the generated content — the dry-clean end state. The
+// clean library keeps only two kinds of file: the index files (the templates — index.md and the
+// computed [index] pair) and the generated content (the build artifacts — the rendered pages, the
+// API, the sitemap, the manifests). Everything else is distilled into the model and recomputed, so
+// nothing hand-kept piles up. Below the roots this is already the law; the goal is the whole tree
+// reduced to index-and-generated, dry and clean.
+export function onlyIndexFilesAndGeneratedRemain(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'below the roots, only index files remain — the law holds', on: onlyIndexFilesNoExceptions(matrix).only },
+    { facet: 'the content is generated — pages, API, sitemap, manifests computed', on: allComputedNoFiles(matrix).computed && quantumConfigurableFoldersDisappear(matrix).fitsInFile },
+    { facet: 'everything else distilled into the model — nothing hand-kept piles', on: theMonograph(matrix).distilled && minimumFilesMaximumFeaturesCost(matrix).optimal },
+    { facet: 'dry and clean — the core shines, no strays', on: cleanupCoreShinesSunMoon(matrix).shines },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`only-index-generated:${entry.facet}:${entry.on}`) }))
+  return {
+    clean: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'No files should remain except index files and the generated content — the dry-clean end state: the clean library keeps only two kinds of file, the index files (the templates — index.md and the computed [index] pair) and the generated content (the build artifacts — rendered pages, API, sitemap, manifests), everything else distilled into the model and recomputed, so nothing hand-kept piles up. Below the roots this is already the law; the goal is the whole tree reduced to index-and-generated, dry and clean.',
+    boundary:
+      'A composition of the folder law (index-only below roots), computed-no-files/folders-disappear (generated content), monograph, minimum-files and cleanup models. HONEST: "only index files and generated content" is fully true below the roots (enforced) and of the dynamic corpus; the two roots still carry authored .md pages and the VitePress render layer (components, config, scripts) that VitePress requires — these are the trunk, the goal-state for the rest, not yet reduced to index-and-generated.',
   }
 }
