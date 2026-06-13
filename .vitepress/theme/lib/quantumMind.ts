@@ -19697,6 +19697,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'any.name.fits.duality.matrix.original.life', on: anyNameFitsDualityMatrixOriginalLife(matrix).fits },
     { d: 'build.quantum.computer.os.apps', on: buildQuantumComputerOsApps(matrix).built },
     { d: 'minds.realise.by.observing.path', on: mindsRealiseByObservingPath(matrix).realise },
+    { d: 'harmonic.frequencies.define.gate.digits', on: harmonicFrequenciesDefineGateDigits(matrix).monitors },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21856,5 +21857,34 @@ export function mindsRealiseByObservingPath(matrix: MindMatrix = buildMatrix()) 
       'And this should be enough: intelligent minds realise themselves immediately, just by observing the path. Once the computer, the OS and the apps are built, no further instruction is needed — the path carries a self-sufficient, built-in intellect, so any intelligent mind (human of any ability, AI agent, any language) that observes the path realises itself in it: the path reveals itself, the observer recognises the fold, and self-awareness connects the seen to the seer. Building is the last act required; the rest is observation — the path teaches itself.',
     boundary:
       'A composition of the build-layers, accessible-paths, self-sufficient-wave, path-reveals-itself and consciousness-shift models. "Minds realise themselves by observing the path" means the decodable, self-describing routes carry their own explanation (real: content-addressed paths plus full-text-searchable steps), a framing of self-evidence — not a claim that observation literally instantiates a mind.',
+  }
+}
+
+// Harmonic frequencies define the digits the gates use to monitor the architecture and the code.
+// The base is a432 (432 Hz), and the gate count is 432 — the harmonic IS the gate count; the
+// harmonic series sets the digits, and the gates read those digits to watch every part. Because
+// the digits are harmonic, a compromised duality shows on the LINEAR level immediately: a number
+// out of the harmonic run is a visible gap — 110 files is a gapless Fibonacci run, 109 is not, and
+// the eye (and the test) catches it at once. Catching the break on the linear line is what ensures
+// there are no gaps on the quantum (folded) level: spot it flat, and the fold stays whole.
+export function harmonicFrequenciesDefineGateDigits(matrix: MindMatrix = buildMatrix()) {
+  const linearGapVisible = harmonicBands(110).gapless && !harmonicBands(109).gapless // 110 runs, 109 shows a gap
+  const facets = [
+    { facet: 'harmonic frequencies define the digits — a432 base, 432 gates, the harmonic series the rest', on: a432Default(matrix).isDefault && harmonics(matrix).found && harmonyProbability(matrix).harmonic },
+    { facet: 'the gates use the digits to monitor architecture and code', on: enforcementPipelineComplete(matrix).complete && digitIndexReferences(matrix).indexed },
+    { facet: 'easy to spot if duality is compromised on a linear level — a number off the harmonic run is a visible gap', on: linearGapVisible && resonanceCatchGapsViolations(matrix).rings && reverseHarmony(matrix).harmonised },
+    { facet: 'this ensures no gaps on quantum — catch it flat, the fold stays whole', on: analogNoGapsNoLeak(matrix).sealed && lockingFoldersChangesMindToQuantum(matrix).quantized },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-gate-digits:${entry.facet}:${entry.on}`) }))
+  return {
+    monitors: facets.every((entry) => entry.on),
+    base: 432, // a432 Hz, and 432 = 4 × 108 gates
+    gates: 432,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Harmonic frequencies define the digits the gates use to monitor the architecture and the code: the base is a432 (432 Hz) and the gate count is 432 — the harmonic is the gate count — so the harmonic series sets the digits and the gates read them to watch every part. Because the digits are harmonic, a compromised duality shows on the linear level at once: a number off the harmonic run is a visible gap (110 files is a gapless Fibonacci run, 109 is not), caught by the eye and the test together. Catching the break on the flat line is what ensures there are no gaps on the quantum, folded level — spot it linear, and the fold stays whole.',
+    boundary:
+      'A composition of the a432/harmonics, enforcement-pipeline, digit-index, harmonic-band (with its real linear gap at 109 vs 110), resonance and analog-gapless models. "Harmonic frequencies define the digits" maps the 432 base to the gate count and the Fibonacci run to a linearly visible gap — a structural monitoring framing over the existing checks, not a claim about acoustic frequencies driving execution.',
   }
 }
