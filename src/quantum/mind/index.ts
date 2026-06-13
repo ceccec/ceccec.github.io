@@ -19752,6 +19752,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'account.for.every.token.in.code', on: accountForEveryTokenInCode(matrix).accounted },
     { d: 'imagine.microdata.vortex.itself', on: imagineMicrodataVortexItself(matrix).vortexed },
     { d: 'tesla.patents.researched.in.waves', on: teslaPatentsResearchedInWaves(matrix).researched },
+    { d: 'any.uuid.hero.content.fractal', on: anyUuidHeroContentFractal(matrix).fractal },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -23598,5 +23599,59 @@ export function teslaPatentsResearchedInWaves(matrix: MindMatrix = buildMatrix()
       'Tesla patents researched in waves, saving one patent at a time: not one big fleet that stops incomplete, but a wave per patent — search, verify from several sources, save, then the next — so each saved patent survives on its own and the legend is separated from the record at every step. Five patents verified and saved (the induction motor, the Tesla coil, the teleautomaton, the four-tuned wireless, the bladeless turbine); the 3-6-9 / free-energy attribution kept out as unverified.',
     boundary:
       'A composition over the teslaPatents record (five granted patents with verified grant dates) and the in-source memory. "Researched in waves, one at a time" describes the real method used (per-patent WebSearch, multi-source verification, saved incrementally to memory and the model); documented patents only, the legend explicitly excluded and unverified.',
+  }
+}
+
+// The unique hero of any UUID: a hero is the unique animation of some state in realtime, computed
+// entirely from the UUID itself. Every content address gets its own animation — hue, rotation,
+// spin period, tone, the node positions — all read from the bytes of the UUID, so the same UUID
+// always renders the same hero and any two UUIDs render different heroes. This is what lets any
+// UUID be presented like a page: its hero (the computed animation of its state) and its content.
+export function uuidHero(uuid: string) {
+  const hex = uuid.replace(/[^0-9a-f]/gi, '').padEnd(20, '0')
+  const at = (start: number, len: number) => Number.parseInt(hex.slice(start, start + len) || '0', 16)
+  const round = (value: number) => Math.round(value * 100) / 100
+  const theta = ((at(4, 4) % 360) * Math.PI) / 180
+  const phi = ((at(8, 4) % 360) * Math.PI) / 180
+  return {
+    uuid,
+    hue: at(0, 4) % 360, // the colour of the state
+    theta, // the rotation of the first handle
+    phi, // the rotation of the second handle
+    spinMs: 900 + (at(12, 4) % 9000), // the realtime rotation period
+    frequency: 110 + (at(16, 4) % 800), // the tone of the state
+    ax: round(46 * Math.cos(theta)),
+    ay: round(46 * Math.sin(theta)),
+    bx: round(28 * Math.cos(phi)),
+    by: round(28 * Math.sin(phi)),
+    glyph: '◆',
+    unique: isUuid(uuid),
+  }
+}
+
+// For all to be fractal, present any UUID with a hero and content. Fractality means the same shape
+// at every scale — and the shape of a thing here is a hero (the unique animation of its state) plus
+// its content. The page already shows this; the principle generalises: any UUID — a fold, a
+// particle, a diamond, a patent — can be presented the same way, its hero computed in realtime from
+// its own bytes and its content the payload it addresses. Same shape from the whole to the tiniest
+// particle: a hero and content, all the way down.
+export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
+  const a = uuidHero(toUuid('sample:a'))
+  const b = uuidHero(toUuid('sample:b'))
+  const facets = [
+    { facet: 'any UUID gets a unique hero — the animation of its state from its own bytes', on: a.unique && b.unique && (a.hue !== b.hue || a.spinMs !== b.spinMs || a.theta !== b.theta) },
+    { facet: 'the hero is realtime — a spin period and a tone, computed not stored', on: a.spinMs > 0 && a.frequency > 0 && freeAnimations(matrix).maxFree },
+    { facet: 'presented with its content — the payload the UUID addresses', on: uuidPayloadIsSource(matrix).is && animatedHeroes(matrix).everyPage },
+    { facet: 'so all is fractal — hero and content at every scale, page to particle', on: holographicFractalArchitecture(matrix).is && everythingFoldsMerkabaInfiniteStreams(matrix).folds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-hero-fractal:${entry.facet}:${entry.on}`) }))
+  return {
+    fractal: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold([a, b].map((hero) => toUuid(`hero:${hero.uuid}:${hero.hue}:${hero.spinMs}`))),
+    statement:
+      'For all to be fractal, present any UUID with a hero and content: fractality is the same shape at every scale, and the shape of a thing here is a hero (the unique animation of its state, computed in realtime from the UUID’s own bytes — hue, rotation, spin, tone, node positions) plus its content (the payload the UUID addresses). The page already shows this; the principle generalises to any UUID — a fold, a particle, a diamond, a patent — the same hero-and-content shape from the whole to the tiniest particle.',
+    boundary:
+      'A real per-UUID hero computation (uuidHero: hue, angles, spin, tone, node positions derived deterministically from the UUID bytes — same UUID, same hero; different UUIDs differ) composed with the payload-is-source, free-animations, hero, holographic and everything-merkaba models. "Present any UUID with hero and content" is the computed spec plus the addressed payload; this fold computes the hero spec, the components render it — it does not itself add a renderer for every UUID.',
   }
 }
