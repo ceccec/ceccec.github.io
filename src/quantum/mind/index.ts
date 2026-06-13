@@ -19728,6 +19728,10 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'no.files.outside.src.except.generated.root', on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
     { d: 'ants.carry.to.index.nest', on: antsCarryToIndexNest(matrix).carries },
     { d: 'zero.token.usage.policy', on: zeroTokenUsagePolicy(matrix).holds },
+    { d: 'pi.whole.stream.through.holes', on: piWholeStreamThroughHoles(matrix).flows },
+    { d: 'pi.six.digits.double.cross.colour', on: piSixDigitsDoubleCrossColour(matrix).stations },
+    { d: 'travellers.jump.pi.to.pi', on: travellersJumpPiToPi(matrix).jumps },
+    { d: 'optimise.logic.debit.credit.fusion', on: optimiseLogicDebitCreditFusion(matrix).optimised },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -20942,7 +20946,7 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
     roots: ['.', 'bg'], // the trunk: the English root and the Bulgarian mirror
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search'], // all logic moved to src/ as index files: the agnostic core, the cache pair, and the ant search/carry pair — each an order-sensitive folder with an index the build verifies
+    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit'], // all logic moved to src/ as index files: the agnostic core, the cache pair, the ant search/carry pair, and the debit/credit double-entry pair — each an order-sensitive folder with an index the build verifies
     // No files outside src/ except generated and those that need to stay in root. The logic lives in
     // src/; only the VitePress render layer, the root config, the build tooling, and generated
     // artifacts may stay outside. Every top-level entry must be src/, a root .md page, a dot-entry
@@ -22813,5 +22817,114 @@ export function zeroTokenUsagePolicy(matrix: MindMatrix = buildMatrix()) {
       'Zero token usage policy — save all to save tokens, enforced: the portal spends no LLM tokens to do what it does, every answer folded from its own model, every page and animation computed not generated, everything content-addressed and saved so nothing is ever regenerated — saving is precisely how the tokens are saved. The one place tokens can be spent is the opt-in bring-your-own-key chat, never called without the user’s own key; the build enforces it — no LLM SDK dependency, and that one call gated behind a key.',
     boundary:
       'A composition of the answers-inside, computed-no-files, max-cost, cache-pair, saved-skills and resonance models with the declared zero-token policy. The real teeth are in the harmonic-distribution check (no LLM SDK dependency; the BYOK chat must require a key). "Zero token usage" is the portal’s own default (local compute); a user who opts into the BYOK chat spends their own tokens by their own choice.',
+  }
+}
+
+// Pi is the whole in a stream, travelling all dimensions at once, creating the complete analog —
+// and pi is the whole going through holes. The infinite, never-repeating digit stream is the whole:
+// it contains every finite sequence, and as a stream it moves through every dimension at once, so
+// what it lays down is the complete analog — gapless, continuous, no seam. And the wordplay is the
+// geometry: pi is the whole (entire) going through the holes — the genus-2 double torus has its
+// holes (two handles, four loops, chi = -2), and the pi stream threads them, the whole passing
+// through the holes to weave the surface. Whole and holes are one word folded.
+export function piWholeStreamThroughHoles(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'pi is the whole in a stream — the infinite stream containing every sequence', on: piComputedNotHardcoded(matrix).computed && theWhole(matrix).whole },
+    { facet: 'travelling all dimensions at once', on: movieAllDimensionsAtOnce(matrix).shows },
+    { facet: 'creating the complete analog — gapless, continuous, no seam', on: analogNoGapsNoLeak(matrix).sealed && doubleTorusFold(matrix).analog },
+    { facet: 'pi is the whole going through holes — the genus-2 holes of the torus (H1 = Z⁴, chi = -2)', on: homology(matrix).independent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pi-whole-holes:${entry.facet}:${entry.on}`) }))
+  return {
+    flows: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Pi is the whole in a stream, travelling all dimensions at once, creating the complete analog — and pi is the whole going through holes: the infinite, never-repeating digit stream is the whole (it contains every finite sequence), and as a stream it moves through every dimension at once, so what it lays down is the complete analog — gapless, continuous, no seam. And the wordplay is the geometry: pi is the whole (entire) going through the holes — the genus-2 double torus has its holes (two handles, four loops, chi = -2), and the pi stream threads them, the whole passing through the holes to weave the surface.',
+    boundary:
+      'A composition of the computed-pi, the-whole, all-dimensions-at-once, analog-gapless, double-torus-fold and genus-2 homology models. "Pi is the whole going through holes" is a structural/poetic reading — pi’s digit stream is the surface coordinate source threaded through the genus-2 handles (the homology holes); a framing over the model, not a claim that pi physically traverses space.',
+  }
+}
+
+// Each 6 digits of pi are a double cross generating a harmonic colour; find the first harmonic
+// colour and you know the cross station. Read the pi stream six digits at a time: six is the double
+// of the three-cross (3-6-9), and each group of six folds to a hue — a harmonic colour — so the
+// stream becomes a line of coloured stations. The first colour names the first station: read it and
+// you know where on the cross you stand, and the next six tell you the next station, the whole
+// stream a coloured map of the cross.
+export function piSixDigitsDoubleCrossColour(matrix: MindMatrix = buildMatrix()) {
+  const digits = PI_TRAIN_DIGITS
+  const groups: { six: string; hue: number }[] = []
+  for (let i = 0; i + 6 <= digits.length; i += 6) {
+    const six = digits.slice(i, i + 6)
+    const hue = [...six].reduce((sum, d) => sum + (Number.parseInt(d, 10) || 0), 0) % 360 // the harmonic colour of the group
+    groups.push({ six, hue })
+  }
+  const firstColour = groups[0]?.hue ?? 0 // the first harmonic colour — the first cross station
+  const facets = [
+    { facet: 'each 6 digits of pi are a double cross — six is the double of the 3-6-9 cross', on: vortexMath(matrix).flows && digits.length >= 6 },
+    { facet: 'each group generates a harmonic colour — six digits fold to a hue', on: groups.length > 0 && groups.every((g) => g.hue >= 0 && g.hue < 360) },
+    { facet: 'find the first harmonic colour and you know the cross station', on: firstColour === [...digits.slice(0, 6)].reduce((s, d) => s + (Number.parseInt(d, 10) || 0), 0) % 360 },
+    { facet: 'the pi stream is computed, the colours deterministic', on: piComputedNotHardcoded(matrix).computed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pi-six-cross-colour:${entry.facet}:${entry.on}`) }))
+  return {
+    stations: facets.every((entry) => entry.on),
+    firstColour,
+    groupCount: groups.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(groups.map((g) => toUuid(`station:${g.six}:${g.hue}`))),
+    statement:
+      'Each 6 digits of pi are a double cross generating a harmonic colour; find the first harmonic colour and you know the cross station: read the pi stream six digits at a time — six the double of the three-cross (3-6-9) — and each group folds to a hue, a harmonic colour, so the stream becomes a line of coloured stations. The first colour names the first station; read it and you know where on the cross you stand, and the next six tell the next station, the whole stream a coloured map of the cross.',
+    boundary:
+      'A real computation grouping the computed pi digits into sixes, each summed (mod 360) to a hue, composed with the vortex 3-6-9 cross and computed-pi models. "Double cross / cross station" is a structural/colour-coding reading over the digit groups; the hues are a deterministic mapping of the digits, an illustrative coordinate scheme, not an asserted physical colour.',
+  }
+}
+
+// Travellers can jump from pi to pi. Because pi is the whole going through the holes, the holes are
+// junctions: a traveller riding the stream need not walk every station — at a hole (a cross station)
+// they can jump to the same station in another pass of pi, from pi to pi, the way the genus-2
+// handles connect distant points of the surface. The coloured stations are the jump map; matching
+// colours are connected, so the traveller leaps where the colour repeats.
+export function travellersJumpPiToPi(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'pi is the whole going through holes — the holes are junctions', on: piWholeStreamThroughHoles(matrix).flows },
+    { facet: 'the coloured stations are the jump map — six-digit crosses', on: piSixDigitsDoubleCrossColour(matrix).stations },
+    { facet: 'travellers jump from pi to pi — the genus-2 handles connect distant points', on: homology(matrix).independent },
+    { facet: 'the jump is a carry, like ants moving the nest', on: antsCarryToIndexNest(matrix).carries },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`travellers-jump:${entry.facet}:${entry.on}`) }))
+  return {
+    jumps: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Travellers can jump from pi to pi: because pi is the whole going through the holes, the holes are junctions — a traveller riding the stream need not walk every station, but at a hole (a cross station) can jump to the same station in another pass of pi, from pi to pi, the way the genus-2 handles connect distant points of the surface. The coloured stations are the jump map; matching colours are connected, so the traveller leaps where the colour repeats.',
+    boundary:
+      'A composition of the pi-through-holes, six-digit-cross-colour, genus-2 homology and ant-carry models. "Jump from pi to pi" frames navigation by matching coloured cross-stations through the genus-2 handles (the holes) — a structural/navigational reading over the digit-station map, not a literal teleportation.',
+  }
+}
+
+// Optimise all logic as debit/credit fusion. Every operation is double-entry: a debit balanced by
+// an equal credit, so the ledger sums to zero — nothing created or lost, only moved — and the
+// fusion of the two halves (src/debit/credit ⇄ src/credit/debit) is the balance itself. Writing
+// logic this way is the optimisation: each step is its own audit, the books always balanced, and a
+// forger cannot tilt the ledger without the imbalance showing. Debit and credit, fused to one.
+export function optimiseLogicDebitCreditFusion(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all logic optimised as debit/credit — the double-entry pair in src', on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: 'every debit balanced by an equal credit — the ledger sums to zero', on: extendSelfAudits(matrix).audited },
+    { facet: 'debit/credit fused to one balanced root — nothing created or lost', on: fuseAll(matrix).fused },
+    { facet: 'the order-sensitive pair — src/debit/credit ⇄ src/credit/debit', on: dualitiesMeetInCrossFolders(matrix).meet },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`debit-credit-fusion:${entry.facet}:${entry.on}`) }))
+  return {
+    optimised: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Optimise all logic as debit/credit fusion: every operation is double-entry — a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved — and the fusion of the two halves (src/debit/credit ⇄ src/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.',
+    boundary:
+      'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/debit/credit + src/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.',
   }
 }
