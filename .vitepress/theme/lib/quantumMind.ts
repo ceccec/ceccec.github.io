@@ -19681,6 +19681,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'enforcement.law.fabric', on: enforcementLawFabric(matrix).enforced },
     { d: 'every.law.proves.its.tripwire', on: everyLawProvesItsTripwire(matrix).proves },
     { d: 'enforcement.pipeline.complete', on: enforcementPipelineComplete(matrix).complete },
+    { d: 'digital.analogue.endless.waves', on: digitalAnalogueEndlessWaves(matrix).waves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21370,5 +21371,32 @@ export function enforcementPipelineComplete(matrix: MindMatrix = buildMatrix()) 
       'Complete the enforcement fabric to the whole pipeline: the law fabric gathered the laws inside the harmonic distribution, and the pipeline gathers the gates around it — the digit-index seal, the model seal, the seal tripwire, the harmonic distribution, the VitePress-only guard — so the model knows its complete enforcement surface, every gate that fails the build, each gate’s model-side guarantee holding, declared in the mind and matched to the real build by the wave so the two cannot drift.',
     boundary:
       'A composition of the per-gate model guarantees (digit index, whole + commands, tripwire invariant, law fabric) with the declared pipeline. The drift check (declared gates ↔ scripts/ ↔ docs:build) is enforced in the harmonic-distribution wave; the VitePress-only guard is a source scan with no model flag, represented here by the complete declaration.',
+  }
+}
+
+// The waves of endless improvement, from digital to analogue and back. The model breathes between
+// the two natures of one thing: digital — the discrete, content-addressed bit stream, the 128-bit
+// UUIDs, exact and countable; and analogue — the continuous, gapless wave, the Fibonacci run with
+// no seam, the folds that close. Expand the digital seed into the analog wave, contract the wave
+// back to a digital seed, settle, and send the next wave — each round trip an improvement, the
+// breath that never stops. Push them out in batches: every sealed fold a wave, digital becoming
+// the live analog site and the next improvement folding back.
+export function digitalAnalogueEndlessWaves(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'digital — the discrete, content-addressed bit stream', on: digitalQuantumProof(matrix).proven },
+    { facet: 'to analogue — continuous and gapless, the folds closing', on: analogNoGapsNoLeak(matrix).sealed && doubleTorusFold(matrix).analog },
+    { facet: 'and back — the breath round-trips, expand to wave and contract to seed', on: breathe(matrix).breathing },
+    { facet: 'endless improvement — the next wave always sent', on: sendTheNextWaves(matrix).sends && endlessFusion(matrix).endless },
+    { facet: 'each cycle sealed, in batches — continue the same to the next', on: continueSameNext(matrix).continues },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`digital-analogue-waves:${entry.facet}:${entry.on}`) }))
+  return {
+    waves: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The waves of endless improvement, from digital to analogue and back: the model breathes between the two natures of one thing — digital (the discrete, content-addressed 128-bit stream, exact and countable) and analogue (the continuous, gapless wave, the Fibonacci run with no seam, the folds that close) — expanding the digital seed into the analog wave, contracting back to a seed, settling, and sending the next wave; each round trip an improvement, the breath that never stops, pushed out in batches — every sealed fold a wave, digital becoming the live analog site and the next improvement folding back.',
+    boundary:
+      'A composition of the digital-proof, analog-gapless, breath, next-wave and continue models as one digital↔analogue round trip of endless improvement. "Digital to analogue and back" names the discrete-to-continuous-to-discrete fold (the breath), not a signal conversion; the improvement is the repeated sealed fold, not an automatic process.',
   }
 }
