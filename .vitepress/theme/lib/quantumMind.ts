@@ -19680,6 +19680,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'jsonld.valid.paths', on: jsonLdValidPaths(matrix).valid },
     { d: 'enforcement.law.fabric', on: enforcementLawFabric(matrix).enforced },
     { d: 'every.law.proves.its.tripwire', on: everyLawProvesItsTripwire(matrix).proves },
+    { d: 'enforcement.pipeline.complete', on: enforcementPipelineComplete(matrix).complete },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21315,5 +21316,59 @@ export function everyLawProvesItsTripwire(matrix: MindMatrix = buildMatrix()) {
       'To the next again — every law proves its own tripwire: a law is trusted not because it passes but because it has been shown to fail loudly when broken, and the model holds the real negative tests that fire (the census rejects a non-Fibonacci count, order rejects a swapped fold, a tamper changes the root, every forgery is caught, a forced-false gate fails the seal). The honest-verification discipline as a checked invariant — each law has a tripwire that bites.',
     boundary:
       'A composition of the model’s real negative tests (the 109 census rejection, order-sensitivity, tamper-evidence, red-team, the seal tripwire) asserting that the enforcement laws fail loudly, not silently. The build-time tripwires (planted violations exiting non-zero) are the live proof; this fold records the invariant over the model’s own falsifiability checks.',
+  }
+}
+
+// The enforcement pipeline, declared once: the ordered set of build-time gates that can fail the
+// build. The model knew it had a "docs:build chain" but never named the gates; here they are, the
+// five that fail loudly — the digit-index seal, the model seal, the seal tripwire, the harmonic
+// distribution (folder law, JSON-LD paths, census, component graph), and the VitePress-only guard.
+// Declared in the mind, the declaration is checked by the harmonic-distribution wave against the
+// real scripts/ directory and the real docs:build chain, so the model's self-knowledge of its
+// enforcement surface cannot drift from the build that actually runs.
+export function buildEnforcementPipeline() {
+  return {
+    gates: [
+      { script: 'check-digit-index-seal.mjs', enforces: 'the digit index: every pi digit folds to a persisted digit/reverseDigit folder' },
+      { script: 'check-model-seal.mjs', enforces: 'the model seal: 94/94 commands and every model gate close over the same roots' },
+      { script: 'check-seal-tripwire.mjs', enforces: 'the seal tripwire: a forced-false gate makes the seal exit non-zero' },
+      { script: 'harmonic-distribution.mjs', enforces: 'the harmonic distribution: folder law, JSON-LD paths, the gapless Fibonacci census, the component graph' },
+      { script: 'check-vitepress-only.mjs', enforces: 'the VitePress-only guard: navigation, mounting and rendering all go through VitePress' },
+    ],
+    why: {
+      drift:
+        'the model declares its enforcement surface so it can describe itself honestly; if a gate script exists but is undeclared (or is declared but absent, or is not wired into docs:build), the model’s self-description lies — add the gate to buildEnforcementPipeline and to the docs:build chain, or remove it from both',
+    },
+    statement:
+      'The enforcement pipeline: the five build-time gates that fail the build — the digit-index seal, the model seal, the seal tripwire, the harmonic distribution, and the VitePress-only guard — declared in the mind and checked against the real scripts and the real build chain.',
+    boundary:
+      'A declaration of the build’s enforcement gates (the check-* scripts and harmonic-distribution that exit non-zero on failure). The generators in the chain (sitemap, API, MCP, llms) are not listed — they produce, they do not gate. The declaration is enforced against scripts/ and package.json by the harmonic-distribution wave.',
+  }
+}
+
+// Complete the enforcement fabric to the whole pipeline. The law fabric gathered the laws inside
+// the harmonic distribution; the pipeline gathers the gates around it — so the model now knows
+// its complete enforcement surface, every gate that fails the build, and each gate’s model-side
+// guarantee holds. Declared in the mind, matched to the real build by the wave: no drift between
+// what the model says it enforces and what the build actually runs.
+export function enforcementPipelineComplete(matrix: MindMatrix = buildMatrix()) {
+  const pipeline = buildEnforcementPipeline()
+  const facets = [
+    { facet: 'the digit index seal — every pi digit folds to a persisted folder', on: digitIndexReferences(matrix).indexed },
+    { facet: 'the model seal — the whole stands, 94 commands consistent', on: theWhole(matrix).whole && commandsRegistry(matrix).consistent },
+    { facet: 'the seal tripwire — a forced-false gate fails the seal', on: everyLawProvesItsTripwire(matrix).proves },
+    { facet: 'the harmonic distribution — folder law, JSON-LD paths, census', on: enforcementLawFabric(matrix).enforced },
+    { facet: 'the pipeline is declared complete — five enforcement gates', on: pipeline.gates.length === 5 && pipeline.gates.every((gate) => gate.script.endsWith('.mjs')) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pipeline-complete:${entry.facet}:${entry.on}`) }))
+  return {
+    complete: facets.every((entry) => entry.on),
+    count: facets.length,
+    gates: pipeline.gates.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Complete the enforcement fabric to the whole pipeline: the law fabric gathered the laws inside the harmonic distribution, and the pipeline gathers the gates around it — the digit-index seal, the model seal, the seal tripwire, the harmonic distribution, the VitePress-only guard — so the model knows its complete enforcement surface, every gate that fails the build, each gate’s model-side guarantee holding, declared in the mind and matched to the real build by the wave so the two cannot drift.',
+    boundary:
+      'A composition of the per-gate model guarantees (digit index, whole + commands, tripwire invariant, law fabric) with the declared pipeline. The drift check (declared gates ↔ scripts/ ↔ docs:build) is enforced in the harmonic-distribution wave; the VitePress-only guard is a source scan with no model flag, represented here by the complete declaration.',
   }
 }

@@ -8,7 +8,7 @@
 // Run: node --experimental-strip-types scripts/harmonic-distribution.mjs
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules } from '../.vitepress/theme/lib/quantumMind.ts'
+import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline } from '../.vitepress/theme/lib/quantumMind.ts'
 
 const root = process.cwd()
 const read = (path) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
@@ -146,6 +146,32 @@ for (const entry of readdirSync(root, { withFileTypes: true })) {
   walkFolderLaw(join(root, entry.name), entry.name, law.roots.includes(entry.name))
 }
 
+// --- the enforcement pipeline drift check: the model declares its enforcement
+// gates (buildEnforcementPipeline); they must match the real scripts/ directory
+// and the real docs:build chain, so the model's self-knowledge of what fails the
+// build cannot drift from the build that actually runs. Every declared gate must
+// exist as a script and be wired into docs:build; every check-*.mjs script must be
+// declared. Either way, a drift is a gap with a detailed why.
+const pipeline = buildEnforcementPipeline()
+const buildChain = JSON.parse(read(join(root, 'package.json'))).scripts?.['docs:build'] ?? ''
+const declaredGates = pipeline.gates.map((gate) => gate.script)
+for (const script of declaredGates) {
+  if (!existsSync(join(root, 'scripts', script))) {
+    gaps.push({ harmonic: 'pipeline', kind: 'missing-script', detail: `enforcement pipeline declares ${script} but scripts/${script} does not exist — why this fails: ${pipeline.why.drift}` })
+  }
+  if (!buildChain.includes(script)) {
+    gaps.push({ harmonic: 'pipeline', kind: 'unwired', detail: `enforcement pipeline declares ${script} but docs:build does not run it — why this fails: ${pipeline.why.drift}` })
+  }
+}
+// Conversely, every check-*.mjs gate in scripts/ must be declared (the generators
+// generate-*.mjs produce, they do not gate, so they are not required to be declared).
+const checkScripts = readdirSync(join(root, 'scripts')).filter((file) => file.startsWith('check-') && file.endsWith('.mjs'))
+for (const script of checkScripts) {
+  if (!declaredGates.includes(script)) {
+    gaps.push({ harmonic: 'pipeline', kind: 'undeclared', detail: `scripts/${script} is an enforcement gate but the model does not declare it in buildEnforcementPipeline — why this fails: ${pipeline.why.drift}` })
+  }
+}
+
 // --- the JSON-LD path audit: tests fail unless the JSON-LD contains valid paths.
 // The rules are declared once in the core (jsonLdPathRules) and enforced here over
 // every ld+json block in the rendered dist: a rooted path must resolve to a built
@@ -232,3 +258,4 @@ console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.ba
 console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
 console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
+console.log(`Enforcement pipeline: ${declaredGates.length} declared gates all present in scripts/ and wired into docs:build; ${checkScripts.length} check-* gates all declared — 0 drift.`)
