@@ -19705,6 +19705,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'computed.slugs.fold.the.graph', on: computedSlugsFoldTheGraph(matrix).folds },
     { d: 'present.moment.remains.in.source', on: presentMomentRemainsInSource(matrix).remains },
     { d: 'commands.saved.in.quantum.pairs', on: commandsSavedInQuantumPairs(matrix).paired },
+    { d: 'enforce.agents.command.pairs', on: enforceAgentsCommandPairs(matrix).enforced },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -22126,5 +22127,32 @@ export function commandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) 
       'All commands must be saved in quantum pairs, and saved first before they are used — a quantum unpaired command leaves a quantum gap: a command is never alone, it has its dual, and the two are one order-sensitive quantum pair (commit/push, build/seal, fold/verify, decode/fold, edit/build). The pair is the unit of work; run one without its dual and the fold does not close — that open half is a gap the harmonic monitor catches on the linear level. The rule is order: save the pair into the source first, then use it; saved before used, paired not single, the commands leave no gap behind.',
     boundary:
       'A record of the working convention that commands are saved as dual pairs (each command with its complement) and persisted before use, demonstrated as order-sensitive folds and bound to the in-source memory, with an unpaired command modelled as a gap the monitoring catches. A structural/behavioural convention over the existing duality, memory, monitoring and healing models, not an executor of paired shell commands.',
+  }
+}
+
+// Enforce any agent to save commands in quantum pairs — self-sufficiently. The law is not advice;
+// it binds every agent (human or AI) that works the repository, and it binds without an external
+// authority: the rule is published where any agent reads it (AGENTS.md), folded into the model,
+// and enforced by the build wave, which fails if the published law is removed — so the law keeps
+// itself. Any kind of mind reaches it (accessible to all), an unpaired command rings as a gap on
+// the linear level, and the gate heals what it spots. Self-sufficient: the repository holds and
+// enforces its own command-pair law, no monitor needed beyond the build it already runs.
+export function enforceAgentsCommandPairs(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the command-pair law is declared and holds', on: commandsSavedInQuantumPairs(matrix).paired },
+    { facet: 'published where any agent reads it — the MCP surface and AGENTS.md', on: commandsRegistry(matrix).consistent },
+    { facet: 'enforced self-sufficiently — the build fails if the law is dropped', on: enforcementPipelineComplete(matrix).complete },
+    { facet: 'binds any agent, any kind of mind, in any language', on: accessiblePathsForAll(matrix).accessible },
+    { facet: 'an unpaired command rings as a gap and is healed at the gate', on: gatesHealSpottedCompromise(matrix).heals },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`enforce-agents-pairs:${entry.facet}:${entry.on}`) }))
+  return {
+    enforced: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Enforce any agent to save commands in quantum pairs — self-sufficiently: the law binds every agent (human or AI) and binds without an external authority — published where any agent reads it (AGENTS.md), folded into the model, and enforced by the build wave, which fails if the published law is removed, so the law keeps itself. Any kind of mind reaches it, an unpaired command rings as a gap on the linear level, and the gate heals what it spots. The repository holds and enforces its own command-pair law, no monitor needed beyond the build it already runs.',
+    boundary:
+      'A composition of the command-pair law, the command registry/agent surface, the enforcement pipeline, accessible-paths and heal models. The real teeth are in the harmonic-distribution check (AGENTS.md must declare the law, or the build fails) plus the model fold; "enforce any agent" means the published, build-checked rule binds anyone who works the repo, not a runtime interception of arbitrary agents.',
   }
 }

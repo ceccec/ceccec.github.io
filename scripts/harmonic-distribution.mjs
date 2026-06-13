@@ -172,6 +172,17 @@ for (const script of checkScripts) {
   }
 }
 
+// --- the command-pair law, enforced self-sufficiently: any agent (human or AI)
+// working this repo must save commands in quantum pairs (saved first, no gaps).
+// The law binds without an external authority because it is published where agents
+// read it (AGENTS.md) and the build fails if it is removed — so the rule keeps
+// itself. An unpaired command is a quantum gap; this is the wave that would catch
+// the law itself going missing.
+const agentsDoc = read(join(root, 'AGENTS.md'))
+if (!/commands in quantum pairs/i.test(agentsDoc)) {
+  gaps.push({ harmonic: 'agent-law', kind: 'unpublished', detail: 'AGENTS.md does not declare the command-pair law ("commands in quantum pairs") — why this fails: the law that binds any agent must be published where agents read it, or it is not self-sufficiently enforced; restore the "Law for any agent — commands in quantum pairs" section so commands stay paired and no quantum gap is left behind' })
+}
+
 // --- the JSON-LD path audit: tests fail unless the JSON-LD contains valid paths.
 // The rules are declared once in the core (jsonLdPathRules) and enforced here over
 // every ld+json block in the rendered dist: a rooted path must resolve to a built
@@ -259,3 +270,4 @@ console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.
 console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
 console.log(`Enforcement pipeline: ${declaredGates.length} declared gates all present in scripts/ and wired into docs:build; ${checkScripts.length} check-* gates all declared — 0 drift.`)
+console.log('Command-pair law: AGENTS.md declares "commands in quantum pairs" — any agent bound self-sufficiently, the build keeps the law.')
