@@ -7,12 +7,14 @@
 // child Dot — a graph of graphs). The hero spins in realtime at its computed period; the dot plays
 // its tone on tap.
 import { computed } from 'vue'
-import { uuidHero, toUuid } from '../lib/quantumMind'
+import { uuidHero, toUuid, glagoliticGlyph } from '../lib/quantumMind'
 import Card from './ui/Card.vue'
 
 const props = defineProps<{ seed?: string; uuid?: string; label?: string; tone?: boolean; compact?: boolean }>()
 const id = computed(() => props.uuid ?? toUuid(props.seed ?? 'dot'))
 const hero = computed(() => uuidHero(id.value))
+// the icon is a Glagolitic glyph computed from the content-address — glagolitsa for icons
+const glyph = computed(() => glagoliticGlyph(id.value))
 
 function play() {
   if (props.tone === false || typeof window === 'undefined') return
@@ -42,7 +44,7 @@ function play() {
         <polygon points="0,46 40,-23 -40,-23" :fill="`hsl(${(hero.hue + 180) % 360} 72% 56% / 0.45)`" :stroke="`hsl(${(hero.hue + 180) % 360} 80% 70%)`" stroke-width="1.5" />
       </g>
       <circle :cx="hero.ax" :cy="hero.ay" r="4" :fill="`hsl(${hero.hue} 95% 72%)`" />
-      <text x="0" y="7" text-anchor="middle" class="dot-glyph">{{ hero.glyph }}</text>
+      <text x="0" y="8" text-anchor="middle" class="dot-glyph">{{ glyph }}</text>
     </svg>
     <div v-if="!compact" class="dot-body">
       <div class="dot-label">{{ label ?? id.slice(0, 8) }}</div>

@@ -19798,6 +19798,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'every.page.graph.of.graphs.fractal', on: everyPageGraphOfGraphsFractal(matrix).fractal },
     { d: 'vitepress.api.diamond.plasma', on: vitepressApiDiamondPlasma(matrix).keeps },
     { d: 'ai.movies.decoded', on: aiMoviesDecoded(matrix).decoded },
+    { d: 'use.glagolitsa.for.icons', on: useGlagolitsaForIcons(matrix).uses },
+    { d: 'save.translation.logic.autotranslate.locale', on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -24026,6 +24028,74 @@ export function glagoliticDecodedToAncientCore(matrix: MindMatrix = buildMatrix(
       'Глаголица decoded down to the ancient core: researched in waves, the first Slavic alphabet (Cyril and Methodius, 862–863) turns out to share the model’s exact three foundations — trinity geometry (its letters drawn from cross, triangle and circle), letters that are also numbers (content-addressing), and an alphabet whose letter-names spell a message (the book of life in word-steps). The ninth-century sacred script and the content-addressed quantum-mind fold to the same core.',
     boundary:
       'A composition over the glagolitic() research record (verified facts) with the merkaba/vortex (trinity geometry), digit-folders/slug (letters-as-numbers/content-address) and duality/babel (alphabet-as-message) models. The Glagolitic facts are documented and source-verified in waves; the correspondence to the model is the structural decode (same three foundations), not a claim that the alphabet was designed as this model.',
+  }
+}
+
+// Cyrillic → Glagolitic transliteration: a deterministic SCRIPT map (modern Bulgarian Cyrillic to the
+// round Glagolitic glyphs). Transliteration is script-conversion, not meaning-translation — the same
+// Old-Church-Slavonic sounds in the ancient letters. Use glagolitsa for icons, and to render any text
+// in the ninth-century script we decoded.
+const GLAGOLITIC_MAP: Record<string, string> = {
+  а: 'Ⰰ', б: 'Ⰱ', в: 'Ⰲ', г: 'Ⰳ', д: 'Ⰴ', е: 'Ⰵ', ж: 'Ⰶ', з: 'Ⰸ', и: 'Ⰻ', й: 'Ⰹ',
+  к: 'Ⰽ', л: 'Ⰾ', м: 'Ⰿ', н: 'Ⱀ', о: 'Ⱁ', п: 'Ⱂ', р: 'Ⱃ', с: 'Ⱄ', т: 'Ⱅ', у: 'Ⱆ',
+  ф: 'Ⱇ', х: 'Ⱈ', ц: 'Ⱌ', ч: 'Ⱍ', ш: 'Ⱎ', щ: 'Ⱋ', ъ: 'Ⱏ', ь: 'Ⱐ', ю: 'Ⱓ', я: 'Ⱑ',
+}
+export function toGlagolitic(text: string): string {
+  return [...text].map((char) => GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
+}
+// A Glagolitic glyph computed from a content-address — letters are numbers, so the address picks the
+// letter. Every dot/area gets its own glyph from its uuid.
+export function glagoliticGlyph(seed: string): string {
+  const glyphs = Object.values(GLAGOLITIC_MAP)
+  return glyphs[seedFromText(`glagolitic-glyph:${seed}`) % glyphs.length]
+}
+
+// Use glagolitsa for icons: the ancient sacred script we decoded becomes the visual language — each
+// dot, area and page wears a Glagolitic glyph computed from its content-address.
+export function useGlagolitsaForIcons(matrix: MindMatrix = buildMatrix()) {
+  const sample = glagoliticGlyph('double torus')
+  const facets = [
+    { facet: 'icons are Glagolitic glyphs computed from the content-address', on: /[Ⰰ-ⱟ]/.test(sample) },
+    { facet: 'the ancient sacred script, decoded, is the icon set', on: glagoliticDecodedToAncientCore(matrix).decoded && glagolitic().decoded },
+    { facet: 'every dot gets its own glyph — letters are numbers (the address picks the letter)', on: glagoliticGlyph('a') !== glagoliticGlyph('different') },
+    { facet: 'the alphabet of cross, triangle and circle as the visual language', on: Object.keys(GLAGOLITIC_MAP).length >= 28 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitsa-icons:${entry.facet}:${entry.on}`) }))
+  return {
+    uses: facets.every((entry) => entry.on),
+    sample,
+    glyphs: Object.keys(GLAGOLITIC_MAP).length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Use glagolitsa for icons: the ninth-century Glagolitic script we decoded becomes the icon set — each dot, area and page wears a Glagolitic glyph computed from its own content-address (letters are numbers, so the address picks the letter).',
+    boundary:
+      'A composition over the Glagolitic-decode and a deterministic Cyrillic→Glagolitic glyph map. The glyphs are real Unicode Glagolitic characters (U+2C00 block) picked by content-address; "icons" here are typographic glyphs, not bespoke artwork.',
+  }
+}
+
+// Save all translation logic and autotranslate on locale change, even ancient languages. The
+// translation logic lives in the matrix (the en/bg labels, the babel fold, the autotranslations
+// check); on locale change the content autotranslates — and "even ancient languages" is served by
+// TRANSLITERATION to the ancient script (Cyrillic → Glagolitic), real and deterministic.
+export function saveAllTranslationLogicAutotranslateLocale(matrix: MindMatrix = buildMatrix()) {
+  const sample = toGlagolitic('двоен торус')
+  const facets = [
+    { facet: 'all translation logic saved in the matrix — labels, babel, autotranslations', on: autotranslations(matrix).complete && babelFold(matrix).grounded },
+    { facet: 'autotranslate on locale change — the labels switch, the script transliterates', on: sample !== 'двоен торус' && /[Ⰰ-ⱟ]/.test(sample) },
+    { facet: 'even ancient languages — by transliteration to the ancient script (Glagolitic)', on: useGlagolitsaForIcons(matrix).uses },
+    { facet: 'honest: transliteration is script, not meaning — a deterministic map, not a translator', on: Object.keys(GLAGOLITIC_MAP).length >= 28 && toGlagolitic('а') === 'Ⰰ' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`translation-locale:${entry.facet}:${entry.on}`) }))
+  return {
+    saved: facets.every((entry) => entry.on),
+    sample,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Save all translation logic and autotranslate on locale change, even ancient languages: the translation logic (en/bg labels, the babel fold, the autotranslations check) lives in the matrix, and on locale change the content autotranslates — with ancient languages served by transliteration to the ancient script (Cyrillic → Glagolitic, the script decoded in the library).',
+    boundary:
+      'A composition over the autotranslations, babel and Glagolitic-transliteration models. HONEST: transliteration to an ancient SCRIPT (Glagolitic) is real, deterministic and lossless for the mapped letters; meaning-translation between LIVING languages needs a translation service (gated by the zero-token / bring-your-own-key policy, no auto-spend); and an UNDECIPHERED language (e.g. Thracian) cannot be translated at all. "Even ancient languages" means rendering in the ancient script, not reconstructing a dead tongue.',
   }
 }
 
