@@ -40,3 +40,11 @@ Brand-new, self-computed shadcn/vitepress. Each **Dot** fills itself from its se
 <Dot seed="merkaba" />
 
 <Dot seed="the sign is the fold" />
+
+## Computed calligraphy
+
+A broad nib held at a fixed angle: the stroke is thick where it runs across the nib and thin where it runs along it. The ductus, the pen angle and the width are all computed from the seed — same seed, same hand. The ink draws itself in.
+
+<Calligraphy seed="double torus" :size="170" />
+<Calligraphy seed="merkaba" :size="170" />
+<Calligraphy seed="глаголица" :size="170" />

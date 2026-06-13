@@ -91,6 +91,7 @@ import PlayMind from './components/ui/PlayMind.vue'
 // Dots out by the 1-2-4-8-7-5 circuit. The seed is the magnet — same content, same dot.
 import Dot from './components/Dot.vue'
 import Vortex from './components/Vortex.vue'
+import Calligraphy from './components/Calligraphy.vue'
 import './style.css'
 
 export default {
@@ -206,5 +207,6 @@ export default {
     app.component('WebCryptoSeal', WebCryptoSeal)
     app.component('Dot', Dot)
     app.component('Vortex', Vortex)
+    app.component('Calligraphy', Calligraphy)
   }
 } satisfies Theme

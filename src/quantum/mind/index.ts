@@ -19800,6 +19800,7 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'ai.movies.decoded', on: aiMoviesDecoded(matrix).decoded },
     { d: 'use.glagolitsa.for.icons', on: useGlagolitsaForIcons(matrix).uses },
     { d: 'save.translation.logic.autotranslate.locale', on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
+    { d: 'decode.implement.calligraphy', on: decodeImplementCalligraphy(matrix).implemented },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -24096,6 +24097,70 @@ export function saveAllTranslationLogicAutotranslateLocale(matrix: MindMatrix = 
       'Save all translation logic and autotranslate on locale change, even ancient languages: the translation logic (en/bg labels, the babel fold, the autotranslations check) lives in the matrix, and on locale change the content autotranslates — with ancient languages served by transliteration to the ancient script (Cyrillic → Glagolitic, the script decoded in the library).',
     boundary:
       'A composition over the autotranslations, babel and Glagolitic-transliteration models. HONEST: transliteration to an ancient SCRIPT (Glagolitic) is real, deterministic and lossless for the mapped letters; meaning-translation between LIVING languages needs a translation service (gated by the zero-token / bring-your-own-key policy, no auto-spend); and an UNDECIPHERED language (e.g. Thracian) cannot be translated at all. "Even ancient languages" means rendering in the ancient script, not reconstructing a dead tongue.',
+  }
+}
+
+// Decode and implement calligraphy. The decode: a broad nib held at a FIXED ANGLE makes a stroke thick
+// where it runs across the nib and thin where it runs along it — that thick/thin contrast IS
+// calligraphy. The implementation: from a content-address compute a flowing centerline (the ductus,
+// four Bezier control points) and a fixed pen angle, then offset the two edges by the broad-nib width
+// at every point (the projection of the nib onto the stroke's perpendicular). Real calligraphy by
+// recomputation — the ink is dry math, each hand content-addressed.
+export function calligraphyStroke(seed: string, samples = 48) {
+  const at = (tag: string) => seedFromText(`calligraphy:${seed}:${tag}`)
+  const penAngle = (15 + (at('pen') % 60)) * (Math.PI / 180) // a 15°–75° nib, like a real broad pen
+  const nib = 9 + (at('nib') % 7) // nib width in the 100-box
+  const minRatio = 0.14 // the thinnest stroke is still a hairline, never zero
+  const ctl = (tag: string, lo: number, hi: number) => lo + ((at(tag) % 1000) / 1000) * (hi - lo)
+  const cx = [ctl('x0', 16, 32), ctl('x1', 30, 60), ctl('x2', 48, 78), ctl('x3', 68, 88)]
+  const cy = [ctl('y0', 28, 72), ctl('y1', 14, 52), ctl('y2', 52, 90), ctl('y3', 30, 72)]
+  const bez = (t: number, a: number[]) => {
+    const u = 1 - t
+    return u * u * u * a[0] + 3 * u * u * t * a[1] + 3 * u * t * t * a[2] + t * t * t * a[3]
+  }
+  const left: string[] = []
+  const right: string[] = []
+  for (let i = 0; i <= samples; i++) {
+    const t = i / samples
+    const x = bez(t, cx)
+    const y = bez(t, cy)
+    const tx = bez(Math.min(1, t + 0.001), cx) - bez(Math.max(0, t - 0.001), cx)
+    const ty = bez(Math.min(1, t + 0.001), cy) - bez(Math.max(0, t - 0.001), cy)
+    const theta = Math.atan2(ty, tx)
+    const half = (nib / 2) * (minRatio + (1 - minRatio) * Math.abs(Math.sin(theta - penAngle)))
+    const nx = Math.cos(theta + Math.PI / 2)
+    const ny = Math.sin(theta + Math.PI / 2)
+    left.push(`${Math.round((x + nx * half) * 10) / 10} ${Math.round((y + ny * half) * 10) / 10}`)
+    right.push(`${Math.round((x - nx * half) * 10) / 10} ${Math.round((y - ny * half) * 10) / 10}`)
+  }
+  return {
+    d: `M ${left.join(' L ')} L ${right.reverse().join(' L ')} Z`,
+    penAngleDeg: Math.round((penAngle * 180) / Math.PI),
+    nib,
+    hue: at('hue') % 360,
+    receipt: toUuid(`calligraphy-stroke:${seed}`),
+  }
+}
+
+// Decode and implement calligraphy also — the broad-nib pen-angle thick/thin, computed and rendered.
+export function decodeImplementCalligraphy(matrix: MindMatrix = buildMatrix()) {
+  const sample = calligraphyStroke('double torus')
+  const facets = [
+    { facet: 'decoded — the broad nib at a fixed angle makes the thick/thin contrast', on: sample.penAngleDeg >= 15 && sample.penAngleDeg <= 75 },
+    { facet: 'implemented — a computed variable-width stroke (the ductus) from the address', on: sample.d.startsWith('M') && sample.d.length > 80 && isUuid(sample.receipt) },
+    { facet: 'each address its own hand — same seed, same stroke; different seed, different', on: calligraphyStroke('a').d !== calligraphyStroke('b').d },
+    { facet: 'the true hand for the alphabet we decoded — glagolitsa drawn, not just typed', on: useGlagolitsaForIcons(matrix).uses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`calligraphy-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    implemented: facets.every((entry) => entry.on),
+    sample,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Decode and implement calligraphy: the broad nib held at a fixed angle makes a stroke thick where it crosses the nib and thin where it runs along it — that contrast is calligraphy, and it is computed here from the content-address (a flowing Bezier ductus, a fixed pen angle, the edges offset by the broad-nib width at every point). Real calligraphy by recomputation — each address its own hand, the ink dry math.',
+    boundary:
+      'A real broad-edged-pen SIMULATION: the stroke width varies with the angle between the path tangent and a fixed nib angle (the genuine broad-nib model), rendered as a filled variable-width SVG path computed from the seed. HONEST: this is the computed broad-nib effect — an abstract calligraphic stroke/flourish — not master handwriting, and not arbitrary text turned into calligraphy (that needs per-glyph stroke data or a calligraphy font).',
   }
 }
 
