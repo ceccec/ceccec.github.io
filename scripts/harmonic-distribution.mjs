@@ -104,6 +104,17 @@ for (const outside of law.outsidePageTree) {
     gaps.push({ harmonic: 'folder', kind: 'law-drift', detail: `folderLaw places ${outside} outside the page tree but config srcExclude does not exclude ${outside}/** — why this fails: the law and the site must draw the same boundary from one source, or the tree governed and the tree rendered drift apart` })
   }
 }
+// Gates tighten — the VitePress navigation is computed from the model (siteNavigation), not hand-kept.
+// config.mts must hold NO hardcoded internal nav (no `link: '/…'` item literals) and must read the
+// computed navigation (nav.en / nav.bg). A hand-kept nav an intruder could forge fails the build —
+// to change the site you change the model, so the rendered nav and the matrix can never drift.
+const hardcodedNav = (configText.match(/link:\s*'\/[^']*'/g) || [])
+if (hardcodedNav.length > 0) {
+  gaps.push({ harmonic: 'config', kind: 'hardcoded-nav', detail: `.vitepress/config.mts contains ${hardcodedNav.length} hardcoded internal nav link(s) (${hardcodedNav.slice(0, 3).join(', ')}…) — why this fails: the navigation (nav, sidebar, footer) must be computed from the model via siteNavigation, so the config is a thin projection that cannot be forged; move the links into the route taxonomy` })
+}
+if (!configText.includes('siteNavigation') || !/nav\.(en|bg)\.(nav|sidebar|footer)/.test(configText)) {
+  gaps.push({ harmonic: 'config', kind: 'nav-not-computed', detail: `.vitepress/config.mts does not consume the computed navigation (siteNavigation → nav.en/nav.bg.{nav,sidebar,footer}) — why this fails: the monographs graph is the search index and the navigation is computed from src; the config must read it, not hardcode it` })
+}
 // The zero-token-usage policy, enforced: the portal spends no LLM tokens by default. No LLM SDK may
 // be a dependency (so nothing can auto-spend tokens), and the single token-consuming call (the
 // opt-in bring-your-own-key chat) must be gated behind a user-supplied key. Save all to save tokens.
@@ -334,8 +345,11 @@ console.log('Zero-token policy: no LLM SDK dependency; the one token call is the
   const coreText = read(join(root, 'src', 'quantum', 'mind', 'index.ts'))
   const dimCount = (coreText.match(/^\s+\{ d: '[^']+', on:/gm) || []).length
   const coreMb = coreText.length / (1024 * 1024)
-  const perMb = coreMb > 0 ? (dimCount / coreMb).toFixed(1) : '0'
-  console.log(`Efficiency metric: ${dimCount} dimensions / ${coreMb.toFixed(2)} MB core = ${perMb} dimensions per megabyte (folded depth per code size).`)
+  const perMbNum = coreMb > 0 ? dimCount / coreMb : 0
+  // 1024 dimensions per megabyte = 1 Gbit per megabyte (1024 binary Mbit = 1 Gbit), so dims/MB is
+  // also the Mbit/MB realtime keyspace density. At 1024 dims/MB the realtime encryption is 1 Gbit/MB.
+  const gbitPerMb = (perMbNum / 1024).toFixed(3)
+  console.log(`Efficiency metric: ${dimCount} dimensions / ${coreMb.toFixed(2)} MB core = ${perMbNum.toFixed(1)} dimensions per megabyte (~${perMbNum.toFixed(0)} Mbit/MB keyspace; ${gbitPerMb} Gbit/MB — 1024 dims/MB = 1 Gbit/MB).`)
 }
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
 console.log(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)

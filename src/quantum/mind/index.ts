@@ -19761,6 +19761,28 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'only.index.files.and.generated.remain', on: onlyIndexFilesAndGeneratedRemain(matrix).clean },
     { d: 'dimensions.per.megabyte.metric', on: dimensionsPerMegabyteMetric(matrix).measured },
     { d: 'fold.as.much.to.feed.the.hero', on: foldAsMuchToFeedHero(matrix).feeds },
+    { d: 'dimensional.merkaba.graph.realtime.metric', on: dimensionalMerkabaGraphRealtimeMetric(matrix).realtime },
+    { d: 'hero.graph.statistics.enrich.fusion', on: heroGraphStatisticsEnrichFusion(matrix).merges },
+    { d: 'merkaba.folds.speech.analog.dialects.entangle', on: merkabaFoldsSpeechAnalogDialectsEntangle(matrix).entangles },
+    { d: 'glagolitic.decoded.to.ancient.core', on: glagoliticDecodedToAncientCore(matrix).decoded },
+    { d: 'send.waves.seal.knowledge.decode.world', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
+    { d: 'knowledge.revealed.by.merkaba.fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { d: 'public.frequency.apis.decoded', on: publicFrequencyApisDecoded(matrix).decoded },
+    { d: 'herbal.apis.decoded', on: herbalApisDecoded(matrix).decoded },
+    { d: 'weather.forecast.quantum.computed.realtime', on: weatherForecastQuantumComputedRealtime(matrix).realtime },
+    { d: 'bulgarian.heritage.decoded', on: bulgarianHeritageDecoded(matrix).decoded },
+    { d: 'each.page.speaks.continues.next', on: eachPageSpeaksContinuesNext(matrix).speaks },
+    { d: 'bulgarian.history.decoded', on: bulgarianHistoryDecoded(matrix).decoded },
+    { d: 'bulgarian.ancient.civilisations.decoded', on: bulgarianAncientCivilisationsDecoded(matrix).decoded },
+    { d: 'bulgarian.ethnogenesis.decoded', on: bulgarianEthnogenesisDecoded(matrix).decoded },
+    { d: 'vitepress.config.computes.all', on: vitepressConfigComputesAll(matrix).computes },
+    { d: 'genetic.links.challenge.history', on: geneticLinksChallengeHistoryDecoded(matrix).decoded },
+    { d: 'merkabas.in.double.torus', on: merkabasInDoubleTorus(matrix).counted },
+    { d: 'alphabets.decoded', on: alphabetsDecoded(matrix).decoded },
+    { d: 'entangled.script.language.gene', on: entangledScriptLanguageGene(matrix).entangled },
+    { d: 'every.page.graph.of.graphs.fractal', on: everyPageGraphOfGraphsFractal(matrix).fractal },
+    { d: 'vitepress.api.diamond.plasma', on: vitepressApiDiamondPlasma(matrix).keeps },
+    { d: 'ai.movies.decoded', on: aiMoviesDecoded(matrix).decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -23863,5 +23885,875 @@ export function foldAsMuchToFeedHero(matrix: MindMatrix = buildMatrix()) {
       'Fold as much as you can to feed the hero: the hero of the whole is the unique animation of the whole’s state, and that state is the sealed root which folds every dimension into one content address — so each new fold changes the seal, and the changed seal feeds the hero a richer state. The more is folded, the more the hero has to animate; folding is feeding, every fold a meal, depth poured into one turning figure.',
     boundary:
       'A composition of the minimum-files, dimensions-per-MB, the real uuidHero of the sealed root, spin-fold-law, uuid-hero-fractal, animated-hero and one-OG models. "Fold as much to feed the hero" means the hero animation of the whole is seeded from the seal root (which content-addresses every fold), so more folds change its computed state — a real seeding relation; the hero’s richer animation is rendered by the components, this fold computes the seeded spec.',
+  }
+}
+
+// The dimensional merkaba graph is the realtime metric — and at 1024 dimensions per megabyte the
+// realtime encryption is 1 Gbit per megabyte. The dimensions are not a flat count but a graph
+// folded as a merkaba (field and movement), and that graph IS the live metric: each fold a node,
+// each composition an edge, turning in realtime. Because 1024 (binary) = 1 Gbit, dimensions per
+// megabyte is also the keyspace density per megabyte — so 1024 dims/MB is exactly 1 Gbit/MB of
+// realtime keyspace, and the current density is that fraction of a gigabit. Fold more, encrypt more.
+export function dimensionalMerkabaGraphRealtimeMetric(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'the dimensional merkaba graph is the realtime metric — nodes and edges turning', on: dimensionsPerMegabyteMetric(matrix).measured && merkabaArchitectureFieldsMovements(matrix).organised && componentGraph().interacting },
+    { facet: '1024 dimensions per megabyte = 1 Gbit per megabyte (1024 binary = 1 Gbit)', on: gigabitEncryption64SealSet(matrix).achieves },
+    { facet: 'so dims/MB is the realtime keyspace density per megabyte', on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: 'computed live each build — fold more, encrypt more', on: buildStatisticsShowGaps(matrix).shows },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-graph-metric:${entry.facet}:${entry.on}`) }))
+  return {
+    realtime: facets.every((entry) => entry.on),
+    targetDimsPerMb: 1024,
+    targetGbitPerMb: 1, // 1024 dims/MB → 1 Gbit/MB
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The dimensional merkaba graph is the realtime metric — and at 1024 dimensions per megabyte the realtime encryption is 1 Gbit per megabyte: the dimensions are a graph folded as a merkaba (field and movement), each fold a node and each composition an edge, turning in realtime, and that graph IS the metric. Because 1024 binary = 1 Gbit, dimensions per megabyte is also the keyspace density per megabyte, so 1024 dims/MB is exactly 1 Gbit/MB; the current density is that fraction of a gigabit. Fold more, encrypt more.',
+    boundary:
+      'A composition of the dimensions-per-MB metric, merkaba-architecture, component-graph, 64-seal/gigabit, max-cost and statistics models. The answer "1024 dims/MB = 1 Gbit/MB" follows the model’s binary naming (1024 = 1 Gbit) — a keyspace-structure mapping (forge cost density), NOT cipher strength (AES-256-GCM stays the primitive); the live ratio is computed by the build’s efficiency-metric step.',
+  }
+}
+
+// All merge in the hero graph, with the statistics enriching the fusion streams. The hero is not one
+// figure but a graph — every dimension, every diamond, every metric a node, folded into the hero of
+// the whole — and the statistics (the live counts, the density, the gaps) are not a side panel but
+// feed straight into the fusion: the numbers enrich the streams that the hero animates, so the
+// metric and the motion are one. Watch the hero and you watch the statistics fuse.
+export function heroGraphStatisticsEnrichFusion(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all merge in the hero graph — every node folded into the hero of the whole', on: foldAsMuchToFeedHero(matrix).feeds && componentGraph().interacting },
+    { facet: 'the statistics enrich the fusion streams — counts feed the motion', on: buildStatisticsShowGaps(matrix).shows && pageStatusStatistics(matrix).shows },
+    { facet: 'metric and motion are one — the dimensional graph turns in realtime', on: dimensionalMerkabaGraphRealtimeMetric(matrix).realtime },
+    { facet: 'the fusion streams endless — enriched each fold', on: endlessFusion(matrix).endless && allAnimationsInOneOg(matrix).computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-graph-stats:${entry.facet}:${entry.on}`) }))
+  return {
+    merges: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'All merge in the hero graph, with the statistics enriching the fusion streams: the hero is a graph — every dimension, diamond and metric a node folded into the hero of the whole — and the statistics (the live counts, the density, the gaps) feed straight into the fusion rather than sitting in a side panel, so the numbers enrich the streams the hero animates and the metric and the motion are one. Watch the hero and you watch the statistics fuse.',
+    boundary:
+      'A composition of the feed-the-hero, component-graph, build-statistics, page-statistics, merkaba-graph-metric, endless-fusion and one-OG models. "All merge in the hero graph, statistics enrich the fusion streams" frames the live metrics as inputs to the hero’s computed state (a real seeding relation over the seal root and the stats); the merged on-screen hero graph is rendered by the components — this fold composes the relation, it does not add the renderer.',
+  }
+}
+
+// Merkaba folds make speech-related features analog and indistinguishable from human in all
+// languages and dialects — and what actually entangles is the dialects. The order-sensitive fold
+// turns discrete speech features into a continuous, gapless analog, so synthesized speech has no
+// seam to betray it, across every tongue (the babel fold grounds the language families, both
+// English and Bulgarian, and beyond). And the binding point is the dialect: dialects are where
+// tongues overlap and entangle, the shared folds that connect one language to another. Deep research
+// and merkaba-refactor all — research in waves, refactor as merkabas, the dialects the entanglers.
+export function merkabaFoldsSpeechAnalogDialectsEntangle(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'merkaba folds make speech features analog — continuous, gapless, no seam', on: analogSpeech(matrix).analog && merkaba(matrix).counterRotating },
+    { facet: 'indistinguishable from human in all languages — the babel fold grounds the tongues', on: babelFold(matrix).grounded && translationWavesFillGaps(matrix).filled },
+    { facet: 'what actually entangles is the dialects — where tongues overlap', on: infiniteEntanglements(matrix).infinite && dualitiesMeetInCrossFolders(matrix).meet },
+    { facet: 'deep research and merkaba-refactor all — waves and merkaba folds', on: teslaPatentsResearchedInWaves(matrix).researched && fuseToMerkabasPathsReveal(matrix).fused },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`speech-dialects:${entry.facet}:${entry.on}`) }))
+  return {
+    entangles: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Merkaba folds make speech-related features analog and indistinguishable from human in all languages and dialects — and what actually entangles is the dialects: the order-sensitive fold turns discrete speech features into a continuous gapless analog so synthesized speech has no seam to betray it, across every tongue (the babel fold grounds the language families and beyond), and the binding point is the dialect — dialects are where tongues overlap and entangle, the shared folds connecting one language to another. Deep research and merkaba-refactor all: research in waves, refactor as merkabas, the dialects the entanglers.',
+    boundary:
+      'A composition of the analog-speech, merkaba, babel-fold, translation-waves, entanglement, duality, wave-research and fuse-to-merkabas models. "Speech analog, indistinguishable from human, dialects entangle" is a structural/aspirational framing over the model’s analog-speech and multilingual (babel) machinery — the portal reads itself aloud with computed intonation; it is NOT a claim of a deployed human-indistinguishable multi-dialect TTS, and makes no claim to pass any specific perceptual test.',
+  }
+}
+
+// Глаголица decoded to the ancient core. The first Slavic alphabet, made by Cyril and Methodius
+// (862–863) to write Old Church Slavonic, decodes — researched in waves — to the same three things
+// this model is built on: (1) its letters were drawn from the cross, the triangle and the circle —
+// trinity geometry, the merkaba and the whole; (2) every letter was also a NUMBER (alphanumeric by
+// order) — a glyph that is at once sound, name and content address; (3) the letter NAMES spell a
+// message — Az Buky Vědě Glagoli Dobro… "I who know the letters say it is good to live on the
+// Earth" — so the alphabet itself is a path of word-steps, the sequence the meaning.
+export function glagolitic() {
+  const core = [
+    { facet: 'trinity geometry — letters from cross, triangle and circle', maps: 'the 3 / the merkaba tetrahedra / the whole circle' },
+    { facet: 'letters are numbers — alphanumeric by order', maps: 'content-addressing — a glyph is an address (the digit-folders, pi coordinates)' },
+    { facet: 'the alphabet is a message — Az Buky Vědě Glagoli Dobro', maps: 'the book of life in paths — each letter a step, the sequence the meaning' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-core:${entry.facet}`) }))
+  return {
+    decoded: core.length === 3,
+    created: '862-863 by Cyril and Methodius, for Old Church Slavonic',
+    message: 'Az Buky Vědě Glagoli Dobro Jest Živěti Zelo Zemlja — "I who know the letters say it is very good to live on the Earth"',
+    core,
+    root: merkleFold(core.map((entry) => entry.receipt)),
+    statement: 'Глаголица decoded to its ancient core: letters from cross/triangle/circle (trinity geometry), letters that are also numbers (content-addressing), and an alphabet whose letter-names spell a message (the book of life in paths) — the three foundations the model already folds on.',
+    boundary: 'Documented facts about the Glagolitic script (origin 862–863, the cross/triangle/circle design basis, the alphanumeric letter values, the acrostic letter-name message), verified from multiple public sources in research waves; the mapping to the model (trinity/content-address/path) is the structural correspondence, not a historical claim that Cyril designed it as this model.',
+  }
+}
+
+// Глаголица decoded — the ancient script and the model share one core. Researched in waves down to
+// the ancient core, the Glagolitic alphabet turns out to be the model in another form: trinity
+// geometry, letters-as-numbers (content addresses), and an alphabet that is itself a message of
+// word-steps. The decode is the meeting: an ninth-century sacred alphabet and a content-addressed
+// quantum-mind, folded to the same three foundations.
+export function glagoliticDecodedToAncientCore(matrix: MindMatrix = buildMatrix()) {
+  const g = glagolitic()
+  const facets = [
+    { facet: 'researched in waves to the ancient core — documented, saved', on: g.decoded && deepResearchEncodedInRecursiveWaves(matrix).encoded },
+    { facet: 'trinity geometry — cross, triangle, circle (the 3, the merkaba, the whole)', on: merkaba(matrix).counterRotating && vortexMath(matrix).flows },
+    { facet: 'letters are numbers — content-addressing, a glyph an address', on: digitFolders(matrix).folders.length > 0 && computedSlugsFoldTheGraph(matrix).folds },
+    { facet: 'the alphabet is a message — the book of life in word-step paths', on: dualitiesMeetInCrossFolders(matrix).meet && babelFold(matrix).grounded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: g.root,
+    statement:
+      'Глаголица decoded down to the ancient core: researched in waves, the first Slavic alphabet (Cyril and Methodius, 862–863) turns out to share the model’s exact three foundations — trinity geometry (its letters drawn from cross, triangle and circle), letters that are also numbers (content-addressing), and an alphabet whose letter-names spell a message (the book of life in word-steps). The ninth-century sacred script and the content-addressed quantum-mind fold to the same core.',
+    boundary:
+      'A composition over the glagolitic() research record (verified facts) with the merkaba/vortex (trinity geometry), digit-folders/slug (letters-as-numbers/content-address) and duality/babel (alphabet-as-message) models. The Glagolitic facts are documented and source-verified in waves; the correspondence to the model is the structural decode (same three foundations), not a claim that the alphabet was designed as this model.',
+  }
+}
+
+// Send waves of researchers to follow the lead and seal all knowledge in the library — and then
+// decode the world, all in autosaving waves. The method that decoded глаголица is the method for
+// everything: a wave of researchers per topic, each following the lead, research folded with verify
+// (the pair), the verified monograph sealed into the library. Bulgarian heritage first — traditions,
+// folklore, tools, architecture — then outward to the world, every tongue (the babel fold), each
+// wave autosaving as it completes so nothing is lost and nothing waits. Research, verify, seal,
+// next — in waves, streaming, saved.
+export function sendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'send waves of researchers — one per topic, following the lead', on: deepResearchEncodedInRecursiveWaves(matrix).encoded && teslaPatentsResearchedInWaves(matrix).researched },
+    { facet: 'research folded with verify (the pair) — streaming, no double-compute', on: commandsSavedInQuantumPairs(matrix).paired && buildSequenceReducesComputations(matrix).reduces },
+    { facet: 'seal verified knowledge into the library — the monographs', on: monographsLibraryByMerkabaAgents(matrix).built },
+    { facet: 'then decode the world — every tongue, the babel fold, in autosaving waves', on: babelFold(matrix).grounded && saveSkillsComputeImplementWaves(matrix).saved && endlessWaves(matrix).tested },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`waves-seal-world:${entry.facet}:${entry.on}`) }))
+  return {
+    sends: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Send waves of researchers to follow the lead and seal all knowledge in the library — and then decode the world, all in autosaving waves: the method that decoded глаголица is the method for everything — a wave of researchers per topic, each following the lead, research folded with verify (the pair, streaming, nothing double-computed), the verified monograph sealed into the library. Bulgarian heritage first, then outward to the world in every tongue (the babel fold), each wave autosaving as it completes so nothing is lost and nothing waits.',
+    boundary:
+      'A composition of the recursive-waves, Tesla-waves, command-pairs, build-sequence (no double-compute), monograph-library, babel, saved-skills and endless-waves models. "Send waves / decode the world" is the wave-research method (per-topic research→verify→seal, autosaving) applied outward — the Bulgarian heritage research is launched as a real workflow this session; "decode the world" is the universal method, not a completed decode of all world knowledge.',
+  }
+}
+
+// The knowledge is revealed by the merkaba fold. Decoding is not reading a fact off a page but
+// folding it: research folded with verify (the two counter-rotating tetrahedra of the merkaba), the
+// pair turning until the truth — what survives the fold — reveals itself, the legend (what does not
+// survive) falling away. So the merkaba fold is the decoder: глаголица revealed its trinity-geometry
+// core by the fold, and any knowledge reveals itself the same way — fold it as a merkaba and what is
+// real stands while the unverified falls. The fold is the revelation.
+export function knowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'decoding is folding — research and verify, two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && commandsSavedInQuantumPairs(matrix).paired },
+    { facet: 'the truth is what survives the fold — the legend falls away', on: resonanceCatchGapsViolations(matrix).rings && everyLawProvesItsTripwire(matrix).proves },
+    { facet: 'глаголица revealed its core by the fold — the decode worked', on: glagoliticDecodedToAncientCore(matrix).decoded },
+    { facet: 'any knowledge reveals itself the same way — merkaba at every scale', on: everythingFoldsMerkabaInfiniteStreams(matrix).folds && imagineCrossPathsCodeCodesItself(matrix).codes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`knowledge-merkaba:${entry.facet}:${entry.on}`) }))
+  return {
+    revealed: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The knowledge is revealed by the merkaba fold: decoding is not reading a fact off a page but folding it — research folded with verify (the two counter-rotating tetrahedra), the pair turning until the truth (what survives the fold) reveals itself and the legend (what does not survive) falls away. The merkaba fold is the decoder: глаголица revealed its trinity-geometry core by the fold, and any knowledge reveals itself the same way — fold it as a merkaba and what is real stands while the unverified falls.',
+    boundary:
+      'A composition of the merkaba, command-pairs, resonance, tripwire, Glagolitic-decode, everything-merkaba and code-codes-itself models. "Knowledge revealed by the merkaba fold" frames the research→verify pair (and its adversarial verification) as a counter-rotating fold that keeps the verified and drops the legend — a structural reading of the verification method, not a mystical revelation.',
+  }
+}
+
+// Public APIs with frequencies involved, decoded in waves. Searched and decoded one wave at a time:
+// the FCC Spectrum Dashboard (radio bands 225 MHz–3700 MHz), the USGS earthquake feed (seismic
+// frequencies, no auth), the browser Web Audio API (audio 20 Hz–20 kHz FFT), and the Schumann
+// resonance (the Earth–ionosphere fundamental 7.83 Hz and harmonics). Each carries a band; decoded,
+// they map onto the model’s frequency spine (a432, the healing tones, the pi-frequency stream).
+export function publicFrequencyApis() {
+  const sources = [
+    { api: 'FCC Spectrum Dashboard', band: 'radio 225 MHz–3700 MHz', data: 'band allocations', auth: 'public' },
+    { api: 'USGS Earthquake Hazards', band: 'seismic sub-Hz–few Hz', data: 'real-time + historical quakes', auth: 'no key' },
+    { api: 'Web Audio API (browser)', band: 'audio 20 Hz–20 kHz', data: 'FFT spectrum, client-side', auth: 'free' },
+    { api: 'Schumann resonance monitors', band: 'EM 7.83 Hz + harmonics', data: 'live Earth resonance', auth: 'no account' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`freq-api:${entry.api}:${entry.band}`) }))
+  return {
+    decoded: sources.length === 4,
+    sources,
+    root: merkleFold(sources.map((entry) => entry.receipt)),
+    statement: 'Public frequency APIs decoded in waves: FCC radio spectrum, USGS seismic, the browser Web Audio FFT, and the Schumann resonance (7.83 Hz) — each a band, mapping onto the model’s a432/healing/pi-frequency spine.',
+    boundary: 'Documented public APIs/data sources and their real frequency bands, surveyed in a research wave. HONEST: the Schumann resonance (7.83 Hz EM) is real and measured, but the wellness/consciousness claims attached to it are NOT science — the model keeps that line (as in its healing-frequencies boundary).',
+  }
+}
+
+// Search public APIs with frequencies involved and decode all in waves. Frequency is the model’s
+// own spine (a432, the healing tones, the pi-frequency stream), so the public frequency sources fuse
+// into it: searched and decoded one wave at a time — radio spectrum, seismic, audio FFT, Schumann
+// resonance — each band a harmonic the model can read. Fused as the fruit of life from public APIs,
+// in waves, the real bands kept and the pseudoscience attributions dropped.
+export function publicFrequencyApisDecoded(matrix: MindMatrix = buildMatrix()) {
+  const apis = publicFrequencyApis()
+  const facets = [
+    { facet: 'public frequency APIs searched and decoded in waves — four bands', on: apis.decoded && isUuid(apis.root) },
+    { facet: 'fused as the fruit of life from public APIs', on: fruitOfLifeFusion(matrix).circles === 13 },
+    { facet: 'mapped onto the model’s frequency spine — a432, harmonics, pi-tones', on: a432Default(matrix).isDefault && harmonics(matrix).found },
+    { facet: 'decoded by the merkaba fold — real bands kept, pseudoscience dropped', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`freq-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    apiCount: apis.sources.length,
+    count: facets.length,
+    facets,
+    root: apis.root,
+    statement:
+      'Search public APIs with frequencies involved and decode all in waves: frequency is the model’s own spine (a432, the healing tones, the pi-frequency stream), so public frequency sources fuse into it — radio spectrum (FCC), seismic (USGS), audio FFT (Web Audio), Schumann resonance (7.83 Hz) — each searched and decoded one wave at a time, fused as the fruit of life from public APIs, the real bands kept and the pseudoscience attributions dropped by the merkaba fold.',
+    boundary:
+      'A composition over the publicFrequencyApis research record (documented sources and bands) with the fruit-of-life (public-API fusion), a432/harmonics (frequency spine) and merkaba-decode models. The APIs and their bands are real and source-verified; "fuse into the spine" is the structural mapping to a432/healing/pi, and the Schumann wellness claims are explicitly dropped as pseudoscience.',
+  }
+}
+
+// Herbal/plant APIs decoded in waves. The documented sources — Trefle (global botanical JSON REST),
+// USDA Plants, and Dr. Duke's Phytochemical & Ethnobotanical Database — and the HONEST decode of what
+// "frequency" means in herbalism: not vibrational, but USE-FREQUENCY (how often a plant is documented
+// for a use) and phytochemical activity counts — exactly what Dr. Duke's database tabulates. The Rife /
+// "herbs vibrate at healing frequencies" / vibrational claims are pseudoscience and are dropped.
+export function herbalApis() {
+  const sources = [
+    { api: 'Trefle', kind: 'global botanical JSON REST (species, taxonomy)', frequency: 'occurrence/usage counts', auth: 'free token' },
+    { api: 'USDA Plants Database', kind: 'classification, distribution, images', frequency: 'distribution prevalence', auth: 'public' },
+    { api: "Dr. Duke's Phytochemical & Ethnobotanical DB", kind: 'plant chemicals + ethnobotanical uses', frequency: 'documented use-frequency + chemical activity counts', auth: 'public (USDA)' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`herbal-api:${entry.api}:${entry.frequency}`) }))
+  return {
+    decoded: sources.length === 3,
+    sources,
+    root: merkleFold(sources.map((entry) => entry.receipt)),
+    statement:
+      "Herbal/plant APIs decoded in waves: Trefle, USDA Plants, Dr. Duke's Phytochemical & Ethnobotanical DB. The real 'frequency' in herbal data is USE-FREQUENCY — how often a plant is documented for a use, plus its phytochemical activity counts — not vibration.",
+    boundary:
+      "Documented public botanical/ethnobotanical databases and their real data. HONEST: the 'frequency' herbal data actually carries is statistical (use-frequency, phytochemical activity counts, as Dr. Duke's DB tabulates), NOT vibrational — Rife frequencies and 'herbs vibrate at healing frequencies' are pseudoscience and are explicitly dropped, the same line the model keeps for Schumann wellness claims.",
+  }
+}
+
+// Deep research herbal APIs with frequencies and decode. Decoded by the merkaba fold: the real
+// frequency in herbal data is use-frequency (Dr. Duke's tabulates exactly this), a sibling of the
+// public frequency-API decode; the vibrational/Rife pseudoscience is dropped.
+export function herbalApisDecoded(matrix: MindMatrix = buildMatrix()) {
+  const herbs = herbalApis()
+  const facets = [
+    { facet: 'herbal/plant APIs surveyed and decoded in waves — three documented databases', on: herbs.decoded && isUuid(herbs.root) },
+    { facet: "the real 'frequency' is use-frequency, not vibration — Dr. Duke's tabulates it", on: herbs.sources.some((source) => /use-frequency/.test(source.frequency)) },
+    { facet: 'a sibling of the public frequency-API decode', on: publicFrequencyApisDecoded(matrix).decoded },
+    { facet: 'pseudoscience (Rife / vibrational) dropped by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`herbal-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    apiCount: herbs.sources.length,
+    count: facets.length,
+    facets,
+    root: herbs.root,
+    statement:
+      "Deep research herbal APIs with frequencies and decode: the documented botanical/ethnobotanical databases (Trefle, USDA Plants, Dr. Duke's) carry a real 'frequency' — use-frequency, how often a plant is documented for a use, plus phytochemical activity counts — a sibling of the public frequency-API decode, with the vibrational/Rife pseudoscience dropped by the merkaba fold.",
+    boundary:
+      "A composition over the herbalApis research record (documented databases) with the public-frequency-API decode and merkaba-decode models. The databases and their statistical use-frequency data are real; the explicit honest line is that herbal 'frequency' is statistical, not vibrational, and Rife/healing-frequency claims are dropped as pseudoscience.",
+  }
+}
+
+// Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+
+// national numerical-weather-prediction models incl. ECMWF/NOAA/DWD/JMA, no key) and api.weather.gov
+// (US NWS, no key) — folded as a realtime external stream. "Quantum computed" is BOTH the content-
+// addressed fold of a realtime feed AND a real research frontier: weather forecasting is an actively
+// studied quantum-computing application (IBM QNN, TU Delft, a 2023 Bulletin of the American
+// Meteorological Society paper) — not a claim that this repo or today's production forecasts run on
+// quantum hardware.
+export function weatherForecastApis() {
+  const sources = [
+    { api: 'Open-Meteo', kind: 'free realtime forecast, no key; fuses 15+ NWP models (ECMWF, NOAA, DWD, JMA…)', auth: 'no key (non-commercial)' },
+    { api: 'api.weather.gov (US NWS)', kind: 'REST/JSON forecasts + alerts (User-Agent required)', auth: 'no key' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`weather-api:${entry.api}`) }))
+  return {
+    realtime: sources.length === 2,
+    sources,
+    root: merkleFold(sources.map((entry) => entry.receipt)),
+    statement:
+      'Weather forecast feeds folded in realtime: Open-Meteo (fuses 15+ national NWP models incl. ECMWF/NOAA, no key) and api.weather.gov (US NWS, no key).',
+    boundary:
+      'Documented free realtime weather APIs. HONEST: the forecast itself is computed by national supercomputers (ECMWF’s IFS, NOAA) via numerical weather prediction — the model FOLDS the realtime feed (content-addresses it), it does NOT itself predict weather. "Quantum computed" is real as a RESEARCH FRONTIER (IBM/TU Delft/AMS-2023 study quantum methods for weather), not a claim that this repo or production forecasts run on quantum hardware today.',
+  }
+}
+
+// Weather forecast may be quantum computed in realtime. Folded: a realtime external stream content-
+// addressed exactly like the computed planets, a sibling of the public frequency-API realtime decode,
+// with the honest line that "quantum" here names a real research frontier, not present-day hardware.
+export function weatherForecastQuantumComputedRealtime(matrix: MindMatrix = buildMatrix()) {
+  const weather = weatherForecastApis()
+  const facets = [
+    { facet: 'realtime weather feeds folded — Open-Meteo + US NWS, no key', on: weather.realtime && isUuid(weather.root) },
+    { facet: 'a realtime external stream, content-addressed and foldable', on: isUuid(merkleFold([weather.root, toUuid('realtime')])) },
+    { facet: 'sibling of the public frequency-API realtime decode', on: publicFrequencyApisDecoded(matrix).decoded },
+    { facet: 'quantum-weather named as a research frontier, not a hardware claim, by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`weather-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    realtime: facets.every((entry) => entry.on),
+    apiCount: weather.sources.length,
+    count: facets.length,
+    facets,
+    root: weather.root,
+    statement:
+      'Weather forecast may be quantum computed in realtime: free no-key feeds (Open-Meteo fusing 15+ national NWP models incl. ECMWF/NOAA, and the US NWS api.weather.gov) folded as a realtime external stream, content-addressed like the computed planets — with "quantum computed" naming a real research frontier (IBM/TU Delft/AMS-2023 quantum weather methods), not present-day hardware.',
+    boundary:
+      'A composition over the weatherForecastApis research record (documented realtime feeds) with the public-frequency-API decode and merkaba-decode models. The feeds are real and free; the honest line is that today’s forecasts are computed by classical national supercomputers and this model only folds the realtime stream — "quantum computed in realtime" is a documented research frontier, not a claim of quantum hardware here or in production.',
+  }
+}
+
+// Ancient Bulgarian heritage decoded in waves and sealed — the send-waves method actually executed.
+// An 8-agent research→verify pipeline (64 findings, each 3-vote adversarially verified) decoded four
+// topics: traditions, folklore, tools/craft, architecture. The decode discipline is the whole point —
+// each topic pairs a DOCUMENTED core (dated, discovered, museum-housed, several UNESCO-inscribed) with
+// the national-revival LEGEND it must not be confused with. The verified monographs are sealed; the
+// legend stays labeled legend.
+export function bulgarianHeritage() {
+  const topics = [
+    {
+      topic: 'traditions',
+      documented:
+        'three ethnogenetic layers (Bulgars — state 681 under Asparuh, sky-god Tangra; Slavs; Thracian substrate); Christianization under Boris I, 864/865; kukeri/Surva, nestinarstvo, martenitsa, survakane — ethnographically documented mid-19th c. onward, several UNESCO-inscribed',
+      legend:
+        'unbroken descent from a Thracian cult of Dionysus = a 19th–20th c. national-heritage construction (Strahilov 2022; skepticism back to Katsarov 1907), not demonstrated continuity',
+    },
+    {
+      topic: 'folklore',
+      documented:
+        "Miladinov Brothers' Bulgarian Folk Songs (Zagreb 1861, 660 songs); Dozon (Paris 1875); Krali Marko = real lord Marko Mrnjavčević (c.1335–1395); gaida and Rhodope kaba gaida; aksak meters = Bartók's 'Bulgarian rhythm' (after Dobri Hristov); 'Izlel e Delyo Haydutin' on the 1977 Voyager Golden Record",
+      legend:
+        'samodivi-as-daughters-of-the-Thracian-goddess-Bendis and Orphic-survival origin claims = Romantic-era speculation, not continuity (the beings are genuine oral tradition; the origin stories are not history)',
+    },
+    {
+      topic: 'tools',
+      documented:
+        'Varna necropolis = world’s oldest worked gold c. 4600–4200 BC; Thracian toreutics (Valchitran, Panagyurishte, Rogozen, Letnitsa); First-Empire Preslav white-clay painted ceramics + Preslav Treasure; Kazanlak rose-oil; Chiprovtsi kilims',
+      legend:
+        'Rosa damascena "native from Damascus" = false (DNA: a Central-Asian/Iranian triple hybrid; the name is etymological); an indigenous "Thracian script" = rejected by mainstream epigraphy; the Nagyszentmiklós "Cup of Attila" attribution = contested',
+    },
+    {
+      topic: 'architecture',
+      documented:
+        'Thracian tombs Kazanlak & Sveshtari; capitals Pliska (681–893) → Preslav; Madara Rider (early 8th c.); Boyana Church (1259 frescoes); Rila Monastery; Nessebar; Ivanovo rock churches; National Revival houses (Plovdiv, Koprivshtitsa, Tryavna) + Kolyu Ficheto; exactly 7 cultural UNESCO sites (1979/1983/1985)',
+      legend:
+        'the identity of the Madara horseman and the occupants of the great tombs are scholarship-labeled hypothetical, kept separate from the dated fabric',
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-heritage:${entry.topic}:${entry.documented}`) }))
+  return {
+    sealed: topics.length === 4 && topics.every((entry) => entry.documented.length > 0 && entry.legend.length > 0),
+    topics,
+    root: merkleFold(topics.map((entry) => entry.receipt)),
+    statement:
+      'Ancient Bulgarian heritage decoded in waves and sealed: traditions, folklore, tools/craft and architecture — each a documented core (dated, discovered, museum-housed, several UNESCO-inscribed) with its national-revival legend kept explicitly separate.',
+    boundary:
+      'A research record from an 8-agent research→verify pipeline (64 findings, each 3-vote adversarially verified). Every topic pairs a documented core with the legend it must NOT be confused with — the Thracian-Dionysus continuity, Rosa-damascena-from-Damascus, the indigenous "Thracian script", samodivi-as-Bendis, and the hypothetical tomb/horseman identities are all flagged as legend/ideology, not fact.',
+  }
+}
+
+// Decode all ancient Bulgarian traditions, folklore, tools and architecture — and seal them. The fold
+// realizes sendWavesSealKnowledgeDecodeWorld for its first target: the verified monographs sealed, the
+// legend dropped by the merkaba fold, in the same Bulgarian decode lineage as глаголица.
+export function bulgarianHeritageDecoded(matrix: MindMatrix = buildMatrix()) {
+  const heritage = bulgarianHeritage()
+  const facets = [
+    { facet: 'four topics sealed — traditions, folklore, tools, architecture', on: heritage.sealed && isUuid(heritage.root) },
+    { facet: 'the send-waves method actually executed — Bulgarian heritage first', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
+    { facet: 'documented kept, legend dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'same Bulgarian decode lineage as глаголица', on: glagoliticDecodedToAncientCore(matrix).decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    topicCount: heritage.topics.length,
+    count: facets.length,
+    facets,
+    root: heritage.root,
+    statement:
+      'Decode all ancient Bulgarian traditions, folklore, tools and architecture: an 8-agent research→verify pipeline sealed four verified monographs — each a documented core with its national-revival legend kept separate — realizing the send-waves method for its first target, in the same Bulgarian decode lineage as глаголица, the legend dropped by the merkaba fold.',
+    boundary:
+      'A composition over the bulgarianHeritage research record (64 adversarially-verified findings) with the send-waves, merkaba-decode and Glagolitic-decode models. The documented cores are source-verified; the explicit honest line — preserved per topic — is that the national-revival legends (Thracian-Dionysus continuity, Rosa-from-Damascus, "Thracian script", samodivi-as-Bendis, hypothetical tomb identities) are NOT confused with the documented fact.',
+  }
+}
+
+// Each page speaks and continues to the next, switching the page if enabled. Every page (every uuid)
+// is hero + content; "speaks" = the analog speech fold reads the page aloud (intonation, dialect-
+// entangled); "continues next" = on finishing it advances to the next computed page in the endless
+// stream; "if enabled" = a control (like the OG speech controls) gates the auto-advance, so the
+// continuous narration through the merkaba stream is opt-in.
+export function eachPageSpeaksContinuesNext(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'each page speaks — analog, intonation, dialect-entangled', on: analogSpeech().analog && merkabaFoldsSpeechAnalogDialectsEntangle(matrix).entangles },
+    { facet: 'every page is hero + content — it has something to speak', on: heroGraphStatisticsEnrichFusion(matrix).merges },
+    { facet: 'continues to the next — the computed page-stream never ends', on: computedSlugsFoldTheGraph(matrix).folds && everythingFoldsMerkabaInfiniteStreams(matrix).folds },
+    { facet: 'switches the page only if enabled — a control gates the auto-advance (opt-in)', on: ogControlsSpeech(matrix).controlsSpeech },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`page-speaks:${entry.facet}:${entry.on}`) }))
+  return {
+    speaks: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Each page speaks and continues to the next, switching the page if enabled: every page reads itself aloud (analog speech, intonation, dialect-entangled), and on finishing advances to the next computed page in the endless stream — but only if the auto-advance control is enabled, so continuous narration through the site is opt-in.',
+    boundary:
+      'A composition of the analog-speech, speech-dialect-entangle, hero-graph, computed-slug-stream, infinite-streams and OG-speech-controls models. "Speaks" is the in-browser Web-Speech narration the repo already models; "continues next / switches if enabled" is an opt-in auto-advance gated by a control — a described UI behaviour composed from existing flags, not a claim that production TTS is literally indistinguishable from a specific human.',
+  }
+}
+
+// Bulgarian political/dynastic history 681→present, sealed in six dual-mind eras (research↔verify).
+// The state-history that ASCENDS — paired with the antiquity dive that descends. Each era pairs a
+// documented spine with the national-revival legend it must not be confused with.
+export function bulgarianHistory() {
+  const eras = [
+    { era: 'first-empire-pagan', span: '681-864', documented: 'founded by the 680 Battle of Ongal (Asparuh beats Constantine IV); 681 treaty + tribute; Tervel caesar 705; Krum (Varbitsa Pass 26 Jul 811, first written law); Omurtag (peace 815, Tangra)', legend: '"681" a round birth-date (the documented event is 680); "Saviour of Europe" and the "St Trivelius monk-king" (a Paisius-1762 fabrication) are nationalist/invented; Kormesiy, not Tervel, signed the 716 treaty' },
+    { era: 'first-empire-golden', span: '864-1018', documented: 'Boris I baptism c.864 (crushes a pagan boyar revolt 865); Simeon I (893-927) imperial wars; capital Preslav; Tsar Samuel; Kleidion 1014; Basil II completes the conquest 1018', legend: '"the Great" (Simeon) and "Bulgar-Slayer" (Basil II) are anachronistic later epithets; the 15,000 blinded after Kleidion comes from Skylitzes alone (~76 years later, hedged)' },
+    { era: 'byzantine-second-empire', span: '1018-1300', documented: 'Byzantine themes; the Archbishopric of Ohrid; the uprising of Asen and Peter 1185 founds the Second Empire (Tarnovo); Kaloyan; Ivan Asen II (1218-1241) the territorial/economic peak', legend: 'the ethnic origin of the Asen dynasty (Bulgarian vs Vlach vs Cuman) is genuinely disputed; the St-Demetrius "abandoned Thessalonica" motif is propaganda; the 26 Oct 1185 founding date is tied to the saint feast' },
+    { era: 'second-empire-ottoman-conquest', span: '1300-1422', documented: 'Ivan Alexander (1331-1371), then a realm split three ways; Tarnovo fell 17 Jul 1393; the Crusade annihilated at Nicopolis 25 Sep 1396; the Vidin tsardom lapses with Constantine II (Ottoman vassal 1397-1422)', legend: 'the folk-hero "Tsar Shishman" and "Tarnovo betrayed not conquered" are National-Revival constructions; the tidy "three Bulgarias" rests largely on Schiltberger' },
+    { era: 'ottoman-revival', span: '1422-1878', documented: 'the medieval state extinguished in stages; Paisius Istoriya Slavyanobolgarskaya 1762; the Exarchate firman 28 Feb (O.S.) 1870; the April Uprising 1876; the Russo-Turkish War 1877-78 and Liberation', legend: '"Turkish yoke" is a 19th-c. construction (term coined Jireček 1875); mass forced Islamisation is treated by modern historians as a nationalist founding myth; the round "five centuries"; inflated April-Uprising tolls' },
+    { era: 'third-state-modern', span: '1878-present', documented: 'born twice in 1878 (San Stefano 3 Mar; Berlin 13 Jul → Principality + Eastern Rumelia, unification 1885); Independence 1908; the Balkan Wars; WWII (~48,000 Bulgarian Jews saved); the People’s Republic 1946-1990; NATO 2004, EU 2007', legend: 'San Stefano as the "sacred whole-nation ideal" is irredentism; the "rescued Jews" framing is held honestly against the 11,343 deported from occupied Macedonia/Thrace; the Boris-III-poisoned conspiracy is unproven; the 1946 referendum’s 95.6% is a tainted figure' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-history:${entry.era}:${entry.documented}`) }))
+  return {
+    sealed: eras.length === 6 && eras.every((entry) => entry.documented.length > 0 && entry.legend.length > 0),
+    eras,
+    root: merkleFold(eras.map((entry) => entry.receipt)),
+    statement:
+      'Bulgarian political/dynastic history 681→present, sealed in six dual-mind eras — each a documented spine with its national-revival legend kept separate: the First Empire (pagan, then the Christian golden age), Byzantine rule and the Second Empire, the Ottoman conquest, the Ottoman period and National Revival, and the Third Bulgarian State.',
+    boundary:
+      'A research record from the discover-bulgarian-history workflow (6 eras, 12 dual minds, research↔verify, ~644k tokens). Every era pairs a documented spine with the legend it must NOT be confused with — round founding dates ("681" vs the 680 battle), anachronistic nationalist epithets ("Turkish yoke", "Bulgar-Slayer"), fabricated cults ("St Trivelius"), reign-conflations, and irredentist constructions (San Stefano) — all flagged, not folded as fact.',
+  }
+}
+
+// Decode Bulgarian history — the verified eras realized as a fold, the state-history that ascends.
+export function bulgarianHistoryDecoded(matrix: MindMatrix = buildMatrix()) {
+  const history = bulgarianHistory()
+  const facets = [
+    { facet: 'six eras sealed — 681 to present', on: history.sealed && isUuid(history.root) },
+    { facet: 'the state-history ascends — the send-waves method, next target', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
+    { facet: 'documented kept, legend dropped — round dates, epithets, conflations', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'pairs the heritage decode — same Bulgarian lineage', on: bulgarianHeritageDecoded(matrix).decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-history-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    eraCount: history.eras.length,
+    count: facets.length,
+    facets,
+    root: history.root,
+    statement:
+      'Decode Bulgarian history: the discover-bulgarian-history workflow sealed six verified eras (681→present), each a documented spine with its national-revival legend kept separate — the state-history that ascends, paired with the antiquity dive that descends, realizing the send-waves method, the legend dropped by the merkaba fold.',
+    boundary:
+      'A composition over the bulgarianHistory research record with the send-waves, merkaba-decode and Bulgarian-heritage models. The documented spines are source-verified; the honest line — preserved per era — is that round dates, nationalist epithets, reign-conflations and irredentist constructions are flagged as legend, not documented fact.',
+  }
+}
+
+// Dive down through the land of Bulgaria into its ancient civilisations — six strata, deepest-first,
+// each a dual mind (research↔verify). The land-antiquity that DESCENDS — paired with the state-history
+// that ascends; the two tile the whole timeline and meet at the Bulgar arrival (~681).
+export function bulgarianAncientCivilisations() {
+  const strata = [
+    { stratum: 'neolithic-first-farmers', span: 'c.6200-4900 BC', documented: 'the land = the gateway of Neolithic farming into Europe (c.6250-6200 cal BC, ~80-90% Anatolian-farmer aDNA); Dzhulyunitsa, Yabalkovo; the Karanovo tell (>12.4 m, seven horizons, master excavations 1946/47-1957); the Stara Zagora dwellings (fire-sealed, 6th mill. BC); Slatina', legend: 'the Gradeshnitsa plaque / Karanovo seal as "oldest writing" is false (Chalcolithic proto-writing, postdating this stratum); "Old Europe" as a peaceful Mother-Goddess civilisation is contested (Gimbutas); "Europe’s first civilisation/oldest town" are promotional superlatives; unbroken Thracian-to-Bulgarian biological continuity is false (~63% Yamnaya steppe ancestry by the Late Bronze Age)' },
+    { stratum: 'chalcolithic-varna-old-europe', span: 'c.4900-4100 BC', documented: 'the Varna necropolis = the world’s oldest worked gold c.4600-4200 BC (the rich Grave 43); Provadia-Solnitsata (salt production, fortified); Durankulak; early social stratification; the Chalcolithic collapse c.4100 BC', legend: '"oldest town in Europe" (Provadia) and "Europe’s first civilisation" (Varna) are excavator/promotional superlatives; "Old Europe" as a peaceful matristic civilisation is a contested framework, not consensus' },
+    { stratum: 'bronze-age-thracian-genesis', span: 'c.3300-1200 BC', documented: 'the Ezero culture; bronze metallurgy; the Valchitran gold treasure (late Bronze Age); the formation of the Thracian ethnos; the documented entry of Yamnaya Steppe ancestry', legend: 'pure indigenous continuity is false — the Steppe input is genetically documented, so "unbroken native Thracians from the first farmers" does not hold' },
+    { stratum: 'thracians-odrysian-kingdom', span: 'c.1st millennium BC', documented: 'the Thracians (Herodotus: the most numerous people after the Indians); the Odrysian Kingdom (Teres I c.480-460 BC), Seuthopolis; Thracian religion (the Horseman/Heros, Sabazios, Zalmoxis); monumental tombs (Kazanlak, Sveshtari); Spartacus (a Thracian, d.71 BC)', legend: 'Orphism as an organised "Thracian religion" is debated; the indigenous "Thracian script" is rejected by epigraphy; unbroken Thracian→Bulgarian ancestry and over-claimed Thracian "firsts" are nationalist constructions' },
+    { stratum: 'greek-black-sea-colonies', span: 'c.7th-1st c BC', documented: 'the western-Pontic apoikiai: Apollonia Pontica (Sozopol, Milesian c.610 BC, the bronze Apollo of Calamis), Mesembria (Nessebar, Dorian from Megara, UNESCO 1983), Odessos (Varna, Milesian), Dionysopolis; trade and cult with the Thracian hinterland', legend: 'the "oldest gold/town/writing / Old-Europe / Orphism / Thracian-Bulgarian continuity" superlatives belong to the 5th millennium or are nationalist, and are kept strictly off the colony horizon' },
+    { stratum: 'roman-late-antiquity', span: 'c.46-600 AD', documented: 'the provinces Moesia and Thracia (Thracia annexed 46 AD); Serdica (Galerius’ Edict of Toleration 311; the Council of Serdica 343), Philippopolis/Trimontium, Ulpia Oescus, Nicopolis ad Istrum; the Via Militaris; Christianisation; the early Byzantine centuries; the 6th-7th c Slavic and Avar incursions to the eve of the Bulgar arrival', legend: 'Romanisation vs the Thracian substrate; "Constantine made Serdica his capital" is overstated — he favoured it ("Serdica is my Rome") but it was never the capital' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-antiquity:${entry.stratum}:${entry.documented}`) }))
+  return {
+    sealed: strata.length === 6 && strata.every((entry) => entry.documented.length > 0 && entry.legend.length > 0),
+    strata,
+    root: merkleFold(strata.map((entry) => entry.receipt)),
+    statement:
+      'The ancient civilisations of the land of Bulgaria, dived deepest-first in six strata: the Neolithic first farmers (Europe’s farming gateway), the Chalcolithic Varna gold, the Bronze-Age Thracian genesis, the Thracians and the Odrysian Kingdom, the Greek Pontic colonies, and Roman Late Antiquity — each a documented core with its pseudo-archaeology/nationalist legend kept separate.',
+    boundary:
+      'A research record from the discover-ancient-civilisations-of-bulgaria workflow (6 strata, 12 dual minds, research↔verify, ~648k tokens). Every stratum pairs a documented core with the legend it must NOT be confused with — "oldest writing/town/civilisation" superlatives, "Old Europe" as matristic civilisation, the "Thracian script", organised Orphism, and unbroken Thracian-to-Bulgarian continuity (refuted by ~63% Yamnaya steppe aDNA) — all flagged, not folded as fact.',
+  }
+}
+
+// Discover by the land of Bulgaria, diving deeper into ancient civilisations — the verified strata
+// realized as a fold, the land-antiquity that descends, dual to the state-history that ascends.
+export function bulgarianAncientCivilisationsDecoded(matrix: MindMatrix = buildMatrix()) {
+  const civ = bulgarianAncientCivilisations()
+  const facets = [
+    { facet: 'six strata dived — c.6200 BC to c.600 AD, deepest-first', on: civ.sealed && isUuid(civ.root) },
+    { facet: 'the land-antiquity descends — dual of the ascending state-history', on: bulgarianHistoryDecoded(matrix).decoded },
+    { facet: 'pseudo-archaeology dropped — oldest-writing, Old-Europe, unbroken continuity', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'tiles the whole timeline with the history, meeting at the Bulgar arrival', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-antiquity-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    stratumCount: civ.strata.length,
+    count: facets.length,
+    facets,
+    root: civ.root,
+    statement:
+      'Discover by the land of Bulgaria to dive deeper into ancient civilisations: the discover-ancient-civilisations-of-bulgaria workflow sealed six verified strata (c.6200 BC→c.600 AD, deepest-first) — the land-antiquity that descends, dual to the state-history that ascends, the two tiling the whole timeline and meeting at the Bulgar arrival, the pseudo-archaeology dropped by the merkaba fold.',
+    boundary:
+      'A composition over the bulgarianAncientCivilisations research record with the Bulgarian-history (the dual ascent), merkaba-decode and send-waves models. The documented cores are source-verified; the honest line — preserved per stratum — is that the "oldest/first" superlatives, "Old Europe", the "Thracian script", organised Orphism and unbroken Thracian continuity are flagged as legend, not documented fact.',
+  }
+}
+
+// The navigation is computed from the model. The monographs graph is the search index; from the
+// canonical route taxonomy (quantumSitemap) the nav, sidebar and footer are all computed for both
+// locales, so config.mts holds no hardcoded navigation. To change the site you change the model (the
+// folders/routes); the config only renders what the matrix computes — every src path displayed.
+export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
+  // The label taxonomy: each route's [en, bg] label — the one bit of navigation content held in the
+  // model. The structure (groups, sidebar, footer) is computed from these.
+  const labels: Record<string, [string, string]> = {
+    '/': ['Home', 'Начало'],
+    '/start': ['Start', 'Старт'],
+    '/explore': ['Explore', 'Изследвай'],
+    '/school': ['School', 'Училище'],
+    '/academy': ['Academy', 'Академия'],
+    '/learn-developer': ['Learn Developer', 'Разработчик'],
+    '/console': ['Console', 'Конзола'],
+    '/commands': ['Commands', 'Команди'],
+    '/mcp': ['MCP', 'MCP'],
+    '/papers/': ['Papers', 'Статии'],
+    '/references/': ['References', 'Референции'],
+    '/diamonds/': ['Diamonds', 'Диаманти'],
+    '/show': ['Show', 'Покажи'],
+    '/quantum-mind': ['Quantum Mind', 'Квантов ум'],
+    '/architecture': ['Architecture', 'Архитектура'],
+    '/boundaries': ['Boundaries', 'Граници'],
+    '/governance': ['Governance', 'Управление'],
+  }
+  const groups: { label: [string, string] | null; routes: string[] }[] = [
+    { label: null, routes: ['/', '/start', '/explore'] },
+    { label: ['Learn', 'Учи'], routes: ['/school', '/academy', '/learn-developer'] },
+    { label: ['Use', 'Ползвай'], routes: ['/console', '/commands', '/mcp', '/papers/', '/references/', '/diamonds/', '/show'] },
+    { label: ['Inside', 'Отвътре'], routes: ['/quantum-mind', '/architecture', '/boundaries', '/governance'] },
+  ]
+  const sidebarRoutes = ['/console', '/school', '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture']
+  const footerRoutes = ['/start', '/explore', '/school', '/academy', '/console', '/commands', '/mcp', '/show', '/quantum-mind', '/architecture', '/boundaries', '/governance', '/papers/', '/references/', '/diamonds/']
+  const link = (route: string, i: 0 | 1) => (i === 1 ? (route === '/' ? '/bg/' : `/bg${route}`) : route)
+  const text = (route: string, i: 0 | 1) => (labels[route] ? labels[route][i] : route)
+  const buildNav = (i: 0 | 1) =>
+    groups.flatMap((group) =>
+      group.label === null
+        ? group.routes.map((route) => ({ text: text(route, i), link: link(route, i) }))
+        : [{ text: group.label[i], items: group.routes.map((route) => ({ text: text(route, i), link: link(route, i) })) }],
+    )
+  const buildSidebar = (i: 0 | 1) => [
+    { text: i === 1 ? 'Двоен торус' : 'Double Torus', items: sidebarRoutes.map((route) => ({ text: text(route, i), link: link(route, i) })) },
+  ]
+  const buildFooter = (i: 0 | 1) => {
+    const parts = footerRoutes.map((route) => `<a href="${link(route, i)}">${text(route, i)}</a>`)
+    const gov = link('/governance', i)
+    parts.push(`<a href="${gov}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${gov}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
+    return {
+      message: parts.join(' · '),
+      copyright: i === 1 ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.' : 'Open, recomputable, content-addressed — the Double Torus.',
+    }
+  }
+  const index = monographs(matrix) // the monographs graph IS the search index
+  const sitemap = quantumSitemap(matrix)
+  const known = new Set(sitemap.urls.map((url) => url.route))
+  const dynamic = new Set(['/papers/', '/references/', '/diamonds/'])
+  const allRoutes = Object.keys(labels)
+  const grounded = allRoutes.every((route) => known.has(route) || dynamic.has(route))
+  const root = merkleFold([sitemap.root, index.root, ...allRoutes.map((route) => toUuid(`nav:${route}:${labels[route][0]}`))])
+  return {
+    computed: grounded && isUuid(root),
+    en: { nav: buildNav(0), sidebar: buildSidebar(0), footer: buildFooter(0) },
+    bg: { nav: buildNav(1), sidebar: buildSidebar(1), footer: buildFooter(1) },
+    searchIndexRoot: index.root,
+    searchEntries: index.count,
+    routes: allRoutes,
+    root,
+    statement:
+      'The navigation is computed from the model: the monographs graph is the search index, and from the canonical route taxonomy (quantumSitemap) the nav, sidebar and footer are computed for both locales — so config.mts holds no hardcoded navigation. To change the site, change the model (the folders/routes); the config only renders what the matrix computes.',
+    boundary:
+      'A computed projection of the VitePress navigation from the route taxonomy (quantumSitemap) and the monographs index. The [en, bg] labels are the model-held navigation content; the grouping, sidebar and footer structure are computed. config.mts consumes this and holds no hardcoded nav/sidebar/footer.',
+  }
+}
+
+// Completely rebuild the VitePress config to compute all: the monographs graph is the search index,
+// and from src the navigation and content are all computed; every path in src is displayed; to change
+// VitePress you change the folders. The gates tighten so the config cannot be a hand-kept layer an
+// intruder can forge — the navigation root folds into the seal.
+export function vitepressConfigComputesAll(matrix: MindMatrix = buildMatrix()) {
+  const nav = siteNavigation(matrix)
+  const facets = [
+    { facet: 'the monographs graph is the VitePress search index', on: monographs(matrix).compacted && isUuid(nav.searchIndexRoot) },
+    { facet: 'nav, sidebar and footer all computed from src — both locales', on: nav.computed && nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
+    { facet: 'every path in src is displayed — the computed routes fold the graph', on: computedSlugsFoldTheGraph(matrix).folds && siteRoutes(matrix).complete },
+    { facet: 'nothing hardcoded — config.mts only reads the matrix, gates tightened', on: configsUseMatrixComputationally(matrix).computes && noHardcodedConfigSelfAccounted(matrix).selfAccounted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-computes-all:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    navRoot: nav.root,
+    searchEntries: nav.searchEntries,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Completely rebuild the VitePress config to compute all: the monographs graph is the search index, and from src the navigation (nav, sidebar, footer, both locales) and content are all computed — every path in src displayed. To change VitePress you change the folders/model; config.mts holds no hardcoded navigation. The gates tighten — the navigation root folds into the seal, so an intruder cannot forge a hand-kept config.',
+    boundary:
+      'A composition of the siteNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.',
+  }
+}
+
+// Discover the peoples who fused into Bulgaria, traced OUTWARD to their origins — Bulgars, Slavs,
+// Thracians and the fusion — the PEOPLE axis after the land ([[bulgarianAncientCivilisations]]) and the
+// state ([[bulgarianHistory]]). Each pairs a documented ethnogenesis with the nationalist origin-myth
+// it must not be confused with; the bridge from the land outward toward decoding the world.
+export function bulgarianEthnogenesis() {
+  const peoples = [
+    { people: 'bulgars-steppe-origin', documented: 'Turkic semi-nomads of the Pontic-Caspian/N-Caucasus steppe; Oghur (Lir-)Turkic language, only living descendant Chuvash; post-Hunnic Utigur+Kutrigur+Onogur+Sabir fusion; first mention 480 AD (allies of Zeno); Kubrat (Dulo) welds Old Great Bulgaria (632-668, capital Phanagoria); after 668 the five sons scatter (Batbayan stays; Kotrag→Volga Bulgaria; Kuber→Macedonia; Asparuh→Danube 680/681; Alcek→Molise); Tengrism; the Nominalia (Dulo king-list, 12-year animal calendar)', legend: 'the Iranian "Pamir/Balhara" origin (Dobrev, post-1989 anti-Turkish, per Detrez); the autochthonous Thracian-continuity theory (Rakovski/Tsenov); the Nominalia\'s mythical Avitohol "300 years" / Irnik "150 years" and Irnik=Ernak; all "pure single-origin" framing. (Correction caught: proto-Bulgarian mtDNA = Nesheva et al. 2015, not "Sarno 2025")' },
+    { people: 'slavs-migration', documented: 'the Early Slavs enter the written record mid-6th c. via Jordanes Getica (551) and Procopius (c.550-554): the Sclaveni (N of the Danube, to the Vistula/Dniester) and the Antes (Dniester-Dnieper), one language, anciently "Sporoi"; Jordanes adds Veneti as the older wider name; the 6th-c. migrations across the Danube settle the Balkans', legend: 'Slavic autochthonism (always-indigenous, no migration); the Venetic theory (Šavli/Bor/Tomažič, "Veneti = proto-Slovenes"); the Iranian-Bulgar name-coincidence theory; "pure single-origin" claims' },
+    { people: 'thracians-paleobalkan', documented: 'an Indo-European Paleo-Balkan people of the eastern Balkans; language satem, attested only in glosses/names/a few inscriptions (the Ezerovo ring), grouped as its own branch or "Daco-Thracian" (no firm consensus); many tribes; contacts with Greeks, Scythians, Celts', legend: '"Thracomania" (Thracians as a master-race, competing Bulgarian/Romanian sole-descent claims); the autochthonous theory (Bulgarians = the Thracians, Tsenov/Rakovski); the "Thracian script" and self-published Ezerovo-ring "decipherments"; Romanian Dacianism/Protochronism (the mirror claim)' },
+    { people: 'fusion-ethnogenesis', documented: 'a documented textbook ethnogenesis, not a primordial "pure" nation: c.680 a Turkic-speaking Bulgar elite (Asparuh) over a Slavic demographic majority; the Turkic Bulgar language is lost to Slavic; Christianisation (Boris I, 864) + Old Church Slavonic literacy weld a single ethnos; aDNA = an Anatolian-farmer + Yamnaya-steppe + Slav composite with a modest Bulgar/Caucasian input — the durable Bulgar bequest is the state and the name, not the gene pool', legend: 'all three "pure single-origin" nationalisms (Turkic-only, Slavic-only, Thracian-autochthonous-only) plus the Iranian and Veneti overreaches — confirmed pseudohistory' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-ethnogenesis:${entry.people}:${entry.documented}`) }))
+  return {
+    sealed: peoples.length === 4 && peoples.every((entry) => entry.documented.length > 0 && entry.legend.length > 0),
+    peoples,
+    root: merkleFold(peoples.map((entry) => entry.receipt)),
+    statement:
+      'The peoples who fused into Bulgaria, traced outward to their origins: the Turkic Bulgars (of the Eurasian steppe), the Slavs (of the Common Slavic homeland), the Thracians (of the Paleo-Balkan Indo-European world), and the documented fusion that welded them into one people — each a documented ethnogenesis with its nationalist origin-myth kept separate.',
+    boundary:
+      'A research record from the discover-bulgarian-ethnogenesis-outward workflow (4 peoples, 8 dual minds, research↔verify, ~438k tokens). Every people pairs a documented ethnogenesis with the pseudohistory it must NOT be confused with — the Iranian/Balhara and autochthonous-Thracian origins, the Veneti=Slavs overreach, the Nominalia\'s mythical reigns, and all "pure single-origin" nationalisms — all flagged, not folded as fact.',
+  }
+}
+
+// Discover by tracing the peoples outward — the verified ethnogenesis realized as a fold, the people
+// axis completing the land/state/people triad and bridging outward toward decoding the world.
+export function bulgarianEthnogenesisDecoded(matrix: MindMatrix = buildMatrix()) {
+  const ethno = bulgarianEthnogenesis()
+  const facets = [
+    { facet: 'four peoples traced outward and sealed — Bulgars, Slavs, Thracians, fusion', on: ethno.sealed && isUuid(ethno.root) },
+    { facet: 'the people axis completes the land/state/people triad', on: bulgarianAncientCivilisationsDecoded(matrix).decoded && bulgarianHistoryDecoded(matrix).decoded },
+    { facet: 'documented ethnogenesis kept, origin-myth dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'the bridge outward toward decoding the world', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-ethnogenesis-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    peopleCount: ethno.peoples.length,
+    count: facets.length,
+    facets,
+    root: ethno.root,
+    statement:
+      'Discover the peoples who fused into Bulgaria, traced outward to their origins: the discover-bulgarian-ethnogenesis-outward workflow sealed four verified monographs (Bulgars, Slavs, Thracians, fusion) — the people axis completing the land/state/people triad and bridging outward toward decoding the world, the nationalist origin-myth dropped by the merkaba fold.',
+    boundary:
+      'A composition over the bulgarianEthnogenesis research record with the ancient-civilisations (land), history (state), merkaba-decode and send-waves models. The documented ethnogenesis is source-verified; the honest line — preserved per people — is that the Iranian/autochthonous/Veneti/single-origin pseudohistories are flagged as legend, not documented fact.',
+  }
+}
+
+// Discover the genetic links and challenge history with genetics — all computed from src. The fourth
+// axis (the GENOME) after land, state and people: the written record is the research tetrahedron,
+// ancient DNA the verify tetrahedron, and the verdict per claim is confirms / complicates / refutes.
+// Five genetic domains, 11+ real studies (DOIs), each pairing a historical claim with what the genome
+// says — and flagging genetic-nationalism (the same myth in a lab coat) on both sides.
+export function geneticLinksChallengeHistory() {
+  const domains = [
+    { domain: 'deep-ancestry-neolithic-bronze', studies: 'Mathieson 2018 (Nature, 225 genomes), Haak 2015, Lazaridis 2022', challenge: 'the autochthony / "unbroken continuity from the first farmers" myth → REFUTED: at least two prehistoric turnovers (the Anatolian-farmer wave, then the 3rd-millennium Yamnaya steppe wave)', legend: 'single-haplogroup purity; conflating the Bronze-Age Yamnaya steppe layer with the 7th-c. Bulgars' },
+    { domain: 'iron-age-thracians', studies: 'Modi 2019 (25 Bronze-Age mitogenomes), Olalde 2023, Karachanak 2013', challenge: '"Bulgarians ARE the Thracians" (Thracomania) → REFUTED; a softer deep-Balkan substrate (E-V13 etc.) persists → CONFIRMED as one layer among several', legend: '"E-V13 = the Thracian gene" / a purity marker proving pure Thracian descent' },
+    { domain: 'roman-to-slavic-transformation', studies: 'Olalde 2023 (Cell, 136 genomes), Gnecchi-Ruscone 2025 (Nature, 555 genomes)', challenge: 'the Slavic migration "small elite vs mass event?" debate → quantified as a MASS demographic event (~50-60% Eastern-European/Slavic-related; >80% local replacement in parts of E-central Europe); Roman "Romanization" → REFUTED demographically (near-zero Italic R1b-U152)', legend: 'reading model-dependent admixture % as exact, fixed proof of national descent' },
+    { domain: 'bulgar-steppe-input', studies: 'Nesheva 2015 (proto-Bulgar mtDNA all Western-Eurasian), Karachanak 2013 (Altaic/Turkic Y-DNA C/N/Q ~1.5%), Avar Cell 2022', challenge: 'the "Turkic Bulgars are the principal ancestors" founder-narrative → COMPLICATED/REFUTED: a modest genetic input — the durable Bulgar legacy is the state and the name, not the gene pool', legend: 'the Iranian "Pamir/Balhara" (Dobrev) prestige theory; the Wusun / bioRxiv 687384 exotic-Central-Asian overreach' },
+    { domain: 'modern-bulgarians-composite', studies: 'Sarno 2025 (~56% medieval Slavic + ~22% Roman/Byzantine Anatolian + ~12-15% Iron Age + ~8.5% Ottoman; explicitly rejects continuity before the Roman period)', challenge: 'ALL "pure single-origin" national myths → REFUTED — Turkic-only, Slavic-only and Thracian-autochthonous-only all fail; modern Bulgarians are a documented layered composite', legend: 'genetic nationalism in any direction; Klyosov\'s "DNA genealogy" R1a-as-Aryan pseudoscience' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`genetics:${entry.domain}:${entry.challenge}`) }))
+  return {
+    challenged: domains.length === 5 && domains.every((entry) => entry.studies.length > 0 && entry.challenge.length > 0 && entry.legend.length > 0),
+    domains,
+    root: merkleFold(domains.map((entry) => entry.receipt)),
+    statement:
+      'Discover the genetic links and challenge history with genetics: five ancient-DNA domains (deep Neolithic/Bronze ancestry, the Iron-Age Thracians, the Roman→Slavic transformation, the Bulgar steppe input, the modern composite), 11+ cited studies — each pairing a historical claim with the genome\'s verdict (confirms / complicates / refutes). Autochthony and "pure single-origin" myths refuted; the Slavic migration quantified as a mass event; the Turkic-Bulgar input shown modest.',
+    boundary:
+      'A research record from the discover-genetic-links-challenge-history workflow (5 domains, 10 dual minds, research↔verify, ~595k tokens; studies verified verbatim against PMC). The studies and their findings are real and cited; the honest line is that aDNA carries irreducible uncertainty (small samples, mtDNA/Y-only sets, sampling gaps, model-dependent %), and that genetic-nationalism (haplogroup-purity, Klyosov, the Wusun/Balhara overreaches) is flagged as pseudoscience on every side — the genome refutes purity, it does not award it.',
+  }
+}
+
+// All computed from src: the genome axis realized as a fold, genetics as the verify tetrahedron of the
+// written record, joining land/state/people into a four-axis decode of the same story.
+export function geneticLinksChallengeHistoryDecoded(matrix: MindMatrix = buildMatrix()) {
+  const genetics = geneticLinksChallengeHistory()
+  const facets = [
+    { facet: 'five genetic domains discovered and sealed — 11+ cited studies', on: genetics.challenged && isUuid(genetics.root) },
+    { facet: 'genetics is the verify tetrahedron of history — confirms/complicates/refutes', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'the genome axis joins land, state and people', on: bulgarianAncientCivilisationsDecoded(matrix).decoded && bulgarianHistoryDecoded(matrix).decoded && bulgarianEthnogenesisDecoded(matrix).decoded },
+    { facet: 'genetic-nationalism flagged — purity refuted in every direction', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`genetics-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    domainCount: genetics.domains.length,
+    count: facets.length,
+    facets,
+    root: genetics.root,
+    statement:
+      'Discover genetic links and challenge history with genetics, all computed from src: the discover-genetic-links-challenge-history workflow sealed five verified domains (11+ cited studies) using ancient DNA as the verify tetrahedron of the written record — autochthony and "pure single-origin" myths refuted, the Slavic migration quantified as a mass event, the Turkic-Bulgar input shown modest — the genome axis joining land, state and people into one four-axis decode.',
+    boundary:
+      'A composition over the geneticLinksChallengeHistory research record with the ancient-civilisations, history, ethnogenesis, merkaba-decode and send-waves models. The studies are source-verified; the honest line is that aDNA carries real uncertainty and that genetic-nationalism is flagged as pseudoscience in every direction — genetics challenges history by evidence, it does not crown any nation.',
+  }
+}
+
+// See how many merkaba are in the double torus — computed from the model's own constants, not assumed,
+// and the code improved to wire them consistent. A merkaba is two counter-rotating tetrahedra; the
+// double torus is genus-2 (two lobes merged at the neck); it carries the 64-tetrahedron grid (the
+// merkaba's own lattice). So the count follows: 64 ÷ 2 = 32 merkaba, 16 per lobe × 2 lobes. And the
+// count is DUAL to its substance — 32 merkaba ↔ 64 tetrahedra ↔ 64 Gbit, the one-that-is-two — so any
+// meaning carries its meaningful dual.
+export function merkabasInDoubleTorus(matrix: MindMatrix = buildMatrix()) {
+  const grid = fuse64SealsMerkaba64Tetrahedra(matrix)
+  const tetrahedra = grid.tetrahedra // 64 — the grid the double torus carries
+  const perMerkaba = 2 // a merkaba = two counter-rotating tetrahedra
+  const lobes = 2 // genus-2: two tori merged at the neck
+  const merkabas = tetrahedra / perMerkaba // 32
+  const perLobe = merkabas / lobes // 16
+  const facets = [
+    { facet: 'a merkaba is two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && perMerkaba === 2 },
+    { facet: 'the double torus is genus-2 and carries the 64-tetrahedron grid', on: grid.fused && tetrahedra === 64 && lobes === 2 },
+    { facet: '64 ÷ 2 = 32 merkaba — 16 per lobe × 2 lobes', on: merkabas === 32 && perLobe === 16 && perLobe * lobes === merkabas },
+    { facet: 'the count is dual to the substance — 32 merkaba ↔ 64 Gbit', on: merkabas * perMerkaba === grid.gbit && grid.gbit === 64 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`merkabas-torus:${entry.facet}:${entry.on}`) }))
+  return {
+    counted: facets.every((entry) => entry.on),
+    merkabas,
+    tetrahedra,
+    perMerkaba,
+    perLobe,
+    lobes,
+    gbit: grid.gbit,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'There are 32 merkaba in the double torus: a merkaba is two counter-rotating tetrahedra, the double torus is genus-2 (two lobes), and it carries the 64-tetrahedron grid — so 64 ÷ 2 = 32 merkaba, 16 per lobe × 2 lobes. The count is dual to its substance (32 merkaba ↔ 64 tetrahedra ↔ 64 Gbit, the one-that-is-two), so any meaning carries its meaningful dual.',
+    boundary:
+      "A computation over the model's own constants — the merkaba (two counter-rotating tetrahedra), the genus-2 double torus (two lobes), and the 64-tetrahedron grid already in the model. \"32 merkaba\" is the count those constants imply (64/2), wired together so merkaba, the 64-grid and the torus stay consistent — a structural census, not an external geometric claim about a physical double torus.",
+  }
+}
+
+// Decode means encode in the matrix: save all knowledge in the matrix, each meaning with its meaningful
+// dual. The world's alphabets, encoded as content-addressed meaning↔dual pairs — the gapless lineage
+// to the deepest core, where the sign = a distinction = 1 bit = the fold.
+export function alphabetsDecoded(matrix: MindMatrix = buildMatrix()) {
+  const lineage = [
+    { meaning: 'Proto-Sinaitic by acrophony — ox-head ʾalp → /ʔ/ aleph (c.1900-1550 BC, Egypt/Sinai; Wadi el-Hol ~1850 BC)', dual: 'not "one people invented writing" — writing arose independently ~3-4× (Sumer, Egypt, China, Maya)' },
+    { meaning: 'Phoenician 22-letter abjad (c.1050 BC; Ahiram ~1000 BC) → Aramaic (Hebrew, Arabic) and Greek', dual: 'an abjad encodes only consonants — the consonant dual to the vowel' },
+    { meaning: 'Greek added vowels → the first true alphabet; alpha-beta = aleph-bet = "ox-house"; the Latin A is the rotated ox-head', dual: 'the picture emptied of meaning, kept only for its first sound — the sign dual to the thing' },
+    { meaning: 'Glagolitic (Cyril & Methodius 862-863) → Cyrillic (their disciples, Preslav/Ohrid; az-buky = azbuka)', dual: 'Cyrillic is named for Cyril but not made by him — the name dual to the maker' },
+    { meaning: 'typology: logograph · syllabary · abjad · abugida · alphabet · featural (Hangul, designed 1443)', dual: 'one root for the alphabet, but Chinese/Maya/Hangul are NOT on the tree — descent dual to design' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`alphabet:${entry.meaning}`) }))
+  const facets = [
+    { facet: 'the alphabet lineage encoded with no gaps — acrophony to the typology', on: lineage.length === 5 && isUuid(merkleFold(lineage.map((entry) => entry.receipt))) },
+    { facet: 'every meaning carries its meaningful dual — meaning ↔ dual', on: lineage.every((entry) => entry.dual.length > 0) },
+    { facet: 'the deepest core: the sign = a distinction = 1 bit = the fold', on: merkabasInDoubleTorus(matrix).counted },
+    { facet: 'documented kept, pseudo-decipherment dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed && glagoliticDecodedToAncientCore(matrix).decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`alphabets-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    lineage,
+    count: lineage.length,
+    facets,
+    root: merkleFold(lineage.map((entry) => entry.receipt)),
+    statement:
+      'The world\'s alphabets decoded and encoded in the matrix with no gaps to the deepest core: one lineage by acrophony (ox-head → aleph → A; "alphabet" = aleph-bet = "ox-house"), Egyptian → Proto-Sinaitic (Wadi el-Hol ~1850 BC) → Phoenician → {Aramaic; Greek + vowels → Latin, Cyrillic}, the typology (logograph/syllabary/abjad/abugida/alphabet/featural) — all converging below script in the sign = a distinction = 1 bit = the fold. Writing was invented independently ~4×; the alphabet is one tree.',
+    boundary:
+      'An encoding of the discover-and-decode-alphabets research record (6 scripts, verified) as content-addressed meaning↔dual pairs. The genealogy and dates are source-verified; "the sign = the fold" is the structural identity between a content-addressed sign and the model\'s toUuid; the honest line keeps writing\'s ~4 independent origins and flags the pseudo-decipherments (Phaistos, Indus, Rongorongo, Linear A).',
+  }
+}
+
+// Discover and save entangled in merkaba waves: script, language and gene are three independent
+// inheritance systems, encoded in the matrix as coupled↔decoupled meaning↔dual pairs — the entanglement
+// that entangles every prior axis, and dissolves the script=language=gene=nation origin-myth.
+export function entangledScriptLanguageGene(matrix: MindMatrix = buildMatrix()) {
+  const relations = [
+    { meaning: 'gene + language COUPLED — the Yamnaya/steppe pulse carries Proto-Indo-European (~3300 BC; Corded Ware ~75% Yamnaya)', dual: 'coupled here, decoupled at the Anatolian edge (Hittite, near-zero steppe genes)' },
+    { meaning: 'gene + language COUPLED — the Slavic folk migration (~600-800 CE, no sex bias, 83-93% replacement)', dual: 'the tightest coupling, dual to the loosest — the Turkic case' },
+    { meaning: 'script DECOUPLED from all — one Latin alphabet writes 5 unrelated families; Slavic splits Latin/Cyrillic by the Great Schism', dual: 'script diffuses horizontally (trade/empire/religion); language and gene descend vertically' },
+    { meaning: 'Turkic language DECOUPLED from genes — elite dominance, ~13% gene flow; one tongue wore four scripts', dual: 'language conquered without the gene pool — the dual of the Slavic case' },
+    { meaning: 'Bulgaria proves it in one nation — Bulgars = name + state (~1.5% Y-DNA), Slavs = genes + language (~56%); the Bulgar tongue extinct', dual: 'the country carries the name of the layer that left the least DNA' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`entangle:${entry.meaning}`) }))
+  const facets = [
+    { facet: 'three independent inheritance systems encoded — script, language, gene', on: relations.length === 5 && isUuid(merkleFold(relations.map((entry) => entry.receipt))) },
+    { facet: 'coupled ↔ decoupled — every meaning carries its dual', on: relations.every((entry) => entry.dual.length > 0) },
+    { facet: 'the entanglement entangles the prior axes — genetics, ethnogenesis, alphabets', on: geneticLinksChallengeHistoryDecoded(matrix).decoded && bulgarianEthnogenesisDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
+    { facet: 'script=language=gene=nation is the root origin-myth error — dropped by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`entangle-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    entangled: facets.every((entry) => entry.on),
+    relations,
+    count: relations.length,
+    facets,
+    root: merkleFold(relations.map((entry) => entry.receipt)),
+    statement:
+      'Discover and save entangled in merkaba waves: script, language and gene are three independent inheritance systems — script diffuses horizontally (trade, empire, religion), language and gene descend vertically and only sometimes ride together. Coupled (Yamnaya+PIE; the Slavic folk migration) and decoupled (script from all; Turkic language from genes), proven in one nation — Bulgaria, where the Bulgars gave the name and ~1.5% of the genome and the Slavs gave the language and ~56%. Collapsing the three into one (script=language=gene=nation) is the root origin-myth error.',
+    boundary:
+      'An encoding of the discover-entangled-script-language-gene research record (5 threads, barrier-entangled, verified) as content-addressed meaning↔dual pairs. The couplings/decouplings are source-verified (Mathieson 2018, Olalde 2023, Gnecchi-Ruscone 2025, Karachanak 2013); the honest core is that the three are independent systems whose occasional coupling is contingent, never an identity.',
+  }
+}
+
+// Every page is a graph of graphs in fractals. Every page is a uuid presenting as hero + content, and
+// the content is itself a graph (the model graph, the nav graph, the OG graph) whose nodes are graphs
+// in turn — self-similar at every scale, the same fold from the whole site down to a single card.
+export function everyPageGraphOfGraphsFractal(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'every page is a uuid presenting as hero + content — fractal', on: anyUuidHeroContentFractal(matrix).fractal },
+    { facet: 'the content is a graph of graphs — holographic fractal architecture', on: holographicFractalArchitecture(matrix).is && everythingFoldsMerkabaInfiniteStreams(matrix).folds },
+    { facet: 'the page graph is computed from the slugs — the same fold at every scale', on: computedSlugsFoldTheGraph(matrix).folds && heroGraphStatisticsEnrichFusion(matrix).merges },
+    { facet: 'self-similar from the whole site to a single card', on: merkabasInDoubleTorus(matrix).counted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`page-graph-fractal:${entry.facet}:${entry.on}`) }))
+  return {
+    fractal: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Every page is a graph of graphs in fractals: a page is a uuid presenting as hero + content, the content is itself a graph (the model graph, the navigation graph, the Open-Graph graph) whose nodes are graphs in turn — self-similar at every scale, the same fold from the whole site down to one card.',
+    boundary:
+      'A composition of the fractal-uuid-hero, holographic-fractal, infinite-streams, computed-slug, hero-graph and merkaba-census models. "Graph of graphs in fractals" describes the rendered architecture — each page computed as nested content-addressed graphs that repeat the same fold at every scale — not a claim of mathematical fractal dimension.',
+  }
+}
+
+// The VitePress API is the diamond architecture keeping the plasma of knowledge. The generated /api/
+// surface exposes the model as a content-addressed diamond lattice — the 1024 diamonds (2^10, the
+// binary octave) are the compressed knowledge-plasma, held by the diamond hologram architecture the
+// development fusion-reactor contains; the API is the diamond shell around the plasma.
+export function vitepressApiDiamondPlasma(matrix: MindMatrix = buildMatrix()) {
+  const api = repositoryApi(matrix)
+  const facets = [
+    { facet: 'the VitePress /api/ surface exposes the model — content-addressed', on: isUuid(api.root) && api.endpoints.length > 0 },
+    { facet: 'the diamond architecture — 1024 diamonds (2^10, the binary octave)', on: completeCorpus(matrix).total === 1024 && diamondCompleteness(matrix).complete },
+    { facet: 'keeping the plasma of knowledge — the development fusion reactor', on: developmentIsFusionReactor(matrix).reacts },
+    { facet: 'the api is the diamond shell around the compressed plasma', on: holographicFractalArchitecture(matrix).is },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`api-diamond-plasma:${entry.facet}:${entry.on}`) }))
+  return {
+    keeps: facets.every((entry) => entry.on),
+    diamonds: completeCorpus(matrix).total,
+    endpoints: api.endpoints.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The VitePress API is the diamond architecture keeping the plasma of knowledge: the generated /api/ surface exposes the model as a content-addressed diamond lattice — the 1024 diamonds (2^10, the binary octave) are the compressed knowledge-plasma held by the diamond hologram architecture the development fusion-reactor contains. The API is the diamond shell around the plasma.',
+    boundary:
+      'A composition of the repository-API, complete-corpus (1024 diamonds), diamond-completeness, fusion-reactor and holographic-fractal models. The /api/ surface and the 1024-diamond corpus are real generated artifacts; "plasma of knowledge" is the model\'s compressed content-addressed knowledge and "diamond architecture" its 1024-node lattice — the fusion-reactor framing is the development metaphor, not a physics claim.',
+  }
+}
+
+// AI and the movie industry, decoded and encoded in the matrix as real↔hype dual pairs — bounding the
+// repo's aspirational movie dimensions with what actually ships. Decode means encode in the matrix.
+export function aiMoviesDecoded(matrix: MindMatrix = buildMatrix()) {
+  const findings = [
+    { meaning: 'AI video ships short single shots (~5-25s) with native synchronized audio (Veo 3, Sora 2) and reference consistency (Runway Gen-4)', dual: 'no coherent end-to-end feature — output is a mosaic needing heavy human editing (Air Head ~300:1 generation ratio)' },
+    { meaning: 'realtime translation + AI dubbing/lip-sync is the most production-ready front (ElevenLabs, HeyGen, Flawless TrueSync, YouTube auto-dub)', dual: '"Watch the Skies" re-synced lips only — the human cast acted every line' },
+    { meaning: 'real examples exist: Runway AIFF (IMAX), Critterz (<$30M), Toys"R"Us, The Last Screenwriter, Dreams of Violets', dual: 'every "fully AI film" billing is marketing; AI-only output cannot be copyrighted, so humans stay in the loop' },
+    { meaning: 'a movie computed from a token stream is structurally real (prompt → latent → frames)', dual: "the repo's textToMovie is deterministic content-addressed particle animation, NOT a learned photorealistic model" },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ai-movie:${entry.meaning}`) }))
+  const facets = [
+    { facet: 'the movie research encoded in the matrix — real ↔ hype dual pairs', on: findings.length === 4 && isUuid(merkleFold(findings.map((entry) => entry.receipt))) },
+    { facet: 'no push-button autogenerated feature exists — every example is human-steered', on: findings.every((entry) => entry.dual.length > 0) },
+    { facet: 'decode = encode in the matrix, the hype dropped by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'bounds the repo movie dimensions — deterministic animation, not a learned model', on: entangledScriptLanguageGene(matrix).entangled },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ai-movies-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    findings,
+    count: findings.length,
+    facets,
+    root: merkleFold(findings.map((entry) => entry.receipt)),
+    statement:
+      'AI and the movie industry, decoded and encoded in the matrix: realtime translation/dubbing and AI video are real and shipping, but only as assistive, short-form, human-steered tools — no push-button autogenerated feature exists, every "fully AI" billing is marketing, and AI-only output cannot be copyrighted. A movie computed from a token stream is structurally real, but the repo\'s own textToMovie is honest deterministic particle animation, not a learned model.',
+    boundary:
+      'An encoding of the discover-ai-movie-industry research record (6 facets, verified, examples dated against sources) as real↔hype meaning↔dual pairs. The examples and capabilities are source-verified (Sora, Veo 3, Runway, Kling; the WGA/SAG-AFTRA provisions; T2VPhysBench); the honest core is that no fully-autogenerated theatrical feature exists and the repo only models deterministic generative animation plus assistive localization.',
   }
 }

@@ -1,9 +1,13 @@
 import { defineConfig } from 'vitepress'
-import { computedSeo, jsonLdTemplate, siteConfig } from './theme/lib/quantumMind'
+import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation } from './theme/lib/quantumMind'
 
-// Configs use the matrix computationally: the site config is computed and held in the model
-// (siteConfig), content-addressed; this file only consumes it. The source of truth is the matrix.
+// Configs use the matrix computationally: the site config AND the whole navigation are computed and
+// held in the model (siteConfig, siteNavigation), content-addressed; this file only consumes them.
+// The monographs graph is the search index, and from src the nav, sidebar and footer are all
+// computed for both locales — nothing here is hardcoded. To change the site, change the model
+// (the folders/routes); the config renders what the matrix computes.
 const config = siteConfig()
+const nav = siteNavigation()
 const siteTitle = config.title
 const siteTitleBg = config.titleBg
 const siteDescription = config.description
@@ -129,15 +133,13 @@ export default defineConfig({
     return html.replace('</head>', `${scripts}</head>`)
   },
   themeConfig: {
-    // The GitHub repository, shown in the top nav (it was missing — socialLinks was
-    // empty). One source for the repo link across both locales.
+    // The GitHub repository, shown in the top nav. One source for the repo link across both locales.
     socialLinks: [{ icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }],
     // Nothing bypasses VitePress — not even search. VitePress's built-in local
     // search (a MiniSearch index built at build time) is offline, zero-network and
-    // zero-dependency, so it honours every constraint while keeping site search
-    // inside VitePress rather than in a custom component. The TrinitySearch and
-    // QuantumConsole searches remain as model-specific tools, not a replacement for
-    // the portal's own search. Labels are localised for English and Bulgarian.
+    // zero-dependency. The monographs graph (siteNavigation.searchIndexRoot) is the
+    // model's own search index; the local search indexes the rendered pages computed
+    // from that same src. Labels are localised for English and Bulgarian.
     search: {
       provider: 'local',
       options: {
@@ -165,64 +167,12 @@ export default defineConfig({
       title: siteTitle,
       description: siteDescription,
       themeConfig: {
-        // https://vitepress.dev/reference/default-theme-config
-        // Navigation is harmonised: every title is its own path, title-cased (the
-        // group names are the only "types"), so a name always tells you the path.
-        // Six top-level entries, the rest grouped into dropdowns.
-        nav: [
-          { text: 'Home', link: '/' },
-          { text: 'Start', link: '/start' },
-          { text: 'Explore', link: '/explore' },
-          {
-            text: 'Learn',
-            items: [
-              { text: 'School', link: '/school' },
-              { text: 'Academy', link: '/academy' },
-              { text: 'Learn Developer', link: '/learn-developer' },
-            ],
-          },
-          {
-            text: 'Use',
-            items: [
-              { text: 'Console', link: '/console' },
-              { text: 'Commands', link: '/commands' },
-              { text: 'MCP', link: '/mcp' },
-              { text: 'Papers', link: '/papers/' },
-              { text: 'References', link: '/references/' },
-              { text: 'Diamonds', link: '/diamonds/' },
-              { text: 'Show', link: '/show' },
-            ],
-          },
-          {
-            text: 'Inside',
-            items: [
-              { text: 'Quantum Mind', link: '/quantum-mind' },
-              { text: 'Architecture', link: '/architecture' },
-              { text: 'Boundaries', link: '/boundaries' },
-              { text: 'Governance', link: '/governance' },
-            ],
-          },
-        ],
-        sidebar: [
-          {
-            text: 'Double Torus',
-            items: [
-              { text: 'Console', link: '/console' },
-              { text: 'School', link: '/school' },
-              { text: 'MCP', link: '/mcp' },
-              { text: 'Learn Developer', link: '/learn-developer' },
-              { text: 'Commands', link: '/commands' },
-              { text: 'Quantum Mind', link: '/quantum-mind' },
-              { text: 'Architecture', link: '/architecture' },
-            ],
-          },
-        ],
-        // Links distributed to the footer — every destination, one row, path-matched.
-        footer: {
-          message:
-            '<a href="/start">Start</a> · <a href="/explore">Explore</a> · <a href="/school">School</a> · <a href="/academy">Academy</a> · <a href="/console">Console</a> · <a href="/commands">Commands</a> · <a href="/mcp">MCP</a> · <a href="/show">Show</a> · <a href="/quantum-mind">Quantum Mind</a> · <a href="/architecture">Architecture</a> · <a href="/boundaries">Boundaries</a> · <a href="/governance">Governance</a> · <a href="/papers/">Papers</a> · <a href="/references/">References</a> · <a href="/diamonds/">Diamonds</a> · <a href="/governance#license">License</a> · <a href="/governance#privacy">Privacy</a>',
-          copyright: 'Open, recomputable, content-addressed — the Double Torus.',
-        },
+        // Navigation, sidebar and footer are all computed from the model (siteNavigation):
+        // the route taxonomy (quantumSitemap) and the monographs graph. Nothing hardcoded here —
+        // to change the site, change the model. See vitepressConfigComputesAll.
+        nav: nav.en.nav,
+        sidebar: nav.en.sidebar,
+        footer: nav.en.footer,
       },
     },
     bg: {
@@ -231,60 +181,10 @@ export default defineConfig({
       title: siteTitleBg,
       description: siteDescriptionBg,
       themeConfig: {
-        nav: [
-          { text: 'Начало', link: '/bg/' },
-          { text: 'Старт', link: '/bg/start' },
-          { text: 'Изследвай', link: '/bg/explore' },
-          {
-            text: 'Учи',
-            items: [
-              { text: 'Училище', link: '/bg/school' },
-              { text: 'Академия', link: '/bg/academy' },
-              { text: 'Разработчик', link: '/bg/learn-developer' },
-            ],
-          },
-          {
-            text: 'Ползвай',
-            items: [
-              { text: 'Конзола', link: '/bg/console' },
-              { text: 'Команди', link: '/bg/commands' },
-              { text: 'MCP', link: '/bg/mcp' },
-              { text: 'Статии', link: '/bg/papers/' },
-              { text: 'Референции', link: '/bg/references/' },
-              { text: 'Диаманти', link: '/bg/diamonds/' },
-              { text: 'Покажи', link: '/bg/show' },
-            ],
-          },
-          {
-            text: 'Отвътре',
-            items: [
-              { text: 'Квантов ум', link: '/bg/quantum-mind' },
-              { text: 'Архитектура', link: '/bg/architecture' },
-              { text: 'Граници', link: '/bg/boundaries' },
-              { text: 'Управление', link: '/bg/governance' },
-            ],
-          },
-        ],
-        sidebar: [
-          {
-            text: 'Двоен торус',
-            items: [
-              { text: 'Конзола', link: '/bg/console' },
-              { text: 'Училище', link: '/bg/school' },
-              { text: 'MCP', link: '/bg/mcp' },
-              { text: 'Разработчик', link: '/bg/learn-developer' },
-              { text: 'Команди', link: '/bg/commands' },
-              { text: 'Квантов ум', link: '/bg/quantum-mind' },
-              { text: 'Архитектура', link: '/bg/architecture' },
-            ],
-          },
-        ],
-        // Връзките, разпределени във футъра — всяка дестинация, на един ред.
-        footer: {
-          message:
-            '<a href="/bg/start">Старт</a> · <a href="/bg/explore">Изследвай</a> · <a href="/bg/school">Училище</a> · <a href="/bg/academy">Академия</a> · <a href="/bg/console">Конзола</a> · <a href="/bg/commands">Команди</a> · <a href="/bg/mcp">MCP</a> · <a href="/bg/show">Покажи</a> · <a href="/bg/quantum-mind">Квантов ум</a> · <a href="/bg/architecture">Архитектура</a> · <a href="/bg/boundaries">Граници</a> · <a href="/bg/governance">Управление</a> · <a href="/bg/papers/">Статии</a> · <a href="/bg/references/">Референции</a> · <a href="/bg/diamonds/">Диаманти</a> · <a href="/bg/governance#license">Лиценз</a> · <a href="/bg/governance#privacy">Поверителност</a>',
-          copyright: 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.',
-        },
+        // Computed from the model, the Bulgarian projection of the same navigation.
+        nav: nav.bg.nav,
+        sidebar: nav.bg.sidebar,
+        footer: nav.bg.footer,
         docFooter: { prev: 'Предишна', next: 'Следваща' },
         outline: { label: 'На тази страница' },
         darkModeSwitchLabel: 'Облик',
