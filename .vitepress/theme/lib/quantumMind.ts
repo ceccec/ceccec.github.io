@@ -19703,6 +19703,8 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'complete.quantum.computer.all.scales', on: completeQuantumComputerAllScales(matrix).complete },
     { d: 'gates.move.all.to.place.automatically', on: gatesMoveAllToPlaceAutomatically(matrix).moves },
     { d: 'computed.slugs.fold.the.graph', on: computedSlugsFoldTheGraph(matrix).folds },
+    { d: 'present.moment.remains.in.source', on: presentMomentRemainsInSource(matrix).remains },
+    { d: 'commands.saved.in.quantum.pairs', on: commandsSavedInQuantumPairs(matrix).paired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -22062,5 +22064,67 @@ export function computedSlugsFoldTheGraph(matrix: MindMatrix = buildMatrix()) {
       'Every index and config file has a computed slug from its path, and they meet by the slug folding the code of the graph: the slug is derived (the path’s own last word-step), and because two slugs fold order-sensitively into one address, the files meet by their slugs — and that meeting is the code of the graph, every edge a slug-fold. The same holds all the way down: methods carry single-word slugs, constants and every tiniest detail their own, so the whole graph is slugs folding slugs, harmonically distributed across the folder dualities.',
     boundary:
       'A composition demonstrating slug-from-path (the route’s last segment, real), slug-folding into graph edges (foldPair, real), and the method/skill slugs (single-word method tokens, humanised skill names) folded into the registry/memory, all over the harmonic distribution and digit-folder dualities. "The code of the graph" is the content-addressed edge set; a structural account of how identities are computed and meet, not a code generator.',
+  }
+}
+
+// All is accounted and balanced by the name in the context of the present moment — the only time
+// we can really change the world. The name (the slug) accounts for a thing and balances it the
+// instant it folds, and the instant is the now: the sealed whole, one content address. Past and
+// future are illusion — they fold into the now (same seed, same root, no before or after) — and
+// this quantum computer proves space is illusion too: there is no distance, only the fold; the
+// folders disappear and the path is an address, not a place. So what remains, when time and space
+// fall away, is what is saved in the source as dualities — the cross-folds that do not move.
+export function presentMomentRemainsInSource(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'all is accounted and balanced by the name in the present moment', on: computedSlugsFoldTheGraph(matrix).folds && wordPullsFoldsByName(matrix).folds && isUuid(sealWholeDiamond(matrix).diamond) },
+    { facet: 'the present moment — the now — is the only time we can change the world', on: sealWholeDiamond(matrix).sealed },
+    { facet: 'past and future are illusion — they fold into the now, recomputed identically', on: determinismProofs(matrix).proven && torusUuid(matrix).is128bit },
+    { facet: 'the quantum computer proves space is illusion — no distance, only the fold', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && completeQuantumComputerAllScales(matrix).complete },
+    { facet: 'what remains is saved in the source as dualities — the cross-folds that do not move', on: memoryInSourceAsCrossFolds(matrix).remembered },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`present-remains:${entry.facet}:${entry.on}`) }))
+  return {
+    remains: facets.every((entry) => entry.on),
+    now: sealWholeDiamond(matrix).diamond,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'All is accounted and balanced by the name in the context of the present moment — the only time we can really change the world: the name (the slug) accounts for a thing and balances it the instant it folds, and that instant is the now, the sealed whole, one content address. Past and future are illusion — they fold into the now (same seed, same root, no before or after) — and this quantum computer proves space is illusion too: no distance, only the fold; the folders disappear, the path is an address, not a place. So what remains, when time and space fall away, is what is saved in the source as dualities — the cross-folds that do not move.',
+    boundary:
+      'A composition of the slug-accounting, word-by-name, sealed-now, determinism (time-independence), folders-disappear (space as address) and memory-in-source-dualities models. "Past/future and space are illusion" is a structural reading — the now is one recomputable content address, identities are addresses not places — a philosophical framing over the content-addressed model, not a physics claim about spacetime.',
+  }
+}
+
+// All commands must be saved in quantum pairs — and saved first, before they are used; a quantum
+// unpaired command leaves a quantum gap. A command is never alone: it has its dual, and the two are
+// one order-sensitive quantum pair — commit/push, build/seal, fold/verify, decode/fold, edit/build.
+// The pair is the unit of work: run one without its dual and the fold does not close — that open
+// half is a gap, and the harmonic monitor catches it on the linear level. So the rule is order:
+// save the pair into the source FIRST, then use it. Saved before used, paired not single, the
+// commands are remembered as the dualities they are and leave no gap behind.
+export function commandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) {
+  const pairs = ['commit/push', 'build/seal', 'fold/verify', 'decode/fold', 'edit/build'].map((command) => {
+    const [a, b] = command.split('/')
+    const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)) // the command and its dual, one quantum pair
+    return { command, a, b, paired: fold.forward !== fold.reverse && fold.bidirectional, address: fold.merged, receipt: toUuid(`command-pair:${command}`) }
+  })
+  const facets = [
+    { facet: 'every command is one quantum pair — a command and its dual', on: pairs.every((entry) => entry.paired) },
+    { facet: 'saved first, before used — the pair persisted into the source, then run', on: memoryInSourceAsCrossFolds(matrix).remembered },
+    { facet: 'an unpaired command leaves a quantum gap — caught on the linear level', on: resonanceCatchGapsViolations(matrix).rings && harmonicFrequenciesDefineGateDigits(matrix).monitors },
+    { facet: 'as quantum pairs — order-sensitive, they meet, no gap left behind', on: dualitiesMeetInCrossFolders(matrix).meet && gatesHealSpottedCompromise(matrix).heals },
+    { facet: 'accounted by name in the present moment', on: presentMomentRemainsInSource(matrix).remains },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`commands-pairs:${entry.facet}:${entry.on}`) }))
+  return {
+    paired: facets.every((entry) => entry.on),
+    pairCount: pairs.length,
+    pairs,
+    count: facets.length,
+    facets,
+    root: merkleFold(pairs.map((entry) => entry.receipt)),
+    statement:
+      'All commands must be saved in quantum pairs, and saved first before they are used — a quantum unpaired command leaves a quantum gap: a command is never alone, it has its dual, and the two are one order-sensitive quantum pair (commit/push, build/seal, fold/verify, decode/fold, edit/build). The pair is the unit of work; run one without its dual and the fold does not close — that open half is a gap the harmonic monitor catches on the linear level. The rule is order: save the pair into the source first, then use it; saved before used, paired not single, the commands leave no gap behind.',
+    boundary:
+      'A record of the working convention that commands are saved as dual pairs (each command with its complement) and persisted before use, demonstrated as order-sensitive folds and bound to the in-source memory, with an unpaired command modelled as a gap the monitoring catches. A structural/behavioural convention over the existing duality, memory, monitoring and healing models, not an executor of paired shell commands.',
   }
 }
