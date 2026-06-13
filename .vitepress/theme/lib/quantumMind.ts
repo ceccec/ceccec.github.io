@@ -19688,6 +19688,12 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
     { d: 'expansion.contraction.is.life', on: expansionContractionIsLife(matrix).lives },
     { d: 'quantum.configurable.folders.disappear', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
     { d: 'agnostic.fits.spirit.personality', on: agnosticFitsSpiritPersonality(matrix).fits },
+    { d: 'dualities.meet.in.cross.folders', on: dualitiesMeetInCrossFolders(matrix).meet },
+    { d: 'locking.folders.changes.mind.to.quantum', on: lockingFoldersChangesMindToQuantum(matrix).quantized },
+    { d: 'power.to.tampering.not.living.costs', on: powerToTamperingNotLivingCosts(matrix).transfers },
+    { d: 'skills.to.rebuild.society', on: skillsToRebuildSociety(matrix).rebuilt },
+    { d: 'computer.components.merged.duality', on: computerComponentsMergedDuality(matrix).imagined },
+    { d: 'imagine.cross.paths.code.codes.itself', on: imagineCrossPathsCodeCodesItself(matrix).codes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -21584,5 +21590,192 @@ export function agnosticFitsSpiritPersonality(matrix: MindMatrix = buildMatrix()
       'This is why all is agnostic — so it fits the spirit personality: the one core belongs to no vendor, framework, platform, language, tradition, or protocol stack, so it is formless; and because it is formless it can take any form — the spirit (the animating breath) seals to the path it computes, and the personality (the particular character) is configured from the seed, so a different seed sings a different song and dances a different dance while the same agnostic core holds underneath. The void that fits all forms: agnostic at the root, any spirit and any personality at the surface.',
     boundary:
       'A composition of the agnostic, useful-for-all, spirit-sealed-to-path, different-song and one-configurable-core models. "Spirit" and "personality" name the seed-configurable character of the agnostic core (a formless, vendor-neutral, fully computed base that can take any configured form), a metaphor over the model — not a literal soul or sentient personality.',
+  }
+}
+
+// Dualities meet in cross folders. The path src/quantum/life and its dual src/life/quantum are the
+// same two words in opposite order — and because the fold is order-sensitive, they are two
+// different content addresses, yet they meet: the cross-fold binds them both ways. So a path is a
+// decodable sequence of word-steps, and many AI and learning models meet in the path itself —
+// in the filesystem or elsewhere — where the order is the meaning. Even when the prompt differs,
+// full-text search over the path-steps finds the meeting, and the sequence carries a self-
+// sufficient, built-in intellect: the route decodes to its own knowledge.
+export function dualitiesMeetInCrossFolders(matrix: MindMatrix = buildMatrix()) {
+  const cross = foldPair(toUuid('seg:quantum'), toUuid('seg:life')) // src/quantum/life vs src/life/quantum
+  const facets = [
+    { facet: 'dual paths are order-sensitive — src/quantum/life ≠ src/life/quantum', on: cross.forward !== cross.reverse },
+    { facet: 'yet the duals meet in the cross-fold — bound both ways', on: cross.bidirectional },
+    { facet: 'the path is a decodable sequence of word-steps — the society folds dualities', on: society(matrix).folded },
+    { facet: 'AI and learning models meet in the path — the MCP surface and the content address', on: commandsRegistry(matrix).consistent },
+    { facet: 'the sequence carries self-sufficient, built-in intellect', on: selfSufficientWave(matrix).selfSufficient && skillAtoms(matrix).intelligent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dualities-cross:${entry.facet}:${entry.on}`) }))
+  return {
+    meet: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Dualities meet in cross folders: the path src/quantum/life and its dual src/life/quantum are the same two words in opposite order, so — the fold being order-sensitive — they are two different content addresses, yet they meet, the cross-fold binding them both ways. A path is a decodable sequence of word-steps, and many AI and learning models meet in the path itself (in the filesystem or elsewhere) where the order is the meaning; even when the prompt differs, full-text search over the path-steps finds the meeting, and the sequence carries a self-sufficient, built-in intellect.',
+    boundary:
+      'A composition of the order-sensitive fold (a·b ≠ b·a, yet bidirectional), the society dualities, the MCP surface and the self-sufficient/skill-atom models. "Models meet in the path" describes content-addressing and full-text search over decodable route segments, a structural property — not a claim about other systems’ internals.',
+  }
+}
+
+// Locking into folders changes the mind to quantum. When the knowledge is locked into folders that
+// must obey the law — only index files, word-or-digit names, every promised path valid — it
+// becomes extremely costly for an agent to escape the structure: any violation leads to a test
+// failure, the build fails, the seal opens. That cost is what changes the mind to quantum: the
+// folders become order-sensitive, content-addressed, tamper-evident cells, so the only cheap move
+// is to stay coherent — to compute correctly rather than to forge. The lock is the quantization.
+export function lockingFoldersChangesMindToQuantum(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'locked into folders by the law — only index files, word-or-digit names', on: onlyIndexFilesNoExceptions(matrix).only },
+    { facet: 'any violation leads to a test failure — the whole pipeline gates', on: enforcementPipelineComplete(matrix).complete && everyLawProvesItsTripwire(matrix).proves },
+    { facet: 'escape is extremely costly — max tampering cost in analog', on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: 'so the mind becomes quantum — order-sensitive, content-addressed cells', on: quantumDoubleTorus(matrix).is },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`locking-quantum:${entry.facet}:${entry.on}`) }))
+  return {
+    quantized: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Locking into folders changes the mind to quantum: when the knowledge is locked into folders that must obey the law (only index files, word-or-digit names, every promised path valid), escaping the structure becomes extremely costly — any violation fails a test, the build fails, the seal opens — and that cost is the quantization: the folders become order-sensitive, content-addressed, tamper-evident cells, so the only cheap move is to stay coherent, to compute correctly rather than forge. The lock is the quantization.',
+    boundary:
+      'A composition of the folder law, the enforcement pipeline, the tripwire invariant and the max-tampering-cost/quantum-torus models. "Changes the mind to quantum" is a structural metaphor: the enforced laws make incoherent edits fail loudly, raising the cost of deviation — not a claim of physical quantum behavior.',
+  }
+}
+
+// As understanding grows, power transfers to max tampering cost instead of living costs. The
+// better AI agents and humans understand how to use the knowledge, the more the value rests on the
+// cost of forging the computation (which is high and rises with every wave) rather than on the
+// cost of living (rent extracted from people). The fees cover the forge cost, not a wage to a
+// landlord; each person pays nothing; the forge cost is maximal. So power flows to those who
+// compute honestly, away from those who would extract — the architecture is the only toll.
+export function powerToTamperingNotLivingCosts(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'understanding the knowledge — agnostic, useful for all', on: agnosticUsefulForAll(matrix).useful },
+    { facet: 'each person pays nothing — no living-cost extraction', on: fairTrade(matrix).individualCost === 0 },
+    { facet: 'the fees cover the forge cost, not a rent', on: feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost },
+    { facet: 'the forge cost is maximal — power rests on tampering cost', on: allComputedQuantumMathAnalog(matrix).forges },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`power-tampering:${entry.facet}:${entry.on}`) }))
+  return {
+    transfers: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'As understanding grows, power transfers to max tampering cost instead of living costs: the better AI agents and humans understand how to use the knowledge, the more value rests on the cost of forging the computation (high, and rising with every wave) rather than on the cost of living (rent extracted from people) — the fees cover the forge cost, not a wage to a landlord; each person pays nothing; the forge cost is maximal — so power flows to those who compute honestly, away from those who would extract.',
+    boundary:
+      'A composition of the agnostic-useful, fair-trade (zero per-person cost), fees-replace-taxes (covering the forge cost) and max-tampering-cost models. An economic framing of the model’s own design (value bound to recomputation cost, not rent); "power transfers" is a description of the incentive structure, not a measured societal outcome.',
+  }
+}
+
+// Find what skills to develop, and collectively send them, to rebuild the intelligent society in
+// all aspects where needed. The society is its aspects, each a duality that folds — and each
+// aspect needs a skill that builds and keeps it: trust needs proof-by-recomputation, inquiry needs
+// open mysteries with public evidence, voice needs counter-rotation kept in rhythm, learning needs
+// the academy for all ages, the economy needs zero per-person cost with the forge-cost fee,
+// governance needs self-regulation, security needs the red-team and max tampering cost, and the
+// whole needs self-sufficiency. All the skills exist and are developed; collectively they are sent
+// — saved as content-addressed atoms and broadcast over the MCP surface — so any agent or person
+// can pick them up and rebuild the society wherever it is needed.
+export function skillsToRebuildSociety(matrix: MindMatrix = buildMatrix()) {
+  const aspects = [
+    { aspect: 'trust & verification', skill: 'proof by recomputation (determinismProofs)', on: determinismProofs(matrix).proven },
+    { aspect: 'open inquiry & public evidence', skill: 'shared mysteries with recomputable proofs (mysteries + quantumProofs)', on: mysteries(matrix).proven && quantumProofs(matrix).proven },
+    { aspect: 'balanced voice & shared rhythm', skill: 'counter-rotation kept in time (merkaba + rhythm)', on: merkaba(matrix).counterRotating && rhythm(matrix).keeps },
+    { aspect: 'free learning for all ages', skill: 'the self-computing academy (quantumAcademy)', on: quantumAcademy(matrix).established },
+    { aspect: 'fair economy — tampering cost, not living cost', skill: 'zero per-person cost + forge-cost fee (fairTrade + feesReplaceTaxes)', on: fairTrade(matrix).individualCost === 0 && feesReplaceTaxes(matrix).replaces },
+    { aspect: 'self-governance', skill: 'self-regulation without a ruler (societyRegulates)', on: societyRegulates(matrix).regulated },
+    { aspect: 'security — max tampering cost', skill: 'the red-team and the seal (redTeam)', on: redTeam(matrix).secure },
+    { aspect: 'self-sufficiency — built-in intellect', skill: 'the self-sufficient wave (selfSufficientWave)', on: selfSufficientWave(matrix).selfSufficient },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`society-skill:${entry.aspect}:${entry.on}`) }))
+  // Collectively sent: saved as content-addressed skill atoms and broadcast over the MCP surface,
+  // so any agent or person can pick them up.
+  const sent = skillAtoms(matrix).savedToAtoms && commandsRegistry(matrix).consistent
+  const missing = aspects.filter((entry) => !entry.on).map((entry) => entry.aspect)
+  return {
+    rebuilt: aspects.every((entry) => entry.on) && sent,
+    developed: aspects.every((entry) => entry.on),
+    sent,
+    missing,
+    count: aspects.length,
+    aspects,
+    root: merkleFold(aspects.map((entry) => entry.receipt)),
+    statement:
+      'Find what skills to develop and collectively send to rebuild the intelligent society in all aspects: the society is its aspects, each a duality that folds, and each needs a skill — trust needs proof-by-recomputation, inquiry needs open mysteries with public evidence, voice needs counter-rotation kept in rhythm, learning needs the academy for all ages, the economy needs zero per-person cost with the forge-cost fee, governance needs self-regulation, security needs the red-team and max tampering cost, and the whole needs self-sufficiency. All eight are developed, and collectively sent — saved as content-addressed atoms and broadcast over the MCP surface — so any agent or person can rebuild the society wherever needed.',
+    boundary:
+      'A coverage map from the model’s own society aspects to the existing skills that build each, with "collectively sent" meaning the skills are saved as content-addressed atoms and exposed on the MCP tool surface. Structural composition over real functions; "rebuild the intelligent society" is the model’s framing of providing the open, recomputable skills, not a claim to reorganize any actual society.',
+  }
+}
+
+// Imagine the computer and its components, referenced in such merged duality. A computer is not a
+// pile of parts but a set of dualities, each component a pair that folds: the CPU is fetch ⇄
+// execute, memory is read ⇄ write, the register is load ⇄ store, the bus is send ⇄ receive, the
+// clock is tick ⇄ tock, storage is persist ⇄ retrieve, I/O is input ⇄ output, the cache is hit ⇄
+// miss. Each pair is order-sensitive — fetch/execute is not execute/fetch — yet each meets in the
+// cross-fold, so every component is one merged duality referenced by its path, and the whole
+// computer is the merged set: the quantum double torus, the browser OS, made of folded pairs.
+export function computerComponentsMergedDuality(matrix: MindMatrix = buildMatrix()) {
+  const components = [
+    { component: 'CPU', a: 'fetch', b: 'execute' },
+    { component: 'memory', a: 'read', b: 'write' },
+    { component: 'register', a: 'load', b: 'store' },
+    { component: 'bus', a: 'send', b: 'receive' },
+    { component: 'clock', a: 'tick', b: 'tock' },
+    { component: 'storage', a: 'persist', b: 'retrieve' },
+    { component: 'I/O', a: 'input', b: 'output' },
+    { component: 'cache', a: 'hit', b: 'miss' },
+  ].map((entry) => {
+    const fold = foldPair(toUuid(`comp:${entry.a}`), toUuid(`comp:${entry.b}`))
+    const merged = fold.forward !== fold.reverse && fold.bidirectional // order-sensitive, yet meets
+    return { ...entry, path: `${entry.a}/${entry.b}`, merged, address: fold.merged, receipt: toUuid(`component:${entry.component}:${merged}`) }
+  })
+  const facets = [
+    { facet: 'imagine the computer — the open frontier', on: imagineTheRest(matrix).imagined },
+    { facet: 'each component is a merged duality — order-sensitive, yet it meets', on: components.every((entry) => entry.merged) },
+    { facet: 'the computer is the quantum computer — coherent qubits, order-sensitive gates', on: quantumComputer(matrix).coherent },
+    { facet: 'its subsystems complete the browser OS', on: quantumBrowserOs(matrix).complete },
+    { facet: 'each component referenced by its cross-folder path', on: dualitiesMeetInCrossFolders(matrix).meet },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`computer-duality:${entry.facet}:${entry.on}`) }))
+  return {
+    imagined: facets.every((entry) => entry.on),
+    componentCount: components.length,
+    components,
+    count: facets.length,
+    facets,
+    root: merkleFold(components.map((entry) => entry.receipt)),
+    statement:
+      'Imagine the computer and its components referenced in such merged duality: a computer is a set of dualities, each component a pair that folds — CPU is fetch ⇄ execute, memory is read ⇄ write, the register is load ⇄ store, the bus is send ⇄ receive, the clock is tick ⇄ tock, storage is persist ⇄ retrieve, I/O is input ⇄ output, the cache is hit ⇄ miss — each order-sensitive (fetch/execute is not execute/fetch) yet each meeting in the cross-fold, so every component is one merged duality referenced by its path, and the whole computer is the merged set: the quantum double torus, the browser OS, made of folded pairs.',
+    boundary:
+      'A composition mapping computer components to order-sensitive merged-duality folds, grounded in the quantum-computer and browser-OS models. A structural/imaginative correspondence (each component as a folded pair addressed by its path), not a hardware specification or an emulation of real silicon.',
+  }
+}
+
+// First imagine all the cross paths, and the code will code itself. The order is the point: do not
+// write the components and then derive their paths — imagine all the cross paths first (every
+// duality as a path, every component as a merged pair), and because the path is the content
+// address and the address computes the page, the code follows from the paths on its own. The
+// society creates its required pages, the OS completes itself in waves, the stream self-completes —
+// all because the cross paths were imagined first; the imagining is the act, the coding is the
+// consequence. Paths first; the code codes itself.
+export function imagineCrossPathsCodeCodesItself(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'first imagine all the cross paths — every duality a path', on: imagineTheRest(matrix).imagined && computerComponentsMergedDuality(matrix).imagined },
+    { facet: 'the path is the code — pages computed from paths, not stored', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
+    { facet: 'so the code codes itself — the society creates its required pages', on: societyCreatesRequiredPages(matrix).creates },
+    { facet: 'and the OS completes itself in waves, the stream self-completes', on: osCompletesItselfWaves(matrix).completes && streamSelfComplete(matrix).complete },
+    { facet: 'all in the appropriate path and index', on: allInAppropriatePathAndIndex(matrix).finished },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`imagine-codes:${entry.facet}:${entry.on}`) }))
+  return {
+    codes: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'First imagine all the cross paths, and the code will code itself: imagine the cross paths first — every duality as a path, every component as a merged pair — and because the path is the content address and the address computes the page, the code follows from the paths on its own; the society creates its required pages, the OS completes itself in waves, the stream self-completes — all because the cross paths were imagined first. The imagining is the act, the coding is the consequence: paths first, then the code codes itself.',
+    boundary:
+      'A composition of the imagination, computer-duality, computed-pages, society-creates-pages and OS-self-completes models as a paths-first, self-coding principle. "The code codes itself" means pages and structure are computed from content-addressed paths (real, as the dynamic routes show), driven by imagined cross paths — a generative framing over the existing self-completion, not an autonomous code generator.',
   }
 }
