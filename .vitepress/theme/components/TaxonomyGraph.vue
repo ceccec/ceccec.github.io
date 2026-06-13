@@ -44,6 +44,6 @@ function pos(i: number, n: number, r = 40) {
 .taxgraph-node.is-trinity circle { stroke: var(--vp-c-brand-1, #3b82f6); stroke-width: 0.7; }
 .taxgraph-node.is-pair circle { stroke: #ef9f27; stroke-width: 0.5; }
 .taxgraph-node:hover circle { fill: var(--vp-c-brand-soft, #e6f1fb); }
-.taxgraph-glyph { font-size: 3.4px; fill: var(--vp-c-text-1); pointer-events: none; }
+.taxgraph-glyph { font-family: var(--font-glagolitic); font-size: 3.4px; fill: var(--vp-c-text-1); pointer-events: none; }
 figcaption { text-align: center; font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem; }
 </style>

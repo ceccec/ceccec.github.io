@@ -52,6 +52,12 @@
   --vp-c-brand-1: var(--vp-c-indigo-1);
   --vp-c-brand-2: var(--vp-c-indigo-2);
   --vp-c-brand-3: var(--vp-c-indigo-3);
+
+  /* Glagolitic — the site's single icon script (Unicode U+2C00 block). A font stack
+     that renders the glyphs wherever the system provides coverage (Noto, Segoe
+     Historic, Quivira, Code2001), serif fallback. The decoded ninth-century
+     alphabet, made the visual language of the self-computed components. */
+  --font-glagolitic: 'Noto Sans Glagolitic', 'Segoe UI Historic', 'Quivira', 'Code2001', 'Kelvinch', var(--vp-font-family-base);
   --vp-c-brand-soft: var(--vp-c-indigo-soft);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
@@ -1165,4 +1171,29 @@ html[data-mode='simple'] .rich-only { display: none !important; }
 .VPDocAside {
   position: relative;
   z-index: 1;
+}
+
+/* -------------------------------------------------------------------------- */
+/* The self-computed components — one visual language, the Glagolitic script.  */
+/* Dot, Vortex, Calligraphy, TaxonomyGraph and GpuField each fill themselves   */
+/* from a seed; these rules keep them in harmony with the theme.               */
+/* -------------------------------------------------------------------------- */
+
+/* Any inline Glagolitic text (transliterations, glyph icons) renders in the
+   font stack that covers the U+2C00 block. */
+.glagolitic {
+  font-family: var(--font-glagolitic);
+  font-feature-settings: 'liga' 0;
+}
+
+/* The calligraphic ink lifts in dark mode so the stroke stays visible. */
+.dark .calligraphy-ink {
+  filter: brightness(1.7) saturate(0.9);
+}
+
+/* Self-computed visual fields (the GPU plasma, the hero) share a soft frame
+   matching the theme's card radius. */
+.gpufield canvas,
+.gpufield-fallback {
+  box-shadow: 0 1px 12px var(--vp-c-shadow-1, rgba(0, 0, 0, 0.12));
 }

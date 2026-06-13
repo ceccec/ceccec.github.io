@@ -72,7 +72,7 @@ function play() {
 .dot-down { transform-origin: center; animation: dot-ccw var(--spin, 3000ms) linear infinite; }
 @keyframes dot-cw { to { transform: rotate(360deg); } }
 @keyframes dot-ccw { to { transform: rotate(-360deg); } }
-.dot-glyph { font-size: 22px; fill: hsl(var(--hue) 92% 82%); }
+.dot-glyph { font-family: var(--font-glagolitic); font-size: 22px; fill: hsl(var(--hue) 92% 82%); }
 .dot-label { font-family: var(--vp-font-family-mono, monospace); opacity: 0.7; font-size: 0.8rem; }
 .dot-content { margin-top: 0.25rem; }
 @media (prefers-reduced-motion: reduce) {
