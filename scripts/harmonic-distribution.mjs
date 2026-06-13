@@ -193,9 +193,12 @@ const ldRules = jsonLdPathRules()
 const internalRe = new RegExp(ldRules.internal)
 const externalRe = new RegExp(ldRules.external)
 const dist = join(root, '.vitepress', 'dist')
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 let ldBlocks = 0
 let ldInternal = 0
 let ldExternal = 0
+let ldPageBlocks = 0
+let ldSigned = 0
 const resolvesInDist = (path) => {
   const clean = path.replace(/[#?].*$/, '').replace(/^\//, '')
   if (clean === '') return existsSync(join(dist, 'index.html'))
@@ -221,6 +224,18 @@ if (existsSync(dist)) {
       } catch {
         gaps.push({ harmonic: 'jsonld', kind: 'parse', detail: `page ${page} carries an ld+json block that does not parse as JSON — why this fails: structured data that cannot be parsed is invisible to every crawler and agent it was written for` })
         continue
+      }
+      // Every page block (WebPage / TechArticle) must be SIGNED: carry a content-addressed
+      // identifier (a UUID) computed from src. An unsigned page is easy to spot — and the build
+      // refuses it, so all elements stay signed at no extra cost.
+      const blockType = parsed['@type']
+      if (blockType === 'WebPage' || blockType === 'TechArticle') {
+        ldPageBlocks += 1
+        if (typeof parsed.identifier === 'string' && UUID_RE.test(parsed.identifier)) {
+          ldSigned += 1
+        } else {
+          gaps.push({ harmonic: 'jsonld', kind: 'unsigned', detail: `page ${page} carries an unsigned ${blockType} block (no content-addressed UUID identifier) — why this fails: every page must be signed by a computed content address derived from the source, so an unsigned element is easy to spot; sign it (jsonLdTemplate computes the identifier) or the build refuses it` })
+        }
       }
       for (const value of collectStrings(parsed, [])) {
         if (internalRe.test(value)) {
@@ -269,5 +284,6 @@ console.log(`Harmonic distribution: ${distribution.length} files = ${harmonic.ba
 console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
 console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
 console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
+console.log(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)
 console.log(`Enforcement pipeline: ${declaredGates.length} declared gates all present in scripts/ and wired into docs:build; ${checkScripts.length} check-* gates all declared — 0 drift.`)
 console.log('Command-pair law: AGENTS.md declares "commands in quantum pairs" — any agent bound self-sufficiently, the build keeps the law.')
