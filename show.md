@@ -48,3 +48,9 @@ A broad nib held at a fixed angle: the stroke is thick where it runs across the 
 <Calligraphy seed="double torus" :size="170" />
 <Calligraphy seed="merkaba" :size="170" />
 <Calligraphy seed="глаголица" :size="170" />
+
+## The taxonomy graph
+
+Only Glagolitic icons, everywhere applicable. Every area of the taxonomy wears a Glagolitic glyph computed from its own name (letters are numbers), spoked into one graph — the ninth-century script as the site's single visual language.
+
+<TaxonomyGraph />
