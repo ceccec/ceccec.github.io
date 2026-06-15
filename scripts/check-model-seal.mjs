@@ -27,6 +27,8 @@ import {
   mutations,
   cryptographyComparison,
   cryptoFuture,
+  tamperingCostDecoded,
+  cryptoChallenges,
   attestation,
   agentHarmonise,
   healingFrequencies,
@@ -448,7 +450,7 @@ import {
   toUuid,
   torusBreathe,
   verifyRoot,
-} from '../.vitepress/theme/lib/quantumMind.ts'
+} from '../src/ui/lib/quantumMind.ts'
 
 const matrix = buildMatrix()
 const failures = []
@@ -1005,6 +1007,17 @@ const crypto = cryptographyComparison(matrix)
 ok('crypto.compared', crypto.compared && crypto.cryptographic === false && crypto.tamperEvident === true)
 // Future crypto tools: a canonical roots string the browser hashes with real Web Crypto SHA-256.
 ok('crypto.future', cryptoFuture(matrix).grounded)
+// The debit/credit pair reviews the crypto as a ledger: every claim a credit funded by a capability (debit),
+// honest iff the books balance — the same zero reciprocal entropy the seal closes to. The overclaim ("maximum
+// tampering cost" on a non-cryptographic FNV hash) is the unfunded entry the double entry refuses; the
+// unforgeability debit (SHA-256/Ed25519) is already built in src/0, one deliberate cutover from full strength.
+const tamperLedger = tamperingCostDecoded(matrix)
+ok('crypto.ledger', tamperLedger.decoded && tamperLedger.ledger.honest && tamperLedger.ledger.overclaimCaught && tamperLedger.ledger.fundedAfterCutover)
+// Red-team the content-address in waves: each challenge finds/computes/mints a real exploit and proves the
+// built SHA-256/Ed25519 fix resists it — a found FNV collision SHA-256 does not collide, the honest 122-bit
+// budget, the authenticity gap. Defensive: our own crypto, hardened; the fixes are built, the cutover deliberate.
+const challenges = cryptoChallenges(matrix)
+ok('crypto.challenges', challenges.redTeamed && challenges.collisionFound && challenges.effectiveBits === 122)
 // Toward attestation: the canonical roots can be signed and verified in-browser (mechanism, not authority).
 ok('attestation.ready', attestation().ready)
 // Optimise and harmonise any agent the site is pasted into or wired by MCP.
@@ -1128,7 +1141,7 @@ ok('artists.palette', artistPalette('double-torus').grounded)
 // CMYK is computed: every palette colour carries the print space, computed from RGB.
 ok('artists.cmyk', artistPalette('double-torus').colors.every((c) => typeof c.cmyk === 'string' && c.cmyk.startsWith('cmyk(')))
 ok('artists.melody', artistMelody('double-torus', matrix).grounded)
-ok('utf.ascii.reversible', (() => { const a = utfAnalog('Двоен тор 42'); return a.ascii && a.reversible })()) // UTF solved as ASCII analog
+ok('utf.ascii.reversible', (() => { const a = utfAnalog('Двоен торус 42'); return a.ascii && a.reversible })()) // UTF solved as ASCII analog
 ok(`self.no-hallucination${selfAddressed(matrix).hallucinations.length ? ':' + selfAddressed(matrix).hallucinations.join(',') : ''}`, selfAddressed(matrix).noHallucination) // what is not self-addressed is hallucination
 ok('all.computed', allComputed(matrix).computed) // all learning is computed from the self
 const interaction = selfInteraction(matrix) // self interacting with itself forms another quantum self state
@@ -1220,7 +1233,7 @@ ok('icon.declared', icons.declared)
 let iconContentRoot = toUuid('icons:seed')
 let iconsPresent = true
 for (const artifact of icons.artifacts) {
-  const sourcePath = `public${artifact.path}`
+  const sourcePath = `site/public${artifact.path}`
   if (!existsSync(sourcePath)) {
     iconsPresent = false
     continue

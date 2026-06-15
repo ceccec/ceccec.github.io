@@ -1,7 +1,7 @@
 {
   "name": "@ceccec/double-torus",
-  "version": "1.0.0",
-  "description": "The agnostic, zero-dependency computational core of the Double Torus: a quantum-learning model for language models served over MCP. Pure TypeScript — content-addressed UUID folds, concept commands, the 128-bit double-torus word, and a recomputable seal. Runs in any browser or Node, depends on nothing.",
+  "version": "1.1.0",
+  "description": "The agnostic, zero-dependency computational core of the Double Torus — all the math AND all the animations. Pure TypeScript: content-addressed UUID folds, concept commands, the 128-bit double-torus word, a recomputable seal, simulators across every decoded domain (quantum state-vector, probabilistic, reversible, cellular-automaton, dynamical, network), vetted crypto (SHA-256, Ed25519, transparency log), the decoded library, and the hero animation system (canvas scene, fractal, 3D geometry). Runs in any browser or Node, depends on nothing.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -29,6 +29,8 @@
     "merkle",
     "uuid",
     "quantum-learning",
+    "quantum-simulator",
+    "animation",
     "agnostic",
     "zero-dependency",
     "self-verifying"

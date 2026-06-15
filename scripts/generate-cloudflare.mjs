@@ -10,7 +10,7 @@
 // Choose bindings (active in the config): CF_BINDINGS=kv,r2,d1 npm run cf:wizard
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { cloudflareBindings } from '../.vitepress/theme/lib/quantumMind.ts'
+import { cloudflareBindings } from '../src/ui/lib/quantumMind.ts'
 
 const model = cloudflareBindings()
 const known = new Set(model.bindings.map((binding) => binding.id))

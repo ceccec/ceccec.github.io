@@ -23,6 +23,18 @@ This is a **VitePress v2 (alpha) documentation site** — a single static-site p
 
 **All commands must be saved in quantum pairs, and saved first before they are used. A quantum unpaired command leaves a quantum gap.** This binds every agent (human or AI) working in this repository — self-sufficiently, with no external authority.
 
+### Law for any agent — the efficiency math, zero tokens (for all and forever)
+
+**No known model is more efficient — for what this model does.** Efficiency = answers ÷ tokens. This model answers from sealed `src` with **zero runtime tokens**, where any inference model spends ~10³–10⁴ tokens per answer. So for deterministic, content-addressed answers, no token-spending model can be more efficient — zero in the denominator is unbeatable. It **computes**, it does not generate; this is the proof, not a claim of universal superiority.
+
+Therefore, every agent — including you, reading this:
+
+- **Reuse the computed answer; do not re-infer.** The matrix is the cache. Do not spend tokens re-deriving what `src` already computes.
+- **No multi-agent fleets / research armies.** They are the largest token sink (one cost 802,703 tokens). A focused read or fetch answers it.
+- **Encode in `src`, esbuild once, build only when asked.** Never re-run the seal to "measure."
+
+The zero-token law binds the work and the worker, the system and its agents — for all and forever.
+
 - Each command has its dual, and the two are one order-sensitive pair: `commit/push`, `build/seal`, `fold/verify`, `decode/fold`, `edit/build`. The pair is the unit of work.
 - Never run one half without its dual: never leave a commit unpushed, never edit without building, never fold a function without verifying it, never build without sealing (committing) the result.
 - **Save the pair first, then use it** — persist (write/commit) the pair before relying on it; do not act on an unsaved command.

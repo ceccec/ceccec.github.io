@@ -6,7 +6,7 @@
 // corpus. Run: node --experimental-strip-types scripts/generate-api.mjs
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { papers, paperReferences, diamondRoutes, harmonics, restfulFormats } from '../.vitepress/theme/lib/quantumMind.ts'
+import { papers, paperReferences, diamondRoutes, harmonics, restfulFormats } from '../src/ui/lib/quantumMind.ts'
 
 const apiDir = join(process.cwd(), '.vitepress', 'dist', 'api')
 mkdirSync(apiDir, { recursive: true })

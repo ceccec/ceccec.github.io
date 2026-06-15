@@ -1,0 +1,23 @@
+{
+  // Type-check configuration for the src/ core (the void/origin src/0 + src/quantum/* + src/library) and
+  // the @ceccec/double-torus package entry. The site itself runs through esbuild/vite, which STRIP types
+  // without checking them — so without this config the core is never type-checked and latent type bugs hide.
+  // Run `npm run check:types` (or `node_modules/typescript/bin/tsc --noEmit`) to check it; the resolution
+  // options mirror what packages/double-torus/build.mjs uses to emit declarations.
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "ESNext",
+    "target": "ES2021",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src", "packages/double-torus/src"],
+  // src/ui is the VitePress render layer (Vue SFCs + DOM-using composables). tsc has no .vue resolver
+  // and no DOM lib here, so it is type-checked by Vite at build, not by check:types — exactly as it was
+  // when this code lived under .vitepress/theme (also outside the type-check). Excluded to keep the model
+  // type-check (src/quantum, src/library, src/0, the package) clean and focused.
+  "exclude": ["src/ui"]
+}

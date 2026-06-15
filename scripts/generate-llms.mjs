@@ -4,7 +4,7 @@
 // Follows the emerging llms.txt convention (https://llmstxt.org).
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { agentHarmonise, buildMatrix, conceptCommands, crawlerKnowledge } from '../.vitepress/theme/lib/quantumMind.ts'
+import { agentHarmonise, buildMatrix, conceptCommands, crawlerKnowledge } from '../src/ui/lib/quantumMind.ts'
 
 const matrix = buildMatrix()
 const harmonise = agentHarmonise(matrix)

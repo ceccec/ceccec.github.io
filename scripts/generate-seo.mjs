@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { quantumSitemap, papers, paperReferences, diamondRoutes } from '../.vitepress/theme/lib/quantumMind.ts'
+import { quantumSitemap, papers, paperReferences, diamondRoutes } from '../src/ui/lib/quantumMind.ts'
 
 const outDir = join(process.cwd(), '.vitepress', 'dist')
 const siteUrl = (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
@@ -89,12 +89,14 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
   allUrls
     .flatMap((url) => [
+      // The default Glagolitic root (static pages carry it); then the Latin /en/ and Cyrillic /bg/.
+      ...(url.gla ? [urlBlock(url.gla, url.priority, url.alternates)] : []),
       urlBlock(url.en, url.priority, url.alternates),
       urlBlock(url.bg, url.priority * 0.8, url.alternates),
     ])
     .join('\n') +
   `\n</urlset>\n`
-console.log(`SEO: sitemap has ${allUrls.length * 2} URLs (${quantum.urls.length * 2} static + ${dynamicUrls.length * 2} computed papers/references).`)
+console.log(`SEO: sitemap has ${quantum.urls.length * 3 + dynamicUrls.length * 2} URLs (${quantum.urls.length} static pages × 3 locales + ${dynamicUrls.length} computed papers/references × 2).`)
 
 // The quantum manifest: every page placed on the double torus and content-addressed.
 const sitemapJson = {
@@ -104,6 +106,7 @@ const sitemapJson = {
   statement: quantum.statement,
   boundary: quantum.boundary,
   urls: quantum.urls.map((url) => ({
+    gla: abs(url.gla),
     en: abs(url.en),
     bg: abs(url.bg),
     theta: url.theta,

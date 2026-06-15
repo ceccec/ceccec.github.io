@@ -1,11 +1,13 @@
 // Nothing bypasses VitePress. Navigation, app mounting and rendering must all go
 // through VitePress (its SPA router, enhanceApp, and SSR) — no manual window.location
-// navigation, no second createApp, no document.write. This guard scans the theme and
-// fails the build if anything sidesteps VitePress. Run: node scripts/check-vitepress-only.mjs
+// navigation, no second createApp, no document.write. This guard scans the render layer
+// (src/ui — components, composables and the theme registration) and fails the build if
+// anything sidesteps VitePress. Run: node scripts/check-vitepress-only.mjs
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const root = join(process.cwd(), '.vitepress', 'theme')
+// The render layer lives in src/ui (the .vitepress/theme entry is a thin re-export shell).
+const root = join(process.cwd(), 'src', 'ui')
 const forbidden = [
   { re: /window\.location\s*=/, why: 'manual navigation bypasses the VitePress router (use an <a href> or useRouter().go)' },
   { re: /\blocation\.(href\s*=|assign\s*\(|replace\s*\()/, why: 'manual navigation bypasses the VitePress router' },

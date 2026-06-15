@@ -19,4 +19,12 @@ export function fused(entries: readonly Entry[]): boolean {
   return total === 0
 }
 
+// The credit-side view of the crypto review (src/debit/credit cryptoReview): fuse the ledger to its net per
+// security property and confirm the books balance to zero. The honest ledger fuses to all-zero nets — every
+// claim funded by a capability — and that all-zero fusion IS the double torus's zero reciprocal entropy, read
+// from the credit side. Takes the ledger as input so the pair stays decoupled (no import across the dual).
+export function cryptoReviewNet(ledger: readonly Entry[]): { net: Record<string, number>; balanced: boolean } {
+  return { net: Object.fromEntries(fuse(ledger)), balanced: fused(ledger) }
+}
+
 export const dual = 'src/debit/credit'

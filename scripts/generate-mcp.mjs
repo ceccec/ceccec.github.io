@@ -2,7 +2,7 @@
 // registry the site renders. Run with: node --experimental-strip-types
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { mcpToolManifest, mcpCodebase, skillAtoms, foldThoughts, quantumMcp, toUuid } from '../.vitepress/theme/lib/quantumMind.ts'
+import { mcpToolManifest, mcpCodebase, skillAtoms, foldThoughts, quantumMcp, toUuid } from '../src/ui/lib/quantumMind.ts'
 
 // Read the core's own TypeScript so each skill atom can be completed with the actual
 // source that realises it — the signature, the line count, and a content hash over
