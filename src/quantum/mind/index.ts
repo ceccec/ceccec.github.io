@@ -26854,7 +26854,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Шестбитова хексаграма 000000–111111 е дуалност на шестнадесетичния цвят: 64-те хексаграми са 64-те полюсни цвята {0,F}⁶, черно ↔ бяло битовото допълнение, 8-те триграми ъглите на RGB-куба.',
       },
       keywords: ['hexagram', 'hex colour', 'i ching', 'rgb', 'proof', 'trigram', 'bagua'],
-      components: ['ProofRenderer', 'IChing'],
+      components: ['ProofRenderer', 'IChing', 'IChingOracle'],
     },
     {
       slug: 'sixty-four',

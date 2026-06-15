@@ -127,6 +127,8 @@ import CryptoChallenges from './components/CryptoChallenges.vue'
 // The eight-fold: every component placed on the I-Ching trigrams by its content-address (iChing()) — the
 // sacred knowledge made visible, the bāguà wheel, live and legible.
 import IChing from './components/IChing.vue'
+// The oracle game: cast a hexagram, it resolves to a component by content-address — the architecture answering.
+import IChingOracle from './components/IChingOracle.vue'
 // Folding linear gives analog: the live sampling-theorem reconstruction (discrete samples → continuous via sinc,
 // no gaps) + imaging through the frequency field — the real science of the analog-from-digital thesis.
 import AnalogField from './components/AnalogField.vue'
@@ -294,6 +296,7 @@ export default {
     app.component('TamperingCost', TamperingCost)
     app.component('CryptoChallenges', CryptoChallenges)
     app.component('IChing', IChing)
+    app.component('IChingOracle', IChingOracle)
     app.component('AnalogField', AnalogField)
     app.component('TrinityGateways', TrinityGateways)
   }
