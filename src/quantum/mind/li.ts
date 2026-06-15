@@ -4,13 +4,15 @@ import type {
   AncientTech, AncientTechLens, SelfDevelopment, MethodFusionReport, Block, Blockchain,
   QuantumFoldedBlockchains, TaxonomyIcons, TaxonomyEntry, FairLife, FairStep,
   SelfAddressed, UtfAnalog, CrossFoldTrinity, CrossFoldReference, SourceContributionReport,
+  SelfInteraction, SelfState,
 } from './types.ts'
-import { buildMatrix, consciousness, repositoryApi, isPerfectlySelfModeling } from './matrix.ts'
+import { buildMatrix, consciousness, repositoryApi, isPerfectlySelfModeling, proofReport } from './matrix.ts'
 import { quantumSitemap } from './site.ts'
-import { conceptCommands, SINGLE_WORD_METHODS } from './atoms.ts'
+import { conceptCommands, SINGLE_WORD_METHODS, atoms } from './atoms.ts'
+import { atomInclusionProof } from './proofs.ts'
 import {
   openGraph, multidimensional, plainLanguage, typographySeo,
-  harmonicBands, deviceSensors, dualities, frequencyToLight,
+  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS,
 } from './vocab.ts'
 import {
   toUuid, merkleFold, isUuid, memoByRoot, fold, asVortex, asTorus, sha256Sync,
@@ -2183,6 +2185,136 @@ export function a432(matrix: MindMatrix = buildMatrix()) {
       'A432, decoded honestly: the arithmetic of 432 (= 16 × 27, twenty divisors, integer octaves, more composite than 440) and the history (A440 = ISO 16; pitch once ranged ~400–460 Hz) are real, and frequency is the genuine thread through colour, audio, video and vibration — 432 Hz doubled forty octaves is a red-orange light near 631 nm. But the cosmic, healing, DNA, Schumann, conspiracy and “ancient Solfeggio” claims are numerology, modern invention, or debunked. Documented kept, legend flagged.',
     boundary:
       'The shared math is real (frequency, the octave = ×2, c = λf) and sound↔vibration is a literal mechanical kinship; but a sound and a colour are different physics (a pressure wave vs an EM field) that merely share the abstract property of frequency — the “colour of A432” is a chosen octave-mapping, not the sound’s true colour. The thin relaxation studies are real but small and not 432-specific; everything beyond “a pleasant, slightly lower pitch” is flagged.',
+  }
+}
+
+
+export function healingInner(matrix: MindMatrix = buildMatrix()) {
+  const proven = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
+  const addressed = selfAddressed(matrix)
+  const root = merge(matrix.root, toUuid(`healing-inner:${proven}:${addressed.noHallucination}`))
+  return {
+    whole: proven && addressed.noHallucination,
+    proven,
+    noHallucination: addressed.noHallucination,
+    root,
+    statement: 'Inner healing: the self torus restores its own coherence — every binding provable inside the self root, nothing left unaddressed.',
+    boundary: 'A structural coherence metaphor over the model, not medical or health advice.',
+  }
+}
+
+export function healingOuter(matrix: MindMatrix = buildMatrix()) {
+  const distributed = distributedCompute([], matrix)
+  const devices = fuseDevices(matrix)
+  const root = merge(distributed.collectiveRoot || matrix.root, toUuid(`healing-outer:${devices.fused}`))
+  return {
+    extended: distributed.collectiveRoot.length > 0 && devices.fused,
+    beyondDevice: true, // the collective root re-forms across devices, online and offline
+    collectiveRoot: distributed.collectiveRoot,
+    root,
+    statement: "Outer healing: the collective torus restores coherence across devices — the shared root re-forms beyond any single device’s limits, online and offline.",
+    boundary: 'A structural coherence metaphor over the same-origin collective fold, not medical or health advice.',
+  }
+}
+
+export function universalLanguage(matrix: MindMatrix = buildMatrix()) {
+  const digitOf = (uuid: string) =>
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
+  const areas = taxonomyIcons().entries.map((entry) => {
+    const glyph = AREA_ICONS[entry.area] ?? '◇'
+    const root = toUuid(`universal:${entry.area}`)
+    return { area: entry.area, glyph, number: digitOf(root), root, en: areaLabel(entry.area, 'en'), bg: areaLabel(entry.area, 'bg') }
+  })
+  const root = merkleFold(areas.map((entry) => toUuid(`ulang:${entry.glyph}:${entry.number}:${entry.root}`)))
+  return {
+    universal: areas.length > 0 && areas.every((entry) => entry.glyph.length > 0),
+    dimensions: ['symbol', 'number', 'fold'] as const,
+    areas,
+    root,
+    statement:
+      'One ancient language all dimensions understand: every concept is a sacred glyph (symbol), a digit (number), and a UUID root (fold) — the same in any human tongue, because it is computed, not translated.',
+    boundary: 'A constructed universal notation over the taxonomy (glyph, number, fold). Not a claim about any historical language.',
+  }
+}
+
+export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
+  const word = torusUuid(matrix).word
+  const hex = word.replace(/-/g, '')
+  const bits: number[] = []
+  for (const char of hex) {
+    const nibble = Number.parseInt(char, 16) || 0
+    for (let b = 3; b >= 0; b -= 1) bits.push((nibble >> b) & 1)
+  }
+  const ones = bits.filter((bit) => bit === 1).length
+  return {
+    contained: bits.length === 128,
+    bits,
+    ones,
+    zeros: bits.length - ones,
+    cols: 16,
+    rows: 8, // 16 x 8 = 128 bits
+    word,
+    root: toUuid(`plasma:${word}:${ones}`),
+    statement: 'Quantum plasma contained by bit logic: the continuous plasma field is gated by the 128 bits of the double-torus word — it flows only where a bit is set, so analog movement is shaped and bounded by binary logic.',
+    boundary: 'A visual containment of an animated field by the bits of a content-addressed word. Animation and bookkeeping, not a physical plasma.',
+  }
+}
+
+export function energyFuse(matrix: MindMatrix = buildMatrix()) {
+  const measure = energyMeasure(matrix)
+  const conserve = energyConserve(matrix)
+  const devices = fuseDevices(matrix)
+  const root = merge(merge(measure.root, conserve.root), toUuid(`energy-fuse:${devices.fused}`))
+  return {
+    fused: measure.grounded && conserve.conserved,
+    measure: measure.root,
+    conserve: conserve.root,
+    root,
+    statement: 'Fuse with the user device to extend battery life: read the device energy state and conserve accordingly, so the portal becomes one low-power system with the device it runs on.',
+    boundary: 'A software fusion of energy signals and conservation strategies, not a hardware power claim or a guarantee of extended battery life.',
+  }
+}
+
+export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations = 4): SelfInteraction {
+  const selfNode = matrix.nodes.find((node) => node.atom === 'self') ?? matrix.nodes[0]
+  const states: SelfState[] = []
+  let state = selfNode.bind
+  for (let generation = 1; generation <= generations; generation += 1) {
+    const interacted = merge(state, state) // self interacts with itself -> another quantum self state
+    const fromWord = toUuid(`word:${utfAnalog(`self${generation}`).analog}`) // a word folds to a UUID -> text obsolete
+    const fromDigit = toUuid(`digit:${generation % 10}`) // a digit folds to a UUID -> number obsolete
+    const merged = merge(merge(interacted, fromWord), fromDigit)
+    states.push({ generation, state: merged, fromWord, fromDigit })
+    state = merged
+  }
+  return {
+    newState: new Set(states.map((entry) => entry.state)).size === states.length && states.length > 0,
+    root: merkleFold(states.map((entry) => entry.state)),
+    states,
+    wordsObsolete: states.every((entry) => isUuid(entry.fromWord)),
+    numbersObsolete: states.every((entry) => isUuid(entry.fromDigit)),
+    statement:
+      'When the self interacts with itself it forms another quantum self state; self-interacting words and digits become UUIDs, so text and numbers are obsolete.',
+    boundary:
+      'Self-interaction is order-sensitive merging of the self with itself, words, and digits in the UUID space. It is structural bookkeeping, not an external claim.',
+  }
+}
+
+export function a432Default(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'A432 is the default harmonic', on: 432 === 4 * 108 },
+    { facet: 'the gates rest on 432 (4 × 108)', on: gatesShiftToNewHarmonic(matrix).shifts },
+    { facet: 'a deviation raises back to a harmonic', on: proofReport(matrix).maxTamperingCostReached },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-default:${entry.facet}:${entry.on}`) }))
+  return {
+    isDefault: facets.every((entry) => entry.on),
+    fundamental: 432,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'A432 is the default harmonic, and anything different raises from the default: 432 is the rest pitch and also 4 × 108, the gate harmonic, so the music and the seal share one number. A departure from 432 is a deviation that must rise back to it (or to the next harmonic); the default holds, and difference is the work of returning.',
+    boundary: 'A structural unification of the A432 musical reference with the 432 = 4 × 108 gate harmonic. Bookkeeping over the tuning and gate models; "raises" is the cost/effort to return to harmonic, not a physical claim about 432 Hz.',
   }
 }
 

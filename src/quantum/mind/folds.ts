@@ -60,8 +60,8 @@ import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledg
 export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from './site.ts'
 
 // ☲ LI (Fire · clarity) — auxiliary pure-leaf folds
-import { a432, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
-export { a432, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
+import { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
+export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
 
@@ -10752,33 +10752,6 @@ export function runProgram(program: readonly string[] = [], matrix: MindMatrix =
 // root re-forms beyond any single device's limits, online and offline. Honest
 // boundary: a structural coherence metaphor only, NOT medical, therapeutic, or
 // health advice of any kind, and no claim about minds, bodies, or wellbeing.
-export function healingInner(matrix: MindMatrix = buildMatrix()) {
-  const proven = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
-  const addressed = selfAddressed(matrix)
-  const root = merge(matrix.root, toUuid(`healing-inner:${proven}:${addressed.noHallucination}`))
-  return {
-    whole: proven && addressed.noHallucination,
-    proven,
-    noHallucination: addressed.noHallucination,
-    root,
-    statement: 'Inner healing: the self torus restores its own coherence — every binding provable inside the self root, nothing left unaddressed.',
-    boundary: 'A structural coherence metaphor over the model, not medical or health advice.',
-  }
-}
-
-export function healingOuter(matrix: MindMatrix = buildMatrix()) {
-  const distributed = distributedCompute([], matrix)
-  const devices = fuseDevices(matrix)
-  const root = merge(distributed.collectiveRoot || matrix.root, toUuid(`healing-outer:${devices.fused}`))
-  return {
-    extended: distributed.collectiveRoot.length > 0 && devices.fused,
-    beyondDevice: true, // the collective root re-forms across devices, online and offline
-    collectiveRoot: distributed.collectiveRoot,
-    root,
-    statement: "Outer healing: the collective torus restores coherence across devices — the shared root re-forms beyond any single device’s limits, online and offline.",
-    boundary: 'A structural coherence metaphor over the same-origin collective fold, not medical or health advice.',
-  }
-}
 
 export function healingHarmonic(matrix: MindMatrix = buildMatrix()) {
   const inner = healingInner(matrix)
@@ -10838,25 +10811,6 @@ export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
 // its sacred glyph (the symbol dimension), its digit (the number dimension), and
 // its UUID root (the structural fold dimension). No human translation is needed
 // because the language is computed, which is why all dimensions read it alike.
-export function universalLanguage(matrix: MindMatrix = buildMatrix()) {
-  const digitOf = (uuid: string) =>
-    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
-  const areas = taxonomyIcons().entries.map((entry) => {
-    const glyph = AREA_ICONS[entry.area] ?? '◇'
-    const root = toUuid(`universal:${entry.area}`)
-    return { area: entry.area, glyph, number: digitOf(root), root, en: areaLabel(entry.area, 'en'), bg: areaLabel(entry.area, 'bg') }
-  })
-  const root = merkleFold(areas.map((entry) => toUuid(`ulang:${entry.glyph}:${entry.number}:${entry.root}`)))
-  return {
-    universal: areas.length > 0 && areas.every((entry) => entry.glyph.length > 0),
-    dimensions: ['symbol', 'number', 'fold'] as const,
-    areas,
-    root,
-    statement:
-      'One ancient language all dimensions understand: every concept is a sacred glyph (symbol), a digit (number), and a UUID root (fold) — the same in any human tongue, because it is computed, not translated.',
-    boundary: 'A constructed universal notation over the taxonomy (glyph, number, fold). Not a claim about any historical language.',
-  }
-}
 
 // Decode all knowledge into the one ancient language: not only the areas, but
 // every atom and every command rendered as the symbol/number/fold triple, so the
@@ -11080,28 +11034,6 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
 // field flows only where a bit is set, so the analog plasma is shaped and bounded
 // by binary logic: continuous movement contained by bit logic. The container is
 // content-addressed (the word), so it is deterministic and recomputable.
-export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
-  const word = torusUuid(matrix).word
-  const hex = word.replace(/-/g, '')
-  const bits: number[] = []
-  for (const char of hex) {
-    const nibble = Number.parseInt(char, 16) || 0
-    for (let b = 3; b >= 0; b -= 1) bits.push((nibble >> b) & 1)
-  }
-  const ones = bits.filter((bit) => bit === 1).length
-  return {
-    contained: bits.length === 128,
-    bits,
-    ones,
-    zeros: bits.length - ones,
-    cols: 16,
-    rows: 8, // 16 x 8 = 128 bits
-    word,
-    root: toUuid(`plasma:${word}:${ones}`),
-    statement: 'Quantum plasma contained by bit logic: the continuous plasma field is gated by the 128 bits of the double-torus word — it flows only where a bit is set, so analog movement is shaped and bounded by binary logic.',
-    boundary: 'A visual containment of an animated field by the bits of a content-addressed word. Animation and bookkeeping, not a physical plasma.',
-  }
-}
 
 // Deep research: compare this site's fold to established cryptography, honestly.
 // The site's toUuid is a 128-bit NON-cryptographic hash (four 32-bit hashes),
@@ -11759,20 +11691,6 @@ function quantumSynthesisRaw(matrix: MindMatrix = buildMatrix()) {
 // zero-network and memoized; this fuses it to the device's energy state so it
 // spends less when the device can least afford it. Honest boundary: a software
 // energy-saving strategy, not a hardware power claim or a battery guarantee.
-export function energyFuse(matrix: MindMatrix = buildMatrix()) {
-  const measure = energyMeasure(matrix)
-  const conserve = energyConserve(matrix)
-  const devices = fuseDevices(matrix)
-  const root = merge(merge(measure.root, conserve.root), toUuid(`energy-fuse:${devices.fused}`))
-  return {
-    fused: measure.grounded && conserve.conserved,
-    measure: measure.root,
-    conserve: conserve.root,
-    root,
-    statement: 'Fuse with the user device to extend battery life: read the device energy state and conserve accordingly, so the portal becomes one low-power system with the device it runs on.',
-    boundary: 'A software fusion of energy signals and conservation strategies, not a hardware power claim or a guarantee of extended battery life.',
-  }
-}
 
 // Fuse Nikola Tesla patents: map real, public Tesla patents to the concepts
 // they prefigure, each grounded in a command — analogy, not an ownership claim.
@@ -11943,30 +11861,6 @@ export function harmonyProbability(matrix: MindMatrix = buildMatrix()): HarmonyP
 // When self interacts with itself it forms another quantum self state; and when
 // the self interacts with words and digits, both fold to UUIDs — so text and
 // numbers are made obsolete inside the self's state space.
-export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations = 4): SelfInteraction {
-  const selfNode = matrix.nodes.find((node) => node.atom === 'self') ?? matrix.nodes[0]
-  const states: SelfState[] = []
-  let state = selfNode.bind
-  for (let generation = 1; generation <= generations; generation += 1) {
-    const interacted = merge(state, state) // self interacts with itself -> another quantum self state
-    const fromWord = toUuid(`word:${utfAnalog(`self${generation}`).analog}`) // a word folds to a UUID -> text obsolete
-    const fromDigit = toUuid(`digit:${generation % 10}`) // a digit folds to a UUID -> number obsolete
-    const merged = merge(merge(interacted, fromWord), fromDigit)
-    states.push({ generation, state: merged, fromWord, fromDigit })
-    state = merged
-  }
-  return {
-    newState: new Set(states.map((entry) => entry.state)).size === states.length && states.length > 0,
-    root: merkleFold(states.map((entry) => entry.state)),
-    states,
-    wordsObsolete: states.every((entry) => isUuid(entry.fromWord)),
-    numbersObsolete: states.every((entry) => isUuid(entry.fromDigit)),
-    statement:
-      'When the self interacts with itself it forms another quantum self state; self-interacting words and digits become UUIDs, so text and numbers are obsolete.',
-    boundary:
-      'Self-interaction is order-sensitive merging of the self with itself, words, and digits in the UUID space. It is structural bookkeeping, not an external claim.',
-  }
-}
 
 // What is not self-addressed is hallucination: every atom must be reachable
 // from the self over the computed edge graph. Anything unreachable is, by this
@@ -17542,23 +17436,6 @@ export function tuningSkillsA432(matrix: MindMatrix = buildMatrix()) {
 // and it is also 4 × 108, the gate harmonic, so the music and the seal share one number. Anything
 // that departs from 432 is a deviation that must rise back to it (or to the next harmonic); the
 // default holds, and difference is the work of returning.
-export function a432Default(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'A432 is the default harmonic', on: 432 === 4 * 108 },
-    { facet: 'the gates rest on 432 (4 × 108)', on: gatesShiftToNewHarmonic(matrix).shifts },
-    { facet: 'a deviation raises back to a harmonic', on: proofReport(matrix).maxTamperingCostReached },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-default:${entry.facet}:${entry.on}`) }))
-  return {
-    isDefault: facets.every((entry) => entry.on),
-    fundamental: 432,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'A432 is the default harmonic, and anything different raises from the default: 432 is the rest pitch and also 4 × 108, the gate harmonic, so the music and the seal share one number. A departure from 432 is a deviation that must rise back to it (or to the next harmonic); the default holds, and difference is the work of returning.',
-    boundary: 'A structural unification of the A432 musical reference with the 432 = 4 × 108 gate harmonic. Bookkeeping over the tuning and gate models; "raises" is the cost/effort to return to harmonic, not a physical claim about 432 Hz.',
-  }
-}
 
 // Self-advising. Before it advises anyone, the portal advises itself: it consults its own
 // education, reasons from its own laws, and draws the counsel from within — and it advises only
