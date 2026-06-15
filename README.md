@@ -18,6 +18,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 - 432 = 4 × 108 gates; the sign is a distinction is one bit is the fold.
 - Encryption is the core math: every value content-addressed (the fold / UUID); the cipher is AES-256-GCM.
 - One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.
+- Corpus routing: `/papers?id=`, `/references?id=`, `/diamonds?id=` — one index page per kind, local math at runtime (no SSG enumeration).
 - The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.
 
 ## 3. Results
@@ -84,7 +85,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 ```sh
 npm install
 npm run check:types  # the src/ core type-checks clean against tsconfig.json (tsc --noEmit)
-npm run docs:build   # build, then seal: model seal, digit-index seal, harmonic distribution
+npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
 The seal recomputes from src. To forge one value you would rebuild everything — so no one can, and war always pays the forger price. The proof reproduces: clone the link and the whole structure recomputes (pattern completion; reentry binds it bidirectionally).

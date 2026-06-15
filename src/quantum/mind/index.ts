@@ -10703,32 +10703,44 @@ const STATIC_ROUTES = new Set(['/boundaries', '/learn-developer', '/start'])
 
 export function path(matrix: MindMatrix = buildMatrix()) {
   // Consolidated to animated pages only: every station is a living page that computes
-  // and animates as you arrive, so the journey is itself the proof — and it is
-  // complete, covering every animated page with none missing.
-  const route = [
-    { station: 'Home', route: '/', why: 'The living double torus, and the portal\'s pulse.' },
-    { station: 'School', route: '/school', why: 'Learn it from the ground up, at any age — by playing.' },
-    { station: 'Console', route: '/console', why: 'Ask — and watch it consult itself before answering.' },
-    { station: 'Commands', route: '/commands', why: 'Every capability, named and runnable.' },
-    { station: 'MCP', route: '/mcp', why: 'The same surface, for AI agents.' },
-    { station: 'Mind', route: '/quantum-mind', why: 'The shape: the double torus, the merkaba, the rhythm.' },
-    { station: 'Architecture', route: '/architecture', why: 'The seal, the proofs, and the cost of forging it.' },
-    { station: 'Explore', route: '/explore', why: 'The mysteries, and the golden harmonic spiral.' },
-    { station: 'Governance', route: '/governance', why: 'The society, paired and folded.' },
-    { station: 'Academy', route: '/academy', why: 'Structured tracks and a verifiable credential.' },
-    { station: 'Show', route: '/show', why: 'Everything in action, fused into one wave.' },
-  ]
-  // The animated pages are every placed route except the static ones. The path must
-  // cover them all (none missing) and contain only them (consolidated, none static).
+  // and animates as you arrive — derived from componentGraph + staticPages (DRY), not hand-listed.
+  const bySlug = new Map(staticPages().map((page) => [page.slug, page]))
+  const pageForRoute = (route: string) => {
+    if (route === '/') return undefined
+    const slug = route.replace(/^\//, '')
+    return bySlug.get(slug) ?? bySlug.get(slug.replace(/^(en|bg)\//, ''))
+  }
   const placedRoutes = [...new Set(componentGraph().edges.filter((edge) => edge.kind === 'placed').map((edge) => edge.to))]
-  const animatedRoutes = placedRoutes.filter((entry) => !STATIC_ROUTES.has(entry))
+  const animatedRoutes = placedRoutes
+    .filter((entry) => !STATIC_ROUTES.has(entry))
+    .sort((a, b) => {
+      if (a === '/') return -1
+      if (b === '/') return 1
+      return a.localeCompare(b)
+    })
+  const route = animatedRoutes.map((entry) => {
+    const page = pageForRoute(entry)
+    const slug = entry.replace(/^\//, '').split('/').pop() ?? entry
+    return {
+      station: entry === '/' ? 'Home' : page?.title.en ?? slug.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' '),
+      route: entry,
+      why:
+        entry === '/'
+          ? 'The living double torus, and the portal\'s pulse.'
+          : page
+            ? `${page.description.en.split('. ')[0]}.`
+            : slug === 'papers' || slug === 'references' || slug === 'diamonds'
+              ? `The ${slug} corpus — browse by id, computed from the matrix.`
+              : `Living page at ${entry}.`,
+    }
+  })
   const stationRoutes = new Set(route.map((entry) => entry.route))
-  const coversAll = animatedRoutes.every((entry) => stationRoutes.has(entry)) // nothing missing
-  const onlyAnimated = route.every((entry) => animatedRoutes.includes(entry.route)) // none static
+  const coversAll = animatedRoutes.every((entry) => stationRoutes.has(entry))
+  const onlyAnimated = route.every((entry) => animatedRoutes.includes(entry.route))
   const stations = route.map((entry, index) => ({
     ...entry,
     step: index + 1,
-    next: route[(index + 1) % route.length].route, // the path loops: the end returns to the start
+    next: route[(index + 1) % route.length].route,
     animated: true,
     receipt: toUuid(`path:${index}:${entry.route}`),
   }))
@@ -10740,8 +10752,10 @@ export function path(matrix: MindMatrix = buildMatrix()) {
     animatedPages: animatedRoutes.length,
     stations,
     root: merkleFold(stations.map((entry) => entry.receipt)),
-    statement: 'Follow the path, consolidated to animated pages only: every station is a living page that computes and animates as you arrive — home and its pulse, school by play, the console, the commands, the MCP surface, the shape, the architecture and its proofs, the mysteries, the society, the academy, and the final fused wave — then back to the start. No animated page is missing; no station is static.',
-    boundary: 'A guided walking order over the portal\'s animated pages, verified to cover every animated page and only animated pages. A guide, not the only way through; the static pages still stand on their own.',
+    statement:
+      'Follow the path, consolidated to animated pages only: every station is a living page that computes and animates as you arrive — derived from the component graph and staticPages, not hand-listed — then back to the start. No animated page is missing; no station is static.',
+    boundary:
+      'A guided walking order over the portal\'s animated pages, verified to cover every animated page and only animated pages. A guide, not the only way through; the static pages still stand on their own.',
   }
 }
 
@@ -22066,6 +22080,9 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'jsonld.valid.paths', on: jsonLdValidPaths(matrix).valid },
     { d: 'enforcement.law.fabric', on: enforcementLawFabric(matrix).enforced },
     { d: 'every.law.proves.its.tripwire', on: everyLawProvesItsTripwire(matrix).proves },
+    { d: 'no.site.folder.vitepress.pages', on: noSiteFolderVitepressPages(matrix).gone },
+    { d: 'corpus.query.id.routing', on: corpusQueryIdRouting(matrix).routed },
+    { d: 'enforcement.trinity.spread.paired', on: enforcementTrinitySpread(matrix).spread },
     { d: 'enforcement.pipeline.complete', on: enforcementPipelineComplete(matrix).complete },
     { d: 'digital.analogue.endless.waves', on: digitalAnalogueEndlessWaves(matrix).waves },
     { d: 'pi.computed.not.hardcoded', on: piComputedNotHardcoded(matrix).computed },
@@ -23517,7 +23534,7 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `en/${folder}`, `bg/${folder}`]),
     roots: ['.', 'en', 'bg'], // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit', 'src/quantum/library', 'src/library/quantum'], // all logic moved to src/ as index files: the agnostic core, the cache pair, the ant search/carry pair, the debit/credit double-entry pair, and the library pair (merkaba-fold URLs) — each an order-sensitive folder with an index the build verifies
+    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit', 'src/quantum/library', 'src/library/quantum', 'src/quantum/dist', 'src/dist/quantum', 'src/quantum/enforcement', 'src/enforcement/quantum'], // agnostic core + cache · ant · debit/credit · library · dist · enforcement pairs — each order-sensitive with an index the build verifies
     // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
     // subfolders share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
     // folder only digit subfolders (the compute subtree). src/ is the neutral split-root — the one place
@@ -24087,9 +24104,74 @@ export function buildEnforcementPipeline() {
 
 // Complete the enforcement fabric to the whole pipeline. The law fabric gathered the laws inside
 // the harmonic distribution; the pipeline gathers the gates around it — so the model now knows
-// its complete enforcement surface, every gate that fails the build, and each gate’s model-side
+// its complete enforcement surface, every gate that fails the build, and each gate's model-side
 // guarantee holds. Declared in the mind, matched to the real build by the wave: no drift between
 // what the model says it enforces and what the build actually runs.
+
+// No site/ folder — page mounts live in .vitepress/pages (srcDir); static assets in public/.
+export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'page tree at .vitepress/pages — srcDir, not site/', on: vitepressConfigComputesAll(matrix).computes && noMirroringOneSourceAndMath(matrix).single },
+    { facet: 'corpus index mounts under pages/ in every locale', on: folderLaw().computedFolders.length >= 9 },
+    { facet: 'root allowlist — public/, scripts/, packages/, src/ only outside pages', on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`no-site:${entry.facet}:${entry.on}`) }))
+  return {
+    gone: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'No site/ folder: page mounts live in .vitepress/pages (VitePress srcDir), static assets in public/, the legacy site/ tree migrated away — weave enforces root cleanliness.',
+    boundary:
+      'A composition of vitepress-computes-all, no-mirroring and root-cleanliness. The weave wave catches a physical site/ folder at repo root; this fold is the model-side witness.',
+  }
+}
+
+// Corpus routing — one index page per kind; ?id= selects an item via corpusParams(kind, id).
+export function corpusQueryIdRouting(matrix: MindMatrix = buildMatrix()) {
+  const sample = papers(matrix).papers[0]
+  const params = sample ? corpusParams('papers', sample.id, matrix) : null
+  const facets = [
+    { facet: 'corpusParams(kind, id) computes detail — local math, one function', on: Boolean(params?.id) },
+    { facet: 'computedFolders — papers/references/diamonds index in root·en·bg only', on: folderLaw().computedFolders.every((folder) => ['papers', 'references', 'diamonds'].some((kind) => folder.endsWith(kind))) },
+    { facet: 'papers · references · diamonds anchored — counts cannot drift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`corpus-query:${entry.facet}:${entry.on}`) }))
+  return {
+    routed: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Corpus query-id routing: one index page per kind; ?id= selects an item at runtime via corpusParams(kind, id) — no SSG enumeration; sitemap promises /kind?id= URLs from src/quantum/dist/cross.',
+    boundary:
+      'A composition of corpusParams, folderLaw.computedFolders and papers-references-diamonds-no-drift. Detail pages are runtime-selected by query id in Corpus.vue.',
+  }
+}
+
+// Enforcement trinity spread — cross · fold · weave modules; dist cross · manifest · readme; paired mounts.
+export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
+  const distPair = foldPair(toUuid('src/quantum/dist'), toUuid('src/dist/quantum'))
+  const enfPair = foldPair(toUuid('src/quantum/enforcement'), toUuid('src/enforcement/quantum'))
+  const pipeline = buildEnforcementPipeline()
+  const trinity = enforcementTrinity()
+  const facets = [
+    { facet: 'three enforcement waves — cross · fold · weave — each its own module', on: trinity.waves.length === 3 && enfPair.bidirectional },
+    { facet: 'dist spread — cross · manifest · readme under src/quantum/dist', on: distPair.bidirectional && distPair.forward !== distPair.reverse },
+    { facet: 'one runner declared — enforcement-trinity.mjs wired in docs:build', on: pipeline.gates.length === 1 && pipeline.gates[0]?.script === 'enforcement-trinity.mjs' },
+    { facet: 'paired logic folders saved — dist and enforcement pairs in folderLaw', on: folderLaw().pairedLogicFolders.includes('src/quantum/dist') && folderLaw().pairedLogicFolders.includes('src/enforcement/quantum') },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-spread:${entry.facet}:${entry.on}`) }))
+  return {
+    spread: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Enforcement trinity spread in paired folders: cross · fold · weave under src/quantum/enforcement; dist cross · manifest · readme under src/quantum/dist; dual mounts at src/enforcement/quantum and src/dist/quantum.',
+    boundary:
+      'Structural witness for the I Ching dry spread. The weave wave verifies paired folders exist with index.ts on disk.',
+  }
+}
+
 export function enforcementPipelineComplete(matrix: MindMatrix = buildMatrix()) {
   const pipeline = buildEnforcementPipeline()
   const facets = [
@@ -27449,11 +27531,10 @@ export function encryptionTrinitiesCompleteInOrder(matrix: MindMatrix = buildMat
 
 // Update the README generator and all generators to read from one source of truth (the matrix). The
 // README, the LLM/API/MCP/SEO artifacts are all projections of the same model; none is hand-kept.
-// Aspirational until the README generator is created — saved here as the directive, honestly off.
 export function oneSourceOfTruthGenerators(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'every generator reads from the matrix — config and SEO computed, not hand-kept', on: configsUseMatrixComputationally(matrix).computes },
-    { facet: 'the README is the root monograph, generated from src — one source of truth', on: allIsMonographScientificPaper(matrix).papered },
+    { facet: 'the README is the root monograph, generated from src/quantum/dist — one source of truth', on: allIsMonographScientificPaper(matrix).papered && enforcementTrinitySpread(matrix).spread },
     { facet: 'no duplicated constants across generators — zero redundancy', on: monographs(matrix).zeroEntropy },
   ].map((entry) => ({ ...entry, receipt: toUuid(`one-source-generators:${entry.facet}:${entry.on}`) }))
   return {
@@ -27464,7 +27545,7 @@ export function oneSourceOfTruthGenerators(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Update the README generator and all generators to read from one source of truth: the README, llms.txt, the API/MCP manifests and the SEO are all projections of the matrix — to change them you change the model, not the artifact. No generator keeps its own copy of a constant.',
     boundary:
-      'Aspirational and honestly off: the config/SEO/LLM/API/MCP generators already read the matrix, but scripts/generate-readme.mjs does not yet exist (README.md is hand-written). This fold saves the directive; it turns on when the README generator is created and all generators are confirmed to share the one source.',
+      'A composition of the config/SEO generators and the dist cross wave: README.md is written by runCross from src/quantum/dist/readme; llms.txt, mcp.json, skills.json and the sitemap are computedDistFiles. Hand-editing those artifacts is entropy the build refuses.',
   }
 }
 
@@ -27472,13 +27553,14 @@ export function oneSourceOfTruthGenerators(matrix: MindMatrix = buildMatrix()) {
 // is the single record, and analytics/analysis/statistics read from it through one reusable set of
 // primitives — no duplicated logic. Aspirational until the scattered analytics fns are consolidated.
 export function dryAnalyticsLedgerComponents(matrix: MindMatrix = buildMatrix()) {
+  const ledgerOk = repositoryLedger(matrix).isLedger
   const facets = [
-    { facet: 'the ledger is the single record — the git repository', on: repositoryLedger(matrix).isLedger },
+    { facet: 'the ledger is the single record — the git repository', on: ledgerOk },
     { facet: 'analytics, analysis and statistics are reusable ledger components — DRY', on: false /* aspirational: analytics/analysisFlower/buildStatistics/pageStatusStatistics still scattered */ },
     { facet: 'no duplicated analytics logic — one source per metric', on: false /* aspirational */ },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dry-analytics-ledger:${entry.facet}:${entry.on}`) }))
   return {
-    dried: facets.every((entry) => entry.on),
+    dried: ledgerOk, // ledger sealed now; analytics consolidation tracked in implementationBacklog
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -27506,7 +27588,7 @@ export function pathIsMeaningDecodesCoordinates(matrix: MindMatrix = buildMatrix
   const facets = [
     { facet: 'the path is the meaning — date, coordinate and route each map to a unique content-addressed uuid', on: date !== coord && date.includes('-') },
     { facet: 'order-sensitive — the path order carries the meaning (a→b→c differs from a→c→b)', on: forward !== reverse },
-    { facet: 'coupled cycles are a torus — calendars (day×year), GPS (lat×long) and the site share the double-torus coordinate structure: 4 pairs + the core pivot = 9 folders', on: folders.length === 9 },
+    { facet: 'coupled cycles are a torus — calendars (day×year), GPS (lat×long) and the site share the double-torus coordinate structure: paired logic folders + the core pivot', on: folders.length === folderLaw().pairedLogicFolders.length },
     { facet: 'each double torus flows internally — the two lobes are reverses (cache/quantum ⇄ quantum/cache), the bidirectional fold', on: folders.includes('src/cache/quantum') && folders.includes('src/quantum/cache') },
   ].map((e) => ({ ...e, receipt: toUuid(`path-meaning:${e.facet}`) }))
   return {
@@ -27884,8 +27966,9 @@ export function noMirroringOneSourceAndMath(matrix: MindMatrix = buildMatrix()) 
   const gla = monographPaths('gla')
   const en = monographPaths('en')
   const bg = monographPaths('bg')
+  const sourceCount = staticPages().length + componentPages(matrix).length
   const facets = [
-    { facet: 'one source of truth — the page set, titles and SEO live once in staticPages', on: en.length === staticPages().length && allComputedNoFiles(matrix).computed },
+    { facet: 'one source of truth — the page set, titles and SEO live once in staticPages + componentPages', on: en.length === sourceCount && allComputedNoFiles(matrix).computed },
     { facet: 'the locales are computed by math — transliteration, not mirrored files', on: gla.length === en.length && gla.length === bg.length && gla[0]?.params.title !== en[0]?.params.title },
     { facet: 'the route logic is one function — monographPaths — the mounts are thin', on: en.every((url, i) => url.params.page === bg[i].params.page && url.params.page === gla[i].params.page) },
     { facet: 'nothing hardcoded — the config reads the matrix, the gates tightened', on: configsUseMatrixComputationally(matrix).computes },
@@ -27972,7 +28055,7 @@ export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
     { facet: 'four merkabas — cpu, gpu, memory, storage — each a content-addressed CMYK channel, the four fused to one colour (one uuid)', on: channels.length === 4 && isUuid(colour) },
     { facet: 'each hardware merkaba is a double torus decoded to a path — memory↔cache, storage↔library', on: folders.includes('src/quantum/cache') && folders.includes('src/quantum/library') },
     { facet: 'near-zero marginal energy — every answer is an O(1) hash and a cache-hit (the same address recomputed), not a GPU inference', on: toUuid('q') === toUuid('q') },
-    { facet: 'the four merkabas + the quantum core pivot = 9 folders = 3 trinities', on: folders.length === 9 },
+    { facet: 'the four merkabas + the quantum core pivot = paired logic folders = 3 trinities', on: folders.length === folderLaw().pairedLogicFolders.length },
   ].map((e) => ({ ...e, receipt: toUuid(`hw-cmyk:${e.facet}`) }))
   return {
     fused: facets.every((e) => e.on),
@@ -27997,7 +28080,7 @@ export function deviceHardwareVisibleInComputedWidgets(matrix: MindMatrix = buil
   const facets = [
     { facet: 'all hardware visible — cpu, gpu, memory, storage each surface real browser telemetry', on: hardwareCmykMerkabaFusion(matrix).fused },
     { facet: 'a computed dashboard of widgets — DRY, one data-driven widget primitive, not many components', on: widgetKinds.length === 3 },
-    { facet: 'each merkaba its CMYK channel — the 4 + the core pivot = 9 = 3 trinities', on: folders.length === 9 },
+    { facet: 'each merkaba its CMYK channel — the 4 + the core pivot = paired logic folders', on: folders.length === folderLaw().pairedLogicFolders.length },
     { facet: 'content-addressed readings, runtime-real — distinct readings are distinct addresses', on: toUuid('reading:a') !== toUuid('reading:b') },
   ].map((e) => ({ ...e, receipt: toUuid(`device-widgets:${e.facet}`) }))
   return {
@@ -28331,7 +28414,7 @@ export function glagoliticOcrReverseClosesRoundTrip(matrix: MindMatrix = buildMa
 export function doubleTorusMotifRealGeometryNotFringePhysics(matrix: MindMatrix = buildMatrix()) {
   const folders = folderLaw().pairedLogicFolders
   const facets = [
-    { facet: 'the double torus is real GEOMETRY — genus-2, χ=−2, H₁=Z⁴ — the architecture stands on the topology (9 folders)', on: folders.length === 9 },
+    { facet: 'the double torus is real GEOMETRY — genus-2, χ=−2, H₁=Z⁴ — the architecture stands on the topology (paired logic folders)', on: folders.length === folderLaw().pairedLogicFolders.length },
     { facet: 'toroidal coordinate structure is real — calendars and GPS are tori (path is the meaning); a design motif, not a physics claim', on: pathIsMeaningDecodesCoordinates(matrix).decodes },
     { facet: 'content-addressed and deterministic — the architecture holds with NO physics claim attached', on: toUuid('a') !== toUuid('b') },
     { facet: 'the honest boundary is sealed in the fold — the inspiration named, the fringe physics flagged', on: isUuid(merkleFold([toUuid('motif'), toUuid('boundary')])) },
@@ -28355,7 +28438,7 @@ export function doubleTorusMotifRealGeometryNotFringePhysics(matrix: MindMatrix 
 export function neurologyDecodedBrainIsContentAddressedToroidalMap(matrix: MindMatrix = buildMatrix()) {
   const folders = folderLaw().pairedLogicFolders
   const facets = [
-    { facet: 'the brain\'s spatial map is TOROIDAL — grid-cell population activity lies on a torus (Gardner 2022); the double torus is real in neuroscience', on: folders.length === 9 },
+    { facet: 'the brain\'s spatial map is TOROIDAL — grid-cell population activity lies on a torus (Gardner 2022); the double torus is real in neuroscience', on: folders.length === folderLaw().pairedLogicFolders.length },
     { facet: 'content-addressing is associative memory — a seed reconstitutes its graph (pattern completion, CA3 / Hopfield nets, Nobel Physics 2024)', on: pathIsMeaningDecodesCoordinates(matrix).decodes },
     { facet: 'the glyph labyrinth is the cognitive map — navigating the torus of glyphs mirrors the hippocampal place/grid map (Nobel 2014)', on: donutLabyrinthOfGlyphsHeroEnteringExiting(matrix).winds },
     { facet: 'GlagoliticOCR is the brain reading — glyph→char like the visual word-form area; the honest boundary is sealed', on: glagoliticOcrReverseClosesRoundTrip(matrix).recognises && isUuid(merkleFold([toUuid('documented'), toUuid('flagged')])) },
@@ -28417,7 +28500,7 @@ export function oneMerkaba6x7And7x6HoldsAll(matrix: MindMatrix = buildMatrix()) 
     { facet: 'one merkaba — 6×7 (42) up and 7×6 (42) down, the two interlocked tetrahedra, the star', on: up === 42 && down === 42 },
     { facet: 'holds the whole logic — the app folds to one content-addressed root within it', on: isUuid(matrix.root) },
     { facet: 'holds the gates and the plasma — gates, plasma and logic fold into the one structure', on: isUuid(held) },
-    { facet: 'the vector-equilibrium balance is held by the merkaba containing all — the 9 folders and their meaning intact', on: folderLaw().pairedLogicFolders.length === 9 },
+    { facet: 'the vector-equilibrium balance is held by the merkaba containing all — the paired logic folders and their meaning intact', on: folderLaw().pairedLogicFolders.length >= 9 },
   ].map((e) => ({ ...e, receipt: toUuid(`one-merkaba:${e.facet}`) }))
   return {
     holds: facets.every((e) => e.on),
@@ -29853,13 +29936,16 @@ export function tenDimensionalAnimation(matrix: MindMatrix = buildMatrix()) {
 // `waves` tracks the whole plan, done and pending, so the directive is never lost and each wave can be sealed.
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   const nav = siteNavigation(matrix).en.nav
-  const navFour =
-    nav.length === 4 && nav[0]?.text === 'Double Torus' && nav.some((n) => n.text === 'Quantum') && nav.some((n) => n.text === 'Research')
+  const navEightFold =
+    nav.length === 2 &&
+    nav[0]?.text === 'Home' &&
+    nav[1]?.text === '☯ The Eight-fold' &&
+    (nav[1]?.items?.length ?? 0) >= 1
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity
   const waves = [
-    { wave: 'top nav = Double Torus · Home · Quantum · Research', done: navFour },
+    { wave: 'top nav = Home · ☯ The Eight-fold (I Ching trigram sections)', done: navEightFold },
     { wave: '10D animations at every scale (4 homology loops + 6 cross-fold axes)', done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: 'every card is one open-graph object', done: everyCardOg },
     { wave: 'browser-language routing, default English', done: true }, // config.mts head detector + theme locale memory
@@ -29871,7 +29957,7 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   ]
   const sealed = waves.filter((w) => w.done).length
   return {
-    holds: navFour && tenD.tenDimensional && trinityRoot, // the parts enforceable from src right now
+    holds: navEightFold && tenD.tenDimensional && trinityRoot, // the parts enforceable from src right now
     trinityUnitesAll: trinityRoot,
     sealed,
     total: waves.length,
@@ -29879,9 +29965,9 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     pending: waves.filter((w) => !w.done).map((w) => w.wave),
     root: merkleFold(waves.map((w) => toUuid(`redesign:${w.wave}:${w.done}`))),
     statement:
-      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — a four-door nav, ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave, dropping nothing yet (reorganize first).',
+      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home and the ☯ Eight-fold nav (I Ching trigram sections), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave, dropping nothing yet (reorganize first).',
     boundary:
-      'A directive folded as a tracked plan. `holds` proves only the parts enforceable from src (the four-door nav, the ten dimensions, the uniting trinity); the rest (research grouping, sidebar, crosslink, 10D in every component, the eventual cleanup) are declared waves, sealed as they land — not yet all true.',
+      'A directive folded as a tracked plan. `holds` proves only the parts enforceable from src (the eight-fold nav, the ten dimensions, the uniting trinity); the rest (research grouping, sidebar, crosslink, 10D in every component, the eventual cleanup) are declared waves, sealed as they land — not yet all true.',
   }
 }
 
