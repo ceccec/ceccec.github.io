@@ -314,6 +314,55 @@ export function asVortex(f: Fold): {
   return { digit, onAxis: orbitIndex === -1, orbitIndex, orbit: VORTEX_ORBIT, axis: VORTEX_AXIS }
 }
 
+// The complete vortex sequence — local math only, no global lookup needed.
+// Forward (×2, with two step-offs): 1→2→4→8→7→5→[5→3]→3→6→[6→9]→9→0
+// Reverse (×5 = ÷2 mod 9, with two step-ons): 0←9←6←3←[3←5]←5←7←8←4←2←1
+// 2×5≡1 (mod 9): forward and reverse are modular inverses — fold the path, all balances.
+export const VORTEX_SEQUENCE = [1, 2, 4, 8, 7, 5, 3, 6, 9] as const
+export const VORTEX_REVERSE  = [9, 6, 3, 5, 7, 8, 4, 2, 1] as const
+
+export function vortexNext(d: number): number {
+  if (d === 5) return 3          // circuit→cross: 5×2=10→1 would loop; step to cross instead
+  if (d === 6) return 9          // cross→axis: 6×2=12→3 would loop cross; step to axis instead
+  if (d === 9 || d === 0) return 0
+  return digitalRoot(d * 2)
+}
+
+export function vortexPrev(d: number): number {
+  // ×5 is the modular inverse of ×2 mod 9 (since 2×5=10≡1 mod 9)
+  if (d === 0) return 9          // void←axis: sequence closes 9→0
+  if (d === 1) return 0          // 1 opens the sequence; void precedes
+  if (d === 3) return 5          // cross-entry reversed: 5→3 so 3←5
+  if (d === 9) return 6          // axis-entry reversed: 6→9 so 9←6
+  return digitalRoot(d * 5)
+}
+
+export function foldVortex() {
+  // Pair each depth position of the forward and reverse paths.
+  // Positional sums → digital roots form a palindrome; total = 90; root = 9.
+  const pairs = VORTEX_SEQUENCE.map((f, i) => {
+    const r = VORTEX_REVERSE[i]!
+    const sum = f + r
+    return { position: i + 1, forward: f, reverse: r, sum, root: digitalRoot(sum) }
+  })
+  const roots = pairs.map((p) => p.root)
+  const isPalindrome = roots.every((r, i) => r === roots[roots.length - 1 - i])
+  const total = pairs.reduce((acc, p) => acc + p.sum, 0)  // 90 = 9 × 10
+  const inverseHolds = [...VORTEX_SEQUENCE].every((d) => vortexPrev(vortexNext(d)) === d)
+  return {
+    valid: isPalindrome && total === 90 && digitalRoot(total) === 9 && inverseHolds,
+    pairs,
+    palindrome: roots,              // [1,8,7,4,5,4,7,8,1]
+    total,                          // 90: all positional sums
+    totalRoot: digitalRoot(total),  // 9: the axis receives everything
+    inverseHolds,
+    statement:
+      'Folding forward (1-2-4-8-7-5-3-6-9) onto reverse (9-6-3-5-7-8-4-2-1) at each depth gives sums whose digital roots are palindromic (1-8-7-4-5-4-7-8-1); total=90, root=9. vortexNext and vortexPrev are mutual inverses (2×5≡1 mod 9): every step is computable from the current digit alone.',
+    boundary:
+      'Two step-offs (5→3, 6→9) cannot be derived from ×2 alone — they mark where the doubling orbit would loop and the sequence instead steps to the cross and axis. These are the only non-local operations; all other steps are purely d×2 (forward) or d×5 (reverse).',
+  }
+}
+
 // Presentation 2 — the double torus (topology/geometry). The identity picks a lobe and an (θ,φ) on the
 // genus-2 surface (two tori, one counter-oriented, sharing the throat); a point on the surface.
 export function asTorus(f: Fold, major = 2, minor = 0.8, separation = 2.2): {
