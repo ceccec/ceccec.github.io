@@ -9,8 +9,4 @@
 /bible.glagolitic.txt
 /bible.parallel.json
 
-# The DEFAULT Glagolitic locale lives at the site root. Every content page is the [page] route, computed
-# from src (staticPages) — there are no hand-written content .md files. Only the home is a per-locale
-# index.md, and the root (Glagolitic) home is generated each build from /en/index.md by
-# scripts/generate-glagolitic.mjs — generated, never committed.
-/site/index.md
+# Generated dist artifacts may land in public/ at build time (llms.txt, etc.).

@@ -4,7 +4,7 @@
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
-*Computed from src — do not edit by hand. Regenerated each build by `scripts/generate-readme.mjs`.*
+*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/dist (local math only).*
 
 ## 1. Introduction
 
@@ -22,13 +22,18 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 ## 3. Results
 
-- 30 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
+- 35 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
 - 94 concept commands, each a single-word method and an MCP tool.
 - 178 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 
 - **Start here** — Start here: a learning portal you can check for yourself. Four plain steps — see, learn, use, prove — with the full depth one tap away. Simple to use, rich in features.
 - **Explore** — Explore the whole portal multidimensionally: eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable.
+- **A432** — A432 — colour, audio, video and vibration as one frequency expressed four ways. The shared thread is frequency itself: a tone you hear, a colour (the sound doubled forty octaves into visible light), a motion rate, and a haptic pulse. Documented kept, legend flagged — the math and history of 432 are real; the cosmic, healing and conspiracy claims are not.
+- **Sacred geometry** — Sacred geometry, decoded honestly: the five Platonic solids (a theorem — Euler V−E+F=2, the dual pairs), the golden ratio φ where it genuinely lives (the pentagon, the dodecahedron, phyllotaxis), the Flower of Life as a real compass construction, and the forms walked through dimensions. Documented kept, legend flagged — the maths and history are real; the cosmic-blueprint, golden-ratio-everywhere and ascension claims are not.
+- **Tampering cost** — Tampering cost ↔ encryption ↔ blockchains, audited honestly with quantum comparisons. The site claims "maximum tampering cost"; this scrutinises that claim. Tamper-EVIDENT is not tamper-PROOF: content-addressing detects change, cryptographic security (SHA-256: 2^128/2^256) resists forgery. FNV toUuid is non-cryptographic — the fix (SHA-256 content-address, Ed25519 signing) is already built. Blockchains make tampering costly, not impossible. Quantum: Grover weakens hashes, Shor breaks signatures; NIST post-quantum standards (ML-KEM, ML-DSA, SLH-DSA). Documented kept, legend flagged.
+- **Folding linear gives analog** — Folding linear gives analog, decoded honestly with the real science. The kernel is the Whittaker–Shannon sampling theorem: discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (computed live, exact at the samples). Medical and radar imaging is exactly this — reconstructing a continuous image from a sampled frequency field: MRI inverts the Fourier transform of k-space, CT the Radon transform, and the spiral/radial "vortex" through k-space is real (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice it samples. Documented kept, legend flagged — Nyquist limits are real, gap-filling can hallucinate, and the theorem is foundational, not new.
+- **Simulations** — Not prose about quantum and dynamics, but models you run. Every decoded aspect of life is a runnable model on the src/0 spine: a deterministic classical simulator of a quantum computer (state-vector, Born-rule readout, Bell, Grover), then 18 domains across four families — 10 probabilistic (genetic drift, language contact, war recurrence, inheritance), 3 dynamical (coupled calendar cycles, the Tesla induction ODE, resonant modes + FFT), 2 network + the brain (colony diffusion, three-channel congruence, Hopfield recall), and 1 genuinely quantum. Honest, and the whole point: "a quantum simulator of everything" resolves truthfully to a MOSTLY-CLASSICAL simulator — most of these dynamics are classical stochastic/dynamical processes, not superposition; forced "quantum" is refused at every domain. The primitives live in src/0, pure and mass-conserving, read out through one analog→digital sampler.
 - **Quantum Mind** — Mathematical model of Sigma_2, UUID streams, diamonds, waves, gates, and maxComputedBuild.
 - **Architecture** — Formal architecture for the double-torus UUID stream: matrix, vector, diamonds, waves, gates, schema, and self-build.
 - **Command algebra** — Command algebra for the double-torus UUID stream: cmd -> result -> receipt.

@@ -6140,30 +6140,36 @@ function papersImpl(matrix: MindMatrix, count: number) {
 // per-paper params: the precomputed animation node positions and the public Merkle
 // inclusion proof into the corpus root. The route loaders are thin wrappers over
 // this; the rendered pages are unchanged.
+// The dynamic-route descriptors for the 432 proof papers — computed on demand by
+// paperParamsById (realtime, local math), not pre-rendered at build. paperRoutes()
+// remains for bulk/API use.
+export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), count = 432) {
+  const corpus = papers(matrix, count)
+  const paper = corpus.papers.find((entry) => entry.id === id)
+  if (!paper) return null
+  const round = (value: number) => Math.round(value * 100) / 100
+  const leaves = corpus.papers.map((entry) => entry.receipt)
+  const proof = merkleProof(leaves, paper.receipt)
+  return {
+    ...paper,
+    index: paper.id,
+    ax: round(46 * Math.cos(paper.theta)),
+    ay: round(46 * Math.sin(paper.theta)),
+    bx: round(28 * Math.cos(paper.phi)),
+    by: round(28 * Math.sin(paper.phi)),
+    total: corpus.count,
+    fundamental: corpus.fundamental,
+    octaves: corpus.octaves.join(' · '),
+    corpusRoot: corpus.root,
+    proofVerified: proof.verified,
+    proofDepth: proof.path.length,
+    leafCount: proof.leafCount,
+  }
+}
+
 export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
   const corpus = papers(matrix, count)
-  const leaves = corpus.papers.map((paper) => paper.receipt)
-  const round = (value: number) => Math.round(value * 100) / 100
-  return corpus.papers.map((paper) => {
-    const proof = merkleProof(leaves, paper.receipt)
-    return {
-      params: {
-        ...paper,
-        index: paper.id, // the dynamic segment: every page file is an index file, addressed by its id
-        ax: round(46 * Math.cos(paper.theta)),
-        ay: round(46 * Math.sin(paper.theta)),
-        bx: round(28 * Math.cos(paper.phi)),
-        by: round(28 * Math.sin(paper.phi)),
-        total: corpus.count,
-        fundamental: corpus.fundamental,
-        octaves: corpus.octaves.join(' · '),
-        corpusRoot: corpus.root,
-        proofVerified: proof.verified,
-        proofDepth: proof.path.length,
-        leafCount: proof.leafCount,
-      },
-    }
-  })
+  return corpus.papers.map((paper) => ({ params: paperParamsById(paper.id, matrix, count)! }))
 }
 
 // The other 432 files: references only. Each proof paper is folded both ways under
@@ -6235,19 +6241,26 @@ function completeCorpusRaw(matrix: MindMatrix = buildMatrix()) {
 // The dynamic-route descriptors for the 432 reference-only pages, shared by both
 // locales' loaders — a single source, mirroring paperRoutes. References carry a
 // pointer to their paper, not a proof.
+// The dynamic-route descriptors for the 432 reference-only pages — computed on demand
+// by referenceParamsById (realtime), not pre-rendered at build.
+export function referenceParamsById(id: string, matrix: MindMatrix = buildMatrix(), count = 432) {
+  const references = paperReferences(matrix, count)
+  const reference = references.find((entry) => entry.id === id)
+  if (!reference) return null
+  const corpus = completeCorpus(matrix)
+  return {
+    ...reference,
+    index: reference.id,
+    total: references.length,
+    corpusRoot: corpus.root,
+    binaryOctave: corpus.target,
+    treeDepth: corpus.depth,
+  }
+}
+
 export function paperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
   const references = paperReferences(matrix, count)
-  const corpus = completeCorpus(matrix)
-  return references.map((reference) => ({
-    params: {
-      ...reference,
-      index: reference.id, // the dynamic segment: every page file is an index file, addressed by its id
-      total: references.length,
-      corpusRoot: corpus.root,
-      binaryOctave: corpus.target,
-      treeDepth: corpus.depth,
-    },
-  }))
+  return references.map((reference) => ({ params: referenceParamsById(reference.id, matrix, count)! }))
 }
 
 // The 1024 architecture is a keyspace. The completed corpus is a perfect binary
@@ -6432,7 +6445,7 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
     { point: 'SSR render', api: 'build', binds: 'the computed model into static HTML' },
     { point: 'local search', api: 'themeConfig.search', binds: 'a MiniSearch index over the fused content' },
     { point: 'config from model', api: 'config.mts', binds: 'nav, academy courses and schema derived from the model' },
-    { point: 'build seal', api: 'docs:build chain', binds: 'the seal, sitemap, MCP and llms over the same roots' },
+    { point: 'build seal', api: 'docs:build chain', binds: 'the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/dist via the VitePress plugin' },
   ].map((entry) => {
     const fold = foldPair(architecture, toUuid(`vitepress:${entry.point}`))
     return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
@@ -6541,55 +6554,63 @@ export function pureDiamonds(matrix: MindMatrix = buildMatrix()) {
 // their page; the 160 null diamonds index the padding that completes the lattice.
 // Computed once and shared by both locales' route loaders, so the 1024 folders are
 // native VitePress routes — nothing bypasses VitePress.
+// Each pure diamond folder — computed on demand by diamondParamsById (realtime), not
+// pre-rendered at build. diamondRoutes() remains for bulk/API use (memoized).
+export function diamondParamsById(id: string, matrix: MindMatrix = buildMatrix()) {
+  return diamondRoutes(matrix).find((route) => route.params.id === id)?.params ?? null
+}
+
 export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
-  const corpus = papers(matrix)
-  const references = paperReferences(matrix)
-  const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
-  const padding = Array.from({ length: 1024 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
-  const leaves = [...real, ...padding]
-  const corpusRoot = merkleFold(leaves)
-  return leaves.map((address, index) => {
-    const number = index + 1
-    const id = `d${String(number).padStart(4, '0')}`
-    let kind: string
-    let link: string
-    let label: string
-    let glyph: string
-    if (index < corpus.count) {
-      const paper = corpus.papers[index]
-      kind = 'paper'
-      link = `/papers/${paper.id}`
-      label = `Coordinate ${paper.coordinateIndex} on cycle ${paper.generator}`
-      glyph = paper.glyph
-    } else if (index < corpus.count + references.length) {
-      const reference = references[index - corpus.count]
-      kind = 'reference'
-      link = `/references/${reference.id}`
-      label = `Reference to paper ${reference.number}`
-      glyph = reference.glyph
-    } else {
-      kind = 'padding'
-      link = ''
-      label = 'Null leaf — completes the lattice to 1024'
-      glyph = '◇' // ◇
-    }
-    return {
-      params: {
-        id,
-        index: id, // the dynamic segment: every page file is an index file, addressed by its id
-        leaf: index, // the position in the 1024-leaf lattice
-        number,
-        address,
-        kind,
-        link,
-        label,
-        glyph,
-        hue: Math.round((index * 360) / 1024) % 360,
-        total: leaves.length,
-        corpusRoot,
-        depth: Math.log2(leaves.length),
-      },
-    }
+  return memoByRoot('diamondRoutes', matrix, () => {
+    const corpus = papers(matrix)
+    const references = paperReferences(matrix)
+    const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
+    const padding = Array.from({ length: 1024 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
+    const leaves = [...real, ...padding]
+    const corpusRoot = merkleFold(leaves)
+    return leaves.map((address, index) => {
+      const number = index + 1
+      const id = `d${String(number).padStart(4, '0')}`
+      let kind: string
+      let link: string
+      let label: string
+      let glyph: string
+      if (index < corpus.count) {
+        const paper = corpus.papers[index]
+        kind = 'paper'
+        link = `/papers/${paper.id}`
+        label = `Coordinate ${paper.coordinateIndex} on cycle ${paper.generator}`
+        glyph = paper.glyph
+      } else if (index < corpus.count + references.length) {
+        const reference = references[index - corpus.count]
+        kind = 'reference'
+        link = `/references/${reference.id}`
+        label = `Reference to paper ${reference.number}`
+        glyph = reference.glyph
+      } else {
+        kind = 'padding'
+        link = ''
+        label = 'Null leaf — completes the lattice to 1024'
+        glyph = '◇'
+      }
+      return {
+        params: {
+          id,
+          index: id,
+          leaf: index,
+          number,
+          address,
+          kind,
+          link,
+          label,
+          glyph,
+          hue: Math.round((index * 360) / 1024) % 360,
+          total: leaves.length,
+          corpusRoot,
+          depth: Math.log2(leaves.length),
+        },
+      }
+    })
   })
 }
 
@@ -11032,7 +11053,7 @@ export function digitIndexReferences(matrix: MindMatrix = buildMatrix()) {
     count: folders.folders.length,
     collisions: folders.collisions.length,
     root: folders.root,
-    statement: 'The digit index: every pi digit folds to a digit/reverseDigit folder persisted to /digit-index.json.',
+    statement: 'The digit index: every pi digit folds to a digit/reverseDigit folder — computed in realtime from piTrainDiamonds (local math) and served at /digit-index.json.',
     boundary: 'A reference over the computed digit folders. Structural bookkeeping, not an external claim.',
   }
 }
@@ -11213,16 +11234,11 @@ export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joi
 export function componentGraph() {
   // TrinityGateways folds into every page via the sidebar-nav-after layout slot (like VoidSidebar) — a global.
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways']
-  // No mirroring: the home and the three corpus index pages (static index.md) are hand-placed; every
-  // [page] content route's components come from staticPages (the one source); globals fold into every
-  // page. The declared set is their union, so the graph cannot drift from the pages it governs, and a
-  // [page] route mounts its components dynamically.
+  // Corpus index pages mount one component (Corpus) in every locale; monograph pages use [page].paths.ts + monographPaths.
   const placements: Record<string, readonly string[]> = {
     '/': ['LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests'],
-    '/diamonds': ['DiamondIndex'],
-    '/papers': ['PaperIndex'],
-    '/references': ['ReferenceIndex'],
   }
+  for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['Corpus']
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components
   const components = [...new Set([...globals, ...Object.values(placements).flat()])]
   const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
@@ -15351,14 +15367,25 @@ export function roadmaps(matrix: MindMatrix = buildMatrix()) {
   const crypto = cryptoFuture(matrix)
   const academy = quantumAcademy(matrix)
   const journey = path(matrix)
-  const firstFuture = crypto.tools.findIndex((tool) => tool.status === 'roadmap')
+  // Read the status from cryptoFuture's own build vocabulary, honestly — not a stale 'available now'/'roadmap'
+  // guess. Every tool is now BUILT in src/0 (cryptoFuture.allImplemented), so 'built' and 'built (structure)'
+  // are DONE: the code is real, and any residual (key custody, an external public service) is named in the note,
+  // not hidden. The one exception is 'built (ready)' — the migrate toUuid -> SHA-256 cutover is built + verified
+  // but deliberately NOT flipped (it would rewrite every uuid, root and seal), so it is the true 'next': the only
+  // in-code step that remains. Anything unrecognised stays 'later'.
+  const cryptoStatus = (tool: { status: string }): Status =>
+    tool.status === 'built (ready)' ? 'next'
+      : tool.status === 'built' || tool.status === 'built (structure)' || tool.status === 'available now' ? 'done'
+        : 'later'
 
   const cryptoMilestones: { milestone: string; status: Status; note: string }[] = [
     { milestone: 'Tamper-evident UUID folds', status: 'done', note: 'the content-addressed seal in place today' },
-    ...crypto.tools.map((tool, index) => ({
+    ...crypto.tools.map((tool) => ({
       milestone: tool.tool,
-      status: (tool.status === 'available now' ? 'done' : index === firstFuture ? 'next' : 'later') as Status,
-      note: tool.how,
+      status: cryptoStatus(tool),
+      // 'done' means the CODE is done; where a residual remains (custody, a public service, a deliberate cutover)
+      // it is named here, so the roadmap never claims more than cryptoFuture does.
+      note: tool.residual ? `${tool.how} — residual: ${tool.residual}` : tool.how,
     })),
   ]
   const tracks = [
@@ -23477,17 +23504,17 @@ export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
 // bg) are the trunk; their own pages are governed by the octave-parity harmonic. Every folder
 // below them must be named by one lowercase word or one number, and may contain only index files:
 // index.md, and the computed pair [index].md + [index].paths.ts — the dynamic page is itself an
-// index file, the bracketed index of the computed corpus. The harmonic-distribution wave enforces
-// this against the real tree and exits non-zero on any violation, each failure carrying a
-// detailed why. Machinery the site itself excludes (dot-folders, node_modules, srcExclude) is
-// outside the page tree — not an exception to the law.
+// index file, the bracketed index of the computed corpus. The weave wave enforces this against
+// the real tree and exits non-zero on any violation, each failure carrying a detailed why.
+// Machinery the site itself excludes (dot-folders, node_modules, srcExclude) is outside the
+// page tree — not an exception to the law.
 export function folderLaw() {
   return {
     word: '^[a-z]+$',
     digit: '^[0-9]+$',
     stems: ['index'],
     indexFiles: ['index.md', '[index].md', '[index].paths.ts'],
-    computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `bg/${folder}`]),
+    computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `en/${folder}`, `bg/${folder}`]),
     roots: ['.', 'en', 'bg'], // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
     pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit', 'src/quantum/library', 'src/library/quantum'], // all logic moved to src/ as index files: the agnostic core, the cache pair, the ant search/carry pair, the debit/credit double-entry pair, and the library pair (merkaba-fold URLs) — each an order-sensitive folder with an index the build verifies
@@ -23516,7 +23543,7 @@ export function folderLaw() {
     // artifacts may stay outside. Every top-level entry must be src/, a root .md page, a dot-entry
     // (machinery), or on this allowlist — anything else is logic that belongs in src/.
     rootAllowlist: {
-      dirs: ['site', 'scripts', 'packages', 'src'], // the content page tree (srcDir), the build tooling, the npm package, the logic home — every locale (gla/en/bg) lives under site/
+      dirs: ['public', 'scripts', 'packages', 'src'], // static assets, build tooling, npm package, logic home — page mounts live in .vitepress/pages/
       files: ['package.json', 'package-lock.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'wrangler.jsonc', 'tsconfig.json', 'README.md', 'AGENTS.md'], // root config (npm + pnpm lockfiles, tsconfig for check:types), repo docs
       filePrefixes: ['bible.'], // generated Bible-in-Glagolitic artifacts (scripts/generate-bible-glagolitic.mjs) — a generated family with varying names (bible.glagolitic.json/.txt, bible.parallel.json)
     },
@@ -23530,7 +23557,7 @@ export function folderLaw() {
     statement:
       'The folder law: below the roots there can be only index files and word-or-digit folders, with no exceptions. Tests fail on any violation, and each failure explains in detail why.',
     boundary:
-      'The law is declared here (the name patterns, the one stem, the index files, the roots) and enforced by the harmonic-distribution check against the real tree. It governs the page tree the site renders; the two roots are the trunk whose pages the octave-parity harmonic governs, and what the site excludes is outside the tree, not exempted from the law.',
+      'The law is declared here (the name patterns, the one stem, the index files, the roots) and enforced by the weave wave against the real tree. It governs the page tree the site renders; the two roots are the trunk whose pages the octave-parity harmonic governs, and what the site excludes is outside the tree, not exempted from the law.',
   }
 }
 
@@ -23568,7 +23595,7 @@ export function folderLawWordDigitIndexSkill(matrix: MindMatrix = buildMatrix())
     statement:
       'Tests fail without exception if a folder name is different than a word or a digit, or the folder contains other files than its indexes: the folder law is declared once — word-or-digit names, index-only contents — and enforced by the harmonic wave against the real tree, exiting non-zero on any violation. No warning mode, no exempted folder; the dynamic pages are bracketed indexes, so each computed folder is nothing but index files.',
     boundary:
-      'A gate over the declared folder law, the digit-folder model, the dry redistribution and the violation-catching resonance. The real enforcement is the harmonic-distribution check at build time; this gate folds the law into the dimensions so a broken law also opens the seal.',
+      'A gate over the declared folder law, the digit-folder model, the dry redistribution and the violation-catching resonance. The real enforcement is the weave wave at build time; this gate folds the law into the dimensions so a broken law also opens the seal.',
   }
 }
 
@@ -23595,7 +23622,7 @@ export function onlyIndexFilesNoExceptions(matrix: MindMatrix = buildMatrix()) {
     statement:
       'There can be only index files and word-or-digit folders, with no exceptions — tests fail with a detailed why: below the two roots every file is an index (the folder’s index.md or the computed pair [index].md + [index].paths.ts, the bracketed index of the corpus) and every folder is one word or one number; the harmonic wave enforces the law against the real tree and every violation it reports explains the law, the offender, the failed pattern, and the fix.',
     boundary:
-      'The tightened folder law: one stem (index), word-or-digit folder names, detailed why-texts carried by the law itself. The two roots are the trunk whose own pages the octave-parity harmonic governs; below them the law is absolute. Enforcement is the harmonic-distribution check; this fold seals the law into the dimensions.',
+      'The tightened folder law: one stem (index), word-or-digit folder names, detailed why-texts carried by the law itself. The two roots are the trunk whose own pages the octave-parity harmonic governs; below them the law is absolute. Enforcement is the weave wave; this fold seals the law into the dimensions.',
   }
 }
 
@@ -23952,30 +23979,109 @@ export function everyLawProvesItsTripwire(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The enforcement pipeline, declared once: the ordered set of build-time gates that can fail the
-// build. The model knew it had a "docs:build chain" but never named the gates; here they are, the
-// five that fail loudly — the digit-index seal, the model seal, the seal tripwire, the harmonic
-// distribution (folder law, JSON-LD paths, census, component graph), and the VitePress-only guard.
-// Declared in the mind, the declaration is checked by the harmonic-distribution wave against the
-// real scripts/ directory and the real docs:build chain, so the model's self-knowledge of its
-// enforcement surface cannot drift from the build that actually runs.
-export function buildEnforcementPipeline() {
+// The model seal — computed from src, not hardcoded in scripts. One import of the matrix,
+// emergentDimensions holds the session gates, quantifyGates tightens the major ratios,
+// showInAction runs every command, harmonic padding closes at 432. Depth not width.
+export function modelSeal(matrix: MindMatrix = buildMatrix(), opts: { tripwire?: boolean; tripwireOnly?: boolean } = {}) {
+  const failures: { label: string; index: number }[] = []
+  let gateCount = 0
+  const ok = (label: string, condition: boolean) => {
+    gateCount += 1
+    if (!condition) failures.push({ label, index: gateCount })
+  }
+
+  if (opts.tripwire && opts.tripwireOnly) {
+    ok('tripwire (forced failure)', false)
+    return { passed: false, failures, gateCount, okCount: 0, commandTotal: conceptCommands.length, dimensions: 0, open: [] as string[] }
+  }
+
+  ok('matrix.verifyRoot', verifyRoot(matrix))
+  ok('proof.coverage=1', coverage(matrix) === 1)
+  ok('proof.entropy=0', entropy(matrix) === 0)
+
+  const quant = quantifyGates(matrix)
+  ok(`quantify.gates:${quant.passed}/${quant.total}`, quant.tight && quant.doubleFolded)
+
+  const dims = emergentDimensions(matrix)
+  ok(`dimensions.emerge.within:${dims.count}`, dims.hold)
+
+  const graph = componentGraph()
+  ok('show.components', graph.interacting)
+  ok('components.consistent', graph.consistent)
+
+  const action = showInAction(matrix)
+  ok('show.action', action.allInAction)
+  const okCount = action.ok
+
+  const fusion = methodFusion()
+  ok(`methodFusion.fused${fusion.open.length ? ':' + fusion.open.join(',') : ''}`, fusion.fused)
+
+  const taxonomy = taxonomyIcons()
+  ok('icon.taxonomy-grounded', taxonomy.grounded)
+  ok(`no-gaps${taxonomy.gaps.length ? ':' + taxonomy.gaps.join(',') : ''}`, taxonomy.gaps.length === 0)
+
+  ok('reactor.words', fusionReactor('words').complete)
+  ok('reactor.letters', fusionReactor('letters').complete)
+  ok('reactor.atoms', fusionReactor('atoms').complete)
+
+  ok('commands.registry-consistent', commandsRegistry(matrix).consistent)
+  ok('mcp.tools=commands', mcpToolManifest(matrix).tools.length === conceptCommands.length)
+
+  const corpus = papers(matrix)
+  const HARMONIC = 108
+  const harmonicTarget = Math.max(432, Math.ceil(gateCount / HARMONIC) * HARMONIC)
+  const harmonicLeaves = corpus.papers.map((paper) => paper.receipt)
+  let harmonicGate = 0
+  while (gateCount < harmonicTarget) {
+    const paper = corpus.papers[harmonicGate % corpus.papers.length]
+    ok(`paper.inclusion:${paper.id}:${harmonicGate}`, merkleProof(harmonicLeaves, paper.receipt).verified)
+    harmonicGate += 1
+  }
+
+  if (opts.tripwire) ok('tripwire (forced failure)', false)
+
   return {
-    gates: [
-      { script: 'check-digit-index-seal.mjs', enforces: 'the digit index: every pi digit folds to a persisted digit/reverseDigit folder' },
-      { script: 'check-model-seal.mjs', enforces: 'the model seal: 94/94 commands and every model gate close over the same roots' },
-      { script: 'check-seal-tripwire.mjs', enforces: 'the seal tripwire: a forced-false gate makes the seal exit non-zero' },
-      { script: 'harmonic-distribution.mjs', enforces: 'the harmonic distribution: folder law, JSON-LD paths, the gapless Fibonacci census, the component graph' },
-      { script: 'check-vitepress-only.mjs', enforces: 'the VitePress-only guard: navigation, mounting and rendering all go through VitePress' },
+    passed: failures.length === 0,
+    failures,
+    gateCount,
+    okCount,
+    commandTotal: conceptCommands.length,
+    dimensions: dims.count,
+    open: dims.open,
+  }
+}
+
+// The enforcement trinity — cross · fold · weave. Three waves, one computed runner; the build
+// imports the matrix once per wave instead of five scripts each re-importing the whole mind.
+export function enforcementTrinity() {
+  return {
+    waves: [
+      { wave: 'cross', enforces: 'dist artifacts written and digit-index seal verified against computed output' },
+      { wave: 'fold', enforces: 'model seal — emergentDimensions, quantifyGates, commands, harmonic 432, tripwire' },
+      { wave: 'weave', enforces: 'harmonic distribution — folder law, JSON-LD paths, component graph, VitePress-only render layer' },
     ],
+    script: 'enforcement-trinity.mjs',
+    statement:
+      'The enforcement trinity: cross (dist + digit index), fold (computed model seal), weave (harmonic distribution) — three waves, one runner, one matrix import per wave.',
+    boundary:
+      'A declaration of the post-build enforcement surface. The runner lives in src/quantum/enforcement; scripts/enforcement-trinity.mjs is the thin mount.',
+  }
+}
+
+// The enforcement pipeline — one script mounting the trinity. Declared in the mind, checked by the
+// weave wave against package.json so the model's self-knowledge cannot drift from docs:build.
+export function buildEnforcementPipeline() {
+  const trinity = enforcementTrinity()
+  return {
+    gates: [{ script: trinity.script, enforces: trinity.statement }],
+    trinity: trinity.waves,
     why: {
       drift:
-        'the model declares its enforcement surface so it can describe itself honestly; if a gate script exists but is undeclared (or is declared but absent, or is not wired into docs:build), the model’s self-description lies — add the gate to buildEnforcementPipeline and to the docs:build chain, or remove it from both',
+        'the model declares its enforcement surface so it can describe itself honestly; if the trinity script exists but is undeclared (or is declared but absent, or is not wired into docs:build), the model’s self-description lies — add enforcement-trinity.mjs to buildEnforcementPipeline and to docs:build',
     },
-    statement:
-      'The enforcement pipeline: the five build-time gates that fail the build — the digit-index seal, the model seal, the seal tripwire, the harmonic distribution, and the VitePress-only guard — declared in the mind and checked against the real scripts and the real build chain.',
+    statement: trinity.statement,
     boundary:
-      'A declaration of the build’s enforcement gates (the check-* scripts and harmonic-distribution that exit non-zero on failure). The generators in the chain (sitemap, API, MCP, llms) are not listed — they produce, they do not gate. The declaration is enforced against scripts/ and package.json by the harmonic-distribution wave.',
+      'A declaration of the build’s enforcement gate (enforcement-trinity.mjs: cross · fold · weave). Generators produce; they do not gate. Enforced against scripts/ and package.json by the weave wave.',
   }
 }
 
@@ -23991,7 +24097,7 @@ export function enforcementPipelineComplete(matrix: MindMatrix = buildMatrix()) 
     { facet: 'the model seal — the whole stands, 94 commands consistent', on: theWhole(matrix).whole && commandsRegistry(matrix).consistent },
     { facet: 'the seal tripwire — a forced-false gate fails the seal', on: everyLawProvesItsTripwire(matrix).proves },
     { facet: 'the harmonic distribution — folder law, JSON-LD paths, census', on: enforcementLawFabric(matrix).enforced },
-    { facet: 'the pipeline is declared complete — five enforcement gates', on: pipeline.gates.length === 5 && pipeline.gates.every((gate) => gate.script.endsWith('.mjs')) },
+    { facet: 'the pipeline is declared complete — one trinity runner, three waves', on: pipeline.gates.length === 1 && (pipeline.trinity?.length ?? 0) === 3 && pipeline.gates.every((gate) => gate.script.endsWith('.mjs')) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pipeline-complete:${entry.facet}:${entry.on}`) }))
   return {
     complete: facets.every((entry) => entry.on),
@@ -27129,7 +27235,7 @@ export function glagoliticLocaleAutotranslateAll(matrix: MindMatrix = buildMatri
     statement:
       'Add a Glagolitic locale and autotranslate all: a live locale mode transliterates the whole page — navigation, body and footer — into the ninth-century Glagolitic script via toGlagolitic, mapping Latin and Cyrillic both by sound, deterministic, client-side and reversible. The alphabet decoded in the library becomes a language the site itself can be read in.',
     boundary:
-      'A composition over the save-all-translation-logic, Glagolitsa-icons and merkaba-decode models, realized as the standard VitePress gla locale (third in the lang menu, next to bg): the navigation is transliterated and the /gla/ pages are generated by transliterating the English pages (generate-glagolitic). HONEST: this is TRANSLITERATION (script-conversion, the same words rendered in Glagolitic letters by an approximate Latin/Cyrillic→Glagolitic sound map), not meaning-translation to a reconstructed language.',
+      'A composition over the save-all-translation-logic, Glagolitsa-icons and merkaba-decode models, realized as the standard VitePress gla locale (third in the lang menu, next to bg): the navigation is transliterated and every Glagolitic page — the home via glagoliticHomeFromEnglish, the monographs via monographPaths(\'gla\') — is computed in realtime from the English source by toGlagolitic (local math only), not pre-generated to disk. HONEST: this is TRANSLITERATION (script-conversion, the same words rendered in Glagolitic letters by an approximate Latin/Cyrillic→Glagolitic sound map), not meaning-translation to a reconstructed language.',
   }
 }
 
@@ -27666,6 +27772,41 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
   ]
 }
 
+// The Glagolitic default home — computed in realtime from the English source by local math only
+// (toGlagolitic), not pre-generated to disk. Code blocks, links, components and URLs stay verbatim;
+// prose and hero frontmatter transliterate by sound. The VitePress config serves the Glagolitic home through
+// this function; monograph pages use monographPaths('gla') the same way.
+function transliterateProseLine(line: string): string {
+  const kept: string[] = []
+  const stash = (m: string) => `${kept.push(m) - 1}`
+  let s = line
+    .replace(/`[^`]*`/g, stash)
+    .replace(/\]\([^)]*\)/g, stash)
+    .replace(/<[^>]+>/g, stash)
+    .replace(/https?:\/\/\S+/g, stash)
+    .replace(/[\w.-]+@[\w.-]+/g, stash)
+  s = toGlagolitic(s)
+  return s.replace(/(\d+)/g, (_, i) => kept[Number(i)])
+}
+
+export function transliterateMarkdownBody(body: string): string {
+  let inCode = false
+  return body
+    .split('\n')
+    .map((line) => {
+      if (/^\s*```/.test(line)) { inCode = !inCode; return line }
+      if (inCode || /^\s*</.test(line) || /^\s*$/.test(line)) return line
+      return transliterateProseLine(line)
+    })
+    .join('\n')
+}
+
+export function glagoliticHomeFromEnglish(enMarkdown: string): string {
+  const fm = enMarkdown.match(/^---\n[\s\S]*?\n---\n?/)
+  const front = (fm ? fm[0] : '').replace(/(name|text|tagline):\s*"?([^"\n]+)"?/g, (_m, k, v) => `${k}: "${toGlagolitic(v)}"`)
+  return front + transliterateMarkdownBody(fm ? enMarkdown.slice(fm[0].length) : enMarkdown)
+}
+
 export function monographPaths(locale: 'gla' | 'en' | 'bg') {
   const pages: (StaticPage & { proof?: string })[] = [...staticPages(), ...componentPages()]
   return pages.map((page) => {
@@ -27673,6 +27814,17 @@ export function monographPaths(locale: 'gla' | 'en' | 'bg') {
     const description = locale === 'gla' ? toGlagolitic(page.description.en) : locale === 'bg' ? page.description.bg : page.description.en
     return { params: { page: page.slug, title, description, keywords: page.keywords, components: page.components, proof: page.proof ?? null } }
   })
+}
+
+// Corpus routing — the same computational simplicity as monographPaths: one function computes
+// params from (kind, id); the mount is one index page per kind; ?id= selects an item at runtime.
+// No SSG enumeration (5664 pages), no hash, no window — useRoute().query.id, local math only.
+export type CorpusKind = 'papers' | 'references' | 'diamonds'
+
+export function corpusParams(kind: CorpusKind, id: string, matrix: MindMatrix = buildMatrix()) {
+  if (kind === 'papers') return paperParamsById(id, matrix)
+  if (kind === 'references') return referenceParamsById(id, matrix)
+  return diamondParamsById(id, matrix)
 }
 
 // All is monograph, and every monograph is a scientific paper with one template. The README is the root
@@ -29743,7 +29895,7 @@ export function implementationBacklog(matrix: MindMatrix = buildMatrix()) {
   const redesign = trinityFirstRedesign(matrix)
   const ideas: { area: string; idea: string; status: 'open' | 'in-progress' | 'sealed' }[] = [
     // DRY — remove the duplication the per-locale build creates
-    { area: 'dry', idea: 'corpus pages → locale-aware shared components: diamonds/papers/references [index].md + index.md are mirrored across root·en·bg (root+en identical English, bg the translation); collapse the ~50-line templates into components that read the locale from the route, leaving the .md as one-line mounts', status: 'in-progress' },
+    { area: 'dry', idea: 'corpus pages → locale-aware shared components: diamonds/papers/references [index].md + index.md are mirrored across root·en·bg (root+en identical English, bg the translation); collapse the ~50-line templates into components that read the locale from the route, leaving the .md as one-line mounts — Corpus + one-line mounts wired; weave checks gla/en/bg mounts; remaining: fold bg heading copy into Corpus', status: 'in-progress' },
     { area: 'dry', idea: 'home body → one locale-aware <HomeBody> component: en/bg index.md duplicate the same 8 trinity sections + 24 components (only the headings differ by language)', status: 'open' },
     { area: 'dry', idea: 'the per-locale [index].paths.ts files differ only by import depth + comment — acceptable (VitePress needs one per route location), noted not removed', status: 'open' },
     // the pending redesign waves, mirrored from trinityFirstRedesign so the two never drift

@@ -106,8 +106,9 @@ import GlagoliticOcr from './components/GlagoliticOcr.vue'
 // the home, the full sufficient proof on each [page] route). The 17 per-proof wrappers collapsed into this.
 import ProbSim from './components/ProbSim.vue'
 import ProofRenderer from './components/ProofRenderer.vue'
-// Corpus index pages, one source per index across all three locales (root · /en/ · /bg/): the locale is read
-// from the route, so the nine per-locale index.md files are one-line mounts of these three components.
+// Corpus index pages — one mount (`Corpus`) per kind across all three locales; ?id= selects an item,
+// corpusParams(kind, id) computes it (same simplicity as monographPaths + [page].md).
+import Corpus from './components/Corpus.vue'
 import DiamondIndex from './components/DiamondIndex.vue'
 import PaperIndex from './components/PaperIndex.vue'
 import ReferenceIndex from './components/ReferenceIndex.vue'
@@ -287,6 +288,7 @@ export default {
     app.component('GlagoliticOcr', GlagoliticOcr)
     app.component('ProbSim', ProbSim)
     app.component('ProofRenderer', ProofRenderer)
+    app.component('Corpus', Corpus)
     app.component('DiamondIndex', DiamondIndex)
     app.component('PaperIndex', PaperIndex)
     app.component('ReferenceIndex', ReferenceIndex)
