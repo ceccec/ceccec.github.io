@@ -10,11 +10,8 @@ import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, mem
 // EM-radiation primitives (src/0): Maxwell's one field at one speed (c), the two relations (c=λf, E=hf)
 // and the ionizing line — the spectrum physics the electromagneticRadiationDecoded fold below composes.
 import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, PROTON_GYROMAGNETIC, IONIZING_EV, wavelengthOf, frequencyOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift } from '../../0/index.ts'
-// EM SIMULATORS (src/0): the 4 deterministic, content-addressed simulators the EM wave developed + verified —
-// plane-wave field · X-ray Beer–Lambert+CT · MRI Bloch/FID · FMCW radar; electromagneticExperiments() runs them.
-import { planeWaveField, planeWaveSpeed, planeWaveIntensity, planeWaveReceipt, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarVelocity, radarReceipt } from '../../0/index.ts'
-// powerSpectrum: the real-DFT magnitude detector the spectral-cycle trading strategy reads (markovStep/stationary already imported above).
-import { powerSpectrum } from '../../0/index.ts'
+// weatherForecastQuantumComputedRealtime lives in ../forecasts now; mind's duality matrix references it (ESM-safe fn cycle).
+import { weatherForecastQuantumComputedRealtime } from '../forecasts/index.ts'
 // The ten animation dimensions live beside the hero in src/quantum/dimensions — the 6 cross-fold appearance
 // axes + the 4 genus-2 homology loops (H1 = Z^4). Imported here so the tenDimensionalAnimation fold can prove
 // the count and grounding from the real constants (no second source).
@@ -35,8 +32,6 @@ export { GENETIC_CODE, mutationClass, codeRobustness } from '../../0/index.ts' /
 export { sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof } from '../../0/index.ts' // wave 15: vetted-hash crypto (available now) — Web Crypto SHA-256 + a SHA-256 Merkle tree with inclusion proofs over the canonical roots; the honest hardening of FNV toUuid that cryptoFuture's roadmap names (verifySha256Proof is distinct from the core FNV verifyMerkleProof)
 export { ed25519Keypair, ed25519Sign, ed25519Verify, transparencyLogRoot, logInclusion, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits } from '../../0/index.ts' // wave 16: the rest of the roadmap, built (+ wave 17: the red-team primitives — a found collision and the honest bit-budget, for cryptoChallenges and the live CryptoChallenges component) — Ed25519 signing (attestation), the append-only transparency-log structure, and a pure SYNC SHA-256 content-address (toUuidSha256, the migration target). Residuals are deployment/external, not code (see cryptoFuture)
 export { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, PROTON_GYROMAGNETIC, IONIZING_EV, wavelengthOf, frequencyOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift } from '../../0/index.ts' // wave 18: EM-radiation primitives — c=λf, E=hf, the ~10 eV ionizing line; one field across X-ray (ionizing) vs MRI-RF & microwave radar (non-ionizing), composed by electromagneticRadiationDecoded
-export { VACUUM_PERMITTIVITY, waveNumber, angularFrequency, planeWaveSpeed, planeWaveField, planeWaveEnergyDensity, planeWaveIntensity, planeWaveCircular, planeWaveReceipt, kevToFrequency, beamProfile, opticalDepth, beerLambert, muToHu, forwardProjectAxis, ramLakKernel, rampFilter, backProjectAxis, ctReceipt, blochStep, blochEvolve, fid, t1Recovery, phantomFid, blochReceipt, radarVelocity, fmcwSlope, beatToRange, rangeToBeat, rangeResolution, velocityResolution, syntheticEcho, rangeDopplerMap, detectTargets, radarReceipt } from '../../0/index.ts' // wave 19: the 4 EM simulators (plane wave · X-ray/CT · MRI Bloch · FMCW radar) — each run a content-addressed shared experiment, composed by electromagneticExperiments
-export type { RadarScene, RadarDetection } from '../../0/index.ts'
 export type { QuantumState, ProbState } from '../../0/index.ts'
 export type { AnimationEngine, Fold } from '../../0/index.ts'
 export { toGlagolitic, toScript, GLAGOLITIC_MAP, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } // OCS_GLAGOLITIC_MAP/toGlagoliticOCS extend the script to Old Church Slavonic (yat, yuses, fita…), the LANGUAGE Glagolitic was made to write; CHURCH_SLAVONIC_SCRIPTURE is the parallel corpus (OCS · Bulgarian · English); translateVerse/scriptureIn are the LOCAL meaning-translation service (no MT, no network); bibleParallel/bibleInGlagolitic render the founding Bible — Bulgarian MEANING and Cyril's OCS both in the round script — local, deterministic, zero tokens // + Ogham, Ifá, Polynesian local decode tools (the 6-domain loop completed) // + the 6 frontier decode tools: sexagesimal (base-60), luoShu (canonical order-3) // GLAGOLITIC_MAP for the reverse OCR; gematria + the local decode tools decode the saved original ancient texts; GLAGOLITIC_LETTERS/glagoliticValue/toGlagoliticNumber/glagoliticAcrostic are the Glagolitic alphabet-and-language; SIX_BY_SEVEN/sixBySeven carry the documented 42=6×7 verdict (7 is completeness, 42 is process)
@@ -19447,6 +19442,76 @@ export function glagoliticMapsToCodeAndQuantumDecoded(matrix: MindMatrix = build
   }
 }
 
+// The meaning of ALL the letters, realized — sent as a 28-letter research→verify wave (57 agents, dual-mind:
+// research + adversarial verify) and folded. Each letter's NAME is mostly an ordinary Old Church Slavonic word,
+// and read in order the names spell an acrostic; the wave's honest verdict is that only the FIRST NINE
+// (azъ–zemlja) uncontroversially cohere — "I, who know the letters, say: it is good to live abundantly — the
+// earth" — while the famous middle triads are real but progressively MODERN RECONSTRUCTION, five names
+// (ǵervь, frьtъ, xěrъ, ci, ša) are opaque loan-phoneme labels (not words), and the documented Glagolitic
+// numerals diverge from the project's positional ladder for the late letters (ci=900, črьvь=1000, ša≈2000;
+// values >999 themselves uncertain). This meaning ANCHORS the letter→number→bits/opcode/gate maps in
+// documented words — the honest answer to that fold's own flag that the maps were lossy/constructed. The
+// "single composed poem", cross/circle/triangle "by design", mystical numerology and pseudo-decipherment are
+// flagged and excluded.
+export function glagoliticMeaningOfAllDecoded(matrix: MindMatrix = buildMatrix()) {
+  const letters = GLAGOLITIC_LETTERS.map((entry, i) => {
+    const meaning = glagoliticMeaning(entry.glyph)
+    return {
+      glyph: entry.glyph, name: entry.name, sound: entry.sound, number: glagoliticValue(i + 1),
+      gloss: meaning?.gloss ?? '', word: meaning?.word ?? false, secure: meaning?.secure ?? false,
+      receipt: toUuid(`glagolitic-meaning:${entry.name}:${meaning?.gloss ?? ''}`),
+    }
+  })
+  const acrostic = glagoliticAcrosticMessage()
+  const words = letters.filter((entry) => entry.word).length // 23 ordinary OCS words
+  const opaque = letters.filter((entry) => !entry.word).map((entry) => entry.name) // ǵervь, frьtъ, xěrъ, ci, ša
+  const secureSpan = letters.filter((entry) => entry.secure).length // the cohering first nine
+  // The documented themes that survive the verifiers — only what the wave confirmed.
+  const themes = [
+    { theme: 'literacy / the knowing self', core: '"I know the letters" — azъ buky vědě: the alphabet opens by naming the literate, speaking self' },
+    { theme: 'the good', core: 'dobro jestъ, "it is good" — a value-judgement built into the head of the alphabet' },
+    { theme: 'living rightly', core: 'živěte dzělo zemlja, "to live abundantly — the earth": life on the earth affirmed as good' },
+    { theme: 'the word and its proclamation', core: 'glagolati "to speak", rьci slovo "speak the word", slovo = logos — the act of declaring' },
+    { theme: 'teaching the people', core: 'ljudije "people", myslite "think", ukъ "teaching" — literacy as instruction addressed to a community' },
+    { theme: 'the letters are numbers', core: 'each glyph carries a numeral in the native order (1–9, 10–90, 100–900…) — the deepest, most secure structural fact' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-theme:${entry.theme}:${entry.core}`) }))
+  // The legend, flagged and kept strictly separate (from the wave's adversarial minds).
+  const flagged = [
+    { claim: 'the alphabet is a single intentionally-composed coherent poem/prayer by Cyril, spelled right through the letter-names', verdict: 'overclaim — only the first nine cohere', why: 'past azъ–zemlja the reading is modern editorial smoothing of a word-list whose abecedaria evidence is "inconsistent and in some respects even self-contradictory" and re-segmentable (no single fixed message). The one genuinely composed 9th-c. acrostic is the SEPARATE Azbučna molitva of Constantine of Preslav (c. 893) — its authority must not be lent to the name-chain' },
+    { claim: 'every glyph was deliberately built from cross (Christ) + circle (God) + triangle (Trinity), encoding the faith by design', verdict: 'interpretation, not proven intent', why: 'this is Tschernochvostoff\'s (1955) hypothesis — scholarship states such a general design principle "could not be proven"; it is often misattributed to Jagić, who argued a Greek-cursive origin (Cubberley: Armenian; competing Coptic/Hebrew derivations). A real visual observation, not documented intent' },
+    { claim: 'each letter and its number carries a mystical/numerological "deep meaning" (40=testing, 90=Trinity-squared…); the script is a divine-emanation tool', verdict: 'esoteric overlay, not philology', why: 'the numerals are positional bookkeeping in the native order; the medieval "Rain of God\'s Letters" reading is a study OF a later mystical reception, not 9th-c. gematria or authorial intent' },
+    { claim: 'Glagolitic is a pre-Cyrillic "Slavic/Thracian" script encoding a hidden doctrine, and the opaque names mean ša="silence", ci="worm/red", ǵervь="tree", xěrъ="Christ"', verdict: 'pseudo-decipherment / fabrication', why: 'attribution is Constantine-Cyril (with Methodius) c. 862–863; ǵervь, frьtъ, xěrъ, ci, ša are opaque labels for loan-phonemes (/ǵ f x ts š/) with no attested lexical meaning — inventing glosses is fabrication (worm/red is the DIFFERENT letter črьvь)' },
+    { claim: 'the project\'s positional ladder gives the late letters ci=800, črьvь=900, ša=1000', verdict: 'diverges from the documented numerals — recorded honestly', why: 'the attested Glagolitic numerals are ci=900, črьvь=1000, ša≈2000 (and values >999 vary by author / are uncertain); glagoliticValue is a documented SIMPLIFICATION — secure for the early letters, provisional for the late — kept for the bits/opcode/gate maps\' internal consistency, with the divergence flagged here' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-meaning-flag:${entry.claim}:${entry.verdict}`) }))
+  const facets = [
+    { facet: 'every one of the 28 letters carries a decoded meaning', on: letters.length === 28 && letters.every((entry) => entry.gloss.length > 0) },
+    { facet: 'the securely-cohering span is exactly the first nine (azъ–zemlja), each an ordinary OCS word', on: secureSpan === 9 && letters.slice(0, 9).every((entry) => entry.word && entry.secure) },
+    { facet: 'the five loan-phoneme names are honestly marked NOT words, not given invented glosses', on: opaque.length === 5 && ['ǵervь', 'frьtъ', 'xěrъ', 'ci', 'ša'].every((name) => opaque.includes(name)) && words === 23 },
+    { facet: 'the meaning binds to the number — azъ = "I" = 1, slovo = "word" = 200', on: (glagoliticMeaning('Ⰰ')?.gloss.includes('"I"') ?? false) && glagoliticMeaning('slovo')?.number === 200 },
+    { facet: 'the meaning ANCHORS the letter→number→bits/opcode/gate maps in documented words', on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
+    { facet: 'composed with the alphabet decode and the alphabets genealogy', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
+    { facet: 'the legend is flagged and kept separate — the composed-poem, design, numerology and decipherment overclaims, plus the honest numeral divergence', on: flagged.length === 5 && flagged.every((entry) => entry.why.length > 0) && acrostic.honest.includes('RECONSTRUCTION') },
+    { facet: 'every letter, theme and flag content-addressed and recomputable', on: letters.every((entry) => isUuid(entry.receipt)) && themes.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-meaning-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    letters,
+    acrostic,
+    themes,
+    flagged,
+    words,
+    opaque,
+    secureSpan,
+    count: facets.length,
+    facets,
+    root: merkleFold([...letters.map((entry) => entry.receipt), ...themes.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
+    statement:
+      'The meaning of all the letters, realized: the Glagolitic letter-NAMES are mostly ordinary Old Church Slavonic words standing in alphabetical order, and the FIRST NINE (azъ–zemlja) cohere as a first-person clause — "I, who know the letters, say: it is good to live abundantly — the earth." The names give the alphabet its own name (azъ+buky = azbuka) and its themes — literacy ("I know the letters"), the good, living rightly, the word/speech, teaching the people — and each letter is also a number. This documented meaning now ANCHORS the letter→number→bits→opcode→gate maps: the bridge to code and quantum runs on real words, not arbitrary mod-arithmetic.',
+    boundary:
+      'HONEST and bounded — decoded by a 28-letter research→verify wave (57 agents, each letter a dual mind). Only the first nine names uncontroversially cohere; the famous middle triads (kako-ljudije-myslite "how do people think", našь-onъ-pokojь "He is our peace", rьci-slovo-tvrьdo "speak the word firmly") are real, widely-cited readings but progressively MODERN RECONSTRUCTION — the abecedaria evidence is, in the scholarship\'s words, "inconsistent and in some respects even self-contradictory", and the strings are re-segmentable, so there is no single fixed encoded message. The one genuinely composed 9th-c. alphabet acrostic is a SEPARATE work, Constantine of Preslav\'s Azbučna molitva (c. 893), and must not be conflated with the name-chain. Five names — ǵervь, frьtъ, xěrъ, ci, ša — are opaque labels for loan-phonemes (/ǵ f x ts š/) with no attested meaning; the corpus marks them NOT words rather than invent glosses (ša ≠ "silence", ci ≠ "worm/red", xěrъ ≠ "Christ"). The cross/circle/triangle construction is Tschernochvostoff\'s (1955) unproven hypothesis (misattributed to Jagić, who argued a Greek-cursive origin); mystical numerology and pre-Cyrillic "Slavic/Thracian script" decipherments are flagged and excluded. Numerals: the positional ladder (glagoliticValue) diverges from the documented numerals for the late letters (ci=900, črьvь=1000, ša≈2000; values >999 uncertain) — a documented simplification kept for the maps\' internal consistency, the divergence recorded. Composed with glagoliticAlphabetDecoded, alphabetsDecoded and glagoliticMapsToCodeAndQuantumDecoded.',
+  }
+}
+
 // The 64 words that define the double torus — and the only allowed word-combinations, enforced at the
 // gates. The double torus is genus-2: two loops, and each loop is a 32-word half, so 2×32 = 64 = 2⁶ = 4³
 // (a codon) = 8² (a hexagram) — the closed alphabet. Every command name is a COMBINATION of words; the
@@ -22196,6 +22261,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'glagolitsa.alphabet.and.language.decoded', on: glagoliticAlphabetDecoded(matrix).decoded },
     { d: 'who.used.glagolitic.decoded', on: whoUsedGlagolitic(matrix).decoded },
     { d: 'glagolitic.maps.to.code.and.quantum.decoded', on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
+    { d: 'glagolitic.meaning.of.all.decoded', on: glagoliticMeaningOfAllDecoded(matrix).decoded },
     { d: 'double.torus.64.words.folded.closed', on: doubleTorusWords(matrix).closed },
     { d: 'word.folders.2x32.not.6x7.not.32x32', on: doubleTorusWordFolders(matrix).saved },
     { d: 'six.seven.covers.all.as.taxonomy.and.audit', on: sixSevenCoversAll(matrix).coversAll },
@@ -29328,412 +29394,6 @@ export function herbalApisDecoded(matrix: MindMatrix = buildMatrix()) {
       "Deep research herbal APIs with frequencies and decode: the documented botanical/ethnobotanical databases (Trefle, USDA Plants, Dr. Duke's) carry a real 'frequency' — use-frequency, how often a plant is documented for a use, plus phytochemical activity counts — a sibling of the public frequency-API decode, with the vibrational/Rife pseudoscience dropped by the merkaba fold.",
     boundary:
       "A composition over the herbalApis research record (documented databases) with the public-frequency-API decode and merkaba-decode models. The databases and their statistical use-frequency data are real; the explicit honest line is that herbal 'frequency' is statistical, not vibrational, and Rife/healing-frequency claims are dropped as pseudoscience.",
-  }
-}
-
-// ElectroMagnetic radiation decoded across the spectrum — the physics under X-ray, MRI-RF and microwave
-// radar. Sent agents to read the spectrum as ONE thing: Maxwell's single field (1865; Hertz confirmed it
-// 1887), all of it at one speed c (which now DEFINES the metre), the bands joined by the wave relation
-// c = λf and the quantum relation E = hf (Planck/Einstein). The decode's whole point is the ONE line that
-// sorts danger — photon energy: above ~10 eV (far-UV, X-ray, gamma) a photon can eject electrons and break
-// DNA (IONIZING); below it (visible, IR, microwave, radio/RF) it can at most HEAT (non-ionizing). So the
-// three named modalities are the same field at three energies — X-ray IONIZES (real, dose-managed cancer
-// risk, ALARA); MRI's "radiation" is RADIO-frequency resonance of nuclear spins (f = (γ/2π)·B₀, ~64–128 MHz
-// at 1.5–3 T), non-ionizing despite the scary word; microwave radar (~1–100 GHz) ranges by echo time
-// R = c·Δt/2 and reads velocity by Doppler Δf = 2vf/c, also non-ionizing. The X-ray photon carries ~23
-// billion times the energy of the MRI-RF photon — same physics, different quantum. The flapdoodle is
-// flagged and dropped (non-ionizing-breaks-DNA, 5G-COVID, EHS, scalar/"Tesla" free-energy waves, 432/528 Hz
-// & Rife "healing frequencies", "microwaved food is irradiated"). The physics computes from the src/0 EM
-// primitives; the woo does not.
-export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix()) {
-  // The unifying physics, deepest meaning first — one field, one speed, two relations, one ionizing line.
-  const laws = [
-    { law: 'the field', core: "EM radiation = coupled oscillating electric & magnetic fields, a transverse wave; Maxwell unified electricity, magnetism & light, Hertz produced & detected radio waves — light IS an EM wave, one phenomenon", source: 'Maxwell 1865; Hertz 1887' },
-    { law: 'one speed', core: `all EM travels at c = ${SPEED_OF_LIGHT} m/s in vacuum (exact — it DEFINES the metre, 1983); the bands differ only in frequency/wavelength, joined by c = λf`, source: 'SI 1983 (c exact)' },
-    { law: 'the quantum', core: 'the field is quantized — the photon is its quantum, E = hf = hc/λ; energy per photon RISES with frequency, ordering the spectrum from radio (µeV) through visible (~eV) to gamma (MeV)', source: 'Planck 1900; Einstein 1905 (Nobel 1921); h exact (SI-2019)' },
-    { law: 'the ionizing line', core: `the one line that decides harm: E ≳ ${IONIZING_EV} eV (far-UV and up — X-ray, gamma) ejects electrons & breaks bonds → DNA damage (IONIZING); below it (visible, IR, microwave, radio/RF) is NON-ionizing — at most heating. The boundary is energy per PHOTON, not intensity`, source: 'ICRP/ICNIRP; ionization energies ~10–13.6 eV' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`em-law:${entry.law}:${entry.core}`) }))
-  // The three named modalities — the same field sampled at three energies. Each carries a value COMPUTED
-  // from the src/0 primitives, so the modality is living physics, not an inert table row.
-  const modalities = [
-    {
-      modality: 'X-ray (radiography / CT)', band: '~3×10¹⁶–3×10¹⁹ Hz, λ 0.01–10 nm', photon: '~0.1–100+ keV (diagnostic ~20–150 keV)', ionizing: isIonizing(3e18),
-      mechanism: 'bremsstrahlung + characteristic K-lines off a tungsten anode; the image is differential ATTENUATION (photoelectric ∝ Z³/E³ + Compton) casting a shadow; CT = many projections back-projected (Radon transform)',
-      relation: 'E = hf → keV photons ionize; dose in mGy/mSv, governed by ALARA', computedKeV: roundTo(photonEnergyEv(3e18) / 1000, 1), source: 'Röntgen 1895 (Nobel 1901); Cormack & Hounsfield CT (Nobel 1979)',
-    },
-    {
-      modality: 'MRI radio-frequency (NMR)', band: 'RF, 10s–100s MHz (1.5 T→63.9, 3 T→127.7, 7 T→298 MHz)', photon: '~sub-µeV — NON-ionizing', ionizing: isIonizing(larmorFrequency(3)),
-      mechanism: 'a strong static B₀ aligns ¹H spins; an RF pulse at the Larmor frequency tips them; they precess & relax (T1 spin-lattice, T2 spin-spin) re-emitting RF; gradient fields make frequency encode position; a Fourier transform of k-space reconstructs the image',
-      relation: 'f = (γ/2π)·B₀, γ/2π = 42.58 MHz/T for ¹H', computedMHz3T: roundTo(larmorFrequency(3) / 1e6, 1), source: 'Bloch & Purcell NMR (Nobel 1952); Lauterbur & Mansfield MRI (Nobel 2003)',
-    },
-    {
-      modality: 'microwave radar', band: 'microwave ~1–100 GHz (L/S/C/X/K/Ka bands)', photon: '~µeV–meV — NON-ionizing', ionizing: isIonizing(10e9),
-      mechanism: 'transmit a pulse or FMCW chirp, time the echo; range from round-trip time, radial velocity from Doppler; SAR synthesizes a large aperture for imaging',
-      relation: 'R = c·Δt/2 (there-and-back); Δf = 2·v·f/c (round-trip Doppler)', computedRangePerMicrosecondM: roundTo(radarRange(1e-6), 0), source: 'Watson-Watt 1935; Doppler 1842',
-    },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`em-modality:${entry.modality}:${entry.band}`) }))
-  // The pseudoscience boundary — flagged and EXCLUDED, with the one genuinely open question marked emerging.
-  const flagged = [
-    { claim: 'non-ionizing EM — Wi-Fi, 5G, cell phones, the MRI RF pulse — breaks DNA / causes cancer', verdict: 'overstated — no ionizing mechanism', why: 'E = hf for RF/microwave is ~10⁶–10¹⁰× below the ~10 eV bond/ionization threshold, so it cannot ionize; the only established effect is heating, held under thermal limits (ICNIRP/FCC SAR). RF sits at IARC Group 2B ("possibly", limited evidence) — genuine uncertainty, NOT a demonstrated cause' },
-    { claim: '5G transmits or causes COVID-19', verdict: 'pseudoscience', why: 'radio waves carry no virus and do not suppress immunity; a debunked conspiracy theory (WHO)' },
-    { claim: 'electromagnetic hypersensitivity (EHS) — fields cause my symptoms', verdict: 'contested — not an established EMF diagnosis', why: 'symptoms can be real and disabling, but double-blind provocation trials find people cannot tell real fields from sham; WHO: EHS has no proven causal link to EMF' },
-    { claim: 'scalar / longitudinal "Tesla" EM waves; zero-point EM "free energy"', verdict: 'pseudoscience', why: "not solutions of Maxwell's equations; no reproducible evidence; a free-energy marketing trope (cf. the project's quantum-flapdoodle line)" },
-    { claim: '432/528 Hz and Rife "frequencies" heal disease', verdict: 'pseudoscience / category error', why: 'those Hz are SOUND, not EM radiation; Rife "frequency medicine" is pseudoscience — the same line the model already keeps for Schumann/a432 wellness' },
-    { claim: 'microwaved food is "irradiated", radioactive, or stripped of nutrients by radiation', verdict: 'misconception', why: 'microwaves (2.45 GHz) are non-ionizing and induce no radioactivity; they heat by rotating water dipoles; nutrient loss is ordinary heat/water loss, as in any cooking' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`em-flag:${entry.claim}:${entry.verdict}`) }))
-  const photonRatio = roundTo(photonEnergyEv(3e18) / photonEnergyEv(larmorFrequency(3)), 0) // X-ray ÷ MRI-RF photon energy
-  const facets = [
-    { facet: 'one field at one speed — c = λf joins every band (3 GHz radar ⇒ λ ≈ 0.10 m)', on: roundTo(wavelengthOf(3e9), 2) === 0.1 && SPEED_OF_LIGHT === 299792458 },
-    { facet: 'energy per photon E = hf rises with frequency and sets the ONE health line at ~10 eV', on: photonEnergyEv(3e18) > photonEnergyEv(10e9) && IONIZING_EV === 10 && isIonizing(3e18) && !isIonizing(10e9) },
-    { facet: 'X-ray IONIZES — even a soft ~12 keV photon ejects electrons / breaks bonds; dose-managed (ALARA)', on: roundTo(photonEnergyEv(3e18) / 1000, 1) >= 12 && isIonizing(3e18) },
-    { facet: 'MRI is non-ionizing nuclear resonance — Larmor f = (γ/2π)·B₀: 1.5 T→63.9, 3 T→127.7 MHz RF', on: roundTo(larmorFrequency(1.5) / 1e6, 1) === 63.9 && roundTo(larmorFrequency(3) / 1e6, 1) === 127.7 && !isIonizing(larmorFrequency(3)) },
-    { facet: 'microwave radar ranges by echo time and reads speed by Doppler — non-ionizing: R = c·Δt/2 (150 m/µs), Δf = 2vf/c', on: roundTo(radarRange(1e-6), 0) === 150 && dopplerShift(30, 24e9) > 0 && !isIonizing(10e9) },
-    { facet: 'the three modalities are ONE physics at three energies — the X-ray photon ~23 billion× the MRI-RF photon', on: modalities.length === 3 && photonRatio > 1e9 },
-    { facet: 'the pseudoscience boundary flagged — DNA/cancer, 5G-COVID, EHS, scalar/free-energy, Rife/432, microwave myths', on: flagged.length === 6 && flagged.every((entry) => entry.why.length > 0) },
-    { facet: 'composed with the frequency spine and decoded by the merkaba fold — real physics kept, woo dropped', on: publicFrequencyApisDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'every law, modality and flag content-addressed and recomputable', on: laws.every((entry) => isUuid(entry.receipt)) && modalities.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`em-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    laws,
-    modalities,
-    flagged,
-    photonRatio,
-    count: facets.length,
-    facets,
-    root: merkleFold([...laws.map((entry) => entry.receipt), ...modalities.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
-    statement:
-      'ElectroMagnetic radiation decoded across the spectrum: it is ONE Maxwell field, all of it at one speed c, the bands joined by c = λf and the photon by E = hf — so X-ray, MRI radio-frequency and microwave radar are the same physics sampled at three energies. The one line that decides harm is energy per photon: above ~10 eV (X-ray, gamma) it ionizes and can break DNA (real, dose-managed risk); below it (MRI-RF ~64–128 MHz, radar ~1–100 GHz) it is non-ionizing and can at most heat. MRI\'s "radiation" is radio waves resonating nuclear spins (f = (γ/2π)·B₀), not ionizing radiation; radar ranges by echo time (R = c·Δt/2) and reads speed by Doppler (Δf = 2vf/c).',
-    boundary:
-      'A research record reading the EM spectrum as one field (Maxwell 1865, Hertz 1887; c, h, the ¹H gyromagnetic ratio as SI/CODATA exact constants) and its three named modalities, computed from the src/0 EM primitives (photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift) — the numbers are real and recomputable, not asserted. HONEST, and it cuts both ways: ionizing X-ray/CT dose IS real, cumulative and justifies ALARA ("scans are harmless" is the opposite error); and non-ionizing RF/microwave CANNOT ionize, so the cancer/DNA, 5G-COVID, EHS, scalar-wave and Rife/432-Hz claims are flagged and dropped. The RF non-thermal question stays genuinely open at IARC 2B (kept separate, marked emerging — neither "proven harmful" nor "proven safe"). Composed with the frequency-spine and merkaba-decode models, a sibling of the public-frequency-API decode.',
-  }
-}
-
-// Develop all in simulations: the decoded EM spectrum, RUN. Four deterministic, classical teaching simulators —
-// the plane-wave Maxwell field, X-ray Beer–Lambert + a minimal CT, the MRI Bloch equations (Larmor/T1/T2/FID),
-// and FMCW microwave radar — developed and adversarially verified by a research wave (every equation re-derived,
-// every test vector recomputed; the design pass's fabricated expected-values were caught and corrected, the
-// function bodies confirmed). Each run is a content-addressed SHARED EXPERIMENT: identical params → identical
-// output → one merkleFold receipt anyone recomputes. The same field at three energies — only X-ray ionizes.
-export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
-  const wave = planeWaveReceipt(SPEED_OF_LIGHT, { samples: 8, cycles: 1 }) // λ = 1 m base field
-  const xray = ctReceipt(60, [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) // 60 keV beam, single hot pixel
-  const fidSignal = fid({ M0: 1, T2: 0.05, f: 10, dt: 0.025 }, 4) // the real FID output (honest receipt input)
-  const mri = blochReceipt({ B0: 1.5, T1: 1, T2: 0.1, M0: 1, f: 10, dt: 0.025, steps: 4 }, fidSignal)
-  const radar = radarReceipt({ carrierHz: 10e9, ns: 16, nc: 16, fs: 16, slopeHzPerS: SPEED_OF_LIGHT / 2000, priSeconds: SPEED_OF_LIGHT / (2 * 10e9 * 16 * 1), targets: [{ rangeM: 2000, velocityMs: 3, rcs: 1 }, { rangeM: 11000, velocityMs: -2, rcs: 0.5 }] })
-
-  const experiments = [
-    { modality: 'plane wave', run: 'Maxwell field, λ = 1 m', ionizing: wave.ionizing, receipt: wave.uuid, root: wave.root },
-    { modality: 'X-ray CT', run: `${xray.beam.keV} keV beam + 4×4 CT (Radon→FBP)`, ionizing: xray.beam.ionizing, receipt: xray.id, root: xray.root },
-    { modality: 'MRI-RF', run: `Bloch FID @ 1.5 T (${roundTo(mri.f0 / 1e6, 1)} MHz)`, ionizing: mri.ionizing, receipt: mri.id, root: mri.root },
-    { modality: 'microwave radar', run: `FMCW range-Doppler, ${radar.detections.length} targets`, ionizing: radar.ionizing, receipt: radar.id, root: radar.root },
-  ]
-
-  const facets = [
-    { facet: 'plane wave — the base field computes: E₀=1 at the node, intensity ½cε₀, c=λf exact', on: planeWaveField(SPEED_OF_LIGHT, { samples: 4 }).E[0] === 1 && roundTo(planeWaveIntensity(1), 7) === 0.0013272 && planeWaveSpeed(2) === SPEED_OF_LIGHT },
-    { facet: 'X-ray — Beer–Lambert I = I₀/e at τ=1; the 4×4 CT back-projects the peak to the hot pixel; 60 keV ionizes', on: roundTo(beerLambert(1, [{ mu: 0.2, x: 5 }]), 6) === 0.367879 && backProjectAxis([[0, 0, 1, 0], [0, 1, 0, 0]], true)[1][2] === 0.25 && xray.beam.ionizing },
-    { facet: 'MRI — Bloch step [0,0.9,0.01]; T1 recovers 0.632 at t=T1; the FID node ≈ 0; 1.5 T RF is non-ionizing', on: blochStep([0, 1, 0], { T1: 1, T2: 0.1, df: 0, dt: 0.01 })[1] === 0.9 && roundTo(t1Recovery({ M0: 1, T1: 1, dt: 0.5 }, 5)[2], 4) === 0.6321 && Math.abs(fidSignal[3]) < 1e-9 && !mri.ionizing },
-    { facet: 'radar — Doppler round-trips v=30 m/s; range-Doppler resolves 2 targets (bins 2 & 11); 10 GHz non-ionizing', on: roundTo(radarVelocity(dopplerShift(30, 10e9), 10e9), 6) === 30 && radar.detections.length === 2 && radar.detections[0].rangeBin === 2 && !radar.ionizing },
-    { facet: 'each run is a content-addressed shared experiment — params+output fold to one recomputable receipt', on: experiments.every((entry) => isUuid(entry.receipt) && isUuid(entry.root)) },
-    { facet: 'the four are the same field at three energies — exactly one (X-ray) ionizes', on: experiments.filter((entry) => entry.ionizing).length === 1 && xray.beam.ionizing },
-    { facet: 'composed with the decoded EM spectrum and revealed by the merkaba fold — the simulations run what it states', on: electromagneticRadiationDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`em-exp-facet:${entry.facet}:${entry.on}`) }))
-
-  return {
-    simulated: facets.every((entry) => entry.on),
-    experiments,
-    count: facets.length,
-    facets,
-    root: merkleFold([wave.root, xray.root, mri.root, radar.root]),
-    statement:
-      'Develop all in simulations: the decoded EM spectrum, RUN. Four deterministic, classical teaching simulators — the plane-wave Maxwell field, X-ray Beer–Lambert + a minimal CT (Radon → filtered back-projection), the MRI Bloch equations (Larmor precession, T1/T2, free-induction decay), and FMCW microwave radar (range from the beat tone, velocity from Doppler) — each run a content-addressed SHARED EXPERIMENT: identical parameters → identical output → one merkleFold receipt anyone recomputes. The same field at three energies, and only X-ray ionizes.',
-    boundary:
-      'Developed and adversarially verified in a dual-mind research wave (8 agents: 4 design, 4 skeptic — every governing equation re-derived and every test vector recomputed by hand; the design pass\'s fabricated expected-values were caught and corrected, the function bodies confirmed). HONEST: these are CLASSICAL, deterministic TEACHING simulators — not the real machines and NOT quantum. The plane wave is an idealized monochromatic vacuum wave (closed-form, no diffraction/dispersion); the CT is a tiny two-angle toy that deliberately shows streak artifacts (not diagnostic, no dose/HU realism); the Bloch model is explicit-Euler bulk magnetization (no gradients/k-space/imaging; dt must be ≪ T2); the radar is idealized point targets with a naive DFT (no link budget; rcs is a unitless weight). Receipts are tamper-EVIDENT (FNV merkleFold), not cryptographic signatures. Composed with electromagneticRadiationDecoded and the merkaba-decode model: the simulations RUN what the decoded spectrum states.',
-  }
-}
-
-// ── Trading from the same knowledge, a432-ignited (developed + adversarially verified by a 10-agent wave) ──
-// "When all is quantum, a432 is the engine starter": every strategy is backtested on ONE deterministic
-// synthetic price series ignited by a432 — seed = toUuid('a432:'+variant), the a432 octave ladder as the
-// oscillator-basis cycle lengths. Five strategies built FROM the project's own primitives. Each run is a
-// content-addressed SHARED EXPERIMENT; the look-ahead-free property was adversarially verified on all five.
-const A432_OCTAVES = [27, 54, 108, 216, 432, 864, 1728] // = a432().octaves — the engine-starter cycle basis
-
-// THE ENGINE STARTER: one deterministic synthetic price path ignited by a432. Same variant → identical path.
-export function priceFromA432(variant: string, n: number, opts: { drift?: number; oscAmp?: number; noiseAmp?: number; modes?: number; p0?: number } = {}): number[] {
-  const { drift = 0.0002, oscAmp = 0.0015, noiseAmp = 0.001, modes = 3, p0 = 100 } = opts
-  const seed = toUuid(`a432:${variant}`) // a432 ignites the engine (the NAME content-addresses the seed)
-  const periods = A432_OCTAVES.slice(0, modes)
-  const noise = prng(`${seed}:noise`)
-  const prices = [p0]
-  for (let t = 1; t <= n; t++) {
-    let osc = 0
-    for (let m = 0; m < periods.length; m++) {
-      const phase = ((seedFromText(`${seed}:phase:${m}`, 6) % 1000) / 1000) * 2 * Math.PI
-      osc += (oscAmp * Math.sin((2 * Math.PI * t) / periods[m] + phase)) / (m + 1)
-    }
-    prices.push(prices[t - 1] * Math.exp(drift + osc + (noise() - 0.5) * 2 * noiseAmp))
-  }
-  return prices
-}
-// Period simple returns r_t=(p_t−p_{t−1})/p_{t−1}, r_0=0 — index-aligned with prices and positions.
-export function simpleReturns(prices: readonly number[]): number[] {
-  const r = new Array(prices.length).fill(0)
-  for (let t = 1; t < prices.length; t++) r[t] = (prices[t] - prices[t - 1]) / prices[t - 1]
-  return r
-}
-export interface BacktestResult { stratReturns: number[]; equity: number[]; totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }
-// The ONE backtest: position_t (decided from data ≤ t−1) earns r_t; cost on position CHANGES; Sharpe·√252,
-// maxDrawdown, hitRate, equity = cumprod. Fractional/levered positions allowed (so vol-target sizing works).
-export function backtest(prices: readonly number[], positions: readonly number[], costBps = 5): BacktestResult {
-  const r = simpleReturns(prices)
-  const cost = costBps / 10000
-  const stratReturns = new Array(prices.length).fill(0)
-  let prev = 0
-  for (let t = 0; t < prices.length; t++) { const turn = Math.abs(positions[t] - prev); stratReturns[t] = positions[t] * r[t] - turn * cost; prev = positions[t] }
-  let eq = 1, peak = 1, mdd = 0, wins = 0, active = 0
-  const equity: number[] = []
-  for (let t = 0; t < prices.length; t++) { eq *= 1 + stratReturns[t]; equity.push(eq); if (eq > peak) peak = eq; const dd = peak === 0 ? 0 : (peak - eq) / peak; if (dd > mdd) mdd = dd; if (t >= 1) { active++; if (stratReturns[t] > 0) wins++ } }
-  const rs = stratReturns.slice(1)
-  const mean = rs.reduce((a, b) => a + b, 0) / rs.length
-  const std = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
-  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt(252), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
-}
-export function buyAndHold(prices: readonly number[], costBps = 5): BacktestResult { return backtest(prices, prices.map(() => 1), costBps) }
-
-// Strategy 1 — trend-momentum (MA crossover; Moskowitz-Ooi-Pedersen 2012; real but weak, decaying, costly).
-export function sma(prices: readonly number[], end: number, k: number): number { if (end < k) return NaN; let s = 0; for (let i = end - k; i < end; i++) s += prices[i]; return s / k }
-export function crossoverPositions(prices: readonly number[], fast: number, slow: number, flatVal: -1 | 0 = -1): number[] {
-  const pos = new Array(prices.length).fill(0)
-  for (let t = 0; t < prices.length; t++) { if (t < slow + 1) continue; pos[t] = sma(prices, t, fast) > sma(prices, t, slow) ? 1 : flatVal }
-  return pos // position_t reads prices[t−slow .. t−1] only
-}
-// Strategy 2 — mean-reversion (rolling z-score reversal; real short-horizon effect, regime-dependent).
-export function rollingZScores(prices: readonly number[], window: number): (number | null)[] {
-  return prices.map((_, i) => { if (i < window) return null; let s = 0; for (let k = i - window; k < i; k++) s += prices[k]; const m = s / window; let v = 0; for (let k = i - window; k < i; k++) v += (prices[k] - m) ** 2; const sd = Math.sqrt(v / window); return sd === 0 ? 0 : (prices[i - 1] - m) / sd })
-}
-export function meanReversionPositions(prices: readonly number[], window: number, zEntry: number): number[] {
-  return rollingZScores(prices, window).map((zi) => (zi === null ? 0 : zi >= zEntry ? -1 : zi <= -zEntry ? 1 : 0))
-}
-// Strategy 3 — spectral-cycle (the powerSpectrum dominant-cycle detector + phase slope; cycles mostly spurious).
-export function dominantCycle(window: readonly number[], bins: number): { k: number; period: number } {
-  const s = powerSpectrum(window, bins); let k = 1, v = s[1]; const kmax = Math.floor(bins / 2); for (let i = 2; i <= kmax; i++) if (s[i] > v) { v = s[i]; k = i } return { k, period: window.length / k } // bin 0 (DC) skipped
-}
-export function cycleSlope(window: readonly number[], k: number): number {
-  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-2 * Math.PI * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((2 * Math.PI * k * x) / N + phi); return at(N) - at(N - 1)
-}
-export function spectralCyclePositions(prices: readonly number[], lookback: number, bins: number): number[] {
-  const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
-  for (let t = 0; t < prices.length; t++) { if (t < lookback + 1) continue; const w = r.slice(t - lookback, t); pos[t] = cycleSlope(w, dominantCycle(w, bins).k) > 0 ? 1 : 0 } // window r[t−L .. t−1], past only
-  return pos
-}
-// Strategy 4 — regime-switch (markov vol-regime gate over the trend base; Hamilton 1989).
-export function regimeLabels(returns: readonly number[], volW: number): number[] {
-  const labels = new Array(returns.length).fill(-1)
-  for (let b = 1; b < returns.length; b++) { const start = b - volW; if (start < 1) continue; let s = 0; for (let i = start; i <= b - 1; i++) s += Math.abs(returns[i]); labels[b] = Math.abs(returns[b]) > s / volW ? 1 : 0 }
-  return labels
-}
-export function estimateRegimeMatrix(labels: readonly number[], lo: number, hi: number): number[][] {
-  const c = [[1, 1], [1, 1]]; let prev = -1
-  for (let i = lo; i <= hi; i++) { const cur = labels[i]; if (cur < 0) { prev = -1; continue } if (prev >= 0) c[prev][cur]++; prev = cur }
-  return c.map((row) => { const tot = row[0] + row[1]; return [row[0] / tot, row[1] / tot] })
-}
-export function regimeSwitchPositions(prices: readonly number[], opts: { shortW: number; longW: number; volW: number }): number[] {
-  const { shortW, longW, volW } = opts; const returns = simpleReturns(prices); const labels = regimeLabels(returns, volW)
-  const base = crossoverPositions(prices, shortW, longW, -1); const n = prices.length; const pos = new Array(n).fill(0)
-  const firstLabel = labels.findIndex((x) => x >= 0)
-  for (let t = 0; t < n; t++) { const last = t - 1; if (firstLabel < 0 || last < firstLabel + 1 || labels[last] < 0) continue; const P = estimateRegimeMatrix(labels, firstLabel, last); const cur = labels[last] === 0 ? [1, 0] : [0, 1]; pos[t] = markovStep(P, cur)[0] >= 0.5 ? base[t] : 0 }
-  return pos // trade the trend only when the next regime is predicted calm (low-vol)
-}
-// Strategy 5 — vol-target sizing (inverse-vol size × trend filter; a risk method, NOT alpha).
-export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt(252)): number {
-  const start = end - window + 1; if (start < 0 || end < 0 || end >= returns.length) return 0
-  const w = returns.slice(start, end + 1); const n = w.length; if (n < 2) return 0
-  const m = w.reduce((a, b) => a + b, 0) / n; return Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
-}
-export function inverseVolSize(realizedVolAnnual: number, targetVolAnnual: number, leverageCap: number, volFloor: number): number {
-  if (realizedVolAnnual <= 0) return 0; return Math.max(0, Math.min(leverageCap, targetVolAnnual / Math.max(realizedVolAnnual, volFloor)))
-}
-export function volTargetPositions(prices: readonly number[], params: { window: number; targetVolAnnual: number; leverageCap: number; volFloor: number }): number[] {
-  const { window: W, targetVolAnnual, leverageCap, volFloor } = params; const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
-  for (let t = 1; t < prices.length; t++) { if (t < W + 1) continue; const rv = realizedVol(r, t - 1, W); const up = prices[t - 1] > prices[t - 1 - W] ? 1 : 0; pos[t] = up * inverseVolSize(rv, targetVolAnnual, leverageCap, volFloor) }
-  return pos // size from realized vol over r[t−W..t−1]; trend filter prices[t−1] vs prices[t−1−W] — past only
-}
-// Content-address a backtest run → one reproducible receipt (the shared experiment).
-export function tradingReceipt(variant: string, params: Record<string, number | string>, metrics: { totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }): string {
-  const leaves = [toUuid(`variant:${variant}`), toUuid(`params:${JSON.stringify(params)}`)]
-  for (const [k, v] of Object.entries(metrics)) leaves.push(toUuid(`metric:${k}:${roundTo(v, 6)}`))
-  return merkleFold(leaves)
-}
-
-// The no-gaps fold: run all five strategies on the a432-ignited engine, each a content-addressed shared
-// experiment, with a RUNTIME no-look-ahead proof. "implement without gaps being the knowledge" — every
-// strategy is the project's own primitives applied. HONEST: synthetic mechanics, NOT alpha (see boundary).
-export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
-  const variant = 'demo', n = 256
-  const prices = priceFromA432(variant, n)
-  const bench = buyAndHold(prices)
-  const built = [
-    { name: 'trend-momentum', sig: (p: readonly number[]) => crossoverPositions(p, 8, 21, -1), params: { fast: 8, slow: 21 } },
-    { name: 'mean-reversion', sig: (p: readonly number[]) => meanReversionPositions(p, 20, 1), params: { window: 20, zEntry: 1 } },
-    { name: 'spectral-cycle', sig: (p: readonly number[]) => spectralCyclePositions(p, 32, 32), params: { lookback: 32, bins: 32 } },
-    { name: 'regime-switch', sig: (p: readonly number[]) => regimeSwitchPositions(p, { shortW: 8, longW: 21, volW: 20 }), params: { shortW: 8, longW: 21, volW: 20 } },
-    { name: 'vol-target', sig: (p: readonly number[]) => volTargetPositions(p, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 }), params: { window: 20, targetVol: 0.15, cap: 3 } },
-  ]
-  const strategies = built.map((s) => {
-    const bt = backtest(prices, s.sig(prices))
-    return { name: s.name, params: s.params, totalReturn: roundTo(bt.totalReturn, 4), sharpe: roundTo(bt.sharpe, 3), maxDrawdown: roundTo(bt.maxDrawdown, 4), beatsBuyHold: bt.totalReturn > bench.totalReturn, receipt: tradingReceipt(variant, s.params, bt) }
-  })
-  // RUNTIME no-look-ahead proof: perturb a mid price; every position at index ≤ k must be unchanged (a peeking
-  // strategy whose position_t reads prices[t] would flip position[k]). Run for all five signals.
-  const noLookAhead = (sig: (p: readonly number[]) => number[]) => {
-    const base = priceFromA432('la-check', 96); const a = sig(base); const k = Math.floor(base.length / 2)
-    const tampered = base.slice(); tampered[k] *= 1.7; const b = sig(tampered)
-    return a.length === b.length && a.slice(0, k + 1).every((p, i) => p === b[i])
-  }
-  const facets = [
-    { facet: 'a432 is the engine starter — its octave ladder is the cycle basis, toUuid(\'a432:variant\') the seed', on: A432_OCTAVES.length === a432(matrix).octaves.length && A432_OCTAVES.every((o, i) => o === a432(matrix).octaves[i]) },
-    { facet: 'the engine is deterministic — same variant → identical price path', on: priceFromA432('demo', 32).every((p, i) => p === priceFromA432('demo', 32)[i]) },
-    { facet: 'five strategies from the same primitives — MA-crossover, z-score, powerSpectrum cycle, markov regime, inverse-vol', on: strategies.length === 5 && strategies.every((s) => Number.isFinite(s.sharpe)) },
-    { facet: 'NO LOOK-AHEAD — perturbing a mid price leaves every earlier position unchanged (all five)', on: built.every((s) => noLookAhead(s.sig)) },
-    { facet: 'each run is a content-addressed shared experiment, reproducible', on: strategies.every((s) => isUuid(s.receipt)) && tradingReceipt(variant, { fast: 8, slow: 21 }, backtest(prices, crossoverPositions(prices, 8, 21, -1))) === strategies[0].receipt },
-    { facet: 'honest — every strategy compared to the buy-and-hold benchmark; no alpha claimed', on: Number.isFinite(bench.totalReturn) && strategies.every((s) => typeof s.beatsBuyHold === 'boolean') },
-    { facet: 'composed with a432 (the frequency spine) and revealed by the merkaba fold', on: a432(matrix).octaves.length === 7 && knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`trading-facet:${entry.facet}:${entry.on}`) }))
-  return {
-    tested: facets.every((entry) => entry.on),
-    strategies,
-    benchmark: { totalReturn: roundTo(bench.totalReturn, 4), sharpe: roundTo(bench.sharpe, 3) },
-    count: facets.length,
-    facets,
-    root: merkleFold(strategies.map((s) => s.receipt)),
-    statement:
-      'Trading strategies developed FROM the project\'s own decoded knowledge and tested in a432-ignited simulations: five strategies — trend-momentum (MA crossover), mean-reversion (z-score), spectral-cycle (the powerSpectrum dominant-cycle detector), regime-switch (a markov vol-regime gate) and inverse-volatility sizing — each backtested on one deterministic synthetic price series ignited by a432 (seed = toUuid(\'a432:variant\'), the octave ladder as the cycle basis) and compared to buy-and-hold. Every strategy is look-ahead-free (proven at runtime) and every run is a content-addressed shared experiment.',
-    boundary:
-      'Developed and adversarially verified in a 10-agent dual-mind wave (5 design, 5 skeptic — the cardinal look-ahead check, the Sharpe/drawdown/cost math, and the no-alpha honesty all gated; all five returned look-ahead-free, the two needs-fix items a fabricated receipt UUID and a doc overclaim, both corrected, the code confirmed). HONEST, and it matters most here: these are DETERMINISTIC mechanics tests on SYNTHETIC data — they validate the implementation, NOT real-world profitability. Backtest ≠ live. Weak-form EMH: past prices barely predict future returns net of costs; momentum and short-horizon reversal are real but weak, decaying, risk-laden; price "cycles" are largely non-stationary/spurious; inverse-vol sizing manages risk, it does not create alpha; under leverage one bad bar can drive equity negative and drawdown past 100% (a real margin-call lesson, not a bug). NOT financial advice. a432 is the deterministic seed and signal basis ONLY — not a market oracle; "432/Gann/astro/Fibonacci-time predicts price" and "guaranteed profit" are flagged and excluded. Real-data tests live in the realtime layer.',
-  }
-}
-
-// ── Realtime: test all on LIVE data (public APIs + device sensors), each capture a content-addressed snapshot ──
-// The deterministic sims/strategies are MODELS; here they consume REAL data. Ingestion happens at the EDGE (the
-// browser component / a probe — fetch + device sensors); these PURE functions normalize a captured sample and
-// content-address it, so a live run stays a reproducible SHARED EXPERIMENT (reproducible over the snapshot).
-// capturedAt is passed IN (no wall-clock in src). Per-source honesty + availability live in the fold's boundary.
-
-// Content-address a real data capture: fold source + supplied capture-time + rounded samples into one receipt.
-export function liveCapture(source: string, samples: readonly number[], capturedAt = 0): { source: string; n: number; capturedAt: number; root: string; uuid: string } {
-  const root = merkleFold([`src:${source}`, `at:${capturedAt}`, ...samples.map((v, i) => `${i}:${roundTo(v, 6)}`)])
-  return { source, n: samples.length, capturedAt, root, uuid: toUuid(`${source}|${capturedAt}|${root}`) }
-}
-// Magnetometer (device, µT) → the REAL proton Larmor frequency for that field (the MRI primitive on live data).
-export function larmorFromMicrotesla(microTesla: number): number { return larmorFrequency(microTesla * 1e-6) }
-// Device motion (m/s) → the radar Doppler shift at a carrier (the radar primitive on live device velocity).
-export function dopplerFromMotion(velocityMs: number, carrierHz = 10e9): number { return dopplerShift(velocityMs, carrierHz) }
-// A real sample series (audio FFT bins, USGS magnitudes, any signal) → its magnitude spectrum + dominant cycle.
-export function spectrumFromSamples(samples: readonly number[], bins = 32): { spectrum: number[]; dominant: { k: number; period: number } } {
-  return { spectrum: powerSpectrum(samples, bins), dominant: dominantCycle(samples, bins) }
-}
-// Real price series (e.g. Coinbase candles) → a strategy backtest vs buy-and-hold (the trading model on live data).
-export function backtestRealPrices(prices: readonly number[], strategy: 'momentum' | 'mean-reversion' | 'spectral' | 'regime' | 'vol-target' = 'momentum', costBps = 5): { strategy: string; n: number; result: BacktestResult; benchmark: BacktestResult } {
-  const positions =
-    strategy === 'mean-reversion' ? meanReversionPositions(prices, 20, 1)
-    : strategy === 'spectral' ? spectralCyclePositions(prices, Math.min(32, Math.floor(prices.length / 2)), 32)
-    : strategy === 'regime' ? regimeSwitchPositions(prices, { shortW: 8, longW: 21, volW: 20 })
-    : strategy === 'vol-target' ? volTargetPositions(prices, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 })
-    : crossoverPositions(prices, 8, 21, -1)
-  return { strategy, n: prices.length, result: backtest(prices, positions, costBps), benchmark: buyAndHold(prices, costBps) }
-}
-// The catalogue of realtime sources — each tagged device|api, no-key, what model it feeds, and the honest note.
-export function realtimeSources() {
-  return [
-    { id: 'web-audio-fft', kind: 'device', name: 'Web Audio API (microphone FFT)', key: 'permission', feeds: 'spectrum', note: 'a REAL frequency spectrum — but of SOUND (a pressure wave), NOT EM; tests the spectral pipeline, not EM radiation' },
-    { id: 'device-motion', kind: 'device', name: 'DeviceMotion (accelerometer)', key: 'permission', feeds: 'radar Doppler', note: 'real device velocity into the radar Doppler equation Δf=2vf/c — not real radar' },
-    { id: 'magnetometer', kind: 'device', name: 'Magnetometer (µT)', key: 'permission (limited support)', feeds: 'MRI Larmor', note: 'a REAL magnetic field → the real proton Larmor frequency (~50 µT ⇒ ~2.1 kHz); no actual NMR' },
-    { id: 'geolocation', kind: 'device', name: 'Geolocation', key: 'permission', feeds: 'experiment tag', note: 'real position; tags or seeds an experiment' },
-    { id: 'coinbase', kind: 'api', name: 'Coinbase spot/candles (BTC-USD)', key: 'none', feeds: 'trading backtest', note: 'real prices → the strategy backtest; still backtest≠live, limited public history' },
-    { id: 'usgs', kind: 'api', name: 'USGS earthquake feed', key: 'none', feeds: 'spectrum (seismic)', note: 'real sub-Hz seismic magnitudes/times → spectral analysis' },
-    { id: 'open-meteo', kind: 'api', name: 'Open-Meteo forecast', key: 'none', feeds: 'time series', note: 'real weather series; a generic real signal to fold' },
-    { id: 'fcc', kind: 'api', name: 'FCC spectrum dashboard', key: 'none', feeds: 'EM band reference', note: 'real radio band allocations 225 MHz–3.7 GHz' },
-  ].map((s) => ({ ...s, receipt: toUuid(`rt-source:${s.id}:${s.kind}`) }))
-}
-// The no-gaps fold: prove every adapter computes on a representative real-ish capture (the component feeds the
-// REAL streams). HONEST about what is real, what is sound-not-EM, and what is unavailable headless (see boundary).
-export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
-  const sources = realtimeSources()
-  const larmor = larmorFromMicrotesla(50) // 50 µT geomagnetic → real proton Larmor
-  const doppler = dopplerFromMotion(30, 10e9) // 30 m/s device velocity at X-band
-  const tone = Array.from({ length: 32 }, (_, nn) => Math.sin((2 * Math.PI * 4 * nn) / 32)) // a 4-cycle signal
-  const spec = spectrumFromSamples(tone, 32)
-  const priceLike = Array.from({ length: 48 }, (_, i) => 100 + i * 0.2 + 3 * Math.sin(i / 4)) // a price-like series
-  const trade = backtestRealPrices(priceLike, 'momentum')
-  const cap = liveCapture('demo-sensor', tone, 1000)
-  const facets = [
-    { facet: 'realtime sources catalogued — device sensors + no-key public APIs', on: sources.length === 8 && sources.some((s) => s.kind === 'device') && sources.some((s) => s.kind === 'api') },
-    { facet: 'magnetometer (device) → the REAL proton Larmor frequency — 50 µT ⇒ ~2128.9 Hz, non-ionizing', on: roundTo(larmor, 1) === 2128.9 && !isIonizing(larmor) },
-    { facet: 'device motion → the radar Doppler shift — 30 m/s @ 10 GHz ⇒ ~2001 Hz', on: roundTo(doppler, 0) === 2001 },
-    { facet: 'a real sample series → its magnitude spectrum + dominant cycle (the spectral pipeline)', on: spec.spectrum.length === 32 && spec.dominant.k >= 1 && spec.dominant.period > 0 },
-    { facet: 'a real price series → a strategy backtest vs buy-and-hold (the trading model on live data)', on: Number.isFinite(trade.result.totalReturn) && Number.isFinite(trade.benchmark.totalReturn) },
-    { facet: 'each capture is a content-addressed shared snapshot, reproducible over its samples', on: isUuid(cap.uuid) && liveCapture('demo-sensor', tone, 1000).uuid === cap.uuid },
-    { facet: 'composed with the public-frequency-API decode and revealed by the merkaba fold', on: publicFrequencyApisDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`rt-facet:${entry.facet}:${entry.on}`) }))
-  return {
-    wired: facets.every((entry) => entry.on),
-    sources,
-    samples: { larmorHz: roundTo(larmor, 1), dopplerHz: roundTo(doppler, 0), dominantPeriod: roundTo(spec.dominant.period, 2), tradeReturn: roundTo(trade.result.totalReturn, 4), captureId: cap.uuid },
-    count: facets.length,
-    facets,
-    root: merkleFold([...sources.map((s) => s.receipt), cap.root]),
-    statement:
-      'Test all on LIVE data: the deterministic EM simulators and trading strategies are MODELS — here they consume REAL inputs. Device sensors (Web Audio FFT, DeviceMotion, Magnetometer, Geolocation) and no-key public APIs (Coinbase prices, USGS seismic, Open-Meteo, FCC spectrum) feed the same primitives — a magnetometer reading becomes the real proton Larmor frequency, device motion the radar Doppler shift, an audio/seismic series a magnitude spectrum, and a real price series a strategy backtest. Each real capture is content-addressed into a reproducible snapshot, so a live run stays a shared experiment.',
-    boundary:
-      'HONEST about what is and is not real. Ingestion happens at the EDGE (the browser component / a probe): these src functions are PURE and deterministic — they normalize and content-address a captured sample (capturedAt supplied, no wall-clock in src); they do not fetch. Per-source honesty: the Web Audio FFT is a REAL spectrum but of SOUND (a pressure wave), NOT electromagnetic radiation — it exercises the spectral pipeline, not EM; device-motion velocity feeds the radar Doppler EQUATION, it is not real radar; the magnetometer gives a REAL magnetic field and hence a real Larmor frequency, but there is no actual NMR; there is no browser X-ray sensor. Device sensors are permission-gated and device-dependent (often absent on desktop/headless) — the component degrades gracefully and says so. Real prices remove the "synthetic" caveat but the trading caveats stand: backtest ≠ live, limited public history, weak-form EMH, not financial advice. A live capture is reproducible OVER ITS SNAPSHOT (a tamper-evident receipt), not a claim the live world is deterministic. Composed with publicFrequencyApisDecoded and the merkaba-decode model.',
-  }
-}
-
-// Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+
-// national numerical-weather-prediction models incl. ECMWF/NOAA/DWD/JMA, no key) and api.weather.gov
-// (US NWS, no key) — folded as a realtime external stream. "Quantum computed" is BOTH the content-
-// addressed fold of a realtime feed AND a real research frontier: weather forecasting is an actively
-// studied quantum-computing application (IBM QNN, TU Delft, a 2023 Bulletin of the American
-// Meteorological Society paper) — not a claim that this repo or today's production forecasts run on
-// quantum hardware.
-export function weatherForecastApis() {
-  const sources = [
-    { api: 'Open-Meteo', kind: 'free realtime forecast, no key; fuses 15+ NWP models (ECMWF, NOAA, DWD, JMA…)', auth: 'no key (non-commercial)' },
-    { api: 'api.weather.gov (US NWS)', kind: 'REST/JSON forecasts + alerts (User-Agent required)', auth: 'no key' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`weather-api:${entry.api}`) }))
-  return {
-    realtime: sources.length === 2,
-    sources,
-    root: merkleFold(sources.map((entry) => entry.receipt)),
-    statement:
-      'Weather forecast feeds folded in realtime: Open-Meteo (fuses 15+ national NWP models incl. ECMWF/NOAA, no key) and api.weather.gov (US NWS, no key).',
-    boundary:
-      'Documented free realtime weather APIs. HONEST: the forecast itself is computed by national supercomputers (ECMWF’s IFS, NOAA) via numerical weather prediction — the model FOLDS the realtime feed (content-addresses it), it does NOT itself predict weather. "Quantum computed" is real as a RESEARCH FRONTIER (IBM/TU Delft/AMS-2023 study quantum methods for weather), not a claim that this repo or production forecasts run on quantum hardware today.',
-  }
-}
-
-// Weather forecast may be quantum computed in realtime. Folded: a realtime external stream content-
-// addressed exactly like the computed planets, a sibling of the public frequency-API realtime decode,
-// with the honest line that "quantum" here names a real research frontier, not present-day hardware.
-export function weatherForecastQuantumComputedRealtime(matrix: MindMatrix = buildMatrix()) {
-  const weather = weatherForecastApis()
-  const facets = [
-    { facet: 'realtime weather feeds folded — Open-Meteo + US NWS, no key', on: weather.realtime && isUuid(weather.root) },
-    { facet: 'a realtime external stream, content-addressed and foldable', on: isUuid(merkleFold([weather.root, toUuid('realtime')])) },
-    { facet: 'sibling of the public frequency-API realtime decode', on: publicFrequencyApisDecoded(matrix).decoded },
-    { facet: 'quantum-weather named as a research frontier, not a hardware claim, by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`weather-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    realtime: facets.every((entry) => entry.on),
-    apiCount: weather.sources.length,
-    count: facets.length,
-    facets,
-    root: weather.root,
-    statement:
-      'Weather forecast may be quantum computed in realtime: free no-key feeds (Open-Meteo fusing 15+ national NWP models incl. ECMWF/NOAA, and the US NWS api.weather.gov) folded as a realtime external stream, content-addressed like the computed planets — with "quantum computed" naming a real research frontier (IBM/TU Delft/AMS-2023 quantum weather methods), not present-day hardware.',
-    boundary:
-      'A composition over the weatherForecastApis research record (documented realtime feeds) with the public-frequency-API decode and merkaba-decode models. The feeds are real and free; the honest line is that today’s forecasts are computed by classical national supercomputers and this model only folds the realtime stream — "quantum computed in realtime" is a documented research frontier, not a claim of quantum hardware here or in production.',
   }
 }
 

@@ -1417,3 +1417,19 @@ html {
   font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
   font-optical-sizing: auto;
 }
+
+/* THE LIVING STANDARD — every component is alive. Each is mounted through the [page] route's <component :is>,
+   so wrapping that one mount in .living gives EVERY component (including the ~64 that carry no animation of
+   their own) a real entrance: it rises and fades in as it arrives. One shared mechanism folded into the
+   architecture — not 64 edits, not a new gate. Reduced-motion stills it. */
+.living {
+  animation: living-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes living-in {
+  from { opacity: 0; transform: translateY(16px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .living {
+    animation: none;
+  }
+}
