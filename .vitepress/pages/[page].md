@@ -7,7 +7,11 @@ import { useData } from 'vitepress'
 const { params } = useData()
 </script>
 
-# {{ params.title }}
+<!-- Raw <h1>, not a `#` markdown heading: a markdown heading is slugified by markdown-it at
+     BUILD time, before Vue interpolates, so `# {{ params.title }}` would bake the literal
+     "{{ params.title }}" into the heading id and the permalink aria-label on every page. Raw
+     HTML lets Vue interpolate the real title (SSR + client) with no bogus anchor. -->
+<h1>{{ params.title }}</h1>
 
 <p class="page-lede">{{ params.description }}</p>
 
