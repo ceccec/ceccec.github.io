@@ -2223,6 +2223,11 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     { skill: 'thrive by architecture', fn: 'thriveByArchitecture', does: 'society and nature fold to the one architecture root that thrives' },
     { skill: 'thriving ideas', fn: 'thrivingIdeas', does: 'society evolves in waves of thriving ideas' },
     { skill: 'thrive education', fn: 'thriveEducation', does: 'a six-stage path from achieving to thriving' },
+    // I Ching skills — the ancient eight-fold as the project's index and the script compaction.
+    { skill: 'i ching', fn: 'iChing', does: 'every component placed on the eight trigrams and 64 hexagrams by its own content-address' },
+    { skill: 'i ching domains', fn: 'iChingDomainMap', does: 'the eight trigrams as a domain map — each names one dual-pair module and its representative pages' },
+    { skill: 'hexagram colour', fn: 'hexagramIsHexColorDuality', does: 'the 64 hexagrams ARE the 64 all-pole hex colours; 2⁶ = 4³ is the codon · Pauli · colour identity' },
+    { skill: 'i ching generators', fn: 'generatorsAreIChing', does: 'the build/debug generators compacted into eight bāguà slots — one trigram-indexed runner' },
     // All skills created from this session's waves — each a sealed concept, autosaved and used.
     ...SESSION_SKILLS,
   ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }))
@@ -13685,7 +13690,7 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
 // (siteNavigation): glyph, pinyin, name, attribute, the eightfold family, and the canonical MEANING (Wilhelm)
 // that NAMES each nav door — the knowledge names the architecture, nothing hand-listed. Yang=1, lines read
 // bottom→top as LSB→MSB; Earth 000 … Heaven 111.
-const BAGUA = [
+export const BAGUA = [
   { bits: 0b000, glyph: '☷', pinyin: 'Kūn', name: 'Earth', attribute: 'receptive', family: 'mother', meaningEn: 'The Receptive', meaningBg: 'Възприемчивото' },
   { bits: 0b001, glyph: '☳', pinyin: 'Zhèn', name: 'Thunder', attribute: 'arousing', family: 'eldest son', meaningEn: 'The Arousing', meaningBg: 'Възбуждащото' },
   { bits: 0b010, glyph: '☵', pinyin: 'Kǎn', name: 'Water', attribute: 'abysmal', family: 'middle son', meaningEn: 'The Abysmal', meaningBg: 'Бездънното' },
@@ -13772,6 +13777,40 @@ export function iChingDomainMap(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(domains.map((d) => d.receipt)),
     statement: 'The eight I Ching trigrams map the eight domain modules: every fold lives in its trigram\'s module (src/quantum/<domain>), its display pair in src/<domain>/quantum. Static pages are grouped under the same eight trigrams — so navigation, modules and content address-space share one structure. The ☲ LI domain is src/quantum/mind/li.ts, its logical module before a future subfolder split.',
     boundary: 'A semantic (not content-addressed) mapping of trigrams to domain modules and representative pages. Trigrams group related knowledge; they do not carry the cosmological meanings of I Ching divination. The content-addressed iChing() placement (seedFromText → 64 hexagrams) remains the component graph\'s organiser.',
+  }
+}
+
+// The I Ching capability set — SAVED and verified across the registries. The eight-fold's folds are
+// skill atoms, its place/generate commands are concept commands AND MCP tools, and the pair is saved
+// before use (commandsSavedInQuantumPairs) — so the capability is remembered, callable, and leaves no
+// unpaired gap. Encodes "save all related I Ching skills, tools and commands" as one recomputable fold.
+export function iChingCapabilitiesSaved(matrix: MindMatrix = buildMatrix()) {
+  const skillFns = ['iChing', 'iChingDomainMap', 'hexagramIsHexColorDuality', 'generatorsAreIChing']
+  const commandNames = ['concept.iching.place', 'concept.iching.generate'] as const
+  const savedSkills = skillAtoms(matrix).skills
+  const tools = mcpToolManifest(matrix).tools
+  const pairs = commandsSavedInQuantumPairs(matrix).pairs
+  const checks = [
+    { facet: 'four I Ching folds saved as skill atoms', on: skillFns.every((fn) => savedSkills.some((s) => s.fn === fn)) },
+    { facet: 'the place/generate commands are in the command registry', on: commandNames.every((n) => conceptCommands.some((c) => c.name === n)) },
+    { facet: 'each command has a single-word method token', on: commandNames.every((n) => /^[a-z]+$/.test(SINGLE_WORD_METHODS[n] ?? '')) },
+    { facet: 'each command is published as an MCP tool', on: commandNames.every((n) => tools.some((t) => t.name === n)) },
+    { facet: 'the commands are saved as one order-sensitive quantum pair — place/generate', on: pairs.some((p) => p.command === 'place/generate' && p.paired) },
+    { facet: 'the registry stays consistent — methods = commands = tools', on: commandsRegistry(matrix).consistent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-saved:${entry.facet}:${entry.on}`) }))
+  return {
+    saved: checks.every((entry) => entry.on),
+    skills: skillFns,
+    commands: [...commandNames],
+    pair: 'place/generate',
+    methods: commandNames.map((n) => SINGLE_WORD_METHODS[n]),
+    count: checks.length,
+    checks,
+    root: merkleFold(checks.map((entry) => entry.receipt)),
+    statement:
+      'All related I Ching skills, tools and commands are saved: the four eight-fold folds — iChing (content-addressed placement), iChingDomainMap (the semantic domain map), hexagramIsHexColorDuality (2⁶ = 4³), and generatorsAreIChing (the script compaction) — are persisted as skill atoms; the place/generate command pair is in the command registry, each with a single-word method token (place, generate) and a published MCP tool; and the pair is saved as one order-sensitive quantum pair (place ↔ generate) before use, so the capability is remembered, callable over MCP, and leaves no unpaired gap.',
+    boundary:
+      'A registration-and-consistency check that the I Ching capability set is present across the skill-atom, concept-command, MCP-tool and command-pair registries — structural bookkeeping the build recomputes. It records that the surfaces are saved and callable; it does not itself execute a generator or a placement, and "saved" is in-source persistence, not external publication.',
   }
 }
 
@@ -16656,6 +16695,37 @@ function runConceptCommand(
   if (command === 'concept.proof.merklePath') {
     const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)
     return result(command, inclusion.verified, inclusion.statement, inclusion)
+  }
+  if (command === 'concept.iching.place') {
+    const placed = iChing(matrix)
+    const domains = iChingDomainMap(matrix)
+    return result(command, placed.organised && domains.aligned, `Placed ${placed.count} components across the eight trigrams (${placed.hexagrams} hexagrams).`, {
+      distribution: placed.distribution,
+      hexagrams: placed.hexagrams,
+      domains: domains.domains.map((d) => ({ glyph: d.glyph, name: d.name, module: d.module })),
+      root: merkleFold([placed.root, ...domains.domains.map((d) => d.receipt)]),
+    })
+  }
+  if (command === 'concept.iching.generate') {
+    // The four filled bāguà generator slots. The canonical runtime is scripts/iching.mjs →
+    // src/quantum/dist/generators.ts; this is a read-only descriptor for the command/MCP surface
+    // (kept self-contained so mind does not depend on dist).
+    const filled = [
+      { name: 'bible', bits: 0b000 },
+      { name: 'glagolitic', bits: 0b010 },
+      { name: 'cloudflare', bits: 0b110 },
+      { name: 'dist', bits: 0b111 },
+    ]
+    const slots = BAGUA.map((tri) => {
+      const gen = filled.find((f) => f.bits === tri.bits)
+      return { glyph: tri.glyph, pinyin: tri.pinyin, name: tri.name, generator: gen ? gen.name : null, filled: Boolean(gen) }
+    })
+    return result(command, filled.length === 4, 'Four of eight bāguà generator slots filled — run: npm run gen <glyph|name>.', {
+      runner: 'scripts/iching.mjs',
+      slots,
+      filled: filled.map((f) => f.name),
+      root: merkleFold(slots.map((s) => toUuid(`iching-gen-slot:${s.glyph}:${s.generator ?? 'open'}`))),
+    })
   }
   return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
 }
@@ -19773,7 +19843,7 @@ export function presentMomentRemainsInSource(matrix: MindMatrix = buildMatrix())
 // save the pair into the source FIRST, then use it. Saved before used, paired not single, the
 // commands are remembered as the dualities they are and leave no gap behind.
 export function commandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) {
-  const pairs = ['commit/push', 'build/seal', 'fold/verify', 'decode/fold', 'edit/build'].map((command) => {
+  const pairs = ['commit/push', 'build/seal', 'fold/verify', 'decode/fold', 'edit/build', 'place/generate'].map((command) => {
     const [a, b] = command.split('/')
     const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)) // the command and its dual, one quantum pair
     return { command, a, b, paired: fold.forward !== fold.reverse && fold.bidirectional, address: fold.merged, receipt: toUuid(`command-pair:${command}`) }

@@ -221,6 +221,8 @@ export type ConceptCommandName =
   | 'concept.society.cells'
   | 'concept.ui.evidence'
   | 'concept.site.manifest'
+  | 'concept.iching.place'
+  | 'concept.iching.generate'
 
 export interface ConceptCommand {
   readonly name: ConceptCommandName

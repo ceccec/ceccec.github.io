@@ -12,7 +12,8 @@
     "check:types": "tsc --noEmit -p tsconfig.json",
     "docs:build": "export NODE_COMPILE_CACHE=node_modules/.cache/ts && export NODE_OPTIONS=--max-old-space-size=8192 && vitepress build",
     "docs:preview": "vitepress preview",
-    "cf:wizard": "node --experimental-strip-types scripts/generate-cloudflare.mjs"
+    "gen": "node --experimental-strip-types scripts/iching.mjs",
+    "cf:wizard": "node --experimental-strip-types scripts/iching.mjs cloudflare"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

@@ -70,7 +70,7 @@ aside: false
 <Corpus kind="papers" />
 ```
 
-Detail URL: `/papers?id=<uuid>` — computed by `corpusParams('papers', id)` in `Corpus.vue`. No `[id].paths.ts`.
+Detail URL: `/papers/<id>` — the VitePress `[id]` dynamic route; `[id].paths.ts` → `paperRoutes()` enumerates the paths, `Corpus.vue` reads the item from `useData().params`.
 
 ## Enforcement pipeline
 
@@ -79,7 +79,7 @@ docs:build
   └─ vitepress build
   └─ scripts/enforcement-trinity.mjs
        └─ runEnforcementTrinity(root)  ← src/quantum/enforcement/index.ts
-            ├─ runCross   → src/quantum/dist/cross.ts (sitemap ?id=, digit-index, robots)
+            ├─ runCross   → src/quantum/dist/cross.ts (sitemap /kind/<id>, digit-index, robots)
             ├─ runFold    → modelSeal + tripwire (src/quantum/mind)
             └─ runWeave   → src/quantum/enforcement/weave.ts (harmonic.json gaps)
 ```
@@ -94,7 +94,7 @@ docs:build
 
 `folderLaw().pairedLogicFolders` includes dist and enforcement pairs; weave verifies each has `index.ts`.
 
-**Session gates (emergentDimensions):** `no.site.folder.vitepress.pages`, `corpus.query.id.routing`, `enforcement.trinity.spread.paired`.
+**Session gates (emergentDimensions):** `no.site.folder.vitepress.pages`, `corpus.rest.path.routing`, `enforcement.trinity.spread.paired`.
 
 Declared gates: `buildEnforcementPipeline()` in mind — must match `scripts/` and `package.json` `docs:build`.
 
@@ -103,9 +103,12 @@ Declared gates: `buildEnforcementPipeline()` in mind — must match `scripts/` a
 | Script | Role |
 |--------|------|
 | `enforcement-trinity.mjs` | **Production** post-build gate (keep) |
-| `generate-dist-debug.mjs` | Debug dist recompute (not in docs:build) |
-| `generate-cloudflare.mjs` | Opt-in wizard (`cf:wizard`) |
-| `generate-glagolitic.mjs` | Superseded demo — home is computed |
+| `iching.mjs` | ONE bāguà-indexed runner — the only generator shell; plans live in `src/quantum/dist/generators.ts` |
+| ↳ `iching.mjs dist` | Debug dist recompute (not in docs:build) — ☰ slot |
+| ↳ `iching.mjs cloudflare` | Opt-in wizard (`cf:wizard`) — ☴ slot |
+| ↳ `iching.mjs bible` | Bible in Glagolitic — ☷ slot |
+| ↳ `iching.mjs glagolitic` | Superseded demo — home is computed — ☵ slot |
+| `generate-*.mjs` (4 files) | **Deleted** — fused into the `iching.mjs` trigram registry |
 | `check-*.mjs` | **Delete** — fuse into trinity |
 | `generate-all.mjs`, `harmonic-distribution.mjs` | **Delete** — fused into trinity |
 

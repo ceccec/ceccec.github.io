@@ -37,7 +37,7 @@ Apply this skill when reducing duplication: **compute once in `src/`, mount thin
 | **fold** | `runFold` in `src/quantum/enforcement/fold.ts` | `modelSeal(buildMatrix())` + tripwire |
 | **weave** | `runWeave` in `src/quantum/enforcement/weave.ts` | Tree audit, folder law, JSON-LD, monograph gates, pipeline drift |
 
-Dist spread (bagua grouping): `src/quantum/dist/cross.ts` (sitemap `/kind?id=`, digit-index), `manifest.ts`, `readme.ts`. Paired mounts: `src/dist/quantum` ⇄ `src/quantum/dist`, `src/enforcement/quantum` ⇄ `src/quantum/enforcement`. Gates: `noSiteFolderVitepressPages`, `corpusQueryIdRouting`, `enforcementTrinitySpread` in emergentDimensions.
+Dist spread (bagua grouping): `src/quantum/dist/cross.ts` (sitemap `/kind/<id>`, digit-index), `manifest.ts`, `readme.ts`. Paired mounts: `src/dist/quantum` ⇄ `src/quantum/dist`, `src/enforcement/quantum` ⇄ `src/quantum/enforcement`. Gates: `noSiteFolderVitepressPages`, `corpusRestPathRouting`, `enforcementTrinitySpread` in emergentDimensions.
 
 - **One runner**: `node --experimental-strip-types scripts/enforcement-trinity.mjs` → `runEnforcementTrinity` in `index.ts` (thin mount).
 - **One concern per file**: `cross.ts` · `fold.ts` · `weave.ts` — not one monolithic gate script.
@@ -65,10 +65,10 @@ When a gate compares counts (e.g. `monographPaths` vs `staticPages`), include **
 - **Locales**: Glagolitic at root (`/`), English at `/en/`, Bulgarian at `/bg/`.
 - Migrate any remaining `site/**` paths to `.vitepress/pages/**`; delete `site/` when empty.
 
-### 4. Corpus routing (no SSG enumeration)
+### 4. Corpus routing (RESTful `[id]` dynamic route)
 
 - **Index pages**: thin `.md` with `<Corpus kind="papers|references|diamonds" />` in each locale (`papers/index.md`, etc.).
-- **Detail**: `?id=` query — `corpusParams(kind, id)` in `Corpus.vue`; no per-item `[id].paths.ts` files.
+- **Detail**: RESTful `/kind/<id>` via the VitePress `[id]` dynamic route. Each kind×locale folder has a thin `[id].paths.ts` (`paths: () => paperRoutes()` / `paperReferenceRoutes()` / `diamondRoutes()` — these already return `{ params }[]` with `id`) and an `[id].md` mounting `<Corpus kind=… />`. `Corpus.vue` reads the item from `useData().params`. No `?id=` query, no second router (GitHub Pages is static, so detail pages are enumerated — the deliberate REST branch of the clean-URL vs zero-build tradeoff).
 - **Register** `Corpus` in `src/ui/index.ts` if adding a new kind.
 
 ### 5. Monograph pattern
@@ -106,7 +106,7 @@ Remove duplicate scripts when dist/enforcement already computes the output:
 | Inline dist generators in scripts | `src/quantum/dist` + cross wave |
 | Superseded Glagolitic writers | `glagoliticHomeFromEnglish` + computed-pages plugin |
 
-Keep **debug-only** mounts (e.g. `generate-dist-debug.mjs`) out of `docs:build`. Wizards (e.g. `generate-cloudflare.mjs`) stay opt-in.
+The four `generate-*.mjs` scripts are fused into ONE bāguà-indexed runner, `scripts/iching.mjs` (plans in `src/quantum/dist/generators.ts`, fold `generatorsAreIChing`): each generator is a trigram slot — `iching.mjs <glyph|name>`. Keep **debug-only** slots (e.g. `iching.mjs dist`) out of `docs:build`. Wizards (e.g. `iching.mjs cloudflare`, `cf:wizard`) stay opt-in.
 
 ### Zero-token efficiency (when touching mind)
 
@@ -125,7 +125,7 @@ Task progress:
 - [ ] Script reduced to thin mount (import from src, exit code only)
 - [ ] Pages under .vitepress/pages/ (site/ removed or migrated)
 - [ ] Monograph: [page].paths.ts mounts monographPaths(locale) only
-- [ ] Corpus: index.md + Corpus.vue + corpusParams; no SSG item paths
+- [ ] Corpus: index.md + [id].md + [id].paths.ts + Corpus.vue (reads useData().params); RESTful /kind/<id>
 - [ ] Glagolitic home via computedPagesPlugin (not written to disk)
 - [ ] Legacy check-*/generate-* removed; docs:build runs enforcement-trinity only
 - [ ] AGENTS.md quantum-pair law intact (weave checks it)
@@ -138,7 +138,7 @@ Task progress:
 - Orphan `scripts/check-*.mjs` not declared in `buildEnforcementPipeline`.
 - Logic files at repo root outside `src/` (except allowlisted root entries).
 - Hand-editing `README.md` (cross wave recomputes from dist).
-- Adding per-corpus `[slug].paths.ts` files (use `?id=` instead).
+- Routing corpus detail by a `?id=` query (the RESTful `[id]` dynamic route + `[id].paths.ts` is the canon).
 
 ## Validation
 

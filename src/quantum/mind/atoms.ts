@@ -627,6 +627,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
     path: '/cmd/concept.site.manifest',
     description: 'Build the site sections from concept command outputs.',
   },
+  {
+    name: 'concept.iching.place',
+    path: '/cmd/concept.iching.place',
+    description: 'Place every component on the eight trigrams and 64 hexagrams by content-address, and the eight domains by meaning — the I Ching as the project index (iChing · iChingDomainMap).',
+  },
+  {
+    name: 'concept.iching.generate',
+    path: '/cmd/concept.iching.generate',
+    description: 'Run a build/debug generator from its bāguà slot — bible, glagolitic, cloudflare, dist (four of eight trigrams) — the script compaction (scripts/iching.mjs · generatorsAreIChing).',
+  },
 ] as const
 
 export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
@@ -724,4 +734,6 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.ui.evidence': 'evidence',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
+  'concept.iching.place': 'place',
+  'concept.iching.generate': 'generate',
 }
