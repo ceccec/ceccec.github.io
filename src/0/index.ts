@@ -667,7 +667,7 @@ export function sample(state: QuantumState, shots = 1024, seed = 'sample'): Reco
 }
 
 // Demo — the Bell pair (|00> + |11>)/√2: H on qubit 0, then CNOT(0→1). Maximally entangled; measuring one
-// bellPair moved to src/0/quantum-demos.ts (proof-only, not bundled at runtime)
+// bellPair moved to src/0/bell.ts (proof-only, not bundled at runtime)
 
 // Demo — Grover search: find the one marked item among N = 2^n in ~(π/4)√N iterations. On a REAL machine this
 // is a quadratic speedup; here it is SIMULATED classically with no speedup. Uniform superposition, then repeat
@@ -742,7 +742,7 @@ export function rtoffoli(bits: number, control1: number, control2: number, targe
   return (bits & (1 << control1)) !== 0 && (bits & (1 << control2)) !== 0 ? bits ^ (1 << target) : bits
 }
 
-// caStep and caEvolve moved to src/0/ca-demos.ts (proof-only, not bundled at runtime)
+// caStep and caEvolve moved to src/0/ca.ts (proof-only, not bundled at runtime)
 
 // ── Probabilistic process primitives (beside pflip) — the honest model for most decoded domains ─────────
 // A research fleet decoded 18 "aspects of life" and the verify pass found them mostly CLASSICAL, not quantum

@@ -19,7 +19,7 @@ const graph = componentGraph()
 // Globals and placements both come from the graph's own edges — one source, no
 // duplicated list to drift.
 const globals = new Set(graph.edges.filter((edge) => edge.kind === 'global').map((edge) => edge.from))
-const placedBy = {}
+const placedBy: Record<string, string[]> = {}
 for (const edge of graph.edges) if (edge.kind === 'placed') (placedBy[edge.to] ??= []).push(edge.from)
 const placed = new Set(Object.values(placedBy).flat())
 const declared = new Set(graph.components)
@@ -76,7 +76,7 @@ const dynamicPageComponents = new Map(staticPages().map((page) => [page.slug, pa
 for (const [route, components] of Object.entries(placedBy)) {
   const slug = route.replace(/^\//, '')
   if (dynamicPageComponents.has(slug)) {
-    const declared = dynamicPageComponents.get(slug)
+    const declared = dynamicPageComponents.get(slug)!
     for (const component of components) {
       if (!declared.includes(component)) gaps.push({ harmonic: 'fourth', kind: 'unmounted', detail: `${component} is placed at ${route} but not in staticPages('${slug}').components — why this fails: the [page] route mounts a page's components dynamically, so the placement and staticPages must name the same set (derive the placement from staticPages)` })
     }

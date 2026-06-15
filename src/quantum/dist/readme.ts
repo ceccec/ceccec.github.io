@@ -18,7 +18,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const mono = monographs(matrix)
   const sitemap = quantumSitemap(matrix)
   const paperList = staticPages().map(monographAsScientificPaper)
-  const knowledge = crawlerKnowledge(matrix)
+  const knowledge = crawlerKnowledge()
   return [
     `# ${config.title} — the root monograph`,
     '',
