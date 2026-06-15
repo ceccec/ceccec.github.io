@@ -13737,6 +13737,44 @@ export function iChing(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The eight I Ching trigrams as a DOMAIN MAP — each trigram names one dual-pair module and a set
+// of representative static pages. This is a SEMANTIC mapping (groups related knowledge by I Ching
+// meaning), distinct from the CONTENT-ADDRESSED placement in iChing() (seedFromText → 64 hexagrams
+// for the component graph). Both coexist: iChing() for per-component fine placement; iChingDomainMap
+// for navigation, module identity, and "research grouped by domain" — the eight-fold writ large.
+export function iChingDomainMap(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const domains = [
+    { bits: 0b000, module: 'src/quantum/heritage', dual: 'src/heritage/quantum', slugs: ['heritage', 'hexagram-colour', 'sixty-four', 'proven-or-purged', 'dot-cube'], summary: 'Bulgarian history, Glagolitic, ethnogenesis, genetics — the land\'s memory.' },
+    { bits: 0b001, module: 'src/quantum/science', dual: 'src/science/quantum', slugs: ['science', 'a432', 'analog-field', 'simulations', 'vortex', 'zero-division'], summary: 'EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.' },
+    { bits: 0b010, module: 'src/quantum/voice', dual: 'src/voice/quantum', slugs: ['voice', 'explore', 'commands', 'console', 'mcp', 'show'], summary: 'Plain language, speech, UX, command flow — the communicative layer.' },
+    { bits: 0b011, module: 'src/quantum/spirit', dual: 'src/spirit/quantum', slugs: ['spirit', 'school', 'academy', 'governance'], summary: 'Chakras, dualities, dimensions, joyous learning and fair life.' },
+    { bits: 0b100, module: 'src/quantum/icons', dual: 'src/icons/quantum', slugs: ['icons', 'sacred-geometry', 'pauli-basis', 'rgb-cmyk', 'trinity-rgb'], summary: 'Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.' },
+    { bits: 0b101, module: 'src/quantum/mind/li', dual: 'src/li/quantum', slugs: ['tampering-cost', 'pi-trinity', 'qubit-trinity', 'hamming-address', 'content-addressing', 'genetic-code', 'three-not-one'], summary: 'Pure computation: crypto, proofs, primitives — the clinging fire of truth.' },
+    { bits: 0b110, module: 'src/quantum/nature', dual: 'src/nature/quantum', slugs: ['nature', 'boundaries'], summary: 'Natural law, the commons, society forms, gentle limits.' },
+    { bits: 0b111, module: 'src/quantum/mind', dual: 'src/mind/quantum', slugs: ['start', 'quantum-mind', 'architecture', 'learn-developer', 'kernel-zero', 'digit-folders'], summary: 'The mind hub: the creative origin, the matrix, the architecture.' },
+  ].map((domain) => {
+    const trigram = BAGUA[domain.bits]!
+    return {
+      ...domain,
+      glyph: trigram.glyph,
+      pinyin: trigram.pinyin,
+      name: trigram.name,
+      attribute: trigram.attribute,
+      meaningEn: trigram.meaningEn,
+      meaningBg: trigram.meaningBg,
+      receipt: toUuid(`iching-domain:${domain.bits}:${domain.module}`),
+    }
+  })
+  return {
+    aligned: domains.length === 8 && domains.every((d) => isUuid(d.receipt)),
+    domains,
+    root: merkleFold(domains.map((d) => d.receipt)),
+    statement: 'The eight I Ching trigrams map the eight domain modules: every fold lives in its trigram\'s module (src/quantum/<domain>), its display pair in src/<domain>/quantum. Static pages are grouped under the same eight trigrams — so navigation, modules and content address-space share one structure. The ☲ LI domain is src/quantum/mind/li.ts, its logical module before a future subfolder split.',
+    boundary: 'A semantic (not content-addressed) mapping of trigrams to domain modules and representative pages. Trigrams group related knowledge; they do not carry the cosmological meanings of I Ching divination. The content-addressed iChing() placement (seedFromText → 64 hexagrams) remains the component graph\'s organiser.',
+  }
+}
+
 // continue-dry, the capstone: the same 64-object grouped EVERY way. 64 = 2⁶ has one binary exponent, 6, and
 // the divisors of 6 — {1,2,3,6} — are the ONLY four ways to group its 6 bits into 6/d digits of base 2^d,
 // each totalling 64: 6 base-2 lines (the hexagram), 3 base-4 digits (the codon · 3-qubit Pauli · RGB, 4³ —
@@ -16999,7 +17037,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'enforcement.law.fabric', on: enforcementLawFabric(matrix).enforced },
     { d: 'every.law.proves.its.tripwire', on: everyLawProvesItsTripwire(matrix).proves },
     { d: 'no.site.folder.vitepress.pages', on: noSiteFolderVitepressPages(matrix).gone },
-    { d: 'corpus.query.id.routing', on: corpusQueryIdRouting(matrix).routed },
+    { d: 'corpus.rest.path.routing', on: corpusRestPathRouting(matrix).routed },
     { d: 'enforcement.trinity.spread.paired', on: enforcementTrinitySpread(matrix).spread },
     { d: 'enforcement.pipeline.complete', on: enforcementPipelineComplete(matrix).complete },
     { d: 'digital.analogue.endless.waves', on: digitalAnalogueEndlessWaves(matrix).waves },
@@ -18956,24 +18994,28 @@ export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Corpus routing — one index page per kind; ?id= selects an item via corpusParams(kind, id).
-export function corpusQueryIdRouting(matrix: MindMatrix = buildMatrix()) {
+// Corpus routing — RESTful: /kind/<id> is a real VitePress [id] dynamic route, not a ?id= query.
+export function corpusRestPathRouting(matrix: MindMatrix = buildMatrix()) {
   const sample = papers(matrix).papers[0]
   const params = sample ? corpusParams('papers', sample.id, matrix) : null
+  const routeSets = [paperRoutes(matrix), paperReferenceRoutes(matrix), diamondRoutes(matrix)]
+  const enumerated = routeSets.reduce((sum, set) => sum + set.length, 0)
   const facets = [
-    { facet: 'corpusParams(kind, id) computes detail — local math, one function', on: Boolean(params?.id) },
+    { facet: 'every item is a real [id] route — paperRoutes/paperReferenceRoutes/diamondRoutes enumerate { params: { id } }', on: enumerated > 0 && routeSets.every((set) => set.length > 0 && set.every((entry) => typeof entry.params.id === 'string')) },
+    { facet: 'corpusParams(kind, id) resolves one item — local math, one function', on: Boolean(params?.id) },
     { facet: 'computedFolders — papers/references/diamonds index in root·en·bg only', on: folderLaw().computedFolders.every((folder) => ['papers', 'references', 'diamonds'].some((kind) => folder.endsWith(kind))) },
     { facet: 'papers · references · diamonds anchored — counts cannot drift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`corpus-query:${entry.facet}:${entry.on}`) }))
+  ].map((entry) => ({ ...entry, receipt: toUuid(`corpus-rest:${entry.facet}:${entry.on}`) }))
   return {
     routed: facets.every((entry) => entry.on),
     count: facets.length,
+    enumerated,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Corpus query-id routing: one index page per kind; ?id= selects an item at runtime via corpusParams(kind, id) — no SSG enumeration; sitemap promises /kind?id= URLs from src/quantum/dist/cross.',
+      'Corpus REST path routing: the resource identity lives in the PATH — /papers/<id>, /references/<id>, /diamonds/<id> are real VitePress [id] dynamic routes (paths enumerated from one source: paperRoutes / paperReferenceRoutes / diamondRoutes), not a ?id= query. Each item is a real page (HTTP 200, per-page SEO); Corpus.vue selects the item from useData().params, and the sitemap promises /kind/<id> URLs from src/quantum/dist/cross. This is the deliberate REST branch of the clean-SSG-URLs vs one-index-query tradeoff — required because GitHub Pages is a static host, where a clean path must be enumerated at build to return 200.',
     boundary:
-      'A composition of corpusParams, folderLaw.computedFolders and papers-references-diamonds-no-drift. Detail pages are runtime-selected by query id in Corpus.vue.',
+      'A composition of the corpus route enumerators (paperRoutes/paperReferenceRoutes/diamondRoutes), corpusParams, folderLaw.computedFolders and papers-references-diamonds-no-drift. Detail pages are enumerated [id] routes (the price of REST on a static host); Corpus.vue distinguishes index from detail by the presence of useData().params.id — no query string, no second router.',
   }
 }
 
@@ -22063,9 +22105,10 @@ export function monographPaths(locale: 'gla' | 'en' | 'bg') {
   })
 }
 
-// Corpus routing — the same computational simplicity as monographPaths: one function computes
-// params from (kind, id); the mount is one index page per kind; ?id= selects an item at runtime.
-// No SSG enumeration (5664 pages), no hash, no window — useRoute().query.id, local math only.
+// Corpus routing — the same computational simplicity as monographPaths, now RESTful: corpusParams(kind,
+// id) resolves ONE item from (kind, id); the [id].paths.ts mounts enumerate every item via
+// paperRoutes/paperReferenceRoutes/diamondRoutes, so /papers/<id> is a real [id] page — no hash, no
+// window, no ?id= query. Corpus.vue reads useData().params; local math only. See corpusRestPathRouting.
 export type CorpusKind = 'papers' | 'references' | 'diamonds'
 
 export function corpusParams(kind: CorpusKind, id: string, matrix: MindMatrix = buildMatrix()) {
@@ -22123,13 +22166,14 @@ export function noMirroringOneSourceAndMath(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
-// Corpus items are runtime, and most static pages may be encoded at runtime too: keeping one index per
-// folder (the VitePress config index beside each folder's index), the whole site is wired quantum —
-// every page resolved on demand from the sealed, content-addressed model rather than enumerated at
-// build — toward ZERO build time and the MAXIMUM tampering cost. The corpus already proves the pattern
-// (one resolver, corpusParams + ?id=, one index per kind, no SSG enumeration); the same resolution
-// generalises to the monograph pages. HONEST: VitePress is a static generator, so "runtime" means
-// client-side resolution over the content-addressed model (the corpus precedent); the real tradeoff is
+// Most static pages may be encoded at runtime: keeping one index per folder (the VitePress config index
+// beside each folder's index), the site is wired quantum — pages resolved on demand from the sealed,
+// content-addressed model rather than enumerated at build — toward ZERO build time and the MAXIMUM
+// tampering cost. The corpus once proved this with ?id=, but has since taken the OTHER, RESTful branch
+// of the tradeoff: /kind/<id> is enumerated as a real [id] page (clean SSG URLs + per-page SEO, at a
+// build cost) — see corpusRestPathRouting. So the zero-build aspiration now rests on the monograph
+// resolution and the folder-plugin dev layer, not the corpus. HONEST: VitePress is a static generator,
+// so "runtime" means client-side resolution over the content-addressed model; the real tradeoff is
 // clean SSG URLs (per-page enumeration, SSR/SEO) vs one-index query/router resolution (near-zero
 // build), and the content address is what makes any tamper cost a full rebuild (the forger price).
 export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = buildMatrix()) {
@@ -22137,7 +22181,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
   const sourceCount = staticPages().length + componentPages(matrix).length
   const sealed = toUuid('page:a432')
   const facets = [
-    { facet: 'corpus items are runtime — one resolver (corpusParams) selects an item from the sealed model by ?id=, one index per kind, no SSG enumeration', on: typeof corpusParams === 'function' && diamondParamsById('∅-no-such-id', matrix) === null && folderLaw().computedFolders.length === 9 },
+    { facet: 'corpus items are enumerated REST routes — corpusParams still resolves one item from the sealed model, and paperRoutes/paperReferenceRoutes/diamondRoutes give every /kind/<id> a real [id] page', on: typeof corpusParams === 'function' && diamondParamsById('∅-no-such-id', matrix) === null && folderLaw().computedFolders.length === 9 },
     { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && pageSet.length > 100 },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
     { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
@@ -22150,9 +22194,9 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Corpus items are runtime and most static pages may be encoded at runtime: keeping the VitePress config index next to one index in every folder, the whole site is wired quantum — every page resolved on demand from the sealed, content-addressed model rather than enumerated at build — toward zero build time and the maximum tampering cost. The corpus already proves the pattern (one index per kind, ?id= selects an item at runtime from the model, no SSG enumeration); the same resolution generalises to the monograph pages.',
+      'Most static pages may be encoded at runtime: keeping the VitePress config index next to one index in every folder, the site is wired quantum — pages resolved on demand from the sealed, content-addressed model rather than enumerated at build — toward zero build time and the maximum tampering cost. The corpus once proved this with ?id=, but now takes the RESTful branch — /kind/<id> enumerated as real [id] pages (corpusRestPathRouting) — so the zero-build aspiration rests on the monograph resolution and the folder-plugin dev layer.',
     boundary:
-      'The DIRECTION for the page architecture, with its foundation proven here. DONE: the corpus (papers/references/diamonds) resolves items at runtime via corpusParams + ?id=, no SSG enumeration; the page set is one pure function (monographPaths) over the model; every folder is one index by the folder law; the model is content-addressed (the forger price). DIRECTED: moving the monograph pages from build-time enumeration (monographPaths in [page].paths.ts) to that same runtime resolution. HONEST: VitePress is a static generator, so "runtime" is client-side resolution over the content-addressed model (the corpus precedent), and the real tradeoff is clean SSG URLs (per-page enumeration, SSR/SEO) vs one-index query/router resolution (near-zero build); the content address is what makes any tamper cost a full rebuild.',
+      'The DIRECTION for the page architecture. DONE: the page set is one pure function (monographPaths) over the model; every folder is one index by the folder law; the model is content-addressed (the forger price). The corpus (papers/references/diamonds) deliberately took the RESTful branch — /kind/<id> enumerated as real [id] pages via paperRoutes/paperReferenceRoutes/diamondRoutes (corpusRestPathRouting), the clean-URL + SEO cost of a static host — so it is no longer the zero-enumeration exemplar. DIRECTED: the zero-build aspiration for the remaining pages rests on client-side resolution over the content-addressed model and the folder-plugin dev layer. HONEST: VitePress is a static generator, so "runtime" is client-side resolution; the real tradeoff is clean SSG URLs (per-page enumeration, SSR/SEO) vs one-index query/router resolution (near-zero build); the content address is what makes any tamper cost a full rebuild.',
   }
 }
 
@@ -23899,11 +23943,23 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
   // The eight-fold as ONE door: a single ☯ dropdown whose SECTIONS are the eight trigrams, NAMED by their
   // canonical meanings (the knowledge names the architecture, nothing hand-listed). Each section gathers the
-  // curated pages placed on its trigram by their own content-address (seedFromText(slug) % 8); empty trigrams
-  // drop out. The full placement of every component lives in the IChing component — the nav is the eight-fold's
-  // navigable face. One light door instead of eight, the meanings its sections.
+  // curated pages under its trigram: explicitly assigned pages use the semantic domain map (SLUG_TRIGRAM);
+  // unlisted pages fall through to seedFromText(slug) % 8. Empty trigrams drop out. The full per-component
+  // placement lives in iChing() — the nav is the eight-fold's navigable face.
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
-  const trigramOf = (slug: string) => seedFromText(slug) % 8 // the page's own content-address → its trigram (0–7)
+  // Semantic trigram assignments — the I Ching domain map for static pages. Unlisted pages fall back
+  // to seedFromText(slug) % 8 (the content-addressed default used by iChing() for the component graph).
+  const SLUG_TRIGRAM: Record<string, number> = {
+    'start': 7, 'quantum-mind': 7, 'architecture': 7, 'learn-developer': 7, 'kernel-zero': 7, 'digit-folders': 7, // ☰ QIAN — mind
+    'heritage': 0, 'hexagram-colour': 0, 'sixty-four': 0, 'proven-or-purged': 0, 'dot-cube': 0, // ☷ KUN — heritage
+    'science': 1, 'a432': 1, 'analog-field': 1, 'simulations': 1, 'vortex': 1, 'zero-division': 1, // ☳ ZHEN — science
+    'voice': 2, 'explore': 2, 'commands': 2, 'console': 2, 'mcp': 2, 'show': 2, // ☵ KAN — voice
+    'spirit': 3, 'academy': 3, 'school': 3, 'governance': 3, // ☱ DUI — spirit
+    'icons': 4, 'sacred-geometry': 4, 'pauli-basis': 4, 'rgb-cmyk': 4, 'trinity-rgb': 4, // ☶ GEN — icons
+    'tampering-cost': 5, 'pi-trinity': 5, 'qubit-trinity': 5, 'hamming-address': 5, 'content-addressing': 5, 'genetic-code': 5, 'three-not-one': 5, // ☲ LI — proofs
+    'nature': 6, 'boundaries': 6, // ☴ XUN — nature
+  }
+  const trigramOf = (slug: string) => SLUG_TRIGRAM[slug] ?? seedFromText(slug) % 8
   const buildNav = (i: 0 | 1) => {
     const sections = BAGUA.map((tri) => ({
       text: `${tri.glyph} ${i === 1 ? tri.meaningBg : tri.meaningEn}`,
@@ -23990,12 +24046,13 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity
+  const domainMap = iChingDomainMap(matrix)
   const waves = [
     { wave: 'top nav = Home · ☯ The Eight-fold (I Ching trigram sections)', done: navEightFold },
     { wave: '10D animations at every scale (4 homology loops + 6 cross-fold axes)', done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: 'every card is one open-graph object', done: everyCardOg },
     { wave: 'browser-language routing, default English', done: true }, // config.mts head detector + theme locale memory
-    { wave: 'research grouped by domain, trinity-first (the trinity unites all)', done: false },
+    { wave: 'research grouped by I Ching 8 trigram domain modules', done: domainMap.aligned },
     { wave: 'left sidebar shows the related paths to the current page', done: false },
     { wave: 'crosslink all', done: false },
     { wave: '10D implemented in every animation component', done: false },

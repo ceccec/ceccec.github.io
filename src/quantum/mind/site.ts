@@ -351,6 +351,68 @@ export function staticPages(): StaticPage[] {
       keywords: ['show', 'demo', 'live', 'components', 'devices'],
       components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
     },
+    // I Ching domain pages — one per dual-pair module, each under its semantic trigram.
+    // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
+    {
+      slug: 'heritage',
+      title: { en: 'Bulgarian Heritage', bg: 'Българско наследство' },
+      description: {
+        en: 'Bulgarian heritage decoded in waves: history 681–present in six dual-mind eras, ancient civilisations from c.6200 BC (Varna gold), ethnogenesis — Bulgars, Slavs, Thracians — and the genetics that challenges the record; Glagolitic as the first Slavic script, script–language–gene as three independent inheritance systems. Documented kept, legend flagged.',
+        bg: 'Българското наследство в вълни: история 681–до днес в шест епохи, древни цивилизации от ок. 6200 пр.Хр. (Варненско злато), етногенезис — българи, славяни, траки — и генетиката, оспорваща летописа; глаголицата като първата славянска азбука, сценарий–език–ген като три независими системи на наследяване. Документираното остава, легендата е отбелязана.',
+      },
+      keywords: ['bulgarian', 'heritage', 'history', 'glagolitic', 'ethnogenesis', 'genetics', 'ancient', 'slavic'],
+      components: ['BulgarianHeritage', 'Glagolitic', 'ScriptLanguageGene'],
+    },
+    {
+      slug: 'science',
+      title: { en: 'Science & Frequencies', bg: 'Наука и честоти' },
+      description: {
+        en: 'Science decoded honestly: electromagnetic radiation, Tesla\'s five verified patents, public frequency data APIs (FCC, USGS, Schumann 7.83 Hz, Web Audio), and the ionising threshold (~10 eV). Documented physics first; wellness claims flagged. Every result a client-side computation from the src/0 spectrum primitives.',
+        bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
+      },
+      keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann'],
+      components: ['TeslaPatents', 'HealingFrequencies', 'PublicFrequencyApis'],
+    },
+    {
+      slug: 'voice',
+      title: { en: 'Voice & Language', bg: 'Глас и език' },
+      description: {
+        en: 'Voice decoded: plain language for every idea, play-and-learn letters as coloured tiles and notes, speech as a continuous analog wave, typography and Open Graph principles, char-and-word content-addressing, and the portal\'s eight experience dimensions. The same word always plays the same song — deterministic and offline.',
+        bg: 'Гласът, декодиран: ясен език за всяка идея, учебни букви като цветни плочки и ноти, речта като непрекъсната аналогова вълна, принципи за типография и Open Graph, адресиране по съдържание на знаци и думи, осемте измерения на опита с портала. Една и съща дума звучи винаги еднакво — детерминистично и офлайн.',
+      },
+      keywords: ['voice', 'language', 'plain language', 'speech', 'typography', 'content-addressing', 'play', 'multidimensional'],
+      components: ['PlayLearn', 'SpeechReader', 'Multidimensional'],
+    },
+    {
+      slug: 'spirit',
+      title: { en: 'Spirit & Dimensions', bg: 'Дух и измерения' },
+      description: {
+        en: 'Spirit decoded honestly: the seven chakras and aura fields as a documented energy model, human design as a structural archetype system, yin-yang and dualities across sixteen pairs in three tiers, and the portal\'s eight experience dimensions. Each a deterministic computation; spiritual interpretations flagged.',
+        bg: 'Духът, декодиран честно: седемте чакри и аурата като документиран енергиен модел, хюман дизайн като система от структурни архетипи, ин-ян и дуалности в шестнадесет двойки на три нива и осемте измерения на опита. Всяко е детерминистично изчисление; духовните интерпретации са отбелязани.',
+      },
+      keywords: ['spirit', 'chakras', 'dualities', 'dimensions', 'human design', 'yin yang', 'joyous'],
+      components: ['Dualities', 'YinYang', 'ChakrasAura'],
+    },
+    {
+      slug: 'icons',
+      title: { en: 'Icons & Form', bg: 'Икони и форма' },
+      description: {
+        en: 'Icons and form decoded: the 44 area-icon map (emoji taxonomy), area labels in three locales, computer architecture in 3-5-8 (three buses, five von Neumann units, eight bits of a byte), harmonic Fibonacci band distribution, and the glyph/artifact seal. Every icon a structural assignment — the form that names each domain.',
+        bg: 'Иконите и формата, декодирани: картата на 44 икони по области (emoji таксономия), надписи на три езика, компютърна архитектура в 3-5-8 (три шини, пет единици на фон Нойман, осем бита в байт), хармонично разпределение по ленти на Фибоначи и печатът на глифове и артефакти. Всяка икона е структурно присвояване.',
+      },
+      keywords: ['icons', 'glyphs', 'form', 'computer design', 'harmonic', 'fibonacci', 'taxonomy', 'area'],
+      components: ['TaxonomyIcons', 'HarmonicMap', 'TaxonomyGraph'],
+    },
+    {
+      slug: 'nature',
+      title: { en: 'Nature & Society', bg: 'Природа и общество' },
+      description: {
+        en: 'Nature decoded: natural law and the commons as a recomputable rubric (every extraction matched by restoration), an attestation seal for peer-review-level claims, the lawful participation ladder — harmonic, imaginative, successful — and the society forms indexed. Documented kept, naivety flagged.',
+        bg: 'Природата, декодирана: природно право и общите блага като преизчислимо ниво (всяко извличане съответствано от възстановяване), атестационен печат за претенции от ниво на партньорска проверка, законната стълба за участие — хармонична, въображаема, успешна — и формите на обществото. Документираното остава, наивността е отбелязана.',
+      },
+      keywords: ['nature', 'commons', 'natural law', 'society', 'sustainability', 'attestation', 'lawful', 'ecology'],
+      components: ['Society', 'NatureLaw', 'Attestation'],
+    },
     // The dissolved decode proofs — each a page (proofs are pages; all is a page), each mounting one
     // holds-true fold; the home card leads here. What is not proven is purged.
     {
