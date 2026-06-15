@@ -54,6 +54,7 @@ import QuantumDashboard from './components/QuantumDashboard.vue'
 import QuantumField from './components/QuantumField.vue'
 import QuantumFold3D from './components/QuantumFold3D.vue'
 import RealtimeChat from './components/RealtimeChat.vue'
+import RealtimeTests from './components/RealtimeTests.vue'
 import Rhythm from './components/Rhythm.vue'
 import QAEquilibrium from './components/QAEquilibrium.vue'
 import QuantumPhysics from './components/QuantumPhysics.vue'
@@ -246,6 +247,7 @@ export default {
     app.component('QuantumPlasma', QuantumPlasma)
     app.component('QuestionClose', QuestionClose)
     app.component('RealtimeChat', RealtimeChat)
+    app.component('RealtimeTests', RealtimeTests)
     app.component('Rhythm', Rhythm)
     app.component('QuantumMind', QuantumMind)
     app.component('Roadmaps', Roadmaps)

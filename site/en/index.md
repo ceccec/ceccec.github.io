@@ -171,6 +171,12 @@ Not prose about quantum and dynamics, but models you run. A deterministic classi
 
 <NetSim />
 
+## Tested on live data — APIs and device sensors
+
+The same simulators and a432-ignited trading strategies, fed **real** inputs: no-key public APIs (Coinbase prices → the strategy backtest, USGS seismic → a magnitude spectrum) auto-run live, and device sensors (microphone FFT, motion, magnetometer, geolocation) feed the same primitives on demand. Ingestion is in the browser; `src` stays pure and content-addresses every capture into a reproducible snapshot. Honest: the mic is **sound, not EM**; motion feeds the radar *equation*, not radar; magnetometer→Larmor is a real field with no NMR; backtest ≠ live; device sensors are permission-gated and often absent on desktop.
+
+<RealtimeTests />
+
 ## The decoded scripts
 
 The ninth-century alphabet, encoded and decoded both ways — the labyrinth of glyphs, the OCR that closes the round-trip, and the monograph card at hero scale.

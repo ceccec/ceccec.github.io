@@ -11223,7 +11223,7 @@ export function componentGraph() {
   // page. The declared set is their union, so the graph cannot drift from the pages it governs, and a
   // [page] route mounts its components dynamically.
   const placements: Record<string, readonly string[]> = {
-    '/': ['LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation'],
+    '/': ['LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests'],
     '/diamonds': ['DiamondIndex'],
     '/papers': ['PaperIndex'],
     '/references': ['ReferenceIndex'],
@@ -18608,18 +18608,22 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
 // sub-place; the hexagram's pole-colour/codon come from the existing 2⁶=4³ identity (hexagramIsHexColorDuality —
 // one source, no mirroring). The eight trigrams carry the real I Ching knowledge: glyph, name, attribute, the
 // eightfold family. So the whole UI is organised by the ancient eight-fold, deterministically and recomputably.
+// THE EIGHT TRIGRAMS (bāguà) — ONE source for the component organisation (iChing) AND the architectural nav
+// (siteNavigation): glyph, pinyin, name, attribute, the eightfold family, and the canonical MEANING (Wilhelm)
+// that NAMES each nav door — the knowledge names the architecture, nothing hand-listed. Yang=1, lines read
+// bottom→top as LSB→MSB; Earth 000 … Heaven 111.
+const BAGUA = [
+  { bits: 0b000, glyph: '☷', pinyin: 'Kūn', name: 'Earth', attribute: 'receptive', family: 'mother', meaningEn: 'The Receptive', meaningBg: 'Възприемчивото' },
+  { bits: 0b001, glyph: '☳', pinyin: 'Zhèn', name: 'Thunder', attribute: 'arousing', family: 'eldest son', meaningEn: 'The Arousing', meaningBg: 'Възбуждащото' },
+  { bits: 0b010, glyph: '☵', pinyin: 'Kǎn', name: 'Water', attribute: 'abysmal', family: 'middle son', meaningEn: 'The Abysmal', meaningBg: 'Бездънното' },
+  { bits: 0b011, glyph: '☱', pinyin: 'Duì', name: 'Lake', attribute: 'joyous', family: 'youngest daughter', meaningEn: 'The Joyous', meaningBg: 'Радостното' },
+  { bits: 0b100, glyph: '☶', pinyin: 'Gèn', name: 'Mountain', attribute: 'keeping still', family: 'youngest son', meaningEn: 'Keeping Still', meaningBg: 'Покоят' },
+  { bits: 0b101, glyph: '☲', pinyin: 'Lí', name: 'Fire', attribute: 'clinging', family: 'middle daughter', meaningEn: 'The Clinging', meaningBg: 'Прилепващото' },
+  { bits: 0b110, glyph: '☴', pinyin: 'Xùn', name: 'Wind', attribute: 'gentle', family: 'eldest daughter', meaningEn: 'The Gentle', meaningBg: 'Нежното' },
+  { bits: 0b111, glyph: '☰', pinyin: 'Qián', name: 'Heaven', attribute: 'creative', family: 'father', meaningEn: 'The Creative', meaningBg: 'Творческото' },
+]
 export function iChing(matrix: MindMatrix = buildMatrix()) {
-  // The eight trigrams (bāguà): yang=1, lines read bottom→top as LSB→MSB. Earth 000 … Heaven 111.
-  const TRIGRAMS = [
-    { bits: 0b000, glyph: '☷', pinyin: 'Kūn', name: 'Earth', attribute: 'receptive', family: 'mother' },
-    { bits: 0b001, glyph: '☳', pinyin: 'Zhèn', name: 'Thunder', attribute: 'arousing', family: 'eldest son' },
-    { bits: 0b010, glyph: '☵', pinyin: 'Kǎn', name: 'Water', attribute: 'abysmal', family: 'middle son' },
-    { bits: 0b011, glyph: '☱', pinyin: 'Duì', name: 'Lake', attribute: 'joyous', family: 'youngest daughter' },
-    { bits: 0b100, glyph: '☶', pinyin: 'Gèn', name: 'Mountain', attribute: 'keeping still', family: 'youngest son' },
-    { bits: 0b101, glyph: '☲', pinyin: 'Lí', name: 'Fire', attribute: 'clinging', family: 'middle daughter' },
-    { bits: 0b110, glyph: '☴', pinyin: 'Xùn', name: 'Wind', attribute: 'gentle', family: 'eldest daughter' },
-    { bits: 0b111, glyph: '☰', pinyin: 'Qián', name: 'Heaven', attribute: 'creative', family: 'father' },
-  ]
+  const TRIGRAMS = BAGUA
   const channels = (n: number) => [(n >> 4) & 3, (n >> 2) & 3, n & 3] // the 6 lines paired → 3 base-4 digits
   const LEVELS = ['00', '0F', 'F0', 'FF']
   const BASES = ['U', 'C', 'A', 'G']
@@ -29952,27 +29956,21 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const navTags = ranked.slice(0, 8) // the top clusters become the nav dropdowns — bounded so the bar stays usable
   const sidebarTags = [...ranked.slice(0, 12), 'more'] // the sidebar shows every page, by cluster
   const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
-  // The top nav is four anchored entry points — Double Torus, Home, Quantum, Research — but their TARGETS are
-  // still computed from the page set (no hardcoded route lists): Quantum gathers the quantum/proof/simulator
-  // pages, Research gathers the decoded-knowledge domains (everything else substantive), ordered trinity-first.
-  // The contextual navigation lives in the related-paths sidebar; the nav is just the four doors.
-  const QUANTUM_TAGS = new Set(['quantum', 'proof', 'simulator', 'simulation', 'crypto', 'math', 'computer'])
+  // The architecture IS the eight-fold: every page is placed on a trigram by its OWN content-address (the seed
+  // is the magnet, the same placement the components use in iChing), and the eight nav doors are NAMED by the
+  // trigrams' canonical MEANINGS (BAGUA.meaning) — the knowledge names the architecture, nothing hand-listed. A
+  // door gathers the pages that landed on its trigram; an empty trigram links to the eight-fold (hexagram-colour).
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
+  const trigramOf = (slug: string) => seedFromText(slug) % 8 // the page's own content-address → its trigram (0–7)
   const buildNav = (i: 0 | 1) => {
-    const quantumRoutes = dedupe(navTags.filter((tag) => QUANTUM_TAGS.has(tag)).flatMap((tag) => routesIn(tag)))
-    const researchRoutes = dedupe(navTags.filter((tag) => !QUANTUM_TAGS.has(tag)).flatMap((tag) => routesIn(tag)))
-    const quantum = quantumRoutes.length
-      ? { text: i === 1 ? 'Квант' : 'Quantum', items: quantumRoutes.slice(0, 30).map((route) => item(route, i)) }
-      : { text: i === 1 ? 'Квант' : 'Quantum', link: link('/quantum-mind', i) }
-    const research = researchRoutes.length
-      ? { text: i === 1 ? 'Изследване' : 'Research', items: researchRoutes.slice(0, 30).map((route) => item(route, i)) }
-      : { text: i === 1 ? 'Изследване' : 'Research', link: link('/architecture', i) }
-    return [
-      { text: i === 1 ? 'Архитектура' : 'Architecture', link: link('/architecture', i) }, // the nav label matches its destination (/architecture); "Double Torus" stays the site title
-      { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
-      quantum,
-      research,
-    ]
+    const doors = BAGUA.map((tri) => {
+      const routes = dedupe(pages.filter((page) => trigramOf(page.slug) === tri.bits).map((page) => routeOf(page.slug)))
+      const text = `${tri.glyph} ${i === 1 ? tri.meaningBg : tri.meaningEn}`
+      return routes.length
+        ? { text, items: routes.slice(0, 30).map((route) => item(route, i)) }
+        : { text, link: link('/hexagram-colour', i) }
+    })
+    return [{ text: i === 1 ? 'Начало' : 'Home', link: link('/', i) }, ...doors]
   }
   const buildSidebar = (i: 0 | 1) =>
     sidebarTags
