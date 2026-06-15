@@ -995,33 +995,7 @@ export function congruence(a: readonly number[], b: readonly number[]): number {
 
 // Associative memory (neurology): content-addressed recall — the brain's torus map, the project's own model.
 // Store ±1 patterns as a Hopfield weight matrix (Hebbian, zero diagonal); recall descends the energy to the
-// nearest stored attractor — pattern completion from a noisy probe (the same idea as content-addressing).
-export function hopfieldStore(patterns: readonly (readonly number[])[]): number[][] {
-  const N = patterns[0]?.length ?? 0
-  const W = Array.from({ length: N }, () => new Array<number>(N).fill(0))
-  for (const p of patterns) for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) if (i !== j) W[i][j] += (p[i] * p[j]) / N
-  return W
-}
-export function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number {
-  let e = 0
-  for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= 0.5 * W[i][j] * s[i] * s[j]
-  return e
-}
-export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = 12): { state: number[]; energy: number; iters: number } {
-  let s = probe.slice()
-  let iters = 0
-  for (let t = 0; t < steps; t++) {
-    let changed = false
-    for (let i = 0; i < s.length; i++) {
-      const h = W[i].reduce((acc, w, j) => acc + w * s[j], 0)
-      const ns = h >= 0 ? 1 : -1
-      if (ns !== s[i]) { s[i] = ns; changed = true }
-    }
-    iters++
-    if (!changed) break
-  }
-  return { state: s, energy: hopfieldEnergy(W, s), iters }
-}
+// Hopfield network moved to src/0/hopfield.ts (proof-only, not bundled at runtime)
 
 // ── The genetic code (trinity sciences) — the error-robust 64 = 4³ table ──
 // The standard genetic code: bases U/C/A/G = 0/1/2/3, codon = b1·16 + b2·4 + b3 (b1 the high two bits). The
