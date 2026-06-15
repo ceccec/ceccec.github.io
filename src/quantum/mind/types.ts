@@ -1230,3 +1230,12 @@ export interface DiamondCompletenessReport {
   readonly piTrainCoversAllKinds: boolean
   readonly statement: string
 }
+
+// ☴ XUN — site meta types (StaticPage: the one frontmatter schema for every computed page)
+export interface StaticPage {
+  slug: string
+  title: { en: string; bg: string }
+  description: { en: string; bg: string }
+  keywords: string[]
+  components: string[]
+}
