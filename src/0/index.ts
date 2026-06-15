@@ -667,10 +667,7 @@ export function sample(state: QuantumState, shots = 1024, seed = 'sample'): Reco
 }
 
 // Demo — the Bell pair (|00> + |11>)/√2: H on qubit 0, then CNOT(0→1). Maximally entangled; measuring one
-// qubit determines the other. probabilities → [0.5, 0, 0, 0.5].
-export function bellPair(): QuantumState {
-  return cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
-}
+// bellPair moved to src/0/quantum-demos.ts (proof-only, not bundled at runtime)
 
 // Demo — Grover search: find the one marked item among N = 2^n in ~(π/4)√N iterations. On a REAL machine this
 // is a quadratic speedup; here it is SIMULATED classically with no speedup. Uniform superposition, then repeat
@@ -745,20 +742,7 @@ export function rtoffoli(bits: number, control1: number, control2: number, targe
   return (bits & (1 << control1)) !== 0 && (bits & (1 << control2)) !== 0 ? bits ^ (1 << target) : bits
 }
 
-// Elementary cellular automaton — a different deterministic universal model. One step applies a Wolfram rule
-// (0–255) to each cell from its 3-neighbourhood; Rule 110 is Turing-complete, Rule 30 is chaotic. Edges wrap.
-export function caStep(rule: number, cells: readonly number[]): number[] {
-  const n = cells.length
-  return cells.map((_, i) => {
-    const pattern = (cells[(i - 1 + n) % n] << 2) | (cells[i] << 1) | cells[(i + 1) % n] // 0..7
-    return (rule >> pattern) & 1
-  })
-}
-export function caEvolve(rule: number, initial: readonly number[], steps: number): number[][] {
-  const rows: number[][] = [Array.from(initial)]
-  for (let s = 0; s < steps; s++) rows.push(caStep(rule, rows[rows.length - 1]))
-  return rows
-}
+// caStep and caEvolve moved to src/0/ca-demos.ts (proof-only, not bundled at runtime)
 
 // ── Probabilistic process primitives (beside pflip) — the honest model for most decoded domains ─────────
 // A research fleet decoded 18 "aspects of life" and the verify pass found them mostly CLASSICAL, not quantum
