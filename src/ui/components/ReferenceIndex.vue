@@ -30,7 +30,7 @@ const bg = computed(() => localeIndex.value === 'bg')
   <section v-for="group in groups" :key="group.id" class="paper-group">
     <h2>{{ bg ? 'Цикъл' : 'Cycle' }} <code>{{ group.id }}</code> <span class="paper-count">{{ group.items.length }} {{ bg ? 'референции' : 'references' }}</span></h2>
     <div class="paper-grid">
-      <a v-for="r in group.items" :key="r.id" class="paper-chip" :href="`${pfx}/references?id=${r.id}`" :style="{ '--hue': r.hue }">
+      <a v-for="r in group.items" :key="r.id" class="paper-chip" :href="`${pfx}/references/${r.id}`" :style="{ '--hue': r.hue }">
         <span class="paper-chip__n">{{ r.number }}</span>
         <span class="paper-chip__glyph">{{ r.glyph }}</span>
         <span class="paper-chip__meta">→ {{ r.paperId }}</span>

@@ -106,8 +106,8 @@ import GlagoliticOcr from './components/GlagoliticOcr.vue'
 // the home, the full sufficient proof on each [page] route). The 17 per-proof wrappers collapsed into this.
 import ProbSim from './components/ProbSim.vue'
 import ProofRenderer from './components/ProofRenderer.vue'
-// Corpus index pages — one mount (`Corpus`) per kind across all three locales; ?id= selects an item,
-// corpusParams(kind, id) computes it (same simplicity as monographPaths + [page].md).
+// Corpus pages — one mount (`Corpus`) per kind across all three locales. RESTful: /papers is the index,
+// /papers/<id> the [id] dynamic route whose params arrive via useData() (paths enumerated by [id].paths.ts).
 import Corpus from './components/Corpus.vue'
 import DiamondIndex from './components/DiamondIndex.vue'
 import PaperIndex from './components/PaperIndex.vue'

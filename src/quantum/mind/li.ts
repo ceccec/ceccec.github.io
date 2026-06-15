@@ -322,6 +322,28 @@ export function enforcementTrinity() {
   }
 }
 
+// Commits carry one author — yours. The decision (recorded here in src, enforced by the machine):
+// git history stays under Tsvetan Rouschev alone — no "Co-Authored-By: Claude", no "Generated with
+// Claude Code" footer, no --author override — across every app and environment. Three content-addressed
+// layers so the policy cannot drift from the tools that keep it.
+export function commitsAuthoredByUserOnly() {
+  const layers = [
+    { layer: 'attribution', where: '~/.claude/settings.json', does: 'includeCoAuthoredBy:false + attribution.commit/pr:"" — Claude Code writes no trailer', reach: 'every Claude Code project on this machine' },
+    { layer: 'backstop', where: '~/.claude/hooks/enforce-commit-author.sh', does: 'a PreToolUse hook denies any git commit embedding Co-Authored-By / "Generated with Claude Code" / --author', reach: 'every Claude Code commit command' },
+    { layer: 'git', where: 'core.hooksPath → ~/.config/git/hooks/commit-msg', does: 'strips the trailers from every commit message, chaining to each repo\'s own hooks', reach: 'every app, every repo on this machine' },
+  ] as const
+  return {
+    author: 'Tsvetan Rouschev',
+    layers,
+    enforced: layers.length === 3,
+    root: merkleFold(layers.map((entry, index) => toUuid(`commit-author-only:${index}:${entry.layer}:${entry.where}`))),
+    statement:
+      'Commits are authored by the user alone — no Co-Authored-By, no "Generated with Claude Code" footer, no --author override — enforced across all apps and environments by three layers: Claude Code attribution off, a PreToolUse backstop, and a machine-global git commit-msg hook.',
+    boundary:
+      'Records a workflow decision and names its enforcement surface; the mechanisms live in machine-global config (~/.claude, ~/.config/git), outside this repo (which gitignores /.claude/), so a fresh environment re-applies the three layers. The git hook strips ALL Co-authored-by trailers (author-only by intent); narrow the pattern to AI-only if a human co-author is ever wanted.',
+  }
+}
+
 // The enforcement pipeline — one script mounting the trinity. Declared in the mind, checked by the
 // weave wave against package.json so the model's self-knowledge cannot drift from docs:build.
 export function glagoliticGlyph(seed: string): string {

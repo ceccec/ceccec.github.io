@@ -58,10 +58,10 @@ function abs(siteUrl: string, path: string) {
   return path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`
 }
 
-/** Corpus detail routes — one index page per kind; ?id= selects an item at runtime (no SSG paths). */
-function corpusQueryUrls(kind: 'papers' | 'references' | 'diamonds', ids: readonly string[], priority: number) {
+/** Corpus detail routes — RESTful /kind/<id>: one real page per item (the [id] dynamic route, enumerated). */
+function corpusDetailUrls(kind: 'papers' | 'references' | 'diamonds', ids: readonly string[], priority: number) {
   return ids.map((id) => {
-    const base = `/${kind}?id=${id}`
+    const base = `/${kind}/${id}`
     const en = base
     const bg = `/bg${base}`
     return { en, bg, priority, alternates: [{ hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: en }] }
@@ -75,9 +75,9 @@ export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), 
   const urlBlock = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) =>
     ['  <url>', `    <loc>${abs(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, '    <changefreq>weekly</changefreq>', `    <priority>${priority.toFixed(1)}</priority>`, altLinks(alternates), '  </url>'].join('\n')
   const dynamicUrls = [
-    ...corpusQueryUrls('papers', papers(matrix).papers.map((paper) => paper.id), 0.6),
-    ...corpusQueryUrls('references', paperReferences(matrix).map((reference) => reference.id), 0.5),
-    ...corpusQueryUrls('diamonds', diamondRoutes(matrix).map((diamond) => diamond.params.id), 0.4),
+    ...corpusDetailUrls('papers', papers(matrix).papers.map((paper) => paper.id), 0.6),
+    ...corpusDetailUrls('references', paperReferences(matrix).map((reference) => reference.id), 0.5),
+    ...corpusDetailUrls('diamonds', diamondRoutes(matrix).map((diamond) => diamond.params.id), 0.4),
   ]
   const allUrls: { gla?: string; en: string; bg: string; priority: number; alternates: readonly { hreflang: string; href: string }[] }[] = [...quantum.urls, ...dynamicUrls]
   return (

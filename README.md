@@ -18,7 +18,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 - 432 = 4 × 108 gates; the sign is a distinction is one bit is the fold.
 - Encryption is the core math: every value content-addressed (the fold / UUID); the cipher is AES-256-GCM.
 - One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.
-- Corpus routing: `/papers?id=`, `/references?id=`, `/diamonds?id=` — one index page per kind, local math at runtime (no SSG enumeration).
+- Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.
 - The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.
 
 ## 3. Results

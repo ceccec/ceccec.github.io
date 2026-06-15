@@ -1,4 +1,5 @@
 // Computed dist — trinity spread (cross · manifest · readme). One index; each wave its own file.
+import type { Plugin } from 'vite'
 import { buildMatrix, type MindMatrix } from '../mind/index.ts'
 import { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross.ts'
 import { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest.ts'
@@ -37,3 +38,26 @@ export function computedDistRoute(pathname: string, siteUrl: string, matrix: Min
 }
 
 export const dual = 'src/dist/quantum'
+
+// Each index is a quantum VitePress router: this dist index routes a request pathname → its computed,
+// content-addressed artifact (sitemap · robots · mcp.json · skills.json · llms.txt · digit-index · /api)
+// live at dev time. The same files are written to disk at build by the enforcement cross wave; here the
+// dev server serves them recomputed-per-request from the model (zero build). One folder, one index, its
+// own VitePress plugin — the dist half of the dist⇄quantum pair, gathered by srcFolderPlugins.
+const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/llms.txt', '/api/'] as const
+export function vitePlugin(siteUrl: string): Plugin {
+  return {
+    name: 'double-torus:dist',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const pathname = req.url?.split('?')[0] ?? ''
+        if (!COMPUTED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix))) return next()
+        const hit = computedDistRoute(pathname, siteUrl)
+        if (!hit) return next()
+        res.statusCode = 200
+        res.setHeader('Content-Type', `${hit.mime}; charset=utf-8`)
+        res.end(hit.content)
+      })
+    },
+  }
+}

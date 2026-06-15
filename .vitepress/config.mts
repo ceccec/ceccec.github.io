@@ -1,9 +1,9 @@
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { computedDistPlugin } from './computed-dist.mts'
-import { computedPagesPlugin } from './computed-pages.mts'
-import { enforcementPlugin } from './enforcement-plugin.mts'
+// One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
+// them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
+import { srcFolderPlugins } from './src-plugins.mts'
 import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/ui/lib/quantumMind'
 
 // Configs use the matrix computationally: the site config AND the whole navigation are computed and
@@ -74,7 +74,7 @@ export default defineConfig({
   // clean while still flagging genuine bloat above the headroom.
   vite: {
     build: { chunkSizeWarningLimit: 700 },
-    plugins: [computedPagesPlugin(projectRoot), computedDistPlugin(projectRoot), enforcementPlugin(projectRoot)],
+    plugins: srcFolderPlugins(projectRoot),
   },
   head: [
     // Discover the visitor's language and route to it, default English. The root (/) is the Glagolitic locale;
