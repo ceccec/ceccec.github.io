@@ -227,13 +227,27 @@ export function glagoliticFromBits(bits: readonly number[]): string {
 }
 // The computer-language face. A tiny TOTAL instruction set — eight ops on one 8-bit accumulator, none of which
 // can crash or jump out of range — so EVERY Glagolitic word is a valid little program. The letter's NUMBER is
-// the operand; value mod 8 selects the op. HONEST: a constructed (teaching) ISA, lossy — many letters share an
-// op — not a discovered one. glagoliticProgram folds a word's ops over the accumulator: a word computes a number.
+// the operand. The op is now chosen BY MEANING (the word/secure flags), not by bare value mod 8: opaque
+// loan-phoneme labels carry no sense, so they map to the INERT op (OUT — the one op that only emits and never
+// mutates the accumulator); the cohering first-nine WORDS map to the constructive op (ADD — the clause that
+// builds meaning up); every other ordinary word distributes across the six MUTATING ops by a stable function
+// of its number. HONEST: a constructed (teaching) ISA — the meaning→op rule is OURS, lossy (words still share
+// ops) — not a discovered one. glagoliticProgram folds a word's ops over the accumulator: a word computes a number.
 export const GLAGOLITIC_OPCODES = ['ADD', 'SUB', 'XOR', 'MUL', 'ROL', 'SET', 'AND', 'OUT'] as const
 export type GlagoliticOp = (typeof GLAGOLITIC_OPCODES)[number]
+// The active ops: the six that MUTATE the accumulator, minus ADD (reserved for the secure span) and OUT (the
+// inert emit). Ordinary non-secure words spread across these by number — a stable, deterministic fan-out.
+const GLAGOLITIC_ACTIVE_OPS = ['SUB', 'XOR', 'MUL', 'ROL', 'SET', 'AND'] as const
 export function glagoliticOpcode(glyph: string): { op: GlagoliticOp; operand: number } {
   const value = toGlagoliticNumber(glyph)
-  return { op: GLAGOLITIC_OPCODES[value % GLAGOLITIC_OPCODES.length], operand: value }
+  const meaning = glagoliticMeaning(glyph)
+  // Opaque loan-phoneme label (word=false) OR an unknown glyph (no meaning) — no sense to compute, so the inert
+  // op: OUT only emits the accumulator, it never changes it. The MEANING (sound-only) chooses the no-op.
+  if (!meaning || !meaning.word) return { op: 'OUT', operand: value }
+  // Cohering first-nine word (the secure acrostic span) — the op that BUILDS: ADD accumulates meaning forward.
+  if (meaning.secure) return { op: 'ADD', operand: value }
+  // Any other ordinary word — distribute across the active mutating ops by a stable function of the number.
+  return { op: GLAGOLITIC_ACTIVE_OPS[meaning.number % GLAGOLITIC_ACTIVE_OPS.length], operand: value }
 }
 export function glagoliticProgram(word: string): { ops: { glyph: string; op: GlagoliticOp; operand: number }[]; acc: number; out: number[] } {
   const glyphs = [...word].filter((ch) => (GLAGOLITIC_POSITION_BY_GLYPH[ch] ?? 0) > 0)
@@ -262,9 +276,22 @@ export function glagoliticProgram(word: string): { ops: { glyph: string; op: Gla
 // simulation, not quantum hardware.
 export const GLAGOLITIC_GATES = ['H', 'X', 'Y', 'Z', 'S', 'T'] as const
 export type GlagoliticGate = (typeof GLAGOLITIC_GATES)[number]
+// The active gates: the four that flip basis or rotate phase, minus H (reserved for the secure span, the one
+// gate that CREATES superposition) and Z (the most identity-like member — see below). Ordinary non-secure
+// words spread across these by number, mirroring the opcode fan-out so program and circuit stay in step.
+const GLAGOLITIC_ACTIVE_GATES = ['X', 'Y', 'S', 'T'] as const
 export function glagoliticGate(glyph: string): { gate: GlagoliticGate; value: number } {
   const value = toGlagoliticNumber(glyph)
-  return { gate: GLAGOLITIC_GATES[value % GLAGOLITIC_GATES.length], value }
+  const meaning = glagoliticMeaning(glyph)
+  // Opaque loan-phoneme label (word=false) OR an unknown glyph — no meaning, so the most identity-like gate
+  // available: Z is a basis/phase flip that leaves a fresh register's measurement probabilities unchanged.
+  // (True I is not in the gate alphabet, so Z is the inert STAND-IN — stated plainly as a constructed choice.)
+  if (!meaning || !meaning.word) return { gate: 'Z', value }
+  // Cohering first-nine word (the secure acrostic span) — H, the gate that lifts a definite bit into a
+  // COHERENT superposition: the cohering span maps to the coherence-creating gate. Meaning, not value%6.
+  if (meaning.secure) return { gate: 'H', value }
+  // Any other ordinary word — distribute across the active flip/rotate gates by the same number function.
+  return { gate: GLAGOLITIC_ACTIVE_GATES[meaning.number % GLAGOLITIC_ACTIVE_GATES.length], value }
 }
 export function glagoliticCircuit(word: string, n = 3, shots = 256): {
   n: number
