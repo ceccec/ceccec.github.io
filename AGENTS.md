@@ -2,22 +2,24 @@
 
 ## Cursor Cloud specific instructions
 
-This is a **VitePress v2 (alpha) documentation site** — a single static-site project with no backend services, databases, or Docker dependencies.
+This is a **VitePress v2 (alpha) documentation site** — a single static-site project with no backend services, databases, or Docker dependencies. It is a **pnpm workspace** (`pnpm-workspace.yaml`, `pnpm-lock.yaml`, `packageManager: pnpm@11.6.0`); use **pnpm**, not npm (`npm ci` fails — there is no `package-lock.json`). The startup update script already runs `corepack enable pnpm && pnpm install --frozen-lockfile`.
 
 ### Quick reference
 
 | Task | Command |
 |---|---|
-| Install deps | `npm ci` |
-| Dev server | `npm run docs:dev` (default port 5173) |
-| Build | `npm run docs:build` (output in `.vitepress/dist/`) |
-| Preview build | `npm run docs:preview` |
+| Install deps | `pnpm install --frozen-lockfile` |
+| Dev server | `pnpm run docs:dev` (default port 5173) |
+| Build | `pnpm run docs:build` (output in `.vitepress/dist/`) — see caveat below |
+| Preview build | `pnpm run docs:preview` |
 
 ### Notes
 
-- The CI workflow (`.github/workflows/deploy.yml`) uses **Node.js 24** and **npm**. Make sure `nvm use 24` is active before running commands.
-- There is no linter or test framework configured in the project. Validation is limited to a successful `docs:build`.
-- To expose the dev server on all interfaces (useful inside containers), pass `--host 0.0.0.0`: `npm run docs:dev -- --host 0.0.0.0`.
+- **Develop/preview via the dev server** (`pnpm run docs:dev`). To expose it on all interfaces (useful inside containers), add `--host 0.0.0.0`: `pnpm run docs:dev -- --host 0.0.0.0`. The site is a client-rendered Vue SPA, so raw HTML from `curl` is minimal — verify in a browser.
+- **`docs:build` is heavy and currently red.** It runs `vitepress build` (renders ~400 pages, ~3 min, works) and then `scripts/enforcement-trinity.mjs` (a self-verifying `cross · fold · weave` seal). The `fold` wave (`modelSeal` over the ~2.3 MB `src/quantum/mind/index.ts`) is single-threaded and takes ~50 min, and on `main` it currently **fails** with open gates (`quantify.gates`, `dimensions.emerge.within`) — this is a pre-existing model/seal issue, reproduced identically in CI (`.github/workflows/deploy.yml`), not an environment problem. Don't expect a green `docs:build`; use the dev server for iteration.
+- The `enforcement-trinity` `weave` wave reads this file and **fails the build if the "commands in quantum pairs" section below is removed** — keep it.
+- `package.json` has a `check:types` script (`tsc --noEmit`) but **TypeScript is not a declared dependency**, so `tsc` is not installed and that script fails; CI does not run it. There is no linter or test framework.
+- **Node:** CI uses **Node 24**. A login shell defaults to nvm's Node 22.x (sufficient for the dev server and the `vitepress build` step). To match CI exactly run `nvm install 24 && nvm use 24`. Note a non-login shell's `PATH` puts `/exec-daemon/node` (Node 22) first, shadowing nvm — prepend the nvm bin (e.g. `export PATH="$HOME/.nvm/versions/node/v24.16.0/bin:$PATH"`) if you need a specific version.
 
 ### Law for any agent — commands in quantum pairs
 
