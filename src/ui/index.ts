@@ -123,6 +123,9 @@ import TamperingCost from './components/TamperingCost.vue'
 // The live red-team: a local, realtime crypto analysis that RUNS the exploit (a found collision, animated) and
 // shows the built SHA-256/Ed25519 fix resisting — the runnable face of cryptoChallenges().
 import CryptoChallenges from './components/CryptoChallenges.vue'
+// The eight-fold: every component placed on the I-Ching trigrams by its content-address (iChing()) — the
+// sacred knowledge made visible, the bāguà wheel, live and legible.
+import IChing from './components/IChing.vue'
 // Folding linear gives analog: the live sampling-theorem reconstruction (discrete samples → continuous via sinc,
 // no gaps) + imaging through the frequency field — the real science of the analog-from-digital thesis.
 import AnalogField from './components/AnalogField.vue'
@@ -288,6 +291,7 @@ export default {
     app.component('SacredGeometry', SacredGeometry)
     app.component('TamperingCost', TamperingCost)
     app.component('CryptoChallenges', CryptoChallenges)
+    app.component('IChing', IChing)
     app.component('AnalogField', AnalogField)
     app.component('TrinityGateways', TrinityGateways)
   }

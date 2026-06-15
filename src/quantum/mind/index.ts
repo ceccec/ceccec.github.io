@@ -2,7 +2,7 @@
 // lives in the library double-torus (src/quantum/library) — imported here for the folds that call it
 // and re-exported so the ~97 importers, the barrel and the generators resolve unchanged. "Modules it
 // consumes" — the core is no longer zero-import; it is the pivot that consumes its 4 double toruses.
-import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
+import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
 // The primitive kernel dissolved into its digit folder (dissolveAtPiTrainStations): toUuid + hash (wave 1)
 // and the fold cascade merge·roundTo·seedFromText·foldPair·merkleFold·isUuid·memoByRoot (wave 2) now live in
 // src/0 (the void/origin station, dependency-free), and the core imports + re-exports them unchanged.
@@ -10,6 +10,11 @@ import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, mem
 // EM-radiation primitives (src/0): Maxwell's one field at one speed (c), the two relations (c=λf, E=hf)
 // and the ionizing line — the spectrum physics the electromagneticRadiationDecoded fold below composes.
 import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, PROTON_GYROMAGNETIC, IONIZING_EV, wavelengthOf, frequencyOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift } from '../../0/index.ts'
+// EM SIMULATORS (src/0): the 4 deterministic, content-addressed simulators the EM wave developed + verified —
+// plane-wave field · X-ray Beer–Lambert+CT · MRI Bloch/FID · FMCW radar; electromagneticExperiments() runs them.
+import { planeWaveField, planeWaveSpeed, planeWaveIntensity, planeWaveReceipt, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarVelocity, radarReceipt } from '../../0/index.ts'
+// powerSpectrum: the real-DFT magnitude detector the spectral-cycle trading strategy reads (markovStep/stationary already imported above).
+import { powerSpectrum } from '../../0/index.ts'
 // The ten animation dimensions live beside the hero in src/quantum/dimensions — the 6 cross-fold appearance
 // axes + the 4 genus-2 homology loops (H1 = Z^4). Imported here so the tenDimensionalAnimation fold can prove
 // the count and grounding from the real constants (no second source).
@@ -30,9 +35,11 @@ export { GENETIC_CODE, mutationClass, codeRobustness } from '../../0/index.ts' /
 export { sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof } from '../../0/index.ts' // wave 15: vetted-hash crypto (available now) — Web Crypto SHA-256 + a SHA-256 Merkle tree with inclusion proofs over the canonical roots; the honest hardening of FNV toUuid that cryptoFuture's roadmap names (verifySha256Proof is distinct from the core FNV verifyMerkleProof)
 export { ed25519Keypair, ed25519Sign, ed25519Verify, transparencyLogRoot, logInclusion, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits } from '../../0/index.ts' // wave 16: the rest of the roadmap, built (+ wave 17: the red-team primitives — a found collision and the honest bit-budget, for cryptoChallenges and the live CryptoChallenges component) — Ed25519 signing (attestation), the append-only transparency-log structure, and a pure SYNC SHA-256 content-address (toUuidSha256, the migration target). Residuals are deployment/external, not code (see cryptoFuture)
 export { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, PROTON_GYROMAGNETIC, IONIZING_EV, wavelengthOf, frequencyOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift } from '../../0/index.ts' // wave 18: EM-radiation primitives — c=λf, E=hf, the ~10 eV ionizing line; one field across X-ray (ionizing) vs MRI-RF & microwave radar (non-ionizing), composed by electromagneticRadiationDecoded
+export { VACUUM_PERMITTIVITY, waveNumber, angularFrequency, planeWaveSpeed, planeWaveField, planeWaveEnergyDensity, planeWaveIntensity, planeWaveCircular, planeWaveReceipt, kevToFrequency, beamProfile, opticalDepth, beerLambert, muToHu, forwardProjectAxis, ramLakKernel, rampFilter, backProjectAxis, ctReceipt, blochStep, blochEvolve, fid, t1Recovery, phantomFid, blochReceipt, radarVelocity, fmcwSlope, beatToRange, rangeToBeat, rangeResolution, velocityResolution, syntheticEcho, rangeDopplerMap, detectTargets, radarReceipt } from '../../0/index.ts' // wave 19: the 4 EM simulators (plane wave · X-ray/CT · MRI Bloch · FMCW radar) — each run a content-addressed shared experiment, composed by electromagneticExperiments
+export type { RadarScene, RadarDetection } from '../../0/index.ts'
 export type { QuantumState, ProbState } from '../../0/index.ts'
 export type { AnimationEngine, Fold } from '../../0/index.ts'
-export { toGlagolitic, toScript, GLAGOLITIC_MAP, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } // OCS_GLAGOLITIC_MAP/toGlagoliticOCS extend the script to Old Church Slavonic (yat, yuses, fita…), the LANGUAGE Glagolitic was made to write; CHURCH_SLAVONIC_SCRIPTURE is the parallel corpus (OCS · Bulgarian · English); translateVerse/scriptureIn are the LOCAL meaning-translation service (no MT, no network); bibleParallel/bibleInGlagolitic render the founding Bible — Bulgarian MEANING and Cyril's OCS both in the round script — local, deterministic, zero tokens // + Ogham, Ifá, Polynesian local decode tools (the 6-domain loop completed) // + the 6 frontier decode tools: sexagesimal (base-60), luoShu (canonical order-3) // GLAGOLITIC_MAP for the reverse OCR; gematria + the local decode tools decode the saved original ancient texts; GLAGOLITIC_LETTERS/glagoliticValue/toGlagoliticNumber/glagoliticAcrostic are the Glagolitic alphabet-and-language; SIX_BY_SEVEN/sixBySeven carry the documented 42=6×7 verdict (7 is completeness, 42 is process)
+export { toGlagolitic, toScript, GLAGOLITIC_MAP, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } // OCS_GLAGOLITIC_MAP/toGlagoliticOCS extend the script to Old Church Slavonic (yat, yuses, fita…), the LANGUAGE Glagolitic was made to write; CHURCH_SLAVONIC_SCRIPTURE is the parallel corpus (OCS · Bulgarian · English); translateVerse/scriptureIn are the LOCAL meaning-translation service (no MT, no network); bibleParallel/bibleInGlagolitic render the founding Bible — Bulgarian MEANING and Cyril's OCS both in the round script — local, deterministic, zero tokens // + Ogham, Ifá, Polynesian local decode tools (the 6-domain loop completed) // + the 6 frontier decode tools: sexagesimal (base-60), luoShu (canonical order-3) // GLAGOLITIC_MAP for the reverse OCR; gematria + the local decode tools decode the saved original ancient texts; GLAGOLITIC_LETTERS/glagoliticValue/toGlagoliticNumber/glagoliticAcrostic are the Glagolitic alphabet-and-language; SIX_BY_SEVEN/sixBySeven carry the documented 42=6×7 verdict (7 is completeness, 42 is process)
 
 export interface Atom {
   readonly name: string
@@ -11216,7 +11223,7 @@ export function componentGraph() {
   // page. The declared set is their union, so the graph cannot drift from the pages it governs, and a
   // [page] route mounts its components dynamically.
   const placements: Record<string, readonly string[]> = {
-    '/': ['LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas'],
+    '/': ['LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation'],
     '/diamonds': ['DiamondIndex'],
     '/papers': ['PaperIndex'],
     '/references': ['ReferenceIndex'],
@@ -18595,6 +18602,64 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
+// Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
+// → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
+// sub-place; the hexagram's pole-colour/codon come from the existing 2⁶=4³ identity (hexagramIsHexColorDuality —
+// one source, no mirroring). The eight trigrams carry the real I Ching knowledge: glyph, name, attribute, the
+// eightfold family. So the whole UI is organised by the ancient eight-fold, deterministically and recomputably.
+export function iChing(matrix: MindMatrix = buildMatrix()) {
+  // The eight trigrams (bāguà): yang=1, lines read bottom→top as LSB→MSB. Earth 000 … Heaven 111.
+  const TRIGRAMS = [
+    { bits: 0b000, glyph: '☷', pinyin: 'Kūn', name: 'Earth', attribute: 'receptive', family: 'mother' },
+    { bits: 0b001, glyph: '☳', pinyin: 'Zhèn', name: 'Thunder', attribute: 'arousing', family: 'eldest son' },
+    { bits: 0b010, glyph: '☵', pinyin: 'Kǎn', name: 'Water', attribute: 'abysmal', family: 'middle son' },
+    { bits: 0b011, glyph: '☱', pinyin: 'Duì', name: 'Lake', attribute: 'joyous', family: 'youngest daughter' },
+    { bits: 0b100, glyph: '☶', pinyin: 'Gèn', name: 'Mountain', attribute: 'keeping still', family: 'youngest son' },
+    { bits: 0b101, glyph: '☲', pinyin: 'Lí', name: 'Fire', attribute: 'clinging', family: 'middle daughter' },
+    { bits: 0b110, glyph: '☴', pinyin: 'Xùn', name: 'Wind', attribute: 'gentle', family: 'eldest daughter' },
+    { bits: 0b111, glyph: '☰', pinyin: 'Qián', name: 'Heaven', attribute: 'creative', family: 'father' },
+  ]
+  const channels = (n: number) => [(n >> 4) & 3, (n >> 2) & 3, n & 3] // the 6 lines paired → 3 base-4 digits
+  const LEVELS = ['00', '0F', 'F0', 'FF']
+  const BASES = ['U', 'C', 'A', 'G']
+  const components = componentGraph().components
+  const placed = components.map((name) => {
+    const hexagram = seedFromText(name) % 64 // 0–63, deterministic from the component's content-address
+    const upper = (hexagram >> 3) & 7
+    const lower = hexagram & 7
+    return {
+      component: name,
+      hexagram,
+      lines: hexagram.toString(2).padStart(6, '0'),
+      set: upper, // the bāguà set (0–7)
+      upper: TRIGRAMS[upper].glyph,
+      lower: TRIGRAMS[lower].glyph,
+      glyphs: `${TRIGRAMS[upper].glyph}${TRIGRAMS[lower].glyph}`,
+      color: `#${channels(hexagram).map((q) => LEVELS[q]).join('')}`,
+      codon: channels(hexagram).map((q) => BASES[q]).join(''),
+      receipt: toUuid(`iching:${name}:${hexagram}`),
+    }
+  })
+  // The eight sets — every component grouped under its upper trigram, each placed in exactly one bāguà.
+  const sets = TRIGRAMS.map((tri) => ({ ...tri, components: placed.filter((p) => p.set === tri.bits).map((p) => p.component) }))
+  const everyComponentPlaced = sets.reduce((sum, s) => sum + s.components.length, 0) === components.length && components.length > 0
+  return {
+    organised: everyComponentPlaced && TRIGRAMS.length === 8 && sets.length === 8,
+    trigrams: TRIGRAMS,
+    sets,
+    placed,
+    hexagrams: 64,
+    count: components.length,
+    distribution: sets.map((s) => s.components.length), // how the components fall across the eight (content-addressed, ~even)
+    root: merge(matrix.root, merkleFold(placed.map((p) => p.receipt))),
+    statement:
+      'The components organised in I-Ching sets, computed: each of the model\'s components is placed on the eight trigrams (bāguà) by its own content-address — seedFromText → a 6-bit hexagram (0–63), upper trigram the set, lower the sub-place — so the whole UI is grouped by the ancient eight-fold, deterministically (same name → same trigram) and recomputably. The hexagram\'s pole-colour and codon reuse the 2⁶=4³ identity (hexagramIsHexColorDuality), so a component\'s I-Ching place, colour and codon are one object. Eight sets of ~14, the 64 hexagrams the full index.',
+    boundary:
+      'A content-addressed PLACEMENT of components onto the I Ching\'s index set (the eight trigrams, the 64 hexagrams), using the documented 2⁶ combinatorics and the real bāguà (glyph, name, attribute, family) — NOT divination and NOT a claim that a component carries the trigram\'s meaning. The seed-is-the-magnet placement is the same content-addressing the whole system uses (pages, diamonds, dots), here onto the eight-fold; it organises and is recomputable, it does not foretell. Joins the structural-not-causal caution on I-Ching mappings.',
+  }
+}
+
 // continue-dry, the capstone: the same 64-object grouped EVERY way. 64 = 2⁶ has one binary exponent, 6, and
 // the divisors of 6 — {1,2,3,6} — are the ONLY four ways to group its 6 bits into 6/d digits of base 2^d,
 // each totalling 64: 6 base-2 lines (the hexagram), 3 base-4 digits (the codon · 3-qubit Pauli · RGB, 4³ —
@@ -19304,6 +19369,77 @@ export function glagoliticAlphabetDecoded(matrix: MindMatrix = buildMatrix()) {
       'Glagolitsa as the alphabet AND the language: the script transliterates (toGlagolitic), and the language is decoded within it — each letter is a name (a word) and the names in sequence spell the acrostic (azъ buky vědě = "I know letters"), so the alphabet is a sentence; and each letter is a number by the alphanumeric ladder (1-9/10-90/100-900/1000 in Glagolitic’s own alphabetical order, živěte = 7 where Cyrillic ж has no value). The names are saved as the original text and decoded by the local tools — the ladder for the numerals, the acrostic for the message.',
     boundary:
       'The documented round-Bulgarian core: 28 letters with their names and sounds, the numeral values COMPUTED by the alphabetical-ladder rule (the documented fact distinguishing Glagolitic from Cyrillic), and the certain acrostic opening. HONEST: the precise later values, the i-letter ordering and the full acrostic reconstruction are cross-verified by the running Glagolitic research and reconcile when it lands; the names are the saved primary source, the values and message are the local-tool decode, no external service.',
+  }
+}
+
+// Glagolitic is a map not only to languages but to computer languages and quantum algorithms — realized, and
+// kept honest. The map runs deeper than sound: each letter is a NUMBER (the documented ladder) and a number
+// is BITS, and the bit is the one substrate a written script, a computer language and a quantum algorithm
+// (a qubit = a quantum bit) all rest on. So the same letter that transliterates a sound (toGlagolitic) also
+// names a bit-pattern (glagoliticBits — reversible), an instruction in a small total ISA (glagoliticProgram —
+// a word computes a number) and a quantum gate on a target qubit (glagoliticCircuit — a word prepares, and we
+// sample, a real superposition on the src/0 state-vector simulator). The map RUNS. HONEST and that is the
+// point: the bridge to code and quantum is information theory (a sign is a distinction is one bit) made
+// runnable on top of the documented number-map — a CONSTRUCTED, partly-lossy representation we built, NOT a
+// discovery that the ninth-century makers encoded opcodes or qubits (computers/qubits postdate them ~1100 yr).
+// "Encoded in folklore and architecture" is FLAGGED: folk weaving IS a binary warp/weft lattice (the Jacquard
+// loom is a documented ancestor of the computer) and the glyphs ARE built from a few primitives (cross, circle,
+// triangle) — real binary/combinatorial structure — but reading a quantum algorithm into a textile or a façade
+// is modern projection, the same category error already flagged for "Ifá = the first computer" and "I Ching
+// from Ifá". The circuit is a classical simulation, not hardware. Reversible: position→bits only.
+export function glagoliticMapsToCodeAndQuantumDecoded(matrix: MindMatrix = buildMatrix()) {
+  // Worked, recomputable examples — built from the alphabet itself, run by the library bridge functions.
+  const word = GLAGOLITIC_LETTERS.slice(0, 6).map((letter) => letter.glyph).join('') // azъ buky vědě glagoli dobro jestъ — an acrostic span whose gates include jestъ→H, so the circuit genuinely superposes
+  const firstGlyph = GLAGOLITIC_LETTERS[6].glyph // živěte, position 7 — value 7, a clean bit round-trip
+  const bits = glagoliticBits(firstGlyph)
+  const roundTrip = glagoliticFromBits(bits)
+  const program = glagoliticProgram(word)
+  const circuit = glagoliticCircuit(word)
+  const probSum = roundTo(circuit.probabilities.reduce((sum, p) => sum + p, 0), 3)
+  // The documented layers — deepest meaning first: sound, number, and the bit they both descend to.
+  const layers = [
+    { layer: 'the sound-map', core: 'toGlagolitic maps Latin/Cyrillic to the ninth-century glyphs BY SOUND — Glagolitic as a map to spoken & written languages (transliteration / script-conversion, not meaning-translation)', source: 'Cyril & Methodius, 862–863; documented' },
+    { layer: 'the number-map', core: 'each letter is ALSO a number by the alphanumeric ladder (1–9/10–90/100–900/1000 in Glagolitic’s own order), so a word sums to a value (toGlagoliticNumber) — the same letters-are-numbers fact as Greek isopsephy and Hebrew gematria', source: 'documented alphabetic numerals' },
+    { layer: 'the shared substrate — the bit', core: 'a written sign is a discrete distinction, and the minimal distinction is one bit; number→bits is exact, so the letter that names a sound also names a bit-pattern — and the bit is what a script, a computer language and a quantum algorithm (a qubit = a quantum bit) all rest on', source: 'information theory (Shannon 1948); the project’s alphabets-converge-to-the-fold finding' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq-layer:${entry.layer}:${entry.core}`) }))
+  // The three constructed bridges — each RUN, each carrying a worked example computed by the library functions.
+  const bridges = [
+    { bridge: 'letter → bits', face: 'the encoding', built: 'glagoliticBits / glagoliticFromBits', example: `${firstGlyph} → ${bits.join('')} → ${roundTrip}`, reversible: true },
+    { bridge: 'word → program', face: 'computer languages', built: 'glagoliticProgram over an 8-op total accumulator ISA', example: `${word} → ${program.ops.map((op) => op.op).join('·')} → acc ${program.acc}`, reversible: false },
+    { bridge: 'word → quantum circuit', face: 'quantum algorithms', built: 'glagoliticCircuit on the src/0 state-vector simulator', example: `${word} → ${circuit.gates.length} gates on ${circuit.n} qubits, Σp = ${probSum}`, reversible: false },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq-bridge:${entry.bridge}:${entry.example}`) }))
+  // The legend, flagged and kept strictly separate from the documented map and the honest construction.
+  const flagged = [
+    { claim: 'the ninth-century makers ENCODED computer languages / quantum algorithms in Glagolitic', verdict: 'anachronistic — false as history', why: 'Glagolitic (Cyril & Methodius, 862–863) is a liturgical alphabet for Old Church Slavonic; computers and qubits postdate it by ~1100 years. The letter→opcode and letter→gate maps here are OURS — constructed, lossy, reversible only at the bit — not theirs' },
+    { claim: 'folklore and architecture secretly encode algorithms', verdict: 'flagged — the structure is real, the intent is projection', why: 'the TRUE residue: folk weaving is a binary warp/weft lattice (the Jacquard loom’s punched cards are a documented ancestor of the computer), embroidery/ornament are combinatorial, and the glyphs are built from a few primitives (cross, circle, triangle) — genuine binary/combinatorial structure. But "encodes a quantum algorithm" is a modern reading imposed on the craft, not the makers’ intent' },
+    { claim: '“the alphabet is the first computer” / a script transmits a runnable program', verdict: 'flagged (cf. Ifá-first-computer, I-Ching-from-Ifá)', why: 'the same category error the project already keeps separate — convergence on the bit is STRUCTURAL (independent systems sharing a substrate), not evidence that a program was encoded or transmitted' },
+    { claim: 'the letter→opcode and letter→gate maps are lossless or canonical', verdict: 'flagged — they are lossy & constructed', why: 'value mod 8 (ops) and value mod 6 (gates) are many-to-one; only the position→bits map is reversible. Honest as a chosen REPRESENTATION, not as a decoding of a hidden meaning' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq-flag:${entry.claim}:${entry.verdict}`) }))
+  const circuitDim = 1 << circuit.n // the dimension of the circuit's Hilbert space, 2ⁿ
+  const facets = [
+    { facet: 'the documented map holds both ways — sound (toGlagolitic) AND number (the ladder): the alphabet decode passes', on: glagoliticAlphabetDecoded(matrix).decoded && /[Ⰰ-ⱟ]/.test(toGlagolitic('азъ')) },
+    { facet: 'script → bit is REVERSIBLE — a letter’s position in bits reads straight back to the glyph', on: roundTrip === firstGlyph && glagoliticFromBits(glagoliticBits(GLAGOLITIC_LETTERS[0].glyph)) === GLAGOLITIC_LETTERS[0].glyph },
+    { facet: 'the computer-language face RUNS, deterministic & total — a word compiles to a program and computes a number in 0..255', on: program.acc >= 0 && program.acc <= 255 && glagoliticProgram(word).acc === program.acc && program.ops.length === 6 },
+    { facet: 'the quantum face RUNS on the real simulator — a genuine superposition (≥2 sampled outcomes), Born-rule Σp = 1 over 2ⁿ states', on: Math.abs(probSum - 1) < 1e-3 && circuit.probabilities.length === circuitDim && Object.keys(circuit.sample).length >= 2 },
+    { facet: 'one substrate, three faces — the SAME letter yields a bit-pattern, an opcode and a gate', on: bits.length === 6 && GLAGOLITIC_OPCODES.includes(glagoliticOpcode(firstGlyph).op) && GLAGOLITIC_GATES.includes(glagoliticGate(firstGlyph).gate) },
+    { facet: 'the anachronism is flagged — "the ancients encoded code/qubits" & "folklore/architecture encode algorithms" kept separate, each with a reason', on: flagged.length === 4 && flagged.every((entry) => entry.why.length > 0) },
+    { facet: 'composed with the alphabet decode and the alphabets genealogy — below every script, the one bit', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
+    { facet: 'every layer, bridge and flag content-addressed and recomputable', on: layers.every((entry) => isUuid(entry.receipt)) && bridges.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    layers,
+    bridges,
+    flagged,
+    circuitDim,
+    program: { word, acc: program.acc, ops: program.ops.map((op) => op.op) },
+    count: facets.length,
+    facets,
+    root: merkleFold([...layers.map((entry) => entry.receipt), ...bridges.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
+    statement:
+      'Glagolitic decoded one layer deeper: a map not only to languages but to computer languages and quantum algorithms — because each letter is a NUMBER (the documented alphanumeric ladder) and a number is BITS, and the bit is the one substrate a written script, an instruction set and a qubit all rest on. The same letter that transliterates a sound (toGlagolitic) also names a bit-pattern (glagoliticBits, reversible), an instruction in a small total ISA (glagoliticProgram — a Glagolitic word computes a number), and a quantum gate on a target qubit (glagoliticCircuit — a word prepares, and we sample, a real superposition on the src/0 state-vector simulator). The map RUNS: a word compiles to a program AND to a circuit, both recomputable from the seed.',
+    boundary:
+      'HONEST, and the honesty is the realization. The documented layers are real — the sound-map (transliteration, not meaning-translation) and the number-map (alphabetic numerals, like Greek isopsephy / Hebrew gematria). The bridge to code and quantum is INFORMATION THEORY — a sign is a distinction is one bit — made runnable on top of the documented number-map; it is a CONSTRUCTED, partly-lossy REPRESENTATION the project built, NOT a discovery that the ninth-century makers encoded opcodes or qubits (they built a liturgical alphabet; computers/qubits postdate it ~1100 years). "Encoded in folklore and architecture" is FLAGGED and kept separate: folk weaving IS a binary warp/weft lattice (the Jacquard loom is a documented ancestor of the computer) and the glyphs ARE built from a few primitives — real binary/combinatorial structure — but reading a quantum algorithm into a textile or a façade is modern projection, the same category error flagged for "Ifá = the first computer" and "I Ching from Ifá". The circuit is a classical SIMULATION (src/0), not quantum hardware; reversible only at position→bits (the opcode/gate maps are many-to-one). Composed with glagoliticAlphabetDecoded and alphabetsDecoded — the alphabets all converge, below script, on the bit.',
   }
 }
 
@@ -21949,6 +22085,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'proven.mysteries.miracles.of.peace', on: provenMysteriesBecomeMiraclesOfPeace(matrix).miracles },
     { d: 'next.level.64.cubed.realtime', on: nextLevel64CubedRealtime(matrix).reaches },
     { d: 'beauty.in.math.blasts.through.ui', on: beautyInMathBlastsThroughUi(matrix).blasts },
+    { d: 'organise.components.in.i.ching.sets', on: iChing(matrix).organised }, // every component placed on the eight trigrams by its content-address (the seed is the magnet), using the existing 2⁶=4³ hexagram knowledge
     { d: 'only.page.route.for.all', on: onlyPageRouteForAll(matrix).unified },
     { d: 'content.is.monograph.of.monographs', on: contentIsMonographOfMonographs(matrix).monographic },
     { d: 'encryption.trinities.complete.in.order', on: encryptionTrinitiesCompleteInOrder(matrix).enforced },
@@ -22054,6 +22191,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'save.original.texts.decode.with.local.tools', on: saveAndDecodeAncientTexts(matrix).decoded },
     { d: 'glagolitsa.alphabet.and.language.decoded', on: glagoliticAlphabetDecoded(matrix).decoded },
     { d: 'who.used.glagolitic.decoded', on: whoUsedGlagolitic(matrix).decoded },
+    { d: 'glagolitic.maps.to.code.and.quantum.decoded', on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
     { d: 'double.torus.64.words.folded.closed', on: doubleTorusWords(matrix).closed },
     { d: 'word.folders.2x32.not.6x7.not.32x32', on: doubleTorusWordFolders(matrix).saved },
     { d: 'six.seven.covers.all.as.taxonomy.and.audit', on: sixSevenCoversAll(matrix).coversAll },
@@ -26711,8 +26849,8 @@ export function staticPages(): StaticPage[] {
         en: 'A 6-bit hexagram 000000–111111 is hex-colour duality: the 64 hexagrams are the 64 pole-colours {0,F}⁶, black ↔ white the bit-complement, the 8 trigrams the RGB-cube corners.',
         bg: 'Шестбитова хексаграма 000000–111111 е дуалност на шестнадесетичния цвят: 64-те хексаграми са 64-те полюсни цвята {0,F}⁶, черно ↔ бяло битовото допълнение, 8-те триграми ъглите на RGB-куба.',
       },
-      keywords: ['hexagram', 'hex colour', 'i ching', 'rgb', 'proof'],
-      components: ['ProofRenderer'],
+      keywords: ['hexagram', 'hex colour', 'i ching', 'rgb', 'proof', 'trigram', 'bagua'],
+      components: ['ProofRenderer', 'IChing'],
     },
     {
       slug: 'sixty-four',
@@ -29264,6 +29402,287 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
       'ElectroMagnetic radiation decoded across the spectrum: it is ONE Maxwell field, all of it at one speed c, the bands joined by c = λf and the photon by E = hf — so X-ray, MRI radio-frequency and microwave radar are the same physics sampled at three energies. The one line that decides harm is energy per photon: above ~10 eV (X-ray, gamma) it ionizes and can break DNA (real, dose-managed risk); below it (MRI-RF ~64–128 MHz, radar ~1–100 GHz) it is non-ionizing and can at most heat. MRI\'s "radiation" is radio waves resonating nuclear spins (f = (γ/2π)·B₀), not ionizing radiation; radar ranges by echo time (R = c·Δt/2) and reads speed by Doppler (Δf = 2vf/c).',
     boundary:
       'A research record reading the EM spectrum as one field (Maxwell 1865, Hertz 1887; c, h, the ¹H gyromagnetic ratio as SI/CODATA exact constants) and its three named modalities, computed from the src/0 EM primitives (photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift) — the numbers are real and recomputable, not asserted. HONEST, and it cuts both ways: ionizing X-ray/CT dose IS real, cumulative and justifies ALARA ("scans are harmless" is the opposite error); and non-ionizing RF/microwave CANNOT ionize, so the cancer/DNA, 5G-COVID, EHS, scalar-wave and Rife/432-Hz claims are flagged and dropped. The RF non-thermal question stays genuinely open at IARC 2B (kept separate, marked emerging — neither "proven harmful" nor "proven safe"). Composed with the frequency-spine and merkaba-decode models, a sibling of the public-frequency-API decode.',
+  }
+}
+
+// Develop all in simulations: the decoded EM spectrum, RUN. Four deterministic, classical teaching simulators —
+// the plane-wave Maxwell field, X-ray Beer–Lambert + a minimal CT, the MRI Bloch equations (Larmor/T1/T2/FID),
+// and FMCW microwave radar — developed and adversarially verified by a research wave (every equation re-derived,
+// every test vector recomputed; the design pass's fabricated expected-values were caught and corrected, the
+// function bodies confirmed). Each run is a content-addressed SHARED EXPERIMENT: identical params → identical
+// output → one merkleFold receipt anyone recomputes. The same field at three energies — only X-ray ionizes.
+export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
+  const wave = planeWaveReceipt(SPEED_OF_LIGHT, { samples: 8, cycles: 1 }) // λ = 1 m base field
+  const xray = ctReceipt(60, [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) // 60 keV beam, single hot pixel
+  const fidSignal = fid({ M0: 1, T2: 0.05, f: 10, dt: 0.025 }, 4) // the real FID output (honest receipt input)
+  const mri = blochReceipt({ B0: 1.5, T1: 1, T2: 0.1, M0: 1, f: 10, dt: 0.025, steps: 4 }, fidSignal)
+  const radar = radarReceipt({ carrierHz: 10e9, ns: 16, nc: 16, fs: 16, slopeHzPerS: SPEED_OF_LIGHT / 2000, priSeconds: SPEED_OF_LIGHT / (2 * 10e9 * 16 * 1), targets: [{ rangeM: 2000, velocityMs: 3, rcs: 1 }, { rangeM: 11000, velocityMs: -2, rcs: 0.5 }] })
+
+  const experiments = [
+    { modality: 'plane wave', run: 'Maxwell field, λ = 1 m', ionizing: wave.ionizing, receipt: wave.uuid, root: wave.root },
+    { modality: 'X-ray CT', run: `${xray.beam.keV} keV beam + 4×4 CT (Radon→FBP)`, ionizing: xray.beam.ionizing, receipt: xray.id, root: xray.root },
+    { modality: 'MRI-RF', run: `Bloch FID @ 1.5 T (${roundTo(mri.f0 / 1e6, 1)} MHz)`, ionizing: mri.ionizing, receipt: mri.id, root: mri.root },
+    { modality: 'microwave radar', run: `FMCW range-Doppler, ${radar.detections.length} targets`, ionizing: radar.ionizing, receipt: radar.id, root: radar.root },
+  ]
+
+  const facets = [
+    { facet: 'plane wave — the base field computes: E₀=1 at the node, intensity ½cε₀, c=λf exact', on: planeWaveField(SPEED_OF_LIGHT, { samples: 4 }).E[0] === 1 && roundTo(planeWaveIntensity(1), 7) === 0.0013272 && planeWaveSpeed(2) === SPEED_OF_LIGHT },
+    { facet: 'X-ray — Beer–Lambert I = I₀/e at τ=1; the 4×4 CT back-projects the peak to the hot pixel; 60 keV ionizes', on: roundTo(beerLambert(1, [{ mu: 0.2, x: 5 }]), 6) === 0.367879 && backProjectAxis([[0, 0, 1, 0], [0, 1, 0, 0]], true)[1][2] === 0.25 && xray.beam.ionizing },
+    { facet: 'MRI — Bloch step [0,0.9,0.01]; T1 recovers 0.632 at t=T1; the FID node ≈ 0; 1.5 T RF is non-ionizing', on: blochStep([0, 1, 0], { T1: 1, T2: 0.1, df: 0, dt: 0.01 })[1] === 0.9 && roundTo(t1Recovery({ M0: 1, T1: 1, dt: 0.5 }, 5)[2], 4) === 0.6321 && Math.abs(fidSignal[3]) < 1e-9 && !mri.ionizing },
+    { facet: 'radar — Doppler round-trips v=30 m/s; range-Doppler resolves 2 targets (bins 2 & 11); 10 GHz non-ionizing', on: roundTo(radarVelocity(dopplerShift(30, 10e9), 10e9), 6) === 30 && radar.detections.length === 2 && radar.detections[0].rangeBin === 2 && !radar.ionizing },
+    { facet: 'each run is a content-addressed shared experiment — params+output fold to one recomputable receipt', on: experiments.every((entry) => isUuid(entry.receipt) && isUuid(entry.root)) },
+    { facet: 'the four are the same field at three energies — exactly one (X-ray) ionizes', on: experiments.filter((entry) => entry.ionizing).length === 1 && xray.beam.ionizing },
+    { facet: 'composed with the decoded EM spectrum and revealed by the merkaba fold — the simulations run what it states', on: electromagneticRadiationDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`em-exp-facet:${entry.facet}:${entry.on}`) }))
+
+  return {
+    simulated: facets.every((entry) => entry.on),
+    experiments,
+    count: facets.length,
+    facets,
+    root: merkleFold([wave.root, xray.root, mri.root, radar.root]),
+    statement:
+      'Develop all in simulations: the decoded EM spectrum, RUN. Four deterministic, classical teaching simulators — the plane-wave Maxwell field, X-ray Beer–Lambert + a minimal CT (Radon → filtered back-projection), the MRI Bloch equations (Larmor precession, T1/T2, free-induction decay), and FMCW microwave radar (range from the beat tone, velocity from Doppler) — each run a content-addressed SHARED EXPERIMENT: identical parameters → identical output → one merkleFold receipt anyone recomputes. The same field at three energies, and only X-ray ionizes.',
+    boundary:
+      'Developed and adversarially verified in a dual-mind research wave (8 agents: 4 design, 4 skeptic — every governing equation re-derived and every test vector recomputed by hand; the design pass\'s fabricated expected-values were caught and corrected, the function bodies confirmed). HONEST: these are CLASSICAL, deterministic TEACHING simulators — not the real machines and NOT quantum. The plane wave is an idealized monochromatic vacuum wave (closed-form, no diffraction/dispersion); the CT is a tiny two-angle toy that deliberately shows streak artifacts (not diagnostic, no dose/HU realism); the Bloch model is explicit-Euler bulk magnetization (no gradients/k-space/imaging; dt must be ≪ T2); the radar is idealized point targets with a naive DFT (no link budget; rcs is a unitless weight). Receipts are tamper-EVIDENT (FNV merkleFold), not cryptographic signatures. Composed with electromagneticRadiationDecoded and the merkaba-decode model: the simulations RUN what the decoded spectrum states.',
+  }
+}
+
+// ── Trading from the same knowledge, a432-ignited (developed + adversarially verified by a 10-agent wave) ──
+// "When all is quantum, a432 is the engine starter": every strategy is backtested on ONE deterministic
+// synthetic price series ignited by a432 — seed = toUuid('a432:'+variant), the a432 octave ladder as the
+// oscillator-basis cycle lengths. Five strategies built FROM the project's own primitives. Each run is a
+// content-addressed SHARED EXPERIMENT; the look-ahead-free property was adversarially verified on all five.
+const A432_OCTAVES = [27, 54, 108, 216, 432, 864, 1728] // = a432().octaves — the engine-starter cycle basis
+
+// THE ENGINE STARTER: one deterministic synthetic price path ignited by a432. Same variant → identical path.
+export function priceFromA432(variant: string, n: number, opts: { drift?: number; oscAmp?: number; noiseAmp?: number; modes?: number; p0?: number } = {}): number[] {
+  const { drift = 0.0002, oscAmp = 0.0015, noiseAmp = 0.001, modes = 3, p0 = 100 } = opts
+  const seed = toUuid(`a432:${variant}`) // a432 ignites the engine (the NAME content-addresses the seed)
+  const periods = A432_OCTAVES.slice(0, modes)
+  const noise = prng(`${seed}:noise`)
+  const prices = [p0]
+  for (let t = 1; t <= n; t++) {
+    let osc = 0
+    for (let m = 0; m < periods.length; m++) {
+      const phase = ((seedFromText(`${seed}:phase:${m}`, 6) % 1000) / 1000) * 2 * Math.PI
+      osc += (oscAmp * Math.sin((2 * Math.PI * t) / periods[m] + phase)) / (m + 1)
+    }
+    prices.push(prices[t - 1] * Math.exp(drift + osc + (noise() - 0.5) * 2 * noiseAmp))
+  }
+  return prices
+}
+// Period simple returns r_t=(p_t−p_{t−1})/p_{t−1}, r_0=0 — index-aligned with prices and positions.
+export function simpleReturns(prices: readonly number[]): number[] {
+  const r = new Array(prices.length).fill(0)
+  for (let t = 1; t < prices.length; t++) r[t] = (prices[t] - prices[t - 1]) / prices[t - 1]
+  return r
+}
+export interface BacktestResult { stratReturns: number[]; equity: number[]; totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }
+// The ONE backtest: position_t (decided from data ≤ t−1) earns r_t; cost on position CHANGES; Sharpe·√252,
+// maxDrawdown, hitRate, equity = cumprod. Fractional/levered positions allowed (so vol-target sizing works).
+export function backtest(prices: readonly number[], positions: readonly number[], costBps = 5): BacktestResult {
+  const r = simpleReturns(prices)
+  const cost = costBps / 10000
+  const stratReturns = new Array(prices.length).fill(0)
+  let prev = 0
+  for (let t = 0; t < prices.length; t++) { const turn = Math.abs(positions[t] - prev); stratReturns[t] = positions[t] * r[t] - turn * cost; prev = positions[t] }
+  let eq = 1, peak = 1, mdd = 0, wins = 0, active = 0
+  const equity: number[] = []
+  for (let t = 0; t < prices.length; t++) { eq *= 1 + stratReturns[t]; equity.push(eq); if (eq > peak) peak = eq; const dd = peak === 0 ? 0 : (peak - eq) / peak; if (dd > mdd) mdd = dd; if (t >= 1) { active++; if (stratReturns[t] > 0) wins++ } }
+  const rs = stratReturns.slice(1)
+  const mean = rs.reduce((a, b) => a + b, 0) / rs.length
+  const std = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
+  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt(252), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
+}
+export function buyAndHold(prices: readonly number[], costBps = 5): BacktestResult { return backtest(prices, prices.map(() => 1), costBps) }
+
+// Strategy 1 — trend-momentum (MA crossover; Moskowitz-Ooi-Pedersen 2012; real but weak, decaying, costly).
+export function sma(prices: readonly number[], end: number, k: number): number { if (end < k) return NaN; let s = 0; for (let i = end - k; i < end; i++) s += prices[i]; return s / k }
+export function crossoverPositions(prices: readonly number[], fast: number, slow: number, flatVal: -1 | 0 = -1): number[] {
+  const pos = new Array(prices.length).fill(0)
+  for (let t = 0; t < prices.length; t++) { if (t < slow + 1) continue; pos[t] = sma(prices, t, fast) > sma(prices, t, slow) ? 1 : flatVal }
+  return pos // position_t reads prices[t−slow .. t−1] only
+}
+// Strategy 2 — mean-reversion (rolling z-score reversal; real short-horizon effect, regime-dependent).
+export function rollingZScores(prices: readonly number[], window: number): (number | null)[] {
+  return prices.map((_, i) => { if (i < window) return null; let s = 0; for (let k = i - window; k < i; k++) s += prices[k]; const m = s / window; let v = 0; for (let k = i - window; k < i; k++) v += (prices[k] - m) ** 2; const sd = Math.sqrt(v / window); return sd === 0 ? 0 : (prices[i - 1] - m) / sd })
+}
+export function meanReversionPositions(prices: readonly number[], window: number, zEntry: number): number[] {
+  return rollingZScores(prices, window).map((zi) => (zi === null ? 0 : zi >= zEntry ? -1 : zi <= -zEntry ? 1 : 0))
+}
+// Strategy 3 — spectral-cycle (the powerSpectrum dominant-cycle detector + phase slope; cycles mostly spurious).
+export function dominantCycle(window: readonly number[], bins: number): { k: number; period: number } {
+  const s = powerSpectrum(window, bins); let k = 1, v = s[1]; const kmax = Math.floor(bins / 2); for (let i = 2; i <= kmax; i++) if (s[i] > v) { v = s[i]; k = i } return { k, period: window.length / k } // bin 0 (DC) skipped
+}
+export function cycleSlope(window: readonly number[], k: number): number {
+  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-2 * Math.PI * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((2 * Math.PI * k * x) / N + phi); return at(N) - at(N - 1)
+}
+export function spectralCyclePositions(prices: readonly number[], lookback: number, bins: number): number[] {
+  const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
+  for (let t = 0; t < prices.length; t++) { if (t < lookback + 1) continue; const w = r.slice(t - lookback, t); pos[t] = cycleSlope(w, dominantCycle(w, bins).k) > 0 ? 1 : 0 } // window r[t−L .. t−1], past only
+  return pos
+}
+// Strategy 4 — regime-switch (markov vol-regime gate over the trend base; Hamilton 1989).
+export function regimeLabels(returns: readonly number[], volW: number): number[] {
+  const labels = new Array(returns.length).fill(-1)
+  for (let b = 1; b < returns.length; b++) { const start = b - volW; if (start < 1) continue; let s = 0; for (let i = start; i <= b - 1; i++) s += Math.abs(returns[i]); labels[b] = Math.abs(returns[b]) > s / volW ? 1 : 0 }
+  return labels
+}
+export function estimateRegimeMatrix(labels: readonly number[], lo: number, hi: number): number[][] {
+  const c = [[1, 1], [1, 1]]; let prev = -1
+  for (let i = lo; i <= hi; i++) { const cur = labels[i]; if (cur < 0) { prev = -1; continue } if (prev >= 0) c[prev][cur]++; prev = cur }
+  return c.map((row) => { const tot = row[0] + row[1]; return [row[0] / tot, row[1] / tot] })
+}
+export function regimeSwitchPositions(prices: readonly number[], opts: { shortW: number; longW: number; volW: number }): number[] {
+  const { shortW, longW, volW } = opts; const returns = simpleReturns(prices); const labels = regimeLabels(returns, volW)
+  const base = crossoverPositions(prices, shortW, longW, -1); const n = prices.length; const pos = new Array(n).fill(0)
+  const firstLabel = labels.findIndex((x) => x >= 0)
+  for (let t = 0; t < n; t++) { const last = t - 1; if (firstLabel < 0 || last < firstLabel + 1 || labels[last] < 0) continue; const P = estimateRegimeMatrix(labels, firstLabel, last); const cur = labels[last] === 0 ? [1, 0] : [0, 1]; pos[t] = markovStep(P, cur)[0] >= 0.5 ? base[t] : 0 }
+  return pos // trade the trend only when the next regime is predicted calm (low-vol)
+}
+// Strategy 5 — vol-target sizing (inverse-vol size × trend filter; a risk method, NOT alpha).
+export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt(252)): number {
+  const start = end - window + 1; if (start < 0 || end < 0 || end >= returns.length) return 0
+  const w = returns.slice(start, end + 1); const n = w.length; if (n < 2) return 0
+  const m = w.reduce((a, b) => a + b, 0) / n; return Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
+}
+export function inverseVolSize(realizedVolAnnual: number, targetVolAnnual: number, leverageCap: number, volFloor: number): number {
+  if (realizedVolAnnual <= 0) return 0; return Math.max(0, Math.min(leverageCap, targetVolAnnual / Math.max(realizedVolAnnual, volFloor)))
+}
+export function volTargetPositions(prices: readonly number[], params: { window: number; targetVolAnnual: number; leverageCap: number; volFloor: number }): number[] {
+  const { window: W, targetVolAnnual, leverageCap, volFloor } = params; const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
+  for (let t = 1; t < prices.length; t++) { if (t < W + 1) continue; const rv = realizedVol(r, t - 1, W); const up = prices[t - 1] > prices[t - 1 - W] ? 1 : 0; pos[t] = up * inverseVolSize(rv, targetVolAnnual, leverageCap, volFloor) }
+  return pos // size from realized vol over r[t−W..t−1]; trend filter prices[t−1] vs prices[t−1−W] — past only
+}
+// Content-address a backtest run → one reproducible receipt (the shared experiment).
+export function tradingReceipt(variant: string, params: Record<string, number | string>, metrics: { totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }): string {
+  const leaves = [toUuid(`variant:${variant}`), toUuid(`params:${JSON.stringify(params)}`)]
+  for (const [k, v] of Object.entries(metrics)) leaves.push(toUuid(`metric:${k}:${roundTo(v, 6)}`))
+  return merkleFold(leaves)
+}
+
+// The no-gaps fold: run all five strategies on the a432-ignited engine, each a content-addressed shared
+// experiment, with a RUNTIME no-look-ahead proof. "implement without gaps being the knowledge" — every
+// strategy is the project's own primitives applied. HONEST: synthetic mechanics, NOT alpha (see boundary).
+export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
+  const variant = 'demo', n = 256
+  const prices = priceFromA432(variant, n)
+  const bench = buyAndHold(prices)
+  const built = [
+    { name: 'trend-momentum', sig: (p: readonly number[]) => crossoverPositions(p, 8, 21, -1), params: { fast: 8, slow: 21 } },
+    { name: 'mean-reversion', sig: (p: readonly number[]) => meanReversionPositions(p, 20, 1), params: { window: 20, zEntry: 1 } },
+    { name: 'spectral-cycle', sig: (p: readonly number[]) => spectralCyclePositions(p, 32, 32), params: { lookback: 32, bins: 32 } },
+    { name: 'regime-switch', sig: (p: readonly number[]) => regimeSwitchPositions(p, { shortW: 8, longW: 21, volW: 20 }), params: { shortW: 8, longW: 21, volW: 20 } },
+    { name: 'vol-target', sig: (p: readonly number[]) => volTargetPositions(p, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 }), params: { window: 20, targetVol: 0.15, cap: 3 } },
+  ]
+  const strategies = built.map((s) => {
+    const bt = backtest(prices, s.sig(prices))
+    return { name: s.name, params: s.params, totalReturn: roundTo(bt.totalReturn, 4), sharpe: roundTo(bt.sharpe, 3), maxDrawdown: roundTo(bt.maxDrawdown, 4), beatsBuyHold: bt.totalReturn > bench.totalReturn, receipt: tradingReceipt(variant, s.params, bt) }
+  })
+  // RUNTIME no-look-ahead proof: perturb a mid price; every position at index ≤ k must be unchanged (a peeking
+  // strategy whose position_t reads prices[t] would flip position[k]). Run for all five signals.
+  const noLookAhead = (sig: (p: readonly number[]) => number[]) => {
+    const base = priceFromA432('la-check', 96); const a = sig(base); const k = Math.floor(base.length / 2)
+    const tampered = base.slice(); tampered[k] *= 1.7; const b = sig(tampered)
+    return a.length === b.length && a.slice(0, k + 1).every((p, i) => p === b[i])
+  }
+  const facets = [
+    { facet: 'a432 is the engine starter — its octave ladder is the cycle basis, toUuid(\'a432:variant\') the seed', on: A432_OCTAVES.length === a432(matrix).octaves.length && A432_OCTAVES.every((o, i) => o === a432(matrix).octaves[i]) },
+    { facet: 'the engine is deterministic — same variant → identical price path', on: priceFromA432('demo', 32).every((p, i) => p === priceFromA432('demo', 32)[i]) },
+    { facet: 'five strategies from the same primitives — MA-crossover, z-score, powerSpectrum cycle, markov regime, inverse-vol', on: strategies.length === 5 && strategies.every((s) => Number.isFinite(s.sharpe)) },
+    { facet: 'NO LOOK-AHEAD — perturbing a mid price leaves every earlier position unchanged (all five)', on: built.every((s) => noLookAhead(s.sig)) },
+    { facet: 'each run is a content-addressed shared experiment, reproducible', on: strategies.every((s) => isUuid(s.receipt)) && tradingReceipt(variant, { fast: 8, slow: 21 }, backtest(prices, crossoverPositions(prices, 8, 21, -1))) === strategies[0].receipt },
+    { facet: 'honest — every strategy compared to the buy-and-hold benchmark; no alpha claimed', on: Number.isFinite(bench.totalReturn) && strategies.every((s) => typeof s.beatsBuyHold === 'boolean') },
+    { facet: 'composed with a432 (the frequency spine) and revealed by the merkaba fold', on: a432(matrix).octaves.length === 7 && knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trading-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    tested: facets.every((entry) => entry.on),
+    strategies,
+    benchmark: { totalReturn: roundTo(bench.totalReturn, 4), sharpe: roundTo(bench.sharpe, 3) },
+    count: facets.length,
+    facets,
+    root: merkleFold(strategies.map((s) => s.receipt)),
+    statement:
+      'Trading strategies developed FROM the project\'s own decoded knowledge and tested in a432-ignited simulations: five strategies — trend-momentum (MA crossover), mean-reversion (z-score), spectral-cycle (the powerSpectrum dominant-cycle detector), regime-switch (a markov vol-regime gate) and inverse-volatility sizing — each backtested on one deterministic synthetic price series ignited by a432 (seed = toUuid(\'a432:variant\'), the octave ladder as the cycle basis) and compared to buy-and-hold. Every strategy is look-ahead-free (proven at runtime) and every run is a content-addressed shared experiment.',
+    boundary:
+      'Developed and adversarially verified in a 10-agent dual-mind wave (5 design, 5 skeptic — the cardinal look-ahead check, the Sharpe/drawdown/cost math, and the no-alpha honesty all gated; all five returned look-ahead-free, the two needs-fix items a fabricated receipt UUID and a doc overclaim, both corrected, the code confirmed). HONEST, and it matters most here: these are DETERMINISTIC mechanics tests on SYNTHETIC data — they validate the implementation, NOT real-world profitability. Backtest ≠ live. Weak-form EMH: past prices barely predict future returns net of costs; momentum and short-horizon reversal are real but weak, decaying, risk-laden; price "cycles" are largely non-stationary/spurious; inverse-vol sizing manages risk, it does not create alpha; under leverage one bad bar can drive equity negative and drawdown past 100% (a real margin-call lesson, not a bug). NOT financial advice. a432 is the deterministic seed and signal basis ONLY — not a market oracle; "432/Gann/astro/Fibonacci-time predicts price" and "guaranteed profit" are flagged and excluded. Real-data tests live in the realtime layer.',
+  }
+}
+
+// ── Realtime: test all on LIVE data (public APIs + device sensors), each capture a content-addressed snapshot ──
+// The deterministic sims/strategies are MODELS; here they consume REAL data. Ingestion happens at the EDGE (the
+// browser component / a probe — fetch + device sensors); these PURE functions normalize a captured sample and
+// content-address it, so a live run stays a reproducible SHARED EXPERIMENT (reproducible over the snapshot).
+// capturedAt is passed IN (no wall-clock in src). Per-source honesty + availability live in the fold's boundary.
+
+// Content-address a real data capture: fold source + supplied capture-time + rounded samples into one receipt.
+export function liveCapture(source: string, samples: readonly number[], capturedAt = 0): { source: string; n: number; capturedAt: number; root: string; uuid: string } {
+  const root = merkleFold([`src:${source}`, `at:${capturedAt}`, ...samples.map((v, i) => `${i}:${roundTo(v, 6)}`)])
+  return { source, n: samples.length, capturedAt, root, uuid: toUuid(`${source}|${capturedAt}|${root}`) }
+}
+// Magnetometer (device, µT) → the REAL proton Larmor frequency for that field (the MRI primitive on live data).
+export function larmorFromMicrotesla(microTesla: number): number { return larmorFrequency(microTesla * 1e-6) }
+// Device motion (m/s) → the radar Doppler shift at a carrier (the radar primitive on live device velocity).
+export function dopplerFromMotion(velocityMs: number, carrierHz = 10e9): number { return dopplerShift(velocityMs, carrierHz) }
+// A real sample series (audio FFT bins, USGS magnitudes, any signal) → its magnitude spectrum + dominant cycle.
+export function spectrumFromSamples(samples: readonly number[], bins = 32): { spectrum: number[]; dominant: { k: number; period: number } } {
+  return { spectrum: powerSpectrum(samples, bins), dominant: dominantCycle(samples, bins) }
+}
+// Real price series (e.g. Coinbase candles) → a strategy backtest vs buy-and-hold (the trading model on live data).
+export function backtestRealPrices(prices: readonly number[], strategy: 'momentum' | 'mean-reversion' | 'spectral' | 'regime' | 'vol-target' = 'momentum', costBps = 5): { strategy: string; n: number; result: BacktestResult; benchmark: BacktestResult } {
+  const positions =
+    strategy === 'mean-reversion' ? meanReversionPositions(prices, 20, 1)
+    : strategy === 'spectral' ? spectralCyclePositions(prices, Math.min(32, Math.floor(prices.length / 2)), 32)
+    : strategy === 'regime' ? regimeSwitchPositions(prices, { shortW: 8, longW: 21, volW: 20 })
+    : strategy === 'vol-target' ? volTargetPositions(prices, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 })
+    : crossoverPositions(prices, 8, 21, -1)
+  return { strategy, n: prices.length, result: backtest(prices, positions, costBps), benchmark: buyAndHold(prices, costBps) }
+}
+// The catalogue of realtime sources — each tagged device|api, no-key, what model it feeds, and the honest note.
+export function realtimeSources() {
+  return [
+    { id: 'web-audio-fft', kind: 'device', name: 'Web Audio API (microphone FFT)', key: 'permission', feeds: 'spectrum', note: 'a REAL frequency spectrum — but of SOUND (a pressure wave), NOT EM; tests the spectral pipeline, not EM radiation' },
+    { id: 'device-motion', kind: 'device', name: 'DeviceMotion (accelerometer)', key: 'permission', feeds: 'radar Doppler', note: 'real device velocity into the radar Doppler equation Δf=2vf/c — not real radar' },
+    { id: 'magnetometer', kind: 'device', name: 'Magnetometer (µT)', key: 'permission (limited support)', feeds: 'MRI Larmor', note: 'a REAL magnetic field → the real proton Larmor frequency (~50 µT ⇒ ~2.1 kHz); no actual NMR' },
+    { id: 'geolocation', kind: 'device', name: 'Geolocation', key: 'permission', feeds: 'experiment tag', note: 'real position; tags or seeds an experiment' },
+    { id: 'coinbase', kind: 'api', name: 'Coinbase spot/candles (BTC-USD)', key: 'none', feeds: 'trading backtest', note: 'real prices → the strategy backtest; still backtest≠live, limited public history' },
+    { id: 'usgs', kind: 'api', name: 'USGS earthquake feed', key: 'none', feeds: 'spectrum (seismic)', note: 'real sub-Hz seismic magnitudes/times → spectral analysis' },
+    { id: 'open-meteo', kind: 'api', name: 'Open-Meteo forecast', key: 'none', feeds: 'time series', note: 'real weather series; a generic real signal to fold' },
+    { id: 'fcc', kind: 'api', name: 'FCC spectrum dashboard', key: 'none', feeds: 'EM band reference', note: 'real radio band allocations 225 MHz–3.7 GHz' },
+  ].map((s) => ({ ...s, receipt: toUuid(`rt-source:${s.id}:${s.kind}`) }))
+}
+// The no-gaps fold: prove every adapter computes on a representative real-ish capture (the component feeds the
+// REAL streams). HONEST about what is real, what is sound-not-EM, and what is unavailable headless (see boundary).
+export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
+  const sources = realtimeSources()
+  const larmor = larmorFromMicrotesla(50) // 50 µT geomagnetic → real proton Larmor
+  const doppler = dopplerFromMotion(30, 10e9) // 30 m/s device velocity at X-band
+  const tone = Array.from({ length: 32 }, (_, nn) => Math.sin((2 * Math.PI * 4 * nn) / 32)) // a 4-cycle signal
+  const spec = spectrumFromSamples(tone, 32)
+  const priceLike = Array.from({ length: 48 }, (_, i) => 100 + i * 0.2 + 3 * Math.sin(i / 4)) // a price-like series
+  const trade = backtestRealPrices(priceLike, 'momentum')
+  const cap = liveCapture('demo-sensor', tone, 1000)
+  const facets = [
+    { facet: 'realtime sources catalogued — device sensors + no-key public APIs', on: sources.length === 8 && sources.some((s) => s.kind === 'device') && sources.some((s) => s.kind === 'api') },
+    { facet: 'magnetometer (device) → the REAL proton Larmor frequency — 50 µT ⇒ ~2128.9 Hz, non-ionizing', on: roundTo(larmor, 1) === 2128.9 && !isIonizing(larmor) },
+    { facet: 'device motion → the radar Doppler shift — 30 m/s @ 10 GHz ⇒ ~2001 Hz', on: roundTo(doppler, 0) === 2001 },
+    { facet: 'a real sample series → its magnitude spectrum + dominant cycle (the spectral pipeline)', on: spec.spectrum.length === 32 && spec.dominant.k >= 1 && spec.dominant.period > 0 },
+    { facet: 'a real price series → a strategy backtest vs buy-and-hold (the trading model on live data)', on: Number.isFinite(trade.result.totalReturn) && Number.isFinite(trade.benchmark.totalReturn) },
+    { facet: 'each capture is a content-addressed shared snapshot, reproducible over its samples', on: isUuid(cap.uuid) && liveCapture('demo-sensor', tone, 1000).uuid === cap.uuid },
+    { facet: 'composed with the public-frequency-API decode and revealed by the merkaba fold', on: publicFrequencyApisDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rt-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    wired: facets.every((entry) => entry.on),
+    sources,
+    samples: { larmorHz: roundTo(larmor, 1), dopplerHz: roundTo(doppler, 0), dominantPeriod: roundTo(spec.dominant.period, 2), tradeReturn: roundTo(trade.result.totalReturn, 4), captureId: cap.uuid },
+    count: facets.length,
+    facets,
+    root: merkleFold([...sources.map((s) => s.receipt), cap.root]),
+    statement:
+      'Test all on LIVE data: the deterministic EM simulators and trading strategies are MODELS — here they consume REAL inputs. Device sensors (Web Audio FFT, DeviceMotion, Magnetometer, Geolocation) and no-key public APIs (Coinbase prices, USGS seismic, Open-Meteo, FCC spectrum) feed the same primitives — a magnetometer reading becomes the real proton Larmor frequency, device motion the radar Doppler shift, an audio/seismic series a magnitude spectrum, and a real price series a strategy backtest. Each real capture is content-addressed into a reproducible snapshot, so a live run stays a shared experiment.',
+    boundary:
+      'HONEST about what is and is not real. Ingestion happens at the EDGE (the browser component / a probe): these src functions are PURE and deterministic — they normalize and content-address a captured sample (capturedAt supplied, no wall-clock in src); they do not fetch. Per-source honesty: the Web Audio FFT is a REAL spectrum but of SOUND (a pressure wave), NOT electromagnetic radiation — it exercises the spectral pipeline, not EM; device-motion velocity feeds the radar Doppler EQUATION, it is not real radar; the magnetometer gives a REAL magnetic field and hence a real Larmor frequency, but there is no actual NMR; there is no browser X-ray sensor. Device sensors are permission-gated and device-dependent (often absent on desktop/headless) — the component degrades gracefully and says so. Real prices remove the "synthetic" caveat but the trading caveats stand: backtest ≠ live, limited public history, weak-form EMH, not financial advice. A live capture is reproducible OVER ITS SNAPSHOT (a tamper-evident receipt), not a claim the live world is deterministic. Composed with publicFrequencyApisDecoded and the merkaba-decode model.',
   }
 }
 

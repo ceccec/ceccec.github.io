@@ -13,7 +13,7 @@
 // Import the content-address primitives so they are in local scope (songEntry/decodeSong/provePesnopoika
 // use entry/toUuid/Uuid/Entry directly), then re-export the same public surface unchanged. A bare
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
-import { merkabaFoldUrl, entry, toUuid, type Uuid, type Entry } from '../../0/index.ts'
+import { merkabaFoldUrl, entry, toUuid, roundTo, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../0/index.ts'
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
 
 // Script transliteration — reusable decoded writing systems, folded out of the monolith into the
@@ -196,6 +196,94 @@ export function toGlagoliticNumber(text: string): number {
 export function glagoliticAcrostic(): { names: readonly string[]; line: string; opening: string } {
   const names = GLAGOLITIC_LETTERS.map((letter) => letter.name)
   return { names, line: names.join(' '), opening: 'azъ buky vědě — "I know letters"' }
+}
+
+// ── Glagolitic as a map to computer languages and quantum algorithms ──
+// The map runs deeper than sound. Each Glagolitic letter is also a NUMBER (the ladder above — the documented
+// alphabetic-numeral fact), and a number is BITS — and the bit is the one substrate a written script, a
+// computer language and a quantum algorithm all rest on (a qubit IS a quantum bit). So the same letter that
+// transliterates a sound also names a bit-pattern, an instruction, and a quantum gate. HONEST: this is a
+// CONSTRUCTED, reversible representation built on top of the documented number-map — NOT a claim that the
+// ninth-century makers encoded opcodes or qubits (they built a liturgical alphabet, a millennium before
+// either). The bridge is information theory — a sign is a distinction is one bit — made runnable: the
+// position→bits map is reversible, and the gates are src/0's real state-vector simulator, so a word actually
+// COMPILES and RUNS. Reuses the (n >> i) & 1 bit-extraction of ifaRows. Pure, deterministic, zero tokens.
+const GLAGOLITIC_POSITION_BY_GLYPH: Record<string, number> = {}
+GLAGOLITIC_LETTERS.forEach((letter, i) => {
+  GLAGOLITIC_POSITION_BY_GLYPH[letter.glyph] = i + 1
+  const cp = letter.glyph.codePointAt(0) // lowercase = uppercase + 0x30 (U+2C00 → U+2C30), as for the value map
+  if (cp !== undefined) GLAGOLITIC_POSITION_BY_GLYPH[String.fromCodePoint(cp + 0x30)] = i + 1
+})
+// A letter → its bits, MSB first: the script→bit bridge. Keyed by the letter's POSITION (1..28), which in
+// width≥5 bits is REVERSIBLE (28 < 2⁵) — the bit is exactly where script, code and qubit meet. Unknown glyph
+// → all zeros. The inverse, glagoliticFromBits, reads the bits back to the glyph.
+export function glagoliticBits(glyph: string, width = 6): number[] {
+  const position = GLAGOLITIC_POSITION_BY_GLYPH[glyph] ?? 0
+  return Array.from({ length: width }, (_, i) => (position >> (width - 1 - i)) & 1)
+}
+export function glagoliticFromBits(bits: readonly number[]): string {
+  const position = bits.reduce((acc, bit) => acc * 2 + (bit ? 1 : 0), 0)
+  return GLAGOLITIC_LETTERS[position - 1]?.glyph ?? ''
+}
+// The computer-language face. A tiny TOTAL instruction set — eight ops on one 8-bit accumulator, none of which
+// can crash or jump out of range — so EVERY Glagolitic word is a valid little program. The letter's NUMBER is
+// the operand; value mod 8 selects the op. HONEST: a constructed (teaching) ISA, lossy — many letters share an
+// op — not a discovered one. glagoliticProgram folds a word's ops over the accumulator: a word computes a number.
+export const GLAGOLITIC_OPCODES = ['ADD', 'SUB', 'XOR', 'MUL', 'ROL', 'SET', 'AND', 'OUT'] as const
+export type GlagoliticOp = (typeof GLAGOLITIC_OPCODES)[number]
+export function glagoliticOpcode(glyph: string): { op: GlagoliticOp; operand: number } {
+  const value = toGlagoliticNumber(glyph)
+  return { op: GLAGOLITIC_OPCODES[value % GLAGOLITIC_OPCODES.length], operand: value }
+}
+export function glagoliticProgram(word: string): { ops: { glyph: string; op: GlagoliticOp; operand: number }[]; acc: number; out: number[] } {
+  const glyphs = [...word].filter((ch) => (GLAGOLITIC_POSITION_BY_GLYPH[ch] ?? 0) > 0)
+  const out: number[] = []
+  let acc = 0
+  const ops = glyphs.map((glyph) => {
+    const { op, operand } = glagoliticOpcode(glyph)
+    const n = operand & 0xff
+    if (op === 'ADD') acc = (acc + n) & 0xff
+    else if (op === 'SUB') acc = (acc - n) & 0xff
+    else if (op === 'XOR') acc = (acc ^ n) & 0xff
+    else if (op === 'MUL') acc = (acc * (n || 1)) & 0xff
+    else if (op === 'ROL') acc = ((acc << 1) | (acc >> 7)) & 0xff
+    else if (op === 'SET') acc = n
+    else if (op === 'AND') acc = (acc & n) & 0xff
+    else out.push(acc) // OUT — emit the accumulator
+    return { glyph, op, operand }
+  })
+  return { ops, acc, out }
+}
+// The quantum-algorithm face. A word → a quantum circuit, RUN on src/0's state-vector simulator. Each letter's
+// value picks a single-qubit gate (value mod the gate alphabet) on a target qubit (position mod n); between
+// successive letters a CNOT entangles, so a word prepares — and we sample — a real superposition. HONEST: a
+// constructed encoding over a REAL simulator. The circuit genuinely runs (the Born-rule probabilities sum to 1,
+// the sample is drawn from them), but the letter→gate assignment is ours, lossy, and this is a CLASSICAL
+// simulation, not quantum hardware.
+export const GLAGOLITIC_GATES = ['H', 'X', 'Y', 'Z', 'S', 'T'] as const
+export type GlagoliticGate = (typeof GLAGOLITIC_GATES)[number]
+export function glagoliticGate(glyph: string): { gate: GlagoliticGate; value: number } {
+  const value = toGlagoliticNumber(glyph)
+  return { gate: GLAGOLITIC_GATES[value % GLAGOLITIC_GATES.length], value }
+}
+export function glagoliticCircuit(word: string, n = 3, shots = 256): {
+  n: number
+  gates: { glyph: string; gate: GlagoliticGate; target: number }[]
+  probabilities: number[]
+  sample: Record<string, number>
+} {
+  const glyphs = [...word].filter((ch) => (GLAGOLITIC_POSITION_BY_GLYPH[ch] ?? 0) > 0)
+  let state = qubits(n)
+  let previousTarget = -1
+  const gates = glyphs.map((glyph) => {
+    const { gate } = glagoliticGate(glyph)
+    const target = (GLAGOLITIC_POSITION_BY_GLYPH[glyph] ?? 1) % n
+    state = applyGate(state, GATES[gate], target)
+    if (previousTarget >= 0 && previousTarget !== target) state = cnot(state, previousTarget, target) // entangle
+    previousTarget = target
+    return { glyph, gate, target }
+  })
+  return { n, gates, probabilities: probabilities(state).map((p) => roundTo(p, 6)), sample: sample(state, shots, `glagolitic-circuit:${word}`) }
 }
 
 // Babylonian sexagesimal (base-60 place-value). Bijective: encode any non-negative integer to base-60
