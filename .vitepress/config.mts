@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 import { computedDistPlugin } from './computed-dist.mts'
 import { computedPagesPlugin } from './computed-pages.mts'
 import { enforcementPlugin } from './enforcement-plugin.mts'
-import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation, toGlagolitic } from '../src/ui/lib/quantumMind'
+import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/ui/lib/quantumMind'
 
 // Configs use the matrix computationally: the site config AND the whole navigation are computed and
 // held in the model (siteConfig, siteNavigation), content-addressed; this file only consumes them.
@@ -86,7 +86,7 @@ export default defineConfig({
     [
       'script',
       {},
-      `(function(){try{var p=location.pathname;if(p!=='/'&&p!=='/index.html')return;var k='dt-locale',s=localStorage.getItem(k);if(s==='gla')return;if(s==='en'||s==='bg'){location.replace('/'+s+'/');return;}if(document.referrer&&document.referrer.indexOf(location.origin)===0)return;var l=(navigator.language||navigator.userLanguage||'en').toLowerCase();location.replace(l.indexOf('bg')===0?'/bg/':'/en/');}catch(e){}})();`,
+      `(function(){try{var p=location.pathname;if(p!=='/'&&p!=='/index.html')return;var k='dt-locale',s=localStorage.getItem(k);if(s==='cu')return;if(s==='en'||s==='bg'){location.replace('/'+s+'/');return;}if(document.referrer&&document.referrer.indexOf(location.origin)===0)return;var l=(navigator.language||navigator.userLanguage||'en').toLowerCase();location.replace(l.indexOf('bg')===0?'/bg/':'/en/');}catch(e){}})();`,
     ],
     ['meta', { name: 'application-name', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],
@@ -100,9 +100,7 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
     ['link', { rel: 'icon', href: '/icon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/icon.svg' }],
-    ['link', { rel: 'alternate', hreflang: 'cu', href: '/' }],
-    ['link', { rel: 'alternate', hreflang: 'en', href: '/en/' }],
-    ['link', { rel: 'alternate', hreflang: 'bg', href: '/bg/' }],
+    ...SITE_LOCALES.map(locale => ['link', { rel: 'alternate', hreflang: locale.lang, href: locale.path }] as const),
     // The site-level JSON-LD now comes from the one template too: jsonLdTemplate
     // emits the site graph on every page in transformPageData — one source, no
     // static twin here to drift from it.
@@ -124,7 +122,8 @@ export default defineConfig({
     }
     if (params?.keywords && !frontmatter.keywords) frontmatter.keywords = params.keywords
     const relative = pageData.relativePath
-    const isBg = relative.startsWith('bg/')
+    const siteLocale = SITE_LOCALES.find(l => relative.startsWith(l.slugPath + '/')) || SITE_LOCALES.find(l => relative === l.slugPath + '/index.md') || SITE_LOCALES[1]
+    const isBg = siteLocale.code === 'bg'
     const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
     // SEO fully computed and holographic: title, keywords, description, category and
     // holographic tags are derived from the route, then folded into frontmatter, the
@@ -158,8 +157,8 @@ export default defineConfig({
     // The page title carries the site title, exactly like the document <title>: a page
     // shows "<name> | <site>", and the home page shows the site alone — no duplication.
     // So the og:title is never missing the site title and never doubles it.
-    const fullSiteTitle = isBg ? siteTitleBg : siteTitle
-    const isHome = path === '/' || path === '/bg/'
+    const fullSiteTitle = siteLocale.code === 'bg' ? siteTitleBg : siteTitle
+    const isHome = SITE_LOCALES.map(l => l.path.replace(/\/$/, '')).filter(p => p).includes(path.replace(/\/$/, '')) || path === '/'
     const ogTitle =
       (typeof fm.ogTitle === 'string' && fm.ogTitle) ||
       (isHome || name === fullSiteTitle ? fullSiteTitle : `${name} | ${fullSiteTitle}`)
@@ -170,7 +169,7 @@ export default defineConfig({
       ['meta', { property: 'og:title', content: ogTitle }],
       ['meta', { property: 'og:description', content: ogDescription }],
       ['meta', { property: 'og:url', content: path }],
-      ['meta', { property: 'og:locale', content: isBg ? 'bg_BG' : 'en_US' }],
+      ['meta', { property: 'og:locale', content: siteLocale.ogLocale }],
       ['meta', { name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' }],
       ['meta', { name: 'twitter:title', content: ogTitle }],
       ['meta', { name: 'twitter:description', content: ogDescription }],

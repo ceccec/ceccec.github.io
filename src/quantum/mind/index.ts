@@ -25819,6 +25819,14 @@ export function everythingFoldsMerkabaInfiniteStreams(matrix: MindMatrix = build
 // a thin consumer that reads its values from the matrix, not a separate source of truth. The brand
 // title and description are the model's declared identity; the keywords, theme colour and robots
 // policy are held here under one root the build reads. The config derives from the matrix.
+// Site locale configuration — single source of truth for all locale metadata.
+// Every locale's code, path, language tag, and og:locale derived here; no hardcoding in config or enforcement.
+export const SITE_LOCALES = [
+  { code: 'cu', label: 'Ⰳⰾⰰⰳⱁⰾⰻⱌⰰ', lang: 'cu', path: '/', slugPath: '', name: 'gla', type: 'root' as const, ogLocale: 'cu' },
+  { code: 'en', label: 'English', lang: 'en', path: '/en/', slugPath: 'en', name: 'en', type: 'locale' as const, ogLocale: 'en_US' },
+  { code: 'bg', label: 'Български', lang: 'bg-BG', path: '/bg/', slugPath: 'bg', name: 'bg', type: 'locale' as const, ogLocale: 'bg_BG' },
+]
+
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
