@@ -9,7 +9,7 @@
   "scripts": {
     "docs:dev": "vitepress dev",
     "check:types": "tsc --noEmit -p tsconfig.json",
-    "docs:build": "export NODE_COMPILE_CACHE=node_modules/.cache/ts && export NODE_OPTIONS=--max-old-space-size=8192 && vitepress build && node --experimental-strip-types scripts/enforcement-trinity.mjs",
+    "docs:build": "export NODE_COMPILE_CACHE=node_modules/.cache/ts && export NODE_OPTIONS=--max-old-space-size=8192 && vitepress build",
     "docs:preview": "vitepress preview",
     "cf:wizard": "node --experimental-strip-types scripts/generate-cloudflare.mjs"
   },
