@@ -2,7 +2,7 @@
 // lives in the library double-torus (src/quantum/library) — imported here for the folds that call it
 // and re-exported so the ~97 importers, the barrel and the generators resolve unchanged. "Modules it
 // consumes" — the core is no longer zero-import; it is the pivot that consumes its 4 double toruses.
-import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
+import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
 // The primitive kernel dissolved into its digit folder (dissolveAtPiTrainStations): toUuid + hash (wave 1)
 // and the fold cascade merge·roundTo·seedFromText·foldPair·merkleFold·isUuid·memoByRoot (wave 2) now live in
 // src/0 (the void/origin station, dependency-free), and the core imports + re-exports them unchanged.
@@ -39,7 +39,7 @@ export { VACUUM_PERMITTIVITY, waveNumber, angularFrequency, planeWaveSpeed, plan
 export type { RadarScene, RadarDetection } from '../../0/index.ts'
 export type { QuantumState, ProbState } from '../../0/index.ts'
 export type { AnimationEngine, Fold } from '../../0/index.ts'
-export { toGlagolitic, toScript, GLAGOLITIC_MAP, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } // OCS_GLAGOLITIC_MAP/toGlagoliticOCS extend the script to Old Church Slavonic (yat, yuses, fita…), the LANGUAGE Glagolitic was made to write; CHURCH_SLAVONIC_SCRIPTURE is the parallel corpus (OCS · Bulgarian · English); translateVerse/scriptureIn are the LOCAL meaning-translation service (no MT, no network); bibleParallel/bibleInGlagolitic render the founding Bible — Bulgarian MEANING and Cyril's OCS both in the round script — local, deterministic, zero tokens // + Ogham, Ifá, Polynesian local decode tools (the 6-domain loop completed) // + the 6 frontier decode tools: sexagesimal (base-60), luoShu (canonical order-3) // GLAGOLITIC_MAP for the reverse OCR; gematria + the local decode tools decode the saved original ancient texts; GLAGOLITIC_LETTERS/glagoliticValue/toGlagoliticNumber/glagoliticAcrostic are the Glagolitic alphabet-and-language; SIX_BY_SEVEN/sixBySeven carry the documented 42=6×7 verdict (7 is completeness, 42 is process)
+export { toGlagolitic, toScript, GLAGOLITIC_MAP, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } // OCS_GLAGOLITIC_MAP/toGlagoliticOCS extend the script to Old Church Slavonic (yat, yuses, fita…), the LANGUAGE Glagolitic was made to write; CHURCH_SLAVONIC_SCRIPTURE is the parallel corpus (OCS · Bulgarian · English); translateVerse/scriptureIn are the LOCAL meaning-translation service (no MT, no network); bibleParallel/bibleInGlagolitic render the founding Bible — Bulgarian MEANING and Cyril's OCS both in the round script — local, deterministic, zero tokens // + Ogham, Ifá, Polynesian local decode tools (the 6-domain loop completed) // + the 6 frontier decode tools: sexagesimal (base-60), luoShu (canonical order-3) // GLAGOLITIC_MAP for the reverse OCR; gematria + the local decode tools decode the saved original ancient texts; GLAGOLITIC_LETTERS/glagoliticValue/toGlagoliticNumber/glagoliticAcrostic are the Glagolitic alphabet-and-language; SIX_BY_SEVEN/sixBySeven carry the documented 42=6×7 verdict (7 is completeness, 42 is process)
 
 export interface Atom {
   readonly name: string
@@ -29956,21 +29956,22 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const navTags = ranked.slice(0, 8) // the top clusters become the nav dropdowns — bounded so the bar stays usable
   const sidebarTags = [...ranked.slice(0, 12), 'more'] // the sidebar shows every page, by cluster
   const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
-  // The architecture IS the eight-fold: every page is placed on a trigram by its OWN content-address (the seed
-  // is the magnet, the same placement the components use in iChing), and the eight nav doors are NAMED by the
-  // trigrams' canonical MEANINGS (BAGUA.meaning) — the knowledge names the architecture, nothing hand-listed. A
-  // door gathers the pages that landed on its trigram; an empty trigram links to the eight-fold (hexagram-colour).
+  // The eight-fold as ONE door: a single ☯ dropdown whose SECTIONS are the eight trigrams, NAMED by their
+  // canonical meanings (the knowledge names the architecture, nothing hand-listed). Each section gathers the
+  // curated pages placed on its trigram by their own content-address (seedFromText(slug) % 8); empty trigrams
+  // drop out. The full placement of every component lives in the IChing component — the nav is the eight-fold's
+  // navigable face. One light door instead of eight, the meanings its sections.
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
   const trigramOf = (slug: string) => seedFromText(slug) % 8 // the page's own content-address → its trigram (0–7)
   const buildNav = (i: 0 | 1) => {
-    const doors = BAGUA.map((tri) => {
-      const routes = dedupe(pages.filter((page) => trigramOf(page.slug) === tri.bits).map((page) => routeOf(page.slug)))
-      const text = `${tri.glyph} ${i === 1 ? tri.meaningBg : tri.meaningEn}`
-      return routes.length
-        ? { text, items: routes.slice(0, 30).map((route) => item(route, i)) }
-        : { text, link: link('/hexagram-colour', i) }
-    })
-    return [{ text: i === 1 ? 'Начало' : 'Home', link: link('/', i) }, ...doors]
+    const sections = BAGUA.map((tri) => ({
+      text: `${tri.glyph} ${i === 1 ? tri.meaningBg : tri.meaningEn}`,
+      items: dedupe(staticPages().filter((page) => trigramOf(page.slug) === tri.bits).map((page) => routeOf(page.slug))).map((route) => item(route, i)),
+    })).filter((section) => section.items.length > 0)
+    return [
+      { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
+      { text: i === 1 ? '☯ Осемкратното' : '☯ The Eight-fold', items: sections },
+    ]
   }
   const buildSidebar = (i: 0 | 1) =>
     sidebarTags

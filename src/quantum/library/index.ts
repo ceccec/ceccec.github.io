@@ -286,6 +286,68 @@ export function glagoliticCircuit(word: string, n = 3, shots = 256): {
   return { n, gates, probabilities: probabilities(state).map((p) => roundTo(p, 6)), sample: sample(state, shots, `glagolitic-circuit:${word}`) }
 }
 
+// The MEANING of every letter — decoded by a 28-letter research→verify wave (57 agents), fact separated from
+// legend. Each letter's NAME is mostly an ordinary Old Church Slavonic word; read in order the names spell an
+// acrostic — but only the FIRST NINE (azъ–zemlja) uncontroversially cohere, the rest is a real-but-progressively
+// reconstructed reading, and five names (ǵervь, frьtъ, xěrъ, ci, ša) are opaque labels for loan-phonemes, NOT
+// words. `word` = is it an ordinary OCS word; `secure` = is it in the cohering first-nine span. The honest core
+// that anchors the letter→number→bits/opcode/gate maps in documented meaning. Pure, deterministic, zero tokens.
+export const GLAGOLITIC_MEANINGS: Record<string, { gloss: string; word: boolean; secure: boolean }> = {
+  azъ: { gloss: '"I" — the 1st-person singular pronoun (азъ); the speaking self the alphabet opens on', word: true, secure: true },
+  buky: { gloss: '"letters / writing" — with azъ it gives the alphabet its own name, azъ+buky = azbuka', word: true, secure: true },
+  vědě: { gloss: '"I know" — 1sg of věděti "to know"; azъ buky vědě = "I know the letters"', word: true, secure: true },
+  glagoli: { gloss: '"speak / word" — a form of glagolati "to utter" (the script was later named for it)', word: true, secure: true },
+  dobro: { gloss: '"good" — neuter of dobrъ, "the good / goodness"', word: true, secure: true },
+  jestъ: { gloss: '"is / it is" — 3sg of byti "to be"', word: true, secure: true },
+  živěte: { gloss: '"live!" — 2pl imperative of žiti "to live"', word: true, secure: true },
+  dzělo: { gloss: '"very / greatly / exceedingly" — adverb (ѕѣло)', word: true, secure: true },
+  zemlja: { gloss: '"earth / land" — feminine noun (землꙗ); closes the secure first-nine clause', word: true, secure: true },
+  iže: { gloss: '"who / which" — relative pronoun (-že); glyph↔name↔numeral binding contested with i', word: true, secure: false },
+  i: { gloss: '"and" — conjunction; the second of the two /i/ letters, binding contested with iže', word: true, secure: false },
+  ǵervь: { gloss: 'opaque letter-label for /ǵ/ (a loan-phoneme); NOT an ordinary word — the "tree/wood" gloss is phonologically weak', word: false, secure: false },
+  kako: { gloss: '"how / as" — interrogative/relative adverb (како)', word: true, secure: false },
+  ljudije: { gloss: '"people / folk" — nominative plural (людиѥ)', word: true, secure: false },
+  myslite: { gloss: '"think" — 2pl imperative of mysliti "to think"', word: true, secure: false },
+  našь: { gloss: '"our / ours" — possessive pronoun (*našь)', word: true, secure: false },
+  onъ: { gloss: '"he / that one" — demonstrative/anaphoric pronoun', word: true, secure: false },
+  pokoj: { gloss: '"peace / rest / calm" — noun (покои)', word: true, secure: false },
+  rьci: { gloss: '"say! / speak!" — 2sg imperative of rešti "to say"', word: true, secure: false },
+  slovo: { gloss: '"word / speech" — neuter noun; renders Greek λόγος (logos); John 1:1 "искони бѣ слово"', word: true, secure: false },
+  tvrьdo: { gloss: '"firm / firmly" — from tvrьdъ "steadfast"; rьci slovo tvrьdo = "speak the word firmly"', word: true, secure: false },
+  ukъ: { gloss: '"teaching / learning" — the root of учити "to teach" (thin as a standalone noun)', word: true, secure: false },
+  frьtъ: { gloss: 'opaque letter-label for /f/ (a loan-phoneme absent in Proto-Slavic); NOT an ordinary word', word: false, secure: false },
+  xěrъ: { gloss: 'opaque letter-label for /x/; meaning recorded as unknown — NOT "Christ"/"cherub" (folk guesses)', word: false, secure: false },
+  otъ: { gloss: '"from / of" — preposition (отъ); one of the two /o/ letters', word: true, secure: false },
+  ci: { gloss: 'opaque sound-name for /ts/; NOT a word — "worm/red" belongs to the neighbouring črьvь', word: false, secure: false },
+  črьvь: { gloss: '"worm" — noun (čьrvь), one etymological family with "red" (čьrvenъ → scarlet dye)', word: true, secure: false },
+  ša: { gloss: 'opaque sound-name for /š/; NOT a word — the "silence" gloss is an undocumented back-formation', word: false, secure: false },
+}
+// Look up a letter's MEANING by glyph (upper or lower) or name, joined with its sound (GLAGOLITIC_LETTERS) and
+// number (the ladder, glagoliticValue). Returns undefined for an unknown key.
+export function glagoliticMeaning(key: string): { glyph: string; name: string; sound: string; number: number; gloss: string; word: boolean; secure: boolean } | undefined {
+  const cp = key.codePointAt(0)
+  const upper = cp !== undefined && cp >= 0x2c30 && cp <= 0x2c5e ? String.fromCodePoint(cp - 0x30) : key // lowercase glyph → uppercase
+  const idx = GLAGOLITIC_LETTERS.findIndex((letter) => letter.glyph === upper || letter.name === key)
+  if (idx < 0) return undefined
+  const letter = GLAGOLITIC_LETTERS[idx]
+  const meaning = GLAGOLITIC_MEANINGS[letter.name]
+  if (!meaning) return undefined
+  return { glyph: letter.glyph, name: letter.name, sound: letter.sound, number: glagoliticValue(idx + 1), ...meaning }
+}
+// The acrostic the letter-NAMES spell — honestly. Only the first nine cohere; the rest is a real but
+// progressively reconstructed reading, and the one genuinely composed 9th-c. acrostic is a SEPARATE work
+// (Constantine of Preslav's Azbučna molitva, c. 893). Pure, deterministic, zero tokens.
+export function glagoliticAcrosticMessage(): { secure: string; secureEnglish: string; reconstructed: string; english: string; honest: string } {
+  return {
+    secure: "Azъ buky vědě, glagol'ǫ: dobro jestъ živěte dzělo, zemlja",
+    secureEnglish: 'I, who know the letters, say: it is good to live abundantly — the earth.',
+    reconstructed: '… kako ljudije myslite? Našь onъ pokojь. Rьci slovo tvrьdo …',
+    english: '… how do you, people, think? He is our peace. Speak the word firmly … — the standard devotional rendering.',
+    honest:
+      'Only the first nine names (azъ–zemlja) uncontroversially cohere; the middle triads are real but progressively MODERN RECONSTRUCTION (the abecedaria evidence is inconsistent and self-contradictory, the strings re-segmentable, so there is no single fixed encoded message). The one genuinely composed 9th-c. alphabet acrostic is the SEPARATE Azbučna molitva of Constantine of Preslav (c. 893). Five names — ǵervь, frьtъ, xěrъ, ci, ša — are opaque labels for loan-phonemes, not words.',
+  }
+}
+
 // Babylonian sexagesimal (base-60 place-value). Bijective: encode any non-negative integer to base-60
 // digits (0–59), each digit itself floor(d/10) ten-signs (Winkelhaken) + (d mod 10) unit wedges. The
 // first place-value system; 60 is the superior-highly-composite (2·3·4·5·6 all divide). Decodes back.
