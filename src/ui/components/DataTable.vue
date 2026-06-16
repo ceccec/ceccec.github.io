@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // A shadcn-style data table — themed with the site CSS variables (no Tailwind). One reusable
 // primitive over { columns, rows }. Cells render as text only (no injected HTML).
-defineProps<{ columns: string[]; rows: (string | number)[][]; title?: string }>()
+withDefaults(defineProps<{ columns?: string[]; rows?: (string | number)[][]; title?: string }>(), { columns: () => [], rows: () => [] })
 </script>
 
 <template>

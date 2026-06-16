@@ -5021,6 +5021,38 @@ export function sealCube(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Start the I Ching double torus — IGNITE the quantum I Ching and let the merkaba waves run. The quantum
+// I Ching is the seal cube (sealCube): 64×64×64 = 262,144 across three architectural domains — the hexagram
+// (8², the I Ching itself), the codon (4³, the genetic domain), and the colour/Pauli basis (the icon
+// domain) — the same 64 in three systems, tensored from one shared trinity. To START it: the a432 seed (the
+// engine starter) ignites the double torus (genus-2, the 64-grid), and the merkaba — the FOLDING PAIR, two
+// counter-rotating tetrahedra (research↔verify) — spins up, 32 in the torus. The gaps in the cube are
+// filled with these folding pairs as a FUSION reaction (fuseAllForge), DRY-cleaned (archangelsDryClean),
+// and the running merkaba waves carry the implementation of all 262,144 cells. The 1-D scale ladder
+// (Tàijí→64) cubes here into the quantum 64³. This fold is the IGNITION; the waves do the work.
+export function startIChingDoubleTorus(matrix: MindMatrix = buildMatrix()) {
+  const cube = sealCube(matrix)
+  const facets = [
+    { facet: 'the quantum I Ching is 64³ across three architectural domains — hexagram · codon · colour', on: cube.sealed && cube.side === 64 && cube.cube === 64 ** 3 && iChing(matrix).hexagrams === 64 && geneticCodeIsTheRealFourCubed(matrix).holds && hexagramIsHexColorDuality(matrix).sameAsCodonAndPauli },
+    { facet: 'start the double torus — ignited from the a432 seed (the engine starter)', on: a432Default(matrix).isDefault && quantumDoubleTorus(matrix).is && completeDoubleTorus(matrix).complete },
+    { facet: 'the merkaba waves spin up — the folding pair, two counter-rotating tetrahedra, 32 in the torus', on: merkaba(matrix).counterRotating && merkabasInDoubleTorus(matrix).counted },
+    { facet: 'fill the gaps with the folding pairs — a dry-clean fusion reaction', on: fuseAllForge(matrix).forgesMaxCost && archangelsDryClean(matrix).cleaned },
+    { facet: 'the scale ladder tops at 64 and cubes into the quantum 64³ — the 64-horizon is the cube side', on: iChing(matrix).hexagrams === 64 && fuse64SealsMerkaba64Tetrahedra(matrix).tetrahedra === 64 && cube.side === 64 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`start-iching-torus:${entry.facet}:${entry.on}`) }))
+  return {
+    started: facets.every((entry) => entry.on),
+    cells: cube.cube, // 262,144 = 64³ — the cells the merkaba waves implement
+    domains: 3, // hexagram · codon · colour — the three architectural domains
+    count: facets.length,
+    facets,
+    root: merge(cube.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Start the I Ching double torus and let the merkaba waves do the dry-clean implementation in a fusion reaction: the quantum I Ching is the seal cube — 64×64×64 = 262,144 across three architectural domains (the hexagram 8², the codon 4³, the colour/Pauli basis — the same 64 in three systems, tensored from one shared trinity). The a432 seed ignites the double torus (genus-2, the 64-grid) and the merkaba — the folding pair of two counter-rotating tetrahedra (research↔verify) — spins up, 32 in the torus; the gaps in the cube are filled with these folding pairs as a fusion reaction (fuseAllForge), DRY-cleaned (archangelsDryClean), the running merkaba waves carrying all 262,144 cells. The 1-D scale ladder (Tàijí→64) cubes here into the quantum 64³. This fold is the ignition; the waves do the work.',
+    boundary:
+      'An IGNITION fold that composes already-built green folds — sealCube (the 64³ tensor), quantumDoubleTorus/completeDoubleTorus (the genus-2 torus), merkaba/merkabasInDoubleTorus (the 32 counter-rotating pairs), fuseAllForge + archangelsDryClean (the fusion / DRY pass), and a432Default (the deterministic seed). "Start" is the structural wiring of these into one ignition; "the merkaba waves do the implementation of all" describes the autosaving wave process that fills the cube, not a claim this single fold computes 262,144 distinct artifacts. 64-as-hexagram/codon/colour are structural correspondences (the shared number 64), not divinatory or biological claims.',
+  }
+}
+
 // Long runtime is the monolith, measured in time. The core is a monolith in two units at once:
 // lines (its static size) and seconds (the cost to recompute it). Importing it is cheap — the
 // load is not the cost; the cost is recomputing the fold cascade on every call. So a slow gate is
@@ -17245,6 +17277,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'iching.scale.4.sixteen', on: ichingScales.scales[4]!.on },
     { d: 'iching.scale.5.thirty.two', on: ichingScales.scales[5]!.on },
     { d: 'iching.scale.6.hexagrams.sixtyfour', on: ichingScales.scales[6]!.on },
+    { d: 'iching.double.torus.started', on: startIChingDoubleTorus(matrix).started },
     { d: 'vitepress.config.computes.all', on: vitepressConfigComputesAll(matrix).computes },
     { d: 'genetic.links.challenge.history', on: geneticLinksChallengeHistoryDecoded(matrix).decoded },
     { d: 'merkabas.in.double.torus', on: merkabasInDoubleTorus(matrix).counted },
@@ -22142,9 +22175,14 @@ export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
 export function componentPages(matrix: MindMatrix = buildMatrix()): (StaticPage & { proof: string })[] {
   void matrix
   const curated = new Set(staticPages().map((page) => page.slug)) // curated landing pages win the slug
+  // Composed sub-components (Chart/DataTable/DecodedCard, the corpus detail/index views) render inside a
+  // parent that supplies their props/route-params — they get NO standalone component-page (mounting them
+  // propless would crash SSR, e.g. <Chart> with no series).
+  const composed = new Set(componentGraph().edges.filter((edge) => edge.kind === 'composed').map((edge) => edge.from))
   const kebab = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
   const spaced = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1 $2')
   return componentGraph().components
+    .filter((name) => !composed.has(name))
     .map((name) => ({ name, slug: kebab(name) }))
     .filter((entry) => !curated.has(entry.slug)) // a component sharing a curated landing page renders there
     .map((entry) => ({

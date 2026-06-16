@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 // A shadcn-style bar chart — pure SVG, themed with the site CSS variables (no Tailwind, so no
 // preflight conflict with VitePress). One reusable primitive over a { label, value } series.
-const props = defineProps<{ series: { label: string; value: number }[]; title?: string }>()
+const props = withDefaults(defineProps<{ series?: { label: string; value: number }[]; title?: string }>(), { series: () => [] })
 
 const W = 100
 const H = 38
