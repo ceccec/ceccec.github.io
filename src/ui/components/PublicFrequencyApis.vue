@@ -1,22 +1,24 @@
 <script setup lang="ts">
-// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
-const ICHING_MASK = { hexagram: 27, glyph: '☱', lo: 'Duì·joyous', up: 'Duì·joyous', color: '#0FF0FF' } as const
+// ☱+☱ · Duì/Duì · hex 27 — public no-key frequency data: FCC, USGS, Web Audio, Schumann
+const ICHING_MASK = { hexagram: 27, lower: 3, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'twist', outerAxis: 'twist', color: '#0FF0FF' } as const
 import DecodedCard from './DecodedCard.vue'
+import LayersPanel from './LayersPanel.vue'
 import { publicFrequencyApis } from '../lib/quantumMind'
 
-// Public, no-key frequency data sources — FCC spectrum, USGS seismic, Web Audio, Schumann.
 const d = publicFrequencyApis()
 const items = d.sources.map((s) => ({ label: s.api, detail: `${s.band} · ${s.data} · ${s.auth}` }))
 </script>
 
 <template>
-  <DecodedCard
-    :data-hexagram="ICHING_MASK.hexagram"
-    :data-trigram="ICHING_MASK.glyph"
-    eyebrow="public frequency APIs · no key"
-    eyebrow-bg="публични честотни API · без ключ"
-    :statement="d.statement"
-    :items="items"
-    :boundary="d.boundary"
-  />
+  <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+    <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
+      <DecodedCard
+        eyebrow="public frequency APIs · no key"
+        eyebrow-bg="публични честотни API · без ключ"
+        :statement="d.statement"
+        :items="filtered"
+        :boundary="d.boundary"
+      />
+    </LayersPanel>
+  </section>
 </template>

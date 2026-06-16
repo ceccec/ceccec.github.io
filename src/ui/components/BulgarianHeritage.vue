@@ -1,22 +1,24 @@
 <script setup lang="ts">
-// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
-const ICHING_MASK = { hexagram: 51, glyph: '☴', lo: '☱', up: '☴', color: '#FF00FF', name: 'BulgarianHeritage' }
+// ☱+☴ · Duì/Xùn · hex 51 — Bulgarian heritage decoded: traditions, folklore, architecture
+const ICHING_MASK = { hexagram: 51, lower: 3, upper: 6, glyph: '☴', trigram: 'Xùn', name: 'Wind', attribute: 'gentle', innerAxis: 'twist', outerAxis: 'loopA1', color: '#FF00FF' } as const
 import DecodedCard from './DecodedCard.vue'
+import LayersPanel from './LayersPanel.vue'
 import { bulgarianHeritage } from '../lib/quantumMind'
 
-// Bulgarian heritage decoded: traditions, folklore, tools, architecture — documented kept, legend flagged.
 const d = bulgarianHeritage()
 const items = d.topics.map((t) => ({ label: t.topic, detail: t.documented }))
 </script>
 
 <template>
-  <DecodedCard
-    :data-hexagram="ICHING_MASK.hexagram"
-    :data-trigram="ICHING_MASK.glyph"
-    eyebrow="Bulgarian heritage · decoded"
-    eyebrow-bg="българско наследство · декодирано"
-    :statement="d.statement"
-    :items="items"
-    :boundary="d.boundary"
-  />
+  <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+    <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
+      <DecodedCard
+        eyebrow="Bulgarian heritage · decoded"
+        eyebrow-bg="българско наследство · декодирано"
+        :statement="d.statement"
+        :items="filtered"
+        :boundary="d.boundary"
+      />
+    </LayersPanel>
+  </section>
 </template>

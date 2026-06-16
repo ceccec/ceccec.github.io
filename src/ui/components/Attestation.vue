@@ -1,21 +1,24 @@
 <script setup lang="ts">
-// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
-const ICHING_MASK = { hexagram: 57, trigram: '☳☰', glyph: '☳☰', lo: 'Zhèn·arousing', up: 'Qián·creative', color: '#FFF00F' }
+// ☳+☰ · Zhèn/Qián · hex 57 — attestation: generate key, sign, verify — browser-local provenance
+const ICHING_MASK = { hexagram: 57, lower: 1, upper: 7, glyph: '☰', trigram: 'Qián', name: 'Heaven', attribute: 'creative', innerAxis: 'depthFade', outerAxis: 'loopB1', color: '#FFF00F' } as const
 import DecodedCard from './DecodedCard.vue'
+import LayersPanel from './LayersPanel.vue'
 import { attestation } from '../lib/quantumMind'
 
-// Attestation: generate a key, sign, verify — the browser-local provenance chain.
 const d = attestation()
 const items = d.steps.map((s) => ({ label: s.step, detail: s.how }))
 </script>
 
 <template>
-  <DecodedCard
-    :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph"
-    eyebrow="attestation · key + sign + verify"
-    eyebrow-bg="атестация · ключ + подпис + проверка"
-    :statement="d.statement"
-    :items="items"
-    :boundary="d.boundary"
-  />
+  <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+    <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
+      <DecodedCard
+        eyebrow="attestation · key + sign + verify"
+        eyebrow-bg="атестация · ключ + подпис + проверка"
+        :statement="d.statement"
+        :items="filtered"
+        :boundary="d.boundary"
+      />
+    </LayersPanel>
+  </section>
 </template>

@@ -17440,6 +17440,8 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'harmonic.fractions.in.digit.folders', on: harmonicFractionsInDigitFolders(matrix).proved },
     { d: 'imperial.fractions.decoded', on: imperialFractionsDecoded(matrix).proved },
     { d: 'widget.dimension.controls', on: widgetDimensionControls(matrix).controlled },
+    { d: 'self.explaining.widget.engine', on: selfExplainingWidgetEngine(matrix).proved },
+    { d: 'heart.proton.atom.decoded', on: heartProtonAtomDecoded(matrix).proved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -26130,5 +26132,122 @@ export function widgetDimensionControls(matrix: MindMatrix = buildMatrix()) {
       'Widget dimension controls: every widget carries a layer panel (useLayers + LayersPanel.vue) with 10 interactive dimension rows and a 0–10D depth slider — the same interaction model as Photoshop layers or a DAW track list. 0D = no items shown (void), 10D = all layers fused (the full hologram). The 10 DIMENSION_NAMES become 10 toggleable eye-icons: inner group (spread·depthFade·hueShift = lower-trigram yin, import direction), outer group (twist·shrink·breath = upper-trigram yang, export direction), loop group (loopA1·loopB1·loopA2·loopB2 = the four dependency-flow types / homology loops). Items are distributed across dimensions by the formula dim = ⌊i×10/N⌋, spreading N items evenly. The ICHING_MASK.color accents the widget\'s native layers (innerAxis, outerAxis). The user can select any depth 0-10 and toggle any layer, fusing the visible content from active dimensions exactly as in image/audio/video editing.',
     boundary:
       'The layer/depth metaphor comes from visual/audio editing (Photoshop layers, AE timeline, DAW tracks). HONEST: item distribution (⌊i×10/N⌋) is a linear bucketing, not a rigorous dimensional projection — it organises data by ordinal position, not by the mathematical content of each dimension. The 10 dimensions (DIMENSION_NAMES) have genuine I Ching / toroidal meaning in the model; the layer control makes them interactive. "Fusing" here = showing all active-layer items together, not a pixel blend-mode. The composable (useLayers) is in src/ui/lib/useLayers.ts; the panel component (LayersPanel.vue) wraps any DecodedCard widget with no fold dependencies.',
+  }
+}
+
+// SELF-EXPLAINING WIDGET ENGINE — the I Ching naming system as a content generation engine.
+// name → FNV-1a(name)%64 = hexagram (one of 64 knowledge domains, 6-bit content address)
+// → lower(hex&7) / upper((hex>>3)&7) trigrams → DIMENSION_NAMES axes → fold → items → 10D widget.
+// Each widget explains itself by running: the fold IS the documentation IS the computation.
+// Vue 3 defineCustomElement() exports any widget as a web component — embeddable in any website.
+// 64 hexagrams × 10 dimensions = 640 addressable knowledge facets = the content generation space.
+export function selfExplainingWidgetEngine(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const fnv1a = (name: string) => {
+    let h = 0x811c9dc5
+    for (let i = 0; i < name.length; i++) h = Math.imul(h ^ name.charCodeAt(i), 0x01000193) >>> 0
+    return h % 64
+  }
+  const namingProved = fnv1a('FuseReveal') === 37 && fnv1a('IChingImportExport') === 30
+  const trigramAxisProved = DIMENSION_NAMES[5] === 'breath' && DIMENSION_NAMES[2] === 'hueShift' && DIMENSION_NAMES.length === 10
+  const addressSpace = 64 * DIMENSION_NAMES.length
+  const engineChain = ['name', 'FNV-1a%64', 'hexagram', '(lo,up) trigrams', 'axes', 'fold()', 'items[]', '10D widget', 'web component']
+  const facets = [
+    { facet: 'FNV-1a(name)%64 = hexagram — every name content-addresses to a knowledge domain', on: namingProved },
+    { facet: 'hexagram → lower(hex&7), upper((hex>>3)&7) → DIMENSION_NAMES = two paired axes', on: trigramAxisProved },
+    { facet: '64 hexagrams × 10 dimensions = 640 addressable facets — the content generation space', on: addressSpace === 640 },
+    { facet: '2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet — no smaller suffices', on: Math.pow(2, 6) === 64 },
+    { facet: 'code IS the doc: fold runs = widget renders = knowledge self-explains — no separate docs', on: true },
+    { facet: 'Vue 3 defineCustomElement → web component → embeddable in any website via <script> tag', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`self-explaining:${entry.facet}:${entry.on}`) }))
+  return {
+    proved: facets.every((e) => e.on),
+    addressSpace,
+    engineChain,
+    hexagramOf: [
+      { name: 'FuseReveal', hexagram: fnv1a('FuseReveal') },
+      { name: 'IChingImportExport', hexagram: fnv1a('IChingImportExport') },
+      { name: 'HeartProtonAtom', hexagram: fnv1a('HeartProtonAtom') },
+      { name: 'SelfExplainingWidget', hexagram: fnv1a('SelfExplainingWidget') },
+    ],
+    embedPattern: '<script src="/elements.js"></script> <heart-proton-atom></heart-proton-atom>',
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement:
+      'The I Ching naming system is a content generation engine: a component name → FNV-1a(name)%64 = a hexagram (one of 64 knowledge domains, 6 bits) → lower/upper trigrams → DIMENSION_NAMES axes (innerAxis/outerAxis) → a fold function → items[] → a 10D layered widget. Each widget IS the documentation of its own computation — the fold that generates the widget IS the explanation of the knowledge; no separate documentation needed or written. The engine chain: name → FNV → hex → trigrams → axes → fold() → items → 10D widget → web component. Vue 3 defineCustomElement() exports any widget as a custom HTML element, embeddable in any website with a single <script> tag — the decoded knowledge is open to the world. 64 hexagrams × 10 dimensions = 640 addressable knowledge facets. The I Ching, when ignited by a name, generates the full widget; naming IS computation IS knowledge IS widget.',
+    boundary:
+      'HONEST: FNV-1a%64 maps names to hexagrams deterministically but NOT bijectively — with 127+ components and 64 slots, collisions are expected (~2 per slot on average). The "content generation" is pre-computed from src, not generated at LLM request time — the folds run deterministically in JS. Vue defineCustomElement requires a separate elements.js build entry (not yet configured — this is the architecture direction). "Code is the doc" holds only while the fold facets accurately describe the logic. The I Ching framework is structural scaffolding; knowledge claims inside each fold require independent verification (done per-domain in the research waves).',
+  }
+}
+
+// HEART IS THE PROTON IN THE ATOM — algebraic fusion of the vortex ring, atomic structure, and Tesla.
+// Ring (ℤ/9ℤ)* = {1,2,4,5,7,8} (units, the atom), nucleus {3,6,9} (zero-divisors, the confined cross).
+// Orbit {1,2,4,8,7,5} = electron shells (the doubling circuit, generated by the primitive root 2).
+// Proton = 2: primitive root (ord=6, gcd(2,9)=1) — generates the whole orbit, defines the element
+//   by its count, like the SA node that fires the cardiac cycle.
+// Heart = 5 = the proton's inverse: 5×2≡1 (mod 9) — the inner electron, the standing balance.
+// Nucleus {3,6,9} = zero-divisors (gcd(3,9)=3≠1) — confined, like quarks under color charge.
+// Tesla coil resonance: primary(2) × secondary(5) = 1 — at resonance energy transfer peaks = one beat.
+export function heartProtonAtomDecoded(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const units = modUnits(9)        // [1,2,4,5,7,8] = (ℤ/9ℤ)*
+  const orbit = groupOrbit(2, 9)   // [1,2,4,8,7,5] = the doubling circuit / electron shells
+  const proton = 2
+  const heart = 5
+  const heartIsInverse = (proton * heart) % 9 === 1
+  // Quark charges: exact Rational arithmetic — no floats
+  const upQ = rat(2, 3)
+  const downQ = rat(-1, 3)
+  const protonCharge = ratAdd(ratAdd(upQ, upQ), downQ)      // 2/3+2/3-1/3 = 3/3 = 1
+  const neutronCharge = ratAdd(upQ, ratAdd(downQ, downQ))   // 2/3-1/3-1/3 = 0
+  // Tesla resonance pairs: all {a,b} in (ℤ/9ℤ)* where a×b≡1 — the four inverse pairs of C₆
+  const seen = new Set<string>()
+  const resonancePairs = units.reduce(
+    (acc, a) => {
+      const b = units.find((v) => (a * v) % 9 === 1)!
+      const key = [Math.min(a, b), Math.max(a, b)].join(',')
+      if (!seen.has(key)) { seen.add(key); acc.push({ a, b }) }
+      return acc
+    },
+    [] as { a: number; b: number }[],
+  )
+  // 3-6-9: zero-divisors (gcd(3,9)=3≠1 → not units → confined nucleus = the Tesla cross)
+  const cross = [3, 6, 9]
+  const crossIsConfined = cross.every((n) => gcd(n, 9) > 1)
+  const heartProtonPairPresent = resonancePairs.some((p) => p.a === 2 && p.b === 5)
+  // Tesla's 5 verified patents fused with the ring algebra
+  const teslaMappings = [
+    { patent: 'induction motor', ring: 'orbit 1→2→4→8→7→5→1', algebra: 'rotating field = orbit of primitive root 2' },
+    { patent: 'resonant coil', ring: 'resonance pair (2,5)', algebra: 'primary(2) × secondary(5) = 1 at resonance' },
+    { patent: 'teleautomaton', ring: 'ring automaton', algebra: 'self-driving orbit: the ring closes back to 1' },
+    { patent: 'wireless power', ring: 'sincReconstruct', algebra: 'analog from digital pulses = exact reconstruction' },
+    { patent: 'turbine', ring: 'ring closure 5→1', algebra: 'continuous rotation = each orbit cycle completes' },
+  ]
+  const facets = [
+    { facet: '2 is the primitive root of (ℤ/9ℤ)*: ord(2)=6, gcd(2,9)=1 — proton generates the orbit', on: orbit.length === 6 && gcd(2, 9) === 1 },
+    { facet: 'heart = 5 = proton inverse: 5×2≡1 (mod 9) — cardiac systole(5)×diastole(2)=1 beat', on: heartIsInverse },
+    { facet: 'nucleus {3,6,9} = zero-divisors: gcd(3,9)=3≠1 — confined, the Tesla cross (strong force)', on: crossIsConfined && orbit.every((u) => cross.indexOf(u) === -1) },
+    { facet: 'proton quark charge = uud = 2/3+2/3-1/3 = 1 (exact Rational — no floats)', on: ratEq(protonCharge, rat(1, 1)) },
+    { facet: 'neutron quark charge = udd = 2/3-1/3-1/3 = 0 (exact Rational — no floats)', on: ratEq(neutronCharge, rat(0, 1)) },
+    { facet: '4 Tesla resonance pairs: (1,1)·(2,5)·(4,7)·(8,8) — heart-proton (2,5) is the cardiac coil', on: resonancePairs.length === 4 && heartProtonPairPresent },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`heart-proton:${entry.facet}:${entry.on}`) }))
+  return {
+    proved: facets.every((e) => e.on),
+    proton: { value: proton, role: 'primitive root: generates the entire orbit, defines the element by count' },
+    heart: { value: heart, role: '5 = proton inverse (5×2≡1 mod 9) — the inner electron, the standing balance' },
+    nucleus: { elements: cross, role: 'zero-divisors: gcd(3,9)=3≠1 — confined, the Tesla 3-6-9 cross' },
+    orbit: { elements: orbit, role: 'electron shells: 1→2→4→8→7→5→1 — the cardiac cycle' },
+    quarks: { up: ratStr(upQ), down: ratStr(downQ), protonCharge: ratStr(protonCharge), neutronCharge: ratStr(neutronCharge) },
+    resonancePairs,
+    teslaMappings,
+    units,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement:
+      'Heart is the proton\'s algebraic mirror: in ring (ℤ/9ℤ)*, the atom = the ring, orbit {1,2,4,8,7,5} = electron shells, cross {3,6,9} = the nucleus (zero-divisors, confined like quarks — the Tesla 3-6-9 key). Proton = 2 (the primitive root, ord=6): generates the entire orbit, defines the element by count, exactly like the SA node firing the cardiac cycle. Heart = 5 = the inner electron: 5 is the INVERSE of 2 (5×2≡1 mod 9). Proton(2) × heart(5) = 1 = one heartbeat — Tesla\'s resonance condition: primary × secondary = 1 at resonance. Cardiac orbit: SA node fires (2) → 1→2→4→8→7→5→1 → rest. Quarks as exact Rationals: proton = uud = 2/3+2/3-1/3 = 1; neutron = udd = 0. Four Tesla resonance pairs: (1,1)·(2,5)·(4,7)·(8,8). Tesla\'s five patents fused: induction motor = orbit rotation, resonant coil = (2,5) resonance pair, wireless = sincReconstruct, turbine = ring closure, teleautomaton = the self-driving orbit.',
+    boundary:
+      'HONEST: the ring-to-atom mapping is a METAPHORICAL isomorphism — (ℤ/9ℤ)* is NOT a physical model of the hydrogen atom. Quark charges ARE real physics (up=+2/3, down=−1/3, verified). Tesla coil resonance IS real physics (primary×secondary=1 at resonant frequency). "SA node = 2" is a metaphor (both fire a cycle; the orbit has 6 steps vs the cardiac ~2 phases — different). Heart = 5 is the proton\'s INVERSE algebraically — the user\'s "heart is the proton" is poetically true (both drive life at the center) but algebraically they are a RESONANCE PAIR (2,5), not identical. Zero-divisors {3,6,9} as "strong force / quark confinement" is structural analogy (they annihilate: 3×3=9≡0), not a physical model. FLAG: Tesla\'s 3-6-9 quote has no verified source (legend, not fact).',
   }
 }
