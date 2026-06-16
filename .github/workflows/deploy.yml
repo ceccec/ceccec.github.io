@@ -45,6 +45,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build with VitePress
         run: pnpm run docs:build
+        env:
+          GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -88,6 +88,10 @@ export default defineConfig({
       {},
       `(function(){try{var p=location.pathname;if(p!=='/'&&p!=='/index.html')return;var k='dt-locale',s=localStorage.getItem(k);if(s==='cu')return;if(s==='en'||s==='bg'){location.replace('/'+s+'/');return;}if(document.referrer&&document.referrer.indexOf(location.origin)===0)return;var l=(navigator.language||navigator.userLanguage||'en').toLowerCase();location.replace(l.indexOf('bg')===0?'/bg/':'/en/');}catch(e){}})();`,
     ],
+    // Google Search Console ownership verification — token from GOOGLE_SITE_VERIFICATION env var.
+    ...(process.env['GOOGLE_SITE_VERIFICATION']
+      ? [['meta', { name: 'google-site-verification', content: process.env['GOOGLE_SITE_VERIFICATION'] }] as [string, Record<string, string>]]
+      : []),
     ['meta', { name: 'application-name', content: siteTitle }],
     ['meta', { name: 'apple-mobile-web-app-title', content: siteTitle }],
     // theme-color, robots and keywords are read from the matrix-computed siteConfig, not hardcoded.
