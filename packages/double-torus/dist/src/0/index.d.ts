@@ -16,6 +16,8 @@ export declare function memoByRoot<T>(name: string, matrix: {
 export declare function digitalRoot(n: number): number;
 export declare function humanEase(phase: number): number;
 export declare function humanBreath(timeMs: number, periodMs: number, depth?: number): number;
+export declare function sinc(x: number): number;
+export declare function sincReconstruct(samples: readonly number[], x: number): number;
 export interface AnimationEngine {
     /** Whether the persistent loop is currently running (callers still ask, e.g. to gate a one-shot redraw). */
     readonly running: boolean;
@@ -48,6 +50,26 @@ export declare function asVortex(f: Fold): {
     orbitIndex: number;
     orbit: readonly number[];
     axis: readonly number[];
+};
+export declare const VORTEX_SEQUENCE: readonly [1, 2, 4, 8, 7, 5, 3, 6, 9];
+export declare const VORTEX_REVERSE: readonly [9, 6, 3, 5, 7, 8, 4, 2, 1];
+export declare function vortexNext(d: number): number;
+export declare function vortexPrev(d: number): number;
+export declare function foldVortex(): {
+    valid: boolean;
+    pairs: {
+        position: number;
+        forward: 2 | 8 | 6 | 1 | 9 | 7 | 4 | 5 | 3;
+        reverse: 2 | 8 | 6 | 1 | 9 | 7 | 4 | 5 | 3;
+        sum: number;
+        root: number;
+    }[];
+    palindrome: number[];
+    total: number;
+    totalRoot: number;
+    inverseHolds: boolean;
+    statement: string;
+    boundary: string;
 };
 export declare function asTorus(f: Fold, major?: number, minor?: number, separation?: number): {
     x: number;
@@ -106,6 +128,7 @@ export declare function uuidHero(uuid: string): {
 };
 export declare function trinityKey(shareA: string, shareB: string): string;
 export declare function derivePublicKey(privateKey: string, publicRoots: readonly string[]): string;
+export declare function prng(seed: string): () => number;
 export declare function sampleCounts(dist: readonly number[], n: number, shots?: number, seed?: string): Record<string, number>;
 export interface QuantumState {
     readonly n: number;
@@ -123,7 +146,6 @@ export declare function measure(state: QuantumState, target: number, seed?: stri
     state: QuantumState;
 };
 export declare function sample(state: QuantumState, shots?: number, seed?: string): Record<string, number>;
-export declare function bellPair(): QuantumState;
 export declare function grover(n: number, marked: number, shots?: number, seed?: string): {
     n: number;
     size: number;
@@ -143,8 +165,6 @@ export declare function psample(state: ProbState, shots?: number, seed?: string)
 export declare function rnot(bits: number, target: number): number;
 export declare function rcnot(bits: number, control: number, target: number): number;
 export declare function rtoffoli(bits: number, control1: number, control2: number, target: number): number;
-export declare function caStep(rule: number, cells: readonly number[]): number[];
-export declare function caEvolve(rule: number, initial: readonly number[], steps: number): number[][];
 export declare function composeHazard(base: number, levers: readonly number[]): number;
 export declare function survive(s: number, hazard: number): number;
 export declare function admixToward(p: readonly number[], source: number, f: number): number[];
@@ -196,17 +216,22 @@ export declare function oscillatorBank(seed: string, modes: readonly {
     q: number;
 }[], samples: number, dt?: number): number[];
 export declare function powerSpectrum(samples: readonly number[], bins?: number): number[];
+export declare const SPEED_OF_LIGHT = 299792458;
+export declare const PLANCK = 6.62607015e-34;
+export declare const ELECTRONVOLT = 1.602176634e-19;
+export declare const PROTON_GYROMAGNETIC = 42577478.461;
+export declare const IONIZING_EV = 10;
+export declare function wavelengthOf(frequencyHz: number): number;
+export declare function frequencyOf(wavelengthM: number): number;
+export declare function photonEnergyEv(frequencyHz: number): number;
+export declare function isIonizing(frequencyHz: number): boolean;
+export declare function larmorFrequency(b0Tesla: number, gyromagnetic?: number): number;
+export declare function radarRange(roundTripSeconds: number): number;
+export declare function dopplerShift(radialVelocityMs: number, carrierHz: number): number;
 export type Edge = readonly [number, number];
 export declare function pmixStep(values: readonly number[], edges: readonly Edge[], q: number): number[];
 export declare function pmixEvolve(values: readonly number[], edges: readonly Edge[], q: number, steps: number): number[];
 export declare function congruence(a: readonly number[], b: readonly number[]): number;
-export declare function hopfieldStore(patterns: readonly (readonly number[])[]): number[][];
-export declare function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number;
-export declare function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps?: number): {
-    state: number[];
-    energy: number;
-    iters: number;
-};
 export declare const GENETIC_CODE = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG";
 export declare function mutationClass(codon: number, pos: number, base: number): 'silent' | 'missense' | 'nonsense';
 export declare function codeRobustness(kappa?: number): {
@@ -243,3 +268,16 @@ export declare function logInclusion(entries: readonly string[], index: number):
 export declare function logConsistent(oldRoot: string, entries: readonly string[], oldSize: number): Promise<boolean>;
 export declare function sha256Sync(text: string): string;
 export declare function toUuidSha256(seed: string): Uuid;
+export declare function findContentAddressCollision(maxTries?: number): {
+    found: boolean;
+    a: string;
+    b: string;
+    word: number;
+    tries: number;
+};
+export declare function addressEntropyBits(): {
+    nominalBits: number;
+    discardedBits: number;
+    effectiveBits: number;
+    birthdayLog2: number;
+};

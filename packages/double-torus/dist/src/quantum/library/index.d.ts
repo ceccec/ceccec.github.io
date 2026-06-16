@@ -49,6 +49,60 @@ export declare function glagoliticAcrostic(): {
     line: string;
     opening: string;
 };
+export declare function glagoliticBits(glyph: string, width?: number): number[];
+export declare function glagoliticFromBits(bits: readonly number[]): string;
+export declare const GLAGOLITIC_OPCODES: readonly ["ADD", "SUB", "XOR", "MUL", "ROL", "SET", "AND", "OUT"];
+export type GlagoliticOp = (typeof GLAGOLITIC_OPCODES)[number];
+export declare function glagoliticOpcode(glyph: string): {
+    op: GlagoliticOp;
+    operand: number;
+};
+export declare function glagoliticProgram(word: string): {
+    ops: {
+        glyph: string;
+        op: GlagoliticOp;
+        operand: number;
+    }[];
+    acc: number;
+    out: number[];
+};
+export declare const GLAGOLITIC_GATES: readonly ["H", "X", "Y", "Z", "S", "T"];
+export type GlagoliticGate = (typeof GLAGOLITIC_GATES)[number];
+export declare function glagoliticGate(glyph: string): {
+    gate: GlagoliticGate;
+    value: number;
+};
+export declare function glagoliticCircuit(word: string, n?: number, shots?: number): {
+    n: number;
+    gates: {
+        glyph: string;
+        gate: GlagoliticGate;
+        target: number;
+    }[];
+    probabilities: number[];
+    sample: Record<string, number>;
+};
+export declare const GLAGOLITIC_MEANINGS: Record<string, {
+    gloss: string;
+    word: boolean;
+    secure: boolean;
+}>;
+export declare function glagoliticMeaning(key: string): {
+    glyph: string;
+    name: string;
+    sound: string;
+    number: number;
+    gloss: string;
+    word: boolean;
+    secure: boolean;
+} | undefined;
+export declare function glagoliticAcrosticMessage(): {
+    secure: string;
+    secureEnglish: string;
+    reconstructed: string;
+    english: string;
+    honest: string;
+};
 export declare function sexagesimal(n: number): number[];
 export declare function fromSexagesimal(digits: readonly number[]): number;
 export declare function luoShu(): {
