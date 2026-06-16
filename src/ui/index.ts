@@ -136,6 +136,10 @@ import AnalogField from './components/AnalogField.vue'
 // Realtime wiring: every page computes its own trinity gateways + related paths from its route, rendered in
 // the left sidebar so the navigation manages itself (hand-maintaining the graph at this scale is impossible).
 import TrinityGateways from './components/TrinityGateways.vue'
+// The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
+// from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
+// body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
+import './tokens.css'
 import './style.css'
 
 export default {

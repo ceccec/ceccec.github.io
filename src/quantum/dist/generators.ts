@@ -5,7 +5,7 @@
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
 import { merkleFold, toUuid, foldVortex } from '../../0/index.ts'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation } from '../mind/folds.ts'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded } from '../mind/folds.ts'
 import { glagoliticHomeFromEnglish } from '../mind/li.ts'
 import { bibleParallel, toGlagoliticOCS, pesnopoika } from '../library/index.ts'
 import { computedDistFiles, readmeMarkdown } from './index.ts'
@@ -42,12 +42,15 @@ export interface Generator {
 const tri = (bits: number) => BAGUA[bits]!
 
 // The eight slots. A generator is placed on the trigram whose nature it shares — the meaning names
-// the generator, the same way iChingDomainMap lets the I Ching name the architecture. Four are filled:
-//   ☷ Kūn   (Earth, receptive)  — the corpus received & preserved: the Bible in Glagolitic.
-//   ☵ Kǎn   (Water, flowing)    — the live render that flows out: the Glagolitic home (debug echo).
-//   ☴ Xùn   (Wind, penetrating) — the optional bindings that quietly pervade: the Cloudflare wizard.
-//   ☰ Qián  (Heaven, creative)  — the whole site made manifest: the dist artifacts + README.
-// ☳ ☱ ☶ ☲ stay open for the next four generators.
+// the generator, the same way iChingDomainMap lets the I Ching name the architecture. All eight filled:
+//   ☷ Kūn   (Earth, receptive)    — the corpus received & preserved: the Bible in Glagolitic.
+//   ☳ Zhèn  (Thunder, arousing)   — the sequence that sets computation in motion: the vortex fold.
+//   ☵ Kǎn   (Water, flowing)      — the live render that flows out: the Glagolitic home (debug echo).
+//   ☱ Duì   (Lake, joyous)        — the joyous folk corpus: ПесноПойка songbook by gabchik.
+//   ☶ Gèn   (Mountain, still)     — the stable census: proven-or-purged fold manifest.
+//   ☲ Lí    (Fire, clinging)      — the clinging peer map: I Ching domain crosslinks.
+//   ☴ Xùn   (Wind, penetrating)   — the optional bindings that quietly pervade: the Cloudflare wizard.
+//   ☰ Qián  (Heaven, creative)    — the whole site made manifest: the dist artifacts + README.
 export function generators(): Generator[] {
   return [
     {
@@ -194,6 +197,9 @@ export function generators(): Generator[] {
         const write = filter.length ? files.filter((file) => filter.some((prefix) => file.path === prefix || file.path.startsWith(prefix))) : files
         const out = write.map((file) => ({ path: `.vitepress/dist/${file.path}`, content: file.content }))
         if (!filter.length || filter.includes('README.md')) out.push({ path: 'README.md', content: readmeMarkdown() })
+        // The computed I Ching design system — re-emit src/ui/tokens.css (the only place real numbers live, all
+        // canonical) as part of the manifest. The body (src/ui/style.css) references only these tokens.
+        if (!filter.length || filter.includes('src/ui/tokens.css')) out.push({ path: 'src/ui/tokens.css', content: ichingTokensCss() })
 
         let error: string | undefined
         const skillsFile = write.find((file) => file.path === 'skills.json')
@@ -201,7 +207,15 @@ export function generators(): Generator[] {
           const skills = JSON.parse(skillsFile.content) as { complete: number; count: number; skills: { fn: string; complete: boolean }[] }
           if (skills.complete < skills.count) error = `Skill atoms incomplete: ${skills.skills.filter((s) => !s.complete).map((s) => s.fn).join(', ')}`
         }
-        return { files: out, messages: [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README from src/quantum/dist.`], error }
+        // Gate "no hardcoded values whatsoever" over the real stylesheet: scan the body for any literal that is
+        // not a canonical I Ching number. The emitted tokens.css is clean by construction (cssIsIChingComputed);
+        // here we enforce the same law on the hand-maintained body, reading the actual file.
+        const bodyCss = ctx.read('src/ui/style.css')
+        if (bodyCss != null) {
+          const offenders = scanCssForHardcoded(bodyCss)
+          if (offenders.length > 0) error = `Hardcoded CSS values in src/ui/style.css (${offenders.length}): ${offenders.slice(0, 5).join(' · ')}${offenders.length > 5 ? ' …' : ''}`
+        }
+        return { files: out, messages: [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`], error }
       },
     },
     {
