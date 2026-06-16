@@ -265,7 +265,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Формална архитектура за двойния тор UUID поток: матрица, вектор, диаманти, вълни, порти, схема и само-изграждане.',
       },
       keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema', 'analytics', 'iching', 'import', 'export', 'fuse'],
-      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar', 'Analytics', 'IChingImportExport', 'FuseReveal', 'SelfExplainingWidget'],
+      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar', 'Analytics', 'IChingImportExport', 'FuseReveal', 'SelfExplainingWidget', 'AiMovies'],
     },
     {
       slug: 'commands',
@@ -367,7 +367,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Българското наследство в вълни: история 681–до днес в шест епохи, древни цивилизации от ок. 6200 пр.Хр. (Варненско злато), етногенезис — българи, славяни, траки — и генетиката, оспорваща летописа; глаголицата като първата славянска азбука, сценарий–език–ген като три независими системи на наследяване. Документираното остава, легендата е отбелязана.',
       },
       keywords: ['bulgarian', 'heritage', 'history', 'glagolitic', 'ethnogenesis', 'genetics', 'ancient', 'slavic'],
-      components: ['BulgarianHeritage', 'Glagolitic', 'ScriptLanguageGene', 'GlagoliticOcr', 'GlyphLabyrinth'],
+      components: ['BulgarianHeritage', 'BulgarianHistory', 'BulgarianAncientCivilisations', 'BulgarianEthnogenesis', 'BulgarianGenetics', 'BulgarianHeritageEightfold', 'Glagolitic', 'AlphabetsDecoded', 'ScriptLanguageGene', 'GlagoliticOcr', 'GlyphLabyrinth'],
     },
     {
       slug: 'science',
@@ -417,7 +417,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Природата, декодирана: природно право и общите блага като преизчислимо ниво (всяко извличане съответствано от възстановяване), атестационен печат за претенции от ниво на партньорска проверка, законната стълба за участие — хармонична, въображаема, успешна — и формите на обществото. Документираното остава, наивността е отбелязана.',
       },
       keywords: ['nature', 'commons', 'natural law', 'society', 'sustainability', 'attestation', 'lawful', 'ecology'],
-      components: ['Society', 'NatureLaw', 'Attestation'],
+      components: ['Society', 'NatureLaw', 'Attestation', 'PeaceTechMentality'],
     },
     // The dissolved decode proofs — each a page (proofs are pages; all is a page), each mounting one
     // holds-true fold; the home card leads here. What is not proven is purged.

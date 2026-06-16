@@ -165,6 +165,14 @@ import ScriptLanguageGene from './components/ScriptLanguageGene.vue'
 import TeslaPatents from './components/TeslaPatents.vue'
 import HeartProtonAtom from './components/HeartProtonAtom.vue'
 import SelfExplainingWidget from './components/SelfExplainingWidget.vue'
+import BulgarianHistory from './components/BulgarianHistory.vue'
+import BulgarianAncientCivilisations from './components/BulgarianAncientCivilisations.vue'
+import BulgarianEthnogenesis from './components/BulgarianEthnogenesis.vue'
+import BulgarianGenetics from './components/BulgarianGenetics.vue'
+import BulgarianHeritageEightfold from './components/BulgarianHeritageEightfold.vue'
+import AlphabetsDecoded from './components/AlphabetsDecoded.vue'
+import AiMovies from './components/AiMovies.vue'
+import PeaceTechMentality from './components/PeaceTechMentality.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -355,5 +363,13 @@ export default {
     app.component('TeslaPatents', TeslaPatents)
     app.component('HeartProtonAtom', HeartProtonAtom)
     app.component('SelfExplainingWidget', SelfExplainingWidget)
+    app.component('BulgarianHistory', BulgarianHistory)
+    app.component('BulgarianAncientCivilisations', BulgarianAncientCivilisations)
+    app.component('BulgarianEthnogenesis', BulgarianEthnogenesis)
+    app.component('BulgarianGenetics', BulgarianGenetics)
+    app.component('BulgarianHeritageEightfold', BulgarianHeritageEightfold)
+    app.component('AlphabetsDecoded', AlphabetsDecoded)
+    app.component('AiMovies', AiMovies)
+    app.component('PeaceTechMentality', PeaceTechMentality)
   }
 } satisfies Theme
