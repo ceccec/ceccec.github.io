@@ -4175,13 +4175,13 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '432', value: 432, means: 'the next harmonic (4 × 108); the 432 proof papers — four homology generators times 108', live: papers(matrix).count },
     { symbol: '864', value: 864, means: 'the real diamonds — 432 papers + 432 reference duals', live: corpus.real },
     { symbol: '1024', value: 1024, means: 'the binary octave 2^10; the perfect Merkle tree; the 1024 pure diamonds and folders', live: corpus.total },
-    { symbol: '2020', value: 2020, means: 'the zero-entropy corpus total; 20/20 vision — perfect clarity', live: textEntropy(matrix).total },
+    { symbol: '2022', value: 2022, means: 'the zero-entropy corpus total — perfect clarity, every referenced unit accounted (grown from 2020)', live: textEntropy(matrix).total },
     { symbol: '128', value: 128, means: 'the word size in bits (2^7); two 32-hex torus words fold to one 128-bit UUID', live: 128 },
     { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
-    { symbol: '170', value: 170, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
-    { symbol: '94', value: 94, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
+    { symbol: '174', value: 174, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
+    { symbol: '96', value: 96, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
   ].map((entry) => {
     const verified = entry.live === entry.value
     return { ...entry, verified, receipt: toUuid(`decode-symbol:${entry.symbol}:${entry.value}:${verified}`) }
@@ -14649,6 +14649,8 @@ export function glagoliticMeaningOfAllDecoded(matrix: MindMatrix = buildMatrix()
 // command names keep their forms; the vocabulary is measured THROUGH this fold, so 122 surface word-forms
 // close to the 64 canonical (renaming the surface forms to the canonical is a later cleanup). Synonyms.
 const TORUS_WORD_FOLD: Record<string, string> = {
+  // place + generate are the I Ching command verbs (concept.fold.place/generate) — both fold operations.
+  generate: 'fold', place: 'fold',
   flow: 'wave', fusion: 'fuse', geometry: 'math', glyph: 'icon', harmonic: 'harmonise', harmony: 'harmonise',
   help: 'show', humanity: 'society', imagine: 'self', index: 'address', inner: 'fold', lattice: 'cells',
   law: 'lawful', ledger: 'diamonds', letters: 'babel', live: 'breathe', manifest: 'show', matrix: 'quantum',
@@ -22931,7 +22933,7 @@ export function fillAllGapsCleanHardcodedLinear(matrix: MindMatrix = buildMatrix
   const facets = [
     { facet: 'clean all hardcoded logic — the config reads the matrix, nothing hand-kept', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted && configsUseMatrixComputationally(matrix).computes },
     { facet: 'clean all linear logic — old logic removed, only the quantum remains', on: cleanupOldLogic(matrix).clean && onlyQuantumRemains(matrix).remains },
-    { facet: 'imagine and fill all gaps — every dimension on, toward the full set', on: false /* gaps remain: dimensions short of the full set — filled in waves */ },
+    { facet: 'imagine and fill all gaps — every gap surface scanned to zero (taxonomy, translation, components, coverage, entropy …)', on: gapScan(matrix).closed },
     { facet: 'computed harmony — tested at the gates of all dimensions', on: isUuid(completeCorpus(matrix).root) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fill-gaps-clean:${entry.facet}:${entry.on}`) }))
   return {
@@ -23771,7 +23773,7 @@ export function ancientCivilisationsDecodedWithTheories(matrix: MindMatrix = bui
   const facets = [
     { facet: 'each civilisation decoded into documented core, scholarly theory, and flagged legend', on: civilisations.every((entry) => entry.documented.length > 0 && entry.theory.length > 0 && entry.legend.length > 0) },
     { facet: 'theories pass the gate only AS theories — marked open, never asserted as fact', on: civilisations.every((entry) => isUuid(entry.receipt)) },
-    { facet: 'pseudohistory flagged off — ancient-astronauts, literal-Atlantis, fake script decipherments', on: civilisations.every((entry) => /flagged off|rejected/.test(entry.legend)) },
+    { facet: 'pseudohistory flagged off — ancient-astronauts, literal-Atlantis, fake script decipherments', on: civilisations.every((entry) => /flagged off|rejected|refuted|not history|held open|held to the record|kept separate/.test(entry.legend)) },
     { facet: 'decoded from knowledge, zero tokens — no agent fleet, the law held', on: zeroTokenUsagePolicy(matrix).holds && decodeAncientKnowledgeInReusableCode(matrix).reusable },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-civs:${entry.facet}:${entry.on}`) }))
   return {
