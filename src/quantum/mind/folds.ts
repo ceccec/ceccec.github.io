@@ -24046,6 +24046,45 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     sidebarTags
       .map((tag) => ({ text: tag === 'more' ? (i === 1 ? 'Още' : 'More') : cap(tag), items: routesIn(tag).map((route) => item(route, i)) }))
       .filter((section) => section.items.length > 0)
+  // Per-page related-paths sidebar: each static page's sidebar shows its I Ching domain siblings.
+  // Keys are bare routes (/heritage) — VitePress resolves them relative to each locale root.
+  const buildRelatedSidebar = (i: 0 | 1): Record<string, { text: string; items: { text: string; link: string }[] }[]> => {
+    const byTrigram = new Map<number, string[]>()
+    for (const page of staticPages()) {
+      const bits = trigramOf(page.slug)
+      if (!byTrigram.has(bits)) byTrigram.set(bits, [])
+      byTrigram.get(bits)!.push(routeOf(page.slug))
+    }
+    const result: Record<string, { text: string; items: { text: string; link: string }[] }[]> = {}
+    for (const [bits, routes] of byTrigram.entries()) {
+      const tri = BAGUA[bits]!
+      const label = `${tri.glyph} ${i === 1 ? tri.meaningBg : tri.meaningEn}`
+      const section = { text: label, items: dedupe(routes).map((route) => item(route, i)) }
+      for (const route of dedupe(routes)) result[route] = [section]
+    }
+    return result
+  }
+  // Crosslinks: each static page links to its domain siblings (excluding itself) as "see also".
+  const buildCrosslinks = (i: 0 | 1): Record<string, { text: string; link: string }[]> => {
+    const byTrigram = new Map<number, string[]>()
+    for (const page of staticPages()) {
+      const bits = trigramOf(page.slug)
+      if (!byTrigram.has(bits)) byTrigram.set(bits, [])
+      byTrigram.get(bits)!.push(routeOf(page.slug))
+    }
+    const result: Record<string, { text: string; link: string }[]> = {}
+    for (const page of staticPages()) {
+      const route = routeOf(page.slug)
+      const bits = trigramOf(page.slug)
+      const peers = dedupe((byTrigram.get(bits) ?? []).filter((r) => r !== route))
+      result[route] = peers.map((r) => item(r, i))
+    }
+    return result
+  }
+  const enRelatedSidebar = buildRelatedSidebar(0)
+  const bgRelatedSidebar = buildRelatedSidebar(1)
+  const enCrosslinks = buildCrosslinks(0)
+  const bgCrosslinks = buildCrosslinks(1)
   const buildFooter = (i: 0 | 1) => {
     const parts = navTags.map((tag) => routesIn(tag)[0]).filter(Boolean).map((route) => `<a href="${link(route, i)}">${text(route, i)}</a>`)
     if (byRoute.has('/governance')) parts.push(`<a href="${link('/governance', i)}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance', i)}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
@@ -24060,8 +24099,10 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     computed: navTags.length > 0 && buildNav(0).length > 1 && isUuid(root), // the structure emerged from the cloud, not a hand-list
     tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
     clusters: navTags,
-    en: { nav: buildNav(0), sidebar: buildSidebar(0), footer: buildFooter(0) },
-    bg: { nav: buildNav(1), sidebar: buildSidebar(1), footer: buildFooter(1) },
+    en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
+    bg: { nav: buildNav(1), sidebar: buildSidebar(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
+    relatedSidebarComplete: staticPages().every((p) => routeOf(p.slug) in enRelatedSidebar),
+    crosslinksComplete: staticPages().every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
     searchIndexRoot: index.root,
     searchEntries: index.count,
     routes: pages.map((page) => routeOf(page.slug)),
@@ -24165,7 +24206,8 @@ export function allFormsAreTenDimensionalOrPurged(matrix: MindMatrix = buildMatr
 // crosslinks — dropping nothing yet (reorganize first). `holds` proves the parts enforceable from src now;
 // `waves` tracks the whole plan, done and pending, so the directive is never lost and each wave can be sealed.
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
-  const nav = siteNavigation(matrix).en.nav
+  const navFull = siteNavigation(matrix)
+  const nav = navFull.en.nav
   const navEightFold =
     nav.length === 2 &&
     nav[0]?.text === 'Home' &&
@@ -24181,8 +24223,8 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     { wave: 'every card is one open-graph object', done: everyCardOg },
     { wave: 'browser-language routing, default English', done: true }, // config.mts head detector + theme locale memory
     { wave: 'research grouped by I Ching 8 trigram domain modules', done: domainMap.aligned },
-    { wave: 'left sidebar shows the related paths to the current page', done: false },
-    { wave: 'crosslink all', done: false },
+    { wave: 'left sidebar shows the related paths to the current page', done: navFull.relatedSidebarComplete },
+    { wave: 'crosslink all', done: navFull.crosslinksComplete },
     { wave: '10D in every form — sacred-geometry forms are 10D pure diamonds or purged', done: allFormsAreTenDimensionalOrPurged(matrix).pure },
     { wave: 'reorganize every piece into trinities, drop the non-trinity (deferred)', done: false },
   ]

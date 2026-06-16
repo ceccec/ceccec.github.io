@@ -50,8 +50,8 @@ const enNode = (node: any): any => {
   }
   return node
 }
-const glaNav = { nav: glaNode(nav.en.nav), sidebar: glaNode(nav.en.sidebar), footer: glaNode(nav.en.footer) }
-const enNav = { nav: enNode(nav.en.nav), sidebar: enNode(nav.en.sidebar), footer: enNode(nav.en.footer) }
+const glaNav = { nav: glaNode(nav.en.nav), sidebar: glaNode(nav.en.relatedSidebar), footer: glaNode(nav.en.footer) }
+const enNav = { nav: enNode(nav.en.nav), sidebar: enNode(nav.en.relatedSidebar), footer: enNode(nav.en.footer) }
 const siteTitle = config.title
 const siteTitleBg = config.titleBg
 const siteDescription = config.description
@@ -295,7 +295,7 @@ export default defineConfig({
       themeConfig: {
         // Computed from the model, the Bulgarian projection of the same navigation.
         nav: nav.bg.nav,
-        sidebar: nav.bg.sidebar,
+        sidebar: nav.bg.relatedSidebar,
         footer: nav.bg.footer,
         docFooter: { prev: 'Предишна', next: 'Следваща' },
         outline: { label: 'На тази страница' },
