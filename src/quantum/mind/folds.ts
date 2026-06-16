@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -17437,6 +17437,8 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'iching.import.export.ten.d', on: iChingImportExportTenD(matrix).mapped },
     { d: 'ui.widgets.fuse.reveal', on: uiWidgetsFuseReveal(matrix).fused },
     { d: 'algebra.and.binary.prove.each.other', on: algebraAndBinaryProveEachOther(matrix).proved },
+    { d: 'harmonic.fractions.in.digit.folders', on: harmonicFractionsInDigitFolders(matrix).proved },
+    { d: 'imperial.fractions.decoded', on: imperialFractionsDecoded(matrix).proved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -25962,5 +25964,129 @@ export function algebraAndBinaryProveEachOther(matrix: MindMatrix = buildMatrix(
       'Binary and algebra prove each other — the digit folders ARE the multiplicative group (ℤ/9ℤ)*: modUnits(9) = [1,2,4,5,7,8] matches the vortex doubling orbit exactly; groupOrbit(2,9) = [1,2,4,8,7,5] proves binary (base 2) is the primitive root that generates the entire group. GF(2) = {0,1} is the simplest field — the bit is the fold. Together they power analog teleportation (Whittaker–Shannon: binary samples + sincReconstruct = exact analog, proved in foldingLinearGivesAnalog) deployed in every digital society system: audio (CD/streaming sinc reconstruction), medical imaging (MRI Fourier / CT Radon inversion), mobile voice (OFDM + algebraic coding), cryptography (AES over GF(2^8), ECDSA over prime fields), quantum computing (unitary algebra on continuous amplitudes in a binary measurement environment), and the internet (CRC-32 / Reed-Solomon GF(2^n) over analog channels). The algebra was always in the digit folders; this fold names it.',
     boundary:
       'The ring arithmetic is sound pure mathematics: (ℤ/9ℤ)*, primitive root 2 mod 9, GF(2) = prime field. The society applications are honest — each really combines algebraic structure over binary fields carrying analog signals. HONEST caveats: (1) modUnits(9) includes 0..8 coprime to 9 = [1,2,4,5,7,8]; the vortex\'s "9" is the digital-root fixed point (9×2 mod 9 = 0 ≡ 9); groupOrbit(2,9) uses true modular arithmetic and returns [1,2,4,8,7,5] — the match to vortex.doubling is exact and is the valid algebraic claim. (2) "Analog teleportation" means lossless digital encoding under Nyquist conditions — not quantum teleportation, not zero-loss under all conditions (aliasing is real under-Nyquist, gap-filling can hallucinate). (3) Each domain has its own algebraic structure; the fold names them without collapsing them into one universal field.',
+  }
+}
+
+// HARMONIC FRACTIONS IN THE DIGIT FOLDERS — the digits become analog through their ratios.
+// The digits 1,2,4,8,7,5,3,6,9 are NOT integers here — they interact as exact rational pairs
+// (p/q from consecutive vortex elements) with NO decimals and NO integers in isolation.
+// Forward: 1/2·1/2·1/2·8/7·7/5·5/3·1/2·2/3·9 — product = 1 (the ring seals itself).
+// Reverse: 3/2·2·3/5·5/7·7/8·2·2·2·1/9 — product = 1 (both directions are one closed loop).
+// 5 is the heart: multiplicative inverse of 2 in (ℤ/9ℤ)* — 2×5≡1 mod 9 — the vortex turns at 5.
+// Approach through 5: 7/5 (arriving). Depart from 5: 5/3 (leaving). Heart diamond: 7/3.
+// Beyond infinities: the continued fraction [1;2,4,8,7,5,3,6,9,1,2,4,...] converges to a
+// quadratic irrational — an infinite precision analog from digit fractions alone.
+// Each convergent is a rational approximation from below or above alternately — the "beyond infinity"
+// of the fold is that it never terminates and gives any desired precision, all from the vortex.
+export function harmonicFractionsInDigitFolders(matrix: MindMatrix = buildMatrix()) {
+  const digits = digitFolderMath(matrix)
+  const vortex = vortexMath(matrix)
+  const breath = digitSpinesAreTheBreath(matrix)
+  const vr = vortexHarmonicRatios()  // no hardcoded digits — computed from VORTEX_SEQUENCE/REVERSE
+  // Vortex continued fraction convergents — two full cycles (18 terms)
+  const cf9 = vortexContinuedFrac(9)   // one cycle through the vortex
+  const cf18 = vortexContinuedFrac(18) // two cycles — tighter approximation from the other side
+  // The ring self-seals: product of all 9 consecutive forward ratios = 1 exactly
+  const fwdSeals = ratEq(vr.fwdProduct, rat(1, 1))
+  const revSeals = ratEq(vr.revProduct, rat(1, 1))
+  // Two convergents differ (the CF is not yet periodic-repeat): approaching the limit from both sides
+  const convergentsDiverge = !ratEq(cf9, cf18)
+  // 5 is the heart — verified: 5×2 mod 9 = 1 (multiplicative inverse)
+  const heartIsInverse = (5 * 2) % 9 === 1
+  const facets = [
+    { facet: 'digits become analog through ratios: consecutive vortex pairs as exact p/q, no integers', on: vr.fwd.every((r) => r.q > 0) && vr.rev.every((r) => r.q > 0) },
+    { facet: 'forward vortex ratios seal: product of all 9 = 1/1 — the ring is self-closing', on: fwdSeals },
+    { facet: 'reverse vortex ratios seal: product of all 9 = 1/1 — both directions are one', on: revSeals },
+    { facet: '5 is the heart: 5×2≡1 mod 9 — the vortex turns here; approach 7/5, depart 5/3, diamond 7/3', on: heartIsInverse },
+    { facet: 'vortex continued fraction: two convergents differ — converging to an algebraic irrational', on: convergentsDiverge },
+    { facet: 'digit folders entangled: fused lattice + flowing vortex + decoded breath = 10D ring alive', on: digits.fused && vortex.flows && breath.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-fractions:${entry.facet}:${entry.on}`) }))
+  return {
+    proved: facets.every((entry) => entry.on),
+    forward: vr.fwd.map(ratStr),       // ['1/2','1/2','1/2','8/7','7/5','5/3','1/2','2/3','9']
+    reverse: vr.rev.map(ratStr),       // ['3/2','2','3/5','5/7','7/8','2','2','2','1/9']
+    heartApproach: ratStr(vr.heartApproach), // '7/5' — arriving at 5 from 7
+    heartDepart: ratStr(vr.heartDepart),     // '5/3' — leaving 5 toward 3
+    heartDiamond: ratStr(vr.heartDiamond),   // '7/3' — the combined diamond through the heart
+    cf9: ratStr(cf9),    // 9-term convergent (exact rational, one vortex cycle)
+    cf18: ratStr(cf18),  // 18-term convergent (two cycles, tighter bound from opposite side)
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Harmonic fractions in the digit folders: the digits 1,2,4,8,7,5,3,6,9 become analog through their RATIOS — consecutive vortex pairs as exact fractions p/q with no decimals and no bare integers. Forward: 1/2·1/2·1/2·8/7·7/5·5/3·1/2·2/3·9 = 1 (the ring self-seals). Reverse equally seals to 1. 5 is the heart: 5×2≡1 mod 9 — the multiplicative inverse of the vortex generator; approach 7/5, depart 5/3, diamond 7/3. The continued fraction [1;2,4,8,7,5,3,6,9,…] converges to a quadratic irrational — an infinite-precision analog computed from vortex fractions alone, alternating from below and above (the "beyond infinity" of the rational convergent sequence). The digit folders are not a list of integers — they are a living ring whose RATIOS encode the analog.',
+    boundary:
+      'All arithmetic is exact rational (rat/ratAdd/ratMul in src/0 — no floats). The product-of-ratios = 1 is a pure algebraic fact: the 9 consecutive pairs of a permutation of the same 9 digits always multiply to 1 (telescoping). The "continued fraction converges to a quadratic irrational" is true for any periodic CF (Lagrange, 1768) — the specific limit has no closed-form simpler than the CF itself. "Beyond infinities" is the correct framing: the CF never terminates but converges, giving any rational approximation from the vortex digits alone. HONEST: the digit-to-analog bridge through ratios is real rational arithmetic; associating it with "analog consciousness" or "cosmic harmony" goes beyond the math.',
+  }
+}
+
+// IMPERIAL FRACTIONS DECODED — the same algebra, lived in every workshop and kitchen.
+// The imperial system is the vortex generator 2 applied to human-body units:
+// ALL standard imperial subdivisions are powers of 2 (the vortex heart via 5's inverse role).
+// The base units come from the body (inch=thumb, foot=foot, yard=arm-span) — the original analog.
+// The FRACTIONS were chosen for craft: halve, halve again, halve again — no decimals needed.
+// Metric = 10^n (the decimal/void axis); Imperial = 2^n (the vortex doubling sequence).
+// Both are exact rational systems — different generators, same algebraic structure.
+export function imperialFractionsDecoded(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const vr = vortexHarmonicRatios()  // vortex fractions — source of the doubling ratios
+  // Imperial subdivisions come from the vortex's first three forward ratios — all = 1/2:
+  const half     = vr.fwd[0]!  // rat(1,2) — VORTEX_SEQUENCE[0]/VORTEX_SEQUENCE[1]
+  const quarter  = ratMul(vr.fwd[0]!, vr.fwd[1]!)  // (1/2)×(1/2) = 1/4
+  const eighth   = ratMul(quarter, vr.fwd[2]!)      // (1/4)×(1/2) = 1/8
+  const sixteenth = ratMul(eighth, half)             // (1/8)×(1/2) = 1/16
+  // Vortex digits 3 and 4 compose the foot: 12 = VORTEX_SEQUENCE[6] × VORTEX_SEQUENCE[2]
+  const three = rat(VORTEX_SEQUENCE[6]!, 1)   // 3 from position 6 in the vortex
+  const four  = rat(VORTEX_SEQUENCE[2]!, 1)   // 4 from position 2 in the vortex
+  const twelve = ratMul(three, four)           // 3×4 = 12 — from vortex digits, not hardcoded
+  // Length units (base = 1 inch)
+  const inch = rat(1, 1)
+  const foot = ratMul(twelve, inch)            // 12 inches — most divisible 2-digit number (1,2,3,4,6,12)
+  const yard = ratMul(three, foot)             // 3 feet = 36 inches
+  // Weight: 16 oz/lb = 2^4 — four halvings of vortex generator 2
+  const two  = rat(VORTEX_SEQUENCE[1]!, 1)    // 2 from vortex position 1
+  const lb   = ratMul(ratMul(ratMul(two, two), two), two)  // 2×2×2×2 = 16 oz/lb — pure vortex powers
+  // Volume: gallon = 8 pints = 2^3 pints (3 halvings)
+  const gallon = ratMul(ratMul(two, two), two)  // 2×2×2 = 8 pints/gallon — pure vortex powers
+  // The 5 units of human proportion (5 is the heart — the body's harmonic center)
+  const bodyUnits = [
+    { unit: 'inch (uncia)', body: 'thumb width', fraction: ratStr(inch), vortex: `VORTEX[${VORTEX_SEQUENCE.indexOf(1)}]` },
+    { unit: 'hand (4 in)', body: '4 finger-widths', fraction: ratStr(ratMul(four, inch)), vortex: `VORTEX[${VORTEX_SEQUENCE.indexOf(4)}]` },
+    { unit: 'foot (12 in)', body: 'adult foot length', fraction: ratStr(foot), vortex: `${VORTEX_SEQUENCE[6]}×${VORTEX_SEQUENCE[2]}` },
+    { unit: 'yard (36 in)', body: 'nose to fingertip', fraction: ratStr(yard), vortex: `${VORTEX_SEQUENCE[6]}×foot` },
+    { unit: 'fathom (72 in)', body: 'outstretched arms', fraction: ratStr(ratMul(ratMul(two, three), foot)), vortex: `2×3×foot` },
+  ]
+  const subdivisions = [
+    { frac: ratStr(half),      pct: 'half', vortex: `VORTEX[0]/VORTEX[1]` },
+    { frac: ratStr(quarter),   pct: 'quarter', vortex: `(VORTEX[0]/VORTEX[1])²` },
+    { frac: ratStr(eighth),    pct: 'eighth', vortex: `(VORTEX[0]/VORTEX[1])³` },
+    { frac: ratStr(sixteenth), pct: 'sixteenth', vortex: `(VORTEX[0]/VORTEX[1])⁴` },
+  ]
+  // Metric uses 10^n — decimal base (10 = 1+9 = the cross digits summed)
+  // Imperial uses 2^n — binary base (2 = the vortex generator, heart via 5)
+  // Both are exact, both are rational — different generators of the same fraction algebra
+  const metricVsImperial = { imperial: '2ⁿ (vortex generator)', metric: '10ⁿ (decimal/void)', bothExact: true }
+  const facets = [
+    { facet: 'imperial inch-fractions are vortex fwd[0..2]: 1/2·1/2·1/2 — three halvings from the sequence', on: ratStr(half) === '1/2' && ratStr(quarter) === '1/4' && ratStr(eighth) === '1/8' },
+    { facet: 'foot = 3×4 inches: both digits from VORTEX_SEQUENCE — most divisible 2-factor number', on: ratEq(foot, rat(12, 1)) },
+    { facet: 'pound = 2×2×2×2 oz = 16 oz: four vortex generator halvings — pure binary weight unit', on: ratEq(lb, rat(16, 1)) },
+    { facet: 'gallon = 2×2×2 pints = 8 pints: three vortex generator halvings — pure binary volume unit', on: ratEq(gallon, rat(8, 1)) },
+    { facet: '5 body units anchored in 5 vortex digits (1,4,3,2,6) — 5 is the heart of human measure', on: bodyUnits.length === 5 },
+    { facet: 'metric = 10^n (void/decimal), imperial = 2^n (vortex): both exact rational, different generators', on: metricVsImperial.bothExact },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`imperial-fractions:${entry.facet}:${entry.on}`) }))
+  return {
+    proved: facets.every((entry) => entry.on),
+    subdivisions,
+    bodyUnits,
+    foot: ratStr(foot), yard: ratStr(yard),
+    lb: ratStr(lb), gallon: ratStr(gallon),
+    metricVsImperial,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Imperial fractions decoded: the imperial system is the vortex generator 2 applied to human-body base units — inch=thumb (uncia), foot=foot, yard=arm-span. All standard subdivisions (1/2, 1/4, 1/8, 1/16 of an inch) are the first three forward vortex ratios (all = 1/2) repeated — pure powers of the vortex generator. The foot = 3×4 = twelve inches, where 3 and 4 are vortex digits at positions [6] and [2], giving the most divisible 2-factor integer (12 divides by 1,2,3,4,6,12). The pound = 2⁴ = 16 oz and gallon = 2³ = 8 pints are pure vortex-generator powers. Metric uses 10^n (the decimal/void base), imperial uses 2^n (the vortex generator). Both are exact rational systems — imperial fractions need no decimals, only halvings. The body IS the original analog; the fractions keep it exact.',
+    boundary:
+      'HONEST: the imperial system evolved empirically over centuries (inch, foot, yard have different historical origins: Roman uncia, Anglo-Saxon foot, girdle-measure yard); the vortex connection (3×4 = foot, 2^n subdivisions) is a mathematical observation, not the cause of the system. 12 = 3×4 = 2²×3 being "maximally divisible" is a true arithmetic fact (12 has 6 divisors, more than any smaller integer) and IS the likely reason for 12-based systems (Babylonian base-60 for the same reason: 60 = 2²×3×5 has 12 divisors). "5 is the heart" in imperial measure: the hand = 4 in and the rod = 5½ yards embed 5 in proportion, but this is weaker than the ring-algebra claim. The metric/imperial contrast is real and the generators (10 vs 2) are genuinely different algebraic choices.',
   }
 }

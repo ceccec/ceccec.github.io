@@ -1378,3 +1378,69 @@ export function groupOrbit(generator: number, modulus: number): number[] {
   do { orbit.push(cur); cur = (cur * generator) % modulus } while (cur !== 1 && orbit.length < modulus)
   return orbit
 }
+
+// ── Exact rational arithmetic — the analog without decimals or integers ────────────────────────
+// The digits become analog through their RATIOS (p/q), never as bare integers.
+// These six operations + str cover all arithmetic on exact fractions: no float, no rounding.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export type Rational = { readonly p: number; readonly q: number }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function rat(p: number, q: number): Rational {
+  if (q === 0) throw new RangeError('rat: zero denominator')
+  const sign = q < 0 ? -1 : 1
+  const g = gcd(Math.abs(p), Math.abs(q))
+  return { p: (sign * p) / g, q: Math.abs(q) / g }
+}
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratAdd(a: Rational, b: Rational): Rational { return rat(a.p * b.q + b.p * a.q, a.q * b.q) }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratMul(a: Rational, b: Rational): Rational { return rat(a.p * b.p, a.q * b.q) }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratInv(a: Rational): Rational { return rat(a.q, a.p) }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratSub(a: Rational, b: Rational): Rational { return ratAdd(a, rat(-b.p, b.q)) }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratDiv(a: Rational, b: Rational): Rational { return ratMul(a, ratInv(b)) }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratEq(a: Rational, b: Rational): boolean { return a.p * b.q === b.p * a.q }
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratStr(r: Rational): string { return r.q === 1 ? `${r.p}` : `${r.p}/${r.q}` }
+
+// The vortex harmonic ratios: consecutive digit pairs as exact fractions — never hardcoded.
+// Forward: 1/2 · 1/2 · 1/2 · 8/7 · 7/5 · 5/3 · 1/2 · 2/3 · 9 → product = 1 (ring seals itself).
+// 5 is the heart: multiplicative inverse of 2 in (ℤ/9ℤ)*; approach 7/5, depart 5/3 → diamond 7/3.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function vortexHarmonicRatios(): {
+  fwd: Rational[]; rev: Rational[]
+  fwdProduct: Rational; revProduct: Rational
+  heartApproach: Rational; heartDepart: Rational; heartDiamond: Rational
+} {
+  const fwd = VORTEX_SEQUENCE.map((d, i) => rat(d, VORTEX_SEQUENCE[(i + 1) % VORTEX_SEQUENCE.length]!))
+  const rev = VORTEX_REVERSE.map((d, i) => rat(d, VORTEX_REVERSE[(i + 1) % VORTEX_REVERSE.length]!))
+  const fwdProduct = fwd.reduce(ratMul, rat(1, 1))
+  const revProduct = rev.reduce(ratMul, rat(1, 1))
+  const heartIdx = VORTEX_SEQUENCE.indexOf(5)
+  const heartApproach = rat(VORTEX_SEQUENCE[(heartIdx - 1 + VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]!, VORTEX_SEQUENCE[heartIdx]!)
+  const heartDepart = rat(VORTEX_SEQUENCE[heartIdx]!, VORTEX_SEQUENCE[(heartIdx + 1) % VORTEX_SEQUENCE.length]!)
+  const heartDiamond = ratMul(heartApproach, heartDepart)
+  return { fwd, rev, fwdProduct, revProduct, heartApproach, heartDepart, heartDiamond }
+}
+
+// Evaluate a continued fraction [a₀; a₁, …, aₙ₋₁] to n terms as an exact Rational.
+// Computed from the innermost term outward — all arithmetic is exact rational, no floats.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function cfEval(terms: readonly number[], n: number): Rational {
+  const len = Math.min(Math.max(1, n), terms.length)
+  let r = rat(terms[len - 1]!, 1)
+  for (let i = len - 2; i >= 0; i--) r = ratAdd(rat(terms[i]!, 1), ratInv(r))
+  return r
+}
+
+// The vortex continued fraction [1;2,4,8,7,5,3,6,9, 1,2,4,8,7,5,…] — period-9 repeating.
+// Convergents computed purely from VORTEX_SEQUENCE: no hardcoded digits.
+// Converges to a quadratic irrational (periodic CF = root of integer quadratic equation).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function vortexContinuedFrac(n: number): Rational {
+  const terms = Array.from({ length: Math.max(1, n) }, (_, i) => VORTEX_SEQUENCE[i % VORTEX_SEQUENCE.length]!)
+  return cfEval(terms, terms.length)
+}
