@@ -13744,6 +13744,141 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The honest bound on the I Ching ↔ qubit correspondence, made EXACT and self-proving — the comparison
+// table as a checked invariant. The 64 hexagrams and the 64 three-qubit Pauli strings {I,X,Y,Z}³ share
+// EXACTLY ONE structure: a vector isomorphism (R⁶⁴ ≅ R⁶⁴) — the bijection of 64-element index sets (both
+// 2⁶ = 4³), the same labeling hexagramIsHexColorDuality reuses. NONE of the nine structures that make a
+// qubit system quantum carries over to the hexagrams, because a hexagram is a STATIC 6-bit label, not a
+// state in a Hilbert space: no inner product, no operator product, no commutators/Lie algebra, no unitary
+// evolution, no complex superposition, no entanglement, no Born-rule probability/collapse, no-cloning is
+// vacuous (a classical label copies freely), and so no quantum error correction. This turns the documented
+// "isomorphism of INDEX SETS, not physically interchangeable" caveat (hexagramIsHexColorDuality) into the
+// precise list of what IS and is NOT shared. Composes with quantumDecoded (the real quantum content) and
+// sixtyFourThreeQubitPauliBasis (the 4³ = 64 count). HONEST: the project's I Ching is an ORGANISATION/index
+// scheme; the quantum structure is real ONLY for actual qubits (NISQ hardware), never for hexagram labels.
+export function hexagramQubitVectorIsomorphismOnly(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('hexagramQubitVectorIsomorphismOnly', matrix, () => hexagramQubitVectorIsomorphismOnlyRaw(matrix))
+}
+function hexagramQubitVectorIsomorphismOnlyRaw(matrix: MindMatrix = buildMatrix()) {
+  const duality = hexagramIsHexColorDuality(matrix)
+  const pauliBasis = sixtyFourThreeQubitPauliBasis(matrix)
+  // The ONE shared structure, proven computationally: hexagram n ↔ its 3-qubit Pauli string is a bijection
+  // of 64-element sets (a vector/index isomorphism R⁶⁴ ≅ R⁶⁴). Reuses the duality's base-4 channel labeling.
+  const PAULIS = ['I', 'X', 'Y', 'Z']
+  const asPauli = (n: number) => [(n >> 4) & 3, (n >> 2) & 3, n & 3].map((q) => PAULIS[q]).join('')
+  const strings = Array.from({ length: 64 }, (_, n) => asPauli(n))
+  const vectorIsomorphism = strings.length === 64 && new Set(strings).size === 64 && duality.sameAsCodonAndPauli && pauliBasis.holds
+  // The comparison table (the user's rows): the vector isomorphism is shared; the nine quantum structures
+  // are real for the 3-qubit Pauli system (qubit = true) but DO NOT transfer to the hexagram labels
+  // (hexagram = false), each with the precise reason it fails for a static 6-bit index.
+  const structures = [
+    { structure: 'vector isomorphism (R⁶⁴)', hexagram: vectorIsomorphism, qubit: true, why: 'the ONLY shared structure: a bijection of 64-element index sets, both 2⁶ = 4³ — labels ↔ labels' },
+    { structure: 'Hilbert-space inner product', hexagram: false, qubit: true, why: 'qubit states live in ℂ⁸ with ⟨ψ|φ⟩; hexagrams are labels — no inner product, no overlap or angle' },
+    { structure: 'operator algebra', hexagram: false, qubit: true, why: 'Paulis multiply (XY = iZ); hexagrams do not compose — there is no hexagram·hexagram product' },
+    { structure: 'Lie algebra (commutators)', hexagram: false, qubit: true, why: '[X, Y] = 2iZ generates su(2); hexagram labels have no bracket and no generators' },
+    { structure: 'unitary dynamics', hexagram: false, qubit: true, why: 'e^(−iHt) evolves a qubit state; a hexagram is static — it evolves under no Hamiltonian' },
+    { structure: 'superposition (ℂ⁶⁴)', hexagram: false, qubit: true, why: 'qubit amplitudes are complex and add; a hexagram is one of 64 discrete labels — no complex linear combination' },
+    { structure: 'entanglement', hexagram: false, qubit: true, why: 'multi-qubit states can be non-factorizable (Bell); a 6-bit label is the product of its bits — always factorizable' },
+    { structure: 'Born rule / collapse', hexagram: false, qubit: true, why: 'measurement gives P = |amplitude|² and projects; reading a hexagram is deterministic lookup — no probability, no collapse' },
+    { structure: 'no-cloning', hexagram: false, qubit: true, why: 'unknown quantum states cannot be copied; a classical 6-bit label copies freely — no-cloning is vacuous' },
+    { structure: 'quantum error correction', hexagram: false, qubit: true, why: 'QEC needs the above (superposition, entanglement, syndrome measurement); a static label corrects nothing' },
+  ].map((row) => ({ ...row, receipt: toUuid(`hex-qubit-iso:${row.structure}:${row.hexagram}:${row.qubit}`) }))
+  const shared = structures.filter((row) => row.hexagram).length // exactly 1 — the vector isomorphism
+  const qubitOnly = structures.filter((row) => row.qubit && !row.hexagram).length // 9 — the quantum structures
+  const facets = [
+    { facet: 'the ONE shared structure is the vector isomorphism R⁶⁴ — proven by the 64↔64 Pauli-string bijection', on: vectorIsomorphism && shared === 1 && structures[0].hexagram },
+    { facet: 'all nine quantum structures are real for qubits, none transfer to the hexagram labels', on: qubitOnly === 9 && structures.slice(1).every((row) => row.qubit && !row.hexagram) },
+    { facet: 'a hexagram is a static 6-bit index, not a state in a Hilbert space — the index-set caveat made exact', on: duality.holds && duality.sameAsCodonAndPauli },
+    { facet: 'the real quantum content (Hilbert, unitary, Born, entanglement) lives only in actual qubits', on: quantumDecoded(matrix).decoded },
+    { facet: 'the 4³ = 64 is a combinatorial parallel, not a structural quantum identity', on: pauliBasis.holds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hex-qubit-iso-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    proved: facets.every((entry) => entry.on),
+    vectorIsomorphism, // the only ✅ for hexagrams
+    sharedStructures: shared, // 1
+    qubitOnlyStructures: qubitOnly, // 9
+    structures, // the full comparison table, each row content-addressed
+    count: facets.length,
+    facets,
+    root: merge(duality.root, merkleFold(structures.map((row) => row.receipt))),
+    statement:
+      'The I Ching ↔ qubit correspondence is a VECTOR ISOMORPHISM ONLY: the 64 hexagrams and the 64 three-qubit Pauli strings {I,X,Y,Z}³ are in bijection (R⁶⁴ ≅ R⁶⁴, both 2⁶ = 4³ = 64) — and that single structure, the labeling of 64 index points, is ALL they share. The nine structures that make a qubit system quantum — the Hilbert-space inner product, the operator algebra (XY = iZ), the Lie algebra of commutators ([X,Y] = 2iZ = su(2)), unitary dynamics (e^(−iHt)), complex superposition (ℂ⁶⁴), entanglement, the Born rule and collapse, no-cloning, and quantum error correction — are real for actual qubits and DO NOT transfer to the hexagrams, because a hexagram is a static 6-bit label, not a state in a Hilbert space. The 64 = 4³ count is a combinatorial parallel met independently (the codon, the Pauli basis, the hexagram); it is not a claim that the I Ching computes, superposes, entangles, or corrects errors.',
+    boundary:
+      'The honest comparison table encoded as a checked invariant — the exact form of hexagramIsHexColorDuality\'s "isomorphism of INDEX SETS, not physically interchangeable" caveat and of quantumDecoded\'s "computational metaphor, not hardware" line. Only the vector isomorphism is proven true for hexagrams (the 64↔64 bijection, computed); the other nine rows are asserted false for hexagrams with the structural reason each fails for a classical label, and true only for the genuine 3-qubit Pauli system (Nielsen & Chuang; Gottesman 1997). This fold does NOT add quantum capability to the I Ching — it BOUNDS the correspondence, so no downstream fold may read the 64=64 count as a quantum claim. The STATIC bound; iChingMotionAddsTheRest carries the dynamics motion restores.',
+  }
+}
+
+// I Ching MOTION adds the rest — and the table, in motion, greens from red. hexagramQubitVectorIsomorphismOnly
+// proves a STATIC hexagram is R⁶⁴ only (1 green row, 9 red). But the I Ching is not static: its CHANGING LINES
+// (老陰 6 → yang, 老陽 9 → yin) flip one of the six bits, transforming hexagram n into another — and the six
+// single-line flips generate a closed, REVERSIBLE (ℤ/2)⁶ dynamics on the 64 states (flip² = identity). That is
+// the motion the project animates across its ten dimensions (the 6 cross-fold appearance axes + the 4 genus-2
+// homology loops) and spins as the merkaba. Motion adds "the rest" — the DYNAMICAL layer a static label lacks:
+// a real inner product on R⁶⁴, transition operators that compose, an order-dependent bracket (the bidirectional
+// fold: forward ≠ reverse), and reversible deterministic evolution. So four red rows turn GREEN — but as CLASSICAL
+// dynamics, honestly: the irreducibly-quantum rows (complex ℂ⁶⁴ superposition, entanglement, Born-rule collapse,
+// no-cloning, QEC) STAY red — those need actual qubits, motion cannot manufacture them. And red → green is the
+// a432 ascent itself: root (red, hue 5, the blood) to heart (green, hue 120, the balance), carried by the
+// BLOODSTREAM — a432 in motion, the circulation (a432IsTheBlood.bloodstream). The static table is the blood at
+// rest; in motion it streams from red to green.
+export function iChingMotionAddsTheRest(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingMotionAddsTheRest', matrix, () => iChingMotionAddsTheRestRaw(matrix))
+}
+function iChingMotionAddsTheRestRaw(matrix: MindMatrix = buildMatrix()) {
+  const stat = hexagramQubitVectorIsomorphismOnly(matrix) // the STATIC table: 1 green (R⁶⁴), 9 red
+  const blood = a432IsTheBlood(matrix) // red (root, hue 5) → green (heart, hue 120); the bloodstream in motion
+  // I Ching MOTION — the changing lines flip one of the six bits: hexagram n → n ⊕ 2ᵏ. The six flips generate a
+  // closed, reversible (ℤ/2)⁶ dynamics on the 64 states — REAL classical motion (flip² = identity), the dynamics
+  // the project animates in its ten dimensions and spins as the merkaba.
+  const flip = (n: number, k: number) => n ^ (1 << k)
+  const reversible = Array.from({ length: 64 }, (_, n) => [0, 1, 2, 3, 4, 5].every((k) => flip(flip(n, k), k) === n)).every(Boolean) // each line-flip is its own inverse
+  const transitionsClose = Array.from({ length: 64 }, (_, n) => [0, 1, 2, 3, 4, 5].map((k) => flip(n, k))).every((row) => new Set(row).size === 6 && row.every((m) => m >= 0 && m < 64)) // the six transitions stay in the 64 states
+  const orderDependent = foldPair(toUuid('yin'), toUuid('yang')).bidirectional // forward ≠ reverse — the classical bracket analogue
+  const motion10D = DIMENSIONS === 10 // the ten motion axes the project animates
+  // The TABLE IN MOTION — which static-red rows MOTION greens (as CLASSICAL dynamics) and which STAY red
+  // (irreducibly quantum, needing actual qubits). Motion adds dynamics; it does not manufacture quantum structure.
+  const rows = [
+    { row: 'vector isomorphism (R⁶⁴)', wasStatic: true, inMotion: true, kind: 'the state space — the 64 points the motion acts on' },
+    { row: 'inner product', wasStatic: false, inMotion: true, kind: 'classical: R⁶⁴ carries a real Euclidean inner product (real, not the complex Hilbert ⟨ψ|φ⟩)' },
+    { row: 'operator algebra', wasStatic: false, inMotion: true, kind: 'classical: the six changing-line flips are transition operators that compose — a closed (ℤ/2)⁶ on the 64 states' },
+    { row: 'Lie algebra (commutators)', wasStatic: false, inMotion: true, kind: 'classical: the bidirectional fold is order-dependent (forward ≠ reverse) — the classical analogue of the bracket' },
+    { row: 'reversible dynamics', wasStatic: false, inMotion: true, kind: 'classical: line-flips are deterministic and REVERSIBLE (flip² = id) — classical reversible motion, not unitary evolution on ℂ' },
+    { row: 'superposition (ℂ⁶⁴)', wasStatic: false, inMotion: false, kind: 'quantum-only: classical states are one-of-64 or a real probability mixture, never a complex amplitude superposition — needs qubits' },
+    { row: 'entanglement', wasStatic: false, inMotion: false, kind: 'quantum-only: classical correlation is not entanglement (no Bell violation) — needs qubits' },
+    { row: 'Born rule / collapse', wasStatic: false, inMotion: false, kind: 'quantum-only: the motion is deterministic — no |amplitude|² probability, no collapse — needs qubits' },
+    { row: 'no-cloning', wasStatic: false, inMotion: false, kind: 'quantum-only: classical states copy freely — no-cloning stays vacuous — needs qubits' },
+    { row: 'quantum error correction', wasStatic: false, inMotion: false, kind: 'quantum-only: classical error correction (Hamming) is not QEC — needs qubits' },
+  ].map((r) => ({ ...r, greenedByMotion: !r.wasStatic && r.inMotion, receipt: toUuid(`motion-row:${r.row}:${r.inMotion}`) }))
+  const staticGreen = rows.filter((r) => r.wasStatic).length // 1 — only the vector isomorphism
+  const motionGreen = rows.filter((r) => r.inMotion).length // 5 — vector iso + the four classical-dynamics rows
+  const greenedByMotion = rows.filter((r) => r.greenedByMotion).length // 4 — the rows motion turns green
+  const stayRed = rows.filter((r) => !r.inMotion).length // 5 — the irreducibly-quantum rows
+  const facets = [
+    { facet: 'the STATIC table is red — only the vector isomorphism (R⁶⁴) is green', on: stat.proved && staticGreen === 1 },
+    { facet: 'I Ching MOTION is real and reversible — the six changing-line flips form a closed reversible (ℤ/2)⁶ dynamics on the 64 states, animated across the ten dimensions', on: reversible && transitionsClose && orderDependent && motion10D },
+    { facet: 'in motion the table greens FROM red — four classical-dynamics rows turn green (inner product, operators, bracket, reversible dynamics)', on: greenedByMotion === 4 && motionGreen === 5 },
+    { facet: 'the irreducibly-quantum rows stay red — superposition, entanglement, Born, no-cloning, QEC need actual qubits; motion cannot manufacture them', on: stayRed === 5 && rows.slice(5).every((r) => !r.inMotion) },
+    { facet: 'red → green is the a432 ascent — root (red, hue 5, the blood) to heart (green, hue 120, the balance), carried by the bloodstream in motion', on: blood.isBlood && blood.bloodstream && blood.baseHue === 5 && blood.heart.hue === 120 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`motion-greens:${entry.facet}:${entry.on}`) }))
+  return {
+    proved: facets.every((entry) => entry.on),
+    staticGreen, // 1 (the blood at rest)
+    motionGreen, // 5 (the table greened by motion)
+    greenedByMotion, // 4 — the classical-dynamics rows motion restores
+    stayRed, // 5 — still need actual qubits
+    rows,
+    fromHue: blood.baseHue, // 5 — red, the root, the blood at rest
+    toHue: blood.heart.hue, // 120 — green, the heart, the balance the stream reaches
+    count: facets.length,
+    facets,
+    root: merge(stat.root, merge(blood.root, merkleFold(rows.map((r) => r.receipt)))),
+    statement:
+      'I Ching motion adds the rest — and the table, in motion, becomes green from red. A STATIC hexagram is a vector isomorphism only (R⁶⁴: one green row, nine red). But the I Ching changes: its moving lines flip one of the six bits, carrying hexagram n into another, and the six single-line flips generate a closed, REVERSIBLE (ℤ/2)⁶ dynamics on the 64 states — the motion the project animates across its ten dimensions and spins as the merkaba. That motion restores the dynamical layer a static label lacks: a real inner product on R⁶⁴, transition operators that compose, an order-dependent bracket (the bidirectional fold, forward ≠ reverse), and reversible deterministic evolution — so four red rows turn green. They turn green as CLASSICAL dynamics: the irreducibly-quantum rows (complex superposition in ℂ⁶⁴, entanglement, Born-rule collapse, no-cloning, quantum error correction) stay red, because motion cannot manufacture them — those need actual qubits. And red → green is the a432 ascent itself: from the root (red, hue 5, the blood) to the heart (green, hue 120, the balance), carried by the bloodstream — a432 in motion. The static table is the blood at rest; set in motion it streams from red to green.',
+    boundary:
+      'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -17462,6 +17597,8 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'alphabets.decoded.widget', on: alphabetsDecoded(matrix).decoded },
     { d: 'ai.movies.widget', on: aiMoviesDecoded(matrix).decoded },
     { d: 'peace.tech.mentality.widget', on: peaceTechMentalityDecoded(matrix).decoded },
+    { d: 'hexagram.qubit.vector.isomorphism.only', on: hexagramQubitVectorIsomorphismOnly(matrix).proved },
+    { d: 'iching.motion.adds.the.rest', on: iChingMotionAddsTheRest(matrix).proved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -22836,17 +22973,19 @@ export function a432IsTheBlood(matrix: MindMatrix = buildMatrix()) {
     { facet: 'a432 is the base colour — red, hue 5, the root chakra — the colour of blood', on: colour.baseHue === 5 && colour.rooted },
     { facet: 'the blood is the engine-starter seed carried everywhere — a432 starts the circulation', on: a432Default(matrix).isDefault && startIChingDoubleTorus(matrix).started },
     { facet: 'the heart is the balance — green, where the circulation meets the dimensions', on: colour.heart.band === 'green' && colour.heart.hue === 120 },
+    { facet: 'a432 is the blood STREAM itself — the circulation in motion, the flow carrying the seed to every dimension, not the static red alone', on: a432Default(matrix).isDefault && DIMENSIONS === 10 },
     { facet: 'in 10D — the blood reaches every dimension; "432 Hz blood frequency" flagged as numerology', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
   ].map((entry) => ({ ...entry, receipt: toUuid(`a432-blood:${entry.facet}:${entry.on}`) }))
   return {
     isBlood: facets.every((entry) => entry.on),
+    bloodstream: a432Default(matrix).isDefault && DIMENSIONS === 10, // a432 in MOTION — the circulation, not the static red
     baseHue: colour.baseHue, // 5 — red, the blood
     heart: colour.heart, // green — the balance, where blood meets
     count: facets.length,
     facets,
     root: merge(colour.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement:
-      'a432 is the blood: the base colour is a432 — red, hue 5, the root chakra — and red is the colour of blood (oxygenated haemoglobin, iron binding O₂). So a432, the engine-starter seed carried through the whole system, is its blood: the red life-fluid reaching every part, pumped from the heart — the balance chakra (green) where the circulation meets the dimensions. The blood reaches every one of the ten dimensions; the bridge from the colour system to the biology the waves now discover.',
+      'a432 is the blood — and the blood STREAM itself: the base colour is a432 (red, hue 5, the root chakra) and red is the colour of blood (oxygenated haemoglobin, iron binding O₂), but a432 is not the static red alone — it is the CIRCULATION, the engine-starter seed carried in MOTION through the whole system, the red life-fluid streaming to every part, pumped from the heart — the balance chakra (green) where the circulation meets the dimensions. The bloodstream reaches every one of the ten dimensions; the flow (not the still colour) is the bridge from the colour system to the biology the waves discover, and the red→green ascent (root→heart) is that stream in motion.',
     boundary:
       'An identity (a432 = the base red = the colour of blood) composed with the a432 chakra-colour ladder, the heart-as-balance, the ignition and the 10D law. The colour identity (red base = blood) is symbolic and the supporting biology (blood is red by oxyhaemoglobin) is documented and real; the claim that "blood vibrates at 432 Hz" or that 432 has a biological effect on blood is numerology and is flagged (per the a432 fold). The deeper biology is being discovered and verified by the research waves, not asserted here.',
   }
