@@ -648,8 +648,8 @@ export const conceptCommands: readonly ConceptCommand[] = [
     path: '/cmd/concept.fold.generate',
     description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing). The fold generates.',
   },
-  { name: 'concept.ui.fuse', description: 'Apply the I Ching mask to every Vue UI component — pre-compute hexagram, embed ICHING_MASK const, make self-referencing', does: 'fuse: apply iching mask to all ui components, bind each to its hexagram identity' },
-  { name: 'concept.ui.reveal', description: 'Reveal the UI widget\'s I Ching identity — data-hexagram, data-trigram in DOM, max tampering cost', does: 'reveal: project widget hexagram identity into template data-attrs and computed color' },
+  { name: 'concept.ui.fuse', path: '/cmd/concept.ui.fuse', description: 'Apply the I Ching mask to every Vue UI component — pre-compute hexagram, embed ICHING_MASK const, make self-referencing', does: 'fuse: apply iching mask to all ui components, bind each to its hexagram identity' },
+  { name: 'concept.ui.reveal', path: '/cmd/concept.ui.reveal', description: 'Reveal the UI widget\'s I Ching identity — data-hexagram, data-trigram in DOM, max tampering cost', does: 'reveal: project widget hexagram identity into template data-attrs and computed color' },
 ] as const
 
 /** @iching ☰ Qián · Heaven · creative */
