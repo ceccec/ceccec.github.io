@@ -43,22 +43,28 @@
  *   in custom container, badges, etc.
  * -------------------------------------------------------------------------- */
 
+/* A432 BRAND — frequencyToLight(432) = {hue:5, nm:631, band:"red"}; its perfect fifth
+   (432 × 3/2 = 648 Hz) maps to {hue:285, nm:421, band:"violet"}. Static links/buttons/
+   badges now share one frequency lineage with the animating components. */
 :root {
+  --dt-a432-hue: 5;        /* 432 Hz → 631 nm red */
+  --dt-a432-fifth-hue: 285; /* 648 Hz → 421 nm violet (perfect fifth) */
+
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
   --vp-c-default-3: var(--vp-c-gray-3);
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
-  --vp-c-brand-3: var(--vp-c-indigo-3);
+  --vp-c-brand-1: hsl(var(--dt-a432-hue), 82%, 36%);
+  --vp-c-brand-2: hsl(var(--dt-a432-hue), 75%, 46%);
+  --vp-c-brand-3: hsl(var(--dt-a432-hue), 70%, 41%);
+  --vp-c-brand-soft: hsla(var(--dt-a432-hue), 80%, 50%, 0.14);
 
   /* Glagolitic — the site's single icon script (Unicode U+2C00 block). A font stack
      that renders the glyphs wherever the system provides coverage (Noto, Segoe
      Historic, Quivira, Code2001), serif fallback. The decoded ninth-century
      alphabet, made the visual language of the self-computed components. */
   --font-glagolitic: 'Noto Sans Glagolitic', 'Segoe UI Historic', 'Quivira', 'Code2001', 'Kelvinch', var(--vp-font-family-base);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
   --vp-c-tip-2: var(--vp-c-brand-2);
@@ -74,6 +80,13 @@
   --vp-c-danger-2: var(--vp-c-red-2);
   --vp-c-danger-3: var(--vp-c-red-3);
   --vp-c-danger-soft: var(--vp-c-red-soft);
+}
+
+.dark {
+  --vp-c-brand-1: hsl(var(--dt-a432-hue), 90%, 72%);
+  --vp-c-brand-2: hsl(var(--dt-a432-hue), 85%, 62%);
+  --vp-c-brand-3: hsl(var(--dt-a432-hue), 80%, 55%);
+  --vp-c-brand-soft: hsla(var(--dt-a432-hue), 80%, 60%, 0.16);
 }
 
 /**
@@ -100,14 +113,14 @@
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
-    #bd34fe 30%,
-    #41d1ff
+    hsl(var(--dt-a432-hue), 80%, 52%) 30%,
+    hsl(var(--dt-a432-fifth-hue), 80%, 66%)
   );
 
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #bd34fe 50%,
-    #47caff 50%
+    hsl(var(--dt-a432-hue), 78%, 55%) 50%,
+    hsl(var(--dt-a432-fifth-hue), 78%, 68%) 50%
   );
   --vp-home-hero-image-filter: blur(44px);
 }
