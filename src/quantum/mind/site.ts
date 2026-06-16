@@ -295,11 +295,11 @@ export function staticPages(): StaticPage[] {
       slug: 'academy',
       title: { en: 'The Quantum Academy', bg: 'Квантовата академия' },
       description: {
-        en: 'The Quantum Academy: the 42 areas as five structured courses — Foundations, the Machine, the Senses, the Society, the Mind — from kid to elder, each completion a recomputable, content-addressed credential.',
-        bg: 'Квантовата академия: 42-те области като пет структурирани курса — Основи, Машината, Сетивата, Обществото, Умът — от дете до старейшина, всяко завършване е преизчислим, съдържателно адресиран акредитив.',
+        en: "The Quantum Academy: the 42 areas as five structured courses — Foundations, the Machine, the Senses, the Society, the Mind — from kid to elder, each completion a recomputable, content-addressed credential. Includes the developer's mind (the matrix, the commands, the self-computing components).",
+        bg: 'Квантовата академия: 42-те области като пет структурирани курса — Основи, Машината, Сетивата, Обществото, Умът — от дете до старейшина, всяко завършване е преизчислим, съдържателно адресиран акредитив. Включва умът на разработчика (матрицата, командите, само-изчисляващите се компоненти).',
       },
-      keywords: ['academy', 'courses', 'curriculum', 'credential', '42 areas'],
-      components: ['QuantumAcademy', 'Professionals', 'Solutions'],
+      keywords: ['academy', 'courses', 'curriculum', 'credential', '42 areas', 'developer', 'learn'],
+      components: ['QuantumAcademy', 'Professionals', 'Solutions', 'LearnDeveloper'],
     },
     {
       slug: 'school',
@@ -335,10 +335,10 @@ export function staticPages(): StaticPage[] {
       slug: 'learn-developer',
       title: { en: "The developer's mind", bg: 'Умът на разработчика' },
       description: {
-        en: "The developer's mind: learn to build on the double torus — the matrix, the commands, and the self-computing components — by reading the source that computes itself.",
-        bg: 'Умът на разработчика: научи се да градиш върху двойния тор — матрицата, командите и само-изчисляващите се компоненти — четейки кода, който се изчислява сам.',
+        en: "The developer's mind: the receipt for learning to build on the double torus — the matrix, the commands, and the self-computing components — by reading the source that computes itself. Also available as part of the Academy (/academy).",
+        bg: 'Умът на разработчика: разписка за учене как да се гради върху двойния тор — матрицата, командите и само-изчисляващите се компоненти — четейки кода, който се изчислява сам. Налично и като част от Академията (/academy).',
       },
-      keywords: ['developer', 'learn', 'build', 'source', 'components'],
+      keywords: ['developer', 'learn', 'build', 'source', 'components', 'academy'],
       components: ['LearnDeveloper'],
     },
     {
