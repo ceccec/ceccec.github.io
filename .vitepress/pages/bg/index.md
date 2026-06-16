@@ -90,9 +90,9 @@ features:
 
 <Nav358 />
 
-<Monograph slug=”start” variant=”card” />
+<Monograph slug="start" variant="card" />
 
-<Monograph slug=”explore” variant=”thumb” />
+<Monograph slug="explore" variant="thumb" />
 
 ## ☳ Възбуждащото — Наука и честоти
 
@@ -198,7 +198,7 @@ features:
 
 <GlagoliticOcr />
 
-<Monograph slug=”quantum-mind” variant=”hero” />
+<Monograph slug="quantum-mind" variant="hero" />
 
 ## ☴ Нежното — Природа и измерване
 
