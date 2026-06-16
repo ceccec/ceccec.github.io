@@ -4,8 +4,35 @@
 // real (the Flower of Life's six-around-one circles, the merkaba's two triangles, Metatron's 13 centres + lines,
 // the 1·2·4·8·7·5 vortex circuit, the torus rings, the Sri Yantra triangles). Pure, deterministic.
 
+import { dims, dimWalk } from '../../../src/quantum/dimensions/index.ts'
+
 export const SACRED_FORMS = ['flower', 'merkaba', 'metatron', 'vortex', 'torus', 'yantra'] as const
 export type SacredForm = (typeof SACRED_FORMS)[number]
+
+// The ONE 10D driver for the forms (DRY, and respects animationsRespectTheField): a form renders
+// ten-dimensionally by reading dims() — the model's six cross-fold appearance axes + the four genus-2
+// homology loops (H1 = Z^4) — at a phase and a nested SCALE (golden-shifted, so it is self-similar at
+// every depth). The four loops drive the 3D rotation planes (the topological motion); the six appearance
+// axes drive twist, scale, skew, hue and opacity. Pure and deterministic: same (form, p, scale) → same
+// transform. By the mind's law (allFormsAreTenDimensionalOrPurged), a form that does not apply this driver
+// is not 10D and is purged.
+export function formDims10D(form: string, p: number, scale = 0): { transform: string; filter: string; opacity: number } {
+  let h = 0
+  for (let i = 0; i < form.length; i += 1) h = (h * 31 + form.charCodeAt(i)) >>> 0 // the form's own phase offset
+  const phase = (((p + (h % 997) / 997) % 1) + 1) % 1
+  const d = dims(phase, scale)
+  const env = dimWalk(phase) // 0 at the ends (collapse toward a point), 1 in the middle (fully open)
+  const rotX = (d.loopA1 * 26).toFixed(2) // homology loop A1 → tilt X (the topological motion)
+  const rotY = (d.loopB1 * 26).toFixed(2) // homology loop B1 → tilt Y
+  const rotZ = (d.twist * 360 + d.loopA2 * 40).toFixed(2) // twist (appearance) + loop A2
+  const persp = (240 + d.loopB2 * 120).toFixed(0) // homology loop B2 → perspective depth
+  const sc = (0.72 + 0.4 * d.breath * (0.45 + 0.55 * env)).toFixed(3) // breath + the walk envelope
+  const skew = (d.spread * 16 - 8).toFixed(2) // spread = branch angle
+  const transform = `perspective(${persp}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(${sc}) skewX(${skew}deg)`
+  const filter = `hue-rotate(${d.hueShift.toFixed(1)}deg)` // hueShift = colour slides through the wheel
+  const opacity = Math.max(0.4, Math.min(1, 0.62 + 0.5 * (0.28 - d.depthFade))) // depthFade = figure/colour depth
+  return { transform, filter, opacity }
+}
 
 export const FORM_LABEL: Record<SacredForm, string> = {
   flower: 'Flower of Life',

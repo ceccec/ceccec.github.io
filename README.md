@@ -23,9 +23,9 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 ## 3. Results
 
-- 35 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
-- 94 concept commands, each a single-word method and an MCP tool.
-- 178 entries in the reference index, zero redundancy.
+- 41 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
+- 96 concept commands, each a single-word method and an MCP tool.
+- 182 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 
 - **Start here** — Start here: a learning portal you can check for yourself. Four plain steps — see, learn, use, prove — with the full depth one tap away. Simple to use, rich in features.
@@ -46,6 +46,12 @@ A quantum-learning portal for language models and people, kids to elders — and
 - **Boundaries** — The honesty spine: every boundary the portal declares, auto-collected from the live commands into one audited, sealed list.
 - **The developer's mind** — The developer's mind: learn to build on the double torus — the matrix, the commands, and the self-computing components — by reading the source that computes itself.
 - **Show all in action** — Show all in action: every command run live, all components interacting, all devices fused — client-side and verifiable.
+- **Bulgarian Heritage** — Bulgarian heritage decoded in waves: history 681–present in six dual-mind eras, ancient civilisations from c.6200 BC (Varna gold), ethnogenesis — Bulgars, Slavs, Thracians — and the genetics that challenges the record; Glagolitic as the first Slavic script, script–language–gene as three independent inheritance systems. Documented kept, legend flagged.
+- **Science & Frequencies** — Science decoded honestly: electromagnetic radiation, Tesla's five verified patents, public frequency data APIs (FCC, USGS, Schumann 7.83 Hz, Web Audio), and the ionising threshold (~10 eV). Documented physics first; wellness claims flagged. Every result a client-side computation from the src/0 spectrum primitives.
+- **Voice & Language** — Voice decoded: plain language for every idea, play-and-learn letters as coloured tiles and notes, speech as a continuous analog wave, typography and Open Graph principles, char-and-word content-addressing, and the portal's eight experience dimensions. The same word always plays the same song — deterministic and offline.
+- **Spirit & Dimensions** — Spirit decoded honestly: the seven chakras and aura fields as a documented energy model, human design as a structural archetype system, yin-yang and dualities across sixteen pairs in three tiers, and the portal's eight experience dimensions. Each a deterministic computation; spiritual interpretations flagged.
+- **Icons & Form** — Icons and form decoded: the 44 area-icon map (emoji taxonomy), area labels in three locales, computer architecture in 3-5-8 (three buses, five von Neumann units, eight bits of a byte), harmonic Fibonacci band distribution, and the glyph/artifact seal. Every icon a structural assignment — the form that names each domain.
+- **Nature & Society** — Nature decoded: natural law and the commons as a recomputable rubric (every extraction matched by restoration), an attestation seal for peer-review-level claims, the lawful participation ladder — harmonic, imaginative, successful — and the society forms indexed. Documented kept, naivety flagged.
 - **π opens the trinity** — The 3 in 3.14159 is the trinity’s first mark: a trinity is three-in-one, so 3 means three trinities, which is nine. The doubling circuit 1-2-4-8-7-5 never touches 3-6-9.
 - **The qubit’s trinity** — A qubit has exactly 3 traceless observables — the Pauli matrices X, Y, Z — the generators of SU(2) and the 3 Bloch axes; dim su(2) = 2²−1 = 3 is a forced invariant.
 - **64 = the 3-qubit Pauli basis** — The 3-qubit phaseless Pauli basis {I,X,Y,Z}³ has exactly 4³ = 64 operators — the same 4³ = 8² = 2⁶ = 64 as the genetic code and the double-torus vocabulary.
@@ -99,5 +105,5 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/mind`. The sitemap root: `cdb9a60c-b6de-84e2-b976-b3fbcb57d50d`. The monograph-index root: `442498cd-ed3a-8a4e-80dc-7de18ccc0a7e`.
+- The model: `src/quantum/mind`. The sitemap root: `cdb9a60c-b6de-84e2-b976-b3fbcb57d50d`. The monograph-index root: `919ba324-8f13-8fa6-b9d5-1dc8828530b9`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.

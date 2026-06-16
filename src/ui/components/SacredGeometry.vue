@@ -4,16 +4,27 @@
 // homology loops + 6 cross-fold axes). The five Platonic solids carry their real V/E/F and Euler V−E+F=2; φ is
 // shown where it genuinely lives. Reuses the sacredGeometry() fold (the decode) and the shared form SVGs. Built
 // to web standards: semantic headings/lists/figures, labelled controls, aria-expanded toggles, reduced-motion.
-import { computed, ref } from 'vue'
-import { sacredGeometry } from '../lib/quantumMind'
-import { formSvg, SACRED_FORMS, FORM_LABEL } from '../lib/sacredForms'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { sacredGeometry, createAnimationEngine } from '../lib/quantumMind'
+import { formSvg, formDims10D, SACRED_FORMS, FORM_LABEL } from '../lib/sacredForms'
 
 const sg = sacredGeometry()
-const phase = ref(0) // 0..1000 — the dimension walk
-const turn = computed(() => (phase.value / 1000) * 360)
+const phase = ref(0) // 0..1000 — the manual dimension walk (the slider)
 const showDocumented = ref(true)
 const showFlagged = ref(false)
 const reduce = typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+
+// Every form is driven through ALL TEN dimensions (4 homology loops + 6 cross-fold axes, dims()) by the one
+// shared engine — self-similar at each form's own nested scale (clear at all depths). No form carries 1D rotation.
+const t = ref(0) // the animated phase 0..1, advanced by the shared realtime engine
+const engine = createAnimationEngine((time) => { t.value = (time / 16000) % 1 }) // ~16s per full dimension walk
+const formStyle = (form: string, i: number) => {
+  const p = (reduce ? 0 : t.value) + phase.value / 1000 // reduced-motion: the slider alone drives it
+  const d = formDims10D(form, p, i) // i = the form's nested scale → self-similar at every depth
+  return { transform: d.transform, filter: d.filter, opacity: String(d.opacity) }
+}
+onMounted(() => { if (!reduce) engine.sync(true) })
+onBeforeUnmount(() => engine.dispose())
 const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', octahedron: '◇', dodecahedron: '⬠', icosahedron: '⬢' }
 </script>
 
@@ -42,15 +53,15 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
     </p>
 
     <h3 class="sg__h3">The forms — walk the dimensions</h3>
-    <p class="sg__lead">Each is a real construction. Walk the slider and they turn through the dimension — the same ten-dimensional thread as the movie (four genus-2 homology loops + six cross-fold axes); the merkaba is the model’s own genus-2 topology.</p>
+    <p class="sg__lead">Each is a real construction, driven through <strong>all ten dimensions</strong> — the four genus-2 homology loops (the topological motion) plus the six cross-fold appearance axes — self-similar at each form’s own nested scale. Watch them turn, or walk the slider; none carries a flat 1D spin. <em>All forms have 10D or are purged.</em></p>
     <label class="sg__walk">
       <span>dimension walk</span>
-      <input v-model.number="phase" type="range" min="0" max="1000" aria-label="walk the forms through the dimension" />
+      <input v-model.number="phase" type="range" min="0" max="1000" aria-label="walk the forms through the ten dimensions" />
     </label>
     <ul class="sg__forms">
-      <li v-for="form in SACRED_FORMS" :key="form" class="sg__form">
+      <li v-for="(form, i) in SACRED_FORMS" :key="form" class="sg__form">
         <figure>
-          <svg viewBox="0 0 100 100" role="img" :aria-label="FORM_LABEL[form]" :style="reduce ? undefined : { transform: `rotate(${turn}deg)` }">
+          <svg viewBox="0 0 100 100" role="img" :aria-label="FORM_LABEL[form]" :style="formStyle(form, i)">
             <g v-html="formSvg(form)" />
           </svg>
           <figcaption>{{ FORM_LABEL[form] }}</figcaption>
