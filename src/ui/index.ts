@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import BlockchainMusic from './components/BlockchainMusic.vue'
 import BoundaryAudit from './components/BoundaryAudit.vue'
+import ChakrasAura from './components/ChakrasAura.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import Complete from './components/Complete.vue'
 import Cosmology358 from './components/Cosmology358.vue'
@@ -136,6 +137,9 @@ import AnalogField from './components/AnalogField.vue'
 // Realtime wiring: every page computes its own trinity gateways + related paths from its route, rendered in
 // the left sidebar so the navigation manages itself (hand-maintaining the graph at this scale is impossible).
 import TrinityGateways from './components/TrinityGateways.vue'
+// The ☱ Joyous spirit trinity — yin-yang and the chakras/aura, each computed from the spirit fold (3-5-8 tiers),
+// completing the spirit section beside Dualities (the homepage's eighth I Ching domain).
+import YinYang from './components/YinYang.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -305,5 +309,7 @@ export default {
     app.component('IChingOracle', IChingOracle)
     app.component('AnalogField', AnalogField)
     app.component('TrinityGateways', TrinityGateways)
+    app.component('ChakrasAura', ChakrasAura)
+    app.component('YinYang', YinYang)
   }
 } satisfies Theme
