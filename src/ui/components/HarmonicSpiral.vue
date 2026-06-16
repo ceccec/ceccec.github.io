@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 39, lo: '☰', up: '☶', glyph: '☶', color: '#F00FFF', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
 import { harmonicBands, goldenRatio } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -51,7 +53,7 @@ const segments = computed(() => {
 </script>
 
 <template>
-  <section class="hs dt-card">
+  <section class="hs dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ pick('harmonic distribution · consecutive Fibonacci, no gaps', 'хармонично разпределение · последователни Фибоначи, без празнини') }}</p>
     <div class="hs__row">
       <svg viewBox="0 0 100 100" class="hs__spiral" aria-hidden="true">

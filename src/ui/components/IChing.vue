@@ -1,4 +1,6 @@
 <script setup>
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 1, glyph: '☷', trigram: 'Kūn·receptive', color: '#00000F' }
 // I CHING — the components organised on the eight trigrams (bāguà), live from iChing(): every component placed
 // by its own content-address (seed → a 6-bit hexagram → upper trigram = its set), reusing the 2⁶=4³ identity.
 // Minimal, render-safe baseline (no reactive style values — the alpha mishandles a ref nested in :style); the
@@ -8,7 +10,7 @@ const ic = iChing()
 </script>
 
 <template>
-  <section class="ich" aria-labelledby="ich-title">
+  <section class="ich" aria-labelledby="ich-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="ich__eyebrow">Double Torus · the eight-fold</p>
     <h2 id="ich-title">The components, organised on the I Ching</h2>
     <p class="ich__lede">

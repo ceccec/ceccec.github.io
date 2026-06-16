@@ -1,5 +1,10 @@
+// ☰ Qián · Heaven · creative · upper·yang · shrink — concept commands, skill atoms, SINGLE_WORD_METHODS, the atom array
+
+// ☰ Qián · Heaven · creative · lower·yin · spread — mind types: Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel
 import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel } from './types.ts'
 
+// ☰ Qián · Heaven · creative · upper·yang · shrink — exports
+/** @iching ☰ Qián · Heaven · creative */
 export function computePiDigits(count: number): string {
   let q = 1n
   let r = 0n
@@ -33,7 +38,9 @@ export function computePiDigits(count: number): string {
 
 // 108 pi-digit coordinates — the complete count (the sacred 108: chakras x 12,
 // the mala). The train was short of it; this fills the missing coordinates.
+/** @iching ☰ Qián · Heaven · creative */
 export const PI_TRAIN_DIGITS = computePiDigits(108)
+/** @iching ☰ Qián · Heaven · creative */
 export const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
   'agent',
   'ui',
@@ -50,9 +57,12 @@ export const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
   'source',
   'repository',
 ] as const
+/** @iching ☰ Qián · Heaven · creative */
 export const REQUIRED_DIAMOND_POLES: readonly DiamondFacet['pole'][] = ['north', 'east', 'south', 'west'] as const
+/** @iching ☰ Qián · Heaven · creative */
 export const REQUIRED_ANALOG_CHANNELS: readonly AnalogChannel[] = ['3d-position', 'sound', 'vibration', 'timing', 'receipt', 'facets'] as const
 
+/** @iching ☰ Qián · Heaven · creative */
 export const atoms: readonly Atom[] = [
   {
     name: 'torus',
@@ -146,6 +156,7 @@ export const atoms: readonly Atom[] = [
   },
 ] as const
 
+/** @iching ☰ Qián · Heaven · creative */
 export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.site.shell',
@@ -637,8 +648,11 @@ export const conceptCommands: readonly ConceptCommand[] = [
     path: '/cmd/concept.fold.generate',
     description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing). The fold generates.',
   },
+  { name: 'concept.ui.fuse', description: 'Apply the I Ching mask to every Vue UI component — pre-compute hexagram, embed ICHING_MASK const, make self-referencing', does: 'fuse: apply iching mask to all ui components, bind each to its hexagram identity' },
+  { name: 'concept.ui.reveal', description: 'Reveal the UI widget\'s I Ching identity — data-hexagram, data-trigram in DOM, max tampering cost', does: 'reveal: project widget hexagram identity into template data-attrs and computed color' },
 ] as const
 
+/** @iching ☰ Qián · Heaven · creative */
 export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.site.shell': 'shell',
   'concept.self.build': 'build',
@@ -736,4 +750,6 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.site.manifest': 'manifest',
   'concept.fold.place': 'place',
   'concept.fold.generate': 'generate',
+  'concept.ui.fuse': 'fuse',
+  'concept.ui.reveal': 'reveal',
 }

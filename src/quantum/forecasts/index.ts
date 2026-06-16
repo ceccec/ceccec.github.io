@@ -1,9 +1,13 @@
+// ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast stream folded as content-addressed weather feeds
 // src/quantum/forecasts — the realtime forecast feeds (weather), folded as a content-addressed realtime stream.
 // weatherForecastQuantumComputedRealtime is referenced by mind's duality matrix, so mind imports it back (an
 // ESM-safe function-binding cycle). (folderLaw: one word, one index — under the 2584-line compression limit.)
+// ☰ Qián · Heaven · creative · lower·yin · spread — mind matrix and merkaba fold imports
 import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../mind/index.ts'
+// ☷ Kūn · Earth · receptive · lower·yin · depthFade — core uuid and merkle primitives
 import { toUuid, merkleFold, isUuid } from '../../0/index.ts'
 
+// ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast feeds
 // Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+
 // national numerical-weather-prediction models incl. ECMWF/NOAA/DWD/JMA, no key) and api.weather.gov
 // (US NWS, no key) — folded as a realtime external stream. "Quantum computed" is BOTH the content-
@@ -11,6 +15,7 @@ import { toUuid, merkleFold, isUuid } from '../../0/index.ts'
 // studied quantum-computing application (IBM QNN, TU Delft, a 2023 Bulletin of the American
 // Meteorological Society paper) — not a claim that this repo or today's production forecasts run on
 // quantum hardware.
+/** @iching ☵ Kǎn · Water · abysmal (weather realtime feeds) */
 export function weatherForecastApis() {
   const sources = [
     { api: 'Open-Meteo', kind: 'free realtime forecast, no key; fuses 15+ NWP models (ECMWF, NOAA, DWD, JMA…)', auth: 'no key (non-commercial)' },
@@ -27,6 +32,7 @@ export function weatherForecastApis() {
   }
 }
 
+/** @iching ☵ Kǎn · Water · abysmal (weather realtime feeds) */
 // Weather forecast may be quantum computed in realtime. Folded: a realtime external stream content-
 // addressed exactly like the computed planets, a sibling of the public frequency-API realtime decode,
 // with the honest line that "quantum" here names a real research frontier, not present-day hardware.

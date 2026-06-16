@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì·joyous', color: '#0FFF0F' } as const
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, selfConsult } from '../lib/quantumMind'
@@ -36,7 +38,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="consult dt-card">
+  <section class="consult dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="consult__flow">{{ t.flow }}</p>
     <input v-model="query" type="text" :placeholder="t.placeholder" class="consult__input" />

@@ -1,12 +1,15 @@
-// ☴ XUN (Wind · nature) — natural law and lawful society: the jurisprudential commons lens,
-// patent eligibility, a society-law rubric, the lawful-society ladder, and attestation.
+// ☴ Xùn · Wind · gentle · upper·yang · twist — natural law and lawful society: the jurisprudential commons lens, patent eligibility, a society-law rubric, the lawful-society ladder, and attestation.
 // Dual: src/nature/quantum (browse/display primitives). Pure, only src/0 imports.
 
+// ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
 import { toUuid, merkleFold } from '../../0/index.ts'
 
+// ☴ Xùn · Wind · gentle · upper·yang · twist — natural law and lawful society exports
+/** @iching ☴ Xùn · Wind · gentle */
 export const dual = 'src/nature/quantum'
 
 // Nature is the legal system itself: a natural-law lens.
+/** @iching ☴ Xùn · Wind · gentle */
 export function natureLaw() {
   const principles = [
     'Nature is the legal system itself: its laws are discovered, not enacted.',
@@ -24,6 +27,7 @@ export function natureLaw() {
 }
 
 // The base knowledge of nature and sacred math is a commons, not patentable.
+/** @iching ☴ Xùn · Wind · gentle */
 export function natureCommons() {
   const items = [
     { kind: 'law of nature', example: 'gravity, conservation, thermodynamics', patentable: false, reason: 'discoveries, not inventions (Alice/Mayo)' },
@@ -41,6 +45,7 @@ export function natureCommons() {
 }
 
 // Review laws and patents against nature.
+/** @iching ☴ Xùn · Wind · gentle */
 export function natureReview() {
   const tests = [
     { test: 'consonant-with-nature', question: 'Does the rule respect natural law and the commons?' },
@@ -60,6 +65,7 @@ export function natureReview() {
 }
 
 // Let society harmonise itself using current society laws.
+/** @iching ☴ Xùn · Wind · gentle */
 export function lawfulHarmonise() {
   const mappings = [
     { idea: 'membership and one-member-one-vote', form: 'cooperative / association statutes', how: 'a registered cooperative already gives every member an equal vote by law' },
@@ -79,6 +85,7 @@ export function lawfulHarmonise() {
 }
 
 // Imagine: compute a concrete, lawful scenario of a society coordinating through the app.
+/** @iching ☴ Xùn · Wind · gentle */
 export function lawfulImagine() {
   const scene = [
     { actor: 'a school class', act: 'shares the site link and learns the model client-side, no accounts', law: 'no data collected, lawful by default' },
@@ -97,6 +104,7 @@ export function lawfulImagine() {
 }
 
 // Let the society use the app to succeed.
+/** @iching ☴ Xùn · Wind · gentle */
 export function lawfulSucceed() {
   const ladder = [
     { rung: 'share', win: 'anyone opens the site and learns at zero cost, no signup', lawful: true },
@@ -118,6 +126,7 @@ export function lawfulSucceed() {
 }
 
 // Toward attestation: the mechanism for signing and verifying model roots.
+/** @iching ☴ Xùn · Wind · gentle */
 export function attestation() {
   const steps = [
     { step: 'generate', how: 'an ECDSA P-256 key pair in the browser (Web Crypto)' },

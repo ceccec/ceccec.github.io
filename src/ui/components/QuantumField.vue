@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { deviceSensors, a432, frequencyToLight } from '../lib/quantumMind'
@@ -108,7 +110,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="field dt-card">
+  <section class="field dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <canvas ref="canvas" class="field__canvas" />
     <div class="field__row">

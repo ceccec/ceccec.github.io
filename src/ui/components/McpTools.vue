@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎn·abysmal', up: 'Qián·creative', color: '#FFF0F0' }
 import { computed, nextTick, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp, virtualOS, executeConceptCommand, intuitiveSearch, toUuid } from '../lib/quantumMind'
@@ -121,7 +123,7 @@ function onEnter() {
 </script>
 
 <template>
-  <section class="mcp-tools">
+  <section class="mcp-tools" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="mcp-tools__header">
       <p class="eyebrow">{{ t.eyebrow }}</p>
       <h2>{{ t.heading }}</h2>

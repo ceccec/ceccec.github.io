@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 15, glyph: '☳', lower: '☰', upper: '☳', color: '#00FFFF' }
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology, features, createAnimationEngine, a432, frequencyToLight } from '../lib/quantumMind'
 import { dimWalk } from '../lib/hero'
@@ -165,7 +167,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="live dt-card" :class="{ dead: !data.alive }">
+  <section class="live dt-card" :class="{ dead: !data.alive }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <header class="live__head">
       <p class="eyebrow">
         <span class="live__dot" :class="{ on: data.alive }" aria-hidden="true" />

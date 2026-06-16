@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 24, glyph: '☱', lo: 'Kūn·receptive', up: 'Duì·joyous', color: '#0FF000' } as const
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, autoSpeech, speechIntonation } from '../lib/quantumMind'
@@ -164,7 +166,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="speech dt-card">
+  <section class="speech dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <template v-if="supported">
       <div class="speech__row">

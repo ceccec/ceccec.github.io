@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', color: '#00F0F0' }
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { buildMatrix, merkaba, humanise, createAnimationEngine, frequencyToLight, a432 } from '../lib/quantumMind'
 import { rotateYZ, rotateZX, dims } from '../lib/hero'
@@ -128,7 +130,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="mk">
+  <section class="mk" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ pick('the merkaba · opposite rotation at all scales', 'меркаба · противоположно въртене на всички мащаби') }}</p>
     <div ref="wrap" class="mk__wrap">
       <canvas

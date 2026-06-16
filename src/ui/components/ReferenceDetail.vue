@@ -1,4 +1,6 @@
 <script setup>
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 43, name: 'Guài', glyph: '☲☱', lower: 'Duì', upper: 'Lí', color: '#F0F0FF' }
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
@@ -8,7 +10,7 @@ const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.val
 </script>
 
 <template>
-  <div v-if="params">
+  <div v-if="params" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="paper-eyebrow">Double Torus · reference {{ params.number }} of {{ params.total }}</p>
     <h1>Reference {{ params.number }} — to paper {{ params.number }}</h1>
     <p>This is a <strong>reference only</strong> — the reverse fold of <a :href="`${pfx}/papers/${params.paperId}`">paper {{ params.number }}</a>.</p>

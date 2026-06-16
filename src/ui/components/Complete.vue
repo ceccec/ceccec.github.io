@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '#F000F0', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, complete } from '../lib/quantumMind'
@@ -23,7 +25,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="cmp dt-card" :class="{ done: data.complete }">
+  <section class="cmp dt-card" :class="{ done: data.complete }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="cmp__lead">{{ t.lead }}</p>
     <ul class="cmp__checks">

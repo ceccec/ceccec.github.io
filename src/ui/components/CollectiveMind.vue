@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 1, glyph: '☷', trigram: 'Kūn·receptive', color: '#00000F' }
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import { buildMatrix, distributedCompute, selfDevelopment } from '../lib/quantumMind'
@@ -86,7 +88,7 @@ const label = computed(() => {
 </script>
 
 <template>
-  <div class="collective-mind dt-card" :title="dev.statement" aria-live="polite">{{ label }}</div>
+  <div class="collective-mind dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph" :title="dev.statement" aria-live="polite">{{ label }}</div>
 </template>
 
 <style scoped>

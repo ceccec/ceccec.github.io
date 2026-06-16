@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, frequencyToLight } from '../lib/quantumMind'
@@ -167,7 +169,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="fold3d dt-card">
+  <section class="fold3d dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'квантово сгъване · 3d+' : 'quantum folding · 3d+' }}</p>
     <canvas ref="canvas" class="fold3d__canvas" />
     <p class="fold3d__caption">{{ caption }}</p>

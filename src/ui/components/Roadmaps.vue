@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 8, glyph: '☳', lower: '☷', upper: '☳', color: '#00F000' }
 import { computed } from 'vue'
 import { buildMatrix, roadmaps } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -40,7 +42,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="roadmaps">
+  <section class="roadmaps" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="roadmaps__sub">{{ t.sub }}</p>
     <div class="roadmaps__grid">

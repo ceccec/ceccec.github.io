@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 26, glyph: '☱', lo: 'Kǎn·abysmal', up: 'Duì·joyous', color: '#0FF0F0' } as const
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { fold358853 } from '../lib/quantumMind'
@@ -16,7 +18,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="fb dt-card">
+  <section class="fb dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="fb__rows">
       <div class="fb__row expand">

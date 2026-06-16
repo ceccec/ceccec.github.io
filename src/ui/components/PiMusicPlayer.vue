@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 12, glyph: '☳', lower: '☶', upper: '☳', color: '#00FF00' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, piMusic } from '../lib/quantumMind'
@@ -32,7 +34,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="pi-music dt-card">
+  <section class="pi-music dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="pi-music__row">
       <label>{{ t.join }}: {{ horo }}

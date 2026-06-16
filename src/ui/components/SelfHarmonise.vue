@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 31, glyph: '☱', lo: 'Qián·creative', up: 'Duì·joyous', color: '#0FFFFF' } as const
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { useData } from 'vitepress'
@@ -24,7 +26,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="harm dt-card">
+  <section class="harm dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="harm__walk-label">{{ t.walk }} · {{ result.distinctStepsVisited }}/{{ result.steps }}</p>
     <ol class="harm__walk">

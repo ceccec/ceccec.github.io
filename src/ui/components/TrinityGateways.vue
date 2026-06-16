@@ -1,4 +1,6 @@
 <script setup>
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 // REALTIME WIRING, rendered. At this scale the navigation cannot be hand-maintained, so every page computes
 // its own from its route: realtimeWiring(path) returns the three trinity gateways every page leads to
 // (proven · animated · presented) and the related paths (scored by shared tags = shared seed = entanglement).
@@ -21,7 +23,7 @@ const realm = (r) => (bg.value ? REALM_BG[r] ?? r : r)
 </script>
 
 <template>
-  <nav class="tg" :aria-label="bg ? 'Троични портали и свързани пътища' : 'Trinity gateways and related paths'">
+  <nav class="tg" :aria-label="bg ? 'Троични портали и свързани пътища' : 'Trinity gateways and related paths'" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="tg__label">{{ bg ? 'Портали' : 'Gateways' }}</p>
     <ul class="tg__gateways" role="list">
       <li v-for="g in wiring.gateways" :key="g.slug" :style="{ '--hue': g.hue }">

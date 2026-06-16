@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎn·abysmal', up: 'Qián·creative', color: '#FFF0F0' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, todoScan } from '../lib/quantumMind'
@@ -15,7 +17,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="ntd dt-card" :class="{ done: data.nothingToDo }">
+  <section class="ntd dt-card" :class="{ done: data.nothingToDo }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="ntd__done">{{ data.nothingToDo ? t.done : `${data.total} open` }}</p>
     <ul class="ntd__items">

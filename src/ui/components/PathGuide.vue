@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 30, glyph: '☱', lo: 'Xùn·gentle', up: 'Duì·joyous', color: '#0FFFF0' } as const
 import { computed, ref } from 'vue'
 import { buildMatrix, path } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -42,7 +44,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="path dt-card">
+  <section class="path dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <ol class="path__list">
       <li v-for="(item, i) in items" :key="item.route" :class="{ here: i === here }" @click="here = i">

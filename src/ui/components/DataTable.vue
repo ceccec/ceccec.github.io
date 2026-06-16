@@ -1,11 +1,13 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 63, trigram: '☰☰', glyph: '☰☰', lo: 'Qián·creative', up: 'Qián·creative', color: '#FFFFFF' }
 // A shadcn-style data table — themed with the site CSS variables (no Tailwind). One reusable
 // primitive over { columns, rows }. Cells render as text only (no injected HTML).
 withDefaults(defineProps<{ columns?: string[]; rows?: (string | number)[][]; title?: string }>(), { columns: () => [], rows: () => [] })
 </script>
 
 <template>
-  <figure class="dtbl dt-card">
+  <figure class="dtbl dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <figcaption v-if="title" class="dtbl__title">{{ title }}</figcaption>
     <div class="dtbl__scroll">
       <table class="dtbl__table">

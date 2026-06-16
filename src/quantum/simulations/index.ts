@@ -1,7 +1,9 @@
+// ☲ Lí · Fire · clinging (EM simulators) · upper·yang · depthFade — deterministic plane-wave / X-ray-CT / MRI-Bloch / FMCW-radar simulators
 // src/quantum/simulations — the deterministic EM simulators (plane wave · X-ray/CT · MRI Bloch · FMCW radar),
 // moved out of the src/0 origin into their own home. Classical teaching models; each run a content-addressed
 // shared experiment. They compose the foundational EM constants/conversions from src/0; the FOLDS that RUN them
 // live in src/quantum/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
+// ☲ Lí · Fire · clinging · lower·yin · spread — EM primitives (constants, conversions, content-addressing)
 import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, wavelengthOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, prng, merkleFold, toUuid, roundTo } from '../../0/index.ts'
 
 // ── EM simulators: deterministic, content-addressed teaching models of the field and its three modalities ──
@@ -10,12 +12,18 @@ import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, wavelengthOf, photonEnergyEv, isI
 // reproducible and content-addressed: merkleFold/toUuid of params+output = a SHARED EXPERIMENT anyone recomputes.
 // All reuse the EM primitives above (c, h, eV, the Larmor/range/Doppler kernels). Honest bounds live in the fold.
 
+// ☲ Lí · Fire · clinging · upper·yang · depthFade — plane-wave exports (Maxwell field, polarization, content-address)
 // The base Maxwell field the three modalities share. ε₀ — the one constant the field adds (no permittivity yet).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export const VACUUM_PERMITTIVITY = 8.8541878128e-12 // ε₀, F/m (CODATA); with 1/(μ₀c²)=ε₀ the E and B energy halves are equal
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function waveNumber(wavelengthM: number): number { return (2 * Math.PI) / wavelengthM } // k = 2π/λ
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function angularFrequency(frequencyHz: number): number { return 2 * Math.PI * frequencyHz } // ω = 2πf
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function planeWaveSpeed(frequencyHz: number): number { return wavelengthOf(frequencyHz) * frequencyHz } // (c/f)·f = c — proves c=λf
 // Sample the 1-D linearly-polarized plane wave at fixed time t: E(x)=E₀cos(kx−ωt+φ), B=E/c (in phase, ⊥). Closed-form, no ODE.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function planeWaveField(frequencyHz: number, opts: { e0?: number; samples?: number; cycles?: number; t?: number; phase?: number; seed?: string } = {}): { x: number[]; E: number[]; B: number[] } {
   const { e0 = 1, samples = 48, cycles = 1, t = 0, seed } = opts
   const phase = opts.phase ?? (seed ? 2 * Math.PI * prng(seed)() : 0)
@@ -31,9 +39,12 @@ export function planeWaveField(frequencyHz: number, opts: { e0?: number; samples
   }
   return { x, E, B }
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function planeWaveEnergyDensity(E: readonly number[]): number[] { return E.map((e) => VACUUM_PERMITTIVITY * e * e) } // u = ε₀E²
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function planeWaveIntensity(e0 = 1): number { return 0.5 * SPEED_OF_LIGHT * VACUUM_PERMITTIVITY * e0 * e0 } // ⟨S⟩ = ½cε₀E₀²
 // Circular polarization: two ⊥ components 90° out of phase; |E|=√(Ey²+Ez²)=E₀ is the invariant. h=+1/−1 handedness.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function planeWaveCircular(frequencyHz: number, opts: { e0?: number; samples?: number; cycles?: number; t?: number; handedness?: 1 | -1 } = {}): { x: number[]; Ey: number[]; Ez: number[] } {
   const { e0 = 1, samples = 48, cycles = 1, t = 0, handedness = 1 } = opts
   const lambda = wavelengthOf(frequencyHz)
@@ -47,6 +58,7 @@ export function planeWaveCircular(frequencyHz: number, opts: { e0?: number; samp
   return { x, Ey, Ez }
 }
 // Content-address a plane-wave run: fold params + rounded E-samples → one root; toUuid(params|root) is the shareable id.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function planeWaveReceipt(frequencyHz: number, opts: { e0?: number; samples?: number; cycles?: number; t?: number; phase?: number; seed?: string } = {}): { uuid: string; root: string; lambda: number; intensity: number; photonEv: number; ionizing: boolean; samples: number } {
   const field = planeWaveField(frequencyHz, opts)
   const e0 = opts.e0 ?? 1
@@ -56,16 +68,23 @@ export function planeWaveReceipt(frequencyHz: number, opts: { e0?: number; sampl
   return { uuid: toUuid(`${params}|${root}`), root, lambda: wavelengthOf(frequencyHz), intensity: planeWaveIntensity(e0), photonEv: photonEnergyEv(frequencyHz), ionizing: isIonizing(frequencyHz), samples: field.E.length }
 }
 
+// ☲ Lí · Fire · clinging · upper·yang · depthFade — X-ray / CT exports (Beer–Lambert, Radon, FBP, content-address)
 // X-ray imaging: Beer–Lambert attenuation + a minimal parallel-beam CT (Radon forward-projection + filtered back-projection).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function kevToFrequency(keV: number): number { return (keV * 1000 * ELECTRONVOLT) / PLANCK } // keV photon → Hz (inverse of photonEnergyEv)
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function beamProfile(keV: number): { keV: number; frequencyHz: number; photonEnergyEv: number; ionizing: boolean } {
   const frequencyHz = kevToFrequency(keV)
   return { keV, frequencyHz, photonEnergyEv: photonEnergyEv(frequencyHz), ionizing: isIonizing(frequencyHz) } // reuse the EM kernel verbatim
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function opticalDepth(layers: readonly { mu: number; x: number }[]): number { return layers.reduce((acc, l) => acc + l.mu * l.x, 0) } // τ = Σ μᵢxᵢ
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function beerLambert(i0: number, layers: readonly { mu: number; x: number }[]): number { return i0 * Math.exp(-opticalDepth(layers)) } // I = I₀·e^(−τ)
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function muToHu(mu: number, muWater = 0.2): number { return (1000 * (mu - muWater)) / muWater } // Hounsfield: water=0, air=−1000
 // Two-angle parallel-beam Radon (sinogram): column sums (0°) and row sums (90°); each value is a ray's optical depth.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function forwardProjectAxis(phantom: readonly (readonly number[])[]): number[][] {
   const N = phantom.length
   const p0 = Array.from({ length: N }, (_, c) => { let s = 0; for (let r = 0; r < N; r++) s += phantom[r][c]; return s }) // angle 0: column sums
@@ -73,15 +92,18 @@ export function forwardProjectAxis(phantom: readonly (readonly number[])[]): num
   return [p0, p90]
 }
 // Spatial Ram-Lak ramp filter taps n=−half..half: h[0]=¼, h[odd]=−1/(π²n²), h[even≠0]=0 (Kak & Slaney).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function ramLakKernel(half: number): number[] {
   return Array.from({ length: 2 * half + 1 }, (_, kk) => { const n = kk - half; if (n === 0) return 0.25; if (n % 2 !== 0) return -1 / (Math.PI * Math.PI * n * n); return 0 })
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function rampFilter(projection: readonly number[], half = 3): number[] {
   const h = ramLakKernel(half)
   const N = projection.length
   return Array.from({ length: N }, (_, i) => { let s = 0; for (let n = -half; n <= half; n++) { const j = i - n; if (j >= 0 && j < N) s += projection[j] * h[n + half] } return s })
 }
 // Reconstruct an N×N image by back-projecting the two axis projections and averaging; filtered=true applies the ramp (FBP).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function backProjectAxis(sinogram: readonly (readonly number[])[], filtered = false): number[][] {
   const [raw0, raw90] = sinogram
   const N = raw0.length
@@ -89,6 +111,7 @@ export function backProjectAxis(sinogram: readonly (readonly number[])[], filter
   const p90 = filtered ? rampFilter(raw90) : raw90
   return Array.from({ length: N }, (_, r) => Array.from({ length: N }, (_, c) => (p0[c] + p90[r]) / 2))
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function ctReceipt(keV: number, phantom: readonly (readonly number[])[]): { id: string; root: string; beam: { keV: number; frequencyHz: number; photonEnergyEv: number; ionizing: boolean }; sinogram: number[][]; recon: number[][] } {
   const beam = beamProfile(keV)
   const sinogram = forwardProjectAxis(phantom)
@@ -103,33 +126,40 @@ export function ctReceipt(keV: number, phantom: readonly (readonly number[])[]):
   return { id: toUuid(root), root, beam, sinogram, recon }
 }
 
+// ☲ Lí · Fire · clinging · upper·yang · depthFade — MRI / Bloch exports (rotating-frame ODE, FID, T1 recovery, content-address)
 // MRI / NMR: the phenomenological Bloch equations (rotating frame). Off-resonance precession Δf + T1 recovery + T2 decay.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function blochStep(m: readonly number[], opts: { T1: number; T2: number; M0?: number; df?: number; dt?: number }): number[] {
   const [mx, my, mz] = m
   const { T1, T2, M0 = 1, df = 0, dt = 0.01 } = opts
   const w = 2 * Math.PI * df
   return [mx + dt * (w * my - mx / T2), my + dt * (-w * mx - my / T2), mz + dt * ((M0 - mz) / T1)] // explicit Euler, mirrors inductionStep
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function blochEvolve(m0: readonly number[], opts: { T1: number; T2: number; M0?: number; df?: number; dt?: number }, steps: number): number[][] {
   const out: number[][] = [m0.slice()]
   for (let s = 0; s < steps; s++) out.push(blochStep(out[out.length - 1], opts))
   return out
 }
 // Closed-form free-induction decay after an ideal 90° pulse, lab frame: Mxy(t)=M0·e^(−t/T2)·cos(2πf·t).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function fid(opts: { M0?: number; T2: number; f: number; dt?: number }, samples: number): number[] {
   const { M0 = 1, T2, f, dt = 0.001 } = opts
   return Array.from({ length: samples }, (_, n) => { const t = n * dt; return M0 * Math.exp(-t / T2) * Math.cos(2 * Math.PI * f * t) })
 }
 // Closed-form longitudinal T1 recovery from saturation: Mz(t)=M0·(1−e^(−t/T1)).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function t1Recovery(opts: { M0?: number; T1: number; dt?: number }, samples: number): number[] {
   const { M0 = 1, T1, dt = 0.1 } = opts
   return Array.from({ length: samples }, (_, n) => M0 * (1 - Math.exp(-(n * dt) / T1)))
 }
 // Coil signal of a small fixed phantom: per-sample sum of each voxel's FID (rotating frame f=0 ⇒ cos=1).
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function phantomFid(voxels: readonly { M0: number; T2: number }[], opts: { f?: number; dt?: number }, samples: number): number[] {
   const { f = 0, dt = 0.001 } = opts
   return Array.from({ length: samples }, (_, n) => { const t = n * dt; const c = Math.cos(2 * Math.PI * f * t); let s = 0; for (const v of voxels) s += v.M0 * Math.exp(-t / v.T2) * c; return s })
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function blochReceipt(opts: { B0: number; T1: number; T2: number; M0?: number; f?: number; dt?: number; steps: number }, signal: readonly number[]): { id: string; root: string; f0: number; ionizing: boolean } {
   const { B0, T1, T2, M0 = 1, f = 0, dt = 0.001, steps } = opts
   const f0 = larmorFrequency(B0)
@@ -138,16 +168,24 @@ export function blochReceipt(opts: { B0: number; T1: number; T2: number; M0?: nu
   return { id: toUuid(params), root: merkleFold(leaves), f0, ionizing: isIonizing(f0) } // ionizing always false for MRI-RF
 }
 
+// ☲ Lí · Fire · clinging · upper·yang · depthFade — FMCW radar exports (beat/range/velocity/RDM, content-address)
 // Microwave radar (FMCW): range from the beat tone, velocity from Doppler; a synthetic range-Doppler readout. Non-ionizing.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function radarVelocity(beatHz: number, carrierHz: number): number { return (beatHz * SPEED_OF_LIGHT) / (2 * carrierHz) } // inverse of dopplerShift
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function fmcwSlope(bandwidthHz: number, chirpSeconds: number): number { return bandwidthHz / chirpSeconds } // B/T_chirp, Hz/s
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function beatToRange(beatHz: number, slopeHzPerS: number): number { return radarRange(beatHz / slopeHzPerS) } // R = f_b·c/(2·slope)
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function rangeToBeat(rangeM: number, slopeHzPerS: number): number { return (slopeHzPerS * 2 * rangeM) / SPEED_OF_LIGHT } // f_b = slope·2R/c
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function rangeResolution(bandwidthHz: number): number { return SPEED_OF_LIGHT / (2 * bandwidthHz) } // dr = c/(2B)
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function velocityResolution(carrierHz: number, chirps: number, priSeconds: number): number { return SPEED_OF_LIGHT / (2 * carrierHz * chirps * priSeconds) } // dv = c/(2·f_c·N_c·T_r)
 export interface RadarScene { carrierHz: number; ns: number; nc: number; fs: number; slopeHzPerS: number; priSeconds: number; targets: { rangeM: number; velocityMs: number; rcs: number }[]; noise?: number; seed?: string }
 export interface RadarDetection { rangeBin: number; dopplerBin: number; rangeM: number; velocityMs: number; mag: number }
 // Deterministic complex-baseband echo: target sinusoids in fast-time (range) and slow-time (Doppler), optional seeded noise.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function syntheticEcho(scene: RadarScene): { re: number[][]; im: number[][] } {
   const { carrierHz: fc, ns, nc, fs, slopeHzPerS: slope, priSeconds: tr, targets, noise = 0, seed = 'radar' } = scene
   const re = Array.from({ length: nc }, () => Array.from({ length: ns }, () => 0))
@@ -164,6 +202,7 @@ export function syntheticEcho(scene: RadarScene): { re: number[][]; im: number[]
   return { re, im }
 }
 // Naive separable 2-D DFT magnitude (range FFT over fast-time, then Doppler FFT over slow-time); tiny fixed sizes, exact.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function rangeDopplerMap(echo: { re: number[][]; im: number[][] }): number[][] {
   const nc = echo.re.length, ns = echo.re[0].length
   const r1r = Array.from({ length: nc }, () => Array.from({ length: ns }, () => 0))
@@ -174,6 +213,7 @@ export function rangeDopplerMap(echo: { re: number[][]; im: number[][] }): numbe
   return mag
 }
 // Local-max peak pick; fftshift Doppler bin → signed velocity. dr=c/(2B), B=slope·ns/fs; dv via velocityResolution.
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function detectTargets(mag: readonly (readonly number[])[], scene: RadarScene, threshold: number): RadarDetection[] {
   const nc = mag.length, ns = mag[0].length
   const dr = rangeResolution(scene.slopeHzPerS * (scene.ns / scene.fs))
@@ -186,6 +226,7 @@ export function detectTargets(mag: readonly (readonly number[])[], scene: RadarS
   }
   return out.sort((a, b) => b.mag - a.mag)
 }
+/** @iching ☲ Lí · Fire · clinging (EM simulators) */
 export function radarReceipt(scene: RadarScene): { id: string; root: string; ionizing: boolean; carrierWavelengthM: number; dr: number; dv: number; detections: RadarDetection[] } {
   const mag = rangeDopplerMap(syntheticEcho(scene))
   const dr = rangeResolution(scene.slopeHzPerS * (scene.ns / scene.fs))

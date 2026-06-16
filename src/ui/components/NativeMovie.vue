@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'NativeMovie' }
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { prng, createAnimationEngine, frequencyToLight, a432 } from '../lib/quantumMind'
@@ -147,7 +149,7 @@ onUnmounted(() => {
 
 <template>
   <ClientOnly>
-    <figure class="native-movie">
+    <figure class="native-movie" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
       <canvas ref="canvas" class="native-movie__canvas" role="img" aria-label="deterministic movie at native resolution" />
       <figcaption class="native-movie__bar">
         <span class="native-movie__res">native {{ nativeWidth }}×{{ nativeHeight }}</span>

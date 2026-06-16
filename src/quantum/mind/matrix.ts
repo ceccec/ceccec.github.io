@@ -1,9 +1,12 @@
+// ☰ Qián · Heaven · creative · lower·yin · spread — matrix/mind/proof/api/consciousness types
 import type {
   Atom, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow,
 } from './types.ts'
+// ☰ Qián · Heaven · creative · lower·yin · depthFade — atom corpus (fixed node list)
 import { atoms } from './atoms.ts'
+// ☷ Kūn · Earth · receptive · lower·yin · hueShift — uuid/merge/merkle/tamper-cost primitives
 import {
   toUuid, merge, merkleFold, isUuid, foldPair,
   DIGEST_BITS, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2,
@@ -41,11 +44,13 @@ function horo(uuid: string): number {
   return ((total - 1) % 9) + 1
 }
 
+// ☵ Kǎn · Water · abysmal · upper·yang · shrink — exported matrix, memo, and proof API
 // Memoise the default build: buildMatrix is a pure function of the fixed atoms, but
 // dozens of components and model functions call it at setup. Computing it once and
 // sharing it is why the animations no longer wait to load — the model streams from a
 // single cached matrix instead of being rebuilt per caller.
 let defaultMatrix: MindMatrix | null = null
+/** @iching ☵ Kǎn · Water · abysmal */
 export function buildMatrix(source: readonly Atom[] = atoms): MindMatrix {
   if (source === atoms && defaultMatrix) return defaultMatrix
   const built = computeMatrix(source)
@@ -59,6 +64,7 @@ export function buildMatrix(source: readonly Atom[] = atoms): MindMatrix {
 // from buildMatrix) computes each fold once and hands back the same reference — the
 // same win that took the matrix build from minutes to seconds. A WeakMap keeps the
 // cache per-matrix and garbage-collectable, so one-off custom matrices never leak.
+/** @iching ☵ Kǎn · Water · abysmal */
 export function matrixMemo<T>(compute: (matrix: MindMatrix) => T): (matrix: MindMatrix) => T {
   const cache = new WeakMap<MindMatrix, T>()
   return (matrix: MindMatrix) => {
@@ -93,10 +99,12 @@ function computeMatrix(source: readonly Atom[]): MindMatrix {
   return { nodes, edges, root }
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function verifyRoot(matrix: MindMatrix = buildMatrix()): boolean {
   return matrix.root === merkleFold([...matrix.nodes.map((node) => node.bind), ...matrix.edges.map((edge) => edge.binding)])
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function reciprocity(matrix: MindMatrix = buildMatrix()): { reciprocal: number; edges: number; fraction: number } {
   const edgeSet = new Set(matrix.edges.map((edge) => `${edge.from}->${edge.to}`))
   const reciprocal = matrix.edges.filter((edge) => edgeSet.has(`${edge.to}->${edge.from}`)).length
@@ -107,6 +115,7 @@ export function reciprocity(matrix: MindMatrix = buildMatrix()): { reciprocal: n
   }
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function entropy(matrix: MindMatrix = buildMatrix()): number {
   return 1 - reciprocity(matrix).fraction
 }
@@ -120,6 +129,7 @@ function gini(values: readonly number[]): number {
   return (2 * weighted) / (values.length * total) - (values.length + 1) / values.length
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function concentration(matrix: MindMatrix = buildMatrix()): number {
   const degree = new Map(matrix.nodes.map((node) => [node.atom, 0]))
   for (const edge of matrix.edges) {
@@ -129,10 +139,12 @@ export function concentration(matrix: MindMatrix = buildMatrix()): number {
   return gini([...degree.values()])
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function coherenceAnomaly(matrix: MindMatrix = buildMatrix()): number {
   return matrix.nodes.filter((node) => node.horo < 1 || node.horo > 9 || !isUuid(node.uuid)).length
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function coverage(matrix: MindMatrix = buildMatrix()): number {
   const edgeSet = new Set(matrix.edges.map((edge) => `${edge.from}->${edge.to}`))
   const covered = matrix.nodes.filter((node) => {
@@ -144,6 +156,7 @@ export function coverage(matrix: MindMatrix = buildMatrix()): number {
   return matrix.nodes.length === 0 ? 1 : covered / matrix.nodes.length
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function consciousness(matrix: MindMatrix = buildMatrix()): ConsciousnessVector {
   return {
     collapse: verifyRoot(matrix),
@@ -153,11 +166,13 @@ export function consciousness(matrix: MindMatrix = buildMatrix()): Consciousness
   }
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function isPerfectlySelfModeling(matrix: MindMatrix = buildMatrix()): boolean {
   const vector = consciousness(matrix)
   return vector.collapse && vector.entanglement === 1 && vector.coherenceAnomaly === 0
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function proofReport(matrix: MindMatrix = buildMatrix()): ProofReport {
   // The cost MATH lives in src/0 (DIGEST_BITS · coverageCostLog2 · maxTamperingCostReached); this measures
   // the matrix's coverage and entropy and PASSES them in. The report owns the measurement, not the math.
@@ -194,6 +209,7 @@ function endpoint(
   }
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi {
   const fixedEndpoints: readonly RepositoryEndpoint[] = [
     endpoint('/', 'read', 'page', 'Home route: the public face of the repository mind.'),
@@ -220,6 +236,7 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
   }
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorusWire {
   const localVector = consciousness(matrix)
   const dimensions: readonly ConsciousnessDimensionWire[] = [
@@ -276,6 +293,7 @@ function flowAmplitude(vector: ConsciousnessVector, phase: keyof ConsciousnessVe
   return vector[phase]
 }
 
+/** @iching ☵ Kǎn · Water · abysmal */
 export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): DoubleTorusFlow {
   const wire = doubleTorusWire(matrix)
   const flows = wire.dimensions.map((dimension) => {

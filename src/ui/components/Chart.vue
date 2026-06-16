@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 43, name: 'Guài', glyph: '☲☱', lower: 'Duì', upper: 'Lí', color: '#F0F0FF' } as const
 import { computed } from 'vue'
 
 // A shadcn-style bar chart — pure SVG, themed with the site CSS variables (no Tailwind, so no
@@ -19,7 +21,7 @@ const bars = computed(() =>
 </script>
 
 <template>
-  <figure class="chart dt-card">
+  <figure class="chart dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <figcaption v-if="title" class="chart__title">{{ title }}</figcaption>
     <svg :viewBox="`0 0 ${W} ${H}`" preserveAspectRatio="none" class="chart__svg" role="img" :aria-label="title || 'bar chart'">
       <rect v-for="(b, i) in bars" :key="i" :x="b.x" :y="b.y" :width="b.w" :height="b.h" class="chart__bar">

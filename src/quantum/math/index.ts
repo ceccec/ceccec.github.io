@@ -1,7 +1,9 @@
+// ☲ Lí · Fire · clinging (trading+signals, analytic math) · upper·yang · breath — a432-ignited synthetic price engine, five trading strategies, backtest, realtime adapters
 // src/quantum/math — the quantitative math: the a432-ignited synthetic price engine, the five trading-strategy
 // signal functions, the backtest, and the realtime data adapters that feed the models live captures. Pure and
 // deterministic, composing only src/0 primitives. The FOLDS that run them as shared experiments live in
 // src/quantum/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
+// ☷ Kūn · Earth · receptive · lower·yin · spread — src/0 math primitives (uuid, prng, seed, round, merkle, spectrum, markov, EM)
 import { toUuid, prng, seedFromText, roundTo, merkleFold, powerSpectrum, markovStep, larmorFrequency, dopplerShift } from '../../0/index.ts'
 
 // ── Trading from the same knowledge, a432-ignited (developed + adversarially verified by a 10-agent wave) ──
@@ -9,9 +11,12 @@ import { toUuid, prng, seedFromText, roundTo, merkleFold, powerSpectrum, markovS
 // synthetic price series ignited by a432 — seed = toUuid('a432:'+variant), the a432 octave ladder as the
 // oscillator-basis cycle lengths. Five strategies built FROM the project's own primitives. Each run is a
 // content-addressed SHARED EXPERIMENT; the look-ahead-free property was adversarially verified on all five.
+// ☲ Lí · Fire · clinging (trading+signals, analytic math) · upper·yang · breath — trading engine exports
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export const A432_OCTAVES = [27, 54, 108, 216, 432, 864, 1728] // = a432().octaves — the engine-starter cycle basis
 
 // THE ENGINE STARTER: one deterministic synthetic price path ignited by a432. Same variant → identical path.
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function priceFromA432(variant: string, n: number, opts: { drift?: number; oscAmp?: number; noiseAmp?: number; modes?: number; p0?: number } = {}): number[] {
   const { drift = 0.0002, oscAmp = 0.0015, noiseAmp = 0.001, modes = 3, p0 = 100 } = opts
   const seed = toUuid(`a432:${variant}`) // a432 ignites the engine (the NAME content-addresses the seed)
@@ -29,14 +34,17 @@ export function priceFromA432(variant: string, n: number, opts: { drift?: number
   return prices
 }
 // Period simple returns r_t=(p_t−p_{t−1})/p_{t−1}, r_0=0 — index-aligned with prices and positions.
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function simpleReturns(prices: readonly number[]): number[] {
   const r = new Array(prices.length).fill(0)
   for (let t = 1; t < prices.length; t++) r[t] = (prices[t] - prices[t - 1]) / prices[t - 1]
   return r
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export interface BacktestResult { stratReturns: number[]; equity: number[]; totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }
 // The ONE backtest: position_t (decided from data ≤ t−1) earns r_t; cost on position CHANGES; Sharpe·√252,
 // maxDrawdown, hitRate, equity = cumprod. Fractional/levered positions allowed (so vol-target sizing works).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function backtest(prices: readonly number[], positions: readonly number[], costBps = 5): BacktestResult {
   const r = simpleReturns(prices)
   const cost = costBps / 10000
@@ -51,45 +59,56 @@ export function backtest(prices: readonly number[], positions: readonly number[]
   const std = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
   return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt(252), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function buyAndHold(prices: readonly number[], costBps = 5): BacktestResult { return backtest(prices, prices.map(() => 1), costBps) }
 
 // Strategy 1 — trend-momentum (MA crossover; Moskowitz-Ooi-Pedersen 2012; real but weak, decaying, costly).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function sma(prices: readonly number[], end: number, k: number): number { if (end < k) return NaN; let s = 0; for (let i = end - k; i < end; i++) s += prices[i]; return s / k }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function crossoverPositions(prices: readonly number[], fast: number, slow: number, flatVal: -1 | 0 = -1): number[] {
   const pos = new Array(prices.length).fill(0)
   for (let t = 0; t < prices.length; t++) { if (t < slow + 1) continue; pos[t] = sma(prices, t, fast) > sma(prices, t, slow) ? 1 : flatVal }
   return pos // position_t reads prices[t−slow .. t−1] only
 }
 // Strategy 2 — mean-reversion (rolling z-score reversal; real short-horizon effect, regime-dependent).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function rollingZScores(prices: readonly number[], window: number): (number | null)[] {
   return prices.map((_, i) => { if (i < window) return null; let s = 0; for (let k = i - window; k < i; k++) s += prices[k]; const m = s / window; let v = 0; for (let k = i - window; k < i; k++) v += (prices[k] - m) ** 2; const sd = Math.sqrt(v / window); return sd === 0 ? 0 : (prices[i - 1] - m) / sd })
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function meanReversionPositions(prices: readonly number[], window: number, zEntry: number): number[] {
   return rollingZScores(prices, window).map((zi) => (zi === null ? 0 : zi >= zEntry ? -1 : zi <= -zEntry ? 1 : 0))
 }
 // Strategy 3 — spectral-cycle (the powerSpectrum dominant-cycle detector + phase slope; cycles mostly spurious).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function dominantCycle(window: readonly number[], bins: number): { k: number; period: number } {
   const s = powerSpectrum(window, bins); let k = 1, v = s[1]; const kmax = Math.floor(bins / 2); for (let i = 2; i <= kmax; i++) if (s[i] > v) { v = s[i]; k = i } return { k, period: window.length / k } // bin 0 (DC) skipped
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function cycleSlope(window: readonly number[], k: number): number {
   const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-2 * Math.PI * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((2 * Math.PI * k * x) / N + phi); return at(N) - at(N - 1)
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function spectralCyclePositions(prices: readonly number[], lookback: number, bins: number): number[] {
   const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
   for (let t = 0; t < prices.length; t++) { if (t < lookback + 1) continue; const w = r.slice(t - lookback, t); pos[t] = cycleSlope(w, dominantCycle(w, bins).k) > 0 ? 1 : 0 } // window r[t−L .. t−1], past only
   return pos
 }
 // Strategy 4 — regime-switch (markov vol-regime gate over the trend base; Hamilton 1989).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function regimeLabels(returns: readonly number[], volW: number): number[] {
   const labels = new Array(returns.length).fill(-1)
   for (let b = 1; b < returns.length; b++) { const start = b - volW; if (start < 1) continue; let s = 0; for (let i = start; i <= b - 1; i++) s += Math.abs(returns[i]); labels[b] = Math.abs(returns[b]) > s / volW ? 1 : 0 }
   return labels
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function estimateRegimeMatrix(labels: readonly number[], lo: number, hi: number): number[][] {
   const c = [[1, 1], [1, 1]]; let prev = -1
   for (let i = lo; i <= hi; i++) { const cur = labels[i]; if (cur < 0) { prev = -1; continue } if (prev >= 0) c[prev][cur]++; prev = cur }
   return c.map((row) => { const tot = row[0] + row[1]; return [row[0] / tot, row[1] / tot] })
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function regimeSwitchPositions(prices: readonly number[], opts: { shortW: number; longW: number; volW: number }): number[] {
   const { shortW, longW, volW } = opts; const returns = simpleReturns(prices); const labels = regimeLabels(returns, volW)
   const base = crossoverPositions(prices, shortW, longW, -1); const n = prices.length; const pos = new Array(n).fill(0)
@@ -98,20 +117,24 @@ export function regimeSwitchPositions(prices: readonly number[], opts: { shortW:
   return pos // trade the trend only when the next regime is predicted calm (low-vol)
 }
 // Strategy 5 — vol-target sizing (inverse-vol size × trend filter; a risk method, NOT alpha).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt(252)): number {
   const start = end - window + 1; if (start < 0 || end < 0 || end >= returns.length) return 0
   const w = returns.slice(start, end + 1); const n = w.length; if (n < 2) return 0
   const m = w.reduce((a, b) => a + b, 0) / n; return Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function inverseVolSize(realizedVolAnnual: number, targetVolAnnual: number, leverageCap: number, volFloor: number): number {
   if (realizedVolAnnual <= 0) return 0; return Math.max(0, Math.min(leverageCap, targetVolAnnual / Math.max(realizedVolAnnual, volFloor)))
 }
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function volTargetPositions(prices: readonly number[], params: { window: number; targetVolAnnual: number; leverageCap: number; volFloor: number }): number[] {
   const { window: W, targetVolAnnual, leverageCap, volFloor } = params; const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
   for (let t = 1; t < prices.length; t++) { if (t < W + 1) continue; const rv = realizedVol(r, t - 1, W); const up = prices[t - 1] > prices[t - 1 - W] ? 1 : 0; pos[t] = up * inverseVolSize(rv, targetVolAnnual, leverageCap, volFloor) }
   return pos // size from realized vol over r[t−W..t−1]; trend filter prices[t−1] vs prices[t−1−W] — past only
 }
 // Content-address a backtest run → one reproducible receipt (the shared experiment).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function tradingReceipt(variant: string, params: Record<string, number | string>, metrics: { totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }): string {
   const leaves = [toUuid(`variant:${variant}`), toUuid(`params:${JSON.stringify(params)}`)]
   for (const [k, v] of Object.entries(metrics)) leaves.push(toUuid(`metric:${k}:${roundTo(v, 6)}`))
@@ -125,19 +148,24 @@ export function tradingReceipt(variant: string, params: Record<string, number | 
 // capturedAt is passed IN (no wall-clock in src). Per-source honesty + availability live in the fold's boundary.
 
 // Content-address a real data capture: fold source + supplied capture-time + rounded samples into one receipt.
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function liveCapture(source: string, samples: readonly number[], capturedAt = 0): { source: string; n: number; capturedAt: number; root: string; uuid: string } {
   const root = merkleFold([`src:${source}`, `at:${capturedAt}`, ...samples.map((v, i) => `${i}:${roundTo(v, 6)}`)])
   return { source, n: samples.length, capturedAt, root, uuid: toUuid(`${source}|${capturedAt}|${root}`) }
 }
 // Magnetometer (device, µT) → the REAL proton Larmor frequency for that field (the MRI primitive on live data).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function larmorFromMicrotesla(microTesla: number): number { return larmorFrequency(microTesla * 1e-6) }
 // Device motion (m/s) → the radar Doppler shift at a carrier (the radar primitive on live device velocity).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function dopplerFromMotion(velocityMs: number, carrierHz = 10e9): number { return dopplerShift(velocityMs, carrierHz) }
 // A real sample series (audio FFT bins, USGS magnitudes, any signal) → its magnitude spectrum + dominant cycle.
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function spectrumFromSamples(samples: readonly number[], bins = 32): { spectrum: number[]; dominant: { k: number; period: number } } {
   return { spectrum: powerSpectrum(samples, bins), dominant: dominantCycle(samples, bins) }
 }
 // Real price series (e.g. Coinbase candles) → a strategy backtest vs buy-and-hold (the trading model on live data).
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function backtestRealPrices(prices: readonly number[], strategy: 'momentum' | 'mean-reversion' | 'spectral' | 'regime' | 'vol-target' = 'momentum', costBps = 5): { strategy: string; n: number; result: BacktestResult; benchmark: BacktestResult } {
   const positions =
     strategy === 'mean-reversion' ? meanReversionPositions(prices, 20, 1)
@@ -148,6 +176,7 @@ export function backtestRealPrices(prices: readonly number[], strategy: 'momentu
   return { strategy, n: prices.length, result: backtest(prices, positions, costBps), benchmark: buyAndHold(prices, costBps) }
 }
 // The catalogue of realtime sources — each tagged device|api, no-key, what model it feeds, and the honest note.
+/** @iching ☲ Lí · Fire · clinging (trading+signals, analytic math) */
 export function realtimeSources() {
   return [
     { id: 'web-audio-fft', kind: 'device', name: 'Web Audio API (microphone FFT)', key: 'permission', feeds: 'spectrum', note: 'a REAL frequency spectrum — but of SOUND (a pressure wave), NOT EM; tests the spectral pipeline, not EM radiation' },

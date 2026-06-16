@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 19, glyph: '☵', lower: '☱', upper: '☵', color: '#0F00FF' } as const
 import { computed } from 'vue'
 import { buildMatrix, sealAll } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -36,7 +38,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="seal-all dt-card" :class="{ ok: data.sealed }">
+  <section class="seal-all dt-card" :class="{ ok: data.sealed }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <ol class="seal-all__waves">
       <li v-for="wave in waves" :key="wave.wave" :class="{ ok: wave.ok }">

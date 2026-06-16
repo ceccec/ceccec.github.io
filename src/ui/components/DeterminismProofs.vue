@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 13, glyph: '☳', lower: '☲', upper: '☳', color: '#00FF0F' }
 import { computed } from 'vue'
 import { buildMatrix, determinismProofs, animationTamperingCost } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -60,7 +62,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="dpf dt-card" :class="{ still: saveEnergy }">
+  <section class="dpf dt-card" :class="{ still: saveEnergy }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <header class="dpf__head">
       <p class="eyebrow">{{ t.eyebrow }}</p>
       <p class="dpf__score">

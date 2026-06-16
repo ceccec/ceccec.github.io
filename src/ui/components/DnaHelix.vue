@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 22, glyph: '☵', lower: '☴', upper: '☵', color: '#0F0FF0' } as const
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, dna, genes, mutations, a432, frequencyToLight } from '../lib/quantumMind'
@@ -125,7 +127,7 @@ const geneCaption = computed(() =>
 </script>
 
 <template>
-  <section class="dna dt-card">
+  <section class="dna dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'ДНК · двойна спирала · до бита' : 'dna · double helix · to the bit' }}</p>
     <canvas ref="canvas" class="dna__canvas" />
     <p class="dna__seq"><code>{{ data.sense }}</code></p>

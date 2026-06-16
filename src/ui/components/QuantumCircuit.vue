@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 13, glyph: '☳', lower: '☲', upper: '☳', color: '#00FF0F' }
 import { computed, ref } from 'vue'
 import { qubits, applyGate, GATES, cnot, cz, sample, grover } from '../lib/quantumMind'
 
@@ -54,7 +56,7 @@ const gLabels = computed(() => Array.from({ length: 1 << gn.value }, (_, i) => i
 </script>
 
 <template>
-  <div class="qc">
+  <div class="qc" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="qc-head">
       <strong class="qc-title">Quantum circuit — simulator</strong>
       <span class="qc-sub">analog amplitudes → digital Born readout · <em>a classical simulator, not a quantum computer</em></span>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 53, glyph: '☴', lo: '☲', up: '☴', color: '#FF0F0F', name: 'QuantumSimulation' }
 import { computed, ref, watch } from 'vue'
 import { buildMatrix, quantumSimulation } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -46,7 +48,7 @@ const histogram = computed(() =>
 </script>
 
 <template>
-  <section class="qs dt-card">
+  <section class="qs dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t('quantum simulation · state vector', 'квантова симулация · вектор на състоянието') }}</p>
     <div class="qs__controls">
       <label>{{ t('qubits', 'кубити') }}: {{ qubits }}

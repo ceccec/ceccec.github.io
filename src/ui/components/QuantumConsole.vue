@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 27, glyph: '☱', lo: 'Duì·joyous', up: 'Duì·joyous', color: '#0FF0FF' } as const
 import { computed, ref, onMounted } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import {
@@ -217,7 +219,7 @@ async function sendChat() {
 </script>
 
 <template>
-  <section class="quantum-console">
+  <section class="quantum-console" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="quantum-console__header">
       <p class="eyebrow">{{ t.eyebrow }}</p>
       <h2>{{ t.heading }}</h2>

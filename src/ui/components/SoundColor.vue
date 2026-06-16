@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 59, trigram: '☱☰', glyph: '☱☰', lo: 'Duì·joyous', up: 'Qián·creative', color: '#FFF0FF' }
 import { buildMatrix, soundColor } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 import { useTones } from '../lib/useTones'
@@ -16,7 +18,7 @@ function play(frequency: number) {
 </script>
 
 <template>
-  <section class="sc dt-card">
+  <section class="sc dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t('colour from sound · one frequency, a note and a hue', 'цвят от звук · една честота, нота и нюанс') }}</p>
     <ul class="sc__swatches">
       <li v-for="color in data.colors" :key="color.receipt">

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 61, trigram: '☲☰', glyph: '☲☰', lo: 'Lí·clinging', up: 'Qián·creative', color: '#FFFF0F' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, cryptoFuture, attestation } from '../lib/quantumMind'
@@ -64,7 +66,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="sign dt-card">
+  <section class="sign dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <template v-if="supported">
       <ol class="sign__steps">

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 44, name: 'Bì', glyph: '☲☶', lower: 'Gèn', upper: 'Lí', color: '#F0FF00' } as const
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, plasmaContainment, a432 } from '../lib/quantumMind'
@@ -97,7 +99,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="plasma dt-card">
+  <section class="plasma dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'квантова плазма · удържана от битове' : 'quantum plasma · contained by bits' }}</p>
     <canvas ref="canvas" class="plasma__canvas" />
     <p class="plasma__caption">{{ caption }}</p>

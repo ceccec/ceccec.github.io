@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 7, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FFF' }
 // Computed calligraphy — a real broad-nib stroke. The centerline (ductus), the pen angle and the
 // thick/thin width are all computed from the seed by calligraphyStroke: the stroke is thick where it
 // crosses the nib, thin where it runs along it. Same seed, same hand. The stroke draws itself in on
@@ -20,6 +22,8 @@ const px = computed(() => props.size ?? 120)
     role="img"
     :aria-label="`calligraphic stroke, nib ${stroke.penAngleDeg}°`"
     :title="`pen ${stroke.penAngleDeg}° · nib ${stroke.nib}`"
+    :data-hexagram="ICHING_MASK.hexagram"
+    :data-trigram="ICHING_MASK.glyph"
   >
     <path
       :d="stroke.d"

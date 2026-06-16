@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 9, glyph: '☳', lower: '☳', upper: '☳', color: '#00F00F' }
 // THE A432 CATEGORY — colour · audio · video · vibration, one frequency expressed four ways. The honest thread
 // is FREQUENCY itself: the same number drives a tone you hear, a colour (the sound's frequency doubled into the
 // visible band), a motion (a divided, visible rate) and a haptic pulse. Sound↔vibration is a literal mechanical
@@ -42,7 +44,7 @@ function feel() {
 </script>
 
 <template>
-  <section class="a432" :style="{ '--c': light.hue }">
+  <section class="a432" :style="{ '--c': light.hue }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <header class="a432__head">
       <strong class="a432__title">A432 — one frequency, four ways</strong>
       <span class="a432__sub">colour · audio · video · vibration · <em>frequency is the shared thread; the rest is honestly flagged</em></span>

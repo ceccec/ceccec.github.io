@@ -2,6 +2,7 @@
 import {
   buildMatrix,
   diamondRoutes,
+  monographPaths,
   paperReferences,
   papers,
   piTrainDiamonds,
@@ -58,14 +59,50 @@ function abs(siteUrl: string, path: string) {
   return path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`
 }
 
-/** Corpus detail routes — RESTful /kind/<id>: one real page per item (the [id] dynamic route, enumerated). */
+/** Corpus detail routes — RESTful /kind/<id>: one real page per item, all 3 locales (cu/en/bg). */
 function corpusDetailUrls(kind: 'papers' | 'references' | 'diamonds', ids: readonly string[], priority: number) {
   return ids.map((id) => {
     const base = `/${kind}/${id}`
-    const en = base
-    const bg = `/bg${base}`
-    return { en, bg, priority, alternates: [{ hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: en }] }
+    const gla = base          // Glagolitic at root: /papers/<id>
+    const en = `/en${base}`   // English at /en/papers/<id>
+    const bg = `/bg${base}`   // Bulgarian at /bg/papers/<id>
+    return {
+      gla, en, bg, priority,
+      alternates: [
+        { hreflang: 'cu', href: gla },
+        { hreflang: 'en', href: en },
+        { hreflang: 'bg', href: bg },
+        { hreflang: 'x-default', href: gla },
+      ],
+    }
   })
+}
+
+/** Monograph pages (staticPages + componentPages) not already covered by quantumSitemap's 14 static routes. */
+function monographPageUrls(matrix: MindMatrix = buildMatrix()) {
+  const quantum = quantumSitemap(matrix)
+  const covered = new Set(quantum.urls.map((u) => u.route)) // e.g. '/start', '/console', …
+  return monographPaths('en')
+    .filter((p) => {
+      const route = p.params.page === '' ? '/' : `/${p.params.page}`
+      return !covered.has(route)
+    })
+    .map((p) => {
+      const slug = p.params.page
+      const gla = slug === '' ? '/' : `/${slug}`
+      const en = slug === '' ? '/en/' : `/en/${slug}`
+      const bg = slug === '' ? '/bg/' : `/bg/${slug}`
+      return {
+        gla, en, bg,
+        priority: 0.7,
+        alternates: [
+          { hreflang: 'cu', href: gla },
+          { hreflang: 'en', href: en },
+          { hreflang: 'bg', href: bg },
+          { hreflang: 'x-default', href: gla },
+        ],
+      }
+    })
 }
 
 export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
@@ -75,16 +112,17 @@ export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), 
   const urlBlock = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) =>
     ['  <url>', `    <loc>${abs(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, '    <changefreq>weekly</changefreq>', `    <priority>${priority.toFixed(1)}</priority>`, altLinks(alternates), '  </url>'].join('\n')
   const dynamicUrls = [
+    ...monographPageUrls(matrix),
     ...corpusDetailUrls('papers', papers(matrix).papers.map((paper) => paper.id), 0.6),
     ...corpusDetailUrls('references', paperReferences(matrix).map((reference) => reference.id), 0.5),
     ...corpusDetailUrls('diamonds', diamondRoutes(matrix).map((diamond) => diamond.params.id), 0.4),
   ]
-  const allUrls: { gla?: string; en: string; bg: string; priority: number; alternates: readonly { hreflang: string; href: string }[] }[] = [...quantum.urls, ...dynamicUrls]
+  const allUrls: { gla: string; en: string; bg: string; priority: number; alternates: readonly { hreflang: string; href: string }[] }[] = [...quantum.urls, ...dynamicUrls]
   return (
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<!-- quantum sitemap root: ${quantum.root} -->\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-    allUrls.flatMap((url) => [...(url.gla ? [urlBlock(url.gla, url.priority, url.alternates)] : []), urlBlock(url.en, url.priority, url.alternates), urlBlock(url.bg, url.priority * 0.8, url.alternates)]).join('\n') +
+    allUrls.flatMap((url) => [urlBlock(url.gla, url.priority, url.alternates), urlBlock(url.en, url.priority, url.alternates), urlBlock(url.bg, url.priority * 0.8, url.alternates)]).join('\n') +
     `\n</urlset>\n`
   )
 }

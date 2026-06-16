@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { chakrasAura } from '../lib/quantumMind'
@@ -27,7 +29,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="ch dt-card">
+  <section class="ch dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="ch__lead">{{ t.lead }}</p>
     <div v-for="group in tiers" :key="group.tier" class="ch__tier">

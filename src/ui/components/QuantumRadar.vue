@@ -1,4 +1,6 @@
 <script setup>
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎn·abysmal', up: 'Qián·creative', color: '#FFF0F0' }
 // The quantum radar: the deepResearchRadar fold, rendered. Every blip is placed by its own content
 // address (the seed from its receipt → the angle within its quadrant), the ring sets the radius — so the
 // radar is deterministic and recomputable, computed from the matrix, never hand-placed. SSR-safe (no DOM).
@@ -30,7 +32,7 @@ const quads = [
 </script>
 
 <template>
-  <figure class="quantum-radar">
+  <figure class="quantum-radar" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <svg viewBox="0 0 410 410" role="img" aria-label="Quantum research radar: the project's tech and research placed by ring, documented in adopt and legend in hold">
       <circle v-for="[name, r] in rings" :key="name" :cx="cx" :cy="cy" :r="r" class="qr-ring" />
       <line :x1="cx" y1="18" :x2="cx" y2="392" class="qr-axis" />

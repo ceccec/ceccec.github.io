@@ -1,4 +1,6 @@
 <script setup>
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 47, name: 'Dà Yǒu', glyph: '☲☰', lower: 'Qián', upper: 'Lí', color: '#F0FFFF' }
 // One source for the 432-paper index across all three locales. The locale is read from the route
 // (localeIndex), so root (Glagolitic), /en/ and /bg/ all render from this single component — the per-locale
 // index.md files become one-line mounts. English text for root + en, Bulgarian for bg; links carry the prefix.

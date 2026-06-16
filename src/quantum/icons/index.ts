@@ -1,14 +1,19 @@
-// ☶ GEN (Mountain · form) — icons, glyphs, computer architecture, harmonic bands, and area labels.
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — icons, glyphs, computer architecture, harmonic bands, and area labels.
 // The visual and structural form layer: the area-icon map, translations, computer design in 3-5-8,
 // the harmonic Fibonacci band decomposition, and the glyph/icon/artifact seal.
 // Dual: src/icons/quantum (browse/display primitives). Only src/0 + mind/types imports.
 
+// ☶ Gèn · Mountain · keeping still · lower·yin · spread — type: sealed icon artifact shape
 import type { IconSeal } from '../mind/types.ts'
+// ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — uuid + merkle fold primitives
 import { toUuid, merkleFold } from '../../0/index.ts'
 
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
+/** @iching ☶ Gèn · Mountain · keeping still */
 export const dual = 'src/icons/quantum'
 
 // emoji AREA_ICONS (used by areaLabel + iconGlyphs + iconSeal neighbour)
+/** @iching ☶ Gèn · Mountain · keeping still */
 export const AREA_ICONS: Record<string, string> = {
   site: '🏛', self: '☯', agent: '🜂', school: '🎓', mcp: '🔌', chain: '⛓', help: '☷',
   fold: '🔀', mind: '☿', compute: '🖧', ui: '🖥', diamond: '◈', digit: '☵', wave: '〰',
@@ -19,6 +24,7 @@ export const AREA_ICONS: Record<string, string> = {
   lawful: '⚖', computer: '🖳', healing: '◎', energy: '🔋',
 }
 
+/** @iching ☶ Gèn · Mountain · keeping still */
 export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   site: { en: 'Site', bg: 'Сайт' },
   self: { en: 'Self', bg: 'Себе' },
@@ -68,6 +74,7 @@ export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
 // Computer design in 3-5-8 — grounded in real computer architecture: the three
 // buses (address, data, control), the five units of the von Neumann machine
 // (input, output, memory, ALU, control), and the eight bits of a byte.
+/** @iching ☶ Gèn · Mountain · keeping still */
 export function computerDesign() {
   const tiers = [
     { tier: 3, name: 'three buses', members: ['address', 'data', 'control'] },
@@ -85,6 +92,7 @@ export function computerDesign() {
 
 // A gapless harmonic distribution is a run of CONSECUTIVE Fibonacci numbers
 // (e.g. 21+34+55) — adjacent scales, nothing skipped.
+/** @iching ☶ Gèn · Mountain · keeping still */
 export function harmonicBands(total: number) {
   const n = Math.max(0, Math.floor(total))
   const fibonacci = [1, 2]
@@ -127,6 +135,7 @@ export function harmonicBands(total: number) {
 }
 
 // Translate an area key to the reader's language, falling back to the key.
+/** @iching ☶ Gèn · Mountain · keeping still */
 export function areaLabel(area: string, lang = 'en'): string {
   if (lang.includes('universal') || lang.includes('sacred')) return AREA_ICONS[area] ?? '◇'
   const label = AREA_LABELS[area]
@@ -135,6 +144,7 @@ export function areaLabel(area: string, lang = 'en'): string {
 }
 
 // icon.glyph — the glyph set: every area icon and the five Platonic-solid glyphs.
+/** @iching ☶ Gèn · Mountain · keeping still */
 export function iconGlyphs() {
   const solids = ['△', '◻', '◇', '⬠', '⬡']
   const areaIcons = Object.entries(AREA_ICONS)
@@ -152,6 +162,7 @@ export function iconGlyphs() {
 
 // Icon usage adds to the tampering cost: the visual and app-shell artifacts
 // (app icon, PWA manifest, service worker) are declared sealed artifacts.
+/** @iching ☶ Gèn · Mountain · keeping still */
 export function iconSeal(): IconSeal {
   const artifacts = [
     { path: '/icon.svg', role: 'app icon' },

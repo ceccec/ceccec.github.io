@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 48, glyph: '☴', lo: '☷', up: '☴', color: '#FF0000', name: 'HarmonicMap' }
 import { computed, ref, watch } from 'vue'
 import { buildMatrix, harmonicMap } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -40,7 +42,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="hmap dt-card">
+  <section class="hmap dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="hmap__sub">{{ t.sub }}</p>
     <div class="hmap__bands">

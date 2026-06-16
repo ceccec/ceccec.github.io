@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, selfReason } from '../lib/quantumMind'
@@ -18,7 +20,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="reason dt-card">
+  <section class="reason dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <input v-model="goal" type="text" :placeholder="t.placeholder" class="reason__input" />
     <ol class="reason__chain">

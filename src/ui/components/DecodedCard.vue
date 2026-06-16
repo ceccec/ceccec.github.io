@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 19, glyph: '☵', lower: '☱', upper: '☵', color: '#0F00FF' } as const
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 
@@ -19,7 +21,7 @@ const boundaryLabel = computed(() => (bg.value ? 'Граница' : 'Boundary'))
 </script>
 
 <template>
-  <section class="decoded dt-card">
+  <section class="decoded dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ eyebrowText }}</p>
     <p class="decoded__statement">{{ statement }}</p>
     <ul class="decoded__items">

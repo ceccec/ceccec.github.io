@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 9, glyph: '☳', lower: '☳', upper: '☳', color: '#00F00F' }
 import { computed, onBeforeUnmount, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { useTones } from '../lib/useTones'
@@ -144,7 +146,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Card id="diamond-lattice" class="double-torus-experience">
+  <Card id="diamond-lattice" class="double-torus-experience" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="double-torus-experience__header">
       <div>
         <p class="eyebrow">{{ head.eyebrow }}</p>

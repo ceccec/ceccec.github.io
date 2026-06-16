@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'YinYang' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { yinYang } from '../lib/quantumMind'
@@ -32,7 +34,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="yy dt-card">
+  <section class="yy dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="yy__taiji" aria-hidden="true">{{ data.taiji.symbol }}</p>
     <p class="yy__lead">{{ t.lead }}</p>

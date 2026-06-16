@@ -5,6 +5,8 @@
 // cryptographic SECURITY (with FNV) is not — and the fix (SHA-256/Ed25519) is already built. Colours are
 // computed A432-based (the base hue from a432().light, stepped by the golden angle); the tap-tones are
 // 432-harmonics. Web standards: semantic landmarks, labelled controls, responsive grid, reduced-motion aware.
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì·joyous', color: '#0FFF0F' }
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useTones } from '../lib/useTones'
@@ -56,7 +58,7 @@ const tcVerdictBg =
 </script>
 
 <template>
-  <section class="tc" aria-labelledby="tc-title">
+  <section class="tc" aria-labelledby="tc-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="tc__eyebrow">{{ bg ? 'Двоен торусус · цена на подправяне ↔ криптиране ↔ блокчейн ↔ квантово' : 'Double Torus · tampering cost ↔ encryption ↔ blockchains ↔ quantum' }}</p>
     <h2 id="tc-title">{{ bg ? 'Доказуемо при подправяне — не е защитено от подправяне' : 'Tamper-evident is not tamper-proof' }}</h2>
     <p class="tc__lede">

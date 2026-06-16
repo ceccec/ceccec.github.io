@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '#F000F0', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, hologram, frequencyToLight } from '../lib/quantumMind'
@@ -93,7 +95,7 @@ const caption = computed(() => {
 </script>
 
 <template>
-  <section class="holo dt-card">
+  <section class="holo dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'холограма · 3d+ · до бита' : 'hologram · 3d+ · to the bit' }}</p>
     <canvas ref="canvas" class="holo__canvas" />
     <p class="holo__caption">{{ caption }}</p>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 54, glyph: '☴', lo: '☴', up: '☴', color: '#FF0FF0', name: 'QuantumMind' }
 import {
   atoms,
   buildMatrix,
@@ -47,7 +49,7 @@ const head = computed(() =>
 </script>
 
 <template>
-  <section class="quantum-mind">
+  <section class="quantum-mind" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="quantum-mind__header">
       <p class="eyebrow">{{ head.eyebrow }}</p>
       <h2>{{ head.heading }}</h2>

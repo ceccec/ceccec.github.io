@@ -1,13 +1,18 @@
-// ☳ ZHEN (Thunder · science) — verified physics & technology data: EMF spectrum, efficiency model,
-// Tesla patents, patent discovery sources, public frequency APIs, herbal APIs, and the octave bridge.
+// ☳ Zhèn · Thunder · arousing · upper·yang · depthFade — verified physics & technology data: EMF spectrum, efficiency model, Tesla patents, patent discovery sources, public frequency APIs, herbal APIs, and the octave bridge.
 // Dual: src/science/quantum (browse/display primitives). Pure, only src/0 + mind/atoms imports.
 
+// ☰ Qián · Heaven · creative · lower·yin · spread — core utilities: uuid, merkle fold, speed of light
 import { toUuid, merkleFold, SPEED_OF_LIGHT } from '../../0/index.ts'
+// ☳ Zhèn · Thunder · arousing · lower·yin · depthFade — concept commands from mind atoms
 import { conceptCommands } from '../mind/atoms.ts'
 
+/** @iching ☳ Zhèn · Thunder · arousing */
 export const dual = 'src/science/quantum'
 
+// ☳ Zhèn · Thunder · arousing · upper·yang · depthFade — science exports: EMF, efficiency, patents, frequencies, octave bridge
+
 // Extend into EMF applications — honestly.
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function emfApplications() {
   const spectrum = [
     { band: 'radio', range: '3 Hz – 300 MHz', use: 'broadcast, wifi, the device radios' },
@@ -32,6 +37,7 @@ export function emfApplications() {
 }
 
 // Efficiency, standard and deep.
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function efficiency() {
   const optimizations = [
     { technique: 'memoized dispatch', how: 'executeConceptCommand cached by (command, input, matrix root)' },
@@ -52,6 +58,7 @@ export function efficiency() {
 }
 
 // Fuse Nikola Tesla's public patents into the model.
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function fuseTeslaPatents() {
   const known = new Set(conceptCommands.map((command) => command.name))
   const patents = [
@@ -74,6 +81,7 @@ export function fuseTeslaPatents() {
 }
 
 // Autodiscover patents: declare the public sources and the query shape.
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function patentDiscovery(query = '') {
   const sources = [
     { name: 'USPTO PatFT/Open Data', url: 'https://developer.uspto.gov' },
@@ -92,6 +100,7 @@ export function patentDiscovery(query = '') {
 }
 
 // Public APIs with frequencies involved, decoded in waves.
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function publicFrequencyApis() {
   const sources = [
     { api: 'FCC Spectrum Dashboard', band: 'radio 225 MHz–3700 MHz', data: 'band allocations', auth: 'public' },
@@ -109,6 +118,7 @@ export function publicFrequencyApis() {
 }
 
 // Herbal/plant APIs decoded in waves.
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function herbalApis() {
   const sources = [
     { api: 'Trefle', kind: 'global botanical JSON REST (species, taxonomy)', frequency: 'occurrence/usage counts', auth: 'free token' },
@@ -127,6 +137,7 @@ export function herbalApis() {
 }
 
 // The octave bridge: double a frequency until it lands in the visible-light band (~400–790 THz).
+/** @iching ☳ Zhèn · Thunder · arousing */
 export function frequencyToLight(hz: number): { octaves: number; thz: number; nm: number; hue: number; band: string } {
   let f = Math.max(1, hz)
   let octaves = 0

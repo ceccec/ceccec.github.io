@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 0, glyph: '☷', trigram: 'Kūn·receptive', color: '#000000' }
 // A self-computed Dot — the atom of the brand-new shadcn/vitepress. Given only a seed (or a uuid),
 // it computes its own hero from the matrix (uuidHero) and fills itself: the colour, the two
 // counter-rotating tetrahedra of the merkaba, the spin period and the tone are all derived from the
@@ -35,7 +37,7 @@ function play() {
 </script>
 
 <template>
-  <Card :class="['dot', { 'dot-compact': compact }]" :style="{ '--hue': hero.hue, '--spin': hero.spinMs + 'ms' }" @click="play" :title="`${id} · ${hero.frequency}Hz`">
+  <Card :class="['dot', { 'dot-compact': compact }]" :style="{ '--hue': hero.hue, '--spin': hero.spinMs + 'ms' }" @click="play" :title="`${id} · ${hero.frequency}Hz`" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <svg class="dot-hero" viewBox="-60 -60 120 120" role="img" :aria-label="`hero for ${id}`">
       <g class="dot-up" :style="{ transform: `rotate(${hero.theta}rad)` }">
         <polygon points="0,-46 40,23 -40,23" :fill="`hsl(${hero.hue} 72% 56% / 0.65)`" :stroke="`hsl(${hero.hue} 80% 70%)`" stroke-width="1.5" />

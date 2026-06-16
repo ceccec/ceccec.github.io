@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'Rhythm' }
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432, frequencyToLight } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
@@ -165,7 +167,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="rh dt-card">
+  <section class="rh dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ pick('keep the rhythm · a self-similar polyrhythm', 'дръж ритъма · самоподобен полиритъм') }}</p>
     <div ref="wrap" class="rh__wrap">
       <canvas

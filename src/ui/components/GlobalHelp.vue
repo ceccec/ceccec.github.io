@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'GlobalHelp' }
 import { computed, ref, onMounted } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, foldQuestion } from '../lib/quantumMind'
@@ -116,7 +118,7 @@ function askChip(text: string) {
 </script>
 
 <template>
-  <div class="global-help">
+  <div class="global-help" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <button v-if="!open" class="global-help__launch" type="button" @click="open = true">{{ t.open }}</button>
     <div v-else class="global-help__panel">
       <div class="global-help__head">

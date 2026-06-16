@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 13, glyph: '☳', lower: '☲', upper: '☳', color: '#00FF0F' }
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { createAnimationEngine } from '../lib/quantumMind'
 
@@ -108,7 +110,7 @@ const keyspaceBits = computed(() => widgets.value.filter((w) => w.value !== '—
 </script>
 
 <template>
-  <ClientOnly>
+  <ClientOnly :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <section class="dev-dash">
       <header class="dev-dash__head">
         <span class="dev-dash__title">hardware · 4 merkabas (CMYK)</span>

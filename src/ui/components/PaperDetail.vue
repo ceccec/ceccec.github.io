@@ -1,4 +1,6 @@
 <script setup>
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 8, glyph: '☳', lower: '☷', upper: '☳', color: '#00F000' }
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
@@ -8,7 +10,7 @@ const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.val
 </script>
 
 <template>
-  <div v-if="params">
+  <div v-if="params" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="paper-eyebrow">Double Torus · Paper {{ params.number }} of {{ params.total }} · next harmonic {{ params.octaves }}</p>
     <h1>Paper {{ params.number }} — {{ params.title }}</h1>
     <figure class="paper-figure" :style="{ '--hue': params.hue, '--spin': Math.max(900, params.vibrationMs) + 'ms' }">

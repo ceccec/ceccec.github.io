@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed } from 'vue'
 import { buildMatrix, quantumPhysics } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -22,7 +24,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="qp dt-card">
+  <section class="qp dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="qp__sub">{{ t.sub }}</p>
     <ul class="qp__grid">

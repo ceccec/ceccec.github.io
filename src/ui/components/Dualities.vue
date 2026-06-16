@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 61, trigram: '☲☰', glyph: '☲☰', lo: 'Lí·clinging', up: 'Qián·creative', color: '#FFFF0F' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { dualities } from '../lib/quantumMind'
@@ -50,7 +52,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="dual dt-card">
+  <section class="dual dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="dual__lead">{{ t.lead }}</p>
     <div v-for="group in tiers" :key="group.tier" class="dual__tier">

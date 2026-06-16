@@ -1,4 +1,6 @@
 <script setup>
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 14, glyph: '☳', lower: '☴', upper: '☳', color: '#00FFF0' }
 // One source for the 432-reference index across all three locales (root · /en/ · /bg/). The locale is read
 // from the route, so the per-locale index.md files become one-line mounts. English for root + en, Bulgarian
 // for bg; the chip links carry the locale prefix.

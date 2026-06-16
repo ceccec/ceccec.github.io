@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 39, lo: '☰', up: '☶', glyph: '☶', color: '#F00FFF', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref, watch } from 'vue'
 import {
   cycleAdvance,
@@ -150,7 +152,7 @@ const wavePath = computed(() => {
 </script>
 
 <template>
-  <div class="ds">
+  <div class="ds" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="ds-head">
       <select v-model="sel" class="ds-pick" aria-label="dynamical domain">
         <option v-for="d in domains" :key="d" :value="d">{{ d }}</option>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 30, glyph: '☱', lo: 'Xùn·gentle', up: 'Duì·joyous', color: '#0FFFF0' } as const
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { glagoliticGlyph } from '../lib/quantumMind'
 
@@ -63,7 +65,7 @@ const fmtMcap = (n?: number) => n === undefined || n === 0 ? '—' : n >= 1e9 ? 
 
 <template>
   <ClientOnly>
-    <section class="bc">
+    <section class="bc" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
       <header class="bc__head">
         <span class="bc__title">affected blockchains · global · live</span>
         <span class="bc__status" :class="`bc__status--${status}`">{{ status === 'live' ? '● live · ' + updated : status === 'loading' ? '… loading' : '○ offline — feed unreachable' }}</span>

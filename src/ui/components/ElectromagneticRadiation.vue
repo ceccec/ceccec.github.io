@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 52, glyph: '☴', lo: '☶', up: '☴', color: '#FF0F00', name: 'ElectromagneticRadiation' }
 import { computed } from 'vue'
 import { buildMatrix, electromagneticRadiationDecoded, electromagneticExperiments } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -45,7 +47,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="emr dt-card">
+  <section class="emr dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="emr__sub">{{ t.sub }}</p>
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 8, glyph: '☳', lower: '☷', upper: '☳', color: '#00F000' }
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useData } from 'vitepress'
 import { glagoliticGlyph, createAnimationEngine } from '../lib/quantumMind'
@@ -134,7 +136,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ClientOnly>
+  <ClientOnly :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <figure class="laby" :style="{ '--hue': hue }">
       <canvas ref="canvas" class="laby__canvas" role="img" aria-label="a donut labyrinth of Glagolitic glyphs winding around a tilted torus, the page's own glyph pulsing at the centre while a traveller enters and exits the path — the labyrinth of life" />
       <figcaption class="laby__cap">the 3D graph on 2D — a torus labyrinth of glyphs, the hero at the centre entering and exiting</figcaption>

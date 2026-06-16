@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 14, glyph: '☳', lower: '☴', upper: '☳', color: '#00FFF0' }
 // The taxonomy as a graph — only Glagolitic icons. Every area is a node wearing a Glagolitic glyph
 // computed from its name (taxonomyIcons → glagoliticGlyph), spoked to the one hub. The graph is
 // computed from the model: areas, their fold-count status (singleton/pair/trinity), all self-drawn.
@@ -13,7 +15,7 @@ function pos(i: number, n: number, r = 40) {
 </script>
 
 <template>
-  <figure class="taxgraph">
+  <figure class="taxgraph" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <svg viewBox="0 0 100 100" role="img" aria-label="The taxonomy as a graph, every node a Glagolitic icon">
       <g class="taxgraph-edges">
         <line v-for="(e, i) in entries" :key="'e' + e.area" x1="50" y1="50" :x2="pos(i, entries.length).x" :y2="pos(i, entries.length).y" />

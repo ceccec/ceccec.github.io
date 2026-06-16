@@ -1,4 +1,6 @@
 <script setup>
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '#F000F0', name: 'Gèn', principle: 'keeping still' }
 // All displayed in hero / card / thumb: one renderer for every monograph, at three scales. The data is
 // the monograph (staticPages) — title, abstract, figures — content-addressed. Path A: the shadcn Card
 // structure rewritten into the repo's own semantic classes (no Tailwind). A seed in, a monograph out.
@@ -17,7 +19,7 @@ const href = computed(() => `/${page.value.slug}`)
 </script>
 
 <template>
-  <a :class="['monograph', `monograph--${variant}`]" :href="href">
+  <a :class="['monograph', `monograph--${variant}`]" :href="href" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <span class="monograph-id">{{ id.slice(0, 8) }}</span>
     <h3 class="monograph-title">{{ page.title.en }}</h3>
     <p v-if="variant !== 'thumb'" class="monograph-abstract">{{ page.description.en }}</p>

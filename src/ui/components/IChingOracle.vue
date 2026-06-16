@@ -1,4 +1,6 @@
 <script setup>
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 59, trigram: '☱☰', glyph: '☱☰', lo: 'Duì·joyous', up: 'Qián·creative', color: '#FFF0FF' }
 // I CHING ORACLE — a game AND a worked example of the architecture. Cast six lines (yin/yang) bottom→top to
 // build a hexagram; it resolves — by the SAME content-addressing every page and component uses (iChing) — to
 // the component whose own hexagram matches. The knowledge answers. Live (reads iChing), animated (lines flip
@@ -33,7 +35,7 @@ function reset() { lines.value = [] }
 </script>
 
 <template>
-  <section class="ora" aria-labelledby="ora-title">
+  <section class="ora" aria-labelledby="ora-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="ora__eyebrow">{{ t('Double Torus · the oracle', 'Двоен торус · оракулът') }}</p>
     <h2 id="ora-title">{{ t('Cast a hexagram', 'Хвърли хексаграма') }}</h2>
     <p class="ora__lede">{{ t('Cast six lines; the hexagram resolves — by the same content-addressing every page and component uses — to one of the components. The architecture answering.', 'Хвърли шест черти; хексаграмата се разрешава — чрез същото съдържателно адресиране — до един от компонентите. Архитектурата отговаря.') }}</p>

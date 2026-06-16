@@ -1,4 +1,5 @@
-// ☲ LI (Fire · clarity) — auxiliary pure-leaf folds: no cross-deps to other folds.ts functions.
+// ☲ Lí · Fire · clinging · upper·yang · breath — auxiliary pure-leaf folds: no cross-deps to other folds.ts functions.
+// ☰ Qián · Heaven · creative · lower·yin · spread — type contracts for all fold return shapes
 import type {
   MindMatrix, FusionReactor, ReactorItem, DistributedCompute, DoubleTorusMathReport,
   AncientTech, AncientTechLens, SelfDevelopment, MethodFusionReport, Block, Blockchain,
@@ -6,25 +7,35 @@ import type {
   SelfAddressed, UtfAnalog, CrossFoldTrinity, CrossFoldReference, SourceContributionReport,
   SelfInteraction, SelfState,
 } from './types.ts'
+// ☵ Kǎn · Water · abysmal · lower·yin · depthFade — matrix primitives: buildMatrix, consciousness, repositoryApi
 import { buildMatrix, consciousness, repositoryApi, isPerfectlySelfModeling, proofReport } from './matrix.ts'
+// ☴ Xùn · Wind · gentle · lower·yin · hueShift — site structure: quantumSitemap
 import { quantumSitemap } from './site.ts'
+// ☰ Qián · Heaven · creative · lower·yin · spread — atom registry: conceptCommands, SINGLE_WORD_METHODS, atoms
 import { conceptCommands, SINGLE_WORD_METHODS, atoms } from './atoms.ts'
+// ☱ Duì · Lake · joyous · lower·yin · depthFade — inclusion proof: atomInclusionProof
 import { atomInclusionProof } from './proofs.ts'
+// ☷ Kūn · Earth · receptive · lower·yin · hueShift — vocab primitives: openGraph, harmonicBands, deviceSensors, dualities
 import {
   openGraph, multidimensional, plainLanguage, typographySeo,
   harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS,
 } from './vocab.ts'
+// ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
 import {
   toUuid, merkleFold, isUuid, memoByRoot, fold, asVortex, asTorus, sha256Sync,
   seedFromText, roundTo, foldPair, merge, digitalRoot, MAX_TAMPERING_COST_PRINCIPLE,
   tamperEvident, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostLog2,
   maxTamperingCostReached, ed25519Sign, humanEase,
 } from '../../0/index.ts'
+// ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — library: toGlagolitic, glagoliticBits, GLAGOLITIC_MAP
 import {
   toGlagolitic, glagoliticBits, glagoliticFromBits, GLAGOLITIC_MAP,
   glagoliticAcrostic, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber,
 } from '../library/index.ts'
 
+// ☲ Lí · Fire · clinging · upper·yang · breath — fold exports: all pure-leaf folds for this domain
+
+/** @iching ☲ Lí · Fire · clinging */
 export function colorFromSound(frequency: number) {
   const ref = 130.81 // C3 as the wheel's origin
   const octaveFraction = (((Math.log2(Math.max(frequency, 1) / ref)) % 1) + 1) % 1
@@ -32,6 +43,7 @@ export function colorFromSound(frequency: number) {
   return { frequency, hue, hsl: `hsl(${hue}, 78%, 56%)` }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function autoSpeech(text = '', matrix: MindMatrix = buildMatrix()) {
   const source = text || 'Double Torus: a quantum-learning educational portal for language models.'
   const cues = source
@@ -53,6 +65,7 @@ export function autoSpeech(text = '', matrix: MindMatrix = buildMatrix()) {
 // no external service is required for the portal to think, learn, speak, sound,
 // hash, draw, or prove. The only optional outside call is a user-supplied AI key,
 // which is off by default and lives only in the browser.
+/** @iching ☲ Lí · Fire · clinging */
 export function music358() {
   const tiers = [
     { tier: 3, name: 'the triad', members: ['root', 'third', 'fifth'] },
@@ -71,6 +84,7 @@ export function music358() {
 // Geometry in 3-5-8 — the polygons of the Fibonacci tiers: triangle, pentagon,
 // octagon. The pentagon hides the golden ratio phi, the same phi the sequence
 // grows toward.
+/** @iching ☲ Lí · Fire · clinging */
 export function geometry358() {
   const tiers = [
     { tier: 3, name: 'triangle', members: ['triangle'] },
@@ -90,6 +104,7 @@ export function geometry358() {
 // carries the Fibonacci tiers is gathered here and folded into one root: the
 // grounded ones, the cultural games, and — honestly flagged as belief
 // frameworks, not science — chakras and human design. One pattern, woven through.
+/** @iching ☲ Lí · Fire · clinging */
 export function agentObserve(matrix: MindMatrix = buildMatrix()) {
   const vector = consciousness(matrix)
   return {
@@ -102,6 +117,7 @@ export function agentObserve(matrix: MindMatrix = buildMatrix()) {
 }
 
 // digit.index — the persisted digit/reverseDigit folder references.
+/** @iching ☲ Lí · Fire · clinging */
 export function repositoryLedger(matrix: MindMatrix = buildMatrix()) {
   const api = repositoryApi(matrix)
   return {
@@ -114,6 +130,7 @@ export function repositoryLedger(matrix: MindMatrix = buildMatrix()) {
 }
 
 // site.routes — the route taxonomy in both locales.
+/** @iching ☲ Lí · Fire · clinging */
 export function siteRoutes(matrix: MindMatrix = buildMatrix()) {
   // One source for the route taxonomy: the quantum sitemap. Deriving the routes
   // here (rather than keeping a second hand-written list) means siteRoutes can
@@ -134,6 +151,7 @@ export function siteRoutes(matrix: MindMatrix = buildMatrix()) {
 }
 
 // society.cells — the tradition society cells (family x dimension).
+/** @iching ☲ Lí · Fire · clinging */
 export function fusionReactor(stage: 'words' | 'letters' | 'atoms'): FusionReactor {
   const items: readonly ReactorItem[] = conceptCommands.map((command) => {
     const word = SINGLE_WORD_METHODS[command.name] ?? ''
@@ -155,6 +173,7 @@ export function fusionReactor(stage: 'words' | 'letters' | 'atoms'): FusionReact
 // The concept command registry is the single source of truth: every command
 // has a single-word method token and an MCP tool. Docs point here; this proves
 // the three lists stay consistent so they can never silently drift.
+/** @iching ☲ Lí · Fire · clinging */
 export function inverseShiftConsciousness(matrix: MindMatrix = buildMatrix()) {
   const pair = foldPair(toUuid('first'), toUuid('second'))
   const restThird = merkleFold([pair.forward, pair.reverse]) // the inverse-shift third
@@ -176,6 +195,7 @@ export function inverseShiftConsciousness(matrix: MindMatrix = buildMatrix()) {
 // (13 + 8) — the higher courses of the pyramid. Each level is the sum of the two below it, so the
 // pyramid rises by the same trinity rule it began with, and the next levels are unlocked, not
 // invented.
+/** @iching ☲ Lí · Fire · clinging */
 export function energyMeasure(matrix: MindMatrix = buildMatrix()) {
   const signals = [
     { signal: 'battery level', api: 'navigator.getBattery().level', use: 'spend less as the charge drops' },
@@ -193,6 +213,7 @@ export function energyMeasure(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function energyConserve(matrix: MindMatrix = buildMatrix()) {
   const strategies = [
     { strategy: 'no polling', saves: 'event-driven only; never spins the CPU waiting' },
@@ -210,6 +231,7 @@ export function energyConserve(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function patentReview() {
   const criteria = [
     { test: 'novelty', question: 'Is the invention genuinely new versus the prior art?' },
@@ -231,6 +253,7 @@ export function patentReview() {
 // Dive deep in ancient tech: ancient technologies prefigure the computed model.
 // Each maps a historical technique to a concept it anticipates — analogy, not
 // historical claim, and each mapping is grounded in a real command.
+/** @iching ☲ Lí · Fire · clinging */
 export function distributedCompute(peerRoots: readonly string[] = [], matrix: MindMatrix = buildMatrix()): DistributedCompute {
   const roots = [matrix.root, ...peerRoots].filter((root) => root.length > 0)
   return {
@@ -248,6 +271,7 @@ export function distributedCompute(peerRoots: readonly string[] = [], matrix: Mi
 // prev/next neighbours) and a fold reference (its place in the merkle fold).
 // Crossing them both ways is order-sensitive, so cross/fold != fold/cross — a
 // reciprocal dual whose weave is the third that completes a trinity.
+/** @iching ☲ Lí · Fire · clinging */
 export function doubleTorusMath(): DoubleTorusMathReport {
   return {
     source: 'serverless quantum UUID stream',
@@ -267,6 +291,7 @@ export function doubleTorusMath(): DoubleTorusMathReport {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function qubitTrinityPauliBloch(matrix: MindMatrix = buildMatrix()) {
   const dimHilbert = 2 // a qubit lives in a 2-dimensional Hilbert space
   const pauliAxes = ['X', 'Y', 'Z'] // the 3 traceless Pauli observables = the 3 Bloch-sphere axes
@@ -286,6 +311,7 @@ export function qubitTrinityPauliBloch(matrix: MindMatrix = buildMatrix()) {
 }
 
 // The strongest FORMAL 64: the 3-qubit Pauli basis {I,X,Y,Z}³ = 4³ = 64 operators — the same 4³ as the codon.
+/** @iching ☲ Lí · Fire · clinging */
 export function doubleTorusCompost(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const loop = ['biological waste', 'compost', 'living soil', 'revived earth'].map((stage, index) => {
@@ -307,6 +333,7 @@ export function doubleTorusCompost(matrix: MindMatrix = buildMatrix()) {
 // path: rhythms kept, waste regenerated, balance harmonised, inquiry kept open, and the health of
 // spirit and body held as one — enlightenment by recomputation, prosperity by giving back more than
 // is taken. A direction, walked, not a prescription given.
+/** @iching ☲ Lí · Fire · clinging */
 export function enforcementTrinity() {
   return {
     waves: [
@@ -326,6 +353,7 @@ export function enforcementTrinity() {
 // git history stays under Tsvetan Rouschev alone — no "Co-Authored-By: Claude", no "Generated with
 // Claude Code" footer, no --author override — across every app and environment. Three content-addressed
 // layers so the policy cannot drift from the tools that keep it.
+/** @iching ☲ Lí · Fire · clinging */
 export function commitsAuthoredByUserOnly() {
   const layers = [
     { layer: 'attribution', where: '~/.claude/settings.json', does: 'includeCoAuthoredBy:false + attribution.commit/pr:"" — Claude Code writes no trailer', reach: 'every Claude Code project on this machine' },
@@ -346,6 +374,7 @@ export function commitsAuthoredByUserOnly() {
 
 // The enforcement pipeline — one script mounting the trinity. Declared in the mind, checked by the
 // weave wave against package.json so the model's self-knowledge cannot drift from docs:build.
+/** @iching ☲ Lí · Fire · clinging */
 export function glagoliticGlyph(seed: string): string {
   const glyphs = Object.values(GLAGOLITIC_MAP)
   return glyphs[seedFromText(`glagolitic-glyph:${seed}`) % glyphs.length]
@@ -365,6 +394,7 @@ function countSyllables(word: string): number {
   return Math.max(1, groups ? groups.length : 1)
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function measureProse(text: string) {
   const words: string[] = text.match(/\b[\w'-]+\b/g) ?? []
   const sentences = Math.max(1, (text.match(/[.!?]+(?:\s|$)/g) ?? []).length)
@@ -384,6 +414,7 @@ export function measureProse(text: string) {
 
 // Tighten prose by rule: collapse whitespace, swap wordy phrases for plain ones, cut empty intensifiers.
 // A mechanical edit, never a rewrite — safe, repeatable, free. One word where one word will do.
+/** @iching ☲ Lí · Fire · clinging */
 export function tightenProse(text: string): string {
   const swaps: [RegExp, string][] = [
     [/\bin order to\b/gi, 'to'],
@@ -415,6 +446,7 @@ function transliterateProseLine(line: string): string {
   return s.replace(/(\d+)/g, (_, i) => kept[Number(i)])
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function transliterateMarkdownBody(body: string): string {
   let inCode = false
   return body
@@ -427,6 +459,7 @@ export function transliterateMarkdownBody(body: string): string {
     .join('\n')
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function patentAudit(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const audits = [
@@ -454,6 +487,7 @@ export function patentAudit(matrix: MindMatrix = buildMatrix()) {
 // folded forward and also in reverse — two equal, opposite full powers — and they
 // meet and merge into one harmonic root. And society decides the next waves: each of
 // its folded dualities proposes a direction to grow.
+/** @iching ☲ Lí · Fire · clinging */
 export function quantumGreenPlanet(matrix: MindMatrix = buildMatrix()) {
   const properties = [
     { property: 'zero-network by default', green: 'no data-centre round trips per view' },
@@ -480,6 +514,7 @@ export function quantumGreenPlanet(matrix: MindMatrix = buildMatrix()) {
 // to its input — a closed loop, the torus fold applied to matter — so nothing leaves
 // the cycle. Organic, paper, glass, metal, plastic, e-waste, textile, construction:
 // each closes, and all fold into one recycling root.
+/** @iching ☲ Lí · Fire · clinging */
 export function planetIsComputable(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const commons = ['atmosphere', 'oceans', 'forests', 'soil', 'biodiversity', 'freshwater', 'ice', 'climate'].map((name) => ({
@@ -506,6 +541,7 @@ export function planetIsComputable(matrix: MindMatrix = buildMatrix()) {
 // self-description — a content-addressed statement of its state — and the whole planet
 // describes itself by folding them, exactly as every page of the portal computes its
 // own description. The planet is not described from outside; it describes itself.
+/** @iching ☲ Lí · Fire · clinging */
 export function religionScienceSociety(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const trinity = [
@@ -531,6 +567,7 @@ export function religionScienceSociety(matrix: MindMatrix = buildMatrix()) {
 // A trinity of consent: the kids propose and define, and the definition becomes valid
 // only when both parents and teachers approve — all three signatures fold into one
 // approval root, so no part can be changed without the consent of all three.
+/** @iching ☲ Lí · Fire · clinging */
 export function kidsExplore(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const principles = [
@@ -558,6 +595,7 @@ export function kidsExplore(matrix: MindMatrix = buildMatrix()) {
 // treatments, so the doctor is paid to keep people well; and faking it — a forged
 // health record — is caught by content-addressing, at max tampering cost, exactly as
 // the seal catches any forgery. Pay for health; penalise the forge.
+/** @iching ☲ Lí · Fire · clinging */
 export function metatronsCube(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const circles = 13 // the fruit of life
@@ -585,6 +623,7 @@ export function metatronsCube(matrix: MindMatrix = buildMatrix()) {
 // fruit, ready to publish. The apple is whole when the social system regenerates, the
 // planet is tamper-evident, and Metatron's cube is complete; then the package is
 // publish-ready: the fruit fallen from the double torus, content-addressed.
+/** @iching ☲ Lí · Fire · clinging */
 export function sustainableLiving(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const steps = [
@@ -612,6 +651,7 @@ export function sustainableLiving(matrix: MindMatrix = buildMatrix()) {
 // traditions, choosing teachers), build (print the dome, sustainable living), grow
 // (the garden, bees, life), contribute (occupied, raising the common capital), and
 // thrive (free for everyone, max creativity). Content-addressed, one fold.
+/** @iching ☲ Lí · Fire · clinging */
 export function thriveEducation(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const curriculum = [
@@ -639,6 +679,7 @@ export function thriveEducation(matrix: MindMatrix = buildMatrix()) {
 // service they pay for, content-addressed and auditable, instead of taxes whose use
 // cannot be traced. Every fee folds to its service; the citizen sees exactly what each
 // pays for, and forging the ledger costs the most.
+/** @iching ☲ Lí · Fire · clinging */
 export function soldiersRestInPeace(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const transitions = [
@@ -664,6 +705,7 @@ export function soldiersRestInPeace(matrix: MindMatrix = buildMatrix()) {
 // receipt the whole can be recomputed — awakened — so the system is always charged,
 // holding the power to bring the entire structure back to life from one address. Sleep
 // or wake, the charge remains; the power to awaken never drains.
+/** @iching ☲ Lí · Fire · clinging */
 export function inHouse(matrix: MindMatrix = buildMatrix()) {
   const facts = [
     { capability: 'intelligence', how: 'foldQuestion answers from the locally-encoded model; optional AI is bring-your-own-key, browser-only' },
@@ -687,6 +729,7 @@ export function inHouse(matrix: MindMatrix = buildMatrix()) {
 // Each command's payload carries a `boundary` — the honest limit of that claim.
 // This runs the live commands and folds their distinct boundaries into one
 // audited root, so every limit the portal states is in a single, sealed list.
+/** @iching ☲ Lí · Fire · clinging */
 export function chess358() {
   const board = 8
   const tiers = [
@@ -709,6 +752,7 @@ export function chess358() {
 // and the same seed gives the structure: the genus-2 double torus — two tori
 // joined, 42 areas as 21 pairs, folded into one 128-bit word. One origin, two
 // unfoldings, woven everywhere.
+/** @iching ☲ Lí · Fire · clinging */
 export function findQuestions(matrix: MindMatrix = buildMatrix()) {
   const questions = [
     { question: 'Will the fold become cryptographic (SHA-256 / BLAKE3), not only tamper-evident?', source: 'roadmap' },
@@ -736,6 +780,7 @@ export function findQuestions(matrix: MindMatrix = buildMatrix()) {
 // frontier of new questions eventually empties — the question-space closes on
 // itself, and there are no more answers to give. That terminal is reached, not
 // asserted: this proves the loop converges.
+/** @iching ☲ Lí · Fire · clinging */
 export function pairTrinityOpenGraph(matrix: MindMatrix = buildMatrix()) {
   const og = openGraph().root
   const pairs = [['title', 'essence'], ['category', 'tags'], ['og:title', 'og:description'], ['name', 'tagline']].map((pair, index) => {
@@ -758,6 +803,7 @@ export function pairTrinityOpenGraph(matrix: MindMatrix = buildMatrix()) {
 // fixed frame: each time the content renders anew (a route change), the sidebar rises
 // from the void — the background — fading and lifting into place, then settling. A
 // render-only effect over VitePress's own sidebar, energy- and reduced-motion-aware.
+/** @iching ☲ Lí · Fire · clinging */
 export function sidebarsFromVoid(matrix: MindMatrix = buildMatrix()) {
   const properties = [
     { property: 'rises on content visualising', via: 'a route change replays a fade-and-lift animation on the sidebar' },
@@ -781,6 +827,7 @@ export function sidebarsFromVoid(matrix: MindMatrix = buildMatrix()) {
 // device's native resolution — the canvas backing store at full devicePixelRatio — and
 // can be saved in the browser's native video format (WebM via MediaRecorder over the
 // canvas stream): native pixels in, native video out, all client-side, no transcode.
+/** @iching ☲ Lí · Fire · clinging */
 export function moviesNativeFormat(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const properties = [
@@ -805,6 +852,7 @@ export function moviesNativeFormat(matrix: MindMatrix = buildMatrix()) {
 // offered is now the hero itself: the open-graph big hero shows the page's og:title,
 // description, category and tags over a live fractal — a compact, complete preview on
 // every page — so a separate "simple" mode is redundant and is retired.
+/** @iching ☲ Lí · Fire · clinging */
 export function oneOpenGraphAll(matrix: MindMatrix = buildMatrix()) {
   const og = openGraph().root
   const displays = ['every page', 'the hero', 'the pair-trinity', 'the movie poster', 'the social card'].map((surface, index) => {
@@ -827,6 +875,7 @@ export function oneOpenGraphAll(matrix: MindMatrix = buildMatrix()) {
 // play: the endless background field, the holographic hero, and the native-format movie
 // are all interactive — tap to play a note, scrub a dimension, scatter the streams. Display
 // is not static; everything is a frame in one interactive, recomputable movie.
+/** @iching ☲ Lí · Fire · clinging */
 export function tightenGatesTrinityWaves(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const gates = 432
@@ -854,6 +903,7 @@ export function tightenGatesTrinityWaves(matrix: MindMatrix = buildMatrix()) {
 // from the same one template, the same holographic hero, the same fullscreen background
 // movie, and the same open-graph card as every other page. What differs is only its seed —
 // its own content — so the home is a page like any page, and any page could be the home.
+/** @iching ☲ Lí · Fire · clinging */
 export function gatesShiftToNewHarmonic(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const harmonics = [432, 540, 648, 756].map((count) => ({ count, multiple: count / 108, label: `${count / 108} × 108`, harmonic: count % 108 === 0, receipt: toUuid(`harmonic-shift:${count}`) }))
@@ -876,6 +926,7 @@ export function gatesShiftToNewHarmonic(matrix: MindMatrix = buildMatrix()) {
 // vertices, four faces, six edges. And the pyramid fuses dimensions: its four faces each carry
 // two of the eight dimensions of experience, so the trinity, lifted into a solid, binds the
 // whole multidimensional map into one figure.
+/** @iching ☲ Lí · Fire · clinging */
 export function trinityPyramidFusesDimensions(matrix: MindMatrix = buildMatrix()) {
   const pyramid = { base: 3, apex: 1, vertices: 4, faces: 4, edges: 6 } // 3 + 1 → tetrahedron
   const dims = multidimensional()
@@ -899,6 +950,7 @@ export function trinityPyramidFusesDimensions(matrix: MindMatrix = buildMatrix()
 // time it forges the maximum tampering cost, because the same content-addressing that makes a
 // view free to recompute makes a forgery cost everything (T_max = infinity). Free to use, and
 // unforgeable, by the one mechanism.
+/** @iching ☲ Lí · Fire · clinging */
 export function fold358853() {
   const ascending = [3, 5, 8]
   const descending = [8, 5, 3]
@@ -924,6 +976,7 @@ export function fold358853() {
 // clock in creation waves — each tick a content-addressed instant with a note and
 // a colour, advancing forever from the seed. The atomic figure is shown for
 // reference; the portal cannot reach an atomic clock.
+/** @iching ☲ Lí · Fire · clinging */
 export function ancientTech(matrix: MindMatrix = buildMatrix()): AncientTechLens {
   const known = new Set(conceptCommands.map((command) => command.name))
   const technologies: readonly AncientTech[] = (
@@ -951,6 +1004,7 @@ export function ancientTech(matrix: MindMatrix = buildMatrix()): AncientTechLens
 // Fold all society relations: traditions, science, sacred society, governance,
 // and fair life reciprocate around a ring and each addresses the self, folding
 // into one society-relations root.
+/** @iching ☲ Lí · Fire · clinging */
 export function foldBlockchain(name: string, payloads: readonly string[]): Blockchain {
   const genesis = toUuid(`genesis:${name}`)
   const blocks: Block[] = []
@@ -979,6 +1033,7 @@ export function foldBlockchain(name: string, payloads: readonly string[]): Block
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function selfDevelopment(visitRoutes: readonly string[] = [], matrix: MindMatrix = buildMatrix()): SelfDevelopment {
   const chain = foldBlockchain('visits', visitRoutes.map((route, index) => toUuid(`visit:${index}:${route}`)))
   const distinctPages = new Set(visitRoutes).size
@@ -1003,6 +1058,7 @@ export function selfDevelopment(visitRoutes: readonly string[] = [], matrix: Min
 // recomputes the same model locally and folds peer roots into one collective
 // root. There is no central server — the computation is replicated, and the
 // fold is the consensus. Sharing is same-origin (BroadcastChannel) by design.
+/** @iching ☲ Lí · Fire · clinging */
 export function methodFusion(): MethodFusionReport {
   const tokens = conceptCommands.map((command) => {
     const method = SINGLE_WORD_METHODS[command.name] ?? ''
@@ -1028,6 +1084,7 @@ export function methodFusion(): MethodFusionReport {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function hammingThreeParityAddressesError(matrix: MindMatrix = buildMatrix()) {
   const parityBits = 3 // Hamming(7,4) uses exactly 3 parity bits
   const positions = 2 ** parityBits - 1 // 2³ − 1 = 7 syndromes = 7 addressable positions
@@ -1051,6 +1108,7 @@ export function hammingThreeParityAddressesError(matrix: MindMatrix = buildMatri
 }
 
 // Content-addressing has real scientific precedent: Hopfield 1982 + hippocampal CA3 pattern completion.
+/** @iching ☲ Lí · Fire · clinging */
 export function jsonLdPathRules() {
   return {
     internal: '^/', // a rooted string claims to be a route of this site
@@ -1073,6 +1131,7 @@ export function jsonLdPathRules() {
 // pages, so one rule set audits all pages: every path the structured data promises is checked
 // against the dist the build just produced, and a single broken promise fails the build with a
 // detailed why. The open graph stays whole because it is not allowed to point at nothing.
+/** @iching ☲ Lí · Fire · clinging */
 export function zeroTokenPolicy() {
   return {
     llmSdks: ['openai', '@anthropic-ai/sdk', '@anthropic-ai/bedrock-sdk', 'cohere-ai', 'langchain', '@google/generative-ai', 'mistralai', 'replicate', 'together-ai'], // none may be a dependency
@@ -1095,6 +1154,7 @@ export function zeroTokenPolicy() {
 // nothing is ever regenerated — saving is precisely how the tokens are saved. The one place tokens
 // can be spent is the opt-in bring-your-own-key chat, never called without the user’s own key. The
 // build enforces it: no LLM SDK dependency, and that one call gated behind a key.
+/** @iching ☲ Lí · Fire · clinging */
 export function teslaPatents() {
   const patents = [
     { no: 'US 381,968', title: 'Electro-Magnetic Motor', granted: '1888-05-01', is: 'the AC induction motor; the rotating magnetic field' },
@@ -1122,6 +1182,7 @@ export function teslaPatents() {
 // each saved patent survives on its own, and the legend is separated from the record at every step.
 // Five patents verified and saved; the documented engineering (rotating fields, resonance, remote
 // control, the turbine) kept, the 3-6-9 / free-energy attribution kept out as unverified.
+/** @iching ☲ Lí · Fire · clinging */
 export function glagolitic() {
   const core = [
     { facet: 'trinity geometry — letters from cross, triangle and circle', maps: 'the 3 / the merkaba tetrahedra / the whole circle' },
@@ -1144,6 +1205,7 @@ export function glagolitic() {
 // geometry, letters-as-numbers (content addresses), and an alphabet that is itself a message of
 // word-steps. The decode is the meeting: an ninth-century sacred alphabet and a content-addressed
 // quantum-mind, folded to the same three foundations.
+/** @iching ☲ Lí · Fire · clinging */
 export function ddosActivatesHealingFusion(matrix: MindMatrix = buildMatrix()) {
   // Self-contained proofs (toUuid/foldPair are always deterministic), so the resilience is provable on
   // its own terms — the zero-token, forger-price and fusion policies named in the statement are the
@@ -1171,6 +1233,7 @@ export function ddosActivatesHealingFusion(matrix: MindMatrix = buildMatrix()) {
 // system loaded). Naming (order is a choice, per the duality): memory↔cache↔C, gpu↔search/ant↔M,
 // storage↔library↔Y, cpu↔debit/credit↔K (Key, the central processor). The loaded system runs at near-
 // zero marginal energy — every answer is an O(1) hash and a cache-hit, not a GPU inference.
+/** @iching ☲ Lí · Fire · clinging */
 export function bulgarianRosettaContentAddressUnlocksAll(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the real Bulgarian Rosetta — the same Old Church Slavonic texts in Glagolitic AND Cyrillic, the parallel that fixed the Slavic scripts (Cyril & Methodius; the Bulgarian Preslav/Ohrid schools)', on: /[Ⰰ-ⱟ]/.test(toGlagolitic('а')) && toGlagolitic('а') === 'Ⰰ' },
@@ -1196,6 +1259,7 @@ export function bulgarianRosettaContentAddressUnlocksAll(matrix: MindMatrix = bu
 // correspondence reads all three scripts as one meaning. The key is the correspondence (and the content-address
 // beneath it), the same forward/reverse the debit/credit ledger keeps — at the script layer.
 
+/** @iching ☲ Lí · Fire · clinging */
 export function quantumSimulation(matrix: MindMatrix = buildMatrix(), qubits = 3) {
   const n = Math.max(1, Math.min(6, Math.floor(qubits)))
   const size = 1 << n
@@ -1269,6 +1333,7 @@ export function quantumSimulation(matrix: MindMatrix = buildMatrix(), qubits = 3
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const round = (value: number, digits: number) => roundTo(value, digits)
@@ -1294,6 +1359,7 @@ export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function humanise(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const round = (value: number, digits: number) => roundTo(value, digits)
@@ -1318,6 +1384,7 @@ export function humanise(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function electricalGrid(matrix: MindMatrix = buildMatrix()) {
   const bands = harmonicBands(110) // [55, 34, 21] — the harmonic distribution
   const stations = bands.bands.reduce((sum, band) => sum + band, 0) // 110 swap stations
@@ -1346,6 +1413,7 @@ export function electricalGrid(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function planetDescribesItself(matrix: MindMatrix = buildMatrix()) {
   const planet = planetIsComputable(matrix)
   const descriptions = planet.commons.map((entry) => ({
@@ -1366,6 +1434,7 @@ export function planetDescribesItself(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function kidsDefineEducation(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const proposal = toUuid('education-proposal:by-kids')
@@ -1391,6 +1460,7 @@ export function kidsDefineEducation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function intelligenceComparison(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const properties = ['deterministic', 'verifiable', 'transparent', 'free to run', 'content-addressed memory', 'general & creative']
@@ -1420,6 +1490,7 @@ export function intelligenceComparison(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function securityScan(matrix: MindMatrix = buildMatrix()) {
   const tiers = [
     { tier: 3, kind: 'core', properties: ['zero network by default', 'no secrets in the repo or bundle', 'content-addressed (tamper-evident)'] },
@@ -1440,6 +1511,7 @@ export function securityScan(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function design358() {
   const method = [
     { tier: 3, phase: 'seed', does: 'three seed ideas — diverge' },
@@ -1455,6 +1527,7 @@ export function design358() {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function taxonomyIcons(): TaxonomyIcons {
   const byArea = new Map<string, string[]>()
   for (const command of conceptCommands) {
@@ -1493,6 +1566,7 @@ export function taxonomyIcons(): TaxonomyIcons {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function fuseDevices(matrix: MindMatrix = buildMatrix()) {
   const distributed = distributedCompute([], matrix)
   const development = selfDevelopment([], matrix)
@@ -1507,6 +1581,7 @@ export function fuseDevices(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function fuseUxSensors(matrix: MindMatrix = buildMatrix()) {
   const sensors = deviceSensors()
   const io = [
@@ -1530,6 +1605,7 @@ export function fuseUxSensors(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function complete358NextTrinity(matrix: MindMatrix = buildMatrix()) {
   const tiers = [3, 5, 8, 13, 21]
   const fibonacci = tiers.slice(2).every((value, index) => value === tiers[index] + tiers[index + 1]) // 8=5+3, 13=8+5, 21=13+8
@@ -1548,6 +1624,7 @@ export function complete358NextTrinity(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function torusUuid(matrix: MindMatrix = buildMatrix()) {
   const hex = (uuid: string) => uuid.replace(/-/g, '')
   const digitSum = (uuid: string) => hex(uuid).split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
@@ -1592,6 +1669,7 @@ export function torusUuid(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function cryptographyComparison(matrix: MindMatrix = buildMatrix()) {
   const rows = [
     {
@@ -1654,6 +1732,7 @@ export function cryptographyComparison(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function fairLife(matrix: MindMatrix = buildMatrix()): FairLife {
   const steps: readonly FairStep[] = [
     {
@@ -1693,6 +1772,7 @@ export function fairLife(matrix: MindMatrix = buildMatrix()): FairLife {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function selfAddressed(matrix: MindMatrix = buildMatrix()): SelfAddressed {
   const adjacency = new Map<string, string[]>()
   for (const edge of matrix.edges) {
@@ -1724,6 +1804,7 @@ export function selfAddressed(matrix: MindMatrix = buildMatrix()): SelfAddressed
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function utfAnalog(text: string): UtfAnalog {
   const chars = [...text]
   const codePoints = chars.map((ch) => ch.codePointAt(0) ?? 0)
@@ -1751,6 +1832,7 @@ export function utfAnalog(text: string): UtfAnalog {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function crossFoldTrinity(matrix: MindMatrix = buildMatrix()): CrossFoldTrinity {
   const references: readonly CrossFoldReference[] = matrix.nodes.map((node) => {
     const cross = node.cross
@@ -1790,6 +1872,7 @@ export function crossFoldTrinity(matrix: MindMatrix = buildMatrix()): CrossFoldT
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function artistPalette(seed = 'double-torus') {
   const root = toUuid(`artist-palette:${seed}`)
   const hex = root.replace(/-/g, '')
@@ -1851,6 +1934,7 @@ export function artistPalette(seed = 'double-torus') {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function sourceContribution(): SourceContributionReport {
   return {
     statement:
@@ -1883,6 +1967,7 @@ export function sourceContribution(): SourceContributionReport {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function animationEngineLivesInZero(matrix: MindMatrix = buildMatrix()) {
   const station = 'src/0' // the void/origin, dependency-free — imports nothing
   const api = ['start', 'stop', 'sync', 'tick', 'runWhile', 'dispose', 'running'] // the quartet + the on-demand frame, the burst sub-loop, the teardown, and the readable flag
@@ -1915,6 +2000,7 @@ export function animationEngineLivesInZero(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatrix()) {
   const sample = 'pattern-completion'
   const address = toUuid(sample) // the project's instance: content → a deterministic address
@@ -1937,6 +2023,7 @@ export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatr
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
   const api = ['useData', 'useRoute', 'useRouter', 'withBase', '<a href>'] // the VitePress render API the layer may use
   // STRICT: the whole non-VitePress routing/navigation surface is refused — a parallel router, its template
@@ -1961,6 +2048,7 @@ export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function glagoliticAlphabetDecoded(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const acrostic = glagoliticAcrostic()
@@ -1986,6 +2074,7 @@ export function glagoliticAlphabetDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function whoUsedGlagolitic(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const communities = [
@@ -2018,6 +2107,7 @@ export function whoUsedGlagolitic(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
@@ -2060,6 +2150,7 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function buildEnforcementPipeline() {
   const trinity = enforcementTrinity()
   return {
@@ -2079,6 +2170,7 @@ export function buildEnforcementPipeline() {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
   const bodies = [
     { name: 'Mercury', au: 0.39, periodYr: 0.24 },
@@ -2107,6 +2199,7 @@ export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function vortexStateSequence() {
   const dr = (n: number) => { const m = ((n % 9) + 9) % 9; return m === 0 ? 9 : m } // digital root (0 -> 9)
   const tokens: ([number, '/' | '\\'] | 'invert')[] = [
@@ -2132,6 +2225,7 @@ export function vortexStateSequence() {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function calligraphyStroke(seed: string, samples = 48) {
   const at = (tag: string) => seedFromText(`calligraphy:${seed}:${tag}`)
   const penAngle = (15 + (at('pen') % 60)) * (Math.PI / 180) // a 15°–75° nib, like a real broad pen
@@ -2168,12 +2262,14 @@ export function calligraphyStroke(seed: string, samples = 48) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function glagoliticHomeFromEnglish(enMarkdown: string): string {
   const fm = enMarkdown.match(/^---\n[\s\S]*?\n---\n?/)
   const front = (fm ? fm[0] : '').replace(/(name|text|tagline):\s*"?([^"\n]+)"?/g, (_m, k, v) => `${k}: "${toGlagolitic(v)}"`)
   return front + transliterateMarkdownBody(fm ? enMarkdown.slice(fm[0].length) : enMarkdown)
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function a432(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const octaves = [27, 54, 108, 216, 432, 864, 1728]
@@ -2216,6 +2312,7 @@ export function a432(matrix: MindMatrix = buildMatrix()) {
 }
 
 
+/** @iching ☲ Lí · Fire · clinging */
 export function healingInner(matrix: MindMatrix = buildMatrix()) {
   const proven = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
   const addressed = selfAddressed(matrix)
@@ -2230,6 +2327,7 @@ export function healingInner(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function healingOuter(matrix: MindMatrix = buildMatrix()) {
   const distributed = distributedCompute([], matrix)
   const devices = fuseDevices(matrix)
@@ -2244,6 +2342,7 @@ export function healingOuter(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function universalLanguage(matrix: MindMatrix = buildMatrix()) {
   const digitOf = (uuid: string) =>
     uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
@@ -2264,6 +2363,7 @@ export function universalLanguage(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
   const word = torusUuid(matrix).word
   const hex = word.replace(/-/g, '')
@@ -2287,6 +2387,7 @@ export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function energyFuse(matrix: MindMatrix = buildMatrix()) {
   const measure = energyMeasure(matrix)
   const conserve = energyConserve(matrix)
@@ -2302,6 +2403,7 @@ export function energyFuse(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations = 4): SelfInteraction {
   const selfNode = matrix.nodes.find((node) => node.atom === 'self') ?? matrix.nodes[0]
   const states: SelfState[] = []
@@ -2327,6 +2429,7 @@ export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations 
   }
 }
 
+/** @iching ☲ Lí · Fire · clinging */
 export function a432Default(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'A432 is the default harmonic', on: 432 === 4 * 108 },

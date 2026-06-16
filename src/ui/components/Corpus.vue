@@ -1,4 +1,6 @@
 <script setup>
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 33, lo: '☳', up: '☶', glyph: '☶', color: '#F0000F', name: 'Gèn', principle: 'keeping still' }
 // One mount for papers, references and diamonds — RESTful, via the VitePress router only. The resource
 // id lives in the PATH: /papers/<id> is the [id] dynamic route, and its params (precomputed by the
 // matching [id].paths.ts → paperRoutes/paperReferenceRoutes/diamondRoutes) arrive through useData().

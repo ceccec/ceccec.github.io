@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'SacredGeometry' }
 // THE SACRED GEOMETRY CATEGORY — the forms decoded honestly (documented kept, legend flagged), presented
 // multi-dimensionally: walk the dimension slider and the forms turn through it (the 10D thread — 4 genus-2
 // homology loops + 6 cross-fold axes). The five Platonic solids carry their real V/E/F and Euler V−E+F=2; φ is
@@ -29,7 +31,7 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
 </script>
 
 <template>
-  <section class="sg" aria-labelledby="sg-title">
+  <section class="sg" aria-labelledby="sg-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <header class="sg__head">
       <h2 id="sg-title" class="sg__title">Sacred geometry — the forms, decoded honestly</h2>
       <p class="sg__sub">The geometry is genuine and beautiful; the “blueprint of creation”, golden-ratio-everywhere and ascension claims are flagged, not asserted. <em>Documented kept, legend flagged.</em></p>

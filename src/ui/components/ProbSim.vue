@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 5, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F0F' }
 import { computed, ref, watch } from 'vue'
 import { pflip, admixToward, injectError, sampleCounts, composeHazard, survive, markovEvolve, stationary, aksakRatioWalk, codeRobustness } from '../lib/quantumMind'
 
@@ -245,7 +247,7 @@ const codonRows = computed(() => [
 </script>
 
 <template>
-  <div class="ps">
+  <div class="ps" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="ps-head">
       <select v-model="sel" class="ps-pick" aria-label="decoded domain">
         <option v-for="d in domains" :key="d" :value="d">{{ d }}</option>

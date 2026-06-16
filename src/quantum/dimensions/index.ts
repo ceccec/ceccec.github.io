@@ -1,3 +1,4 @@
+// ☰ Qián · Heaven · creative (the 10 dimensions are the model) · upper·yang · shrink — continuous 10D hero axes: 6 cross-fold appearance + 4 genus-2 homology loops, self-similar at every scale
 // src/quantum/dimensions — the continuous TEN dimensions of the hero, at every scale. Every parameter of the
 // figure is a smooth function of one phase p (0..1), so the movie slides from one dimension to the next with no
 // jumps. The ten are grounded in the model's own geometry: the genus-2 double torus has H1 = Z^4 — FOUR
@@ -7,14 +8,18 @@
 // the middle — the walk from 0d to infinity and back. Evaluated at a nested SCALE, the ten repeat self-similarly
 // (a golden-angle phase shift per scale), so the animation is ten-dimensional at every scale.
 
+// ☰ Qián · Heaven · creative · upper·yang · shrink — dimension count and names
+/** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
 export const DIMENSIONS = 10 // 6 cross-fold appearance axes + 4 genus-2 homology loops (H1 = Z^4)
 
 // The names of the ten dimensions, in order — the six cross-fold axes then the four homology loops.
+/** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
 export const DIMENSION_NAMES = [
   'spread', 'depthFade', 'hueShift', 'twist', 'shrink', 'breath', // the 6 cross-fold appearance axes
   'loopA1', 'loopB1', 'loopA2', 'loopB2', // the 4 homology loops: handle1 meridian/longitude, handle2 meridian/longitude
 ] as const
 
+/** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
 export interface Dims {
   // The 6 cross-fold appearance axes — the figure's look.
   spread: number    // branch angle
@@ -35,6 +40,7 @@ export interface Dims {
 // nested scale (the same walk, irrationally offset — so the figure looks the same at every zoom, never aligning).
 const PHASE_PER_SCALE = 0.6180339887498949
 
+/** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
 export function dims(p: number, scale = 0): Dims {
   // self-similar at every scale: each nested scale advances the phase by the golden fraction, modulo 1.
   const ps = (((p + scale * PHASE_PER_SCALE) % 1) + 1) % 1
@@ -57,6 +63,7 @@ export function dims(p: number, scale = 0): Dims {
 }
 
 // The dimension walk: 0 at the ends (the figure collapses to a point), 1 at the middle (fully open).
+/** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
 export function dimWalk(p: number): number {
   return 0.5 - 0.5 * Math.cos(p * Math.PI * 2)
 }

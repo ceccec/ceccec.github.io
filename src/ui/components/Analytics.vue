@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 43, name: 'Guài', glyph: '☲☱', lower: 'Duì', upper: 'Lí', color: '#F0F0FF' } as const
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { analyticsLedger } from '../lib/quantumMind'
@@ -17,7 +19,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="analytics">
+  <section class="analytics" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="analytics__lead">{{ t.lead }}</p>
     <Chart :series="data.chart.series" :title="t.chart" />

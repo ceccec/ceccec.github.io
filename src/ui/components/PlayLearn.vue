@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 47, name: 'Dà Yǒu', glyph: '☲☰', lower: 'Qián', upper: 'Lí', color: '#F0FFFF' } as const
 import { computed, ref } from 'vue'
 import { playLearn } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -27,7 +29,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="play dt-card">
+  <section class="play dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <label class="play__seed">{{ t.label }}:
       <input v-model="word" type="text" maxlength="16" spellcheck="false" :aria-label="t.label" />

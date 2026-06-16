@@ -1,27 +1,37 @@
+// ☰ Qián · Heaven · creative (the mind barrel — re-exports all mind folds) · upper·yang · shrink — barrel index for src/quantum/mind; imports from all double-torus modules and re-exports every fold, type, and primitive so the ~97 importers resolve unchanged
+
+// ☰ Qián · Heaven · creative · lower·yin · spread — script/glyph/library primitives from the library double-torus
 // The fold: the monolith consumes the modules it once contained. The script-transliteration leaf now
 // lives in the library double-torus (src/quantum/library) — imported here for the folds that call it
 // and re-exported so the ~97 importers, the barrel and the generators resolve unchanged. "Modules it
 // consumes" — the core is no longer zero-import; it is the pivot that consumes its 4 double toruses.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
+// ☰ Qián · Heaven · creative · lower·yin · depthFade — kernel primitives, fold cascade, crypto, and quantum simulators from src/0
 // The primitive kernel dissolved into its digit folder (dissolveAtPiTrainStations): toUuid + hash (wave 1)
 // and the fold cascade merge·roundTo·seedFromText·foldPair·merkleFold·isUuid·memoByRoot (wave 2) now live in
 // src/0 (the void/origin station, dependency-free), and the core imports + re-exports them unchanged.
 import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits } from '../../0/index.ts'
+// ☰ Qián · Heaven · creative · lower·yin · hueShift — proof-only primitives (hopfield, bell, CA) loaded lazily
 // Proof-only imports (not bundled at runtime unless explicitly used)
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
+// ☰ Qián · Heaven · creative · lower·yin · spread — EM-radiation constants and spectrum primitives from src/0
 // EM-radiation primitives (src/0): Maxwell's one field at one speed (c), the two relations (c=λf, E=hf)
 // and the ionizing line — the spectrum physics the electromagneticRadiationDecoded fold below composes.
 import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, PROTON_GYROMAGNETIC, IONIZING_EV, wavelengthOf, frequencyOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift } from '../../0/index.ts'
+// ☰ Qián · Heaven · creative · lower·yin · depthFade — weather forecast from the forecasts double-torus
 // weatherForecastQuantumComputedRealtime lives in ../forecasts now; mind's duality matrix references it (ESM-safe fn cycle).
 import { weatherForecastQuantumComputedRealtime } from '../forecasts/index.ts'
+// ☰ Qián · Heaven · creative · lower·yin · hueShift — 10D animation dimension constants from src/quantum/dimensions
 // The ten animation dimensions live beside the hero in src/quantum/dimensions — the 6 cross-fold appearance
 // axes + the 4 genus-2 homology loops (H1 = Z^4). Imported here so the tenDimensionalAnimation fold can prove
 // the count and grounding from the real constants (no second source).
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../dimensions/index.ts'
+// ☰ Qián · Heaven · creative · lower·yin · spread — crypto ledger review from debit/credit double-torus
 import { cryptoReview } from '../../debit/credit/index.ts' // the debit/credit pair reviews crypto as a ledger: every claim a credit funded by a capability (debit)
 import { cryptoReviewNet } from '../../credit/debit/index.ts' // the credit-side dual: the fused net per security property (all zero when honest)
+// ☰ Qián · Heaven · creative · upper·yang · shrink — re-exports: all primitives, folds, types, and domain re-exports
 export { toUuid, merge, roundTo, seedFromText, foldPair, humanEase, humanBreath, sinc, sincReconstruct, prng } // humanEase/humanBreath: the motion math; sinc/sincReconstruct: the sampling-theorem reconstruction; prng: the one seeded LCG the animated components share, all in src/0
 export { createAnimationEngine } from '../../0/index.ts' // wave 4: the rAF driver lives in the void/origin too; every animated component folds through it
 export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace } from '../../0/index.ts' // wave 6: the one math (the fold) and its presentations — torus·merkaba·vortex·merkle·trace, all projections of one address
@@ -49,6 +59,7 @@ export { toGlagolitic, toScript, GLAGOLITIC_MAP, gematria, GEMATRIA_MAPS, mayaLo
 // ║  Reentry (Edelman) · CA3/Hopfield content-addressing · I Ching 64 states ║
 // ╚════════════════════════════════════════════════════════════════════════════╝
 
+// ☰ Qián · Heaven · creative · lower·yin · depthFade — structural types from ./types.ts (the Mountain shell)
 // ☶ GEN (Mountain · stillness) — structural type shell
 import type {
   Atom, MatrixNode, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
@@ -82,6 +93,7 @@ import type {
 } from './types.ts'
 export type * from './types.ts'
 
+// ☰ Qián · Heaven · creative · lower·yin · hueShift — concept seed vocabulary from ./atoms.ts (Thunder action)
 // ☳ ZHEN (Thunder · action) — concept seed vocabulary
 import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS, SINGLE_WORD_METHODS } from './atoms.ts'
 export { atoms, conceptCommands } from './atoms.ts'
@@ -94,5 +106,6 @@ export { atoms, conceptCommands } from './atoms.ts'
 // what remains in this file are the folds that USE the kernel, not the kernel itself.
 
 
+// ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds (850+ functions) re-exported from ./folds.ts
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
 export * from './folds.ts'

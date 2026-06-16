@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 48, glyph: '☴', lo: '☷', up: '☴', color: '#FF0000', name: 'TrinitySearch' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, searchTrinity, charUuids, wordUuids } from '../lib/quantumMind'
@@ -20,7 +22,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="ts dt-card">
+  <section class="ts dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <input v-model="query" type="text" :placeholder="t.placeholder" class="ts__input" />
     <template v-if="query.length">

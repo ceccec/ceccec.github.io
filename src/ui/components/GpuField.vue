@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 23, glyph: '☵', lower: '☰', upper: '☵', color: '#0F0FFF' } as const
 // GpuField — the GPU half, in harmony with the model. The CPU computes the address (the truth); the
 // GPU expands it to a living plasma field (the appearance) in realtime. The seed → uuidHero gives the
 // hue, frequency and the two rotation phases of the merkaba, fed as uniforms to a WebGL fragment
@@ -119,7 +121,7 @@ onBeforeUnmount(() => { cleanup?.() })
 </script>
 
 <template>
-  <figure class="gpufield">
+  <figure class="gpufield" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <canvas v-show="ok" ref="canvas" :width="px" :height="px" :style="{ width: px + 'px', maxWidth: '100%' }" :aria-label="`GPU plasma field for ${id}`" />
     <div
       v-if="!ok"

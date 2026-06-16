@@ -1,4 +1,6 @@
 <script setup>
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 46, name: 'Dǐng', glyph: '☲☴', lower: 'Xùn', upper: 'Lí', color: '#F0FFF0' }
 // CRYPTO CHALLENGES — a LOCAL, REALTIME red-team of the site's own content-address, animated. Reads the one
 // source (cryptoChallenges / findContentAddressCollision / addressEntropyBits) and RUNS the exploit live in
 // your browser: wave 1 lets you WATCH a birthday collision happen (a canvas fills with content-address points
@@ -122,7 +124,7 @@ const showFlag = ref(true)
 </script>
 
 <template>
-  <section class="cx" aria-labelledby="cx-title">
+  <section class="cx" aria-labelledby="cx-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="cx__eyebrow">{{ t('Double Torus · local realtime crypto analysis', 'Двоен торус · локален криптоанализ в реално време') }}</p>
     <h2 id="cx-title">{{ t('Crypto challenges — red-teaming our own content-address, live', 'Криптопредизвикателства — атакуваме собствения адрес, на живо') }}</h2>
     <p class="cx__lede">

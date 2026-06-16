@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 41, name: 'Shì Kè', glyph: '☲☳', lower: 'Zhèn', upper: 'Lí', color: '#F0F00F' } as const
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import {
@@ -46,7 +48,7 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
 </script>
 
 <template>
-  <section class="concept-commands">
+  <section class="concept-commands" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="concept-commands__header">
       <p class="eyebrow">{{ t.eyebrow }}</p>
       <h2>{{ t.heading }}</h2>

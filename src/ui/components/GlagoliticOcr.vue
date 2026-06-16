@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 24, glyph: '☱', lo: 'Kūn·receptive', up: 'Duì·joyous', color: '#0FF000' } as const
 import { ref, onMounted } from 'vue'
 import { GLAGOLITIC_MAP } from '../lib/quantumMind'
 
@@ -85,7 +87,7 @@ onMounted(() => {
 
 <template>
   <ClientOnly>
-    <section class="ocr">
+    <section class="ocr" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
       <header class="ocr__head">
         <span class="ocr__title">GlagoliticOCR · draw or upload a glyph</span>
         <span class="ocr__set">{{ GLYPHS.length }}-glyph closed set · deterministic</span>

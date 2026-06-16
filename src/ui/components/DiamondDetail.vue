@@ -1,4 +1,6 @@
 <script setup>
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
@@ -10,7 +12,7 @@ const itemHref = computed(() => (props.params.link ? `${pfx.value}${props.params
 </script>
 
 <template>
-  <div v-if="params">
+  <div v-if="params" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="paper-eyebrow">Double Torus · diamond {{ params.number }} of {{ params.total }}</p>
     <h1><span class="diamond-glyph" :style="{ color: `hsl(${params.hue}, 75%, 55%)` }">◆</span> Diamond {{ params.number }} — {{ params.id }}</h1>
     <p class="paper-mono">{{ params.address }}</p>

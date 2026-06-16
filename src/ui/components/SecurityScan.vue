@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 42, name: 'Wèi Jì', glyph: '☲☵', lower: 'Kǎn', upper: 'Lí', color: '#F0F0F0' } as const
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, securityScan } from '../lib/quantumMind'
@@ -17,7 +19,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="sec dt-card">
+  <section class="sec dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="sec__lead">{{ t.lead }}</p>
     <div v-for="tier in tiers" :key="tier.tier" class="sec__tier">

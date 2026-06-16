@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 15, glyph: '☳', lower: '☰', upper: '☳', color: '#00FFFF' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358, music358, geometry358, emf358, tiers358 } from '../lib/quantumMind'
@@ -38,7 +40,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="cos dt-card">
+  <section class="cos dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="cos__grid">
       <article v-for="d in domains" :key="d.key" class="cos__card" :class="{ belief: d.belief }">

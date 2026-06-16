@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 62, trigram: '☴☰', glyph: '☴☰', lo: 'Xùn·gentle', up: 'Qián·creative', color: '#FFFFF0' }
 import { computed } from 'vue'
 import { navigation358 } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -38,7 +40,7 @@ const t = computed(() => (bg.value ? { eyebrow: 'навигация · 3-5-8', t
 </script>
 
 <template>
-  <section class="nav358 dt-card">
+  <section class="nav358 dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="nav358__tiers">
       <div v-for="tier in data.tiers" :key="tier.tier" class="nav358__tier">

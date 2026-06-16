@@ -223,12 +223,15 @@ export type ConceptCommandName =
   | 'concept.site.manifest'
   | 'concept.fold.place'
   | 'concept.fold.generate'
+  | 'concept.ui.fuse'
+  | 'concept.ui.reveal'
 
 export interface ConceptCommand {
   readonly name: ConceptCommandName
-  readonly path: string
+  readonly path?: string
   readonly description: string
   readonly input?: string
+  readonly does?: string
 }
 
 export interface ConceptCommandResult {

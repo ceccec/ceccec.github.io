@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed } from 'vue'
 import { TabsContent, TabsList, TabsRoot, TabsTrigger } from 'radix-vue'
 import { buildMatrix, professionals } from '../lib/quantumMind'
@@ -90,7 +92,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="pros">
+  <section class="pros" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <TabsRoot :default-value="data.groups[0].group" class="pros__tabs">
       <TabsList class="pros__list" aria-label="Professional capability groups">

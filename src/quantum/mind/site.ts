@@ -1,10 +1,13 @@
 // ☴ XUN (Wind · gentleness) — site meta: config, sitemap, static pages, monograph scaffolding
 // Pure-leaf folds: no calls to other mind/folds.ts functions — only upstream (src/0, library)
 // and sub-module imports (buildMatrix from matrix.ts, types from types.ts).
+// ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
 import type { MindMatrix, StaticPage } from './types.ts'
 import { buildMatrix } from './matrix.ts'
+// ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
 import { toUuid, merkleFold, isUuid, memoByRoot } from '../../0/index.ts'
 
+/** @iching ☴ Xùn · Wind · gentle */
 export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumSitemap', matrix, () => quantumSitemapRaw(matrix))
 }
@@ -60,6 +63,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
 // the free animations, the quantum sitemap, the synthesis and its proof bundle,
 // completion, and the multidimensional map. Each wave merges its root into the
 // running fold, so the master fold carries them all; a single open wave breaks it.
+/** @iching ☴ Xùn · Wind · gentle */
 export function professionals(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const groups = [
@@ -146,6 +150,7 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
 // it is), the proof (how it verifies), and the reach (how far it goes). Each
 // metric is content-addressed. These are descriptive counts over the model's own
 // structures — not usage telemetry; nothing is tracked, nothing leaves the device.
+/** @iching ☴ Xùn · Wind · gentle */
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
@@ -169,6 +174,7 @@ export function siteConfig(matrix: MindMatrix = buildMatrix()) {
 // computed from the fusion rather than placed. The render-layer files stay where VitePress needs
 // them, but they are fused as merkaba nodes into the matrix; the path is a projection, the fusion
 // the thing. Fuse, and the paths reveal themselves.
+/** @iching ☴ Xùn · Wind · gentle */
 export function staticPages(): StaticPage[] {
   return [
     {
@@ -591,6 +597,7 @@ export function staticPages(): StaticPage[] {
 // Feed the crawlers with knowledge: the decoded knowledge of the library, distilled to crawlable
 // one-liners, written into llms.txt and folded into the structured data — so search and LLM crawlers
 // are fed the verified knowledge (documented kept, legend flagged), not just the routes.
+/** @iching ☴ Xùn · Wind · gentle */
 export function crawlerKnowledge(): { topic: string; fact: string; receipt: string }[] {
   return [
     { topic: 'Bulgarian history 681–present', fact: 'Dynastic history in six dual-mind eras; "681" is a round birth-date (the documented battle is 680); "Turkish yoke" is a 19th-c. construction (Jireček 1875); "Bulgar-Slayer"/"the Great" are anachronistic — legend separated from fact.' },
@@ -611,6 +618,7 @@ export function crawlerKnowledge(): { topic: string; fact: string; receipt: stri
 
 // Feed the crawlers with knowledge — the decoded library distilled and exposed in llms.txt and the
 // structured data, documented kept and legend flagged.
+/** @iching ☴ Xùn · Wind · gentle */
 export function monographTemplate() {
   const sections = ['Title', 'Abstract', 'Keywords', 'Introduction', 'Model', 'Results', 'Library', 'Reproducibility', 'Limitations', 'References', 'Receipt']
   return {
@@ -625,6 +633,7 @@ export function monographTemplate() {
 }
 
 // A content page as a scientific-paper monograph — the mapping the template defines.
+/** @iching ☴ Xùn · Wind · gentle */
 export function monographAsScientificPaper(page: StaticPage) {
   return {
     title: page.title.en,

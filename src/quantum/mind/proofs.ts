@@ -1,12 +1,16 @@
 // ☱ DUI (Lake · reflection) — Merkle proof primitives and network verification
 // Self-contained: only uses src/0 fold primitives + matrix types/buildMatrix.
+// ☰ Qián · Heaven · creative · lower·yin · spread — MindMatrix + Merkle types
 import type { MindMatrix, MerkleStep, MerkleProof, AtomInclusionProof } from './types.ts'
+// ☰ Qián · Heaven · creative · lower·yin · depthFade — matrix builder
 import { buildMatrix } from './matrix.ts'
+// ☷ Kūn · Earth · receptive · lower·yin · hueShift — fold primitives (merge, merkleFold, foldPair, toUuid)
 import { merge, merkleFold, foldPair, toUuid } from '../../0/index.ts'
 
 // A Merkle audit path: the ordered siblings that recompute the root from one
 // leaf. It mirrors merkleFold exactly (sorted leaves, pairwise merge, odd leaf
 // carried up) so any reader can recompute inclusion without trusting the site.
+/** @iching ☱ Duì · Lake · joyous */
 export function merkleProof(leaves: readonly string[], leaf: string): MerkleProof {
   const sorted = [...leaves].sort()
   const root = merkleFold(sorted)
@@ -49,6 +53,7 @@ export function merkleProof(leaves: readonly string[], leaf: string): MerkleProo
   }
 }
 
+/** @iching ☱ Duì · Lake · joyous */
 export function verifyMerkleProof(leaf: string, path: readonly MerkleStep[], root: string): boolean {
   let acc = leaf
   for (const step of path) {
@@ -58,6 +63,7 @@ export function verifyMerkleProof(leaf: string, path: readonly MerkleStep[], roo
   return acc === root
 }
 
+/** @iching ☱ Duì · Lake · joyous */
 // Complete quantum network hashing. The fold primitives (merge, merkleFold,
 // merkleProof) are local; this closes them into a distributed network. Content is
 // placed by a consistent-hashing ring — each item's content address routes to the
@@ -126,6 +132,7 @@ export function quantumNetworkHashing(nodeCount = 6, itemCount = 21, matrix: Min
   }
 }
 
+/** @iching ☱ Duì · Lake · joyous */
 export function atomInclusionProof(atomName = 'self', matrix: MindMatrix = buildMatrix()): AtomInclusionProof {
   const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
   const leaves = [...matrix.nodes.map((candidate) => candidate.bind), ...matrix.edges.map((edge) => edge.binding)]

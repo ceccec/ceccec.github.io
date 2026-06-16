@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', color: '#00F0F0' }
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, messageUnlock } from '../lib/quantumMind'
@@ -72,7 +74,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="chat dt-card">
+  <section class="chat dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="chat__log">
       <article v-for="(m, i) in messages" :key="i" class="chat__msg" :class="{ mine: m.mine }">

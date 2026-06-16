@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'QuantumDashboard' }
 import { computed } from 'vue'
 import { buildMatrix, analytics, holographicDashboard } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -37,7 +39,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="dash">
+  <section class="dash" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="dash__grid">
       <Card v-for="board in boards" :key="board.board" class="dash__board">

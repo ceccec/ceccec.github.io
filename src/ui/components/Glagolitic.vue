@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 32, lo: '☷', up: '☶', glyph: '☶', color: '#F00000', name: 'Gèn', principle: 'keeping still' }
 import DecodedCard from './DecodedCard.vue'
 import { glagolitic } from '../lib/quantumMind'
 
@@ -14,5 +16,7 @@ const items = d.core.map((c) => ({ label: c.facet, detail: c.maps }))
     :statement="d.statement"
     :items="items"
     :boundary="d.boundary"
+    :data-hexagram="ICHING_MASK.hexagram"
+    :data-trigram="ICHING_MASK.glyph"
   />
 </template>

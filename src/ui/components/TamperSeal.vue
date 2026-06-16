@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 57, trigram: '☳☰', glyph: '☳☰', lo: 'Zhèn·arousing', up: 'Qián·creative', color: '#FFF00F' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations, quantumNetworkHashing } from '../lib/quantumMind'
@@ -113,7 +115,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="seal dt-card" :class="{ pulse: pulsing, ok: verified }">
+  <section class="seal dt-card" :class="{ pulse: pulsing, ok: verified }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="seal__grid">
       <article><span>{{ t.entropy }}</span><strong>{{ ent }}</strong></article>

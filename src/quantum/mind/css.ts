@@ -10,6 +10,7 @@
 //   tokens → ichingTokensCss()         the computed :root / .dark layer (emitted to src/ui/tokens.css)
 //   proof  → cssIsIChingComputed()     the fold: every emitted value reduces to canonical I Ching numbers
 //   gate   → scanCssForHardcoded(css)  the enforcement: finds any literal that is NOT canonical (used on the body)
+// ☷ Kūn · Earth · receptive · lower·yin · spread — primitive kernel (merkleFold, merge, toUuid, VORTEX_SEQUENCE)
 import { merkleFold, merge, toUuid, VORTEX_SEQUENCE } from '../../0/index.ts'
 
 // THE CANONICAL NUMBERS — the only integers a computed value may contain. Each is an I Ching quantity, nothing
@@ -18,6 +19,8 @@ import { merkleFold, merge, toUuid, VORTEX_SEQUENCE } from '../../0/index.ts'
 // nine of the vortex cross (9), 2⁴ = sixteen (4³ = 2⁶ pairing), the a432 octave ladder (27·54·108·216·432·864),
 // the 64 hexagrams, the full circle (360) and the whole (100%). A value built only from these — by ×, ÷, the
 // CSS units (1rem·1px·1s·1deg·1ch·1vw·1em·1fr) and var() — is "I Ching computed". Anything else is hardcoded.
+// ☰ Qián · Heaven · creative · upper·yang · shrink — computed token exports
+/** @iching ☰ Qián · Heaven · creative */
 export const ICHING_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864] as const
 
 // hue(n) places a hexagram on the 64-step colour wheel — the hexagramIsHexColorDuality wheel, hue = n×360°/64.
@@ -57,6 +60,7 @@ const hslA = (h: string, s: [number, number], l: [number, number], a: [number, n
 // THE COMPUTED TOKENS — the whole design system, derived. Returned as ordered [name, value] pairs (light) plus
 // the dark line-complement and the VitePress aliases, so the fold can walk every value and prove it canonical,
 // and ichingTokensCss can render it.
+/** @iching ☰ Qián · Heaven · creative */
 export function ichingTokens() {
   // The two bases: the quaternary unit (4px, the base-4 codon channel) and the single line (1px, 2⁴ = four
   // lines to the rem). Everything spatial is these two, multiplied by canonical numbers.
@@ -245,6 +249,7 @@ export function ichingTokens() {
 // Render the computed tokens to the CSS layer — the :root (light + aliases) and the .dark line-complement. This
 // is the only place real numbers enter the stylesheet, and every one is canonical by construction. Emitted to
 // src/ui/tokens.css and imported before the body.
+/** @iching ☰ Qián · Heaven · creative */
 export function ichingTokensCss(): string {
   const { light, aliases, dark } = ichingTokens()
   const block = (sel: string, rows: Array<[string, string]>) =>
@@ -266,6 +271,7 @@ export function ichingTokensCss(): string {
 // structural, sourced from the unit ladder but printed as literals), @keyframes/animation names, font-family
 // stacks, url() and quoted content — then flags any remaining hex/rgb colour or any number that is not canonical
 // (units carry a coefficient that must be canonical; 0 and 1 are always free as the identity and the unit).
+/** @iching ☰ Qián · Heaven · creative */
 export function scanCssForHardcoded(css: string): string[] {
   const allowed = new Set<number>(ICHING_NUMBERS as readonly number[])
   const offenders: string[] = []
@@ -313,6 +319,7 @@ export function scanCssForHardcoded(css: string): string[] {
 // the major-third type, and the colour built from the hexagram wheel (brand = 101010, the alternation; dark =
 // the line-complement). The seal is the Merkle fold of every (token → value) pair, so any drift in any value
 // changes the root. Joins hexagramIsHexColorDuality (the wheel this colour rides) in the census.
+/** @iching ☰ Qián · Heaven · creative */
 export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('iching-css') }) {
   const { light, aliases, dark } = ichingTokens()
   const all = [...light, ...aliases, ...dark]

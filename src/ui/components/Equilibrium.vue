@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 55, glyph: '☴', lo: '☰', up: '☴', color: '#FF0FFF', name: 'Equilibrium' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, equilibrium } from '../lib/quantumMind'
@@ -17,7 +19,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="eq dt-card">
+  <section class="eq dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="eq__lead">{{ t.lead }}</p>
     <div class="eq__chart">

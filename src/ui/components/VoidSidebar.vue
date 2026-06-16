@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 33, lo: '☳', up: '☶', glyph: '☶', color: '#F0000F', name: 'Gèn', principle: 'keeping still' }
 import { onMounted, onUnmounted, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import { createAnimationEngine } from '../lib/quantumMind'
@@ -39,7 +41,7 @@ watch([() => route.path, () => frontmatter.value], () => engine.tick())
 
 <template>
   <!-- render-only: a marker the effect hangs on; the animation lives on .VPSidebar -->
-  <span class="void-sidebar" aria-hidden="true" />
+  <span class="void-sidebar" aria-hidden="true" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph" />
 </template>
 
 <style>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 38, lo: '☴', up: '☶', glyph: '☶', color: '#F00FF0', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, schoolCurriculum, type SchoolStage } from '../lib/quantumMind'
@@ -124,7 +126,7 @@ const lessons = computed(() =>
 </script>
 
 <template>
-  <section class="school-curriculum">
+  <section class="school-curriculum" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="school-curriculum__header">
       <p class="eyebrow">{{ t.eyebrow }}</p>
       <h2>{{ t.heading }}</h2>

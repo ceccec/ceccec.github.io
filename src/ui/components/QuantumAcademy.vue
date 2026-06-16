@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 4, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F00' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { useData } from 'vitepress'
@@ -33,7 +35,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="aca">
+  <section class="aca" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="aca__lead">{{ t.lead }}</p>
     <div class="aca__courses">

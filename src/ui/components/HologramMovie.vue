@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', color: '#00F0F0' }
 // THE 10D MOVIE. The current path's UUID seeds one animation that is ALWAYS the background (drawHero — the
 // ten-dimensional fractal of this very page), and every foreground form ENTANGLES to it: each sacred-geometry
 // card derives its own seed from the same path UUID, so changing the page re-tunes the whole field together.
@@ -163,7 +165,7 @@ function play(card: { form: string; label: string; hz: readonly number[]; note: 
 </script>
 
 <template>
-  <ClientOnly>
+  <ClientOnly :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <section
       ref="stage"
       class="holo-movie"

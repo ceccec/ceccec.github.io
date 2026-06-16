@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 63, trigram: '☰☰', glyph: '☰☰', lo: 'Qián·creative', up: 'Qián·creative', color: '#FFFFFF' }
 import { computed, ref, watch } from 'vue'
 import { pmixEvolve, congruence, hopfieldStore, hopfieldRecall, seedFromText, type Edge } from '../lib/quantumMind'
 
@@ -136,7 +138,7 @@ function cls(v: number) { return v >= 0 ? 'on' : 'off' }
 </script>
 
 <template>
-  <div class="ns">
+  <div class="ns" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="ns-head">
       <select v-model="sel" class="ns-pick" aria-label="decoded network domain">
         <option v-for="d in domains" :key="d" :value="d">{{ d }}</option>

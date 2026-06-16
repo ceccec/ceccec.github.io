@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 17, glyph: '☵', lower: '☳', upper: '☵', color: '#0F000F' } as const
 import { onMounted, reactive } from 'vue'
 import { backtestRealPrices, spectrumFromSamples, larmorFromMicrotesla, dopplerFromMotion, liveCapture, realtimeExperiments } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
@@ -123,7 +125,7 @@ onMounted(() => { loadBtc(); loadUsgs() })
 </script>
 
 <template>
-  <section class="rt dt-card">
+  <section class="rt dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'тествай всичко с реални данни (API + сензори)' : 'test all with realtime data (APIs + device sensors)' }}</p>
 
     <div class="rt__grid">

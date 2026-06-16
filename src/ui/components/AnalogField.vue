@@ -4,6 +4,8 @@
 // the samples, continuous between them — "no gaps". The sample-rate slider crosses the NYQUIST limit so the
 // honest boundary is visible: above it the reconstruction tracks the truth; below it, aliasing — real gaps.
 // Driven by the one shared animation engine (the signal drifts), reduced-motion + energy aware. Web standards.
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 27, glyph: '☱', lo: 'Duì·joyous', up: 'Duì·joyous', color: '#0FF0FF' }
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { foldingLinearGivesAnalog, sincReconstruct, createAnimationEngine } from '../lib/quantumMind'
@@ -110,7 +112,7 @@ const showFlag = ref(true)
 </script>
 
 <template>
-  <section class="af" aria-labelledby="af-title">
+  <section class="af" aria-labelledby="af-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="af__eyebrow">{{ bg ? 'Двоен торусус · сгъването на линейното дава аналогово' : 'Double Torus · folding linear gives analog' }}</p>
     <h2 id="af-title">{{ bg ? 'Дискретното се сгъва в непрекъснато — теоремата за дискретизацията' : 'The discrete folds into the continuous — the sampling theorem' }}</h2>
     <p class="af__lede">

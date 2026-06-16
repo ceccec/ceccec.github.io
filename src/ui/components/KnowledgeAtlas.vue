@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 18, glyph: '☵', lower: '☵', upper: '☵', color: '#0F00F0' } as const
 import { computed, ref, watch } from 'vue'
 import { fold, asTorus, asMerkaba, asVortex, asMerkle, asTrace, type Fold } from '../lib/quantumMind'
 import { useAnimationEngine } from '../lib/useAnimationEngine'
@@ -209,7 +211,7 @@ watch(mode, () => engine.tick())
 </script>
 
 <template>
-  <figure class="atlas">
+  <figure class="atlas" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <figcaption class="atlas-bar">
       <span class="atlas-title">one math · {{ folds.length }} folds</span>
       <span class="atlas-modes">

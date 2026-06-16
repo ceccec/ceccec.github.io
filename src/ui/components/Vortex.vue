@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 57, trigram: '☳☰', glyph: '☳☰', lo: 'Zhèn·arousing', up: 'Qián·creative', color: '#FFF00F' }
 // A vortex of self-computed Dots. The dots are laid out by the vortex sequence — the 1-2-4-8-7-5
 // doubling circuit around the ring, the 3-6-9 on the axis — so the order is computed, not authored.
 // Each Dot fills itself from its seed (a graph of graphs: a dot's content can be more dots). Same
@@ -27,7 +29,7 @@ function place(i: number) {
 </script>
 
 <template>
-  <div class="vortex" role="group" :aria-label="`vortex of ${seeds.length} dots`">
+  <div class="vortex" role="group" :aria-label="`vortex of ${seeds.length} dots`" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="vortex-axis" aria-hidden="true">3·6·9</div>
     <div v-for="(seed, i) in seeds" :key="seed" class="vortex-slot" :style="place(i)">
       <Dot :seed="seed" compact />

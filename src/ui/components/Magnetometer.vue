@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 1, glyph: '☷', trigram: 'Kūn·receptive', color: '#00000F' }
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { emfApplications } from '../lib/quantumMind'
@@ -65,7 +67,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="emf dt-card">
+  <section class="emf dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="emf__reading">
       <template v-if="status === 'magnetometer' && field">

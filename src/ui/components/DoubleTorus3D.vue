@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'DoubleTorus3D' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D, frequencyToLight } from '../lib/quantumMind'
@@ -185,7 +187,7 @@ const caption = computed(() =>
 </script>
 
 <template>
-  <section class="dt3d dt-card">
+  <section class="dt3d dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'двоен торус · повърхност · 3d 5d 8d' : 'double torus · surface · 3d 5d 8d' }}</p>
     <div class="dt3d__dims">
       <button

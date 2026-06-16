@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 21, glyph: '☵', lower: '☲', upper: '☵', color: '#0F0F0F' } as const
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 // Online or offline, the double torus is identical — it computes with zero network.
 const online = ref(true)
@@ -427,7 +429,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="lt" itemscope :itemtype="md.itemtype" :itemid="md.itemid">
+  <section class="lt" itemscope :itemtype="md.itemtype" :itemid="md.itemid" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <meta itemprop="name" :content="md.name" />
     <meta itemprop="description" :content="t('108 pi-digit UUID coordinates on the genus-2 double torus', '108 координати UUID на цифрите на пи върху двойния тор от род 2')" />
     <p class="eyebrow">

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 25, glyph: '☱', lo: 'Zhèn·arousing', up: 'Duì·joyous', color: '#0FF00F' } as const
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, governanceVote, sacredGeometrySeal } from '../lib/quantumMind'
@@ -56,7 +58,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="governance-vote dt-card">
+  <section class="governance-vote dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="governance-vote__rate">
       <label>{{ t.rate }}: {{ rating }}/5

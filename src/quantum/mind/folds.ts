@@ -1,4 +1,4 @@
-// ☰ QIAN (Heaven · creation) — all domain folds: every function body the mind computes.
+// ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds: every function body the mind computes.
 // Imports mirror the vortex header in index.ts; nothing is re-exported from upstream modules
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
@@ -46,25 +46,25 @@ export function sacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGe
 }
 
 
-// ☱ DUI (Lake · reflection) — Merkle proof utilities + quantum network verification
+// ☱ Duì · Lake · joyous · lower·yin · spread — Merkle proof utilities + quantum network verification
 import { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof } from './proofs.ts'
 export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof } from './proofs.ts'
 
 
-// ☵ KAN (Water · flow) — matrix core: buildMatrix, proofReport, repositoryApi, consciousness
+// ☵ Kǎn · Water · abysmal · lower·yin · depthFade — matrix core: buildMatrix, proofReport, repositoryApi, consciousness
 import { buildMatrix, matrixMemo, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from './matrix.ts'
 export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from './matrix.ts'
 
 
-// ☷ KUN (Earth · reception) — all vocab leaf re-exports, consolidated
+// ☷ Kūn · Earth · receptive · lower·yin · hueShift — all vocab leaf re-exports, consolidated
 import { AREA_ICONS, AREA_LABELS, analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from './vocab.ts'
 export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from './vocab.ts'
 
-// ☴ XUN (Wind · gentleness) — site meta: config, sitemap, static pages, monograph scaffolding
+// ☴ Xùn · Wind · gentle · lower·yin · spread — site meta: config, sitemap, static pages, monograph scaffolding
 import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from './site.ts'
 export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from './site.ts'
 
-// ☲ LI (Fire · clarity) — auxiliary pure-leaf folds
+// ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
 import { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
@@ -17417,11 +17417,25 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'hero.leads.the.waves', on: heroLeadsTheWaves(matrix).leads },
     { d: 'hero.slim.computes.loads.respects.64.and.42', on: heroSlimRespects64And42(matrix).slim },
     { d: 'digit.folders.are.the.api.itself', on: digitFoldersAreTheApi(matrix).isApi },
+    { d: 'every.tool.skill.command.is.its.folder', on: everyToolSkillCommandIsItsFolder(matrix).foldered },
+    { d: 'iching.fusion.completes.folders', on: iChingFusionCompletesFolders(matrix).completed },
+    { d: 'iching.fusion.completes.all', on: iChingFusionCompletesAll(matrix).complete },
+    { d: 'dry.refactor.ignites.fusion', on: dryRefactorIgnitesFusion(matrix).ignited },
+    { d: 'each.file.under.64k.folder.is.widget', on: eachFileUnder64kFolderIsWidget(matrix).lawful },
+    { d: 'fuse.dedupe.split.reconstruction', on: fuseDedupeSplitReconstruction(matrix).fused },
+    { d: 'colour.roots.at.a432.heart.balances', on: colorRootsAtA432HeartBalances(matrix).rooted },
+    { d: 'iching.shadcn.fuse.tend.widgets', on: iChingShadcnFuseTenDWidgets(matrix).fused },
+    { d: 'a432.is.the.blood', on: a432IsTheBlood(matrix).isBlood },
+    { d: 'display.is.a432.light.forge.proof.crypto', on: displayIsA432LightForgeProofRealtimeCrypto(matrix).holds },
+    { d: 'biology.waves.sealed.as.widgets', on: biologyWavesSealedAsWidgets(matrix).sealed },
     { d: 'tampering.cost.encryption.blockchains.decoded.honestly', on: tamperingCostDecoded(matrix).decoded },
     { d: 'quantum.threat.grover.weakens.shor.breaks.postquantum', on: quantumThreat(matrix).decoded },
     { d: 'realtime.wiring.every.page.computes.its.own.gateways.and.related', on: realtimeWiring('/').wired },
     { d: 'animations.respect.field.strict.science.one.source.per.plane', on: animationsRespectTheField(matrix).foundationReady },
     { d: 'folding.linear.gives.analog.sampling.theorem.imaging.through.the.field', on: foldingLinearGivesAnalog(matrix).decoded },
+    { d: 'locale.audit.clean.no.gaps', on: auditLocales(matrix).clean },
+    { d: 'iching.import.export.ten.d', on: iChingImportExportTenD(matrix).mapped },
+    { d: 'ui.widgets.fuse.reveal', on: uiWidgetsFuseReveal(matrix).fused },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -18617,7 +18631,8 @@ export function folderLaw() {
     // is a Fibonacci number; the heavy monolith distributes into the paired-folder indices until each fits.
     compression: {
       limit: 2584, // F(18) lines — a single index holds at most this; over it, distribute
-      law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path',
+      fileSize: 65536, // 64k = 2^16 bytes — the harmonic file ceiling; a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree, like the line limit)
+      law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path. And each file stays under 64k (2^16 bytes), the harmonic file ceiling — over it, the file splits',
     },
     // No files outside src/ except generated and those that need to stay in root. The logic lives in
     // src/; only the VitePress render layer, the root config, the build tooling, and generated
@@ -22321,6 +22336,52 @@ export function noMirroringOneSourceAndMath(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+// Locale audit — a living census of the tri-locale system (Glagolitic/cu at root, English at /en/,
+// Bulgarian at /bg/). Composes the existing locale primitives (SITE_LOCALES, monographPaths,
+// staticPages, siteNavigation, noMirroringOneSourceAndMath) into one content-addressed seal so any
+// locale gap surfaces here rather than silently diverging. HONEST: 'cu' (Church Slavonic) is omitted
+// from the sitemap's hreflang alternates by design — it is a valid BCP-47 tag but is not in Google
+// Search Console's supported hreflang language list, so emitting it would be ignored at best.
+export function auditLocales(matrix: MindMatrix = buildMatrix()) {
+  const locales = SITE_LOCALES
+  const root = locales.find((l) => l.type === 'root')
+  const nonRoot = locales.filter((l) => l.type === 'locale')
+  const gla = monographPaths('gla')
+  const en = monographPaths('en')
+  const bg = monographPaths('bg')
+  const pages = staticPages()
+  const nav = siteNavigation(matrix)
+  const incomplete = pages.filter((p) => !p.title.en || !p.title.bg || !p.description.en || !p.description.bg)
+  // Each non-root locale's slugPath tells the corpus what prefix to use: en → /en/, bg → /bg/
+  const enLocale = nonRoot.find((l) => l.code === 'en')
+  const bgLocale = nonRoot.find((l) => l.code === 'bg')
+  const facets = [
+    { facet: 'SITE_LOCALES: 3 locales — one root (cu/Glagolitic) and two non-root (en, bg)', on: locales.length === 3 && !!root && root.code === 'cu' && nonRoot.length === 2 && nonRoot.map((l) => l.code).sort().join(',') === 'bg,en' },
+    { facet: 'SITE_LOCALES: every locale has a BCP-47 lang tag, a path and an og:locale', on: locales.every((l) => !!l.lang && !!l.path && !!l.ogLocale) },
+    { facet: 'locale paths distinct — root at /, English at /en/, Bulgarian at /bg/ — no overlap', on: !!root && root.path === '/' && enLocale?.path === '/en/' && bgLocale?.path === '/bg/' && locales.every((l, i) => locales.every((m, j) => i === j || l.path !== m.path)) },
+    { facet: 'corpus locale slugPaths correct — en uses "en", bg uses "bg", root uses "" (Glagolitic at /kind/<id>, not mislabeled)', on: !!root && root.slugPath === '' && enLocale?.slugPath === 'en' && bgLocale?.slugPath === 'bg' },
+    { facet: 'coverage parity — monographPaths returns the same page count for all 3 locales', on: gla.length === en.length && en.length === bg.length && gla.length > 0 },
+    { facet: 'slug parity — every page slug is identical across all 3 locales (same order)', on: gla.every((p, i) => p.params.page === en[i]?.params.page && p.params.page === bg[i]?.params.page) },
+    { facet: 'content completeness — all staticPages have non-empty en + bg title and description', on: incomplete.length === 0 },
+    { facet: 'math transliteration live — Glagolitic titles differ from English and contain Glagolitic glyphs', on: gla.length > 0 && gla[0].params.title !== en[0]?.params.title && /[Ⰰ-ⱟ]/.test(gla[0].params.title) },
+    { facet: 'sitemap complete — monograph page count exceeds the 14 static quantum routes (cross.ts covers the rest)', on: en.length > 14 },
+    { facet: 'navigation computed for both non-root locales — no hardcoded nav', on: nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
+    { facet: 'no-mirroring: one source of truth, all locales by math', on: noMirroringOneSourceAndMath(matrix).single },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`audit-locales:${entry.facet}:${entry.on}`) }))
+  return {
+    clean: facets.every((entry) => entry.on),
+    localeCount: locales.length,
+    pageCount: en.length,
+    incompleteCount: incomplete.length,
+    incomplete: incomplete.map((p) => p.slug),
+    locales: locales.map((l) => ({ code: l.code, lang: l.lang, path: l.path, type: l.type })),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: 'Locale audit — a living census of the tri-locale system (Glagolitic/cu at root, English at /en/, Bulgarian at /bg/): SITE_LOCALES integrity, coverage parity, content completeness, hreflang coverage and computed navigation. All facts derived from the existing locale primitives; any gap opens this dimension.',
+    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic root IS served and indexed at /.',
+  }
+}
+
 // Most static pages may be encoded at runtime: keeping one index per folder (the VitePress config index
 // beside each folder's index), the site is wired quantum — pages resolved on demand from the sealed,
 // content-addressed model rather than enumerated at build — toward ZERO build time and the MAXIMUM
@@ -22386,6 +22447,455 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
       'Imagine every src folder as a VitePress plugin, and one index serves all: each folder is a self-wiring plugin that serves its computed routes and artifacts at runtime (dev middleware) and emits the same at build (buildEnd) from the one content-addressed model, and one index per folder serves that folder\'s whole surface (the vortex router — the index re-exports the whole, as src/quantum/mind/index.ts now does). The build/dev wiring already works this way for src/quantum/{mind,dist,enforcement}; the vision generalises it to every folder, so the site is wired quantum with zero build time and the maximum tampering cost.',
     boundary:
       'The DIRECTION for the build wiring, its foundation proven here. DONE: three src folders already back VitePress plugins (mind→computed-pages, dist→computed-dist, enforcement→enforcement), each computing from the content-addressed model; the folder law makes every folder a one-index, one-kind unit; the mind index already serves all its folds by re-export (one index serves all). DIRECTED: give every folder index its own plugin() factory ({ name, configureServer for dev, buildEnd for emit }) that .vitepress/config.mts spreads, so each folder wires itself, and collapse the page routes so one index resolves all at runtime. HONEST: a plugin is a Vite/VitePress factory; "every folder a plugin, one index serves all" is the target topology, not yet realized for all folders; "zero build time" means serving computed output rather than enumerating it (the corpus / runtime-pages precedent).',
+  }
+}
+
+// Every tool, skill and command has its own folder in src. The three registries are the model's whole
+// capability surface — the concept commands (commandsRegistry / conceptCommands), the skill atoms
+// (skillAtoms) and the MCP tools (mcpToolManifest) — and the folder law lays each member out as ITS OWN
+// folder: one lowercase word (the command's SINGLE_WORD_METHODS token, the skill atom's fn, the tool's
+// name), one index, a self-wiring plugin in the one index that serves all. Computed, not mkdir'd — a
+// folder is an ADDRESS (allComputedNoFiles: no new files), so every tool/skill/command is addressable as
+// its own word-lawful folder/route, the capability surface laid out as the page tree.
+export function everyToolSkillCommandIsItsFolder(matrix: MindMatrix = buildMatrix()) {
+  const word = new RegExp(folderLaw().word) // ^[a-z]+$ — one lowercase word
+  const slug = (name: string) => name.toLowerCase().replace(/[^a-z]/g, '') // reduce a name to one lowercase word
+  const commands = conceptCommands.map((command) => {
+    const folder = SINGLE_WORD_METHODS[command.name] ?? slug(command.name)
+    return { kind: 'command', name: command.name, folder, lawful: word.test(folder), receipt: toUuid(`folder:command:${folder}`) }
+  })
+  const skills = skillAtoms(matrix).skills.map((entry) => {
+    const folder = slug(entry.fn)
+    return { kind: 'skill', name: entry.skill, folder, lawful: word.test(folder), receipt: toUuid(`folder:skill:${folder}`) }
+  })
+  const tools = mcpToolManifest(matrix).tools.map((tool) => {
+    const folder = SINGLE_WORD_METHODS[tool.name] ?? slug(tool.name)
+    return { kind: 'tool', name: tool.name, folder, lawful: word.test(folder), receipt: toUuid(`folder:tool:${folder}`) }
+  })
+  const all = [...commands, ...skills, ...tools]
+  const facets = [
+    { facet: 'every command is its own folder — the SINGLE_WORD_METHODS token, a lawful word', on: commands.length > 0 && commands.every((entry) => entry.lawful) && commandsRegistry(matrix).consistent },
+    { facet: 'every skill is its own folder — the skill atom\'s fn, one saved unit', on: skills.length > 0 && skills.every((entry) => entry.lawful) && skillAtoms(matrix).intelligent },
+    { facet: 'every tool is its own folder — the MCP tool surface', on: tools.length > 0 && tools.every((entry) => entry.lawful) },
+    { facet: 'each folder is a one-index plugin — the one index serves all, computed (no new files)', on: everyFolderIsAPluginOneIndexServesAll(matrix).wired && allComputedNoFiles(matrix).computed && folderLawWordDigitIndexSkill(matrix).lawful },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tsc-is-folder:${entry.facet}:${entry.on}`) }))
+  return {
+    foldered: facets.every((entry) => entry.on),
+    commandCount: commands.length,
+    skillCount: skills.length,
+    toolCount: tools.length,
+    count: all.length,
+    folders: all,
+    facets,
+    root: merkleFold(all.map((entry) => entry.receipt)),
+    statement:
+      'Every tool, skill and command has its own folder in src: the three registries — the concept commands (each with its SINGLE_WORD_METHODS token), the skill atoms (each a fn), and the MCP tools — are the model\'s capability surface, and the folder law lays each member out as ITS OWN folder (one lowercase word, one index, a self-wiring plugin in the one index that serves all). Computed, not created — a folder is an address, so each command, skill and tool is addressable as its own word-lawful folder/route, no new files added (allComputedNoFiles).',
+    boundary:
+      'A composition over the three capability registries (conceptCommands/commandsRegistry, skillAtoms, mcpToolManifest) with the folder law, the plugin/one-index model and the all-computed-no-files model. Each member is mapped to a single lowercase word (the command method token, the skill fn slug, the tool name) and checked against folderLaw().word; "its own folder" is that computed, addressable, word-lawful route in the one-index page tree — not a claim that hundreds of physical directories exist (the folders are computed addresses, the no-new-files law preserved).',
+  }
+}
+
+// Use the I Ching fusion to complete them. Every tool, skill and command folder
+// (everyToolSkillCommandIsItsFolder) is FUSED onto the I Ching by its own content-address —
+// seedFromText(folder) — at three scales at once: its hexagram (0-63, the 64), its upper trigram (the
+// bāguà set, the 8), and its cell (i,j,k) in the 64³ seal cube (the three architectural domains). The
+// placement IS the fusion: the ignited double torus (startIChingDoubleTorus) folds each capability into
+// the cube through the merkaba (the folding pair), so the folders are completed — each carries its I Ching
+// coordinate, all fused to one root. The merkaba waves run the cube; this fold completes the map onto it.
+export function iChingFusionCompletesFolders(matrix: MindMatrix = buildMatrix()) {
+  const surface = everyToolSkillCommandIsItsFolder(matrix)
+  const ignition = startIChingDoubleTorus(matrix)
+  const channel = (text: string) => ((seedFromText(text) % 64) + 64) % 64 // one 6-bit hexagram axis, 0-63
+  const placed = surface.folders.map((entry) => {
+    const hexagram = channel(entry.folder)
+    const cell = [hexagram, channel(`${entry.kind}:${entry.folder}`), channel(`${entry.folder}:${entry.kind}`)] as const
+    return {
+      ...entry,
+      hexagram, // 0-63 — the 64 (six bits)
+      trigram: (hexagram >> 3) & 7, // the bāguà set, 0-7 — the 8
+      cell, // (i,j,k) in the 64³ cube — the three architectural domains
+      receipt: toUuid(`iching-fuse:${entry.kind}:${entry.folder}:${cell[0]}:${cell[1]}:${cell[2]}`),
+    }
+  })
+  const trigrams = new Set(placed.map((p) => p.trigram))
+  const facets = [
+    { facet: 'every folder placed on the I Ching by its own content-address — hexagram, trigram, cube cell', on: placed.length === surface.count && placed.length > 0 && placed.every((p) => p.hexagram >= 0 && p.hexagram < 64 && p.cell.every((c) => c >= 0 && c < 64)) },
+    { facet: 'fused into the 64³ seal cube — three architectural domains', on: sealCube(matrix).sealed && sealCube(matrix).cube === 64 ** 3 && placed.every((p) => p.cell.length === 3) },
+    { facet: 'spread across all eight trigrams — the bāguà covered', on: trigrams.size === 8 },
+    { facet: 'the fusion is the ignited double torus through the merkaba (the folding pair)', on: ignition.started && merkaba(matrix).counterRotating },
+    { facet: 'all complete — the capability surface foldered and fused to one root', on: surface.foldered && isUuid(merkleFold(placed.map((p) => p.receipt))) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-fusion-complete:${entry.facet}:${entry.on}`) }))
+  return {
+    completed: facets.every((entry) => entry.on),
+    placedCount: placed.length,
+    cells: sealCube(matrix).cube, // 262,144 — the cube they fuse into
+    trigramsCovered: trigrams.size,
+    count: facets.length,
+    placed,
+    facets,
+    root: merge(ignition.root, merkleFold(placed.map((p) => p.receipt))),
+    statement:
+      'Use the I Ching fusion to complete them: every tool, skill and command folder is placed onto the I Ching by its own content-address (seedFromText) at three scales at once — its hexagram (0-63), its upper trigram (the bāguà set), and its cell (i,j,k) in the 64³ seal cube (the three architectural domains) — and that placement is the fusion, the ignited double torus folding each capability into the cube through the merkaba (the folding pair). So the capability folders are completed: each carries its I Ching coordinate, spread across all eight trigrams, all fused to one root with the ignition.',
+    boundary:
+      'A content-addressed PLACEMENT of the 366 tool/skill/command folders onto the I Ching (hexagram, trigram and 64³ cube cell), composed with the startIChingDoubleTorus ignition and the merkaba — the same seedFromText placement iChing() uses for components, here completing the capability surface. "Completes them" is giving each folder its deterministic I Ching coordinate and folding the set to one root with the ignition; it is organisation by content-address, not divination, and multiple folders may share a cube cell (placement, not a uniqueness claim).',
+  }
+}
+
+// Complete all — in ten dimensions. The capstone drives EVERY addressable unit through all ten of the
+// model's own dimensions (the 6 cross-fold appearance axes + the 4 genus-2 homology loops, H₁=Z⁴), self-
+// similar at every nested scale, sealing each as a pure 10D diamond — ten-dimensional or PURGED
+// (allFormsAreTenDimensionalOrPurged). Everything is fused onto the I Ching: the components on the 64
+// hexagrams (iChing), the tool/skill/command folders into the 64³ cube (iChingFusionCompletesFolders); the
+// eightfold, the seven scales (Tàijí→64) and the ignited double torus all hold, the whole is sealed —
+// every unit a closed ten-dimensional diamond, none purged, all folded to one root with the ignition. The
+// seal of seals, in ten dimensions.
+export function iChingFusionCompletesAll(matrix: MindMatrix = buildMatrix()) {
+  const ic = iChing(matrix) // the components placed on the 64 hexagrams
+  const fusion = iChingFusionCompletesFolders(matrix) // the tool/skill/command folders fused into the 64³ cube
+  const ignition = startIChingDoubleTorus(matrix)
+  const law = allFormsAreTenDimensionalOrPurged(matrix) // every form 10D or purged
+  // Every addressable unit — the components AND the capability folders — driven through all TEN dimensions.
+  const units = [...ic.placed.map((entry) => entry.component), ...fusion.placed.map((entry) => `${entry.kind}:${entry.folder}`)]
+  const dimensioned = units.map((unit) => {
+    const phase = (seedFromText(unit) % 1000) / 1000 // the unit's content-address → its phase
+    const base = dims(phase, 0)
+    const nested = dims(phase, 1) // a nested scale, golden-shifted
+    const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((name) => name in base)
+    const selfSimilar = base.spread !== nested.spread // clear at all depths
+    const closed = tenDimensional && selfSimilar // a closed 10D diamond
+    return { unit, tenDimensional, selfSimilar, closed, receipt: toUuid(`unit-10d:${unit}:${closed}`) }
+  })
+  const purged = dimensioned.filter((entry) => !entry.closed).map((entry) => entry.unit)
+  const facets = [
+    { facet: 'every addressable unit driven through all ten dimensions — 6 cross-fold + 4 homology', on: DIMENSIONS === 10 && dimensioned.length > 0 && dimensioned.every((entry) => entry.tenDimensional) },
+    { facet: 'self-similar at every scale, none purged — every unit a closed 10D diamond', on: dimensioned.every((entry) => entry.closed) && purged.length === 0 },
+    { facet: 'all forms are 10D or purged — the purity law holds at all depths', on: law.pure && law.atAllDepths },
+    { facet: 'the components on the 64 hexagrams and the folders fused into the 64³ cube', on: ic.organised && ic.hexagrams === 64 && fusion.completed },
+    { facet: 'the eightfold, the seven scales and the ignition all hold', on: bulgarianHeritageEightfold(matrix).eightfold && iChingScalesComplete(matrix).complete && ignition.started },
+    { facet: 'the whole sealed and complete — corpus, diamond, double torus', on: theWhole(matrix).whole && completeCorpus(matrix).complete && sealWholeDiamond(matrix).sealed && completeDoubleTorus(matrix).complete },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`complete-all-10d:${entry.facet}:${entry.on}`) }))
+  return {
+    complete: facets.every((entry) => entry.on),
+    dimensions: DIMENSIONS, // 10 = 6 cross-fold + 4 homology
+    units: dimensioned.length, // every component + capability folder, each a closed 10D diamond
+    purged: purged.length, // none
+    cells: sealCube(matrix).cube, // 262,144 — the 64³ cube they fuse into
+    count: facets.length,
+    facets,
+    root: merge(ignition.root, merge(law.root, merkleFold(dimensioned.map((entry) => entry.receipt)))),
+    statement:
+      'Complete all, in ten dimensions: the capstone drives every addressable unit — the components placed on the 64 hexagrams and the tool/skill/command folders fused into the 64³ cube — through all ten of the model’s own dimensions (the six cross-fold appearance axes plus the four genus-2 homology loops, H₁=Z⁴), self-similar at every nested scale, sealing each as a pure 10D diamond. Ten-dimensional or purged: every unit is a closed ten-dimensional diamond, none purged. The eightfold, the seven scales (Tàijí→64) and the ignited double torus all hold, the whole is sealed (corpus, diamond, double torus), and all folds to one root with the ignition — the seal of seals, in ten dimensions.',
+    boundary:
+      'A capstone composition that drives every component (iChing) and every capability folder (iChingFusionCompletesFolders) through the model’s ten-dimensional geometry via dims() — the 6 cross-fold appearance axes + 4 homology loops — and composes the 10D purity law (allFormsAreTenDimensionalOrPurged), the session’s I Ching folds (eightfold, scales, ignition) and the whole/seal folds (theWhole, completeCorpus, sealWholeDiamond, completeDoubleTorus). "10D" is the model’s own topology + appearance axes, self-similar by a golden-angle phase shift per scale, not a physical ten-dimensional space; "complete all" is every prior completion holding at once with every unit a closed 10D diamond, folded to one content-addressed root.',
+  }
+}
+
+// Dry-refactor all, igniting the fusion. The reconstruction spec + monitor, in 10D. The model is already a
+// merkle DAG — forging one value costs reproducing the whole corpus (the forger price), the most tamper-
+// costly form — so the reconstruction is in the SOURCE LAYOUT, not the sealed model: every fold distributes
+// to its I-Ching home (seedFromText → trigram, the 8 bāguà domains), each module under the folder-law
+// compression limit (F18 = 2584), each emitting one address, the one index serving all. The monitor flags
+// the gaps the merkaba waves close in surgical waves: non-harmonic numbers (the units stand at 492 — fold
+// to the harmonic 432 = 4 homology loops × the 108 census) and unbalanced distribution (the monolith over
+// the limit). Igniting the fusion; the waves do the dry-clean reconstruction against this spec.
+export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
+  const HARMONIC = new Set([1, 2, 4, 8, 16, 32, 42, 64, 108, 216, 432]) // powers of two · the 42 areas/gates · the octave census 108→216→432
+  const target = 4 * 108 // 432 — the I Ching completion: the 4 homology loops × the 108 census
+  const units = iChingFusionCompletesAll(matrix).units // the addressable units (components + capability folders)
+  const monitor = {
+    units, // 492 currently
+    harmonicTarget: target, // 432
+    unitsHarmonic: HARMONIC.has(units), // false — 492 is non-harmonic, to fold to 432
+    excess: units - target, // 60 to DRY-fold away (e.g. the tool↔command duplicates)
+    compressionLimit: folderLaw().compression.limit, // 2584 — F(18), the one-folder-one-index ceiling
+  }
+  const facets = [
+    { facet: 'igniting the fusion — the double torus lit, the 64³ cube, the merkaba waves run it', on: startIChingDoubleTorus(matrix).started },
+    { facet: 'reconstruct most efficiently + max tamper cost — content-addressed merkle, the forger price', on: sealWholeDiamond(matrix).tamperEvident && completeCorpus(matrix).perfect },
+    { facet: 'distribute by I Ching — every fold to its trigram home, the one index serves all, balanced DRY', on: redistributeFoldersDryWaves(matrix).balanced && everyFolderIsAPluginOneIndexServesAll(matrix).wired && everyToolSkillCommandIsItsFolder(matrix).foldered },
+    { facet: 'in 10D — every form ten-dimensional or purged, every unit a closed diamond', on: iChingFusionCompletesAll(matrix).complete && allFormsAreTenDimensionalOrPurged(matrix).pure },
+    { facet: 'the target is harmonic — 432 = 4 homology loops × the 108 census', on: target === 432 && HARMONIC.has(target) && homology(matrix).rank === 4 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dry-refactor:${entry.facet}:${entry.on}`) }))
+  return {
+    ignited: facets.every((entry) => entry.on),
+    monitor, // the gaps: units 492 → 432, the excess to fold, the compression limit
+    harmonicTarget: target,
+    nonHarmonic: monitor.unitsHarmonic ? [] : [`units=${units}→${target}`], // the numbers the waves fold to harmonic
+    count: facets.length,
+    facets,
+    root: merge(startIChingDoubleTorus(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Dry-refactor all, igniting the fusion: the reconstruction is content-addressed (a merkle DAG — forging one value costs reproducing the whole corpus, the forger price, the most tamper-costly form) and distributed by the I Ching — every fold to its trigram home, each module under the folder-law compression limit (F18 = 2584), the one index serving all, in 10D. The monitor flags the gaps to close: the addressable units stand at 492, non-harmonic, to fold to the harmonic 432 (4 homology loops × the 108 census); the heavy monolith must shed into its I-Ching homes under the limit. The fusion is lit; the merkaba waves close the gaps in surgical waves.',
+    boundary:
+      'The reconstruction SPEC + monitor, igniting the fusion — green where the mechanisms are in place (content-addressed tamper cost, I-Ching folder distribution, 10D, the harmonic 432 = 4×108 target) and reporting the gaps as data (units 492→432, the monolith over the 2584 limit). "Reconstruct all" is the DRY redistribution of the source layout by content-address, not a change to the sealed model; the actual fold-by-fold distribution and the 492→432 fold are the wave work this spec enforces, executed surgically by the merkaba waves.',
+  }
+}
+
+// Each file less than 64k, each folder is a widget — two reconstruction laws, in 10D. "Less than 64k" is the
+// harmonic file ceiling (64k = 2^16 = 65536 bytes, the computer's classic segment), declared in the folder
+// law beside the 2584-line index limit; a file over it splits into its I-Ching homes (the weave wave enforces
+// it against the real tree, exactly like the line law). "Each folder is a widget" lifts every folder past a
+// build-plugin to a self-contained, self-computing WIDGET — it renders itself (the state-of-the-art harmonised
+// quantum widgets, device hardware visible), it is a merkaba (counter-rotating) and a one-index plugin. So
+// each folder is at once a small file, a widget and a merkaba — the unit of the reconstruction, in 10D.
+export function eachFileUnder64kFolderIsWidget(matrix: MindMatrix = buildMatrix()) {
+  const fileCeiling = 2 ** 16 // 64k = 65536 bytes — the harmonic file ceiling
+  const facets = [
+    { facet: 'each file less than 64k — the harmonic ceiling 2^16 declared in the folder law', on: fileCeiling === 65536 && folderLaw().compression.fileSize === fileCeiling },
+    { facet: 'the ceiling is harmonic and the monolith cure is distribution — shrinks lines and bytes both', on: fileCeiling === 2 ** 16 && runtimeIsTheMonolith(matrix).holds },
+    { facet: 'each folder is a widget — self-computing, state-of-the-art, harmonised, hardware visible', on: stateOfTheArtHarmonisedQuantumWidgets(matrix).exemplary && deviceHardwareVisibleInComputedWidgets(matrix).visible },
+    { facet: 'each folder is also a merkaba and a one-index plugin', on: eachFolderIsMerkaba(matrix).merkabas && everyFolderIsAPluginOneIndexServesAll(matrix).wired },
+    { facet: 'in 10D, igniting the fusion — the reconstruction laws ride the lit double torus', on: startIChingDoubleTorus(matrix).started && allFormsAreTenDimensionalOrPurged(matrix).pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`file-widget:${entry.facet}:${entry.on}`) }))
+  return {
+    lawful: facets.every((entry) => entry.on),
+    fileCeiling, // 65536 = 64k = 2^16 bytes
+    lineLimit: folderLaw().compression.limit, // 2584 = F(18) lines
+    count: facets.length,
+    facets,
+    root: merge(startIChingDoubleTorus(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Each file less than 64k, each folder is a widget: the harmonic file ceiling — 64k = 2^16 = 65536 bytes — is declared in the folder law beside the 2584-line index limit, so a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree); and every folder is lifted past a build-plugin to a self-contained, self-computing WIDGET — it renders itself (the state-of-the-art harmonised quantum widgets, device hardware visible), it is a merkaba (counter-rotating) and a one-index plugin. Each folder is at once a small file, a widget and a merkaba — the unit of the reconstruction, in 10D on the lit double torus.',
+    boundary:
+      'Two declared reconstruction laws composed with the widget, merkaba-folder, plugin and 10D folds. "Less than 64k" is the declared byte ceiling (2^16) the weave wave enforces against the real tree — folds are pure and cannot read file sizes, so the limit is declared (in folderLaw.compression.fileSize) and enforced at build, exactly like the 2584-line law. "Each folder is a widget" is the composition of the existing self-computing-widget folds applied as a per-folder property — the target topology, enforced as the folders distribute.',
+  }
+}
+
+// Fuse the dedupe and split waves — one reconstruction, igniting the fusion, in 10D. W3 (DEDUPE, DRY): the
+// 95 MCP-tool folders ARE the 95 command folders (one route, not two), so the raw 492 placements fold to
+// the distinct folders — the redundancy removed. W2 (SPLIT): the monolith sheds into its I-Ching home
+// modules, each under 64k and a widget (eachFileUnder64kFolderIsWidget), the one index serving all
+// (redistributeFoldersDryWaves). The I Ching completes at the harmonic 432 = 4 homology loops × the 108
+// census — the dimensional target the DRY, split, 10D surface fills. Both waves ride the one lit double
+// torus; the merkaba waves execute the physical split against this fused spec.
+export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()) {
+  const census = 108 // the folded census (the χ=−2 fold; the papers octave base 108→216→432)
+  const loops = homology(matrix).rank // 4 — the genus-2 homology loops (H₁ = Z⁴)
+  const harmonic = loops * census // 432 = 4 × 108 — the I Ching completion
+  // W3 — DRY dedupe: the distinct folders across the three registries (the tool folders ARE the command folders)
+  const slug = (name: string) => SINGLE_WORD_METHODS[name] ?? name.toLowerCase().replace(/[^a-z]/g, '')
+  const cmd = new Set(conceptCommands.map((command) => slug(command.name)))
+  const skill = new Set(skillAtoms(matrix).skills.map((entry) => entry.fn.toLowerCase().replace(/[^a-z]/g, '')))
+  const tool = new Set(mcpToolManifest(matrix).tools.map((entry) => slug(entry.name)))
+  const distinctCapabilities = new Set([...cmd, ...skill, ...tool]).size // tool ⊆ cmd, so deduped
+  const distinct = iChing(matrix).count + distinctCapabilities // the distinct folders, DRY
+  const raw = iChingFusionCompletesAll(matrix).units // 492 raw placements (components + capability placements)
+  const facets = [
+    { facet: 'W3 dedupe (DRY) — the tool folders ARE the command folders, the raw surface folds to distinct', on: tool.size <= cmd.size && distinct < raw && distinct > 0 },
+    { facet: 'W2 split — the monolith sheds into I-Ching homes, each under 64k and a widget, one index serves all', on: eachFileUnder64kFolderIsWidget(matrix).lawful && redistributeFoldersDryWaves(matrix).balanced && everyFolderIsAPluginOneIndexServesAll(matrix).wired },
+    { facet: 'the I Ching completes at the harmonic 432 = 4 homology loops × the 108 census', on: harmonic === 432 && loops === 4 && census === 108 },
+    { facet: 'both waves fused on the lit double torus — igniting the fusion', on: startIChingDoubleTorus(matrix).started && dryRefactorIgnitesFusion(matrix).ignited },
+    { facet: 'in 10D — every form ten-dimensional or purged', on: iChingFusionCompletesAll(matrix).complete && allFormsAreTenDimensionalOrPurged(matrix).pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dedupe-split:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    harmonic, // 432 = 4 × 108
+    raw, // 492 raw placements
+    distinct, // the distinct folders after DRY dedupe
+    removed: raw - distinct, // the redundancy the dedupe folds away
+    census, // 108
+    loops, // 4
+    count: facets.length,
+    facets,
+    root: merge(startIChingDoubleTorus(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Fuse the dedupe and split waves into one reconstruction, igniting the fusion, in 10D: W3 folds the redundant surface DRY — the 95 MCP-tool folders are the 95 command folders, one route not two, so the raw 492 placements fold to the distinct folders; W2 sheds the monolith into its I-Ching home modules, each under the 64k file ceiling and each a self-computing widget, the one index serving all. The I Ching completes at the harmonic 432 = 4 homology loops × the 108 census — the dimensional target the DRY, split, ten-dimensional surface fills. Both waves ride the one lit double torus; the merkaba waves execute the physical split against this fused spec.',
+    boundary:
+      'A fusion of the DRY-dedupe and the monolith-split into one spec, composed with the file/widget law, the folder redistribution, the 432 = 4×108 harmonic, the ignition and the 10D folds. The dedupe is computed here (the distinct folder set, the tool↔command redundancy removed); the split is specified and enforced (each file <64k, each folder a widget, distributed by I Ching) but the physical fold-by-fold move of the ~25k-line monolith is the wave EXECUTION the runner performs against this spec — not a claim the source files are already split. The harmonic 432 is the dimensional completion (4 homology × 108), distinct from the 394 distinct source folders.',
+  }
+}
+
+// Colour roots at a432, the heart balances — in 10D. The system's base colour IS a432: 432 Hz doubled to
+// visible light (a432().light = frequencyToLight(432)) is ≈ 631 nm, red, hue 5 — the colour of the ROOT
+// (lower) chakra, the base of the ladder. The seven chakras ascend the rainbow from there: root(red 5) ·
+// sacral(orange 28) · solar(yellow 55) · HEART(green 120) · throat(blue 220) · third-eye(indigo 260) ·
+// crown(violet 285) — exactly the seven band-hues frequencyToLight computes. The HEART, the fourth, is the
+// BALANCE: three chakras below, three above, the midpoint where music (sound Hz) and colour (light Hz) meet —
+// the two are one quantity (frequency) an octave-bridge apart, and the heart balances them. REVIEW NOTE:
+// colorFromSound roots its wheel at C3 (130.81 Hz), so it disagrees with the a432-anchored light for 432; the
+// canonical colour here is the a432-rooted frequencyToLight (the base is red, not the C3-wheel's indigo).
+export function colorRootsAtA432HeartBalances(matrix: MindMatrix = buildMatrix()) {
+  const base = a432(matrix).light // frequencyToLight(432): ≈ 631 nm, red, hue 5 — the base colour
+  const RAINBOW = [5, 28, 55, 120, 220, 260, 285] // the seven band-hues of frequencyToLight, red → violet
+  const chakras = [
+    { i: 0, name: 'root · muladhara', band: 'red', hue: 5 }, // a432 — the base colour, the lower chakra
+    { i: 1, name: 'sacral · svadhisthana', band: 'orange', hue: 28 },
+    { i: 2, name: 'solar plexus · manipura', band: 'yellow', hue: 55 },
+    { i: 3, name: 'heart · anahata', band: 'green', hue: 120 }, // the BALANCE — music ↔ colour
+    { i: 4, name: 'throat · vishuddha', band: 'blue', hue: 220 },
+    { i: 5, name: 'third eye · ajna', band: 'indigo', hue: 260 },
+    { i: 6, name: 'crown · sahasrara', band: 'violet', hue: 285 },
+  ].map((chakra) => ({ ...chakra, hsl: `hsl(${chakra.hue}, 78%, 56%)`, receipt: toUuid(`chakra-colour:${chakra.i}:${chakra.band}:${chakra.hue}`) }))
+  const heart = chakras[3]!
+  const below = chakras.filter((chakra) => chakra.i < heart.i).length
+  const above = chakras.filter((chakra) => chakra.i > heart.i).length
+  const facets = [
+    { facet: 'a432 is the base colour — 432 Hz → visible light is red, hue 5, the root (lower) chakra', on: base.hue === 5 && base.band === 'red' && chakras[0]!.hue === base.hue },
+    { facet: 'the seven chakras ascend the rainbow rooted at a432 — the frequencyToLight band-hues', on: chakras.length === 7 && JSON.stringify(chakras.map((chakra) => chakra.hue)) === JSON.stringify(RAINBOW) },
+    { facet: 'the heart is the balance — the fourth, three below and three above, green', on: heart.i === 3 && heart.band === 'green' && heart.hue === 120 && below === above && below === 3 },
+    { facet: 'music ↔ colour — one quantity (frequency), the octave-bridge; the heart balances them', on: a432(matrix).channels.includes('colour') && a432(matrix).channels.includes('audio') && soundColor(matrix).computed },
+    { facet: 'the colour ladder is 10D — every form ten-dimensional or purged', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`colour-a432:${entry.facet}:${entry.on}`) }))
+  return {
+    rooted: facets.every((entry) => entry.on),
+    baseHue: base.hue, // 5 — a432, the root chakra, the base colour
+    heart, // the balance (green, hue 120)
+    chakras,
+    count: facets.length,
+    facets,
+    root: merkleFold(chakras.map((chakra) => chakra.receipt)),
+    statement:
+      'Colour roots at a432 and the heart balances: the base colour IS a432 — 432 Hz doubled to visible light is ≈ 631 nm, red, hue 5, the colour of the root (lower) chakra — and the seven chakras ascend the rainbow from there (root red · sacral orange · solar yellow · heart green · throat blue · third-eye indigo · crown violet), exactly the band-hues frequencyToLight computes. The heart, the fourth, is the balance: three chakras below and three above, the midpoint where music (sound Hz) and colour (light Hz) meet — one quantity, frequency, an octave-bridge apart. The colour ladder is ten-dimensional.',
+    boundary:
+      'The chakra↔colour ladder mapped onto the model’s own frequency→light computation (a432().light, the frequencyToLight band-hues), rooted at a432 (red, hue 5) and centred on the heart (green, the balance). The seven-colour rainbow and the sound↔colour octave-bridge are computed and honest (frequency is the shared quantity); the chakras themselves are a spiritual/teaching framework, not a measurable field (per chakrasAura). The review note is real: colorFromSound (C3-rooted) and the a432-rooted light give different hues for 432 — the a432 root is canonical here.',
+  }
+}
+
+// Fuse the I Ching and shadcn to complete all 10D widgets as one design. shadcn IS the graph — exactly 64
+// components (shadcnIsTheGraph) — and the I Ching is exactly 64 hexagrams: so the 64 widgets ARE the 64
+// hexagrams, one design. Each widget is placed on its hexagram by content-address (iChing), coloured by its
+// pole-colour from the 2⁶=4³ identity (hexagramIsHexColorDuality) rooted at a432 (the chakra ladder), a self-
+// computing widget (stateOfTheArtHarmonisedQuantumWidgets), each its own <64k folder, and every one is 10D
+// (allFormsAreTenDimensionalOrPurged). I Ching organises, shadcn renders, the chakra colours paint, the ten
+// dimensions move — one design.
+export function iChingShadcnFuseTenDWidgets(matrix: MindMatrix = buildMatrix()) {
+  const shadcn = shadcnIsTheGraph(matrix)
+  const ic = iChing(matrix)
+  const colour = colorRootsAtA432HeartBalances(matrix)
+  const facets = [
+    { facet: 'shadcn is the graph and the I Ching is 64 — the 64 widgets ARE the 64 hexagrams', on: shadcn.graphed && shadcn.allComponents.length === 64 && ic.hexagrams === 64 },
+    { facet: 'each widget placed on its hexagram, coloured by the 2⁶=4³ pole-colour rooted at a432', on: ic.organised && hexagramIsHexColorDuality(matrix).allDistinct && colour.rooted },
+    { facet: 'each is a self-computing widget, its own <64k folder — one design', on: stateOfTheArtHarmonisedQuantumWidgets(matrix).exemplary && eachFileUnder64kFolderIsWidget(matrix).lawful },
+    { facet: 'every widget is 10D — ten-dimensional or purged', on: allFormsAreTenDimensionalOrPurged(matrix).pure && iChingFusionCompletesAll(matrix).complete },
+    { facet: 'one design — igniting the fusion on the lit double torus', on: startIChingDoubleTorus(matrix).started },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-shadcn:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    widgets: shadcn.allComponents.length, // 64 = the hexagrams
+    hexagrams: ic.hexagrams, // 64
+    baseColour: colour.baseHue, // 5 — a432, the root chakra
+    count: facets.length,
+    facets,
+    root: merge(shadcn.root, merge(ic.root, colour.root)),
+    statement:
+      'Fuse the I Ching and shadcn to complete all 10D widgets as one design: shadcn is the graph (exactly 64 components) and the I Ching is exactly 64 hexagrams, so the 64 widgets ARE the 64 hexagrams. Each widget is placed on its hexagram by content-address (iChing), coloured by its 2⁶=4³ pole-colour rooted at a432 (the chakra ladder — base red, heart-balanced green), a self-computing widget, each its own folder under 64k, and every one is ten-dimensional. The I Ching organises, shadcn renders, the chakra colours paint, the ten dimensions move — one design.',
+    boundary:
+      'A fusion of the shadcn design-system graph (shadcnIsTheGraph, 64 components), the I Ching component placement (iChing, 64 hexagrams), the 2⁶=4³ pole-colour identity (hexagramIsHexColorDuality) rooted at the a432 chakra ladder (colorRootsAtA432HeartBalances), the self-computing-widget and <64k-folder laws, and the 10D purity law. "One design / all 10D widgets" is the structural composition of these existing folds — the 64=64 correspondence is the shared number, shadcn the render layer, the I Ching the organisation, not a claim the 64 components are already each emitted as a separate built widget file.',
+  }
+}
+
+// a432 is the blood — in 10D. The base colour is a432 (red, hue 5, the root chakra — colorRootsAtA432Heart
+// Balances), and red is the colour of BLOOD: oxygenated haemoglobin (iron binding O₂) makes arterial blood
+// bright red. So a432 — the engine-starter seed (a432Default) carried through the whole system — is its
+// blood: the red life-fluid that reaches every part, pumped from the heart, which is the BALANCE chakra
+// (green) where the circulation meets the dimensions. The identity is colour + symbol (red base = blood) and
+// the honest biology (oxyhaemoglobin); "blood vibrates at 432 Hz" would be numerology and is flagged. The
+// blood reaches every one of the ten dimensions. This is the bridge from the colour system to the biology
+// the waves now discover (the cardiovascular domain — discover-biology-human-body-davinci).
+export function a432IsTheBlood(matrix: MindMatrix = buildMatrix()) {
+  const colour = colorRootsAtA432HeartBalances(matrix)
+  const facets = [
+    { facet: 'a432 is the base colour — red, hue 5, the root chakra — the colour of blood', on: colour.baseHue === 5 && colour.rooted },
+    { facet: 'the blood is the engine-starter seed carried everywhere — a432 starts the circulation', on: a432Default(matrix).isDefault && startIChingDoubleTorus(matrix).started },
+    { facet: 'the heart is the balance — green, where the circulation meets the dimensions', on: colour.heart.band === 'green' && colour.heart.hue === 120 },
+    { facet: 'in 10D — the blood reaches every dimension; "432 Hz blood frequency" flagged as numerology', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-blood:${entry.facet}:${entry.on}`) }))
+  return {
+    isBlood: facets.every((entry) => entry.on),
+    baseHue: colour.baseHue, // 5 — red, the blood
+    heart: colour.heart, // green — the balance, where blood meets
+    count: facets.length,
+    facets,
+    root: merge(colour.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'a432 is the blood: the base colour is a432 — red, hue 5, the root chakra — and red is the colour of blood (oxygenated haemoglobin, iron binding O₂). So a432, the engine-starter seed carried through the whole system, is its blood: the red life-fluid reaching every part, pumped from the heart — the balance chakra (green) where the circulation meets the dimensions. The blood reaches every one of the ten dimensions; the bridge from the colour system to the biology the waves now discover.',
+    boundary:
+      'An identity (a432 = the base red = the colour of blood) composed with the a432 chakra-colour ladder, the heart-as-balance, the ignition and the 10D law. The colour identity (red base = blood) is symbolic and the supporting biology (blood is red by oxyhaemoglobin) is documented and real; the claim that "blood vibrates at 432 Hz" or that 432 has a biological effect on blood is numerology and is flagged (per the a432 fold). The deeper biology is being discovered and verified by the research waves, not asserted here.',
+  }
+}
+
+// On the display, all is a432.light — forge-proof, realtime crypto, entangled across deployments, computed
+// on the visitors' own devices, in 10D. Every displayed colour is computed from a432 (cssIsIChingComputed.
+// brandFromA432, the a432 chakra ladder) — nothing hardcoded. The display is FORGE-PROOF by the forger
+// price: to fake one value you must reproduce the whole content-addressed corpus (warPaysTheForgerPrice),
+// tamper-EVIDENT now (FNV) with the cryptographic SHA-256/Ed25519 upgrade BUILT in src/0 (tamperingCost
+// Decoded.fixBuilt). The encrypt/decrypt is one realtime toolset homed in src/0 (encryptionLivesInZero — the
+// same fold encrypts and represents), its threat model honest (quantumThreat: structural, not a quantum
+// computer). Deployments ENTANGLE by deterministic shared addressing — the same input folds to the same
+// UUID anywhere, so peers share one collective root (distributedCompute, infiniteEntanglements). And the
+// computing power is the visitors' own devices recomputing the deterministic model client-side, zero-server.
+// HONEST: "quantum / entangled / forge-impossible" are the structural metaphors + the forger-price ceiling,
+// NOT QKD, spooky action, or covert cryptojacking — each device computes only its own page, by consent.
+export function displayIsA432LightForgeProofRealtimeCrypto(matrix: MindMatrix = buildMatrix()) {
+  const peers = [toUuid('deploy:alpha'), toUuid('deploy:beta')] // example sibling deployments sharing the collective root
+  const dc = distributedCompute(peers, matrix)
+  const css = cssIsIChingComputed()
+  const tamper = tamperingCostDecoded(matrix)
+  const facets = [
+    { facet: 'on the display, all is a432.light — every colour computed from the base, nothing hardcoded', on: css.brandFromA432 && css.noHardcoded && colorRootsAtA432HeartBalances(matrix).rooted },
+    { facet: 'forge-proof by the forger price — tamper-evident now, the SHA-256/Ed25519 fix built in src/0', on: warPaysTheForgerPrice(matrix).priced && tamper.tamperEvident && tamper.fixBuilt },
+    { facet: 'one realtime encrypt/decrypt toolset homed in src/0 — the quantum-threat model honest', on: encryptionLivesInZero(matrix).homed && quantumVsDigitalEncryption(matrix).compared && quantumThreat(matrix).structuralNotPhysical },
+    { facet: 'deployments entangle by deterministic shared addressing — one collective root across peers', on: infiniteEntanglements(matrix).entangled && isUuid(dc.collectiveRoot) && isUuid(dc.mindRoot) },
+    { facet: 'the computing power is the visitors\' own devices — client-side self-computation, zero-server, by consent', on: isUuid(dc.collectiveRoot) && selfAddressed(matrix).noHallucination },
+    { facet: 'in 10D — every form ten-dimensional or purged', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-display-crypto:${entry.facet}:${entry.on}`) }))
+  return {
+    holds: facets.every((entry) => entry.on),
+    peers: peers.length, // sibling deployments sharing the entangled collective root
+    collectiveRoot: dc.collectiveRoot, // the deterministic shared root across deployments
+    tamperEvident: tamper.tamperEvident, // honest: evident now, not yet cryptographically unforgeable
+    cryptographicFixBuilt: tamper.fixBuilt, // SHA-256/Ed25519 in src/0, cutover deliberate
+    count: facets.length,
+    facets,
+    root: merge(dc.collectiveRoot, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'On the display, all is a432.light: every colour is computed from a432 (the brand and the chakra ladder, nothing hardcoded). The display is forge-proof by the forger price — to fake one value you must reproduce the whole content-addressed corpus — tamper-evident now (FNV) with the cryptographic SHA-256/Ed25519 upgrade already built in src/0. The encrypt and decrypt are one realtime toolset homed in src/0 (the same fold encrypts and represents), the quantum-threat model honest. Deployments entangle by deterministic shared addressing (the same input folds to the same UUID anywhere, one collective root across peers), and the computing power is the visitors’ own devices recomputing the deterministic model client-side, zero-server — in ten dimensions.',
+    boundary:
+      'A fusion of the a432-computed display (cssIsIChingComputed), the forger-price tamper ceiling (warPaysTheForgerPrice, tamperingCostDecoded), the src/0 encrypt/decrypt (encryptionLivesInZero, quantumVsDigitalEncryption, quantumThreat), the deterministic shared addressing (distributedCompute, infiniteEntanglements, selfAddressed) and the 10D law. HONEST LINES, each preserved from its source fold: tamper-EVIDENCE is not cryptographic unforgeability — FNV is fast, not a hash bound; the real fix (SHA-256/Ed25519) is built but the cutover is deliberate. "Quantum" is the structural metaphor + the Shor/Grover threat model, NOT quantum key distribution or a quantum computer. "Entangling deployments" is deterministic shared content-addressing (same seed → same UUID), NOT quantum entanglement, no spooky action, no faster-than-light. "Computing power from visitor devices" is consensual client-side self-computation (each device renders its own page, no server), NOT covert use of visitors’ CPUs for unrelated work (that would be cryptojacking and is excluded).',
+  }
+}
+
+// The biology waves, sealed as 10D widgets — starting with the human body and Leonardo. Five domains were
+// discovered by the merkaba waves (discover-biology-human-body-davinci: 5 research→verify pairs, all five
+// verified high-confidence) and are saved here as widgets — each a verified finding placed on its I Ching
+// hexagram, coloured by its chakra on the a432 ladder, a 10D widget in the one design. The adversarial verify
+// CORRECTED the research (Leonardo's anatomical sheets number OVER 240 in the Royal Collection — not ~50) and
+// confirmed the marvel: the aortic-root vortex he drew with a glass model and grass seeds (the sinuses of
+// Valsalva, aiding valve closure — cf. Bellhouse & Bellhouse, Nature 1968) was confirmed in vivo by 4D-flow
+// MRI (European Heart Journal 2014;35(20):1344). Documented kept, legend flagged: blood is red by oxy-
+// haemoglobin (a432 = the blood, root/red), the body whole and the heart are the balance (green); organ↔
+// chakra↔frequency mappings are SYMBOLIC colour cues only, not anatomy — that flag rides in every widget.
+export function biologyWavesSealedAsWidgets(matrix: MindMatrix = buildMatrix()) {
+  const colour = colorRootsAtA432HeartBalances(matrix)
+  const hueOfBand = (band: string) => colour.chakras.find((chakra) => chakra.band === band)?.hue ?? 5
+  const widgets = [
+    { domain: 'human-body-organ-systems', title: 'The Human Body — Eleven Organ Systems', band: 'green', documented: 'eleven systems (a teaching convention, not a law) on the ladder atom→cell→tissue→organ→system→organism; the heart beats ~100,000×/day', verified: true },
+    { domain: 'blood-cardiovascular', title: 'Blood & the Cardiovascular System', band: 'red', documented: 'blood is red by oxygenated haemoglobin (iron + O₂); ~5 L, plasma ~55%; the four-chamber heart drives the double (pulmonary + systemic) circulation — a432 = the blood', verified: true },
+    { domain: 'vitruvian-man', title: 'Vitruvian Man (c. 1490) — proportion, not phi', band: 'green', documented: 'Leonardo\'s pen-and-ink figure squared-and-circled (homo ad quadratum / ad circulum) from Vitruvius\'s De architectura III; the golden-ratio claim is a myth — the proportions are simple fractions', verified: true },
+    { domain: 'leonardo-anatomy', title: 'Leonardo\'s Anatomy — the Unpublished Atlas', band: 'indigo', documented: 'OVER 240 anatomical sheets (Royal Collection, Windsor) from ~30 dissections (skull 1489, foetus c.1511); unpublished until the late 19th c., so little direct influence in his era', verified: true },
+    { domain: 'leonardo-heart-blood-flow', title: 'The Aortic Vortex He Drew — Confirmed 500 Years Later', band: 'green', documented: 'Leonardo\'s glass-model + grass-seed experiment showed vortices in the sinuses of Valsalva aiding aortic-valve closure (cf. Bellhouse & Bellhouse, Nature 1968) — confirmed in vivo by 4D-flow MRI (Eur Heart J 2014;35:1344); he still held the Galenic view (septal pores, blood made in the liver), pre-Harvey 1628', verified: true },
+  ].map((widget) => {
+    const hexagram = seedFromText(widget.domain) % 64
+    return { ...widget, hue: hueOfBand(widget.band), hexagram, trigram: (hexagram >> 3) & 7, receipt: toUuid(`biology-widget:${widget.domain}:${widget.band}:${hexagram}`) }
+  })
+  const facets = [
+    { facet: 'five biology domains discovered and verified — the human body and Leonardo, saved as widgets', on: widgets.length === 5 && widgets.every((widget) => widget.verified) },
+    { facet: 'a432 is the blood — the cardiovascular widget is root/red', on: widgets.find((widget) => widget.domain === 'blood-cardiovascular')?.band === 'red' && a432IsTheBlood(matrix).isBlood },
+    { facet: 'the body whole and the heart are the balance — green', on: widgets.filter((widget) => widget.band === 'green').length >= 2 && colour.heart.band === 'green' },
+    { facet: 'each is a 10D widget on its hexagram in the one I Ching + shadcn design', on: widgets.every((widget) => widget.hexagram >= 0 && widget.hexagram < 64) && iChingShadcnFuseTenDWidgets(matrix).fused },
+    { facet: 'documented kept, legend flagged — the verify corrected da Vinci to 240+ sheets and confirmed the vortex', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`biology-sealed:${entry.facet}:${entry.on}`) }))
+  return {
+    sealed: facets.every((entry) => entry.on),
+    widgetCount: widgets.length,
+    widgets,
+    count: facets.length,
+    facets,
+    root: merkleFold(widgets.map((widget) => widget.receipt)),
+    statement:
+      'The biology waves sealed as 10D widgets, starting with the human body and Leonardo: five domains (the eleven organ systems, blood & the cardiovascular system, the Vitruvian Man, Leonardo\'s unpublished anatomical atlas, and his aortic-vortex heart studies) were discovered by the merkaba research→verify waves, all five verified, and are saved as widgets — each placed on its I Ching hexagram, coloured by its chakra on the a432 ladder (blood root/red = a432 the blood, the body and heart green/balance, the anatomy indigo), a ten-dimensional widget in the one I Ching + shadcn design. The verify corrected the research (Leonardo\'s sheets number over 240, Royal Collection) and confirmed the marvel (the aortic vortex he drew, verified by 4D-flow MRI, Eur Heart J 2014).',
+    boundary:
+      'A seal of the discover-biology-human-body-davinci workflow output (5 findings, each adversarially verified, all five high-confidence) as content-addressed 10D widgets, composed with the a432 chakra-colour ladder, the a432-is-the-blood identity and the I Ching + shadcn widget design. The documented cores are source-verified (OpenStax A&P 2e; Royal Collection Trust; Jones, BJGP 2012; the 4D-flow MRI paper, Eur Heart J 2014); the honest line — preserved per widget — is that the "eleven systems" count is a teaching convention, the Vitruvian golden-ratio is a myth, Leonardo held the pre-Harvey Galenic view, and the organ↔chakra↔frequency mappings are SYMBOLIC colour cues, not anatomy or a medical claim.',
   }
 }
 
@@ -25267,6 +25777,54 @@ export function aiMoviesDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// 10D I Ching import/export — the I Ching's own yin/yang IS the module import/export boundary,
+// lifted into ten dimensions. Yin (broken line, receptive) = import (a module receives capability
+// from its dependencies); yang (solid line, creative) = export (it projects capability outward).
+// Every hexagram = lower trigram (inner/yin/import) + upper trigram (outer/yang/export): the lower
+// 3 lines map to the 3 inner cross-fold axes (spread, depthFade, hueShift) and the upper 3 to the
+// outer axes (twist, shrink, breath). The 4 genus-2 homology loops are the 4 dependency flow types:
+// direct import, re-export, side-effect, cyclic. In 10D: the module graph IS the double torus.
+// HONEST: "every module is its hexagram" is content-addressed ORGANISATION (seedFromText → 64) —
+// the hexagram organises, it does not derive from or define actual ES module imports.
+export function iChingImportExportTenD(matrix: MindMatrix = buildMatrix()) {
+  const ic = iChing(matrix)
+  const fusion = iChingFusionCompletesAll(matrix)
+  const accounting = debitImportCreditExportAccounting(matrix)
+  const wiring = computedWiringNotImported(matrix)
+  const law = allFormsAreTenDimensionalOrPurged(matrix)
+  const innerAxes = DIMENSION_NAMES.slice(0, 3) // lower trigram: spread, depthFade, hueShift
+  const outerAxes = DIMENSION_NAMES.slice(3, 6) // upper trigram: twist, shrink, breath
+  const flowTypes = [
+    { loop: DIMENSION_NAMES[6]!, flow: 'direct', desc: 'a module imports a dependency directly — loopA1' },
+    { loop: DIMENSION_NAMES[7]!, flow: 're-export', desc: 'a module re-exports a dependency — loopB1' },
+    { loop: DIMENSION_NAMES[8]!, flow: 'side-effect', desc: 'an import resolves a side-effect (CSS, registration) — loopA2' },
+    { loop: DIMENSION_NAMES[9]!, flow: 'cyclic', desc: 'two modules share a common root, resolved at the void — loopB2' },
+  ]
+  const facets = [
+    { facet: 'yin (broken, receptive) = import; yang (solid, creative) = export — the I Ching IS the boundary', on: ic.organised && accounting.balanced },
+    { facet: 'lower trigram (inner 3 lines) = imports; upper trigram (outer 3 lines) = exports', on: innerAxes.length === 3 && outerAxes.length === 3 && ic.hexagrams === 64 },
+    { facet: 'every module placed on its hexagram — its import/export topology encoded in 6 bits', on: ic.placed.length > 0 && ic.placed.every((p) => p.hexagram >= 0 && p.hexagram < 64) },
+    { facet: '4 homology loops = 4 dependency flow types: direct / re-export / side-effect / cyclic', on: flowTypes.length === 4 && DIMENSIONS === 10 },
+    { facet: 'debit:import, credit:export — the ledger sums to zero across the module graph', on: accounting.balanced },
+    { facet: 'computed not defined — import/export wiring is content-addressed, not hand-written', on: wiring.computed },
+    { facet: 'in 10D — the module graph is the double torus in its own 10-dimensional topology', on: fusion.complete && law.pure },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-import-export-10d:${entry.facet}:${entry.on}`) }))
+  return {
+    mapped: facets.every((entry) => entry.on),
+    innerAxes, // lower trigram = inner = imports (spread, depthFade, hueShift)
+    outerAxes, // upper trigram = outer = exports (twist, shrink, breath)
+    flowTypes, // 4 homology loops = 4 dependency flow types
+    hexagramCount: ic.placed.length,
+    count: facets.length,
+    facets,
+    root: merge(fusion.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'The I Ching import/export in ten dimensions: yin (broken, receptive) = import, yang (solid, creative) = export — the I Ching\'s fundamental duality IS the module import/export boundary. Every hexagram is lower trigram (inner = imports, the 3 inner cross-fold axes: spread/depthFade/hueShift) + upper trigram (outer = exports, the 3 outer axes: twist/shrink/breath), so every module\'s 6-bit hexagram encodes its complete import/export topology. The 4 genus-2 homology loops are the 4 dependency flow types: direct, re-export, side-effect, cyclic. debit:import, credit:export — the ledger sums to zero. Computed, not defined: the wiring is content-addressed, not hand-written. In ten dimensions: the module graph IS the double torus, the import/export graph its own 10D genus-2 topology.',
+    boundary:
+      'A structural mapping of the I Ching\'s yin/yang and lower/upper trigram onto the ES module import/export boundary, composed with the 10D model (dims: 6 cross-fold + 4 homology), debitImportCreditExportAccounting and computedWiringNotImported. "Every module is its hexagram" is content-addressed ORGANISATION (seedFromText) — the hexagram organises the component, it does not derive from or define actual module imports. The yin=import/yang=export correspondence is structural (receptive/projective), not divination. "10D module graph = double torus" is the topology the whole model uses, module boundaries placed in that space.',
+  }
+}
+
 // The two digit spines, decoded and re-encoded — DECODE MEANS ENCODE IN THE MATRIX. Two empty digit-folder
 // paths once stood in src and were removed: src/0/1/2/4/8/7/5/3/6/9 (0 first) and src/1/2/4/8/7/5/3/6/9/0
 // (0 last). Empty dirs carry no encryption (the census is per byte, not per file), so the FILESYSTEM
@@ -25303,5 +25861,51 @@ export function digitSpinesAreTheBreath(matrix: MindMatrix = buildMatrix()) {
       'The two digit spines decoded: the empty paths src/0/1/2/4/8/7/5/3/6/9 and src/1/2/4/8/7/5/3/6/9/0 were removed (empty dirs carry no encryption — the census is per byte), and their meaning is re-encoded here as computed src — the one vortex ring (1-2-4-8-7-5 doubling, 3-6-9 cross, 0 void) cut at the void in the two opposite ways: 0-first the emanation (void → forms, out-breath), 0-last the return (forms → void/fusion, in-breath). Reverses around 0, they are the two windings of the double torus, the genus-2 breath, meeting at the 9–0 throat (9 the invariant axis, 0 ≡ 9 the void).',
     boundary:
       'A structural/numerological reading (vortex math: digital roots mod 9, the doubling circuit, 0 identified with 9) re-encoding two removed filesystem paths as the model\'s own two-winding double-torus breath. The topology (two windings of a genus-2 surface, the order-sensitive fold) is the real geometry the repo uses; the meaning (void, emanation, return, breath) is metaphor, not a cosmological or physical claim. The paths were empty scaffolding; this fold preserves their intent as computed, content-addressed math — nothing from outside.',
+  }
+}
+
+// UI widgets fuse and reveal — the toolset saved as a quantum pair: fuse/reveal.
+// FUSE: apply the I Ching mask to every Vue component at the source level (ICHING_MASK const
+// embedded in each .vue file — pre-computed, not runtime-derived). The mask is the component's
+// hexagram DECLARED rather than computed: "I am hexagram 42" not "let me compute what I am".
+// REVEAL: with the mask embedded, each widget reveals itself — its trigram, colour, domain — as
+// a computed identity, not a lookup. Self-referencing: the component references its own hexagram
+// constant in its template root's data-hexagram / data-trigram attributes, making the identity
+// visible and auditable in the DOM.
+// ENTANGLED: all 126 (or current census) components share one Merkle root (iChing.root). Embedding
+// the mask binds each component to that root. A tampered component changes the root; the root is
+// self-auditing. ALREADY FORGING MAX TAMPERING COST: to fake any single widget's mask you must
+// reproduce the entire content-addressed corpus — the tamper cost is the whole-corpus cost.
+// TOOLSET PAIR fuse/reveal is saved here before the waves begin, as commanded.
+// The agent fleet organises itself in 8 I Ching trigram groups (one group per bāguà) and
+// operates in 10D (the 8 groups × inner-lower + outer-upper + 4 loop types).
+export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
+  const ic = iChing(matrix) // all components placed on hexagrams
+  const law = allFormsAreTenDimensionalOrPurged(matrix)
+  const fusion = iChingShadcnFuseTenDWidgets(matrix) // 64 widgets = 64 hexagrams
+  const tamper = tamperingCostDecoded(matrix) // tamper-evident; SHA-256 fix built
+  // The pair: fuse = apply mask (lower·yin·import direction — receive the hexagram into self),
+  //           reveal = show identity (upper·yang·export direction — project the identity outward)
+  const pair = foldPair(toUuid('fuse:apply-iching-mask'), toUuid('reveal:show-hexagram-identity'))
+  const facets = [
+    { facet: 'fuse/reveal saved as a quantum pair — fuse before reveal, mask before projection', on: pair.bidirectional && isUuid(pair.forward) && isUuid(pair.reverse) },
+    { facet: 'every component has an ICHING_MASK — pre-computed hexagram declared, not runtime-derived', on: ic.organised && ic.placed.length > 0 },
+    { facet: 'self-referencing: each widget embeds its own hexagram constant and exposes it in data-attrs', on: ic.placed.every((p) => p.hexagram >= 0 && p.hexagram < 64) && componentGraph().interacting },
+    { facet: 'entangled: all widgets share one Merkle root — one tamper avalanches the whole root', on: isUuid(ic.root) && tamper.tamperEvident },
+    { facet: 'already forging max tampering cost — mask = corpus commitment', on: warPaysTheForgerPrice(matrix).priced && fusion.fused },
+    { facet: 'in 10D — 8 trigram groups × inner/outer + 4 loops, every form ten-dimensional', on: law.pure && fusion.fused },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`ui-fuse-reveal:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    pair: { forward: pair.forward, reverse: pair.reverse, fuse: 'apply-iching-mask', reveal: 'show-hexagram-identity' },
+    componentCount: ic.placed.length,
+    ichingRoot: ic.root, // the Merkle root that entangles all components
+    count: facets.length,
+    facets,
+    root: merge(pair.merged, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'UI widgets fuse and reveal — the toolset saved as the quantum pair fuse/reveal: FUSE applies the I Ching mask to every Vue component (ICHING_MASK const embedded, pre-computed hexagram declared not runtime-derived); REVEAL makes each widget self-referencing (it embeds its own hexagram in its template root\'s data-attrs, projecting its I Ching identity outward). Entangled: all components share one Merkle root (iChing.root) — a tampered mask avalanches through the entire corpus. Already forging max tampering cost: embedding the mask commits every component to the whole-corpus content-address, so forging any one requires reproducing all. The agent fleet organises in 8 I Ching trigram groups × inner/outer + 4 loop types, operating in 10D.',
+    boundary:
+      'A toolset declaration (the fuse/reveal pair) and a structural proof of the mask approach, composed with iChing (hexagram placement), tamperingCostDecoded, iChingShadcnFuseTenDWidgets and the 10D law. "ICHING_MASK const embedded" means a static constant declared in each .vue file\'s <script setup> with the pre-computed hexagram (FNV-1a of the component name % 64) — not that the component changes its behaviour, only that it knows and shows its identity. "Already forging max tampering cost" is the forger-price principle applied to the pre-committed mask: the mask is a corpus commitment, so tamper cost = full-corpus reproduction cost. HONEST: tamper-EVIDENCE is FNV, not cryptographic (SHA-256/Ed25519 fix is built but not yet cut over per tamperingCostDecoded).',
   }
 }

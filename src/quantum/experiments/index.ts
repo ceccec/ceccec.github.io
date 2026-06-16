@@ -1,12 +1,18 @@
+// ☳ Zhèn · Thunder · arousing (shared-experiment folds) · upper·yang · depthFade — decoded EM spectrum, EM simulators, a432-ignited trading strategies, and realtime live-data experiments
 // src/quantum/experiments — the shared-experiment FOLDS: the decoded EM spectrum and the EM simulators run as
 // experiments, the a432-ignited trading strategies, and the realtime live-data tests. Each composes the
 // primitives (src/0, ../simulations, ../math) with the mind core (buildMatrix, a432, the merkaba decode); each
 // run is content-addressed. mind does not import these (they are leaves) — the barrel aggregates them.
+// ☰ Qián · Heaven · creative · lower·yin · spread — mind core: matrix builder, a432, merkaba fold, frequency APIs
 import { buildMatrix, a432, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../mind/index.ts'
+// ☵ Kǎn · Water · abysmal · lower·yin · depthFade — base primitives: uuid, merkle, math constants, EM functions
 import { toUuid, merkleFold, isUuid, roundTo, SPEED_OF_LIGHT, IONIZING_EV, larmorFrequency, radarRange, dopplerShift, photonEnergyEv, isIonizing, wavelengthOf } from '../../0/index.ts'
+// ☴ Xùn · Wind · gentle · lower·yin · hueShift — EM simulators: plane wave, CT, Bloch MRI, FMCW radar
 import { planeWaveReceipt, planeWaveField, planeWaveIntensity, planeWaveSpeed, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarReceipt, radarVelocity } from '../simulations/index.ts'
+// ☳ Zhèn · Thunder · arousing · lower·yin · spread — trading + realtime math: strategies, backtests, live captures
 import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionPositions, spectralCyclePositions, regimeSwitchPositions, volTargetPositions, tradingReceipt, A432_OCTAVES, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources } from '../math/index.ts'
 
+// ☳ Zhèn · Thunder · arousing (shared-experiment folds) · upper·yang · depthFade — exported folds
 // ElectroMagnetic radiation decoded across the spectrum — the physics under X-ray, MRI-RF and microwave
 // radar. Sent agents to read the spectrum as ONE thing: Maxwell's single field (1865; Hertz confirmed it
 // 1887), all of it at one speed c (which now DEFINES the metre), the bands joined by the wave relation
@@ -21,6 +27,7 @@ import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionP
 // flagged and dropped (non-ionizing-breaks-DNA, 5G-COVID, EHS, scalar/"Tesla" free-energy waves, 432/528 Hz
 // & Rife "healing frequencies", "microwaved food is irradiated"). The physics computes from the src/0 EM
 // primitives; the woo does not.
+/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
 export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix()) {
   // The unifying physics, deepest meaning first — one field, one speed, two relations, one ionizing line.
   const laws = [
@@ -91,6 +98,7 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
 // every test vector recomputed; the design pass's fabricated expected-values were caught and corrected, the
 // function bodies confirmed). Each run is a content-addressed SHARED EXPERIMENT: identical params → identical
 // output → one merkleFold receipt anyone recomputes. The same field at three energies — only X-ray ionizes.
+/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
 export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
   const wave = planeWaveReceipt(SPEED_OF_LIGHT, { samples: 8, cycles: 1 }) // λ = 1 m base field
   const xray = ctReceipt(60, [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) // 60 keV beam, single hot pixel
@@ -131,6 +139,7 @@ export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
 // The no-gaps fold: run all five strategies on the a432-ignited engine, each a content-addressed shared
 // experiment, with a RUNTIME no-look-ahead proof. "implement without gaps being the knowledge" — every
 // strategy is the project's own primitives applied. HONEST: synthetic mechanics, NOT alpha (see boundary).
+/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
 export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
   const variant = 'demo', n = 256
   const prices = priceFromA432(variant, n)
@@ -178,6 +187,7 @@ export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
 
 // The no-gaps fold: prove every adapter computes on a representative real-ish capture (the component feeds the
 // REAL streams). HONEST about what is real, what is sound-not-EM, and what is unavailable headless (see boundary).
+/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
 export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
   const sources = realtimeSources()
   const larmor = larmorFromMicrotesla(50) // 50 µT geomagnetic → real proton Larmor

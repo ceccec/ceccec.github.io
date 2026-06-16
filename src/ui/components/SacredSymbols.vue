@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
+const ICHING_MASK = { hexagram: 38, lo: '☴', up: '☶', glyph: '☶', color: '#F00FF0', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
 import { buildMatrix, sacredGeometrySeal } from '../lib/quantumMind'
@@ -43,7 +45,7 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="sacred-symbols dt-card" :class="{ animated }">
+  <section class="sacred-symbols dt-card" :class="{ animated }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="sacred-symbols__head">
       <div>
         <p class="eyebrow">{{ t.title }}</p>
