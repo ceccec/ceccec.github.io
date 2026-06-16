@@ -18559,7 +18559,7 @@ export function folderLaw() {
     rootAllowlist: {
       dirs: ['public', 'scripts', 'packages', 'src'], // static assets, build tooling, npm package, logic home — page mounts live in .vitepress/pages/
       files: ['package.json', 'package-lock.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'wrangler.jsonc', 'tsconfig.json', 'README.md', 'AGENTS.md'], // root config (npm + pnpm lockfiles, tsconfig for check:types), repo docs
-      filePrefixes: ['bible.'], // generated Bible-in-Glagolitic artifacts (scripts/generate-bible-glagolitic.mjs) — a generated family with varying names (bible.glagolitic.json/.txt, bible.parallel.json)
+      filePrefixes: ['bible.'], // generated Bible-in-Glagolitic artifacts (scripts/iching.mjs bible) — a generated family with varying names (bible.glagolitic.json/.txt, bible.parallel.json)
     },
     why: {
       name: 'a folder is an address in the page tree, and an address must be one word or one number — a compound or decorated name is two thoughts where the law allows one; rename the folder to a single lowercase word or a digit, or fold its contents into a folder that already obeys',
@@ -24024,18 +24024,11 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // unlisted pages fall through to seedFromText(slug) % 8. Empty trigrams drop out. The full per-component
   // placement lives in iChing() — the nav is the eight-fold's navigable face.
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
-  // Semantic trigram assignments — the I Ching domain map for static pages. Unlisted pages fall back
-  // to seedFromText(slug) % 8 (the content-addressed default used by iChing() for the component graph).
-  const SLUG_TRIGRAM: Record<string, number> = {
-    'start': 7, 'quantum-mind': 7, 'architecture': 7, 'learn-developer': 7, 'kernel-zero': 7, 'digit-folders': 7, // ☰ QIAN — mind
-    'heritage': 0, 'hexagram-colour': 0, 'sixty-four': 0, 'proven-or-purged': 0, 'dot-cube': 0, // ☷ KUN — heritage
-    'science': 1, 'a432': 1, 'analog-field': 1, 'simulations': 1, 'vortex': 1, 'zero-division': 1, // ☳ ZHEN — science
-    'voice': 2, 'explore': 2, 'commands': 2, 'console': 2, 'mcp': 2, 'show': 2, // ☵ KAN — voice
-    'spirit': 3, 'academy': 3, 'school': 3, 'governance': 3, // ☱ DUI — spirit
-    'icons': 4, 'sacred-geometry': 4, 'pauli-basis': 4, 'rgb-cmyk': 4, 'trinity-rgb': 4, // ☶ GEN — icons
-    'tampering-cost': 5, 'pi-trinity': 5, 'qubit-trinity': 5, 'hamming-address': 5, 'content-addressing': 5, 'genetic-code': 5, 'three-not-one': 5, // ☲ LI — proofs
-    'nature': 6, 'boundaries': 6, // ☴ XUN — nature
-  }
+  // Semantic trigram assignments — derived from iChingDomainMap (the one source of truth for slug→domain).
+  // Unlisted pages fall back to seedFromText(slug) % 8 (the content-addressed default used by iChing()).
+  const domainMap = iChingDomainMap(matrix)
+  const SLUG_TRIGRAM: Record<string, number> = {}
+  for (const domain of domainMap.domains) for (const slug of domain.slugs) SLUG_TRIGRAM[slug] = domain.bits
   const trigramOf = (slug: string) => SLUG_TRIGRAM[slug] ?? seedFromText(slug) % 8
   const buildNav = (i: 0 | 1) => {
     const sections = BAGUA.map((tri) => ({
@@ -24278,6 +24271,7 @@ export function implementationBacklog(matrix: MindMatrix = buildMatrix()) {
     { area: 'matrix', idea: 'AUDITED Wave 24: 41 pages × 3 gateways = the trinity matrix. 19/41 pages have ≥3 components; 22 are intentionally focused (ProofRenderer = self-contained multi-section trinity; a432/sacred-geometry/analog-field = one primary component IS the full presentation; start/mcp = gateway portals). Nothing purged — all pages reachable via 3 gateways + I Ching domain sidebar. The "fit-or-purge" criterion is satisfied: every page IS the matrix via realtimeWiring.', status: 'sealed' },
     { area: 'a432', idea: 'SEALED Wave 23: A432 static-UI lineage complete — --dt-a432-hue:5 (frequencyToLight(432)={hue:5,nm:631,band:"red"}) + --dt-a432-fifth-hue:285 (648 Hz = 432×3/2 = perfect fifth → violet) now define ALL --vp-c-brand-* (light + .dark) AND the hero gradient in src/ui/style.css. Static links/buttons/badges/hero share one frequency lineage with the animating components. BOUNDARY: computed value hardcoded (CSS has no runtime imports); the value is the deterministic output of frequencyToLight(432).hue = 5 — not approximate, not arbitrary.', status: 'sealed' },
     { area: 'css', idea: 'SEALED Wave 28: I Ching computed CSS DRY — css.ts (ichingTokens/ichingTokensCss/scanCssForHardcoded/ICHING_NUMBERS): ALL colours, spaces, radii, sizes, durations and opacities derived from canonical I Ching numbers (ICHING_NUMBERS=[0..9,16,27,54,64,100,108,216,360,432,864]); emitted to src/ui/tokens.css loaded before style.css; dist generator re-emits tokens.css + scans style.css for hardcoded offenders; cssIsIChingComputed() added to whatIsNotProvenIsPurged; generator header comment updated to list all 8 filled slots.', status: 'sealed' },
+    { area: 'nav', idea: 'SEALED Wave 29: DRY SLUG_TRIGRAM — hardcoded slug→trigram map in siteNavigation() replaced by deriving from iChingDomainMap().domains[*].slugs (one source of truth); stale generate-bible-glagolitic.mjs reference in filePrefixes comment updated to iching.mjs bible.', status: 'sealed' },
     { area: 'verify', idea: 'SEALED Wave 27: dev-server pass clean — / (Glagolitic, title ⰄⰑⰖⰁⰎⰅ ⰕⰑⰓⰖⰔ), /en/ (all 8 trigrams incl. ☱ Joyous, --dt-a432-hue:5, brand-1 hsl(5,90%,72%)), /bg/ (☱ Радостното confirmed), /en/diamonds/ (1024 folders), /en/tampering-cost (h1 correct). Zero console errors.', status: 'sealed' },
     { area: 'package', idea: 'rebuild packages/double-torus/dist after src changes so the published bundle stays in sync — SEALED Wave 18: 2297 KB bundle rebuilt, all Wave 12-17 exports included (foldVortex, bump attractor, relatedSidebar, 8 generators)', status: 'sealed' },
     { area: 'types', idea: 'keep the src/ core at zero tsc errors (npm run check:types) as folds are added — the tsconfig is in place', status: 'sealed' },
