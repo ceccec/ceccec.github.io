@@ -88,9 +88,9 @@ features:
 
 <!-- The homepage is the double torus showing itself. Above this body, the holographic hero animates in ten
      dimensions (four genus-2 homology loops + six cross-fold axes), self-similar at every scale. Below, the
-     whole portal organised by the I Ching eight-fold (bāguà): seven of the eight domains — ☵ experience,
-     ☳ science, ☶ geometry, ☲ proofs, ☰ architecture, ☷ heritage, ☴ nature — each a sealed dual-pair module
-     in src. Nothing removed; reorganised by the ancient eight-fold. -->
+     whole portal organised by the I Ching eight-fold (bāguà): all eight domains — ☵ experience,
+     ☳ science, ☶ geometry, ☲ proofs, ☰ architecture, ☷ heritage, ☴ nature, ☱ spirit — each a sealed
+     dual-pair module in src. Nothing removed; reorganised by the ancient eight-fold. -->
 
 ## ☵ The Abysmal — Voice & Experience
 
@@ -225,3 +225,15 @@ Real telemetry, honestly: the device as four merkabas (CPU·GPU·memory·storage
 <DeviceDashboard />
 
 <HumanLens />
+
+## ☱ The Joyous — Spirit & Dimensions
+
+### Dualities, polarities and the spirit decoded
+
+Sixteen duality pairs in three tiers (structural · experiential · cosmological), the yin-yang as a live rotation of opposite energies, and the seven chakras as a documented energy model — each a deterministic computation from the source, spiritual interpretations flagged.
+
+<Dualities />
+
+<YinYang />
+
+<ChakrasAura />
