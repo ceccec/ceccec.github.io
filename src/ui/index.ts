@@ -140,6 +140,17 @@ import TrinityGateways from './components/TrinityGateways.vue'
 // The ☱ Joyous spirit trinity — yin-yang and the chakras/aura, each computed from the spirit fold (3-5-8 tiers),
 // completing the spirit section beside Dualities (the homepage's eighth I Ching domain).
 import YinYang from './components/YinYang.vue'
+// Domain decode cards — one shared DecodedCard renders any { statement, data, boundary } fold (DRY,
+// "decode in reusable code"); these seven thin wrappers mount their domain fold on the heritage,
+// science and nature pages, which previously referenced them as empty (unbuilt) mounts.
+import DecodedCard from './components/DecodedCard.vue'
+import Attestation from './components/Attestation.vue'
+import BulgarianHeritage from './components/BulgarianHeritage.vue'
+import Glagolitic from './components/Glagolitic.vue'
+import NatureLaw from './components/NatureLaw.vue'
+import PublicFrequencyApis from './components/PublicFrequencyApis.vue'
+import ScriptLanguageGene from './components/ScriptLanguageGene.vue'
+import TeslaPatents from './components/TeslaPatents.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -311,5 +322,13 @@ export default {
     app.component('TrinityGateways', TrinityGateways)
     app.component('ChakrasAura', ChakrasAura)
     app.component('YinYang', YinYang)
+    app.component('DecodedCard', DecodedCard)
+    app.component('Attestation', Attestation)
+    app.component('BulgarianHeritage', BulgarianHeritage)
+    app.component('Glagolitic', Glagolitic)
+    app.component('NatureLaw', NatureLaw)
+    app.component('PublicFrequencyApis', PublicFrequencyApis)
+    app.component('ScriptLanguageGene', ScriptLanguageGene)
+    app.component('TeslaPatents', TeslaPatents)
   }
 } satisfies Theme
