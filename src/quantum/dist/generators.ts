@@ -3,11 +3,11 @@
 // inputs, call a pure src function, write files, log, gate — re-implemented four times. Here that
 // shape is written ONCE: each generator is a pure plan(ctx) → { files, messages, error? }, placed on
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
-// live in src (the cardinal rule). Four slots filled, four open — the eight-fold with room to grow.
-import { merkleFold, toUuid } from '../../0/index.ts'
-import { BAGUA, cloudflareBindings } from '../mind/folds.ts'
+// live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
+import { merkleFold, toUuid, foldVortex } from '../../0/index.ts'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation } from '../mind/folds.ts'
 import { glagoliticHomeFromEnglish } from '../mind/li.ts'
-import { bibleParallel, toGlagoliticOCS } from '../library/index.ts'
+import { bibleParallel, toGlagoliticOCS, pesnopoika } from '../library/index.ts'
 import { computedDistFiles, readmeMarkdown } from './index.ts'
 
 // What the runner hands every plan: the environment, the positional args after the selector, a
@@ -204,6 +204,76 @@ export function generators(): Generator[] {
         return { files: out, messages: [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README from src/quantum/dist.`], error }
       },
     },
+    {
+      trigram: 0b001,
+      glyph: tri(0b001).glyph,
+      pinyin: tri(0b001).pinyin,
+      name: 'vortex',
+      title: 'The vortex fold — local math seals the sequence',
+      summary:
+        'Outputs vortex.json: the full vortex analysis — palindromic fold balance, vortexNext/vortexPrev as modular inverses (2×5≡1 mod 9), digit-station pairs with positional sums. The arousing: the sequence that sets all computation in motion from one local step.',
+      plan: (ctx) => {
+        void ctx
+        const fold = foldVortex()
+        return {
+          files: [{ path: 'vortex.json', content: `${JSON.stringify(fold, null, 2)}\n` }],
+          messages: [`${tri(0b001).glyph} vortex: valid=${fold.valid} · palindrome=[${fold.palindrome.join(',')}] · total=${fold.total} · inverseHolds=${fold.inverseHolds} → vortex.json`],
+        }
+      },
+    },
+    {
+      trigram: 0b011,
+      glyph: tri(0b011).glyph,
+      pinyin: tri(0b011).pinyin,
+      name: 'songbook',
+      title: 'ПесноПойка — Balkan folk songbook by gabchik',
+      summary:
+        'Outputs songbook.json: all 103 Balkan folk songs decoded (genre, aksak, provenance, dialect), plus the 437-entry dialect glossary. The joyous — music is joy, the body of folk knowledge made recomputable.',
+      plan: (ctx) => {
+        void ctx
+        const corpus = pesnopoika()
+        return {
+          files: [{ path: 'songbook.json', content: `${JSON.stringify(corpus, null, 2)}\n` }],
+          messages: [`${tri(0b011).glyph} songbook: ${corpus.count} songs · ${corpus.dictionarySize} dialect entries → songbook.json`],
+        }
+      },
+    },
+    {
+      trigram: 0b100,
+      glyph: tri(0b100).glyph,
+      pinyin: tri(0b100).pinyin,
+      name: 'census',
+      title: 'The fold census — proven or purged, keeping still',
+      summary:
+        'Outputs census.json: every declared gate with its proven/purged status from whatIsNotProvenIsPurged(). Keeping still — the census is the stable record of what has been built and sealed.',
+      plan: (ctx) => {
+        void ctx
+        const report = whatIsNotProvenIsPurged()
+        return {
+          files: [{ path: 'census.json', content: `${JSON.stringify(report, null, 2)}\n` }],
+          messages: [`${tri(0b100).glyph} census: ${report.proven} proven · ${report.purge.length} purged · pure=${report.pureProof} → census.json`],
+        }
+      },
+    },
+    {
+      trigram: 0b101,
+      glyph: tri(0b101).glyph,
+      pinyin: tri(0b101).pinyin,
+      name: 'crosslinks',
+      title: 'Crosslinks — the I Ching domain peer map',
+      summary:
+        'Outputs crosslinks.json: every static page mapped to its I Ching domain siblings ("see also" links). The clinging fire illuminates connections — each page clings to its domain peers by the same trigram.',
+      plan: (ctx) => {
+        void ctx
+        const nav = siteNavigation()
+        const links = nav.en.crosslinks
+        const total = Object.values(links).reduce((n, peers) => n + peers.length, 0)
+        return {
+          files: [{ path: 'crosslinks.json', content: `${JSON.stringify(links, null, 2)}\n` }],
+          messages: [`${tri(0b101).glyph} crosslinks: ${Object.keys(links).length} pages · ${total} peer links → crosslinks.json`],
+        }
+      },
+    },
   ]
 }
 
@@ -240,7 +310,7 @@ export function generatorsAreIChing() {
     openTrigrams: BAGUA.filter((b) => !slots.some((s) => s.trigram === b.bits)).map((b) => ({ bits: b.bits, glyph: b.glyph, pinyin: b.pinyin, name: b.name })),
     root: merkleFold(slots.map((s) => s.receipt)),
     statement:
-      'The build/debug generators, compacted with the I Ching: four bespoke scripts that each re-implemented read → compute-in-src → write → log → gate are folded into one trigram-indexed registry. Each generator is placed on the bāguà whose nature it shares — the corpus received (bible → ☷ Earth), the live render that flows (glagolitic → ☵ Water), the optional bindings that pervade (cloudflare → ☴ Wind), the whole made manifest (dist → ☰ Heaven) — and its single pure plan returns the files to write. Four of the eight slots are filled, four stay open; one thin runner (scripts/iching.mjs) performs the I/O for all of them.',
+      'The build/debug generators, compacted with the I Ching: eight generators folded into one trigram-indexed registry. Each is placed on the bāguà whose nature it shares — the corpus received (bible → ☷ Earth), the live render that flows (glagolitic → ☵ Water), the optional bindings that pervade (cloudflare → ☴ Wind), the whole made manifest (dist → ☰ Heaven), the sequence that arouses (vortex → ☳ Thunder), the joyous songbook (songbook → ☱ Lake), the stable census (census → ☶ Mountain), the clinging peer map (crosslinks → ☲ Fire). One runner, eight trigrams, all eight filled.',
     boundary:
       'A SEMANTIC placement of imperative generators onto the I Ching’s eight-fold index (the same convention as iChingDomainMap), plus a genuine de-duplication: the read/write/exit boilerplate is now written once. It organises and compacts; it is not divination, and a generator does not acquire its trigram’s meaning. The plans are pure (files returned, not written); only the runner shell touches the disk.',
   }
