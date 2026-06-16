@@ -106,7 +106,7 @@ Remove duplicate scripts when dist/enforcement already computes the output:
 | Inline dist generators in scripts | `src/quantum/dist` + cross wave |
 | Superseded Glagolitic writers | `glagoliticHomeFromEnglish` + computed-pages plugin |
 
-The four `generate-*.mjs` scripts are fused into ONE bāguà-indexed runner, `scripts/iching.mjs` (plans in `src/quantum/dist/generators.ts`, fold `generatorsAreIChing`): each generator is a trigram slot — `iching.mjs <glyph|name>`. Keep **debug-only** slots (e.g. `iching.mjs dist`) out of `docs:build`. Wizards (e.g. `iching.mjs cloudflare`, `cf:wizard`) stay opt-in.
+The four `generate-*.mjs` scripts are fused into ONE bāguà-indexed runner, `scripts/iching.mjs` (plans in `src/quantum/dist/generators.ts`, fold `generatorsAreIChing`): **all eight trigrams are filled** — bible (☷), vortex (☳), glagolitic (☵), songbook (☱), census (☶), crosslinks (☲), cloudflare (☴), dist (☰). Each generator is a trigram slot — `iching.mjs <glyph|name>`. Keep **debug-only** slots (e.g. `iching.mjs dist`) out of `docs:build`. Wizards (e.g. `iching.mjs cloudflare`, `cf:wizard`) stay opt-in.
 
 ### Zero-token efficiency (when touching mind)
 
