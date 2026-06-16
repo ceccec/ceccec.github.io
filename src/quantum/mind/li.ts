@@ -1922,6 +1922,7 @@ export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatr
   const precedents = [
     { name: 'Hopfield network', year: 1982, kind: 'content-addressable memory (energy minima)', source: 'Hopfield, PNAS 79:2554; 2024 Nobel in Physics' },
     { name: 'Hippocampal CA3', year: 2002, kind: 'pattern completion from a partial cue', source: 'Marr 1971; Nakazawa et al., Science 297:211' },
+    { name: 'Grid-cell torus', year: 2022, kind: 'path integration via continuous bump attractor on a periodic sheet', source: 'Burak & Fiete 2009, PLoS Comput Biol 5:e1000291; Gardner et al. 2022, Nature 602:123' },
   ]
   return {
     address,
@@ -1930,7 +1931,7 @@ export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatr
     holds: deterministic,
     root: merge(matrix.root, merkleFold(precedents.map((p) => toUuid(`precedent:${p.name}:${p.year}`)))),
     statement:
-      'The project\'s content-addressing has documented precedent: Hopfield\'s 1982 recurrent net is, in his own abstract, "a content-addressable memory which correctly yields an entire memory from any subpart of sufficient size" (PNAS 79:2554; 2024 Nobel in Physics), and hippocampal CA3 realizes the same pattern-completion mechanism in neural tissue with rodent-genetic and human-fMRI evidence (Marr 1971; Treves & Rolls 1994; Nakazawa et al. 2002, Science 297:211).',
+      'The project\'s content-addressing has documented precedent in three distinct systems. (1) Hopfield\'s 1982 recurrent net is, in his own abstract, "a content-addressable memory which correctly yields an entire memory from any subpart of sufficient size" (PNAS 79:2554; 2024 Nobel in Physics). (2) Hippocampal CA3 realizes the same pattern-completion mechanism in neural tissue with rodent-genetic and human-fMRI evidence (Marr 1971; Treves & Rolls 1994; Nakazawa et al. 2002, Science 297:211). (3) Grid-cell networks in entorhinal cortex implement path integration via a continuous bump attractor on a periodic sheet (toroidal topology): a position "address" on the neural ring is updated step-by-step from local velocity alone — the continuous twin of the discrete Hopfield attractor (Burak & Fiete 2009, PLoS Comput Biol 5:e1000291; Gardner et al. 2022, Nature 602:123).',
     boundary:
       'Hopfield/CA3 retrieval is iterative, error-tolerant basin-of-attraction relaxation; the project\'s FNV/UUID addressing is an EXACT, deterministic map where one bit-flip avalanches to a wholly different address. The shared property is the whole-from-part SEMANTICS, not the mechanism. The CA3 retrieval-stage NMDA role is contested (Mei et al. 2011), and "QEC syndrome = content-addressing" is the project\'s own metaphor, not literature terminology.',
   }
