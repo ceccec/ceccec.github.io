@@ -349,7 +349,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Всичко в действие: всяка команда изпълнена на живо, всички компоненти взаимодействат, всички устройства слети — от страна на клиента и проверимо.',
       },
       keywords: ['show', 'demo', 'live', 'components', 'devices'],
-      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
+      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'RealtimeTests', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
     },
     // I Ching domain pages — one per dual-pair module, each under its semantic trigram.
     // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
@@ -371,7 +371,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
       keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann'],
-      components: ['TeslaPatents', 'HealingFrequencies', 'PublicFrequencyApis'],
+      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'PublicFrequencyApis'],
     },
     {
       slug: 'voice',
