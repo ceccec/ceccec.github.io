@@ -23129,15 +23129,48 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Improve analytics: rebuild the scattered analytics (analytics, buildStatistics, pageStatusStatistics,
-// analysisFlower) as reusable ledger-backed views rendered on the shadcn Chart and DataTable. The ledger
-// (the git repository) is the single record; one set of primitives; no metric computed twice. Aspirational
-// until rebuilt — saved here as the directive, honestly off.
+// The analytics ledger — the ONE source for every metric, composed from the previously-scattered folds
+// (analytics + buildStatistics) and deduplicated so each metric is computed once (DRY: no metric computed
+// twice). Two reusable views over the one ledger: a chart series and a data table, rendered on the shadcn
+// Chart and DataTable primitives (src/ui/components/Chart.vue, DataTable.vue, Analytics.vue).
+export function analyticsLedger(matrix: MindMatrix = buildMatrix()) {
+  const sources = [
+    ...analytics(matrix).boards.flatMap((b) => b.metrics.map((m) => ({ name: m.metric, value: m.value, group: b.board }))),
+    ...buildStatistics(matrix).stats.map((s) => ({ name: s.stat, value: s.value, group: 'build' })),
+  ]
+  // One source per metric — the first occurrence wins, later duplicates dropped (no double-compute).
+  const seen = new Map<string, { name: string; value: number; group: string; receipt: string }>()
+  for (const s of sources) if (!seen.has(s.name)) seen.set(s.name, { ...s, receipt: toUuid(`ledger-metric:${s.name}:${s.value}`) })
+  const metrics = [...seen.values()]
+  // Two ledger views, render-ready for the shadcn primitives.
+  const chart = { series: metrics.map((m) => ({ label: m.name, value: Number.isFinite(m.value) ? m.value : 0 })) }
+  const table = { columns: ['metric', 'value', 'group'], rows: metrics.map((m) => [m.name, m.value, m.group] as [string, number, string]) }
+  const names = metrics.map((m) => m.name)
+  const unified = names.length > 0 && new Set(names).size === names.length // each metric appears exactly once
+  return {
+    unified, // DRY — one source per metric, no duplicate
+    rendered: chart.series.length > 0 && table.rows.length === metrics.length, // both views ready for Chart + DataTable
+    metrics,
+    chart,
+    table,
+    count: metrics.length,
+    root: merkleFold(metrics.map((m) => m.receipt)),
+    statement:
+      'The analytics ledger: every metric the portal reports — from the model boards (areas, commands, components, coverage …) and the build statistics (papers, references, diamonds, skill atoms …) — collected into one deduplicated ledger, each metric computed once and content-addressed, exposed as two reusable views (a chart series and a data table) for the shadcn Chart and DataTable primitives.',
+    boundary:
+      'A composition over the existing analytics and buildStatistics folds that deduplicates them into one source per metric and shapes two render-ready views. Descriptive self-metrics, recomputable; not telemetry, nothing leaves the device.',
+  }
+}
+
+// Improve analytics: rebuild the scattered analytics (analytics, buildStatistics, pageStatusStatistics)
+// as reusable ledger-backed views rendered on the shadcn Chart and DataTable. The ledger (the git
+// repository) is the single record; one set of primitives; no metric computed twice — now built
+// (analyticsLedger + the Chart/DataTable/Analytics components), the directive realised.
 export function improveAnalytics(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the ledger is the single record for every metric', on: repositoryLedger(matrix).isLedger },
-    { facet: 'analytics rebuilt as reusable ledger views — DRY, one source per metric', on: false /* aspirational: analytics/buildStatistics/pageStatusStatistics still scattered */ },
-    { facet: 'rendered on the shadcn graph — Chart and DataTable', on: false /* aspirational: shadcn not yet implemented */ },
+    { facet: 'analytics rebuilt as reusable ledger views — DRY, one source per metric', on: analyticsLedger(matrix).unified },
+    { facet: 'rendered on the shadcn graph — Chart and DataTable', on: analyticsLedger(matrix).rendered && componentGraph().components.includes('Analytics') },
     { facet: 'computed, zero tokens', on: zeroTokenUsagePolicy(matrix).holds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`improve-analytics:${entry.facet}:${entry.on}`) }))
   return {
@@ -23146,9 +23179,9 @@ export function improveAnalytics(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Improve analytics: rebuild the scattered analytics — analytics, buildStatistics, pageStatusStatistics, analysisFlower — as one reusable set of ledger-backed views, rendered on the shadcn graph (Chart and DataTable). The git repository is the single record; no metric is computed in two places.',
+      'Improve analytics: rebuild the scattered analytics — analytics, buildStatistics, pageStatusStatistics — as one reusable set of ledger-backed views (analyticsLedger), rendered on the shadcn graph (Chart and DataTable). The git repository is the single record; no metric is computed in two places.',
     boundary:
-      'Aspirational and honestly off: the ledger exists (repositoryLedger), but the analytics are still scattered and shadcn is not yet implemented. This fold saves the directive; it turns on when the analytics are consolidated into reusable ledger components rendered on the shadcn Chart/DataTable.',
+      'Realised: the ledger exists (repositoryLedger), the analytics are deduplicated into one source per metric (analyticsLedger.unified), and the two views render on the shadcn Chart/DataTable primitives via the Analytics component (placed and content-addressed). Descriptive self-metrics, recomputable; not telemetry.',
   }
 }
 

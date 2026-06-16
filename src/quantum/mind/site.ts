@@ -258,8 +258,8 @@ export function staticPages(): StaticPage[] {
         en: 'Formal architecture for the double-torus UUID stream: matrix, vector, diamonds, waves, gates, schema, and self-build.',
         bg: 'Формална архитектура за двойния тор UUID поток: матрица, вектор, диаманти, вълни, порти, схема и само-изграждане.',
       },
-      keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema'],
-      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar'],
+      keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema', 'analytics'],
+      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar', 'Analytics'],
     },
     {
       slug: 'commands',

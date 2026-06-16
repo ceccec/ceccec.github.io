@@ -140,6 +140,11 @@ import TrinityGateways from './components/TrinityGateways.vue'
 // The ☱ Joyous spirit trinity — yin-yang and the chakras/aura, each computed from the spirit fold (3-5-8 tiers),
 // completing the spirit section beside Dualities (the homepage's eighth I Ching domain).
 import YinYang from './components/YinYang.vue'
+// Analytics rebuilt as reusable ledger views (analyticsLedger) rendered on the shadcn Chart + DataTable
+// primitives — themed with the site CSS variables (no Tailwind, no preflight conflict).
+import Chart from './components/Chart.vue'
+import DataTable from './components/DataTable.vue'
+import Analytics from './components/Analytics.vue'
 // Domain decode cards — one shared DecodedCard renders any { statement, data, boundary } fold (DRY,
 // "decode in reusable code"); these seven thin wrappers mount their domain fold on the heritage,
 // science and nature pages, which previously referenced them as empty (unbuilt) mounts.
@@ -322,6 +327,9 @@ export default {
     app.component('TrinityGateways', TrinityGateways)
     app.component('ChakrasAura', ChakrasAura)
     app.component('YinYang', YinYang)
+    app.component('Chart', Chart)
+    app.component('DataTable', DataTable)
+    app.component('Analytics', Analytics)
     app.component('DecodedCard', DecodedCard)
     app.component('Attestation', Attestation)
     app.component('BulgarianHeritage', BulgarianHeritage)
