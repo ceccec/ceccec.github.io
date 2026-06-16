@@ -1,7 +1,6 @@
 import type { Plugin } from 'vite'
 import { computedPagesPlugin } from './computed-pages.mts'
 import { vitePlugin as distRouter } from '../src/quantum/dist/index.ts'
-import { vitePlugin as enforcementRouter } from '../src/quantum/enforcement/index.ts'
 
 // One index serves all: each src folder's index is a quantum VitePress router — it routes a request to
 // its computed, content-addressed output and wires itself into VitePress (dev middleware and/or buildEnd).
@@ -15,12 +14,15 @@ import { vitePlugin as enforcementRouter } from '../src/quantum/enforcement/inde
 //                             `export * from './folds.ts'` — one index serves all its folds.)
 //   src/quantum/dist        → dist router — pathname → computed sitemap · robots · mcp.json · skills.json ·
 //                             llms.txt · digit-index · /api, served live at dev.
-//   src/quantum/enforcement → enforcement router — buildEnd runs the cross · fold · weave trinity.
+//
+// src/quantum/enforcement is NOT a build plugin: its cross · fold · weave trinity runs as a post-build
+// script (scripts/enforcement-trinity.mjs, wired into docs:build AFTER `vitepress build`), so the weave
+// wave's dist checks read the REAL SSG output — including the computed home at dist/index.html — instead
+// of a stale dist. A plugin buildEnd runs before VitePress writes the HTML; the script runs after.
 export function srcFolderPlugins(projectRoot: string, siteUrl = process.env.SITE_URL || 'https://ceccec.github.io'): Plugin[] {
   const routers: { folder: string; plugin: Plugin }[] = [
     { folder: 'src/quantum/mind', plugin: computedPagesPlugin(projectRoot) as Plugin },
     { folder: 'src/quantum/dist', plugin: distRouter(siteUrl) },
-    { folder: 'src/quantum/enforcement', plugin: enforcementRouter(projectRoot) },
   ]
   return routers.map((entry) => entry.plugin)
 }
