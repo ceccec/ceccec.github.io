@@ -150,6 +150,13 @@ import Analytics from './components/Analytics.vue'
 // science and nature pages, which previously referenced them as empty (unbuilt) mounts.
 import DecodedCard from './components/DecodedCard.vue'
 import Attestation from './components/Attestation.vue'
+// Session wave widgets — each fold sealed as a self-referencing 10D widget with LayersPanel controls
+import AlgebraDigits from './components/AlgebraDigits.vue'
+import Biology from './components/Biology.vue'
+import FuseReveal from './components/FuseReveal.vue'
+import HarmonicFractions from './components/HarmonicFractions.vue'
+import IChingImportExport from './components/IChingImportExport.vue'
+import ImperialFractions from './components/ImperialFractions.vue'
 import BulgarianHeritage from './components/BulgarianHeritage.vue'
 import Glagolitic from './components/Glagolitic.vue'
 import NatureLaw from './components/NatureLaw.vue'
@@ -332,6 +339,12 @@ export default {
     app.component('Analytics', Analytics)
     app.component('DecodedCard', DecodedCard)
     app.component('Attestation', Attestation)
+    app.component('AlgebraDigits', AlgebraDigits)
+    app.component('Biology', Biology)
+    app.component('FuseReveal', FuseReveal)
+    app.component('HarmonicFractions', HarmonicFractions)
+    app.component('IChingImportExport', IChingImportExport)
+    app.component('ImperialFractions', ImperialFractions)
     app.component('BulgarianHeritage', BulgarianHeritage)
     app.component('Glagolitic', Glagolitic)
     app.component('NatureLaw', NatureLaw)

@@ -2,6 +2,7 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 37, lower: 5, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'keeping still', innerAxis: 'breath', outerAxis: 'shrink', color: '#F00F0F' } as const
 import DecodedCard from './DecodedCard.vue'
+import LayersPanel from './LayersPanel.vue'
 import { uiWidgetsFuseReveal } from '../lib/quantumMind'
 
 const d = uiWidgetsFuseReveal()
@@ -15,12 +16,14 @@ const items = [
 
 <template>
   <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <DecodedCard
-      eyebrow="fuse · reveal · widgets entangled"
-      eyebrow-bg="слей · разкрий · джаджи преплетени"
-      :statement="d.statement"
-      :items="items"
-      :boundary="d.boundary"
-    />
+    <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
+      <DecodedCard
+        eyebrow="fuse · reveal · widgets entangled"
+        eyebrow-bg="слей · разкрий · джаджи преплетени"
+        :statement="d.statement"
+        :items="filtered"
+        :boundary="d.boundary"
+      />
+    </LayersPanel>
   </section>
 </template>

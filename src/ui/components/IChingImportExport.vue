@@ -2,6 +2,7 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 30, lower: 6, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'hueShift', outerAxis: 'twist', color: '#0FFFF0' } as const
 import DecodedCard from './DecodedCard.vue'
+import LayersPanel from './LayersPanel.vue'
 import { iChingImportExportTenD } from '../lib/quantumMind'
 
 const d = iChingImportExportTenD()
@@ -15,12 +16,14 @@ const items = [
 
 <template>
   <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <DecodedCard
-      eyebrow="I Ching · import/export · 10D"
-      eyebrow-bg="И Дзин · внос/износ · 10И"
-      :statement="d.statement"
-      :items="items"
-      :boundary="d.boundary"
-    />
+    <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
+      <DecodedCard
+        eyebrow="I Ching · import/export · 10D"
+        eyebrow-bg="И Дзин · внос/износ · 10И"
+        :statement="d.statement"
+        :items="filtered"
+        :boundary="d.boundary"
+      />
+    </LayersPanel>
   </section>
 </template>

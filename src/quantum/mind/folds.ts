@@ -7600,7 +7600,7 @@ export function componentGraph() {
   // DecodedCard) or mounted on the corpus dynamic [id] routes (the detail/index views). They are real
   // components with .vue files, declared so the weave wave sees every .vue, and marked 'composed' so they
   // are not flagged as orphan — they ARE used, just not directly placed on a static page.
-  const composed = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex']
+  const composed = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex']
   const components = [...new Set([...globals, ...Object.values(placements).flat(), ...composed])]
   const edges: { from: string; to: string; kind: 'global' | 'placed' | 'composed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
@@ -17439,6 +17439,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'algebra.and.binary.prove.each.other', on: algebraAndBinaryProveEachOther(matrix).proved },
     { d: 'harmonic.fractions.in.digit.folders', on: harmonicFractionsInDigitFolders(matrix).proved },
     { d: 'imperial.fractions.decoded', on: imperialFractionsDecoded(matrix).proved },
+    { d: 'widget.dimension.controls', on: widgetDimensionControls(matrix).controlled },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   return {
@@ -26088,5 +26089,46 @@ export function imperialFractionsDecoded(matrix: MindMatrix = buildMatrix()) {
       'Imperial fractions decoded: the imperial system is the vortex generator 2 applied to human-body base units — inch=thumb (uncia), foot=foot, yard=arm-span. All standard subdivisions (1/2, 1/4, 1/8, 1/16 of an inch) are the first three forward vortex ratios (all = 1/2) repeated — pure powers of the vortex generator. The foot = 3×4 = twelve inches, where 3 and 4 are vortex digits at positions [6] and [2], giving the most divisible 2-factor integer (12 divides by 1,2,3,4,6,12). The pound = 2⁴ = 16 oz and gallon = 2³ = 8 pints are pure vortex-generator powers. Metric uses 10^n (the decimal/void base), imperial uses 2^n (the vortex generator). Both are exact rational systems — imperial fractions need no decimals, only halvings. The body IS the original analog; the fractions keep it exact.',
     boundary:
       'HONEST: the imperial system evolved empirically over centuries (inch, foot, yard have different historical origins: Roman uncia, Anglo-Saxon foot, girdle-measure yard); the vortex connection (3×4 = foot, 2^n subdivisions) is a mathematical observation, not the cause of the system. 12 = 3×4 = 2²×3 being "maximally divisible" is a true arithmetic fact (12 has 6 divisors, more than any smaller integer) and IS the likely reason for 12-based systems (Babylonian base-60 for the same reason: 60 = 2²×3×5 has 12 divisors). "5 is the heart" in imperial measure: the hand = 4 in and the rod = 5½ yards embed 5 in proportion, but this is weaker than the ring-algebra claim. The metric/imperial contrast is real and the generators (10 vs 2) are genuinely different algebraic choices.',
+  }
+}
+
+// WIDGET DIMENSION CONTROLS — each widget gets a layer panel, like Photoshop / video editing.
+// The 10 I Ching dimensions become 10 interactive layers: eye-toggle per layer + 0-10D depth slider.
+// inner group (0-2): spread·depthFade·hueShift = lower trigram / yin / import direction
+// outer group (3-5): twist·shrink·breath = upper trigram / yang / export direction
+// loop group (6-9): loopA1·loopB1·loopA2·loopB2 = dependency flow types (homology loops)
+// Distribution formula: item i of N maps to dimension floor(i*10/N) — N items distributed evenly.
+// useLayers() composable + LayersPanel.vue implement this; ICHING_MASK.color = accent for native layers.
+export function widgetDimensionControls(matrix: MindMatrix = buildMatrix()) {
+  const dims = allFormsAreTenDimensionalOrPurged(matrix)
+  const iching = iChing(matrix)
+  const layerNames = DIMENSION_NAMES
+  const innerGroup = DIMENSION_NAMES.slice(0, 3) // yin · lower trigram
+  const outerGroup = DIMENSION_NAMES.slice(3, 6) // yang · upper trigram
+  const loopGroup = DIMENSION_NAMES.slice(6)     // dependency loops
+  const testDist = (n: number) => Array.from({ length: n }, (_, i) => Math.min(Math.floor((i * 10) / n), 9))
+  const dist5 = testDist(5)
+  const dist10 = testDist(10)
+  const dist2 = testDist(2)
+  const facets = [
+    { facet: 'inner group (0-2) = lower trigram yin — spread, depthFade, hueShift', on: innerGroup.length === 3 && dims.pure },
+    { facet: 'outer group (3-5) = upper trigram yang — twist, shrink, breath', on: outerGroup.length === 3 },
+    { facet: 'loop group (6-9) = dependency flows — loopA1, loopB1, loopA2, loopB2', on: loopGroup.length === 4 },
+    { facet: '0D = nothing shown · 10D = all 10 layers fused — the full hologram', on: dist10.every((d, i) => d === i) },
+    { facet: 'distribution formula: N items map evenly across 10 dimensions — depth controls the fold', on: dist5[0] === 0 && dist5[4] === 8 && dist2[0] === 0 && dist2[1] === 5 },
+    { facet: 'each widget ICHING_MASK.color accents its native layers — identity is the color', on: iching.placed.every((p) => p.hexagram >= 0) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`widget-dim-ctrl:${entry.facet}:${entry.on}`) }))
+  return {
+    controlled: facets.every((entry) => entry.on),
+    layerNames,
+    groups: { inner: innerGroup, outer: outerGroup, loop: loopGroup },
+    distributions: { d2: dist2, d5: dist5, d10: dist10 },
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Widget dimension controls: every widget carries a layer panel (useLayers + LayersPanel.vue) with 10 interactive dimension rows and a 0–10D depth slider — the same interaction model as Photoshop layers or a DAW track list. 0D = no items shown (void), 10D = all layers fused (the full hologram). The 10 DIMENSION_NAMES become 10 toggleable eye-icons: inner group (spread·depthFade·hueShift = lower-trigram yin, import direction), outer group (twist·shrink·breath = upper-trigram yang, export direction), loop group (loopA1·loopB1·loopA2·loopB2 = the four dependency-flow types / homology loops). Items are distributed across dimensions by the formula dim = ⌊i×10/N⌋, spreading N items evenly. The ICHING_MASK.color accents the widget\'s native layers (innerAxis, outerAxis). The user can select any depth 0-10 and toggle any layer, fusing the visible content from active dimensions exactly as in image/audio/video editing.',
+    boundary:
+      'The layer/depth metaphor comes from visual/audio editing (Photoshop layers, AE timeline, DAW tracks). HONEST: item distribution (⌊i×10/N⌋) is a linear bucketing, not a rigorous dimensional projection — it organises data by ordinal position, not by the mathematical content of each dimension. The 10 dimensions (DIMENSION_NAMES) have genuine I Ching / toroidal meaning in the model; the layer control makes them interactive. "Fusing" here = showing all active-layer items together, not a pixel blend-mode. The composable (useLayers) is in src/ui/lib/useLayers.ts; the panel component (LayersPanel.vue) wraps any DecodedCard widget with no fold dependencies.',
   }
 }

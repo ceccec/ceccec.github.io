@@ -264,8 +264,8 @@ export function staticPages(): StaticPage[] {
         en: 'Formal architecture for the double-torus UUID stream: matrix, vector, diamonds, waves, gates, schema, and self-build.',
         bg: 'Формална архитектура за двойния тор UUID поток: матрица, вектор, диаманти, вълни, порти, схема и само-изграждане.',
       },
-      keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema', 'analytics'],
-      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar', 'Analytics'],
+      keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema', 'analytics', 'iching', 'import', 'export', 'fuse'],
+      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar', 'Analytics', 'IChingImportExport', 'FuseReveal'],
     },
     {
       slug: 'commands',
@@ -376,8 +376,8 @@ export function staticPages(): StaticPage[] {
         en: 'Science decoded honestly: electromagnetic radiation, Tesla\'s five verified patents, public frequency data APIs (FCC, USGS, Schumann 7.83 Hz, Web Audio), and the ionising threshold (~10 eV). Documented physics first; wellness claims flagged. Every result a client-side computation from the src/0 spectrum primitives.',
         bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
-      keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann'],
-      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'PublicFrequencyApis'],
+      keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann', 'biology', 'body'],
+      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'PublicFrequencyApis', 'Biology'],
     },
     {
       slug: 'voice',
@@ -558,8 +558,8 @@ export function staticPages(): StaticPage[] {
         en: 'The doubling circuit 1-2-4-8-7-5 (powers of two by digital root mod 9) with the 3-6-9 cross and the harmonic n/0 — the vortex math the whole portal turns on.',
         bg: 'Удвояващата верига 1-2-4-8-7-5 (степени на двойката по цифров корен mod 9) с кръста 3-6-9 и хармоничното n/0 — математиката на вихъра, на която се върти целият портал.',
       },
-      keywords: ['vortex', 'doubling', 'digital root', '3-6-9', 'proof'],
-      components: ['ProofRenderer'],
+      keywords: ['vortex', 'doubling', 'digital root', '3-6-9', 'proof', 'fractions', 'algebra', 'binary', 'imperial'],
+      components: ['ProofRenderer', 'AlgebraDigits', 'HarmonicFractions', 'ImperialFractions'],
     },
     {
       slug: 'zero-division',

@@ -2,6 +2,7 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · spread — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 13, lower: 5, upper: 1, glyph: '☳', trigram: 'Zhèn', name: 'Thunder', attribute: 'arousing', innerAxis: 'breath', outerAxis: 'spread', color: '#00FF0F' } as const
 import DecodedCard from './DecodedCard.vue'
+import LayersPanel from './LayersPanel.vue'
 import { harmonicFractionsInDigitFolders } from '../lib/quantumMind'
 
 const d = harmonicFractionsInDigitFolders()
@@ -16,12 +17,14 @@ const items = [
 
 <template>
   <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <DecodedCard
-      eyebrow="harmonic fractions · digit folders · analog"
-      eyebrow-bg="хармонични дроби · цифрови папки · аналог"
-      :statement="d.statement"
-      :items="items"
-      :boundary="d.boundary"
-    />
+    <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
+      <DecodedCard
+        eyebrow="harmonic fractions · digit folders · analog"
+        eyebrow-bg="хармонични дроби · цифрови папки · аналог"
+        :statement="d.statement"
+        :items="filtered"
+        :boundary="d.boundary"
+      />
+    </LayersPanel>
   </section>
 </template>
