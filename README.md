@@ -24,7 +24,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 ## 3. Results
 
 - 41 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
-- 96 concept commands, each a single-word method and an MCP tool.
+- 98 concept commands, each a single-word method and an MCP tool.
 - 182 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 

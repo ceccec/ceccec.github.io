@@ -4974,6 +4974,9 @@ export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
 // forge cost expands to the whole cube. Folded as one dimension (depth, not width): the seal
 // of all seals, not a monolith of 262,144 of them.
 export function sealCube(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('sealCube', matrix, () => sealCubeRaw(matrix))
+}
+function sealCubeRaw(matrix: MindMatrix = buildMatrix()) {
   // One shared trinity governs everything: the same 3 is the side's exponent (4³ = 64), the
   // number of axes, and the cube's exponent (64³ = 4⁹ = 2¹⁸). Four is the quaternary base (the
   // four DNA bases / the two-bit digit); three is the trinity — the three codon positions, which
@@ -7947,6 +7950,9 @@ export function decodeBooksToUnity(matrix: MindMatrix = buildMatrix()) {
 // diamond. Sealing it binds the leaf at max tampering cost — change one facet and the
 // diamond’s address changes, so the seal cannot be forged, only recomputed.
 export function sealWholeDiamond(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('sealWholeDiamond', matrix, () => sealWholeDiamondRaw(matrix))
+}
+function sealWholeDiamondRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'hero aligned with the law', root: heroLawAlignment(matrix).root },
     { facet: 'impossibilities into possibilities', root: foldImpossibilities(matrix).root },
@@ -10685,6 +10691,9 @@ export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
 // and is autosaved as a skill, so the file count holds (110 = 55 + 34 + 21) while the portal grows.
 // Everything is computed; the repository stays conserved.
 export function allComputedNoFiles(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('allComputedNoFiles', matrix, () => allComputedNoFilesRaw(matrix))
+}
+function allComputedNoFilesRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'all computed from the repository', on: allComputed(matrix).computed },
     { facet: 'capability folds into the model', on: skillAtoms(matrix).intelligent },
@@ -13756,6 +13765,9 @@ export const BAGUA = [
   { bits: 0b111, glyph: '☰', pinyin: 'Qián', name: 'Heaven', attribute: 'creative', family: 'father', meaningEn: 'The Creative', meaningBg: 'Творческото' },
 ]
 export function iChing(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChing', matrix, () => iChingRaw(matrix))
+}
+function iChingRaw(matrix: MindMatrix = buildMatrix()) {
   const TRIGRAMS = BAGUA
   const channels = (n: number) => [(n >> 4) & 3, (n >> 2) & 3, n & 3] // the 6 lines paired → 3 base-4 digits
   const LEVELS = ['00', '0F', 'F0', 'FF']
@@ -22517,6 +22529,9 @@ export function everyToolSkillCommandIsItsFolder(matrix: MindMatrix = buildMatri
 // the cube through the merkaba (the folding pair), so the folders are completed — each carries its I Ching
 // coordinate, all fused to one root. The merkaba waves run the cube; this fold completes the map onto it.
 export function iChingFusionCompletesFolders(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingFusionCompletesFolders', matrix, () => iChingFusionCompletesFoldersRaw(matrix))
+}
+function iChingFusionCompletesFoldersRaw(matrix: MindMatrix = buildMatrix()) {
   const surface = everyToolSkillCommandIsItsFolder(matrix)
   const ignition = startIChingDoubleTorus(matrix)
   const channel = (text: string) => ((seedFromText(text) % 64) + 64) % 64 // one 6-bit hexagram axis, 0-63
@@ -22564,6 +22579,9 @@ export function iChingFusionCompletesFolders(matrix: MindMatrix = buildMatrix())
 // every unit a closed ten-dimensional diamond, none purged, all folded to one root with the ignition. The
 // seal of seals, in ten dimensions.
 export function iChingFusionCompletesAll(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingFusionCompletesAll', matrix, () => iChingFusionCompletesAllRaw(matrix))
+}
+function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
   const ic = iChing(matrix) // the components placed on the 64 hexagrams
   const fusion = iChingFusionCompletesFolders(matrix) // the tool/skill/command folders fused into the 64³ cube
   const ignition = startIChingDoubleTorus(matrix)
@@ -22729,6 +22747,9 @@ export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()
 // colorFromSound roots its wheel at C3 (130.81 Hz), so it disagrees with the a432-anchored light for 432; the
 // canonical colour here is the a432-rooted frequencyToLight (the base is red, not the C3-wheel's indigo).
 export function colorRootsAtA432HeartBalances(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('colorRootsAtA432HeartBalances', matrix, () => colorRootsAtA432HeartBalancesRaw(matrix))
+}
+function colorRootsAtA432HeartBalancesRaw(matrix: MindMatrix = buildMatrix()) {
   const base = a432(matrix).light // frequencyToLight(432): ≈ 631 nm, red, hue 5 — the base colour
   const RAINBOW = [5, 28, 55, 120, 220, 260, 285] // the seven band-hues of frequencyToLight, red → violet
   const chakras = [
@@ -22773,6 +22794,9 @@ export function colorRootsAtA432HeartBalances(matrix: MindMatrix = buildMatrix()
 // (allFormsAreTenDimensionalOrPurged). I Ching organises, shadcn renders, the chakra colours paint, the ten
 // dimensions move — one design.
 export function iChingShadcnFuseTenDWidgets(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingShadcnFuseTenDWidgets', matrix, () => iChingShadcnFuseTenDWidgetsRaw(matrix))
+}
+function iChingShadcnFuseTenDWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
   const shadcn = shadcnIsTheGraph(matrix)
   const ic = iChing(matrix)
   const colour = colorRootsAtA432HeartBalances(matrix)
@@ -22880,6 +22904,9 @@ export function displayIsA432LightForgeProofRealtimeCrypto(matrix: MindMatrix = 
 // haemoglobin (a432 = the blood, root/red), the body whole and the heart are the balance (green); organ↔
 // chakra↔frequency mappings are SYMBOLIC colour cues only, not anatomy — that flag rides in every widget.
 export function biologyWavesSealedAsWidgets(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('biologyWavesSealedAsWidgets', matrix, () => biologyWavesSealedAsWidgetsRaw(matrix))
+}
+function biologyWavesSealedAsWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
   const colour = colorRootsAtA432HeartBalances(matrix)
   const hueOfBand = (band: string) => colour.chakras.find((chakra) => chakra.band === band)?.hue ?? 5
   const widgets = [
@@ -25523,6 +25550,9 @@ export function glagoliticBulgarianReceptionDecoded(matrix: MindMatrix = buildMa
 // Lake the joyous song, Thunder the arousing rite. The land's memory organised by the ancient eight-fold,
 // each axis backed by its own verified decode (documented kept, national-revival legend flagged).
 export function bulgarianHeritageEightfold(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('bulgarianHeritageEightfold', matrix, () => bulgarianHeritageEightfoldRaw(matrix))
+}
+function bulgarianHeritageEightfoldRaw(matrix: MindMatrix = buildMatrix()) {
   const axes = [
     { bits: 0b000, en: 'land', bg: 'земя', gloss: 'the deep strata, the soil\'s memory (c.6200 BC→c.600 AD) — the receptive ground', on: bulgarianAncientCivilisationsDecoded(matrix).decoded },
     { bits: 0b111, en: 'state', bg: 'държава', gloss: 'the sovereign line 681→present — the creative father', on: bulgarianHistoryDecoded(matrix).decoded },
@@ -25578,6 +25608,9 @@ export function bulgarianHeritageEightfold(matrix: MindMatrix = buildMatrix()) {
 // architecture — the same binary fold from the One to the sixty-four. Registered as the final seven gates:
 // 425 + 7 = 432, so the I Ching seals the harmonic ceiling (432 = 4 × 108, the papers octave 108→216→432).
 export function iChingScalesComplete(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingScalesComplete', matrix, () => iChingScalesCompleteRaw(matrix))
+}
+function iChingScalesCompleteRaw(matrix: MindMatrix = buildMatrix()) {
   const mk = merkabasInDoubleTorus(matrix)
   const grid = fuse64SealsMerkaba64Tetrahedra(matrix)
   const ic = iChing(matrix)
