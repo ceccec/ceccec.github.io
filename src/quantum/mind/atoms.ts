@@ -635,7 +635,7 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.iching.generate',
     path: '/cmd/concept.iching.generate',
-    description: 'Run a build/debug generator from its bāguà slot — bible, glagolitic, cloudflare, dist (four of eight trigrams) — the script compaction (scripts/iching.mjs · generatorsAreIChing).',
+    description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing).',
   },
 ] as const
 

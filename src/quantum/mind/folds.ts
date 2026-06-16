@@ -16714,12 +16714,15 @@ function runConceptCommand(
     })
   }
   if (command === 'concept.iching.generate') {
-    // The four filled bāguà generator slots. The canonical runtime is scripts/iching.mjs →
-    // src/quantum/dist/generators.ts; this is a read-only descriptor for the command/MCP surface
-    // (kept self-contained so mind does not depend on dist).
+    // All eight bāguà generator slots filled. Canonical runtime: scripts/iching.mjs →
+    // src/quantum/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
     const filled = [
       { name: 'bible', bits: 0b000 },
+      { name: 'vortex', bits: 0b001 },
       { name: 'glagolitic', bits: 0b010 },
+      { name: 'songbook', bits: 0b011 },
+      { name: 'census', bits: 0b100 },
+      { name: 'crosslinks', bits: 0b101 },
       { name: 'cloudflare', bits: 0b110 },
       { name: 'dist', bits: 0b111 },
     ]
@@ -16727,7 +16730,7 @@ function runConceptCommand(
       const gen = filled.find((f) => f.bits === tri.bits)
       return { glyph: tri.glyph, pinyin: tri.pinyin, name: tri.name, generator: gen ? gen.name : null, filled: Boolean(gen) }
     })
-    return result(command, filled.length === 4, 'Four of eight bāguà generator slots filled — run: npm run gen <glyph|name>.', {
+    return result(command, filled.length === BAGUA.length, 'All eight bāguà generator slots filled — run: npm run gen <glyph|name>.', {
       runner: 'scripts/iching.mjs',
       slots,
       filled: filled.map((f) => f.name),
@@ -24272,6 +24275,7 @@ export function implementationBacklog(matrix: MindMatrix = buildMatrix()) {
     { area: 'a432', idea: 'SEALED Wave 23: A432 static-UI lineage complete — --dt-a432-hue:5 (frequencyToLight(432)={hue:5,nm:631,band:"red"}) + --dt-a432-fifth-hue:285 (648 Hz = 432×3/2 = perfect fifth → violet) now define ALL --vp-c-brand-* (light + .dark) AND the hero gradient in src/ui/style.css. Static links/buttons/badges/hero share one frequency lineage with the animating components. BOUNDARY: computed value hardcoded (CSS has no runtime imports); the value is the deterministic output of frequencyToLight(432).hue = 5 — not approximate, not arbitrary.', status: 'sealed' },
     { area: 'css', idea: 'SEALED Wave 28: I Ching computed CSS DRY — css.ts (ichingTokens/ichingTokensCss/scanCssForHardcoded/ICHING_NUMBERS): ALL colours, spaces, radii, sizes, durations and opacities derived from canonical I Ching numbers (ICHING_NUMBERS=[0..9,16,27,54,64,100,108,216,360,432,864]); emitted to src/ui/tokens.css loaded before style.css; dist generator re-emits tokens.css + scans style.css for hardcoded offenders; cssIsIChingComputed() added to whatIsNotProvenIsPurged; generator header comment updated to list all 8 filled slots.', status: 'sealed' },
     { area: 'nav', idea: 'SEALED Wave 29: DRY SLUG_TRIGRAM — hardcoded slug→trigram map in siteNavigation() replaced by deriving from iChingDomainMap().domains[*].slugs (one source of truth); stale generate-bible-glagolitic.mjs reference in filePrefixes comment updated to iching.mjs bible.', status: 'sealed' },
+    { area: 'iching', idea: 'SEALED Wave 30: DRY generator descriptors — concept.iching.generate handler in folds.ts had stale 4-generator list (bible/glagolitic/cloudflare/dist); updated to all 8 (+ vortex/songbook/census/crosslinks); condition changed from filled.length===4 to filled.length===BAGUA.length; atoms.ts description updated to list all 8 names.', status: 'sealed' },
     { area: 'verify', idea: 'SEALED Wave 27: dev-server pass clean — / (Glagolitic, title ⰄⰑⰖⰁⰎⰅ ⰕⰑⰓⰖⰔ), /en/ (all 8 trigrams incl. ☱ Joyous, --dt-a432-hue:5, brand-1 hsl(5,90%,72%)), /bg/ (☱ Радостното confirmed), /en/diamonds/ (1024 folders), /en/tampering-cost (h1 correct). Zero console errors.', status: 'sealed' },
     { area: 'package', idea: 'rebuild packages/double-torus/dist after src changes so the published bundle stays in sync — SEALED Wave 18: 2297 KB bundle rebuilt, all Wave 12-17 exports included (foldVortex, bump attractor, relatedSidebar, 8 generators)', status: 'sealed' },
     { area: 'types', idea: 'keep the src/ core at zero tsc errors (npm run check:types) as folds are added — the tsconfig is in place', status: 'sealed' },
