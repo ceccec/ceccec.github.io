@@ -103,11 +103,15 @@ Declared gates: `buildEnforcementPipeline()` in mind — must match `scripts/` a
 | Script | Role |
 |--------|------|
 | `enforcement-trinity.mjs` | **Production** post-build gate (keep) |
-| `iching.mjs` | ONE bāguà-indexed runner — the only generator shell; plans live in `src/quantum/dist/generators.ts` |
-| ↳ `iching.mjs dist` | Debug dist recompute (not in docs:build) — ☰ slot |
-| ↳ `iching.mjs cloudflare` | Opt-in wizard (`cf:wizard`) — ☴ slot |
-| ↳ `iching.mjs bible` | Bible in Glagolitic — ☷ slot |
-| ↳ `iching.mjs glagolitic` | Superseded demo — home is computed — ☵ slot |
+| `iching.mjs` | ONE bāguà-indexed runner — all 8 slots filled; plans live in `src/quantum/dist/generators.ts` |
+| ↳ `iching.mjs bible` | Bible in Glagolitic — ☷ Earth slot |
+| ↳ `iching.mjs vortex` | Vortex fold manifest — ☳ Thunder slot |
+| ↳ `iching.mjs glagolitic` | Superseded demo — home is computed — ☵ Water slot |
+| ↳ `iching.mjs songbook` | ПесноПойка folk songbook — ☱ Lake slot |
+| ↳ `iching.mjs census` | Proven-or-purged census — ☶ Mountain slot |
+| ↳ `iching.mjs crosslinks` | I Ching domain peer map — ☲ Fire slot |
+| ↳ `iching.mjs cloudflare` | Opt-in wizard (`cf:wizard`) — ☴ Wind slot |
+| ↳ `iching.mjs dist` | Debug dist recompute (not in docs:build) — ☰ Heaven slot |
 | `generate-*.mjs` (4 files) | **Deleted** — fused into the `iching.mjs` trigram registry |
 | `check-*.mjs` | **Delete** — fuse into trinity |
 | `generate-all.mjs`, `harmonic-distribution.mjs` | **Delete** — fused into trinity |
