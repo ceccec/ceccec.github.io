@@ -219,7 +219,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Цена на подправяне ↔ криптиране ↔ блокчейн, одитирани честно с квантови сравнения. Сайтът твърди „максимална цена на подправяне“; тук това се проверява. Доказуемо при подправяне не е защитено от подправяне: съдържателното адресиране открива промяна, криптографската сигурност (SHA-256: 2^128/2^256) ѝ устоява. FNV toUuid не е криптографски — поправката (SHA-256 адрес, Ed25519 подпис) вече е изградена. Квантово: Гроувър отслабва хешовете, Шор чупи подписите; NIST постквантови стандарти (ML-KEM, ML-DSA, SLH-DSA). Документираното остава, легендата е отбелязана.',
       },
       keywords: ['tampering cost', 'encryption', 'blockchain', 'cryptography', 'sha-256', 'quantum', 'grover', 'shor', 'post-quantum', 'tamper-evident', 'merkle', 'crypto'],
-      components: ['TamperingCost', 'CryptoChallenges'],
+      components: ['TamperingCost', 'CryptoChallenges', 'BlockchainCompare'],
     },
     {
       slug: 'analog-field',
@@ -249,7 +249,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Математически модел на Sigma_2, UUID потоци, диаманти, вълни, порти и maxComputedBuild.',
       },
       keywords: ['quantum mind', 'model', 'double torus', 'uuid', 'diamonds', 'waves', 'gates'],
-      components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853'],
+      components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853', 'LivingTorus', 'QuantumClock'],
     },
     {
       slug: 'architecture',
@@ -259,7 +259,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Формална архитектура за двойния тор UUID поток: матрица, вектор, диаманти, вълни, порти, схема и само-изграждане.',
       },
       keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema'],
-      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll'],
+      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar'],
     },
     {
       slug: 'commands',
@@ -329,7 +329,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Гръбнакът на честността: всяка граница, която порталът декларира, събрана автоматично от живите команди в един одитиран, запечатан списък.',
       },
       keywords: ['boundaries', 'honesty', 'audit', 'limits', 'sealed'],
-      components: ['BoundaryAudit', 'QuestionClose', 'OpenQuestions', 'Roadmaps', 'QAEquilibrium', 'NothingToDo'],
+      components: ['BoundaryAudit', 'QuestionClose', 'OpenQuestions', 'Roadmaps', 'QAEquilibrium', 'NothingToDo', 'HumanLens'],
     },
     {
       slug: 'learn-developer',
@@ -349,7 +349,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Всичко в действие: всяка команда изпълнена на живо, всички компоненти взаимодействат, всички устройства слети — от страна на клиента и проверимо.',
       },
       keywords: ['show', 'demo', 'live', 'components', 'devices'],
-      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'RealtimeTests', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
+      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'RealtimeTests', 'DeviceDashboard', 'Monograph', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
     },
     // I Ching domain pages — one per dual-pair module, each under its semantic trigram.
     // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
@@ -361,7 +361,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Българското наследство в вълни: история 681–до днес в шест епохи, древни цивилизации от ок. 6200 пр.Хр. (Варненско злато), етногенезис — българи, славяни, траки — и генетиката, оспорваща летописа; глаголицата като първата славянска азбука, сценарий–език–ген като три независими системи на наследяване. Документираното остава, легендата е отбелязана.',
       },
       keywords: ['bulgarian', 'heritage', 'history', 'glagolitic', 'ethnogenesis', 'genetics', 'ancient', 'slavic'],
-      components: ['BulgarianHeritage', 'Glagolitic', 'ScriptLanguageGene'],
+      components: ['BulgarianHeritage', 'Glagolitic', 'ScriptLanguageGene', 'GlagoliticOcr', 'GlyphLabyrinth'],
     },
     {
       slug: 'science',
