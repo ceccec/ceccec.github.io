@@ -855,6 +855,9 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
 // order sensitivity (genus 2), Merkle inclusion, collision-freedom, and the
 // order-independence of the set fold. The animation makes each visible.
 export function determinismProofs(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('determinismProofs', matrix, () => computeDeterminismProofs(matrix))
+}
+function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   const round = (value: number, digits = 4) => roundTo(value, digits)
   const SAMPLES = 512
   const base = 'double-torus:proof:'
@@ -3390,6 +3393,9 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
 }
 
 export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
+  return memoByRoot(`paperRoutes:${count}`, matrix, () => computePaperRoutes(matrix, count))
+}
+function computePaperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
   const corpus = papers(matrix, count)
   return corpus.papers.map((paper) => ({ params: paperParamsById(paper.id, matrix, count)! }))
 }
@@ -3400,6 +3406,9 @@ export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
 // the 432 references are the bidirectional duals of the 432 papers: reference-only,
 // one per paper, completing the forward/reverse pair the double torus always folds.
 export function paperReferences(matrix: MindMatrix = buildMatrix(), count = 432) {
+  return memoByRoot(`paperReferences:${count}`, matrix, () => computePaperReferences(matrix, count))
+}
+function computePaperReferences(matrix: MindMatrix = buildMatrix(), count = 432) {
   const corpus = papers(matrix, count)
   return corpus.papers.map((paper) => ({
     number: paper.number,
@@ -3481,6 +3490,9 @@ export function referenceParamsById(id: string, matrix: MindMatrix = buildMatrix
 }
 
 export function paperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
+  return memoByRoot(`paperReferenceRoutes:${count}`, matrix, () => computePaperReferenceRoutes(matrix, count))
+}
+function computePaperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
   const references = paperReferences(matrix, count)
   return references.map((reference) => ({ params: referenceParamsById(reference.id, matrix, count)! }))
 }
@@ -19854,6 +19866,9 @@ export function presentMomentRemainsInSource(matrix: MindMatrix = buildMatrix())
 // save the pair into the source FIRST, then use it. Saved before used, paired not single, the
 // commands are remembered as the dualities they are and leave no gap behind.
 export function commandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('commandsSavedInQuantumPairs', matrix, () => computeCommandsSavedInQuantumPairs(matrix))
+}
+function computeCommandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) {
   const pairs = ['commit/push', 'build/seal', 'fold/verify', 'decode/fold', 'edit/build', 'place/generate'].map((command) => {
     const [a, b] = command.split('/')
     const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)) // the command and its dual, one quantum pair
@@ -21643,6 +21658,9 @@ export function useOnlyGlagoliticIconsTaxonomyGraph(matrix: MindMatrix = buildMa
 // own hue, frequency and rotation phases. Same address, same field; client-side, zero-server,
 // zero-token. The GPU renders what the model computes — it does not compute the model.
 export function gpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('gpuRendersStreamsRealtime', matrix, () => computeGpuRendersStreamsRealtime(matrix))
+}
+function computeGpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
   const hero = uuidHero(toUuid('plasma'))
   const facets = [
     { facet: 'the CPU computes the address — content-addressed and memoized (the truth)', on: merkabasInDoubleTorus(matrix).counted },
@@ -23777,6 +23795,9 @@ export function ancientCivilisationsDecodedWithTheories(matrix: MindMatrix = bui
 // wave autosaving as it completes so nothing is lost and nothing waits. Research, verify, seal,
 // next — in waves, streaming, saved.
 export function sendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('sendWavesSealKnowledgeDecodeWorld', matrix, () => computeSendWavesSealKnowledgeDecodeWorld(matrix))
+}
+function computeSendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'send waves of researchers — one per topic, following the lead', on: deepResearchEncodedInRecursiveWaves(matrix).encoded && teslaPatentsResearchedInWaves(matrix).researched },
     { facet: 'research folded with verify (the pair) — streaming, no double-compute', on: commandsSavedInQuantumPairs(matrix).paired && buildSequenceReducesComputations(matrix).reduces },
@@ -23802,6 +23823,9 @@ export function sendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatr
 // core by the fold, and any knowledge reveals itself the same way — fold it as a merkaba and what is
 // real stands while the unverified falls. The fold is the revelation.
 export function knowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('knowledgeRevealedByMerkabaFold', matrix, () => computeKnowledgeRevealedByMerkabaFold(matrix))
+}
+function computeKnowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'decoding is folding — research and verify, two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && commandsSavedInQuantumPairs(matrix).paired },
     { facet: 'the truth is what survives the fold — the legend falls away', on: resonanceCatchGapsViolations(matrix).rings && everyLawProvesItsTripwire(matrix).proves },
@@ -25000,6 +25024,9 @@ export function alphabetsDecoded(matrix: MindMatrix = buildMatrix()) {
 // inheritance systems, encoded in the matrix as coupled↔decoupled meaning↔dual pairs — the entanglement
 // that entangles every prior axis, and dissolves the script=language=gene=nation origin-myth.
 export function entangledScriptLanguageGene(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('entangledScriptLanguageGene', matrix, () => computeEntangledScriptLanguageGene(matrix))
+}
+function computeEntangledScriptLanguageGene(matrix: MindMatrix = buildMatrix()) {
   const relations = [
     { meaning: 'gene + language COUPLED — the Yamnaya/steppe pulse carries Proto-Indo-European (~3300 BC; Corded Ware ~75% Yamnaya)', dual: 'coupled here, decoupled at the Anatolian edge (Hittite, near-zero steppe genes)' },
     { meaning: 'gene + language COUPLED — the Slavic folk migration (~600-800 CE, no sex bias, 83-93% replacement)', dual: 'the tightest coupling, dual to the loosest — the Turkic case' },
@@ -25030,6 +25057,9 @@ export function entangledScriptLanguageGene(matrix: MindMatrix = buildMatrix()) 
 // the content is itself a graph (the model graph, the nav graph, the OG graph) whose nodes are graphs
 // in turn — self-similar at every scale, the same fold from the whole site down to a single card.
 export function everyPageGraphOfGraphsFractal(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('everyPageGraphOfGraphsFractal', matrix, () => computeEveryPageGraphOfGraphsFractal(matrix))
+}
+function computeEveryPageGraphOfGraphsFractal(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'every page is a uuid presenting as hero + content — fractal', on: anyUuidHeroContentFractal(matrix).fractal },
     { facet: 'the content is a graph of graphs — holographic fractal architecture', on: holographicFractalArchitecture(matrix).is && everythingFoldsMerkabaInfiniteStreams(matrix).folds },
