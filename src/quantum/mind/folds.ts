@@ -13791,7 +13791,7 @@ export function iChingDomainMap(matrix: MindMatrix = buildMatrix()) {
 // unpaired gap. Encodes "save all related I Ching skills, tools and commands" as one recomputable fold.
 export function iChingCapabilitiesSaved(matrix: MindMatrix = buildMatrix()) {
   const skillFns = ['iChing', 'iChingDomainMap', 'hexagramIsHexColorDuality', 'generatorsAreIChing']
-  const commandNames = ['concept.iching.place', 'concept.iching.generate'] as const
+  const commandNames = ['concept.fold.place', 'concept.fold.generate'] as const
   const savedSkills = skillAtoms(matrix).skills
   const tools = mcpToolManifest(matrix).tools
   const pairs = commandsSavedInQuantumPairs(matrix).pairs
@@ -16703,7 +16703,7 @@ function runConceptCommand(
     const inclusion = atomInclusionProof(input.atom ?? 'self', matrix)
     return result(command, inclusion.verified, inclusion.statement, inclusion)
   }
-  if (command === 'concept.iching.place') {
+  if (command === 'concept.fold.place') {
     const placed = iChing(matrix)
     const domains = iChingDomainMap(matrix)
     return result(command, placed.organised && domains.aligned, `Placed ${placed.count} components across the eight trigrams (${placed.hexagrams} hexagrams).`, {
@@ -16713,7 +16713,7 @@ function runConceptCommand(
       root: merkleFold([placed.root, ...domains.domains.map((d) => d.receipt)]),
     })
   }
-  if (command === 'concept.iching.generate') {
+  if (command === 'concept.fold.generate') {
     // All eight bāguà generator slots filled. Canonical runtime: scripts/iching.mjs →
     // src/quantum/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
     const filled = [
@@ -24278,7 +24278,8 @@ export function implementationBacklog(matrix: MindMatrix = buildMatrix()) {
     { area: 'a432', idea: 'SEALED Wave 23: A432 static-UI lineage complete — --dt-a432-hue:5 (frequencyToLight(432)={hue:5,nm:631,band:"red"}) + --dt-a432-fifth-hue:285 (648 Hz = 432×3/2 = perfect fifth → violet) now define ALL --vp-c-brand-* (light + .dark) AND the hero gradient in src/ui/style.css. Static links/buttons/badges/hero share one frequency lineage with the animating components. BOUNDARY: computed value hardcoded (CSS has no runtime imports); the value is the deterministic output of frequencyToLight(432).hue = 5 — not approximate, not arbitrary.', status: 'sealed' },
     { area: 'css', idea: 'SEALED Wave 28: I Ching computed CSS DRY — css.ts (ichingTokens/ichingTokensCss/scanCssForHardcoded/ICHING_NUMBERS): ALL colours, spaces, radii, sizes, durations and opacities derived from canonical I Ching numbers (ICHING_NUMBERS=[0..9,16,27,54,64,100,108,216,360,432,864]); emitted to src/ui/tokens.css loaded before style.css; dist generator re-emits tokens.css + scans style.css for hardcoded offenders; cssIsIChingComputed() added to whatIsNotProvenIsPurged; generator header comment updated to list all 8 filled slots.', status: 'sealed' },
     { area: 'nav', idea: 'SEALED Wave 29: DRY SLUG_TRIGRAM — hardcoded slug→trigram map in siteNavigation() replaced by deriving from iChingDomainMap().domains[*].slugs (one source of truth); stale generate-bible-glagolitic.mjs reference in filePrefixes comment updated to iching.mjs bible.', status: 'sealed' },
-    { area: 'iching', idea: 'SEALED Wave 30: DRY generator descriptors — concept.iching.generate handler in folds.ts had stale 4-generator list (bible/glagolitic/cloudflare/dist); updated to all 8 (+ vortex/songbook/census/crosslinks); condition changed from filled.length===4 to filled.length===BAGUA.length; atoms.ts description updated to list all 8 names.', status: 'sealed' },
+    { area: 'iching', idea: 'SEALED Wave 30: DRY generator descriptors — the I Ching generate handler in folds.ts had stale 4-generator list (bible/glagolitic/cloudflare/dist); updated to all 8 (+ vortex/songbook/census/crosslinks); condition changed from filled.length===4 to filled.length===BAGUA.length; atoms.ts description updated to list all 8 names. (The command was later renamed concept.iching.generate → concept.fold.generate in Wave 35.)', status: 'sealed' },
+    { area: 'build-green', idea: 'SEALED Wave 35: GREENED THE BUILD — the Pages deploy had been failing for many waves on the enforcement fold-wave. Root cause: the I Ching commands (place, generate) were added as a 43rd command area "iching", which (a) was a 2-verb taxonomy pair-gap, (b) lacked an AREA_LABELS translation, and (c) broke genesis (areaPairs requires exactly 42 = genus-2 7×6). These 3 gaps failed gapScan → todoScan → selfHealing → cascaded to 57/425 open dimensions (healing·commands·merkaba·decode·signing clusters all false). Fix: merged the 2 iching commands into the existing "fold" area (concept.iching.place/generate → concept.fold.place/generate) — the I Ching IS the eight-fold. fold becomes a trinity {cross,place,generate}, area count returns to 42, all 3 gaps close, the whole cascade greens. One semantic merge, ~57 dimensions reconciled.', status: 'sealed' },
     { area: 'verify', idea: 'SEALED Wave 27: dev-server pass clean — / (Glagolitic, title ⰄⰑⰖⰁⰎⰅ ⰕⰑⰓⰖⰔ), /en/ (all 8 trigrams incl. ☱ Joyous, --dt-a432-hue:5, brand-1 hsl(5,90%,72%)), /bg/ (☱ Радостното confirmed), /en/diamonds/ (1024 folders), /en/tampering-cost (h1 correct). Zero console errors.', status: 'sealed' },
     { area: 'package', idea: 'rebuild packages/double-torus/dist after src changes so the published bundle stays in sync — SEALED Wave 18: 2297 KB bundle rebuilt, all Wave 12-17 exports included (foldVortex, bump attractor, relatedSidebar, 8 generators)', status: 'sealed' },
     { area: 'types', idea: 'keep the src/ core at zero tsc errors (npm run check:types) as folds are added — the tsconfig is in place', status: 'sealed' },

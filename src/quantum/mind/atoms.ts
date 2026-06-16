@@ -628,14 +628,14 @@ export const conceptCommands: readonly ConceptCommand[] = [
     description: 'Build the site sections from concept command outputs.',
   },
   {
-    name: 'concept.iching.place',
-    path: '/cmd/concept.iching.place',
-    description: 'Place every component on the eight trigrams and 64 hexagrams by content-address, and the eight domains by meaning — the I Ching as the project index (iChing · iChingDomainMap).',
+    name: 'concept.fold.place',
+    path: '/cmd/concept.fold.place',
+    description: 'Place every component on the eight trigrams and 64 hexagrams by content-address, and the eight domains by meaning — the I Ching eight-fold as the project index (iChing · iChingDomainMap). The fold places.',
   },
   {
-    name: 'concept.iching.generate',
-    path: '/cmd/concept.iching.generate',
-    description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing).',
+    name: 'concept.fold.generate',
+    path: '/cmd/concept.fold.generate',
+    description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing). The fold generates.',
   },
 ] as const
 
@@ -734,6 +734,6 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.ui.evidence': 'evidence',
   'concept.torus.trinities': 'harmonize',
   'concept.site.manifest': 'manifest',
-  'concept.iching.place': 'place',
-  'concept.iching.generate': 'generate',
+  'concept.fold.place': 'place',
+  'concept.fold.generate': 'generate',
 }
