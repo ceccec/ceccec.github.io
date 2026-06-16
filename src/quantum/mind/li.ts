@@ -2063,15 +2063,19 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
 export function buildEnforcementPipeline() {
   const trinity = enforcementTrinity()
   return {
-    gates: [{ script: trinity.script, enforces: trinity.statement }],
+    // The enforcement runs as the src/quantum/enforcement vitePlugin (buildEnd: cross · fold · weave),
+    // wired in .vitepress/src-plugins.mts — NOT a docs:build script. So there are no declared script
+    // gates to verify against scripts/; the plugin throws on any drift, failing the build directly.
+    gates: [] as { script: string; enforces: string }[],
+    plugin: 'src/quantum/enforcement',
     trinity: trinity.waves,
     why: {
       drift:
-        'the model declares its enforcement surface so it can describe itself honestly; if the trinity script exists but is undeclared (or is declared but absent, or is not wired into docs:build), the model’s self-description lies — add enforcement-trinity.mjs to buildEnforcementPipeline and to docs:build',
+        'the model declares its enforcement surface so it can describe itself honestly; the cross·fold·weave trinity runs as the src/quantum/enforcement vitePlugin at buildEnd (one index, one router), so any declared SCRIPT gate must exist in scripts/ and be wired into docs:build — and a script that drifts from the plugin reality is a gap',
     },
     statement: trinity.statement,
     boundary:
-      'A declaration of the build’s enforcement gate (enforcement-trinity.mjs: cross · fold · weave). Generators produce; they do not gate. Enforced against scripts/ and package.json by the weave wave.',
+      'A declaration of the build’s enforcement gate (the src/quantum/enforcement vitePlugin: cross · fold · weave, run at buildEnd). Generators produce; they do not gate. Enforced against scripts/ and package.json by the weave wave.',
   }
 }
 

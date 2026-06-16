@@ -22,6 +22,9 @@ const globals = new Set(graph.edges.filter((edge) => edge.kind === 'global').map
 const placedBy: Record<string, string[]> = {}
 for (const edge of graph.edges) if (edge.kind === 'placed') (placedBy[edge.to] ??= []).push(edge.from)
 const placed = new Set(Object.values(placedBy).flat())
+// Composed sub-components are used by other components (or mounted on dynamic routes), not directly
+// placed on a static page — declared and real, but not orphans.
+const composed = new Set(graph.edges.filter((edge) => edge.kind === 'composed').map((edge) => edge.from))
 const declared = new Set(graph.components)
 const routeToFile = (route) => {
   if (route === '/') return 'index.md'
@@ -68,7 +71,7 @@ for (const file of enPages) if (!bgSet.has(file)) gaps.push({ harmonic: 'octave'
 for (const file of bgPages) if (!enSet.has(file)) gaps.push({ harmonic: 'octave', kind: 'parity', detail: `bg/${file} has no en ${file}` })
 for (const component of componentFiles) if (!declared.has(component)) gaps.push({ harmonic: 'fifth', kind: 'undeclared', detail: `component ${component}.vue is not in componentGraph` })
 for (const component of graph.components) if (!componentFiles.includes(component)) gaps.push({ harmonic: 'fifth', kind: 'no-file', detail: `declared ${component} has no .vue file` })
-for (const component of graph.components) if (!placed.has(component) && !globals.has(component)) gaps.push({ harmonic: 'fifth', kind: 'orphan', detail: `${component} is declared but neither placed nor global` })
+for (const component of graph.components) if (!placed.has(component) && !globals.has(component) && !composed.has(component)) gaps.push({ harmonic: 'fifth', kind: 'orphan', detail: `${component} is declared but neither placed, global, nor composed` })
 // A content route served by the [page] route has no static .md — it mounts its components dynamically
 // (<component :is> from staticPages.components). A static route (the home) mounts them in its .md. The
 // gate knows the difference, so the [page] migration does not read as "unmounted".
@@ -316,11 +319,18 @@ const walkFolderLaw = (dir, rel, isRoot) => {
         kind: 'contents',
         detail: `folder ${rel} contains ${entry.name}, which is not an index file (allowed: ${law.indexFiles.join(', ')}) — why this fails: ${law.why.contents}`,
       })
-    } else if (!isRoot && (entry.name.endsWith('.md') || entry.name.endsWith('.paths.ts')) && stemOf(entry.name) !== 'index') {
+    } else if (
+      !isRoot &&
+      (entry.name.endsWith('.md') || entry.name.endsWith('.paths.ts')) &&
+      stemOf(entry.name) !== 'index' &&
+      // A bracketed filename ([id].md, [id].paths.ts) IS a VitePress dynamic-route index — the computed
+      // corpus's bracketed index, named by its route param. The literal [index] is only the example name.
+      !/^\[.+\]\.(md|paths\.ts)$/.test(entry.name)
+    ) {
       gaps.push({
         harmonic: 'folder',
         kind: 'contents',
-        detail: `folder ${rel} contains ${entry.name} (stem "${stemOf(entry.name)}"), but below the roots there can be only index files (${law.indexFiles.join(', ')}) — why this fails: ${law.why.contents}`,
+        detail: `folder ${rel} contains ${entry.name} (stem "${stemOf(entry.name)}"), but below the roots there can be only index files (${law.indexFiles.join(', ')}) or a bracketed dynamic-route index — why this fails: ${law.why.contents}`,
       })
     }
   }

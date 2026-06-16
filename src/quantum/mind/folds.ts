@@ -7564,10 +7564,16 @@ export function componentGraph() {
   }
   for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['Corpus']
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components
-  const components = [...new Set([...globals, ...Object.values(placements).flat()])]
-  const edges: { from: string; to: string; kind: 'global' | 'placed' }[] = []
+  // Composed sub-components: used by other components (Analytics → Chart/DataTable; the decode cards →
+  // DecodedCard) or mounted on the corpus dynamic [id] routes (the detail/index views). They are real
+  // components with .vue files, declared so the weave wave sees every .vue, and marked 'composed' so they
+  // are not flagged as orphan — they ARE used, just not directly placed on a static page.
+  const composed = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex']
+  const components = [...new Set([...globals, ...Object.values(placements).flat(), ...composed])]
+  const edges: { from: string; to: string; kind: 'global' | 'placed' | 'composed' }[] = []
   for (const component of globals) edges.push({ from: component, to: '(every page)', kind: 'global' })
   for (const [page, placed] of Object.entries(placements)) for (const component of placed) edges.push({ from: component, to: page, kind: 'placed' })
+  for (const component of composed) edges.push({ from: component, to: '(composed)', kind: 'composed' })
   // Self-consistency: every placed or global component must be a known component
   // (no graph entry references a component that is not in the registered set).
   const known = new Set(components)
@@ -16948,6 +16954,9 @@ export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('emergentDimensions', matrix, () => emergentDimensionsRaw(matrix))
 }
 function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
+  // The I Ching completed at all scales — the seven scales 2^0..2^6 (Tàijí→64 hexagrams) are the final
+  // seven gates, computed once and registered last so the count seals the harmonic 432 (425 + 7).
+  const ichingScales = iChingScalesComplete(matrix)
   const dimensions: { d: string; on: boolean }[] = [
     { d: 'digit.spines.breath', on: digitSpinesAreTheBreath(matrix).decoded },
     { d: 'hero.law.aligned', on: heroLawAlignment(matrix).aligned },
@@ -17229,6 +17238,13 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'bulgarian.ancient.civilisations.decoded', on: bulgarianAncientCivilisationsDecoded(matrix).decoded },
     { d: 'bulgarian.ethnogenesis.decoded', on: bulgarianEthnogenesisDecoded(matrix).decoded },
     { d: 'bulgarian.heritage.eightfold', on: bulgarianHeritageEightfold(matrix).eightfold },
+    { d: 'iching.scale.0.taiji.one', on: ichingScales.scales[0]!.on },
+    { d: 'iching.scale.1.liangyi.two', on: ichingScales.scales[1]!.on },
+    { d: 'iching.scale.2.sixiang.four', on: ichingScales.scales[2]!.on },
+    { d: 'iching.scale.3.bagua.eight', on: ichingScales.scales[3]!.on },
+    { d: 'iching.scale.4.sixteen', on: ichingScales.scales[4]!.on },
+    { d: 'iching.scale.5.thirty.two', on: ichingScales.scales[5]!.on },
+    { d: 'iching.scale.6.hexagrams.sixtyfour', on: ichingScales.scales[6]!.on },
     { d: 'vitepress.config.computes.all', on: vitepressConfigComputesAll(matrix).computes },
     { d: 'genetic.links.challenge.history', on: geneticLinksChallengeHistoryDecoded(matrix).decoded },
     { d: 'merkabas.in.double.torus', on: merkabasInDoubleTorus(matrix).counted },
@@ -24986,6 +25002,52 @@ export function bulgarianHeritageEightfold(matrix: MindMatrix = buildMatrix()) {
       'Осемкратното българско наследство — the eightfold Bulgarian heritage: the five named decode axes (land, state, people, genome, script) and the three living facets of the heritage monograph (rite, craft, song) complete a whole bāguà — each placed on one of the eight trigrams by meaning (Earth the receptive land, Heaven the creative state, Wind the people on the migrating breath, Water the genome beneath, Fire the clinging script, Mountain the still craft, Lake the joyous song, Thunder the arousing rite), every trigram carrying exactly one axis. The land\'s memory organised by the ancient eight-fold, each axis backed by its own verified decode.',
     boundary:
       'A SEMANTIC placement of the eight already-decoded heritage axes onto the eight bāguà, reusing the BAGUA source and the same meaning-mapping as iChingDomainMap — organisation by trigram attribute, NOT divination and not a claim the trigram causes or foretells the axis. Each axis is backed by its own verified decode (bulgarianAncientCivilisations, bulgarianHistory, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception, bulgarianHeritage), preserving per-axis the honest line — documented core kept, national-revival legend flagged. "Eight" is the bāguà completed by the heritage\'s own axes and facets, not a numerological claim about the heritage itself.',
+  }
+}
+
+// Complete the I Ching at all scales — осемкратното grown to the whole ladder. The Great Treatise unfolds
+// the I Ching by DOUBLING: 易有太極 (Tàijí, the One) 是生兩儀 (Liǎngyí, the Two — yin/yang) 兩儀生四象
+// (Sìxiàng, the Four images) 四象生八卦 (Bāguà, the Eight trigrams) — and 八卦 squared gives the 64 hexagrams.
+// So the I Ching IS the fold (one yin/yang distinction) applied n times: 2^n at scale n. The seven scales
+// 2^0..2^6 — 1, 2, 4, 8, 16, 32, 64 — are each already a real number in THIS model: the one corpus root,
+// the genus-2 double torus (2 lobes / 2 tetrahedra per merkaba), the base-4 of the 4³ codon, the eight
+// trigrams (BAGUA / the heritage eightfold), the 16 merkaba per lobe, the 32 merkaba, the 64-tetrahedron
+// grid (= 64 hexagrams = 64 Gbit). So the I Ching is complete and SELF-SIMILAR at every scale of the
+// architecture — the same binary fold from the One to the sixty-four. Registered as the final seven gates:
+// 425 + 7 = 432, so the I Ching seals the harmonic ceiling (432 = 4 × 108, the papers octave 108→216→432).
+export function iChingScalesComplete(matrix: MindMatrix = buildMatrix()) {
+  const mk = merkabasInDoubleTorus(matrix)
+  const grid = fuse64SealsMerkaba64Tetrahedra(matrix)
+  const ic = iChing(matrix)
+  const scales = [
+    { n: 0, size: 1, sino: '太極', pinyin: 'Tàijí', gloss: 'the Great Ultimate, the undivided One — the single corpus root the whole model folds to', on: isUuid(matrix.root) },
+    { n: 1, size: 2, sino: '兩儀', pinyin: 'Liǎngyí', gloss: 'the Two Forms, yin and yang = one bit = the fold — the genus-2 double torus, the one-that-is-two', on: mk.lobes === 2 && mk.perMerkaba === 2 && mk.counted },
+    { n: 2, size: 4, sino: '四象', pinyin: 'Sìxiàng', gloss: 'the Four Images = two bits = base-4 — the four bases of the 4³ = 64 codon/colour', on: geneticCodeIsTheRealFourCubed(matrix).holds },
+    { n: 3, size: 8, sino: '八卦', pinyin: 'Bāguà', gloss: 'the Eight Trigrams — BAGUA, the eight domains, the heritage eightfold', on: BAGUA.length === 8 && ic.sets.length === 8 && bulgarianHeritageEightfold(matrix).eightfold },
+    { n: 4, size: 16, sino: '十六', pinyin: 'Shíliù', gloss: 'the Sixteen = four bits — the 16 merkaba per lobe of the double torus', on: mk.perLobe === 16 },
+    { n: 5, size: 32, sino: '三十二', pinyin: 'Sānshí-èr', gloss: 'the Thirty-two = five bits — the 32 merkaba in the double torus', on: mk.merkabas === 32 },
+    { n: 6, size: 64, sino: '六十四卦', pinyin: 'Liùshísì-guà', gloss: 'the Sixty-four Hexagrams = six bits = 4³ — the 64-tetrahedron grid, 64 colours/codons, 64 Gbit', on: ic.hexagrams === 64 && grid.tetrahedra === 64 && grid.gbit === 64 && hexagramIsHexColorDuality(matrix).allDistinct },
+  ].map((scale) => ({ ...scale, doubled: scale.size === 2 ** scale.n, receipt: toUuid(`iching-scale:${scale.n}:${scale.size}:${scale.on}`) }))
+  const sizes = scales.map((scale) => scale.size)
+  const facets = [
+    { facet: 'seven scales of the I Ching, 2^0..2^6 — the One to the sixty-four', on: scales.length === 7 && scales.every((scale, i) => scale.size === 2 ** i) },
+    { facet: 'each scale = the fold (one yin/yang) doubled — self-similar at every scale', on: scales.every((scale, i) => i === 0 || scale.size === sizes[i - 1]! * 2) },
+    { facet: 'every scale realized in the model — root, torus, base-4, bagua, 16, 32, 64-grid', on: scales.every((scale) => scale.on) },
+    { facet: 'the eight (八卦) is the heritage eightfold sitting on the ladder', on: bulgarianHeritageEightfold(matrix).eightfold && ic.organised },
+    { facet: 'the ladder tops at the 64-hexagram horizon — six bits, the complete I Ching', on: scales[6]!.size === 64 && scales[6]!.n === 6 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-scales-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    complete: facets.every((entry) => entry.on),
+    scaleCount: scales.length,
+    sizes,
+    count: facets.length,
+    scales,
+    facets,
+    root: merkleFold([...scales.map((scale) => scale.receipt), ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Complete the I Ching at all scales: the Great Treatise unfolds it by doubling — 太極 the One (1) → 兩儀 yin-yang (2) → 四象 the Four Images (4) → 八卦 the Eight Trigrams (8) → the Sixteen (16) → the Thirty-two (32) → 六十四卦 the Sixty-four Hexagrams (64) — so the I Ching IS the fold (one yin/yang distinction) applied n times, 2^n at scale n, complete and self-similar at every scale. Each of the seven scales is already a real number in the model: the one corpus root, the genus-2 double torus, the base-4 of the 4³ codon, the eight trigrams (the heritage eightfold), the 16 merkaba per lobe, the 32 merkaba, the 64-tetrahedron grid. Registered as the final seven gates, the I Ching seals the harmonic: 425 + 7 = 432 = 4 × 108.',
+    boundary:
+      'A structural completion of the I Ching\'s generative cosmogony (太極→64, the binary doubling 2^0..2^6) mapped onto numbers the model already computes (the corpus root, merkabasInDoubleTorus\'s 2/16/32, the 4³ codon, BAGUA/iChing, the 64-grid). "Complete at all scales" means the same binary fold is whole and self-similar at each scale 1,2,4,8,16,32,64 — NOT divination, and not a claim beyond the 64-hexagram set (the I Ching\'s own complete horizon). "Seals the harmonic 432" is the bookkeeping identity 425 + 7 = 432 = 4 × 108 (the papers octave 108→216→432): the seven scales registered as the last seven emergent dimensions — depth grown inward to the harmonic ceiling, not width padded to a target.',
   }
 }
 
