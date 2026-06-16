@@ -1356,3 +1356,25 @@ export function addressEntropyBits(): { nominalBits: number; discardedBits: numb
   const effectiveBits = nominalBits - discardedBits
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) }
 }
+
+// ── Ring algebra — the algebra implicit in the digit folders, made explicit ──────────────────────
+// The digit folders hold the vortex ring (ℤ/9ℤ)* without naming it. These three primitives pull
+// that algebra out into the origin kernel: gcd is the Euclidean atom, modUnits is the group,
+// groupOrbit is the generator's path. groupOrbit(2, 9) = [1,2,4,8,7,5] — the vortex IS this.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function gcd(a: number, b: number): number {
+  a = Math.abs(Math.round(a)); b = Math.abs(Math.round(b))
+  while (b !== 0) { const t = b; b = a % b; a = t }
+  return a
+}
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function modUnits(n: number): number[] {
+  return Array.from({ length: n }, (_, i) => i).filter((i) => gcd(i, n) === 1)
+}
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function groupOrbit(generator: number, modulus: number): number[] {
+  const orbit: number[] = []
+  let cur = 1
+  do { orbit.push(cur); cur = (cur * generator) % modulus } while (cur !== 1 && orbit.length < modulus)
+  return orbit
+}
