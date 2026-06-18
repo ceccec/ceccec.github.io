@@ -119,3 +119,6 @@ export { atoms, conceptCommands } from './atoms.ts'
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
 export * from './folds.ts'
 export * from './solutions.ts' // dissolved out of the folds monolith — the body distributes, src/0 keeps the gravity
+export * from './ancient.ts'   // ↑ dissolution wave 2 (ancient number systems + text decode)
+export * from './humanity.ts'  // ↑ dissolution wave 2 (humanity implications + traditions)
+export * from './kernel.ts'    // ↑ dissolution wave 2 (the src/0 kernel manifest folds)
