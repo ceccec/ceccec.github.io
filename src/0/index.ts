@@ -107,6 +107,26 @@ export function merkleFold(leaves: readonly string[]): string {
   return layer[0]
 }
 
+// SEAL FACETS — the one micro-mechanic almost every "sealing" fold repeats: stamp each facet with a content-
+// address receipt (toUuid of `tag:facet:on`), report whether all hold (every f.on), and fold the receipts to
+// one root. A fold passes its tag + raw facets and reads back { ok, count, facets, root }; the boilerplate
+// triplet (the receipt .map, the .every() flag, the merkleFold) lives here once instead of in every fold body.
+// CONTRACT: the receipt string is EXACTLY `${tag}:${facet}:${on}` (toUuid is FNV-seeded on it and feeds
+// merkleFold), so a fold migrating to sealFacets keeps its tag verbatim and its root stays byte-identical. The
+// generic F preserves every extra facet field (via, hz, …) so callers and widgets keep their inferred types.
+export function sealFacets<F extends { facet: string; on: boolean }>(
+  tag: string,
+  facets: readonly F[],
+): { ok: boolean; count: number; facets: (F & { receipt: string })[]; root: string } {
+  const stamped = facets.map((f) => ({ ...f, receipt: toUuid(`${tag}:${f.facet}:${f.on}`) }))
+  return {
+    ok: stamped.every((f) => f.on),
+    count: stamped.length,
+    facets: stamped,
+    root: merkleFold(stamped.map((f) => f.receipt)),
+  }
+}
+
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)

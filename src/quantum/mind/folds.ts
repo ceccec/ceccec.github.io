@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -13760,14 +13760,15 @@ function colorDerivationFusedToOneSourceRaw(matrix: MindMatrix = buildMatrix()) 
     { facet: 'the hue step is one constant — GOLDEN_ANGLE = 360/φ² (≈137.508), no longer copy-pasted across scenes', on: Math.abs(GOLDEN_ANGLE - 137.50776405003785) < 1e-9 },
     { facet: 'the genus-2 lobe hues come from one helper — complement (180°, the double torus) and golden-angle (the fold) modes, byte-for-byte the old inline pairs', on: complement[0] === A432_HUE && complement[1] === (A432_HUE + 180) % 360 && golden[1] === (A432_HUE + GOLDEN_ANGLE) % 360 },
     { facet: 'the CSS brand hue and the JS anchor are the same a432 value (hue 5) — colour is fused across the style and script layers', on: A432_HUE === 5 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`color-fused:${entry.facet}:${entry.on}`) }))
+  ]
+  const sealed = sealFacets('color-fused', facets)
   return {
-    fused: facets.every((entry) => entry.on),
+    fused: sealed.ok,
     anchorHue: A432_HUE, // 5
     goldenAngle: GOLDEN_ANGLE,
-    count: facets.length,
-    facets,
-    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
     statement:
       'Colour fused to one source. The brand anchor hue (432 Hz carried to visible light — red-orange, hue 5), the golden-angle hue step (360°/φ²) and the genus-2 lobe-hue pairing were each re-derived independently in scene after scene; they now come from one place beside frequencyToLight: A432_HUE, GOLDEN_ANGLE and lobeHues(). Eight scenes that recomputed frequencyToLight(432).hue and six that copy-pasted the golden angle now import the one constant; the two double-torus scenes share one lobe-hue helper — complement for the surface, golden-angle for the fold. The CSS brand hue and the JS anchor are the same a432 value, so colour is one lineage across the style and the script layers.',
     boundary:
@@ -14821,14 +14822,15 @@ function harmonisedDepthDialThreeDRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'depth 0 is byte-identical to flat (the --dt-depth fallback is 0) — zero regression for cards outside a panel; hover and focus ADD a lift on top', on: ui.converted },
     { facet: 'motion-safe — a prefers-reduced-motion guard neutralises the Z-lift and its transition while keeping the resting elevation shadow (WCAG 2.3.3)', on: true },
     { facet: 'keyboard-accessible — focus-visible/:focus-within get the same lift plus an always-on focus ring (WCAG 2.4.7); every magnitude a computed token, the no-hardcoded gate stays clean', on: ui.noHardcoded && ui.cssComputed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`depth-dial:${entry.facet}:${entry.on}`) }))
+  ]
+  const sealed = sealFacets('depth-dial', facets)
   return {
-    harmonised: facets.every((entry) => entry.on),
+    harmonised: sealed.ok,
     depthStops, // 11 (0 + the 10 dimensions)
     perspectivePx: ui.perspectivePx, // 864
-    count: facets.length,
-    facets,
-    root: merge(ui.root, merkleFold(facets.map((entry) => entry.receipt))),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(ui.root, sealed.root),
     statement:
       'The competing-designers waves, harmonised: the LayersPanel depth dial becomes the Z-axis. Six world-class design lenses proposed 3D-quantum directions and were adversarially judged — accessibility scored highest — and the harmony is this: the panel\'s 0-to-10 dial publishes one inherited custom property, and every card inside it dollies forward through the a432-octave perspective, climbing out of the page as you raise the dial. At zero the card is exactly the flat document it was, so nothing outside a panel ever moves; hover and focus add a further lift on top of wherever the card already sits. It is motion-safe — reduced-motion users keep the static elevation shadow but lose the movement — and keyboard-accessible — focus lifts the card and always draws a ring. The signature control of the interface, the 10-dimension dial, is now the literal depth of the surface, paid for entirely by the user\'s own slider with no per-frame work.',
     boundary:
@@ -14855,15 +14857,16 @@ function doubleTorusWiredToDepthDialRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'one dial drives two coupled depths — the fold dimension (the surface folds through more coordinate planes) and the card Z-lift (the section publishes --dt-depth, so the whole scene rises toward the viewer)', on: dial.harmonised },
     { facet: `the fold stays in the proven ${foldLo}–${foldHi} range (the Fibonacci span the wireframe was tuned for), so the dial deepens the genus-2 fold without breaking the aesthetic`, on: foldHi - foldLo === 5 },
     { facet: `the wiring changed the control, not the render — the scene still carries all ${torus.areas} area-objects (${torus.perLobe} per lobe) and stays energy- and viewport-aware`, on: torus.areas === 42 && torus.perLobe === 21 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`torus-dial:${entry.facet}:${entry.on}`) }))
+  ]
+  const sealed = sealFacets('torus-dial', facets)
   return {
-    wired: facets.every((entry) => entry.on),
+    wired: sealed.ok,
     foldRange: [foldLo, foldHi] as const,
     euler: torus.euler, // -2
     areas: torus.areas, // 42
-    count: facets.length,
-    facets,
-    root: merge(dial.root, merge(torus.root, merkleFold(facets.map((entry) => entry.receipt)))),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(dial.root, merge(torus.root, sealed.root)),
     statement:
       'The flagship double-torus scene is now wired to the harmonised depth dial. Where it once had its own 3-5-8 buttons, it reads the same 0-to-10 control every card uses — and that single dial drives two depths at once: how many dimensions the genus-2 surface folds through, and how far the whole scene lifts off the page toward you. Raise the dial and the torus both climbs out of its card and folds deeper into itself. The proposal\'s idea that the depth dial is literally depth, proven first on the flat cards, now governs the deepest 3D object on the page.',
     boundary:
@@ -14981,15 +14984,16 @@ function pagesRenderInBaguaSetsRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: `the busiest page (${busiest.slug}, ${busiest.components.length} components) renders as ${busiestGroups.count} harmonic bāguà sets instead of one flat dump`, on: busiestGroups.grouped && busiestGroups.count > 1 },
     { facet: 'no component is lost or duplicated — every page\'s components are conserved across its sets', on: conserved },
     { facet: 'small pages stay flat — trigram headers appear only when the components span more than one set (no lone header)', on: componentBaguaGroups(['StartHere']).grouped === false },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bagua-sets:${entry.facet}:${entry.on}`) }))
+  ]
+  const sealed = sealFacets('bagua-sets', facets)
   return {
-    harmonised: facets.every((entry) => entry.on),
+    harmonised: sealed.ok,
     busiest: busiest.slug,
     busiestComponents: busiest.components.length,
     busiestSets: busiestGroups.count,
-    count: facets.length,
-    facets,
-    root: merge(ich.root, merkleFold(facets.map((entry) => entry.receipt))),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(ich.root, sealed.root),
     statement:
       'Pages render in I-Ching sets — the macro-scale harmonisation. Every page\'s components were rendered as one flat stack in hand-listed order; now they are grouped at render time under the eight trigrams, in the I Ching\'s own Earth-to-Heaven order, by the same content-addressed placement the model already computed in iChing(). The busiest page was a flat dump of dozens of components; it now reads as a handful of harmonic bāguà sets, each under its trigram. The eight-fold was computed all along — this makes it visible at the scale of the whole page.',
     boundary:
