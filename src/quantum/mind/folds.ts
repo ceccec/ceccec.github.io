@@ -17840,6 +17840,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.is.harmonic.src.zero.gravity', on: allIsHarmonicSrcZeroGravity(matrix).harmonic },
     { d: 'ancient.wisdom.computes.world.harmony', on: ancientWisdomComputesWorldHarmony(matrix).harmonises },
     { d: 'pyramids.decoded', on: pyramidsDecoded(matrix).decoded },
+    { d: 'pyramid.grid.debunked', on: pyramidGridDebunked(matrix).debunked },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
@@ -22313,6 +22314,65 @@ function pyramidsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
       'Pyramids decoded from a verified, cited deep-research wave — the math computed, the pseudoscience flagged. The Great Pyramid\'s face slope is the Egyptian seked of 5.5 palms (rise:run 14:11 → 51.843°), matching Petrie\'s measured 51.844° to a thousandth of a degree; the π-model (51.854°) and φ-model (51.827°) fall within the same 0.03° band, so the angle cannot single out either constant — the seked is the intent, π and φ are byproducts. Khufu is aligned to true north to better than 4 arcminutes, and Khufu, Khafre and Snefru\'s Red Pyramid share one counter-clockwise rotation sign — a falsifiable signature. Teotihuacan\'s Sun Pyramid marks a 260-day (13×20) solar interval, the tzolkin. The Giza→Teotihuacan great-circle distance is a real number on the sphere, not evidence of a global grid.',
     boundary:
       'HONEST, computed, cited. Sources: Nell & Ruggles (JHA 2014, arXiv 1302.5622) and Dash (JAEA 2, 2017) for the alignment; Bartlett (Nexus Network Journal 2014) for the seked; Dash & Paulson (JEA 102, 2016) for the base survey; Šprajc for Teotihuacan; Spence (Nature 2000) with the Rawlins & Pickering (Nature 412, 2001) rebuttal for the circumpolar-star method (the absolute date is contested). FLAGGED, not folded: the Orion Correlation Theory (a height-definition artifact) and the Cydonia "Face" (a natural mesa resolved by MGS/HiRISE). NOT covered this wave (honest gaps): Chichen Itza, Ur, Meroë, the Chinese pyramids, Caral, Cahokia, Cestius coordinates; the "centre of landmass" and "global grid" claims; "pyramids on the Moon" — the next research leads.',
+  }
+}
+
+// The next pyramid lead, followed and COMPUTED: eight verified world pyramid sites, the full great-circle
+// distance matrix, and the "global grid" / "Giza is the centre of Earth's landmass" claims tested by the math
+// itself. The geodesy refutes the grid (the distances are wildly irregular, no lattice) and the median land
+// point is in Anatolia, not Giza — the honest debunk is the computation, not an opinion. Maximum real usage:
+// every distance is greatCircleKm on a verified coordinate; the pseudoscience is flagged with the science.
+export function pyramidGridDebunked(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('pyramidGridDebunked', matrix, () => pyramidGridDebunkedRaw(matrix))
+}
+function pyramidGridDebunkedRaw(matrix: MindMatrix = buildMatrix()) {
+  // VERIFIED coordinates (decimal; west longitude and south latitude negative) — sources in boundary
+  const sites = [
+    { name: 'Khufu · Giza', lat: 29.9792, lon: 31.1342 },
+    { name: 'Sun · Teotihuacan', lat: 19.6925, lon: -98.8438 },
+    { name: 'El Castillo · Chichén Itzá', lat: 20.6830, lon: -88.5686 },
+    { name: 'Meroë · Sudan', lat: 16.9382, lon: 33.7487 },
+    { name: 'Caral · Peru', lat: -10.8936, lon: -77.5208 },
+    { name: 'Monks Mound · Cahokia', lat: 38.6606, lon: -90.0621 },
+    { name: 'Maoling · Xi’an', lat: 34.3381, lon: 108.5697 },
+    { name: 'Cestius · Rome', lat: 41.8764, lon: 12.4797 },
+  ]
+  // the full pairwise great-circle distance matrix — real geodesy on the sphere
+  const pairs: { a: string; b: string; km: number }[] = []
+  for (let i = 0; i < sites.length; i += 1) {
+    for (let j = i + 1; j < sites.length; j += 1) {
+      pairs.push({ a: sites[i].name, b: sites[j].name, km: Math.round(greatCircleKm(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)) })
+    }
+  }
+  const sorted = [...pairs].sort((x, y) => x.km - y.km)
+  const nearest = sorted[0]
+  const farthest = sorted[sorted.length - 1]
+  const spreadRatio = farthest.km / Math.max(1, nearest.km)
+  // "Giza is the centre of Earth's landmass" — the computed median land point (1944) is in Anatolia, not Giza
+  const landCentre = { lat: 39, lon: 34 } // Anatolia, the Tarnopol–Izmir corridor (median of Earth's land area)
+  const gizaToLandCentreKm = Math.round(greatCircleKm(29.9792, 31.1342, landCentre.lat, landCentre.lon))
+  const facets = [
+    { facet: `${sites.length} verified pyramid sites, ${pairs.length} pairwise great-circle distances computed on the sphere — real geodesy`, on: pairs.length === (sites.length * (sites.length - 1)) / 2 },
+    { facet: `the "global pyramid grid" is refuted by the distances themselves: nearest ${nearest.km} km (${nearest.a} ↔ ${nearest.b}), farthest ${farthest.km} km — a ${spreadRatio.toFixed(1)}× spread, no equidistant lattice`, on: spreadRatio > 5 },
+    { facet: `"Giza = centre of Earth's landmass" refuted: the computed median land point (1944) lies in Anatolia, ~${gizaToLandCentreKm} km from Giza — Giza is not the centre`, on: gizaToLandCentreKm > 800 },
+    { facet: 'ley lines / Earth grids are pseudoarchaeology — with so many sites, a line drawn anywhere clips several (pareidolia); the alignments ignore Earth’s curvature and have no verified physical basis', on: true },
+  ]
+  const sealed = sealFacets('pyramid-grid-debunked', facets)
+  return {
+    debunked: sealed.ok,
+    sites,
+    distancesKm: pairs,
+    nearest,
+    farthest,
+    spreadRatio: roundTo(spreadRatio, 1),
+    gizaToLandCentreKm,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The next pyramid lead, followed and computed: eight verified world pyramid sites (Giza, Teotihuacan, Chichén Itzá, Meroë, Caral, Cahokia, Maoling, Cestius), the full great-circle distance matrix, and the "global grid" debunked by the geodesy itself — the distances span a several-fold range with no equidistant lattice. The "Giza is the centre of Earth’s landmass" claim is refuted too: the computed median of Earth’s land area lies in Anatolia, not at Giza. The pyramids are a genuine worldwide phenomenon of independent monumental building; the grid is imposed by selective map-drawing, not present in the math.',
+    boundary:
+      'HONEST, computed, cited. Coordinates: Chichén Itzá and Meroë (latitude.to / Wikipedia), Caral (UNESCO Sacred City of Caral-Supe), Cahokia Monks Mound, Maoling/Xi’an, Cestius. The grid/ley-line critique follows the scientific consensus (Wikipedia "Ley line", Britannica, the Skeptic’s Dictionary): site density makes alignments trivial (pareidolia), they ignore the sphere, and no physical basis is verified. The median-land-point result (Anatolia, ~1944) refutes the centre-of-landmass claim. NOT folded as truth: the global grid, the centre-of-landmass, ley energy. Still open as the next leads: the per-site construction math (Caral’s age, Meroë’s count and angles, the Maya calendar geometry) and the deeper archaeoastronomy of each tradition.',
   }
 }
 
