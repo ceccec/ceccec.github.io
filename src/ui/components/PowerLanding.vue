@@ -18,7 +18,7 @@ const pageCount = computed(() => sections.value.reduce((n, s) => n + (s.items?.l
 </script>
 
 <template>
-  <section class="power" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+  <section class="power dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="power__head">
       <span class="power__glyph">{{ door?.text }}</span>
       <span class="power__count">{{ pageCount }} {{ bg ? 'страници' : 'pages' }}</span>
@@ -35,7 +35,7 @@ const pageCount = computed(() => sections.value.reduce((n, s) => n + (s.items?.l
 </template>
 
 <style scoped>
-.power { margin: 1.5rem 0; }
+.power { margin: 1.5rem 0; padding: 1.25rem; }
 .power__head {
   display: flex;
   align-items: baseline;

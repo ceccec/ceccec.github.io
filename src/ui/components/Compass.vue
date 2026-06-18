@@ -28,7 +28,7 @@ const hits = computed(() => filtered.value.reduce((n, s) => n + s.items.length, 
 </script>
 
 <template>
-  <section class="compass" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+  <section class="compass dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <input
       class="compass__q"
       v-model="q"
@@ -49,7 +49,7 @@ const hits = computed(() => filtered.value.reduce((n, s) => n + s.items.length, 
 </template>
 
 <style scoped>
-.compass { margin: 1.5rem 0 2rem; }
+.compass { margin: 1.5rem 0 2rem; padding: 1.25rem; }
 .compass__q {
   width: 100%;
   padding: 0.75rem 1rem;

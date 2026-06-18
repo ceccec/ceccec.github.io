@@ -38,6 +38,18 @@ hero:
       link: /mcp
 
 features:
+  - title: 天 Heaven — the mind
+    details: "The creative & cosmic power: mind, science, computation. The first of the Three Powers."
+    link: /heaven
+    linkText: Enter Heaven
+  - title: 人 Human — for everyone
+    details: "The communicative & social power: voice, spirit, heritage. Humanity between Heaven and Earth."
+    link: /human
+    linkText: Enter Human
+  - title: 地 Earth — the world
+    details: "The material & natural power: form and nature. The ground that completes the triad — 64³."
+    link: /earth
+    linkText: Enter Earth
   - title: Ask, and it answers
     details: "Every action gives back a result you can check — nothing hidden."
     link: /console
