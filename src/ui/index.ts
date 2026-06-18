@@ -176,6 +176,7 @@ import PeaceTechMentality from './components/PeaceTechMentality.vue'
 import QuantumSolutionsComplete from './components/QuantumSolutionsComplete.vue'
 import MetatronMath from './components/MetatronMath.vue'
 import QuantumThreshold from './components/QuantumThreshold.vue'
+import DeviceEnergy from './components/DeviceEnergy.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -377,5 +378,6 @@ export default {
     app.component('QuantumSolutionsComplete', QuantumSolutionsComplete)
     app.component('MetatronMath', MetatronMath)
     app.component('QuantumThreshold', QuantumThreshold)
+    app.component('DeviceEnergy', DeviceEnergy)
   }
 } satisfies Theme

@@ -355,7 +355,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Всичко в действие: всяка команда изпълнена на живо, всички компоненти взаимодействат, всички устройства слети — от страна на клиента и проверимо.',
       },
       keywords: ['show', 'demo', 'live', 'components', 'devices'],
-      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'RealtimeTests', 'DeviceDashboard', 'Monograph', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
+      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'RealtimeTests', 'DeviceDashboard', 'DeviceEnergy', 'Monograph', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
     },
     // I Ching domain pages — one per dual-pair module, each under its semantic trigram.
     // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
