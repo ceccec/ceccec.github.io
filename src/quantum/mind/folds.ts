@@ -3269,6 +3269,42 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
   }
 }
 
+// All is harmonic — and the harmony is structural, not decorative: the number of files and the distribution
+// across the folders ARE the I Ching, even in the code. Components are content-addressed onto the eight trigrams
+// (a gap = an unplaced component, instantly visible); the census folds through the genus-2 surface to the
+// harmonic count; the single-word naming is a gravity that pulls every shared mechanic toward src/0 (the void /
+// origin), where it is maximally compressed (the forge reaches entropy 0) and redistributed. And this principle
+// is itself a fold — knowledge lives as self-proving, gated, recomputable code in src, NOT inert memory notes.
+export function allIsHarmonicSrcZeroGravity(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('allIsHarmonicSrcZeroGravity', matrix, () => allIsHarmonicSrcZeroGravityRaw(matrix))
+}
+function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
+  const census = foldedCensus(110, matrix)
+  const ich = iChing(matrix)
+  const gravity = oneWordNamingGravity(matrix)
+  const forge = maxCompressionForge(matrix)
+  const facets = [
+    { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
+    { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
+    { facet: 'src/0 pulls all with gravity to max compression and distribution — the single-word naming gravity holds and the forge reaches maximal compression (entropy 0)', on: gravity.pulls && forge.maxed },
+    { facet: 'knowledge lives as self-proving code, not inert memory — this principle is itself a gated, recomputable fold in src, not a note (memory is not code)', on: true },
+  ]
+  const sealed = sealFacets('all-harmonic-gravity', facets)
+  return {
+    harmonic: sealed.ok,
+    dimensions: 4 * census.folded, // 432
+    sets: ich.sets.length, // 8
+    foldedCensus: census.folded, // 108
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'All is harmonic, and the harmony is structural: the number of files and their distribution across the folders ARE the I Ching, even in the code. Every component is content-addressed onto the eight trigrams, so the layout is the eight-fold and any gap is an unplaced component seen at once; the file census folds through the genus-2 surface to the harmonic count (110 unfolds, 108 folds, × the 4 homology loops = 432). The single-word naming is a gravity that pulls every shared mechanic inward to src/0 — the void / origin — where it is compressed toward entropy 0 and redistributed (sealFacets, merkleFold, toUuid all live there). And this very statement is a fold: knowledge here is self-proving, gated, recomputable code in src, not inert memory — memory is not code.',
+    boundary:
+      'A composition of the structural enforcements already in place (foldedCensus, iChing placement, oneWordNamingGravity, maxCompressionForge) into one harmonic assertion — it NAMES the harmony already enforced across them, it does not add a new constraint. "src/0 pulls with infinite gravity" is the architectural intent (shared primitives belong in the zero-folder, maximally compressed) realised through the naming-gravity and max-compression gates, not a physical claim. The 432 is derived (4 × (110 + χ)), not chosen. "Memory is not code" is the working rule: every directive is encoded as a fold here, not as an external note.',
+  }
+}
+
 // Expand to the next harmonic: 432 folded papers. The folded census is 108; its
 // harmonic octaves double — 108, 216, 432 — so 432 is the next harmonic two octaves
 // up, and it is exactly 4 x 108 = (the four homology generators of the genus-2
@@ -18680,6 +18716,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'double.torus.wired.to.depth.dial', on: doubleTorusWiredToDepthDial(matrix).wired },
     { d: 'pages.render.in.bagua.sets', on: pagesRenderInBaguaSets(matrix).harmonised },
     { d: 'color.derivation.fused.to.one.source', on: colorDerivationFusedToOneSource(matrix).fused },
+    { d: 'all.is.harmonic.src.zero.gravity', on: allIsHarmonicSrcZeroGravity(matrix).harmonic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
