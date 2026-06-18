@@ -6,6 +6,7 @@ import BlockchainMusic from './components/BlockchainMusic.vue'
 import BoundaryAudit from './components/BoundaryAudit.vue'
 import ChakrasAura from './components/ChakrasAura.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
+import Compass from './components/Compass.vue'
 import Complete from './components/Complete.vue'
 import Cosmology358 from './components/Cosmology358.vue'
 import CreativePalette from './components/CreativePalette.vue'
@@ -248,6 +249,7 @@ export default {
     app.component('BlockchainMusic', BlockchainMusic)
     app.component('BoundaryAudit', BoundaryAudit)
     app.component('CollectiveMind', CollectiveMind)
+    app.component('Compass', Compass)
     app.component('Complete', Complete)
     app.component('Cosmology358', Cosmology358)
     app.component('CreativePalette', CreativePalette)
