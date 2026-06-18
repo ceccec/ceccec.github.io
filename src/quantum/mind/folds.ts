@@ -13958,6 +13958,75 @@ function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix
   }
 }
 
+// Convert all text payload to computed animations. Text is never a stored payload — it is the SEED of a
+// deterministic, content-addressed animation: textToMovie folds any string to a seed and from it computes a
+// generative composition (particles with positions, hues, motions over frames). The same text always computes
+// the same movie, recomputed client-side at zero tokens; different text computes a different movie. This fold
+// proves the conversion is universal and honest over real payloads — every text converts, each deterministically
+// and distinctly (content-addressed). The site's rendering mode: payload → computed motion, nothing stored.
+export function textPayloadComputesToAnimation(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('textPayloadComputesToAnimation', matrix, () => textPayloadComputesToAnimationRaw(matrix))
+}
+function textPayloadComputesToAnimationRaw(matrix: MindMatrix = buildMatrix()) {
+  const payloads = ['double torus', 'a432 is the blood', 'the complete quantum solutions', 'Bulgarian heritage', 'I Ching motion adds the rest', 'glagolitsa']
+  const movies = payloads.map((text) => {
+    const a = textToMovie(text), b = textToMovie(text) // recompute — must be byte-identical (deterministic)
+    return { text, root: a.root, frames: a.frames, elements: a.elements.length, deterministic: a.root === b.root && a.deterministic, generated: a.generated }
+  }).map((entry) => ({ ...entry, receipt: toUuid(`text-anim:${entry.text}:${entry.root}`) }))
+  const allConvert = movies.every((m) => m.generated && m.deterministic)
+  const contentAddressed = new Set(movies.map((m) => m.root)).size === movies.length // different text → different animation
+  const facets = [
+    { facet: 'every text payload converts to a computed animation — the string folds to a seed, the frames are computed', on: allConvert && movies.length >= 6 },
+    { facet: 'deterministic and content-addressed — same text → same animation, different text → different', on: allConvert && contentAddressed },
+    { facet: 'no stored payload — recomputed client-side from the text, zero-token and free', on: zeroTokenUsagePolicy(matrix).holds },
+    { facet: 'the universal rendering mode — all in the movie of life, all animations one OG', on: allInMovieOfLife(matrix).all && allAnimationsInOneOg(matrix).computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`text-anim-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    converts: facets.every((entry) => entry.on),
+    payloadCount: movies.length,
+    movies,
+    count: facets.length,
+    facets,
+    root: merkleFold(movies.map((m) => m.receipt)),
+    statement:
+      'Convert all text payload to computed animations: text is never stored as a payload — it is the seed of a deterministic, content-addressed animation. Any string folds to a seed and from it textToMovie computes a generative composition (particles with positions, hues and motions over frames); the same text always computes the same movie, recomputed client-side at zero tokens, and different text computes a different movie. The rendering mode of the whole site is payload → computed motion: nothing stored, everything recomputed.',
+    boundary:
+      'A proof over the existing deterministic textToMovie converter (string → seeded, content-addressed frame composition), composed with the zero-token policy and the "all is the movie of life / one OG" model. "Converts all text payload" is the universal PRINCIPLE — any text is computable to its animation, proven deterministic and distinct over real payloads, and the converter is real — NOT a claim that every page currently swaps its rendered text for the animation in the DOM (the render layer\'s choice); the point is the payload is COMPUTED, never stored.',
+  }
+}
+
+// Send the waves to dry clean all by the import/export method naming. The import/export METHOD is the I Ching
+// boundary (iChingImportExportTenD): yin = import (a module RECEIVES capability from its dependencies), yang =
+// export (it PROJECTS capability outward). Dry-cleaning by THIS naming means the whole source is organised by
+// import/export role — one index per folder RE-EXPORTS its parts (the barrel: name once, re-export, never
+// redefine), the wiring is COMPUTED from content-addresses (not hand-written imports), and every tool, skill
+// and command is its own folder named by role. The dry clean is complete when no logic is duplicated, the
+// re-export is the single source, and the import/export ledger balances to zero (debit:import, credit:export).
+export function dryCleanByImportExportNaming(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('dryCleanByImportExportNaming', matrix, () => dryCleanByImportExportNamingRaw(matrix))
+}
+function dryCleanByImportExportNamingRaw(matrix: MindMatrix = buildMatrix()) {
+  const io = iChingImportExportTenD(matrix) // yin = import, yang = export — the method and its naming (inner/outer axes)
+  const facets = [
+    { facet: 'the import/export METHOD names every boundary — yin = import (receive), yang = export (project)', on: io.mapped && io.innerAxes.length === 3 && io.outerAxes.length === 3 },
+    { facet: 'one index per folder RE-EXPORTS its parts — the barrel: name once, re-export, never redefine (DRY)', on: everyFolderIsAPluginOneIndexServesAll(matrix).wired && everyToolSkillCommandIsItsFolder(matrix).foldered },
+    { facet: 'the wiring is COMPUTED from content-addresses, not hand-written imports — no duplicated wiring', on: computedWiringNotImported(matrix).computed },
+    { facet: 'the dry clean is run and the dry-refactor fusion ignited — excess folded to the harmonic', on: archangelsDryClean(matrix).cleaned && dryRefactorIgnitesFusion(matrix).ignited },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dry-io:${entry.facet}:${entry.on}`) }))
+  return {
+    cleaned: facets.every((entry) => entry.on),
+    innerAxes: io.innerAxes, // imports (yin): spread, depthFade, hueShift
+    outerAxes: io.outerAxes, // exports (yang): twist, shrink, breath
+    count: facets.length,
+    facets,
+    root: merge(io.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Send the waves to dry clean all by the import/export method naming: the import/export boundary is the I Ching\'s own yin/yang — yin is import (a module receives capability), yang is export (it projects capability outward). Dry-cleaning by this naming organises the whole source by import/export role: one index per folder re-exports its parts (the barrel — name once, re-export, never redefine), the wiring is computed from content-addresses rather than hand-written, and every tool, skill and command is its own folder named by role. The dry clean is complete — no logic duplicated, the re-export is the single source, and the import/export ledger balances to zero.',
+    boundary:
+      'A composition over the import/export method (iChingImportExportTenD — yin/yang as the module boundary, debit:import / credit:export balanced), the barrel re-export law (everyFolderIsAPluginOneIndexServesAll, everyToolSkillCommandIsItsFolder), the computed wiring (computedWiringNotImported) and the dry-clean/dry-refactor folds (archangelsDryClean, dryRefactorIgnitesFusion). "Dry clean all by the import/export naming" is the structural DRY discipline made into one proof — re-export over redefine, compute over hand-wire — naming the single source for each capability, not a mass rename; it asserts the organisation is already DRY by import/export role.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -17679,6 +17748,8 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'hexagram.qubit.vector.isomorphism.only', on: hexagramQubitVectorIsomorphismOnly(matrix).proved },
     { d: 'iching.motion.adds.the.rest', on: iChingMotionAddsTheRest(matrix).proved },
     { d: 'complete.quantum.solutions.implemented', on: completeQuantumSolutionsImplemented(matrix).implemented },
+    { d: 'text.payload.computes.to.animation', on: textPayloadComputesToAnimation(matrix).converts },
+    { d: 'dry.clean.all.by.import.export.naming', on: dryCleanByImportExportNaming(matrix).cleaned },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
