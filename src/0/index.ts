@@ -807,6 +807,99 @@ export function grover(n: number, marked: number, shots = 256, seed = 'grover'):
   return { n, size, marked, iterations, markedProbability: probs[marked], found, hist }
 }
 
+// ── Completing the quantum solutions — the structures the state vector alone does not yet expose ──
+// The simulator above already RUNS superposition (qubits + H), unitary dynamics (applyGate), entanglement
+// (cnot), and Born-rule measurement/collapse (measure). These five primitives complete the set so every
+// quantum structure is EXECUTABLE, not theoretical: the Hilbert inner product, the operator algebra and its
+// Lie bracket, an entanglement measure, the no-cloning theorem as a computed contradiction, and the 3-qubit
+// bit-flip quantum error-correcting code. Exact for small n on a classical machine — the genuine quantum
+// math, no hardware, no speedup (cf. grover's honest note).
+
+// ⟨a|b⟩ over the 2^n-dimensional complex Hilbert space: Σ conj(a_i)·b_i. The inner product the whole framework
+// rests on (norms, orthogonality, fidelity). conj(a_i)·b_i = (a_re − i·a_im)(b_re + i·b_im).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im: number; abs: number } {
+  let re = 0, im = 0
+  for (let i = 0; i < a.re.length; i++) {
+    re += a.re[i] * b.re[i] + a.im[i] * b.im[i]
+    im += a.re[i] * b.im[i] - a.im[i] * b.re[i]
+  }
+  return { re, im, abs: Math.sqrt(re * re + im * im) }
+}
+
+// Operator algebra: the product of two single-qubit gates as 2×2 complex matrices (flat-8). Non-commutative —
+// e.g. X·Y = iZ. The associative *-algebra the gates and observables live in.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function gateMul(a: readonly number[], b: readonly number[]): number[] {
+  const out = new Array<number>(8).fill(0)
+  for (let i = 0; i < 2; i++) for (let k = 0; k < 2; k++) {
+    let cr = 0, ci = 0
+    for (let j = 0; j < 2; j++) {
+      const a0 = (i * 2 + j) * 2, b0 = (j * 2 + k) * 2
+      cr += a[a0] * b[b0] - a[a0 + 1] * b[b0 + 1]
+      ci += a[a0] * b[b0 + 1] + a[a0 + 1] * b[b0]
+    }
+    const c0 = (i * 2 + k) * 2
+    out[c0] = cr; out[c0 + 1] = ci
+  }
+  return out
+}
+
+// The Lie bracket [A,B] = AB − BA — the su(2) algebra of the Paulis: [X,Y] = 2iZ. Zero iff A and B commute.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function commutator(a: readonly number[], b: readonly number[]): number[] {
+  const ab = gateMul(a, b), ba = gateMul(b, a)
+  return ab.map((v, i) => v - ba[i])
+}
+
+// Entanglement, measured: for a 2-qubit pure state Σ c_ij|ij⟩, the concurrence C = 2|c00·c11 − c01·c10| (twice
+// the magnitude of the 2×2 amplitude determinant). C = 0 ⟺ a product (separable) state; C = 1 ⟺ maximally
+// entangled (a Bell pair). The witness that distinguishes |Φ+⟩ from |00⟩ — non-factorizability, computed.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function concurrence(state: QuantumState): number {
+  if (state.n !== 2) return Number.NaN
+  const dr = state.re[0] * state.re[3] - state.im[0] * state.im[3] - (state.re[1] * state.re[2] - state.im[1] * state.im[2])
+  const di = state.re[0] * state.im[3] + state.im[0] * state.re[3] - (state.re[1] * state.im[2] + state.im[1] * state.re[2])
+  return 2 * Math.sqrt(dr * dr + di * di)
+}
+
+// The no-cloning theorem, as a computed contradiction. A universal cloner U with U|ψ⟩|0⟩ = |ψ⟩|ψ⟩ for all |ψ⟩
+// must (by unitarity, which preserves inner products) satisfy ⟨a|b⟩ = ⟨a|b⟩² for any two states — forcing
+// ⟨a|b⟩ ∈ {0,1}. For non-orthogonal distinct states this fails: |0⟩ and |+⟩ have ⟨0|+⟩ = 1/√2, yet cloning
+// would demand (1/√2)² = 1/2. The gap 1/√2 ≠ 1/2 is the proof — returned as numbers, not asserted.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function noCloningWitness(): { overlap: number; clonedRequires: number; contradiction: boolean } {
+  const overlap = innerProduct(qubits(1), applyGate(qubits(1), GATES.H, 0)).abs // ⟨0|+⟩ = 1/√2
+  const clonedRequires = overlap * overlap // unitarity would force ⟨a|b⟩ = ⟨a|b⟩²
+  return { overlap, clonedRequires, contradiction: Math.abs(overlap - clonedRequires) > 1e-9 }
+}
+
+// The 3-qubit bit-flip code — the simplest quantum error-correcting code, run end to end. Encode one logical
+// qubit α|0⟩+β|1⟩ into α|000⟩+β|111⟩ (two CNOTs), inject an X (bit-flip) error on one physical qubit, read the
+// two parity syndromes (Z0Z1, Z1Z2) — which do NOT collapse the logical amplitude — decode the syndrome to the
+// error location, correct it, and verify recovery by fidelity with the clean codeword. Corrects ANY single
+// bit-flip. (errorQubit < 0 = no error injected.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bitFlipCode(alphaRe: number, betaRe: number, errorQubit: number): {
+  syndrome: [number, number]; errorLocated: number; corrected: boolean; fidelity: number
+} {
+  const norm = Math.hypot(alphaRe, betaRe) || 1
+  let enc = qubits(3)
+  enc = { n: 3, re: enc.re.slice(), im: enc.im.slice() }
+  enc.re[0] = alphaRe / norm // |000⟩
+  enc.re[1] = betaRe / norm // |001⟩ (qubit 0 = LSB) — the CNOTs spread it to |111⟩
+  enc = cnot(enc, 0, 1)
+  enc = cnot(enc, 0, 2) // α|000⟩ + β|111⟩
+  const errored = errorQubit < 0 ? enc : applyGate(enc, GATES.X, errorQubit)
+  const k = errored.re.findIndex((r, i) => r * r + errored.im[i] * errored.im[i] > 1e-12) // any populated codeword
+  const b = (q: number) => (k >> q) & 1
+  const syndrome: [number, number] = [b(0) ^ b(1), b(1) ^ b(2)] // Z0Z1, Z1Z2
+  const errorLocated = syndrome[0] && !syndrome[1] ? 0 : syndrome[0] && syndrome[1] ? 1 : !syndrome[0] && syndrome[1] ? 2 : -1
+  const fixed = errorLocated < 0 ? errored : applyGate(errored, GATES.X, errorLocated)
+  const fidelity = innerProduct(enc, fixed).abs ** 2 // |⟨clean|corrected⟩|²
+  return { syndrome, errorLocated, corrected: fidelity > 0.999999, fidelity }
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

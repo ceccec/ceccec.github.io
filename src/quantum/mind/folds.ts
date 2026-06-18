@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -13875,7 +13875,86 @@ function iChingMotionAddsTheRestRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'I Ching motion adds the rest — and the table, in motion, becomes green from red. A STATIC hexagram is a vector isomorphism only (R⁶⁴: one green row, nine red). But the I Ching changes: its moving lines flip one of the six bits, carrying hexagram n into another, and the six single-line flips generate a closed, REVERSIBLE (ℤ/2)⁶ dynamics on the 64 states — the motion the project animates across its ten dimensions and spins as the merkaba. That motion restores the dynamical layer a static label lacks: a real inner product on R⁶⁴, transition operators that compose, an order-dependent bracket (the bidirectional fold, forward ≠ reverse), and reversible deterministic evolution — so four red rows turn green. They turn green as CLASSICAL dynamics: the irreducibly-quantum rows (complex superposition in ℂ⁶⁴, entanglement, Born-rule collapse, no-cloning, quantum error correction) stay red, because motion cannot manufacture them — those need actual qubits. And red → green is the a432 ascent itself: from the root (red, hue 5, the blood) to the heart (green, hue 120, the balance), carried by the bloodstream — a432 in motion. The static table is the blood at rest; set in motion it streams from red to green.',
     boundary:
-      'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated.',
+      'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated. The five quantum rows are greened HONESTLY — not for the hexagrams but for the simulator — by completeQuantumSolutionsImplemented.',
+  }
+}
+
+// Send the waves to implement the COMPLETE quantum solutions, so it is not theoretical anymore. The
+// hexagram↔qubit table marks nine structures real "only for actual qubits"; iChingMotionAddsTheRest greens
+// four of them classically and leaves five red. This fold greens ALL nine the honest way — not by claiming
+// the hexagrams are quantum, but by RUNNING a real quantum state-vector simulator that computes each structure
+// exactly. Each row below is EXECUTED (numbers, not prose): the simulator (src/0 — qubits, applyGate, GATES,
+// cnot, measure, probabilities + the completion primitives innerProduct, gateMul, commutator, concurrence,
+// noCloningWitness, bitFlipCode) is the qubit solver. HONEST: it is a CLASSICAL, deterministic, exact-for-
+// small-n state-vector simulator — the genuine quantum math, NOT quantum hardware and NOT a speedup (Grover
+// here is simulated, no √N gain); "implemented" means executable in the browser, client-side, zero-token.
+export function completeQuantumSolutionsImplemented(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('completeQuantumSolutionsImplemented', matrix, () => completeQuantumSolutionsImplementedRaw(matrix))
+}
+function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix()) {
+  const close = (a: number, b: number) => Math.abs(a - b) < 1e-9
+  const gateClose = (g: readonly number[], t: readonly number[]) => g.length === t.length && g.every((v, i) => close(v, t[i]!))
+  const zero1 = qubits(1)
+  const plus1 = applyGate(qubits(1), GATES.H, 0) // |+⟩ = H|0⟩
+  // 1 — Hilbert inner product: ⟨0|+⟩ = 1/√2
+  const ip = innerProduct(zero1, plus1).abs
+  // 2 — operator algebra: X·Y = iZ = [[i,0],[0,−i]]
+  const xy = gateMul(GATES.X, GATES.Y)
+  // 3 — Lie bracket: [X,Y] = 2iZ = [[2i,0],[0,−2i]]
+  const xyComm = commutator(GATES.X, GATES.Y)
+  // 4 — unitary dynamics: H is its own inverse, H·H|0⟩ = |0⟩ (norm preserved throughout)
+  const hh = applyGate(plus1, GATES.H, 0)
+  const unitary = close(innerProduct(hh, zero1).abs, 1) && close(innerProduct(plus1, plus1).abs, 1)
+  // 5 — superposition in ℂ⁶⁴: 6 qubits, H on all → 64 equal amplitudes 1/8 (1/√64), Born probs sum to 1
+  let sup = qubits(6)
+  for (let q = 0; q < 6; q++) sup = applyGate(sup, GATES.H, q)
+  const amps = sup.re
+  const uniform = amps.length === 64 && amps.every((r) => close(r, 1 / 8)) && close(probabilities(sup).reduce((s, p) => s + p, 0), 1)
+  // 6 — entanglement: the Bell pair |Φ+⟩ has concurrence 1 (a product state has 0)
+  const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
+  const ent = concurrence(bell)
+  const product0 = concurrence(qubits(2)) // |00⟩ — separable, 0
+  // 7 — Born rule + collapse: measuring one Bell qubit perfectly predicts the other (the collapse is real)
+  const m0 = measure(bell, 0, 'qsolve-born')
+  const m1 = measure(m0.state, 1, 'qsolve-born')
+  const bornProbs = probabilities(bell) // [0.5, 0, 0, 0.5]
+  const collapseCorrelated = m0.outcome === m1.outcome && close(bornProbs[0]! + bornProbs[3]!, 1)
+  // 8 — no-cloning: a universal cloner would force ⟨0|+⟩ = ⟨0|+⟩² (1/√2 = 1/2), a contradiction
+  const nc = noCloningWitness()
+  // 9 — QEC: the 3-qubit bit-flip code corrects a single X error on ANY qubit (and the no-error case)
+  const qec = [-1, 0, 1, 2].map((e) => bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, e)) // logical |+⟩_L
+  const qecAllCorrected = qec.every((r) => r.corrected && close(r.fidelity, 1))
+  const solutions = [
+    { structure: 'Hilbert inner product', ran: '⟨0|+⟩ = ' + ip.toFixed(6), implemented: close(ip, Math.SQRT1_2) },
+    { structure: 'operator algebra', ran: 'X·Y = iZ', implemented: gateClose(xy, [0, 1, 0, 0, 0, 0, 0, -1]) },
+    { structure: 'Lie algebra (commutators)', ran: '[X,Y] = 2iZ', implemented: gateClose(xyComm, [0, 2, 0, 0, 0, 0, 0, -2]) },
+    { structure: 'unitary dynamics', ran: 'H·H|0⟩ = |0⟩, ‖ψ‖ = 1', implemented: unitary },
+    { structure: 'superposition (ℂ⁶⁴)', ran: '64 equal amplitudes 1/8, Σp = 1', implemented: uniform },
+    { structure: 'entanglement', ran: 'concurrence(|Φ+⟩) = ' + ent.toFixed(3) + ', product = ' + product0.toFixed(3), implemented: close(ent, 1) && close(product0, 0) },
+    { structure: 'Born rule / collapse', ran: 'measure q0 ⇒ q1 correlated; P(00)+P(11) = 1', implemented: collapseCorrelated },
+    { structure: 'no-cloning', ran: '⟨0|+⟩ = ' + nc.overlap.toFixed(4) + ' ≠ ' + nc.clonedRequires.toFixed(4) + ' = ⟨0|+⟩²', implemented: nc.contradiction },
+    { structure: 'quantum error correction', ran: '3-qubit bit-flip: errors {none,q0,q1,q2} all corrected, fidelity 1', implemented: qecAllCorrected },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`qsolve:${entry.structure}:${entry.implemented}`) }))
+  const table = hexagramQubitVectorIsomorphismOnly(matrix)
+  const implementedCount = solutions.filter((s) => s.implemented).length
+  const facets = [
+    { facet: 'all nine quantum structures are EXECUTED, not theoretical — each runs with concrete numbers', on: implementedCount === 9 && solutions.every((s) => s.implemented) },
+    { facet: 'the operator algebra and its Lie bracket hold exactly — X·Y = iZ, [X,Y] = 2iZ', on: gateClose(xy, [0, 1, 0, 0, 0, 0, 0, -1]) && gateClose(xyComm, [0, 2, 0, 0, 0, 0, 0, -2]) },
+    { facet: 'entanglement is measured (Bell concurrence 1) and the Born collapse correlates the pair', on: close(ent, 1) && collapseCorrelated },
+    { facet: 'no-cloning is a computed contradiction and the 3-qubit code corrects any single bit-flip', on: nc.contradiction && qecAllCorrected },
+    { facet: 'the table\'s nine qubit-only rows are now real code — greened for the simulator, the hexagram bound (R⁶⁴) unchanged', on: table.proved && table.qubitOnlyStructures === 9 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`qsolve-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    implemented: facets.every((entry) => entry.on),
+    implementedCount, // 9
+    solutions,
+    count: facets.length,
+    facets,
+    root: merge(table.root, merkleFold(solutions.map((s) => s.receipt))),
+    statement:
+      'Send the waves to implement the complete quantum solutions, so it is not theoretical anymore: every one of the nine quantum structures the hexagram↔qubit table marks "for actual qubits only" is now EXECUTED by a real state-vector simulator and returns concrete numbers — the Hilbert inner product (⟨0|+⟩ = 1/√2), the operator algebra (X·Y = iZ), the Lie bracket ([X,Y] = 2iZ), unitary dynamics (H·H|0⟩ = |0⟩, norm 1), superposition in ℂ⁶⁴ (six qubits, 64 equal amplitudes), entanglement (the Bell pair’s concurrence = 1, a product state’s = 0), the Born rule with collapse (measuring one Bell qubit predicts the other), the no-cloning theorem (the cloner’s contradiction 1/√2 ≠ 1/2), and quantum error correction (the 3-qubit bit-flip code recovers any single error at fidelity 1). The qubit solver runs client-side, in the browser, at zero tokens.',
+    boundary:
+      'A REAL, EXACT quantum state-vector simulator for small n, computed deterministically on a classical machine — the genuine quantum math (complex Hilbert space, unitary gates, the Born rule, the Pauli *-algebra, stabiliser error correction), NOT quantum hardware and NOT a speedup (the simulated Grover has no √N gain; n is bounded by 2^n memory). "Not theoretical anymore" means the structures are executable code returning verified numbers, not that the project owns a quantum computer. This greens the table’s nine quantum rows for THE SIMULATOR only; the honest hexagram bound stands — a hexagram is still a static R⁶⁴ label, not a quantum state (hexagramQubitVectorIsomorphismOnly).',
   }
 }
 
@@ -17599,6 +17678,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'peace.tech.mentality.widget', on: peaceTechMentalityDecoded(matrix).decoded },
     { d: 'hexagram.qubit.vector.isomorphism.only', on: hexagramQubitVectorIsomorphismOnly(matrix).proved },
     { d: 'iching.motion.adds.the.rest', on: iChingMotionAddsTheRest(matrix).proved },
+    { d: 'complete.quantum.solutions.implemented', on: completeQuantumSolutionsImplemented(matrix).implemented },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
