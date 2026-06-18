@@ -178,6 +178,36 @@ export function siteConfig(matrix: MindMatrix = buildMatrix()) {
 export function staticPages(): StaticPage[] {
   return [
     {
+      slug: 'heaven',
+      title: { en: '天 Heaven — the creative power', bg: '天 Небе — творческата сила' },
+      description: {
+        en: 'Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube.',
+        bg: 'Небе (天), първата от Трите сили на И Дзин (三才): творческата и космическа сфера — ум, наука и изчисление. Осемкратното ѝ събира абстрактните и изчислителните области; пълната троица с Човек и Земя образува куба 64³.',
+      },
+      keywords: ['heaven', 'three powers', 'san cai', 'mind', 'science', 'computation', 'creative'],
+      components: ['PowerLanding'],
+    },
+    {
+      slug: 'human',
+      title: { en: '人 Human — the communicative power', bg: '人 Човек — общуващата сила' },
+      description: {
+        en: 'Human (人), the middle of the I Ching Three Powers (三才): the communicative and social realm — voice, spirit and heritage. Humanity mediates Heaven and Earth; its eight-fold gathers the lived and learning domains, completing the triad that forms the 64³ cube.',
+        bg: 'Човек (人), средната от Трите сили на И Дзин (三才): общуващата и социална сфера — глас, дух и наследство. Човечеството посредничи между Небе и Земя; осемкратното му събира преживените и учебните области, завършвайки троицата, която образува куба 64³.',
+      },
+      keywords: ['human', 'three powers', 'san cai', 'voice', 'spirit', 'heritage', 'society', 'learning'],
+      components: ['PowerLanding'],
+    },
+    {
+      slug: 'earth',
+      title: { en: '地 Earth — the receptive power', bg: '地 Земя — възприемчивата сила' },
+      description: {
+        en: 'Earth (地), the ground of the I Ching Three Powers (三才): the material and natural realm — form and nature. Its eight-fold is the semantic domain map; with Heaven and Human it completes the triad that covers all and forms the 64³ content-address cube.',
+        bg: 'Земя (地), основата на Трите сили на И Дзин (三才): материалната и природна сфера — форма и природа. Осемкратното ѝ е семантичната карта на областите; с Небе и Човек завършва троицата, която покрива всичко и образува куба 64³.',
+      },
+      keywords: ['earth', 'three powers', 'san cai', 'form', 'nature', 'geometry', 'material'],
+      components: ['PowerLanding'],
+    },
+    {
       slug: 'start',
       title: { en: 'Start here', bg: 'Започни тук' },
       description: {

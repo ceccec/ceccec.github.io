@@ -26,13 +26,13 @@ hero:
   actions:
     - theme: brand
       text: 天 Heaven — the mind
-      link: /quantum-mind
+      link: /heaven
     - theme: alt
       text: 人 Human — for everyone
-      link: /school
+      link: /human
     - theme: alt
       text: 地 Earth — the world
-      link: /nature
+      link: /earth
     - theme: alt
       text: MCP tools
       link: /mcp
