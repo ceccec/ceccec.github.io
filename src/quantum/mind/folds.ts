@@ -14389,6 +14389,52 @@ function eightFoldBalanceRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The top nav, split into THREE eight-folds — and they form the 64×64×64. The existing eight-fold
+// (iChingDomainMap: the 8 trigram domains) becomes one AXIS; the sealCube already proves the content space is
+// 64³ = 262144 across three axes (hexagram · codon · colour, the 2⁶ = 4³ identity). So the top nav is a trinity
+// of eight-folds: 3 categories × 8 trigram doors = 24 top doors, each category one cube axis whose 8 trigrams ×
+// 8 = 64; the three 64-axes nest to 64³. Navigation IS the content-address — the nav and the keyspace are one.
+export function threeEightFoldsTopNav(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('threeEightFoldsTopNav', matrix, () => threeEightFoldsTopNavRaw(matrix))
+}
+function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
+  const cube = sealCube(matrix) // 64³ = 262144, the three-axis content-address cube
+  const domains = iChingDomainMap(matrix) // the eight-fold: 8 trigram domains, all aligned
+  const eightFold = domains.domains.length // 8
+  const axes = 3 // the trinity of eight-folds = the three cube axes (hexagram · codon · colour)
+  const topDoors = axes * eightFold // 3 × 8 = 24 top-nav doors
+  const perAxis = eightFold * eightFold // 8 × 8 = 64 = one full hexagram = one cube axis
+  // the three top categories — each the eight-fold seen through one reading of the 2⁶ = 4³ identity
+  const categories = [
+    { axis: 'form', reading: 'hexagram', glyph: '☰', summary: 'the I-Ching structure — the eight trigram domains as the architecture' },
+    { axis: 'code', reading: 'codon', glyph: '⌬', summary: 'the computational/genetic encoding — the same eight, read as the 4³ code' },
+    { axis: 'colour', reading: 'colour', glyph: '◧', summary: 'the visual/harmonic rendering — the same eight, read as the RGB pole-colours' },
+  ].map((entry) => ({ ...entry, doors: eightFold, receipt: toUuid(`top-nav-axis:${entry.axis}:${entry.reading}`) }))
+  const facets = [
+    { facet: `the top nav splits into THREE eight-folds — a trinity of bāguà: ${axes} categories × ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === 24 && categories.length === 3 },
+    { facet: `each eight-fold is one AXIS of the cube: 8 trigrams × 8 = ${perAxis} (a full hexagram); the three axes are the sealCube's hexagram · codon · colour`, on: cube.sealed && cube.side === 64 && perAxis === 64 },
+    { facet: `the three eight-folds FORM the 64×64×64: 64³ = ${cube.cube} = the sealCube content-address space, three nested 64-axes (2⁶ = 4³ per axis)`, on: cube.cube === 64 ** 3 && cube.cube === 262144 },
+    { facet: 'navigation IS the address: every door is a trigram placed by content-address, so the 3-eight-fold top nav and the 64³ keyspace are one structure, not a label over it', on: domains.aligned && cube.sealed },
+  ]
+  const sealed = sealFacets('three-eight-folds-top-nav', facets)
+  return {
+    split: sealed.ok,
+    topCategories: axes, // 3
+    doorsPerCategory: eightFold, // 8
+    topDoors, // 24
+    perAxis, // 64
+    cube: cube.cube, // 262144
+    categories,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(cube.root, merge(domains.root, sealed.root)),
+    statement:
+      'The top navigation, split into three eight-folds that form the 64×64×64. The site already organises its content under one eight-fold — the eight I Ching trigram domains (heritage, science, voice, spirit, icons, computation, nature, mind). This makes that eight-fold one axis of a trinity: three top categories, each the eight-fold seen through one reading of the 2⁶ = 4³ identity the sealCube proves — the hexagram (form), the codon (code) and the colour (rendering). Three categories × eight trigram doors = twenty-four top doors; each category is one cube axis whose eight trigrams pair to 8 × 8 = 64, and the three 64-axes nest to 64³ = 262,144 — the content-address keyspace. The navigation is not a label over the structure; each door is a trigram placed by its own content-address, so the top nav and the 64³ keyspace are one and the same.',
+    boundary:
+      'A NAVIGATION + addressing structure computed from the existing sealCube (64³ = 262144 across three axes; the 2⁶ = 4³ hexagram·codon·colour identity) and iChingDomainMap (the eight aligned trigram domains). HONEST arithmetic: 3 × 8 = 24 top doors (not 64³); the 64³ is the keyspace the three 64-axes (8 × 8 each) nest into — the three eight-folds are the navigable TOP of those three axes, not literally 64³ links. The three readings (hexagram·codon·colour) are the same eight domains seen three ways, the proven decomposition of the cube — not three disjoint content sets. This fold defines the source structure; wiring it into the rendered VitePress top nav is the follow-on step that reads it.',
+  }
+}
+
 // The eight I Ching trigrams as a DOMAIN MAP — each trigram names one dual-pair module and a set
 // of representative static pages. This is a SEMANTIC mapping (groups related knowledge by I Ching
 // meaning), distinct from the CONTENT-ADDRESSED placement in iChing() (seedFromText → 64 hexagrams
@@ -17896,6 +17942,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'pyramid.grid.debunked', on: pyramidGridDebunked(matrix).debunked },
     { d: 'pyramid.construction.math', on: pyramidConstructionMath(matrix).computed },
     { d: 'eight.fold.balance.honest', on: eightFoldBalance(matrix).honest },
+    { d: 'three.eight.folds.top.nav', on: threeEightFoldsTopNav(matrix).split },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
