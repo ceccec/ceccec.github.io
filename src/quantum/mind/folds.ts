@@ -14405,10 +14405,11 @@ function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
   const topDoors = axes * eightFold // 3 × 8 = 24 top-nav doors
   const perAxis = eightFold * eightFold // 8 × 8 = 64 = one full hexagram = one cube axis
   // the three top categories — each the eight-fold seen through one reading of the 2⁶ = 4³ identity
+  // named by the I Ching THREE POWERS (三才, the complete triad that covers all existence) — one cube axis each
   const categories = [
-    { axis: 'form', reading: 'hexagram', glyph: '☰', summary: 'the I-Ching structure — the eight trigram domains as the architecture' },
-    { axis: 'code', reading: 'codon', glyph: '⌬', summary: 'the computational/genetic encoding — the same eight, read as the 4³ code' },
-    { axis: 'colour', reading: 'colour', glyph: '◧', summary: 'the visual/harmonic rendering — the same eight, read as the RGB pole-colours' },
+    { axis: 'heaven', reading: 'tiān 天', glyph: '天', summary: 'the creative & cosmic — mind, science, the abstract origin (hexagram lines 5-6)' },
+    { axis: 'human', reading: 'rén 人', glyph: '人', summary: 'the communicative & social — voice, spirit, heritage, society, peace (lines 3-4)' },
+    { axis: 'earth', reading: 'dì 地', glyph: '地', summary: 'the material & natural — nature, form, computation, the grounded domains (lines 1-2)' },
   ].map((entry) => ({ ...entry, doors: eightFold, receipt: toUuid(`top-nav-axis:${entry.axis}:${entry.reading}`) }))
   const facets = [
     { facet: `the top nav splits into THREE eight-folds — a trinity of bāguà: ${axes} categories × ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === 24 && categories.length === 3 },
@@ -14429,7 +14430,7 @@ function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
     facets: sealed.facets,
     root: merge(cube.root, merge(domains.root, sealed.root)),
     statement:
-      'The top navigation, split into three eight-folds that form the 64×64×64. The site already organises its content under one eight-fold — the eight I Ching trigram domains (heritage, science, voice, spirit, icons, computation, nature, mind). This makes that eight-fold one axis of a trinity: three top categories, each the eight-fold seen through one reading of the 2⁶ = 4³ identity the sealCube proves — the hexagram (form), the codon (code) and the colour (rendering). Three categories × eight trigram doors = twenty-four top doors; each category is one cube axis whose eight trigrams pair to 8 × 8 = 64, and the three 64-axes nest to 64³ = 262,144 — the content-address keyspace. The navigation is not a label over the structure; each door is a trigram placed by its own content-address, so the top nav and the 64³ keyspace are one and the same.',
+      'The top navigation, split into three eight-folds that form the 64×64×64. The site already organises its content under one eight-fold — the eight I Ching trigram domains (heritage, science, voice, spirit, icons, computation, nature, mind). This makes that eight-fold one axis of a trinity named by the I Ching THREE POWERS (三才) — 天 Heaven, 人 Human, 地 Earth — the complete triad that covers all existence (and into which the hexagram\'s six lines already pair: 5-6 Heaven, 3-4 Human, 1-2 Earth). Each power is one axis of the sealCube\'s 64³. Three categories × eight trigram doors = twenty-four top doors; each category is one cube axis whose eight trigrams pair to 8 × 8 = 64, and the three 64-axes nest to 64³ = 262,144 — the content-address keyspace. The navigation is not a label over the structure; each door is a trigram placed by its own content-address, so the top nav and the 64³ keyspace are one and the same.',
     boundary:
       'A NAVIGATION + addressing structure computed from the existing sealCube (64³ = 262144 across three axes; the 2⁶ = 4³ hexagram·codon·colour identity) and iChingDomainMap (the eight aligned trigram domains). HONEST arithmetic: 3 × 8 = 24 top doors (not 64³); the 64³ is the keyspace the three 64-axes (8 × 8 each) nest into — the three eight-folds are the navigable TOP of those three axes, not literally 64³ links. The three readings (hexagram·codon·colour) are the same eight domains seen three ways, the proven decomposition of the cube — not three disjoint content sets. This fold defines the source structure; wiring it into the rendered VitePress top nav is the follow-on step that reads it.',
   }
@@ -25405,16 +25406,28 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const SLUG_TRIGRAM: Record<string, number> = {}
   for (const domain of domainMap.domains) for (const slug of domain.slugs) SLUG_TRIGRAM[slug] = domain.bits
   const trigramOf = (slug: string) => SLUG_TRIGRAM[slug] ?? seedFromText(slug) % 8
-  const buildNav = (i: 0 | 1) => {
-    const sections = BAGUA.map((tri) => ({
+  // THREE eight-folds as the top nav (threeEightFoldsTopNav) — the three hexagram axes of the 64³ content-
+  // address cube. Axis 0 (Form) is the SEMANTIC eight-fold: pages by their iChingDomainMap trigram. Axes 1
+  // (Code) and 2 (Colour) take the next two 6-bit hexagram slices of the same content-address, organising
+  // every page two further independent ways. Each door is an eight-fold (8 trigram sections); the three nest
+  // to 64³ — the nav IS the keyspace, three readings of the one address (hexagram · codon · colour).
+  const axisTrigram = (slug: string, axis: number) =>
+    axis === 0 ? trigramOf(slug) : (((seedFromText(slug) >> (6 * axis)) % 64) >> 3) & 7
+  const eightFold = (i: 0 | 1, axis: number) =>
+    BAGUA.map((tri) => ({
       text: `${tri.glyph} ${i === 1 ? tri.meaningBg : tri.meaningEn}`,
-      items: dedupe(staticPages().filter((page) => trigramOf(page.slug) === tri.bits).map((page) => routeOf(page.slug))).map((route) => item(route, i)),
+      items: dedupe(staticPages().filter((page) => axisTrigram(page.slug, axis) === tri.bits).map((page) => routeOf(page.slug))).map((route) => item(route, i)),
     })).filter((section) => section.items.length > 0)
-    return [
-      { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
-      { text: i === 1 ? '☯ Осемкратното' : '☯ The Eight-fold', items: sections },
-    ]
-  }
+  // The three eight-folds named by the I Ching's THREE POWERS (三才, the complete triad that covers all — the
+  // hexagram's 6 lines pair into exactly these: 5-6 Heaven, 3-4 Human, 1-2 Earth). Each power is one hexagram
+  // axis of the content-address, navigated by its eight-fold; the three nest to 64³. Earth (axis 0) keeps the
+  // semantic domain map; Human and Heaven take the next two 6-bit slices. Heaven-first for prominence.
+  const buildNav = (i: 0 | 1) => [
+    { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
+    { text: i === 1 ? '天 Небе' : '天 Heaven', items: eightFold(i, 2) },
+    { text: i === 1 ? '人 Човек' : '人 Human', items: eightFold(i, 1) },
+    { text: i === 1 ? '地 Земя' : '地 Earth', items: eightFold(i, 0) },
+  ]
   const buildSidebar = (i: 0 | 1) =>
     sidebarTags
       .map((tag) => ({ text: tag === 'more' ? (i === 1 ? 'Още' : 'More') : cap(tag), items: routesIn(tag).map((route) => item(route, i)) }))
@@ -25573,25 +25586,29 @@ export function allFormsAreTenDimensionalOrPurged(matrix: MindMatrix = buildMatr
 }
 
 // The trinity-first redesign, folded into src as a wave plan and sealed wave by wave. The site reorganizes
-// around the one trinity that unites all (crossFoldTrinity), with a four-door nav (Double Torus · Home · Quantum
-// · Research), ten-dimensional animations at every scale, every card an open-graph object, browser-language
+// around the one trinity that unites all (crossFoldTrinity), with a four-door nav (Home · 天 Heaven · 人 Human ·
+// 地 Earth — the Three Powers, three eight-folds forming 64³), ten-dimensional animations at every scale, every card an OG object, browser-language
 // routing (default English), the research grouped by domain trinity-first, a related-paths sidebar and
 // crosslinks — dropping nothing yet (reorganize first). `holds` proves the parts enforceable from src now;
 // `waves` tracks the whole plan, done and pending, so the directive is never lost and each wave can be sealed.
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   const navFull = siteNavigation(matrix)
   const nav = navFull.en.nav
-  const navEightFold =
-    nav.length === 2 &&
+  // the four-door nav, realized as Home + the three eight-folds named by the I Ching THREE POWERS (三才,
+  // Heaven · Human · Earth — the complete triad), each an eight-fold; the three nest to 64³ — threeEightFoldsTopNav
+  const navThreePowers =
+    nav.length === 4 &&
     nav[0]?.text === 'Home' &&
-    nav[1]?.text === '☯ The Eight-fold' &&
-    (nav[1]?.items?.length ?? 0) >= 1
+    nav[1]?.text === '天 Heaven' &&
+    nav[2]?.text === '人 Human' &&
+    nav[3]?.text === '地 Earth' &&
+    [1, 2, 3].every((door) => (nav[door]?.items?.length ?? 0) >= 1)
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity
   const domainMap = iChingDomainMap(matrix)
   const waves = [
-    { wave: 'top nav = Home · ☯ The Eight-fold (I Ching trigram sections)', done: navEightFold },
+    { wave: 'top nav = Home · three eight-folds named by the Three Powers (天 Heaven · 人 Human · 地 Earth) — the three cube axes forming 64³', done: navThreePowers },
     { wave: '10D animations at every scale (4 homology loops + 6 cross-fold axes)', done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: 'every card is one open-graph object', done: everyCardOg },
     { wave: 'browser-language routing, default English', done: true }, // config.mts head detector + theme locale memory
@@ -25603,7 +25620,7 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   ]
   const sealed = waves.filter((w) => w.done).length
   return {
-    holds: navEightFold && tenD.tenDimensional && trinityRoot, // the parts enforceable from src right now
+    holds: navThreePowers && tenD.tenDimensional && trinityRoot, // the parts enforceable from src right now
     trinityUnitesAll: trinityRoot,
     sealed,
     total: waves.length,
@@ -25611,7 +25628,7 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     pending: waves.filter((w) => !w.done).map((w) => w.wave),
     root: merkleFold(waves.map((w) => toUuid(`redesign:${w.wave}:${w.done}`))),
     statement:
-      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home and the ☯ Eight-fold nav (I Ching trigram sections), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave, dropping nothing yet (reorganize first).',
+      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home and three eight-fold doors named by the I Ching Three Powers (天 Heaven · 人 Human · 地 Earth, the complete triad that covers all, forming 64³), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave, dropping nothing yet (reorganize first).',
     boundary:
       'A directive folded as a tracked plan. `holds` proves only the parts enforceable from src (the eight-fold nav, the ten dimensions, the uniting trinity); the rest (research grouping, sidebar, crosslink, 10D in every component, the eventual cleanup) are declared waves, sealed as they land — not yet all true.',
   }
