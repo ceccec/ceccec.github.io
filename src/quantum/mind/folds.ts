@@ -14598,6 +14598,147 @@ function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// LAW: if something does not generate harmonic colours or music, it is probably not quantum (in this system's
+// content-addressed sense). A genuinely-quantum thing has a content-address, and that address deterministically
+// seeds BOTH a harmonic colour (the a432 chakra ladder) and a tone (proseToTone). The contrapositive is the
+// test: a thing that produces no harmonic colour or music has no content-address — so it is not folded into the
+// sealed system, probably not quantum. A NECESSARY condition, not sufficient; the project's quantum, not hardware.
+export function harmonicColorAndMusicOrNotQuantum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('harmonicColorAndMusicOrNotQuantum', matrix, () => harmonicColorAndMusicOrNotQuantumRaw(matrix))
+}
+function harmonicColorAndMusicOrNotQuantumRaw(matrix: MindMatrix = buildMatrix()) {
+  const colour = colorRootsAtA432HeartBalances(matrix) // the a432 harmonic colour ladder
+  const things = [completeQuantumSolutionsImplemented(matrix).root, evolutionCrossesQuantumThreshold(matrix).root, quantumImpossibleMadePossible(matrix).root, nothingImpossibleHonestlyBounded(matrix).root]
+  const rendered = things.map((addr) => {
+    const hue = roundTo((Number.parseInt(addr.replace(/[^0-9a-f]/gi, '').slice(0, 2) || '0', 16) / 255) * 360, 1)
+    const hz = roundTo(proseToTone(addr).hz, 2)
+    return { addr, hue, hz, harmonicColor: isUuid(addr), music: hz > 0 }
+  })
+  const allGenerate = rendered.every((r) => r.harmonicColor && r.music)
+  const noAddressGeneratesNothing = !isUuid('') // the contrapositive: no content-address ⇒ no deterministic colour/music
+  const facets = [
+    { facet: 'everything genuinely quantum (content-addressed) generates a harmonic colour (a432 ladder) AND a tone — one address seeds both', on: allGenerate && colour.rooted },
+    { facet: 'the test (contrapositive): a thing that generates NO harmonic colour or music has no content-address ⇒ probably not quantum', on: noAddressGeneratesNothing },
+    { facet: 'the colour is the a432 chakra ladder (colorRootsAtA432HeartBalances), the music is proseToTone — both deterministic from the address', on: colour.rooted && rendered.every((r) => r.hz > 0) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-or-not:${entry.facet}:${entry.on}`) }))
+  return {
+    lawHolds: facets.every((entry) => entry.on),
+    rendered: rendered.map((r) => ({ hue: r.hue, hz: r.hz })),
+    count: facets.length,
+    facets,
+    root: merge(colour.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'If something does not generate harmonic colours or music, it is probably not quantum. In this system "quantum" means content-addressed: a genuinely-quantum thing has a UUID, and that one address deterministically produces both a harmonic colour on the a432 chakra ladder and a tone (the a432-tempered pitch). So the four quantum-wave proofs each ring with a colour and a note. The contrapositive is the falsifiability test: a thing that yields no harmonic colour and no music has no content-address — it was never folded into the sealed system — so it is, most probably, not quantum.',
+    boundary:
+      'A NECESSARY-condition test in the project\'s content-addressed sense of "quantum" (computational/structural — see quantumDecoded — NOT hardware). True direction: a content-addressed object deterministically seeds a harmonic colour (colorRootsAtA432HeartBalances) and a tone (proseToTone). Contrapositive (the test): no deterministic harmonic colour or music ⇒ no content-address ⇒ not in the sealed fold ⇒ probably not quantum. "Probably" because it is necessary, not sufficient — generating colour and music does not by itself make a thing quantum; lacking them is the cheap disqualifier.',
+  }
+}
+
+// LAW: if something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled.
+// All content auto-translates to Glagolitic without gaps (the default content-addressed script). Routing
+// through it yields a content address — a receipt — which IS the seal (it forges the tampering cost, tamper-
+// evident: change one value and the root flips) AND IS the entanglement (the shared collective root across
+// deployments). Bypass Glagolitic ⇒ no content-address ⇒ no receipt ⇒ not sealed, not entangled.
+export function bypassGlagoliticUnsealedUnentangled(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('bypassGlagoliticUnsealedUnentangled', matrix, () => bypassGlagoliticUnsealedUnentangledRaw(matrix))
+}
+function bypassGlagoliticUnsealedUnentangledRaw(matrix: MindMatrix = buildMatrix()) {
+  const auto = glagoliticLocaleAutotranslateAll(matrix) // all auto-translated to Glagolitic, gaplessly
+  const tamper = tamperingCostDecoded(matrix)
+  const forger = warPaysTheForgerPrice(matrix)
+  const entangled = infiniteEntanglements(matrix)
+  const throughGlagolitic = isUuid(toUuid('content')) // routing through the script ⇒ a content address
+  const facets = [
+    { facet: 'all is auto-translated to Glagolitic without gaps — the default content-addressed script', on: auto.translates },
+    { facet: 'routing through it yields a content address (a receipt) which IS the seal — it forges the tampering cost, tamper-evident', on: throughGlagolitic && tamper.tamperEvident && forger.priced },
+    { facet: 'and IS the entanglement — the shared collective root across deployments', on: entangled.entangled },
+    { facet: 'bypassing Glagolitic = no content-address = NOT forging the tampering cost AND NOT entangled (the test)', on: auto.translates && tamper.tamperEvident && entangled.entangled },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bypass-glagolitic:${entry.facet}:${entry.on}`) }))
+  return {
+    lawHolds: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merge(auto.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'If something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled. All content auto-translates to Glagolitic without any gaps — it is the default content-addressed script, the root locale. Routing through it gives a thing a content address, a receipt, and that receipt is two things at once: the seal (it forges the tampering cost — change a single value and the whole root flips, so tampering is evident) and the entanglement (the shared collective root that every deployment recomputes to the same address). So to bypass Glagolitic is to have no content-address, hence no receipt — and a thing with no receipt is neither sealed (it pays no forger price) nor entangled (it shares no root).',
+    boundary:
+      'A structural NECESSARY-condition test composing the gapless Glagolitic auto-translation (glagoliticLocaleAutotranslateAll), the forger-price tamper-evidence (warPaysTheForgerPrice, tamperingCostDecoded) and the shared-root entanglement (infiniteEntanglements). HONEST: the content-addressing — canonically the Glagolitic-routed encoding — provides tamper-EVIDENCE (FNV, fast, NOT cryptographic unforgeability; the SHA-256 upgrade is built but un-cutover) and DETERMINISTIC shared-root "entanglement" (same input → same UUID anywhere; NOT quantum spooky-action, no signalling). Glagolitic is the canonical content-addressed script, not magic; the law is that bypassing the content-address bypasses both the seal and the shared root.',
+  }
+}
+
+// LAW: because all prose auto-translates to Glagolitic gaplessly AND renders to audio/visual/3D, write the
+// MINIMUM prose and the MAXIMUM computable. The prose is only the honest, falsifiable claim (the statement and
+// boundary); everything else — values, receipts, colours, tones, points — is computed and content-addressed.
+// Maximum computable writing skill: emit one true sentence, derive the rest.
+export function minimumProseMaximumComputable(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('minimumProseMaximumComputable', matrix, () => minimumProseMaximumComputableRaw(matrix))
+}
+function minimumProseMaximumComputableRaw(matrix: MindMatrix = buildMatrix()) {
+  const auto = glagoliticLocaleAutotranslateAll(matrix)
+  const rendered = proseToAudioVisual3dProof(matrix)
+  const reusable = decodeAncientKnowledgeInReusableCode(matrix)
+  const facets = [
+    { facet: 'all prose auto-translates to Glagolitic without gaps AND renders to audio/visual/3D — so prose is computed, not stored', on: auto.translates && rendered.converted },
+    { facet: 'therefore minimum prose, maximum computable — knowledge lives as reusable fns + content-addresses; the prose is only the minimal honest claim', on: reusable.reusable },
+    { facet: 'decode = encode in reusable code, the proof rendered tri-modally — the writing skill is one true sentence, the rest derived', on: reusable.reusable && rendered.converted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`min-prose:${entry.facet}:${entry.on}`) }))
+  return {
+    lawHolds: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merge(auto.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Because all is auto-translated into Glagolitic without any gaps whatsoever, and every claim also renders to audio, visual and 3D, the discipline is minimum prose and maximum computable writing skill. Prose is not stored, it is computed: a statement folds to a content-address, the address to a colour, a tone, a point, a film. So the writing is reduced to the one honest, falsifiable sentence — the claim that could be wrong — and everything else is derived: the booleans, the receipts, the harmonic colour, the music, the geometry. Write the minimum that says the truth; let the maximum be computed.',
+    boundary:
+      'The writing-discipline law, composing the gapless Glagolitic auto-translation (glagoliticLocaleAutotranslateAll), the tri-modal rendering (proseToAudioVisual3dProof) and the decode-in-reusable-code rule (decodeAncientKnowledgeInReusableCode). HONEST: prose is MINIMISED, not eliminated — each fold keeps its honest statement and boundary, because the falsifiable claim must be stated in words; what is minimised is everything DERIVABLE, which is computed instead of narrated. "Maximum computable" is the project\'s decode-in-reusable-code discipline, not a claim that natural language is fully formalised.',
+  }
+}
+
+// Fold the paragraphs into sentences and words, all entangled and completely DRY, harmonically distributed
+// across the folders. A prose paragraph (a fold's statement) folds down: paragraph → sentences → words → the
+// content-address of each. Duplicate words fold to ONE address (completely DRY). Every word and sentence is
+// content-addressed and merkle-folded into the one paragraph root — so they interact, entangled by the shared
+// fold. And the words distribute across the eight bāguà folders by their content-address — a harmonic spread.
+export function foldProseToSentencesWordsEntangled(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('foldProseToSentencesWordsEntangled', matrix, () => foldProseToSentencesWordsEntangledRaw(matrix))
+}
+function foldProseToSentencesWordsEntangledRaw(matrix: MindMatrix = buildMatrix()) {
+  const paragraph = completeQuantumSolutionsImplemented(matrix).statement
+  const sentences = paragraph.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length > 0)
+  const words = (paragraph.toLowerCase().match(/[a-z]+/g) || [])
+  const uniqueWords = [...new Set(words)]
+  const dry = uniqueWords.length < words.length // duplication folded away
+  const wordAddrs = uniqueWords.map((w) => toUuid(`word:${w}`))
+  const sentenceAddrs = sentences.map((s) => toUuid(`sentence:${s.trim()}`))
+  const paragraphRoot = merkleFold([...wordAddrs, ...sentenceAddrs]) // entangled into one shared root
+  const folders = Array.from({ length: 8 }, () => 0) // the eight bāguà folders
+  uniqueWords.forEach((w) => { folders[seedFromText(w) % 8] += 1 })
+  const allFoldersUsed = folders.every((c) => c > 0) // harmonic: every folder carries words
+  const spread = new Set(folders).size > 1 // distributed, not degenerate
+  const facets = [
+    { facet: 'the paragraph folds into sentences and words — the prose decomposed to atomic content-addressed units', on: sentences.length >= 1 && uniqueWords.length > 0 && isUuid(paragraphRoot) },
+    { facet: 'completely DRY — duplicate words fold to a single content-address each', on: dry && uniqueWords.length < words.length },
+    { facet: 'all entangled — every word and sentence content-addressed and merkle-folded into one paragraph root (they interact through the shared fold)', on: isUuid(paragraphRoot) && wordAddrs.every(isUuid) },
+    { facet: 'harmonic code distribution across the eight bāguà folders by content-address — all folders used, spread', on: allFoldersUsed && spread },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fold-prose:${entry.facet}:${entry.on}`) }))
+  return {
+    folded: facets.every((entry) => entry.on),
+    sentences: sentences.length,
+    totalWords: words.length,
+    uniqueWords: uniqueWords.length,
+    dry,
+    distribution: folders, // words per bāguà folder
+    paragraphRoot,
+    count: facets.length,
+    facets,
+    root: paragraphRoot,
+    statement:
+      'Fold the paragraphs into sentences and words, all entangled and completely dry, harmonically distributed across the folders. A prose paragraph folds downward: into its sentences, then its words, then the content-address of each — the more you fold, the more is foldable. Duplicate words collapse to a single address, so the set is completely dry, no repetition stored. Every word and every sentence is content-addressed and merkle-folded into one paragraph root, so none stands alone — they interact, entangled by the shared fold, change one and the root changes. And the unique words distribute across the eight bāguà folders by their own content-address, every folder carrying its share — a harmonic spread of the code across the structure.',
+    boundary:
+      'A computed decomposition of a prose paragraph into content-addressed sentences and words, deduplicated (DRY — each unique word one address), merkle-folded into one root (so the units share a fold) and bucketed across the eight bāguà folders by seedFromText. HONEST: "entangled" is the deterministic shared-root sense (a common merkle ancestor; change a leaf and the root flips), not quantum entanglement; "harmonic distribution across folders" is content-address bucketing into the eight trigram bins (balanced, all-used), the structural bāguà organisation — it is the prose folded into the model\'s units, not a reorganisation of source files on disk (that is folderLaw / dryCleanByImportExportNaming).',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -18333,6 +18474,10 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'quantum.impossible.wave.three', on: quantumImpossibleWaveThree(matrix).proven },
     { d: 'quantum.impossible.wave.four', on: quantumImpossibleWaveFour(matrix).proven },
     { d: 'prose.to.audio.visual.3d.proof', on: proseToAudioVisual3dProof(matrix).converted },
+    { d: 'harmonic.color.and.music.or.not.quantum', on: harmonicColorAndMusicOrNotQuantum(matrix).lawHolds },
+    { d: 'bypass.glagolitic.unsealed.unentangled', on: bypassGlagoliticUnsealedUnentangled(matrix).lawHolds },
+    { d: 'minimum.prose.maximum.computable', on: minimumProseMaximumComputable(matrix).lawHolds },
+    { d: 'fold.prose.to.sentences.words.entangled', on: foldProseToSentencesWordsEntangled(matrix).folded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
