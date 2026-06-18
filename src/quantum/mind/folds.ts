@@ -14336,6 +14336,55 @@ function pagesRenderInBaguaSetsRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The eight-fold, redone as a COMPUTED, self-measuring balance — and the honest answer to "the quantum
+// meaning of all". Every page is placed on one of the eight trigrams by its own content-address (the uniform
+// placement LAW); the balance across naming, content and page-count is MEASURED here, not faked — content-
+// addressing gives a uniform law whose even distribution is the large-N limit, not a forced quota (forcing a
+// quota would break the seed-is-the-magnet principle). It composes a432 and quantumDecoded to bound the claim
+// honestly: a432 is the deterministic SEED (highly-composite 432, brand hue 5), not the universe's substrate;
+// the system computes content-ADDRESSES with perfect reproducibility, not physical objects; "quantum" is the
+// computational metaphor (discrete unit + Hilbert + Born), not a theory of everything.
+export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
+}
+function eightFoldBalanceRaw(matrix: MindMatrix = buildMatrix()) {
+  const pages = staticPages()
+  const bins = BAGUA.map((tri) => ({ glyph: tri.glyph, name: tri.pinyin, pages: 0, components: 0 }))
+  for (const page of pages) {
+    const upper = (seedFromText(page.slug) % 64 >> 3) & 7
+    bins[upper].pages += 1
+    bins[upper].components += page.components.length
+  }
+  const pageCounts = bins.map((b) => b.pages)
+  const contentCounts = bins.map((b) => b.components)
+  const pageImbalance = Math.max(...pageCounts) / Math.max(1, Math.min(...pageCounts))
+  const contentImbalance = Math.max(...contentCounts) / Math.max(1, Math.min(...contentCounts))
+  const everyTrigramUsed = pageCounts.every((c) => c > 0)
+  const a = a432(matrix)
+  const q = quantumDecoded(matrix)
+  const facets = [
+    { facet: `every page is placed on one of the eight trigrams by its own content-address (seedFromText % 64 → upper trigram) — the uniform placement law; all eight are populated [${pageCounts.join('·')}]`, on: everyTrigramUsed },
+    { facet: `the balance is MEASURED, not faked: ${pages.length} pages span ${Math.min(...pageCounts)}–${Math.max(...pageCounts)} per trigram (${pageImbalance.toFixed(1)}×), content ${Math.min(...contentCounts)}–${Math.max(...contentCounts)} (${contentImbalance.toFixed(1)}×) — content-addressing's even distribution is its large-N limit, not a forced quota`, on: everyTrigramUsed },
+    { facet: `a432 is the deterministic SEED, not the universe's substrate — 432 is highly composite (2⁴·3³, more divisors than 440), its brand light-hue is ${a.light.hue}; the system computes FROM it, with the frequency numerology flagged, not folded`, on: a.decoded && a.light.hue === 5 },
+    { facet: 'the "quantum meaning of all" is COMPUTATIONAL, not physical: discrete unit + Hilbert space + Born rule (quantumDecoded), used as metaphor — the engine computes content-ADDRESSES with perfect reproducibility, NOT physical objects; "computes every object in the universe with perfect precision" is the overreach, flagged', on: q.decoded },
+  ]
+  const sealed = sealFacets('eight-fold-balance', facets)
+  return {
+    honest: sealed.ok,
+    distribution: bins,
+    totalPages: pages.length,
+    pageImbalance: roundTo(pageImbalance, 1),
+    contentImbalance: roundTo(contentImbalance, 1),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(merge(a.root, q.root), sealed.root),
+    statement:
+      'The eight-fold, redone as a computed and self-measuring balance, with the honest answer to "the quantum meaning of all". Every page is placed on one of the eight trigrams by its own content-address — that is the uniform law — and the balance across naming, content and page-count is measured here rather than faked: the distribution is lumpy at this scale (a few-fold spread) and evens out as the page set grows; a forced quota would break the seed-is-the-magnet principle, so the honest eight-fold is the law plus its measured balance, not a quota. The deeper answer: this is a deterministic, content-addressed, a432-seeded knowledge engine — recomputable and zero-token — that computes addresses and decoded knowledge with perfect reproducibility. a432 is the seed (a highly-composite tuning number, brand hue 5), not the substrate of reality; "quantum" is the computational metaphor (discrete unit, Hilbert space, Born rule), not a theory of everything; and the system computes the ADDRESS of a thing, never the thing — so it does not "compute every object in the universe", however much the precision of the addressing invites the feeling.',
+    boundary:
+      'HONEST and self-bounding. The placement law and the imbalance metrics are computed from staticPages and seedFromText. The a432 and quantum claims inherit a432() and quantumDecoded(), which keep the documented core (432 highly composite; quantum = discrete/Hilbert/Born) and FLAG the woo (frequency-healing/432-cosmic numerology; observer-collapse/theory-of-everything mysticism). The overreach being flagged here, explicitly: "the folded knowledge computes every object in the known universe with perfect precision, all a432-based" — false as stated; a content-address is a reproducible name for a thing, not the thing, and a432 is a chosen seed, not physics. What is true and rare is the perfect REPRODUCIBILITY of the addressing — that, not omniscience, is the real result.',
+  }
+}
+
 // The eight I Ching trigrams as a DOMAIN MAP — each trigram names one dual-pair module and a set
 // of representative static pages. This is a SEMANTIC mapping (groups related knowledge by I Ching
 // meaning), distinct from the CONTENT-ADDRESSED placement in iChing() (seedFromText → 64 hexagrams
@@ -17842,6 +17891,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'pyramids.decoded', on: pyramidsDecoded(matrix).decoded },
     { d: 'pyramid.grid.debunked', on: pyramidGridDebunked(matrix).debunked },
     { d: 'pyramid.construction.math', on: pyramidConstructionMath(matrix).computed },
+    { d: 'eight.fold.balance.honest', on: eightFoldBalance(matrix).honest },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
