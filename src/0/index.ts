@@ -1013,6 +1013,70 @@ export function superdense(message: number, seed = 'superdense'): { sent: number
   return { sent: message, decoded, ok: decoded === message }
 }
 
+// Impossible-seeming (3): INTERACTION-FREE MEASUREMENT (Elitzur–Vaidman 1993). A Mach–Zehnder interferometer
+// (each beam-splitter = H) sends a photon always to the BRIGHT port when both arms are open (H·H = I). Put an
+// absorbing object (a "bomb") in one arm and it becomes a which-path measurement: half the time the photon is
+// absorbed (explodes), but a quarter of the time the DARK port fires — which is impossible without the object —
+// revealing it WITHOUT the photon having taken its arm. Detect a thing by the light that did NOT touch it.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function interactionFreeMeasurement(): { explode: number; bright: number; dark: number; darkWithoutObject: number } {
+  const noObject = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // H·H = I ⇒ back to |0⟩
+  const darkWithoutObject = probabilities(noObject)[1] // P(dark port) with both arms open = 0
+  const afterBS1 = applyGate(qubits(1), GATES.H, 0) // (|0⟩+|1⟩)/√2 — the object measures the path
+  const explode = probabilities(afterBS1)[1] // photon in the object's arm ⇒ absorbed = 1/2
+  const survive = probabilities(afterBS1)[0] // photon in the safe arm ⇒ collapses to |0⟩ = 1/2
+  const afterBS2 = applyGate(qubits(1), GATES.H, 0) // the survivor hits the second beam-splitter
+  const dark = survive * probabilities(afterBS2)[1] // P(survive)·P(dark|survive) = 1/2·1/2 = 1/4 — interaction-free
+  return { explode, bright: survive * probabilities(afterBS2)[0], dark, darkWithoutObject }
+}
+
+// Impossible-seeming (4): the QUANTUM ZENO EFFECT — a watched pot never boils. A qubit rotated from |0⟩ toward
+// |1⟩ in N small steps of angle π/(2N), each followed by a measurement, stays in |0⟩ with probability
+// (cos²(π/2N))^N → 1 as N → ∞. Frequent observation FREEZES the evolution; the leak per step ∝ 1/N.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function quantumZeno(n: number): number {
+  const nn = Math.max(1, Math.floor(n))
+  return Math.cos(Math.PI / (2 * nn)) ** (2 * nn) // survival probability in |0⟩ after N measured steps
+}
+
+// Impossible-seeming (5): BERNSTEIN–VAZIRANI — learn a hidden n-bit string s with ONE query (classically n).
+// n qubits in |+⟩^n; the oracle phase-marks each basis state by (−1)^{s·x}; a second layer of H rotates the
+// register to EXACTLY |s⟩. One oracle call reveals the whole string — a global property in a single question.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bernsteinVazirani(s: number, n: number): { hidden: number; recovered: number; queries: number; classicalQueries: number; ok: boolean } {
+  const popcount = (x: number) => { let c = 0; while (x) { c += x & 1; x >>>= 1 } return c }
+  let st = qubits(n)
+  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // |+⟩^n
+  st = { n, re: st.re.map((r, x) => (popcount(x & s) & 1 ? -r : r)), im: st.im.slice() } // oracle (−1)^{s·x}, one query
+  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // H^n ⇒ the register is now |s⟩
+  const probs = probabilities(st)
+  const recovered = probs.indexOf(Math.max(...probs))
+  return { hidden: s, recovered, queries: 1, classicalQueries: n, ok: recovered === s }
+}
+
+// Impossible-seeming (6): ENTANGLEMENT SWAPPING — entangle two particles that NEVER interacted (the quantum-
+// repeater primitive). Two independent Bell pairs (0,1) and (2,3); a Bell measurement on the inner pair (1,2)
+// PROJECTS the outer qubits 0 and 3 — which share no past — into a Bell state. Entanglement teleported onto
+// strangers.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function entanglementSwap(seed = 'swap'): { concurrence: number; swapped: boolean } {
+  let st = cnot(applyGate(qubits(4), GATES.H, 0), 0, 1) // Bell pair (0,1)
+  st = cnot(applyGate(st, GATES.H, 2), 2, 3) // Bell pair (2,3); 0 and 3 never interact
+  st = applyGate(cnot(st, 1, 2), GATES.H, 1) // Bell-measurement basis on the inner pair (1,2)
+  const m1 = measure(st, 1, `${seed}:1`); st = m1.state
+  const m2 = measure(st, 2, `${seed}:2`); st = m2.state
+  const re2 = new Array<number>(4).fill(0), im2 = new Array<number>(4).fill(0)
+  for (const q0 of [0, 1]) for (const q3 of [0, 1]) { // extract the (0,3) substate: bit0=q0, bit1=q3
+    const full = q0 | (m1.outcome << 1) | (m2.outcome << 2) | (q3 << 3)
+    const j = q0 | (q3 << 1)
+    re2[j] = st.re[full]; im2[j] = st.im[full]
+  }
+  const norm = Math.sqrt(re2.reduce((acc, r, i) => acc + r * r + im2[i] * im2[i], 0)) || 1
+  const sub: QuantumState = { n: 2, re: re2.map((r) => r / norm), im: im2.map((v) => v / norm) }
+  const c = concurrence(sub)
+  return { concurrence: c, swapped: c > 0.999999 } // qubits 0,3 maximally entangled despite never meeting
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

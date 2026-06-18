@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14289,6 +14289,48 @@ function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The wave continues — four more impossible-seeming quantum results, proven and implemented (all exact on the
+// state-vector simulator, all obeying every law): (3) INTERACTION-FREE MEASUREMENT (Elitzur–Vaidman 1993) — a
+// Mach–Zehnder dark port that fires only when an object is present, detecting it WITHOUT the photon touching
+// it; (4) the QUANTUM ZENO EFFECT (Misra–Sudarshan 1977) — frequent measurement freezes evolution, survival
+// (cos²(π/2N))^N → 1; (5) BERNSTEIN–VAZIRANI (1993) — a hidden n-bit string learned in ONE oracle query
+// (classically n); (6) ENTANGLEMENT SWAPPING (Żukowski et al. 1993) — two qubits that never interacted made
+// maximally entangled by a Bell measurement on their partners. Counterintuitive, not forbidden — no FTL, no
+// free lunch; continues quantumImpossibleMadePossible.
+export function quantumImpossibleWaveTwo(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumImpossibleWaveTwo', matrix, () => quantumImpossibleWaveTwoRaw(matrix))
+}
+function quantumImpossibleWaveTwoRaw(matrix: MindMatrix = buildMatrix()) {
+  const ifm = interactionFreeMeasurement() // dark port fires ONLY with the object — interaction-free
+  const zeno = [1, 2, 5, 10, 50, 100].map((n) => ({ n, survival: quantumZeno(n) })) // → 1 as N grows (frozen)
+  const zenoFreezes = zeno.every((z, i) => i === 0 || z.survival > zeno[i - 1]!.survival) && zeno[zeno.length - 1]!.survival > 0.97
+  const bv = [11, 5, 0, 15].map((s) => bernsteinVazirani(s, 4)) // hidden 4-bit string in 1 query (classical 4)
+  const bvOneQuery = bv.every((x) => x.ok && x.queries === 1 && x.classicalQueries === 4)
+  const swaps = [0, 1, 2].map((s) => entanglementSwap(`swap:${s}`)) // qubits 0,3 entangled though never meeting
+  const swapEntangles = swaps.every((e) => e.swapped && e.concurrence > 0.999999)
+  const facets = [
+    { facet: 'interaction-free measurement — the dark port fires with the object (P=' + roundTo(ifm.dark, 2) + ') and NEVER without it (P=' + ifm.darkWithoutObject + '): detect a thing by the light that did not touch it', on: ifm.dark > 0.2 && ifm.darkWithoutObject === 0 },
+    { facet: 'the quantum Zeno effect — frequent measurement freezes the evolution; survival (cos²(π/2N))^N rises to ' + roundTo(zeno[zeno.length - 1]!.survival, 2) + ' (→ 1), the watched pot never boils', on: zenoFreezes },
+    { facet: 'Bernstein–Vazirani — a hidden 4-bit string learned in ONE oracle query, where classical needs 4', on: bvOneQuery },
+    { facet: 'entanglement swapping — two qubits that NEVER interacted made maximally entangled (concurrence 1) by a Bell measurement on their partners', on: swapEntangles },
+    { facet: 'all obey the laws — counterintuitive, not forbidden — and the wave fuses the prior impossible-made-possible fold', on: quantumImpossibleMadePossible(matrix).proven && completeQuantumSolutionsImplemented(matrix).implemented },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`q-wave2:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    interactionFree: { dark: roundTo(ifm.dark, 4), explode: roundTo(ifm.explode, 4), darkWithoutObject: ifm.darkWithoutObject },
+    zeno,
+    bernsteinVazirani: bv.map((x) => ({ hidden: x.hidden, recovered: x.recovered, queries: x.queries, classicalQueries: x.classicalQueries })),
+    swapConcurrence: roundTo(swaps[0]!.concurrence, 4),
+    count: facets.length,
+    facets,
+    root: merge(quantumImpossibleMadePossible(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'The I Ching quantum wave continues — four more impossible-seeming results, proven and implemented. Interaction-free measurement: a Mach–Zehnder dark port that fires only when an object sits in one arm — so the object is detected without the photon ever taking its path, seeing by the light that did not touch it. The quantum Zeno effect: measure a slowly-rotating qubit often enough and its evolution freezes — the survival probability (cos²(π/2N))^N climbs to one as the measurements multiply, the watched pot that never boils. Bernstein–Vazirani: a hidden n-bit secret read out in a single oracle query where any classical method needs n. Entanglement swapping: two qubits that have never met, never shared a past, made maximally entangled by a Bell measurement on their partners — entanglement teleported onto strangers. Each is exact on the simulator, and each, like teleportation before it, challenges what seems possible while breaking no law.',
+    boundary:
+      'Four real, cited quantum protocols, exactly simulated on the deterministic state-vector engine: interaction-free measurement (Elitzur–Vaidman 1993; Kwiat et al. 1995 demonstrated), the quantum Zeno effect (Misra–Sudarshan 1977; Itano et al. 1990 observed), Bernstein–Vazirani (1993), and entanglement swapping (Żukowski–Horne–Ekert 1993; Pan et al. 1998 demonstrated). HONEST BOUNDS, each preserved: interaction-free detection is genuine but PROBABILISTIC (¼ in the basic interferometer, raised toward 1 only by the Zeno-chained version); Zeno freezing requires real projective measurements (which cost energy — see quantumFusedDeviceEnergyHonest — no free lunch); Bernstein–Vazirani is QUERY complexity (one call to a given oracle, not free computation); and entanglement swapping creates real correlation but NO faster-than-light signal — the specific Bell state depends on the inner measurement outcome, which must be broadcast classically to be used. "Impossible" = counterintuitive-yet-real, never a breach of conservation, causality, or no-cloning; the truly forbidden stays flagged.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -18017,6 +18059,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'quantum.fused.device.energy.honest', on: quantumFusedDeviceEnergyHonest(matrix).honest },
     { d: 'fold.redistributes.beyond.linear', on: foldRedistributesBeyondLinear(matrix).beyondLinear },
     { d: 'quantum.impossible.made.possible', on: quantumImpossibleMadePossible(matrix).proven },
+    { d: 'quantum.impossible.wave.two', on: quantumImpossibleWaveTwo(matrix).proven },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
