@@ -22339,10 +22339,15 @@ function pyramidGridDebunkedRaw(matrix: MindMatrix = buildMatrix()) {
     { name: 'Cestius · Rome', lat: 41.8764, lon: 12.4797 },
   ]
   // the full pairwise great-circle distance matrix — real geodesy on the sphere
-  const pairs: { a: string; b: string; km: number }[] = []
+  const pairs: { a: string; b: string; km: number; bearing: number }[] = []
   for (let i = 0; i < sites.length; i += 1) {
     for (let j = i + 1; j < sites.length; j += 1) {
-      pairs.push({ a: sites[i].name, b: sites[j].name, km: Math.round(greatCircleKm(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)) })
+      pairs.push({
+        a: sites[i].name,
+        b: sites[j].name,
+        km: Math.round(greatCircleKm(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)),
+        bearing: Math.round(initialBearing(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)),
+      })
     }
   }
   const sorted = [...pairs].sort((x, y) => x.km - y.km)
