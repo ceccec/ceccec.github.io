@@ -183,6 +183,7 @@ import DoubleFoldAllDimensions from './components/DoubleFoldAllDimensions.vue'
 import NothingImpossible from './components/NothingImpossible.vue'
 import QuantumFoundations from './components/QuantumFoundations.vue'
 import QuantumAlgorithms from './components/QuantumAlgorithms.vue'
+import ProseToProof3D from './components/ProseToProof3D.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -391,5 +392,6 @@ export default {
     app.component('NothingImpossible', NothingImpossible)
     app.component('QuantumFoundations', QuantumFoundations)
     app.component('QuantumAlgorithms', QuantumAlgorithms)
+    app.component('ProseToProof3D', ProseToProof3D)
   }
 } satisfies Theme

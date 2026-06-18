@@ -1156,6 +1156,16 @@ export function simon(seed = 'simon'): { hiddenS: number; ys: number[]; allOrtho
   return { hiddenS, ys, allOrthogonal, recoveredS, ok: recoveredS === hiddenS && allOrthogonal }
 }
 
+// Prose → AUDIO: an a432-tempered pitch derived from a string's content-address. The first hex word of the
+// UUID picks a semitone over two octaves above a432, hz = 432·2^(semitone/12). Deterministic — same prose, same
+// tone — the audible half of "prose to audio/visual proof". Pairs with uuidPoint (the 3D point) for the visual.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function proseToTone(prose: string): { hz: number; semitone: number; octave: number } {
+  const hex = toUuid(prose).replace(/[^0-9a-f]/gi, '')
+  const semitone = Number.parseInt(hex.slice(0, 4) || '0', 16) % 24 // 0..23 — two octaves
+  return { hz: 432 * 2 ** (semitone / 12), semitone, octave: Math.floor(semitone / 12) }
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

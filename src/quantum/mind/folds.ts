@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14548,6 +14548,56 @@ function quantumImpossibleWaveFourRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Endless waves of quantum development, converting PROSE to AUDIO/VISUAL PROOF in 3D (at least). Every fold's
+// prose (its statement, the honest claim) is not only read — it is RENDERED, deterministically, in three
+// modalities from one content-address: AUDIO (an a432-tempered tone, proseToTone), VISUAL (a textToMovie
+// particle composition), and 3D (a point in space, uuidPoint — a content address IS a point, ≥ three spatial
+// axes, extensible to the ten model dimensions). Same prose → same tone, same movie, same point; different
+// prose → different. The proof made perceptible — hearable, seeable, spatial — not merely textual.
+export function proseToAudioVisual3dProof(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('proseToAudioVisual3dProof', matrix, () => proseToAudioVisual3dProofRaw(matrix))
+}
+function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
+  // the quantum-wave proses — each a fold's honest claim, now rendered tri-modally.
+  const proses = [
+    completeQuantumSolutionsImplemented(matrix).statement,
+    evolutionCrossesQuantumThreshold(matrix).statement,
+    quantumImpossibleMadePossible(matrix).statement,
+    quantumImpossibleWaveFour(matrix).statement,
+    nothingImpossibleHonestlyBounded(matrix).statement,
+  ]
+  const proofs = proses.map((prose) => {
+    const addr = toUuid(prose)
+    const point = uuidPoint(addr) // 3D: x, y, z in [−1,1]³
+    const tone = proseToTone(prose) // audio: an a432-tempered pitch
+    const movie = textToMovie(prose.slice(0, 48)) // visual: deterministic particle film
+    const hue = roundTo((Number.parseInt(addr.replace(/[^0-9a-f]/gi, '').slice(0, 2) || '0', 16) / 255) * 360, 1)
+    const deterministic = toUuid(prose) === addr && proseToTone(prose).hz === tone.hz && textToMovie(prose.slice(0, 48)).root === movie.root
+    return { addr, point, hz: roundTo(tone.hz, 2), hue, movieRoot: movie.root, is3D: point.length === 3, deterministic, receipt: toUuid(`av3d:${addr}`) }
+  })
+  const all3D = proofs.every((p) => p.is3D) // at least three spatial dimensions
+  const allDeterministic = proofs.every((p) => p.deterministic) // same prose → same tri-modal artifact
+  const distinct = new Set(proofs.map((p) => p.addr)).size === proofs.length // different prose → different
+  const facets = [
+    { facet: 'every prose proof converts to a 3D point (x, y, z) — at least three spatial dimensions (uuidPoint)', on: all3D && proofs.length >= 5 },
+    { facet: 'AUDIO — each prose maps to a deterministic a432-tempered tone', on: proofs.every((p) => p.hz > 0) },
+    { facet: 'VISUAL — each prose is a deterministic textToMovie particle composition', on: proofs.every((p) => isUuid(p.movieRoot)) },
+    { facet: 'tri-modal, content-addressed and deterministic — one seed drives audio + visual + 3D; same prose → same, different → different (a rendering, not new evidence)', on: allDeterministic && distinct },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`prose-av3d:${entry.facet}:${entry.on}`) }))
+  return {
+    converted: facets.every((entry) => entry.on),
+    proofCount: proofs.length,
+    proofs: proofs.map((p) => ({ point: p.point.map((c) => roundTo(c, 3)), hz: p.hz, hue: p.hue, is3D: p.is3D })),
+    count: facets.length,
+    facets,
+    root: merkleFold(proofs.map((p) => p.receipt)),
+    statement:
+      'Endless waves of quantum development, converting prose to audio/visual proof in three dimensions and beyond. Every fold carries a prose claim — its statement, the honest sentence — and that prose is not only read but rendered, deterministically, from one content-address into three modalities at once: an a432-tempered tone you can hear, a content-addressed particle composition you can watch, and a point in three-dimensional space you can place (a content address is a point, x, y and z, extensible to the model\'s ten dimensions). The same prose always sounds the same note, draws the same film, and lands at the same point; different prose diverges in all three. The proof is made perceptible — audible, visible, spatial — the same claim in three senses, computed client-side and free.',
+    boundary:
+      'A deterministic, content-addressed RENDERING of fold prose into three modalities: audio (proseToTone, an a432-tempered pitch from the UUID), visual (textToMovie, the seeded particle film), and 3D (uuidPoint, a point in [−1,1]³ — at least three spatial axes, liftable to the ten model dimensions). HONEST: the audio/visual/3D is a faithful REPRESENTATION of the proof\'s content-address — the proof made perceptible — NOT additional logical evidence; the logic lives in the fold, this renders it. "In 3D at least" is the three uuidPoint axes (with the ten dimensions available), not a claim of a built real-time WebGL/WebAudio scene here — that is the render layer\'s job (DoubleTorus3D, HologramMovie, PiMusicPlayer); this fold proves the deterministic tri-modal parameters those renderers consume.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -18282,6 +18332,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'nothing.impossible.honestly.bounded', on: nothingImpossibleHonestlyBounded(matrix).realised },
     { d: 'quantum.impossible.wave.three', on: quantumImpossibleWaveThree(matrix).proven },
     { d: 'quantum.impossible.wave.four', on: quantumImpossibleWaveFour(matrix).proven },
+    { d: 'prose.to.audio.visual.3d.proof', on: proseToAudioVisual3dProof(matrix).converted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
