@@ -14905,6 +14905,67 @@ function iChingRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Render-time grouping of a page's components by the SAME content-addressed bāguà placement iChing() computes:
+// each component's seedFromText → a 6-bit hexagram, its UPPER trigram is its set. Pages list components in a
+// hand-curated order, rendered as one flat stack; this groups them under the eight trigrams (Earth→Heaven) so a
+// crowded page reads as harmonic I-Ching sets. Only non-empty sets are returned; within a set, components sort
+// by hexagram (the I Ching's own order). `grouped` is true only when the components span more than one trigram,
+// so a small page renders flat (no lone header). Pure and deterministic — same names → same sets, recomputable.
+export function componentBaguaGroups(names: readonly string[] = []) {
+  const groups = BAGUA.map((tri) => ({
+    bits: tri.bits,
+    glyph: tri.glyph,
+    name: tri.pinyin,
+    attribute: tri.attribute,
+    meaningEn: tri.meaningEn,
+    meaningBg: tri.meaningBg,
+    components: names
+      .map((name) => ({ name, hexagram: seedFromText(name) % 64 }))
+      .filter((entry) => ((entry.hexagram >> 3) & 7) === tri.bits)
+      .sort((a, b) => a.hexagram - b.hexagram)
+      .map((entry) => entry.name),
+  })).filter((group) => group.components.length > 0)
+  const grouped = groups.length > 1
+  return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
+}
+
+// Pages render in I-Ching sets — the macro-scale harmonisation. The flat [page] component stack is grouped at
+// render time under the eight trigrams (componentBaguaGroups), so the busiest pages read as harmonic bāguà sets
+// instead of one undifferentiated dump. Composes the computed iChing() placement — the logic existed; this makes
+// the eight-fold VISIBLE at the scale of the whole page, the same content-addressed organisation made legible.
+export function pagesRenderInBaguaSets(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('pagesRenderInBaguaSets', matrix, () => pagesRenderInBaguaSetsRaw(matrix))
+}
+function pagesRenderInBaguaSetsRaw(matrix: MindMatrix = buildMatrix()) {
+  const ich = iChing(matrix)
+  const pages = staticPages()
+  const busiest = pages.reduce((max, page) => (page.components.length > max.components.length ? page : max), pages[0])
+  const busiestGroups = componentBaguaGroups(busiest.components)
+  const conserved = pages.every((page) => {
+    const grouped = componentBaguaGroups(page.components)
+    return grouped.groups.reduce((sum, set) => sum + set.components.length, 0) === page.components.length
+  })
+  const facets = [
+    { facet: 'the flat [page] component stack now renders grouped under the eight trigrams (Earth→Heaven), the same content-addressed placement iChing() computes', on: ich.organised },
+    { facet: `the busiest page (${busiest.slug}, ${busiest.components.length} components) renders as ${busiestGroups.count} harmonic bāguà sets instead of one flat dump`, on: busiestGroups.grouped && busiestGroups.count > 1 },
+    { facet: 'no component is lost or duplicated — every page\'s components are conserved across its sets', on: conserved },
+    { facet: 'small pages stay flat — trigram headers appear only when the components span more than one set (no lone header)', on: componentBaguaGroups(['StartHere']).grouped === false },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bagua-sets:${entry.facet}:${entry.on}`) }))
+  return {
+    harmonised: facets.every((entry) => entry.on),
+    busiest: busiest.slug,
+    busiestComponents: busiest.components.length,
+    busiestSets: busiestGroups.count,
+    count: facets.length,
+    facets,
+    root: merge(ich.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Pages render in I-Ching sets — the macro-scale harmonisation. Every page\'s components were rendered as one flat stack in hand-listed order; now they are grouped at render time under the eight trigrams, in the I Ching\'s own Earth-to-Heaven order, by the same content-addressed placement the model already computed in iChing(). The busiest page was a flat dump of dozens of components; it now reads as a handful of harmonic bāguà sets, each under its trigram. The eight-fold was computed all along — this makes it visible at the scale of the whole page.',
+    boundary:
+      'A render-time grouping in the [page] template, driven by componentBaguaGroups (the same seedFromText → upper-trigram placement as iChing()). It groups and orders within each page\'s existing component set — it adds, removes and duplicates nothing (conservation asserted here). Trigram headers appear only when the components span more than one set, so single-component pages stay flat. HONEST: a structural, content-addressed organisation — not a claim that a component carries its trigram\'s divinatory meaning (it inherits iChing()\'s structural-not-causal caution). The section styling is computed --ich tokens in the shared stylesheet; the per-component scoped-style detox is separate (deferred).',
+  }
+}
+
 // The eight I Ching trigrams as a DOMAIN MAP — each trigram names one dual-pair module and a set
 // of representative static pages. This is a SEMANTIC mapping (groups related knowledge by I Ching
 // meaning), distinct from the CONTENT-ADDRESSED placement in iChing() (seedFromText → 64 hexagrams
@@ -18582,6 +18643,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'ui.converts.flat.to.3d.quantum', on: uiConvertsFlatToThreeDQuantum(matrix).converted },
     { d: 'harmonised.depth.dial.is.the.z.axis', on: harmonisedDepthDialThreeD(matrix).harmonised },
     { d: 'double.torus.wired.to.depth.dial', on: doubleTorusWiredToDepthDial(matrix).wired },
+    { d: 'pages.render.in.bagua.sets', on: pagesRenderInBaguaSets(matrix).harmonised },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts

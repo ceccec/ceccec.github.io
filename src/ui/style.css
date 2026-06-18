@@ -1409,3 +1409,30 @@ html {
     animation: none;
   }
 }
+
+/* MACRO HARMONY — pages render in I-Ching sets (componentBaguaGroups). Each trigram group opens with a quiet
+   header: the bāguà glyph, its romanised name, its meaning. Generous computed space above separates the sets,
+   so a page that was one flat stack of components reads as the eight-fold. Every magnitude is an --ich token. */
+.bagua-set {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--ich-sp3);
+  margin: var(--ich-sp12) 0 var(--ich-sp5);
+  padding-bottom: var(--ich-sp2);
+  border-bottom: var(--ich-line) solid var(--vp-c-divider);
+}
+.bagua-set__glyph {
+  font-size: var(--ich-text-lg);
+  line-height: var(--ich-lh-tight);
+  color: var(--vp-c-brand-1);
+}
+.bagua-set__name {
+  font-weight: 700;
+  font-size: var(--ich-text-md);
+  color: var(--vp-c-text-1);
+}
+.bagua-set__mean {
+  font-size: var(--ich-text-sm);
+  color: var(--vp-c-text-3);
+}
