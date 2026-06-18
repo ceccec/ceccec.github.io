@@ -915,6 +915,35 @@ export function bitFlipCode(alphaRe: number, betaRe: number, errorQubit: number)
   return { syndrome, errorLocated, corrected: fidelity > 0.999999, fidelity }
 }
 
+// The repetition code's logical error under majority vote — the THRESHOLD math, generalised from bitFlipCode
+// (the d=3 instance) to any distance d. For i.i.d. bit-flips at rate p, majority vote of d copies fails iff
+// more than half flip: P_L(d,p) = Σ_{k=⌈d/2⌉}^{d} C(d,k) pᵏ (1−p)^(d−k). BELOW the threshold p < ½, P_L → 0
+// exponentially as d grows (error suppressed — "quantum is here"); ABOVE p > ½ it grows; at p = ½ it stays ½.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function repetitionLogicalError(d: number, p: number): number {
+  const dd = d % 2 === 0 ? d + 1 : Math.max(1, Math.floor(d)) // odd distance
+  const half = Math.ceil(dd / 2)
+  let total = 0
+  for (let k = half; k <= dd; k++) {
+    let c = 1
+    for (let i = 1; i <= k; i++) c = (c * (dd - k + i)) / i // C(dd,k) by running product
+    total += c * p ** k * (1 - p) ** (dd - k)
+  }
+  return total
+}
+
+// One Han–Kim quantum-inspired evolutionary rotation: turn a qubit [α,β] toward the target bit's pole (|0⟩ at
+// angle 0, |1⟩ at π/2) by at most `angle`, never overshooting. Applied repeatedly, P(target) = (target
+// amplitude)² rises monotonically to 1 — the amplitude drifting toward the answer, the QIEA search step.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function qieaRotate(alpha: number, beta: number, targetBit: number, angle: number): [number, number] {
+  const phi = Math.atan2(beta, alpha)
+  const target = targetBit === 1 ? Math.PI / 2 : 0
+  const delta = target - phi
+  const step = Math.sign(delta) * Math.min(angle, Math.abs(delta)) // toward the target pole, never past it
+  return [Math.cos(phi + step), Math.sin(phi + step)]
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

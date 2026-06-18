@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14095,6 +14095,58 @@ function metatronMathFromUuidsRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Evolution crossing the quantum threshold — "quantum is here" as a COMPUTED EVENT, not a slogan (the runnable
+// artifact from the shared research, rebuilt deterministically). Two movements: (1) a Han–Kim quantum-inspired
+// evolutionary search — a qubit in equal superposition is rotated toward the answer bit, P(answer) rising
+// monotonically to ~1 (qieaRotate); (2) the threshold theorem on the repetition code — below the threshold
+// p < ½ the majority-vote logical error P_L(d,p) is suppressed EXPONENTIALLY as the code distance d grows
+// (repetitionLogicalError), so a logical qubit emerges from noise; above p > ½ more distance only hurts; at
+// p = ½ it stays ½. "Quantum is here" fires at the first distance whose logical error drops below 1% (sub-
+// threshold) — exactly the console event in the shared Python — and the d=3 case is the bitFlipCode already run.
+export function evolutionCrossesQuantumThreshold(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('evolutionCrossesQuantumThreshold', matrix, () => evolutionCrossesQuantumThresholdRaw(matrix))
+}
+function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix()) {
+  // (1) QIEA — quantum-inspired evolution: rotate an equal-superposition qubit toward the answer bit (1).
+  let al = Math.SQRT1_2, be = Math.SQRT1_2
+  const trace = [be * be]
+  for (let s = 0; s < 30; s++) { [al, be] = qieaRotate(al, be, 1, 0.05 * Math.PI); trace.push(be * be) }
+  const qieaMonotone = trace.every((v, i) => i === 0 || v >= trace[i - 1]! - 1e-12) // P(answer) only rises
+  const qieaConverged = be * be > 0.99 // amplitude drifted to the answer
+  // (2) THRESHOLD — the repetition code below vs above the threshold p_c = ½.
+  const distances = [1, 3, 5, 7, 9, 11]
+  const sub = distances.map((d) => ({ d, err: repetitionLogicalError(d, 0.1) })) // p = 0.1 < ½ — suppressed
+  const sup = distances.map((d) => ({ d, err: repetitionLogicalError(d, 0.6) })) // p = 0.6 > ½ — grows
+  const suppressed = sub.every((x, i) => i === 0 || x.err < sub[i - 1]!.err) // P_L ↓ as d ↑ (exponentially)
+  const grows = sup.every((x, i) => i === 0 || x.err > sup[i - 1]!.err) // P_L ↑ as d ↑ (no benefit)
+  const atThreshold = Math.abs(repetitionLogicalError(101, 0.5) - 0.5) < 0.05 // p = ½ stays ≈ ½ (the threshold)
+  const quantumIsHere = sub.find((x) => x.err < 0.01) // the distance where the logical error first drops below 1%
+  const qec = bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, 1) // the d=3 instance — already corrected, fidelity 1
+  const facets = [
+    { facet: 'quantum-inspired evolution converges — the QIEA rotation drives P(answer) monotonically to >99%', on: qieaMonotone && qieaConverged },
+    { facet: 'below the threshold (p < ½) the logical error is suppressed exponentially as the code distance grows', on: suppressed && sub[0]!.err > sub[sub.length - 1]!.err },
+    { facet: 'above the threshold (p > ½) more distance only worsens it; at p = ½ it stays ≈ ½ — the threshold', on: grows && atThreshold },
+    { facet: '"quantum is here" — the logical error crosses below 1% at a finite distance, and the d=3 bit-flip code already corrects', on: !!quantumIsHere && qec.corrected },
+    { facet: 'the whole quantum solver runs — the complete solutions are executable, not theoretical', on: completeQuantumSolutionsImplemented(matrix).implemented },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`q-threshold:${entry.facet}:${entry.on}`) }))
+  return {
+    crossed: facets.every((entry) => entry.on),
+    quantumIsHereAt: quantumIsHere ? quantumIsHere.d : -1, // the distance d at which the logical qubit emerges
+    qieaConverged,
+    qieaFinalProbability: roundTo(be * be, 4),
+    subThreshold: sub,
+    superThreshold: sup,
+    thresholdP: 0.5, // the repetition (bit-flip) code threshold
+    count: facets.length,
+    facets,
+    root: merge(completeQuantumSolutionsImplemented(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Evolution crossing the quantum threshold — "quantum is here" computed, not declared. First, quantum-inspired evolution: a qubit in equal superposition is rotated toward the answer bit and its probability of the answer rises monotonically past 99% (the Han–Kim QIEA search, amplitude drifting to the solution). Then the threshold theorem on the repetition code: below the threshold p = ½ the majority-vote logical error is suppressed exponentially as the code distance grows, so a logical qubit emerges out of the physical noise; above ½ more distance only makes it worse, and at exactly ½ it stays ½. "Quantum is here" is the moment the logical error first drops below 1% at a finite distance — the same console event as the shared artifact — and the distance-3 bit-flip code is already the corrected instance the complete quantum solver runs.',
+    boundary:
+      'A deterministic, exact reconstruction of the shared "evolution → quantum threshold" artifact, in the project idiom (seedless, no Math.random). The repetition code is the BIT-FLIP channel only (1D), with threshold exactly p = ½ — real fault tolerance needs the 2D surface code (threshold ~1%, Google Willow 2024 demonstrated below-threshold) or the constant-overhead qLDPC codes (Panteleev–Kalachev 2022; Dinur–Hsieh–Lin–Vidick 2022, asymptotically good — REAL research, not built here); Shor-scale factoring is ≈ 20M physical qubits / 8h (Gidney–Ekerå 2019). The shared essay\'s further claims — FeMoco ground-state QPE (Reiher et al. 2017), the IBM-127 utility experiment (Nature 2023, though classical tensor-network methods later matched parts — contested), the Holevo–Schumacher–Westmoreland bosonic capacity, barren plateaus (McClean et al. 2018), and holographic QEC / AdS–CFT (Almheiri–Dong–Harlow 2015) — are real research directions; its 2024–2040 timeline is a projection, and its "I am quantum / emergent spacetime / quantum gravity in reverse" framing is metaphor and roleplay, flagged, not asserted. "Quantum is here" here means a logical error rate below 1% computed in a classical simulation of the threshold theorem — a logged event, not a quantum computer.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -17819,6 +17871,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'text.payload.computes.to.animation', on: textPayloadComputesToAnimation(matrix).converts },
     { d: 'dry.clean.all.by.import.export.naming', on: dryCleanByImportExportNaming(matrix).cleaned },
     { d: 'metatron.math.from.uuids.plane.cube.tend', on: metatronMathFromUuids(matrix).built },
+    { d: 'evolution.crosses.quantum.threshold', on: evolutionCrossesQuantumThreshold(matrix).crossed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
