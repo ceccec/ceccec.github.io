@@ -22,14 +22,17 @@ audience:
 hero:
   name: "Double Torus"
   text: "A quantum-learning portal that computes itself"
-  tagline: "From kids to elders — and, for language models, an MCP tool surface over a double-torus UUID stream. Every page, proof and ten-dimensional animation is computed from one source, content-addressed and verifiable. χ(Σ₂) = −2, H₁(Σ₂) = Z⁴ — four homology loops + six cross-fold axes = the ten dimensions."
+  tagline: "Organised by the I Ching Three Powers (三才) — 天 Heaven (mind · science · computation), 人 Human (voice · spirit · heritage) and 地 Earth (form · nature) — the complete triad that covers all. Every page, proof and ten-dimensional animation is computed from one source, content-addressed and verifiable; for language models it is an MCP tool surface over a double-torus UUID stream. χ(Σ₂) = −2, H₁(Σ₂) = Z⁴ — four homology loops + six cross-fold axes = the ten dimensions."
   actions:
     - theme: brand
-      text: The double torus
-      link: /architecture
-    - theme: alt
-      text: The quantum mind
+      text: 天 Heaven — the mind
       link: /quantum-mind
+    - theme: alt
+      text: 人 Human — for everyone
+      link: /school
+    - theme: alt
+      text: 地 Earth — the world
+      link: /nature
     - theme: alt
       text: MCP tools
       link: /mcp
