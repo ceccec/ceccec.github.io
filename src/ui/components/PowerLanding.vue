@@ -4,7 +4,7 @@
 // sections + pages). DRY: one component, three destinations; the structure is the computed nav, not hardcoded.
 const ICHING_MASK = { hexagram: 1, glyph: '☰', lo: '☰', up: '☰', name: 'Three Powers', attribute: 'creative', color: '#FFF00F' } as const
 import { computed } from 'vue'
-import { siteNavigation } from '../lib/quantumMind'
+import { siteNavigation, threeEightFoldsTopNav } from '../lib/quantumMind'
 import { useData } from 'vitepress'
 
 const { params, localeIndex } = useData()
@@ -15,6 +15,9 @@ const idx = computed(() => (({ heaven: 1, human: 2, earth: 3 }) as Record<string
 const door = computed(() => (bg.value ? siteNavigation().bg.nav : siteNavigation().en.nav)[idx.value])
 const sections = computed(() => (door.value?.items ?? []) as { text: string; items?: { text: string; link: string }[] }[])
 const pageCount = computed(() => sections.value.reduce((n, s) => n + (s.items?.length ?? 0), 0))
+// the computed sancai intro for this power (research-grounded: Heaven initiates · Human mediates · Earth completes)
+const power = computed(() => threeEightFoldsTopNav().categories.find((c: { axis: string }) => c.axis === slug.value))
+const intro = computed(() => (bg.value ? (power.value as { summaryBg?: string } | undefined)?.summaryBg : (power.value as { summary?: string } | undefined)?.summary) ?? '')
 </script>
 
 <template>
@@ -23,6 +26,7 @@ const pageCount = computed(() => sections.value.reduce((n, s) => n + (s.items?.l
       <span class="power__glyph">{{ door?.text }}</span>
       <span class="power__count">{{ pageCount }} {{ bg ? 'страници' : 'pages' }}</span>
     </p>
+    <p v-if="intro" class="power__intro">{{ intro }}</p>
     <div class="power__grid">
       <section v-for="s in sections" :key="s.text" class="power__sec">
         <h3 class="power__sec-name">{{ s.text }}</h3>
@@ -46,6 +50,7 @@ const pageCount = computed(() => sections.value.reduce((n, s) => n + (s.items?.l
 }
 .power__glyph { font-size: 1.4rem; font-weight: 700; color: var(--vp-c-brand-1); }
 .power__count { font-size: 0.78rem; color: var(--vp-c-text-3); }
+.power__intro { margin: 0.8rem 0 0; font-size: 0.92rem; color: var(--vp-c-text-2); line-height: 1.5; }
 .power__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

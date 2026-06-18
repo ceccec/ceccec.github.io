@@ -14407,9 +14407,9 @@ function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
   // the three top categories — each the eight-fold seen through one reading of the 2⁶ = 4³ identity
   // named by the I Ching THREE POWERS (三才, the complete triad that covers all existence) — one cube axis each
   const categories = [
-    { axis: 'heaven', reading: 'tiān 天', glyph: '天', summary: 'the creative & cosmic — mind, science, the abstract origin (hexagram lines 5-6)' },
-    { axis: 'human', reading: 'rén 人', glyph: '人', summary: 'the communicative & social — voice, spirit, heritage, society, peace (lines 3-4)' },
-    { axis: 'earth', reading: 'dì 地', glyph: '地', summary: 'the material & natural — nature, form, computation, the grounded domains (lines 1-2)' },
+    { axis: 'heaven', reading: 'tiān 天', glyph: '天', lines: '5–6', summary: 'the creative & cosmic — mind, science, computation; Heaven initiates (hexagram lines 5–6)', summaryBg: 'творческото и космическото — ум, наука, изчисление; Небето първоначалства (редове 5–6)' },
+    { axis: 'human', reading: 'rén 人', glyph: '人', lines: '3–4', summary: 'the communicative & social — voice, spirit, heritage; Humanity mediates Heaven and Earth (lines 3–4)', summaryBg: 'общуващото и социалното — глас, дух, наследство; Човекът посредничи между Небе и Земя (редове 3–4)' },
+    { axis: 'earth', reading: 'dì 地', glyph: '地', lines: '1–2', summary: 'the material & natural — form, nature; Earth receives and completes (hexagram lines 1–2)', summaryBg: 'материалното и природното — форма, природа; Земята приема и завършва (редове 1–2)' },
   ].map((entry) => ({ ...entry, doors: eightFold, receipt: toUuid(`top-nav-axis:${entry.axis}:${entry.reading}`) }))
   const facets = [
     { facet: `the top nav splits into THREE eight-folds — a trinity of bāguà: ${axes} categories × ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === 24 && categories.length === 3 },
