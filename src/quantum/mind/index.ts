@@ -122,3 +122,6 @@ export * from './solutions.ts' // dissolved out of the folds monolith — the bo
 export * from './ancient.ts'   // ↑ dissolution wave 2 (ancient number systems + text decode)
 export * from './humanity.ts'  // ↑ dissolution wave 2 (humanity implications + traditions)
 export * from './kernel.ts'    // ↑ dissolution wave 2 (the src/0 kernel manifest folds)
+export * from './school.ts'        // ↓ dissolution wave 3 (school curriculum)
+export * from './simulators.ts'    // ↓ dissolution wave 3 (simulators-live-in-zero cluster)
+export * from './quantumproofs.ts' // ↓ dissolution wave 3 (quantum solutions + proofs)
