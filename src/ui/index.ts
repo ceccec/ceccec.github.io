@@ -174,6 +174,7 @@ import AlphabetsDecoded from './components/AlphabetsDecoded.vue'
 import AiMovies from './components/AiMovies.vue'
 import PeaceTechMentality from './components/PeaceTechMentality.vue'
 import QuantumSolutionsComplete from './components/QuantumSolutionsComplete.vue'
+import MetatronMath from './components/MetatronMath.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -373,5 +374,6 @@ export default {
     app.component('AiMovies', AiMovies)
     app.component('PeaceTechMentality', PeaceTechMentality)
     app.component('QuantumSolutionsComplete', QuantumSolutionsComplete)
+    app.component('MetatronMath', MetatronMath)
   }
 } satisfies Theme

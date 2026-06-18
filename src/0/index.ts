@@ -112,6 +112,21 @@ export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)
 }
 
+// A content address IS a point in space: derive a 3-vector in [−1,1]³ from a UUID's hex (three 32-bit chunks).
+// The geometric foundation of the metatron math — 3 such points span a plane, three orthogonal planes a cube.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function uuidPoint(uuid: string): [number, number, number] {
+  const hex = uuid.replace(/[^0-9a-f]/gi, '')
+  const axis = (i: number) => (Number.parseInt(hex.slice(i * 8, i * 8 + 8) || '0', 16) / 0xffffffff) * 2 - 1
+  return [axis(0), axis(1), axis(2)]
+}
+// The 3D cross product a×b — normal to both. |a×b| = 0 ⟺ a,b parallel; for two edges of a triangle it is the
+// plane's normal (zero ⟺ the three points are collinear, so no plane). The orientation primitive under geometry.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function crossProduct(a: readonly number[], b: readonly number[]): [number, number, number] {
+  return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+}
+
 // Contraction: aggregator reports are pure functions of the matrix, so memoize them by matrix.root.
 // Within a build the heavy aggregators compute once and every later caller reuses the result. The
 // matrix is typed structurally ({ root }) so this station still imports nothing from the word core.

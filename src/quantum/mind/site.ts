@@ -215,7 +215,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Свещената геометрия, декодирана честно: петте Платонови тела (теорема — Ойлер V−E+F=2, двойките), златното сечение φ там, където наистина живее (петоъгълникът, додекаедърът, филотаксисът), Цветето на живота като реално построение с пергел, и формите, разходени през измеренията. Документираното остава, легендата е отбелязана.',
       },
       keywords: ['sacred geometry', 'platonic solids', 'golden ratio', 'phi', 'flower of life', 'merkaba', 'metatron'],
-      components: ['SacredGeometry'],
+      components: ['SacredGeometry', 'MetatronMath'],
     },
     {
       slug: 'tampering-cost',
