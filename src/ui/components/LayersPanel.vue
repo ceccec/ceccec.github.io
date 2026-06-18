@@ -215,7 +215,7 @@ const accent = computed(() => props.mask.color ?? 'var(--vp-c-brand-1)')
   flex-shrink: 0;
 }
 .lp-stripe[data-group="inner"] { background: var(--vp-c-brand-1); }
-.lp-stripe[data-group="outer"] { background: #3dd68c; }
+.lp-stripe[data-group="outer"] { background: var(--ich-success-1); } /* the computed holds-green (hex 27, 152°) — was a hardcoded #3dd68c */
 .lp-stripe[data-group="loop"]  { background: var(--vp-c-text-3); }
 
 .lp-name {
