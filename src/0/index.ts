@@ -1077,6 +1077,47 @@ export function entanglementSwap(seed = 'swap'): { concurrence: number; swapped:
   return { concurrence: c, swapped: c > 0.999999 } // qubits 0,3 maximally entangled despite never meeting
 }
 
+// Impossible-seeming (7): the GHZ–MERMIN theorem — local realism refuted with CERTAINTY, not just statistics.
+// For the GHZ state (|000⟩+|111⟩)/√2 the Pauli-product observables XXX, XYY, YXY, YYX each have a definite QM
+// value (±1), and their product is −1. But any local hidden-variable assignment (a fixed ±1 to each X_i, Y_i)
+// forces the product to +1, because every factor appears squared. −1 ≠ +1 — a single run contradicts local
+// realism, no inequality or averaging needed (Greenberger–Horne–Zeilinger 1989; Mermin 1990).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ghzMermin(): { xxx: number; xyy: number; yxy: number; yyx: number; qmProduct: number; lhvProduct: number; refuted: boolean } {
+  const ghz = cnot(cnot(applyGate(qubits(3), GATES.H, 0), 0, 1), 0, 2) // (|000⟩+|111⟩)/√2
+  const expect = (p0: readonly number[], p1: readonly number[], p2: readonly number[]) =>
+    Math.round(innerProduct(ghz, applyGate(applyGate(applyGate(ghz, p0, 0), p1, 1), p2, 2)).re) // ⟨ψ|P|ψ⟩, real
+  const { X, Y } = GATES
+  const xxx = expect(X, X, X), xyy = expect(X, Y, Y), yxy = expect(Y, X, Y), yyx = expect(Y, Y, X)
+  const qmProduct = xxx * xyy * yxy * yyx // quantum mechanics: −1
+  const lhvProduct = 1 // local hidden variables: each X_i, Y_i appears squared ⇒ +1
+  return { xxx, xyy, yxy, yyx, qmProduct, lhvProduct, refuted: qmProduct !== lhvProduct }
+}
+
+// Impossible-seeming (8): BB84 quantum key distribution (Bennett–Brassard 1984) — turn the NO-CLONING WALL into
+// unbreakable security. Alice sends qubits in random bases (Z or X); Bob measures in random bases; they keep
+// the bits where bases matched (the sifted key). With no eavesdropper the sifted key is error-free. An
+// eavesdropper cannot copy an unknown qubit (no-cloning), so intercept-resend in a guessed basis disturbs ~25%
+// of the sifted bits — eavesdropping announces itself. The wall is the lock.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bb84(rounds = 200, seed = 'bb84'): { sifted: number; errorNoEve: number; errorWithEve: number } {
+  const r = prng(seed)
+  const bit = () => (r() < 0.5 ? 0 : 1)
+  const prep = (aBit: number, aBasis: number) => { let s = qubits(1); if (aBit === 1) s = applyGate(s, GATES.X, 0); if (aBasis === 1) s = applyGate(s, GATES.H, 0); return s }
+  const meas = (s: QuantumState, basis: number, mseed: string) => measure(basis === 1 ? applyGate(s, GATES.H, 0) : s, 0, mseed).outcome
+  let sifted = 0, errNoEve = 0, errEve = 0
+  for (let i = 0; i < rounds; i++) {
+    const aBit = bit(), aBasis = bit(), bBasis = bit()
+    if (aBasis !== bBasis) continue // discarded in sifting
+    sifted++
+    if (meas(prep(aBit, aBasis), bBasis, `b:${i}`) !== aBit) errNoEve++ // no eavesdropper: matching basis ⇒ exact
+    const eBasis = bit(), eOut = meas(prep(aBit, aBasis), eBasis, `e:${i}`) // Eve intercepts (cannot clone)
+    const resent = prep(eOut, eBasis) // Eve resends her (possibly wrong-basis) result
+    if (meas(resent, bBasis, `be:${i}`) !== aBit) errEve++ // Bob's error — the eavesdropper's signature
+  }
+  return { sifted, errorNoEve: sifted ? errNoEve / sifted : 0, errorWithEve: sifted ? errEve / sifted : 0 }
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

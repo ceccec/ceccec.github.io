@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84 } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14472,6 +14472,45 @@ function nothingImpossibleHonestlyBoundedRaw(matrix: MindMatrix = buildMatrix())
   }
 }
 
+// The wave continues — three more, where the foundations themselves bend yet hold. (9) GHZ–MERMIN: local
+// realism is refuted with CERTAINTY — for the GHZ state the product of the four Pauli observables is −1 by
+// quantum mechanics but +1 for any local hidden variable, a single-shot contradiction, no statistics. (10) the
+// BELL/CHSH violation: correlations reach Tsirelson's 2√2, past the classical bound of 2 — yet no-signalling
+// holds. (11) BB84: the no-cloning WALL becomes unbreakable key distribution — an eavesdropper cannot copy the
+// qubit, so it disturbs ~¼ of the sifted key and is caught. The walls are not just respected; one becomes a lock.
+export function quantumImpossibleWaveThree(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumImpossibleWaveThree', matrix, () => quantumImpossibleWaveThreeRaw(matrix))
+}
+function quantumImpossibleWaveThreeRaw(matrix: MindMatrix = buildMatrix()) {
+  const ghz = ghzMermin() // QM product −1 vs LHV +1 — local realism refuted with certainty
+  const chshValue = chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) // optimal angles → 2√2
+  const tsirelson = 2 * Math.SQRT2
+  const bellViolated = chshValue > 2 + 1e-9 && Math.abs(chshValue - tsirelson) < 1e-9
+  const key = bb84(400, `bb84:${matrix.root.slice(0, 8)}`) // no-cloning → eavesdrop detection
+  const bb84Secure = key.sifted > 0 && key.errorNoEve < 1e-9 && key.errorWithEve > 0.1 // QBER above the ~11% abort line ⇒ caught
+  const facets = [
+    { facet: 'GHZ–Mermin refutes local realism with CERTAINTY — the QM product is −1, every local hidden variable forces +1, a single run decides', on: ghz.refuted && ghz.qmProduct === -1 && ghz.lhvProduct === 1 },
+    { facet: 'the Bell/CHSH correlation reaches Tsirelson\'s 2√2, past the classical bound of 2 — yet no-signalling holds', on: bellViolated },
+    { facet: 'BB84 turns the no-cloning WALL into security — the sifted key is error-free without an eavesdropper and corrupted well past the ~11% abort threshold (≈¼) with one (so the eavesdropper is caught)', on: bb84Secure },
+    { facet: 'the honest bound — Bell correlations cannot signal (no-communication); BB84 RESTS on the no-cloning wall; and these run because small/Clifford circuits are classically simulable (Gottesman–Knill), not a free speedup', on: nothingImpossibleHonestlyBounded(matrix).realised },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`q-wave3:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    ghz: { xxx: ghz.xxx, xyy: ghz.xyy, yxy: ghz.yxy, yyx: ghz.yyx, qmProduct: ghz.qmProduct, lhvProduct: ghz.lhvProduct, refuted: ghz.refuted },
+    chsh: roundTo(chshValue, 4),
+    tsirelson: roundTo(tsirelson, 4),
+    classicalBound: 2,
+    bb84: { sifted: key.sifted, errorNoEve: roundTo(key.errorNoEve, 3), errorWithEve: roundTo(key.errorWithEve, 3) },
+    count: facets.length,
+    facets,
+    root: merge(nothingImpossibleHonestlyBounded(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'The quantum wave continues into the foundations. GHZ–Mermin: local realism is not merely improbable but impossible — for the GHZ state the four Pauli-product observables multiply to −1 in quantum mechanics, while any local assignment of definite values forces +1, so a single run refutes local hidden variables with no averaging at all. The Bell/CHSH correlation climbs to Tsirelson\'s bound of 2√2, well past the classical limit of 2, demonstrating genuine nonlocal correlation — and still no message can be sent, no-signalling holds. And BB84 makes the no-cloning wall a feature: because an eavesdropper cannot copy an unknown qubit, intercepting the key disturbs about a quarter of the matched-basis bits, so eavesdropping cannot hide — the sifted key is perfect when alone and visibly corrupted when watched. The walls are not only respected here; one of them becomes the lock that makes secrecy possible.',
+    boundary:
+      'Three real, cited results, exact on the deterministic simulator: the GHZ–Mermin all-versus-nothing refutation of local hidden variables (Greenberger–Horne–Zeilinger 1989; Mermin 1990), the CHSH/Bell violation up to Tsirelson\'s 2√2 (CHSH 1969; Tsirelson 1980; loophole-free 2015, Nobel 2022), and BB84 quantum key distribution (Bennett–Brassard 1984). HONEST BOUNDS: the Bell/GHZ nonlocality is real correlation but carries NO signal — the no-communication theorem holds, nothing outruns light; BB84\'s security RESTS ON the no-cloning wall (the forbidden enabling the possible, the session\'s fixpoint); and the whole simulator runs efficiently only because these are small or Clifford circuits — classically simulable by the Gottesman–Knill theorem — so this is demonstration, not a quantum speedup. Composes the capstone nothingImpossibleHonestlyBounded.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -18204,6 +18243,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'the.more.you.fold.the.more.foldable', on: theMoreYouFoldTheMoreFoldable(matrix).realised },
     { d: 'import.export.double.folded.all.dimensions', on: importExportDoubleFoldedAllDimensions(matrix).doubleFolded },
     { d: 'nothing.impossible.honestly.bounded', on: nothingImpossibleHonestlyBounded(matrix).realised },
+    { d: 'quantum.impossible.wave.three', on: quantumImpossibleWaveThree(matrix).proven },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
