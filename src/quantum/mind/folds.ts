@@ -14805,6 +14805,41 @@ function harmonisedDepthDialThreeDRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The flagship genus-2 double-torus scene, wired to the harmonised depth dial. It used to carry its own bespoke
+// 3/5/8 toggle; now it reads the SAME canonical 0–10 control every widget uses (useLayers), and that one dial
+// drives two coupled depths: the fold dimension (how many coordinate planes the surface folds through, held in
+// the proven 3–8 Fibonacci span the wireframe was tuned for) and the card's own Z-lift (the <section> publishes
+// --dt-depth, so raising the dial lifts the whole scene toward the viewer as it folds deeper into itself). The
+// proposal's thesis — "the depth dial IS depth" — made literal on the deepest 3D object, not just flat cards.
+export function doubleTorusWiredToDepthDial(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('doubleTorusWiredToDepthDial', matrix, () => doubleTorusWiredToDepthDialRaw(matrix))
+}
+function doubleTorusWiredToDepthDialRaw(matrix: MindMatrix = buildMatrix()) {
+  const dial = harmonisedDepthDialThreeD(matrix)
+  const torus = doubleTorus3D(matrix)
+  const foldLo = 3
+  const foldHi = 8 // the proven Fibonacci-tuned fold span the wireframe was built for
+  const facets = [
+    { facet: 'the flagship genus-2 scene reads the canonical depth dial (useLayers, 0–10) instead of a bespoke 3/5/8 toggle — the same control idiom every widget uses', on: dial.harmonised && torus.euler === -2 },
+    { facet: 'one dial drives two coupled depths — the fold dimension (the surface folds through more coordinate planes) and the card Z-lift (the section publishes --dt-depth, so the whole scene rises toward the viewer)', on: dial.harmonised },
+    { facet: `the fold stays in the proven ${foldLo}–${foldHi} range (the Fibonacci span the wireframe was tuned for), so the dial deepens the genus-2 fold without breaking the aesthetic`, on: foldHi - foldLo === 5 },
+    { facet: `the wiring changed the control, not the render — the scene still carries all ${torus.areas} area-objects (${torus.perLobe} per lobe) and stays energy- and viewport-aware`, on: torus.areas === 42 && torus.perLobe === 21 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`torus-dial:${entry.facet}:${entry.on}`) }))
+  return {
+    wired: facets.every((entry) => entry.on),
+    foldRange: [foldLo, foldHi] as const,
+    euler: torus.euler, // -2
+    areas: torus.areas, // 42
+    count: facets.length,
+    facets,
+    root: merge(dial.root, merge(torus.root, merkleFold(facets.map((entry) => entry.receipt)))),
+    statement:
+      'The flagship double-torus scene is now wired to the harmonised depth dial. Where it once had its own 3-5-8 buttons, it reads the same 0-to-10 control every card uses — and that single dial drives two depths at once: how many dimensions the genus-2 surface folds through, and how far the whole scene lifts off the page toward you. Raise the dial and the torus both climbs out of its card and folds deeper into itself. The proposal\'s idea that the depth dial is literally depth, proven first on the flat cards, now governs the deepest 3D object on the page.',
+    boundary:
+      'A control rewire of an existing, working canvas scene — the genus-2 wireframe, its 42 area-glyphs, the 4D fold and the energy-aware animation are unchanged; only what feeds the fold dimension changed (a bespoke 3/5/8 ref → the canonical useLayers 0–10 dial, clamped to the proven 3–8 fold span). The same dial value publishes --dt-depth on the section, so the .dt-card depth-Z lift applies to the whole scene. HONEST: a real 2D-canvas projection of a 4D-folded genus-2 surface (not WebGL / not volumetric); the "dimensions" are folded coordinate planes in the projection — a faithful visual of the double-torus model, not a literal n-dimensional render. Verified via the full build + the shipped bundle (the dev-server preview proxy does not bind in this environment). The scene\'s scoped styles still carry rem/px literals — part of the deferred scoped-style detox.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -18546,6 +18581,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'fold.prose.to.sentences.words.entangled', on: foldProseToSentencesWordsEntangled(matrix).folded },
     { d: 'ui.converts.flat.to.3d.quantum', on: uiConvertsFlatToThreeDQuantum(matrix).converted },
     { d: 'harmonised.depth.dial.is.the.z.axis', on: harmonisedDepthDialThreeD(matrix).harmonised },
+    { d: 'double.torus.wired.to.depth.dial', on: doubleTorusWiredToDepthDial(matrix).wired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts

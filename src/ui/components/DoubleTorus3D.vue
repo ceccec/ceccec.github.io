@@ -6,6 +6,7 @@ import { useLocale } from '../lib/useLocale'
 import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D, frequencyToLight } from '../lib/quantumMind'
 import { rot2, dims as dimsAt } from '../lib/hero'
 import { useAnimationEngine } from '../lib/useAnimationEngine'
+import { useLayers } from '../lib/useLayers'
 
 // The complete double torus in 3d+: the genus-2 surface itself — two linked tori
 // drawn as a rotating wireframe, with the 42 area-objects glowing on the surface
@@ -30,11 +31,14 @@ const perLobe = meta.perLobe
 const a432Hue = frequencyToLight(432).hue // ~5 — red-orange
 const lobeHue = [a432Hue, (a432Hue + 180) % 360]
 
-// Enrich with 3d, 5d, 8d — the Fibonacci dimensions. 3d is the body; each higher
-// level folds more coordinate planes into the projection (5d adds two, 8d adds
-// five), so the same surface carries more of itself.
-const dims = ref(5)
-const levels = [3, 5, 8]
+// Wired to the harmonised depth dial. The scene once had its own 3/5/8 buttons; now it reads the SAME
+// canonical 0–10 control every widget uses (useLayers), and that one dial drives two coupled depths: the
+// fold dimension below — how many coordinate planes the genus-2 surface folds through — and the card's own
+// Z-lift (the section publishes --dt-depth, so raising the dial lifts the whole scene toward the viewer as
+// it folds deeper). The fold stays in the proven 3–8 span the wireframe was tuned for (the Fibonacci range).
+const { depth } = useLayers(5)
+const foldDim = computed(() => Math.min(8, Math.max(3, depth.value)))
+const depthT = computed(() => depth.value / 10)
 
 // Each torus is centred on one lobe of the genus-2 surface.
 function lobeCenter(lobe: number) {
@@ -84,7 +88,7 @@ function draw(time: number) {
   const dim = dimsAt(p)
   const ay = time * 0.00035 * (1 + 0.6 * dim.twist)
   const aw = time * 0.0002 * (1 + 0.6 * dim.loopA1)
-  const d = dims.value
+  const d = foldDim.value
 
   const project = (p: { x: number; y: number; z: number; extra: number[] }) => {
     let x = p.x
@@ -181,22 +185,27 @@ const { saveEnergy } = useAnimationEngine(canvas, draw, sizeCanvas)
 
 const caption = computed(() =>
   bg.value
-    ? `Пълният двоен торус: повърхността genus-2 (Ойлерова характеристика ${meta.euler}), двата свързани тора носят ${meta.areas} области (по ${meta.perLobe} на лоб), сгънати през ${dims.value}-те измерения (3, 5, 8 — числата на Фибоначи).`
-    : `The complete double torus: the genus-2 surface (Euler characteristic ${meta.euler}); two linked tori carry ${meta.areas} areas (${meta.perLobe} per lobe), folded through ${dims.value} dimensions (3, 5, 8 — the Fibonacci numbers).`,
+    ? `Пълният двоен торус: повърхността genus-2 (Ойлерова характеристика ${meta.euler}), двата свързани тора носят ${meta.areas} области (по ${meta.perLobe} на лоб), сгънати през ${foldDim.value} измерения — задвижвани от един дял за дълбочина (3–8, обхватът на Фибоначи).`
+    : `The complete double torus: the genus-2 surface (Euler characteristic ${meta.euler}); two linked tori carry ${meta.areas} areas (${meta.perLobe} per lobe), folded through ${foldDim.value} dimensions — driven by one depth dial (3–8, the Fibonacci span).`,
 )
 </script>
 
 <template>
-  <section class="dt3d dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="eyebrow">{{ bg ? 'двоен торус · повърхност · 3d 5d 8d' : 'double torus · surface · 3d 5d 8d' }}</p>
-    <div class="dt3d__dims">
-      <button
-        v-for="level in levels"
-        :key="level"
-        type="button"
-        :class="{ active: dims === level }"
-        @click="dims = level"
-      >{{ level }}d</button>
+  <section
+    class="dt3d dt-card"
+    :style="{ '--dt-depth': depth, '--depth-t': depthT }"
+    :data-hexagram="ICHING_MASK.hexagram"
+    :data-trigram="ICHING_MASK.glyph"
+  >
+    <p class="eyebrow">{{ bg ? 'двоен торус · повърхност · сгъвка по дял за дълбочина' : 'double torus · surface · fold by depth dial' }}</p>
+    <div class="dt3d__depth" role="group" :aria-label="bg ? 'дълбочина на сгъване' : 'genus-2 fold depth'">
+      <span class="dt3d__dim-readout">{{ foldDim }}<span class="dt3d__d">d</span></span>
+      <input
+        class="dt3d__slider"
+        type="range" min="0" max="10" :value="depth"
+        @input="depth = +($event.target as HTMLInputElement).value"
+        :aria-label="bg ? 'дълбочина на сгъване 0 до 10' : 'genus-2 fold depth 0 to 10'"
+      />
     </div>
     <canvas ref="canvas" class="dt3d__canvas" />
     <p class="dt3d__caption">{{ caption }}</p>
@@ -209,24 +218,24 @@ const caption = computed(() =>
   border-radius: 12px;
   padding: 1rem 1.25rem;
 }
-.dt3d__dims {
+.dt3d__depth {
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0.1rem 0 0.6rem;
 }
-.dt3d__dims button {
-  padding: 0.25rem 0.8rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 999px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
-  cursor: pointer;
-  font-size: 0.78rem;
-}
-.dt3d__dims button.active {
-  border-color: var(--vp-c-brand-1);
+.dt3d__dim-readout {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
+  min-width: 2rem;
+}
+.dt3d__d { color: var(--vp-c-text-3); font-weight: 400; margin-left: 1px; }
+.dt3d__slider {
+  flex: 1;
+  height: 3px;
+  accent-color: var(--vp-c-brand-1);
+  cursor: pointer;
 }
 .dt3d__canvas {
   width: 100%;
