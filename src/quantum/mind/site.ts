@@ -407,7 +407,7 @@ export function staticPages(): StaticPage[] {
         bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
       keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann', 'biology', 'body'],
-      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'PublicFrequencyApis', 'Biology', 'HeartProtonAtom'],
+      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'SacredSound', 'PublicFrequencyApis', 'Biology', 'HeartProtonAtom'],
     },
     {
       slug: 'voice',

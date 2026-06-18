@@ -68,6 +68,7 @@ import QuestionClose from './components/QuestionClose.vue'
 import QuantumMind from './components/QuantumMind.vue'
 import Roadmaps from './components/Roadmaps.vue'
 import RevolutAside from './components/RevolutAside.vue'
+import SacredSound from './components/SacredSound.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SealAll from './components/SealAll.vue'
@@ -312,6 +313,7 @@ export default {
     app.component('QuantumMind', QuantumMind)
     app.component('Roadmaps', Roadmaps)
     app.component('RevolutAside', RevolutAside)
+    app.component('SacredSound', SacredSound)
     app.component('SacredSymbols', SacredSymbols)
     app.component('SchoolCurriculum', SchoolCurriculum)
     app.component('SealAll', SealAll)

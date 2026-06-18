@@ -17944,6 +17944,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'pyramid.construction.math', on: pyramidConstructionMath(matrix).computed },
     { d: 'eight.fold.balance.honest', on: eightFoldBalance(matrix).honest },
     { d: 'three.eight.folds.top.nav', on: threeEightFoldsTopNav(matrix).split },
+    { d: 'harmonic.series.decoded', on: harmonicSeriesDecoded(matrix).decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
@@ -22532,6 +22533,55 @@ function pyramidConstructionMathRaw(matrix: MindMatrix = buildMatrix()) {
       'All the pyramid leads, followed and computed. The Maya built the calendar into El Castillo: 91 steps on each of four stairways plus the top platform make 365, the solar year; the nine terraces split into eighteen months; the fifty-two panels per side mark the Calendar Round — which is lcm(260, 365) = 18,980 days = 52 haab\' years = 73 tzolk\'in, computed here. Kush\'s Meroë pyramids are steep ~72° tombs (≈20° steeper than Giza\'s 51.8° seked) and there are over 200, more than Egypt. Caral, radiocarbon-dated to 2627 BCE, was building monumentally at the same epoch as Egypt\'s first pyramids, an ocean apart with no contact. The worldwide pyramid is independent convergence — each culture encoded its own mathematics, not one shared blueprint.',
     boundary:
       'HONEST, computed, cited (mayan.org / Ancient Origins for El Castillo; Wikipedia/Maya calendar for the Calendar Round; Jerusalem Post / Wikipedia for Meroë\'s 200+ count and ~72°; the Caral shicra 2627 BCE ±32 radiocarbon). The Calendar Round and the 365-step sum are exact arithmetic; the equinox "serpent" is a real, documented light-and-shadow effect, not a claim of hidden encoding beyond the calendar. Caral is contemporary with — not provably older than — Egypt\'s pyramid age (Djoser ~2670 BCE precedes it); the honest point is independent simultaneity, not a race or a shared origin. No global blueprint, no lost civilisation, no contact is claimed or implied.',
+  }
+}
+
+// Sacred sound decoded — the a432 thread deepened into real acoustics, all COMPUTED. The harmonic series is
+// exact integer multiples; just intonation is small whole-number ratios; equal temperament tempers them (only
+// the octave stays pure); the Pythagorean comma is why no tuning is perfect; and a432 has a real history
+// (Verdi 1884) with the cosmic/healing claims flagged. Cents = 1200·log2(ratio). Composes a432().
+export function harmonicSeriesDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('harmonicSeriesDecoded', matrix, () => harmonicSeriesDecodedRaw(matrix))
+}
+function harmonicSeriesDecodedRaw(matrix: MindMatrix = buildMatrix()) {
+  const a = a432(matrix)
+  const cents = (ratio: number) => 1200 * Math.log2(ratio)
+  const base = 432 // A4 = 432 Hz, the project's a432 base
+  const intervalNames = ['fundamental', 'octave', 'octave + fifth', '2 octaves', '2 oct + major third', '2 oct + fifth', '2 oct + harmonic 7th', '3 octaves']
+  const overtones = Array.from({ length: 8 }, (_, i) => ({ n: i + 1, hz: (i + 1) * base, ratio: `${i + 1}:1`, interval: intervalNames[i] }))
+  const justIntervals = [
+    { name: 'octave', num: 2, den: 1 },
+    { name: 'perfect fifth', num: 3, den: 2 },
+    { name: 'perfect fourth', num: 4, den: 3 },
+    { name: 'major third', num: 5, den: 4 },
+    { name: 'minor third', num: 6, den: 5 },
+  ].map((iv) => ({ ...iv, cents: roundTo(cents(iv.num / iv.den), 1) }))
+  const fifthJust = cents(3 / 2) // 701.96¢
+  const thirdJust = cents(5 / 4) // 386.31¢ — ET major third (400¢) is ~14¢ sharp
+  const pythComma = cents(Math.pow(3 / 2, 12) / Math.pow(2, 7)) // 23.46¢ — 12 fifths overshoot 7 octaves
+  const a432ToA440 = cents(440 / 432) // 31.77¢ below 440
+  const facets = [
+    { facet: `the harmonic series is exact integer multiples — overtone n at n × ${base} Hz (octave ${2 * base}, fifth-octave ${3 * base}); the octave (2:1), fifth (3:2) and major third (5:4) ARE the low overtones`, on: overtones[1].hz === 2 * base && overtones[2].hz === 3 * base && overtones.length === 8 },
+    { facet: `just intonation is small whole-number ratios → octave ${justIntervals[0].cents}¢, fifth ${justIntervals[1].cents}¢, fourth ${justIntervals[2].cents}¢, major third ${justIntervals[3].cents}¢ (computed 1200·log2)`, on: Math.round(justIntervals[1].cents) === 702 && Math.round(justIntervals[3].cents) === 386 },
+    { facet: `equal temperament tempers them: the ET fifth (700¢) is ~2¢ flat of just (${Math.round(fifthJust)}¢), the ET major third (400¢) is ~14¢ SHARP of just (${Math.round(thirdJust)}¢) — only the octave is pure`, on: Math.abs(fifthJust - 700) < 3 && 400 - thirdJust > 13 },
+    { facet: `the Pythagorean comma is real — 12 just fifths overshoot 7 octaves by ${roundTo(pythComma, 2)}¢, which is why no tuning is perfect and ET spreads the error evenly`, on: Math.abs(pythComma - 23.46) < 0.1 },
+    { facet: `a432 has a real history — Verdi (1884) asked Italy to standardise A = 432; 440 won (London 1939, ISO 1955); 432 sits ${roundTo(a432ToA440, 1)}¢ below 440. The cosmic/healing 432 claims are flagged, not asserted`, on: a.decoded && Math.abs(a432ToA440 - 31.77) < 0.5 },
+  ]
+  const sealed = sealFacets('harmonic-series', facets)
+  return {
+    decoded: sealed.ok,
+    base,
+    overtones,
+    justIntervals,
+    pythagoreanCents: roundTo(pythComma, 2),
+    a432ToA440Cents: roundTo(a432ToA440, 1),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(a.root, sealed.root),
+    statement:
+      'Sacred sound decoded — the a432 thread deepened into real acoustics, all computed. The harmonic series is exact integer multiples of a fundamental (overtone n at n × 432 Hz), and the consonant intervals ARE its low overtones: the octave is 2:1, the perfect fifth 3:2, the major third 5:4. Just intonation tunes by those small whole-number ratios (the fifth at 702¢, the major third at 386¢, computed as 1200·log2). Equal temperament tempers them onto twelve equal semitones of the twelfth root of two, so only the octave stays pure — the fifth is two cents flat, the major third about fourteen cents sharp. The Pythagorean comma (23.46¢, twelve fifths overshooting seven octaves) is why no tuning is perfect. And a432 has a genuine history — Verdi asked Italy to standardise A = 432 in 1884 before 440 became the international standard — sitting about 32 cents below 440.',
+    boundary:
+      'HONEST and computed: every cents value is 1200·log2(ratio); the ratios, the comma and the temperament deviations are exact acoustics (HyperPhysics, the microtonal/Wikipedia tuning sources). The 432 HISTORY is real (Verdi 1884; 440 at London 1939 and ISO 1955) — but the cosmic/healing/"432 = the frequency of the universe" claims are flagged, not folded (inherited from a432(), whose woo is flagged). A sound is a pressure wave, not a colour or a medicine; the consonance of small ratios is real psychoacoustics, the metaphysics is not.',
   }
 }
 
