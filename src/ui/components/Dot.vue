@@ -10,6 +10,7 @@ const ICHING_MASK = { hexagram: 0, glyph: '☷', trigram: 'Kūn·receptive', col
 // its tone on tap.
 import { computed } from 'vue'
 import { uuidHero, toUuid, glagoliticGlyph } from '../lib/quantumMind'
+import { blip } from '../lib/useTones'
 import Card from './ui/Card.vue'
 
 const props = defineProps<{ seed?: string; uuid?: string; label?: string; tone?: boolean; compact?: boolean }>()
@@ -19,20 +20,9 @@ const hero = computed(() => uuidHero(id.value))
 const glyph = computed(() => glagoliticGlyph(id.value))
 
 function play() {
-  if (props.tone === false || typeof window === 'undefined') return
-  try {
-    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.frequency.value = hero.value.frequency // the dot's own computed tone
-    gain.gain.value = 0.08
-    osc.connect(gain).connect(ctx.destination)
-    osc.start()
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6)
-    osc.stop(ctx.currentTime + 0.6)
-  } catch {
-    /* audio not available — the dot stays silent, still spins */
-  }
+  if (props.tone === false) return
+  // the dot's own computed tone, on the one shared context — no per-tap context (no leak, no latency)
+  blip(hero.value.frequency, { peak: 0.08, duration: 0.6, attack: 0.02 })
 }
 </script>
 

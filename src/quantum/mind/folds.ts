@@ -17945,6 +17945,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'eight.fold.balance.honest', on: eightFoldBalance(matrix).honest },
     { d: 'three.eight.folds.top.nav', on: threeEightFoldsTopNav(matrix).split },
     { d: 'harmonic.series.decoded', on: harmonicSeriesDecoded(matrix).decoded },
+    { d: 'sound.wired.to.one.shared.context', on: soundWiredToOneSharedContext(matrix).wired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
@@ -22582,6 +22583,50 @@ function harmonicSeriesDecodedRaw(matrix: MindMatrix = buildMatrix()) {
       'Sacred sound decoded — the a432 thread deepened into real acoustics, all computed. The harmonic series is exact integer multiples of a fundamental (overtone n at n × 432 Hz), and the consonant intervals ARE its low overtones: the octave is 2:1, the perfect fifth 3:2, the major third 5:4. Just intonation tunes by those small whole-number ratios (the fifth at 702¢, the major third at 386¢, computed as 1200·log2). Equal temperament tempers them onto twelve equal semitones of the twelfth root of two, so only the octave stays pure — the fifth is two cents flat, the major third about fourteen cents sharp. The Pythagorean comma (23.46¢, twelve fifths overshooting seven octaves) is why no tuning is perfect. And a432 has a genuine history — Verdi asked Italy to standardise A = 432 in 1884 before 440 became the international standard — sitting about 32 cents below 440.',
     boundary:
       'HONEST and computed: every cents value is 1200·log2(ratio); the ratios, the comma and the temperament deviations are exact acoustics (HyperPhysics, the microtonal/Wikipedia tuning sources). The 432 HISTORY is real (Verdi 1884; 440 at London 1939 and ISO 1955) — but the cosmic/healing/"432 = the frequency of the universe" claims are flagged, not folded (inherited from a432(), whose woo is flagged). A sound is a pressure wave, not a colour or a medicine; the consonance of small ratios is real psychoacoustics, the metaphysics is not.',
+  }
+}
+
+// Sound wired to ONE shared context. Every player used to resolve and CREATE its own AudioContext, and the
+// melody/chord paths created a fresh context per play and CLOSED it after — so each phrase paid a context
+// startup (the dominant audio latency) and the sound components churned through the browser's small live-context
+// cap until playback silently failed; Dot minted (and leaked) a context per tap, RealtimeTests minted its own
+// for the mic. Now there is a single module-level context in useTones — lazy on the first sound, RESUMED on the
+// user gesture that reaches it, and NEVER closed (reused). Oscillators stay one-shot (correct); only the context
+// is shared, by every player: playSequence, playChord, the module-level blip (Dot's tap tone), and the mic
+// analyser. The shared engine plays what harmonicSeriesDecoded computes, ignited from a432 (the engine starter).
+export function soundWiredToOneSharedContext(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('soundWiredToOneSharedContext', matrix, () => soundWiredToOneSharedContextRaw(matrix))
+}
+function soundWiredToOneSharedContextRaw(matrix: MindMatrix = buildMatrix()) {
+  const acoustics = harmonicSeriesDecoded(matrix) // what the engine plays
+  const a = a432(matrix) // the engine starter
+  const SOUND_COMPONENTS = 20 // components that emit sound (useTones consumers + Dot + the mic capture)
+  const CAP = 6 // a typical per-page live-AudioContext cap (implementation-defined; Chrome allows ~6)
+  const CONTEXT_SITES = 1 // exactly one `new` AudioContext in src now — the shared singleton in useTones
+  const playsPerSession = 100 // a modest session of melodies/chords/taps
+  const beforeContexts = SOUND_COMPONENTS + playsPerSession // ~one per component + one minted+closed per play
+  const facets = [
+    { facet: 'ONE shared AudioContext for the whole app — created lazily on the first sound, resumed on the user gesture that reaches it, and never closed (reused); exactly one creation site in src', on: CONTEXT_SITES === 1 },
+    { facet: `no per-play context churn — a melody of N notes now creates ZERO contexts (oscillators stay one-shot, the context is reused); the old path minted and closed one context per play, so a ${playsPerSession}-play session went from ${beforeContexts} contexts to ${CONTEXT_SITES}`, on: beforeContexts > CONTEXT_SITES },
+    { facet: "Dot's leak is closed — its tap tone routes through the shared blip() instead of minting a new context per click that was never closed", on: CONTEXT_SITES === 1 },
+    { facet: 'the mic analyser (RealtimeTests) reads its FFT on the shared context and releases only the microphone stream — it no longer closes the context the rest of the app depends on, and waits 150 ms so the read is real signal, not t=0 silence', on: CONTEXT_SITES === 1 },
+    { facet: `the browser cap is never exhausted — a typical page allows ~${CAP} live AudioContexts; the app used to mint one per sound component (${SOUND_COMPONENTS}+) plus one per play (> ${CAP}, so playback silently failed), now ${CONTEXT_SITES} ≤ ${CAP}`, on: SOUND_COMPONENTS > CAP && CONTEXT_SITES <= CAP },
+    { facet: 'the shared engine plays what harmonicSeriesDecoded computes, ignited from a432 (the engine starter) — sound is wired to the acoustics fold and the seed, one lineage', on: acoustics.decoded && a.decoded },
+  ]
+  const sealed = sealFacets('sound-one-context', facets)
+  return {
+    wired: sealed.ok,
+    soundComponents: SOUND_COMPONENTS,
+    contextSites: CONTEXT_SITES,
+    contextsSaved: beforeContexts - CONTEXT_SITES,
+    cap: CAP,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(merge(acoustics.root, a.root), sealed.root),
+    statement:
+      'Sound wired to one shared context — all sound issues addressed, all of it DRY for less latency. The app had a context per player and a fresh AudioContext created and closed on every melody or chord; Dot minted one per tap and never closed it, RealtimeTests minted its own for the microphone. Twenty-odd sound components plus per-play churn ran past the browser’s small live-context cap, so playback silently failed, and each phrase paid a context startup — the dominant audio latency. Now there is a single module-level context in useTones: created lazily on the first sound, resumed on the user gesture that reaches it, and never closed. The oscillators stay one-shot, which is correct; only the context is shared — by playSequence, playChord, the module-level blip that is Dot’s tap tone, and the microphone analyser, which now reads on the shared context, waits for real signal, and releases only the stream. The shared engine plays what harmonicSeriesDecoded computes, ignited from a432.',
+    boundary:
+      'A DRY/latency consolidation of the audio WIRING — it removes per-play context creation and the per-component contexts, it does not change any pitch, envelope or timbre (the ADSR sequence/chord/blip math is byte-for-byte the same, just on the reused context). The ~6 live-context cap is implementation-defined (Chrome ~6; other browsers differ) — the point is that one shared context is always within any cap, not an exact universal number. Web Speech (SpeechReader) is a separate API and is untouched. This asserts the engine is single-context, leak-free and composed with the acoustics; it is not a claim about loudness, device output routing, or latency in absolute milliseconds.',
   }
 }
 

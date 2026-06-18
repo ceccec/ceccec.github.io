@@ -3,6 +3,7 @@
 const ICHING_MASK = { hexagram: 17, glyph: '☵', lower: '☳', upper: '☵', color: '#0F000F' } as const
 import { onMounted, reactive } from 'vue'
 import { backtestRealPrices, spectrumFromSamples, larmorFromMicrotesla, dopplerFromMotion, liveCapture, realtimeExperiments } from '../lib/quantumMind'
+import { sharedAudioContext } from '../lib/useTones'
 import { useLocale } from '../lib/useLocale'
 
 // Test all on LIVE data: the deterministic sims/strategies (src) consume REAL inputs ingested at the edge —
@@ -57,15 +58,18 @@ async function enableAudio() {
   dev.audio.status = 'requesting'
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
+    const ctx = sharedAudioContext() // the one shared context — not a throwaway
+    if (!ctx) { stream.getTracks().forEach((t) => t.stop()); dev.audio.status = 'unavailable'; return }
     const analyser = ctx.createAnalyser(); analyser.fftSize = 64
-    ctx.createMediaStreamSource(stream).connect(analyser)
+    const src = ctx.createMediaStreamSource(stream)
+    src.connect(analyser)
+    await new Promise((r) => setTimeout(r, 150)) // let the analyser fill — reading at t=0 is silence
     const bins = new Uint8Array(analyser.frequencyBinCount)
     analyser.getByteFrequencyData(bins)
     const spec = spectrumFromSamples(Array.from(bins), 32)
     dev.audio.value = bg.value ? `доминантна кошница k=${spec.dominant.k} (звук, не ЕМ)` : `dominant bin k=${spec.dominant.k} (sound, not EM)`
     dev.audio.status = 'ok'
-    stream.getTracks().forEach((t) => t.stop()); ctx.close()
+    src.disconnect(); stream.getTracks().forEach((t) => t.stop()) // release the mic; the shared context stays alive
   } catch (e) { dev.audio.status = 'unavailable' }
 }
 async function enableMotion() {

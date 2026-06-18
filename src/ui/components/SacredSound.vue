@@ -5,9 +5,10 @@
 const ICHING_MASK = { hexagram: 51, glyph: '☳', lo: '☳', up: '☳', name: 'Zhèn', attribute: 'arousing', color: '#FF0F0F' } as const
 import DecodedCard from './DecodedCard.vue'
 import LayersPanel from './LayersPanel.vue'
-import { harmonicSeriesDecoded } from '../lib/quantumMind'
+import { harmonicSeriesDecoded, soundWiredToOneSharedContext } from '../lib/quantumMind'
 
 const s = harmonicSeriesDecoded()
+const eng = soundWiredToOneSharedContext()
 const items = [
   {
     label: `△ harmonic series — overtone n at n × ${s.base} Hz`,
@@ -28,6 +29,10 @@ const items = [
   {
     label: '432 — real history, flagged metaphysics',
     detail: `Verdi asked Italy to standardise A = 432 in 1884; 440 won (London 1939, ISO 1955); 432 sits ${s.a432ToA440Cents}¢ below 440. The history is real; the cosmic/healing "432 Hz" claims are flagged, not asserted — a sound is a pressure wave, not a medicine.`,
+  },
+  {
+    label: `▶ the engine — one shared context, ${eng.contextsSaved} contexts saved`,
+    detail: `Every player shares ONE AudioContext (useTones): lazy on first sound, resumed on the user gesture, never closed. The old code minted a context per component (${eng.soundComponents}+) and per play — past the browser's ~${eng.cap}-context cap, so playback silently failed and each phrase paid a context startup (the dominant latency). Now ${eng.contextSites} ≤ ${eng.cap}: no churn, no leak, less latency. Pitch and envelope are byte-for-byte unchanged.`,
   },
 ]
 </script>

@@ -1,11 +1,26 @@
 import { onUnmounted, ref } from 'vue'
 
-// One audio engine for every player. Each player used to re-resolve the
-// AudioContext, rebuild the same ADSR oscillator loop, and manage its own
-// playing flag — and most could neither stop nor clean up their context. This
-// composable owns all of it: resolve once, play a melody (playSequence) or a
-// sustained chord (playChord), stop with a soft fade, and close the context on
-// unmount so nothing leaks. Web Audio only, client-side, on user gesture.
+// ONE shared audio engine for the whole app. Every player used to resolve and CREATE its own AudioContext,
+// and the sequence/chord paths created a fresh context per play and CLOSED it after — so each note cost a
+// context startup (tens of ms of latency) and the ~20 sound components plus Dot/RealtimeTests churned through
+// the browser's ~6-context limit until playback silently failed. Now there is a single module-level context,
+// created lazily on the first sound, RESUMED on the user gesture that triggers it, and NEVER closed — reused,
+// so there is no per-play creation latency and no exhaustion. Oscillators are still one-shot (correct); only
+// the context is shared. Web Audio only, client-side, on user gesture.
+
+// The one context. Lazy, gesture-resumed, never closed.
+let SHARED: AudioContext | null = null
+export function sharedAudioContext(): AudioContext | null {
+  if (typeof window === 'undefined') return null
+  if (!SHARED) {
+    const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+    if (!Ctx) return null
+    SHARED = new Ctx()
+  }
+  if (SHARED.state === 'suspended') void SHARED.resume() // the gesture that reached us un-suspends it
+  return SHARED
+}
+
 export interface Tone {
   readonly frequency: number
   readonly duration?: number
@@ -34,41 +49,45 @@ export interface BlipOptions {
   readonly attack?: number
 }
 
+// A one-shot tone on the shared context — fire and forget, lowest latency (no context churn). Module-level so
+// rapid interaction blips (and Dot's tone) all share the one context instead of each minting their own.
+export function blip(frequency: number, options: BlipOptions = {}) {
+  const audio = sharedAudioContext()
+  if (!audio) return
+  const { type = 'sine', peak = 0.08, duration = 0.16, attack = 0.012 } = options
+  const osc = audio.createOscillator()
+  const gain = audio.createGain()
+  osc.type = type
+  osc.frequency.value = frequency
+  const t = audio.currentTime
+  gain.gain.setValueAtTime(0.0001, t)
+  gain.gain.exponentialRampToValueAtTime(peak, t + attack)
+  gain.gain.exponentialRampToValueAtTime(0.0001, t + duration)
+  osc.connect(gain).connect(audio.destination)
+  osc.start()
+  osc.stop(t + duration + 0.02)
+}
+
 export function useTones() {
   const playing = ref(false)
   // The playhead: the index of the note sounding right now, or -1 when idle.
-  // Players read it to highlight what is currently playing.
   const current = ref(-1)
-  let ctx: AudioContext | null = null
   let active: { osc: OscillatorNode; gain: GainNode }[] = []
   let timer: ReturnType<typeof setTimeout> | null = null
   let marks: ReturnType<typeof setTimeout>[] = []
-  let blipCtx: AudioContext | null = null
 
-  function open(): AudioContext | null {
-    if (typeof window === 'undefined') return null
-    const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-    if (!Ctx) return null
-    return new Ctx()
-  }
-
-  // A melody: notes one after another. Analog by nature, gapless — each note
-  // sustains to its end and its release overlaps the next note's attack, so the
-  // phrase is never silent between notes (no gaps). Pass a non-zero `gap` only if
-  // staccato is wanted; the default folds the notes into one another.
+  // A melody: notes one after another. Analog by nature, gapless — each note sustains to its end and its
+  // release overlaps the next note's attack, so the phrase is never silent between notes.
   function playSequence(notes: readonly Tone[], options: SequenceOptions = {}) {
     if (playing.value || notes.length === 0) return
-    const audio = open()
+    const audio = sharedAudioContext()
     if (!audio) return
     const { type = 'sine', duration = 0.32, peak = 0.18, gap = 0, lead = 0.05 } = options
-    ctx = audio
     playing.value = true
     let when = audio.currentTime + lead
     notes.forEach((note, index) => {
       const length = note.duration ?? duration
       const level = note.gain ?? peak
-      // The release runs past the note's slot to overlap the next note's attack,
-      // so the two crossfade and the sound never drops to silence between them.
       const release = gap > 0 ? 0 : Math.min(0.09, length * 0.5)
       const osc = audio.createOscillator()
       const gain = audio.createGain()
@@ -83,41 +102,18 @@ export function useTones() {
       osc.start(when)
       osc.stop(when + length + release + 0.01)
       active.push({ osc, gain })
-      // Advance the playhead when this note begins.
       marks.push(setTimeout(() => (current.value = index), Math.max(0, (when - audio.currentTime) * 1000)))
       when += length + gap
     })
     timer = setTimeout(finish, (when - audio.currentTime) * 1000 + 250)
   }
 
-  // A one-shot tone: fire and forget, on a single reused context. For rapid,
-  // interaction-driven blips that must not be blocked by the playing guard.
-  function blip(frequency: number, options: BlipOptions = {}) {
-    if (typeof window === 'undefined') return
-    if (!blipCtx) blipCtx = open()
-    if (!blipCtx) return
-    const audio = blipCtx
-    const { type = 'sine', peak = 0.08, duration = 0.16, attack = 0.012 } = options
-    const osc = audio.createOscillator()
-    const gain = audio.createGain()
-    osc.type = type
-    osc.frequency.value = frequency
-    gain.gain.setValueAtTime(0.0001, audio.currentTime)
-    gain.gain.exponentialRampToValueAtTime(peak, audio.currentTime + attack)
-    gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration)
-    osc.connect(gain)
-    gain.connect(audio.destination)
-    osc.start()
-    osc.stop(audio.currentTime + duration + 0.02)
-  }
-
   // A chord/drone: all tones together, sustained until stop() is called.
   function playChord(tones: readonly Tone[], options: ChordOptions = {}) {
     if (playing.value || tones.length === 0) return
-    const audio = open()
+    const audio = sharedAudioContext()
     if (!audio) return
     const { type = 'sine', attack = 0.6, gain: peak = 0.12 } = options
-    ctx = audio
     playing.value = true
     for (const tone of tones) {
       const osc = audio.createOscillator()
@@ -133,7 +129,8 @@ export function useTones() {
     }
   }
 
-  // Stop now: fade the active nodes out and close the context shortly after.
+  // Stop now: fade this player's active nodes out. The SHARED context is left running (reused) — only the
+  // oscillators are stopped, so the next play has zero context-startup latency.
   function stop() {
     if (timer) {
       clearTimeout(timer)
@@ -142,13 +139,7 @@ export function useTones() {
     for (const mark of marks) clearTimeout(mark)
     marks = []
     current.value = -1
-    try {
-      blipCtx?.close()
-    } catch {
-      /* already closed */
-    }
-    blipCtx = null
-    const now = ctx?.currentTime ?? 0
+    const now = SHARED?.currentTime ?? 0
     for (const node of active) {
       try {
         node.gain.gain.cancelScheduledValues(now)
@@ -160,33 +151,17 @@ export function useTones() {
       }
     }
     active = []
-    const closing = ctx
-    ctx = null
     playing.value = false
-    setTimeout(() => {
-      try {
-        closing?.close()
-      } catch {
-        /* already closed */
-      }
-    }, 300)
   }
 
-  // A scheduled sequence finished on its own: just close and reset.
+  // A scheduled sequence finished on its own: just reset (the shared context stays).
   function finish() {
     timer = null
     for (const mark of marks) clearTimeout(mark)
     marks = []
     current.value = -1
     active = []
-    const closing = ctx
-    ctx = null
     playing.value = false
-    try {
-      closing?.close()
-    } catch {
-      /* already closed */
-    }
   }
 
   onUnmounted(stop)

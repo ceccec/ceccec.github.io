@@ -23,11 +23,14 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 ## 3. Results
 
-- 41 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
+- 44 monographs (content pages), each a scientific paper rendered by the [monograph] route in three locales.
 - 98 concept commands, each a single-word method and an MCP tool.
 - 182 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 
+- **天 Heaven — the creative power** — Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube.
+- **人 Human — the communicative power** — Human (人), the middle of the I Ching Three Powers (三才): the communicative and social realm — voice, spirit and heritage. Humanity mediates Heaven and Earth; its eight-fold gathers the lived and learning domains, completing the triad that forms the 64³ cube.
+- **地 Earth — the receptive power** — Earth (地), the ground of the I Ching Three Powers (三才): the material and natural realm — form and nature. Its eight-fold is the semantic domain map; with Heaven and Human it completes the triad that covers all and forms the 64³ content-address cube.
 - **Start here** — Start here: a learning portal you can check for yourself. Four plain steps — see, learn, use, prove — with the full depth one tap away. Simple to use, rich in features.
 - **Explore** — Explore the whole portal multidimensionally: eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable.
 - **A432** — A432 — colour, audio, video and vibration as one frequency expressed four ways. The shared thread is frequency itself: a tone you hear, a colour (the sound doubled forty octaves into visible light), a motion rate, and a haptic pulse. Documented kept, legend flagged — the math and history of 432 are real; the cosmic, healing and conspiracy claims are not.
