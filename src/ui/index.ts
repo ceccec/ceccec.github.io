@@ -179,6 +179,7 @@ import QuantumThreshold from './components/QuantumThreshold.vue'
 import DeviceEnergy from './components/DeviceEnergy.vue'
 import QuantumImpossible from './components/QuantumImpossible.vue'
 import QuantumWonders from './components/QuantumWonders.vue'
+import DoubleFoldAllDimensions from './components/DoubleFoldAllDimensions.vue'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
 // from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
@@ -383,5 +384,6 @@ export default {
     app.component('DeviceEnergy', DeviceEnergy)
     app.component('QuantumImpossible', QuantumImpossible)
     app.component('QuantumWonders', QuantumWonders)
+    app.component('DoubleFoldAllDimensions', DoubleFoldAllDimensions)
   }
 } satisfies Theme
