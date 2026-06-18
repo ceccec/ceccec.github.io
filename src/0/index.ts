@@ -127,6 +127,24 @@ export function sealFacets<F extends { facet: string; on: boolean }>(
   }
 }
 
+// GREAT CIRCLE — the haversine distance (km) and initial bearing between two lat/long points on a sphere
+// (Earth mean radius 6371 km). Pure geodesy, no deps: the real math the pyramid-coordinate fold computes —
+// honest distances between sites, the sphere, no "global grid" mysticism. Longitudes west are negative.
+export const EARTH_RADIUS_KM = 6371
+export function greatCircleKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const r = Math.PI / 180
+  const dLat = (lat2 - lat1) * r
+  const dLon = (lon2 - lon1) * r
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLon / 2) ** 2
+  return 2 * EARTH_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(a)))
+}
+export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const r = Math.PI / 180
+  const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
+  const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
+  return (Math.atan2(y, x) / r + 360) % 360
+}
+
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)

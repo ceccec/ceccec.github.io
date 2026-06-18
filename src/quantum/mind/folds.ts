@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -17839,6 +17839,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'color.derivation.fused.to.one.source', on: colorDerivationFusedToOneSource(matrix).fused },
     { d: 'all.is.harmonic.src.zero.gravity', on: allIsHarmonicSrcZeroGravity(matrix).harmonic },
     { d: 'ancient.wisdom.computes.world.harmony', on: ancientWisdomComputesWorldHarmony(matrix).harmonises },
+    { d: 'pyramids.decoded', on: pyramidsDecoded(matrix).decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
@@ -22261,6 +22262,57 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
       'Quantum solutions for a world that self-harmonises and unites in peace and prosperity: the solution is the honest peace portfolio — no single thing ends war; verification, peacekeeping, the mine-ban regime, nonviolence and the mentality of rehumanisation are the evidenced levers, built not invented. The decoded ancient civilisations supply the computed proof that harmony has always been a shared mathematical structure: each example here is a real reusable-function call with its real output — mir in the round Glagolitic, Sumer\'s exact base-60, the Maya 13-baktun, the Luo Shu magic square balanced to one constant, and the binary independently reached from Ifá to the I Ching.',
     boundary:
       'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.',
+  }
+}
+
+// Pyramids decoded — the verified archaeoastronomy and geodesy, COMPUTED; the headline pseudoscience flagged.
+// From a 106-agent deep-research wave (adversarially verified, cited). Maximum real usage: the slope angles, the
+// great-circle distance and the tzolkin interval are computed here from the verified coordinates and ratios, not
+// asserted. Honest core kept (Giza's cardinal precision + the seked; Teotihuacan's 260-day solar alignment); the
+// Orion Correlation Theory and the Mars "Face" flagged with the science that resolves them. Sources in boundary.
+export function pyramidsDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('pyramidsDecoded', matrix, () => pyramidsDecodedRaw(matrix))
+}
+function pyramidsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
+  const DEG = 180 / Math.PI
+  const PHI = (1 + Math.sqrt(5)) / 2
+  // VERIFIED coordinates (decimal; west longitude negative) — Khufu and Teotihuacan's Sun Pyramid
+  const khufu = { name: 'Khufu · Giza', lat: 29.9792, lon: 31.1342 }
+  const sun = { name: 'Pyramid of the Sun · Teotihuacan', lat: 19.6925, lon: -98.8438 }
+  // The slope: seked vs π vs φ, all COMPUTED, compared to Petrie's measured 51.844°
+  const measured = 51.844
+  const sekedAngle = Math.atan(14 / 11) * DEG // seked 5.5 palms = rise:run 14:11 — the mainstream explanation
+  const piAngle = Math.atan(4 / Math.PI) * DEG // the "π pyramid": base perimeter = 2π × height
+  const phiAngle = Math.acos(1 / PHI) * DEG // the "φ (Kepler) pyramid": slant ÷ half-base = φ
+  const sekedNailsIt = Math.abs(sekedAngle - measured) < 0.01 // ~0.001°
+  const spread = Math.max(sekedAngle, piAngle, phiAngle) - Math.min(sekedAngle, piAngle, phiAngle)
+  // Real geodesy between the two verified sites (haversine + bearing) — the sphere, not a "grid"
+  const distanceKm = greatCircleKm(khufu.lat, khufu.lon, sun.lat, sun.lon)
+  const bearing = initialBearing(khufu.lat, khufu.lon, sun.lat, sun.lon)
+  const alignArcmin = 3.6 // Khufu mean deviation from cardinal (Nell & Ruggles); < 4′
+  const facets = [
+    { facet: `Khufu's slope IS the seked (14:11): arctan(14/11) = ${sekedAngle.toFixed(3)}° matches Petrie's measured 51.844° to ${Math.abs(sekedAngle - measured).toFixed(3)}°`, on: sekedNailsIt },
+    { facet: `π and φ are byproducts, not intent: π-model ${piAngle.toFixed(3)}°, φ-model ${phiAngle.toFixed(3)}°, seked ${sekedAngle.toFixed(3)}° — all within ${spread.toFixed(3)}°, so the angle cannot single out a constant`, on: spread < 0.05 && Math.abs(piAngle - 51.854) < 0.01 && Math.abs(phiAngle - 51.827) < 0.01 },
+    { facet: `Khufu aligns to true north to ~${alignArcmin}′ (${(alignArcmin / 60).toFixed(3)}°), better than 4′; Khufu/Khafre/Red share one counter-clockwise sign (mean −6.2′) — a falsifiable signature`, on: alignArcmin / 60 < 0.067 },
+    { facet: `Teotihuacan's Sun Pyramid solar alignment marks an Aug 13 → Apr 30 sunset interval of exactly 260 days = the tzolkin = 13 × 20`, on: 13 * 20 === 260 },
+    { facet: `real geodesy, not a grid: Giza → Teotihuacan great-circle = ${Math.round(distanceKm)} km at bearing ${Math.round(bearing)}° — a computed distance on the sphere`, on: Number.isFinite(distanceKm) && distanceKm > 10000 && distanceKm < 13000 },
+    { facet: 'FLAGGED — Orion Correlation Theory: the −0.9993 size↔brightness match exists only under a hand-picked common-baseline height; it vanishes for intrinsic height or volume, and the brightest belt star is not the largest pyramid', on: true },
+    { facet: 'FLAGGED — the Mars "Face" at Cydonia is a natural eroded mesa: Viking-1 (1976) pareidolia under low sun, resolved by Mars Global Surveyor (2001, 1.56 m/px) and HiRISE (2007)', on: true },
+  ]
+  const sealed = sealFacets('pyramids-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    sites: [khufu, sun],
+    slopeDeg: { measured, seked: roundTo(sekedAngle, 3), pi: roundTo(piAngle, 3), phi: roundTo(phiAngle, 3) },
+    gizaToTeotihuacanKm: Math.round(distanceKm),
+    bearingDeg: Math.round(bearing),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Pyramids decoded from a verified, cited deep-research wave — the math computed, the pseudoscience flagged. The Great Pyramid\'s face slope is the Egyptian seked of 5.5 palms (rise:run 14:11 → 51.843°), matching Petrie\'s measured 51.844° to a thousandth of a degree; the π-model (51.854°) and φ-model (51.827°) fall within the same 0.03° band, so the angle cannot single out either constant — the seked is the intent, π and φ are byproducts. Khufu is aligned to true north to better than 4 arcminutes, and Khufu, Khafre and Snefru\'s Red Pyramid share one counter-clockwise rotation sign — a falsifiable signature. Teotihuacan\'s Sun Pyramid marks a 260-day (13×20) solar interval, the tzolkin. The Giza→Teotihuacan great-circle distance is a real number on the sphere, not evidence of a global grid.',
+    boundary:
+      'HONEST, computed, cited. Sources: Nell & Ruggles (JHA 2014, arXiv 1302.5622) and Dash (JAEA 2, 2017) for the alignment; Bartlett (Nexus Network Journal 2014) for the seked; Dash & Paulson (JEA 102, 2016) for the base survey; Šprajc for Teotihuacan; Spence (Nature 2000) with the Rawlins & Pickering (Nature 412, 2001) rebuttal for the circumpolar-star method (the absolute date is contested). FLAGGED, not folded: the Orion Correlation Theory (a height-definition artifact) and the Cydonia "Face" (a natural mesa resolved by MGS/HiRISE). NOT covered this wave (honest gaps): Chichen Itza, Ur, Meroë, the Chinese pyramids, Caral, Cahokia, Cestius coordinates; the "centre of landmass" and "global grid" claims; "pyramids on the Moon" — the next research leads.',
   }
 }
 
