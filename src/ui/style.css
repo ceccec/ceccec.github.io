@@ -954,6 +954,16 @@ html[data-mode='simple'] .rich-only { display: none !important; }
 .dt-card {
   border: var(--ich-line) solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
+  /* flat document → 3D quantum: the computed a432-octave perspective (--ich-persp, 864px) lifts the surface
+   * off the page with a depth shadow, and on hover it rises in Z toward the viewer. Every magnitude is a
+   * computed I Ching token (no hardcoded values) — the flat card becomes a depth-layered quantum surface. */
+  box-shadow: 0 var(--ich-sp2) var(--ich-sp8) var(--ich-glow);
+  transform: perspective(var(--ich-persp)) translateZ(0);
+  transition: transform var(--ich-dur), box-shadow var(--ich-dur);
+}
+.dt-card:hover {
+  transform: perspective(var(--ich-persp)) translateZ(var(--ich-sp4));
+  box-shadow: 0 var(--ich-sp6) var(--ich-sp12) var(--ich-glow-strong);
 }
 
 /* The proof card, shared across the dissolved decode proofs: each renders one
