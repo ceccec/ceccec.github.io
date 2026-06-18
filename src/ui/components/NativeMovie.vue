@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'NativeMovie' }
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useData } from 'vitepress'
-import { prng, createAnimationEngine, frequencyToLight, a432 } from '../lib/quantumMind'
+import { prng, createAnimationEngine, frequencyToLight, a432, A432_HUE } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 
@@ -28,7 +28,7 @@ let particles: { i: number; a: number; r: number; d: number; hue: number; size: 
 // Colour is derived from A432: the base hue is the colour of 432 Hz by the octave bridge (frequencyToLight ⇒
 // red-orange), and each particle takes the light-hue of one of the seven A432 octaves — the palette is the
 // frequency, not a random wheel.
-const A432_HUE = frequencyToLight(432).hue
+// A432_HUE (the anchor) is imported from the one colour source — no local recompute.
 const A432_OCTAVE_HUES = a432().octaves.map((hz) => frequencyToLight(hz).hue)
 
 function build() {

@@ -2,7 +2,7 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'Rhythm' }
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432, frequencyToLight } from '../lib/quantumMind'
+import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432, A432_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
 import { useLocale } from '../lib/useLocale'
 import { useTones } from '../lib/useTones'
@@ -19,8 +19,7 @@ const { saveEnergy } = useDeviceEnergy()
 
 // COLOUR from A432: anchor on the colour of 432 Hz (≈ red-orange, the octave bridge to visible light),
 // then step each voice by the golden angle so the four hues stay distinct yet rooted in one frequency.
-const A432_HUE = frequencyToLight(432).hue
-const GOLDEN_ANGLE = 137.50776405003785
+// A432_HUE (the anchor) and GOLDEN_ANGLE are imported from the one colour source — no local recompute.
 const HUES = data.voices.map((_, i) => (A432_HUE + i * GOLDEN_ANGLE) % 360) // a colour per voice, from A432
 // AUDIO on the 432 ladder: map each voice to an octave of 432 (27·54·108·216·432·864·1728), keeping the
 // ascending pitch character (the steady downbeat lowest) while tying every struck tone to 432-harmonics.

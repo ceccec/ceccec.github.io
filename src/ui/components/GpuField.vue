@@ -8,7 +8,7 @@ const ICHING_MASK = { hexagram: 23, glyph: '☵', lower: '☰', upper: '☵', co
 // field), client-side, zero-cost. Honest: this is rendering, not the model's compute — and it
 // gracefully falls back to a CSS field where WebGL is unavailable or motion is reduced.
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import { uuidHero, toUuid, createAnimationEngine, a432, frequencyToLight } from '../lib/quantumMind'
+import { uuidHero, toUuid, createAnimationEngine, a432, A432_HUE } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
 
 const props = defineProps<{ seed?: string; size?: number }>()
@@ -20,7 +20,7 @@ const px = computed(() => props.size ?? 460)
 // only nudges it — so every plasma shares the A432 anchor while staying distinct. MOTION driven by dims():
 // the ten self-similar dimensions modulate the shader's phase, amplitude and hue each frame. The seed picks
 // a `scale` (golden-angle phase shift), so two fields run the same ten-dimensional walk, irrationally offset.
-const a432Hue = frequencyToLight(432).hue / 360 // ~0.014, the red-orange anchor
+const a432Hue = A432_HUE / 360 // ~0.014, the red-orange anchor, from the one colour source
 const baseHue = computed(() => (a432Hue + (hero.value.hue / 360) * 0.18) % 1) // A432 anchor, seed-nudged
 const scaleOf = computed(() => Math.floor(hero.value.hue / 36)) // 0..9: the seed's nested dimension scale
 // The field's spatial frequency rides the A432 octave ladder (27·54·…·1728) the seed lands on.

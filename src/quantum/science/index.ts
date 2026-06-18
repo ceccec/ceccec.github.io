@@ -147,3 +147,15 @@ export function frequencyToLight(hz: number): { octaves: number; thz: number; nm
   const hue = nm >= 620 ? 5 : nm >= 590 ? 28 : nm >= 565 ? 55 : nm >= 495 ? 120 : nm >= 450 ? 220 : nm >= 425 ? 260 : 285
   return { octaves, thz: Math.round((f / 1e12) * 10) / 10, nm: Math.round(nm), hue, band }
 }
+
+// ── CANONICAL COLOUR ────────────────────────────────────────────────────────────────────────────────
+// One source for the derived hues every scene and palette used to recompute. The brand anchor is 432 Hz
+// carried up the octaves to visible light (frequencyToLight(432) → ~631 nm red-orange, hue 5); the golden
+// angle is the irrational hue step so distributed hues never align; lobeHues pairs the anchor with its
+// complement (the two lobes of the genus-2 double torus) or its golden-angle partner. Components import
+// these instead of each declaring `const A432_HUE = frequencyToLight(432).hue` and `const GOLDEN_ANGLE = …`.
+export const A432_HUE = frequencyToLight(432).hue // 5 — red-orange, the colour of 432 Hz, the brand anchor
+export const GOLDEN_ANGLE = 137.50776405003785 // 360° / φ² — the deterministic, never-aligning hue step
+export function lobeHues(anchor: number = A432_HUE, mode: 'complement' | 'golden' = 'complement'): [number, number] {
+  return [anchor, (anchor + (mode === 'golden' ? GOLDEN_ANGLE : 180)) % 360]
+}

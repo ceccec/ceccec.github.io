@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'DoubleTorus3D' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D, frequencyToLight } from '../lib/quantumMind'
+import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D, lobeHues } from '../lib/quantumMind'
 import { rot2, dims as dimsAt } from '../lib/hero'
 import { useAnimationEngine } from '../lib/useAnimationEngine'
 import { useLayers } from '../lib/useLayers'
@@ -28,8 +28,7 @@ const perLobe = meta.perLobe
 // Colour anchored on A432: 432 Hz bridged up the octaves to visible light is a red-orange (~631 nm). The two
 // lobes of the genus-2 surface take that anchor hue and its half-turn partner on the wheel — so the wireframe is
 // derived from the frequency, not from ad-hoc blue/amber. Same low alpha as before, for contrast on the card.
-const a432Hue = frequencyToLight(432).hue // ~5 — red-orange
-const lobeHue = [a432Hue, (a432Hue + 180) % 360]
+const lobeHue = lobeHues() // the two lobes: the A432 anchor and its complement (180°), from the one colour source
 
 // Wired to the harmonised depth dial. The scene once had its own 3/5/8 buttons; now it reads the SAME
 // canonical 0–10 control every widget uses (useLayers), and that one dial drives two coupled depths: the

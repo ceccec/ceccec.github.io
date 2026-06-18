@@ -10,7 +10,7 @@ const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useTones } from '../lib/useTones'
-import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432 } from '../lib/quantumMind'
+import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432, GOLDEN_ANGLE } from '../lib/quantumMind'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')
@@ -22,7 +22,7 @@ const base = a432() // the A432 octave→colour base hue
 
 // Colours computed A432-based: start at the A432 light hue, step by the golden angle (137.5°, the documented
 // phyllotaxis angle) per rung — one frequency lineage shared by the whole category.
-const GOLDEN_ANGLE = 137.5
+// GOLDEN_ANGLE is imported from the one colour source — no local recompute.
 const hueFor = (i) => Math.round((base.light.hue + i * GOLDEN_ANGLE) % 360)
 // The forge-cost meter (log scale, 0..100): FNV ≈ nothing adversarial; SHA-256 = 128-bit; +signature, PoW,
 // PoS climb toward "reproduce all the work / lose all the stake". An honest visual ordering, not a measurement.

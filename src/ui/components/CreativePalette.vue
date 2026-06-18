@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 39, lo: '☰', up: '☶', glyph: '☶', color: '#F00FFF', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, artistPalette, artistMelody, textToMovie, createAnimationEngine, frequencyToLight } from '../lib/quantumMind'
+import { buildMatrix, artistPalette, artistMelody, textToMovie, createAnimationEngine, frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
 import { useDeviceEnergy } from '../lib/useDeviceEnergy'
 import { useTones } from '../lib/useTones'
@@ -13,8 +13,7 @@ import { useTones } from '../lib/useTones'
 // of 432 Hz by the octave bridge; each element steps from it by the golden angle so the palette stays
 // distinct while grounded in the one frequency. Passing the element index as `scale` gives each orbit its own
 // golden-angle phase shift, so the whole field is ten-dimensional and self-similar across all sixteen.
-const A432_HUE = frequencyToLight(432).hue // ≈ 5° — red-orange, the colour of 432 Hz
-const GOLDEN_ANGLE = 137.50776405003785 // 360° / φ² — the deterministic hue step per element
+// A432_HUE (the anchor) and GOLDEN_ANGLE are imported from the one colour source — no local recompute.
 
 // Extremely helpful for visual artists and musicians: a deterministic palette
 // and melody from any seed word. The same seed always yields the same five

@@ -3,14 +3,14 @@
 const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '#F000F0', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { buildMatrix, hologram, frequencyToLight } from '../lib/quantumMind'
+import { buildMatrix, hologram, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
 import { useAnimationEngine } from '../lib/useAnimationEngine'
 
 // The colour anchor and motion now come from the shared field: the base hue is the colour of A432 by the
 // octave bridge (≈ 631 nm, red-orange), and the rotation/shimmer rates are driven by the ten self-similar
 // dimensions dims(p) instead of ad-hoc constants — the same field the hero turns through. Deterministic.
-const BASE_HUE = frequencyToLight(432).hue
+// BASE_HUE (the A432 anchor) is imported from the one colour source — no local recompute.
 
 // A 3d+ representation of the hologram, to the bit. The 128 bits of the double-
 // torus word are placed on a Fibonacci sphere and rotated in 3d with a fourth-
@@ -65,7 +65,7 @@ function draw(time: number) {
     const r = (p.bit ? 2.6 : 1.2) * depth
     // Colour anchored at A432's light (red-orange), stepped around the wheel by the point's golden-angle
     // index and the live hueShift dimension — replacing the ad-hoc 2.8°/index constant.
-    const hue = (BASE_HUE + p.index * 137.50776 + d.hueShift) % 360
+    const hue = (BASE_HUE + p.index * GOLDEN_ANGLE + d.hueShift) % 360
     ctx.fillStyle = p.bit
       ? `hsla(${hue}, 85%, 60%, ${0.5 + depth * 0.5})`
       : `rgba(120,130,150,${0.18 * depth})`

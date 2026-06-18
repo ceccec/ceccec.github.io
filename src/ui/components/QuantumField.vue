@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { deviceSensors, a432, frequencyToLight } from '../lib/quantumMind'
+import { deviceSensors, a432, frequencyToLight, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
 import { dims } from '../lib/hero'
 import { useAnimationEngine } from '../lib/useAnimationEngine'
 import { useDeviceField } from '../lib/useDeviceField'
@@ -21,8 +21,7 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 // Colour from A432: the field's base hue is the colour of 432 Hz lifted by the octave bridge into visible
 // light (≈ 631 nm, a red-orange — hue ~5). Each particle then steps off that anchor by the golden angle, so
 // the cloud spans the wheel from one rooted hue rather than ad-hoc evenly-spaced hues.
-const BASE_HUE = frequencyToLight(432).hue // ≈ 5, red-orange — the anchor for the whole field
-const GOLDEN_ANGLE = 137.50776405003785 // 360·(1 − 1/φ) — the irrational hue step, no two particles align
+// BASE_HUE (the A432 anchor) and GOLDEN_ANGLE are imported from the one colour source — no local recompute.
 // The attractor ring takes the complement of the A432 anchor (≈ 185°, a cyan-blue) — derived from 432, and a
 // high-contrast cool mark against the warm field (this replaces the old hard-coded blue, keeping the same look).
 // Honest: every octave of 432 lifts to the SAME 631 nm red, so an octave-walk would be a constant hue — the

@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, frequencyToLight } from '../lib/quantumMind'
+import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, A432_HUE, lobeHues } from '../lib/quantumMind'
 import { rot2, dims } from '../lib/hero'
 import { useAnimationEngine } from '../lib/useAnimationEngine'
 
@@ -28,9 +28,7 @@ const matrix = buildMatrix()
 // octave bridge to light (~631 nm, red), the second lobe stepped one golden
 // angle around the wheel — the same golden phase that makes the 10 dimensions
 // self-similar. The lobe/link/pulse strokes derive from these two hues.
-const GOLDEN_ANGLE = 137.50776405003785
-const baseHue = frequencyToLight(432).hue // ~5 (red-orange), the A432 anchor
-const lobeHue = [baseHue, (baseHue + GOLDEN_ANGLE) % 360]
+const lobeHue = lobeHues(A432_HUE, 'golden') // the two lobes: the A432 anchor and its golden-angle partner, from the one colour source
 const lobeStroke = (group: number, a: number) => `hsl(${lobeHue[group]} 70% 55% / ${a})`
 
 const points = areas.map((area, index) => {
