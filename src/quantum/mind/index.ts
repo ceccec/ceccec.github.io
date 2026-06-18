@@ -118,3 +118,4 @@ export { atoms, conceptCommands } from './atoms.ts'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds (850+ functions) re-exported from ./folds.ts
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
 export * from './folds.ts'
+export * from './solutions.ts' // dissolved out of the folds monolith — the body distributes, src/0 keeps the gravity
