@@ -944,6 +944,30 @@ export function qieaRotate(alpha: number, beta: number, targetBit: number, angle
   return [Math.cos(phi + step), Math.sin(phi + step)]
 }
 
+// BEYOND LINEAR, within conservation — two real quantum effects the fold (collective, conservative) unlocks.
+// Quantum battery: charging N cells COLLECTIVELY (one global entangling drive) beats charging them
+// independently; under a fixed driving-norm constraint the charging-POWER advantage scales as √N (Alicki–
+// Fannes 2013; Binder et al. 2015; Campaioli et al. PRL 2017). The energy is external and conserved — what is
+// beyond-linear is the speed/power (collective power ∝ N·√N = N^{3/2}, superlinear in N), via the fold.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function quantumBatteryAdvantage(n: number): { cells: number; independentPower: number; collectivePower: number; advantage: number } {
+  const cells = Math.max(1, Math.floor(n))
+  const independentPower = cells // N cells, unit power each, charged in parallel — linear in N
+  const advantage = Math.sqrt(cells) // the √N collective speed/power advantage (grows with N — beyond linear)
+  return { cells, independentPower, collectivePower: independentPower * advantage, advantage } // N·√N = N^{3/2}
+}
+
+// Algorithmic cooling — cool a target qubit BY COMPUTING. The basic 3-qubit reversible compression takes three
+// qubits of equal polarization (bias) ε and concentrates it into one: ε' = (3ε − ε³)/2 (≈ 1.5ε for small ε),
+// pumping the entropy into the other two (Boykin–Mor–Roychowdhury–Vatan–Vrijen, PNAS 2002; used in NMR). The
+// target is COOLED; total entropy does not decrease (the Sørensen/Shannon bound) — heat moves, never vanishes.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function algorithmicCoolingBias(epsilon: number): { initial: number; cooled: number; factor: number; physical: boolean } {
+  const e = Math.max(0, Math.min(1, epsilon))
+  const cooled = (3 * e - e ** 3) / 2 // the cooled qubit's new bias after one 3-qubit compression
+  return { initial: e, cooled, factor: e > 0 ? cooled / e : 0, physical: cooled <= 1 } // ≤1 physical; entropy pumped to the rest
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

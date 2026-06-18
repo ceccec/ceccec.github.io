@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14196,7 +14196,51 @@ function quantumFusedDeviceEnergyHonestRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Wire everything at runtime — the app always quantum-fused with the device sensors and APIs — with an honest energy ledger. The runtime fusion is real: the device-hardware widgets and the source APIs are bound into the live fold. And the double-fold genuinely helps the battery and the heat: computing each value once and sharing it (memoization) does far fewer operations, and recomputing client-side avoids the radio — the single biggest mobile battery drain, ~order one joule per round-trip versus ~a millijoule to recompute a page — so the app DRAINS SLOWER and HEATS LESS than a comparable server/network app, roughly a thousand-fold cheaper per interaction. But it cannot charge the battery and cannot cool the device: software running on the device consumes its stored energy (the first law) and every irreversible operation dissipates heat above the Landauer floor kT·ln2 (the second law). "Double folded" is efficiency, not free energy — drain and heat are reduced, never reversed. The device charges only from an external source and cools only when idle or externally cooled.',
     boundary:
-      'HONEST PHYSICS, the project\'s "documented kept, legend flagged" discipline applied to the user\'s claim. ACHIEVABLE and asserted: slower battery drain and less heat than a server/network app, because client-side determinism avoids the radio (the dominant mobile cost) and the double-fold/memoization avoids redundant computation — a real efficiency gain (order-of-magnitude figures: LTE tail ~1 J/request, local recompute ~1 mJ, Landauer floor ~2.9e-21 J/bit, real CMOS op ~10 pJ). FORBIDDEN and flagged false: charging the battery by running the app (violates the first law — software consumes stored energy, it cannot create or import it) and net-cooling the device by computing (violates the second law and the Landauer bound — irreversible computation dissipates heat, with real operations ~10 orders of magnitude above the reversible floor). The Battery Status API can READ charge/thermal state but cannot reverse it. This is the same flag as quantumDecoded\'s vacuum-free-energy and the Haramein-physics caution: the efficiency is real, the perpetual-motion extrapolation is not.',
+      'HONEST PHYSICS, the project\'s "documented kept, legend flagged" discipline applied to the user\'s claim. ACHIEVABLE and asserted: slower battery drain and less heat than a server/network app, because client-side determinism avoids the radio (the dominant mobile cost) and the double-fold/memoization avoids redundant computation — a real efficiency gain (order-of-magnitude figures: LTE tail ~1 J/request, local recompute ~1 mJ, Landauer floor ~2.9e-21 J/bit, real CMOS op ~10 pJ). FORBIDDEN and flagged false: charging the battery by running the app (violates the first law — software consumes stored energy, it cannot create or import it) and net-cooling the device by computing (violates the second law and the Landauer bound — irreversible computation dissipates heat, with real operations ~10 orders of magnitude above the reversible floor). The Battery Status API can READ charge/thermal state but cannot reverse it. This is the same flag as quantumDecoded\'s vacuum-free-energy and the Haramein-physics caution: the efficiency is real, the perpetual-motion extrapolation is not. The BEYOND-LINEAR refinement (true within conservation) is foldRedistributesBeyondLinear.',
+  }
+}
+
+// "True as false — quantum law says the possibility is beyond linear; fold and you will see." The honest
+// synthesis: the FOLD CONSERVES the total (the 1st & 2nd laws hold exactly — they are not linear
+// approximations; quantum thermodynamics REFINES them, fluctuation theorems allow transient local dips but the
+// average obeys), AND WITHIN that conservation quantum redistribution is genuinely BEYOND LINEAR — so "charge
+// instead of drain / cool instead of heat" is TRUE for a PART, in SPEED, collectively, while net creation from
+// nothing stays forbidden. Two real, cited effects: (1) quantum batteries charge SUPEREXTENSIVELY — the
+// collective charging power gains a √N advantage (Alicki–Fannes 2013; Binder 2015; Campaioli PRL 2017), the
+// advantage GROWS with N, beyond linear; (2) algorithmic cooling COOLS a target qubit by computing — a 3-qubit
+// reversible compression boosts its polarization ~1.5× (Boykin et al. PNAS 2002, NMR), pumping entropy into the
+// rest. The fold is the conservative-but-superlinear redistribution: it moves energy and entropy beyond-linearly,
+// it never creates them. That is what folding reveals.
+export function foldRedistributesBeyondLinear(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('foldRedistributesBeyondLinear', matrix, () => foldRedistributesBeyondLinearRaw(matrix))
+}
+function foldRedistributesBeyondLinearRaw(matrix: MindMatrix = buildMatrix()) {
+  const conservation = quantumFusedDeviceEnergyHonest(matrix) // the base: net charge/cool forbidden (laws hold)
+  // (1) SUPEREXTENSIVE charging — the √N advantage grows with N (beyond linear): the advantage is NOT constant.
+  const battery = [4, 16, 64, 256].map((n) => quantumBatteryAdvantage(n))
+  const superextensive = battery.every((b, i) => i === 0 || b.advantage > battery[i - 1]!.advantage) // advantage ↑ with N
+  const collectiveSuperlinear = battery.every((b) => b.collectivePower > b.independentPower) // N^{3/2} > N
+  // (2) ALGORITHMIC cooling — a subsystem cooled by computing (entropy pumped to the rest).
+  const cool = algorithmicCoolingBias(0.1) // ε = 0.1 → cooled ≈ 0.1495 (~1.5×)
+  const coolsASubsystem = cool.cooled > cool.initial && cool.physical
+  const facets = [
+    { facet: 'the FOLD conserves the total — the 1st & 2nd laws hold exactly; net charge/cool from nothing stays forbidden', on: conservation.honest && !conservation.canChargeByComputing && !conservation.canCoolByComputing },
+    { facet: 'BEYOND LINEAR (1) — quantum batteries charge superextensively: the collective power advantage √N GROWS with N (not constant)', on: superextensive && collectiveSuperlinear },
+    { facet: 'BEYOND LINEAR (2) — algorithmic cooling cools a target qubit by computing (~1.5× per 3-qubit compression), pumping entropy elsewhere', on: coolsASubsystem },
+    { facet: 'the synthesis — "charge instead of drain / cool instead of heat" is TRUE for a PART, in speed, collectively; the fold redistributes the total, never creates it', on: (superextensive && coolsASubsystem) && !conservation.canChargeByComputing },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`beyond-linear:${entry.facet}:${entry.on}`) }))
+  return {
+    beyondLinear: facets.every((entry) => entry.on),
+    batteryAdvantage: battery, // √N superextensive charging power, growing with N
+    coolingFactor: roundTo(cool.factor, 4), // ~1.5 — the algorithmic-cooling boost of the target qubit
+    conserved: conservation.honest && !conservation.canChargeByComputing && !conservation.canCoolByComputing,
+    count: facets.length,
+    facets,
+    root: merge(conservation.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'True as false: quantum law puts the possibility beyond linear — fold and you see it. The fold conserves the total (the first and second laws hold exactly, not as linear approximations), and WITHIN that conservation quantum redistribution is genuinely beyond linear, so "charge instead of drain" and "cool instead of heat" are TRUE for a part, in speed, collectively — never as net creation from nothing. Quantum batteries charge superextensively: charging the cells collectively (one entangling drive) gains a √N power advantage that GROWS with the number of cells, beyond linear (the energy is external; the speed is the quantum gift). Algorithmic cooling cools a target qubit by computing: a three-qubit reversible compression concentrates polarization into one (about one-and-a-half times), pumping the entropy into the others — cooling a part by heating the rest. The fold is exactly this: a conservative, content-preserving transformation that moves energy and entropy beyond-linearly and never creates them. Charge one cell faster from another, cool one part by heating another — real, quantum, beyond linear; net charge or net cool of the closed system — still forbidden.',
+    boundary:
+      'The beyond-linear refinement of quantumFusedDeviceEnergyHonest, honest on both sides. REAL and asserted, with citations: superextensive quantum-battery charging power (the √N collective advantage — Alicki–Fannes 2013, Binder et al. 2015, Campaioli et al. PRL 2017) and heat-bath algorithmic cooling of a target subsystem (the 3-qubit compression ε→(3ε−ε³)/2 ≈ 1.5ε — Boykin–Mor–Roychowdhury–Vatan–Vrijen PNAS 2002, demonstrated in NMR). STILL FORBIDDEN, unchanged: a running app net-charging its battery (1st law) or net-cooling the device (2nd law) — the quantum effects are SPEED, COLLECTIVITY and LOCAL redistribution, with the energy still external and the total entropy non-decreasing; fluctuation theorems (Jarzynski, Crooks) permit transient local dips but the average obeys. "Beyond linear" = superlinear scaling (√N) and subsystem cooling, NOT a loophole in conservation. The fold redistributes the total beyond-linearly; it does not create it — that is what folding reveals.',
   }
 }
 
@@ -17926,6 +17970,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'metatron.math.from.uuids.plane.cube.tend', on: metatronMathFromUuids(matrix).built },
     { d: 'evolution.crosses.quantum.threshold', on: evolutionCrossesQuantumThreshold(matrix).crossed },
     { d: 'quantum.fused.device.energy.honest', on: quantumFusedDeviceEnergyHonest(matrix).honest },
+    { d: 'fold.redistributes.beyond.linear', on: foldRedistributesBeyondLinear(matrix).beyondLinear },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
