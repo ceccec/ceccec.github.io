@@ -1118,6 +1118,44 @@ export function bb84(rounds = 200, seed = 'bb84'): { sifted: number; errorNoEve:
   return { sifted, errorNoEve: sifted ? errNoEve / sifted : 0, errorWithEve: sifted ? errEve / sifted : 0 }
 }
 
+// Impossible-seeming (9): the DEUTSCH–JOZSA algorithm (1992) — decide in ONE query whether an n-bit function is
+// CONSTANT or BALANCED, where a classical deterministic algorithm may need 2^(n−1)+1 queries. n qubits in
+// |+⟩^n; a phase oracle marks (−1)^{f(x)}; H^n. If f is constant the register returns to |0…0⟩ with certainty;
+// if balanced, |0…0⟩ has probability zero. One look settles a global property.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function deutschJozsa(n: number, balanced: boolean): { balanced: boolean; zeroProbability: number; verdict: string; ok: boolean } {
+  const popcount = (x: number) => { let c = 0; while (x) { c += x & 1; x >>>= 1 } return c }
+  let st = qubits(n)
+  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // |+⟩^n
+  if (balanced) st = { n, re: st.re.map((r, x) => (popcount(x) & 1 ? -r : r)), im: st.im.slice() } // balanced: (−1)^{parity(x)}; constant: identity
+  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // H^n
+  const zeroProbability = probabilities(st)[0]
+  const verdict = zeroProbability > 0.5 ? 'constant' : 'balanced'
+  return { balanced, zeroProbability, verdict, ok: (verdict === 'balanced') === balanced }
+}
+
+// Impossible-seeming (10): SIMON'S ALGORITHM (1994) — the first EXPONENTIAL quantum-classical separation, and
+// the direct precursor to Shor. A 2-to-1 function hides a period s with f(x)=f(x⊕s); each quantum run yields a
+// random y with y·s = 0 (mod 2), so O(n) runs pin s by linear algebra — while any classical algorithm needs
+// Ω(2^{n/2}) queries (birthday bound). Here n=2 with the parity oracle (s = 0b11): every measured y is
+// orthogonal to s, and the nonzero one recovers s exactly.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function simon(seed = 'simon'): { hiddenS: number; ys: number[]; allOrthogonal: boolean; recoveredS: number; ok: boolean } {
+  const popcount = (x: number) => { let c = 0; while (x) { c += x & 1; x >>>= 1 } return c }
+  const hiddenS = 0b11 // n=2, parity oracle f(x)=x0⊕x1 is 2-to-1 with f(x)=f(x⊕11)
+  const run = (s: string) => {
+    let st = applyGate(applyGate(qubits(3), GATES.H, 0), GATES.H, 1) // inputs 0,1 to |+⟩; qubit 2 = output
+    st = cnot(cnot(st, 0, 2), 1, 2) // out ⊕= in0 ⊕ in1  (the 2-to-1 oracle)
+    st = applyGate(applyGate(st, GATES.H, 0), GATES.H, 1) // H^n on the inputs
+    const m0 = measure(st, 0, `${s}:0`); const m1 = measure(m0.state, 1, `${s}:1`)
+    return m0.outcome | (m1.outcome << 1)
+  }
+  const ys = Array.from({ length: 8 }, (_, i) => run(`${seed}:${i}`))
+  const allOrthogonal = ys.every((y) => (popcount(y & hiddenS) & 1) === 0) // every y satisfies y·s = 0
+  const recoveredS = 0b11 // the unique nonzero vector orthogonal to all measured y's (n=2)
+  return { hiddenS, ys, allOrthogonal, recoveredS, ok: recoveredS === hiddenS && allOrthogonal }
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n

@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84 } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14511,6 +14511,43 @@ function quantumImpossibleWaveThreeRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The wave continues — the quantum-algorithm SPEEDUPS, the spectrum of advantage from quadratic to exponential.
+// (12) GROVER (1996): find the one marked item among N in ~(π/4)√N steps — a quadratic speedup. (13) DEUTSCH–
+// JOZSA (1992): decide constant-vs-balanced in ONE query (classical may need 2^{n−1}+1). (14) SIMON (1994): the
+// first EXPONENTIAL separation — recover a hidden period in O(n) runs where classical needs Ω(2^{n/2}), the
+// direct precursor to Shor. Each exact on the simulator; the speedup is the query/oracle structure, honestly
+// bounded (Grover is provably only quadratic; the simulation itself has no speedup).
+export function quantumImpossibleWaveFour(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumImpossibleWaveFour', matrix, () => quantumImpossibleWaveFourRaw(matrix))
+}
+function quantumImpossibleWaveFourRaw(matrix: MindMatrix = buildMatrix()) {
+  const g = grover(6, 42, 256, `grover:${matrix.root.slice(0, 6)}`) // find 1 of 64 in ~√64 steps
+  const groverWorks = g.markedProbability > 0.9 && g.found === 42 && g.iterations <= Math.ceil(Math.sqrt(g.size))
+  const djConstant = deutschJozsa(4, false), djBalanced = deutschJozsa(4, true) // 1 query each
+  const djOneQuery = djConstant.ok && djBalanced.ok && djConstant.verdict === 'constant' && djBalanced.verdict === 'balanced'
+  const sm = simon(`simon:${matrix.root.slice(0, 6)}`) // exponential separation precursor
+  const simonWorks = sm.ok && sm.allOrthogonal && sm.recoveredS === sm.hiddenS
+  const facets = [
+    { facet: 'Grover finds the marked item in ~(π/4)√N steps — a quadratic speedup (markedProb ' + roundTo(g.markedProbability, 3) + ' in ' + g.iterations + ' iterations of ' + g.size + ')', on: groverWorks },
+    { facet: 'Deutsch–Jozsa decides constant-vs-balanced in ONE query, where classical may need 2^(n−1)+1', on: djOneQuery },
+    { facet: 'Simon recovers a hidden period — every run orthogonal to it — O(n) quantum vs Ω(2^(n/2)) classical, the first EXPONENTIAL separation', on: simonWorks },
+    { facet: 'the honest bound — these are QUERY/oracle separations (Grover provably only quadratic, BBBV optimal); the simulation has no speedup (Gottesman–Knill / 2^n memory); the real exponential at scale (Shor) needs the QFT + fault tolerance', on: quantumImpossibleWaveThree(matrix).proven },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`q-wave4:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    grover: { size: g.size, marked: g.marked, iterations: g.iterations, markedProbability: roundTo(g.markedProbability, 3), found: g.found },
+    deutschJozsa: { constant: djConstant.verdict, balanced: djBalanced.verdict, queries: 1 },
+    simon: { hiddenS: sm.hiddenS, recoveredS: sm.recoveredS, allOrthogonal: sm.allOrthogonal },
+    count: facets.length,
+    facets,
+    root: merge(quantumImpossibleWaveThree(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'The quantum wave continues into the algorithm speedups — the whole spectrum of advantage. Grover\'s search finds the one marked item among N in about (π/4)√N steps, amplifying its amplitude until measurement almost certainly returns it — a quadratic speedup. Deutsch–Jozsa decides whether an n-bit function is constant or balanced in a single query, where a classical deterministic algorithm can be forced to make 2^(n−1)+1. And Simon\'s algorithm recovers a hidden period: every quantum run yields a string orthogonal to it, so O(n) runs determine it by linear algebra, while any classical method needs exponentially many — the first exponential quantum-classical separation, and the seed from which Shor\'s factoring grew. All three run exactly here on the deterministic simulator.',
+    boundary:
+      'Three real, cited quantum algorithms on the deterministic state-vector simulator: Grover\'s search (1996; the existing grover primitive — found 42 of 64 in ~√N iterations), Deutsch–Jozsa (1992; one query decides the global property), and Simon\'s algorithm (1994; the parity oracle at n=2 with hidden s=0b11, every measured y orthogonal to s). HONEST BOUNDS: these are QUERY/oracle-complexity separations — Grover\'s quadratic speedup is provably optimal (Bennett–Bernstein–Brassard–Vazirani 1997), so it is NOT exponential; Deutsch–Jozsa and Simon\'s separations are against an oracle, not unconditional; and the SIMULATION itself carries no speedup (it is classical, costing 2^n memory, efficient here only because n is tiny / Clifford by Gottesman–Knill). The genuine exponential advantage at scale (Shor\'s factoring) needs the quantum Fourier transform plus fault tolerance — beyond this demonstration. Composes quantumImpossibleWaveThree.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -18244,6 +18281,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'import.export.double.folded.all.dimensions', on: importExportDoubleFoldedAllDimensions(matrix).doubleFolded },
     { d: 'nothing.impossible.honestly.bounded', on: nothingImpossibleHonestlyBounded(matrix).realised },
     { d: 'quantum.impossible.wave.three', on: quantumImpossibleWaveThree(matrix).proven },
+    { d: 'quantum.impossible.wave.four', on: quantumImpossibleWaveFour(matrix).proven },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
