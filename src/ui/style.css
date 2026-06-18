@@ -954,16 +954,37 @@ html[data-mode='simple'] .rich-only { display: none !important; }
 .dt-card {
   border: var(--ich-line) solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
-  /* flat document → 3D quantum: the computed a432-octave perspective (--ich-persp, 864px) lifts the surface
-   * off the page with a depth shadow, and on hover it rises in Z toward the viewer. Every magnitude is a
-   * computed I Ching token (no hardcoded values) — the flat card becomes a depth-layered quantum surface. */
-  box-shadow: 0 var(--ich-sp2) var(--ich-sp8) var(--ich-glow);
-  transform: perspective(var(--ich-persp)) translateZ(0);
-  transition: transform var(--ich-dur), box-shadow var(--ich-dur);
+  /* flat document → 3D quantum, harmonised from the competing-designers waves: the LayersPanel depth dial
+   * (--dt-depth, 0–10, published on .lp) dollies each card forward through the a432-octave perspective
+   * (--ich-persp, 864px) — depth 0 is byte-identical to flat (the fallback), so cards outside a panel never
+   * move. The shadow tracks depth; hover and focus ADD an extra Z-lift on top of wherever the card sits.
+   * Every magnitude is a computed I Ching token or the canonical 0 — the no-hardcoded scan stays clean. */
+  box-shadow: 0 calc(var(--ich-sp2) + var(--ich-sp1) * var(--dt-depth, 0)) calc(var(--ich-sp8) + var(--ich-sp2) * var(--dt-depth, 0)) var(--ich-glow);
+  transform: perspective(var(--ich-persp)) translateZ(calc(var(--ich-sp1) * var(--dt-depth, 0)));
+  transition: transform var(--ich-dur) var(--ich-ease), box-shadow var(--ich-dur) var(--ich-ease);
 }
-.dt-card:hover {
-  transform: perspective(var(--ich-persp)) translateZ(var(--ich-sp4));
-  box-shadow: 0 var(--ich-sp6) var(--ich-sp12) var(--ich-glow-strong);
+.dt-card:hover,
+.dt-card:focus-visible,
+.dt-card:focus-within {
+  /* additive: keep the card's depth-Z and rise further toward the viewer (never replace it) */
+  transform: perspective(var(--ich-persp)) translateZ(calc(var(--ich-sp1) * var(--dt-depth, 0) + var(--ich-sp4)));
+  box-shadow: 0 calc(var(--ich-sp6) + var(--ich-sp1) * var(--dt-depth, 0)) calc(var(--ich-sp12) + var(--ich-sp2) * var(--dt-depth, 0)) var(--ich-glow-strong);
+}
+.dt-card:focus-visible {
+  outline: var(--ich-border-3) solid var(--vp-c-brand-1);
+  outline-offset: var(--ich-sp1);
+}
+/* motion-safe: neutralise the Z-lift and its transition for reduced-motion users, but keep the resting
+ * elevation shadow (outside this guard) so the surface still reads as layered (WCAG 2.3.3). The focus
+ * outline above is also outside any motion guard, so it is always visible. */
+@media (prefers-reduced-motion: reduce) {
+  .dt-card,
+  .dt-card:hover,
+  .dt-card:focus-visible,
+  .dt-card:focus-within {
+    transform: none;
+    transition: none;
+  }
 }
 
 /* The proof card, shared across the dissolved decode proofs: each renders one

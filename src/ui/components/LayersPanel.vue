@@ -27,7 +27,7 @@ const accent = computed(() => props.mask.color ?? 'var(--vp-c-brand-1)')
 </script>
 
 <template>
-  <div class="lp" :style="{ '--lp-accent': accent }">
+  <div class="lp" :style="{ '--lp-accent': accent, '--dt-depth': depth, '--depth-t': depth / 10 }">
 
     <!-- ── control bar ── -->
     <div class="lp-bar" role="toolbar" :aria-label="`dimension controls · hex ${mask.hexagram}`">
