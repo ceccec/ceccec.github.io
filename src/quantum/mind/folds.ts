@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -14244,6 +14244,51 @@ function foldRedistributesBeyondLinearRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Continue folding the I Ching quantum waves: challenge intuition by PROVING the impossible-SEEMING quantum
+// possible — and implementing it. Two canonical protocols that "challenge all you know" yet are exactly real,
+// run on the state-vector simulator: (1) QUANTUM TELEPORTATION — move an unknown |ψ⟩ from Alice to Bob via one
+// shared Bell pair and two classical bits, recovered with fidelity 1 for EVERY measurement outcome; (2)
+// SUPERDENSE CODING (its dual) — send two classical bits on one transmitted qubit using a pre-shared Bell pair.
+// "Impossible" here means COUNTERINTUITIVE, not physically forbidden: no-cloning still holds (teleportation
+// destroys the original), and there is no faster-than-light signalling (Bob is useless without the classical
+// bits; the qubit still travels). This is the honest sense of "impossible made possible" — distinct from the
+// truly-forbidden (perpetual motion, net battery-charging) which stays flagged in quantumFusedDeviceEnergyHonest.
+export function quantumImpossibleMadePossible(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumImpossibleMadePossible', matrix, () => quantumImpossibleMadePossibleRaw(matrix))
+}
+function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
+  // (1) TELEPORTATION — move an unknown state exactly; test several |ψ⟩ across measurement outcomes.
+  const states: [number, number][] = [[Math.PI / 3, Math.PI / 4], [Math.PI / 2, 0], [2 * Math.PI / 5, Math.PI / 3]]
+  const teleTests = states.flatMap(([th, ph], i) => [0, 1, 2, 3].map((s) => teleportQubit(th, ph, `tele:${i}:${s}`)))
+  const teleportPerfect = teleTests.every((t) => t.fidelity > 0.999999) // fidelity 1 for every Bell-measurement outcome
+  const outcomesSeen = new Set(teleTests.map((t) => `${t.b1}${t.b2}`)).size // all four corrections exercised
+  // (2) SUPERDENSE CODING — two classical bits on one qubit; all four messages must decode.
+  const sdTests = [0, 1, 2, 3].map((msg) => superdense(msg, `sd:${msg}`))
+  const superdenseAll = sdTests.every((x) => x.ok)
+  // the bounds that make these honest, not magic.
+  const noClone = noCloningWitness().contradiction // the original cannot be copied — teleportation destroys it
+  const facets = [
+    { facet: 'quantum teleportation — an unknown |ψ⟩ moved EXACTLY via a Bell pair + 2 classical bits (fidelity 1 for every outcome)', on: teleportPerfect && outcomesSeen === 4 },
+    { facet: 'superdense coding — TWO classical bits sent on ONE qubit with a pre-shared Bell pair (all four messages decode)', on: superdenseAll },
+    { facet: 'the bounds hold — no-cloning intact (the original is destroyed) and NO faster-than-light (teleport is useless without the classical bits)', on: noClone },
+    { facet: 'these fuse the running solver — the threshold is crossed and the complete quantum solutions execute', on: evolutionCrossesQuantumThreshold(matrix).crossed && completeQuantumSolutionsImplemented(matrix).implemented },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`q-impossible:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    teleportPerfect,
+    teleportTests: teleTests.length, // states × outcomes, all fidelity 1
+    superdenseAll,
+    superdenseMessages: sdTests.map((x) => ({ sent: x.sent, decoded: x.decoded, ok: x.ok })),
+    count: facets.length,
+    facets,
+    root: merge(evolutionCrossesQuantumThreshold(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Continue folding the I Ching quantum waves: the impossible-seeming, proven possible and implemented. Quantum teleportation moves an unknown state from Alice to Bob through a shared Bell pair and just two classical bits — and the simulator recovers it with perfect fidelity for every one of the four measurement outcomes, the original destroyed in the act (no copy is made). Superdense coding, its mirror, sends two classical bits down a single transmitted qubit because a Bell pair was shared in advance — all four messages decode exactly. Both look impossible and both are real, executed here on the state-vector engine. "Impossible" means counterintuitive, not forbidden: no-cloning holds and nothing outruns light — teleportation is useless until the two classical bits arrive, and the qubit still travels.',
+    boundary:
+      'Exact simulations of two genuinely real quantum protocols — quantum teleportation (Bennett, Brassard, Crépeau, Jozsa, Peres, Wootters 1993) and superdense coding (Bennett–Wiesner 1992) — run on the deterministic state-vector simulator (teleport fidelity 1 across all outcomes and test states; superdense all four messages). They CHALLENGE intuition but obey every law: no-cloning is intact (the measured original collapses), and the no-communication theorem holds — both protocols require a classical channel (two bits for teleportation) or the physical transmission of a qubit (superdense), so neither signals faster than light. This is "impossible made possible" in the honest sense — surprising-yet-real — and is explicitly NOT a claim about the truly forbidden (perpetual motion / net battery charging), which remains flagged in quantumFusedDeviceEnergyHonest. The fold continues the quantum-solutions wave: it composes the threshold crossing and the complete solver.',
+  }
+}
+
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
 // Ching by its OWN content-address (the seed is the magnet, same as every page/diamond on the torus): seedFromText
 // → a 6-bit hexagram (0–63), whose UPPER trigram is its SET (one of the eight bāguà) and lower trigram its
@@ -17971,6 +18016,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'evolution.crosses.quantum.threshold', on: evolutionCrossesQuantumThreshold(matrix).crossed },
     { d: 'quantum.fused.device.energy.honest', on: quantumFusedDeviceEnergyHonest(matrix).honest },
     { d: 'fold.redistributes.beyond.linear', on: foldRedistributesBeyondLinear(matrix).beyondLinear },
+    { d: 'quantum.impossible.made.possible', on: quantumImpossibleMadePossible(matrix).proven },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts

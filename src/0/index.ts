@@ -968,6 +968,51 @@ export function algorithmicCoolingBias(epsilon: number): { initial: number; cool
   return { initial: e, cooled, factor: e > 0 ? cooled / e : 0, physical: cooled <= 1 } // ≤1 physical; entropy pumped to the rest
 }
 
+// Impossible-seeming, genuinely real (1): QUANTUM TELEPORTATION (Bennett et al. 1993). Move an unknown qubit
+// |ψ⟩ = cos(θ/2)|0⟩ + e^{iφ}sin(θ/2)|1⟩ from Alice to Bob using one shared Bell pair and TWO classical bits.
+// Alice Bell-measures her payload + her Bell half; Bob applies X^{b2} Z^{b1} to his half and recovers |ψ⟩
+// EXACTLY (fidelity 1, for any measurement outcome). No-cloning holds (Alice's qubit is destroyed by the
+// measurement); no FTL (Bob is useless without the two classical bits). Exact on the state-vector simulator.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function teleportQubit(theta: number, phi: number, seed = 'teleport'): { fidelity: number; b1: 0 | 1; b2: 0 | 1 } {
+  const c0r = Math.cos(theta / 2)
+  const c1r = Math.sin(theta / 2) * Math.cos(phi)
+  const c1i = Math.sin(theta / 2) * Math.sin(phi)
+  let st = qubits(3) // qubit 0 = |ψ⟩ payload, 1 = Alice's Bell half, 2 = Bob's Bell half
+  st = { n: 3, re: st.re.slice(), im: st.im.slice() }
+  st.re[0] = c0r; st.re[1] = c1r; st.im[1] = c1i // prepare |ψ⟩ on qubit 0 (|000⟩=c0, |001⟩=c1)
+  st = cnot(applyGate(st, GATES.H, 1), 1, 2) // Bell pair on qubits 1,2
+  st = applyGate(cnot(st, 0, 1), GATES.H, 0) // Bell measurement basis on qubits 0,1
+  const m0 = measure(st, 0, `${seed}:0`); st = m0.state
+  const m1 = measure(st, 1, `${seed}:1`); st = m1.state
+  const b1 = m0.outcome, b2 = m1.outcome
+  if (b2 === 1) st = applyGate(st, GATES.X, 2) // Bob's correction: X^{b2} then Z^{b1}
+  if (b1 === 1) st = applyGate(st, GATES.Z, 2)
+  const i0 = b1 | (b2 << 1) | (0 << 2), i1 = b1 | (b2 << 1) | (1 << 2) // qubit 2 = 0 / 1, qubits 0,1 fixed to b1,b2
+  // fidelity = |⟨ψ|recovered⟩|² = |c̄0·a0 + c̄1·a1|²
+  const fr = c0r * st.re[i0] + c1r * st.re[i1] + c1i * st.im[i1]
+  const fi = c0r * st.im[i0] + c1r * st.im[i1] - c1i * st.re[i1]
+  return { fidelity: fr * fr + fi * fi, b1, b2 }
+}
+
+// Impossible-seeming, genuinely real (2): SUPERDENSE CODING (Bennett–Wiesner 1992) — the DUAL of teleportation.
+// Send TWO classical bits by transmitting ONE qubit, given a pre-shared Bell pair. Alice encodes her two bits
+// on her half with one of {I, X, Z, ZX}, sends that one qubit; Bob (who holds the other half) undoes the Bell
+// circuit and measures BOTH bits out. One qubit carries two bits — but only because the entanglement was shared
+// in advance (no FTL, and the channel still moves one physical qubit). Returns the decoded bits for a message.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function superdense(message: number, seed = 'superdense'): { sent: number; decoded: number; ok: boolean } {
+  const b0 = message & 1, b1 = (message >> 1) & 1
+  let st = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // shared Bell pair |Φ+⟩
+  if (b0 === 1) st = applyGate(st, GATES.X, 0) // encode on Alice's qubit (qubit 0): I / X / Z / ZX
+  if (b1 === 1) st = applyGate(st, GATES.Z, 0)
+  st = applyGate(cnot(st, 0, 1), GATES.H, 0) // Bob decodes: undo the Bell circuit (CNOT then H)
+  const d0 = measure(st, 0, `${seed}:0`); st = d0.state
+  const d1 = measure(st, 1, `${seed}:1`)
+  const decoded = d1.outcome | (d0.outcome << 1) // the X-bit reads on qubit 1, the Z-bit on qubit 0 — recombine
+  return { sent: message, decoded, ok: decoded === message }
+}
+
 // ── Classical shadows & a different model ──
 
 // Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n
