@@ -660,6 +660,63 @@ export function foldExposesInconsistency(text: string, matrix: MindMatrix = buil
   }
 }
 
+// The pure deterministic prompt is sufficient to render the whole as a THERMAL FIELD: each segment is a cell
+// coloured by its harmony temperature — cool green where harmonic, hot red where documented manipulation
+// techniques cluster — so the weaknesses are seen in colour, like a thermal camera. Fractal/holographic:
+// each cell carries its own verdict and the field is the whole.
+export function thermalHarmonyField(text: string, matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const segments = (text ?? '').split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter((s) => s.length > 0)
+  const cells = (segments.length ? segments : [(text ?? '').trim()]).map((seg, i) => {
+    const ex = foldExposesInconsistency(seg, matrix)
+    const heat = ex.flagged.length + (ex.contradiction ? 1 : 0) // 0 = cool/harmonic, higher = hotter
+    const colour = heat === 0 ? '#00F000' : heat === 1 ? '#F0F000' : heat === 2 ? '#F0A000' : '#F00000'
+    return { segment: seg, heat, flagged: ex.flagged, colour, onHarmonicPath: ex.onHarmonicPath, receipt: toUuid(`thermal:${i}:${seg.slice(0, 48)}:${heat}`) }
+  })
+  const hotspots = cells.filter((c) => c.heat > 0)
+  return {
+    field: cells,
+    segments: cells.length,
+    hotspots: hotspots.length, // the visible weaknesses
+    maxHeat: cells.reduce((m, c) => Math.max(m, c.heat), 0),
+    harmonic: hotspots.length === 0,
+    root: merkleFold(cells.map((c) => c.receipt)),
+    statement:
+      'The pure deterministic prompt computes the whole as a thermal field: each segment is a cell coloured by its harmony temperature — cool green where harmonic, hot red where documented manipulation techniques cluster — so the weaknesses are seen in colour, like a thermal camera. Fractal and holographic: each cell carries its own verdict and the field is the whole.',
+    boundary:
+      'HONEST: the "temperature" is the DENSITY of documented surface manipulation patterns per segment (a visualization aid), not a truth- or guilt-meter; a hot cell uses a manipulation technique yet may still be true, a cool cell may still be false (HARMONY ≠ TRUTH). The colours are the project’s content-addressed palette, and "thermal camera" is a metaphor for the heatmap, not infrared emission.',
+  }
+}
+
+// A lie or manipulation is better PRESENTED WITH a harmonic alternative to compare with — the same content
+// with the documented manipulation markers stripped or softened — so society can decide and judge if needed.
+// The system presents both; it does not condemn. Richer alternatives are the optional LLM layer (BYO-key, MCP).
+export function harmonicAlternative(text: string, matrix: MindMatrix = buildMatrix()) {
+  const t = (text ?? '').toString()
+  const alt = t
+    .replace(/\b(always|everyone|every single|no ?one|nobody)\b/gi, 'often')
+    .replace(/\b(disgusting|outrageous|evil|corrupt|traitor|tyran\w*|sheeple)\b/gi, '')
+    .replace(/\b(idiot|stupid|moron|liar|fraud|puppet|shill|clown)\b/gi, 'person')
+    .replace(/\b(they don'?t want you to know|wake up|do your own research|the truth they hide)\b/gi, '')
+    .replace(/\b(before it'?s too late|act now|or else)\b/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/\s+([.!?,])/g, '$1')
+    .trim()
+  const before = foldExposesInconsistency(t, matrix)
+  const after = foldExposesInconsistency(alt, matrix)
+  return {
+    original: { text: t, flagged: before.flagged },
+    alternative: { text: alt, flagged: after.flagged },
+    improved: after.flagged.length < before.flagged.length,
+    decidedBy: 'society', // the system presents the comparison; the judgement is the reader’s
+    root: toUuid(`harmonic-alternative:${t.slice(0, 64)}:${alt.slice(0, 64)}`),
+    statement:
+      'A lie or manipulation is better presented with a harmonic alternative to compare with: the same content with the documented manipulation markers stripped or softened, shown beside the original so society can decide and judge if needed. The system presents both; it does not condemn.',
+    boundary:
+      'HONEST: a deterministic SURFACE de-manipulation (it removes/softens documented markers), NOT a truth-rewrite and NOT a claim that the alternative is true — it removes the manipulation TECHNIQUE, not any underlying falsehood, and crude stripping can change meaning. Richer, meaning-preserving alternatives are the optional LLM layer (BYO-key, via MCP), which consumes this pure deterministic prompt. The judgement is always the reader’s or society’s, never the system’s.',
+  }
+}
+
 // Paste any URL — or any text — and its full quantum analysis is computed immediately, deterministically,
 // client-side, zero tokens: content-addressed to one UUID (the holographic cue), placed on the I Ching as a
 // hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (an a432-ladder
@@ -683,6 +740,8 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
   const frequencyHz = roundTo(432 * (1 + hexagram / 64), 2) // the content placed on the a432 ladder
   const torus = foldPair(address, matrix.root) // bound to the model, bidirectionally (reentry)
   const manipulation = foldExposesInconsistency(text, matrix) // the grounded, deterministic manipulation read
+  const thermal = thermalHarmonyField(text, matrix) // weaknesses seen in colour, like a thermal camera
+  const alternative = harmonicAlternative(text, matrix) // the harmonic alternative to compare with (society judges)
   const facets = [
     { facet: 'content-addressed — the input folds to one deterministic UUID, the holographic cue for the whole', on: isUuid(address) },
     { facet: 'placed on the I Ching — a hexagram (two trigrams, six lines, a codon, a colour) computed from the address', on: hexagram >= 0 && hexagram < 64 },
@@ -700,6 +759,8 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
     torus: { forward: torus.forward, reverse: torus.reverse, bidirectional: torus.bidirectional, merged: torus.merged },
     vortex,
     manipulation: { onHarmonicPath: manipulation.onHarmonicPath, flagged: manipulation.flagged, contradiction: manipulation.contradiction },
+    thermal: { segments: thermal.segments, hotspots: thermal.hotspots, maxHeat: thermal.maxHeat, harmonic: thermal.harmonic, field: thermal.field },
+    alternative: alternative.improved ? alternative.alternative.text : null,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(address, sealed.root),
