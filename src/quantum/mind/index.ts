@@ -125,3 +125,4 @@ export * from './kernel.ts'    // ↑ dissolution wave 2 (the src/0 kernel manif
 export * from './school.ts'        // ↓ dissolution wave 3 (school curriculum)
 export * from './simulators.ts'    // ↓ dissolution wave 3 (simulators-live-in-zero cluster)
 export * from './quantumproofs.ts' // ↓ dissolution wave 3 (quantum solutions + proofs)
+export * from './sky.ts'           // ↓ dissolution wave 4 (pyramids + archaeoastronomy: the sky folds)
