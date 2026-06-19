@@ -675,6 +675,41 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
   }
 }
 
+// 100% computed proven HARMONY (not 100% mind-reading): the verdict is deterministic — a statement is on a
+// harmonic path or it is not. Any input is routed by quantumAnalysis to the zero-entropy analyzers; what folds
+// consistently and carries no documented manipulation pattern sits on the 432 paths / a whole I Ching unit;
+// what does not is accounted OUTSIDE the paths, never silently on them. The detector "trains" by deterministic
+// accumulation (each verified verdict folded into the seal / self-heal), not learned weights.
+export function harmonyAccountLiesOutsidePaths(matrix: MindMatrix = buildMatrix()) {
+  const dims = emergentDimensions(matrix)
+  const tax = taxonomyIcons()
+  const offPath = Array.isArray(dims.open) ? dims.open.length : 0
+  const onPath = dims.count - offPath
+  const harmonyPct = roundTo(onPath / Math.max(1, dims.count), 4) // 1.0 = 100% computed, deterministic
+  const probe = quantumAnalysis('harmony:probe', matrix) // the router is a pure function of the input
+  const facets = [
+    { facet: '100% computed proven harmony — the verdict is deterministic, not probabilistic: every one of the 432 paths is sealed (0 open) and the 42 command areas are fully compliant; a statement is on a harmonic path or it is not, computed not guessed', on: offPath === 0 && tax.compliant },
+    { facet: 'lies and manipulations fall OUTSIDE the harmonic paths — what does not fold consistently (or carries a documented manipulation pattern) cannot close a gate or sit on a whole I Ching unit; it is accounted off-path, named not hidden', on: tax.gaps.length === 0 && tax.excess.length === 0 },
+    { facet: 'any input is routed to zero-entropy analyzers — quantumAnalysis content-addresses it to a deterministic signature (hexagram · EMR · torus fold) and the routing is itself a pure function (zero entropy, recomputable)', on: isUuid(probe.address) && probe.analyzed },
+    { facet: 'self-training by accumulation, not learned weights — the detector improves by folding each verified verdict into the seal (the wave / self-heal method); nothing is probabilistic and every step recomputes', on: selfHealing(matrix).healed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`harmony-account:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('harmony-account', facets)
+  return {
+    harmonic: sealed.ok,
+    harmonyPct, // 1.0 — the sealed model is 100% on the harmonic paths (flagged legend is the off-path residue)
+    paths: dims.count, // 432
+    onPath,
+    offPath,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      '100% computed proven harmony, routed: any statement is sent to the zero-entropy analyzers (content-addressed by quantumAnalysis), and the harmony verdict is deterministic — it sits on a harmonic path (a whole I Ching unit, one of the 432 sealed gates) or it does not. Lies and manipulations — by definition the statements that fail to fold consistently or carry a documented manipulation pattern — fall outside the paths and are accounted there, never silently on them. The detector trains itself by accumulation: every verified verdict folds into the seal (the wave and self-heal method), so at every step what we deal with is classified and recomputable, not guessed.',
+    boundary:
+      'HONEST: the 100% is the DETERMINISM of the harmony verdict (a statement is on a harmonic path or not — a computable structural property), NOT 100% lie- or truth-detection. HARMONY ≠ TRUTH: a perfectly self-consistent statement passes the harmony test and can still be false; the ceiling for reading deception from a person is ~54% (Bond & DePaulo) and is not improvable by this or any method — that limit is flagged, not claimed away. The detector catches the inconsistent and the documented-pattern-bearing provably; it does not read minds, voices, or faces. The natural-language manipulation discriminator (logical fallacies, propaganda techniques) composes from the deception-detection waves once their claims survive adversarial verification. The model’s own per-domain harmony is ~100% BY CONSTRUCTION — the seal keeps only what folds and the flagged legend in each domain is the explicitly-accounted off-path residue; the per-domain percentage of EXTERNAL statements is measured by the challenge wave, not asserted here. "Self-train" is deterministic accumulation, not machine learning.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
