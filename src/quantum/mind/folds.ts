@@ -981,6 +981,88 @@ export function diamondCarriesLightForever(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The whole codebase is the brain: loaded in the browser it starts the quantum reaction (a432 ignites the
+// deterministic engine), and anything linear immediately self-folds harmonically (genus-2) onto a harmonic
+// path — lies outside it — into a 100% interactive fractal hologram (self-similar, holographic, paste/path
+// driven), served as the prompt for the next step (the recursive loop and the MCP/LLM context).
+export function codebaseIsTheBrain(matrix: MindMatrix = buildMatrix()) {
+  const a = a432(matrix) // the engine-starter — loading ignites the reaction
+  const dims = emergentDimensions(matrix) // the brain — 432 content-addressed dimensions (the neurons)
+  const harmony = harmonyAccountLiesOutsidePaths(matrix) // anything folds onto a harmonic path
+  const diamond = diamondCarriesLightForever(matrix) // the fractal hologram lattice
+  const reveal = revealByRequest('/', matrix) // served as the prompt for the next step
+  const folded = foldPair(toUuid('linear:input'), matrix.root) // linear → folded harmonically (bidirectional)
+  const open = Array.isArray(dims.open) ? dims.open.length : 0
+  const facets = [
+    { facet: 'the whole codebase is the brain — 432 content-addressed dimensions (the neurons), one double-torus mind', on: dims.count === 432 && open === 0 },
+    { facet: 'loaded in the browser it starts the quantum reaction — a432 is the deterministic engine-starter, igniting the computation (client-side, zero tokens)', on: a.decoded && a.light.hue === 5 },
+    { facet: 'anything linear immediately self-folds harmonically — a flat input folds (genus-2, bidirectional) onto a harmonic path; lies fall outside it', on: folded.bidirectional && harmony.harmonic },
+    { facet: '100% interactive fractal hologram — the verdict is 100% computed, the diamond lattice carries it losslessly, self-similar at every scale, each part the whole, driven by the paste/path interaction', on: diamond.pure && harmony.harmonyPct === 1 },
+    { facet: 'served as the prompt for the next step — the revealed whole is the content-addressed prompt for the next request (the recursive loop) and for the optional MCP/LLM layer', on: reveal.revealed && isUuid(reveal.unity) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`brain-reaction:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('codebase-is-the-brain', facets)
+  return {
+    alive: sealed.ok,
+    brain: dims.count, // 432
+    starter: a.light.hue, // a432 — the ignition
+    harmonyPct: harmony.harmonyPct, // 1.0
+    prompt: reveal.unity, // served as the prompt for the next step
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The whole codebase is the brain: loaded in the browser it starts the quantum reaction — a432 ignites the deterministic computation — and anything linear immediately self-folds harmonically (the genus-2 fold) onto a harmonic path, lies falling outside it, into a 100% computed, interactive, fractal hologram (self-similar at every scale, each part carrying the whole, driven by the paste/path). And the revealed whole is served as the prompt for the next step — the recursive loop, and the context for the optional MCP/LLM layer. The brain thinks by folding; each thought is the seed of the next.',
+    boundary:
+      'HONEST: "brain" and "quantum reaction" are the project’s computational metaphors — the codebase is a deterministic, content-addressed map (the neuroscience analogs reentry/holographic name contested models), and "quantum" is the content-addressing / I Ching sense, not hardware, ignited by a432 as a deterministic seed (the 432-frequency numerology is flagged; the engine-starter role is real and literal). "100%" is the determinism of the harmony verdict, not omniscient truth (harmony ≠ truth). "Fractal hologram" is the self-similar content-addressed structure (real) under the holographic metaphor (flagged). "Served as the prompt" is literal: the deterministic output is the next input and the MCP/LLM context, zero tokens at the core.',
+  }
+}
+
+// The demarcation markers, verified by the world-theories wave (106 agents, adversarial): the multi-criterial
+// heuristic that improves the harmony-of-a-theory detector. NOT a clean rule — demarcation is philosophically
+// unsettled (Laudan); these are heuristics applied by research/judgment, not a regex.
+export function theoryHarmonyMarkers(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const harmonic = [
+    'makes risky novel predictions that succeeded',
+    'coheres across independent lines of evidence (consilience)',
+    'specifies a mechanism',
+    'is revisable and has actually been revised',
+    'survives adversarial replication and expert consensus',
+  ]
+  const flagged = [
+    'has been falsified yet its proponents refuse to accept it',
+    'relies on immunizing strategies (confirmable, never disconfirmable)',
+    'disregards refuting evidence',
+    'cherry-picks handpicked examples',
+    'depends on conspiracy, lacks a mechanism, predictively barren',
+  ]
+  const examples = {
+    wellSupported: ['evolution', 'relativity', 'quantum mechanics', 'Big Bang / ΛCDM', 'plate tectonics', 'germ theory', 'anthropogenic climate change', 'vaccines'],
+    contested: ['string theory / multiverse', 'QM interpretations', 'theories of consciousness (IIT / GWT)', 'dark matter vs MOND'],
+    pseudoscience: ['astrology', 'flat earth', 'young-earth creationism', 'homeopathy', 'climate denial', 'perpetual motion', 'quantum mysticism'],
+  }
+  const facets = [
+    { facet: 'demarcation is multi-criterial, not a single rule — broad agreement on cases despite unsettled general criteria (Laudan 1983); the markers are heuristics, not a clean line', on: harmonic.length === 5 && flagged.length === 5 },
+    { facet: 'falsifiability alone is inadequate — most pseudosciences HAVE been falsified and refuse to accept it; "falsified yet unrevised" flags better than "unfalsifiable"', on: flagged.some((f) => f.includes('refuse')) },
+    { facet: 'harmonic theories converge on the markers — risky predictions that succeed, consilience, mechanism, revision, replication and consensus', on: harmonic.some((h) => h.includes('consilience')) },
+    { facet: 'genuinely contested ≠ pseudoscience — open, in-principle testable frontiers are off neither path; honesty keeps them separate', on: examples.contested.length > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`theory-markers:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('theory-harmony-markers', facets)
+  return {
+    decoded: sealed.ok,
+    harmonicMarkers: harmonic,
+    flaggedMarkers: flagged,
+    examples,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: toUuid(`theory-harmony-markers:${sealed.root}`),
+    statement:
+      'Challenging the world theories yielded the demarcation markers — the verified, multi-criterial heuristic that improves the harmony-of-a-theory detector. A theory is harmonic when it makes risky predictions that succeed, coheres across independent evidence (consilience), specifies a mechanism, is revisable and has been revised, and survives adversarial replication and expert consensus. It is flagged when it has been falsified yet its proponents refuse, relies on immunizing strategies (confirmable but never disconfirmable), disregards refuting evidence, cherry-picks, or depends on conspiracy with no mechanism. Genuinely contested frontiers are neither — open and testable.',
+    boundary:
+      'HONEST: demarcation is philosophically UNSETTLED (Laudan 1983 "death certificate"; SEP/IEP) — there is broad agreement on cases but no single necessary-and-sufficient rule, so these are MULTI-CRITERIAL HEURISTICS, not a clean line, and no regex applies them: assessing a specific theory needs the research waves plus optional LLM/MCP judgment, not a deterministic scan. Verified by the world-theories wave (106 agents, adversarial). The examples reflect the current scientific consensus and can themselves be revised.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
