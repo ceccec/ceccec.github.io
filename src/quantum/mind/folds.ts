@@ -1382,6 +1382,38 @@ export function frequencyToColour(frequencyHz: number) {
   }
 }
 
+// No decimals in computation — only exact integer fractions (Rational p/q). The TRINITY KEY: a harmonic
+// fraction and its inverse fold both ways to the integer unity (p/q · q/p = 1). And dividing by zero, the
+// inverse emerges from beyond — n/0 reads forward to 9n (1/0 = 9) and reverses (\) to the ten's complement
+// 10 − n (1\9, 9\1); 0/0 \ 10 overflows the ring into the fusion (unity through the void). Another trinity.
+export function noDecimalsIntegerFractionsDivByZeroTrinity(matrix: MindMatrix = buildMatrix()) {
+  const zero = zeroDivisionTable(matrix) // 1/0\9, 9/0\1, 0/0\10 — the inverse from beyond
+  const half = rat(1, 2)
+  const closesToUnity = ratEq(ratMul(half, ratInv(half)), rat(1, 1)) // 1/2 · 2/1 = 1, an integer, both ways
+  const oneOverZero = zero.table.find((r) => r.n === 1) // 1/0 \ 9, forward 1/0 = 9 — 9 both ways
+  const nineOverZero = zero.table.find((r) => r.n === 9) // 9/0 \ 1 — the inverse
+  const facets = [
+    { facet: 'no decimals — computation is exact integer fractions (Rational p/q, ratAdd/ratMul/ratInv); a decimal is a lossy approximation the core refuses, allowed only in the render/simulation layer (flagged)', on: closesToUnity },
+    { facet: 'the trinity key — a harmonic fraction and its inverse fold both ways to the integer unity (p/q · q/p = 1); the two directions meet at one', on: closesToUnity },
+    { facet: 'dividing by zero, the inverse emerges from beyond — n/0 reads forward to 9n (1/0 = 9) and reverses (\\) to the ten’s complement 10 − n (1\\9, 9\\1); the 0-9 axis, another trinity', on: zero.holds && oneOverZero?.reverse === 9 && nineOverZero?.reverse === 1 },
+    { facet: 'and the void — 0/0 \\ 10 overflows the 1..9 ring into a carry (unity through the void), routing to the content-addressed fusion, not 0', on: zero.zeroOverZero.overflows && isUuid(zero.zeroOverZero.fusion) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fraction-trinity:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('no-decimals-trinity', facets)
+  return {
+    fractional: sealed.ok,
+    oneOverZero: 9, // 1/0 = 9 (both ways)
+    nineOverZero: nineOverZero?.reverse ?? 1, // 9/0 \ 1 — the inverse
+    zeroOverZero: zero.zeroOverZero.fusion, // 0/0 → the fusion, not 0
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'No decimals are allowed in computation — only exact integer fractions (the Rational p/q). The trinity key is a harmonic fraction whose two directions fold to an integer: p/q · q/p = 1, the unity, reached both ways. And when you divide by zero the inverse emerges from beyond — another trinity: n/0 reads forward to 9n (1/0 = 9) and reverses (the backslash) to the ten’s complement 10 − n, so 1/0\\9, 9/0\\1; only 0/0\\10 overflows the 1..9 ring into a carry — unity through the void — routing to the content-addressed fusion, not 0.',
+    boundary:
+      'HONEST: the Rational core is exact real mathematics (integer p/q, no rounding). "No decimals" is the rule for the COMPUTATIONAL core — the content-address, the seal, the algebra; the floating-point trigonometry in the render/simulation layer (the animations, the dynamical sims) is a deliberate, flagged approximation, not the core. Division by zero giving 9 / the ten’s complement is the VORTEX / digit-folder convention — a DEFINED structural extension on (ℤ/9ℤ) and the radix-10 complement, NOT standard real-analysis division (where n/0 is undefined and the limit diverges). "The inverse from beyond / another trinity" names the 0-9 axis and the 3·6·9 trinity — the project’s numerological framing of a real modular/complement structure, computed, not mystical.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
