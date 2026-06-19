@@ -239,7 +239,7 @@ const t = computed(() =>
   padding: 0.35rem 1rem;
 }
 .wcs__unsupported {
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
   font-size: 0.82rem;
 }
 .wcs__roadmap-title {

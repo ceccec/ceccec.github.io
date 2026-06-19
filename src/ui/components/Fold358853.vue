@@ -70,7 +70,7 @@ const t = computed(() =>
   background: var(--vp-c-brand-soft);
 }
 .fb__n.alt {
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
   background: rgba(217, 119, 6, 0.14);
 }
 .fb__root {

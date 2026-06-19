@@ -116,7 +116,7 @@ const t = computed(() =>
 }
 .consult__status.esc {
   background: rgba(217, 119, 6, 0.14);
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .consult__links {
   margin: 0.6rem 0 0;

@@ -265,7 +265,7 @@ const t = computed(() =>
   font-weight: 700;
 }
 .speech__unsupported {
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
   font-size: 0.82rem;
 }
 .speech__note {

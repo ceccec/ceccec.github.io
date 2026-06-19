@@ -126,20 +126,20 @@ const t = computed(() =>
   margin: 0.6rem 0 0;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .sign__verdict.ok {
   color: var(--vp-c-brand-1);
 }
 .sign__unsupported {
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
   font-size: 0.82rem;
 }
 .sign__note {
   margin: 0.8rem 0 0;
   font-size: 0.76rem;
   color: var(--vp-c-text-2);
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
   padding-left: 0.6rem;
 }
 </style>

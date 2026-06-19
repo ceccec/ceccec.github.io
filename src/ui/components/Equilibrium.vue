@@ -107,7 +107,7 @@ const t = computed(() =>
 }
 .eq__tag.contract {
   background: rgba(217, 119, 6, 0.16);
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .eq__final {
   color: var(--vp-c-text-3);

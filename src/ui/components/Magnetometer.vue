@@ -122,7 +122,7 @@ const t = computed(() =>
   color: var(--vp-c-text-3);
 }
 .emf__unavailable {
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
   font-size: 0.82rem;
 }
 .emf__sub {
@@ -167,13 +167,13 @@ const t = computed(() =>
   color: var(--vp-c-brand-1);
 }
 .emf__no {
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .emf__note {
   margin: 0.7rem 0 0;
   font-size: 0.75rem;
   color: var(--vp-c-text-2);
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
   padding-left: 0.6rem;
 }
 </style>

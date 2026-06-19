@@ -167,14 +167,14 @@ const showFlag = ref(true)
 .af__control { display: flex; flex-direction: column; gap: 0.2rem; min-width: 220px; flex: 1; }
 .af__control input { width: 100%; }
 .af__nyquist { font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8rem; }
-.af__nyquist--ok { color: #16a34a; background: color-mix(in oklab, #16a34a 16%, transparent); }
-.af__nyquist--alias { color: #d97706; background: color-mix(in oklab, #d97706 18%, transparent); }
+.af__nyquist--ok { color: var(--ich-success-1); background: color-mix(in oklab, var(--ich-success-1) 16%, transparent); }
+.af__nyquist--alias { color: var(--vp-c-warning-1); background: color-mix(in oklab, var(--vp-c-warning-1) 18%, transparent); }
 .af__modalities { list-style: none; padding: 0; margin: 0 0 0.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 0.5rem; }
 .af__modalities li { font-size: 0.85rem; padding: 0.5rem 0.7rem; border-radius: 8px; background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-divider); }
 .af__cube { font-size: 0.88rem; color: var(--vp-c-text-2); }
 .af__honest { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; margin-top: 1.75rem; }
 .af__toggle { background: none; border: 0; font-weight: 700; cursor: pointer; color: var(--vp-c-text-1); padding: 0.25rem 0; font-size: 0.95rem; }
-.af__toggle--flag { color: #d97706; }
+.af__toggle--flag { color: var(--vp-c-warning-1); }
 .af__toggle:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 2px; }
 .af__doc, .af__flag { margin: 0.5rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.5rem; }
 .af__doc li, .af__flag li { font-size: 0.84rem; line-height: 1.5; }

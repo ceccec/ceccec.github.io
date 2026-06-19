@@ -76,7 +76,7 @@ const gLabels = computed(() => Array.from({ length: 1 << gn.value }, (_, i) => i
       </span>
       <span class="qc-group">
         <button type="button" @click="bell">Bell</button>
-        <button type="button" :disabled="!ops.length" @click="undo">↶</button>
+        <button type="button" :disabled="!ops.length" @click="undo" aria-label="undo last gate" title="undo last gate">↶</button>
         <button type="button" :disabled="!ops.length" @click="clear">clear</button>
       </span>
     </div>

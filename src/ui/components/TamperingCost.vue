@@ -260,8 +260,8 @@ const tcVerdictBg =
 }
 .tc__pill--yes { background: color-mix(in oklab, var(--vp-c-brand-1) 20%, transparent); color: var(--vp-c-brand-1); }
 .tc__pill--no { background: var(--vp-c-default-soft); color: var(--vp-c-text-2); }
-.tc__pill--secure { background: color-mix(in oklab, #16a34a 22%, transparent); color: #16a34a; }
-.tc__pill--evident { background: color-mix(in oklab, #d97706 22%, transparent); color: #d97706; }
+.tc__pill--secure { background: color-mix(in oklab, var(--ich-success-1) 22%, transparent); color: var(--ich-success-1); }
+.tc__pill--evident { background: color-mix(in oklab, var(--vp-c-warning-1) 22%, transparent); color: var(--vp-c-warning-1); }
 
 /* The cost ladder. */
 .tc__ladder {
@@ -335,11 +335,11 @@ const tcVerdictBg =
   padding: 1rem;
   background: var(--vp-c-bg-soft);
 }
-.tc__algo--break { border-color: color-mix(in oklab, #dc2626 50%, var(--vp-c-divider)); }
-.tc__algo--weaken { border-color: color-mix(in oklab, #d97706 50%, var(--vp-c-divider)); }
+.tc__algo--break { border-color: color-mix(in oklab, var(--vp-c-danger-1) 50%, var(--vp-c-divider)); }
+.tc__algo--weaken { border-color: color-mix(in oklab, var(--vp-c-warning-1) 50%, var(--vp-c-divider)); }
 .tc__effect { font-weight: 800; }
-.tc__algo--break .tc__effect { color: #dc2626; }
-.tc__algo--weaken .tc__effect { color: #d97706; }
+.tc__algo--break .tc__effect { color: var(--vp-c-danger-1); }
+.tc__algo--weaken .tc__effect { color: var(--vp-c-warning-1); }
 .tc__bar {
   display: flex;
   gap: 3px;
@@ -358,13 +358,13 @@ const tcVerdictBg =
 .tc__bar--break.tc__bar--anim .tc__bar-seg:last-child { animation-delay: 0.15s; }
 /* Static fallback (reduced motion): weaken shows the halved state, break shows the shattered state. */
 .tc__bar--weaken:not(.tc__bar--anim) .tc__bar-seg:last-child { opacity: 0.35; }
-.tc__bar--break:not(.tc__bar--anim) .tc__bar-seg { opacity: 0.3; transform: skewX(-12deg); background: #dc2626; }
+.tc__bar--break:not(.tc__bar--anim) .tc__bar-seg { opacity: 0.3; transform: skewX(-12deg); background: var(--vp-c-danger-1); }
 @keyframes tc-halve {
-  to { opacity: 0.35; background: #d97706; }
+  to { opacity: 0.35; background: var(--vp-c-warning-1); }
 }
 @keyframes tc-break {
-  60% { transform: translateY(0) skewX(-14deg); background: #dc2626; }
-  100% { transform: translateY(8px) skewX(-14deg) scaleY(0.4); opacity: 0.25; background: #dc2626; }
+  60% { transform: translateY(0) skewX(-14deg); background: var(--vp-c-danger-1); }
+  100% { transform: translateY(8px) skewX(-14deg) scaleY(0.4); opacity: 0.25; background: var(--vp-c-danger-1); }
 }
 .tc__algo-target,
 .tc__algo-resp { font-size: 0.85rem; margin: 0 0 0.4rem; }
@@ -420,7 +420,7 @@ const tcVerdictBg =
   padding: 0.25rem 0;
   font-size: 0.95rem;
 }
-.tc__toggle--flag { color: #d97706; }
+.tc__toggle--flag { color: var(--vp-c-warning-1); }
 .tc__toggle:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 2px; }
 .tc__doc,
 .tc__flag {

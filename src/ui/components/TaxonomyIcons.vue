@@ -64,7 +64,7 @@ const t = computed(() =>
 }
 .taxonomy__grid li.gap {
   border-style: dashed;
-  border-color: var(--vp-c-warning-1, #d97706);
+  border-color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .taxonomy__grid li.trinity {
   border-color: var(--vp-c-brand-1);

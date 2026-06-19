@@ -76,7 +76,7 @@ const t = computed(() =>
   margin: 0.7rem 0 0;
   font-size: 0.75rem;
   color: var(--vp-c-text-2);
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
   padding-left: 0.6rem;
 }
 </style>

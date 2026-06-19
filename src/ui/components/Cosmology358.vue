@@ -84,7 +84,7 @@ const t = computed(() =>
   gap: 0.3rem;
 }
 .cos__card.belief {
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .cos__h {
   margin: 0 0 0.2rem;
@@ -133,7 +133,7 @@ const t = computed(() =>
   margin: 0.8rem 0 0;
   font-size: 0.75rem;
   color: var(--vp-c-text-2);
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
   padding-left: 0.6rem;
 }
 </style>

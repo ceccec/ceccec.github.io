@@ -77,7 +77,7 @@ const t = computed(() =>
   border-color: var(--vp-c-brand-1);
 }
 .show-all__cell.open {
-  border-color: var(--vp-c-warning-1, #d97706);
+  border-color: var(--vp-c-warning-1, var(--vp-c-warning-1));
   border-style: dashed;
 }
 .show-all__channel {

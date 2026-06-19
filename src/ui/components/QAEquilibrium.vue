@@ -74,7 +74,7 @@ const t = computed(() =>
   border-left: 3px solid var(--vp-c-brand-1);
 }
 .qae__side.questions {
-  border-right: 3px solid var(--vp-c-warning-1, #d97706);
+  border-right: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .qae__mark {
   font-size: 1.4rem;

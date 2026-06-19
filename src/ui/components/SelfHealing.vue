@@ -84,7 +84,7 @@ const t = computed(() =>
 }
 .heal__trace {
   fill: none;
-  stroke: #d97706;
+  stroke: var(--vp-c-warning-1);
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
 }

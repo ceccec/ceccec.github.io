@@ -76,14 +76,14 @@ const t = computed(() =>
   grid-template-columns: 5.5rem 1fr;
   gap: 0.6rem;
   align-items: baseline;
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
   padding-left: 0.7rem;
 }
 .oq__src {
   font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .oq__q {
   font-size: 0.88rem;

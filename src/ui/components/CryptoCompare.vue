@@ -78,7 +78,7 @@ const t = computed(() =>
 }
 .crypto__tag--no {
   background: rgba(217, 119, 6, 0.16);
-  color: var(--vp-c-warning-1, #d97706);
+  color: var(--vp-c-warning-1, var(--vp-c-warning-1));
 }
 .crypto__tag--yes {
   background: var(--vp-c-brand-soft);
@@ -120,7 +120,7 @@ const t = computed(() =>
   margin: 0.8rem 0 0;
   font-size: 0.78rem;
   color: var(--vp-c-text-2);
-  border-left: 3px solid var(--vp-c-warning-1, #d97706);
+  border-left: 3px solid var(--vp-c-warning-1, var(--vp-c-warning-1));
   padding-left: 0.6rem;
 }
 </style>
