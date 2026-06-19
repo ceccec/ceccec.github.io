@@ -17,6 +17,9 @@ const kinds = ['paper', 'reference', 'padding'].map((kind) => ({
 }))
 const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
 const bg = computed(() => localeIndex.value === 'bg')
+// counts computed from the routes, never written as literals
+const paperCount = computed(() => kinds.find((k) => k.kind === 'paper')?.items.length ?? 0)
+const referenceCount = computed(() => kinds.find((k) => k.kind === 'reference')?.items.length ?? 0)
 </script>
 
 <template>
@@ -24,8 +27,8 @@ const bg = computed(() => localeIndex.value === 'bg')
 
   <h1>{{ summary.count }} {{ bg ? 'папки, всяка с индекс' : 'folders, each with an index' }}</h1>
 
-  <p v-if="bg">Всичко в 1024 папки: всеки чист диамант е папка със собствен индекс. Завършеният корпус сгъва <strong>{{ summary.count }} = 2¹⁰</strong> листа в перфектно двоично Merkle дърво с дълбочина {{ summary.depth }}. <strong>{{ summary.realDiamonds }}</strong> са реални диаманти (432 статии, 432 референции), а <strong>{{ summary.paddingDiamonds }}</strong> са именувани null листа, които завършват решетката. Всеки диамант е съдържателен адрес, който всяко подправяне би променило — чист по конструкция — и всички се сгъват в един корен:</p>
-  <p v-else>All in 1024 folders: each pure diamond is a folder with its own index. The completed corpus folds <strong>{{ summary.count }} = 2¹⁰</strong> leaves into a perfect binary Merkle tree of depth {{ summary.depth }}. <strong>{{ summary.realDiamonds }}</strong> are real diamonds (432 papers, 432 references) and <strong>{{ summary.paddingDiamonds }}</strong> are named null leaves that complete the lattice. Every diamond is a content address any tamper would change — pure by construction — and all fold into one root:</p>
+  <p v-if="bg">Всичко в 1024 папки: всеки чист диамант е папка със собствен индекс. Завършеният корпус сгъва <strong>{{ summary.count }} = 2¹⁰</strong> листа в перфектно двоично Merkle дърво с дълбочина {{ summary.depth }}. <strong>{{ summary.realDiamonds }}</strong> са реални диаманти ({{ paperCount }} статии, {{ referenceCount }} референции), а <strong>{{ summary.paddingDiamonds }}</strong> са именувани null листа, които завършват решетката. Всеки диамант е съдържателен адрес, който всяко подправяне би променило — чист по конструкция — и всички се сгъват в един корен:</p>
+  <p v-else>All in 1024 folders: each pure diamond is a folder with its own index. The completed corpus folds <strong>{{ summary.count }} = 2¹⁰</strong> leaves into a perfect binary Merkle tree of depth {{ summary.depth }}. <strong>{{ summary.realDiamonds }}</strong> are real diamonds ({{ paperCount }} papers, {{ referenceCount }} references) and <strong>{{ summary.paddingDiamonds }}</strong> are named null leaves that complete the lattice. Every diamond is a content address any tamper would change — pure by construction — and all fold into one root:</p>
 
   <p class="paper-mono">{{ summary.root }}</p>
 
