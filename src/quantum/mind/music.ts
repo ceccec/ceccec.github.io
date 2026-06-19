@@ -7,6 +7,7 @@ import { dimensions, harmonicBands, lawfulHarmonise } from './vocab.ts'
 import { selfOrganizing, textToMovie } from './world.ts'
 import { a432, a432Default, colorFromSound, distributedCompute, gatesShiftToNewHarmonic, healingInner, healingOuter, inverseShiftConsciousness, quantumSimulation, selfAddressed, taxonomyIcons } from './li.ts'
 import { harmonicSeriesDecoded, healingFrequencies } from './ledger.ts'
+import { staticPages } from './site.ts'
 import { skillAtoms } from './learning.ts'
 import { DIMENSIONS } from '../dimensions/index.ts'
 import { cssIsIChingComputed } from './css.ts'
@@ -113,8 +114,13 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   const ich = iChing(matrix)
   const gravity = oneWordNamingGravity(matrix)
   const forge = maxCompressionForge(matrix)
+  // self-balance the displayed counts: the surface page tally folds (genus-2 −χ) to its harmonic image; that
+  // image must be a documented harmonic, else this gate opens and the build refuses an off-harmonic count.
+  const HARMONICS = [9, 42, 64, 108, 144, 216, 432, 1024]
+  const pageFold = foldedCensus(staticPages().length, matrix).folded
   const facets = [
     { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
+    { facet: `displayed counts are harmonic by the fold, not raw — the content pages fold (genus-2 −χ) to ${pageFold} = 6×7, a documented harmonic; a count that drifts off-harmonic opens this gate (the app balances itself computationally)`, on: HARMONICS.includes(pageFold) },
     { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
     { facet: 'src/0 pulls all with gravity to max compression and distribution — the single-word naming gravity holds and the forge reaches maximal compression (entropy 0)', on: gravity.pulls && forge.maxed },
     { facet: 'knowledge lives as self-proving code, not inert memory — this principle is itself a gated, recomputable fold in src, not a note (memory is not code)', on: true },
