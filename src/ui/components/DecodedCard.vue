@@ -54,10 +54,17 @@ const boundaryLabel = computed(() => (bg.value ? 'Граница' : 'Boundary'))
 }
 .decoded__items li {
   border: 1px solid var(--vp-c-divider);
-  border-left: 3px solid var(--vp-c-brand-1);
+  /* the card's own I Ching hexagram hue, inherited from the enclosing LayersPanel's --lp-accent
+     (cascades to this slotted card); falls back to the brand when used standalone */
+  border-left: 3px solid var(--lp-accent, var(--vp-c-brand-1));
   border-radius: 8px;
   padding: 0.4rem 0.6rem;
   font-size: 0.84rem;
+  transition: border-color 0.15s, background 0.15s;
+}
+.decoded__items li:hover {
+  background: color-mix(in srgb, var(--lp-accent, var(--vp-c-brand-1)) 5%, transparent);
+  border-left-color: var(--lp-accent, var(--vp-c-brand-1));
 }
 .decoded__label {
   font-weight: 600;
@@ -77,6 +84,6 @@ const boundaryLabel = computed(() => (bg.value ? 'Граница' : 'Boundary'))
   padding-top: 0.55rem;
 }
 .decoded__boundary strong {
-  color: var(--vp-c-brand-1);
+  color: var(--lp-accent, var(--vp-c-brand-1));
 }
 </style>

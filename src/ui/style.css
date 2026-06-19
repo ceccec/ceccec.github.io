@@ -933,6 +933,18 @@ code {
   .anim-reveal {
     animation: none !important;
   }
+  /* Global a11y baseline: when the user asks for less motion, neutralise every CSS animation/transition
+     across all components (scoped @keyframes included), not only the named ones above. JS canvas movies are
+     handled separately — useDeviceEnergy folds prefers-reduced-motion into saveEnergy, which pauses the
+     shared animation engine. (WCAG 2.3.3 / the standard reduced-motion reset.) */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* -----------------------------------------------------------------------------

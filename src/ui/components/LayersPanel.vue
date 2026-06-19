@@ -236,6 +236,16 @@ const accent = computed(() => props.mask.color ?? 'var(--vp-c-brand-1)')
   font-variant-numeric: tabular-nums;
 }
 
+/* ── keyboard focus: a visible, accent-coloured ring on every control (was browser-default) ── */
+.lp-step:focus-visible,
+.lp-toggle:focus-visible,
+.lp-eye:focus-visible,
+.lp-slider:focus-visible {
+  outline: 2px solid var(--lp-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* ── transitions ── */
 .lp-slide-enter-active { transition: max-height 0.22s ease, opacity 0.18s ease; overflow: hidden; }
 .lp-slide-leave-active { transition: max-height 0.18s ease, opacity 0.14s ease; overflow: hidden; }
