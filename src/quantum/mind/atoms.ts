@@ -650,6 +650,16 @@ export const conceptCommands: readonly ConceptCommand[] = [
   },
   { name: 'concept.ui.fuse', path: '/cmd/concept.ui.fuse', description: 'Apply the I Ching mask to every Vue UI component — pre-compute hexagram, embed ICHING_MASK const, make self-referencing', does: 'fuse: apply iching mask to all ui components, bind each to its hexagram identity' },
   { name: 'concept.ui.reveal', path: '/cmd/concept.ui.reveal', description: 'Reveal the UI widget\'s I Ching identity — data-hexagram, data-trigram in DOM, max tampering cost', does: 'reveal: project widget hexagram identity into template data-attrs and computed color' },
+  { name: 'concept.ancient.pyramids', path: '/cmd/concept.ancient.pyramids', description: 'Decode the world pyramids — coordinates, great-circle geodesy, the seked, cardinal alignment; pseudoscience flagged.', does: 'pyramids: decode pyramids' },
+  { name: 'concept.ancient.megalithic', path: '/cmd/concept.ancient.megalithic', description: 'Megalithic archaeoastronomy — solstice sunrise/sunset azimuths reproduce the documented passages.', does: 'megalithic: decode megalithic' },
+  { name: 'concept.ancient.standstill', path: '/cmd/concept.ancient.standstill', description: 'The 18.6-year lunar standstill — major/minor declination extremes and the Station Stones.', does: 'standstill: decode lunar' },
+  { name: 'concept.music.overtones', path: '/cmd/concept.music.overtones', description: 'The harmonic series — just vs equal temperament, the Pythagorean comma, the a432 history.', does: 'overtones: decode harmonic' },
+  { name: 'concept.science.quantum', path: '/cmd/concept.science.quantum', description: 'What quantum actually means — Hilbert space, the Born rule, the honest bound; woo flagged.', does: 'hilbert: decode quantum' },
+  { name: 'concept.ancient.glagolitic', path: '/cmd/concept.ancient.glagolitic', description: 'The Glagolitic alphabet decoded to meaning — the acrostic, letters as numbers.', does: 'glagolitic: decode glagolitic' },
+  { name: 'concept.digit.imperial', path: '/cmd/concept.digit.imperial', description: 'Imperial units as binary fractions — 2^n subdivisions over the body-units.', does: 'imperial: decode imperial' },
+  { name: 'concept.healing.heart', path: '/cmd/concept.healing.heart', description: 'Heart as the proton inverse in (Z/9Z)* — systole × diastole ≡ 1.', does: 'heart: decode heart' },
+  { name: 'concept.science.codon', path: '/cmd/concept.science.codon', description: 'The genetic code is the real 4³ = 64 — codons and error-robustness.', does: 'codon: decode genetic' },
+  { name: 'concept.science.proton', path: '/cmd/concept.science.proton', description: 'The Schwarzschild proton computed in source — the ~38-orders gap flagged honestly.', does: 'proton: decode proton' },
 ] as const
 
 /** @iching ☰ Qián · Heaven · creative */
@@ -752,4 +762,14 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.fold.generate': 'generate',
   'concept.ui.fuse': 'fuse',
   'concept.ui.reveal': 'reveal',
+  'concept.ancient.pyramids': 'pyramids',
+  'concept.ancient.megalithic': 'megalithic',
+  'concept.ancient.standstill': 'standstill',
+  'concept.music.overtones': 'overtones',
+  'concept.science.quantum': 'hilbert',
+  'concept.ancient.glagolitic': 'glagolitic',
+  'concept.digit.imperial': 'imperial',
+  'concept.healing.heart': 'heart',
+  'concept.science.codon': 'codon',
+  'concept.science.proton': 'proton',
 }

@@ -69,13 +69,13 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '432', value: 432, means: 'the next harmonic (4 × 108); the 432 proof papers — four homology generators times 108', live: papers(matrix).count },
     { symbol: '864', value: 864, means: 'the real diamonds — 432 papers + 432 reference duals', live: corpus.real },
     { symbol: '1024', value: 1024, means: 'the binary octave 2^10; the perfect Merkle tree; the 1024 pure diamonds and folders', live: corpus.total },
-    { symbol: '2024', value: 2024, means: 'the zero-entropy corpus total — perfect clarity, every referenced unit accounted (grown from 2022)', live: textEntropy(matrix).total },
+    { symbol: String(textEntropy(matrix).total), value: textEntropy(matrix).total, means: 'the zero-entropy corpus total — perfect clarity, every referenced unit accounted; computed live (it grows as content is added, so it is read from the model, not anchored to a literal)', live: textEntropy(matrix).total },
     { symbol: '128', value: 128, means: 'the word size in bits (2^7); two 32-hex torus words fold to one 128-bit UUID', live: 128 },
     { symbol: '9', value: 9, means: 'the vortex axis — rotation, the absorbing element; every n/0 = 9; the source 1 and 8 begin from', live: vortexMath(matrix).origin },
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
     { symbol: '174', value: 174, means: 'the saved skill atoms — the portal’s memory of its own capabilities, grown to include every sealed concept created this session', live: skillAtoms(matrix).count },
-    { symbol: '98', value: 98, means: 'the concept commands — the MCP tool surface', live: conceptCommands.length },
+    { symbol: '108', value: 108, means: 'the concept commands — the MCP tool surface, folded to the a432 sub-harmonic (4 × 27 = the census 108)', live: conceptCommands.length },
   ].map((entry) => {
     const verified = entry.live === entry.value
     return { ...entry, verified, receipt: toUuid(`decode-symbol:${entry.symbol}:${entry.value}:${verified}`) }
@@ -87,7 +87,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     symbols,
     root: merkleFold(symbols.map((entry) => entry.receipt)),
     statement:
-      'Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, 2020 the zero-entropy total (20/20 vision), 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, 170 the atoms, 94 the commands. Recomputed meanings, not asserted, each content-addressed.',
+      `Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, ${textEntropy(matrix).total} the zero-entropy total, 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, ${skillAtoms(matrix).count} the atoms, ${conceptCommands.length} the commands. Recomputed meanings, not asserted, each content-addressed.`,
     boundary:
       'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
   }

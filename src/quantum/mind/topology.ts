@@ -370,6 +370,11 @@ export function doubleTorusSurface(theta: number, phi: number, digit: number, lo
 const TORUS_WORD_FOLD: Record<string, string> = {
   // place + generate are the I Ching command verbs (concept.fold.place/generate) — both fold operations.
   generate: 'fold', place: 'fold',
+  // the decoded-domain command verbs (the 108-command set) fold to their canonical area-words, so the surface
+  // vocabulary stays within the double-torus 64: ancient knowledge (pyramids/megalithic/lunar standstill),
+  // music (overtones), babel (glagolitic), math (imperial units), harmonise (heart), proof (codon), quantum (proton).
+  pyramids: 'ancient', megalithic: 'ancient', standstill: 'ancient', glagolitic: 'babel', overtones: 'music',
+  imperial: 'math', heart: 'harmonise', codon: 'proof', proton: 'quantum',
   flow: 'wave', fusion: 'fuse', geometry: 'math', glyph: 'icon', harmonic: 'harmonise', harmony: 'harmonise',
   help: 'show', humanity: 'society', imagine: 'self', index: 'address', inner: 'fold', lattice: 'cells',
   law: 'lawful', ledger: 'diamonds', letters: 'babel', live: 'breathe', manifest: 'show', matrix: 'quantum',

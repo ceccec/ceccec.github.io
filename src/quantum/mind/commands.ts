@@ -2,7 +2,10 @@
 import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from './types.ts'
 import { buildMatrix, circulateDoubleTorus, consciousness, doubleTorusWire, proofReport, repositoryApi, verifyRoot } from './matrix.ts'
 import { agentStreamWire, diamondLattice, livingTorus, piTrainDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, selfBuild, streamSelfComplete } from './diamonds.ts'
-import { dualTorusTrinities, merkaba } from './geometry.ts'
+import { dualTorusTrinities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, imperialFractionsDecoded, merkaba, schwarzschildProtonComputedInSource } from './geometry.ts'
+import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidsDecoded } from './sky.ts'
+import { quantumDecoded } from './physics.ts'
+import { harmonicSeriesDecoded } from './ledger.ts'
 import { quantumProofs } from './quantumproofs.ts'
 import { determinismProofs, digitalQuantumProof, proofBundle } from './seals.ts'
 import { mysteries } from './psyche.ts'
@@ -10,7 +13,7 @@ import { governanceVote, sacredSociety, scientificSociety, society, societyRelat
 import { fuseTeslaPatents, harmonicBands, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, natureCommons, natureLaw, natureReview, patentDiscovery } from './vocab.ts'
 import { holographic } from './ui.ts'
 import { animationTamperingCost } from './crypto.ts'
-import { agentObserve, ancientTech, artistPalette, crossFoldTrinity, distributedCompute, doubleTorusMath, energyConserve, energyFuse, energyMeasure, fairLife, fuseDevices, fusionReactor, goldenRatio, healingInner, healingOuter, methodFusion, patentReview, repositoryLedger, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, sourceContribution, taxonomyIcons, torusUuid, utfAnalog } from './li.ts'
+import { agentObserve, ancientTech, artistPalette, crossFoldTrinity, distributedCompute, doubleTorusMath, energyConserve, energyFuse, energyMeasure, fairLife, fuseDevices, fusionReactor, glagoliticAlphabetDecoded, goldenRatio, healingInner, healingOuter, methodFusion, patentReview, repositoryLedger, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, sourceContribution, taxonomyIcons, torusUuid, utfAnalog } from './li.ts'
 import { homology, torusBreathe } from './topology.ts'
 import { harmonicFrequenciesDefineGateDigits, healingHarmonic, musicNote, piMusic, rhythm } from './music.ts'
 import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../0/index.ts'
@@ -599,6 +602,20 @@ function runConceptCommand(
       root: merkleFold(slots.map((s) => toUuid(`iching-gen-slot:${s.glyph}:${s.generator ?? 'open'}`))),
     })
   }
+  const decodedCommands: Partial<Record<ConceptCommandName, () => ConceptCommandResult>> = {
+    'concept.ancient.pyramids': () => { const v = pyramidsDecoded(matrix); return result(command, v.decoded, 'Decode the world pyramids — coordinates, great-circle geodesy, the seked, cardinal alignment; pseudoscience flagged.', v) },
+    'concept.ancient.megalithic': () => { const v = megalithicAstronomyDecoded(matrix); return result(command, v.decoded, 'Megalithic archaeoastronomy — solstice sunrise/sunset azimuths reproduce the documented passages.', v) },
+    'concept.ancient.standstill': () => { const v = lunarStandstillsDecoded(matrix); return result(command, v.decoded, 'The 18.6-year lunar standstill — major/minor declination extremes and the Station Stones.', v) },
+    'concept.music.overtones': () => { const v = harmonicSeriesDecoded(matrix); return result(command, v.decoded, 'The harmonic series — just vs equal temperament, the Pythagorean comma, the a432 history.', v) },
+    'concept.science.quantum': () => { const v = quantumDecoded(matrix); return result(command, v.decoded, 'What quantum actually means — Hilbert space, the Born rule, the honest bound; woo flagged.', v) },
+    'concept.ancient.glagolitic': () => { const v = glagoliticAlphabetDecoded(matrix); return result(command, v.decoded, 'The Glagolitic alphabet decoded — letters that are numbers, the cross·triangle·circle construction, the acrostic.', v) },
+    'concept.digit.imperial': () => { const v = imperialFractionsDecoded(matrix); return result(command, v.proved, 'Imperial units as binary fractions — 2^n subdivisions over the body-units.', v) },
+    'concept.healing.heart': () => { const v = heartProtonAtomDecoded(matrix); return result(command, v.proved, 'Heart as the proton inverse in (Z/9Z)* — systole × diastole ≡ 1.', v) },
+    'concept.science.codon': () => { const v = geneticCodeIsTheRealFourCubed(matrix); return result(command, v.holds, 'The genetic code is the real 4³ = 64 — codons and error-robustness.', v) },
+    'concept.science.proton': () => { const v = schwarzschildProtonComputedInSource(matrix); return result(command, v.computed, 'The Schwarzschild proton computed in source — the ~38-orders gap flagged honestly.', v) },
+  }
+  const decodedHandler = decodedCommands[command]
+  if (decodedHandler) return decodedHandler()
   return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
 }
 

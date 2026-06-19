@@ -24,7 +24,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 ## 3. Results
 
 - 42 monographs (content pages, the harmonic count: 44 surface pages fold through the genus-2 torus −χ to 42 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
-- 98 concept commands, each a single-word method and an MCP tool.
+- 108 concept commands, each a single-word method and an MCP tool.
 - 182 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 

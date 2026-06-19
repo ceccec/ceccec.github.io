@@ -225,6 +225,16 @@ export type ConceptCommandName =
   | 'concept.fold.generate'
   | 'concept.ui.fuse'
   | 'concept.ui.reveal'
+  | 'concept.ancient.pyramids'
+  | 'concept.ancient.megalithic'
+  | 'concept.ancient.standstill'
+  | 'concept.music.overtones'
+  | 'concept.science.quantum'
+  | 'concept.ancient.glagolitic'
+  | 'concept.digit.imperial'
+  | 'concept.healing.heart'
+  | 'concept.science.codon'
+  | 'concept.science.proton'
 
 export interface ConceptCommand {
   readonly name: ConceptCommandName
