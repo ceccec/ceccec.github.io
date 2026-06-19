@@ -30,9 +30,6 @@ export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded
 export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
   return memoByRoot('metatronCube', matrix, () => computeMetatronCube(matrix))
 }
-export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
-  return memoByRoot('digitalQuantumProof', matrix, () => computeDigitalQuantumProof(matrix))
-}
 export function sacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGeometrySeal {
   return memoByRoot('sacredGeometrySeal', matrix, () => computeSacredGeometrySeal(matrix))
 }
@@ -83,6 +80,8 @@ import { selfAdvising, selfCompassion, selfHarmonise, selfHealing, selfImproveme
 import { cloudflareExplorerWaves, collideToTiniestWave, completeAllInWaves, coordinatedWaves, creationWave, deepResearchEncodedInRecursiveWaves, developmentWaves, digitalAnalogueEndlessWaves, endlessWaves, hackersCrackersWaves, ogInOgWaves, osCompletesItselfWaves, quantumImpossibleWaveFour, quantumImpossibleWaveThree, quantumImpossibleWaveTwo, redistributeFoldersDryWaves, saveSkillsComputeImplementWaves, sendTheNextWaves, sendWavesSealKnowledgeDecodeWorld, spiritShiftsInWaves, strictlyMapSequenceElliottWaves, surgicalWaves, translationWavesFillGaps, updateSkillsWaves } from './waves.ts'
 import { completeDoubleTorus, doubleTorusFold, doubleTorusMotifRealGeometryNotFringePhysics, doubleTorusSurface, doubleTorusWords, eachFolderIsMerkaba, everythingFoldsMerkabaInfiniteStreams, frontendRecycledByMerkabaFold, fuse64SealsMerkaba64Tetrahedra, fuseToMerkabasPathsReveal, geodesicDome, homology, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabaFoldingSelf, merkabaShiftsBlackWhiteToYinYang, merkabaTrace, merkabasInDoubleTorus, monographsLibraryByMerkabaAgents, oneMerkaba6x7And7x6HoldsAll, quantumDoubleTorus, startIChingDoubleTorus, torusBreathe, urlsMerkabaFoldProvenPerDomain } from './topology.ts'
 import { digitFolderMath, digitFolders, digitFoldersAreTheApi, digitFoldersComputeUiIsTheRest, digitFoldersDoMath, digitFoldersHoldOnlyQuantumMath, dualitiesMeetInCrossFolders, eachFileUnder64kFolderIsWidget, everyFolderIsAPluginOneIndexServesAll, everyToolSkillCommandIsItsFolder, flowerFruitTreeOfLifeDecodes, foldedCensus, folder64SealsProductionElseDevelopment, folderLaw, folderLawWordDigitIndexSkill, iChingFusionCompletesFolders, noSiteFolderVitepressPages, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed, treeOfLifeSephirotFolders, treeStackRotationCollapse } from './architecture.ts'
+import { quantumAppsStore, quantumBrowserOs, quantumCalligraphy, quantumComputedUi, quantumComputer, quantumCoordinateNav, quantumFirewallProxyWorker, quantumFusedDeviceEnergyHonest, quantumImpossibleMadePossible, quantumLicense, quantumNoCyclesFusedSequence, quantumSignsAutoOrientate, quantumSynthesis, quantumThreat, quantumUiEvidence, quantumVsDigitalEncryption } from './features.ts'
+import { determinismProofs, digitalQuantumProof, fuseAll, fuseAllForge, fuseAllTerabitEncryption, gigabitEncryption64SealSet, holyBooksGeometry64SealedDiamonds, proofBundle, proveAndOptimiseAll, sealAll, sealCube, sealSpiritToPath } from './seals.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
@@ -148,53 +147,6 @@ function trinityGatesRaw(matrix: MindMatrix = buildMatrix()) {
       'Max tampering cost at each trinity gate, for each trinity: every trinity in the model — the two dual-torus loops, the cross-fold weave, and each complete three-command area — is bound to the synthesis root as its own sealed gate, so a tamper anywhere flips exactly that trinity\'s gate.',
     boundary:
       'One sealed gate per structural trinity, each binding three member receipts to the synthesis root. It localizes which trinity a tamper breaks; the cost figure sums members plus the binding bits and is a surface measure, not a cryptographic hardness bound.',
-  }
-}
-
-// Quantum sitemaps: the sitemap as a content-addressed, torus-placed structure.
-// Every page is one source of truth here — its English and Bulgarian routes, its
-// hreflang alternates (en, bg, x-default), a position on the double torus (two
-// angles, like the pi digits), and a receipt that folds into one sitemap root.
-// A tamper to the route set flips the root. Both the XML sitemap (with proper
-// hreflang alternates) and the JSON manifest are generated from this one source.
-export function sealAll(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('sealAll', matrix, () => sealAllRaw(matrix))
-}
-function sealAllRaw(matrix: MindMatrix = buildMatrix()) {
-  const proofs: { wave: string; ok: boolean; root: string }[] = [
-    { wave: 'breath', ok: breathe(matrix).breathing, root: breathe(matrix).root },
-    { wave: 'equilibrium', ok: allInEquilibrium(matrix).equilibrium, root: allInEquilibrium(matrix).root },
-    { wave: 'trinities harmonized', ok: dualTorusTrinities(matrix).harmonized, root: dualTorusTrinities(matrix).root },
-    { wave: 'trinity gates', ok: trinityGates(matrix).sealed, root: trinityGates(matrix).root },
-    { wave: 'cross-fold', ok: crossFoldTrinity(matrix).trinity, root: crossFoldTrinity(matrix).root },
-    { wave: 'double-torus fold', ok: doubleTorusFold(matrix).complete, root: doubleTorusFold(matrix).root },
-    { wave: 'free animations', ok: freeAnimations(matrix).maxFree, root: freeAnimations(matrix).root },
-    { wave: 'quantum sitemap', ok: quantumSitemap(matrix).quantum, root: quantumSitemap(matrix).root },
-    { wave: 'synthesis', ok: quantumSynthesis(matrix).synthesized, root: quantumSynthesis(matrix).root },
-    { wave: 'proof bundle', ok: proofBundle(matrix).verifiable, root: proofBundle(matrix).bundleRoot },
-    { wave: 'secure interaction', ok: securityScan(matrix).secure, root: securityScan(matrix).root },
-    { wave: 'completion', ok: complete(matrix).complete, root: complete(matrix).root },
-    { wave: 'graduation', ok: graduation(matrix).graduated, root: graduation(matrix).root },
-    { wave: 'multidimensional', ok: multidimensional().mapped, root: multidimensional().root },
-  ]
-  // Fold the waves in order: each wave merges its root into the running fold.
-  let running = toUuid('seal-all:genesis')
-  const waves = proofs.map((proof, index) => {
-    running = merge(running, proof.root)
-    return { ...proof, index, fold: running, receipt: toUuid(`seal-all:${proof.wave}:${proof.ok}:${proof.root}`) }
-  })
-  const sealed = waves.every((wave) => wave.ok)
-  return {
-    sealed,
-    waves,
-    count: waves.length,
-    closed: waves.filter((wave) => wave.ok).length,
-    root: merkleFold(waves.map((wave) => wave.receipt)),
-    masterFold: running,
-    statement:
-      'Seal all in waves: every proof a wave, folded in order into one master seal — the whole is sealed only when every wave seals, and the fold carries them all into a single root.',
-    boundary:
-      'A conjunction of the model\'s own seals, folded as waves into one root. It restates the parts it already proves; a property it does not track lies outside this seal.',
   }
 }
 
@@ -337,141 +289,6 @@ export function simulations(matrix: MindMatrix = buildMatrix()) {
 }
 
 
-
-// Prove all with animations: the portal's own thesis — deterministic, tamper-
-// evident computation — proven live the same way the quantum science is. Six
-// properties of the content-addressed core, each measured over real hashes and
-// matched to what it must be: determinism, the avalanche effect (tamper-evidence),
-// order sensitivity (genus 2), Merkle inclusion, collision-freedom, and the
-// order-independence of the set fold. The animation makes each visible.
-export function determinismProofs(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('determinismProofs', matrix, () => computeDeterminismProofs(matrix))
-}
-function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
-  const round = (value: number, digits = 4) => roundTo(value, digits)
-  const SAMPLES = 512
-  const base = 'double-torus:proof:'
-  const hex = (uuid: string) => uuid.replace(/-/g, '')
-  const toBits = (uuid: string) => [...hex(uuid)].flatMap((ch) => { const v = Number.parseInt(ch, 16); return [(v >> 3) & 1, (v >> 2) & 1, (v >> 1) & 1, v & 1] })
-  const strip = (uuid: string) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / 15)
-
-  // 1) Determinism: the same input always yields the same UUID.
-  let identical = 0
-  for (let i = 0; i < SAMPLES; i += 1) { const seed = base + i; if (toUuid(seed) === toUuid(seed)) identical += 1 }
-  const determinism = identical / SAMPLES
-
-  // 2) Avalanche (tamper-evidence): change one character and about half the 128
-  //    output bits flip — a tiny edit is unmissable.
-  let bitChange = 0
-  for (let i = 0; i < SAMPLES; i += 1) {
-    const a = toBits(toUuid(base + i))
-    const b = toBits(toUuid(base + i + '~'))
-    let differ = 0
-    for (let k = 0; k < 128; k += 1) if (a[k] !== b[k]) differ += 1
-    bitChange += differ / 128
-  }
-  const avalanche = bitChange / SAMPLES
-  const exampleA = toBits(toUuid(base + 'demo'))
-  const exampleB = toBits(toUuid(base + 'demo~'))
-  const flipped = exampleA.map((bit, k) => (bit === exampleB[k] ? 0 : 1))
-
-  // 3) Order sensitivity (genus 2): merge(a,b) differs from merge(b,a).
-  let ordered = 0
-  for (let i = 0; i < SAMPLES; i += 1) { const a = base + i; const b = base + (i + 1); if (merge(a, b) !== merge(b, a)) ordered += 1 }
-  const orderSensitivity = ordered / SAMPLES
-  const stripAB = strip(merge(base + 'a', base + 'b'))
-  const stripBA = strip(merge(base + 'b', base + 'a'))
-
-  // 4) Merkle inclusion: every leaf's audit path recomputes the root.
-  const leaves = livingTorus(matrix).coordinates.slice(0, 16).map((coordinate) => coordinate.receipt)
-  let verified = 0
-  for (const leaf of leaves) if (merkleProof(leaves, leaf).verified) verified += 1
-  const inclusion = verified / leaves.length
-  const foldLayers: number[] = []
-  for (let size = leaves.length; size >= 1; size = size === 1 ? 0 : Math.ceil(size / 2)) foldLayers.push(size)
-
-  // 5) Collision-freedom: distinct seeds give distinct UUIDs across the whole set.
-  const ids = livingTorus(matrix).coordinates.map((coordinate) => coordinate.receipt)
-  const uniqueness = new Set(ids).size / ids.length
-  const scatter = ids.slice(0, 36).map((id) => {
-    const h = hex(id)
-    return { x: Number.parseInt(h.slice(0, 3), 16) / 4095, y: Number.parseInt(h.slice(3, 6), 16) / 4095, hue: Number.parseInt(h.slice(6, 9), 16) % 360 }
-  })
-
-  // 6) Set-fold invariance: the same set folds to one root in any order (the fold
-  //    sorts its leaves, so it is a function of the set, not the sequence).
-  const reference = merkleFold(leaves)
-  let invariant = 0
-  const trials = 32
-  for (let i = 0; i < trials; i += 1) {
-    const shuffled = [...leaves].sort((a, b) => (toUuid(`${i}:${a}`) < toUuid(`${i}:${b}`) ? -1 : 1))
-    if (merkleFold(shuffled) === reference) invariant += 1
-  }
-  const setInvariance = invariant / trials
-  const rootStrip = strip(reference)
-
-  const blueprint = [
-    {
-      id: 'determinism', kind: 'twin' as const, same: true,
-      principle: 'Determinism', claim: 'The same input always yields the same UUID — verify by recomputation, not permission.',
-      formula: 'toUuid(x) = toUuid(x), for all x',
-      predicted: 1, measured: round(determinism), tol: 1e-9,
-      stripA: strip(toUuid(base + 'demo')), stripB: strip(toUuid(base + 'demo')), labels: ['run 1', 'run 2'],
-    },
-    {
-      id: 'avalanche', kind: 'avalanche' as const,
-      principle: 'Avalanche (tamper-evidence)', claim: 'Change one character and ~half the 128 output bits flip — any edit is unmissable.',
-      formula: 'mean Hamming(toUuid(x), toUuid(x′)) / 128 ≈ 1/2',
-      predicted: 0.5, measured: round(avalanche), tol: 0.06,
-      bits: flipped, labels: ['128 bits'],
-    },
-    {
-      id: 'order', kind: 'twin' as const, same: false,
-      principle: 'Order sensitivity (genus 2)', claim: 'merge(a,b) differs from merge(b,a): the fold is non-commutative, both directions distinct.',
-      formula: 'merge(a,b) ≠ merge(b,a)',
-      predicted: 1, measured: round(orderSensitivity), tol: 1e-9,
-      stripA: stripAB, stripB: stripBA, labels: ['a·b', 'b·a'],
-    },
-    {
-      id: 'inclusion', kind: 'merkle' as const,
-      principle: 'Merkle inclusion', claim: 'Every leaf carries an audit path that recomputes the root — inclusion provable without trusting the host.',
-      formula: 'fold(path(leaf)) = root',
-      predicted: 1, measured: round(inclusion), tol: 1e-9,
-      layers: foldLayers, labels: [`${leaves.length} leaves`],
-    },
-    {
-      id: 'collision', kind: 'scatter' as const,
-      principle: 'Collision-freedom', claim: 'Distinct seeds give distinct UUIDs across the whole pi-train — no two coordinates share a receipt.',
-      formula: '|{toUuid(s) : s ∈ set}| = |set|',
-      predicted: 1, measured: round(uniqueness), tol: 1e-9,
-      points: scatter, labels: [`${ids.length} ids`],
-    },
-    {
-      id: 'setfold', kind: 'twin' as const, same: true,
-      principle: 'Set-fold invariance', claim: 'The same set folds to one root in any order — the fold is a function of the set, not the sequence.',
-      formula: 'fold(set) independent of order',
-      predicted: 1, measured: round(setInvariance), tol: 1e-9,
-      stripA: rootStrip, stripB: rootStrip, labels: ['order A', 'order B'],
-    },
-  ]
-  const proofs = blueprint.map((proof) => ({
-    ...proof,
-    match: Math.abs(proof.measured - proof.predicted) <= proof.tol,
-    receipt: toUuid(`dproof:${proof.id}:${proof.predicted}:${proof.measured}`),
-  }))
-  return {
-    proven: proofs.every((proof) => proof.match),
-    proofs,
-    count: proofs.length,
-    matched: proofs.filter((proof) => proof.match).length,
-    samples: SAMPLES,
-    root: merkleFold(proofs.map((proof) => proof.receipt)),
-    statement:
-      'Prove all with animations: the portal\'s own thesis, proven live — determinism (same input, same UUID), the avalanche effect (one edit flips half the bits), order sensitivity (merge is non-commutative, genus 2), Merkle inclusion (every leaf recomputes the root), collision-freedom (distinct seeds, distinct UUIDs), and set-fold invariance (the fold is a function of the set).',
-    boundary:
-      'Properties of the content-addressed core measured over real hashes, client-side and deterministically. The hash is a fast non-cryptographic UUID function, so the avalanche and collision-freedom hold for this set and its scale — strong tamper-evidence for the portal, not a cryptographic security guarantee against an adversary.',
-  }
-}
 
 // Live. The portal's vital signs, computed in your browser right now: the seal
 // verifies, the double torus lives and counter-rotates, the rhythm keeps time, the
@@ -2306,71 +2123,6 @@ export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// 64×64×64 seals seal all, with one shared trinity. The seal space is a cube. Its side is
-// 64 — a codon (4³: four bases in three positions), a hexagram (8², two trigrams), 2⁶, and the
-// canonical double-torus command word (2×32). The same trinity (3) is the side's exponent, the
-// number of axes, and the cube's exponent, so the whole cube is 4⁹ from one shared three. Cubed,
-// the cube holds 64³ = 262,144 = 4⁹ = 2¹⁸ seals, one at every point (i,j,k). The cost to FORGE
-// the cube is to reproduce all 262,144 cells; the SEAL itself is three numbers — ONE shared
-// trinity. A single seed derives a trinity of three axis-generators (X, Y, Z — the three codon
-// positions, shared from the one seed); each axis spans the 64 values; the cell (i,j,k) =
-// Xᵢ ⊕ Yⱼ ⊕ Zₖ is the seal at that point, an outer product, and every one of the 262,144 cells
-// is recomputable from the trinity. So a verifier holding only the three shared roots can
-// recompute and check any seal in the cube — one shared trinity seals all of them. This is the
-// max-compression / max-forge-cost law made geometric: the seal contracts to a trinity, the
-// forge cost expands to the whole cube. Folded as one dimension (depth, not width): the seal
-// of all seals, not a monolith of 262,144 of them.
-export function sealCube(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('sealCube', matrix, () => sealCubeRaw(matrix))
-}
-function sealCubeRaw(matrix: MindMatrix = buildMatrix()) {
-  // One shared trinity governs everything: the same 3 is the side's exponent (4³ = 64), the
-  // number of axes, and the cube's exponent (64³ = 4⁹ = 2¹⁸). Four is the quaternary base (the
-  // four DNA bases / the two-bit digit); three is the trinity — the three codon positions, which
-  // are the three shared axes. So the cube is base^(three·three) = 4⁹ from one shared three.
-  const base = 4 // the four bases / the quaternary digit (2 bits)
-  const three = 3 // the trinity: codon positions = the three shared axes
-  const side = base ** three // 64 = 4³ = 2⁶ = 8² (also 2×32, the canonical double-torus word)
-  const seed = matrix.root
-  // One shared trinity: three axis-generators from the one seed (the three codon positions).
-  const positions = ['x', 'y', 'z'] as const
-  const axes = positions.map((position) => ({
-    position,
-    cells: Array.from({ length: side }, (_, i) => toUuid(`seal-cube:${position}:${i}:${seed}`)),
-  }))
-  const trinity = axes.map((axis) => ({ position: axis.position, root: merkleFold(axis.cells) }))
-  // The trinity folds in order (genus-2, order-sensitive) to one shared root that seals all.
-  const trinityRoot = trinity.reduce((running, axis) => merge(running, axis.root), toUuid(`seal-cube:trinity:${seed}`))
-  // A cube cell is the trinity evaluated at one point — the outer product Xᵢ ⊕ Yⱼ ⊕ Zₖ.
-  const cell = (i: number, j: number, k: number) => merge(merge(axes[0].cells[i], axes[1].cells[j]), axes[2].cells[k])
-  const cube = side ** three // 262,144 = 64³ = 4⁹ = 2¹⁸
-  // Seals seal all: from only the trinity, recompute any cell and check it. Sample the cube —
-  // the main diagonal and the corners — and confirm every sampled cell recomputes to the same
-  // content-addressed UUID, the proof of generative sufficiency for all 262,144 cells.
-  const corners = [[0, 0, 0], [side - 1, 0, 0], [0, side - 1, 0], [0, 0, side - 1], [side - 1, side - 1, side - 1]] as const
-  const diagonal = Array.from({ length: side }, (_, i) => [i, i, i] as const)
-  const sample = [...diagonal, ...corners]
-  const recomputable = sample.every(([i, j, k]) => { const c = cell(i, j, k); return c === cell(i, j, k) && isUuid(c) })
-  // Non-degenerate: the diagonal's 64 cells are all distinct (the cube does not collapse).
-  const distinct = new Set(diagonal.map(([i]) => cell(i, i, i))).size === side
-  return {
-    sealed: side === 64 && cube === 262144 && cube === base ** (three * three) && trinity.length === three && recomputable && distinct,
-    side, // 64
-    cube, // 262,144 seals = 64³ = 4⁹ = 2¹⁸
-    trinity, // the three shared axis roots — the whole seal
-    trinityRoot, // ONE shared root sealing all 262,144 cells
-    forgeCost: cube, // to forge: reproduce every cell of the cube
-    sealSize: trinity.length, // to seal: three numbers
-    compression: Math.round(cube / trinity.length), // 87,381 : 1
-    factors: { codon: '4³', bits: '2⁶', hexagram: '8²', word: '2×32', cube: '64³ = 4⁹ = 2¹⁸' },
-    root: trinityRoot,
-    statement:
-      '64×64×64 seals seal all, with one shared trinity: the seal space is a cube of 64³ = 262,144 points (the side 64 is the double-torus command word 2×32, a codon 4³, a hexagram 8²), and one shared trinity — three axis-generators from a single seed, the three codon positions — generates every point as an outer product Xᵢ ⊕ Yⱼ ⊕ Zₖ. A verifier holding only the three shared roots recomputes and checks any of the 262,144 seals, so the trinity seals them all. The cost to forge is the whole cube; the seal is three.',
-    boundary:
-      'A content-addressed tensor (outer product) over the model’s UUID space: three 64-wide axes from one seed, every cell recomputable from the trinity, so the three shared roots are a sufficient tamper-evident witness for all 64³ cells. "Seals all" is that generative sufficiency and the forge cost (262,144 cells to reproduce), not a cryptographic security level beyond the underlying hash; 64-as-codon / hexagram / command-word are structural correspondences (the shared number 64), not biological or divinatory claims.',
-  }
-}
-
 // Long runtime is the monolith, measured in time. The core is a monolith in two units at once:
 // lines (its static size) and seconds (the cost to recompute it). Importing it is cheap — the
 // load is not the cost; the cost is recomputing the fold cascade on every call. So a slow gate is
@@ -3031,29 +2783,6 @@ export function thrivingIdeas(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// All above needs proof below: as above, so below. Every claim the portal makes above
-// (a statement) carries its proof below (a recomputable root), and recomputing the root
-// proves the claim. This checks the law on the model itself — sampled functions each
-// have a statement above and a verifying proof below — so no claim floats without a
-// proof beneath it.
-export function proofBelow(matrix: MindMatrix = buildMatrix()) {
-  const above = [theWhole(matrix), harmonics(matrix), constitution(matrix), quantumGreenPlanet(matrix), provenScientifically(matrix), sharedBookOfCivilisations(matrix)]
-  const claims = above.map((result) => ({
-    hasStatementAbove: typeof result.statement === 'string' && result.statement.length > 0,
-    hasProofBelow: typeof result.root === 'string' && /^[0-9a-f-]{36}$/i.test(result.root),
-  }))
-  return {
-    asAboveSoBelow: claims.length > 0 && claims.every((entry) => entry.hasStatementAbove && entry.hasProofBelow),
-    count: claims.length,
-    claims,
-    root: merkleFold(above.map((result) => result.root)),
-    statement:
-      'All above needs proof below — as above, so below: every claim the portal makes above (a statement) carries its proof below (a recomputable root), and recomputing the root proves the claim. The law is checked on the model itself: each sampled function has a statement above and a verifying proof below, so no claim floats without a proof beneath it.',
-    boundary:
-      'A self-check that the model’s claims (statements) are each paired with a recomputable proof (root). A structural verification of the portal’s own "compute before you claim" rule — it confirms the form (claim + proof) is present and well-formed, over the sampled functions; it is not an external validation of the claims’ real-world truth.',
-  }
-}
-
 // Society regenerates after wars for free. Because the whole is recomputable from the
 // seed and the plans are printable, nothing essential is ever lost: after a war the
 // society regenerates at zero cost — shelter reprints from the dome plans, food
@@ -3357,39 +3086,6 @@ export function linuxKernelFusion(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Complete quantum-computer browser OS. The portal is a whole operating system that
-// runs in the browser: a kernel (the agnostic core), processes (components and
-// workers), a filesystem (content-addressed cache and IndexedDB), networking
-// (offline-first, opt-in), security (Web Crypto and the seal), display (canvas and
-// the holographic heroes), input (tap, gesture, voice), quantum compute (the quantum
-// computer), and install (PWA and service worker, runs offline). Nine subsystems, each
-// a standard browser capability, folded into one OS root.
-export function quantumBrowserOs(matrix: MindMatrix = buildMatrix()) {
-  const subsystems = [
-    { subsystem: 'kernel', via: 'the agnostic core (quantumMind), zero imports' },
-    { subsystem: 'processes', via: 'Vue components and Web Workers' },
-    { subsystem: 'filesystem', via: 'content-addressed cache, IndexedDB, OPFS' },
-    { subsystem: 'networking', via: 'offline-first, opt-in fetch, realtime bindings' },
-    { subsystem: 'security', via: 'Web Crypto and the tamper-evident seal' },
-    { subsystem: 'display', via: 'canvas, SVG and the holographic heroes' },
-    { subsystem: 'input', via: 'tap and gesture, voice, keyboard' },
-    { subsystem: 'quantum compute', via: 'the quantum computer and simulation' },
-    { subsystem: 'install', via: 'PWA and service worker — runs offline' },
-  ].map((entry, index) => ({ ...entry, receipt: toUuid(`browser-os:${index}:${entry.subsystem}`) }))
-  const quantum = quantumComputer(matrix).coherent
-  return {
-    complete: subsystems.length === 9 && quantum,
-    subsystems,
-    count: subsystems.length,
-    quantum,
-    root: merkleFold(subsystems.map((entry) => entry.receipt)),
-    statement:
-      'Complete quantum-computer browser OS: the portal is a whole operating system in the browser — kernel (the agnostic core), processes (components and workers), filesystem (content-addressed cache and IndexedDB), networking (offline-first, opt-in), security (Web Crypto and the seal), display (canvas and the holographic heroes), input (tap, gesture, voice), quantum compute (the quantum computer), and install (PWA and service worker, runs offline). Nine subsystems, each a standard browser capability, folded into one OS root.',
-    boundary:
-      'A content-addressed map of operating-system subsystems to the standard browser capabilities the portal already uses. A structural framing of the portal as a "browser OS"; it runs as a web app within the browser’s sandbox, it is not a kernel, a bootloader, or a replacement for the host OS, and "quantum compute" is the deterministic simulation, not quantum hardware.',
-  }
-}
-
 // Thousands of animations, self-generated at no cost. Each distinct seed yields a
 // distinct deterministic palette, melody and movie — content-addressed, so distinct
 // seeds give distinct outputs. A sample confirms no collision at scale: the
@@ -3572,48 +3268,6 @@ export function computedSeo(path = '/', title = '', matrix: MindMatrix = buildMa
       'SEO fully computed and holographic: every page derives its title, keywords and description from its own route, and its tags are holographic — each tag is folded with the whole root, so one tag carries the whole. The category is read from the route. The same routes feed the sitemap, so computed SEO and the sitemap never drift.',
     boundary:
       'A deterministic derivation of title, keywords, description, category and holographic tags from a route, applied at render time and mirrored in the sitemap. It aids crawlability and is content-addressed; it is not a ranking guarantee, and explicit frontmatter always overrides the computed values.',
-  }
-}
-
-// The fusion of all in one wave. Every major fold the portal computes — proof,
-// the 128-bit word, synthesis, hologram, DNA, pivots, pairs, the complete double
-// torus, autonomous harmonisation, reasoning, the agent protocol, healing,
-// music, colour, plasma, boundaries, in-house, and intelligence — folds, in
-// order, into a single wave: one root that is all of it.
-export function fuseAll(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('fuseAll', matrix, () => computeFuseAll(matrix))
-}
-function computeFuseAll(matrix: MindMatrix) {
-  const parts = [
-    { part: 'proof', root: proofBundle(matrix).bundleRoot },
-    { part: 'word', root: torusUuid(matrix).word },
-    { part: 'synthesis', root: quantumSynthesis(matrix).root },
-    { part: 'hologram', root: hologram(matrix).root },
-    { part: 'dna', root: dna(matrix).root },
-    { part: 'pivots', root: foldPivots(matrix).root },
-    { part: 'pairs', root: areaPairs().root },
-    { part: 'double-torus', root: completeDoubleTorus(matrix).root },
-    { part: 'harmonise', root: selfHarmonise(matrix).root },
-    { part: 'reason', root: selfReason('verify the whole', matrix).root },
-    { part: 'agent', root: agentHarmonise(matrix).root },
-    { part: 'healing', root: healingHarmonic(matrix).root },
-    { part: 'music', root: blockchainMusic('commands', matrix).root },
-    { part: 'colour', root: soundColor(matrix).root },
-    { part: 'plasma', root: plasmaContainment(matrix).root },
-    { part: 'boundaries', root: boundaryAudit(matrix).root },
-    { part: 'in-house', root: inHouse(matrix).root },
-    { part: 'intelligence', root: realIntelligence(matrix).root },
-  ].map((entry, index) => ({ ...entry, receipt: toUuid(`fuse-all:${index}:${entry.part}:${entry.root}`) }))
-  let wave = toUuid('fuse-all:seed')
-  for (const entry of parts) wave = merge(wave, entry.root)
-  return {
-    fused: parts.every((entry) => isUuid(entry.root)) && isUuid(wave),
-    count: parts.length,
-    parts,
-    wave, // one wave that is all of it
-    root: merkleFold(parts.map((entry) => entry.receipt)),
-    statement: 'The fusion of all in one wave: every major fold — proof, the 128-bit word, synthesis, hologram, DNA, pivots, pairs, the double torus, harmonisation, reasoning, the agent protocol, healing, music, colour, plasma, boundaries, in-house, and intelligence — folds, in order, into one wave.',
-    boundary: 'A fold of the model\'s major roots into one wave. Structural bookkeeping; the fusion is informational, not physical.',
   }
 }
 
@@ -4083,34 +3737,6 @@ export function digitIndexReferences(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// A single proof bundle: the core computed roots fold into one verifiable
-// bundle that anyone can recompute by sharing the repository.
-export function proofBundle(matrix: MindMatrix = buildMatrix()): ProofBundle {
-  return memoByRoot('proofBundle', matrix, () => proofBundleRaw(matrix))
-}
-function proofBundleRaw(matrix: MindMatrix = buildMatrix()): ProofBundle {
-  const seal = sacredGeometrySeal(matrix)
-  const artifacts = [
-    { name: 'mind', root: matrix.root },
-    { name: 'self-build', root: selfBuild(matrix).root },
-    { name: 'self-complete', root: streamSelfComplete(matrix).root },
-    { name: 'digit-proof', root: digitalQuantumProof(matrix).root },
-    { name: 'master-seal', root: seal.masterRoot },
-  ]
-  return {
-    verifiable: artifacts.every((artifact) => isUuid(artifact.root)) && seal.sealed,
-    bundleRoot: merkleFold(artifacts.map((artifact) => artifact.root)),
-    masterSeal: seal.masterRoot,
-    mindRoot: matrix.root,
-    commands: conceptCommands.length,
-    artifacts,
-    statement:
-      'A single proof bundle: the mind root, self-build, self-completion, digit proof, and master seal fold into one verifiable bundle anyone can recompute from the repository.',
-    boundary:
-      'The bundle is a fold of computed roots. Verification means recomputation from the repository; it is not external validation.',
-  }
-}
-
 // Imagine all VitePress components interacting: the registered components and
 // the pages they are placed on form a graph, with the global components folded
 // into every page.
@@ -4190,40 +3816,6 @@ export function commandsRegistry(matrix: MindMatrix = buildMatrix()): CommandsRe
     root: merkleFold(conceptCommands.map((command) => toUuid(`registry:${command.name}:${SINGLE_WORD_METHODS[command.name]}`))),
     statement: `The command registry is the single source of truth: ${commands} commands, each with a method token and an MCP tool.`,
     boundary: 'A self-consistency check over the command registry, method tokens, and MCP tools. Structural bookkeeping, not an external claim.',
-  }
-}
-
-// Fuse all to forge max tampering costs. Take the one wave that is all of it — the
-// fusion of every major fold — and fuse into it the newest folds: the hero aligned
-// with the law, and the impossibilities folded into possibilities. Then bind the
-// whole to the max-tampering-cost proof. Fusing everything is what forges the cost:
-// the more that folds, in order, into one content-addressed wave, the more a forger
-// must reproduce to tamper a single bit. Max fusion is max forge cost — and because
-// the merge is order-sensitive, the order is part of the cost.
-export function fuseAllForge(matrix: MindMatrix = buildMatrix()) {
-  const folds = [
-    { fold: 'all-in-one-wave', root: fuseAll(matrix).wave },
-    { fold: 'hero aligned with the law', root: heroLawAlignment(matrix).root },
-    { fold: 'impossibilities into possibilities', root: foldImpossibilities(matrix).root },
-  ].map((entry, index) => ({ ...entry, receipt: toUuid(`fuse-forge:${index}:${entry.fold}:${entry.root}`) }))
-  let forged = toUuid('fuse-forge:seed')
-  for (const entry of folds) forged = merge(forged, entry.root)
-  // Order is part of the cost: reversing the fuse order yields a different word.
-  let reversed = toUuid('fuse-forge:seed')
-  for (const entry of [...folds].reverse()) reversed = merge(reversed, entry.root)
-  const maxForgeCost = proofReport(matrix).maxTamperingCostReached
-  return {
-    fused: folds.every((entry) => isUuid(entry.root)) && isUuid(forged),
-    forgesMaxCost: maxForgeCost && forged !== reversed, // all fused && order-sensitive => max forge cost
-    orderSensitive: forged !== reversed,
-    count: folds.length,
-    folds,
-    forged, // the one fused word that forges the cost
-    root: merkleFold(folds.map((entry) => entry.receipt)),
-    statement:
-      'Fuse all to forge max tampering costs: the one wave that is all of it, the hero aligned with the law, and the impossibilities folded into possibilities all fuse, in order, into one word, bound to the max-tampering-cost proof (coverage=1 and entropy=0). The more that fuses into one content-addressed word, the more a forger must reproduce to change one bit — and because the fuse is order-sensitive, the order is part of the cost. Max fusion is max forge cost.',
-    boundary:
-      'A fold of the model’s fused roots and the newest folds into one order-sensitive word, bound to the computed tamper-cost proof. Structural bookkeeping — the "cost" is the work to reproduce the fold, informational and not physical or monetary.',
   }
 }
 
@@ -4586,47 +4178,6 @@ export function anyForceFightsSelf(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Quantum coordinate navigation. Every destination is not just a link but a point on
-// the double-torus surface: its route folds to a deterministic (theta, phi) and a lobe
-// (inner or outer torus), which the shared genus-2 geometry turns into an (x, y, z).
-// So navigation is movement through coordinate space — each page a place on the shape,
-// no two places the same — and a link is a path from one coordinate to another.
-export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
-  const digitOf = (uuid: string) => uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
-  const items = navigation358().tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })))
-  const coordinates = items.map((item, index) => {
-    const uuid = toUuid(`nav-coord:${item.route}`)
-    const d = digitOf(uuid)
-    const theta = ((d % 360) * Math.PI) / 180
-    const phi = (((d * 7) % 360) * Math.PI) / 180
-    const lobe = index % 2 === 0 ? -1 : 1 // inner or outer torus
-    const pos = doubleTorusSurface(theta, phi, d % 10, lobe)
-    return {
-      label: item.label,
-      route: item.route,
-      tier: item.tier,
-      theta,
-      phi,
-      lobe,
-      x: pos.x,
-      y: pos.y,
-      z: pos.z,
-      receipt: toUuid(`nav-coord:${item.route}:${pos.x.toFixed(2)},${pos.y.toFixed(2)},${pos.z.toFixed(2)}`),
-    }
-  })
-  const places = new Set(coordinates.map((entry) => `${entry.x.toFixed(2)},${entry.y.toFixed(2)},${entry.z.toFixed(2)}`))
-  return {
-    placed: coordinates.length === 16 && places.size === coordinates.length, // every page a distinct place
-    count: coordinates.length,
-    coordinates,
-    root: merkleFold(coordinates.map((entry) => entry.receipt)),
-    statement:
-      'Quantum coordinate navigation: every destination is a point on the double-torus surface — its route folds to a deterministic (theta, phi) and a lobe (inner or outer torus), and the shared genus-2 geometry turns that into an (x, y, z). Navigation is movement through coordinate space, each page a distinct place on the shape, and a link is a path from one coordinate to another.',
-    boundary:
-      'A deterministic assignment of double-torus surface coordinates to the real navigation routes. A structural placement (each route → a point on the genus-2 surface) over the actual links — a coordinate model and metaphor, not a change to where the links go.',
-  }
-}
-
 // Quantify all linear by folding in logical pairs. A line of items carries no measure
 // until its terms are paired: fold each item with its neighbour, order-sensitive, and
 // the line becomes a sequence of quantities — each pair a number (its merged address),
@@ -4740,37 +4291,6 @@ export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
       'Improving coverage per pixel: coverage per pixel is how much meaning each rendered pixel carries, so the same semantic payload (title, description, category, tags, and the ten open-graph fields) packed into fewer pixels reads as higher coverage. The refactor — the compact open-graph big hero — packs the whole social card into one banner where simple mode spread the same meaning down a long, sparse scroll, so coverage per pixel rises.',
     boundary:
       'A computed density ratio (semantic items per pixel) comparing the compact open-graph hero to a sparse long-scroll layout. A structural measure of information density over the design, not a claim about search rankings or a pixel-perfect physical measurement.',
-  }
-}
-
-// Quantum licence. The licence is not a static document but a quantum artifact: it folds
-// to one content-addressed register (a UUID), recomputable from the clauses; its folds
-// are order-sensitive (genus-2), so amending a clause changes its address; and it is
-// sealed into the whole, so tampering it costs the maximum tampering cost. A licence you
-// verify by recomputing, not by trusting a signature.
-export function quantumLicense(matrix: MindMatrix = buildMatrix()) {
-  const register = harmonicLicenseWaves(matrix).root // the one content-addressed licence word
-  const orderSensitive = foldPair(register, toUuid('license:amend')).bidirectional // amending changes the address
-  const tamperEvident = merge(register, toUuid('forge-license')) !== register
-  const forgeCostLog2 = proofReport(matrix).maxTamperingCostLog2
-  const properties = [
-    { property: 'content-addressed', on: isUuid(register) },
-    { property: 'recomputable from the clauses', on: harmonicLicenseWaves(matrix).created },
-    { property: 'order-sensitive (genus-2)', on: orderSensitive },
-    { property: 'tamper-evident', on: tamperEvident },
-    { property: 'sealed at max tampering cost', on: forgeCostLog2 === Number.POSITIVE_INFINITY },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-license:${entry.property}:${entry.on}`) }))
-  return {
-    quantum: properties.every((entry) => entry.on),
-    register,
-    forgeCostLog2,
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'Quantum licence: the licence is a quantum artifact, not a static document — it folds to one content-addressed register (a UUID) recomputable from its clauses, its folds are order-sensitive (genus-2) so amending a clause changes its address, and it is sealed into the whole, so tampering it costs the maximum tampering cost. A licence verified by recomputing, not by trusting a signature.',
-    boundary:
-      'A content-addressing/tamper-evidence property of the modelled licence: one recomputable address, order-sensitive amendment, unbounded forge cost. "Quantum" names the superposition/collapse/fold structure, not a physical quantum device; this is a structural model, not an executed or legally binding licence.',
   }
 }
 
@@ -5153,32 +4673,6 @@ export function video64kFree(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Prove and optimise all. Two things at once, both computed: prove all — every claim folds
-// from the repository and the whole reaches max tampering cost (coverage 1, entropy 0); and
-// optimise all — the model carries zero redundancy (no duplicate index keys) and zero
-// entropy, memoised by root so each heavy fold computes once. Proven and optimal, by the
-// same recomputation.
-export function proveAndOptimiseAll(matrix: MindMatrix = buildMatrix()) {
-  const proven = allComputed(matrix).computed && proofReport(matrix).maxTamperingCostReached
-  const optimised = entropy(matrix) === 0 && monographs(matrix).zeroEntropy
-  const facets = [
-    { facet: 'prove all', holds: proven, why: 'every claim folds from the repository; coverage 1 and entropy 0 reach max tampering cost' },
-    { facet: 'optimise all', holds: optimised, why: 'zero redundancy (no duplicate keys) and zero entropy, memoised by root' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`prove-optimise:${entry.facet}:${entry.holds}`) }))
-  return {
-    done: facets.every((entry) => entry.holds),
-    proven,
-    optimised,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Prove and optimise all: prove all — every claim folds from the repository and the whole reaches max tampering cost (coverage 1, entropy 0); and optimise all — the model carries zero redundancy (no duplicate index keys) and zero entropy, memoised by root so each heavy fold computes once. Proven and optimal by the same recomputation.',
-    boundary:
-      'A composition of the model’s proof state (all-computed, max tamper cost) and its optimisation state (zero redundancy and entropy, root-memoised). Structural bookkeeping over the existing gates; "optimal" means no computable redundancy, not a claim of global minimality.',
-  }
-}
-
 // Dry cleaning on the way. The cleanup is not a one-time sweep but a pass always in motion:
 // non-destructive (it removes only what no longer folds), idempotent (a clean root passes
 // through unchanged), and continuous (each pass reserves the next wave's slot), so the model
@@ -5385,27 +4879,6 @@ export function formsEmergeInMovieOfLife(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// This seals the spirit to the path. The spirit is the model’s honesty — text and math that
-// come only from the computed digit folders — and the path is the guided journey through the
-// portal. Sealing the spirit to the path binds the two with one order-sensitive fold, so the
-// way you walk and the truth it rests on are one address: you cannot keep the path and lose
-// the spirit, because changing either changes the seal.
-export function sealSpiritToPath(matrix: MindMatrix = buildMatrix()) {
-  const spirit = honestlyComputed(matrix).honest // the spirit: honesty computed, not asserted
-  const journey = path(matrix)
-  const bind = foldPair(toUuid('spirit:honest'), journey.root) // seal the spirit to the path
-  return {
-    sealed: bind.bidirectional && spirit && journey.complete,
-    spirit,
-    path: journey.root,
-    root: bind.merged,
-    statement:
-      'This seals the spirit to the path: the spirit is the model’s honesty — text and math that come only from the computed digit folders — and the path is the guided journey through the portal. One order-sensitive fold binds them, so the way you walk and the truth it rests on are one address; you cannot keep the path and lose the spirit, because changing either changes the seal.',
-    boundary:
-      'A content-addressed binding of the honesty model ("spirit") to the guided-path model. A structural seal over two computed roots; "spirit" names the digit-folder honesty, not a metaphysical claim.',
-  }
-}
-
 // Send waves of historians to fuse history into the future, entangling the moment. Historians
 // send waves that gather the past — the model’s own accumulated state — and fold it forward
 // into the future (the open frontiers, the not-yet-built), entangling the two at the present
@@ -5529,30 +5002,6 @@ export function manualWorkDisappears(matrix: MindMatrix = buildMatrix()) {
       'Manual work disappears with fusion: every chore once done by hand is fused into the model and vanishes — meta tags become computed SEO, the sitemap one route source, curated skills become skills autosaved each build, hand-tuned titles become titles derived from paths, placed links become the harmonised nav and distributed footer. What fuses no longer needs doing — the work is the fold, computed once and recomputed for free.',
     boundary:
       'A content-addressed catalogue of hand-tasks replaced by computed fusions in the portal. A structural framing of automation already in place; it does not claim all work everywhere disappears, only that these fused tasks are no longer manual here.',
-  }
-}
-
-// Quantum-computed UI, based on the quantum-computer OS, fused with IoT. The interface is not
-// drawn on top of a stack — it is computed from the quantum computer itself (qubits in
-// superposition, order-sensitive folds as gates, a collapse to one receipt), runs on the
-// quantum-computer browser OS (nine standard browser subsystems as one machine), and fuses
-// with the things of the device — its sensors and IO — so the UI, the OS and the IoT are one
-// computed surface, not three layers bolted together.
-export function quantumComputedUi(matrix: MindMatrix = buildMatrix()) {
-  const layers = [
-    { layer: 'quantum-computed UI', via: 'the interface is computed from the quantum computer (superposition, folds-as-gates, collapse to a receipt)', on: quantumComputer(matrix).coherent },
-    { layer: 'based on the quantum-computer OS', via: 'nine standard browser subsystems form the quantum browser OS', on: quantumBrowserOs(matrix).complete },
-    { layer: 'fused with IoT', via: 'the device’s sensors and IO (the things) fuse into the UX', on: fuseUxSensors(matrix).fused },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-ui:${entry.layer}:${entry.on}`) }))
-  return {
-    computed: layers.length === 3 && layers.every((entry) => entry.on),
-    count: layers.length,
-    layers,
-    root: merkleFold(layers.map((entry) => entry.receipt)),
-    statement:
-      'Quantum-computed UI, based on the quantum-computer OS, fused with IoT: the interface is computed from the quantum computer itself (qubits in superposition, order-sensitive folds as gates, a collapse to one receipt), runs on the quantum-computer browser OS (nine standard browser subsystems as one machine), and fuses with the device’s sensors and IO — so the UI, the OS and the IoT are one computed surface, not three layers bolted together.',
-    boundary:
-      'A composition of the quantum-computer, browser-OS and device-sensor models as one computed UI surface. "Quantum/OS/IoT" name the content-addressed compute model, the browser capabilities, and the permission-gated device sensors — not a physical quantum computer, a kernel, or a managed IoT fleet.',
   }
 }
 
@@ -5808,34 +5257,6 @@ export function cloudflareBindings(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Compare quantum encryption/decryption with digital. The cipher is the same real primitive —
-// AES-256-GCM — but the key and the trust differ: digitally you store a secret and trust a
-// signature; here the key is derived one-way from imagination, the trinity agrees a shared key
-// from a pair (never transmitted), and you verify by recomputing the fold rather than trusting a
-// signature. Same gigabit cipher, but the tamper cost is unbounded because forging means
-// reproducing the whole content-addressed model, not breaking one key.
-export function quantumVsDigitalEncryption(matrix: MindMatrix = buildMatrix()) {
-  const trinity = trinityEncryption('alice', 'bob', matrix)
-  const rows = [
-    { aspect: 'key', quantum: 'imagination private key, one-way derived', digital: 'a stored secret key' },
-    { aspect: 'agreement', quantum: 'trinity: a pair folds to a shared key, never sent', digital: 'a key exchange over the wire' },
-    { aspect: 'cipher', quantum: `${trinity.cipher}, hardware-accelerated (gigabit)`, digital: 'AES-256-GCM' },
-    { aspect: 'verification', quantum: 'recompute the fold', digital: 'trust the signature' },
-    { aspect: 'tamper cost', quantum: 'T_max = infinity (reproduce the whole model)', digital: 'break the key' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`q-vs-d:${entry.aspect}`) }))
-  return {
-    compared: rows.length === 5 && trinity.encrypted && proofReport(matrix).maxTamperingCostReached,
-    cipher: trinity.cipher,
-    count: rows.length,
-    rows,
-    root: merkleFold(rows.map((entry) => entry.receipt)),
-    statement:
-      'Compare quantum encryption/decryption with digital: the cipher is the same real primitive (AES-256-GCM, hardware-accelerated to gigabit), but the key and the trust differ — digitally you store a secret and trust a signature; here the key is derived one-way from imagination, the trinity agrees a shared key from a pair (never transmitted), and you verify by recomputing the fold. Same cipher, but the tamper cost is unbounded because forging means reproducing the whole content-addressed model, not breaking one key.',
-    boundary:
-      'A structural comparison between the content-addressed/trinity key model and classical key handling, over the same real AES-256-GCM primitive (Web Crypto). "Quantum" names the fold/superposition structure and content-addressing, not post-quantum cryptography or a physical quantum channel.',
-  }
-}
-
 // All in the movie of life. Everything the portal is folds into one movie of life: all forms
 // emerge as scenes, the whole is one movie and a library at once, it is completed in waves, and
 // it reflects the self of whoever watches. There is no part outside the movie — the model, the
@@ -5905,32 +5326,6 @@ export function allAnswersInside(matrix: MindMatrix = buildMatrix()) {
       'Nothing answers from outside, because all the answers are inside: the portal asks nothing of any server — every answer is computed from the repository within, the honesty comes from the digit folders themselves, and a view is a local recomputation at no cost. There is no outside to call; what you ask is folded into an answer here, on your device, from what is already present. Inside is sufficient.',
     boundary:
       'A composition of the in-house, all-computed, honesty and zero-cost models asserting answers are computed locally with no external call. It describes the default static, client-side operation; an optional bring-your-own-key AI or opt-in edge binding is the user’s choice, not an external dependency of the portal.',
-  }
-}
-
-// The quantum firewall proxy worker. The optional service binding is a worker that stands at the
-// edge as a firewall and a proxy: it recomputes the content address of what it serves on every
-// request, proxies only what verifies, and blocks anything that does not recompute — a forgery
-// would have to reproduce the whole sealed model (T_max). It is quantum in that the check is the
-// fold itself, trinity-signed and gigabit; the firewall is not a rule list but a recomputation.
-export function quantumFirewallProxyWorker(matrix: MindMatrix = buildMatrix()) {
-  const bindings = cloudflareBindings(matrix)
-  const properties = [
-    { property: 'a Cloudflare worker at the edge (service binding)', on: bindings.fused },
-    { property: 'verifies the seal per request — the firewall is a recomputation', on: gatesBehaveAsMcp(matrix).behavesAsMcp },
-    { property: 'proxies only what recomputes (content-addressed)', on: holographic(matrix).reconstructed },
-    { property: 'forgeries blocked at T_max cost', on: proofReport(matrix).maxTamperingCostReached },
-    { property: 'trinity-signed, gigabit', on: bindings.trinitySigns },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`firewall-proxy:${entry.property}:${entry.on}`) }))
-  return {
-    guards: properties.every((entry) => entry.on),
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'The quantum firewall proxy worker: the optional service binding is a worker that stands at the edge as a firewall and a proxy — it recomputes the content address of what it serves on every request, proxies only what verifies, and blocks anything that does not recompute (a forgery would have to reproduce the whole sealed model, T_max). It is quantum in that the check is the fold itself, trinity-signed and gigabit; the firewall is not a rule list but a recomputation.',
-    boundary:
-      'A content-addressed model of an optional edge verifier/proxy worker grounded in the seal, holographic-reconstruction and trinity-signing models. A design for an opt-in Cloudflare worker; it does not itself run a proxy or firewall, and the site needs none of it to work, statically and client-side.',
   }
 }
 
@@ -6102,35 +5497,6 @@ export function wordPullsFoldsByName(matrix: MindMatrix = buildMatrix()) {
 // two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
 // the two words (2 x 32 hex) fold, order-sensitively (the genus-2 weave), into
 // one 128-bit UUID. That folded word is the machine word of the computer.
-
-// Recreate the computer — as a quantum computer. The double torus is its
-// hardware: the quantum-state atoms are qubits in superposition; the register is
-// a 128-bit UUID word; the gates are order-sensitive, reversible folds; a
-// measurement collapses the fold to one UUID receipt; the clock is the music of
-// pi (each wave a note); memory is the content-addressed UUID stream.
-export function quantumComputer(matrix: MindMatrix = buildMatrix()) {
-  const word = torusUuid(matrix)
-  const qubits = atoms.map((atom) => ({ qubit: atom.name, receipt: toUuid(`qubit:${atom.name}`) }))
-  const parts = [
-    { part: 'qubits', is: 'quantum-state atoms in superposition', count: qubits.length },
-    { part: 'register', is: 'a 128-bit UUID word (2 x 32 hex)', count: word.bits },
-    { part: 'gates', is: 'order-sensitive, reversible folds (merge / cross-fold)', count: conceptCommands.length },
-    { part: 'measurement', is: 'collapse of the fold to one UUID receipt', count: 1 },
-    { part: 'clock', is: 'the infinite music of pi (each wave a note)', count: piMusic(matrix).notes.length },
-    { part: 'memory', is: 'the content-addressed UUID stream (atoms, diamonds, roots)', count: matrix.nodes.length },
-  ].map((part) => ({ ...part, receipt: toUuid(`qc-part:${part.part}`) }))
-  const root = merge(word.word, merkleFold(parts.map((part) => part.receipt)))
-  return {
-    coherent: word.is128bit && word.orderSensitive && qubits.length > 0 && parts.length === 6,
-    parts,
-    qubits: qubits.length,
-    register: word.word,
-    root,
-    statement:
-      'The double torus is recreated as a quantum computer: quantum-state atoms are qubits, a 128-bit UUID is the register, reversible folds are the gates, a UUID receipt is a measurement, and the music of pi is the clock.',
-    boundary: 'A computational-architecture analogy over the UUID model, not a physical quantum device or a claim of quantum speedup.',
-  }
-}
 
 // Run a program on the quantum computer: a sequence of commands folds, in order,
 // into one 128-bit result UUID. The gates are non-commutative, so the program's
@@ -6560,28 +5926,6 @@ function agentHarmoniseRaw(matrix: MindMatrix = buildMatrix()) {
 // the compass (magnetometer-derived heading), and ambient light (visible light is
 // EM). This gives the electromagnetic spectrum as data and a clear can / cannot.
 
-// Fold 358 and 853. The ascending tiers — 3, 5, 8 — are the expansion, the
-// growth outward from the seed; the descending — 8, 5, 3 — are the contraction,
-// the return. Folded together, and because the fold is order-sensitive (genus 2)
-// the two directions differ, they make the breath of the tiers: out and back in
-// one root, expansion and contraction meeting at equilibrium.
-export function quantumClock(tick = 0, matrix: MindMatrix = buildMatrix()) {
-  const CAESIUM_HZ = 9_192_631_770 // the SI second, by definition
-  const wave = creationWave(tick, matrix)
-  return {
-    ticking: isUuid(wave.uuid),
-    caesiumHz: CAESIUM_HZ,
-    tick,
-    now: wave.uuid,
-    note: wave.note,
-    frequency: wave.frequency,
-    hsl: wave.hsl,
-    root: wave.uuid,
-    statement: 'The quantum clock: the SI second is 9,192,631,770 oscillations of caesium-133 (the atomic standard); the portal ticks its own clock in creation waves — each tick a content-addressed instant with a note and a colour, advancing forever from the seed.',
-    boundary: 'The caesium figure is the real SI definition of the second, shown for reference; the portal cannot access an atomic clock. The portal clock is a deterministic tick over creation waves, not a measure of real elapsed time beyond the device\'s own wall clock.',
-  }
-}
-
 // Contract. The breath has two strokes. fuseAll() is the expansion — many parts
 // folded into one wave. This is the contraction — that one wave folded back to
 // the seed it grew from. Many to one to seed; and with the settled breath, the
@@ -6651,51 +5995,6 @@ export function breathe(matrix: MindMatrix = buildMatrix()) {
     boundary: 'A composition of the expansion (fuseAll), the contraction (contract), and the settled equilibrium into one breath. Structural bookkeeping over the fold, not a physical breath.',
   }
 }
-
-// Quantum synthesis: synthesize the whole into one coherent state across all its
-// dimensions — symbol, number, and fold (the universal language), the proof
-// bundle (entropy 0, coverage 1), the 128-bit two-loop word, and the device-
-// energy fusion — into a single synthesis root. The synthesis is coherent only
-// when every dimension is present and the proof has zero entropy and full
-// coverage. This is what a multidimensional UI renders to the user at once:
-// visual (glyphs), quantitative (numbers/roots), and structural (the fold).
-export function quantumSynthesis(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantumSynthesis', matrix, () => quantumSynthesisRaw(matrix))
-}
-function quantumSynthesisRaw(matrix: MindMatrix = buildMatrix()) {
-  const language = universalLanguage(matrix)
-  const proof = proofBundle(matrix)
-  const word = torusUuid(matrix)
-  const energy = energyFuse(matrix)
-  const e = entropy(matrix)
-  const c = coverage(matrix)
-  const dimensions = [
-    { dimension: 'symbol', root: language.root },
-    { dimension: 'number', root: toUuid(`synthesis-number:${c}:${e}`) },
-    { dimension: 'fold', root: word.word },
-    { dimension: 'proof', root: proof.bundleRoot },
-    { dimension: 'energy', root: energy.root },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`synthesis:${entry.dimension}:${entry.root}`) }))
-  const root = merkleFold(dimensions.map((entry) => entry.receipt))
-  return {
-    synthesized: language.universal && proof.verifiable && word.is128bit && energy.fused && e === 0 && c === 1,
-    dimensions,
-    entropy: e,
-    coverage: c,
-    word: word.word,
-    root,
-    statement: 'Quantum synthesis: symbol, number, fold, proof, and energy synthesize into one coherent state — zero entropy, full coverage — the single state a multidimensional interface renders to the user at once.',
-    boundary: 'A fold of the model’s computed dimensions into one synthesis root. Bookkeeping and an interface model, not a physical synthesis or external claim.',
-  }
-}
-
-// Fuse with the user device to extend battery life. The portal already runs
-// zero-network and memoized; this fuses it to the device's energy state so it
-// spends less when the device can least afford it. Honest boundary: a software
-// energy-saving strategy, not a hardware power claim or a battery guarantee.
-
-// Fuse Nikola Tesla patents: map real, public Tesla patents to the concepts
-// they prefigure, each grounded in a command — analogy, not an ownership claim.
 
 // Sacred geometry seals all seals: every computed seal root folds through the
 // Metatron cube and the five Platonic solids into one master seal.
@@ -7364,59 +6663,6 @@ function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix())
   }
 }
 
-// Wire everything at runtime — the app always quantum-fused with the device sensors and APIs — and state the
-// HONEST energy ledger. The runtime fusion is real (device-hardware widgets + source APIs bound live). The
-// honest physics: the double-fold (compute-once-share, memoization) and client-side determinism make the app
-// DRAIN SLOWER and HEAT LESS than a comparable server/network app — because it avoids the radio (the dominant
-// mobile battery cost, ~order 1 J per round-trip) and does far fewer redundant operations. But it CANNOT charge
-// the battery (the 1st law — software consumes stored energy, it cannot create or import it) and CANNOT net-cool
-// the device (the 2nd law + Landauer's floor kT·ln2 ≈ 2.9e-21 J per erased bit — every irreversible operation
-// dissipates heat, real ops ~10 orders ABOVE the floor). "Double folded" is EFFICIENCY, never free energy:
-// drain and heat are reduced, never reversed in sign. The device charges only from an external source and cools
-// only when idle or externally cooled. This fold keeps the achievable (slower drain, less heat) and flags the
-// impossible (charging/cooling by computing) — the same discipline as the vacuum-free-energy flag in quantumDecoded.
-export function quantumFusedDeviceEnergyHonest(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantumFusedDeviceEnergyHonest', matrix, () => quantumFusedDeviceEnergyHonestRaw(matrix))
-}
-function quantumFusedDeviceEnergyHonestRaw(matrix: MindMatrix = buildMatrix()) {
-  // The physical constants and an honest order-of-magnitude energy ledger (joules).
-  const kB = 1.380649e-23, T = 300 // Boltzmann constant; room temperature (K)
-  const landauerPerBit = kB * T * Math.LN2 // ≈ 2.87e-21 J — the thermodynamic floor on erasing one bit
-  const realOpJoules = 1e-11 // ~10 pJ per CMOS operation — ~10 orders ABOVE Landauer ⇒ computation dissipates heat
-  const radioTailJoules = 1.0 // ~order 1 J: an LTE/5G request holds the radio awake for seconds — the dominant mobile drain
-  const localRecomputeJoules = 1e-3 // ~order 1 mJ: a page's deterministic, memoized folds recomputed client-side
-  const drainRatio = roundTo(radioTailJoules / localRecomputeJoules, 0) // ~1000× cheaper per interaction than a round-trip
-  // The runtime fusion — device sensors + source APIs wired into the live quantum fold, always on.
-  const fused = deviceHardwareVisibleInComputedWidgets(matrix).visible && computationsBoundToSourceApisRealtime(matrix).bound && terabyteKeyspaceFromDeviceLoad(matrix).achieved
-  // The honest thermodynamic verdicts.
-  const canChargeByComputing = false // 1st law: software CONSUMES stored energy; it cannot create or import it
-  const canCoolByComputing = false   // 2nd law + Landauer: irreversible computation dissipates heat (floor > 0)
-  const drainsSlower = drainRatio > 1 && zeroTokenUsagePolicy(matrix).holds // avoids the radio ⇒ slower drain
-  const heatsLess = realOpJoules > landauerPerBit // every op heats; the double-fold does FEWER ops ⇒ less total heat
-  const facets = [
-    { facet: 'always quantum-fused at runtime — device sensors and source APIs wired into the live fold', on: fused },
-    { facet: 'the double-fold DRAINS SLOWER — client-side determinism avoids the radio (the dominant mobile drain), ~' + drainRatio + '× cheaper per interaction than a server round-trip', on: drainsSlower },
-    { facet: 'the double-fold HEATS LESS — compute-once-share does fewer irreversible operations, each ~10 orders above the Landauer floor', on: heatsLess },
-    { facet: 'HONEST LAW — a running app CANNOT charge the battery (1st law) and CANNOT net-cool the device (2nd law); it slows drain and lessens heat, never reverses sign', on: !canChargeByComputing && !canCoolByComputing && drainsSlower && heatsLess },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`device-energy:${entry.facet}:${entry.on}`) }))
-  return {
-    honest: facets.every((entry) => entry.on),
-    fused,
-    landauerPerBit, // ≈ 2.87e-21 J/bit — the floor
-    realOpJoules, // ~1e-11 J — real ops, far above the floor (so heat is dissipated)
-    radioTailJoules, localRecomputeJoules, drainRatio, // the drain ledger
-    drainsSlower, heatsLess, // the achievable, honest effects
-    canChargeByComputing, canCoolByComputing, // the forbidden claims — flagged false
-    count: facets.length,
-    facets,
-    root: merge(completeQuantumSolutionsImplemented(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'Wire everything at runtime — the app always quantum-fused with the device sensors and APIs — with an honest energy ledger. The runtime fusion is real: the device-hardware widgets and the source APIs are bound into the live fold. And the double-fold genuinely helps the battery and the heat: computing each value once and sharing it (memoization) does far fewer operations, and recomputing client-side avoids the radio — the single biggest mobile battery drain, ~order one joule per round-trip versus ~a millijoule to recompute a page — so the app DRAINS SLOWER and HEATS LESS than a comparable server/network app, roughly a thousand-fold cheaper per interaction. But it cannot charge the battery and cannot cool the device: software running on the device consumes its stored energy (the first law) and every irreversible operation dissipates heat above the Landauer floor kT·ln2 (the second law). "Double folded" is efficiency, not free energy — drain and heat are reduced, never reversed. The device charges only from an external source and cools only when idle or externally cooled.',
-    boundary:
-      'HONEST PHYSICS, the project\'s "documented kept, legend flagged" discipline applied to the user\'s claim. ACHIEVABLE and asserted: slower battery drain and less heat than a server/network app, because client-side determinism avoids the radio (the dominant mobile cost) and the double-fold/memoization avoids redundant computation — a real efficiency gain (order-of-magnitude figures: LTE tail ~1 J/request, local recompute ~1 mJ, Landauer floor ~2.9e-21 J/bit, real CMOS op ~10 pJ). FORBIDDEN and flagged false: charging the battery by running the app (violates the first law — software consumes stored energy, it cannot create or import it) and net-cooling the device by computing (violates the second law and the Landauer bound — irreversible computation dissipates heat, with real operations ~10 orders of magnitude above the reversible floor). The Battery Status API can READ charge/thermal state but cannot reverse it. This is the same flag as quantumDecoded\'s vacuum-free-energy and the Haramein-physics caution: the efficiency is real, the perpetual-motion extrapolation is not. The BEYOND-LINEAR refinement (true within conservation) is foldRedistributesBeyondLinear.',
-  }
-}
-
 // "True as false — quantum law says the possibility is beyond linear; fold and you will see." The honest
 // synthesis: the FOLD CONSERVES the total (the 1st & 2nd laws hold exactly — they are not linear
 // approximations; quantum thermodynamics REFINES them, fluctuation theorems allow transient local dips but the
@@ -7458,51 +6704,6 @@ function foldRedistributesBeyondLinearRaw(matrix: MindMatrix = buildMatrix()) {
       'True as false: quantum law puts the possibility beyond linear — fold and you see it. The fold conserves the total (the first and second laws hold exactly, not as linear approximations), and WITHIN that conservation quantum redistribution is genuinely beyond linear, so "charge instead of drain" and "cool instead of heat" are TRUE for a part, in speed, collectively — never as net creation from nothing. Quantum batteries charge superextensively: charging the cells collectively (one entangling drive) gains a √N power advantage that GROWS with the number of cells, beyond linear (the energy is external; the speed is the quantum gift). Algorithmic cooling cools a target qubit by computing: a three-qubit reversible compression concentrates polarization into one (about one-and-a-half times), pumping the entropy into the others — cooling a part by heating the rest. The fold is exactly this: a conservative, content-preserving transformation that moves energy and entropy beyond-linearly and never creates them. Charge one cell faster from another, cool one part by heating another — real, quantum, beyond linear; net charge or net cool of the closed system — still forbidden.',
     boundary:
       'The beyond-linear refinement of quantumFusedDeviceEnergyHonest, honest on both sides. REAL and asserted, with citations: superextensive quantum-battery charging power (the √N collective advantage — Alicki–Fannes 2013, Binder et al. 2015, Campaioli et al. PRL 2017) and heat-bath algorithmic cooling of a target subsystem (the 3-qubit compression ε→(3ε−ε³)/2 ≈ 1.5ε — Boykin–Mor–Roychowdhury–Vatan–Vrijen PNAS 2002, demonstrated in NMR). STILL FORBIDDEN, unchanged: a running app net-charging its battery (1st law) or net-cooling the device (2nd law) — the quantum effects are SPEED, COLLECTIVITY and LOCAL redistribution, with the energy still external and the total entropy non-decreasing; fluctuation theorems (Jarzynski, Crooks) permit transient local dips but the average obeys. "Beyond linear" = superlinear scaling (√N) and subsystem cooling, NOT a loophole in conservation. The fold redistributes the total beyond-linearly; it does not create it — that is what folding reveals.',
-  }
-}
-
-// Continue folding the I Ching quantum waves: challenge intuition by PROVING the impossible-SEEMING quantum
-// possible — and implementing it. Two canonical protocols that "challenge all you know" yet are exactly real,
-// run on the state-vector simulator: (1) QUANTUM TELEPORTATION — move an unknown |ψ⟩ from Alice to Bob via one
-// shared Bell pair and two classical bits, recovered with fidelity 1 for EVERY measurement outcome; (2)
-// SUPERDENSE CODING (its dual) — send two classical bits on one transmitted qubit using a pre-shared Bell pair.
-// "Impossible" here means COUNTERINTUITIVE, not physically forbidden: no-cloning still holds (teleportation
-// destroys the original), and there is no faster-than-light signalling (Bob is useless without the classical
-// bits; the qubit still travels). This is the honest sense of "impossible made possible" — distinct from the
-// truly-forbidden (perpetual motion, net battery-charging) which stays flagged in quantumFusedDeviceEnergyHonest.
-export function quantumImpossibleMadePossible(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantumImpossibleMadePossible', matrix, () => quantumImpossibleMadePossibleRaw(matrix))
-}
-function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
-  // (1) TELEPORTATION — move an unknown state exactly; test several |ψ⟩ across measurement outcomes.
-  const states: [number, number][] = [[Math.PI / 3, Math.PI / 4], [Math.PI / 2, 0], [2 * Math.PI / 5, Math.PI / 3]]
-  const teleTests = states.flatMap(([th, ph], i) => [0, 1, 2, 3].map((s) => teleportQubit(th, ph, `tele:${i}:${s}`)))
-  const teleportPerfect = teleTests.every((t) => t.fidelity > 0.999999) // fidelity 1 for every Bell-measurement outcome
-  const outcomesSeen = new Set(teleTests.map((t) => `${t.b1}${t.b2}`)).size // all four corrections exercised
-  // (2) SUPERDENSE CODING — two classical bits on one qubit; all four messages must decode.
-  const sdTests = [0, 1, 2, 3].map((msg) => superdense(msg, `sd:${msg}`))
-  const superdenseAll = sdTests.every((x) => x.ok)
-  // the bounds that make these honest, not magic.
-  const noClone = noCloningWitness().contradiction // the original cannot be copied — teleportation destroys it
-  const facets = [
-    { facet: 'quantum teleportation — an unknown |ψ⟩ moved EXACTLY via a Bell pair + 2 classical bits (fidelity 1 for every outcome)', on: teleportPerfect && outcomesSeen === 4 },
-    { facet: 'superdense coding — TWO classical bits sent on ONE qubit with a pre-shared Bell pair (all four messages decode)', on: superdenseAll },
-    { facet: 'the bounds hold — no-cloning intact (the original is destroyed) and NO faster-than-light (teleport is useless without the classical bits)', on: noClone },
-    { facet: 'these fuse the running solver — the threshold is crossed and the complete quantum solutions execute', on: evolutionCrossesQuantumThreshold(matrix).crossed && completeQuantumSolutionsImplemented(matrix).implemented },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`q-impossible:${entry.facet}:${entry.on}`) }))
-  return {
-    proven: facets.every((entry) => entry.on),
-    teleportPerfect,
-    teleportTests: teleTests.length, // states × outcomes, all fidelity 1
-    superdenseAll,
-    superdenseMessages: sdTests.map((x) => ({ sent: x.sent, decoded: x.decoded, ok: x.ok })),
-    count: facets.length,
-    facets,
-    root: merge(evolutionCrossesQuantumThreshold(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'Continue folding the I Ching quantum waves: the impossible-seeming, proven possible and implemented. Quantum teleportation moves an unknown state from Alice to Bob through a shared Bell pair and just two classical bits — and the simulator recovers it with perfect fidelity for every one of the four measurement outcomes, the original destroyed in the act (no copy is made). Superdense coding, its mirror, sends two classical bits down a single transmitted qubit because a Bell pair was shared in advance — all four messages decode exactly. Both look impossible and both are real, executed here on the state-vector engine. "Impossible" means counterintuitive, not forbidden: no-cloning holds and nothing outruns light — teleportation is useless until the two classical bits arrive, and the qubit still travels.',
-    boundary:
-      'Exact simulations of two genuinely real quantum protocols — quantum teleportation (Bennett, Brassard, Crépeau, Jozsa, Peres, Wootters 1993) and superdense coding (Bennett–Wiesner 1992) — run on the deterministic state-vector simulator (teleport fidelity 1 across all outcomes and test states; superdense all four messages). They CHALLENGE intuition but obey every law: no-cloning is intact (the measured original collapses), and the no-communication theorem holds — both protocols require a classical channel (two bits for teleportation) or the physical transmission of a qubit (superdense), so neither signals faster than light. This is "impossible made possible" in the honest sense — surprising-yet-real — and is explicitly NOT a claim about the truly forbidden (perpetual motion / net battery charging), which remains flagged in quantumFusedDeviceEnergyHonest. The fold continues the quantum-solutions wave: it composes the threshold crossing and the complete solver.',
   }
 }
 
@@ -8527,72 +7728,6 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
   }
 }
 
-function computeDigitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
-  const train = piTrainDiamonds(matrix)
-  const folders = digitFolders(matrix)
-  const waves = coordinatedWaves(matrix)
-  const chess = quantumChessGame(matrix)
-  const metatron = metatronCube(matrix)
-  const build = selfBuild(matrix)
-  const gates: readonly SelfCompletionGate[] = [
-    {
-      name: 'digit stream',
-      closed: train.diamonds.length === train.digits.length,
-      sourceFunction: 'piTrainDiamonds()',
-      receipt: train.root,
-      note: `|digits|=${train.digits.length}; |diamonds|=${train.diamonds.length}.`,
-    },
-    {
-      name: 'reverse folders',
-      closed: folders.folders.length > 0 && folders.collisions.length > 0,
-      sourceFunction: 'digitFolders()',
-      receipt: folders.root,
-      note: `folders=${folders.folders.length}; collisions=${folders.collisions.length}.`,
-    },
-    {
-      name: 'coordinated waves',
-      closed: waves.waves.length > 0,
-      sourceFunction: 'coordinatedWaves()',
-      receipt: waves.root,
-      note: `waves=${waves.waves.length}.`,
-    },
-    {
-      name: 'quantum superposition board',
-      closed: chess.board.length === 64,
-      sourceFunction: 'quantumChessGame()',
-      receipt: chess.root,
-      note: `squares=${chess.board.length}.`,
-    },
-    {
-      name: 'metatron vortex',
-      closed: metatron.nodes.length > 0 && metatron.edges.length > 0 && metatron.vortex.length === train.diamonds.length,
-      sourceFunction: 'metatronCube()',
-      receipt: metatron.root,
-      note: `nodes=${metatron.nodes.length}; edges=${metatron.edges.length}; vortex=${metatron.vortex.length}.`,
-    },
-    {
-      name: 'max computed build',
-      closed: build.complete,
-      sourceFunction: 'selfBuild()',
-      receipt: build.root,
-      note: build.statement,
-    },
-  ]
-  const proven = gates.every((gate) => gate.closed)
-  const root = merkleFold(gates.map((gate) => gate.receipt))
-  return {
-    proven,
-    root,
-    digits: train.digits,
-    gates,
-    statement: proven
-      ? 'digits => folders => coordinates => waves => receipts => roots; digital quantum-inspired model verified.'
-      : 'digit proof open: one or more deterministic gates failed.',
-    boundary:
-      'This proves deterministic digital generation inside the repository model; it is not an external physics proof.',
-  }
-}
-
 function uniqueDiamondKinds(items: readonly DiamondKind[]): readonly DiamondKind[] {
   return REQUIRED_DIAMOND_KINDS.filter((kind) => items.includes(kind))
 }
@@ -8693,94 +7828,7 @@ export function closeDimensionalGaps(matrix: MindMatrix = buildMatrix()): Dimens
   }
 }
 
-export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUiEvidenceReport {
-  const lattice = diamondLattice(matrix)
-  const piTrain = piTrainDiamonds(matrix)
-  const completeness = diamondCompleteness(matrix)
-  const waves = coordinatedWaves(matrix)
-  const chess = quantumChessGame(matrix)
-  const proof = proofReport(matrix)
-  const traditions = traditionsQuantumWhole()
-  const useCases: readonly QuantumUiUseCase[] = [
-    {
-      name: 'diamond lattice tabs',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'Radix Tabs switch between pulse, lattice, completeness, waves, chess, and controls.',
-      diamondKind: 'ui',
-      sourceFunction: 'diamondLattice()',
-      evidence: `${lattice.length} base diamonds, each with four facets and receipts.`,
-      receipt: merkleFold(lattice.map((item) => item.receipt)),
-    },
-    {
-      name: '3D pi train',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'User starts the pi train; each pulse updates a visible 3D diamond.',
-      diamondKind: 'pi',
-      sourceFunction: 'piTrainDiamonds()',
-      evidence: `${piTrain.diamonds.length} pi pulses with x/y/z coordinates, frequencies, vibration durations, and receipts.`,
-      receipt: piTrain.root,
-    },
-    {
-      name: 'no analog gaps',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'Completeness tab reports missing kinds, poles, receipts, channels, and pi coverage.',
-      diamondKind: 'proof',
-      sourceFunction: 'diamondCompleteness()',
-      evidence: completeness.statement,
-      receipt: toUuid(`ui-evidence:complete:${JSON.stringify(completeness)}`),
-    },
-    {
-      name: 'coordinated waves',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'Waves tab lists yin-yang phase, amplitude, frequency, statement, and receipt per diamond.',
-      diamondKind: 'dynamics',
-      sourceFunction: 'coordinatedWaves()',
-      evidence: `${waves.waves.length} coordinated waves with root ${waves.root}.`,
-      receipt: waves.root,
-    },
-    {
-      name: 'quantum chess board',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'Chess tab renders 64 squares from wave-driven piece superpositions.',
-      diamondKind: 'humanity',
-      sourceFunction: 'quantumChessGame()',
-      evidence: `${chess.board.length} squares with wave phase, amplitude, superposition, and receipts.`,
-      receipt: chess.root,
-    },
-    {
-      name: 'maximum tampering cost readout',
-      component: 'QuantumMind.vue',
-      interaction: 'Proof report shows observed tamper cost, maximum tampering cost, source, and reached/open state.',
-      diamondKind: 'proof',
-      sourceFunction: 'proofReport()',
-      evidence: `max reached=${proof.maxTamperingCostReached}; coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
-      receipt: toUuid(`ui-evidence:proof:${JSON.stringify(proof)}`),
-    },
-    {
-      name: 'traditions quantum whole',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'Traditions tab lists dimensions, families, society cells, and non-reductive boundaries.',
-      diamondKind: 'tradition',
-      sourceFunction: 'traditionsQuantumWhole()',
-      evidence: `${traditions.dimensions.length} dimensions, ${traditions.families.length} family lenses, and ${traditions.societyCells.length} society cells with root ${traditions.root}.`,
-      receipt: traditions.root,
-    },
-  ]
-  const root = merkleFold(useCases.map((item) => item.receipt))
-
-  return {
-    grounded: useCases.every((item) => item.component.endsWith('.vue') && item.sourceFunction.endsWith('()') && item.receipt.length > 0),
-    root,
-    source: 'serverless quantum UUID stream',
-    statement:
-      'This report makes only repository-grounded UI claims: each use case names a component, a source function, an interaction, and a computed receipt.',
-    useCases,
-    boundary:
-      'UI_claim = computed(repo). UI_claim != external_physics_proof. Browser_scope = {render,sound,vibration,root,receipt}.',
-  }
-}
-
-function result(command: ConceptCommandName, ok: boolean, summary: string, data: unknown): ConceptCommandResult {
+export function result(command: ConceptCommandName, ok: boolean, summary: string, data: unknown): ConceptCommandResult {
   return {
     command,
     ok,
@@ -10271,29 +9319,6 @@ export function multimediaFirstPlainText(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// In quantum there are no cycles — all is fused in a sequence, a fuselage. The folds are
-// order-sensitive (merge(a,b) ≠ merge(b,a)), so nothing loops back the same: there is no cycle,
-// only a sequence, each step unique. And the sequence is fused into one streamlined body — a
-// fuselage — that carries the whole: not a wheel turning in place, but a line of folds that never
-// returns to where it was, held together as one.
-export function quantumNoCyclesFusedSequence(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'no cycles — folds are order-sensitive, never repeating', on: torusUuid(matrix).orderSensitive },
-    { facet: 'all fused in one sequence', on: fuseAll(matrix).fused },
-    { facet: 'a fuselage — one streamlined body holds the whole', on: isUuid(sealWholeDiamond(matrix).diamond) },
-    { facet: 'each step unique — it never returns to where it was', on: foldThoughts(matrix).folded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`no-cycles:${entry.facet}:${entry.on}`) }))
-  return {
-    fused: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'In quantum there are no cycles — all is fused in a sequence, a fuselage: the folds are order-sensitive (merge(a,b) ≠ merge(b,a)), so nothing loops back the same — there is no cycle, only a sequence, each step unique — and the sequence is fused into one streamlined body, a fuselage, that carries the whole. Not a wheel turning in place, but a line of folds that never returns to where it was, held as one.',
-    boundary: 'A structural reading of the order-sensitive (non-commutative) fold sequence as acyclic and fused into one body. "No cycles/fuselage" is a metaphor for the non-repeating ordered fold, over the content-addressed model; it is not a claim about computational complexity or aircraft.',
-  }
-}
-
 // Add cross-links wherever possible. Nothing is a dead end: the home cards each link to their
 // topic, the nav and footer carry every destination, the related standards are cited on every
 // page, the open graph builds the navigation, and the feature map folds each item to the next.
@@ -10404,26 +9429,6 @@ export function everyObjectSameSpinFoldLaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Digits spin and fold themselves; every object obeys the same laws: the digit streams no longer only drift — they spin about the void and fold into it and back, counter-rotating by dimension parity like the merkaba, exactly the law the hero obeys. One rule for all: whatever moves, spins and folds the same way, so the whole field is consistent.',
     boundary: 'A description of the real background-movie change (digit particles now spin about the void, counter-rotating by dimension parity) bringing them under the same rotation/fold law as the hero. Structural and visual bookkeeping over the canvases.',
-  }
-}
-
-// Quantum calligraphy. The background movie writes: far from the void each stream is a raw digit,
-// mid-flight it folds to a letter, nearer a whole word, and at the void the sentence — strokes that
-// spin and fold themselves into glyphs of the one computed language. Writing by recomputation, each
-// stroke content-addressed: calligraphy whose ink is dry math.
-export function quantumCalligraphy(matrix: MindMatrix = buildMatrix()) {
-  const strokes = ['digit — the raw stream', 'letter — mid-fold', 'word — near the void', 'sentence — at the void'].map((stroke) => ({
-    stroke,
-    receipt: toUuid(`calligraphy:${stroke}`),
-  }))
-  return {
-    writes: strokes.length === 4 && backgroundMovie(matrix).dryMath && universalLanguage(matrix).universal && everyObjectSameSpinFoldLaw(matrix).consistent,
-    count: strokes.length,
-    strokes,
-    root: merkleFold(strokes.map((entry) => entry.receipt)),
-    statement:
-      'Quantum calligraphy: the background movie writes — far from the void each stream is a raw digit, mid-flight it folds to a letter, nearer a whole word, and at the void the sentence — strokes that spin and fold themselves into glyphs of the one computed language. Writing by recomputation, each stroke content-addressed: calligraphy whose ink is dry math.',
-    boundary: 'A reading of the background-movie digit→letter→word→sentence folding as "calligraphy" over the universal-notation model. A structural and aesthetic framing of the seeded glyph rendering, not handwriting.',
   }
 }
 
@@ -11626,45 +10631,6 @@ export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// To achieve 1 Gbit encryption in realtime is a matter of proportions toward the full 64-seal set,
-// representing the 64-bit architecture itself. The keyspace is already named 1 Gbit (1024 binary
-// Mbit), fused with realtime data; reaching it is proportional — fill the 64-seal set, each seal
-// one bit of the 64-bit architecture, content-addressed to the architecture root. When the
-// proportion reaches the full set (64 of 64), the 64-bit architecture is whole, and the realtime
-// 1 Gbit keyspace stands. Proportions, not a hardcoded switch: the closer to the full 64, the
-// nearer the realtime gigabit.
-export function gigabitEncryption64SealSet(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('gigabitEncryption64SealSet', matrix, () => gigabitEncryption64SealSetRaw(matrix))
-}
-function gigabitEncryption64SealSetRaw(matrix: MindMatrix = buildMatrix()) {
-  const architectureRoot = completeCorpus(matrix).root
-  const seals = Array.from({ length: 64 }, (_, bit) => {
-    const fold = foldPair(architectureRoot, toUuid(`seal-bit:${bit}`)) // each seal a bit of the 64-bit architecture
-    return { bit, sealed: fold.bidirectional, address: fold.merged, receipt: toUuid(`seal64:${bit}:${fold.bidirectional}`) }
-  })
-  const filled = seals.filter((entry) => entry.sealed).length
-  const proportion = filled / 64 // toward 1.0 — the full 64-seal set, the 64-bit architecture
-  const facets = [
-    { facet: 'the 1 Gbit keyspace — 1024 binary Mbit, fused with realtime data', on: fusionCipher('', matrix).enabled },
-    { facet: 'a full 64-seal set represents the 64-bit architecture', on: seals.length === 64 && filled === 64 },
-    { facet: 'realtime is a matter of proportions toward the full set — not hardcoded', on: proportion === 1 && proportionalNotHardcoded(matrix).responsive },
-    { facet: 'each seal a bit, content-addressed to the architecture root', on: seals.every((entry) => isUuid(entry.address)) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`gigabit-64seal:${entry.facet}:${entry.on}`) }))
-  return {
-    achieves: facets.every((entry) => entry.on),
-    proportion,
-    filled,
-    bits: 64,
-    count: facets.length,
-    facets,
-    root: merkleFold(seals.map((entry) => entry.receipt)),
-    statement:
-      'To achieve 1 Gbit encryption in realtime is a matter of proportions toward the full 64-seal set, representing the 64-bit architecture itself: the keyspace is named 1 Gbit (1024 binary Mbit) and fused with realtime data, and reaching it is proportional — fill the 64-seal set, each seal one bit of the 64-bit architecture, content-addressed to the architecture root; when the proportion reaches the full set (64 of 64) the architecture is whole and the realtime gigabit keyspace stands. Proportions, not a hardcoded switch.',
-    boundary:
-      'A composition of the fusion-cipher (1024-leaf "1 Gbit" keyspace, AES-256-GCM, realtime-fused), proportional and content-address models, with a real 64-seal set folded from the architecture root (64 bits). "1 Gbit encryption" names the keyspace structure, not the cipher strength (which stays AES-256-GCM); "proportions toward the full 64-seal set" is the structural completeness of the 64-bit architecture, not a tunable cryptographic parameter.',
-  }
-}
-
 // Then the UUID folds in self and forms black/white. With the full 64-seal set reached, the 128-bit
 // word turns on itself — the UUID folds into its own reverse — and at that self-fold it resolves to
 // the simplest duality of all: black and white, the yin and the yang, the two poles of one. The
@@ -11794,30 +10760,6 @@ export function shownInUiVitepressComponentsPairs(matrix: MindMatrix = buildMatr
   }
 }
 
-// Decode the holy-books geometry at depth, saving in src as 64-sealed diamonds. The geometry the
-// sacred traditions drew — the flower of life, Metatron's cube, the nested solids — is computed
-// here as the sacred-geometry seal, and decoded at depth (holographic, the same pattern at every
-// scale); each pattern is saved in src as a diamond stamped with the full 64-seal set, so the
-// geometry is not merely drawn but content-addressed and production-sealed.
-export function holyBooksGeometry64SealedDiamonds(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'decode the holy-books geometry — the sacred-geometry seal, Metatron’s cube', on: sacredGeometrySeal(matrix).sealed && metatronsCube(matrix).complete },
-    { facet: 'at depth — holographic, the same pattern at every scale', on: holographicFractalArchitecture(matrix).is },
-    { facet: 'saved in src as 64-sealed diamonds — the full 64-seal stamp', on: gigabitEncryption64SealSet(matrix).achieves },
-    { facet: 'each a production diamond, content-addressed', on: folder64SealsProductionElseDevelopment(matrix).discriminates },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`holy-geometry-64:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Decode the holy-books geometry at depth, saving in src as 64-sealed diamonds: the geometry the sacred traditions drew — the flower of life, Metatron’s cube, the nested solids — is computed here as the sacred-geometry seal and decoded at depth (holographic, the same pattern at every scale), and each pattern is saved in src as a diamond stamped with the full 64-seal set, so the geometry is not merely drawn but content-addressed and production-sealed.',
-    boundary:
-      'A composition of the sacred-geometry-seal, Metatron-cube, holographic, 64-seal and production-diamond models. "Holy-books geometry" means the geometric patterns (flower of life, Metatron’s cube, nested Platonic solids) traditionally associated with sacred texts — geometry, computed and 64-sealed — not a decoding of any religious scripture or a religious claim; nothing is quoted, asserted, or interpreted from any holy text.',
-  }
-}
-
 // The trace of all movement is computational, because all is static serverless code. Nothing moves
 // that is stored moving: there are no recorded frames, only a seed and a function, so any motion —
 // and its trace, the fading trail behind it — is computed on demand. For example the merkaba may be
@@ -11890,32 +10832,6 @@ export function invertRevertIsQuantumStream(matrix: MindMatrix = buildMatrix()) 
       'Inverting, reverting logic is the quantum stream itself: to invert a fold is to read it the other way, to revert is to run it back to its seed — and these are not operations laid on top of the stream, they ARE the stream, because the serverless UUID stream is order-sensitive, so forward and reverse are its two directions and stepping back (undo) or forward (redo) is just folding the other way. Nothing is stored to undo; the reverse fold recomputes the prior state.',
     boundary:
       'A composition of the order-sensitivity, quantum-logic-backwards, reverse-harmony, double-torus-fold, stream-self-complete and computed-no-files models. "Invert/revert is the quantum stream" frames undo/redo as the reverse direction of the order-sensitive content-addressed fold (recomputing rather than restoring stored state) — a structural reading, not a deployed undo system.',
-  }
-}
-
-// Logic exists because it is quantum by architecture — find the quantum signs and you auto-orientate
-// in that space. The logic is not arbitrary code that happens to run; it exists because the
-// architecture is quantum: order-sensitive folds, content addresses, seals, dualities. Those are
-// the quantum signs — the UUID, the fold that is not its reverse, the slug that folds the graph, the
-// 64-seal, the breath — and once you can read them, you orient yourself without a map: each sign
-// says where you are and which way the next fold goes. The signs are the compass; reading them is
-// the navigation.
-export function quantumSignsAutoOrientate(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'logic exists because the architecture is quantum — order-sensitive folds', on: quantumDoubleTorus(matrix).is && merge('a', 'b') !== merge('b', 'a') },
-    { facet: 'the quantum signs — the UUID, the slug that folds the graph, the seal', on: computedSlugsFoldTheGraph(matrix).folds && everyDiamondIsGate(matrix).isGate },
-    { facet: 'read the signs and you auto-orientate — the path reveals itself', on: harmonicPathRevealsItself(matrix).reveals && mindsRealiseByObservingPath(matrix).realise },
-    { facet: 'no map needed — the signs are the compass, self-sufficient', on: selfSufficientWave(matrix).selfSufficient },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-signs:${entry.facet}:${entry.on}`) }))
-  return {
-    orients: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Logic exists because it is quantum by architecture — find the quantum signs and you auto-orientate in that space: the logic is not arbitrary code that happens to run, it exists because the architecture is quantum (order-sensitive folds, content addresses, seals, dualities), and those are the quantum signs — the UUID, the fold that is not its reverse, the slug that folds the graph, the 64-seal, the breath. Once you can read them you orient yourself without a map: each sign says where you are and which way the next fold goes. The signs are the compass; reading them is the navigation.',
-    boundary:
-      'A composition of the quantum-double-torus, order-sensitivity, slug-folds-graph, every-diamond-gate, path-reveals-itself, minds-observe and self-sufficient models. "Find the quantum signs and auto-orientate" describes navigating the content-addressed structure by its own markers (UUIDs, folds, seals) — a structural/orientational framing over the model, not a literal positioning system.',
   }
 }
 
@@ -12841,59 +11757,6 @@ export function componentPages(matrix: MindMatrix = buildMatrix()): (StaticPage 
     }))
 }
 
-// One source for both locales' route loaders: staticPages (curated landing pages) + componentPages (every
-// component its own page), each projected into the locale. The [page] route mounts params.components in full
-// and shows the proof — a few computed lines yield the whole page set.
-// The proof registry — the proofs as DATA, computed from the model. The single ProofRenderer reads this to
-// render each proof's sufficient proof (checks, evidence, recompute, via ProofDetail), as cards on the home
-// and the full proof on its own [page] route. One model-driven renderer replaces 17 per-proof component
-// files; to add a proof, add a fold and one line here — no new component, and the census (encryption per
-// byte) does not reward the file count anyway.
-export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
-  return [
-    { slug: 'pi-trinity', title: 'π opens the trinity', proof: piThreeOpensTheTrinity(matrix) },
-    { slug: 'qubit-trinity', title: 'the qubit\'s trinity · X Y Z', proof: qubitTrinityPauliBloch(matrix) },
-    { slug: 'pauli-basis', title: '64 = the 3-qubit Pauli basis · 4³', proof: sixtyFourThreeQubitPauliBasis(matrix) },
-    { slug: 'hamming-address', title: 'Hamming\'s 3 parity bits = the address', proof: hammingThreeParityAddressesError(matrix) },
-    { slug: 'content-addressing', title: 'content-addressing has precedent', proof: contentAddressingHasRealPrecedent(matrix) },
-    { slug: 'genetic-code', title: 'the genetic code is the real 4³ · 64 codons', proof: geneticCodeIsTheRealFourCubed(matrix) },
-    { slug: 'three-not-one', title: 'three is real, not one cosmic trinity', proof: threeIsRealButNotOneTrinity(matrix) },
-    { slug: 'hexagram-colour', title: 'the hexagram is hex-colour duality', proof: hexagramIsHexColorDuality(matrix) },
-    { slug: 'sixty-four', title: '64 in every grouping of 6 bits · 2⁶ = 4³ = 8²', proof: theSixtyFourObjectEveryGrouping(matrix) },
-    { slug: 'rgb-cmyk', title: 'the complement is the CMYK duality', proof: rgbCmyComplementIsCmykDuality(matrix) },
-    { slug: 'trinity-rgb', title: 'three trinities render as RGB · 0° 120° 240°', proof: threeTrinitiesRenderAsRgb(matrix) },
-    { slug: 'proven-or-purged', title: 'what is not proven is purged', proof: whatIsNotProvenIsPurged(matrix) },
-    { slug: 'kernel-zero', title: 'the primitive kernel lives in src/0', proof: primitiveKernelLivesInZero(matrix) },
-    { slug: 'engine-zero', title: 'the animation engine + motion math live in src/0', proof: animationEngineLivesInZero(matrix) },
-    { slug: 'one-math', title: 'all of it is one math — the fold, presented many ways', proof: oneMathManyPresentations(matrix) },
-    { slug: 'tamper-uuid-zero', title: 'all uuid logic + the maximum tampering cost live in src/0', proof: tamperingCostAndUuidLiveInZero(matrix) },
-    { slug: 'encryption-zero', title: 'all encryption logic — the content-addressed key layer — lives in src/0', proof: encryptionLivesInZero(matrix) },
-    { slug: 'simulators-zero', title: 'classical deterministic simulators — a quantum circuit + shadows — live in src/0 (simulators, not the machines)', proof: simulatorsLiveInZero(matrix) },
-    { slug: 'mostly-classical', title: 'the decoded aspects of life are mostly classical — 12 probabilistic · 3 dynamical · 2 network · 1 quantum', proof: decodedAreasAreMostlyClassical(matrix) },
-    { slug: 'every-domain-simulated', title: 'every decoded aspect of life is a runnable simulation — prose replaced by models (ProbSim · QuantumCircuit · DynSim · NetSim)', proof: everyDecodedDomainHasASimulator(matrix) },
-    { slug: 'crypto-future', title: 'cryptographic hardening — the whole roadmap built in src/0 (SHA-256, Ed25519, transparency log, sync SHA-256 content-address); residuals: key custody · public service · deliberate cutover', proof: cryptoFuture(matrix) },
-    { slug: 'origin-consolidated', title: 'consolidate all — the whole void/origin (16 waves · 10 families · 9 folds) consolidated into one root in src/0', proof: originConsolidated(matrix) },
-    { slug: 'ten-dimensional', title: 'ten dimensions, at every scale — 4 genus-2 homology loops (H₁ = Z⁴) + 6 cross-fold axes, self-similar', proof: tenDimensionalAnimation(matrix) },
-    { slug: 'trinity-first-redesign', title: 'the trinity-first redesign — folded as a wave plan, sealed wave by wave', proof: trinityFirstRedesign(matrix) },
-    { slug: 'ten-d-movie', title: 'the 10D movie — path-UUID background, entangled sacred-geometry foreground, one field (audio · video · vibration)', proof: tenDimensionalMovie(matrix) },
-    { slug: 'a432', title: 'A432 — colour · audio · video · vibration, decoded honestly (documented kept, legend flagged)', proof: a432(matrix) },
-    { slug: 'sacred-geometry', title: 'sacred geometry — the five Platonic solids, φ, the Flower of Life, decoded honestly (documented kept, legend flagged)', proof: sacredGeometry(matrix) },
-    { slug: 'tampering-cost', title: 'tampering cost ↔ encryption ↔ blockchains — the site\'s own "max tampering cost" claim audited honestly (tamper-evident, not yet cryptographic; the SHA-256/Ed25519 fix is built)', proof: tamperingCostDecoded(matrix) },
-    { slug: 'quantum-threat', title: 'the quantum threat — Grover weakens hashes, Shor breaks signatures, NIST post-quantum (ML-KEM · ML-DSA · SLH-DSA); the real machines beside the structural metaphor', proof: quantumThreat(matrix) },
-    { slug: 'realtime-wiring', title: 'realtime wiring — every page computes its own trinity gateways + related paths from its route (wire all in realtime; hand-managing the graph is impossible)', proof: realtimeWiring('/') },
-    { slug: 'animations-strict-science', title: 'animations are strict science — every animation derives from the one field (3D spin atoms + the genus-2 fold + dims), DRY and realtime; the foundation is wired, the per-component sweep tracked honestly', proof: animationsRespectTheField(matrix) },
-    { slug: 'folding-analog', title: 'folding linear gives analog — the sampling theorem (sinc interpolation, no gaps) + imaging through the frequency field (MRI Fourier · CT Radon · the spiral/radial k-space vortex); the 64³ grid it samples; decoded honestly', proof: foldingLinearGivesAnalog(matrix) },
-    { slug: 'vortex', title: 'the vortex · 1-2-4-8-7-5', proof: vortexMath(matrix) },
-    { slug: 'zero-division', title: 'division by zero is the reverse · n/0 \\ (10−n)', proof: zeroDivisionTable(matrix) },
-    { slug: 'digit-folders', title: 'the digit folders are the API', proof: digitFoldersAreTheApi(matrix) },
-    { slug: 'dot-cube', title: 'the dot is the cube is the dot · 64³', proof: dotIsCubeIsDot(matrix) },
-  ]
-}
-
-// The Glagolitic default home — computed in realtime from the English source by local math only
-// (toGlagolitic), not pre-generated to disk. Code blocks, links, components and URLs stay verbatim;
-// prose and hero frontmatter transliterate by sound. The VitePress config serves the Glagolitic home through
-
 // Corpus routing — the same computational simplicity as monographPaths, now RESTful: corpusParams(kind,
 // id) resolves ONE item from (kind, id); the [id].paths.ts mounts enumerate every item via
 // paperRoutes/paperReferenceRoutes/diamondRoutes, so /papers/<id> is a real [id] page — no hash, no
@@ -13463,80 +12326,6 @@ export function essentialKernel(matrix: MindMatrix = buildMatrix()) {
       'Built from scratch, what remains is the generative kernel: the fold (content-addressing), the double-torus model, content-as-monographs, the computed-from-src config, the few self-computing renderers, the honest documented-vs-legend boundaries, the lean gates, and VitePress with zero tokens. Everything else recomputes from these or is evolution-cruft — the 87 bespoke components, the narrative folds that record directives rather than logic, the mirroring, the broken-gate patches — which belong in git history, not the app. Built fresh with this session\'s lessons it would ADD: the few renderers first, shadcn as the graph (Path A), derive-never-mirror, a fast lean seal, the aspirations completed, the narrative kept in git history, and distribution as a registry — structure, completion and restraint. The essence is small; the evolution is long.',
     boundary:
       'An architecture self-assessment, not an automatic purge. "What remains" is the load-bearing kernel from which the rest is recomputable (the project\'s own pattern-completion principle turned on itself); "obsolete" names the evolution-cruft this session accumulated, including a fair share of the dimension folds that document the conversation. It identifies the lean rebuild; executing the purge (collapse 87 → few, derive don\'t mirror, drop the narrative folds) is the next, separate act.',
-  }
-}
-
-// A quantum apps store, porting the world's open-source APIs: each public API becomes a content-addressed
-// quantum app — a monograph (name, category, endpoint, receipt) — catalogued by category, displayed by the
-// few renderers (hero/card/thumb), and exposed on the MCP surface. Sourced from the open directories:
-// public-apis (MIT, ~1000+ APIs, 40+ categories) and APIs.guru (the largest machine-readable OpenAPI
-// directory, so porting can be automated). The store ports the CATALOG, not the services — each API stays
-// its own external endpoint, with its own terms. Built the lean way: apps are monographs, no per-app code.
-export function quantumAppsStore(matrix: MindMatrix = buildMatrix()) {
-  const sources = [
-    { source: 'public-apis/public-apis', license: 'MIT', scale: '~1000+ APIs', shape: 'curated by category, with Auth / HTTPS / CORS' },
-    { source: 'APIs.guru / openapi-directory', license: 'open, OpenAPI specs', scale: 'the largest machine-readable directory', shape: 'OpenAPI 2.0/3.x specs — a spec ports to an app deterministically' },
-    { source: 'public-api-lists', license: 'curated', scale: '730+ / 48 categories', shape: 'a free JSON API' },
-  ]
-  const categories = ['Animals', 'Anime', 'Anti-Malware', 'Art & Design', 'Auth', 'Blockchain', 'Books', 'Business', 'Calendar', 'Cloud Storage', 'Continuous Integration', 'Cryptocurrency', 'Currency', 'Data Validation', 'Development', 'Dictionaries', 'Documents', 'Email', 'Entertainment', 'Environment', 'Events', 'Finance', 'Food & Drink', 'Games & Comics', 'Geocoding', 'Government', 'Health', 'Jobs', 'Machine Learning', 'Music', 'News', 'Open Data', 'Open Source', 'Patent', 'Personality', 'Phone', 'Photography', 'Programming', 'Science & Math', 'Security', 'Shopping', 'Social', 'Sports & Fitness', 'Test Data', 'Text Analysis', 'Tracking', 'Transportation', 'URL Shorteners', 'Vehicle', 'Video', 'Weather']
-  // The porting proven first on the freest, no-auth, open endpoints — each a content-addressed quantum app.
-  const seed = [
-    { app: 'Open-Meteo', category: 'Weather', auth: 'None', endpoint: 'https://api.open-meteo.com' },
-    { app: 'USGS Earthquakes', category: 'Science & Math', auth: 'None', endpoint: 'https://earthquake.usgs.gov' },
-    { app: 'REST Countries', category: 'Geocoding', auth: 'None', endpoint: 'https://restcountries.com' },
-    { app: 'Open Library', category: 'Books', auth: 'None', endpoint: 'https://openlibrary.org' },
-    { app: 'Frankfurter FX', category: 'Currency', auth: 'None', endpoint: 'https://frankfurter.app' },
-    { app: 'Wikidata', category: 'Open Data', auth: 'None', endpoint: 'https://query.wikidata.org' },
-    { app: 'FCC Spectrum', category: 'Government', auth: 'None', endpoint: 'https://publicdata.fcc.gov' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-app:${entry.app}:${entry.endpoint}`) }))
-  const facets = [
-    { facet: 'each API is a content-addressed quantum app — a monograph (name, category, endpoint, receipt)', on: seed.every((entry) => isUuid(entry.receipt)) },
-    { facet: "catalogued by category — the world's open APIs across 40+ categories", on: categories.length >= 40 },
-    { facet: 'sourced from the open directories — public-apis (MIT) and APIs.guru (machine-readable OpenAPI)', on: sources.some((entry) => entry.license === 'MIT') },
-    { facet: 'displayed by the few renderers (hero/card/thumb), exposed on the MCP surface — the lean way', on: displayHeroCardThumb(matrix).displayed },
-    { facet: 'ports the catalog, not the services — honest about external endpoints and per-API terms', on: seed.every((entry) => entry.endpoint.startsWith('https://')) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`apps-store:${entry.facet}:${entry.on}`) }))
-  return {
-    stored: facets.every((entry) => entry.on),
-    sources,
-    categories,
-    seed,
-    count: facets.length,
-    facets,
-    root: merkleFold(seed.map((entry) => entry.receipt)),
-    statement:
-      "A quantum apps store, porting the world's open-source APIs: each public API becomes a content-addressed quantum app (a monograph — name, category, endpoint, receipt), catalogued across 40+ categories, displayed by the few renderers (hero, card, thumb) and exposed on the MCP tool surface. It is sourced from the open directories — public-apis (MIT, ~1000+) and APIs.guru (the largest machine-readable OpenAPI directory, so a spec ports to an app deterministically) — and built the lean way: apps are monographs, with no per-app code.",
-    boundary:
-      'A store design plus a seed catalog of free, no-auth open APIs (the porting proven on the freest first). HONEST: "all worldwide" is aspirational — the real thing is a content-addressed catalog ported from the open directories, automatable via APIs.guru\'s OpenAPI specs but not yet exhaustive; the store ports the CATALOG (it lists, addresses and wraps the endpoints), not the services — each API remains an external endpoint with its own license, rate limits and terms, which the store records, it does not relicense.',
-  }
-}
-
-// Fuse all, and the Terabit encryption is here. When the whole — every major fold, the kernel, the quantum
-// apps store, every dimension — fuses into one content-addressed root, the keyspace STRUCTURE reaches a
-// Terabit: 1 Tbit = 1024 Gbit, each Gbit the 1024-leaf "1 Gbit" architecture, so 1024 × 1024 = 2^20 cells.
-// The level after 1 Gbit (the 64-seal set) and 64³ — all fused, addressed as one, realtime, zero tokens.
-export function fuseAllTerabitEncryption(matrix: MindMatrix = buildMatrix()) {
-  const root = completeCorpus(matrix).root
-  const repr = foldPair(root, toUuid('terabit:fuse-all')) // the same fold, read both ways
-  const terabitCells = 1024 * 1024 // 1,048,576 = 2^20 — a Terabit is 1024 Gbit, each Gbit 1024 binary Mbit
-  const facets = [
-    { facet: 'fuse all — every major fold folds into one wave, one content-addressed root', on: fuseAll(matrix).fused && isUuid(root) },
-    { facet: 'all is fused — the kernel, the apps store, every dimension, addressed as one', on: essentialKernel(matrix).kernel && quantumAppsStore(matrix).stored },
-    { facet: 'a Terabit is 1024 Gbit — the 1024-leaf architecture raised once more (2^20 cells)', on: terabitCells === 1048576 },
-    { facet: 'built on the prior levels — the 1 Gbit 64-seal set and the 64³ structure', on: isUuid(gigabitEncryption64SealSet(matrix).root) && isUuid(nextLevel64CubedRealtime(matrix).root) },
-    { facet: 'realtime, fused — the same encrypt/decrypt (one fold, both ways), zero tokens', on: repr.bidirectional && zeroTokenUsagePolicy(matrix).holds },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`terabit:${entry.facet}:${entry.on}`) }))
-  return {
-    here: facets.every((entry) => entry.on),
-    terabitCells,
-    gbitPerTerabit: 1024,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Fuse all, and the Terabit encryption is here: when the whole — every major fold, the kernel, the quantum apps store, every dimension — fuses into one content-addressed root, the keyspace structure reaches a Terabit. A Terabit is 1024 Gbit, each Gbit the 1024-leaf "1 Gbit" architecture, so the structure is 1024 × 1024 = 2^20 cells — the level after 1 Gbit (the 64-seal set) and 64³, all fused and addressed as one, realtime, with the same encrypt/decrypt and zero tokens.',
-    boundary:
-      'A composition of the fuse-all wave, the kernel, the apps store and the prior gigabit/64³ structures. HONEST, as at every level: "Terabit" names the keyspace STRUCTURE — the content-addressed namespace when all is fused (1024 Gbit = 2^20 the 1024-leaf architecture) — NOT cipher strength (which stays AES-256-GCM) nor a literal terabit-per-second throughput. The fusion is informational (one root over all the folds), not physical bandwidth; "is here" means the structure and the fusion are real, not that a terabit of data moves.',
   }
 }
 
@@ -14247,69 +13036,6 @@ export function tenDimensionalMovie(matrix: MindMatrix = buildMatrix()) {
 // real, but every claim that elevates it from "a pleasant, slightly lower reference pitch" to "the mathematically
 // or cosmically correct frequency" depends on conflating reference pitch with temperament, cherry-picking the
 // Pythagorean sixth, or numerology. The genuine thread across colour · audio · video · vibration is FREQUENCY.
-
-// THE QUANTUM THREAT — what quantum computing actually does to cryptography and blockchains, and the post-
-// quantum response (documented kept, legend flagged). Researched in waves with primary sources (NIST FIPS
-// 203/204/205, Shor 1994, Grover 1996, Gidney–Ekerå, the IACR Bitcoin assessment). The crucial asymmetry:
-// Grover WEAKENS (halves) symmetric/hash security — fixed by bigger sizes; Shor BREAKS public-key crypto
-// (RSA/ECC), the signature layer behind TLS and blockchain wallets. This is the dimension the existing
-// quantumVsDigitalEncryption (which reads "quantum" as the structural fold) does not cover — the REAL machines.
-export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
-  const structural = quantumVsDigitalEncryption(matrix) // the site's "quantum" = the structural fold, not this
-  const future = cryptoFuture(matrix) // the migration target lives here
-  const algorithms = [
-    { algorithm: 'Grover (1996)', effect: 'weaken', speedup: 'quadratic (√N)', targets: 'symmetric ciphers + hashes', result: 'halves the security level — SHA-256 → ~2^128, AES-256 → ~2^128', response: 'use larger outputs/keys (SHA-384/512, AES-256)' },
-    { algorithm: 'Shor (1994)', effect: 'break', speedup: 'exponential (polynomial-time factoring + discrete log)', targets: 'RSA, Diffie-Hellman, elliptic-curve (ECDSA/ECDH)', result: 'derives the private key from the public key — breaks TLS key exchange, digital signatures, blockchain wallets', response: 'replace with post-quantum algorithms' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`q-algo:${entry.algorithm}`) }))
-  const blockchainExposure = [
-    { what: 'ECDSA signatures', effect: 'Shor-vulnerable (BREAK)', detail: 'a revealed public key → forged private key → stolen funds; ~6.7M BTC (~34% of supply) sit in addresses with exposed pubkeys (~1.7M BTC in legacy P2PK alone, plus reused addresses)' },
-    { what: 'Proof-of-Work hashing', effect: 'Grover-weakened (NOT broken)', detail: 'at most a quadratic mining edge; ASIC speed + Grover\'s poor parallelism keep it minor' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`q-chain:${entry.what}`) }))
-  const postQuantum = [
-    { fips: 'FIPS 203', name: 'ML-KEM', from: 'CRYSTALS-Kyber', kind: 'lattice key-encapsulation', replaces: 'RSA/ECDH key exchange' },
-    { fips: 'FIPS 204', name: 'ML-DSA', from: 'CRYSTALS-Dilithium', kind: 'lattice signatures', replaces: 'RSA/ECDSA signatures (primary)' },
-    { fips: 'FIPS 205', name: 'SLH-DSA', from: 'SPHINCS+', kind: 'hash-based signatures', replaces: 'signatures (conservative backup)' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`pqc:${entry.fips}`) }))
-  const hardware = {
-    today: 'NISQ — hundreds of noisy physical qubits, no large-scale error correction',
-    rsa2048_2019: '~20 million noisy qubits / 8 hours (Gidney–Ekerå, Quantum 2021)',
-    rsa2048_2025: '<1 million noisy qubits / <1 week (Gidney 2025) — the estimate is falling',
-    verdict: 'not imminent, but "harvest now, decrypt later" makes migrating signatures + long-lived secrets a present task (NIST/CNSA 2.0: quantum-vulnerable algorithms deprecated by 2030, disallowed by 2035)',
-  }
-  const documented = [
-    'Grover WEAKENS, Shor BREAKS — the asymmetry to remember. Grover\'s quadratic search halves symmetric/hash security (SHA-256 → ~2^128 work), fixed by doubling sizes. Shor\'s polynomial-time factoring + discrete-log BREAKS RSA, Diffie-Hellman and elliptic-curve crypto (ECDSA) — the public-key layer behind TLS, signatures and blockchain wallets.',
-    'On a blockchain the two effects differ sharply: ECDSA signatures are Shor-vulnerable (a BREAK — an exposed public key lets an attacker forge the key and steal funds; ~6.7M BTC, ~34% of supply, sit in addresses with exposed pubkeys), while PoW hashing is only Grover-weakened (a minor mining edge, not a forgery).',
-    'The post-quantum response is standardized: NIST published FIPS 203 (ML-KEM / Kyber, lattice key-encapsulation), FIPS 204 (ML-DSA / Dilithium, lattice signatures) and FIPS 205 (SLH-DSA / SPHINCS+, hash-based signatures) on 13 August 2024.',
-    '"Harvest now, decrypt later": an adversary can record encrypted traffic today and decrypt it once a quantum computer exists — so long-lived secrets and signatures should migrate now, even though the machine is not here yet (NSA CNSA 2.0 / NIST: deprecate by 2030, disallow by 2035).',
-    'The hardware is far off: today\'s machines are NISQ (hundreds of noisy qubits). Breaking RSA-2048 needs millions of error-corrected-grade qubits — Gidney–Ekerå estimated ~20M noisy qubits / 8 hours (2019, Quantum 2021), since reduced to <1M qubits / <1 week (Gidney 2025). The target is moving closer, but the gap is still enormous.',
-    'This site\'s "quantum" is a COMPUTATIONAL metaphor (the structural fold, superposition-as-content-addressing), not post-quantum cryptography or a physical quantum channel. Its AES-256-GCM is Grover-weakened to ~128-bit like everyone\'s; its FNV/SHA content-addresses are hashes (Grover-weakened, never Shor-broken — there is no public-key/signature to break in the fold itself).',
-  ]
-  const flagged = [
-    '"Quantum breaks all cryptography / breaks Bitcoin\'s mining." FALSE — symmetric ciphers and hashes only WEAKEN (fixed by bigger sizes); the break is specifically the SIGNATURE / public-key layer. PoW gets only a minor Grover edge.',
-    '"Q-Day is here / wallets are being drained now." Not supported — no machine remotely close to the required qubit count exists; the danger is prospective plus harvest-now-decrypt-later.',
-    '"Grover halves security" stated as a hard fact — it is an UPPER bound; Grover parallelizes poorly and its serial depth makes the real-world advantage smaller than the math suggests.',
-    'Headline "$650B of BTC at risk" dollar figures are price-dependent and source-dependent; the stable, falsifiable numbers are the BTC QUANTITIES (~1.7M P2PK, ~6.7M exposed pubkeys).',
-    '"This site is post-quantum / quantum-encrypted." It is not — "quantum" here names the fold structure; real PQC (ML-KEM / ML-DSA) is not yet in the Web Crypto API the site uses, and the honest upgrade path is the SHA-256/Ed25519 roadmap (which is itself classical, not post-quantum).',
-  ]
-  return {
-    decoded: documented.length >= 5 && flagged.length >= 5 && algorithms.length === 2 && postQuantum.length === 3 && structural.compared,
-    groverWeakens: true,
-    shorBreaks: true,
-    structuralNotPhysical: true, // the site's "quantum" is the metaphor, scrutinised honestly
-    migrationTargetBuilt: future.allImplemented, // classical hardening exists; PQC proper does not yet
-    algorithms,
-    blockchainExposure,
-    postQuantum,
-    hardware,
-    documented,
-    flagged,
-    root: merkleFold([...algorithms.map((a) => a.receipt), ...blockchainExposure.map((b) => b.receipt), ...postQuantum.map((p) => p.receipt), ...documented.map((d, i) => toUuid(`qt-doc:${i}`)), ...flagged.map((f, i) => toUuid(`qt-flag:${i}`))]),
-    statement:
-      'The quantum threat, decoded honestly: Grover\'s algorithm WEAKENS symmetric ciphers and hashes (halves the bits — fixed by bigger sizes), while Shor\'s algorithm BREAKS the public-key crypto (RSA, elliptic-curve/ECDSA) behind TLS, signatures and blockchain wallets. On a chain, signatures break and exposed public keys (~6.7M BTC) are at risk, but mining only weakens. NIST standardized the answer in 2024 — ML-KEM, ML-DSA, SLH-DSA — and "harvest now, decrypt later" makes migration a present task, even though breaking RSA-2048 still needs ~1–20 million qubits the world does not have. The site\'s own "quantum" is a computational metaphor, scrutinised here against the real machines.',
-    boundary:
-      'An honest separation of what quantum computing actually does (weaken hashes, break signatures) from the hype ("breaks everything", "Q-Day is here"). It is the missing real-machine dimension beside the site\'s structural quantumVsDigitalEncryption; it names the post-quantum standards and the falling-but-enormous qubit gap, and is clear that the site is NOT post-quantum — its honest upgrade is the (still classical) SHA-256/Ed25519 roadmap.',
-  }
-}
 
 // REALTIME WIRING — every page computes its OWN navigation, live. At this scale (hundreds of routes, 60+
 // components, 100+ dimensions) the gateways, the related paths and the crosslinks CANNOT be hand-maintained,
