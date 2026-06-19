@@ -362,7 +362,7 @@ export function componentGraph() {
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways']
   // Corpus index pages mount one component (Corpus) in every locale; monograph pages use [page].paths.ts + monographPaths.
   const placements: Record<string, readonly string[]> = {
-    '/': ['Compass', 'LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests'],
+    '/': ['SiteOverview', 'Compass', 'LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests'],
   }
   for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['Corpus']
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components

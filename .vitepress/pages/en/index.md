@@ -108,6 +108,12 @@ features:
      domains: Heaven (☰ mind · ☳ science · ☲ computation), Human (☵ voice · ☱ spirit · ☷ heritage),
      Earth (☶ form · ☴ nature). Nothing removed; the eight-fold regrouped under the three powers that cover all. -->
 
+## ◆ What's here — the whole portal, computed
+
+This map is computed from the same one source as the README: every domain with its honest one-line abstract and a link into the depth. Read it to know the portal at a glance, then dive in.
+
+<SiteOverview />
+
 ## ⌖ Find your way — search or navigate
 
 Navigation and search are one here: type to filter every page by name or domain, or just browse the eight-fold. Client-side, zero-network — it searches the same computed nav the top bar's Three Powers (天 Heaven · 人 Human · 地 Earth) open.

@@ -70,6 +70,7 @@ import Roadmaps from './components/Roadmaps.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import SacredSound from './components/SacredSound.vue'
 import SacredSymbols from './components/SacredSymbols.vue'
+import SiteOverview from './components/SiteOverview.vue'
 import SchoolCurriculum from './components/SchoolCurriculum.vue'
 import SealAll from './components/SealAll.vue'
 import SelfHealing from './components/SelfHealing.vue'
@@ -327,6 +328,7 @@ export default {
     app.component('SelfHarmonise', SelfHarmonise)
     app.component('SecurityScan', SecurityScan)
     app.component('SelfReason', SelfReason)
+    app.component('SiteOverview', SiteOverview)
     app.component('SignSeal', SignSeal)
     app.component('SpeechReader', SpeechReader)
     app.component('ShowAll', ShowAll)
