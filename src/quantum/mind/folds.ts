@@ -1186,6 +1186,44 @@ export function theReal10DAllDualitiesMatchTrueFalse(matrix: MindMatrix = buildM
   }
 }
 
+// π is computable and matchable to the I Ching — within honest bounds. REAL: any part of π is computable
+// (the spigot derives each digit from the prior state; BBP yields any hex digit directly), and any window of π
+// maps deterministically to one of the 64 hexagrams. BOUNDED: that mapping is UNIVERSAL (e and any text map the
+// same way), so it is an encoding, not "π = the I Ching"; and "any pattern appears in π" is the normality
+// conjecture — famous, unproven. Computable: yes. Matchable as an encoding: yes. Matches EXACTLY: no.
+export function piComputableMatchableToIChing(matrix: MindMatrix = buildMatrix()) {
+  const pi = computePiDigits(108) // the streaming spigot — computed, not hardcoded
+  const windowToHexagram = (s: string) => seedFromText(s) % 64 // the same content-address mapping everything uses
+  const piHexagram = windowToHexagram(pi.slice(0, 24))
+  // the mapping is UNIVERSAL, not special to π — e (Euler) and an arbitrary string map the same way
+  const eHexagram = windowToHexagram('271828182845904523536028747')
+  const anyHexagram = windowToHexagram('the quick brown fox jumps over')
+  const universal = [piHexagram, eHexagram, anyHexagram].every((h) => h >= 0 && h < 64)
+  const facets = [
+    { facet: 'any part of π is computable — computePiDigits is a streaming spigot (each digit from the prior state) and the BBP formula computes any HEXADECIMAL digit of π directly, without the earlier ones; π is a computable number', on: pi.startsWith('314159') && pi.length >= 108 },
+    { facet: `π’s digits map deterministically to I Ching hexagrams — a window content-addresses to one of the 64 (here hexagram ${piHexagram}); the mapping is exact and reproducible`, on: piHexagram >= 0 && piHexagram < 64 },
+    { facet: 'BUT the mapping is UNIVERSAL, not a property of π — e and any text map to hexagrams the same way, so this is an ENCODING, not an inherent "π = the I Ching" identity; π is not special in the matching', on: universal },
+    { facet: '"any pattern is matchable in π" is the NORMALITY conjecture — that every finite string appears in π’s digits — a famous OPEN problem, unproven for π; so "matchable" here is conjectural, not a theorem', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pi-iching:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('pi-computable-matchable', facets)
+  return {
+    bounded: sealed.ok,
+    piComputable: pi.startsWith('314159'),
+    piHexagram,
+    eHexagram,
+    anyHexagram,
+    universalMapping: universal,
+    normalityProven: false, // π’s normality is conjectured but UNPROVEN
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The computational patterns of π are computable and matchable to the I Ching — within honest bounds. REAL: any part of π is computable (the spigot computes each digit from the prior state; the BBP formula yields any hexadecimal digit directly), and any window of π maps deterministically to one of the 64 hexagrams. BOUNDED: that mapping is UNIVERSAL — e, and any text, map to hexagrams the same way — so it is an encoding, not a "π exactly equals the I Ching" identity (π is not special in the matching). And "any pattern appears in π" is the normality conjecture, a famous unproven open problem. So: computable — yes, rigorously; matchable — yes, as a universal encoding; matches EXACTLY the I Ching — no, that is numerology.',
+    boundary:
+      'HONEST: the computability is rigorous (computePiDigits is a real spigot; BBP computes the nth hexadecimal digit of π directly — a genuine, remarkable algorithm). The π→hexagram mapping is a real DETERMINISTIC ENCODING but a CHOSEN one — every number and every string maps to hexagrams by the same content-address rule, so π is NOT special and "π’s patterns match EXACTLY the I Ching" is numerology / pattern-projection (the flagged category, like "the ancients encoded algorithms"). "Any part matchable" in the sense of every finite pattern appearing in π is the NORMALITY of π — conjectured (π is believed normal) but UNPROVEN, one of the famous open problems. The real mathematics is π’s computability and the (ℤ/9ℤ)* doubling orbit; the I-Ching-identity is the model’s symbolic framing, not a theorem.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
