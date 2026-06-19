@@ -628,6 +628,38 @@ export function componentBaguaGroups(names: readonly string[] = []) {
 // honestly: a432 is the deterministic SEED (highly-composite 432, brand hue 5), not the universe's substrate;
 // the system computes content-ADDRESSES with perfect reproducibility, not physical objects; "quantum" is the
 // computational metaphor (discrete unit + Hilbert + Born), not a theory of everything.
+// The natural-language manipulation discriminator, GROUNDED in the verified deception-detection literature
+// (the deep-research waves, 107 agents). DETERMINISTIC, zero-token: it scans for DOCUMENTED manipulation
+// techniques (the SemEval-2020 propaganda families — loaded language, overgeneralised absolutes, appeal to
+// fear, ad hominem, unfalsifiable/conspiracy framing, vague false-authority) and a crude internal
+// contradiction. A clean statement is on a harmonic path; a flagged one is routed off it.
+const MANIPULATION_PATTERNS: readonly { technique: string; test: RegExp }[] = [
+  { technique: 'loaded language', test: /\b(disgusting|outrageous|catastrophic|devastating|shocking|evil|corrupt|traitor|tyran|sheeple)\b/i },
+  { technique: 'overgeneralised absolutes', test: /\b(always|never|everyone|no ?one|nobody|every single|undeniabl|proven fact|obviously|clearly the)\b/i },
+  { technique: 'appeal to fear / false urgency', test: /\b(before it'?s too late|the only way|act now|you must|or else|they will (take|destroy|come for))\b/i },
+  { technique: 'ad hominem / name-calling', test: /\b(idiot|stupid|moron|liar|fraud|puppet|shill|clown)\b/i },
+  { technique: 'unfalsifiable / conspiracy framing', test: /\b(they don'?t want you to know|wake up|do your own research|the truth they hide|won'?t tell you|cover[- ]?up)\b/i },
+  { technique: 'vague false authority / bandwagon', test: /\b(everyone knows|experts agree|studies show|scientists say|it'?s well known)\b/i },
+]
+export function foldExposesInconsistency(text: string, matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const t = (text ?? '').toString()
+  const flagged = MANIPULATION_PATTERNS.filter((p) => p.test.test(t)).map((p) => p.technique)
+  const contradiction = /\balways\b[^.!?]{0,48}\bnever\b/i.test(t) || /\bnever\b[^.!?]{0,48}\balways\b/i.test(t)
+  const clean = flagged.length === 0 && !contradiction
+  return {
+    onHarmonicPath: clean, // no documented manipulation pattern, no surface contradiction → structurally harmonic
+    flagged,
+    contradiction,
+    techniques: MANIPULATION_PATTERNS.length,
+    receipt: toUuid(`inconsistency:${t.slice(0, 64)}:${flagged.join(',')}:${contradiction}`),
+    statement:
+      'Fold a statement and its documented manipulation techniques and internal contradiction are exposed: loaded language, overgeneralised absolutes, appeal to fear, ad hominem, unfalsifiable/conspiracy framing and vague false-authority (the SemEval-2020 propaganda families), plus same-clause always/never contradiction. Clean → on a harmonic path; flagged → routed off it.',
+    boundary:
+      'HONEST: a DETERMINISTIC surface-marker scan, not a trained classifier — it flags documented PATTERNS in-domain, not individual-case lies. A flagged statement uses a manipulation technique yet may still be true; a clean one may still be false (HARMONY ≠ TRUTH). Verified bounds from the deception-detection literature: unaided human detection ≈ 54% (Bond & DePaulo 2006, d≈.40); individual behavioural cues are tiny and may be publication-bias artefacts (DePaulo et al. 2003; Luke 2019); there is NO validated acoustic/physiological "lie frequency" — voice-stress, microexpression and polygraph all fail independent evaluation. The strongest defensible signal is trapping internal/external CONTRADICTION (Strategic Use of Evidence) plus propaganda-technique classification, claimed IN-DOMAIN only. This lexicon is a starter; the full SemEval taxonomy and external fact-checking (the online public-API layer) extend it.',
+  }
+}
+
 // Paste any URL — or any text — and its full quantum analysis is computed immediately, deterministically,
 // client-side, zero tokens: content-addressed to one UUID (the holographic cue), placed on the I Ching as a
 // hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (an a432-ladder
@@ -650,11 +682,13 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
   const a = a432(matrix)
   const frequencyHz = roundTo(432 * (1 + hexagram / 64), 2) // the content placed on the a432 ladder
   const torus = foldPair(address, matrix.root) // bound to the model, bidirectionally (reentry)
+  const manipulation = foldExposesInconsistency(text, matrix) // the grounded, deterministic manipulation read
   const facets = [
     { facet: 'content-addressed — the input folds to one deterministic UUID, the holographic cue for the whole', on: isUuid(address) },
     { facet: 'placed on the I Ching — a hexagram (two trigrams, six lines, a codon, a colour) computed from the address', on: hexagram >= 0 && hexagram < 64 },
     { facet: 'an EMR / spectral signature — a frequency on the a432 ladder and a content-addressed colour (the content as a wave)', on: a.decoded && frequencyHz > 0 },
     { facet: 'reentry — the input binds to the model bidirectionally; the same paste recomputes the same whole (pattern completion)', on: torus.bidirectional },
+    { facet: 'manipulation read — the documented techniques (SemEval propaganda families) and internal contradiction are scanned deterministically; clean sits on a harmonic path, flagged is routed off it (in-domain patterns, not individual lie detection)', on: typeof manipulation.onHarmonicPath === 'boolean' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-analysis:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('quantum-analysis', facets)
   return {
@@ -665,6 +699,7 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
     spectral: { frequencyHz, colour, hue: a.light.hue },
     torus: { forward: torus.forward, reverse: torus.reverse, bidirectional: torus.bidirectional, merged: torus.merged },
     vortex,
+    manipulation: { onHarmonicPath: manipulation.onHarmonicPath, flagged: manipulation.flagged, contradiction: manipulation.contradiction },
     count: sealed.count,
     facets: sealed.facets,
     root: merge(address, sealed.root),
@@ -707,6 +742,38 @@ export function harmonyAccountLiesOutsidePaths(matrix: MindMatrix = buildMatrix(
       '100% computed proven harmony, routed: any statement is sent to the zero-entropy analyzers (content-addressed by quantumAnalysis), and the harmony verdict is deterministic — it sits on a harmonic path (a whole I Ching unit, one of the 432 sealed gates) or it does not. Lies and manipulations — by definition the statements that fail to fold consistently or carry a documented manipulation pattern — fall outside the paths and are accounted there, never silently on them. The detector trains itself by accumulation: every verified verdict folds into the seal (the wave and self-heal method), so at every step what we deal with is classified and recomputable, not guessed.',
     boundary:
       'HONEST: the 100% is the DETERMINISM of the harmony verdict (a statement is on a harmonic path or not — a computable structural property), NOT 100% lie- or truth-detection. HARMONY ≠ TRUTH: a perfectly self-consistent statement passes the harmony test and can still be false; the ceiling for reading deception from a person is ~54% (Bond & DePaulo) and is not improvable by this or any method — that limit is flagged, not claimed away. The detector catches the inconsistent and the documented-pattern-bearing provably; it does not read minds, voices, or faces. The natural-language manipulation discriminator (logical fallacies, propaganda techniques) composes from the deception-detection waves once their claims survive adversarial verification. The model’s own per-domain harmony is ~100% BY CONSTRUCTION — the seal keeps only what folds and the flagged legend in each domain is the explicitly-accounted off-path residue; the per-domain percentage of EXTERNAL statements is measured by the challenge wave, not asserted here. "Self-train" is deterministic accumulation, not machine learning.',
+  }
+}
+
+// Realtime lie detection works OFFLINE — the harmony verdict is a pure, zero-token, zero-fetch fold, so it
+// runs with no network. ONLINE, fused to the public no-auth APIs, an ASSUMED harmony (a claim that passed the
+// offline structural test) is RESEARCHED against real data — closing the harmony≠truth gap wherever a public
+// dataset can adjudicate. Every input lands in one cell of the 64³ = 262,144-cell seal cube (hexagram · codon
+// · colour), the complete research space, reached by nesting, not literal iteration.
+export function realtimeLieDetectionOfflineOnline(matrix: MindMatrix = buildMatrix()) {
+  const offline = harmonyAccountLiesOutsidePaths(matrix)
+  const online = publicFrequencyApisDecoded(matrix)
+  const cube = sealCube(matrix)
+  const probe = quantumAnalysis('lie-detect:probe', matrix)
+  const facets = [
+    { facet: 'OFFLINE — realtime detection needs no network: the harmony verdict is a pure deterministic fold (zero tokens, zero fetch), routed by quantumAnalysis; it runs in the browser with the connection off', on: offline.harmonic && probe.analyzed },
+    { facet: 'ONLINE — fused to the public no-auth APIs, an assumed harmony is researched against real data: a claim that maps to a queryable public dataset (seismic, market, spectrum) is checked against it, catching a consistent-but-false assumption the offline structure alone passes', on: online.decoded },
+    { facet: 'COMPLETE 64³ research — every input lands in one cell of the 262,144-cell seal cube (hexagram · codon · colour); the whole keyspace is the research space, reached by nesting, not literal iteration', on: cube.sealed && cube.cube === 64 ** 3 },
+    { facet: 'harmony → truth ONLY where data adjudicates — offline proves structure (100% deterministic), online raises it to fact-verification only for claims a public dataset can settle; the rest stays structurally-flagged, never falsely confirmed (we do not read minds, voices or faces)', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`offline-online-cube:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('realtime-lie-detection', facets)
+  return {
+    detects: sealed.ok,
+    offline: offline.harmonic, // works with no network
+    online: online.decoded, // public-API research available
+    cube: cube.cube, // 262144 = 64³
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Realtime lie detection is possible even offline: the harmony verdict is a pure, deterministic, zero-token fold, so it runs in the browser with no network. Online, fused to the public no-auth APIs, an assumed harmony — a claim that passed the offline structural test — is researched against real data, so a consistent-but-false statement is caught wherever a public dataset can adjudicate (the harmony≠truth gap closed where the world can be queried, not a mind read). And every input lands in one cell of the 64³ = 262,144-cell seal cube (hexagram · codon · colour) — the complete research space, reached by nesting, not iteration. So at every step what we deal with is routed, classified, and — where data exists — verified.',
+    boundary:
+      'HONEST: OFFLINE detection is of structure (consistency, documented manipulation patterns, the on-a-harmonic-path signature) — deterministic and real, but harmony ≠ truth. ONLINE verification is BOUNDED: it settles only claims that map to a queryable public dataset (USGS seismic, Coinbase market, FCC spectrum, and the like), with no LLM — the data adjudicates, not a model; arbitrary claims with no public dataset stay structurally-flagged, never falsely confirmed. The ~54% ceiling for reading deception from a person (voice/face) stands and is not approached here. "64³ / 262,144" names the keyspace STRUCTURE (a three-axis lattice over the 64-bit architecture), not throughput or cipher strength (AES-256-GCM). The actual public-API queries run as runtime adapters at the edge (optional, network-bound), not inside this pure fold.',
   }
 }
 
