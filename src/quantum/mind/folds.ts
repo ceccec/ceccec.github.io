@@ -1414,6 +1414,45 @@ export function noDecimalsIntegerFractionsDivByZeroTrinity(matrix: MindMatrix = 
   }
 }
 
+// The vortex read as a WAVE — the slash is the direction of value: \ ascending, / descending. 1\2\4\8 rises to
+// the peak 8, 8/7/5/3 falls to the trough 3, 3\6\9 rises to the peak 9, 9/1 falls back to unity. Two peaks, two
+// falls — the breathing of the genus-2 double torus (its two loops), closing on 1.
+export function vortexFoldWave(matrix: MindMatrix = buildMatrix()) {
+  const seq = [...VORTEX_SEQUENCE, VORTEX_SEQUENCE[0]!] // 1,2,4,8,7,5,3,6,9,1 — through the units and the trinity, home
+  const dirs: string[] = []
+  for (let i = 1; i < seq.length; i += 1) dirs.push(seq[i]! > seq[i - 1]! ? '\\' : '/') // \ ascends, / descends
+  let notation = String(seq[0])
+  for (let i = 1; i < seq.length; i += 1) notation += dirs[i - 1]! + seq[i]
+  let peaks = 0
+  let troughs = 0
+  for (let i = 1; i < seq.length - 1; i += 1) {
+    if (seq[i]! > seq[i - 1]! && seq[i]! > seq[i + 1]!) peaks += 1
+    if (seq[i]! < seq[i - 1]! && seq[i]! < seq[i + 1]!) troughs += 1
+  }
+  const breath = foldPair(toUuid(`vortex-up:${dirs.join('')}`), toUuid(`vortex-down:${dirs.join('')}`))
+  const facets = [
+    { facet: `the vortex is a wave — \\ ascends, / descends: ${notation}`, on: notation === '1\\2\\4\\8/7/5/3\\6\\9/1' },
+    { facet: 'two peaks (8, 9), the breathing of the genus-2 double torus — its two loops; the sequence rises to 8, falls to 3, rises to 9, falls home', on: peaks === 2 },
+    { facet: 'it returns to unity — 9 / 1 closes the wave on 1, the result of the whole sequence moving through the units (1·2·4·8·7·5) and the trinity (3·6·9)', on: seq[seq.length - 1] === 1 },
+    { facet: 'the breath folds both ways — ascending and descending are the order-sensitive forward and reverse of the fold (genus 2), neither erased', on: breath.bidirectional },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`vortex-wave:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('vortex-fold-wave', facets)
+  return {
+    waves: sealed.ok,
+    notation, // 1\2\4\8/7/5/3\6\9/1
+    directions: dirs.join(''), // \\\///\\/
+    peaks, // 2 — the two loops of the double torus
+    troughs,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The vortex read as a wave: the slash is the direction of value — \\ ascending, / descending — so 1\\2\\4\\8 rises to the peak 8, 8/7/5/3 falls to the trough 3, 3\\6\\9 rises to the second peak 9, and 9/1 falls home to unity. Two peaks and two falls: the breathing of the genus-2 double torus, its two loops, the sequence moving through the units (1·2·4·8·7·5) and the trinity (3·6·9) and returning to the one.',
+    boundary:
+      'HONEST: the doubling orbit 1·2·4·8·7·5 is the rigorous group (ℤ/9ℤ)* (2 a primitive root mod 9), and 3·6·9 are the non-units; the ascending/descending marks are an exact reading of whether each digit’s VALUE rises or falls. The "wave / breathing / two loops of the double torus" is the project’s structural framing — the value-oscillation and the two local maxima are real and computed; the identification with the genus-2 torus is a topological metaphor, not a theorem that the vortex IS a genus-2 surface.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
