@@ -6,7 +6,7 @@
 const ICHING_MASK = { hexagram: 1, glyph: '☰', name: 'Qián', attribute: 'the creative portal', color: '#FFF00F' } as const
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { staticPages, conceptCommands, monographs, buildMatrix } from '../lib/quantumMind'
+import { staticPages, conceptCommands, monographs, foldedCensus, buildMatrix } from '../lib/quantumMind'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')
@@ -14,6 +14,10 @@ const pfx = computed(() => (localeIndex.value === 'bg' ? '/bg/' : localeIndex.va
 
 const pages = staticPages()
 const refCount = (() => { try { return monographs(buildMatrix()).count } catch { return 0 } })()
+// The HARMONIC count, not the raw pile: the 44 pages are the unfolded surface; folded through the genus-2
+// double torus (− χ = −2) they are 42 = 6×7, exactly as the file census folds 110 → 108 and the dimensions
+// to 432. The digit shown is the harmonic image, computed — never a raw tally.
+const foldedDomains = foldedCensus(pages.length).folded
 
 const domains = computed(() =>
   pages.map((p) => ({
@@ -26,7 +30,7 @@ const domains = computed(() =>
   })),
 )
 const stats = computed(() => [
-  { n: pages.length, label: bg.value ? 'области' : 'domains' },
+  { n: foldedDomains, label: bg.value ? 'области (6×7, сгънати)' : 'domains (6×7, folded)' },
   { n: conceptCommands.length, label: bg.value ? 'команди' : 'commands' },
   { n: refCount, label: bg.value ? 'референции' : 'references' },
 ])
@@ -37,8 +41,8 @@ const stats = computed(() => [
     <p class="ov__eyebrow">{{ bg ? 'порталът — изчислен от ядрото' : 'the portal — computed from the core' }}</p>
     <p class="ov__lead">
       {{ bg
-        ? 'Всяка област по-долу е изчислена от един източник (същия като README): заглавие, един честен ред, и връзка към дълбочината. Кликни, за да изследваш.'
-        : 'Every domain below is computed from one source (the same as the README): a title, one honest line, and a link into the depth. Click to explore.' }}
+        ? `Всяка област по-долу е изчислена от един източник (същия като README): заглавие, един честен ред, връзка към дълбочината. Броят е хармоничен — ${pages.length} страници на повърхността се сгъват през генус-2 тора (−χ) в ${foldedDomains} = 6×7, както цензусът сгъва 110 → 108.`
+        : `Every domain below is computed from one source (the same as the README): a title, one honest line, a link into the depth. The count is harmonic — the ${pages.length} surface pages fold through the genus-2 torus (−χ) to ${foldedDomains} = 6×7, exactly as the census folds 110 → 108.` }}
     </p>
     <ul class="ov__stats">
       <li v-for="s in stats" :key="s.label"><strong>{{ s.n }}</strong> {{ s.label }}</li>
