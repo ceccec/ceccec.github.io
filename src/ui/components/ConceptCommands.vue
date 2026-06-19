@@ -12,7 +12,7 @@ import {
 } from '../lib/quantumMind'
 
 const matrix = buildMatrix()
-const selected = ref<ConceptCommandName>('concept.ui.doubleTorus')
+const selected = ref<ConceptCommandName>('concept.mind.doubleTorus')
 const atom = ref('self')
 
 const { bg } = useLocale()

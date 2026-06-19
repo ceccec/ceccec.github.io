@@ -262,7 +262,7 @@ function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
     diamond(
       'agent',
       'agent binding diamond',
-      'concept.ui.doubleTorus',
+      'concept.mind.doubleTorus',
       'agent mind binds observation, projection, proof, and return before acting',
       vector.collapse ? 'closed' : 'open',
       [
@@ -295,7 +295,7 @@ function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
     diamond(
       'ui',
       'quantum UI use-case diamond',
-      'concept.ui.useCases',
+      'concept.mind.useCases',
       'the stream is evidenced in UI when every interaction returns to a diamond receipt',
       'closed',
       [

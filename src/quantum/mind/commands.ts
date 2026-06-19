@@ -193,7 +193,7 @@ function runConceptCommand(
     const addressed = selfAddressed(matrix)
     return result(command, addressed.noHallucination, 'Self-addressing verified: no hallucination.', addressed)
   }
-  if (command === 'concept.agent.educate') {
+  if (command === 'concept.society.educate') {
     const education = agentEducation(matrix)
     return result(command, education.educated, 'Agent education curriculum computed before the costly math.', education)
   }
@@ -363,7 +363,7 @@ function runConceptCommand(
     const wire = agentStreamWire(matrix)
     return result(command, wire.bound, 'Agent serverless quantum UUID stream wire computed.', wire)
   }
-  if (command === 'concept.ui.doubleTorus') {
+  if (command === 'concept.mind.doubleTorus') {
     return result(command, true, 'Concept UI components rendered the double-torus concept.', {
       commandComponent: 'ConceptCommands.vue',
       dashboardComponent: 'QuantumMind.vue',
@@ -372,11 +372,11 @@ function runConceptCommand(
       diamonds: diamondLattice(matrix),
     })
   }
-  if (command === 'concept.ui.useCases') {
+  if (command === 'concept.mind.useCases') {
     const evidence = quantumUiEvidence(matrix)
     return result(command, evidence.grounded, 'Quantum UI evidence computed from repository use cases.', evidence)
   }
-  if (command === 'concept.diamond.lattice') {
+  if (command === 'concept.society.lattice') {
     return result(command, true, 'Diamond lattice computed from stream dimensions and dynamics.', diamondLattice(matrix))
   }
   if (command === 'concept.diamond.piTrain') {
@@ -605,13 +605,13 @@ function runConceptCommand(
   const decodedCommands: Partial<Record<ConceptCommandName, () => ConceptCommandResult>> = {
     'concept.ancient.pyramids': () => { const v = pyramidsDecoded(matrix); return result(command, v.decoded, 'Decode the world pyramids — coordinates, great-circle geodesy, the seked, cardinal alignment; pseudoscience flagged.', v) },
     'concept.ancient.megalithic': () => { const v = megalithicAstronomyDecoded(matrix); return result(command, v.decoded, 'Megalithic archaeoastronomy — solstice sunrise/sunset azimuths reproduce the documented passages.', v) },
-    'concept.ancient.standstill': () => { const v = lunarStandstillsDecoded(matrix); return result(command, v.decoded, 'The 18.6-year lunar standstill — major/minor declination extremes and the Station Stones.', v) },
-    'concept.music.overtones': () => { const v = harmonicSeriesDecoded(matrix); return result(command, v.decoded, 'The harmonic series — just vs equal temperament, the Pythagorean comma, the a432 history.', v) },
+    'concept.traditions.standstill': () => { const v = lunarStandstillsDecoded(matrix); return result(command, v.decoded, 'The 18.6-year lunar standstill — major/minor declination extremes and the Station Stones.', v) },
+    'concept.school.overtones': () => { const v = harmonicSeriesDecoded(matrix); return result(command, v.decoded, 'The harmonic series — just vs equal temperament, the Pythagorean comma, the a432 history.', v) },
     'concept.science.quantum': () => { const v = quantumDecoded(matrix); return result(command, v.decoded, 'What quantum actually means — Hilbert space, the Born rule, the honest bound; woo flagged.', v) },
-    'concept.ancient.glagolitic': () => { const v = glagoliticAlphabetDecoded(matrix); return result(command, v.decoded, 'The Glagolitic alphabet decoded — letters that are numbers, the cross·triangle·circle construction, the acrostic.', v) },
-    'concept.digit.imperial': () => { const v = imperialFractionsDecoded(matrix); return result(command, v.proved, 'Imperial units as binary fractions — 2^n subdivisions over the body-units.', v) },
-    'concept.healing.heart': () => { const v = heartProtonAtomDecoded(matrix); return result(command, v.proved, 'Heart as the proton inverse in (Z/9Z)* — systole × diastole ≡ 1.', v) },
-    'concept.science.codon': () => { const v = geneticCodeIsTheRealFourCubed(matrix); return result(command, v.holds, 'The genetic code is the real 4³ = 64 — codons and error-robustness.', v) },
+    'concept.traditions.glagolitic': () => { const v = glagoliticAlphabetDecoded(matrix); return result(command, v.decoded, 'The Glagolitic alphabet decoded — letters that are numbers, the cross·triangle·circle construction, the acrostic.', v) },
+    'concept.geometry.imperial': () => { const v = imperialFractionsDecoded(matrix); return result(command, v.proved, 'Imperial units as binary fractions — 2^n subdivisions over the body-units.', v) },
+    'concept.geometry.heart': () => { const v = heartProtonAtomDecoded(matrix); return result(command, v.proved, 'Heart as the proton inverse in (Z/9Z)* — systole × diastole ≡ 1.', v) },
+    'concept.school.codon': () => { const v = geneticCodeIsTheRealFourCubed(matrix); return result(command, v.holds, 'The genetic code is the real 4³ = 64 — codons and error-robustness.', v) },
     'concept.science.proton': () => { const v = schwarzschildProtonComputedInSource(matrix); return result(command, v.computed, 'The Schwarzschild proton computed in source — the ~38-orders gap flagged honestly.', v) },
   }
   const decodedHandler = decodedCommands[command]

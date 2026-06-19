@@ -131,7 +131,7 @@ export type ConceptCommandName =
   | 'concept.self.build'
   | 'concept.self.complete'
   | 'concept.self.address'
-  | 'concept.agent.educate'
+  | 'concept.society.educate'
   | 'concept.school.curriculum'
   | 'concept.mcp.tools'
   | 'concept.chain.quantum'
@@ -171,9 +171,9 @@ export type ConceptCommandName =
   | 'concept.lawful.succeed'
   | 'concept.society.relations'
   | 'concept.agent.streamWire'
-  | 'concept.ui.doubleTorus'
-  | 'concept.ui.useCases'
-  | 'concept.diamond.lattice'
+  | 'concept.mind.doubleTorus'
+  | 'concept.mind.useCases'
+  | 'concept.society.lattice'
   | 'concept.diamond.piTrain'
   | 'concept.diamond.complete'
   | 'concept.diamond.metatron'
@@ -227,13 +227,13 @@ export type ConceptCommandName =
   | 'concept.ui.reveal'
   | 'concept.ancient.pyramids'
   | 'concept.ancient.megalithic'
-  | 'concept.ancient.standstill'
-  | 'concept.music.overtones'
+  | 'concept.traditions.standstill'
+  | 'concept.school.overtones'
   | 'concept.science.quantum'
-  | 'concept.ancient.glagolitic'
-  | 'concept.digit.imperial'
-  | 'concept.healing.heart'
-  | 'concept.science.codon'
+  | 'concept.traditions.glagolitic'
+  | 'concept.geometry.imperial'
+  | 'concept.geometry.heart'
+  | 'concept.school.codon'
   | 'concept.science.proton'
 
 export interface ConceptCommand {
@@ -950,8 +950,9 @@ export interface TaxonomyEntry {
   readonly area: string
   readonly icon: string
   readonly count: number
-  readonly status: 'singleton' | 'pair' | 'trinity' | 'over'
+  readonly status: 'singleton' | 'pair' | 'trinity' | 'partial' | 'hexagram' | 'over'
   readonly gap: boolean
+  readonly clean: boolean
   readonly verbs: readonly string[]
   readonly receipt: string
 }
@@ -961,6 +962,10 @@ export interface TaxonomyIcons {
   readonly root: string
   readonly entries: readonly TaxonomyEntry[]
   readonly gaps: readonly string[]
+  readonly excess: readonly string[]
+  readonly clean: number
+  readonly compliance: number
+  readonly compliant: boolean
   readonly statement: string
   readonly boundary: string
 }

@@ -264,7 +264,7 @@ export function gapScan(matrix: MindMatrix = buildMatrix()) {
 }
 function computeGapScan(matrix: MindMatrix) {
   const scans = [
-    { surface: 'taxonomy pairs', gaps: taxonomyIcons().gaps.length },
+    { surface: 'taxonomy compliance', gaps: taxonomyIcons().gaps.length + taxonomyIcons().excess.length },
     { surface: 'method fusion', gaps: methodFusion().open.length },
     { surface: 'translations', gaps: autotranslations(matrix).missing.length },
     { surface: 'component graph', gaps: componentGraph().consistent ? 0 : 1 },

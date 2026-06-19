@@ -639,7 +639,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Agent Education',
-      command: 'concept.agent.educate',
+      command: 'concept.society.educate',
       route: '/quantum-mind#agent-education',
       summary: 'The agent learns efficiency and security rules before it runs the costly genus-2 math.',
     },
@@ -777,19 +777,19 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
     },
     {
       title: 'Concept UI Components',
-      command: 'concept.ui.doubleTorus',
+      command: 'concept.mind.doubleTorus',
       route: '/commands',
       summary: 'The command console drives the double-torus dashboard as a UI component.',
     },
     {
       title: 'Quantum UI Evidence',
-      command: 'concept.ui.useCases',
+      command: 'concept.mind.useCases',
       route: '/quantum-mind#diamond-lattice',
       summary: 'Repository-grounded UI use cases list their source functions, components, interactions, and receipts.',
     },
     {
       title: 'Diamond Lattice',
-      command: 'concept.diamond.lattice',
+      command: 'concept.society.lattice',
       route: '/quantum-mind#diamond-lattice',
       summary: 'Every displayed dimension and dynamic is computed from four-facet diamonds.',
     },

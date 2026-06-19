@@ -1538,31 +1538,43 @@ export function taxonomyIcons(): TaxonomyIcons {
   const entries: readonly TaxonomyEntry[] = [...byArea.entries()]
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([area, verbs]) => {
-      const status = verbs.length === 1 ? 'singleton' : verbs.length === 2 ? 'pair' : verbs.length === 3 ? 'trinity' : 'over'
+      const n = verbs.length
+      // Score each area against the whole I Ching units: 1 a line, 3 a trigram, 6 a hexagram (two trigrams).
+      // A pair (2) is one fold short of a trigram — a GAP. A partial (4–5) or over (7+) sits beyond a trigram
+      // and short of the next whole — EXCESS. Only 1, 3, 6 are clean.
+      const status =
+        n === 1 ? 'singleton' : n === 2 ? 'pair' : n === 3 ? 'trinity' : n === 6 ? 'hexagram' : n > 6 ? 'over' : 'partial'
+      const clean = n === 1 || n === 3 || n === 6
       return {
         area,
         // Only Glagolitic icons: the taxonomy wears the ninth-century script, a glyph per area
         // computed from its content-address (letters are numbers). The emoji AREA_ICONS are retired.
         icon: glagoliticGlyph(area),
-        count: verbs.length,
+        count: n,
         status,
-        // The actionable implementation gap is a pair: an area one fold short of
-        // a trinity. Singletons are atomic; over-areas already hold a trinity.
         gap: status === 'pair',
+        clean,
         verbs,
         receipt: toUuid(`taxonomy:${area}:${verbs.join(',')}`),
       }
     })
   const gaps = entries.filter((entry) => entry.gap).map((entry) => `${entry.icon} ${entry.area}(${entry.count})`)
+  // Excess is the dual of the gap: an area beyond a trigram but short of the next whole (4–5, or 7+).
+  const excess = entries.filter((entry) => !entry.clean && !entry.gap).map((entry) => `${entry.icon} ${entry.area}(${entry.count})`)
+  const cleanCount = entries.filter((entry) => entry.clean).length
   return {
     grounded: entries.every((entry) => entry.icon.length > 0),
     root: merkleFold(entries.map((entry) => entry.receipt)),
     entries,
     gaps,
+    excess,
+    clean: cleanCount,
+    compliance: roundTo(cleanCount / entries.length, 4),
+    compliant: gaps.length === 0 && excess.length === 0,
     statement:
-      'Icons taxonomize the commands by area; a pair — an area one fold short of a trinity — is a visible implementation gap the icons discover.',
+      'Icons taxonomize the commands by area, and the analytics scores each area against the whole I Ching units — a line (1), a trigram (3), a hexagram (6). A pair (2) is a gap one fold short of a trigram; a partial (4–5) or over (7+) is excess, beyond a trigram and short of the next whole. Compliance is the share of areas sitting on a whole unit.',
     boundary:
-      'A structural taxonomy over the command areas. "Gap" means a pair (one fold from a trinity), an observation to guide work, not a defect claim.',
+      'A structural taxonomy over the command areas, scored against the I Ching whole units (1·3·6). "Gap" (pair) and "excess" (partial/over) are observations to guide rebalancing, not defect claims; singletons are atomic lines, counted clean.',
   }
 }
 
