@@ -127,6 +127,9 @@ export * from './simulators.ts'    // ↓ dissolution wave 3 (simulators-live-in
 export * from './quantumproofs.ts' // ↓ dissolution wave 3 (quantum solutions + proofs)
 export * from './sky.ts'           // ↓ dissolution wave 4 (pyramids + archaeoastronomy: the sky folds)
 export * from './ledger.ts'
+export * from './music.ts'
+export * from './language.ts'
+export * from './physics.ts'
 export * from './world.ts'
 export * from './learning.ts'
 export * from './geometry.ts'

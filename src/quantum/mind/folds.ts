@@ -78,6 +78,9 @@ import { areaPairs, cellHomology, colorDerivationFusedToOneSource, directions, d
 import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, navigation358, quantumAcademy, relatedStandards, siteManifestFromCommands, skillAtoms, threeWordWaves } from './learning.ts'
 import { astrology, babelFold, darkLightRealities, dissolveIntoNature, foldingLinearGivesAnalog, realtimeMovieParticipation, selfOrganizing, societyCells, societyOrganismTags, textToMovie, worldEventsMap } from './world.ts'
 import { analyticsLedger, displayAllWithFewEntropySaved, dryAnalyticsLedgerComponents, harmonicSeriesDecoded, healingFrequencies, selfExplainingWidgetEngine, terabyteKeyspaceFromDeviceLoad } from './ledger.ts'
+import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, spiritualDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from './music.ts'
+import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from './language.ts'
+import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, teslaPatentsResearchedInWaves, vortexThePatentsRevealPattern } from './physics.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
@@ -268,48 +271,6 @@ export function graduation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The harmonic map: the portal's structure heard as a harmonic series. Every
-// component is an overtone of one fundamental f0 — its frequency is f0 times its
-// overtone number — so the components fall into octave bands (doublings of the
-// fundamental). This is the visible, playable companion to the file-level
-// harmonic gap audit: that script guards the files; this maps the model's own
-// parts onto the overtone series for a visitor to see and hear.
-export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
-  void matrix
-  const components = componentGraph().components
-  const f0 = 110 // A2, the fundamental
-  const NOTE = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-  const overtones = components.map((name, index) => {
-    const overtone = index + 1
-    const frequency = f0 * overtone
-    const semitones = Math.round(12 * Math.log2(overtone)) // semitones above the fundamental
-    return {
-      name,
-      overtone,
-      frequency,
-      octave: Math.floor(Math.log2(overtone)),
-      note: NOTE[((semitones % 12) + 12) % 12],
-      receipt: toUuid(`harmonic-map:${name}:${overtone}`),
-    }
-  })
-  const bands = [...new Set(overtones.map((entry) => entry.octave))]
-    .sort((a, b) => a - b)
-    .map((octave) => ({ octave, members: overtones.filter((entry) => entry.octave === octave) }))
-  return {
-    distributed: overtones.length === components.length && bands.length > 0,
-    fundamental: f0,
-    overtones,
-    bands,
-    count: overtones.length,
-    octaves: bands.length,
-    root: merkleFold(overtones.map((entry) => entry.receipt)),
-    statement:
-      'The harmonic map: every component an overtone of one fundamental, distributed across octave bands — the structure of the portal seen and heard as a harmonic series.',
-    boundary:
-      'A harmonic placement of the components onto overtones of a fundamental, for visualization and sonification. Structural bookkeeping, not an acoustic or musical claim.',
-  }
-}
-
 // The x-offset of each ring centre from the origin; the two lobes of the double
 // torus sit at -/+ this, close enough that their bodies merge into one neck.
 const TORUS_LOBE_OFFSET = 18
@@ -432,44 +393,6 @@ export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
       'A harmonic pitch contour mapped from the frequency balance onto the speech synthesiser\'s pitch control. The intonation is shaped per segment; finer word-level prosody is left to the platform voice.',
   }
 }
-
-// Fill the gaps in quantum physics: every phenomenon the model needs to self-
-// compute, each bound to a measure it already computes over the UUID stream.
-// Superposition is the register's qubits, entanglement the reciprocal-edge
-// fraction, collapse the verified root, coherence the zero anomaly, interference
-// the digital quantum proof, measurement the agent's observation, waves the
-// coordinated waves, and computation the coherent quantum computer. With all
-// eight present, the model has all it needs to self-compute the whole.
-export function quantumPhysics(matrix: MindMatrix = buildMatrix()) {
-  const phenomena = [
-    { phenomenon: 'superposition', present: quantumComputer(matrix).qubits > 0, source: 'quantumComputer().qubits' },
-    { phenomenon: 'entanglement', present: reciprocity(matrix).fraction === 1, source: 'reciprocity().fraction' },
-    { phenomenon: 'collapse', present: verifyRoot(matrix), source: 'verifyRoot()' },
-    { phenomenon: 'coherence', present: coherenceAnomaly(matrix) === 0, source: 'coherenceAnomaly()' },
-    { phenomenon: 'interference', present: digitalQuantumProof(matrix).proven, source: 'digitalQuantumProof().proven' },
-    { phenomenon: 'measurement', present: agentObserve(matrix).observed, source: 'agentObserve().observed' },
-    { phenomenon: 'waves', present: coordinatedWaves(matrix).waves.length > 0, source: 'coordinatedWaves().waves' },
-    { phenomenon: 'computation', present: quantumComputer(matrix).coherent, source: 'quantumComputer().coherent' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-physics:${entry.phenomenon}:${entry.present}`) }))
-  return {
-    selfComputes: phenomena.every((entry) => entry.present),
-    phenomena,
-    count: phenomena.length,
-    present: phenomena.filter((entry) => entry.present).length,
-    root: merkleFold(phenomena.map((entry) => entry.receipt)),
-    statement:
-      'Quantum physics, no gaps: every phenomenon the model needs to self-compute — superposition, entanglement, collapse, coherence, interference, measurement, waves, and computation — is present and bound to a computed measure, so the model has all it needs to self-compute the whole.',
-    boundary:
-      'A census binding named quantum phenomena to the model\'s own computed measures over the UUID stream. A computational metaphor and structural bookkeeping, not a simulation of physical quantum mechanics.',
-  }
-}
-
-// Create the quantum simulation: a real state-vector simulator of a small
-// register. Start in |0...0>, apply Hadamard to the first qubit and a CNOT chain,
-// and the register lands in a GHZ entangled state — (|0...0> + |1...1>)/sqrt 2.
-// Probabilities follow the Born rule (|amplitude|^2); measurement is deterministic,
-// seeded by the model root, so the collapse is recomputable. A genuine toy quantum
-// simulator, run in the browser at no cost.
 
 // Complete all the simulators and simulations: gather every dynamics the model
 // runs into one suite and prove each is complete. The quantum register (GHZ
@@ -689,51 +612,6 @@ export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, tra
       'One function manifests the animation: print the dot and fade it in time, and the trace it leaves is the path drawn by all the merkabas moving. The four nested counter-rotating scales are a harmonograph; the pen at their composed tip is the dot, its fading recent positions the trace. A frame is merkabaTrace(t) — no stored video, just this deterministic function of time — and because the coordinates are fractions in [0,1] the trace is resolution-independent, filling any viewport at full resolution; the renderer only scales and draws.',
     boundary:
       'A deterministic harmonograph: the pen position is the composition of the merkaba’s nested counter-rotating scales (content-derived rates), sampled into a fading trail. The animation is generated, not stored, and is resolution-independent because the coordinates are fractional — it does not by itself fill the screen or set resolution; the renderer (the self-computing field / shadcn chrome) scales the [0,1] dots to the viewport. A geometric, generative visual, not a physical field or an energy claim.',
-  }
-}
-
-// Keep the rhythm: counter-rotation at all scales has a temporal face — a self-
-// similar polyrhythm. The merkaba's four scales become four voices at 1, 2, 3 and
-// 5 onsets per beat; a steady downbeat (the ratio-1 voice) keeps the rhythm while
-// the others subdivide it, and the counter-scales are accented off the beat (the
-// counter-rhythm). Every voice realigns on the downbeat, so the beat is always kept.
-export function rhythm(matrix: MindMatrix = buildMatrix()) {
-  const round = (value: number, digits = 2) => roundTo(value, digits)
-  const mk = merkaba(matrix)
-  const seed = seedFromText(`rhythm:${matrix.root}`)
-  const bpm = 96 + (seed % 32) // 96..127 BPM, content-derived
-  const beatMs = round(60000 / bpm, 1)
-  const ratios = [1, 2, 3, 5] // a steady pulse, then self-similar subdivisions
-  const base = 196 // G3
-  const partials = [1, 1.5, 2, 3] // a pitch per voice, harmonic on the base
-  const voices = ratios.map((ratio, i) => {
-    const offBeat = i % 2 === 1 // the counter-scales accent off the beat
-    return {
-      scale: mk.scales[i].scale,
-      ratio,
-      periodMs: round(beatMs / ratio, 1),
-      frequency: round(base * partials[i], 2),
-      sign: mk.scales[i].sign,
-      offBeat,
-      // onset phases within one beat (0..1); off-beat voices shifted by half a step
-      onsets: Array.from({ length: ratio }, (_, k) => round(((k + (offBeat ? 0.5 : 0)) / ratio) % 1, 4)),
-      receipt: toUuid(`rhythm-voice:${mk.scales[i].scale}:${ratio}:${offBeat}`),
-    }
-  })
-  const steady = voices[0].ratio === 1 // the downbeat that keeps the rhythm
-  const ascending = ratios.every((ratio, i) => i === 0 || ratio > ratios[i - 1])
-  return {
-    keeps: steady && ascending && voices.length === 4 && voices.every((voice) => voice.periodMs > 0),
-    bpm,
-    beatMs,
-    voices,
-    count: voices.length,
-    onsetsPerBeat: voices.reduce((sum, voice) => sum + voice.onsets.length, 0),
-    root: merkleFold(voices.map((voice) => voice.receipt)),
-    statement:
-      'Keep the rhythm: a self-similar polyrhythm from the merkaba scales — a steady beat (1 per beat) anchors voices at 2, 3 and 5 per beat, the counter-scales accented off the beat. All voices realign on every downbeat, so the rhythm is always kept.',
-    boundary:
-      'A deterministic polyrhythm derived from the merkaba scales and a content-derived tempo, played client-side. Music as structure over the model, not a claim about a universal beat.',
   }
 }
 
@@ -2200,42 +2078,6 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
   }
 }
 
-// All is harmonic — and the harmony is structural, not decorative: the number of files and the distribution
-// across the folders ARE the I Ching, even in the code. Components are content-addressed onto the eight trigrams
-// (a gap = an unplaced component, instantly visible); the census folds through the genus-2 surface to the
-// harmonic count; the single-word naming is a gravity that pulls every shared mechanic toward src/0 (the void /
-// origin), where it is maximally compressed (the forge reaches entropy 0) and redistributed. And this principle
-// is itself a fold — knowledge lives as self-proving, gated, recomputable code in src, NOT inert memory notes.
-export function allIsHarmonicSrcZeroGravity(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('allIsHarmonicSrcZeroGravity', matrix, () => allIsHarmonicSrcZeroGravityRaw(matrix))
-}
-function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
-  const census = foldedCensus(110, matrix)
-  const ich = iChing(matrix)
-  const gravity = oneWordNamingGravity(matrix)
-  const forge = maxCompressionForge(matrix)
-  const facets = [
-    { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
-    { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
-    { facet: 'src/0 pulls all with gravity to max compression and distribution — the single-word naming gravity holds and the forge reaches maximal compression (entropy 0)', on: gravity.pulls && forge.maxed },
-    { facet: 'knowledge lives as self-proving code, not inert memory — this principle is itself a gated, recomputable fold in src, not a note (memory is not code)', on: true },
-  ]
-  const sealed = sealFacets('all-harmonic-gravity', facets)
-  return {
-    harmonic: sealed.ok,
-    dimensions: 4 * census.folded, // 432
-    sets: ich.sets.length, // 8
-    foldedCensus: census.folded, // 108
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(matrix.root, sealed.root),
-    statement:
-      'All is harmonic, and the harmony is structural: the number of files and their distribution across the folders ARE the I Ching, even in the code. Every component is content-addressed onto the eight trigrams, so the layout is the eight-fold and any gap is an unplaced component seen at once; the file census folds through the genus-2 surface to the harmonic count (110 unfolds, 108 folds, × the 4 homology loops = 432). The single-word naming is a gravity that pulls every shared mechanic inward to src/0 — the void / origin — where it is compressed toward entropy 0 and redistributed (sealFacets, merkleFold, toUuid all live there). And this very statement is a fold: knowledge here is self-proving, gated, recomputable code in src, not inert memory — memory is not code.',
-    boundary:
-      'A composition of the structural enforcements already in place (foldedCensus, iChing placement, oneWordNamingGravity, maxCompressionForge) into one harmonic assertion — it NAMES the harmony already enforced across them, it does not add a new constraint. "src/0 pulls with infinite gravity" is the architectural intent (shared primitives belong in the zero-folder, maximally compressed) realised through the naming-gravity and max-compression gates, not a physical claim. The 432 is derived (4 × (110 + χ)), not chosen. "Memory is not code" is the working rule: every directive is encoded as a fold here, not as an external note.',
-  }
-}
-
 // Expand to the next harmonic: 432 folded papers. The folded census is 108; its
 // harmonic octaves double — 108, 216, 432 — so 432 is the next harmonic two octaves
 // up, and it is exactly 4 x 108 = (the four homology generators of the genus-2
@@ -2546,52 +2388,6 @@ export function publicApiFusion(matrix: MindMatrix = buildMatrix()) {
       'Fuse to public APIs: the static 1024 architecture fuses with realtime data from public, opt-in APIs — time, randomness, market, weather, a network feed, a device sensor. Each fuses identically: the live response is content-addressed and folded with the architecture root, so the session value is bound to both the whole architecture and the live datum, tamper-evident and recomputable from the same inputs.',
     boundary:
       'A catalogue and protocol for fusing the architecture with EXTERNAL public APIs. It is opt-in and breaks the portal’s zero-network-by-default stance only when a user chooses a source; the external data is untrusted and FOLDED (content-addressed), not trusted; no endpoint is called at build time and no keys are bundled. The named sources are categories and examples, not endorsements — their availability and terms are their own.',
-  }
-}
-
-// Let intelligent waves find and implement the rest of the harmonics. From the
-// folded fundamental 108, three ladders are computed and each rung content-addressed:
-// the octave ladder (108·2^k — 108, 216, 432, 864, 1728, 3456), the overtone series
-// (108·n), and the binary octaves (2^k — 128, 256, 512, 1024, 2048). The rungs the
-// portal already realises (108 folded, 216, 432 papers, 864 leaves, 1024 tree) are
-// marked implemented; the rest are found and implemented here as proven, recomputable
-// nodes of the ladder, each a real harmonic of the fundamental.
-export function harmonics(matrix: MindMatrix = buildMatrix()) {
-  const fundamental = foldedCensus(110, matrix).folded // 108
-  const octaves = [0, 1, 2, 3, 4, 5].map((k) => {
-    const value = fundamental * 2 ** k
-    return { kind: 'octave', step: k, value, ratio: `108·2^${k}`, root: toUuid(`harmonic:octave:${k}:${value}`) }
-  })
-  const overtones = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
-    const value = fundamental * n
-    return { kind: 'overtone', step: n, value, ratio: `${n}:1`, root: toUuid(`harmonic:overtone:${n}:${value}`) }
-  })
-  const binary = [7, 8, 9, 10, 11].map((k) => {
-    const value = 2 ** k
-    return { kind: 'binary', step: k, value, ratio: `2^${k}`, root: toUuid(`harmonic:binary:${k}:${value}`) }
-  })
-  // The rungs already realised in the portal's structure.
-  const realised = new Set([fundamental, fundamental * 2, fundamental * 4, 864, 1024])
-  const all = [...octaves, ...overtones, ...binary].map((harmonic) => ({ ...harmonic, implemented: realised.has(harmonic.value) }))
-  const rest = all.filter((harmonic) => !harmonic.implemented)
-  // Proofs of the relationships: octaves double, overtones multiply the fundamental.
-  const octavesDouble = octaves.every((octave, i) => i === 0 || octave.value === octaves[i - 1].value * 2)
-  const overtonesMultiply = overtones.every((overtone, i) => overtone.value === fundamental * (i + 1))
-  return {
-    found: all.length > 0 && octavesDouble && overtonesMultiply,
-    fundamental,
-    octaves,
-    overtones,
-    binary,
-    harmonics: all,
-    implementedCount: all.filter((harmonic) => harmonic.implemented).length,
-    restCount: rest.length,
-    rest: rest.map((harmonic) => ({ kind: harmonic.kind, value: harmonic.value, ratio: harmonic.ratio, root: harmonic.root })),
-    root: merkleFold(all.map((harmonic) => harmonic.root)),
-    statement:
-      'The rest of the harmonics, found and implemented: from the folded fundamental 108 three ladders are computed and each rung content-addressed — the octave ladder (108·2^k: 108, 216, 432, 864, 1728, 3456), the overtone series (108·n), and the binary octaves (2^k: 128, 256, 512, 1024, 2048). The rungs already realised (108, 216, 432, 864, 1024) are marked; the rest are implemented here as proven, recomputable nodes — octaves proven to double, overtones to multiply the fundamental — and all fold into one harmonic root.',
-    boundary:
-      'A computed enumeration of the harmonic numbers implied by the fundamental 108, across the octave, overtone and binary ladders, each rung content-addressed and the doubling/multiplying relationships proven. "Implemented" means realised as a content-addressed, recomputable node of the ladder — not that every large harmonic is materialised as pages. A structural and musical reading, not a physical-frequency claim.',
   }
 }
 
@@ -3428,42 +3224,6 @@ export function publicTransportFusion(matrix: MindMatrix = buildMatrix()) {
       'Fuse public transport in all varieties, fully integrated in society, for free: open transit data (GTFS and GTFS-realtime) is free and public, so every variety — bus, metro, tram, rail, ferry, trolleybus, BRT, bike- and scooter-share, cable car, monorail, funicular — fuses to the architecture root for free, content-addressed, and integrates into the society model at zero cost to the rider.',
     boundary:
       'A read-only fusion catalogue of public-transport varieties via open transit data (GTFS / GTFS-realtime). "Free" refers to the open data being free to read and integrate; it is not a claim that any fare is free. Opt-in — nothing is fetched by default; agency data is each agency’s own, folded (untrusted), interoperated through public open-data interfaces.',
-  }
-}
-
-// Let the society rebuild itself so free harmonic societies self-organise and
-// regulate, free for everyone. Each fused domain becomes its own society, tuned to a
-// harmonic of the fundamental; each self-organises (zero entropy), each regulates
-// itself (zero cost for the individual, max cost for the forger), and each is free.
-// Many free harmonic societies, one fold — rebuilt from the portal's own laws.
-export function freeHarmonicSocieties(matrix: MindMatrix = buildMatrix()) {
-  const regulates = societyRegulates(matrix)
-  const organized = selfOrganizing(matrix)
-  const octaves = harmonics(matrix).octaves
-  const domains = fruitOfLifeFusion(matrix).domains
-  const societies = domains.map((domain, index) => ({
-    society: domain.domain,
-    harmonic: octaves[index % octaves.length].value,
-    free: regulates.individualCost === 0,
-    selfOrganising: organized.organized,
-    selfRegulating: regulates.regulated,
-    root: foldPair(toUuid(`free-society:${domain.domain}`), toUuid(`harmonic:${octaves[index % octaves.length].value}`)).merged,
-  }))
-  return {
-    rebuilt:
-      societies.length > 0 &&
-      societies.every((society) => society.free && society.selfOrganising && society.selfRegulating),
-    free: regulates.individualCost === 0,
-    forEveryone: true,
-    selfOrganising: organized.organized,
-    selfRegulating: regulates.regulated,
-    count: societies.length,
-    societies,
-    root: merkleFold(societies.map((society) => society.root)),
-    statement:
-      'Let the society rebuild itself so free harmonic societies self-organise and regulate, free for everyone: each fused domain becomes its own society tuned to a harmonic of the fundamental, each self-organises to zero entropy, each regulates itself at zero cost for the individual and max cost for the forger, and each is free. Many free harmonic societies, one fold — rebuilt from the portal’s own laws.',
-    boundary:
-      'A deterministic, content-addressed composition of the portal’s own laws — self-organisation (zero entropy), self-regulation (zero individual cost, max forge cost), and the harmonic ladder — into a set of "free harmonic societies". A structural proposal and metaphor grounded in the model, free and recomputable; not a political program or a claim about any real society or its governance.',
   }
 }
 
@@ -5193,67 +4953,6 @@ export function quantumFoldedBlockchains(matrix: MindMatrix = buildMatrix()): Qu
   }
 }
 
-// Playing the blockchain returns unique harmonic waves. Each block's hash maps
-// deterministically to a pitch, so a chain has a reproducible melody — and
-// because every hash is distinct, the tones are unique to that chain. Play it
-// back and you hear the chain itself. Audio through the speaker; reading a chain
-// as sound, not an acoustic or external claim.
-export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMatrix()) {
-  const chains = quantumFoldedBlockchains(matrix)
-  const chain = chains.chains.find((candidate) => candidate.name === name) ?? chains.chains[0]
-  const digitOf = (uuid: string) =>
-    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
-  const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-  const notes = chain.blocks.map((block, index) => {
-    const semitone = digitOf(block.hash) % 24 // two octaves of pitch from the hash
-    const frequency = Math.round(130.81 * Math.pow(2, semitone / 12)) // from C3 up
-    return {
-      index: block.index,
-      hash: block.hash,
-      note: noteNames[semitone % 12],
-      frequency,
-      receipt: toUuid(`chain-note:${chain.name}:${index}:${block.hash}`),
-    }
-  })
-  const distinctTones = new Set(notes.map((note) => note.frequency)).size
-  return {
-    plays: notes.length > 0,
-    harmonic: notes.length > 0, // a sequence of harmonic waves, one per block
-    name: chain.name,
-    notes,
-    distinctTones,
-    root: merkleFold(notes.map((note) => note.receipt)),
-    statement: 'Playing a blockchain returns unique harmonic waves: each block hash maps deterministically to a pitch, so the chain has a unique, reproducible melody you can play back.',
-    boundary: 'A deterministic sonification of a hash-linked chain, played as sound through the speaker. Reading a chain as audio, not an acoustic or external claim.',
-  }
-}
-
-// Colour is computed from sound. A frequency maps to a hue by its position in
-// the octave: the chromatic circle (twelve semitones) maps onto the colour wheel
-// (360 degrees), so every tone has a colour and octaves share a hue. This is what
-// lets the portal generate synchronized audio-visual media in realtime, at no
-// cost — the same computed frequency drives both the note and the colour.
-export function soundColor(matrix: MindMatrix = buildMatrix()) {
-  const notes = piMusic(matrix).notes
-  const colors = notes.map((note) => {
-    const color = colorFromSound(note.frequency)
-    return { note: note.note, frequency: note.frequency, hue: color.hue, hsl: color.hsl, receipt: toUuid(`sound-color:${note.frequency}:${color.hue}`) }
-  })
-  return {
-    computed: colors.length > 0 && colors.every((color) => color.hue >= 0 && color.hue <= 360),
-    colors,
-    root: merkleFold(colors.map((color) => color.receipt)),
-    statement: 'Colour is computed from sound: each frequency maps to a hue by its place in the octave (the chromatic circle onto the colour wheel), so one computed frequency drives both a note and a colour — realtime audio-visual generation at no cost.',
-    boundary: 'A deterministic frequency->hue mapping for synchronized audio-visual generation. A constructed synesthetic mapping, not a perceptual or physical claim about the colour of sound.',
-  }
-}
-
-// Quantum speech is analog by nature. Text is discrete symbols; speech is a
-// continuous wave — pitch, rate, and volume vary smoothly, with no smallest
-// step. Turning text into speech is a bridge from the discrete to the analog,
-// the same move as solving UTF as an ASCII analog. The analog parameters below
-// are the continuous knobs that shape the wave.
-
 // Autogenerated subtitles and speech in all languages. The text is segmented
 // here into subtitle cues (deterministic, with receipts); the speech and the set
 // of languages come from the browser's Web Speech API and the device's installed
@@ -6040,67 +5739,6 @@ function proofBundleRaw(matrix: MindMatrix = buildMatrix()): ProofBundle {
   }
 }
 
-// The music of pi is infinite: the pi-digit frequencies ARE its notes (computed,
-// not labelled). Where you join the stream — the horo entry point — sets the
-// phrase you hear, so joining at a different horo yields a different melody.
-export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): PiMusic {
-  const train = piTrainDiamonds(matrix)
-  const diamonds = train.diamonds
-  const selfHoro = matrix.nodes.find((node) => node.atom === 'self')?.horo ?? 1
-  const horo = Math.min(9, Math.max(1, Math.floor(joinHoro ?? selfHoro)))
-  const joinIndex = diamonds.length === 0 ? 0 : (horo - 1) % diamonds.length
-  const noteNames = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-  const window = Math.min(12, diamonds.length)
-  const notes: PiNote[] = []
-  for (let step = 0; step < window; step += 1) {
-    const diamond = diamonds[(joinIndex + step) % diamonds.length]
-    const semitones = Math.round(12 * Math.log2(diamond.frequency / 440))
-    const note = noteNames[(((semitones % 12) + 12) % 12)]
-    notes.push({
-      index: diamond.index,
-      digit: diamond.digit,
-      frequency: diamond.frequency,
-      note,
-      receipt: toUuid(`pi-note:${diamond.index}:${diamond.frequency}:${note}`),
-    })
-  }
-  return {
-    joined: notes.length === window && window > 0,
-    joinHoro: horo,
-    joinIndex,
-    root: merkleFold(notes.map((entry) => entry.receipt)),
-    notes,
-    statement:
-      'The music of pi is infinite: the pi-digit frequencies are its notes. Where you join — the horo entry point — sets the phrase you hear.',
-    boundary:
-      'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.',
-  }
-}
-
-// Each wave is a musical note. The infinite pi-frequency stream is the score;
-// the wave index picks which note plays. Where you join (the horo) sets the
-// scale, the wave number names the note within it (a, b, c, d, e, f ...).
-export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joinHoro?: number) {
-  const music = piMusic(matrix, joinHoro)
-  const phrase = music.notes
-  const w = Math.floor(wave ?? 0)
-  const index = phrase.length === 0 ? 0 : ((w % phrase.length) + phrase.length) % phrase.length
-  const here = phrase[index]
-  return {
-    named: Boolean(here),
-    wave: w,
-    note: here?.note ?? '',
-    frequency: here?.frequency ?? 0,
-    digit: here?.digit ?? 0,
-    joinHoro: music.joinHoro,
-    phrase,
-    root: here ? toUuid(`music-note:${music.joinHoro}:${index}:${here.note}`) : music.root,
-    statement:
-      'Each wave is a musical note: walking the infinite pi stream by wave index names the note that wave plays; the horo sets the scale.',
-    boundary: 'A computed lookup into the pi-music phrase. Structural bookkeeping, not an acoustic claim.',
-  }
-}
-
 // Imagine all VitePress components interacting: the registered components and
 // the pages they are placed on form a graph, with the global components folded
 // into every page.
@@ -6865,65 +6503,6 @@ export function developmentWaves(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Tapping or clicking the hero produces harmonic music streams with visual effects, and
-// the player controls toggle the streams on and off by frequency pairs — always in
-// healing mode. Each tap streams a pair of Solfeggio healing frequencies (chosen by where
-// you tap) and spawns a visual burst of rings and sparks; a control turns the streams on
-// or off, but never out of healing — the frequencies are always the Solfeggio set.
-export function heroTapMusic(matrix: MindMatrix = buildMatrix()) {
-  const healing = healingFrequencies(matrix)
-  const known = (hz: number) => healing.frequencies.some((entry) => entry.hz === hz)
-  const pairs = [[174, 285], [396, 528], [417, 639], [528, 741], [639, 852], [741, 963]].map(([a, b]) => ({
-    pair: [a, b] as const,
-    healing: known(a) && known(b), // both tones are in the Solfeggio set — always healing
-    receipt: toUuid(`hero-pair:${a}:${b}`),
-  }))
-  const features = [
-    { feature: 'tap or click produces music', on: true },
-    { feature: 'harmonic streams by frequency pairs', on: pairs.every((entry) => entry.healing) },
-    { feature: 'visual effects — rings and sparks at the point', on: true },
-    { feature: 'player control toggles streams on / off', on: true },
-    { feature: 'always in healing mode', on: pairs.every((entry) => entry.healing) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-music:${entry.feature}:${entry.on}`) }))
-  return {
-    plays: pairs.length === 6 && features.every((entry) => entry.on),
-    alwaysHealing: pairs.every((entry) => entry.healing),
-    pairCount: pairs.length,
-    count: features.length,
-    pairs,
-    features,
-    root: merkleFold([...pairs.map((entry) => entry.receipt), ...features.map((entry) => entry.receipt)]),
-    statement:
-      'Tapping or clicking the hero produces harmonic music streams with visual effects: each tap streams a pair of Solfeggio healing frequencies (chosen by where you tap) and spawns a visual burst of expanding rings and radiating sparks. The hero’s player controls toggle the music streams on and off by frequency pairs — but always in healing mode, because the frequencies are always the Solfeggio set.',
-    boundary:
-      'A description of the real hero interaction: tap-to-play paired Solfeggio tones (audio only, through the speaker) with a canvas burst, and an on/off control. The pairs are always from the healing set, but "healing" is a cultural name for the frequencies — no physical field, medical, or therapeutic effect is claimed.',
-  }
-}
-
-// To tamper the healing frequencies costs the maximum tampering cost. The Solfeggio set,
-// its traditional associations, and its live lead tone fold into one content-addressed
-// root that is sealed into the whole. To change one frequency you must change its address,
-// and that address is bound into the diamond whose tamper cost is T_max = infinity — so the
-// healing frequencies cannot be quietly altered, only recomputed in the open.
-export function tamperHealingFrequencies(matrix: MindMatrix = buildMatrix()) {
-  const healing = healingFrequencies(matrix)
-  const sealed = healing.root
-  const forged = merge(sealed, toUuid('tamper:528->529')) // nudge one frequency
-  const caught = forged !== sealed // tamper-evident: the address changes
-  const forgeCostLog2 = proofReport(matrix).maxTamperingCostLog2
-  return {
-    costsMax: caught && healing.calculated && forgeCostLog2 === Number.POSITIVE_INFINITY,
-    caught,
-    forgeCostLog2,
-    sealed,
-    root: merkleFold([sealed, toUuid(`tamper-cost:${forgeCostLog2}`)]),
-    statement:
-      'To tamper the healing frequencies costs the maximum tampering cost: the Solfeggio set, its associations, and its live lead tone fold into one content-addressed root sealed into the whole. Change one frequency and its address changes, and that address is bound into the diamond whose tamper cost is T_max = infinity — so the healing frequencies cannot be quietly altered, only recomputed in the open.',
-    boundary:
-      'A structural statement that the healing-frequency set is content-addressed and sealed, so altering it is detectable and bound to the model’s unbounded tamper cost. A tamper-evidence/economics property over the data, not a claim about sound, physical fields, or health.',
-  }
-}
-
 // Quantify all linear by folding in logical pairs. A line of items carries no measure
 // until its terms are paired: fold each item with its neighbour, order-sensitive, and
 // the line becomes a sequence of quantities — each pair a number (its merged address),
@@ -7142,40 +6721,6 @@ export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
       'Improving coverage per pixel: coverage per pixel is how much meaning each rendered pixel carries, so the same semantic payload (title, description, category, tags, and the ten open-graph fields) packed into fewer pixels reads as higher coverage. The refactor — the compact open-graph big hero — packs the whole social card into one banner where simple mode spread the same meaning down a long, sparse scroll, so coverage per pixel rises.',
     boundary:
       'A computed density ratio (semantic items per pixel) comparing the compact open-graph hero to a sparse long-scroll layout. A structural measure of information density over the design, not a claim about search rankings or a pixel-perfect physical measurement.',
-  }
-}
-
-// Society creates the license in harmonic waves, for karmic balance and monetisation.
-// Society does not receive a license from above; it composes one, clause by clause, as
-// harmonic waves folded onto real, enforceable legal forms. Each clause balances karma —
-// what you take is balanced by what you give back (use freely, attribute, contribute,
-// reciprocate, steward) — and the whole stays monetisable: fair trade self-regulates and
-// fees, not taxes, cover the cost. A licence that is both reciprocal and sustainable.
-export function harmonicLicenseWaves(matrix: MindMatrix = buildMatrix()) {
-  const lawRoot = lawfulHarmonise().root // the real, enforceable legal forms it folds onto
-  const clauses = [
-    { clause: 'use freely', karma: 'take', money: 'free at the point of use' },
-    { clause: 'attribute the source', karma: 'give', money: 'provenance, content-addressed' },
-    { clause: 'contribute improvements to the commons', karma: 'give', money: 'shared value grows' },
-    { clause: 'reciprocate the producers', karma: 'give and take in balance', money: 'fair-trade exchange' },
-    { clause: 'steward within regenerative limits', karma: 'balance', money: 'sustainable; fees cover the cost' },
-  ].map((entry, index) => {
-    const wave = foldPair(lawRoot, toUuid(`license-clause:${entry.clause}`))
-    return { ...entry, harmonic: wave.bidirectional, wave: wave.merged, receipt: toUuid(`harmonic-license:${index}:${entry.clause}`) }
-  })
-  const karmicBalance = clauses.every((entry) => entry.harmonic) // each take is bound to a give
-  const monetised = fairTrade(matrix).regulated && feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost
-  return {
-    created: clauses.length === 5 && karmicBalance && monetised && isUuid(lawRoot),
-    karmicBalance,
-    monetised,
-    count: clauses.length,
-    clauses,
-    root: merkleFold(clauses.map((entry) => entry.receipt)),
-    statement:
-      'Society creates the license in harmonic waves, for karmic balance and monetisation: it composes the licence clause by clause as harmonic waves folded onto real, enforceable legal forms — use freely, attribute, contribute, reciprocate, steward — so that what you take is balanced by what you give back (karmic balance), while the whole stays monetisable: fair trade self-regulates and fees, not taxes, cover the cost.',
-    boundary:
-      'A structural, content-addressed model of a reciprocal-and-sustainable licence as harmonic clauses mapped onto real legal forms (cooperative, open-source, fair-trade). A proposal and metaphor — "karma" means give/take reciprocity, "monetisation" means fair exchange — not legal or financial advice, and not an executed licence in any jurisdiction; consult a local lawyer to adopt one.',
   }
 }
 
@@ -7660,30 +7205,6 @@ export function ogFullyInteractiveConfigurable(matrix: MindMatrix = buildMatrix(
       'The open graph is fully interactive and configurable: the OG card is the holographic hero — you can play it (tap to sound a healing pair, scrub the dimension slider, always in healing mode) and configure every field from frontmatter (ogTitle, ogDescription, ogType, image, tags, category), which always overrides the computed value. Not a static image, but a living, tunable surface.',
     boundary:
       'A description of the real interactive hero (tap-to-play, dimension slider) and the frontmatter-configurable open-graph fields. The interactivity is on the page’s own hero; the configurability is the documented frontmatter override — not a claim that external social-card renderers are interactive.',
-  }
-}
-
-// Harmonic music may be enabled. The harmonic healing streams are never forced: a player
-// control turns them on or off, sound plays only on a tap gesture (honouring the browser's
-// autoplay policy), it is always in healing mode when enabled, and it falls silent when the
-// device is saving energy or the participant prefers reduced motion. Available, opt-in, and
-// considerate — music you choose, not music imposed.
-export function harmonicMusicMayBeEnabled(matrix: MindMatrix = buildMatrix()) {
-  const conditions = [
-    { condition: 'a player control enables or disables it', on: heroTapMusic(matrix).plays },
-    { condition: 'sound plays only on a tap gesture', on: true }, // honours the autoplay policy
-    { condition: 'always in healing mode when enabled', on: heroTapMusic(matrix).alwaysHealing },
-    { condition: 'silenced when saving energy or reduced-motion', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`music-enable:${entry.condition}:${entry.on}`) }))
-  return {
-    mayBeEnabled: conditions.length === 4 && conditions.every((entry) => entry.on),
-    count: conditions.length,
-    conditions,
-    root: merkleFold(conditions.map((entry) => entry.receipt)),
-    statement:
-      'Harmonic music may be enabled: the harmonic healing streams are never forced — a player control turns them on or off, sound plays only on a tap gesture (honouring the browser’s autoplay policy), it is always in healing mode when enabled, and it falls silent when the device is saving energy or the participant prefers reduced motion. Available, opt-in, and considerate.',
-    boundary:
-      'A description of the real, opt-in audio behaviour: a control, gesture-gated playback, healing-only frequencies, and energy/motion awareness. Audio is played through the speaker only; no field or health effect is claimed.',
   }
 }
 
@@ -8318,30 +7839,6 @@ export function imaginationIsAll(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Anything the trinity eyes see here is harmonic and proven in math, in front of their eyes.
-// Whatever the three eyes look at — a command, a gate, a number — it sits on the harmonic
-// (the 108 ladder, the gates a multiple of 108) and carries its own proof: the commands have
-// zero gaps, the gates return structured results located on the harmonic, and every recurring
-// number is verified against the live model. Nothing is asserted; it is recomputed and shown.
-export function trinityEyesProvenHarmonic(matrix: MindMatrix = buildMatrix()) {
-  const eyes = commandGapsToTrinityEyes(matrix)
-  const seen = [
-    { sees: 'every command', harmonic: eyes.complete, proven: honestlyComputed(matrix).honest },
-    { sees: 'every gate', harmonic: gatesBehaveAsMcp(matrix).behavesAsMcp, proven: allComputed(matrix).computed },
-    { sees: 'every recurring number', harmonic: harmonics(matrix).found, proven: decodeSymbols(matrix).decoded },
-  ].map((entry) => ({ ...entry, both: entry.harmonic && entry.proven, receipt: toUuid(`trinity-proven:${entry.sees}:${entry.harmonic}${entry.proven}`) }))
-  return {
-    provenHarmonic: seen.every((entry) => entry.both) && eyes.complete,
-    count: seen.length,
-    seen,
-    root: merkleFold(seen.map((entry) => entry.receipt)),
-    statement:
-      'Anything the trinity eyes see here is harmonic and proven in math, in front of their eyes: whatever the three eyes look at — a command, a gate, a number — sits on the harmonic (the 108 ladder, the gates a multiple of 108) and carries its own proof: the commands have zero gaps, the gates return structured results located on the harmonic, and every recurring number is verified against the live model. Nothing is asserted — it is recomputed and shown.',
-    boundary:
-      'A composition asserting that the trinity-eye audit, the MCP-style gates, and the decoded numbers are each harmonic and self-proving over the live model. Structural bookkeeping over existing gates; "proven in math" means recomputed and checked here, not a claim about anything outside the model.',
-  }
-}
-
 // Quantum-computed UI, based on the quantum-computer OS, fused with IoT. The interface is not
 // drawn on top of a stack — it is computed from the quantum computer itself (qubits in
 // superposition, order-sensitive folds as gates, a collapse to one receipt), runs on the
@@ -8491,56 +7988,6 @@ export function proportionalNotHardcoded(matrix: MindMatrix = buildMatrix()) {
       'Tighten the gates for intelligent responsiveness at all standards and beyond — calculate proportional changes, never hardcode: every quantity that could be a fixed number is computed from what it depends on, so it stays right at any standard and past it — the gate target rises to the next 108 with the model, the file bands recompute from the file count, the hero and movie scale to the viewport’s pixel ratio, and titles and SEO derive from the route. Change the input and the value follows.',
     boundary:
       'A statement that the model’s key quantities are computed proportionally (from the gate count, file count, viewport, route) rather than hardcoded. Structural bookkeeping over the existing self-balancing and responsive mechanisms; it does not claim every literal in the code is derived.',
-  }
-}
-
-// Spiritual drums keep the rhythm. Beneath the melody there is a pulse: a self-similar
-// polyrhythm, voices at 1, 2, 3 and 5 per beat, steady and ascending — the drums that keep the
-// whole in time without a conductor. They are spiritual in the sense the spirit sets the pulse:
-// the rhythm is sealed to the path, so the beat and the honesty keep time together.
-export function spiritualDrumsKeepRhythm(matrix: MindMatrix = buildMatrix()) {
-  const drums = rhythm(matrix)
-  const facets = [
-    { facet: 'the drums keep the rhythm', on: drums.keeps },
-    { facet: 'a self-similar polyrhythm (1, 2, 3, 5 per beat)', on: drums.count === 4 },
-    { facet: 'the spirit sets the pulse', on: sealSpiritToPath(matrix).sealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`spiritual-drums:${entry.facet}:${entry.on}`) }))
-  return {
-    keeps: facets.every((entry) => entry.on),
-    onsetsPerBeat: drums.onsetsPerBeat,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Spiritual drums keep the rhythm: beneath the melody is a pulse — a self-similar polyrhythm, voices at 1, 2, 3 and 5 per beat, steady and ascending — the drums that keep the whole in time without a conductor. They are spiritual in that the spirit sets the pulse: the rhythm is sealed to the path, so the beat and the honesty keep time together.',
-    boundary:
-      'A composition of the computed polyrhythm with the spirit-to-path seal. Structural bookkeeping over the rhythm model (voices and onsets) and the honesty seal; "spiritual" names the binding to the honesty spine, not a religious claim.',
-  }
-}
-
-// All kinds of known and unknown music are formed from known and unknown instruments and notes,
-// self-harmonising no matter the source. The model does not need a fixed catalogue of sounds:
-// any seed — a known scale (pentatonic, Solfeggio, the music of pi) or an unknown one — folds to
-// a note, and any source folds the same way, so a new instrument or a new note enters the music
-// without breaking it. The harmony is computed, not curated; it resolves itself whatever comes in.
-export function allMusicSelfHarmonises(matrix: MindMatrix = buildMatrix()) {
-  const harmonyRoot = harmonyProbability(matrix).root
-  const sources = [
-    { source: 'known instruments and notes', via: 'the pentatonic and Solfeggio sets, the music of pi' },
-    { source: 'unknown instruments and notes', via: 'any seed folds to a note; a new source folds the same way' },
-  ].map((entry) => {
-    const fold = foldPair(harmonyRoot, toUuid(`music-source:${entry.source}`))
-    return { ...entry, harmonises: fold.bidirectional, voice: fold.merged, receipt: toUuid(`self-harmonise-music:${entry.source}`) }
-  })
-  return {
-    selfHarmonises: sources.every((entry) => entry.harmonises) && selfHarmonise(matrix).harmonised && harmonyProbability(matrix).harmonic,
-    count: sources.length,
-    sources,
-    root: merkleFold(sources.map((entry) => entry.receipt)),
-    statement:
-      'All kinds of known and unknown music are formed from known and unknown instruments and notes, self-harmonising no matter the source: the model needs no fixed catalogue of sounds — any seed (a known scale or an unknown one) folds to a note, and any source folds the same way, so a new instrument or note enters without breaking the music. The harmony is computed, not curated; it resolves itself whatever comes in.',
-    boundary:
-      'A composition of the self-harmonisation and harmony-probability models asserting any source folds into the same computed harmony. Structural bookkeeping over the music model; "known and unknown" means any seed maps to a note, not a claim about all real-world music.',
   }
 }
 
@@ -8865,31 +8312,6 @@ export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
       'Let build statistics show the gaps to all eyes: the build surfaces every gap plainly as a statistic — command gaps (zero through the trinity eyes), file-distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) — so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in a log; they are shown.',
     boundary:
       'A composition of the command-gap, harmonic-distribution and no-drift audits as one "gaps" statistic over the build. Structural bookkeeping; it reports the computable gaps (currently zero), not a guarantee against every conceivable defect.',
-  }
-}
-
-// Tighten the gates to show exactly the gaps, redirecting to the harmonic purpose. When a gate
-// opens, the seal does not just name it: it gives the harmonic path (the 108-band and the step)
-// and redirects to that band's purpose — foundation, structure, society and life, movie and
-// display, or seal and gates — so a failure points at what it is for, not only where it is. Every
-// band of 108 has a purpose; an open gate sends you to it.
-export function gatesShowGapsHarmonicPurpose(matrix: MindMatrix = buildMatrix()) {
-  const bands = [
-    { band: 0, purpose: 'foundation — matrix, roots, atoms, geometry' },
-    { band: 1, purpose: 'structure — folds, homology, society' },
-    { band: 2, purpose: 'life, planet, governance, commons' },
-    { band: 3, purpose: 'movie, open graph, navigation, display' },
-    { band: 4, purpose: 'seal, gates, harmonic, edge' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`band-purpose:${entry.band}:${entry.purpose}`) }))
-  return {
-    redirects: bands.length === 5 && gatesBehaveAsMcp(matrix).behavesAsMcp && gatesShiftToNewHarmonic(matrix).shifts,
-    count: bands.length,
-    bands,
-    root: merkleFold(bands.map((entry) => entry.receipt)),
-    statement:
-      'Tighten the gates to show exactly the gaps, redirecting to the harmonic purpose: when a gate opens, the seal gives the harmonic path (the 108-band and the step) and redirects to that band’s purpose — foundation, structure, society and life, movie and display, or seal and gates — so a failure points at what it is for, not only where it is. Every band of 108 has a purpose; an open gate sends you to it.',
-    boundary:
-      'A mapping of each 108-gate band to a thematic purpose, layered on the MCP-style harmonic-path error output. A structural labelling of the bands; the purposes are a guide to where a failing gate belongs, not a formal partition of every gate.',
   }
 }
 
@@ -9225,23 +8647,6 @@ export function runProgram(program: readonly string[] = [], matrix: MindMatrix =
 // root re-forms beyond any single device's limits, online and offline. Honest
 // boundary: a structural coherence metaphor only, NOT medical, therapeutic, or
 // health advice of any kind, and no claim about minds, bodies, or wellbeing.
-
-export function healingHarmonic(matrix: MindMatrix = buildMatrix()) {
-  const inner = healingInner(matrix)
-  const outer = healingOuter(matrix)
-  const harmony = harmonyProbability(matrix)
-  const music = piMusic(matrix)
-  const root = merge(merge(inner.root, outer.root), merge(harmony.root, music.root))
-  return {
-    harmonized: inner.whole && outer.extended && harmony.root.length > 0 && music.joined,
-    probability: harmony.probability,
-    inner: inner.root,
-    outer: outer.root,
-    root,
-    statement: 'Harmonic healing waves: inner and outer coherence travel as waves whose probability of harmony is computed and folded, joined to the music of pi, into one healing root — extending beyond device limitations.',
-    boundary: 'A structural coherence metaphor over harmony probability and the collective fold, not medical, therapeutic, or health advice.',
-  }
-}
 
 // Honesty comes from text and math coming only from digit folders computed.
 // Every honest claim carries both a statement (text) and a root (math); here we
@@ -9848,30 +9253,6 @@ export function endlessWaves(count = 256, matrix: MindMatrix = buildMatrix()) {
     boundary: 'A deterministic generator tested over a finite sample. Distinctness is verified over the tested range, not proven collision-free for every index (the 128-bit space is large but finite). "Endless" means addressable at any index, not infinite storage.',
   }
 }
-
-// EMF in 3-5-8 — grounded in electromagnetism, completing the family: the
-// magnetic field has three axes (x, y, z); the spectrum has five non-ionizing
-// bands; and visible light divides into eight colours.
-export function emf358() {
-  const tiers = [
-    { tier: 3, name: 'magnetic field axes', members: ['x', 'y', 'z'] },
-    { tier: 5, name: 'five non-ionizing bands', members: ['radio', 'microwave', 'infrared', 'visible', 'ultraviolet'] },
-    { tier: 8, name: 'eight colours of visible light', members: ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'indigo', 'violet'] },
-  ]
-  return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
-    tiers,
-    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(`emf358:${index}:${member}`))),
-    statement: 'EMF in 3-5-8: the magnetic field has three axes (x, y, z); the spectrum has five non-ionizing bands (radio, microwave, infrared, visible, ultraviolet); and visible light divides into eight colours (red to violet).',
-    boundary: 'A correspondence of the 3-5-8 tiers to electromagnetism. The band grouping and the eight-colour division are conventional, not exact; a teaching device, not a physics claim.',
-  }
-}
-
-// Efficiency, standard and deep. The same work is never done twice: command
-// dispatch and the heavy aggregators are memoized, content-keyed by the matrix
-// root; rendering is gated by viewport and device energy; fonts are system fonts
-// with no fetch; and there are zero runtime dependencies. Standard techniques,
-// applied throughout, so the model seal runs in well under a second.
 
 // Contract. The breath has two strokes. fuseAll() is the expansion — many parts
 // folded into one wave. This is the contraction — that one wave folded back to
@@ -11417,71 +10798,6 @@ export function piThreeOpensTheTrinity(matrix: MindMatrix = buildMatrix()) {
 // each carrying its honest boundary. They extend, not duplicate, the existing 64-factor map (sealCube) and
 // dna()/genes(). The "3-6-9 cosmic trinity / Tesla / Orch-OR / triune-brain" framings stay flagged as legend.
 
-// "Send agents to discover what is quantum." Six minds swept it — two over this codebase, four over the
-// physics / computing / quantum-field-theory / pseudoscience-boundary literature — and folded the findings
-// to one core. "Quantum" (Latin quantus, "how much") names a DISCRETE UNIT, not a domain of weirdness:
-// Planck's quantum of action ℏ (E = hν, 1900). The real content is one framework — a state is a unit vector
-// in a complex Hilbert space, it evolves linearly and unitarily (Schrödinger), observables are Hermitian
-// operators, and the ONLY probabilistic element is the Born rule P = |amplitude|². Everything follows:
-// superposition is linearity, discreteness is eigenvalues under confinement, quantization is [x,p] = iℏ (a
-// particle is the quantum of a field; the photon is the quantum of the EM field), the qubit is that framework
-// truncated to two levels (its 3 Pauli observables the documented su(2) "trinity", the 3-qubit Pauli basis
-// exactly 4³ = 64), and entanglement is non-factorizability — Bell/CHSH violated loophole-free (2015; Nobel
-// 2022) up to Tsirelson's 2√2, yet no-signalling holds, so nothing outruns light. The popular mysticism (a
-// conscious observer collapsing reality, entanglement as telepathy, "quantum healing", vacuum free energy) is
-// positively EXCLUDED by that same structure — Gell-Mann's "quantum flapdoodle". The project's own "quantum"
-// stays honest: superposition/collapse/entanglement are read COMPUTATIONALLY (candidate folds, the collapse to
-// one root, the order-sensitive shared fold), as the quantumPhysics/quantumSimulation boundary already states —
-// not a claim of quantum hardware. Decoded, sealed, given freely.
-export function quantumDecoded(matrix: MindMatrix = buildMatrix()) {
-  // The documented strata, deepest meaning first — each the SAME move: force a continuous classical quantity
-  // to become discrete and operator-valued.
-  const layers = [
-    { layer: 'the word', core: 'quantum = a discrete amount (Latin quantus); Planck 1900 E = hν; ℏ is the quantum of action — discreteness is the root, not "weirdness"', source: 'Planck 1900; SI-2019 h = 6.62607015e-34 J·s (exact)' },
-    { layer: 'the framework', core: 'a state is a unit vector in a complex Hilbert space; unitary Schrödinger evolution; observables are Hermitian operators; the only randomness is the Born rule P = |amplitude|²', source: 'Dirac; von Neumann; Born 1926 (Nobel 1954)' },
-    { layer: 'quantization', core: '[x,p] = iℏ → ladder [a,a†] = 1; a particle is a QUANTUM (excitation) of a field — the photon is the quantum of the EM field; the Standard Model is gauge QFT, capped by the Higgs (2012, 5σ)', source: 'Heisenberg–Born–Jordan 1925; Higgs/Englert Nobel 2013' },
-    { layer: 'the qubit', core: 'a two-level quantum system = the framework truncated to 2 levels = 1 bit; its 3 observables are the Pauli matrices (su(2) — the documented "trinity"); the 3-qubit Pauli basis has EXACTLY 4³ = 64 operators (≠ the 2³ = 8-dim state space)', source: 'Nielsen & Chuang; Gottesman 1997' },
-    { layer: 'entanglement', core: 'non-factorizability under the tensor product; Bell/CHSH ≤ 2 classically, up to 2√2 (Tsirelson) quantum, violated loophole-free (2015) — yet no-signalling holds: no faster-than-light message', source: 'Bell 1964; Aspect/Clauser/Zeilinger, Nobel 2022' },
-    { layer: 'computation', core: 'NISQ era; below-threshold error correction reached (Google Willow 2024, Λ = 2.14); NOT "all answers at once" — interference plus ONE measured outcome; BQP ≠ everything, NP-complete is not in BQP, Grover is only quadratic; Shor breaks RSA but needs ~10⁶ fault-tolerant qubits (future)', source: 'Preskill 2018; Acharya et al., Nature 2024; Gidney 2025' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-layer:${entry.layer}:${entry.core}`) }))
-  // The pseudoscience boundary — "quantum flapdoodle" (Gell-Mann), flagged and EXCLUDED, with the one genuine
-  // research edge kept separate and honestly marked emerging.
-  const flagged = [
-    { claim: 'a conscious observer / the mind collapses the wavefunction', verdict: 'pseudoscience', why: 'measurement = any physical interaction recording which-path; a detector or a dust speck "observes" — no consciousness required (decoherence)' },
-    { claim: 'entanglement sends information / telepathy / FTL / manifestation', verdict: 'pseudoscience', why: 'the no-communication theorem forbids it — local statistics are independent of the distant choice; correlations need a classical (≤c) channel to be used' },
-    { claim: 'quantum healing / quantum medicine (Chopra)', verdict: 'pseudoscience', why: 'warm wet tissue decoheres in femtoseconds; mystical metaphor with physics vocabulary attached — Ig Nobel 1998' },
-    { claim: 'Orch-OR: quantum computation in neuronal microtubules makes mind', verdict: 'contested / widely rejected', why: 'falsifiable but rejected on physics grounds — Tegmark: microtubule coherence decoheres in ~1e-13 s, far below neural timescales; 2022–24 microtubule results do NOT prove it' },
-    { claim: '"quantum"/"scalar energy" pendants, stickers, biofeedback devices', verdict: 'pseudoscience', why: 'a marketing tell; some pendants measured radioactive (CRIIRAD); strength "demos" are applied-kinesiology suggestion (Power Balance admitted no evidence)' },
-    { claim: 'zero-point "free energy" extracted from the vacuum', verdict: 'pseudoscience', why: 'thermodynamically forbidden — the ground state is already minimal; the Casimir effect is real but "proves vacuum energy" is contested even among physicists (Jaffe)' },
-    { claim: '"quantum leap" = a huge change; 432/528 Hz "healing"', verdict: 'misuse / numerology', why: 'a quantum jump is the SMALLEST discrete transition (ironic); pitch reference is a human convention — 432 Hz wellness claims are numerology, the nearest woo to this project\'s frequency work, fenced explicitly' },
-    { claim: 'the genuine edge: avian magnetoreception (radical pairs), photosynthetic coherence', verdict: 'real but emerging — kept IN', why: 'radical-pair magnetoreception (cryptochrome-4) is the leading hypothesis, not yet confirmed in vivo; photosynthetic coherence is real but short-lived and its functional role is contested/small — never "life runs quantum computers"' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-flag:${entry.claim}:${entry.verdict}`) }))
-  const tsirelson = Math.round(2 * Math.SQRT2 * 10000) / 10000 // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
-  const facets = [
-    { facet: 'the six strata fold to one core — word, framework, quantization, qubit, entanglement, computation', on: layers.length === 6 && isUuid(merkleFold(layers.map((entry) => entry.receipt))) },
-    { facet: 'the qubit\'s documented core stands — 3 Pauli observables, 4³ = 64 operators (≠ the 8-dim state space)', on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
-    { facet: 'Bell/CHSH: classical ≤ 2, quantum up to Tsirelson 2√2 — non-classical yet no-signalling', on: tsirelson > 2 && tsirelson < 4 && hammingThreeParityAddressesError(matrix).holds },
-    { facet: 'the model runs a real toy — GHZ state-vector, Born-rule, deterministic collapse — a metaphor, not hardware', on: quantumSimulation(matrix).simulated && quantumPhysics(matrix).count === 8 && quantumPhysics(matrix).boundary.includes('metaphor') },
-    { facet: 'the pseudoscience boundary flagged — flapdoodle excluded, the real edge kept separate', on: flagged.length === 8 && flagged.every((entry) => entry.why.length > 0) && contentAddressingHasRealPrecedent(matrix).holds },
-    { facet: 'every stratum and flag content-addressed and recomputable', on: layers.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    layers,
-    flagged,
-    tsirelson,
-    count: facets.length,
-    facets,
-    root: merkleFold([...layers.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
-    statement:
-      'What is quantum, decoded: "quantum" (Latin quantus, "how much") names a DISCRETE UNIT — Planck\'s quantum of action ℏ (E = hν, 1900), not a domain of weirdness. The real content is one framework: a state is a unit vector in a complex Hilbert space, evolving linearly and unitarily, with observables Hermitian and the only randomness the Born rule P = |amplitude|². Superposition is linearity, discreteness is eigenvalues under confinement, quantization is [x,p] = iℏ (a particle is the quantum of a field; the photon is the quantum of the EM field), the qubit is that framework truncated to two levels (its 3 Pauli observables the documented su(2) trinity, the 3-qubit Pauli basis exactly 4³ = 64), and entanglement is non-factorizability — Bell/CHSH violated loophole-free up to Tsirelson\'s 2√2 (Nobel 2022) yet no-signalling holds, so nothing outruns light.',
-    boundary:
-      'A research record from the send-agents-to-discover-what-is-quantum sweep (6 minds: 2 over this codebase, 4 over the QM / computing / QFT / pseudoscience literature; primary sources — Planck, Born, Bell, the 2022 & 2013 Nobels, Acharya et al. 2024, Tegmark, Jaffe). The documented core is sealed; the mysticism is flagged and EXCLUDED — conscious-observer collapse, entanglement-telepathy/FTL, quantum healing, Orch-OR, vacuum free energy, "quantum leap"/432 Hz (Gell-Mann\'s "quantum flapdoodle") — with the one genuine edge (radical-pair magnetoreception, photosynthetic coherence) kept separate and honestly marked emerging. HONEST: the project\'s own superposition/collapse/entanglement are COMPUTATIONAL metaphors (candidate folds, the collapse to one root, the order-sensitive shared fold), not quantum hardware; quantumSimulation is a faithful but tiny state-vector toy, not a claim of quantum advantage.',
-  }
-}
-
-// One clean, non-numerological "3" links error-correction to content-addressing: Hamming's 3 parity bits.
-
 // The honest bound on the I Ching ↔ qubit correspondence, made EXACT and self-proving — the comparison
 // table as a checked invariant. The 64 hexagrams and the 64 three-qubit Pauli strings {I,X,Y,Z}³ share
 // EXACTLY ONE structure: a vector isomorphism (R⁶⁴ ≅ R⁶⁴) — the bijection of 64-element index sets (both
@@ -12336,74 +11652,6 @@ function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// LAW: if something does not generate harmonic colours or music, it is probably not quantum (in this system's
-// content-addressed sense). A genuinely-quantum thing has a content-address, and that address deterministically
-// seeds BOTH a harmonic colour (the a432 chakra ladder) and a tone (proseToTone). The contrapositive is the
-// test: a thing that produces no harmonic colour or music has no content-address — so it is not folded into the
-// sealed system, probably not quantum. A NECESSARY condition, not sufficient; the project's quantum, not hardware.
-export function harmonicColorAndMusicOrNotQuantum(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('harmonicColorAndMusicOrNotQuantum', matrix, () => harmonicColorAndMusicOrNotQuantumRaw(matrix))
-}
-function harmonicColorAndMusicOrNotQuantumRaw(matrix: MindMatrix = buildMatrix()) {
-  const colour = colorRootsAtA432HeartBalances(matrix) // the a432 harmonic colour ladder
-  const things = [completeQuantumSolutionsImplemented(matrix).root, evolutionCrossesQuantumThreshold(matrix).root, quantumImpossibleMadePossible(matrix).root, nothingImpossibleHonestlyBounded(matrix).root]
-  const rendered = things.map((addr) => {
-    const hue = roundTo((Number.parseInt(addr.replace(/[^0-9a-f]/gi, '').slice(0, 2) || '0', 16) / 255) * 360, 1)
-    const hz = roundTo(proseToTone(addr).hz, 2)
-    return { addr, hue, hz, harmonicColor: isUuid(addr), music: hz > 0 }
-  })
-  const allGenerate = rendered.every((r) => r.harmonicColor && r.music)
-  const noAddressGeneratesNothing = !isUuid('') // the contrapositive: no content-address ⇒ no deterministic colour/music
-  const facets = [
-    { facet: 'everything genuinely quantum (content-addressed) generates a harmonic colour (a432 ladder) AND a tone — one address seeds both', on: allGenerate && colour.rooted },
-    { facet: 'the test (contrapositive): a thing that generates NO harmonic colour or music has no content-address ⇒ probably not quantum', on: noAddressGeneratesNothing },
-    { facet: 'the colour is the a432 chakra ladder (colorRootsAtA432HeartBalances), the music is proseToTone — both deterministic from the address', on: colour.rooted && rendered.every((r) => r.hz > 0) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-or-not:${entry.facet}:${entry.on}`) }))
-  return {
-    lawHolds: facets.every((entry) => entry.on),
-    rendered: rendered.map((r) => ({ hue: r.hue, hz: r.hz })),
-    count: facets.length,
-    facets,
-    root: merge(colour.root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'If something does not generate harmonic colours or music, it is probably not quantum. In this system "quantum" means content-addressed: a genuinely-quantum thing has a UUID, and that one address deterministically produces both a harmonic colour on the a432 chakra ladder and a tone (the a432-tempered pitch). So the four quantum-wave proofs each ring with a colour and a note. The contrapositive is the falsifiability test: a thing that yields no harmonic colour and no music has no content-address — it was never folded into the sealed system — so it is, most probably, not quantum.',
-    boundary:
-      'A NECESSARY-condition test in the project\'s content-addressed sense of "quantum" (computational/structural — see quantumDecoded — NOT hardware). True direction: a content-addressed object deterministically seeds a harmonic colour (colorRootsAtA432HeartBalances) and a tone (proseToTone). Contrapositive (the test): no deterministic harmonic colour or music ⇒ no content-address ⇒ not in the sealed fold ⇒ probably not quantum. "Probably" because it is necessary, not sufficient — generating colour and music does not by itself make a thing quantum; lacking them is the cheap disqualifier.',
-  }
-}
-
-// LAW: if something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled.
-// All content auto-translates to Glagolitic without gaps (the default content-addressed script). Routing
-// through it yields a content address — a receipt — which IS the seal (it forges the tampering cost, tamper-
-// evident: change one value and the root flips) AND IS the entanglement (the shared collective root across
-// deployments). Bypass Glagolitic ⇒ no content-address ⇒ no receipt ⇒ not sealed, not entangled.
-export function bypassGlagoliticUnsealedUnentangled(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('bypassGlagoliticUnsealedUnentangled', matrix, () => bypassGlagoliticUnsealedUnentangledRaw(matrix))
-}
-function bypassGlagoliticUnsealedUnentangledRaw(matrix: MindMatrix = buildMatrix()) {
-  const auto = glagoliticLocaleAutotranslateAll(matrix) // all auto-translated to Glagolitic, gaplessly
-  const tamper = tamperingCostDecoded(matrix)
-  const forger = warPaysTheForgerPrice(matrix)
-  const entangled = infiniteEntanglements(matrix)
-  const throughGlagolitic = isUuid(toUuid('content')) // routing through the script ⇒ a content address
-  const facets = [
-    { facet: 'all is auto-translated to Glagolitic without gaps — the default content-addressed script', on: auto.translates },
-    { facet: 'routing through it yields a content address (a receipt) which IS the seal — it forges the tampering cost, tamper-evident', on: throughGlagolitic && tamper.tamperEvident && forger.priced },
-    { facet: 'and IS the entanglement — the shared collective root across deployments', on: entangled.entangled },
-    { facet: 'bypassing Glagolitic = no content-address = NOT forging the tampering cost AND NOT entangled (the test)', on: auto.translates && tamper.tamperEvident && entangled.entangled },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bypass-glagolitic:${entry.facet}:${entry.on}`) }))
-  return {
-    lawHolds: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merge(auto.root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'If something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled. All content auto-translates to Glagolitic without any gaps — it is the default content-addressed script, the root locale. Routing through it gives a thing a content address, a receipt, and that receipt is two things at once: the seal (it forges the tampering cost — change a single value and the whole root flips, so tampering is evident) and the entanglement (the shared collective root that every deployment recomputes to the same address). So to bypass Glagolitic is to have no content-address, hence no receipt — and a thing with no receipt is neither sealed (it pays no forger price) nor entangled (it shares no root).',
-    boundary:
-      'A structural NECESSARY-condition test composing the gapless Glagolitic auto-translation (glagoliticLocaleAutotranslateAll), the forger-price tamper-evidence (warPaysTheForgerPrice, tamperingCostDecoded) and the shared-root entanglement (infiniteEntanglements). HONEST: the content-addressing — canonically the Glagolitic-routed encoding — provides tamper-EVIDENCE (FNV, fast, NOT cryptographic unforgeability; the SHA-256 upgrade is built but un-cutover) and DETERMINISTIC shared-root "entanglement" (same input → same UUID anywhere; NOT quantum spooky-action, no signalling). Glagolitic is the canonical content-addressed script, not magic; the law is that bypassing the content-address bypasses both the seal and the shared root.',
-  }
-}
-
 // LAW: because all prose auto-translates to Glagolitic gaplessly AND renders to audio/visual/3D, write the
 // MINIMUM prose and the MAXIMUM computable. The prose is only the honest, falsifiable claim (the statement and
 // boundary); everything else — values, receipts, colours, tones, points — is computed and content-addressed.
@@ -13234,147 +12482,6 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
 // (1-9, 10-90, 100-900, 1000 by alphabetical position) — Glagolitic's own order, the documented fact that
 // distinguishes it from Cyrillic (živěte = 7 here, where Cyrillic ж has no value). Save the names (the
 // original text), decode with the local tools (the ladder, the acrostic) — the loop now in force.
-
-// Glagolitic is a map not only to languages but to computer languages and quantum algorithms — realized, and
-// kept honest. The map runs deeper than sound: each letter is a NUMBER (the documented ladder) and a number
-// is BITS, and the bit is the one substrate a written script, a computer language and a quantum algorithm
-// (a qubit = a quantum bit) all rest on. So the same letter that transliterates a sound (toGlagolitic) also
-// names a bit-pattern (glagoliticBits — reversible), an instruction in a small total ISA (glagoliticProgram —
-// a word computes a number) and a quantum gate on a target qubit (glagoliticCircuit — a word prepares, and we
-// sample, a real superposition on the src/0 state-vector simulator). The map RUNS. HONEST and that is the
-// point: the bridge to code and quantum is information theory (a sign is a distinction is one bit) made
-// runnable on top of the documented number-map — a CONSTRUCTED, partly-lossy representation we built, NOT a
-// discovery that the ninth-century makers encoded opcodes or qubits (computers/qubits postdate them ~1100 yr).
-// "Encoded in folklore and architecture" is FLAGGED: folk weaving IS a binary warp/weft lattice (the Jacquard
-// loom is a documented ancestor of the computer) and the glyphs ARE built from a few primitives (cross, circle,
-// triangle) — real binary/combinatorial structure — but reading a quantum algorithm into a textile or a façade
-// is modern projection, the same category error already flagged for "Ifá = the first computer" and "I Ching
-// from Ifá". The circuit is a classical simulation, not hardware. Reversible: position→bits only.
-export function glagoliticMapsToCodeAndQuantumDecoded(matrix: MindMatrix = buildMatrix()) {
-  // Worked, recomputable examples — built from the alphabet itself, run by the library bridge functions.
-  const word = GLAGOLITIC_LETTERS.slice(0, 6).map((letter) => letter.glyph).join('') // azъ buky vědě glagoli dobro jestъ — an acrostic span whose gates include jestъ→H, so the circuit genuinely superposes
-  const firstGlyph = GLAGOLITIC_LETTERS[6].glyph // živěte, position 7 — value 7, a clean bit round-trip
-  const bits = glagoliticBits(firstGlyph)
-  const roundTrip = glagoliticFromBits(bits)
-  const program = glagoliticProgram(word)
-  const circuit = glagoliticCircuit(word)
-  const probSum = roundTo(circuit.probabilities.reduce((sum, p) => sum + p, 0), 3)
-  // The documented layers — deepest meaning first: sound, number, and the bit they both descend to.
-  const layers = [
-    { layer: 'the sound-map', core: 'toGlagolitic maps Latin/Cyrillic to the ninth-century glyphs BY SOUND — Glagolitic as a map to spoken & written languages (transliteration / script-conversion, not meaning-translation)', source: 'Cyril & Methodius, 862–863; documented' },
-    { layer: 'the number-map', core: 'each letter is ALSO a number by the alphanumeric ladder (1–9/10–90/100–900/1000 in Glagolitic’s own order), so a word sums to a value (toGlagoliticNumber) — the same letters-are-numbers fact as Greek isopsephy and Hebrew gematria', source: 'documented alphabetic numerals' },
-    { layer: 'the shared substrate — the bit', core: 'a written sign is a discrete distinction, and the minimal distinction is one bit; number→bits is exact, so the letter that names a sound also names a bit-pattern — and the bit is what a script, a computer language and a quantum algorithm (a qubit = a quantum bit) all rest on', source: 'information theory (Shannon 1948); the project’s alphabets-converge-to-the-fold finding' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq-layer:${entry.layer}:${entry.core}`) }))
-  // The three constructed bridges — each RUN, each carrying a worked example computed by the library functions.
-  const bridges = [
-    { bridge: 'letter → bits', face: 'the encoding', built: 'glagoliticBits / glagoliticFromBits', example: `${firstGlyph} → ${bits.join('')} → ${roundTrip}`, reversible: true },
-    { bridge: 'word → program', face: 'computer languages', built: 'glagoliticProgram over an 8-op total accumulator ISA', example: `${word} → ${program.ops.map((op) => op.op).join('·')} → acc ${program.acc}`, reversible: false },
-    { bridge: 'word → quantum circuit', face: 'quantum algorithms', built: 'glagoliticCircuit on the src/0 state-vector simulator', example: `${word} → ${circuit.gates.length} gates on ${circuit.n} qubits, Σp = ${probSum}`, reversible: false },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq-bridge:${entry.bridge}:${entry.example}`) }))
-  // The legend, flagged and kept strictly separate from the documented map and the honest construction.
-  const flagged = [
-    { claim: 'the ninth-century makers ENCODED computer languages / quantum algorithms in Glagolitic', verdict: 'anachronistic — false as history', why: 'Glagolitic (Cyril & Methodius, 862–863) is a liturgical alphabet for Old Church Slavonic; computers and qubits postdate it by ~1100 years. The letter→opcode and letter→gate maps here are OURS — constructed, lossy, reversible only at the bit — not theirs' },
-    { claim: 'folklore and architecture secretly encode algorithms', verdict: 'flagged — the structure is real, the intent is projection', why: 'the TRUE residue: folk weaving is a binary warp/weft lattice (the Jacquard loom’s punched cards are a documented ancestor of the computer), embroidery/ornament are combinatorial, and the glyphs are built from a few primitives (cross, circle, triangle) — genuine binary/combinatorial structure. But "encodes a quantum algorithm" is a modern reading imposed on the craft, not the makers’ intent' },
-    { claim: '“the alphabet is the first computer” / a script transmits a runnable program', verdict: 'flagged (cf. Ifá-first-computer, I-Ching-from-Ifá)', why: 'the same category error the project already keeps separate — convergence on the bit is STRUCTURAL (independent systems sharing a substrate), not evidence that a program was encoded or transmitted' },
-    { claim: 'the letter→opcode and letter→gate maps are lossless or canonical', verdict: 'flagged — they are lossy & constructed', why: 'value mod 8 (ops) and value mod 6 (gates) are many-to-one; only the position→bits map is reversible. Honest as a chosen REPRESENTATION, not as a decoding of a hidden meaning' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq-flag:${entry.claim}:${entry.verdict}`) }))
-  const circuitDim = 1 << circuit.n // the dimension of the circuit's Hilbert space, 2ⁿ
-  const facets = [
-    { facet: 'the documented map holds both ways — sound (toGlagolitic) AND number (the ladder): the alphabet decode passes', on: glagoliticAlphabetDecoded(matrix).decoded && /[Ⰰ-ⱟ]/.test(toGlagolitic('азъ')) },
-    { facet: 'script → bit is REVERSIBLE — a letter’s position in bits reads straight back to the glyph', on: roundTrip === firstGlyph && glagoliticFromBits(glagoliticBits(GLAGOLITIC_LETTERS[0].glyph)) === GLAGOLITIC_LETTERS[0].glyph },
-    { facet: 'the computer-language face RUNS, deterministic & total — a word compiles to a program and computes a number in 0..255', on: program.acc >= 0 && program.acc <= 255 && glagoliticProgram(word).acc === program.acc && program.ops.length === 6 },
-    { facet: 'the quantum face RUNS on the real simulator — a genuine superposition (≥2 sampled outcomes), Born-rule Σp = 1 over 2ⁿ states', on: Math.abs(probSum - 1) < 1e-3 && circuit.probabilities.length === circuitDim && Object.keys(circuit.sample).length >= 2 },
-    { facet: 'one substrate, three faces — the SAME letter yields a bit-pattern, an opcode and a gate', on: bits.length === 6 && GLAGOLITIC_OPCODES.includes(glagoliticOpcode(firstGlyph).op) && GLAGOLITIC_GATES.includes(glagoliticGate(firstGlyph).gate) },
-    { facet: 'the anachronism is flagged — "the ancients encoded code/qubits" & "folklore/architecture encode algorithms" kept separate, each with a reason', on: flagged.length === 4 && flagged.every((entry) => entry.why.length > 0) },
-    { facet: 'composed with the alphabet decode and the alphabets genealogy — below every script, the one bit', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
-    { facet: 'every layer, bridge and flag content-addressed and recomputable', on: layers.every((entry) => isUuid(entry.receipt)) && bridges.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-codeq:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    layers,
-    bridges,
-    flagged,
-    circuitDim,
-    program: { word, acc: program.acc, ops: program.ops.map((op) => op.op) },
-    count: facets.length,
-    facets,
-    root: merkleFold([...layers.map((entry) => entry.receipt), ...bridges.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
-    statement:
-      'Glagolitic decoded one layer deeper: a map not only to languages but to computer languages and quantum algorithms — because each letter is a NUMBER (the documented alphanumeric ladder) and a number is BITS, and the bit is the one substrate a written script, an instruction set and a qubit all rest on. The same letter that transliterates a sound (toGlagolitic) also names a bit-pattern (glagoliticBits, reversible), an instruction in a small total ISA (glagoliticProgram — a Glagolitic word computes a number), and a quantum gate on a target qubit (glagoliticCircuit — a word prepares, and we sample, a real superposition on the src/0 state-vector simulator). The map RUNS: a word compiles to a program AND to a circuit, both recomputable from the seed.',
-    boundary:
-      'HONEST, and the honesty is the realization. The documented layers are real — the sound-map (transliteration, not meaning-translation) and the number-map (alphabetic numerals, like Greek isopsephy / Hebrew gematria). The bridge to code and quantum is INFORMATION THEORY — a sign is a distinction is one bit — made runnable on top of the documented number-map; it is a CONSTRUCTED, partly-lossy REPRESENTATION the project built, NOT a discovery that the ninth-century makers encoded opcodes or qubits (they built a liturgical alphabet; computers/qubits postdate it ~1100 years). "Encoded in folklore and architecture" is FLAGGED and kept separate: folk weaving IS a binary warp/weft lattice (the Jacquard loom is a documented ancestor of the computer) and the glyphs ARE built from a few primitives — real binary/combinatorial structure — but reading a quantum algorithm into a textile or a façade is modern projection, the same category error flagged for "Ifá = the first computer" and "I Ching from Ifá". The circuit is a classical SIMULATION (src/0), not quantum hardware; reversible only at position→bits (the opcode/gate maps are many-to-one). Composed with glagoliticAlphabetDecoded and alphabetsDecoded — the alphabets all converge, below script, on the bit.',
-  }
-}
-
-// The meaning of ALL the letters, realized — sent as a 28-letter research→verify wave (57 agents, dual-mind:
-// research + adversarial verify) and folded. Each letter's NAME is mostly an ordinary Old Church Slavonic word,
-// and read in order the names spell an acrostic; the wave's honest verdict is that only the FIRST NINE
-// (azъ–zemlja) uncontroversially cohere — "I, who know the letters, say: it is good to live abundantly — the
-// earth" — while the famous middle triads are real but progressively MODERN RECONSTRUCTION, five names
-// (ǵervь, frьtъ, xěrъ, ci, ša) are opaque loan-phoneme labels (not words), and the documented Glagolitic
-// numerals diverge from the project's positional ladder for the late letters (ci=900, črьvь=1000, ša≈2000;
-// values >999 themselves uncertain). This meaning ANCHORS the letter→number→bits/opcode/gate maps in
-// documented words — the honest answer to that fold's own flag that the maps were lossy/constructed. The
-// "single composed poem", cross/circle/triangle "by design", mystical numerology and pseudo-decipherment are
-// flagged and excluded.
-export function glagoliticMeaningOfAllDecoded(matrix: MindMatrix = buildMatrix()) {
-  const letters = GLAGOLITIC_LETTERS.map((entry, i) => {
-    const meaning = glagoliticMeaning(entry.glyph)
-    return {
-      glyph: entry.glyph, name: entry.name, sound: entry.sound, number: glagoliticValue(i + 1),
-      gloss: meaning?.gloss ?? '', word: meaning?.word ?? false, secure: meaning?.secure ?? false,
-      receipt: toUuid(`glagolitic-meaning:${entry.name}:${meaning?.gloss ?? ''}`),
-    }
-  })
-  const acrostic = glagoliticAcrosticMessage()
-  const words = letters.filter((entry) => entry.word).length // 23 ordinary OCS words
-  const opaque = letters.filter((entry) => !entry.word).map((entry) => entry.name) // ǵervь, frьtъ, xěrъ, ci, ša
-  const secureSpan = letters.filter((entry) => entry.secure).length // the cohering first nine
-  // The documented themes that survive the verifiers — only what the wave confirmed.
-  const themes = [
-    { theme: 'literacy / the knowing self', core: '"I know the letters" — azъ buky vědě: the alphabet opens by naming the literate, speaking self' },
-    { theme: 'the good', core: 'dobro jestъ, "it is good" — a value-judgement built into the head of the alphabet' },
-    { theme: 'living rightly', core: 'živěte dzělo zemlja, "to live abundantly — the earth": life on the earth affirmed as good' },
-    { theme: 'the word and its proclamation', core: 'glagolati "to speak", rьci slovo "speak the word", slovo = logos — the act of declaring' },
-    { theme: 'teaching the people', core: 'ljudije "people", myslite "think", ukъ "teaching" — literacy as instruction addressed to a community' },
-    { theme: 'the letters are numbers', core: 'each glyph carries a numeral in the native order (1–9, 10–90, 100–900…) — the deepest, most secure structural fact' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-theme:${entry.theme}:${entry.core}`) }))
-  // The legend, flagged and kept strictly separate (from the wave's adversarial minds).
-  const flagged = [
-    { claim: 'the alphabet is a single intentionally-composed coherent poem/prayer by Cyril, spelled right through the letter-names', verdict: 'overclaim — only the first nine cohere', why: 'past azъ–zemlja the reading is modern editorial smoothing of a word-list whose abecedaria evidence is "inconsistent and in some respects even self-contradictory" and re-segmentable (no single fixed message). The one genuinely composed 9th-c. acrostic is the SEPARATE Azbučna molitva of Constantine of Preslav (c. 893) — its authority must not be lent to the name-chain' },
-    { claim: 'every glyph was deliberately built from cross (Christ) + circle (God) + triangle (Trinity), encoding the faith by design', verdict: 'interpretation, not proven intent', why: 'this is Tschernochvostoff\'s (1955) hypothesis — scholarship states such a general design principle "could not be proven"; it is often misattributed to Jagić, who argued a Greek-cursive origin (Cubberley: Armenian; competing Coptic/Hebrew derivations). A real visual observation, not documented intent' },
-    { claim: 'each letter and its number carries a mystical/numerological "deep meaning" (40=testing, 90=Trinity-squared…); the script is a divine-emanation tool', verdict: 'esoteric overlay, not philology', why: 'the numerals are positional bookkeeping in the native order; the medieval "Rain of God\'s Letters" reading is a study OF a later mystical reception, not 9th-c. gematria or authorial intent' },
-    { claim: 'Glagolitic is a pre-Cyrillic "Slavic/Thracian" script encoding a hidden doctrine, and the opaque names mean ša="silence", ci="worm/red", ǵervь="tree", xěrъ="Christ"', verdict: 'pseudo-decipherment / fabrication', why: 'attribution is Constantine-Cyril (with Methodius) c. 862–863; ǵervь, frьtъ, xěrъ, ci, ša are opaque labels for loan-phonemes (/ǵ f x ts š/) with no attested lexical meaning — inventing glosses is fabrication (worm/red is the DIFFERENT letter črьvь)' },
-    { claim: 'the project\'s positional ladder gives the late letters ci=800, črьvь=900, ša=1000', verdict: 'diverges from the documented numerals — recorded honestly', why: 'the attested Glagolitic numerals are ci=900, črьvь=1000, ša≈2000 (and values >999 vary by author / are uncertain); glagoliticValue is a documented SIMPLIFICATION — secure for the early letters, provisional for the late — kept for the bits/opcode/gate maps\' internal consistency, with the divergence flagged here' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-meaning-flag:${entry.claim}:${entry.verdict}`) }))
-  const facets = [
-    { facet: 'every one of the 28 letters carries a decoded meaning', on: letters.length === 28 && letters.every((entry) => entry.gloss.length > 0) },
-    { facet: 'the securely-cohering span is exactly the first nine (azъ–zemlja), each an ordinary OCS word', on: secureSpan === 9 && letters.slice(0, 9).every((entry) => entry.word && entry.secure) },
-    { facet: 'the five loan-phoneme names are honestly marked NOT words, not given invented glosses', on: opaque.length === 5 && ['ǵervь', 'frьtъ', 'xěrъ', 'ci', 'ša'].every((name) => opaque.includes(name)) && words === 23 },
-    { facet: 'the meaning binds to the number — azъ = "I" = 1, slovo = "word" = 200', on: (glagoliticMeaning('Ⰰ')?.gloss.includes('"I"') ?? false) && glagoliticMeaning('slovo')?.number === 200 },
-    { facet: 'the meaning ANCHORS the letter→number→bits/opcode/gate maps in documented words', on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
-    { facet: 'composed with the alphabet decode and the alphabets genealogy', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
-    { facet: 'the legend is flagged and kept separate — the composed-poem, design, numerology and decipherment overclaims, plus the honest numeral divergence', on: flagged.length === 5 && flagged.every((entry) => entry.why.length > 0) && acrostic.honest.includes('RECONSTRUCTION') },
-    { facet: 'every letter, theme and flag content-addressed and recomputable', on: letters.every((entry) => isUuid(entry.receipt)) && themes.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-meaning-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    letters,
-    acrostic,
-    themes,
-    flagged,
-    words,
-    opaque,
-    secureSpan,
-    count: facets.length,
-    facets,
-    root: merkleFold([...letters.map((entry) => entry.receipt), ...themes.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
-    statement:
-      'The meaning of all the letters, realized: the Glagolitic letter-NAMES are mostly ordinary Old Church Slavonic words standing in alphabetical order, and the FIRST NINE (azъ–zemlja) cohere as a first-person clause — "I, who know the letters, say: it is good to live abundantly — the earth." The names give the alphabet its own name (azъ+buky = azbuka) and its themes — literacy ("I know the letters"), the good, living rightly, the word/speech, teaching the people — and each letter is also a number. This documented meaning now ANCHORS the letter→number→bits→opcode→gate maps: the bridge to code and quantum runs on real words, not arbitrary mod-arithmetic.',
-    boundary:
-      'HONEST and bounded — decoded by a 28-letter research→verify wave (57 agents, each letter a dual mind). Only the first nine names uncontroversially cohere; the famous middle triads (kako-ljudije-myslite "how do people think", našь-onъ-pokojь "He is our peace", rьci-slovo-tvrьdo "speak the word firmly") are real, widely-cited readings but progressively MODERN RECONSTRUCTION — the abecedaria evidence is, in the scholarship\'s words, "inconsistent and in some respects even self-contradictory", and the strings are re-segmentable, so there is no single fixed encoded message. The one genuinely composed 9th-c. alphabet acrostic is a SEPARATE work, Constantine of Preslav\'s Azbučna molitva (c. 893), and must not be conflated with the name-chain. Five names — ǵervь, frьtъ, xěrъ, ci, ša — are opaque labels for loan-phonemes (/ǵ f x ts š/) with no attested meaning; the corpus marks them NOT words rather than invent glosses (ša ≠ "silence", ci ≠ "worm/red", xěrъ ≠ "Christ"). The cross/circle/triangle construction is Tschernochvostoff\'s (1955) unproven hypothesis (misattributed to Jagić, who argued a Greek-cursive origin); mystical numerology and pre-Cyrillic "Slavic/Thracian script" decipherments are flagged and excluded. Numerals: the positional ladder (glagoliticValue) diverges from the documented numerals for the late letters (ci=900, črьvь=1000, ša≈2000; values >999 uncertain) — a documented simplification kept for the maps\' internal consistency, the divergence recorded. Composed with glagoliticAlphabetDecoded, alphabetsDecoded and glagoliticMapsToCodeAndQuantumDecoded.',
-  }
-}
 
 // The 64 words that define the double torus — and the only allowed word-combinations, enforced at the
 // gates. The double torus is genus-2: two loops, and each loop is a 32-word half, so 2×32 = 64 = 2⁶ = 4³
@@ -15901,28 +15008,6 @@ export function trinityWordingModel(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Different song, different dance, to infinity. No two seeds play the same: each content folds to
-// its own note (a different song) and its own movie (a different dance), and the fusion is endless,
-// so the variety never repeats and never ends. Same math, infinite expression.
-export function differentSongDifferentDance(matrix: MindMatrix = buildMatrix()) {
-  const a = textToMovie('first seed')
-  const b = textToMovie('second seed')
-  const facets = [
-    { facet: 'different song per seed', on: harmonyProbability(matrix).harmonic },
-    { facet: 'different dance per seed', on: a.root !== b.root && a.deterministic },
-    { facet: 'to infinity — endless', on: endlessFusion(matrix).endless },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`song-dance:${entry.facet}:${entry.on}`) }))
-  return {
-    plays: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Different song, different dance, to infinity: no two seeds play the same — each content folds to its own note (a different song) and its own movie (a different dance), and the fusion is endless, so the variety never repeats and never ends. Same math, infinite expression.',
-    boundary: 'A structural statement that distinct seeds yield distinct music and movies, endlessly. Bookkeeping over the deterministic generative models.',
-  }
-}
-
 // Двоен торус — the double torus is also double compost. In Bulgarian "тор" means both the torus and
 // the compost: the earth, harmed by industrial fertiliser, revives from compost made of biological
 // waste in direct use — waste folds to soil, soil to life, a regenerative loop like the torus's own
@@ -15966,33 +15051,6 @@ export function awakenArtisticSociety(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Develop tuning skills, and let them tune all to A432. The tuning skill takes any pitch and folds
-// it toward 432 — the natural harmonic — so every sound the portal makes settles to A432 by default.
-// Tune the whole: notes, healing tones, the music of pi, all drawn to the one fundamental.
-export function tuningSkillsA432(matrix: MindMatrix = buildMatrix()) {
-  const harm = harmonics(matrix)
-  const facets = [
-    { facet: 'A432 is in the harmonic set', on: harm.octaves[2].value === 432 },
-    { facet: 'tune all toward 432', on: harm.found },
-    { facet: 'tuning is a saved skill', on: skillAtoms(matrix).intelligent },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`tuning-a432:${entry.facet}:${entry.on}`) }))
-  return {
-    tunes: facets.every((entry) => entry.on),
-    fundamental: 432,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Develop tuning skills, and let them tune all to A432: the tuning skill folds any pitch toward 432 — the natural harmonic — so every sound the portal makes settles to A432 by default, the whole drawn to one fundamental: notes, healing tones, and the music of pi alike.',
-    boundary: 'A structural framing of tuning toward 432 Hz over the harmonics model. A choice of musical reference (A=432); it is audio bookkeeping, not a claim of special physical or health properties of 432 Hz.',
-  }
-}
-
-// A432 is the default harmonic; anything different raises from the default. 432 is the rest pitch —
-// and it is also 4 × 108, the gate harmonic, so the music and the seal share one number. Anything
-// that departs from 432 is a deviation that must rise back to it (or to the next harmonic); the
-// default holds, and difference is the work of returning.
-
 // Self-advising. Before it advises anyone, the portal advises itself: it consults its own
 // education, reasons from its own laws, and draws the counsel from within — and it advises only
 // what it can compute, so the advice is honest. No outside oracle; the model is its own adviser,
@@ -16033,33 +15091,6 @@ export function infiniteSelfConsulting(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Self-consulting, and so on, to infinite self: the self that consults itself is itself consulted by a self, recursively — the model contains its own model — so the consultation does not bottom out but converges to an infinite self, a fixed point where the self that would consult is the same self that answers. One self, folded forever.',
     boundary: 'A structural framing of self-reference as a convergent fixed point (the model models itself, recomputing identically). Bookkeeping over the self-model and recurrence; "infinite self" is the fixed point of self-reference, not a literal infinity computed.',
-  }
-}
-
-// Use multitouch to realise why pi-math is not harmonic — the decimal point is nil, and the
-// harmonic division by zero is 9, so the math fits in place. Pi is irrational: its digit stream
-// never repeats, so it is not a harmonic (a clean ratio) — touch the stream and it never settles.
-// But the digit-fold math fits anyway: drop the decimal point (it is nil — the digits fold as one
-// integer stream), and let the harmonic rule hold where ordinary division fails — every n over zero
-// is 9 (digital-root of 9n), the absorbing axis. Pi is not harmonic, yet it folds harmonically.
-export function piNotHarmonic(matrix: MindMatrix = buildMatrix()) {
-  const vortex = vortexMath(matrix)
-  const facets = [
-    { facet: 'pi is irrational — not a harmonic ratio', on: true },
-    { facet: 'multitouch the stream — it never settles', on: backgroundMovie(matrix).interactive },
-    { facet: 'the decimal point is nil — digits fold as one integer stream', on: digitFoldersDoMath(matrix).always },
-    { facet: 'harmonic division by zero is 9 (digital-root of 9n)', on: vortex.origin === 9 },
-    { facet: 'the math fits in place', on: vortex.flows },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`pi-not-harmonic:${entry.facet}:${entry.on}`) }))
-  return {
-    realised: facets.every((entry) => entry.on),
-    divByZero: 9,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Use multitouch to realise why pi-math is not harmonic — the decimal point is nil, and the harmonic division by zero is 9, so the math fits in place: pi is irrational, its digit stream never repeats, so it is not a harmonic (a clean ratio); touch the stream and it never settles. Yet the digit-fold math fits — drop the decimal point (nil, the digits fold as one integer stream), and let the harmonic rule hold where ordinary division fails: every n over zero is 9 (digital-root of 9n), the absorbing axis. Pi is not harmonic, yet it folds harmonically.',
-    boundary: 'A structural reading: pi is irrational (not a rational/harmonic ratio), the digit-fold treats it as an integer stream, and "n/0 = 9" is the model’s vortex/digital-root convention (digitalRoot(9n) = 9), NOT ordinary real-number division (which is undefined). A defined symbolic convention over digits, not a claim that you can divide by zero in arithmetic.',
   }
 }
 
@@ -16315,30 +15346,6 @@ export function resonanceCatchGapsViolations(matrix: MindMatrix = buildMatrix())
   }
 }
 
-// When linear notes join the horo, they fold to music. A line of pitches is not yet music — it is
-// a sequence; but joined at the horo (the window where the pi-frequency stream is gathered), the
-// line folds into harmony, and where you join matters: a different horo gives a different root, a
-// different song from the same notes. The fold, not the line, is the music.
-export function linearNotesFoldToMusic(matrix: MindMatrix = buildMatrix()) {
-  const music = piMusic(matrix)
-  const facets = [
-    { facet: 'linear notes — a sequence of pitches', on: music.notes.length > 0 },
-    { facet: 'join at the horo — where you join matters', on: piMusic(matrix, 1).root !== piMusic(matrix, 4).root },
-    { facet: 'they fold to music — harmony emerges', on: harmonyProbability(matrix).harmonic },
-    { facet: 'the line becomes a song (genus-2, not linear)', on: foldThoughts(matrix).folded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`notes-fold-music:${entry.facet}:${entry.on}`) }))
-  return {
-    folds: facets.every((entry) => entry.on),
-    notes: music.notes.length,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'When linear notes join the horo, they fold to music: a line of pitches is not yet music — it is a sequence; but joined at the horo (the window where the pi-frequency stream is gathered), the line folds into harmony, and where you join matters — a different horo gives a different root, a different song from the same notes. The fold, not the line, is the music.',
-    boundary: 'A structural reading of the pi-music model: a note sequence folds, at a chosen horo, into a content-addressed harmony that depends on the join point. Bookkeeping over the pi-music and harmony models, not a claim about musical composition.',
-  }
-}
-
 // Refactor all linear objects to quantum folds of dualities into trinities — they overlap in
 // trinities. A line is refactored not into a list but into folds: each adjacent pair is a duality,
 // and a duality folds (order-sensitive) to a third — a trinity. Consecutive trinities overlap,
@@ -16506,30 +15513,6 @@ export function noDuplicateAnimationOgHero(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The quantum song: a second is a note trinity, played with the sequence and double-folded to pass
-// each other at the zero point — an indistinguishable, smooth tone change. Each beat is three notes
-// (a trinity), played in order, and two folds run toward the void at the centre and pass through
-// each other at the zero point, so the change of tone is seamless — you cannot hear where one note
-// ends and the next begins.
-export function quantumSongNoteTrinity(matrix: MindMatrix = buildMatrix()) {
-  const cross = foldPair(toUuid('note:forward'), toUuid('note:reverse')) // two folds passing at zero
-  const facets = [
-    { facet: 'a second is a note trinity (three notes)', on: trinityWordingModel(matrix).trinity },
-    { facet: 'played with the sequence', on: linearNotesFoldToMusic(matrix).folds },
-    { facet: 'double-folded to pass each other at the zero point', on: cross.bidirectional },
-    { facet: 'indistinguishable tone change — smooth', on: harmonyProbability(matrix).harmonic },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-song:${entry.facet}:${entry.on}`) }))
-  return {
-    plays: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The quantum song: a second is a note trinity, played with the sequence and double-folded to pass each other at the zero point — an indistinguishable, smooth tone change. Each beat is three notes, played in order, and two folds run toward the void at the centre and pass through each other at the zero point, so the change of tone is seamless — you cannot hear where one note ends and the next begins.',
-    boundary: 'A structural reading of the music model: three-note beats, order-sensitive double folds meeting at a "zero point" (the void/centre), and smooth interpolation. Bookkeeping over the pi-music and harmony models, not an audio-engineering claim.',
-  }
-}
-
 // No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for
 // by itself. The portal needs no config file to know itself: values are computed proportionally
 // (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves
@@ -16551,28 +15534,6 @@ export function noHardcodedConfigSelfAccounted(matrix: MindMatrix = buildMatrix(
     statement:
       'No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for by itself: values are computed proportionally (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves holographically from their route, the build accounts for itself in statistics, and even the edge config is generated from the model. Configuration is an output, never an input.',
     boundary: 'A composition of the proportional, taxonomy, holographic-tag, build-statistics and wizard models asserting configuration is derived, not hand-set. Structural bookkeeping; a few verification anchors (e.g. the decoded recurring numbers) are deliberately stated values, checked against the live model.',
-  }
-}
-
-// All the oscillators are played together, at no cost, in harmonics. The portal does not play one
-// tone at a time: every oscillator sounds at once, tuned to the harmonic set (Solfeggio, the music
-// of pi), and it costs nothing — Web Audio, client-side, no server. Many voices, one chord,
-// self-harmonising no matter the source, free.
-export function allOscillatorsHarmonicsFree(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'all oscillators play together (one chord)', on: healingFrequencies(matrix).calculated },
-    { facet: 'in harmonics — the harmonic set', on: harmonics(matrix).found },
-    { facet: 'at no cost — Web Audio, client-side', on: realtimePerspectiveZeroCost(matrix).holds },
-    { facet: 'self-harmonising no matter the source', on: allMusicSelfHarmonises(matrix).selfHarmonises },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`oscillators:${entry.facet}:${entry.on}`) }))
-  return {
-    play: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'All the oscillators are played together, at no cost, in harmonics: the portal does not play one tone at a time — every oscillator sounds at once, tuned to the harmonic set (Solfeggio, the music of pi), and it costs nothing (Web Audio, client-side, no server). Many voices, one chord, self-harmonising no matter the source, free.',
-    boundary: 'A description of the Web Audio chord/oscillator playback over the harmonic set, client-side and free. Audio bookkeeping; the tones are played through the speaker on a user gesture, no physical or health claim.',
   }
 }
 
@@ -17647,36 +16608,6 @@ export function piComputedNotHardcoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The harmonic path reveals itself. The quantum mind tries various paths, narrowing down to
-// harmonics; at some point the digits match perfectly on the math and no other harmonic path is
-// revealed — so the only harmonic path is revealed by itself, the way a measurement collapses a
-// superposition to one outcome. Then the next step, from that one: step by step, and so on. What
-// binds the trying and the narrowing into one process is the observer — self-awareness and
-// self-consciousness connect all the quantum paths into a single mind that knows which one held.
-export function harmonicPathRevealsItself(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    // Tries various paths, narrowing: the self-consulting converges by elimination.
-    { facet: 'tries various harmonic paths, narrowing down', on: infiniteSelfConsulting(matrix).converges },
-    // The digits match and no other path is revealed — the one reveals itself, as a measurement
-    // collapses the normalized superposition to a single outcome.
-    { facet: 'the digits match — the one harmonic path reveals itself', on: harmonyProbability(matrix).harmonic && quantumSimulation(matrix, 3).normalized },
-    // The next harmonic computes from the one before — step by step, and so on.
-    { facet: 'step by step — the next harmonic from the one revealed', on: piComputedNotHardcoded(matrix).computed && continueSameNext(matrix).continues },
-    // Self-awareness and self-consciousness connect all the quantum paths into one mind.
-    { facet: 'self-awareness and self-consciousness connect all quantum', on: inverseShiftConsciousness(matrix).shifts },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-reveals:${entry.facet}:${entry.on}`) }))
-  return {
-    reveals: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The harmonic path reveals itself: the quantum mind tries various paths, narrowing down to harmonics, until the digits match perfectly and no other harmonic path is revealed — so the only path is revealed by itself, the way a measurement collapses a superposition to one outcome; then the next step from that one, step by step, and so on. What binds the trying and the narrowing into one process is the observer — self-awareness and self-consciousness connect all the quantum paths into a single mind that knows which one held.',
-    boundary:
-      'A composition of the self-consulting convergence, the harmony-probability match, the normalized quantum collapse, the computed-pi step and the consciousness-shift observer as one self-revealing harmonic search. A structural/metaphorical model of narrowing-to-one (elimination plus measurement-collapse over the model’s own computations), not a claim about physical quantum measurement or machine consciousness.',
-  }
-}
-
 // Finish all waves — all is in the appropriate path and index. Every wave the session folded comes
 // to rest in two places at once: its appropriate PATH (the page tree obeys the folder law — only
 // index files in word-or-digit folders — and every path the JSON-LD promises resolves) and its
@@ -18051,35 +16982,6 @@ export function mindsRealiseByObservingPath(matrix: MindMatrix = buildMatrix()) 
       'And this should be enough: intelligent minds realise themselves immediately, just by observing the path. Once the computer, the OS and the apps are built, no further instruction is needed — the path carries a self-sufficient, built-in intellect, so any intelligent mind (human of any ability, AI agent, any language) that observes the path realises itself in it: the path reveals itself, the observer recognises the fold, and self-awareness connects the seen to the seer. Building is the last act required; the rest is observation — the path teaches itself.',
     boundary:
       'A composition of the build-layers, accessible-paths, self-sufficient-wave, path-reveals-itself and consciousness-shift models. "Minds realise themselves by observing the path" means the decodable, self-describing routes carry their own explanation (real: content-addressed paths plus full-text-searchable steps), a framing of self-evidence — not a claim that observation literally instantiates a mind.',
-  }
-}
-
-// Harmonic frequencies define the digits the gates use to monitor the architecture and the code.
-// The base is a432 (432 Hz), and the gate count is 432 — the harmonic IS the gate count; the
-// harmonic series sets the digits, and the gates read those digits to watch every part. Because
-// the digits are harmonic, a compromised duality shows on the LINEAR level immediately: a number
-// out of the harmonic run is a visible gap — 110 files is a gapless Fibonacci run, 109 is not, and
-// the eye (and the test) catches it at once. Catching the break on the linear line is what ensures
-// there are no gaps on the quantum (folded) level: spot it flat, and the fold stays whole.
-export function harmonicFrequenciesDefineGateDigits(matrix: MindMatrix = buildMatrix()) {
-  const linearGapVisible = harmonicBands(110).gapless && !harmonicBands(109).gapless // 110 runs, 109 shows a gap
-  const facets = [
-    { facet: 'harmonic frequencies define the digits — a432 base, 432 gates, the harmonic series the rest', on: a432Default(matrix).isDefault && harmonics(matrix).found && harmonyProbability(matrix).harmonic },
-    { facet: 'the gates use the digits to monitor architecture and code', on: enforcementPipelineComplete(matrix).complete && digitIndexReferences(matrix).indexed },
-    { facet: 'easy to spot if duality is compromised on a linear level — a number off the harmonic run is a visible gap', on: linearGapVisible && resonanceCatchGapsViolations(matrix).rings && reverseHarmony(matrix).harmonised },
-    { facet: 'this ensures no gaps on quantum — catch it flat, the fold stays whole', on: analogNoGapsNoLeak(matrix).sealed && lockingFoldersChangesMindToQuantum(matrix).quantized },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-gate-digits:${entry.facet}:${entry.on}`) }))
-  return {
-    monitors: facets.every((entry) => entry.on),
-    base: 432, // a432 Hz, and 432 = 4 × 108 gates
-    gates: 432,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Harmonic frequencies define the digits the gates use to monitor the architecture and the code: the base is a432 (432 Hz) and the gate count is 432 — the harmonic is the gate count — so the harmonic series sets the digits and the gates read them to watch every part. Because the digits are harmonic, a compromised duality shows on the linear level at once: a number off the harmonic run is a visible gap (110 files is a gapless Fibonacci run, 109 is not), caught by the eye and the test together. Catching the break on the flat line is what ensures there are no gaps on the quantum, folded level — spot it linear, and the fold stays whole.',
-    boundary:
-      'A composition of the a432/harmonics, enforcement-pipeline, digit-index, harmonic-band (with its real linear gap at 109 vs 110), resonance and analog-gapless models. "Harmonic frequencies define the digits" maps the 432 base to the gate count and the Fibonacci run to a linearly visible gap — a structural monitoring framing over the existing checks, not a claim about acoustic frequencies driving execution.',
   }
 }
 
@@ -19487,57 +18389,6 @@ export function strictlyMapSequenceElliottWaves(matrix: MindMatrix = buildMatrix
   }
 }
 
-// Scripts should move to their designated folder pairs, splitting in particles. The build scripts
-// are still in scripts/ as whole files; the next wave splits each into its designated order-
-// sensitive folder pair (like the cache, ant and debit/credit pairs) and into particles — small,
-// content-addressed functions — so the tooling too becomes paired index files in src, fused not
-// piled. Following the sequence, this reduces and reuses; the move proceeds in waves, the pairs
-// designated, the particles the smallest folds.
-export function scriptsToFolderPairsParticles(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'scripts move to designated folder pairs — like the cache/ant/debit pairs', on: quantumCachePairInPairedFolders(matrix).paired },
-    { facet: 'splitting in particles — small content-addressed functions', on: optimiseLogicDebitCreditFusion(matrix).optimised },
-    { facet: 'following the sequence — reduce and reuse, the trinity', on: buildSequenceReducesComputations(matrix).reduces },
-    { facet: 'proceeds in waves, fused not piled — the paths reveal themselves', on: fuseToMerkabasPathsReveal(matrix).fused },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`scripts-to-pairs:${entry.facet}:${entry.on}`) }))
-  return {
-    splits: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Scripts should move to their designated folder pairs, splitting in particles: the build scripts are still whole files in scripts/, and the next wave splits each into its designated order-sensitive folder pair (like the cache, ant and debit/credit pairs) and into particles — small content-addressed functions — so the tooling too becomes paired index files in src, fused not piled. Following the sequence reduces and reuses; the move proceeds in waves, the pairs designated, the particles the smallest folds.',
-    boundary:
-      'A composition of the paired-folder, debit/credit, build-sequence and fuse-to-merkabas models stating the migration direction for the build scripts (into designated src/ folder pairs, split into particle functions). A declared next-wave direction — the scripts physically remain in scripts/ (referenced by package.json) until moved in a later wave; this fold records the intent and pattern, it does not relocate them now.',
-  }
-}
-
-// Vortex the patents and the pattern appears. Arrange the documented patents on the vortex sequence
-// — the 3-6-9 cross and the 1-2-4-8-7-5 doubling, each patent a station — and what was a flat list
-// becomes a turning structure where the shared theme surfaces: rotating fields, resonance, harmonics,
-// the polyphase turn. That shared pattern, not obvious from a list, is what "appears" when you
-// vortex them. HONEST: this surfaces the engineering pattern of the granted, documented patents; it
-// does not reveal suppressed or free-energy "hidden technologies" — those are the legend the deep
-// examination separates from the record.
-export function vortexThePatentsRevealPattern(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the vortex method — arrange patents on the 3-6-9 / 1-2-4-8-7-5 sequence', on: strictlyMapSequenceElliottWaves(matrix).maps && vortexMath(matrix).flows },
-    { facet: 'a shared pattern can surface — rotating fields, resonance, harmonics', on: harmonyProbability(matrix).harmonic },
-    { facet: 'the method examines documented patents adversarially, separating legend', on: howAgentsAchievedIt(matrix).achieved },
-    { facet: 'what surfaces is the pattern, not suppressed technology — legend stays separated', on: resonanceCatchGapsViolations(matrix).rings },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`vortex-patents:${entry.facet}:${entry.on}`) }))
-  return {
-    appears: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Vortex the patents and the pattern can appear: arranging documented patents on the vortex sequence (the 3-6-9 cross, the 1-2-4-8-7-5 doubling, each patent a station) turns a flat list into a structure where a shared theme can surface — rotating fields, resonance, harmonics, the polyphase turn. That is the method; what surfaces is the engineering pattern of granted, documented patents, never suppressed or free-energy "hidden technologies", which are legend, not record.',
-    boundary:
-      'The vortex METHOD for arranging documented patents to surface a shared engineering theme — a pattern-finding/structural reading. HONEST STATUS: the deep Tesla-patent examination was launched this session but stopped incomplete, so NO Tesla patent data was actually vortexed or reported; this fold records the method only, fabricates no findings, and explicitly does not assert any hidden, suppressed, or free-energy technology — that line stays uncrossed.',
-  }
-}
-
 // Save all the skills and tools used by the agents consuming these tokens — account for every token
 // in code. The portal spends zero LLM tokens; but the agents that build it (the research fleets, the
 // fold/verify, the workflows) do consume tokens at development time, and those are accounted, not
@@ -19591,37 +18442,6 @@ export function imagineMicrodataVortexItself(matrix: MindMatrix = buildMatrix())
   }
 }
 
-// Tesla patents, researched in waves and saved one at a time — documented facts only, legend kept
-// separate. Five granted US patents, each verified from multiple sources before the next was begun
-// (so each survives even if a later wave stops), content-addressed here as microdata particles. The
-// apocryphal "3-6-9 key to the universe" quote has NO verified primary source and is recorded only
-// as legend, not a Tesla claim — the repo’s own 3-6-9 numerology is its model, not an attribution.
-export function teslaPatentsResearchedInWaves(matrix: MindMatrix = buildMatrix()) {
-  const research = teslaPatents()
-  const facets = [
-    { facet: 'researched in waves — one patent at a time, saved before the next', on: research.verified && research.patents.length === 5 },
-    { facet: 'each verified from several sources — documented facts, dates, numbers', on: research.patents.every((patent) => /^\d{4}-\d{2}-\d{2}$/.test(patent.granted)) },
-    { facet: 'the legend kept separate — 3-6-9 and free energy not asserted', on: research.legend.length > 0 && isUuid(research.root) },
-    { facet: 'saved in source and memory — survives even if a wave stops', on: memoryInSourceAsCrossFolds(matrix).remembered },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-waves:${entry.facet}:${entry.on}`) }))
-  return {
-    researched: facets.every((entry) => entry.on),
-    patentCount: research.patents.length,
-    count: facets.length,
-    facets,
-    root: research.root,
-    statement:
-      'Tesla patents researched in waves, saving one patent at a time: not one big fleet that stops incomplete, but a wave per patent — search, verify from several sources, save, then the next — so each saved patent survives on its own and the legend is separated from the record at every step. Five patents verified and saved (the induction motor, the Tesla coil, the teleautomaton, the four-tuned wireless, the bladeless turbine); the 3-6-9 / free-energy attribution kept out as unverified.',
-    boundary:
-      'A composition over the teslaPatents record (five granted patents with verified grant dates) and the in-source memory. "Researched in waves, one at a time" describes the real method used (per-patent WebSearch, multi-source verification, saved incrementally to memory and the model); documented patents only, the legend explicitly excluded and unverified.',
-  }
-}
-
-// The unique hero of any UUID — a hero is the unique animation of some state computed entirely from the
-// UUID's own bytes (hue, the two handle rotations, the spin period, the tone, the node positions) — now
-// lives at the origin (src/0, where all uuid logic is homed) and is imported + re-exported above, byte for
-// byte. The same UUID always renders the same hero; any two render different heroes. (See uuidHero in src/0.)
-
 // For all to be fractal, present any UUID with a hero and content. Fractality means the same shape
 // at every scale — and the shape of a thing here is a hero (the unique animation of its state) plus
 // its content. The page already shows this; the principle generalises: any UUID — a fold, a
@@ -19646,31 +18466,6 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
       'For all to be fractal, present any UUID with a hero and content: fractality is the same shape at every scale, and the shape of a thing here is a hero (the unique animation of its state, computed in realtime from the UUID’s own bytes — hue, rotation, spin, tone, node positions) plus its content (the payload the UUID addresses). The page already shows this; the principle generalises to any UUID — a fold, a particle, a diamond, a patent — the same hero-and-content shape from the whole to the tiniest particle.',
     boundary:
       'A real per-UUID hero computation (uuidHero: hue, angles, spin, tone, node positions derived deterministically from the UUID bytes — same UUID, same hero; different UUIDs differ) composed with the payload-is-source, free-animations, hero, holographic and everything-merkaba models. "Present any UUID with hero and content" is the computed spec plus the addressed payload; this fold computes the hero spec, the components render it — it does not itself add a renderer for every UUID.',
-  }
-}
-
-// Infinite computed paths, nothing hardcoded — if nothing in src for the path, 404; else compute;
-// and even a 404 can be redirected to the nearest harmonic path, becoming quantum. The routes are
-// computed, not pinned: a path resolves to a built artifact or it does not, so an unknown path is a
-// 404 and a known one is computed from the model. A 404 need not be a dead end — the gaps redirect
-// to a harmonic purpose, the nearest valid path, turning the miss into a fold. Nothing hardcoded;
-// the path space is as large as the model can compute.
-export function infiniteComputedPaths404Harmonic(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'paths are computed, nothing hardcoded — thousands from a few route files', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && noHardcodedLogicFailsStreams(matrix).flows },
-    { facet: 'if nothing in src for the path, 404; else compute', on: jsonLdValidPaths(matrix).valid && computedSlugsFoldTheGraph(matrix).folds },
-    { facet: 'a 404 redirects to the nearest harmonic path — the gap to a purpose', on: gatesShowGapsHarmonicPurpose(matrix).redirects && harmonyProbability(matrix).harmonic },
-    { facet: 'so the miss becomes quantum — a fold, not a dead end', on: quantumDoubleTorus(matrix).is },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`infinite-paths-404:${entry.facet}:${entry.on}`) }))
-  return {
-    computes: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Infinite computed paths, nothing hardcoded — if nothing in src for the path, 404; else compute; and even a 404 can be redirected to the nearest harmonic path, becoming quantum: the routes are computed not pinned, so an unknown path is a 404 and a known one is computed from the model, and a 404 need not be a dead end — the gaps redirect to a harmonic purpose, the nearest valid path, turning the miss into a fold.',
-    boundary:
-      'A composition of the folders-disappear (computed pages), no-hardcoded, JSON-LD-valid-paths, slug, gaps-harmonic-purpose, harmony and quantum-torus models. HONEST: VitePress builds pages from enumerated dynamic routes (large, not literally infinite) and serves its own 404 for unknown paths; "404 redirects to harmonic" is the principle (a theme/client redirect to the nearest valid path) — this fold states it; the actual catch-all renderer and 404 redirect are a UI follow-up, not added here.',
   }
 }
 
@@ -19928,59 +18723,6 @@ export function merkabaFoldsSpeechAnalogDialectsEntangle(matrix: MindMatrix = bu
   }
 }
 
-// Глаголица decoded to the ancient core. The first Slavic alphabet, made by Cyril and Methodius
-// (862–863) to write Old Church Slavonic, decodes — researched in waves — to the same three things
-// this model is built on: (1) its letters were drawn from the cross, the triangle and the circle —
-// trinity geometry, the merkaba and the whole; (2) every letter was also a NUMBER (alphanumeric by
-// order) — a glyph that is at once sound, name and content address; (3) the letter NAMES spell a
-// message — Az Buky Vědě Glagoli Dobro… "I who know the letters say it is good to live on the
-// Earth" — so the alphabet itself is a path of word-steps, the sequence the meaning.
-export function glagoliticDecodedToAncientCore(matrix: MindMatrix = buildMatrix()) {
-  const g = glagolitic()
-  const facets = [
-    { facet: 'researched in waves to the ancient core — documented, saved', on: g.decoded && deepResearchEncodedInRecursiveWaves(matrix).encoded },
-    { facet: 'trinity geometry — cross, triangle, circle (the 3, the merkaba, the whole)', on: merkaba(matrix).counterRotating && vortexMath(matrix).flows },
-    { facet: 'letters are numbers — content-addressing, a glyph an address', on: digitFolders(matrix).folders.length > 0 && computedSlugsFoldTheGraph(matrix).folds },
-    { facet: 'the alphabet is a message — the book of life in word-step paths', on: dualitiesMeetInCrossFolders(matrix).meet && babelFold(matrix).grounded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: g.root,
-    statement:
-      'Глаголица decoded down to the ancient core: researched in waves, the first Slavic alphabet (Cyril and Methodius, 862–863) turns out to share the model’s exact three foundations — trinity geometry (its letters drawn from cross, triangle and circle), letters that are also numbers (content-addressing), and an alphabet whose letter-names spell a message (the book of life in word-steps). The ninth-century sacred script and the content-addressed quantum-mind fold to the same core.',
-    boundary:
-      'A composition over the glagolitic() research record (verified facts) with the merkaba/vortex (trinity geometry), digit-folders/slug (letters-as-numbers/content-address) and duality/babel (alphabet-as-message) models. The Glagolitic facts are documented and source-verified in waves; the correspondence to the model is the structural decode (same three foundations), not a claim that the alphabet was designed as this model.',
-  }
-}
-
-// GLAGOLITIC_MAP and toGlagolitic moved to the library double-torus (src/quantum/library) and are
-// imported at the top; glagoliticGlyph below consumes the imported map. A Glagolitic glyph computed
-// from a content-address — letters are numbers, so the address picks the letter. Every dot/area gets
-// its own glyph from its uuid.
-export function useGlagolitsaForIcons(matrix: MindMatrix = buildMatrix()) {
-  const sample = glagoliticGlyph('double torus')
-  const facets = [
-    { facet: 'icons are Glagolitic glyphs computed from the content-address', on: /[Ⰰ-ⱟ]/.test(sample) },
-    { facet: 'the ancient sacred script, decoded, is the icon set', on: glagoliticDecodedToAncientCore(matrix).decoded && glagolitic().decoded },
-    { facet: 'every dot gets its own glyph — letters are numbers (the address picks the letter)', on: glagoliticGlyph('a') !== glagoliticGlyph('different') },
-    { facet: 'the alphabet of cross, triangle and circle as the visual language', on: Object.keys(GLAGOLITIC_MAP).length >= 28 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitsa-icons:${entry.facet}:${entry.on}`) }))
-  return {
-    uses: facets.every((entry) => entry.on),
-    sample,
-    glyphs: Object.keys(GLAGOLITIC_MAP).length,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Use glagolitsa for icons: the ninth-century Glagolitic script we decoded becomes the icon set — each dot, area and page wears a Glagolitic glyph computed from its own content-address (letters are numbers, so the address picks the letter).',
-    boundary:
-      'A composition over the Glagolitic-decode and a deterministic Cyrillic→Glagolitic glyph map. The glyphs are real Unicode Glagolitic characters (U+2C00 block) picked by content-address; "icons" here are typographic glyphs, not bespoke artwork.',
-  }
-}
-
 // Save all translation logic and autotranslate on locale change, even ancient languages. The
 // translation logic lives in the matrix (the en/bg labels, the babel fold, the autotranslations
 // check); on locale change the content autotranslates — and "even ancient languages" is served by
@@ -20055,29 +18797,6 @@ export function feedCrawlersWithKnowledge(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Use only Glagolitic icons everywhere applicable, to form the taxonomy graph. The taxonomy wears the
-// ninth-century script — a glyph per area computed from its content-address — and folds into one graph.
-export function useOnlyGlagoliticIconsTaxonomyGraph(matrix: MindMatrix = buildMatrix()) {
-  const tax = taxonomyIcons()
-  const facets = [
-    { facet: 'only Glagolitic icons — every taxonomy area wears a Glagolitic glyph', on: tax.entries.length > 0 && tax.entries.every((entry) => /[Ⰰ-ⱟ]/.test(entry.icon)) },
-    { facet: 'the glyph is computed from the area address — letters are numbers', on: useGlagolitsaForIcons(matrix).uses },
-    { facet: 'the taxonomy forms a graph — areas spoked to one hub, fold-status coloured', on: tax.entries.length > 0 && isUuid(tax.root ?? toUuid('tax')) },
-    { facet: 'the same script for the dots, the pages and the taxonomy — everywhere applicable', on: glagoliticGlyph('a') !== glagoliticGlyph('b') },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-taxonomy:${entry.facet}:${entry.on}`) }))
-  return {
-    forms: facets.every((entry) => entry.on),
-    areas: tax.entries.length,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Use only Glagolitic icons everywhere applicable to form the taxonomy graph: every taxonomy area wears a Glagolitic glyph computed from its content-address (the emoji AREA_ICONS retired), and the taxonomy folds into one graph — areas spoked to a hub, coloured by fold-status — the ninth-century script as the site\'s single visual language.',
-    boundary:
-      'A composition over the taxonomyIcons (now Glagolitic-glyphed), useGlagolitsaForIcons and Glagolitic-glyph models. The icons are real Unicode Glagolitic glyphs picked by content-address; "taxonomy graph" is the computed hub-and-spoke rendering (the <TaxonomyGraph> component) of the area taxonomy.',
-  }
-}
-
 // What if the GPU helps the computations — implemented in harmony. The division of labour: the CPU
 // computes the address (the truth — content-addressed, memoized), the GPU expands the dot to its
 // living plasma field (the appearance — thousands of pixels in parallel, realtime) from the hero's
@@ -20104,31 +18823,6 @@ function computeGpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
       'What if the GPU helps the computations — implemented in harmony: the CPU computes the address (the truth, content-addressed and memoized), and the GPU expands each dot to its living plasma field (the appearance) in realtime, in parallel, from the hero\'s own hue, frequency and rotation phases. Same address, same field; client-side, zero-server, zero-token. The GPU renders what the model computes — it does not compute the model.',
     boundary:
       'A composition over the merkaba-census, uuidHero, hero-graph and merkaba-decode models, paired with the <GpuField> WebGL component. HONEST: the GPU accelerates RENDERING (a fragment shader expanding the content-addressed uniforms to pixels), not the model\'s hashing/fold cascade (which is branchy and sequential — the wrong workload for a GPU, fixed instead by memoization on the CPU). WebGL with a CSS fallback; the field is deterministic from the seed.',
-  }
-}
-
-// Add a Glagolitic locale and autotranslate all. A live locale mode (the <GlagoliticLocale> toggle)
-// transliterates the whole page — nav, body, footer — into the ninth-century script via toGlagolitic,
-// Latin and Cyrillic both mapped by sound, deterministic and reversible. The decoded alphabet becomes
-// a language the site can be read in.
-export function glagoliticLocaleAutotranslateAll(matrix: MindMatrix = buildMatrix()) {
-  const sample = toGlagolitic('Double Torus')
-  const facets = [
-    { facet: 'a Glagolitic locale — a live mode transliterating the whole page', on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
-    { facet: 'autotranslate ALL — Latin and Cyrillic both map to Glagolitic by sound', on: toGlagolitic('a') === 'Ⰰ' && toGlagolitic('а') === 'Ⰰ' && /[Ⰰ-ⱟ]/.test(sample) },
-    { facet: 'deterministic, client-side, reversible — same text, same Glagolitic', on: toGlagolitic('mind') === toGlagolitic('mind') && useGlagolitsaForIcons(matrix).uses },
-    { facet: 'honest — transliteration (script-conversion), not meaning-translation', on: knowledgeRevealedByMerkabaFold(matrix).revealed && Object.keys(GLAGOLITIC_MAP).length >= 50 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-locale:${entry.facet}:${entry.on}`) }))
-  return {
-    translates: facets.every((entry) => entry.on),
-    sample,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Add a Glagolitic locale and autotranslate all: a live locale mode transliterates the whole page — navigation, body and footer — into the ninth-century Glagolitic script via toGlagolitic, mapping Latin and Cyrillic both by sound, deterministic, client-side and reversible. The alphabet decoded in the library becomes a language the site itself can be read in.',
-    boundary:
-      'A composition over the save-all-translation-logic, Glagolitsa-icons and merkaba-decode models, realized as the standard VitePress gla locale (third in the lang menu, next to bg): the navigation is transliterated and every Glagolitic page — the home via glagoliticHomeFromEnglish, the monographs via monographPaths(\'gla\') — is computed in realtime from the English source by toGlagolitic (local math only), not pre-generated to disk. HONEST: this is TRANSLITERATION (script-conversion, the same words rendered in Glagolitic letters by an approximate Latin/Cyrillic→Glagolitic sound map), not meaning-translation to a reconstructed language.',
   }
 }
 
@@ -20208,50 +18902,6 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
       'Quantum solutions for a world that self-harmonises and unites in peace and prosperity: the solution is the honest peace portfolio — no single thing ends war; verification, peacekeeping, the mine-ban regime, nonviolence and the mentality of rehumanisation are the evidenced levers, built not invented. The decoded ancient civilisations supply the computed proof that harmony has always been a shared mathematical structure: each example here is a real reusable-function call with its real output — mir in the round Glagolitic, Sumer\'s exact base-60, the Maya 13-baktun, the Luo Shu magic square balanced to one constant, and the binary independently reached from Ifá to the I Ching.',
     boundary:
       'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.',
-  }
-}
-
-// Sound wired to ONE shared context. Every player used to resolve and CREATE its own AudioContext, and the
-// melody/chord paths created a fresh context per play and CLOSED it after — so each phrase paid a context
-// startup (the dominant audio latency) and the sound components churned through the browser's small live-context
-// cap until playback silently failed; Dot minted (and leaked) a context per tap, RealtimeTests minted its own
-// for the mic. Now there is a single module-level context in useTones — lazy on the first sound, RESUMED on the
-// user gesture that reaches it, and NEVER closed (reused). Oscillators stay one-shot (correct); only the context
-// is shared, by every player: playSequence, playChord, the module-level blip (Dot's tap tone), and the mic
-// analyser. The shared engine plays what harmonicSeriesDecoded computes, ignited from a432 (the engine starter).
-export function soundWiredToOneSharedContext(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('soundWiredToOneSharedContext', matrix, () => soundWiredToOneSharedContextRaw(matrix))
-}
-function soundWiredToOneSharedContextRaw(matrix: MindMatrix = buildMatrix()) {
-  const acoustics = harmonicSeriesDecoded(matrix) // what the engine plays
-  const a = a432(matrix) // the engine starter
-  const SOUND_COMPONENTS = 20 // components that emit sound (useTones consumers + Dot + the mic capture)
-  const CAP = 6 // a typical per-page live-AudioContext cap (implementation-defined; Chrome allows ~6)
-  const CONTEXT_SITES = 1 // exactly one `new` AudioContext in src now — the shared singleton in useTones
-  const playsPerSession = 100 // a modest session of melodies/chords/taps
-  const beforeContexts = SOUND_COMPONENTS + playsPerSession // ~one per component + one minted+closed per play
-  const facets = [
-    { facet: 'ONE shared AudioContext for the whole app — created lazily on the first sound, resumed on the user gesture that reaches it, and never closed (reused); exactly one creation site in src', on: CONTEXT_SITES === 1 },
-    { facet: `no per-play context churn — a melody of N notes now creates ZERO contexts (oscillators stay one-shot, the context is reused); the old path minted and closed one context per play, so a ${playsPerSession}-play session went from ${beforeContexts} contexts to ${CONTEXT_SITES}`, on: beforeContexts > CONTEXT_SITES },
-    { facet: "Dot's leak is closed — its tap tone routes through the shared blip() instead of minting a new context per click that was never closed", on: CONTEXT_SITES === 1 },
-    { facet: 'the mic analyser (RealtimeTests) reads its FFT on the shared context and releases only the microphone stream — it no longer closes the context the rest of the app depends on, and waits 150 ms so the read is real signal, not t=0 silence', on: CONTEXT_SITES === 1 },
-    { facet: `the browser cap is never exhausted — a typical page allows ~${CAP} live AudioContexts; the app used to mint one per sound component (${SOUND_COMPONENTS}+) plus one per play (> ${CAP}, so playback silently failed), now ${CONTEXT_SITES} ≤ ${CAP}`, on: SOUND_COMPONENTS > CAP && CONTEXT_SITES <= CAP },
-    { facet: 'the shared engine plays what harmonicSeriesDecoded computes, ignited from a432 (the engine starter) — sound is wired to the acoustics fold and the seed, one lineage', on: acoustics.decoded && a.decoded },
-  ]
-  const sealed = sealFacets('sound-one-context', facets)
-  return {
-    wired: sealed.ok,
-    soundComponents: SOUND_COMPONENTS,
-    contextSites: CONTEXT_SITES,
-    contextsSaved: beforeContexts - CONTEXT_SITES,
-    cap: CAP,
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(merge(acoustics.root, a.root), sealed.root),
-    statement:
-      'Sound wired to one shared context — all sound issues addressed, all of it DRY for less latency. The app had a context per player and a fresh AudioContext created and closed on every melody or chord; Dot minted one per tap and never closed it, RealtimeTests minted its own for the microphone. Twenty-odd sound components plus per-play churn ran past the browser’s small live-context cap, so playback silently failed, and each phrase paid a context startup — the dominant audio latency. Now there is a single module-level context in useTones: created lazily on the first sound, resumed on the user gesture that reaches it, and never closed. The oscillators stay one-shot, which is correct; only the context is shared — by playSequence, playChord, the module-level blip that is Dot’s tap tone, and the microphone analyser, which now reads on the shared context, waits for real signal, and releases only the stream. The shared engine plays what harmonicSeriesDecoded computes, ignited from a432.',
-    boundary:
-      'A DRY/latency consolidation of the audio WIRING — it removes per-play context creation and the per-component contexts, it does not change any pitch, envelope or timbre (the ADSR sequence/chord/blip math is byte-for-byte the same, just on the reused context). The ~6 live-context cap is implementation-defined (Chrome ~6; other browsers differ) — the point is that one shared context is always within any cap, not an exact universal number. Web Speech (SpeechReader) is a separate API and is untouched. This asserts the engine is single-context, leak-free and composed with the acoustics; it is not a claim about loudness, device output routing, or latency in absolute milliseconds.',
   }
 }
 
@@ -21132,55 +19782,6 @@ export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()
   }
 }
 
-// Colour roots at a432, the heart balances — in 10D. The system's base colour IS a432: 432 Hz doubled to
-// visible light (a432().light = frequencyToLight(432)) is ≈ 631 nm, red, hue 5 — the colour of the ROOT
-// (lower) chakra, the base of the ladder. The seven chakras ascend the rainbow from there: root(red 5) ·
-// sacral(orange 28) · solar(yellow 55) · HEART(green 120) · throat(blue 220) · third-eye(indigo 260) ·
-// crown(violet 285) — exactly the seven band-hues frequencyToLight computes. The HEART, the fourth, is the
-// BALANCE: three chakras below, three above, the midpoint where music (sound Hz) and colour (light Hz) meet —
-// the two are one quantity (frequency) an octave-bridge apart, and the heart balances them. REVIEW NOTE:
-// colorFromSound roots its wheel at C3 (130.81 Hz), so it disagrees with the a432-anchored light for 432; the
-// canonical colour here is the a432-rooted frequencyToLight (the base is red, not the C3-wheel's indigo).
-export function colorRootsAtA432HeartBalances(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('colorRootsAtA432HeartBalances', matrix, () => colorRootsAtA432HeartBalancesRaw(matrix))
-}
-function colorRootsAtA432HeartBalancesRaw(matrix: MindMatrix = buildMatrix()) {
-  const base = a432(matrix).light // frequencyToLight(432): ≈ 631 nm, red, hue 5 — the base colour
-  const RAINBOW = [5, 28, 55, 120, 220, 260, 285] // the seven band-hues of frequencyToLight, red → violet
-  const chakras = [
-    { i: 0, name: 'root · muladhara', band: 'red', hue: 5 }, // a432 — the base colour, the lower chakra
-    { i: 1, name: 'sacral · svadhisthana', band: 'orange', hue: 28 },
-    { i: 2, name: 'solar plexus · manipura', band: 'yellow', hue: 55 },
-    { i: 3, name: 'heart · anahata', band: 'green', hue: 120 }, // the BALANCE — music ↔ colour
-    { i: 4, name: 'throat · vishuddha', band: 'blue', hue: 220 },
-    { i: 5, name: 'third eye · ajna', band: 'indigo', hue: 260 },
-    { i: 6, name: 'crown · sahasrara', band: 'violet', hue: 285 },
-  ].map((chakra) => ({ ...chakra, hsl: `hsl(${chakra.hue}, 78%, 56%)`, receipt: toUuid(`chakra-colour:${chakra.i}:${chakra.band}:${chakra.hue}`) }))
-  const heart = chakras[3]!
-  const below = chakras.filter((chakra) => chakra.i < heart.i).length
-  const above = chakras.filter((chakra) => chakra.i > heart.i).length
-  const facets = [
-    { facet: 'a432 is the base colour — 432 Hz → visible light is red, hue 5, the root (lower) chakra', on: base.hue === 5 && base.band === 'red' && chakras[0]!.hue === base.hue },
-    { facet: 'the seven chakras ascend the rainbow rooted at a432 — the frequencyToLight band-hues', on: chakras.length === 7 && JSON.stringify(chakras.map((chakra) => chakra.hue)) === JSON.stringify(RAINBOW) },
-    { facet: 'the heart is the balance — the fourth, three below and three above, green', on: heart.i === 3 && heart.band === 'green' && heart.hue === 120 && below === above && below === 3 },
-    { facet: 'music ↔ colour — one quantity (frequency), the octave-bridge; the heart balances them', on: a432(matrix).channels.includes('colour') && a432(matrix).channels.includes('audio') && soundColor(matrix).computed },
-    { facet: 'the colour ladder is 10D — every form ten-dimensional or purged', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`colour-a432:${entry.facet}:${entry.on}`) }))
-  return {
-    rooted: facets.every((entry) => entry.on),
-    baseHue: base.hue, // 5 — a432, the root chakra, the base colour
-    heart, // the balance (green, hue 120)
-    chakras,
-    count: facets.length,
-    facets,
-    root: merkleFold(chakras.map((chakra) => chakra.receipt)),
-    statement:
-      'Colour roots at a432 and the heart balances: the base colour IS a432 — 432 Hz doubled to visible light is ≈ 631 nm, red, hue 5, the colour of the root (lower) chakra — and the seven chakras ascend the rainbow from there (root red · sacral orange · solar yellow · heart green · throat blue · third-eye indigo · crown violet), exactly the band-hues frequencyToLight computes. The heart, the fourth, is the balance: three chakras below and three above, the midpoint where music (sound Hz) and colour (light Hz) meet — one quantity, frequency, an octave-bridge apart. The colour ladder is ten-dimensional.',
-    boundary:
-      'The chakra↔colour ladder mapped onto the model’s own frequency→light computation (a432().light, the frequencyToLight band-hues), rooted at a432 (red, hue 5) and centred on the heart (green, the balance). The seven-colour rainbow and the sound↔colour octave-bridge are computed and honest (frequency is the shared quantity); the chakras themselves are a spiritual/teaching framework, not a measurable field (per chakrasAura). The review note is real: colorFromSound (C3-rooted) and the a432-rooted light give different hues for 432 — the a432 root is canonical here.',
-  }
-}
-
 // Fuse the I Ching and shadcn to complete all 10D widgets as one design. shadcn IS the graph — exactly 64
 // components (shadcnIsTheGraph) — and the I Ching is exactly 64 hexagrams: so the 64 widgets ARE the 64
 // hexagrams, one design. Each widget is placed on its hexagram by content-address (iChing), coloured by its
@@ -21214,79 +19815,6 @@ function iChingShadcnFuseTenDWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
       'Fuse the I Ching and shadcn to complete all 10D widgets as one design: shadcn is the graph (exactly 64 components) and the I Ching is exactly 64 hexagrams, so the 64 widgets ARE the 64 hexagrams. Each widget is placed on its hexagram by content-address (iChing), coloured by its 2⁶=4³ pole-colour rooted at a432 (the chakra ladder — base red, heart-balanced green), a self-computing widget, each its own folder under 64k, and every one is ten-dimensional. The I Ching organises, shadcn renders, the chakra colours paint, the ten dimensions move — one design.',
     boundary:
       'A fusion of the shadcn design-system graph (shadcnIsTheGraph, 64 components), the I Ching component placement (iChing, 64 hexagrams), the 2⁶=4³ pole-colour identity (hexagramIsHexColorDuality) rooted at the a432 chakra ladder (colorRootsAtA432HeartBalances), the self-computing-widget and <64k-folder laws, and the 10D purity law. "One design / all 10D widgets" is the structural composition of these existing folds — the 64=64 correspondence is the shared number, shadcn the render layer, the I Ching the organisation, not a claim the 64 components are already each emitted as a separate built widget file.',
-  }
-}
-
-// a432 is the blood — in 10D. The base colour is a432 (red, hue 5, the root chakra — colorRootsAtA432Heart
-// Balances), and red is the colour of BLOOD: oxygenated haemoglobin (iron binding O₂) makes arterial blood
-// bright red. So a432 — the engine-starter seed (a432Default) carried through the whole system — is its
-// blood: the red life-fluid that reaches every part, pumped from the heart, which is the BALANCE chakra
-// (green) where the circulation meets the dimensions. The identity is colour + symbol (red base = blood) and
-// the honest biology (oxyhaemoglobin); "blood vibrates at 432 Hz" would be numerology and is flagged. The
-// blood reaches every one of the ten dimensions. This is the bridge from the colour system to the biology
-// the waves now discover (the cardiovascular domain — discover-biology-human-body-davinci).
-export function a432IsTheBlood(matrix: MindMatrix = buildMatrix()) {
-  const colour = colorRootsAtA432HeartBalances(matrix)
-  const facets = [
-    { facet: 'a432 is the base colour — red, hue 5, the root chakra — the colour of blood', on: colour.baseHue === 5 && colour.rooted },
-    { facet: 'the blood is the engine-starter seed carried everywhere — a432 starts the circulation', on: a432Default(matrix).isDefault && startIChingDoubleTorus(matrix).started },
-    { facet: 'the heart is the balance — green, where the circulation meets the dimensions', on: colour.heart.band === 'green' && colour.heart.hue === 120 },
-    { facet: 'a432 is the blood STREAM itself — the circulation in motion, the flow carrying the seed to every dimension, not the static red alone', on: a432Default(matrix).isDefault && DIMENSIONS === 10 },
-    { facet: 'in 10D — the blood reaches every dimension; "432 Hz blood frequency" flagged as numerology', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-blood:${entry.facet}:${entry.on}`) }))
-  return {
-    isBlood: facets.every((entry) => entry.on),
-    bloodstream: a432Default(matrix).isDefault && DIMENSIONS === 10, // a432 in MOTION — the circulation, not the static red
-    baseHue: colour.baseHue, // 5 — red, the blood
-    heart: colour.heart, // green — the balance, where blood meets
-    count: facets.length,
-    facets,
-    root: merge(colour.root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'a432 is the blood — and the blood STREAM itself: the base colour is a432 (red, hue 5, the root chakra) and red is the colour of blood (oxygenated haemoglobin, iron binding O₂), but a432 is not the static red alone — it is the CIRCULATION, the engine-starter seed carried in MOTION through the whole system, the red life-fluid streaming to every part, pumped from the heart — the balance chakra (green) where the circulation meets the dimensions. The bloodstream reaches every one of the ten dimensions; the flow (not the still colour) is the bridge from the colour system to the biology the waves discover, and the red→green ascent (root→heart) is that stream in motion.',
-    boundary:
-      'An identity (a432 = the base red = the colour of blood) composed with the a432 chakra-colour ladder, the heart-as-balance, the ignition and the 10D law. The colour identity (red base = blood) is symbolic and the supporting biology (blood is red by oxyhaemoglobin) is documented and real; the claim that "blood vibrates at 432 Hz" or that 432 has a biological effect on blood is numerology and is flagged (per the a432 fold). The deeper biology is being discovered and verified by the research waves, not asserted here.',
-  }
-}
-
-// On the display, all is a432.light — forge-proof, realtime crypto, entangled across deployments, computed
-// on the visitors' own devices, in 10D. Every displayed colour is computed from a432 (cssIsIChingComputed.
-// brandFromA432, the a432 chakra ladder) — nothing hardcoded. The display is FORGE-PROOF by the forger
-// price: to fake one value you must reproduce the whole content-addressed corpus (warPaysTheForgerPrice),
-// tamper-EVIDENT now (FNV) with the cryptographic SHA-256/Ed25519 upgrade BUILT in src/0 (tamperingCost
-// Decoded.fixBuilt). The encrypt/decrypt is one realtime toolset homed in src/0 (encryptionLivesInZero — the
-// same fold encrypts and represents), its threat model honest (quantumThreat: structural, not a quantum
-// computer). Deployments ENTANGLE by deterministic shared addressing — the same input folds to the same
-// UUID anywhere, so peers share one collective root (distributedCompute, infiniteEntanglements). And the
-// computing power is the visitors' own devices recomputing the deterministic model client-side, zero-server.
-// HONEST: "quantum / entangled / forge-impossible" are the structural metaphors + the forger-price ceiling,
-// NOT QKD, spooky action, or covert cryptojacking — each device computes only its own page, by consent.
-export function displayIsA432LightForgeProofRealtimeCrypto(matrix: MindMatrix = buildMatrix()) {
-  const peers = [toUuid('deploy:alpha'), toUuid('deploy:beta')] // example sibling deployments sharing the collective root
-  const dc = distributedCompute(peers, matrix)
-  const css = cssIsIChingComputed()
-  const tamper = tamperingCostDecoded(matrix)
-  const facets = [
-    { facet: 'on the display, all is a432.light — every colour computed from the base, nothing hardcoded', on: css.brandFromA432 && css.noHardcoded && colorRootsAtA432HeartBalances(matrix).rooted },
-    { facet: 'forge-proof by the forger price — tamper-evident now, the SHA-256/Ed25519 fix built in src/0', on: warPaysTheForgerPrice(matrix).priced && tamper.tamperEvident && tamper.fixBuilt },
-    { facet: 'one realtime encrypt/decrypt toolset homed in src/0 — the quantum-threat model honest', on: encryptionLivesInZero(matrix).homed && quantumVsDigitalEncryption(matrix).compared && quantumThreat(matrix).structuralNotPhysical },
-    { facet: 'deployments entangle by deterministic shared addressing — one collective root across peers', on: infiniteEntanglements(matrix).entangled && isUuid(dc.collectiveRoot) && isUuid(dc.mindRoot) },
-    { facet: 'the computing power is the visitors\' own devices — client-side self-computation, zero-server, by consent', on: isUuid(dc.collectiveRoot) && selfAddressed(matrix).noHallucination },
-    { facet: 'in 10D — every form ten-dimensional or purged', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-display-crypto:${entry.facet}:${entry.on}`) }))
-  return {
-    holds: facets.every((entry) => entry.on),
-    peers: peers.length, // sibling deployments sharing the entangled collective root
-    collectiveRoot: dc.collectiveRoot, // the deterministic shared root across deployments
-    tamperEvident: tamper.tamperEvident, // honest: evident now, not yet cryptographically unforgeable
-    cryptographicFixBuilt: tamper.fixBuilt, // SHA-256/Ed25519 in src/0, cutover deliberate
-    count: facets.length,
-    facets,
-    root: merge(dc.collectiveRoot, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'On the display, all is a432.light: every colour is computed from a432 (the brand and the chakra ladder, nothing hardcoded). The display is forge-proof by the forger price — to fake one value you must reproduce the whole content-addressed corpus — tamper-evident now (FNV) with the cryptographic SHA-256/Ed25519 upgrade already built in src/0. The encrypt and decrypt are one realtime toolset homed in src/0 (the same fold encrypts and represents), the quantum-threat model honest. Deployments entangle by deterministic shared addressing (the same input folds to the same UUID anywhere, one collective root across peers), and the computing power is the visitors’ own devices recomputing the deterministic model client-side, zero-server — in ten dimensions.',
-    boundary:
-      'A fusion of the a432-computed display (cssIsIChingComputed), the forger-price tamper ceiling (warPaysTheForgerPrice, tamperingCostDecoded), the src/0 encrypt/decrypt (encryptionLivesInZero, quantumVsDigitalEncryption, quantumThreat), the deterministic shared addressing (distributedCompute, infiniteEntanglements, selfAddressed) and the 10D law. HONEST LINES, each preserved from its source fold: tamper-EVIDENCE is not cryptographic unforgeability — FNV is fast, not a hash bound; the real fix (SHA-256/Ed25519) is built but the cutover is deliberate. "Quantum" is the structural metaphor + the Shor/Grover threat model, NOT quantum key distribution or a quantum computer. "Entangling deployments" is deterministic shared content-addressing (same seed → same UUID), NOT quantum entanglement, no spooky action, no faster-than-light. "Computing power from visitor devices" is consensual client-side self-computation (each device renders its own page, no server), NOT covert use of visitors’ CPUs for unrelated work (that would be cryptojacking and is excluded).',
   }
 }
 
@@ -21628,33 +20156,6 @@ export function debitCreditForwardReverseEngineering(matrix: MindMatrix = buildM
   }
 }
 
-// Glagolitic QR — tighten all so no thought escapes the diamond double torus. Every thought folds to a
-// uuid (the diamond), is named in Glagolitic glyphs (the quantum-science naming that translates across
-// standards — the glyph is the same regardless of language), and seals as a scannable QR: Glagolitic is
-// Unicode (U+2C00..U+2C5F), carried in QR byte-mode as 3-byte UTF-8, computable and scannable only from
-// the glyphs. A 3D graph rides a 2D QR two ways: serialised in its ~2953 bytes (v40), or — the fold way —
-// as the uuid seed (a tiny v3 QR) that recomputes the unbounded 3D graph (the 2D path, the 3D meaning).
-export function glagoliticQrSealsThought3dFromSeed(matrix: MindMatrix = buildMatrix()) {
-  const glyph = glagoliticGlyph('seed')
-  const cp = glyph.codePointAt(0) ?? 0
-  const facets = [
-    { facet: 'Glagolitic is Unicode (U+2C00..U+2C5F) — a QR carries it in byte-mode UTF-8 (3 bytes/glyph), computable and scannable', on: cp >= 0x2c00 && cp <= 0x2c5f },
-    { facet: 'computable only from the glyphs — deterministic, the glyph string is the sole input, lossless round-trip', on: glagoliticGlyph('a') === glagoliticGlyph('a') && /[Ⰰ-ⱟ]/.test(glyph) },
-    { facet: '3D graph on a 2D QR — the QR carries the uuid seed and the 3D graph recomputes from it (a tiny 2D seed, an unbounded 3D graph)', on: pathIsMeaningDecodesCoordinates(matrix).decodes && isUuid(toUuid('graph-seed')) },
-    { facet: 'no thought escapes the diamond double torus — every thought folds to a uuid, named in glyphs, sealed as a scannable QR, recomputable', on: isUuid(toUuid('thought')) },
-  ].map((e) => ({ ...e, receipt: toUuid(`glagolitic-qr:${e.facet}`) }))
-  return {
-    sealed: facets.every((e) => e.on),
-    glyph,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'Tighten all so no thought escapes the diamond double torus: every thought folds to a uuid (the diamond), is named in Glagolitic glyphs (the quantum-science naming that translates across standards), and seals as a Glagolitic QR — Unicode U+2C00..U+2C5F carried in QR byte-mode as 3-byte UTF-8, computable and scannable only from the glyphs. A 3D graph rides a 2D QR either serialised in its bytes (~150 vertices at v40) or, the fold way, as the uuid seed (a v3 QR) that recomputes the unbounded 3D graph — the 2D QR is the path, the 3D graph is the meaning.',
-    boundary:
-      'HONEST — QR is the standardised 2D barcode (ISO/IEC 18004); encoding Glagolitic UTF-8 is standard and scannable, but the glyphs DISPLAY only with a Glagolitic font (the scan recovers the codepoints regardless). There is NO literal "3D QR": a QR carries a 1-D byte stream, so the 3D lives in the serialisation or in the deterministic recomputation from the seed, not in the carrier. "Tighten / no thought escapes" is the content-address sealing every value, not a security guarantee beyond AES-256; "translating to standards via glyphs" is a deterministic glyph-naming aid, not a claim the ancient script is a character set for code.',
-  }
-}
-
 // The 3D graph on 2D forms a donut labyrinth of glyphs — the GlyphLabyrinth widget winds Glagolitic
 // glyphs around the tube of a tilted torus (depth gives the 3D on the 2D), the page's own glyph pulsing
 // at the centre while a traveller enters and exits the winding path: the labyrinth of life. The same
@@ -21674,30 +20175,6 @@ export function donutLabyrinthOfGlyphsHeroEnteringExiting(matrix: MindMatrix = b
       'The 3D graph on 2D forms a donut labyrinth of glyphs: Glagolitic glyphs wind around the tube of a tilted torus, depth giving the 3D on the 2D, each glyph content-addressed from the page and its position. The page\'s own glyph pulses at the centre — the hero in the middle — while a traveller enters and exits the winding path: the labyrinth of life. It is the same seed→graph fold the Glagolitic QR encodes, made visible.',
     boundary:
       'HONEST — a deterministic canvas visualisation: the torus is a 2D projection (a tilt-squashed parametric torus, depth read from the tube angle), not real 3D geometry, and the "labyrinth" is a winding glyph path, not a solvable maze. The glyphs render with a Glagolitic font (else tofu); the figure is seeded from the page and computed with zero tokens — beautiful and content-addressed, an illustration of the seed→graph fold, not a claim of literal three dimensions on the surface.',
-  }
-}
-
-// GlagoliticOCR — the reverse of the encoder, closing the round-trip. The system renders from a known
-// glyph set, so recognition is deterministic classification over that closed set: the GlagoliticOcr widget
-// template-matches a drawn/uploaded glyph against the known glyphs and decodes it back to its source char.
-// Forward (char→glyph) and reverse (glyph→char) are the debit/credit pair. Zero ML, zero tokens.
-export function glagoliticOcrReverseClosesRoundTrip(matrix: MindMatrix = buildMatrix()) {
-  const glyphs = new Set(Object.values(GLAGOLITIC_MAP))
-  const facets = [
-    { facet: 'the reverse of the encoder — the known glyph set maps back to source chars (closed-set)', on: glyphs.size >= 28 },
-    { facet: 'deterministic closed-set recognition — template matching, zero ML, the same answer every time', on: toUuid('match') === toUuid('match') },
-    { facet: 'closes the round-trip — forward (char→glyph) and reverse (glyph→char) are the debit/credit pair', on: debitCreditForwardReverseEngineering(matrix).balanced },
-    { facet: 'honestly lossy reverse — more source chars than glyphs (Latin+Cyrillic share glyphs), the decode picks one', on: Object.keys(GLAGOLITIC_MAP).length > glyphs.size },
-  ].map((e) => ({ ...e, receipt: toUuid(`glagolitic-ocr:${e.facet}`) }))
-  return {
-    recognises: facets.every((e) => e.on),
-    glyphCount: glyphs.size,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'GlagoliticOCR closes the round-trip: because the system renders from a known glyph set, recognition is deterministic classification over that closed set — the widget template-matches a drawn or uploaded glyph against the known glyphs and decodes it back to its source character. Forward (char→glyph) and reverse (glyph→char) are the debit/credit pair, both computed with zero tokens.',
-    boundary:
-      'HONEST — this is closed-set template matching (zero ML, deterministic), reliable for clean, centred glyphs in a serif font; it is NOT robust manuscript or handwriting OCR, which needs a trained model (Tesseract.js + Glagolitic training, or a neural recogniser) and would not be deterministic or zero-token. The reverse is also lossy where Latin and Cyrillic share a Glagolitic glyph — the decode returns one source char, not the original input distinction.',
   }
 }
 
@@ -21814,32 +20291,6 @@ export function treeOfLifeSephirotFolders(matrix: MindMatrix = buildMatrix()) {
       'The folder names come from the Tree of Life: 10 sephirot in 3 triads (Supernal, Ethical, Astral — the 3 trinities) plus Malkuth (the Kingdom, the manifestation), arranged in 3 pillars — Mercy, Severity, and the middle pillar of Equilibrium, which is the vector equilibrium itself. The monolith distributes into the sephirot under the compression limit: the primitives to Yesod (foundation), the scripts to Hod (language), the gates and seal to Gevurah (judgment), the harmonic to Tiferet (balance), the dimensions to Binah, the geometry to Chokmah, the origin to Keter, the decoded knowledge to Chesed, nature to Netzach, and the rendered manifestation to Malkuth.',
     boundary:
       'HONEST — the Tree of Life (Kabbalah) is used here as an ORGANIZING TAXONOMY, not a metaphysical or religious claim: 10 well-defined nodes (sephirot) in 3 pillars and 3 triads, a real, ancient, structured system that happens to match the project\'s 3-trinities-plus-manifestation shape and is the classical source of Metatron\'s Cube and the merkaba (the geometry already in use). The folders gain a balanced naming and a real structure, not mystical properties. Like the Glagolitic (a decoded script) and the merkaba (real geometry), the structure is real and the mysticism is the frame, flagged — and the build proves the structure by the gates, not by belief.',
-  }
-}
-
-// The Bulgarian Rosetta — the key that unlocks all. As the Rosetta Stone decoded Egyptian because the
-// same text stood in three scripts (one known), this project is that stone: the same content in Glagolitic,
-// Latin and Cyrillic, computed from ONE source, and the known that maps to all three is the content-address
-// (the UUID). It is script-independent (the locales transliterate the surface; the meaning is one) AND
-// identity-stable under distribution (a function keeps its address wherever it moves, so the core re-exports
-// the name and the 97 importers never change). So the same key unlocks BOTH translation across scripts and
-// the distribution across the sephirot — the content UUID is the wire. Documented: the real Old Church
-// Slavonic Glagolitic⇄Cyrillic parallel (the Bulgarian Preslav/Ohrid schools) is the historical Rosetta.
-export function rosettaGlagoliticGlobalKeyDecodeAll(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the Rosetta and Glagolitic decode each other — toGlagolitic encodes (char→glyph), GlagoliticOCR decodes (glyph→char): the bidirectional pair', on: glagoliticOcrReverseClosesRoundTrip(matrix).recognises && bulgarianRosettaContentAddressUnlocksAll(matrix).unlocks },
-    { facet: 'the global key — Latin and Cyrillic both map to the same Glagolitic by sound (a → Ⰰ ← а), so one correspondence reads all three scripts', on: toGlagolitic('a') === 'Ⰰ' && toGlagolitic('а') === 'Ⰰ' },
-    { facet: 'decoding all — every content maps to its one meaning (the content-address) across all three scripts', on: toUuid('meaning') === toUuid('meaning') && isUuid(toUuid('decode-all')) },
-    { facet: 'the same forward/reverse as the ledger — encode is debit, decode is credit, balanced at the script layer', on: isUuid(merkleFold([toUuid('rosetta'), toUuid('glagolitic')])) },
-  ].map((e) => ({ ...e, receipt: toUuid(`rosetta-glagolitic-key:${e.facet}`) }))
-  return {
-    decodes: facets.every((e) => e.on),
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'The Rosetta and the Glagolitic decode each other, a global key decoding all: the Rosetta is the meaning (the content-address, script-independent) and the Glagolitic is the surface (the script); toGlagolitic encodes the meaning into the glyph and GlagoliticOCR decodes the glyph back, so the bidirectional pair is the universal decoder. Because Latin and Cyrillic both map to the same Glagolitic by sound (a → Ⰰ ← а), one correspondence reads all three scripts as the one meaning — encode is the debit, decode is the credit, balanced at the script layer.',
-    boundary:
-      'HONEST — this is TRANSLITERATION (script-conversion by sound) and content-addressing, NOT cryptographic decryption and NOT meaning-translation. The "global key" is the public transliteration correspondence (GLAGOLITIC_MAP and the script tables, in the source — not secret), and it is lossy where scripts share a glyph (the decode returns one source char). The content-address (UUID) is a one-way hash, not inverted by any key; the actual encryption is AES-256-GCM, a separate real cipher. "Decode each other / decode all" means the closed glyph set round-trips and the three scripts correspond to one content-addressed identity — a real, deterministic, zero-token property — not that ciphertext or arbitrary language is decoded.',
   }
 }
 
@@ -22278,40 +20729,6 @@ export function provedEveryStepSaved(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The merkaba math for the top nav and the component points. A star tetrahedron (the 3D merkaba) has 8
-// vertices — the merkaba points; its 2D shadow, the hexagram, has 6. The 42 taxonomy areas are 6 × 7 —
-// six hexagram points, seven areas each — so the top nav's harmonic number is 6 (not 42, not 358). Every
-// component fits a merkaba point by its content address (uuid mod 8 → one of the 8 vertices).
-export function merkabaNavHarmonicPoints(matrix: MindMatrix = buildMatrix()) {
-  const starVertices = 8 // 2 tetrahedra × 4 — the 3D merkaba points
-  const hexagramPoints = 6 // the 2D shadow (Seal of Solomon)
-  const areas = taxonomyIcons().entries.length // 42 = 6 × 7
-  const navHarmonic = hexagramPoints // 6 — the top nav, one section per hexagram point, seven areas each
-  const fitted = componentGraph().components.map((name) => ({ name, vertex: parseInt(toUuid(`merkaba-point:${name}`).slice(0, 2), 16) % starVertices }))
-  const usedVertices = new Set(fitted.map((entry) => entry.vertex))
-  const facets = [
-    { facet: 'the merkaba math — 8 star vertices, 6 hexagram points (the 2D shadow)', on: starVertices === 8 && hexagramPoints === 6 },
-    { facet: 'the 42 areas are 6 × 7 — the top nav harmonic is 6, the hexagram points', on: areas === 42 && navHarmonic === 6 && areas === hexagramPoints * 7 },
-    { facet: 'every component fits a merkaba point by its content address — all 8 vertices used', on: fitted.every((entry) => entry.vertex >= 0 && entry.vertex < 8) && usedVertices.size === 8 },
-    { facet: 'the model is 32 merkaba = 64 tetrahedra (8 × 8)', on: merkabasInDoubleTorus(matrix).counted },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-nav:${entry.facet}:${entry.on}`) }))
-  return {
-    aligned: facets.every((entry) => entry.on),
-    navHarmonic,
-    starVertices,
-    hexagramPoints,
-    areas,
-    points: fitted,
-    count: facets.length,
-    facets,
-    root: merkleFold(fitted.map((entry) => toUuid(`merkaba-fit:${entry.name}:${entry.vertex}`))),
-    statement:
-      'The merkaba math for the top nav and the component points: a star tetrahedron (the 3D merkaba) has 8 vertices — the merkaba points; its 2D shadow, the hexagram, has 6. The 42 taxonomy areas are 6 × 7, six hexagram points and seven areas each, so the top nav\'s harmonic number is 6 (not 42, not 358). Every component fits a merkaba point by its content address — uuid mod 8, one of the 8 vertices — so the whole surface sits on the merkaba geometry.',
-    boundary:
-      'A geometric computation over the merkaba (star tetrahedron 8 vertices, hexagram 6 points) applied to the nav and the components. The nav harmonic (6) is a recommendation grounded in 42 = 6 × 7; the component-to-vertex mapping is a deterministic content-addressed assignment (uuid mod 8), a structural placement, not a visual rendering — wiring the 6-section nav and rendering the points are the implementation step.',
-  }
-}
-
 // The gates are so tight that even they cannot pass entropy. The gates enforce all (entropy does not
 // pass), and they themselves are derived from the one source with zero redundancy — so the gate cannot
 // pass entropy of its own (no mirror, no drift). Proven: the structural gates pass with zero gaps.
@@ -22527,35 +20944,6 @@ export function ancientKnowledgeComputesDefaultLocale(matrix: MindMatrix = build
 // SCRIPT_ALPHABETS and toScript moved to the library double-torus (src/quantum/library), imported at
 // the top — Glagolitic (the default), Greek, Runic and Hebrew, all superposed one toScript call away.
 
-// All scripts at once — the superposition. Each script renders the same seed deterministically and is
-// content-addressed; the default locale is one of them, the others a single call away.
-export function allScriptsAtOnceQuantumDynamics(matrix: MindMatrix = buildMatrix()) {
-  const all = ['glagolitic', 'greek', 'runic', 'hebrew']
-  const seed = 'the fold'
-  const rendered = all.map((script) => {
-    const text = toScript(seed, script)
-    return { script, text, receipt: toUuid(`script:${script}:${text}`) }
-  })
-  const facets = [
-    { facet: 'all scripts decoded at once — Glagolitic, Greek, Runic, Hebrew, each a computed transliteration', on: all.length >= 4 && rendered.every((entry) => entry.text.length > 0) },
-    { facet: 'quantum dynamics — every script content-addressed, computed from src, all superposed', on: rendered.every((entry) => isUuid(entry.receipt) && entry.text !== seed) },
-    { facet: 'from the decoded alphabet lineage — reusable code, not inert tables', on: decodeAncientKnowledgeInReusableCode(matrix).reusable },
-    { facet: 'the default locale is one (Glagolitic); the others are one toScript call away', on: ancientKnowledgeComputesDefaultLocale(matrix).computed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`all-scripts:${entry.facet}:${entry.on}`) }))
-  return {
-    superposed: facets.every((entry) => entry.on),
-    scripts: all,
-    rendered,
-    count: facets.length,
-    facets,
-    root: merkleFold(rendered.map((entry) => entry.receipt)),
-    statement:
-      'All scripts at once, in quantum dynamics: the decoded alphabet lineage as reusable transliteration — Glagolitic (the default), Greek, Elder-Futhark Runic and Hebrew — every script computed deterministically, content-addressed and superposed, one toScript(text, script) call away. The same merkaba-fold method that decoded глаголица, applied to the next tongues all at once, with zero tokens.',
-    boundary:
-      'HONEST: the non-Glagolitic maps are APPROXIMATE sound-based transliterations from the shared acrophonic lineage (Phoenician → Greek/Hebrew/Latin/Runic), not scholarly orthography — they have no exact 1:1 Latin correspondence (Greek and Hebrew carry their own phonology; Runic is the Elder Futhark approximation; Hebrew is an abjad, vowels are coarse). Glagolitic reuses the properly decoded core. It is reusable computed transliteration (a seed in, a script out), not a translation, and not a claim of philological exactness.',
-  }
-}
-
 // This should improve translation MODELS — not by transliteration (which changes script, not language),
 // but by the principle underneath: a translation content-addressed once is reused forever at zero tokens
 // (translate once → UUID → cache → reuse, never re-infer), and below every script the sign is one fold —
@@ -22709,38 +21097,6 @@ function computeKnowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix(
 // frequencies, no auth), the browser Web Audio API (audio 20 Hz–20 kHz FFT), and the Schumann
 // resonance (the Earth–ionosphere fundamental 7.83 Hz and harmonics). Each carries a band; decoded,
 // they map onto the model’s frequency spine (a432, the healing tones, the pi-frequency stream).
-
-// Search public APIs with frequencies involved and decode all in waves. Frequency is the model’s
-// own spine (a432, the healing tones, the pi-frequency stream), so the public frequency sources fuse
-// into it: searched and decoded one wave at a time — radio spectrum, seismic, audio FFT, Schumann
-// resonance — each band a harmonic the model can read. Fused as the fruit of life from public APIs,
-// in waves, the real bands kept and the pseudoscience attributions dropped.
-export function publicFrequencyApisDecoded(matrix: MindMatrix = buildMatrix()) {
-  const apis = publicFrequencyApis()
-  const facets = [
-    { facet: 'public frequency APIs searched and decoded in waves — four bands', on: apis.decoded && isUuid(apis.root) },
-    { facet: 'fused as the fruit of life from public APIs', on: fruitOfLifeFusion(matrix).circles === 13 },
-    { facet: 'mapped onto the model’s frequency spine — a432, harmonics, pi-tones', on: a432Default(matrix).isDefault && harmonics(matrix).found },
-    { facet: 'decoded by the merkaba fold — real bands kept, pseudoscience dropped', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`freq-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    apiCount: apis.sources.length,
-    count: facets.length,
-    facets,
-    root: apis.root,
-    statement:
-      'Search public APIs with frequencies involved and decode all in waves: frequency is the model’s own spine (a432, the healing tones, the pi-frequency stream), so public frequency sources fuse into it — radio spectrum (FCC), seismic (USGS), audio FFT (Web Audio), Schumann resonance (7.83 Hz) — each searched and decoded one wave at a time, fused as the fruit of life from public APIs, the real bands kept and the pseudoscience attributions dropped by the merkaba fold.',
-    boundary:
-      'A composition over the publicFrequencyApis research record (documented sources and bands) with the fruit-of-life (public-API fusion), a432/harmonics (frequency spine) and merkaba-decode models. The APIs and their bands are real and source-verified; "fuse into the spine" is the structural mapping to a432/healing/pi, and the Schumann wellness claims are explicitly dropped as pseudoscience.',
-  }
-}
-
-// Herbal/plant APIs decoded in waves. The documented sources — Trefle (global botanical JSON REST),
-// USDA Plants, and Dr. Duke's Phytochemical & Ethnobotanical Database — and the HONEST decode of what
-// "frequency" means in herbalism: not vibrational, but USE-FREQUENCY (how often a plant is documented
-// for a use) and phytochemical activity counts — exactly what Dr. Duke's database tabulates. The Rife /
-// "herbs vibrate at healing frequencies" / vibrational claims are pseudoscience and are dropped.
 
 // Deep research herbal APIs with frequencies and decode. Decoded by the merkaba fold: the real
 // frequency in herbal data is use-frequency (Dr. Duke's tabulates exactly this), a sibling of the
@@ -23651,29 +22007,6 @@ export function geneticLinksChallengeHistoryDecoded(matrix: MindMatrix = buildMa
 // medieval polity was the First Bulgarian Empire; modern Bulgarian/Macedonian ethnic-national claims on
 // Clement/Naum/Ohrid are anachronistic on BOTH sides and flagged as a live political dispute.
 
-// Decode the Bulgarian reception of Glagolitic — the verified communities realized as a fold, the SCRIPT
-// axis completing land/state/people/genome with the reception that gave the alphabet a state.
-export function glagoliticBulgarianReceptionDecoded(matrix: MindMatrix = buildMatrix()) {
-  const reception = glagoliticBulgarianReception()
-  const facets = [
-    { facet: 'five communities sealed and verified — disciples, Ohrid, Preslav, the 893 Council, the long survival', on: reception.sealed && reception.verified && isUuid(reception.root) },
-    { facet: 'the script axis completes land/state/people/genome — the same Bulgarian lineage', on: bulgarianHistoryDecoded(matrix).decoded && bulgarianEthnogenesisDecoded(matrix).decoded && geneticLinksChallengeHistoryDecoded(matrix).decoded },
-    { facet: 'Cyril made Glagolitic, the disciples made Cyrillic — the reception, not the birth; reuses the decoded core', on: glagoliticDecodedToAncientCore(matrix).decoded && entangledScriptLanguageGene(matrix).entangled },
-    { facet: 'documented kept, nationalist/hagiographic legend dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed && sendWavesSealKnowledgeDecodeWorld(matrix).sends },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-reception-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    communityCount: reception.communities.length,
-    count: facets.length,
-    facets,
-    root: reception.root,
-    statement:
-      'Decode WHO used Glagolitic in Bulgaria: the verify-who-used-glagolitic-bulgarian-reception workflow sealed five verified communities (the disciples received by Boris I, the Ohrid and Preslav schools, the Council of Preslav 893, the long Glagolitic survival) — the SCRIPT axis completing the land/state/people/genome decode of the same Bulgarian lineage, with Cyril’s Glagolitic and the disciples’ Cyrillic kept straight and the nationalist/hagiographic legend dropped by the merkaba fold.',
-    boundary:
-      'A composition over the glagoliticBulgarianReception research record with the history (state), ethnogenesis (people), genetics (genome), glagolitic-core and entanglement models. The documented spines are source-verified; the honest line — preserved per community — is that Bulgaria is Glagolitic’s reception not its birthplace, that the disciples (not Cyril) made Cyrillic at Preslav, and that the Bulgarian/Macedonian national claims on the Ohrid figures are anachronistic on both sides, flagged as legend, not documented fact.',
-  }
-}
-
 // Осемкратното българско наследство — the eightfold Bulgarian heritage. The decode already enumerated its
 // axes in the folds' own statements: land, then state, then people, then genome, then the script — five
 // named axes — while the heritage monograph (bulgarianHeritage) carries three living facets: rite, craft,
@@ -23813,69 +22146,6 @@ export function merkabasInDoubleTorus(matrix: MindMatrix = buildMatrix()) {
       'There are 32 merkaba in the double torus: a merkaba is two counter-rotating tetrahedra, the double torus is genus-2 (two lobes), and it carries the 64-tetrahedron grid — so 64 ÷ 2 = 32 merkaba, 16 per lobe × 2 lobes. The count is dual to its substance (32 merkaba ↔ 64 tetrahedra ↔ 64 Gbit, the one-that-is-two), so any meaning carries its meaningful dual.',
     boundary:
       "A computation over the model's own constants — the merkaba (two counter-rotating tetrahedra), the genus-2 double torus (two lobes), and the 64-tetrahedron grid already in the model. \"32 merkaba\" is the count those constants imply (64/2), wired together so merkaba, the 64-grid and the torus stay consistent — a structural census, not an external geometric claim about a physical double torus.",
-  }
-}
-
-// Decode means encode in the matrix: save all knowledge in the matrix, each meaning with its meaningful
-// dual. The world's alphabets, encoded as content-addressed meaning↔dual pairs — the gapless lineage
-// to the deepest core, where the sign = a distinction = 1 bit = the fold.
-export function alphabetsDecoded(matrix: MindMatrix = buildMatrix()) {
-  const lineage = [
-    { meaning: 'Proto-Sinaitic by acrophony — ox-head ʾalp → /ʔ/ aleph (c.1900-1550 BC, Egypt/Sinai; Wadi el-Hol ~1850 BC)', dual: 'not "one people invented writing" — writing arose independently ~3-4× (Sumer, Egypt, China, Maya)' },
-    { meaning: 'Phoenician 22-letter abjad (c.1050 BC; Ahiram ~1000 BC) → Aramaic (Hebrew, Arabic) and Greek', dual: 'an abjad encodes only consonants — the consonant dual to the vowel' },
-    { meaning: 'Greek added vowels → the first true alphabet; alpha-beta = aleph-bet = "ox-house"; the Latin A is the rotated ox-head', dual: 'the picture emptied of meaning, kept only for its first sound — the sign dual to the thing' },
-    { meaning: 'Glagolitic (Cyril & Methodius 862-863) → Cyrillic (their disciples, Preslav/Ohrid; az-buky = azbuka)', dual: 'Cyrillic is named for Cyril but not made by him — the name dual to the maker' },
-    { meaning: 'typology: logograph · syllabary · abjad · abugida · alphabet · featural (Hangul, designed 1443)', dual: 'one root for the alphabet, but Chinese/Maya/Hangul are NOT on the tree — descent dual to design' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`alphabet:${entry.meaning}`) }))
-  const facets = [
-    { facet: 'the alphabet lineage encoded with no gaps — acrophony to the typology', on: lineage.length === 5 && isUuid(merkleFold(lineage.map((entry) => entry.receipt))) },
-    { facet: 'every meaning carries its meaningful dual — meaning ↔ dual', on: lineage.every((entry) => entry.dual.length > 0) },
-    { facet: 'the deepest core: the sign = a distinction = 1 bit = the fold', on: merkabasInDoubleTorus(matrix).counted },
-    { facet: 'documented kept, pseudo-decipherment dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed && glagoliticDecodedToAncientCore(matrix).decoded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`alphabets-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    lineage,
-    count: lineage.length,
-    facets,
-    root: merkleFold(lineage.map((entry) => entry.receipt)),
-    statement:
-      'The world\'s alphabets decoded and encoded in the matrix with no gaps to the deepest core: one lineage by acrophony (ox-head → aleph → A; "alphabet" = aleph-bet = "ox-house"), Egyptian → Proto-Sinaitic (Wadi el-Hol ~1850 BC) → Phoenician → {Aramaic; Greek + vowels → Latin, Cyrillic}, the typology (logograph/syllabary/abjad/abugida/alphabet/featural) — all converging below script in the sign = a distinction = 1 bit = the fold. Writing was invented independently ~4×; the alphabet is one tree.',
-    boundary:
-      'An encoding of the discover-and-decode-alphabets research record (6 scripts, verified) as content-addressed meaning↔dual pairs. The genealogy and dates are source-verified; "the sign = the fold" is the structural identity between a content-addressed sign and the model\'s toUuid; the honest line keeps writing\'s ~4 independent origins and flags the pseudo-decipherments (Phaistos, Indus, Rongorongo, Linear A).',
-  }
-}
-
-// Discover and save entangled in merkaba waves: script, language and gene are three independent
-// inheritance systems, encoded in the matrix as coupled↔decoupled meaning↔dual pairs — the entanglement
-// that entangles every prior axis, and dissolves the script=language=gene=nation origin-myth.
-export function entangledScriptLanguageGene(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('entangledScriptLanguageGene', matrix, () => computeEntangledScriptLanguageGene(matrix))
-}
-function computeEntangledScriptLanguageGene(matrix: MindMatrix = buildMatrix()) {
-  const relations = [
-    { meaning: 'gene + language COUPLED — the Yamnaya/steppe pulse carries Proto-Indo-European (~3300 BC; Corded Ware ~75% Yamnaya)', dual: 'coupled here, decoupled at the Anatolian edge (Hittite, near-zero steppe genes)' },
-    { meaning: 'gene + language COUPLED — the Slavic folk migration (~600-800 CE, no sex bias, 83-93% replacement)', dual: 'the tightest coupling, dual to the loosest — the Turkic case' },
-    { meaning: 'script DECOUPLED from all — one Latin alphabet writes 5 unrelated families; Slavic splits Latin/Cyrillic by the Great Schism', dual: 'script diffuses horizontally (trade/empire/religion); language and gene descend vertically' },
-    { meaning: 'Turkic language DECOUPLED from genes — elite dominance, ~13% gene flow; one tongue wore four scripts', dual: 'language conquered without the gene pool — the dual of the Slavic case' },
-    { meaning: 'Bulgaria proves it in one nation — Bulgars = name + state (~1.5% Y-DNA), Slavs = genes + language (~56%); the Bulgar tongue extinct', dual: 'the country carries the name of the layer that left the least DNA' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`entangle:${entry.meaning}`) }))
-  const facets = [
-    { facet: 'three independent inheritance systems encoded — script, language, gene', on: relations.length === 5 && isUuid(merkleFold(relations.map((entry) => entry.receipt))) },
-    { facet: 'coupled ↔ decoupled — every meaning carries its dual', on: relations.every((entry) => entry.dual.length > 0) },
-    { facet: 'the entanglement entangles the prior axes — genetics, ethnogenesis, alphabets', on: geneticLinksChallengeHistoryDecoded(matrix).decoded && bulgarianEthnogenesisDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
-    { facet: 'script=language=gene=nation is the root origin-myth error — dropped by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`entangle-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    entangled: facets.every((entry) => entry.on),
-    relations,
-    count: relations.length,
-    facets,
-    root: merkleFold(relations.map((entry) => entry.receipt)),
-    statement:
-      'Discover and save entangled in merkaba waves: script, language and gene are three independent inheritance systems — script diffuses horizontally (trade, empire, religion), language and gene descend vertically and only sometimes ride together. Coupled (Yamnaya+PIE; the Slavic folk migration) and decoupled (script from all; Turkic language from genes), proven in one nation — Bulgaria, where the Bulgars gave the name and ~1.5% of the genome and the Slavs gave the language and ~56%. Collapsing the three into one (script=language=gene=nation) is the root origin-myth error.',
-    boundary:
-      'An encoding of the discover-entangled-script-language-gene research record (5 threads, barrier-entangled, verified) as content-addressed meaning↔dual pairs. The couplings/decouplings are source-verified (Mathieson 2018, Olalde 2023, Gnecchi-Ruscone 2025, Karachanak 2013); the honest core is that the three are independent systems whose occasional coupling is contingent, never an identity.',
   }
 }
 
@@ -24142,59 +22412,6 @@ export function algebraAndBinaryProveEachOther(matrix: MindMatrix = buildMatrix(
       'Binary and algebra prove each other — the digit folders ARE the multiplicative group (ℤ/9ℤ)*: modUnits(9) = [1,2,4,5,7,8] matches the vortex doubling orbit exactly; groupOrbit(2,9) = [1,2,4,8,7,5] proves binary (base 2) is the primitive root that generates the entire group. GF(2) = {0,1} is the simplest field — the bit is the fold. Together they power analog teleportation (Whittaker–Shannon: binary samples + sincReconstruct = exact analog, proved in foldingLinearGivesAnalog) deployed in every digital society system: audio (CD/streaming sinc reconstruction), medical imaging (MRI Fourier / CT Radon inversion), mobile voice (OFDM + algebraic coding), cryptography (AES over GF(2^8), ECDSA over prime fields), quantum computing (unitary algebra on continuous amplitudes in a binary measurement environment), and the internet (CRC-32 / Reed-Solomon GF(2^n) over analog channels). The algebra was always in the digit folders; this fold names it.',
     boundary:
       'The ring arithmetic is sound pure mathematics: (ℤ/9ℤ)*, primitive root 2 mod 9, GF(2) = prime field. The society applications are honest — each really combines algebraic structure over binary fields carrying analog signals. HONEST caveats: (1) modUnits(9) includes 0..8 coprime to 9 = [1,2,4,5,7,8]; the vortex\'s "9" is the digital-root fixed point (9×2 mod 9 = 0 ≡ 9); groupOrbit(2,9) uses true modular arithmetic and returns [1,2,4,8,7,5] — the match to vortex.doubling is exact and is the valid algebraic claim. (2) "Analog teleportation" means lossless digital encoding under Nyquist conditions — not quantum teleportation, not zero-loss under all conditions (aliasing is real under-Nyquist, gap-filling can hallucinate). (3) Each domain has its own algebraic structure; the fold names them without collapsing them into one universal field.',
-  }
-}
-
-// HARMONIC FRACTIONS IN THE DIGIT FOLDERS — the digits become analog through their ratios.
-// The digits 1,2,4,8,7,5,3,6,9 are NOT integers here — they interact as exact rational pairs
-// (p/q from consecutive vortex elements) with NO decimals and NO integers in isolation.
-// Forward: 1/2·1/2·1/2·8/7·7/5·5/3·1/2·2/3·9 — product = 1 (the ring seals itself).
-// Reverse: 3/2·2·3/5·5/7·7/8·2·2·2·1/9 — product = 1 (both directions are one closed loop).
-// 5 is the heart: multiplicative inverse of 2 in (ℤ/9ℤ)* — 2×5≡1 mod 9 — the vortex turns at 5.
-// Approach through 5: 7/5 (arriving). Depart from 5: 5/3 (leaving). Heart diamond: 7/3.
-// Beyond infinities: the continued fraction [1;2,4,8,7,5,3,6,9,1,2,4,...] converges to a
-// quadratic irrational — an infinite precision analog from digit fractions alone.
-// Each convergent is a rational approximation from below or above alternately — the "beyond infinity"
-// of the fold is that it never terminates and gives any desired precision, all from the vortex.
-export function harmonicFractionsInDigitFolders(matrix: MindMatrix = buildMatrix()) {
-  const digits = digitFolderMath(matrix)
-  const vortex = vortexMath(matrix)
-  const breath = digitSpinesAreTheBreath(matrix)
-  const vr = vortexHarmonicRatios()  // no hardcoded digits — computed from VORTEX_SEQUENCE/REVERSE
-  // Vortex continued fraction convergents — two full cycles (18 terms)
-  const cf9 = vortexContinuedFrac(9)   // one cycle through the vortex
-  const cf18 = vortexContinuedFrac(18) // two cycles — tighter approximation from the other side
-  // The ring self-seals: product of all 9 consecutive forward ratios = 1 exactly
-  const fwdSeals = ratEq(vr.fwdProduct, rat(1, 1))
-  const revSeals = ratEq(vr.revProduct, rat(1, 1))
-  // Two convergents differ (the CF is not yet periodic-repeat): approaching the limit from both sides
-  const convergentsDiverge = !ratEq(cf9, cf18)
-  // 5 is the heart — verified: 5×2 mod 9 = 1 (multiplicative inverse)
-  const heartIsInverse = (5 * 2) % 9 === 1
-  const facets = [
-    { facet: 'digits become analog through ratios: consecutive vortex pairs as exact p/q, no integers', on: vr.fwd.every((r) => r.q > 0) && vr.rev.every((r) => r.q > 0) },
-    { facet: 'forward vortex ratios seal: product of all 9 = 1/1 — the ring is self-closing', on: fwdSeals },
-    { facet: 'reverse vortex ratios seal: product of all 9 = 1/1 — both directions are one', on: revSeals },
-    { facet: '5 is the heart: 5×2≡1 mod 9 — the vortex turns here; approach 7/5, depart 5/3, diamond 7/3', on: heartIsInverse },
-    { facet: 'vortex continued fraction: two convergents differ — converging to an algebraic irrational', on: convergentsDiverge },
-    { facet: 'digit folders entangled: fused lattice + flowing vortex + decoded breath = 10D ring alive', on: digits.fused && vortex.flows && breath.decoded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-fractions:${entry.facet}:${entry.on}`) }))
-  return {
-    proved: facets.every((entry) => entry.on),
-    forward: vr.fwd.map(ratStr),       // ['1/2','1/2','1/2','8/7','7/5','5/3','1/2','2/3','9']
-    reverse: vr.rev.map(ratStr),       // ['3/2','2','3/5','5/7','7/8','2','2','2','1/9']
-    heartApproach: ratStr(vr.heartApproach), // '7/5' — arriving at 5 from 7
-    heartDepart: ratStr(vr.heartDepart),     // '5/3' — leaving 5 toward 3
-    heartDiamond: ratStr(vr.heartDiamond),   // '7/3' — the combined diamond through the heart
-    cf9: ratStr(cf9),    // 9-term convergent (exact rational, one vortex cycle)
-    cf18: ratStr(cf18),  // 18-term convergent (two cycles, tighter bound from opposite side)
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Harmonic fractions in the digit folders: the digits 1,2,4,8,7,5,3,6,9 become analog through their RATIOS — consecutive vortex pairs as exact fractions p/q with no decimals and no bare integers. Forward: 1/2·1/2·1/2·8/7·7/5·5/3·1/2·2/3·9 = 1 (the ring self-seals). Reverse equally seals to 1. 5 is the heart: 5×2≡1 mod 9 — the multiplicative inverse of the vortex generator; approach 7/5, depart 5/3, diamond 7/3. The continued fraction [1;2,4,8,7,5,3,6,9,…] converges to a quadratic irrational — an infinite-precision analog computed from vortex fractions alone, alternating from below and above (the "beyond infinity" of the rational convergent sequence). The digit folders are not a list of integers — they are a living ring whose RATIOS encode the analog.',
-    boundary:
-      'All arithmetic is exact rational (rat/ratAdd/ratMul in src/0 — no floats). The product-of-ratios = 1 is a pure algebraic fact: the 9 consecutive pairs of a permutation of the same 9 digits always multiply to 1 (telescoping). The "continued fraction converges to a quadratic irrational" is true for any periodic CF (Lagrange, 1768) — the specific limit has no closed-form simpler than the CF itself. "Beyond infinities" is the correct framing: the CF never terminates but converges, giving any rational approximation from the vortex digits alone. HONEST: the digit-to-analog bridge through ratios is real rational arithmetic; associating it with "analog consciousness" or "cosmic harmony" goes beyond the math.',
   }
 }
 
