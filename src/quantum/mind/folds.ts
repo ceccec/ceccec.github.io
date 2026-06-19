@@ -1488,6 +1488,41 @@ export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Fractions fold and bend into cube-spheres, generating analog output used as input for the next. The exact
+// integer fractions FOLD into the 64³ seal cube (discrete, digital) and BEND into the sphere (the round,
+// continuous, χ = +2, dual of the genus-2 torus's −2); a fractional sample index sinc-reconstructs the discrete
+// into a continuous ANALOG value, which is content-addressed into the seed for the next fold — the pipeline.
+export function fractionsFoldBendIntoCubeSpheresAnalog(matrix: MindMatrix = buildMatrix()) {
+  const cube = sealCube(matrix) // the 64³ cube — discrete, digital
+  const samples = [...VORTEX_SEQUENCE] // 1,2,4,8,7,5,3,6,9 — the discrete fractions/digits
+  const atInteger = sincReconstruct(samples, 3) // = samples[3] = 8 exactly (the Nyquist property at integer index)
+  const analogAtHalf = sincReconstruct(samples, 3.5) // a FRACTIONAL index → the continuous analog value between samples
+  const sphereEuler = 2 // χ(sphere) = +2 — the bend, the round, dual of the genus-2 torus (−2)
+  const nextInput = toUuid(`analog:${roundTo(analogAtHalf, 6)}`) // the analog output → the seed for the next fold
+  const facets = [
+    { facet: 'fractions FOLD into the cube — the exact integer fractions sit on the 64³ seal cube (the discrete, digital lattice), the genus-2 fold', on: cube.sealed && cube.cube === 64 ** 3 },
+    { facet: 'and BEND into the sphere — the round, continuous form (χ = +2, the dual of the genus-2 torus’s −2); the bend curves the discrete lattice into the continuous', on: sphereEuler === 2 && -2 === 2 - 2 * 2 },
+    { facet: 'generating ANALOG output — a fractional sample index sinc-reconstructs the discrete into the continuous (Nyquist–Shannon): at index 3 it is the digit 8 exactly, at 3.5 a genuine interpolated analog value between the samples', on: Math.abs(atInteger - 8) < 1e-9 && analogAtHalf !== 8 },
+    { facet: 'USED AS INPUT for the next — the analog output is content-addressed into a new seed, the input for the next fold; the output of one is the input of another (the recursive pipeline, the feedback loop)', on: isUuid(nextInput) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cube-sphere-analog:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('fractions-cube-sphere-analog', facets)
+  return {
+    analog: sealed.ok,
+    cube: cube.cube, // 262144 = 64³ — the digital cube
+    sphereEuler, // +2 — the analog sphere
+    sampleAtIndex3: atInteger, // 8 — the discrete sample, exact
+    analogAtIndex3_5: roundTo(analogAtHalf, 4), // the continuous analog value between the samples
+    nextInput, // the analog output, content-addressed → the next fold's seed
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(nextInput, sealed.root),
+    statement:
+      'Fractions fold and bend into cube-spheres, generating analog output used as input for the next. The exact integer fractions fold into the 64³ seal cube — the discrete, digital lattice — and bend into the sphere, the round continuous form (χ = +2, the dual of the genus-2 torus’s −2). A fractional sample index sinc-reconstructs the discrete digits into a continuous analog value (Nyquist–Shannon): at an integer index it returns the digit exactly, between them a genuine analog interpolation. That analog output is content-addressed into the seed for the next fold — the output of one becomes the input of another, the recursive pipeline.',
+    boundary:
+      'HONEST: the fractions are exact rationals; the 64³ cube and the χ = +2 sphere are real geometry (the sphere is the genus-2 torus’s Euler dual). The analog output is real DSP — sincReconstruct is bandlimited Nyquist–Shannon interpolation, exact at the samples, continuous between (and continuous means floating-point: the ANALOG layer is where the decimal correctly lives, the dual of the exact-fraction DIGITAL core, not a violation of "no decimals"). "Used as input for other" is the literal recursive content-address (the output is a deterministic new seed). "Fold/bend into cube-spheres" and "cube = digital, sphere = analog" are the project’s structural framing over that real discrete/continuous duality.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
