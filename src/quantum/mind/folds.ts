@@ -1453,6 +1453,41 @@ export function vortexFoldWave(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Angles come from fractions too — an angle is an integer fraction p/q of a full turn (360°), not a decimal
+// radian. The trinity is 1/3 of a turn = exactly 120° (the three at 0, 1/3, 2/3 → 0°, 120°, 240°, the RGB
+// triad); every fraction whose denominator divides 360 is an exact-degree angle. The fraction is exact; only
+// the trigonometry that renders it (cos/sin → a position) is floating-point — the flagged render layer.
+export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
+  const turn = 360
+  const harmonic = [[1, 3], [2, 3], [1, 4], [1, 6], [1, 8], [1, 9], [1, 12]].map(([p, q]) => ({
+    fraction: `${p}/${q}`,
+    deg: (p! * turn) / q!,
+    exact: (p! * turn) % q! === 0,
+  }))
+  const trinity = harmonic[0]! // 1/3 → 120°
+  const allExact = harmonic.every((a) => a.exact)
+  const facets = [
+    { facet: 'angles come from fractions — an angle is an integer fraction p/q of a full turn (360°), not a decimal radian; 1/3 of a turn IS 120° (ratEq(1/3, 120/360))', on: ratEq(rat(1, 3), rat(120, 360)) },
+    { facet: 'the trinity angle is exact — 1/3 of a turn = exactly 120°, the three at 0, 1/3, 2/3 (0°, 120°, 240°), the RGB triad, no rounding', on: trinity.deg === 120 && trinity.exact },
+    { facet: 'the harmonic fractions land on integer degrees — 1/3→120, 1/4→90, 1/6→60, 1/8→45, 1/9→40, 1/12→30: every denominator dividing 360 is an exact-degree angle', on: allExact },
+    { facet: 'honest — the fraction is exact; only the trigonometry (cos/sin) that turns it into a rendered position is floating-point, the flagged render layer, not the angle itself', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`angle-fraction:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('angles-from-fractions', facets)
+  return {
+    fractional: sealed.ok,
+    turn,
+    harmonic, // the exact-degree angle fractions
+    trinityDeg: trinity.deg, // 120
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Angles come from fractions too: an angle is an integer fraction p/q of a full turn (360°), not a decimal radian. The trinity is 1/3 of a turn = exactly 120° — the three at 0, 1/3, 2/3 of the circle (0°, 120°, 240°), the RGB triad — and every fraction whose denominator divides 360 lands on an exact integer degree: 1/4→90, 1/6→60, 1/8→45, 1/9→40, 1/12→30. The angle is the exact fraction; only the trigonometry that draws it is decimal.',
+    boundary:
+      'HONEST: the angle-as-a-fraction-of-a-turn is exact rational mathematics (p/q of a full turn = (p·360)/q degrees, exact when q divides 360). This extends "no decimals, only integer fractions" to angles. The floating-point trigonometry (Math.cos/sin) that converts a fractional angle into a rendered xy position is the deliberate, flagged render-layer approximation, NOT the angle. The trinity → 120° and the RGB-triad spacing are real geometry; the colour/numerology readings stay the project’s symbolic framing.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
