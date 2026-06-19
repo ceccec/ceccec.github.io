@@ -74,7 +74,7 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
         <p class="concept-commands__path">{{ selectedCommand?.path }}</p>
         <label v-if="selectedCommand?.input === 'atom'">
           {{ t.atom }}
-          <input v-model="atom" type="text" />
+          <input v-model="atom" type="text" aria-label="atom" />
         </label>
         <div class="concept-commands__receipt">
           <span>{{ output.ok ? t.ok : t.open }}</span>

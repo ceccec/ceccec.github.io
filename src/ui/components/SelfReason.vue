@@ -22,7 +22,7 @@ const t = computed(() =>
 <template>
   <section class="reason dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
-    <input v-model="goal" type="text" :placeholder="t.placeholder" class="reason__input" />
+    <input v-model="goal" type="text" :placeholder="t.placeholder" class="reason__input" :aria-label="t.placeholder" />
     <ol class="reason__chain">
       <li v-for="step in result.steps" :key="step.step">
         <strong>{{ step.premise }}</strong>

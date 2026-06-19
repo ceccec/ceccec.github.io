@@ -133,7 +133,7 @@ const t = computed(() =>
   <section class="palette dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <label class="palette__seed">{{ t.seedLabel }}:
-      <input v-model="seed" type="text" spellcheck="false" />
+      <input v-model="seed" type="text" spellcheck="false" aria-label="seed" />
       <button
         v-if="voiceSupported"
         type="button"

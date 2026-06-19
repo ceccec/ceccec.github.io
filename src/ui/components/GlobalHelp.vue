@@ -133,7 +133,7 @@ function askChip(text: string) {
       <div v-if="mode === 'ai' && !apiKey" class="global-help__key">
         <p>{{ t.keyNote }}</p>
         <form @submit.prevent="connectKey">
-          <input v-model="keyInput" type="password" placeholder="sk-ant-…" autocomplete="off" />
+          <input v-model="keyInput" type="password" placeholder="sk-ant-…" autocomplete="off" aria-label="API key (stays in your browser)" />
           <button type="submit">{{ t.connect }}</button>
         </form>
       </div>
@@ -146,7 +146,7 @@ function askChip(text: string) {
         <p v-if="busy" class="global-help__msg note">{{ t.thinking }}</p>
       </div>
       <form class="global-help__row" @submit.prevent="ask">
-        <input v-model="input" type="text" :placeholder="t.placeholder" :disabled="busy" />
+        <input v-model="input" type="text" :placeholder="t.placeholder" :disabled="busy" :aria-label="t.placeholder" />
         <button type="submit" :disabled="busy">{{ t.ask }}</button>
       </form>
     </div>

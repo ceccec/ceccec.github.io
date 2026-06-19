@@ -41,7 +41,7 @@ const t = computed(() =>
   <section class="consult dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <p class="consult__flow">{{ t.flow }}</p>
-    <input v-model="query" type="text" :placeholder="t.placeholder" class="consult__input" />
+    <input v-model="query" type="text" :placeholder="t.placeholder" class="consult__input" :aria-label="t.placeholder" />
     <template v-if="query.trim()">
       <p class="consult__label">{{ t.answer }}</p>
       <p class="consult__answer">{{ result.answer }}</p>

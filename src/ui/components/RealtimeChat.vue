@@ -91,7 +91,7 @@ const t = computed(() =>
       </article>
     </div>
     <form class="chat__row" @submit.prevent="send">
-      <input v-model="draft" type="text" :placeholder="t.placeholder" />
+      <input v-model="draft" type="text" :placeholder="t.placeholder" :aria-label="t.placeholder" />
       <button class="dt-btn" type="submit">{{ t.send }}</button>
     </form>
     <p class="chat__note">{{ t.note }}</p>

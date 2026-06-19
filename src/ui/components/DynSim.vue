@@ -164,7 +164,7 @@ const wavePath = computed(() => {
     <div v-if="levers.length" class="ds-levers">
       <label v-for="l in levers" :key="l.key" class="ds-lever">
         {{ l.label }}
-        <input v-model.number="lever[l.key]" type="range" :min="l.min" :max="l.max" :step="l.step">
+        <input v-model.number="lever[l.key]" type="range" :min="l.min" :max="l.max" :step="l.step" aria-label="lever (slider)">
         <code>{{ (lever[l.key] ?? l.def).toFixed(l.step < 0.1 ? 2 : l.step < 1 ? 1 : 0) }}</code>
       </label>
     </div>
@@ -173,7 +173,7 @@ const wavePath = computed(() => {
     <template v-if="sel === 'calendars'">
       <label class="ds-lever ds-day">
         day {{ day }}
-        <input v-model.number="day" type="range" min="0" max="20000" step="1">
+        <input v-model.number="day" type="range" min="0" max="20000" step="1" aria-label="day (slider)">
       </label>
       <div class="ds-panel">
         <div class="ds-panel-h">wheels · position in each cycle <span>residue = date-in-wheel</span></div>
@@ -224,7 +224,7 @@ const wavePath = computed(() => {
       </div>
       <label class="ds-lever ds-day">
         field phase t {{ teslaT.toFixed(2) }}
-        <input v-model.number="teslaT" type="range" min="0" max="0.2" step="0.001">
+        <input v-model.number="teslaT" type="range" min="0" max="0.2" step="0.001" aria-label="tesla t (slider)">
       </label>
       <div class="ds-stat">
         synchronous speed <code>syncSpeedRpm({{ fLine }}, {{ poles }}) = {{ syncRpm.toFixed(0) }} rpm</code>

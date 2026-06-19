@@ -24,7 +24,7 @@ const t = computed(() =>
 <template>
   <section class="ts dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
-    <input v-model="query" type="text" :placeholder="t.placeholder" class="ts__input" />
+    <input v-model="query" type="text" :placeholder="t.placeholder" class="ts__input" :aria-label="t.placeholder" />
     <template v-if="query.length">
       <p class="ts__label">{{ chars.length }} {{ t.chars }}</p>
       <p class="ts__chars">

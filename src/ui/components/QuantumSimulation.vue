@@ -52,7 +52,7 @@ const histogram = computed(() =>
     <p class="eyebrow">{{ t('quantum simulation · state vector', 'квантова симулация · вектор на състоянието') }}</p>
     <div class="qs__controls">
       <label>{{ t('qubits', 'кубити') }}: {{ qubits }}
-        <input v-model.number="qubits" type="range" min="2" max="5" step="1" />
+        <input v-model.number="qubits" type="range" min="2" max="5" step="1" aria-label="qubits (slider)" />
       </label>
       <code class="qs__gates">{{ sim.gates.join(' · ') }}</code>
       <span class="qs__flags">

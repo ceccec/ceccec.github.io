@@ -62,7 +62,7 @@ const t = computed(() =>
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="governance-vote__rate">
       <label>{{ t.rate }}: {{ rating }}/5
-        <input v-model.number="rating" type="range" min="0" max="5" step="1" />
+        <input v-model.number="rating" type="range" min="0" max="5" step="1" aria-label="rating (slider)" />
       </label>
       <div class="governance-vote__buttons">
         <button type="button" class="approve" @click="cast(true)">{{ t.approve }}</button>

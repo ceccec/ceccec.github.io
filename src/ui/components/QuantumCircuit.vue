@@ -110,7 +110,7 @@ const gLabels = computed(() => Array.from({ length: 1 << gn.value }, (_, i) => i
       <summary>Grover search — find the marked item in ~(π/4)√N iterations</summary>
       <div class="qc-controls">
         <span class="qc-group">qubits <button v-for="c in [2, 3, 4]" :key="c" type="button" :class="{ on: gn === c }" @click="gn = c">{{ c }}</button></span>
-        <span class="qc-group">marked <input v-model.number="marked" type="number" min="0" :max="(1 << gn) - 1"></span>
+        <span class="qc-group">marked <input v-model.number="marked" type="number" min="0" :max="(1 << gn) - 1" aria-label="marked"></span>
         <span class="qc-sub">{{ g.iterations }} iterations · marked {{ (g.markedProbability * 100).toFixed(1) }}% · found {{ g.found.toString(2).padStart(gn, '0') }}</span>
       </div>
       <div class="qc-panel">

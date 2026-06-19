@@ -625,11 +625,11 @@ onBeforeUnmount(() => {
         </div>
         <div class="diamond-toggles">
           <label>
-            <input v-model="audioEnabled" type="checkbox" />
+            <input v-model="audioEnabled" type="checkbox" aria-label="audio enabled" />
             sound
           </label>
           <label>
-            <input v-model="vibrationEnabled" type="checkbox" />
+            <input v-model="vibrationEnabled" type="checkbox" aria-label="vibration enabled" />
             device vibration
           </label>
         </div>

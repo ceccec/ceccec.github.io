@@ -152,12 +152,12 @@ function cls(v: number) { return v >= 0 ? 'on' : 'off' }
       <div class="ns-levers">
         <label class="ns-lever">
           diffusion rate q
-          <input v-model.number="colQ" type="range" min="0" max="1" step="0.02">
+          <input v-model.number="colQ" type="range" min="0" max="1" step="0.02" aria-label="col q (slider)">
           <code>{{ colQ.toFixed(2) }}</code>
         </label>
         <label class="ns-lever">
           steps (trade rounds)
-          <input v-model.number="colSteps" type="range" min="0" max="40" step="1">
+          <input v-model.number="colSteps" type="range" min="0" max="40" step="1" aria-label="col steps (slider)">
           <code>{{ colSteps }}</code>
         </label>
       </div>
@@ -183,17 +183,17 @@ function cls(v: number) { return v >= 0 ? 'on' : 'off' }
       <div class="ns-levers">
         <label class="ns-lever cut">
           folk migration (gene + language)
-          <input v-model.number="folk" type="range" min="0" max="0.5" step="0.02">
+          <input v-model.number="folk" type="range" min="0" max="0.5" step="0.02" aria-label="folk (slider)">
           <code>{{ folk.toFixed(2) }}</code>
         </label>
         <label class="ns-lever spiral">
           elite dominance (language only)
-          <input v-model.number="elite" type="range" min="0" max="0.5" step="0.02">
+          <input v-model.number="elite" type="range" min="0" max="0.5" step="0.02" aria-label="elite (slider)">
           <code>{{ elite.toFixed(2) }}</code>
         </label>
         <label class="ns-lever spiral">
           script switch (script only)
-          <input v-model.number="script" type="range" min="0" max="0.5" step="0.02">
+          <input v-model.number="script" type="range" min="0" max="0.5" step="0.02" aria-label="script (slider)">
           <code>{{ script.toFixed(2) }}</code>
         </label>
       </div>
@@ -225,7 +225,7 @@ function cls(v: number) { return v >= 0 ? 'on' : 'off' }
         </label>
         <label class="ns-lever spiral">
           noise (cells flipped, seeded)
-          <input v-model.number="noise" type="range" min="0" :max="NCELL" step="1">
+          <input v-model.number="noise" type="range" min="0" :max="NCELL" step="1" aria-label="noise (slider)">
           <code>{{ noise }}</code>
         </label>
       </div>

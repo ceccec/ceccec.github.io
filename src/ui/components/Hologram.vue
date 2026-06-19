@@ -97,7 +97,7 @@ const caption = computed(() => {
 <template>
   <section class="holo dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'холограма · 3d+ · до бита' : 'hologram · 3d+ · to the bit' }}</p>
-    <canvas ref="canvas" class="holo__canvas" />
+    <canvas role="img" aria-label="hologram visualisation" ref="canvas" class="holo__canvas" />
     <p class="holo__caption">{{ caption }}</p>
   </section>
 </template>

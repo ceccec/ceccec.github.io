@@ -180,10 +180,10 @@ const t = computed(() =>
       </div>
       <div class="speech__row speech__analog">
         <label>{{ t.rate }} {{ rate.toFixed(1) }}
-          <input v-model.number="rate" type="range" min="0.5" max="2" step="0.1" />
+          <input v-model.number="rate" type="range" min="0.5" max="2" step="0.1" aria-label="rate (slider)" />
         </label>
         <label>{{ t.pitch }} {{ pitch.toFixed(1) }}
-          <input v-model.number="pitch" type="range" min="0" max="2" step="0.1" />
+          <input v-model.number="pitch" type="range" min="0" max="2" step="0.1" aria-label="pitch (slider)" />
         </label>
         <span v-if="intonation.harmonic" class="speech__harmonic" :title="t.harmonicHint">♬ {{ t.harmonic }}</span>
       </div>

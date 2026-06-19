@@ -139,7 +139,7 @@ const t = computed(() =>
         {{ bg ? 'архитектурно пространство от ключове (1024 = 2¹⁰ листа), вплетено в ключа; реалното време прави всяка сесия отделна' : 'architecture keyspace (1024 = 2¹⁰ leaves) woven into the key; realtime makes every session distinct' }}
         <span class="wcs__fusion-root mono">{{ fusion.architecture.root }}</span>
       </p>
-      <input v-model="passphrase" class="wcs__in" type="password" autocomplete="off" :placeholder="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" />
+      <input v-model="passphrase" class="wcs__in" type="password" autocomplete="off" :placeholder="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" :aria-label="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" />
       <textarea v-model="plaintext" class="wcs__in wcs__ta" rows="2" :placeholder="bg ? 'текст за шифроване' : 'text to encrypt'"></textarea>
       <div class="wcs__row">
         <button class="dt-btn" type="button" @click="encrypt">{{ bg ? 'Шифровай ▸' : 'Encrypt ▸' }}</button>

@@ -93,7 +93,7 @@ onMounted(() => {
         <span class="ocr__set">{{ GLYPHS.length }}-glyph closed set · deterministic</span>
       </header>
       <div class="ocr__body">
-        <canvas
+        <canvas role="img" aria-label="glagolitic ocr visualisation"
           ref="canvas" class="ocr__canvas" width="240" height="240"
           @pointerdown="down" @pointermove="move" @pointerup="up" @pointerleave="up"
         />
@@ -106,7 +106,7 @@ onMounted(() => {
           <div v-else class="ocr__hint">draw a glyph in the box →</div>
           <div class="ocr__controls">
             <button type="button" class="ocr__btn" @click="clear">clear</button>
-            <label class="ocr__btn ocr__upload">upload<input type="file" accept="image/*" hidden @change="onUpload" /></label>
+            <label class="ocr__btn ocr__upload">upload<input type="file" accept="image/*" hidden @change="onUpload" aria-label="file to upload" /></label>
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ const t = computed(() =>
     <p class="eyebrow">{{ t.eyebrow }}</p>
     <div class="pi-music__row">
       <label>{{ t.join }}: {{ horo }}
-        <input v-model.number="horo" type="range" min="1" max="9" step="1" />
+        <input v-model.number="horo" type="range" min="1" max="9" step="1" aria-label="horo (slider)" />
       </label>
       <button type="button" class="dt-btn" :disabled="playing" :aria-label="t.play" @click="play">{{ playing ? t.playing : t.play }}</button>
       <button v-if="playing" type="button" class="dt-btn dt-btn--ghost" :aria-label="t.stop" @click="stop">{{ t.stop }}</button>

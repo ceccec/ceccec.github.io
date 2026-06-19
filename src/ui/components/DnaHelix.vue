@@ -129,7 +129,7 @@ const geneCaption = computed(() =>
 <template>
   <section class="dna dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'ДНК · двойна спирала · до бита' : 'dna · double helix · to the bit' }}</p>
-    <canvas ref="canvas" class="dna__canvas" />
+    <canvas role="img" aria-label="dna helix visualisation" ref="canvas" class="dna__canvas" />
     <p class="dna__seq"><code>{{ data.sense }}</code></p>
     <div class="dna__genes">
       <p class="dna__genes-label">{{ bg ? 'ген · стандартен генетичен код · до кодона' : 'gene · standard genetic code · to the codon' }}</p>

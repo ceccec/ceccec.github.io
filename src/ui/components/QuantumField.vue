@@ -111,7 +111,7 @@ const t = computed(() =>
 <template>
   <section class="field dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
-    <canvas ref="canvas" class="field__canvas" />
+    <canvas role="img" aria-label="quantum field visualisation" ref="canvas" class="field__canvas" />
     <div class="field__row">
       <button v-if="needsPermission && !motionEnabled" type="button" @click="enableMotion">{{ t.enable }}</button>
       <span v-else-if="motionEnabled" class="field__on">✓ {{ t.enabled }}</span>

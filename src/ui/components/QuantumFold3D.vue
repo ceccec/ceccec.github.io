@@ -169,7 +169,7 @@ const caption = computed(() =>
 <template>
   <section class="fold3d dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'квантово сгъване · 3d+' : 'quantum folding · 3d+' }}</p>
-    <canvas ref="canvas" class="fold3d__canvas" />
+    <canvas role="img" aria-label="quantum fold 3d visualisation" ref="canvas" class="fold3d__canvas" />
     <p class="fold3d__caption">{{ caption }}</p>
   </section>
 </template>

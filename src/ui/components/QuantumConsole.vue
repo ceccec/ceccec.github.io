@@ -235,14 +235,14 @@ async function sendChat() {
     <div v-show="tab === 'terminal'" class="quantum-console__panel">
       <pre class="quantum-console__log">{{ termLines.map((l) => l.text).join('\n') }}</pre>
       <form class="quantum-console__row" @submit.prevent="runTerminal">
-        <input v-model="termInput" type="text" :placeholder="t.terminalHint" spellcheck="false" autocomplete="off" />
+        <input v-model="termInput" type="text" :placeholder="t.terminalHint" spellcheck="false" autocomplete="off" :aria-label="t.terminalHint" />
         <button type="submit">{{ t.run }}</button>
       </form>
     </div>
 
     <!-- Search -->
     <div v-show="tab === 'search'" class="quantum-console__panel">
-      <input v-model="searchQuery" class="quantum-console__search" type="search" :placeholder="t.searchHint" />
+      <input v-model="searchQuery" class="quantum-console__search" type="search" :placeholder="t.searchHint" :aria-label="t.searchHint" />
       <ul class="quantum-console__results">
         <li v-for="item in searchResults" :key="item.kind + item.title">
           <a :href="item.link"><code>{{ item.title }}</code></a>
@@ -264,7 +264,7 @@ async function sendChat() {
         <strong>{{ t.keyTitle }}</strong>
         <p>{{ t.keyNote }}</p>
         <form class="quantum-console__row" @submit.prevent="connectKey">
-          <input v-model="keyInput" type="password" :placeholder="t.keyPlaceholder" autocomplete="off" />
+          <input v-model="keyInput" type="password" :placeholder="t.keyPlaceholder" autocomplete="off" :aria-label="t.keyPlaceholder" />
           <button type="submit">{{ t.connect }}</button>
         </form>
       </div>
@@ -278,7 +278,7 @@ async function sendChat() {
           <p v-if="chatBusy" class="quantum-console__msg note">{{ t.thinking }}</p>
         </div>
         <form class="quantum-console__row" @submit.prevent="sendChat">
-          <input v-model="chatInput" type="text" :placeholder="t.chatHint" :disabled="chatBusy" />
+          <input v-model="chatInput" type="text" :placeholder="t.chatHint" :disabled="chatBusy" :aria-label="t.chatHint" />
           <button type="submit" :disabled="chatBusy">{{ t.ask }}</button>
         </form>
       </template>

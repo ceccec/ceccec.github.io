@@ -259,7 +259,7 @@ const codonRows = computed(() => [
     <div v-if="cfg.levers && cfg.levers.length" class="ps-levers">
       <label v-for="l in cfg.levers" :key="l.key" class="ps-lever" :class="l.kind">
         {{ l.label }}
-        <input v-model.number="lever[l.key]" type="range" :min="l.min" :max="l.max" :step="l.step">
+        <input v-model.number="lever[l.key]" type="range" :min="l.min" :max="l.max" :step="l.step" aria-label="lever (slider)">
         <code>{{ (lever[l.key] ?? l.def).toFixed(l.step < 0.01 ? 3 : 2) }}</code>
       </label>
     </div>
@@ -300,7 +300,7 @@ const codonRows = computed(() => [
 
     <!-- markov -->
     <template v-else-if="mode === 'markov'">
-      <label class="ps-lever">step {{ step }}<input v-model.number="step" type="range" min="0" :max="20" step="1"></label>
+      <label class="ps-lever">step {{ step }}<input v-model.number="step" type="range" min="0" :max="20" step="1" aria-label="step (slider)"></label>
       <div class="ps-panel">
         <div class="ps-panel-h">distribution at step {{ step }} <span>faint = stationary</span></div>
         <div v-for="r in mRows" :key="r.label" class="ps-row">

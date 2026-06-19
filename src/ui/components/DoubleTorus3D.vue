@@ -206,7 +206,7 @@ const caption = computed(() =>
         :aria-label="bg ? 'дълбочина на сгъване 0 до 10' : 'genus-2 fold depth 0 to 10'"
       />
     </div>
-    <canvas ref="canvas" class="dt3d__canvas" />
+    <canvas role="img" aria-label="double torus 3d visualisation" ref="canvas" class="dt3d__canvas" />
     <p class="dt3d__caption">{{ caption }}</p>
   </section>
 </template>

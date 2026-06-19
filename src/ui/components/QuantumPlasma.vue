@@ -101,7 +101,7 @@ const caption = computed(() =>
 <template>
   <section class="plasma dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ bg ? 'квантова плазма · удържана от битове' : 'quantum plasma · contained by bits' }}</p>
-    <canvas ref="canvas" class="plasma__canvas" />
+    <canvas role="img" aria-label="quantum plasma visualisation" ref="canvas" class="plasma__canvas" />
     <p class="plasma__caption">{{ caption }}</p>
   </section>
 </template>
