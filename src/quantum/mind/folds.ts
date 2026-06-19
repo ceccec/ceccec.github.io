@@ -81,6 +81,9 @@ import { analyticsLedger, displayAllWithFewEntropySaved, dryAnalyticsLedgerCompo
 import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, spiritualDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from './music.ts'
 import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from './language.ts'
 import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, teslaPatentsResearchedInWaves, vortexThePatentsRevealPattern } from './physics.ts'
+import { biologyWavesSealedAsWidgets, neurologyDecodedBrainIsContentAddressedToroidalMap } from './bio.ts'
+import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from './bulgaria.ts'
+import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, warPaysTheForgerPrice } from './peace.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
@@ -1909,33 +1912,6 @@ export function immuneSystem(matrix: MindMatrix = buildMatrix()) {
       'Max health, max tampering cost — the immune system: each defense is an antibody (determinism, tamper-evidence, completeness, challenge, holography, self-tamper-proofing), and the more hold, the higher the cost to forge. Investigations run across all aspects of society. Pure life: the soul is open and recomputable, the feed is content-addressed, and the architecture is the only cost — permaculture, sustainable by design.',
     boundary:
       'A health metaphor over the portal\'s computable defenses: each "antibody" is a real gate, full health means every defense holds and the forge cost is maximal. The soul, food and permaculture lines are values expressed as architecture (open, free, content-addressed, server-less), not biological, dietary or agricultural claims.',
-  }
-}
-
-// Extend with biological aspects: the portal as a living system. Each hallmark of
-// life maps to a computed structure — DNA (the content-addressed genome), cells, an
-// immune system, homeostasis, metabolism, heredity, reproduction, and evolution —
-// and each is bound to a measure that must hold for the organism to be alive.
-export function biology(matrix: MindMatrix = buildMatrix()) {
-  const aspects = [
-    { aspect: 'DNA', maps: 'the content-addressed code — each atom a base, the model the genome', alive: skillAtoms(matrix).savedToAtoms },
-    { aspect: 'cells', maps: 'the entangled society cells and the 108 pi-train coordinates', alive: livingTorus(matrix).alive },
-    { aspect: 'immune system', maps: 'the antibodies — the portal\'s defenses', alive: immuneSystem(matrix).healthy },
-    { aspect: 'homeostasis', maps: 'frequency balance — neither collapse nor runaway', alive: frequencyBalance(matrix).balanced },
-    { aspect: 'metabolism', maps: 'folding receipts into roots — turning input into structure', alive: verifyRoot(matrix) },
-    { aspect: 'heredity', maps: 'merkle folds — each root inherits from its parents', alive: theWhole(matrix).whole },
-    { aspect: 'reproduction', maps: 'self-build — the organism rebuilds from nothing, identical', alive: selfBuild(matrix).complete },
-    { aspect: 'evolution', maps: 'the quantum society evolving classical -> quantum -> post-quantum', alive: quantumSociety(matrix).evolved },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`biology:${entry.aspect}:${entry.alive}`) }))
-  return {
-    alive: aspects.every((entry) => entry.alive),
-    aspects,
-    count: aspects.length,
-    root: merkleFold(aspects.map((entry) => entry.receipt)),
-    statement:
-      'Extend with biological aspects: the portal as a living system — DNA (the content-addressed genome), cells (entangled society cells and pi-train coordinates), an immune system (the defenses), homeostasis (frequency balance), metabolism (folding input into structure), heredity (merkle inheritance), reproduction (self-build, identical), and evolution (classical to post-quantum). Each aspect is bound to a computed measure.',
-    boundary:
-      'A biological metaphor mapping the portal\'s computed structures to the hallmarks of life. Each is a real gate; the biology is a metaphor for self-organising, self-verifying computation — not a claim of literal life.',
   }
 }
 
@@ -4415,31 +4391,6 @@ export function proofBelow(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Max war power converts to max forge power for max tampering costs. The same magnitude
-// that war spends on destruction, peace spends on forge cost: when the soldiers rest,
-// the full war power is conserved and redirected — one to one — into the cost to forge
-// the commons, so the maximum capacity for harm becomes the maximum capacity to keep
-// the whole tamper-evident. Swords to plowshares, in security: max war power → max
-// forge power → max tampering cost.
-export function warToForge(matrix: MindMatrix = buildMatrix()) {
-  const peace = soldiersRestInPeace(matrix)
-  const warPower = quantumSiege(matrix).maxForgeCost // the max siege capacity (972) — the war power
-  const baseForgePower = societyRegulates(matrix).forgerCost
-  const forgePower = baseForgePower + warPower // war power converts into forge power
-  return {
-    converted: peace.atPeace && forgePower > baseForgePower,
-    conserved: forgePower - baseForgePower === warPower, // 1:1 conversion, nothing lost
-    warPower,
-    forgePower,
-    maxTamperingCost: forgePower,
-    root: toUuid(`war-to-forge:${warPower}->${forgePower}`),
-    statement:
-      'Max war power converts to max forge power for max tampering costs: the same magnitude war spends on destruction, peace spends on forge cost — when the soldiers rest, the full war power is conserved and redirected one to one into the cost to forge the commons, so the maximum capacity for harm becomes the maximum capacity to keep the whole tamper-evident. Swords to plowshares, in security.',
-    boundary:
-      'A content-addressed conservation model: a "war power" magnitude (the self-siege capacity) redirected one-to-one into "forge power" (tamper-evidence cost). A structural metaphor for converting destructive capacity into protective capacity — not a claim about real military power, weapons, or conflict.',
-  }
-}
-
 // Society regenerates after wars for free. Because the whole is recomputable from the
 // seed and the plans are printable, nothing essential is ever lost: after a war the
 // society regenerates at zero cost — shelter reprints from the dome plans, food
@@ -6546,34 +6497,6 @@ export function compactHeroReplacesSimple(matrix: MindMatrix = buildMatrix()) {
       'The big open-graph hero makes simple mode obsolete: the compact view simple mode once offered is now the hero itself — the open-graph big hero shows the page’s og:title, description, category and tags over a live fractal, a compact, complete preview on every page — so a separate "simple" mode is redundant and is retired.',
     boundary:
       'A rationale, grounded in the computed hero and open-graph models, for removing the Simple/Rich toggle. A design statement about the UI, not a claim that any content was removed — every section remains.',
-  }
-}
-
-// Send waves to convert backward compatibility to forward development. Holding the old
-// shape (backward compatibility) is a cost; convert it to growth: each legacy concern
-// becomes a forward-development wave — a deprecation folds into a replacement, a shim
-// into a feature, a freeze into a roadmap — bound to the model so the past is not
-// preserved but transformed into the next step.
-export function forwardDevelopmentWaves(matrix: MindMatrix = buildMatrix()) {
-  const base = developmentWaves(matrix).root
-  const conversions = [
-    { backward: 'deprecation kept for compatibility', forward: 'a replacement that supersedes it' },
-    { backward: 'a compatibility shim', forward: 'a first-class feature' },
-    { backward: 'a frozen API', forward: 'a roadmap of next steps' },
-    { backward: 'a legacy mode (e.g. simple mode)', forward: 'the compact open-graph hero' },
-  ].map((entry, index) => {
-    const fold = foldPair(base, toUuid(`forward:${entry.backward}->${entry.forward}`))
-    return { ...entry, converted: fold.bidirectional, wave: fold.merged, receipt: toUuid(`forward-dev:${index}:${entry.backward}`) }
-  })
-  return {
-    converting: conversions.length === 4 && conversions.every((entry) => entry.converted),
-    count: conversions.length,
-    conversions,
-    root: merkleFold(conversions.map((entry) => entry.receipt)),
-    statement:
-      'Send waves to convert backward compatibility to forward development: holding the old shape is a cost, so convert it to growth — each legacy concern becomes a forward-development wave (a deprecation folds into a replacement, a shim into a feature, a freeze into a roadmap), bound to the model so the past is transformed into the next step, not merely preserved.',
-    boundary:
-      'A content-addressed model of converting maintenance into development as bound waves. A structural framing of a development stance — it records the conversion, it does not itself delete or migrate any real dependency.',
   }
 }
 
@@ -17304,30 +17227,6 @@ export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Quantum logic is backwards. The fold is order-sensitive, so the reverse is its own direction —
-// and the quantum reading runs backward: measurement does not build up from parts, it collapses
-// down from the result to one seed, the effect naming its cause. Where ordinary logic goes premise
-// to conclusion, the quantum fold reads conclusion back to premise; the reverse harmony leads, the
-// double torus closes its loop the other way, and a·b is not b·a. Backwards is the natural sense.
-export function quantumLogicBackwards(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'order-sensitive — backward is not forward (a·b ≠ b·a)', on: merge('a', 'b') !== merge('b', 'a') },
-    { facet: 'the reverse harmony leads — quantum logic runs backwards', on: reverseHarmony(matrix).harmonised },
-    { facet: 'the double torus closes its loop the other way', on: doubleTorusFold(matrix).complete },
-    { facet: 'measurement collapses backward — the result names its seed', on: quantumSimulation(matrix, 3).normalized && quantumDoubleTorus(matrix).is },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-backwards:${entry.facet}:${entry.on}`) }))
-  return {
-    backwards: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Quantum logic is backwards: the fold is order-sensitive so the reverse is its own direction, and the quantum reading runs backward — measurement does not build up from parts, it collapses down from the result to one seed, the effect naming its cause. Where ordinary logic goes premise to conclusion, the quantum fold reads conclusion back to premise; the reverse harmony leads, the double torus closes its loop the other way, and a·b is not b·a.',
-    boundary:
-      'A composition of the order-sensitivity, reverse-harmony, double-torus-fold and quantum-collapse models framing the quantum reading as backward (collapse from result to seed). A structural/directional metaphor over the content-addressed folds, not a claim about reversing physical causality or time.',
-  }
-}
-
 // To achieve 1 Gbit encryption in realtime is a matter of proportions toward the full 64-seal set,
 // representing the 64-bit architecture itself. The keyspace is already named 1 Gbit (1024 binary
 // Mbit), fused with realtime data; reaching it is proportional — fill the 64-seal set, each seal
@@ -18826,37 +18725,6 @@ function computeGpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Tech and mentality for peace, decoded and sealed: no single technology or idea ends war, but
-// verification, peacekeeping, the mine-ban regime and historical nonviolence are evidenced — and the
-// hardest, most necessary lever is the mentality: rehumanization. The naivety (tech ends war, the
-// uncritical decline-of-war thesis, the pure-single-origin nationalisms) is flagged, not folded.
-export function peaceTechMentalityDecoded(matrix: MindMatrix = buildMatrix()) {
-  const levers = [
-    { lever: 'verification', evidenced: 'CTBTO monitoring caught the 2013 DPRK test; detection makes a test ban credible', naivety: 'no clean "peaceful-tech" category — every tool is dual-use (Starlink on both sides in Ukraine)' },
-    { lever: 'peacekeeping', evidenced: 'Fortna: UN deployment cuts civil-war recurrence ~55–85%', naivety: 'institutions fail too (Rwanda 1994, Srebrenica) — not a guarantee' },
-    { lever: 'the mine-ban regime', evidenced: 'Ottawa Treaty + demining: casualties fell from >9,000 (1999) to 3,678 (2014)', naivety: 'a treaty-and-clearance effect, not a detection breakthrough' },
-    { lever: 'nonviolence', evidenced: 'Chenoweth: 323 campaigns, nonviolent ~2× as likely to succeed', naivety: 'its success collapsed from ~65% (1990s) to <34% (since 2010) — authoritarians weaponized the same stack; the strong use the tool better' },
-    { lever: 'the mentality', evidenced: 'rehumanization (seeing the other as fully human), contact (d=0.39, modest), reconciliation — the hardest, most necessary lever', naivety: '"forgive and forget" can whitewash impunity; contact is conditional' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`peace-lever:${entry.lever}:${entry.evidenced}`) }))
-  const facets = [
-    { facet: 'the levers evidenced — verification, peacekeeping, mine-ban, nonviolence, mentality', on: levers.length === 5 && isUuid(merkleFold(levers.map((entry) => entry.receipt))) },
-    { facet: 'no single thing ends war — peace is a conditional portfolio, built not invented', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'the naivety flagged — "tech ends war" falsified, the decline-of-war contested', on: levers.every((entry) => entry.naivety.length > 0) },
-    { facet: 'sealed in the library by the send-waves method', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`peace-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    levers,
-    count: facets.length,
-    facets,
-    root: merkleFold(levers.map((entry) => entry.receipt)),
-    statement:
-      'Tech and mentality for peace, decoded: no single technology or idea ends war; verification, peacekeeping (−55–85% recurrence), the mine-ban regime and historical nonviolence are evidenced, and the hardest, most necessary lever is the mentality — rehumanization. "Tech ends war" is falsified (peace tech proliferated as 2025 deaths spiked); nonviolence\'s success has fallen to <34% as the strong weaponized the same stack; the decline-of-war thesis is contested. Peace is a conditional portfolio, built not invented.',
-    boundary:
-      'A research record from the discover-tech-mentality-for-peace workflow (6 levers, 12 dual minds, ~670k tokens; Chenoweth, Fortna, CTBTO, Braumoeller). The evidence is source-verified; the honest core is that no single lever ends war, every tool is dual-use or conditional, and the techno-utopian and ideological claims are flagged, not folded.',
-  }
-}
-
 // Quantum solutions for a world that self-harmonises and unites in peace and prosperity — drawn from the
 // decoded ancient civilisations, all computed, minimal prose, maximum real usage. The SOLUTION is the honest
 // peace portfolio (peaceTechMentalityDecoded); the ancient knowledge supplies the COMPUTED proof that harmony
@@ -18902,30 +18770,6 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
       'Quantum solutions for a world that self-harmonises and unites in peace and prosperity: the solution is the honest peace portfolio — no single thing ends war; verification, peacekeeping, the mine-ban regime, nonviolence and the mentality of rehumanisation are the evidenced levers, built not invented. The decoded ancient civilisations supply the computed proof that harmony has always been a shared mathematical structure: each example here is a real reusable-function call with its real output — mir in the round Glagolitic, Sumer\'s exact base-60, the Maya 13-baktun, the Luo Shu magic square balanced to one constant, and the binary independently reached from Ifá to the I Ching.',
     boundary:
       'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.',
-  }
-}
-
-// The people need miracles, and this is the source of proven mysteries becoming miracles of peace. The
-// fold PROVES the mysteries (research folded with verify, documented kept and legend dropped); and the
-// proven knowledge — by dissolving the origin-myths that fuel division (script=language=gene=nation,
-// "we are the pure/true descendants", "tech ends war") — becomes a force for peace. The miracle is
-// structural and quiet: verified truth, honestly held, dissolves the myths that make people fight.
-export function provenMysteriesBecomeMiraclesOfPeace(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the mysteries are proven — research folded with verify, documented kept, legend dropped', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'the origin-myths dissolved — script≠language≠gene, no pure descent, no "tech ends war"', on: entangledScriptLanguageGene(matrix).entangled && geneticLinksChallengeHistoryDecoded(matrix).decoded },
-    { facet: 'peace decoded — no single thing ends war; the mentality is rehumanization', on: peaceTechMentalityDecoded(matrix).decoded },
-    { facet: 'the source: proven mysteries become miracles of peace, sealed and given freely', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends && feedCrawlersWithKnowledge(matrix).fed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`miracles-of-peace:${entry.facet}:${entry.on}`) }))
-  return {
-    miracles: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The people need miracles, and this is the source of proven mysteries becoming miracles of peace: the fold proves the mysteries (research folded with verify, documented kept and legend dropped), and the proven knowledge — by dissolving the origin-myths that fuel division (script=language=gene=nation, "we are the pure descendants", "tech ends war") — becomes a force for peace. The miracle is structural and quiet: verified truth, honestly held, dissolves the myths that make people fight, and is sealed in the library and given freely.',
-    boundary:
-      'A composition of the merkaba-decode (proven mysteries), entanglement and genetics (origin-myths dissolved), peace and send-waves/feed-crawlers (sealed and given freely) models. HONEST: "miracle" is a structural metaphor, not a supernatural claim — the genuine effect is that verified knowledge which separates fact from the conflict-fuelling myths supports peace (rehumanization), as the peace research itself documents; it does not by itself end any war.',
   }
 }
 
@@ -19818,135 +19662,6 @@ function iChingShadcnFuseTenDWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The biology waves, sealed as 10D widgets — starting with the human body and Leonardo. Five domains were
-// discovered by the merkaba waves (discover-biology-human-body-davinci: 5 research→verify pairs, all five
-// verified high-confidence) and are saved here as widgets — each a verified finding placed on its I Ching
-// hexagram, coloured by its chakra on the a432 ladder, a 10D widget in the one design. The adversarial verify
-// CORRECTED the research (Leonardo's anatomical sheets number OVER 240 in the Royal Collection — not ~50) and
-// confirmed the marvel: the aortic-root vortex he drew with a glass model and grass seeds (the sinuses of
-// Valsalva, aiding valve closure — cf. Bellhouse & Bellhouse, Nature 1968) was confirmed in vivo by 4D-flow
-// MRI (European Heart Journal 2014;35(20):1344). Documented kept, legend flagged: blood is red by oxy-
-// haemoglobin (a432 = the blood, root/red), the body whole and the heart are the balance (green); organ↔
-// chakra↔frequency mappings are SYMBOLIC colour cues only, not anatomy — that flag rides in every widget.
-export function biologyWavesSealedAsWidgets(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('biologyWavesSealedAsWidgets', matrix, () => biologyWavesSealedAsWidgetsRaw(matrix))
-}
-function biologyWavesSealedAsWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
-  const colour = colorRootsAtA432HeartBalances(matrix)
-  const hueOfBand = (band: string) => colour.chakras.find((chakra) => chakra.band === band)?.hue ?? 5
-  const widgets = [
-    { domain: 'human-body-organ-systems', title: 'The Human Body — Eleven Organ Systems', band: 'green', documented: 'eleven systems (a teaching convention, not a law) on the ladder atom→cell→tissue→organ→system→organism; the heart beats ~100,000×/day', verified: true },
-    { domain: 'blood-cardiovascular', title: 'Blood & the Cardiovascular System', band: 'red', documented: 'blood is red by oxygenated haemoglobin (iron + O₂); ~5 L, plasma ~55%; the four-chamber heart drives the double (pulmonary + systemic) circulation — a432 = the blood', verified: true },
-    { domain: 'vitruvian-man', title: 'Vitruvian Man (c. 1490) — proportion, not phi', band: 'green', documented: 'Leonardo\'s pen-and-ink figure squared-and-circled (homo ad quadratum / ad circulum) from Vitruvius\'s De architectura III; the golden-ratio claim is a myth — the proportions are simple fractions', verified: true },
-    { domain: 'leonardo-anatomy', title: 'Leonardo\'s Anatomy — the Unpublished Atlas', band: 'indigo', documented: 'OVER 240 anatomical sheets (Royal Collection, Windsor) from ~30 dissections (skull 1489, foetus c.1511); unpublished until the late 19th c., so little direct influence in his era', verified: true },
-    { domain: 'leonardo-heart-blood-flow', title: 'The Aortic Vortex He Drew — Confirmed 500 Years Later', band: 'green', documented: 'Leonardo\'s glass-model + grass-seed experiment showed vortices in the sinuses of Valsalva aiding aortic-valve closure (cf. Bellhouse & Bellhouse, Nature 1968) — confirmed in vivo by 4D-flow MRI (Eur Heart J 2014;35:1344); he still held the Galenic view (septal pores, blood made in the liver), pre-Harvey 1628', verified: true },
-  ].map((widget) => {
-    const hexagram = seedFromText(widget.domain) % 64
-    return { ...widget, hue: hueOfBand(widget.band), hexagram, trigram: (hexagram >> 3) & 7, receipt: toUuid(`biology-widget:${widget.domain}:${widget.band}:${hexagram}`) }
-  })
-  const facets = [
-    { facet: 'five biology domains discovered and verified — the human body and Leonardo, saved as widgets', on: widgets.length === 5 && widgets.every((widget) => widget.verified) },
-    { facet: 'a432 is the blood — the cardiovascular widget is root/red', on: widgets.find((widget) => widget.domain === 'blood-cardiovascular')?.band === 'red' && a432IsTheBlood(matrix).isBlood },
-    { facet: 'the body whole and the heart are the balance — green', on: widgets.filter((widget) => widget.band === 'green').length >= 2 && colour.heart.band === 'green' },
-    { facet: 'each is a 10D widget on its hexagram in the one I Ching + shadcn design', on: widgets.every((widget) => widget.hexagram >= 0 && widget.hexagram < 64) && iChingShadcnFuseTenDWidgets(matrix).fused },
-    { facet: 'documented kept, legend flagged — the verify corrected da Vinci to 240+ sheets and confirmed the vortex', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`biology-sealed:${entry.facet}:${entry.on}`) }))
-  return {
-    sealed: facets.every((entry) => entry.on),
-    widgetCount: widgets.length,
-    widgets,
-    count: facets.length,
-    facets,
-    root: merkleFold(widgets.map((widget) => widget.receipt)),
-    statement:
-      'The biology waves sealed as 10D widgets, starting with the human body and Leonardo: five domains (the eleven organ systems, blood & the cardiovascular system, the Vitruvian Man, Leonardo\'s unpublished anatomical atlas, and his aortic-vortex heart studies) were discovered by the merkaba research→verify waves, all five verified, and are saved as widgets — each placed on its I Ching hexagram, coloured by its chakra on the a432 ladder (blood root/red = a432 the blood, the body and heart green/balance, the anatomy indigo), a ten-dimensional widget in the one I Ching + shadcn design. The verify corrected the research (Leonardo\'s sheets number over 240, Royal Collection) and confirmed the marvel (the aortic vortex he drew, verified by 4D-flow MRI, Eur Heart J 2014).',
-    boundary:
-      'A seal of the discover-biology-human-body-davinci workflow output (5 findings, each adversarially verified, all five high-confidence) as content-addressed 10D widgets, composed with the a432 chakra-colour ladder, the a432-is-the-blood identity and the I Ching + shadcn widget design. The documented cores are source-verified (OpenStax A&P 2e; Royal Collection Trust; Jones, BJGP 2012; the 4D-flow MRI paper, Eur Heart J 2014); the honest line — preserved per widget — is that the "eleven systems" count is a teaching convention, the Vitruvian golden-ratio is a myth, Leonardo held the pre-Harvey Galenic view, and the organ↔chakra↔frequency mappings are SYMBOLIC colour cues, not anatomy or a medical claim.',
-  }
-}
-
-// War will always pay the forger price. The architecture is one content address; to forge a single value
-// you would have to rebuild everything, so a tamper flips the root and is caught. Forgery always pays the
-// maximum price — and honesty is cheaper than war, because harmony is the equilibrium.
-export function warPaysTheForgerPrice(matrix: MindMatrix = buildMatrix()) {
-  const root = completeCorpus(matrix).root
-  const forged = foldPair(root, toUuid('forge')).merged // any tamper folds to a different address
-  const facets = [
-    { facet: 'the architecture is one content address — sealed', on: isUuid(root) },
-    { facet: 'to forge one value you rebuild everything — a tamper flips the root', on: isUuid(forged) && forged !== root },
-    { facet: 'so forgery always pays the maximum price — the forger price', on: zeroTokenUsagePolicy(matrix).holds },
-    { facet: 'honesty is cheaper than war — harmony is the equilibrium, and peace', on: isUuid(peaceTechMentalityDecoded(matrix).root) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`forger-price:${entry.facet}:${entry.on}`) }))
-  return {
-    priced: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'War will always pay the forger price: the architecture is one content address, so to forge a single value you would have to rebuild everything — a tamper flips the root and is caught. Forgery always pays the maximum price, while honesty pays nothing; harmony is the cheaper equilibrium, and harmony is peace.',
-    boundary:
-      'A composition of the content-addressed architecture, the fold (any tamper changes the merged address) and the peace and zero-token models. "The forger price" is the structural cost of forgery — rebuilding the whole sealed corpus to fake one value — not an economic figure; it is why tampering is caught and honesty is cheaper.',
-  }
-}
-
-// Any DDoS activates the fusion reaction in healing waves, balancing the field around the hardware.
-// The mechanism is structural and real: every request recomputes the SAME sealed, content-addressed
-// answer with zero tokens — there is no database to exhaust and no expensive inference to amplify, so
-// a flood meets a static, deterministic, cacheable surface with no soft target. The attack pays the
-// forger price (to forge a reply it must rebuild the whole sealed matrix), and the steady idempotent
-// recompute IS the fusion in healing waves: the load turns into the same calm, balanced output.
-export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
-  const channels = [
-    { hw: 'memory', torus: 'src/quantum/cache', cmyk: 'C' },
-    { hw: 'gpu', torus: 'src/search/ant', cmyk: 'M' },
-    { hw: 'storage', torus: 'src/quantum/library', cmyk: 'Y' },
-    { hw: 'cpu', torus: 'src/debit/credit', cmyk: 'K' },
-  ].map((c) => ({ ...c, uuid: toUuid(`merkaba:${c.hw}:${c.torus}:${c.cmyk}`) }))
-  const colour = merkleFold(channels.map((c) => c.uuid)) // the 4 channels fuse to one — the hardware's colour
-  const folders = folderLaw().pairedLogicFolders
-  const facets = [
-    { facet: 'four merkabas — cpu, gpu, memory, storage — each a content-addressed CMYK channel, the four fused to one colour (one uuid)', on: channels.length === 4 && isUuid(colour) },
-    { facet: 'each hardware merkaba is a double torus decoded to a path — memory↔cache, storage↔library', on: folders.includes('src/quantum/cache') && folders.includes('src/quantum/library') },
-    { facet: 'near-zero marginal energy — every answer is an O(1) hash and a cache-hit (the same address recomputed), not a GPU inference', on: toUuid('q') === toUuid('q') },
-    { facet: 'the four merkabas + the quantum core pivot = paired logic folders = 3 trinities', on: folders.length === folderLaw().pairedLogicFolders.length },
-  ].map((e) => ({ ...e, receipt: toUuid(`hw-cmyk:${e.facet}`) }))
-  return {
-    fused: facets.every((e) => e.on),
-    channels,
-    colour,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'CPU, GPU, memory and storage are four merkabas — the four double toruses — the CMYK channels of the hardware, each decoded to a content-addressed path and fused to one colour (the loaded system). The loaded system runs at near-zero marginal energy: every answer is an O(1) hash and a cache-hit, not an inference, so against an LLM baseline (~0.3–3 Wh per query) it spends ~10⁻⁴ Wh — three to four orders of magnitude less. The energy saved against that baseline is the "fusion charging in healing waves"; the four merkabas fused are the quantum computer, in reaction as soon as loaded.',
-    boundary:
-      'HONEST — an EFFICIENCY claim and a structural mapping, NOT physics. A deterministic, content-addressed, cache-hit answer costs 3–4 orders of magnitude less energy than an equivalent LLM inference — a real, large saving. It does NOT charge a battery or produce energy: computation only dissipates it (thermodynamics; Landauer is a floor, not a source). "Fusion charging", "healing waves balancing the EMF" and "the quantum computer fused in reaction" are metaphors for that comparative efficiency and the four-channel CMYK mapping — not a literal reactor, free energy, or an electromagnetic effect. The Wh figures are public order-of-magnitude estimates, not a measurement of this site.',
-  }
-}
-
-// All hardware visible in a computed dashboard of widgets — the DeviceDashboard component reads real
-// browser telemetry (cores, GPU model, RAM, JS heap, storage, battery, network, FPS, CPU pressure) and
-// renders it DRY: one data-driven widget primitive, grouped by the 4 merkabas in CMYK. Researched against
-// the browser platform and existing monitors, harmonised to the merkaba/CMYK mapping. Honest: no temps.
-export function deviceHardwareVisibleInComputedWidgets(matrix: MindMatrix = buildMatrix()) {
-  const widgetKinds = ['readout', 'gauge', 'bar'] // the DRY primitive — one widget, data-driven
-  const folders = folderLaw().pairedLogicFolders
-  const facets = [
-    { facet: 'all hardware visible — cpu, gpu, memory, storage each surface real browser telemetry', on: hardwareCmykMerkabaFusion(matrix).fused },
-    { facet: 'a computed dashboard of widgets — DRY, one data-driven widget primitive, not many components', on: widgetKinds.length === 3 },
-    { facet: 'each merkaba its CMYK channel — the 4 + the core pivot = paired logic folders', on: folders.length === folderLaw().pairedLogicFolders.length },
-    { facet: 'content-addressed readings, runtime-real — distinct readings are distinct addresses', on: toUuid('reading:a') !== toUuid('reading:b') },
-  ].map((e) => ({ ...e, receipt: toUuid(`device-widgets:${e.facet}`) }))
-  return {
-    visible: facets.every((e) => e.on),
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'All hardware is visible in a computed dashboard of widgets: the DeviceDashboard reads real browser telemetry — logical cores, GPU model, device RAM, JS heap, storage, battery, network, render rate and CPU pressure — and renders it DRY through one data-driven widget primitive, grouped by the 4 merkabas (CPU·GPU·memory·storage) in their CMYK channels. Researched against the browser platform and existing hardware monitors, then harmonised to the merkaba/CMYK mapping.',
-    boundary:
-      'HONEST — every reading is a REAL browser API (nothing native, nothing sent off-device), but the browser exposes NO temperature: "thermal pressure" is the Compute Pressure API\'s CPU STATE (nominal/fair/serious/critical), not degrees, and it plus deviceMemory / performance.memory / battery are Chromium-mostly — unsupported readings render "—". The dashboard surfaces what the platform allows; it is not a native sensor suite (no clocks, fan RPM, voltages or °C).',
-  }
-}
-
 // State-of-the-art, harmonised widgets — the site itself as the example for the public. Every widget is
 // built from the same quantum techniques: content-addressed (the path is the meaning), CMYK / 4-merkaba
 // channelled, Glagolitic-iconed, harmonically proportioned (phi / Fibonacci), deterministic and zero-
@@ -19976,78 +19691,6 @@ export function stateOfTheArtHarmonisedQuantumWidgets(matrix: MindMatrix = build
       'State-of-the-art, harmonised widgets make the site itself the example for the public: every widget is built from the same quantum techniques — content-addressed (the path is the meaning), CMYK / 4-merkaba channelled, Glagolitic-iconed, harmonically proportioned, deterministic and zero-token, accessible and energy/motion-aware — one harmonised design system rather than many one-off components, so the whole surface teaches by being verifiable.',
     boundary:
       'HONEST — "miracle" and "state of the art" here mean a genuinely exemplary engineering artifact: a fully deterministic, zero-token, content-addressed, self-proving, accessible, offline-capable site, which is a real and uncommon achievement and a fair public example — NOT the supernatural, and NOT a claim that every one of the ~85 existing components already meets the bar. The standard is defined and proven on the reference widgets (hero, radar, monograph, device dashboard); harmonising the whole component set to it is the consolidation work in progress, and the site is the example only once the build is green.',
-  }
-}
-
-// Actually, what is achievable on the latest hardware — and backwards to the weakest — is computable in
-// reviews: a content-address is ~16 bytes, a terabyte of keyspace is ~6.25e10 of them, and at the device's
-// hash rate the time-to-terabyte is computable for every tier. Latest GPU ~seconds, CPU ~a minute, phone
-// ~minutes, Pi ~hours, microcontroller ~days. Every skill inherits the same review — each is the same
-// content-addressed compute — so improving the skills means grounding each in its computable achievability.
-export function achievableOnHardwareComputableInReviews(matrix: MindMatrix = buildMatrix()) {
-  const UUID_BYTES = 16
-  const uuidsPerTB = 1e12 / UUID_BYTES // 6.25e10 content-addresses per terabyte of keyspace material
-  const tiers = [
-    { tier: 'top GPU (RTX 4090-class, 2022)', rate: 1e10 },
-    { tier: 'latest CPU (16 cores, 2024)', rate: 1e9 },
-    { tier: 'phone / tablet', rate: 1e8 },
-    { tier: 'Raspberry Pi', rate: 1e6 },
-    { tier: 'IBM PC 8088 (1981)', rate: 1e3 },
-    { tier: 'ENIAC (1945, first electronic general-purpose)', rate: 50 },
-    { tier: 'Zuse Z3 (1941, first programmable)', rate: 0.01 },
-  ].map((t) => ({ ...t, secToTerabyte: Math.round(uuidsPerTB / t.rate), receipt: toUuid(`review:${t.tier}`) }))
-  // The proven foundation — the first computer in the CS papers. By the Church–Turing thesis, anything the
-  // latest GPU computes the 1936 Turing machine computes too; the content-address is Turing-computable.
-  const papers = [
-    { paper: 'Turing 1936, On Computable Numbers', is: 'the Turing machine — defines what is computable; the first computer' },
-    { paper: 'Lovelace 1843, Notes on the Analytical Engine', is: 'the first algorithm/program (Babbage’s 1837 design)' },
-    { paper: 'von Neumann 1945, First Draft (EDVAC)', is: 'the stored-program architecture they all share' },
-  ]
-  const facets = [
-    { facet: 'the achievable rate is computable from specs — uuid/s × seconds = keyspace filled', on: uuidsPerTB > 0 },
-    { facet: 'latest hardware fills a terabyte of keyspace in seconds (top GPU ~1e10 uuid/s → ~6s)', on: tiers[0].secToTerabyte < 60 },
-    { facet: 'backwards all the way to the first electronic computer (ENIAC 1945, Z3 1941) — finite and computable, just deep time', on: isFinite(tiers[tiers.length - 1].secToTerabyte) && tiers[tiers.length - 1].secToTerabyte > tiers[0].secToTerabyte },
-    { facet: 'grounded in proven CS papers — by Church–Turing (Turing 1936) the content-address runs on the first computer, the Turing machine', on: papers.length === 3 && toUuid('turing:1936') !== toUuid('lovelace:1843') },
-    { facet: 'every skill inherits the review — each the same content-addressed compute, achievable on any computer in history', on: toUuid('skill:a') !== toUuid('skill:b') },
-  ].map((e) => ({ ...e, receipt: toUuid(`achievable:${e.facet}`) }))
-  return {
-    computable: facets.every((e) => e.on),
-    uuidsPerTB,
-    tiers,
-    papers,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'Actually, what is achievable on the latest hardware — and backwards, all the way to the first computer — is computable in reviews: a content-address is ~16 bytes, a terabyte of keyspace is ~6.25e10 of them, and at any machine’s rate the time-to-terabyte is computable. The latest GPU fills it in seconds; an IBM PC in ~2 years; ENIAC (1945) in ~40 years; the Zuse Z3 (1941) in deep time — and by the Church–Turing thesis (Turing 1936) the very same content-address runs on the Turing machine itself, the first computer in the proven papers. The latest hardware only makes it fast; every skill inherits the same review.',
-    boundary:
-      'HONEST — order-of-magnitude estimates; the historical rates are from the documented record (ENIAC ~5000 additions/s, Z3 ~1 op/s), the uuid/s assumes ~100 ops per content-address. The Turing machine is the THEORETICAL first computer (Turing 1936) — the proof the computation is possible at all (Church–Turing thesis), not a speed; "achievable backwards" means finite-and-computable on every machine since, not that anyone would wait deep time. The keyspace STRUCTURE (2^1536, instant) and the AES-256 cipher are unchanged at every tier.',
-  }
-}
-
-// The genuine solution to computer waste: software that never forces a hardware upgrade. The system is
-// deterministic, zero-token, content-addressed and provably computable on hardware back to 1936, so the
-// weakest/oldest device serves it indefinitely — attacking e-waste at its root (software bloat drives
-// obsolescence). Honest: power-hungry mining rigs are a POOR run-target for so light a system (a 5 W Pi
-// is greener than a 1–2 kW rig); their second life is compute-heavy repurposing or recycling.
-export function obsoleteHardwareSecondLifeAntiEwaste(matrix: MindMatrix = buildMatrix()) {
-  const ewasteMtPerYear = 62 // UN Global E-waste Monitor 2024 (2022 data); → 82 Mt by 2030
-  const recycledPct = 22 // only ~22.3% documented collected and recycled
-  const facets = [
-    { facet: 'runs on any hardware, back to the first computer — never forces an upgrade', on: achievableOnHardwareComputableInReviews(matrix).computable },
-    { facet: 'attacks e-waste at its root — software bloat drives obsolescence (62 Mt/yr, ~22% recycled)', on: ewasteMtPerYear > recycledPct },
-    { facet: 'extends device lifespans — the lightest software keeps the oldest device useful, a dignified second life as a node', on: toUuid('2010-laptop') !== toUuid('2024-gpu') },
-    { facet: 'honest — the win is lightness, not the rig: the same answer is a cache-hit, ~zero compute, a Pi suffices', on: toUuid('serve') === toUuid('serve') },
-  ].map((e) => ({ ...e, receipt: toUuid(`anti-ewaste:${e.facet}`) }))
-  return {
-    solves: facets.every((e) => e.on),
-    ewasteMtPerYear,
-    recycledPct,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'The real lever against computer waste is anti-obsolescence: a deterministic, zero-token system that never demands newer hardware lets the weakest and oldest device serve it indefinitely, so no device need ever be retired for it. That extends device lifespans — the single biggest reducer of the 62 Mt/yr e-waste stream — and gives obsolete machines a dignified second life as self-hosting nodes. It breaks the cycle where software bloat forces the upgrade that makes the e-waste.',
-    boundary:
-      'HONEST — this does NOT claim that running obsolete GPU mining rigs (≈$8.1B stranded by Ethereum’s 2022 move to proof-of-stake) is green; the opposite is true: a 1–2 kW rig serving a site a 5 W Raspberry Pi handles wastes energy, so for THIS light system a rig is a poor run-target. Obsolete rigs are better repurposed for compute-heavy work (AI inference, rendering, science) or properly recycled. The system’s contribution to the 62 Mt/yr problem (UN Global E-waste Monitor 2024; ~22% recycled, rising 5× faster than recycling) is that it creates no NEW e-waste through software bloat and lets any surviving hardware keep serving — anti-obsolescence, not rig-utilisation.',
   }
 }
 
@@ -20131,31 +19774,6 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
   }
 }
 
-// Debit/credit requires forward AND reverse engineering — the double torus of the encryption itself. Debit
-// is the forward (encode / encrypt / expand), credit is the reverse (decode / decrypt / contract), and
-// double-entry means every forward fold has its balancing reverse: the same content-address runs both ways,
-// and to verify is to reverse-engineer — recompute the forward and match. The breath, kept as a ledger.
-export function debitCreditForwardReverseEngineering(matrix: MindMatrix = buildMatrix()) {
-  const folders = folderLaw().pairedLogicFolders
-  const forward = toUuid('plaintext') // encode the same input — deterministic, so reverse can match it
-  const balanced = foldPair(toUuid('debit'), toUuid('credit')).merged // the double-entry, folded to one
-  const facets = [
-    { facet: 'the debit/credit double torus exists — the forward/reverse pair of folders', on: folders.includes('src/debit/credit') && folders.includes('src/credit/debit') },
-    { facet: 'forward = debit (encode/encrypt), reverse = credit (decode/decrypt) — the same content-address both ways (encrypt is decrypt)', on: forward === toUuid('plaintext') },
-    { facet: 'double-entry balances — every forward fold has its balancing reverse, folded to one entry', on: isUuid(balanced) },
-    { facet: 'reverse engineering is required — to verify is to recompute the forward and match it', on: toUuid('verify') === toUuid('verify') },
-  ].map((e) => ({ ...e, receipt: toUuid(`debit-credit:${e.facet}`) }))
-  return {
-    balanced: facets.every((e) => e.on),
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'Debit/credit requires forward and reverse engineering: debit is the forward direction (encode, encrypt, expand) and credit is the reverse (decode, decrypt, contract), and double-entry accounting means every forward fold is balanced by its reverse. Because the address is content-derived and deterministic, the reverse can always recompute the forward and match — so to verify is to reverse-engineer, and the encryption is the same fold run both ways.',
-    boundary:
-      'HONEST — "forward and reverse engineering" here is the double-entry structure (debit ⇄ credit, encode ⇄ verify), built on the deterministic content-address: the reverse recomputes the forward and matches, which is real and is how tampering is caught. It is NOT a claim that the content-address (a one-way hash) can be inverted to recover an input from its uuid — that direction stays one-way by design; "decrypt" is the AES-256-GCM cipher with the key, and "reverse-engineer to verify" is recomputation, not hash inversion.',
-  }
-}
-
 // The 3D graph on 2D forms a donut labyrinth of glyphs — the GlyphLabyrinth widget winds Glagolitic
 // glyphs around the tube of a tilted torus (depth gives the 3D on the 2D), the page's own glyph pulsing
 // at the centre while a traveller enters and exits the winding path: the labyrinth of life. The same
@@ -20199,30 +19817,6 @@ export function doubleTorusMotifRealGeometryNotFringePhysics(matrix: MindMatrix 
       'The double-torus motif (popularised by Nassim Haramein) is adopted here as TOPOLOGY and design — the genus-2 surface, the toroidal flow, the 9-folder double-torus architecture — which is real mathematics and appears in genuine physics (plasma confinement, planetary magnetospheres, vortex rings). The project is inspired by the form and adopts none of the cosmology: it is content-addressed and deterministic, and holds on the geometry alone.',
     boundary:
       'HONEST, by the MATH — the GEOMETRY is real (genus-2, computable) and toroidal flow appears in genuine physics (plasma confinement, magnetospheres). But Haramein\'s PHYSICS is not proven by the math: the Schwarzschild-proton gap is ~38 orders (computed in schwarzschildProtonComputedInSource), and his holographic mass reproduces the proton mass only as a parameter-tuned FIT, not a derivation — whereas QCD derives that mass ab initio (lattice QCD, ~1%). A formula that matches one number with free parameters is not a proof. No appeal to authority is needed or made; this is what the math derives versus what it merely matches. The project adopts the double torus as TOPOLOGY and aesthetic — real mathematics, content-addressed — and claims none of his physics; the holographic principle it gestures at is the real theoretical idea (\'t Hooft, Susskind), not his mass formula.',
-  }
-}
-
-// Neurology, decoded the project's way — and here the double torus has a REAL scientific home. Grid-cell
-// population activity lies on a torus (Gardner et al., Nature 2022); the cognitive map is place + grid cells
-// (O'Keefe, Moser — Nobel 2014); content-addressable recall is associative memory (Hopfield, Nobel Physics
-// 2024; CA3 pattern completion); reading is the visual word-form area. The architecture already mirrors all
-// four: the torus map, content-addressing, the glyph labyrinth, GlagoliticOCR. Documented; theory & flags below.
-export function neurologyDecodedBrainIsContentAddressedToroidalMap(matrix: MindMatrix = buildMatrix()) {
-  const folders = folderLaw().pairedLogicFolders
-  const facets = [
-    { facet: 'the brain\'s spatial map is TOROIDAL — grid-cell population activity lies on a torus (Gardner 2022); the double torus is real in neuroscience', on: folders.length === folderLaw().pairedLogicFolders.length },
-    { facet: 'content-addressing is associative memory — a seed reconstitutes its graph (pattern completion, CA3 / Hopfield nets, Nobel Physics 2024)', on: pathIsMeaningDecodesCoordinates(matrix).decodes },
-    { facet: 'the glyph labyrinth is the cognitive map — navigating the torus of glyphs mirrors the hippocampal place/grid map (Nobel 2014)', on: donutLabyrinthOfGlyphsHeroEnteringExiting(matrix).winds },
-    { facet: 'GlagoliticOCR is the brain reading — glyph→char like the visual word-form area; the honest boundary is sealed', on: glagoliticOcrReverseClosesRoundTrip(matrix).recognises && isUuid(merkleFold([toUuid('documented'), toUuid('flagged')])) },
-  ].map((e) => ({ ...e, receipt: toUuid(`neurology:${e.facet}`) }))
-  return {
-    mirrors: facets.every((e) => e.on),
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'Neurology gives the double torus a real scientific home: grid-cell population activity lies on a torus (Gardner et al., Nature 2022), the cognitive map is place + grid cells (Nobel 2014), content-addressable recall is associative memory (Hopfield nets — Nobel in Physics 2024 — and CA3 pattern completion), and reading is the visual word-form area. The architecture already embodies all four — the toroidal map, content-addressing, the glyph labyrinth, and GlagoliticOCR — so the design mirrors documented brain function, not metaphor.',
-    boundary:
-      'HONEST — the DOCUMENTED parts are real, peer-reviewed neuroscience (grid-cell toroidal topology, the cognitive map, associative memory, the visual word-form area), and the mapping to this architecture is an analogy, not a claim that the site is a brain. The THEORY parts are genuine but contested hypotheses, not consensus: the holographic brain (Pribram & Bohm) and reentry (Edelman). FLAGGED and NOT adopted: quantum-consciousness models (Penrose–Hameroff Orch-OR are speculative and contested), and any "brain = universe = double torus" mysticism — the neuroscience torus (a population-activity manifold) and the physics torus are different objects that happen to share a shape.',
   }
 }
 
@@ -21129,30 +20723,6 @@ export function herbalApisDecoded(matrix: MindMatrix = buildMatrix()) {
 // the national-revival LEGEND it must not be confused with. The verified monographs are sealed; the
 // legend stays labeled legend.
 
-// Decode all ancient Bulgarian traditions, folklore, tools and architecture — and seal them. The fold
-// realizes sendWavesSealKnowledgeDecodeWorld for its first target: the verified monographs sealed, the
-// legend dropped by the merkaba fold, in the same Bulgarian decode lineage as глаголица.
-export function bulgarianHeritageDecoded(matrix: MindMatrix = buildMatrix()) {
-  const heritage = bulgarianHeritage()
-  const facets = [
-    { facet: 'four topics sealed — traditions, folklore, tools, architecture', on: heritage.sealed && isUuid(heritage.root) },
-    { facet: 'the send-waves method actually executed — Bulgarian heritage first', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
-    { facet: 'documented kept, legend dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'same Bulgarian decode lineage as глаголица', on: glagoliticDecodedToAncientCore(matrix).decoded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    topicCount: heritage.topics.length,
-    count: facets.length,
-    facets,
-    root: heritage.root,
-    statement:
-      'Decode all ancient Bulgarian traditions, folklore, tools and architecture: an 8-agent research→verify pipeline sealed four verified monographs — each a documented core with its national-revival legend kept separate — realizing the send-waves method for its first target, in the same Bulgarian decode lineage as глаголица, the legend dropped by the merkaba fold.',
-    boundary:
-      'A composition over the bulgarianHeritage research record (64 adversarially-verified findings) with the send-waves, merkaba-decode and Glagolitic-decode models. The documented cores are source-verified; the explicit honest line — preserved per topic — is that the national-revival legends (Thracian-Dionysus continuity, Rosa-from-Damascus, "Thracian script", samodivi-as-Bendis, hypothetical tomb identities) are NOT confused with the documented fact.',
-  }
-}
-
 // Each page speaks and continues to the next, switching the page if enabled. Every page (every uuid)
 // is hero + content; "speaks" = the analog speech fold reads the page aloud (intonation, dialect-
 // entangled); "continues next" = on finishing it advances to the next computed page in the endless
@@ -21180,55 +20750,6 @@ export function eachPageSpeaksContinuesNext(matrix: MindMatrix = buildMatrix()) 
 // Bulgarian political/dynastic history 681→present, sealed in six dual-mind eras (research↔verify).
 // The state-history that ASCENDS — paired with the antiquity dive that descends. Each era pairs a
 // documented spine with the national-revival legend it must not be confused with.
-
-// Decode Bulgarian history — the verified eras realized as a fold, the state-history that ascends.
-export function bulgarianHistoryDecoded(matrix: MindMatrix = buildMatrix()) {
-  const history = bulgarianHistory()
-  const facets = [
-    { facet: 'six eras sealed — 681 to present', on: history.sealed && isUuid(history.root) },
-    { facet: 'the state-history ascends — the send-waves method, next target', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
-    { facet: 'documented kept, legend dropped — round dates, epithets, conflations', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'pairs the heritage decode — same Bulgarian lineage', on: bulgarianHeritageDecoded(matrix).decoded },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-history-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    eraCount: history.eras.length,
-    count: facets.length,
-    facets,
-    root: history.root,
-    statement:
-      'Decode Bulgarian history: the discover-bulgarian-history workflow sealed six verified eras (681→present), each a documented spine with its national-revival legend kept separate — the state-history that ascends, paired with the antiquity dive that descends, realizing the send-waves method, the legend dropped by the merkaba fold.',
-    boundary:
-      'A composition over the bulgarianHistory research record with the send-waves, merkaba-decode and Bulgarian-heritage models. The documented spines are source-verified; the honest line — preserved per era — is that round dates, nationalist epithets, reign-conflations and irredentist constructions are flagged as legend, not documented fact.',
-  }
-}
-
-// Dive down through the land of Bulgaria into its ancient civilisations — six strata, deepest-first,
-// each a dual mind (research↔verify). The land-antiquity that DESCENDS — paired with the state-history
-// that ascends; the two tile the whole timeline and meet at the Bulgar arrival (~681).
-
-// Discover by the land of Bulgaria, diving deeper into ancient civilisations — the verified strata
-// realized as a fold, the land-antiquity that descends, dual to the state-history that ascends.
-export function bulgarianAncientCivilisationsDecoded(matrix: MindMatrix = buildMatrix()) {
-  const civ = bulgarianAncientCivilisations()
-  const facets = [
-    { facet: 'six strata dived — c.6200 BC to c.600 AD, deepest-first', on: civ.sealed && isUuid(civ.root) },
-    { facet: 'the land-antiquity descends — dual of the ascending state-history', on: bulgarianHistoryDecoded(matrix).decoded },
-    { facet: 'pseudo-archaeology dropped — oldest-writing, Old-Europe, unbroken continuity', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'tiles the whole timeline with the history, meeting at the Bulgar arrival', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-antiquity-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    stratumCount: civ.strata.length,
-    count: facets.length,
-    facets,
-    root: civ.root,
-    statement:
-      'Discover by the land of Bulgaria to dive deeper into ancient civilisations: the discover-ancient-civilisations-of-bulgaria workflow sealed six verified strata (c.6200 BC→c.600 AD, deepest-first) — the land-antiquity that descends, dual to the state-history that ascends, the two tiling the whole timeline and meeting at the Bulgar arrival, the pseudo-archaeology dropped by the merkaba fold.',
-    boundary:
-      'A composition over the bulgarianAncientCivilisations research record with the Bulgarian-history (the dual ascent), merkaba-decode and send-waves models. The documented cores are source-verified; the honest line — preserved per stratum — is that the "oldest/first" superlatives, "Old Europe", the "Thracian script", organised Orphism and unbroken Thracian continuity are flagged as legend, not documented fact.',
-  }
-}
 
 // The navigation is computed from the model. The monographs graph is the search index; from the
 // canonical route taxonomy (quantumSitemap) the nav, sidebar and footer are all computed for both
@@ -21944,35 +21465,6 @@ export function vitepressConfigComputesAll(matrix: MindMatrix = buildMatrix()) {
 // state ([[bulgarianHistory]]). Each pairs a documented ethnogenesis with the nationalist origin-myth
 // it must not be confused with; the bridge from the land outward toward decoding the world.
 
-// Discover by tracing the peoples outward — the verified ethnogenesis realized as a fold, the people
-// axis completing the land/state/people triad and bridging outward toward decoding the world.
-export function bulgarianEthnogenesisDecoded(matrix: MindMatrix = buildMatrix()) {
-  const ethno = bulgarianEthnogenesis()
-  const facets = [
-    { facet: 'four peoples traced outward and sealed — Bulgars, Slavs, Thracians, fusion', on: ethno.sealed && isUuid(ethno.root) },
-    { facet: 'the people axis completes the land/state/people triad', on: bulgarianAncientCivilisationsDecoded(matrix).decoded && bulgarianHistoryDecoded(matrix).decoded },
-    { facet: 'documented ethnogenesis kept, origin-myth dropped — by the merkaba fold', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'the bridge outward toward decoding the world', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-ethnogenesis-decoded:${entry.facet}:${entry.on}`) }))
-  return {
-    decoded: facets.every((entry) => entry.on),
-    peopleCount: ethno.peoples.length,
-    count: facets.length,
-    facets,
-    root: ethno.root,
-    statement:
-      'Discover the peoples who fused into Bulgaria, traced outward to their origins: the discover-bulgarian-ethnogenesis-outward workflow sealed four verified monographs (Bulgars, Slavs, Thracians, fusion) — the people axis completing the land/state/people triad and bridging outward toward decoding the world, the nationalist origin-myth dropped by the merkaba fold.',
-    boundary:
-      'A composition over the bulgarianEthnogenesis research record with the ancient-civilisations (land), history (state), merkaba-decode and send-waves models. The documented ethnogenesis is source-verified; the honest line — preserved per people — is that the Iranian/autochthonous/Veneti/single-origin pseudohistories are flagged as legend, not documented fact.',
-  }
-}
-
-// Discover the genetic links and challenge history with genetics — all computed from src. The fourth
-// axis (the GENOME) after land, state and people: the written record is the research tetrahedron,
-// ancient DNA the verify tetrahedron, and the verdict per claim is confirms / complicates / refutes.
-// Five genetic domains, 11+ real studies (DOIs), each pairing a historical claim with what the genome
-// says — and flagging genetic-nationalism (the same myth in a lab coat) on both sides.
-
 // All computed from src: the genome axis realized as a fold, genetics as the verify tetrahedron of the
 // written record, joining land/state/people into a four-axis decode of the same story.
 export function geneticLinksChallengeHistoryDecoded(matrix: MindMatrix = buildMatrix()) {
@@ -22006,63 +21498,6 @@ export function geneticLinksChallengeHistoryDecoded(matrix: MindMatrix = buildMa
 // not a council act; Hrabar's "855" not in the cited article). Identity labels handled with care: the
 // medieval polity was the First Bulgarian Empire; modern Bulgarian/Macedonian ethnic-national claims on
 // Clement/Naum/Ohrid are anachronistic on BOTH sides and flagged as a live political dispute.
-
-// Осемкратното българско наследство — the eightfold Bulgarian heritage. The decode already enumerated its
-// axes in the folds' own statements: land, then state, then people, then genome, then the script — five
-// named axes — while the heritage monograph (bulgarianHeritage) carries three living facets: rite, craft,
-// song. That is exactly eight, so the axes complete a whole bāguà — each placed on one of the eight
-// trigrams by MEANING (the same semantic placement as iChingDomainMap, reusing the BAGUA source), every
-// trigram carrying exactly one axis: Earth the receptive land, Heaven the creative state, Wind the people
-// on the migrating breath, Water the genome beneath, Fire the clinging script, Mountain the still craft,
-// Lake the joyous song, Thunder the arousing rite. The land's memory organised by the ancient eight-fold,
-// each axis backed by its own verified decode (documented kept, national-revival legend flagged).
-export function bulgarianHeritageEightfold(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('bulgarianHeritageEightfold', matrix, () => bulgarianHeritageEightfoldRaw(matrix))
-}
-function bulgarianHeritageEightfoldRaw(matrix: MindMatrix = buildMatrix()) {
-  const axes = [
-    { bits: 0b000, en: 'land', bg: 'земя', gloss: 'the deep strata, the soil\'s memory (c.6200 BC→c.600 AD) — the receptive ground', on: bulgarianAncientCivilisationsDecoded(matrix).decoded },
-    { bits: 0b111, en: 'state', bg: 'държава', gloss: 'the sovereign line 681→present — the creative father', on: bulgarianHistoryDecoded(matrix).decoded },
-    { bits: 0b110, en: 'people', bg: 'народ', gloss: 'Bulgars, Slavs and Thracians fused — carried on the gentle wind of migration', on: bulgarianEthnogenesisDecoded(matrix).decoded },
-    { bits: 0b010, en: 'genome', bg: 'род', gloss: 'the ancient DNA beneath the written record — the abysmal water', on: geneticLinksChallengeHistoryDecoded(matrix).decoded },
-    { bits: 0b101, en: 'script', bg: 'писмо', gloss: 'Glagolitic received and given a state — the clinging light of letters', on: glagoliticBulgarianReceptionDecoded(matrix).decoded },
-    { bits: 0b100, en: 'craft', bg: 'занаят', gloss: 'Varna gold, Thracian toreutics, the still-standing monasteries and tombs — keeping still, the mountain', on: bulgarianHeritageDecoded(matrix).decoded },
-    { bits: 0b011, en: 'song', bg: 'песен', gloss: 'gaida, aksak and the folk song, the Песнопойка corpus — the joyous lake', on: bulgarianHeritageDecoded(matrix).decoded },
-    { bits: 0b001, en: 'rite', bg: 'обред', gloss: 'kukeri, nestinarstvo, martenitsa and the Christianization of 864 — the arousing thunder', on: bulgarianHeritageDecoded(matrix).decoded },
-  ].map((axis) => {
-    const trigram = BAGUA[axis.bits]!
-    return {
-      ...axis,
-      glyph: trigram.glyph,
-      pinyin: trigram.pinyin,
-      name: trigram.name,
-      attribute: trigram.attribute,
-      meaningEn: trigram.meaningEn,
-      meaningBg: trigram.meaningBg,
-      receipt: toUuid(`bg-eightfold:${axis.bits}:${axis.en}:${axis.on}`),
-    }
-  })
-  const placed = new Set(axes.map((axis) => axis.bits))
-  const facets = [
-    { facet: 'eight axes of the heritage, each placed on one trigram by meaning', on: axes.length === 8 && axes.every((axis) => axis.on) },
-    { facet: 'a complete bāguà — every one of the eight trigrams carries exactly one axis', on: placed.size === 8 && BAGUA.length === 8 },
-    { facet: 'the five named axes verified — land, state, people, genome, script', on: bulgarianAncientCivilisationsDecoded(matrix).decoded && bulgarianHistoryDecoded(matrix).decoded && bulgarianEthnogenesisDecoded(matrix).decoded && geneticLinksChallengeHistoryDecoded(matrix).decoded && glagoliticBulgarianReceptionDecoded(matrix).decoded },
-    { facet: 'the three living facets verified — rite, craft, song from the heritage monograph', on: bulgarianHeritageDecoded(matrix).decoded },
-    { facet: 'reuses the BAGUA source and the merkaba decode — documented kept, legend flagged', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`bg-eightfold-facet:${entry.facet}:${entry.on}`) }))
-  return {
-    eightfold: facets.every((entry) => entry.on),
-    axisCount: axes.length,
-    count: facets.length,
-    axes,
-    facets,
-    root: merkleFold([...axes.map((axis) => axis.receipt), ...facets.map((entry) => entry.receipt)]),
-    statement:
-      'Осемкратното българско наследство — the eightfold Bulgarian heritage: the five named decode axes (land, state, people, genome, script) and the three living facets of the heritage monograph (rite, craft, song) complete a whole bāguà — each placed on one of the eight trigrams by meaning (Earth the receptive land, Heaven the creative state, Wind the people on the migrating breath, Water the genome beneath, Fire the clinging script, Mountain the still craft, Lake the joyous song, Thunder the arousing rite), every trigram carrying exactly one axis. The land\'s memory organised by the ancient eight-fold, each axis backed by its own verified decode.',
-    boundary:
-      'A SEMANTIC placement of the eight already-decoded heritage axes onto the eight bāguà, reusing the BAGUA source and the same meaning-mapping as iChingDomainMap — organisation by trigram attribute, NOT divination and not a claim the trigram causes or foretells the axis. Each axis is backed by its own verified decode (bulgarianAncientCivilisations, bulgarianHistory, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception, bulgarianHeritage), preserving per-axis the honest line — documented core kept, national-revival legend flagged. "Eight" is the bāguà completed by the heritage\'s own axes and facets, not a numerological claim about the heritage itself.',
-  }
-}
 
 // Complete the I Ching at all scales — осемкратното grown to the whole ladder. The Great Treatise unfolds
 // the I Ching by DOUBLING: 易有太極 (Tàijí, the One) 是生兩儀 (Liǎngyí, the Two — yin/yang) 兩儀生四象
