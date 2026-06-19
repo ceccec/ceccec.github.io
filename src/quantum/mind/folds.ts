@@ -1341,6 +1341,47 @@ export function detectorPassesFalsePositiveTest(matrix: MindMatrix = buildMatrix
   }
 }
 
+// The visible-spectrum colour of a wavelength (Dan Bruton's documented approximation, 380–780 nm → RGB).
+function visibleRgb(nm: number): [number, number, number] {
+  let r = 0
+  let g = 0
+  let b = 0
+  if (nm >= 380 && nm < 440) { r = -(nm - 440) / (440 - 380); b = 1 } else if (nm < 490) { g = (nm - 440) / (490 - 440); b = 1 } else if (nm < 510) { g = 1; b = -(nm - 510) / (510 - 490) } else if (nm < 580) { r = (nm - 510) / (580 - 510); g = 1 } else if (nm < 645) { r = 1; g = -(nm - 645) / (645 - 580) } else if (nm <= 780) { r = 1 }
+  let factor = 1
+  if (nm >= 380 && nm < 420) factor = 0.3 + (0.7 * (nm - 380)) / (420 - 380)
+  else if (nm > 700 && nm <= 780) factor = 0.3 + (0.7 * (780 - nm)) / (780 - 700)
+  else if (nm < 380 || nm > 780) factor = 0
+  const adj = (v: number) => (v <= 0 ? 0 : Math.pow(v * factor, 0.8))
+  return [adj(r), adj(g), adj(b)]
+}
+
+// A frequency represented by its REAL colour: a light frequency in the visible band shows its actual spectral
+// colour; a sound frequency is octave-folded (×2) up into the visible band first, then read off the spectrum.
+export function frequencyToColour(frequencyHz: number) {
+  const c = 299792458 // m/s
+  const visLo = 4.0e14 // ~750 nm (red edge)
+  const visHi = 7.9e14 // ~380 nm (violet edge)
+  let f = Math.max(frequencyHz, 1e-9)
+  let octaves = 0
+  while (f < visLo) { f *= 2; octaves += 1 }
+  while (f > visHi) { f /= 2; octaves -= 1 }
+  const wavelengthNm = (c / f) * 1e9
+  const [r, g, bch] = visibleRgb(wavelengthNm)
+  const hex = `#${[r, g, bch].map((v) => Math.round(v * 255).toString(16).padStart(2, '0')).join('')}`
+  return {
+    frequencyHz,
+    octavesFolded: octaves, // 0 if already visible light; ~40 for an audible sound lifted to light
+    visibleHz: f,
+    wavelengthNm: roundTo(wavelengthNm, 1),
+    colour: hex, // the REAL visible-spectrum colour of that wavelength
+    audible: frequencyHz >= 20 && frequencyHz <= 20000,
+    statement:
+      'A frequency is represented by its real colour: a frequency already in the visible band (~400–790 THz) shows its actual spectral colour (the wavelength λ = c/f read off the documented visible-spectrum curve); a sound frequency is first octave-folded (×2) up into that band — so a432, lifted ~40 octaves, lands near 631 nm, an orange-red. The colour is the physics, not a content-addressed hue.',
+    boundary:
+      'HONEST: for a LIGHT frequency in the visible band this is its genuine physical colour (λ = c/f, then Dan Bruton’s standard wavelength→RGB approximation — itself an approximation of human colour perception, gamma 0.8). For a SOUND frequency, the OCTAVE-FOLD (×2 up to the visible band) is a real, exact frequency relationship, but a 432 Hz sound and the ~475 THz light it folds to are NOT perceptually the same thing — sound is not light, and "the colour of a note" is octave-EQUIVALENCE, a structural mapping, not synesthesia or a claim that the sound emits that colour. This is the project’s first PHYSICAL frequency→colour; the hexagram colours stay content-addressed (arbitrary by design), and colorFromSound stays the music-wheel convention.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
