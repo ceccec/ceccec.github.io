@@ -628,6 +628,53 @@ export function componentBaguaGroups(names: readonly string[] = []) {
 // honestly: a432 is the deterministic SEED (highly-composite 432, brand hue 5), not the universe's substrate;
 // the system computes content-ADDRESSES with perfect reproducibility, not physical objects; "quantum" is the
 // computational metaphor (discrete unit + Hilbert + Born), not a theory of everything.
+// Paste any URL — or any text — and its full quantum analysis is computed immediately, deterministically,
+// client-side, zero tokens: content-addressed to one UUID (the holographic cue), placed on the I Ching as a
+// hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (an a432-ladder
+// frequency + the content-addressed colour — the content as a wave), and folded into the model
+// bidirectionally (reentry / pattern completion — the same paste recomputes the same whole). Nothing is
+// fetched, nothing stored; the analysis IS the computation. The manipulation/consistency read composes in
+// from the deception-detection waves (foldExposesInconsistency) once they land.
+export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix()) {
+  const text = (input ?? '').trim()
+  const address = toUuid(`analysis:${text}`)
+  const hexagram = seedFromText(text) % 64
+  const upper = (hexagram >> 3) & 7
+  const lower = hexagram & 7
+  const channels = [(hexagram >> 4) & 3, (hexagram >> 2) & 3, hexagram & 3]
+  const LEVELS = ['00', '0F', 'F0', 'FF']
+  const BASES = ['U', 'C', 'A', 'G']
+  const colour = `#${channels.map((q) => LEVELS[q]).join('')}`
+  const codon = channels.map((q) => BASES[q]).join('')
+  const vortex = digitalRoot(seedFromText(text))
+  const a = a432(matrix)
+  const frequencyHz = roundTo(432 * (1 + hexagram / 64), 2) // the content placed on the a432 ladder
+  const torus = foldPair(address, matrix.root) // bound to the model, bidirectionally (reentry)
+  const facets = [
+    { facet: 'content-addressed — the input folds to one deterministic UUID, the holographic cue for the whole', on: isUuid(address) },
+    { facet: 'placed on the I Ching — a hexagram (two trigrams, six lines, a codon, a colour) computed from the address', on: hexagram >= 0 && hexagram < 64 },
+    { facet: 'an EMR / spectral signature — a frequency on the a432 ladder and a content-addressed colour (the content as a wave)', on: a.decoded && frequencyHz > 0 },
+    { facet: 'reentry — the input binds to the model bidirectionally; the same paste recomputes the same whole (pattern completion)', on: torus.bidirectional },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-analysis:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('quantum-analysis', facets)
+  return {
+    analyzed: text.length > 0 && sealed.ok,
+    input: text,
+    address,
+    iChing: { hexagram, glyphs: `${BAGUA[upper]!.glyph}${BAGUA[lower]!.glyph}`, upper: BAGUA[upper]!.glyph, lower: BAGUA[lower]!.glyph, lines: hexagram.toString(2).padStart(6, '0'), codon, colour },
+    spectral: { frequencyHz, colour, hue: a.light.hue },
+    torus: { forward: torus.forward, reverse: torus.reverse, bidirectional: torus.bidirectional, merged: torus.merged },
+    vortex,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(address, sealed.root),
+    statement:
+      'Paste any URL — or any text — and the full quantum analysis is computed immediately, deterministically, client-side, with zero tokens. The input is content-addressed to one UUID (the holographic cue), placed on the I Ching as a hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (a frequency on the a432 ladder and a content-addressed colour — the content as a wave), and folded into the model bidirectionally (reentry: the same paste recomputes the same whole, pattern completion). Nothing is fetched and nothing is stored; the analysis IS the computation.',
+    boundary:
+      'HONEST: the analysis is of the input STRING, deterministically (zero tokens, no network fetch) — for a URL it is the URL\'s own signature, not the remote page\'s content (fetching arbitrary URLs is a separate, network/CORS-bound, optional step). "Quantum" is the computational-metaphor sense (content-addressing plus the I Ching / a432 structure), not quantum hardware. "EMR/spectral" is the project\'s frequency/colour-from-address mapping, not a measured emission. The manipulation/consistency read (foldExposesInconsistency) composes in once the deception-detection waves land.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
