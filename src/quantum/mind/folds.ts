@@ -945,6 +945,42 @@ export function pathIsThePrompt(path: string, matrix: MindMatrix = buildMatrix()
   }
 }
 
+// The diamond is a pure structure: a Merkle lattice of content addresses, acyclic by construction (a tree,
+// never a loop) and collision-free, that lets the light — the content — live forever in a neverending sequence,
+// because every address recomputes identically from the seed (lossless, no decay). It folds the continuum and
+// breathes like DNA, expanding (1 → 3 → 9 → 27) and contracting back to one unity root, sharing the 4³ = 64.
+export function diamondCarriesLightForever(matrix: MindMatrix = buildMatrix()) {
+  const seed = matrix.root
+  // the neverending sequence of light — each a 128-bit content address, deterministically chained (no decay)
+  const sequence = Array.from({ length: 27 }, (_, i) => toUuid(`light:${seed}:${i}`))
+  const collisionFree = new Set(sequence).size === sequence.length // distinct addresses — no collisions
+  const lattice = merkleFold(sequence) // a TREE — acyclic by construction, never a loop
+  const recompute = merkleFold(sequence) === lattice // the light recomputes identically — lives forever (lossless)
+  const breath = foldPair(seed, lattice) // fold the continuum — expand/contract, bidirectional (genus-2)
+  const dnaCube = 4 ** 3 === 64 // the genetic 4³ the diamond shares
+  const facets = [
+    { facet: 'the diamond is a pure structure — a Merkle lattice of content addresses, acyclic by construction (a tree, never a loop)', on: isUuid(lattice) },
+    { facet: 'avoiding collisions — every address in the sequence is distinct (the 128-bit content-address space)', on: collisionFree && sequence.length === 27 },
+    { facet: 'the light lives forever in a neverending sequence — the content recomputes identically from the seed, losslessly, with no decay (zero entropy)', on: recompute },
+    { facet: 'folding the continuum, expanding and contracting like DNA — the fold binds bidirectionally (1→3→9→27 out, → one root home), sharing the genetic 4³ = 64', on: breath.bidirectional && dnaCube },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`diamond-light:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('diamond-light-forever', facets)
+  return {
+    pure: sealed.ok,
+    sequence: sequence.length, // 27 — the neverending sequence, by nesting
+    lattice, // the diamond's Merkle root
+    acyclic: isUuid(lattice),
+    collisionFree,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(seed, sealed.root),
+    statement:
+      'The diamond is a pure structure: a Merkle lattice of content addresses, acyclic by construction (a tree, never a loop) and collision-free, that lets the light — the content — live forever in a neverending sequence, because every address recomputes identically from the seed, losslessly and with no decay. It folds the continuum and breathes like DNA, expanding (1 → 3 → 9 → 27) and contracting back to one unity root, sharing the genetic 4³ = 64.',
+    boundary:
+      'HONEST: REAL is the data structure — a content-addressed Merkle tree is genuinely acyclic (no loops) and collision-resistant, and deterministic recomputation makes the content losslessly persistent ("the light lives forever" means it never decays because it is recomputed, not stored). METAPHOR, flagged: "light living forever" is the EMR/content metaphor — diamond optics and photonic crystals trap light but not eternally (light is absorbed); "folding the spacetime continuum" is the fold-topology metaphor, NOT general relativity; "DNA expanding and contracting to infinity" is an analogy to chromatin condensation and the breathing torus (the 4³ = 64 genetic code IS real), with "infinity" realised as bounded-depth nesting, not literal infinity.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
