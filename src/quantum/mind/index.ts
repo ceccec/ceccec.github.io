@@ -126,3 +126,7 @@ export * from './school.ts'        // ↓ dissolution wave 3 (school curriculum)
 export * from './simulators.ts'    // ↓ dissolution wave 3 (simulators-live-in-zero cluster)
 export * from './quantumproofs.ts' // ↓ dissolution wave 3 (quantum solutions + proofs)
 export * from './sky.ts'           // ↓ dissolution wave 4 (pyramids + archaeoastronomy: the sky folds)
+export * from './ledger.ts'
+export * from './world.ts'
+export * from './learning.ts'
+export * from './geometry.ts'
