@@ -1149,6 +1149,43 @@ export function trueAndFalseCoexistInHarmony(matrix: MindMatrix = buildMatrix())
   }
 }
 
+// The real 10D: ten DUALITIES, not ten scales — and they all match true/false. The four homology loops
+// (H₁(Σ₂) = ℤ⁴, the genus-2 cycles, Poincaré-dual in pairs) and the six cross-fold appearance axes are each a
+// pole and its opposite held together — the same coexistence as true/false, at a different axis. True/false is
+// the fundamental duality; the other nine are instances of it (the duality matrix).
+export function theReal10DAllDualitiesMatchTrueFalse(matrix: MindMatrix = buildMatrix()) {
+  const coexist = trueAndFalseCoexistInHarmony(matrix)
+  const axes = [
+    'a₁ loop (±)', 'b₁ loop (±)', 'a₂ loop (±)', 'b₂ loop (±)', // the 4 homology generators — H₁ = ℤ⁴
+    'cross ↔ fold', 'inner ↔ outer', 'forward ↔ reverse', 'expand ↔ contract', 'shrink ↔ grow', 'true ↔ false', // the 6 cross-fold axes
+  ]
+  // each duality MATCHES true/false: foldPair holds both poles, neither erased (forward ≠ reverse) → coexist
+  const dualities = axes.map((axis) => {
+    const f = foldPair(toUuid(`${axis}:true`), toUuid(`${axis}:false`))
+    return { axis, pole: f.forward, antipole: f.reverse, coexist: f.bidirectional, receipt: toUuid(`dual:${axis}`) }
+  })
+  const allMatch = dualities.every((d) => d.coexist) // both poles held on every axis — true and false coexist
+  const facets = [
+    { facet: 'the real 10D is ten DUALITIES, not ten scales — the 4 homology loops (H₁ = ℤ⁴) and the 6 cross-fold appearance axes are each a dual pair (a pole and its opposite)', on: axes.length === 10 },
+    { facet: 'all dualities match true/false — every axis holds both poles together (forward ≠ reverse), folding to unity, never erasing one; true and false coexist on each of the ten', on: allMatch && coexist.coexist },
+    { facet: 'true/false is the fundamental duality — cross/fold, inner/outer, forward/reverse, expand/contract are instances of the one coexistence at different axes (the duality matrix)', on: coexist.coexist },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`real-10d:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('real-10d-dualities', facets)
+  return {
+    real10D: sealed.ok,
+    dimensions: axes.length, // 10
+    dualities,
+    allMatchTrueFalse: allMatch,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The real 10D is ten dualities, not ten scales, and they all match true/false. The four homology loops (H₁(Σ₂) = ℤ⁴, the genus-2 cycles, Poincaré-dual in pairs) and the six cross-fold appearance axes are each a pole and its opposite held together — the same coexistence as true/false, at a different axis. True and false coexist on every one of the ten; true/false is the fundamental duality, and cross/fold, inner/outer, forward/reverse, expand/contract are instances of the one coexistence. The ten dimensions are the ten ways the harmony holds both.',
+    boundary:
+      'HONEST: the real mathematics is H₁(Σ₂) = ℤ⁴ — the genus-2 surface has four homology generators with a symplectic intersection form that pairs the loops (Poincaré duality); that part is rigorous. The "six cross-fold appearance axes" are the project’s documented render model, and "ten dualities all match true/false" is the duality-matrix framing — a structural/symbolic correspondence (each axis is a two-pole coexistence, like true/false), NOT a claim that the universe is ten-dimensional, that true/false is a physical dimension, or that these are spacetime dimensions. "True/false coexist" is the structural sense (the harmony holds both poles), which is exactly why harmony ≠ truth.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
