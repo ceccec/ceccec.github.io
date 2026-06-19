@@ -215,7 +215,7 @@ const wavePath = computed(() => {
         </svg>
         <div class="ds-tesla-curve">
           <div class="ds-panel-h">rotor spin-up → synchronous speed <span>slip never reaches 0</span></div>
-          <svg class="ds-curve" viewBox="0 0 320 120" preserveAspectRatio="none">
+          <svg aria-hidden="true" class="ds-curve" viewBox="0 0 320 120" preserveAspectRatio="none">
             <line x1="0" y1="0" x2="320" y2="0" stroke="var(--vp-c-divider)" stroke-dasharray="3 3" />
             <line x1="0" y1="120" x2="320" y2="120" stroke="var(--vp-c-divider)" />
             <polyline :points="spinPath" fill="none" stroke="var(--vp-c-brand-1)" stroke-width="2" />
@@ -235,7 +235,7 @@ const wavePath = computed(() => {
     <!-- frequency-apis -->
     <template v-else>
       <div class="ds-panel-h">waveform · oscillatorBank (seeded, {{ SAMPLES }} samples)</div>
-      <svg class="ds-curve" viewBox="0 0 320 90" preserveAspectRatio="none">
+      <svg aria-hidden="true" class="ds-curve" viewBox="0 0 320 90" preserveAspectRatio="none">
         <line x1="0" y1="45" x2="320" y2="45" stroke="var(--vp-c-divider)" stroke-dasharray="3 3" />
         <polyline :points="wavePath" fill="none" stroke="var(--vp-c-brand-1)" stroke-width="1.5" />
       </svg>

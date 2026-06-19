@@ -107,7 +107,7 @@ const t = computed(() =>
           </div>
 
           <!-- Collision-freedom: distinct seeds scatter, none overlapping. -->
-          <svg v-else-if="proof.kind === 'scatter'" viewBox="0 0 100 46" class="dpf__svg" preserveAspectRatio="none">
+          <svg aria-hidden="true" v-else-if="proof.kind === 'scatter'" viewBox="0 0 100 46" class="dpf__svg" preserveAspectRatio="none">
             <circle
               v-for="(pt, i) in (proof.points as { x: number; y: number; hue: number }[])"
               :key="i"

@@ -288,7 +288,7 @@ const codonRows = computed(() => [
 
     <!-- survival -->
     <template v-else-if="mode === 'survival'">
-      <svg class="ps-curve" viewBox="0 0 320 120" preserveAspectRatio="none">
+      <svg aria-hidden="true" class="ps-curve" viewBox="0 0 320 120" preserveAspectRatio="none">
         <line x1="0" y1="120" x2="320" y2="120" stroke="var(--vp-c-divider)" />
         <polyline :points="curvePath" fill="none" stroke="var(--vp-c-brand-1)" stroke-width="2" />
       </svg>
@@ -313,7 +313,7 @@ const codonRows = computed(() => [
 
     <!-- walk -->
     <template v-else-if="mode === 'walk'">
-      <svg class="ps-curve" viewBox="0 0 320 90" preserveAspectRatio="none">
+      <svg aria-hidden="true" class="ps-curve" viewBox="0 0 320 90" preserveAspectRatio="none">
         <polyline :points="walkPath" fill="none" stroke="var(--vp-c-brand-1)" stroke-width="2" />
       </svg>
       <div class="ps-stat">

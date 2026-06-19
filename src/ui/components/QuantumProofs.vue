@@ -77,28 +77,28 @@ const t = computed(() =>
 
         <div class="qpf__stage">
           <!-- Superposition & Born rule: two bars settle to one half. -->
-          <svg v-if="proof.kind === 'histogram'" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
+          <svg aria-hidden="true" v-if="proof.kind === 'histogram'" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
             <line x1="0" :y1="46 - proof.predicted * 46" x2="100" :y2="46 - proof.predicted * 46" class="qpf__pred" />
             <rect class="qpf__bar qpf__bar--a" x="14" :y="46 - proof.series[0] * 46" width="28" :height="proof.series[0] * 46" />
             <rect class="qpf__bar qpf__bar--b" x="58" :y="46 - proof.series[1] * 46" width="28" :height="proof.series[1] * 46" />
           </svg>
 
           <!-- Entanglement: two nodes flip colour in perfect lockstep. -->
-          <svg v-else-if="proof.kind === 'correlation'" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
+          <svg aria-hidden="true" v-else-if="proof.kind === 'correlation'" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
             <line x1="32" y1="23" x2="68" y2="23" class="qpf__link" />
             <circle class="qpf__bell" cx="32" cy="23" r="11" />
             <circle class="qpf__bell" cx="68" cy="23" r="11" />
           </svg>
 
           <!-- Interference: fringes with a sweeping scan line. -->
-          <svg v-else-if="proof.kind === 'fringe' && proof.paths" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
+          <svg aria-hidden="true" v-else-if="proof.kind === 'fringe' && proof.paths" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
             <path :d="proof.paths.area" class="qpf__fringe" />
             <path :d="proof.paths.line" class="qpf__fringe-line" />
             <line x1="0" y1="0" x2="0" y2="46" class="qpf__scan" />
           </svg>
 
           <!-- Uncertainty: position and momentum gaussians breathe in anti-phase. -->
-          <svg v-else-if="proof.kind === 'duality' && proof.paths" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
+          <svg aria-hidden="true" v-else-if="proof.kind === 'duality' && proof.paths" viewBox="0 0 100 46" class="qpf__svg" preserveAspectRatio="none">
             <path :d="proof.paths.area" class="qpf__gauss qpf__gauss--x" />
             <path v-if="proof.pathsB" :d="proof.pathsB.area" class="qpf__gauss qpf__gauss--p" />
           </svg>
