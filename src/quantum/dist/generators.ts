@@ -5,7 +5,7 @@
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
 import { merkleFold, toUuid, foldVortex } from '../../0/index.ts'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded } from '../mind/folds.ts'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded } from '../mind/index.ts'
 import { glagoliticHomeFromEnglish } from '../mind/li.ts'
 import { bibleParallel, toGlagoliticOCS, pesnopoika } from '../library/index.ts'
 import { computedDistFiles, readmeMarkdown } from './index.ts'
