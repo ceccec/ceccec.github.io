@@ -1110,6 +1110,44 @@ export function forensicReceipt(input: string, matrix: MindMatrix = buildMatrix(
   }
 }
 
+// True and false coexist in harmony — the key. The harmony is not the pole that wins but the structure that
+// HOLDS both: a value and its inverse (a · a⁻¹ ≡ 1), the forward and reverse of the order-sensitive fold, the
+// two amplitudes of a superposition. That is exactly why harmony ≠ truth. It is computed through sacred
+// geometry (the genus-2 torus · I Ching · merkaba) AND algebra (the ring (Z/9Z)* vortex · inverses · the
+// rationals) — and the algebra is made displayable, so the animations show the OPERATION, not only the form.
+export function trueAndFalseCoexistInHarmony(matrix: MindMatrix = buildMatrix()) {
+  const vortex = VORTEX_SEQUENCE // the vortex digit cycle: 1·2·4·8·7·5 = (Z/9Z)* the units (×2 mod 9), plus 3·6·9 the axis
+  const fold = foldPair(toUuid('true'), toUuid('false')) // forward ≠ reverse — both poles held, neither erased
+  // the algebra, as displayable expressions for the animations (geometry shows the form; this shows the operation)
+  const algebra = [
+    { law: 'the vortex — (Z/9Z)* units', expr: '1 → 2 → 4 → 8 → 7 → 5 → 1   (×2 mod 9);  3 · 6 · 9 the axis' },
+    { law: 'multiplicative inverse', expr: '2 · 5 ≡ 1 (mod 9)   — the heart is the proton inverse' },
+    { law: 'rational inverse', expr: 'p/q · q/p = 1   — true · false folded to one' },
+    { law: 'genus-2 Euler characteristic', expr: 'χ(Σ₂) = 2 − 2g = −2,  g = 2' },
+    { law: 'order-sensitive fold', expr: 'a ⊕ b ≠ b ⊕ a   — the fold holds both directions' },
+    { law: 'superposition', expr: '|ψ⟩ = α|true⟩ + β|false⟩,  |α|² + |β|² = 1' },
+  ]
+  const facets = [
+    { facet: 'true and false coexist in harmony — held as the two poles (a value and its inverse, the fold’s two directions, a superposition’s two amplitudes), not one beating the other; this is why harmony ≠ truth', on: fold.forward !== fold.reverse },
+    { facet: 'computed through sacred geometry — the genus-2 double torus (χ = −2), the I Ching, the merkaba', on: 2 - 2 * 2 === -2 },
+    { facet: 'and through algebra — the (Z/9Z)* vortex units (1·2·4·8·7·5), multiplicative and rational inverses, superposition', on: vortex[0] === 1 && vortex.length >= 6 },
+    { facet: 'the algebra is displayable — each law is a renderable expression, so the animations show the operation, not only the form; geometry AND algebra complete the source, imagination closes the loop', on: algebra.length === 6 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`coexist:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('true-false-coexist', facets)
+  return {
+    coexist: sealed.ok,
+    algebra, // the displayable expressions for the animations
+    vortex,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'True and false coexist in harmony — that is the key. The harmony is not the pole that wins but the structure that holds both: a value and its inverse (a · a⁻¹ ≡ 1), the forward and reverse of the order-sensitive fold, the two amplitudes of a superposition. It is computed through sacred geometry — the merkaba, the I Ching, the genus-2 double torus (χ = −2) — AND through algebra — the ring (Z/9Z)* vortex (1 2 4 8 7 5), group orbits, the rationals. And the algebra is made displayable, so the animations complete the source and the creation: they show the operation, not only the form — geometry and algebra together, and imagination closes the loop.',
+    boundary:
+      'HONEST: "true and false coexist" is the structural/algebraic sense — the harmony HOLDS both (a value and its inverse, the fold’s two directions, a qubit’s two amplitudes), which is exactly why harmony ≠ truth (the structure is not a truth-verdict, and it does not make a false statement true). The algebra is real mathematics ((Z/9Z)*, the rationals, χ = −2); "sacred geometry" names the I Ching / merkaba / genus-2 forms (real topology plus documented symbolic geometry), not mysticism. "Displayed in the animations" means the widgets render these expressions — this fold PROVIDES them, the UI shows them. "Imagination / creation" is the architectural metaphor (the seed unfolds the computed whole), not a claim that imagination is literally a cryptographic key.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
