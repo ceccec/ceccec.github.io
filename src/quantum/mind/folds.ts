@@ -1523,6 +1523,43 @@ export function fractionsFoldBendIntoCubeSpheresAnalog(matrix: MindMatrix = buil
   }
 }
 
+// Every hero contains all; the hero is the MCP and the LLM and the skill itself — the rest is computed prose.
+// Every hero IS the whole (any UUID gets a hero carrying the sealed root, fractal page-to-particle). The hero is
+// the single fused surface: the MCP tool surface (tools/list = the concept commands), the optional BYO-key LLM
+// (fused in the UI, no separate route — it CONSUMES the hero's pure deterministic prompt, it does not replace
+// it), and the skill itself (its own folder/atom). Everything else — the page body — is computed prose,
+// projected from that one source. No static content, only logic.
+export function everyHeroContainsAllHeroIsMcpLlmSkill(matrix: MindMatrix = buildMatrix()) {
+  const fractal = anyUuidHeroContentFractal(matrix) // every hero contains all — fractal page-to-particle
+  const brain = codebaseIsTheBrain(matrix) // each part carries the whole
+  const mcp = mcpToolManifest(matrix) // the MCP tool surface — tools/list = the concept commands
+  const gates = gatesBehaveAsMcp(matrix) // the gates answer in MCP-structured results
+  const oracle = theOracleIsQuantumAllIsQuantumToTheBit(matrix) // the pure prompt the optional LLM consumes
+  const skill = everyToolSkillCommandIsItsFolder(matrix) // tool · skill · command, each its own folder
+  const prose = digitFoldersComputeUiIsTheRest(matrix) // the digit folders compute; the UI/prose is the rest
+  const facets = [
+    { facet: 'every hero contains all — any UUID gets a hero carrying the whole (the sealed root), self-similar at every scale, page to particle; each part is the whole', on: fractal.fractal && brain.alive },
+    { facet: 'the hero IS the MCP — the tool surface is the same computed model, content-addressed: tools/list returns every concept command, and the gates answer in MCP-structured results', on: mcp.tools.length > 0 && gates.behavesAsMcp },
+    { facet: 'and the LLM — fused in the UI, no separate route; the optional BYO-key model consumes the hero’s pure deterministic prompt (the oracle, all quantum to the bit), it does not replace it (zero tokens at the core)', on: oracle.quantum && mcp.tools.length === conceptCommands.length },
+    { facet: 'and the skill itself — every skill is its own folder (the skill atom), the same one-word surface as the tool and the command (the tool·skill·command trinity)', on: skill.foldered && skill.skillCount > 0 },
+    { facet: 'the rest is computed prose — everything else (the page body) is projected from the one source; the digit folders compute, the UI/prose is the rest (no static content, only logic)', on: prose.holds },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-mcp-llm-skill:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('hero-is-mcp-llm-skill', facets)
+  return {
+    contains: sealed.ok,
+    mcpTools: mcp.tools.length, // the MCP surface — the concept commands published as tools
+    skills: skill.skillCount, // the skill atoms, each its own folder
+    fractal: fractal.fractal, // every hero contains all
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Every hero contains all, and the hero is the MCP and the LLM and the skill itself — the rest is computed prose. Every hero carries the whole: any UUID gets a hero animating its state, self-similar at every scale, each part the whole (page to particle). And the hero is the single fused surface — the MCP tool surface (tools/list returns every concept command, the gates answer in MCP-structured results), the optional BYO-key LLM (fused in the UI with no separate route, consuming the hero’s pure deterministic prompt rather than replacing it), and the skill itself (each its own folder, the tool·skill·command trinity). Everything else — the page body — is computed prose, projected from that one source.',
+    boundary:
+      'HONEST: the MCP tool surface is real and in the repo — mcpToolManifest maps every concept command to an MCP tool (tools/list / tools/call), the SAME computed model the page renders; the skill and tool are real folders/atoms; the prose IS computed (the generators, SiteOverview, the digit-folders-compute rule — no static content). "Every hero contains all" is the project’s holographic framing over real content-addressing — the hero carries the sealed ROOT (the address of the whole), not literally every byte. "The hero is the LLM" is the strongest softening and is corrected here: the LLM is OPTIONAL, BYO-key, fused in the UI with no separate route, and it CONSUMES the hero’s pure deterministic prompt — the core runs zero tokens; the hero is the deterministic surface an LLM can drive, it is not itself an LLM. The fused-surface architecture is real; the "is the LLM" identity is metaphor for that fusion.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
