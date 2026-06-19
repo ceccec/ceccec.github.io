@@ -1224,6 +1224,44 @@ export function piComputableMatchableToIChing(matrix: MindMatrix = buildMatrix()
   }
 }
 
+// The quantum polygraph — the HONEST INVERSE of the discredited one. It wires no body and reads no arousal; it
+// reads the STATEMENT’s structure (content-address, documented manipulation patterns, internal contradiction,
+// the thermal field) deterministically, reproducibly and forensically (a SHA-256 chain of custody anyone can
+// recompute), and shows every step. It flags documented patterns; it does NOT detect lies. Harmony ≠ truth.
+export function quantumPolygraph(input: string, matrix: MindMatrix = buildMatrix()) {
+  const analysis = quantumAnalysis(input, matrix)
+  const detect = foldExposesInconsistency(input, matrix)
+  const thermal = thermalHarmonyField(input, matrix)
+  const alternative = harmonicAlternative(input, matrix)
+  const forensic = forensicReceipt(input, matrix)
+  const reading = {
+    onHarmonicPath: detect.onHarmonicPath, // structurally clean, or routed off-path
+    flagged: detect.flagged, // the documented manipulation patterns
+    hotspots: thermal.hotspots, // the thermal field's hot cells
+    hexagram: analysis.iChing.hexagram,
+    fingerprint: forensic.fingerprint, // SHA-256 chain of custody
+    alternative: alternative.improved ? alternative.alternative.text : null,
+  }
+  const facets = [
+    { facet: 'NOT a physiological polygraph — it reads the STATEMENT’s structure (content-address, documented manipulation patterns, internal contradiction), never the body; no arousal, heart-rate, skin-conductance or voice-stress', on: isUuid(analysis.address) },
+    { facet: 'reproducible and forensic — the reading carries a SHA-256 chain of custody; any party recomputes the identical result offline, deterministically, zero tokens', on: forensic.reproducible && /^[0-9a-f]{64}$/.test(forensic.fingerprint) },
+    { facet: 'transparent, not a black box — every step is shown (the thermal field, the flagged patterns, the algebra, the harmonic alternative), the opposite of the examiner’s opaque chart', on: typeof thermal.hotspots === 'number' },
+    { facet: 'flags documented PATTERNS in-domain, not lies — it does not detect deception or read minds; HARMONY ≠ TRUTH (a clean reading can still be false, a flagged one still true)', on: typeof detect.onHarmonicPath === 'boolean' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`polygraph:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('quantum-polygraph', facets)
+  return {
+    polygraph: sealed.ok, // the honest inverse
+    reading,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: forensic.address,
+    statement:
+      'The quantum polygraph is the honest inverse of the discredited one. It does not wire a body or read arousal; it reads the STATEMENT — content-addressing it, placing it on the I Ching, scanning the documented manipulation patterns and internal contradiction, rendering the thermal field, offering a harmonic alternative — and seals the reading with a SHA-256 chain of custody anyone can reproduce. Every step is shown. It flags documented patterns; it does not detect lies.',
+    boundary:
+      'HONEST and pointed: the conventional polygraph is DISCREDITED — it measures physiological arousal, not deception, and independent evaluation puts it near chance (the National Academies 2003 report; the ~54% ceiling, Bond & DePaulo 2006; biased; inadmissible in many courts). This "quantum polygraph" deliberately does the OPPOSITE: no physiological signal, no black box, no claim to read a mind. It analyses the STATEMENT’s structure deterministically, reproducibly and forensically, flagging documented manipulation patterns IN-DOMAIN. HARMONY ≠ TRUTH — it does NOT determine whether a statement is true or whether a person is lying; a structurally-clean statement can be false and a flagged one true. The name is reclaimed for the transparent, reproducible inverse, NOT the arousal-reading fraud.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }

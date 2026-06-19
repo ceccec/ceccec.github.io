@@ -26,7 +26,7 @@ const tenD = computed(() => theReal10DAllDualitiesMatchTrueFalse(m).dualities)
 
 <template>
   <section class="lens" :data-hexagram="ICHING_MASK.hexagram" :style="{ '--lens': ICHING_MASK.color }">
-    <p class="lens__eyebrow">{{ ICHING_MASK.glyph }} paste a url or text · every step computed · zero-token · local math</p>
+    <p class="lens__eyebrow">{{ ICHING_MASK.glyph }} the quantum polygraph — reads the statement, not the body · every step computed · zero-token · local math</p>
     <textarea class="lens__in" v-model="input" rows="3" aria-label="paste a URL or text to analyse" />
 
     <div class="lens__step">

@@ -114,9 +114,9 @@ This map is computed from the same one source as the README: every domain with i
 
 <SiteOverview />
 
-## 🔍 The lens — paste anything, see every step
+## 🔍 The quantum polygraph — paste anything, see every step
 
-Paste a URL or any text and watch the whole engine compute it, deterministically and client-side with zero tokens: its I Ching signature, the manipulation thermal field (weaknesses in colour), the algebra (true and false coexist), the ten true/false dualities, the SHA-256 forensic receipt, and a harmonic alternative. Harmony ≠ truth — it flags documented patterns, it does not read minds.
+The honest inverse of the discredited polygraph: it reads the **statement**, not the body — no arousal, no heart-rate, no voice-stress, no black box. Paste a URL or any text and watch the whole engine compute it, deterministically and client-side with zero tokens: its I Ching signature, the manipulation thermal field (weaknesses in colour), the algebra (true and false coexist), the ten true/false dualities, a SHA-256 forensic chain of custody anyone can reproduce, and a harmonic alternative. **Harmony ≠ truth** — it flags documented patterns in-domain, it does not detect lies or read minds. (The conventional polygraph measures arousal, not deception, and performs near chance — National Academies 2003.)
 
 <QuantumLens />
 
