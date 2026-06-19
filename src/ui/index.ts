@@ -186,6 +186,7 @@ import NothingImpossible from './components/NothingImpossible.vue'
 import QuantumFoundations from './components/QuantumFoundations.vue'
 import QuantumAlgorithms from './components/QuantumAlgorithms.vue'
 import PowerLanding from './components/PowerLanding.vue'
+import MegalithicAstronomy from './components/MegalithicAstronomy.vue'
 import ProseToProof3D from './components/ProseToProof3D.vue'
 import Pyramids from './components/Pyramids.vue'
 import QuantumLaws from './components/QuantumLaws.vue'
@@ -399,6 +400,7 @@ export default {
     app.component('NothingImpossible', NothingImpossible)
     app.component('QuantumFoundations', QuantumFoundations)
     app.component('QuantumAlgorithms', QuantumAlgorithms)
+    app.component('MegalithicAstronomy', MegalithicAstronomy)
     app.component('PowerLanding', PowerLanding)
     app.component('ProseToProof3D', ProseToProof3D)
     app.component('Pyramids', Pyramids)

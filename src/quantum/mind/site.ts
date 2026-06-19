@@ -244,8 +244,8 @@ export function staticPages(): StaticPage[] {
         en: 'Sacred geometry, decoded honestly: the five Platonic solids (a theorem — Euler V−E+F=2, the dual pairs), the golden ratio φ where it genuinely lives (the pentagon, the dodecahedron, phyllotaxis), the Flower of Life as a real compass construction, and the forms walked through dimensions. Documented kept, legend flagged — the maths and history are real; the cosmic-blueprint, golden-ratio-everywhere and ascension claims are not.',
         bg: 'Свещената геометрия, декодирана честно: петте Платонови тела (теорема — Ойлер V−E+F=2, двойките), златното сечение φ там, където наистина живее (петоъгълникът, додекаедърът, филотаксисът), Цветето на живота като реално построение с пергел, и формите, разходени през измеренията. Документираното остава, легендата е отбелязана.',
       },
-      keywords: ['sacred geometry', 'platonic solids', 'golden ratio', 'phi', 'flower of life', 'merkaba', 'metatron'],
-      components: ['SacredGeometry', 'MetatronMath', 'Pyramids'],
+      keywords: ['sacred geometry', 'platonic solids', 'golden ratio', 'phi', 'flower of life', 'merkaba', 'metatron', 'megalithic', 'archaeoastronomy', 'stonehenge', 'newgrange', 'solstice'],
+      components: ['SacredGeometry', 'MetatronMath', 'Pyramids', 'MegalithicAstronomy'],
     },
     {
       slug: 'tampering-cost',

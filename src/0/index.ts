@@ -145,6 +145,35 @@ export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: n
   return (Math.atan2(y, x) / r + 360) % 360
 }
 
+// Archaeoastronomy: where on the horizon the Sun rises and sets at the solstices — the real math the megalithic
+// alignments encode. The Earth's axial tilt (obliquity ε) is the Sun's declination at the solstices (±ε); at the
+// equinox the declination is zero and the Sun rises due east everywhere. ε is NOT fixed: it shrinks ~0.013°/century,
+// so it was ~24° when these monuments were built, not today's 23.44° — using the epoch value tightens the match.
+// J2000 mean obliquity (IAU 1976), degrees.
+export const OBLIQUITY_J2000_DEG = 23.4392811
+// The mean obliquity at an epoch given in years before present (2000). Linear secular term (~46.8″/century);
+// good to a few arc-minutes over the Holocene — enough for horizon azimuths, not for ephemeris precision.
+export function obliquityAtEpoch(yearsBeforePresent: number): number {
+  return OBLIQUITY_J2000_DEG + 0.0130125 * (yearsBeforePresent / 100)
+}
+// Azimuth (degrees clockwise from true north) at which a body of the given declination RISES, seen from `latDeg`
+// over a horizon of altitude `horizonAltitudeDeg` (0 = the flat sea-level horizon). cos A = (sin δ − sin φ·sin h)
+// / (cos φ·cos h). Returns null when the body is circumpolar / never rises (|cos A| > 1). Sunrise is the eastern
+// azimuth (0–180); the matching SUNSET azimuth is 360 − A (setAzimuthDeg).
+export function riseAzimuthDeg(latDeg: number, declinationDeg: number, horizonAltitudeDeg = 0): number | null {
+  const r = Math.PI / 180
+  const phi = latDeg * r
+  const dec = declinationDeg * r
+  const h = horizonAltitudeDeg * r
+  const c = (Math.sin(dec) - Math.sin(phi) * Math.sin(h)) / (Math.cos(phi) * Math.cos(h))
+  if (Math.abs(c) > 1) return null
+  return Math.acos(c) / r
+}
+export function setAzimuthDeg(latDeg: number, declinationDeg: number, horizonAltitudeDeg = 0): number | null {
+  const rise = riseAzimuthDeg(latDeg, declinationDeg, horizonAltitudeDeg)
+  return rise === null ? null : 360 - rise
+}
+
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)
