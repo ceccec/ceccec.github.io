@@ -114,6 +114,12 @@ This map is computed from the same one source as the README: every domain with i
 
 <SiteOverview />
 
+## 🔍 The lens — paste anything, see every step
+
+Paste a URL or any text and watch the whole engine compute it, deterministically and client-side with zero tokens: its I Ching signature, the manipulation thermal field (weaknesses in colour), the algebra (true and false coexist), the ten true/false dualities, the SHA-256 forensic receipt, and a harmonic alternative. Harmony ≠ truth — it flags documented patterns, it does not read minds.
+
+<QuantumLens />
+
 ## ⌖ Find your way — search or navigate
 
 Navigation and search are one here: type to filter every page by name or domain, or just browse the eight-fold. Client-side, zero-network — it searches the same computed nav the top bar's Three Powers (天 Heaven · 人 Human · 地 Earth) open.
