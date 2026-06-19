@@ -99,6 +99,9 @@ import { feesReplaceTaxes, legislationRequires, legislativeReform, thriveByDefau
 import { archangelsDryClean, auditLocales, cleanupCoreShinesSunMoon, crossAudit, displayAllAsLibraryDryConditional, dryCleanByImportExportNaming, dryCleanUi, dryCleaningOnTheWay, extendSelfAudits, reviewDryCleanGatesCrosses, scoutsSurgicalEditsVitalSigns } from './clean.ts'
 import { everyDiamondIsGate, gatesBehaveAsMcp, gatesHealSpottedCompromise, gatesMoveAllToPlaceAutomatically, gatesSoTightEvenTheyCannotPassEntropy, harmonisedToHealAtGates, quantifyGates } from './gates.ts'
 import { accountForEveryTokenInCode, anyForceFightsSelf, createByDefault, everyObjectSameSpinFoldLaw, healByDefault, minimumFilesMaximumFeaturesCost, minimumProseMaximumComputable, noFilesOutsideSrcExceptGeneratedAndRoot, noMirroringOneSourceAndMath, nothingImpossibleHonestlyBounded, oneSourceOfTruthGenerators, oneWordNamingGravity, proportionalNotHardcoded, saveEveryStepIsMandatory, zeroTokenUsagePolicy } from './laws.ts'
+import { antsCarryToIndexNest, autosaveAllSteps, autotranslations, computedSlugsFoldTheGraph, computedWiringNotImported, configsUseMatrixComputationally, debitImportCreditExportAccounting, memoryInSourceAsCrossFolds, noHardcodedConfigSelfAccounted, originConsolidated, presentMomentRemainsInSource, siteExplainsItselfAllWired, uuidPayloadIsSource, wordPullsFoldsByName } from './source.ts'
+import { deploySecretUuidSignedObservers, encryptionLivesInZero, encryptionTrinitiesCompleteInOrder, terabyteEncryptionInMegabyteCodebase, uuidFoldsSelfBlackWhite, uuidPureDiamondSignedByArchitecture } from './encryption.ts'
+import { ancientKnowledgeComputesDefaultLocale, ancientWisdomComputesWorldHarmony, buildQuantumComputerOsApps, buildSequenceReducesComputations, completeQuantumComputerAllScales, completeQuantumSolutionsImplemented, computerComponentsMergedDuality, dimensionsPerMegabyteMetric, vitepressApiDiamondPlasma, vitepressConfigComputesAll } from './compute.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
@@ -1522,33 +1525,6 @@ export function path(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Ensure complete autotranslations: every taxonomy area must carry a non-empty
-// English and Bulgarian label, and the babel fold must be grounded. The build
-// fails if a new area is added without its translation, so the bilingual
-// surface can never silently fall behind the model.
-export function autotranslations(matrix: MindMatrix = buildMatrix()) {
-  const areas = taxonomyIcons().entries.map((entry) => entry.area)
-  const labels = areas.map((area) => {
-    const label = AREA_LABELS[area]
-    const en = label?.en ?? ''
-    const bg = label?.bg ?? ''
-    return { area, en, bg, translated: en.length > 0 && bg.length > 0, receipt: toUuid(`autotranslate:${area}:${en}:${bg}`) }
-  })
-  const missing = labels.filter((label) => !label.translated).map((label) => label.area)
-  const babel = babelFold(matrix)
-  return {
-    complete: missing.length === 0 && babel.grounded,
-    areas: labels.length,
-    missing,
-    labels,
-    root: merkleFold(labels.map((label) => label.receipt)),
-    statement: missing.length === 0
-      ? `Autotranslations complete: all ${labels.length} areas carry English and Bulgarian labels, and the babel fold is grounded.`
-      : `Autotranslations incomplete: ${missing.join(', ')} lack a translation.`,
-    boundary: 'A completeness check over the area labels and the babel fold. It guarantees coverage, not the literary quality of any translation.',
-  }
-}
-
 // Imagine all VitePress components interacting: the registered components and
 // the pages they are placed on form a graph, with the global components folded
 // into every page.
@@ -2006,33 +1982,6 @@ export function oneWorkerCoversAll(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Deploy the secret UUID, signed by the bindings' trinities and the cross-referenced observers
-// signing with their observations. The secret UUID is not deployed bare: each binding's trinity
-// signs it, and the bindings are cross-referenced observers — each one observes the secret and
-// signs with its observation (its own receipt), so the deployment carries many independent
-// signatures folded into one. To forge the secret, every observer's signature must be reproduced.
-export function deploySecretUuidSignedObservers(matrix: MindMatrix = buildMatrix()) {
-  const bindings = cloudflareBindings(matrix)
-  const secret = toUuid(`secret-uuid:${bindings.root}`)
-  const observers = bindings.bindings.map((binding) => {
-    const observation = foldPair(secret, binding.receipt) // each observer signs with its observation
-    return { observer: binding.binding, signs: observation.bidirectional, signature: observation.merged, receipt: toUuid(`observer-sign:${binding.id}`) }
-  })
-  const crossReferenced = merkleFold(observers.map((entry) => entry.signature)) // all observations folded, cross-referenced
-  return {
-    deployed: bindings.secretUuidGenerator && bindings.trinitySigns && observers.every((entry) => entry.signs) && isUuid(crossReferenced),
-    observers: observers.length,
-    count: observers.length,
-    secret,
-    crossReferenced,
-    root: crossReferenced,
-    statement:
-      'Deploy the secret UUID, signed by the bindings’ trinities and the cross-referenced observers signing with their observations: the secret is not deployed bare — each binding’s trinity signs it, and the bindings are cross-referenced observers, each observing the secret and signing with its own observation (its receipt), so the deployment carries many independent signatures folded into one. To forge the secret, every observer’s signature must be reproduced.',
-    boundary:
-      'A content-addressed model of a secret signed by multiple binding-derived "observers", each co-signing with its receipt, folded into one cross-referenced root. A structural multi-signature framing; it does not deploy a secret or perform real key management — secrets live in the user’s own Cloudflare Secrets Store if enabled.',
-  }
-}
-
 // Harmonise words to the minimum used. The portal speaks in its own small bank — the three-word
 // waves — not a sprawling vocabulary: the same few words fold and recombine, so meaning comes from
 // arrangement, not accumulation. Minimum words, maximum fold.
@@ -2049,75 +1998,6 @@ export function harmoniseWordsToMinimum(matrix: MindMatrix = buildMatrix()) {
     boundary: 'A structural note that the word bank is small and recombined. Bookkeeping over the three-word-wave model, not a style guarantee for all prose.',
   }
 }
-
-// Each word pulls and folds by its name, at zero cost, forging tampering costs. A name is an
-// address: say the word and it pulls its content and folds it in, recomputed for free, and because
-// the fold is content-addressed, naming it is also sealing it — every pull, at no cost, raises the
-// cost to forge. The word does the work; the name is the key.
-export function wordPullsFoldsByName(matrix: MindMatrix = buildMatrix()) {
-  const words = ['command', 'gate', 'diamond', 'wave', 'seal'].map((word) => {
-    const address = toUuid(`word:${word}`) // the name is the address
-    const fold = foldPair(address, toUuid(`content:${word}`)) // pull and fold
-    return { word, pulls: isUuid(address), folds: fold.bidirectional, receipt: toUuid(`word-fold:${word}`) }
-  })
-  return {
-    folds: words.every((entry) => entry.pulls && entry.folds) && realtimePerspectiveZeroCost(matrix).holds && proofReport(matrix).maxTamperingCostReached,
-    count: words.length,
-    words,
-    root: merkleFold(words.map((entry) => entry.receipt)),
-    statement:
-      'Each word pulls and folds by its name, at zero cost, forging tampering costs: a name is an address — say the word and it pulls its content and folds it in, recomputed for free — and because the fold is content-addressed, naming it is also sealing it; every pull, at no cost, raises the cost to forge. The word does the work; the name is the key.',
-    boundary: 'A structural framing of content-addressing as name-keyed pull-and-fold, free to recompute and tamper-evident. Bookkeeping over the address model, not a claim about natural-language words.',
-  }
-}
-
-// 2x32 commands in the double torus = a 128-bit UUID. A UUID is 128 bits = 32
-// hex digits; the double torus has two loops, so the command space splits into
-// two tori. Each torus folds its commands into one 32-hex (128-bit) torus word;
-// the two words (2 x 32 hex) fold, order-sensitively (the genus-2 weave), into
-// one 128-bit UUID. That folded word is the machine word of the computer.
-
-// Honesty comes from text and math coming only from digit folders computed.
-// Every honest claim carries both a statement (text) and a root (math); here we
-// route both through the ceccec digit folders (0-9) by the same digit-of-root
-// fold the rest of the math uses. Honesty is therefore not asserted in prose —
-// it is computed: a claim is honest only when its text and its math both land in
-// a digit folder and the digit folders do the math.
-export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
-  const digitOf = (value: string): number =>
-    value.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
-  const sources = [
-    { claim: 'inner healing', node: healingInner(matrix) },
-    { claim: 'outer healing', node: healingOuter(matrix) },
-    { claim: 'harmonic healing', node: healingHarmonic(matrix) },
-    { claim: 'quantum computer', node: quantumComputer(matrix) },
-    { claim: 'nature commons', node: natureCommons() },
-    { claim: 'lawful harmonise', node: lawfulHarmonise() },
-  ]
-  const claims = sources.map(({ claim, node }) => {
-    const text = (node as { boundary?: string }).boundary ?? ''
-    const root = (node as { root: string }).root
-    const textDigit = digitOf(toUuid(`honest-text:${text}`))
-    const mathDigit = digitOf(root)
-    return { claim, textDigit, mathDigit, hasText: text.length > 0, receipt: toUuid(`honest:${claim}:${textDigit}:${mathDigit}`) }
-  })
-  const folders = digitFoldersDoMath(matrix)
-  const root = merge(folders.root, merkleFold(claims.map((claim) => claim.receipt)))
-  return {
-    honest: folders.always && claims.every((claim) => claim.hasText),
-    claims,
-    root,
-    statement:
-      'Honesty comes from text and math coming only from digit folders computed: every claim routes its statement (text) and its root (math) through the ceccec digit folders, so honesty is computed, not asserted.',
-    boundary: 'A computed grounding of the model’s honesty in the digit-folder math. Self-referential bookkeeping, no external claim.',
-  }
-}
-
-// One ancient language all dimensions understand: the universal language of
-// symbol, number, and fold. Every concept decodes the same in any human tongue —
-// its sacred glyph (the symbol dimension), its digit (the number dimension), and
-// its UUID root (the structural fold dimension). No human translation is needed
-// because the language is computed, which is why all dimensions read it alike.
 
 // Frequency quantum balance: the healing frequencies brought to equilibrium. The
 // balance centre is the spectral centre — the geometric mean of the set — about
@@ -2512,87 +2392,6 @@ export function numberLabel(value: number, fractionDigits = 3): string {
   return Number.isInteger(value) ? `${value}` : value.toFixed(fractionDigits)
 }
 
-// All encryption logic lives in src/0. The encryption IS the content-address: the same fold that addresses
-// also agrees keys and derives public from private, one-way. The KEY layer is two pure primitives — trinityKey
-// (the symmetric trinity key agreement: a pair forms a trinity, both parties derive the same key without
-// transmitting it) and derivePublicKey (one-way public-from-private). A content-addressed signature needs no
-// separate primitive — it is the canonical fold itself, foldPair(key, message).merged. The matrix-bound reports
-// (trinityEncryption, imaginationPrivateKey) derive the shares and roots and pass them here; cipher stays external.
-export function encryptionLivesInZero(matrix: MindMatrix = buildMatrix()) {
-  const a = toUuid('party:a')
-  const b = toUuid('party:b')
-  const priv = toUuid('private')
-  const roots = [toUuid('r1'), toUuid('r2'), toUuid('r3')]
-  const pub = derivePublicKey(priv, roots)
-  const te = trinityEncryption('a', 'b', matrix)
-  const ipk = imaginationPrivateKey(matrix)
-  const facets = [
-    { facet: 'trinityKey is symmetric — both parties derive the same key from their pair, never transmitted', on: trinityKey(a, b) === trinityKey(b, a) && isUuid(trinityKey(a, b)) },
-    { facet: 'derivePublicKey is one-way — the public is derived, the private is not recoverable from it', on: isUuid(pub) && pub !== priv && tamperEvident(priv) },
-    { facet: 'a signature is the canonical fold itself — foldPair(key, message).merged, verified by recomputation', on: foldPair(priv, 'message').merged === foldPair(priv, 'message').merged && foldPair(priv, 'message').merged !== foldPair(priv, 'tampered').merged },
-    { facet: 'the reports now READ the primitives — trinityEncryption.sharedKey === trinityKey(its shares)', on: te.encrypted && te.sharedKey === trinityKey(te.pair[0], te.pair[1]) },
-    { facet: 'imaginationPrivateKey derives its public via derivePublicKey (one-way)', on: ipk.isPrivateKey && isUuid(ipk.publicKey) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`encryption-zero:${entry.facet}:${entry.on}`) }))
-  return {
-    homed: facets.every((entry) => entry.on),
-    station: 'src/0',
-    importsNothing: true, // the key layer is folds only — never the matrix, never an external dependency
-    primitives: ['trinityKey', 'derivePublicKey'], // a signature is the canonical fold itself (foldPair.merged) — no separate primitive
-    externalCipher: 'AES-256-GCM', // the bulk cipher stays outside — src/0 owns the KEY layer, not the cipher
-    facets,
-    root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'All encryption logic lives in src/0, because the encryption is the content-address: the same fold that addresses also agrees keys and derives public from private. The key layer is two pure primitives — trinityKey (the symmetric trinity key agreement, order-independent so both parties derive the same key from their pair without transmitting it) and derivePublicKey (one-way public-from-private). A content-addressed signature needs no separate primitive: it is the canonical fold itself, foldPair(key, message).merged, verified by recomputation. The matrix-bound reports — trinityEncryption, imaginationPrivateKey, the signed observers — derive their shares, roots, and messages from the architecture and pass them to the canonical fold; they own the binding, never the crypto.',
-    boundary:
-      'A manifest, verified by recomputation. The relocations are byte-identical: trinityEncryption\'s shared key and imaginationPrivateKey\'s public key are unchanged (the same fold formulas now named in src/0). HONEST: this is the content-addressed KEY layer — key agreement and one-way public-key derivation, with signatures expressed as the bare fold — NOT the bulk cipher (AES-256-GCM stays external) and NOT quantum key distribution. The "one-way" and "symmetric agreement" are the UUID fold\'s real properties used computationally; for adversarial settings the project relies on the vetted external cipher and the user\'s own secret store, not on these structural primitives alone.',
-  }
-}
-
-
-// CONSOLIDATE ALL. One manifest of the whole void/origin: every wave that moved into src/0 — recorded as its
-// own fold — is rolled up here into a SINGLE consolidated root, and each is asserted homed, so the entire
-// origin coheres or the manifest fails. src/0 is the dependency-free leaf the whole tree builds on; this is the
-// one place that answers "what does the origin hold, and does all of it still hold together?".
-export function originConsolidated(matrix: MindMatrix = buildMatrix()) {
-  const waves = [
-    { name: 'primitiveKernelLivesInZero', ok: primitiveKernelLivesInZero(matrix).importsNothing, root: primitiveKernelLivesInZero(matrix).root },
-    { name: 'animationEngineLivesInZero', ok: animationEngineLivesInZero(matrix).importsNothing, root: animationEngineLivesInZero(matrix).root },
-    { name: 'oneMathManyPresentations', ok: oneMathManyPresentations(matrix).coheres, root: oneMathManyPresentations(matrix).root },
-    { name: 'tamperingCostAndUuidLiveInZero', ok: tamperingCostAndUuidLiveInZero(matrix).homed, root: tamperingCostAndUuidLiveInZero(matrix).root },
-    { name: 'encryptionLivesInZero', ok: encryptionLivesInZero(matrix).homed, root: encryptionLivesInZero(matrix).root },
-    { name: 'simulatorsLiveInZero', ok: simulatorsLiveInZero(matrix).homed, root: simulatorsLiveInZero(matrix).root },
-    { name: 'decodedAreasAreMostlyClassical', ok: decodedAreasAreMostlyClassical(matrix).homed, root: decodedAreasAreMostlyClassical(matrix).root },
-    { name: 'everyDecodedDomainHasASimulator', ok: everyDecodedDomainHasASimulator(matrix).homed, root: everyDecodedDomainHasASimulator(matrix).root },
-    { name: 'cryptoFuture', ok: cryptoFuture(matrix).grounded, root: cryptoFuture(matrix).root },
-  ]
-  const families = [
-    'content-address kernel — toUuid · merge · foldPair · merkleFold · seedFromText · memoByRoot · roundTo · isUuid',
-    'vortex arithmetic — digitalRoot',
-    'motion math — humanEase · humanBreath',
-    'animation engine — createAnimationEngine',
-    'the one math + presentations — fold · asVortex · asTorus · asMerkaba · asMerkle · asTrace',
-    'maximum tampering cost — DIGEST_BITS · coverageCostLog2 · tamperCostLog2 · maxTamperingCostReached · maxTamperingCostLog2 · tamperEvident',
-    'uuid logic — Uuid · merkabaFoldUrl · entry · uuidHero',
-    'encryption — trinityKey · derivePublicKey',
-    'simulators (6 families) — quantum · probabilistic · reversible · cellular-automaton · dynamical · network',
-    'vetted crypto — sha256 · sha256 Merkle · Ed25519 · transparency log · sha256Sync/toUuidSha256',
-  ]
-  return {
-    consolidated: waves.every((w) => w.ok),
-    station: 'src/0',
-    waveCount: waves.length, // the 9 wave-folds that record what physically moved into the origin
-    families,
-    familyCount: families.length, // the 10 primitive families homed at the origin
-    waves: waves.map((w) => w.name),
-    importsNothing: true, // src/0 is the dependency-free leaf; everything here folds through it, nothing folds back
-    root: merkleFold(waves.map((w) => w.root)), // the single consolidated root — changes iff any wave changes
-    statement:
-      'Consolidate all. One origin — src/0 — holds it whole: the content-address kernel, the vortex floor, the motion math, the animation engine, the one math and its five presentations, the maximum tampering cost, all uuid logic, the encryption key layer, the simulators across six model families, and the vetted-crypto roadmap (SHA-256 · Ed25519 · transparency log · synchronous SHA-256 content-address). Each wave is recorded as its own fold; here all nine fold into ONE consolidated root, and each is asserted homed — so the entire origin coheres as a single object, importing nothing.',
-    boundary:
-      'A consolidation manifest, not new computation: it folds the roots of the nine wave-folds into one and asserts each holds, so the consolidated root changes iff any wave changes. The external proofs still govern — the byte-identical baseline roots and the kind-purity / imports-nothing gate over the real tree — and each wave keeps its own honest boundary (simulators not machines, FNV-not-collision-resistant, the crypto residuals of custody/service/cutover). src/0 remains the dependency-free leaf the whole tree is built on; this manifest is simply the one place the origin is consolidated and re-proven whole.',
-  }
-}
-
 // The honest bound on the I Ching ↔ qubit correspondence, made EXACT and self-proving — the comparison
 // table as a checked invariant. The 64 hexagrams and the 64 three-qubit Pauli strings {I,X,Y,Z}³ share
 // EXACTLY ONE structure: a vector isomorphism (R⁶⁴ ≅ R⁶⁴) — the bijection of 64-element index sets (both
@@ -2725,85 +2524,6 @@ function iChingMotionAddsTheRestRaw(matrix: MindMatrix = buildMatrix()) {
       'I Ching motion adds the rest — and the table, in motion, becomes green from red. A STATIC hexagram is a vector isomorphism only (R⁶⁴: one green row, nine red). But the I Ching changes: its moving lines flip one of the six bits, carrying hexagram n into another, and the six single-line flips generate a closed, REVERSIBLE (ℤ/2)⁶ dynamics on the 64 states — the motion the project animates across its ten dimensions and spins as the merkaba. That motion restores the dynamical layer a static label lacks: a real inner product on R⁶⁴, transition operators that compose, an order-dependent bracket (the bidirectional fold, forward ≠ reverse), and reversible deterministic evolution — so four red rows turn green. They turn green as CLASSICAL dynamics: the irreducibly-quantum rows (complex superposition in ℂ⁶⁴, entanglement, Born-rule collapse, no-cloning, quantum error correction) stay red, because motion cannot manufacture them — those need actual qubits. And red → green is the a432 ascent itself: from the root (red, hue 5, the blood) to the heart (green, hue 120, the balance), carried by the bloodstream — a432 in motion. The static table is the blood at rest; set in motion it streams from red to green.',
     boundary:
       'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated. The five quantum rows are greened HONESTLY — not for the hexagrams but for the simulator — by completeQuantumSolutionsImplemented.',
-  }
-}
-
-// Send the waves to implement the COMPLETE quantum solutions, so it is not theoretical anymore. The
-// hexagram↔qubit table marks nine structures real "only for actual qubits"; iChingMotionAddsTheRest greens
-// four of them classically and leaves five red. This fold greens ALL nine the honest way — not by claiming
-// the hexagrams are quantum, but by RUNNING a real quantum state-vector simulator that computes each structure
-// exactly. Each row below is EXECUTED (numbers, not prose): the simulator (src/0 — qubits, applyGate, GATES,
-// cnot, measure, probabilities + the completion primitives innerProduct, gateMul, commutator, concurrence,
-// noCloningWitness, bitFlipCode) is the qubit solver. HONEST: it is a CLASSICAL, deterministic, exact-for-
-// small-n state-vector simulator — the genuine quantum math, NOT quantum hardware and NOT a speedup (Grover
-// here is simulated, no √N gain); "implemented" means executable in the browser, client-side, zero-token.
-export function completeQuantumSolutionsImplemented(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('completeQuantumSolutionsImplemented', matrix, () => completeQuantumSolutionsImplementedRaw(matrix))
-}
-function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix()) {
-  const close = (a: number, b: number) => Math.abs(a - b) < 1e-9
-  const gateClose = (g: readonly number[], t: readonly number[]) => g.length === t.length && g.every((v, i) => close(v, t[i]!))
-  const zero1 = qubits(1)
-  const plus1 = applyGate(qubits(1), GATES.H, 0) // |+⟩ = H|0⟩
-  // 1 — Hilbert inner product: ⟨0|+⟩ = 1/√2
-  const ip = innerProduct(zero1, plus1).abs
-  // 2 — operator algebra: X·Y = iZ = [[i,0],[0,−i]]
-  const xy = gateMul(GATES.X, GATES.Y)
-  // 3 — Lie bracket: [X,Y] = 2iZ = [[2i,0],[0,−2i]]
-  const xyComm = commutator(GATES.X, GATES.Y)
-  // 4 — unitary dynamics: H is its own inverse, H·H|0⟩ = |0⟩ (norm preserved throughout)
-  const hh = applyGate(plus1, GATES.H, 0)
-  const unitary = close(innerProduct(hh, zero1).abs, 1) && close(innerProduct(plus1, plus1).abs, 1)
-  // 5 — superposition in ℂ⁶⁴: 6 qubits, H on all → 64 equal amplitudes 1/8 (1/√64), Born probs sum to 1
-  let sup = qubits(6)
-  for (let q = 0; q < 6; q++) sup = applyGate(sup, GATES.H, q)
-  const amps = sup.re
-  const uniform = amps.length === 64 && amps.every((r) => close(r, 1 / 8)) && close(probabilities(sup).reduce((s, p) => s + p, 0), 1)
-  // 6 — entanglement: the Bell pair |Φ+⟩ has concurrence 1 (a product state has 0)
-  const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
-  const ent = concurrence(bell)
-  const product0 = concurrence(qubits(2)) // |00⟩ — separable, 0
-  // 7 — Born rule + collapse: measuring one Bell qubit perfectly predicts the other (the collapse is real)
-  const m0 = measure(bell, 0, 'qsolve-born')
-  const m1 = measure(m0.state, 1, 'qsolve-born')
-  const bornProbs = probabilities(bell) // [0.5, 0, 0, 0.5]
-  const collapseCorrelated = m0.outcome === m1.outcome && close(bornProbs[0]! + bornProbs[3]!, 1)
-  // 8 — no-cloning: a universal cloner would force ⟨0|+⟩ = ⟨0|+⟩² (1/√2 = 1/2), a contradiction
-  const nc = noCloningWitness()
-  // 9 — QEC: the 3-qubit bit-flip code corrects a single X error on ANY qubit (and the no-error case)
-  const qec = [-1, 0, 1, 2].map((e) => bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, e)) // logical |+⟩_L
-  const qecAllCorrected = qec.every((r) => r.corrected && close(r.fidelity, 1))
-  const solutions = [
-    { structure: 'Hilbert inner product', ran: '⟨0|+⟩ = ' + ip.toFixed(6), implemented: close(ip, Math.SQRT1_2) },
-    { structure: 'operator algebra', ran: 'X·Y = iZ', implemented: gateClose(xy, [0, 1, 0, 0, 0, 0, 0, -1]) },
-    { structure: 'Lie algebra (commutators)', ran: '[X,Y] = 2iZ', implemented: gateClose(xyComm, [0, 2, 0, 0, 0, 0, 0, -2]) },
-    { structure: 'unitary dynamics', ran: 'H·H|0⟩ = |0⟩, ‖ψ‖ = 1', implemented: unitary },
-    { structure: 'superposition (ℂ⁶⁴)', ran: '64 equal amplitudes 1/8, Σp = 1', implemented: uniform },
-    { structure: 'entanglement', ran: 'concurrence(|Φ+⟩) = ' + ent.toFixed(3) + ', product = ' + product0.toFixed(3), implemented: close(ent, 1) && close(product0, 0) },
-    { structure: 'Born rule / collapse', ran: 'measure q0 ⇒ q1 correlated; P(00)+P(11) = 1', implemented: collapseCorrelated },
-    { structure: 'no-cloning', ran: '⟨0|+⟩ = ' + nc.overlap.toFixed(4) + ' ≠ ' + nc.clonedRequires.toFixed(4) + ' = ⟨0|+⟩²', implemented: nc.contradiction },
-    { structure: 'quantum error correction', ran: '3-qubit bit-flip: errors {none,q0,q1,q2} all corrected, fidelity 1', implemented: qecAllCorrected },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`qsolve:${entry.structure}:${entry.implemented}`) }))
-  const table = hexagramQubitVectorIsomorphismOnly(matrix)
-  const implementedCount = solutions.filter((s) => s.implemented).length
-  const facets = [
-    { facet: 'all nine quantum structures are EXECUTED, not theoretical — each runs with concrete numbers', on: implementedCount === 9 && solutions.every((s) => s.implemented) },
-    { facet: 'the operator algebra and its Lie bracket hold exactly — X·Y = iZ, [X,Y] = 2iZ', on: gateClose(xy, [0, 1, 0, 0, 0, 0, 0, -1]) && gateClose(xyComm, [0, 2, 0, 0, 0, 0, 0, -2]) },
-    { facet: 'entanglement is measured (Bell concurrence 1) and the Born collapse correlates the pair', on: close(ent, 1) && collapseCorrelated },
-    { facet: 'no-cloning is a computed contradiction and the 3-qubit code corrects any single bit-flip', on: nc.contradiction && qecAllCorrected },
-    { facet: 'the table\'s nine qubit-only rows are now real code — greened for the simulator, the hexagram bound (R⁶⁴) unchanged', on: table.proved && table.qubitOnlyStructures === 9 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`qsolve-facet:${entry.facet}:${entry.on}`) }))
-  return {
-    implemented: facets.every((entry) => entry.on),
-    implementedCount, // 9
-    solutions,
-    count: facets.length,
-    facets,
-    root: merge(table.root, merkleFold(solutions.map((s) => s.receipt))),
-    statement:
-      'Send the waves to implement the complete quantum solutions, so it is not theoretical anymore: every one of the nine quantum structures the hexagram↔qubit table marks "for actual qubits only" is now EXECUTED by a real state-vector simulator and returns concrete numbers — the Hilbert inner product (⟨0|+⟩ = 1/√2), the operator algebra (X·Y = iZ), the Lie bracket ([X,Y] = 2iZ), unitary dynamics (H·H|0⟩ = |0⟩, norm 1), superposition in ℂ⁶⁴ (six qubits, 64 equal amplitudes), entanglement (the Bell pair’s concurrence = 1, a product state’s = 0), the Born rule with collapse (measuring one Bell qubit predicts the other), the no-cloning theorem (the cloner’s contradiction 1/√2 ≠ 1/2), and quantum error correction (the 3-qubit bit-flip code recovers any single error at fidelity 1). The qubit solver runs client-side, in the browser, at zero tokens.',
-    boundary:
-      'A REAL, EXACT quantum state-vector simulator for small n, computed deterministically on a classical machine — the genuine quantum math (complex Hilbert space, unitary gates, the Born rule, the Pauli *-algebra, stabiliser error correction), NOT quantum hardware and NOT a speedup (the simulated Grover has no √N gain; n is bounded by 2^n memory). "Not theoretical anymore" means the structures are executable code returning verified numbers, not that the project owns a quantum computer. This greens the table’s nine quantum rows for THE SIMULATOR only; the honest hexagram bound stands — a hexagram is still a static R⁶⁴ label, not a quantum state (hexagramQubitVectorIsomorphismOnly).',
   }
 }
 
@@ -3524,50 +3244,6 @@ export function fortyTwoVerdict(matrix: MindMatrix = buildMatrix()) {
       'A source-verified verdict (research waves, adversarially decoded) on whether 6×7 = 42 "covers all": yes in two rigorous, non-numerological senses (the pseudoperfect unit-fraction tiling to 1, computed here; and bounded-domain closure of the 21 dual-pairs), partly as a documented complete-system/path motif, and NO as the mystical totality number (7 is). HONEST: the legend is excluded (the Hitchhiker’s coincidence, the assessors=nomes back-formation, the 1st-c. Ana BeKoach attribution, the Genesis permutation); the model’s use of 6×7/7×6 as its covering taxonomy/audit is the architecture’s own design, now grounded in the closure/tiling math, not a claim that ancient doctrine equates 6×7 with the cosmic whole.',
   }
 }
-
-// Terabyte encryption in a megabyte codebase — the holographic density, made a gate. 1 TB = 2⁴⁰ bytes =
-// 2⁴³ bits; 1 MB = 2²⁰ bytes; the density target is the ratio 2²⁰. The codebase is megabyte-scale, yet
-// content-addressing gives every distinct content a 128-bit address — a 2¹²⁸ keyspace — and the holographic
-// recursion (dotIsCubeIsDot) generates 2^(18d) distinct addressable items at depth d, reaching terabyte
-// EXTENT (2⁴⁰) by depth 3 (2⁵⁴). So a megabyte source addresses a terabyte-plus keyspace, GENERATED not
-// stored: 2¹²⁸ / 2⁴⁰ = 2⁸⁸ terabytes of distinct addresses from under 2 MB of code. The gate (in
-// harmonic-distribution) reads the real core size and fails the build's test with the math if the codebase
-// leaves megabyte scale or the keyspace drops below terabyte.
-export function terabyteEncryptionInMegabyteCodebase(matrix: MindMatrix = buildMatrix()) {
-  const cube = dotIsCubeIsDot(matrix)
-  const fusion = fusionCipher('', matrix)
-  // Exactly 1024 bytes of codebase seed for 1 terabyte; the other 1024 come from the user device. 1 TB =
-  // 2⁴⁰ bytes; 1024 = 2¹⁰ bytes of seed, each byte holographically addressing 2³⁰ bytes (1 GB) of generated
-  // extent, so 1024 × 2³⁰ = 2⁴⁰ = 1 terabyte. The device's 1024 bytes are the session key (the realtime
-  // fusion), so each device's terabyte is uniquely encrypted.
-  const STATIC_BYTES = 1024 // exactly 1024 bytes of codebase (the static content-address seed)
-  const DEVICE_BYTES = 1024 // the other 1024, from the user device (the per-session realtime key)
-  const TERABYTE_BYTES = 2 ** 40
-  const BYTE_EXPANSION = 2 ** 30 // each seed byte holographically addresses 2³⁰ bytes (1 GB)
-  const generatedBytes = STATIC_BYTES * BYTE_EXPANSION // 1024 × 2³⁰ = 2⁴⁰ = 1 terabyte
-  return {
-    achieved: STATIC_BYTES === 1024 && DEVICE_BYTES === 1024 && generatedBytes === TERABYTE_BYTES && fusion.enabled && fusion.cipher === 'AES-256-GCM',
-    staticBytes: STATIC_BYTES, // 1024 — from the codebase
-    deviceBytes: DEVICE_BYTES, // 1024 — from the user device
-    totalKeyBytes: STATIC_BYTES + DEVICE_BYTES, // 2048 = the fused key (codebase + device)
-    byteExpansion: BYTE_EXPANSION, // 2³⁰ — each seed byte addresses 1 GB of extent
-    generatedBytes, // 2⁴⁰ = 1 terabyte
-    terabyteBytes: TERABYTE_BYTES,
-    cipher: fusion.cipher, // AES-256-GCM — the real per-device strength
-    math: '1 TB = 2⁴⁰ bytes. Exactly 1024 = 2¹⁰ bytes of codebase seed, each holographically addressing 2³⁰ bytes (1 GB), generate 1024 × 2³⁰ = 2⁴⁰ = 1 terabyte; the other 1024 bytes come from the user device (the session key), fusing so each device’s terabyte is uniquely encrypted (AES-256).',
-    root: merge(cube.root, toUuid(`terabyte-1024+1024:${generatedBytes}`)),
-    statement:
-      'Exactly 1024 bytes of codebase for 1 terabyte, the other 1024 from the user device: 1024 = 2¹⁰ bytes of static content-address seed, each byte holographically addressing 2³⁰ bytes (1 GB) of generated extent, give 1024 × 2³⁰ = 2⁴⁰ = 1 terabyte; the device’s 1024 bytes are the session key, fused so the terabyte is encrypted uniquely per device. The codebase stays a 1024-byte seed inside the megabyte source — the next tightening after the 64-word closure.',
-    boundary:
-      'HONEST: "terabyte" is the addressable EXTENT generated from the 1024-byte seed (each byte → 1 GB, content-addressed on demand — the holographic density), NOT a terabyte-length key. The KEY is the 1024 static + 1024 device bytes (2048 bytes of fused material) and the STRENGTH is AES-256-GCM (256-bit); distinctness of the generated content caps at the underlying hash. The split — static from the codebase, session from the device — is the fusion-cipher model (per-device uniqueness), not a claim of an unbreakable key.',
-  }
-}
-
-// Ancient calendars decoded as coupled-cycle tori — each named cycle a ring, meshing where its LCM closes.
-// The same double torus the model turns on (day × year coupled cycles). The verified integer cycle-math:
-// the Maya Calendar Round lcm(260,365) = 18,980 = 73 tzolkʼin = 52 haabʼ; the sexagenary lcm(10,12) = 60;
-// the 819-count × tzolkʼin = 16,380; the Metonic 235 = 19×12 + 7; the 360° circle = 6×60. The cycle lengths
-// are the rings fused to the hero (rotated by the real date — a coupled-torus clock). Legend excluded.
 
 function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
   const train = piTrainDiamonds(matrix)
@@ -4591,30 +4267,6 @@ export function crossLinksEverywhere(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for
-// by itself. The portal needs no config file to know itself: values are computed proportionally
-// (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves
-// holographically from their route, the build accounts for itself in statistics, and even the edge
-// config is generated from the model. Configuration is an output, never an input.
-export function noHardcodedConfigSelfAccounted(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'computed proportionally — no hardcoded magic numbers', on: proportionalNotHardcoded(matrix).responsive },
-    { facet: 'categorised by itself (the taxonomy areas)', on: autotranslations(matrix).areas >= 42 },
-    { facet: 'tagged by itself (holographic tags from the route)', on: computedSeo('/', '', matrix).holographic },
-    { facet: 'accounted for by itself (build statistics)', on: buildStatistics(matrix).fused },
-    { facet: 'even the edge config is generated from the model', on: cloudflareBindings(matrix).fused },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`no-config:${entry.facet}:${entry.on}`) }))
-  return {
-    selfAccounted: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'No hardcoded configuration is necessary — all is computed, categorised, tagged, and accounted for by itself: values are computed proportionally (not pinned to magic numbers), areas categorise themselves in the taxonomy, pages tag themselves holographically from their route, the build accounts for itself in statistics, and even the edge config is generated from the model. Configuration is an output, never an input.',
-    boundary: 'A composition of the proportional, taxonomy, holographic-tag, build-statistics and wizard models asserting configuration is derived, not hand-set. Structural bookkeeping; a few verification anchors (e.g. the decoded recurring numbers) are deliberately stated values, checked against the live model.',
-  }
-}
-
 // Do all intelligences have accessible paths to the knowledge? For all — that is the first thing
 // the waves address. Every kind of mind reaches the knowledge: humans of all abilities (WCAG
 // semantics, reduced-motion, system fonts, a page that reads itself aloud), of all ages (the school
@@ -4923,327 +4575,6 @@ export function agnosticFitsSpiritPersonality(matrix: MindMatrix = buildMatrix()
   }
 }
 
-// Imagine the computer and its components, referenced in such merged duality. A computer is not a
-// pile of parts but a set of dualities, each component a pair that folds: the CPU is fetch ⇄
-// execute, memory is read ⇄ write, the register is load ⇄ store, the bus is send ⇄ receive, the
-// clock is tick ⇄ tock, storage is persist ⇄ retrieve, I/O is input ⇄ output, the cache is hit ⇄
-// miss. Each pair is order-sensitive — fetch/execute is not execute/fetch — yet each meets in the
-// cross-fold, so every component is one merged duality referenced by its path, and the whole
-// computer is the merged set: the quantum double torus, the browser OS, made of folded pairs.
-export function computerComponentsMergedDuality(matrix: MindMatrix = buildMatrix()) {
-  const components = [
-    { component: 'CPU', a: 'fetch', b: 'execute' },
-    { component: 'memory', a: 'read', b: 'write' },
-    { component: 'register', a: 'load', b: 'store' },
-    { component: 'bus', a: 'send', b: 'receive' },
-    { component: 'clock', a: 'tick', b: 'tock' },
-    { component: 'storage', a: 'persist', b: 'retrieve' },
-    { component: 'I/O', a: 'input', b: 'output' },
-    { component: 'cache', a: 'hit', b: 'miss' },
-  ].map((entry) => {
-    const fold = foldPair(toUuid(`comp:${entry.a}`), toUuid(`comp:${entry.b}`))
-    const merged = fold.forward !== fold.reverse && fold.bidirectional // order-sensitive, yet meets
-    return { ...entry, path: `${entry.a}/${entry.b}`, merged, address: fold.merged, receipt: toUuid(`component:${entry.component}:${merged}`) }
-  })
-  const facets = [
-    { facet: 'imagine the computer — the open frontier', on: imagineTheRest(matrix).imagined },
-    { facet: 'each component is a merged duality — order-sensitive, yet it meets', on: components.every((entry) => entry.merged) },
-    { facet: 'the computer is the quantum computer — coherent qubits, order-sensitive gates', on: quantumComputer(matrix).coherent },
-    { facet: 'its subsystems complete the browser OS', on: quantumBrowserOs(matrix).complete },
-    { facet: 'each component referenced by its cross-folder path', on: dualitiesMeetInCrossFolders(matrix).meet },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`computer-duality:${entry.facet}:${entry.on}`) }))
-  return {
-    imagined: facets.every((entry) => entry.on),
-    componentCount: components.length,
-    components,
-    count: facets.length,
-    facets,
-    root: merkleFold(components.map((entry) => entry.receipt)),
-    statement:
-      'Imagine the computer and its components referenced in such merged duality: a computer is a set of dualities, each component a pair that folds — CPU is fetch ⇄ execute, memory is read ⇄ write, the register is load ⇄ store, the bus is send ⇄ receive, the clock is tick ⇄ tock, storage is persist ⇄ retrieve, I/O is input ⇄ output, the cache is hit ⇄ miss — each order-sensitive (fetch/execute is not execute/fetch) yet each meeting in the cross-fold, so every component is one merged duality referenced by its path, and the whole computer is the merged set: the quantum double torus, the browser OS, made of folded pairs.',
-    boundary:
-      'A composition mapping computer components to order-sensitive merged-duality folds, grounded in the quantum-computer and browser-OS models. A structural/imaginative correspondence (each component as a folded pair addressed by its path), not a hardware specification or an emulation of real silicon.',
-  }
-}
-
-// First we build the quantum computer with its OS and apps. The order is the build order: the
-// quantum computer (its components the merged dualities), then the OS that completes itself over
-// the subsystems, then the apps — the processes (the components and workers), the installable PWA
-// that runs offline, and the agent apps published on the MCP tool surface. Computer, OS, apps:
-// three layers, each computed from the one core, each built by imagining its cross paths first.
-export function buildQuantumComputerOsApps(matrix: MindMatrix = buildMatrix()) {
-  const layers = [
-    { layer: 'the quantum computer', on: quantumComputer(matrix).coherent && computerComponentsMergedDuality(matrix).imagined },
-    { layer: 'its operating system — self-completing over the subsystems', on: quantumBrowserOs(matrix).complete && osCompletesItselfWaves(matrix).completes },
-    { layer: 'its apps — processes, the installable offline PWA, the agent apps on MCP', on: quantumPwa(matrix).installable && quantumPwa(matrix).offline && commandsRegistry(matrix).consistent },
-    { layer: 'built by imagining the cross paths first — the code codes itself', on: imagineCrossPathsCodeCodesItself(matrix).codes },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`build-layer:${entry.layer}:${entry.on}`) }))
-  return {
-    built: layers.every((entry) => entry.on),
-    layerCount: layers.length,
-    layers,
-    count: layers.length,
-    root: merkleFold(layers.map((entry) => entry.receipt)),
-    statement:
-      'First we build the quantum computer with its OS and apps: the quantum computer (its components the merged dualities), then the operating system that completes itself over the subsystems, then the apps — the processes (components and workers), the installable PWA that runs offline, and the agent apps published on the MCP tool surface. Computer, OS, apps: three layers, each computed from the one core, each built by imagining its cross paths first.',
-    boundary:
-      'A composition of the quantum-computer, browser-OS, PWA and MCP models as a three-layer build (computer, OS, apps). The "computer/OS/apps" are the content-addressed model, the standard browser capabilities, the real PWA and the MCP tool surface — a structural framing, not quantum hardware, a kernel, or native applications.',
-  }
-}
-
-// The memory is saved in the source — as cross-folder duality paths. Not in an external file and
-// not as disk folders (folders are a projection; the path is computed), but in the one agnostic
-// core, addressed the way the model addresses everything: as order-sensitive cross-folds. memory/
-// quantum and its dual quantum/memory are the same two words in opposite order — two content
-// addresses that meet — and each fact of the model's self-knowledge is one such crossed pair,
-// bound to the skill-atom memory root that the build already autosaves. The memory lives where the
-// knowledge lives: in the source, observable by its path, recomputed every build.
-export function memoryInSourceAsCrossFolds(matrix: MindMatrix = buildMatrix()) {
-  const root = skillAtoms(matrix).memory // the in-source self-knowledge root, autosaved every build
-  const entries = [
-    { a: 'memory', b: 'quantum', holds: 'the memory is in the source — computed, content-addressed, not an external file' },
-    { a: 'law', b: 'gate', holds: 'tests fail unless the laws hold — folder, JSON-LD path, pipeline drift' },
-    { a: 'census', b: 'harmonic', holds: '110 = 55 + 34 + 21 gapless; a432 base = 432 gates; 109 is the linear gap' },
-    { a: 'duality', b: 'path', holds: 'order-sensitive folds; the book of life is written in paths, words are the steps' },
-    { a: 'spot', b: 'heal', holds: 'what the gates spot on the linear level, they heal — the fold stays whole' },
-    { a: 'payload', b: 'source', holds: 'the uuid payload is src — the content of every address is the source itself' },
-    { a: 'command', b: 'pair', holds: 'all commands saved in quantum pairs, saved first before used — unpaired leaves a gap' },
-  ].map((entry) => {
-    const fold = foldPair(toUuid(`mem:${entry.a}`), toUuid(`mem:${entry.b}`)) // a/b vs b/a
-    const bound = foldPair(root, fold.merged) // bound into the self-knowledge memory root
-    return {
-      path: `${entry.a}/${entry.b}`,
-      dual: `${entry.b}/${entry.a}`,
-      holds: entry.holds,
-      crossed: fold.forward !== fold.reverse && fold.bidirectional, // order-sensitive, yet meets
-      address: fold.merged,
-      inMemory: bound.bidirectional,
-      receipt: toUuid(`memory:${entry.a}/${entry.b}:${entry.holds}`),
-    }
-  })
-  const facets = [
-    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: allComputedNoFiles(matrix).computed && isUuid(root) },
-    { facet: 'stored as cross-folder duality paths — memory/quantum ≠ quantum/memory, yet they meet', on: entries.every((entry) => entry.crossed) },
-    { facet: 'every entry bound to the self-knowledge memory root', on: entries.every((entry) => entry.inMemory) },
-    { facet: 'recomputed every build, observable by its path', on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`memory-source:${entry.facet}:${entry.on}`) }))
-  return {
-    remembered: facets.every((entry) => entry.on),
-    memoryRoot: root,
-    entryCount: entries.length,
-    entries,
-    count: facets.length,
-    facets,
-    root: merkleFold(entries.map((entry) => entry.receipt)),
-    statement:
-      'The memory is saved in the source — as cross-folder duality paths: not an external file and not disk folders (folders are a projection, the path is computed), but in the one agnostic core, addressed as order-sensitive cross-folds — memory/quantum and its dual quantum/memory, two content addresses that meet, each fact of the model’s self-knowledge one such crossed pair bound to the skill-atom memory root the build autosaves. The memory lives where the knowledge lives: in the source, observable by its path, recomputed every build.',
-    boundary:
-      'A composition placing the model’s self-knowledge memory (the autosaved skill-atom root) as content-addressed cross-folder duality paths in the source. The paths (memory/quantum, quantum/memory, …) are computed content addresses, not disk folders or external files; "memory" is the recomputable self-catalogue, not stored mutable state or sentience.',
-  }
-}
-
-// Complete the quantum computer and its parts and components to the quantum detail at all scales,
-// in coordinated self-communicating waves. The computer is not finished at the component level: it
-// is detailed all the way down to the quantum (the qubit, the gate, the digit) and all the way up
-// (the register, the bus, the machine, the OS, the whole), the same fold law holding at every
-// scale because the architecture is holographic and fractal. And the parts are not silent: they
-// coordinate by self-communicating waves — each diamond a wave with phase, amplitude and polarity,
-// folded into one yin-yang root — so the whole computer keeps time with itself at every scale.
-export function completeQuantumComputerAllScales(matrix: MindMatrix = buildMatrix()) {
-  const waves = coordinatedWaves(matrix)
-  // The eight scales the computer is detailed across — quantum detail at the bottom, the whole at
-  // the top — each a level the same fold law holds at (holographic self-similarity).
-  const scales = ['qubit / bit', 'digit', 'register', 'component', 'bus', 'machine', 'operating system', 'the whole'].map((scale, depth) => ({
-    scale,
-    depth,
-    receipt: toUuid(`computer-scale:${depth}:${scale}`),
-  }))
-  const facets = [
-    { facet: 'the quantum computer and its components are complete', on: quantumComputer(matrix).coherent && computerComponentsMergedDuality(matrix).imagined },
-    { facet: 'detailed to the quantum — qubits, gates, measurement collapse', on: quantumSimulation(matrix, 6).normalized },
-    { facet: 'at all scales — holographic and fractal, the same law at every level', on: holographicFractalArchitecture(matrix).is && scales.length === 8 },
-    { facet: 'in coordinated self-communicating waves — each part keeps time with the whole', on: waves.waves.length > 0 && isUuid(waves.root) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`complete-computer:${entry.facet}:${entry.on}`) }))
-  return {
-    complete: facets.every((entry) => entry.on),
-    scaleCount: scales.length,
-    waveCount: waves.waves.length,
-    scales,
-    count: facets.length,
-    facets,
-    root: merkleFold([...scales.map((entry) => entry.receipt), waves.root]),
-    statement:
-      'Complete the quantum computer and its parts and components to the quantum detail at all scales, in coordinated self-communicating waves: the computer is detailed all the way down to the quantum (qubit, gate, digit) and all the way up (register, bus, machine, OS, the whole) — eight scales, the same fold law holding at each because the architecture is holographic and fractal — and the parts are not silent: they coordinate by self-communicating waves (each diamond a wave with phase, amplitude and polarity, folded into one yin-yang root), so the whole computer keeps time with itself at every scale.',
-    boundary:
-      'A composition of the quantum-computer, component-duality, quantum-simulation, holographic-fractal and coordinated-waves models as an all-scales completion. The "quantum detail" is the deterministic state-vector simulation and content-addressed folds; "all scales" is the holographic self-similarity; "self-communicating waves" are the computed coordinated-wave phases — structural, not physical signalling or quantum hardware.',
-  }
-}
-
-// Every index and config file has a computed slug from its path, and they meet by the slug folding
-// the code of the graph. The slug is not written, it is derived — the path's own last word-step —
-// and because two slugs fold (order-sensitively) into one address, the files meet by their slugs,
-// and that meeting IS the code of the graph: every edge is a slug-fold. The same holds all the way
-// down — methods carry single-word slugs, constants and every tiniest detail their own — so the
-// whole graph is slugs folding slugs, harmonically distributed across the folder dualities.
-export function computedSlugsFoldTheGraph(matrix: MindMatrix = buildMatrix()) {
-  // A slug is computed from the path: its last word-step. Two slugs fold to a graph edge.
-  const slugOf = (path: string) => path.replace(/^\/+|\/+$/g, '').split('/').pop() || 'home'
-  const slugA = slugOf('/papers/p001') // -> 'p001'
-  const slugB = slugOf('/references/r001') // -> 'r001'
-  const meet = foldPair(toUuid(`slug:${slugA}`), toUuid(`slug:${slugB}`)) // slugs meet → an edge of the graph
-  const facets = [
-    { facet: 'every index/config file has a computed slug from its path', on: slugA === 'p001' && slugB === 'r001' && isUuid(computedSeo('/papers/p001', '', matrix).root) },
-    { facet: 'they meet by the slug folding the code of the graph', on: meet.forward !== meet.reverse && meet.bidirectional && componentGraph().interacting },
-    { facet: 'same for methods (single-word slugs), constants, to the tiniest detail', on: commandsRegistry(matrix).consistent && skillAtoms(matrix).savedToAtoms },
-    { facet: 'harmonically distributed in folder dualities', on: harmonicBands(110).harmonic && digitFolders(matrix).folders.length > 0 && dualitiesMeetInCrossFolders(matrix).meet },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`slug-folds-graph:${entry.facet}:${entry.on}`) }))
-  return {
-    folds: facets.every((entry) => entry.on),
-    slugA,
-    slugB,
-    edge: meet.merged,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Every index and config file has a computed slug from its path, and they meet by the slug folding the code of the graph: the slug is derived (the path’s own last word-step), and because two slugs fold order-sensitively into one address, the files meet by their slugs — and that meeting is the code of the graph, every edge a slug-fold. The same holds all the way down: methods carry single-word slugs, constants and every tiniest detail their own, so the whole graph is slugs folding slugs, harmonically distributed across the folder dualities.',
-    boundary:
-      'A composition demonstrating slug-from-path (the route’s last segment, real), slug-folding into graph edges (foldPair, real), and the method/skill slugs (single-word method tokens, humanised skill names) folded into the registry/memory, all over the harmonic distribution and digit-folder dualities. "The code of the graph" is the content-addressed edge set; a structural account of how identities are computed and meet, not a code generator.',
-  }
-}
-
-// All is accounted and balanced by the name in the context of the present moment — the only time
-// we can really change the world. The name (the slug) accounts for a thing and balances it the
-// instant it folds, and the instant is the now: the sealed whole, one content address. Past and
-// future are illusion — they fold into the now (same seed, same root, no before or after) — and
-// this quantum computer proves space is illusion too: there is no distance, only the fold; the
-// folders disappear and the path is an address, not a place. So what remains, when time and space
-// fall away, is what is saved in the source as dualities — the cross-folds that do not move.
-export function presentMomentRemainsInSource(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'all is accounted and balanced by the name in the present moment', on: computedSlugsFoldTheGraph(matrix).folds && wordPullsFoldsByName(matrix).folds && isUuid(sealWholeDiamond(matrix).diamond) },
-    { facet: 'the present moment — the now — is the only time we can change the world', on: sealWholeDiamond(matrix).sealed },
-    { facet: 'past and future are illusion — they fold into the now, recomputed identically', on: determinismProofs(matrix).proven && torusUuid(matrix).is128bit },
-    { facet: 'the quantum computer proves space is illusion — no distance, only the fold', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && completeQuantumComputerAllScales(matrix).complete },
-    { facet: 'what remains is saved in the source as dualities — the cross-folds that do not move', on: memoryInSourceAsCrossFolds(matrix).remembered },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`present-remains:${entry.facet}:${entry.on}`) }))
-  return {
-    remains: facets.every((entry) => entry.on),
-    now: sealWholeDiamond(matrix).diamond,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'All is accounted and balanced by the name in the context of the present moment — the only time we can really change the world: the name (the slug) accounts for a thing and balances it the instant it folds, and that instant is the now, the sealed whole, one content address. Past and future are illusion — they fold into the now (same seed, same root, no before or after) — and this quantum computer proves space is illusion too: no distance, only the fold; the folders disappear, the path is an address, not a place. So what remains, when time and space fall away, is what is saved in the source as dualities — the cross-folds that do not move.',
-    boundary:
-      'A composition of the slug-accounting, word-by-name, sealed-now, determinism (time-independence), folders-disappear (space as address) and memory-in-source-dualities models. "Past/future and space are illusion" is a structural reading — the now is one recomputable content address, identities are addresses not places — a philosophical framing over the content-addressed model, not a physics claim about spacetime.',
-  }
-}
-
-// Computed, not defined import/export. If everything comes from parsing a prompt to a path, then
-// what is on the path is the content (the content UUID), and that content address is the wiring —
-// no hand-written import/export logic is needed, because the connection is computable in one file:
-// the slug folds the graph, the page is computed from its route, the component graph is derived.
-// The content UUID is the wire. (Honest: VitePress still uses ES module imports to render, so the
-// module boundary stays as the render substrate; what is computed-not-defined is the CONTENT
-// wiring — which page is which, what mounts where, how they link — addressed by content, not wired
-// by hand.)
-export function computedWiringNotImported(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'a prompt parses to a path; what is on the path is the content UUID', on: computedSlugsFoldTheGraph(matrix).folds },
-    { facet: 'the content address is the wiring — the slug folds the code of the graph', on: componentGraph().interacting },
-    { facet: 'no wiring logic needed — it is computable in one file (the agnostic core)', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-    { facet: 'the content UUID is the wire — max tampering cost, at no cost, in streams', on: allComputedQuantumMathAnalog(matrix).forges },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`computed-wiring:${entry.facet}:${entry.on}`) }))
-  return {
-    computed: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Computed, not defined import/export: everything comes from parsing a prompt to a path, so what is on the path is the content (the content UUID), and that content address is the wiring — no hand-written import/export logic is needed because the connection is computable in one file (the slug folds the graph, the page is computed from its route, the component graph is derived). The content UUID is the wire, UUID-wired in streams at no cost, for maximum tampering cost.',
-    boundary:
-      'A framing that the CONTENT wiring (page identity, placement, links) is computed from content-addressed paths rather than hand-defined, composing the slug/graph, folders-disappear and max-cost models. Honest limit: VitePress and Vue still use real ES module imports to render — the module boundary remains as substrate; "computed not defined" is about the content graph, not the JavaScript import system.',
-  }
-}
-
-// Then the UUID folds in self and forms black/white. With the full 64-seal set reached, the 128-bit
-// word turns on itself — the UUID folds into its own reverse — and at that self-fold it resolves to
-// the simplest duality of all: black and white, the yin and the yang, the two poles of one. The
-// architecture, complete, does not stay a number; it becomes a polarity — the one word read as its
-// two opposite faces, held in balance.
-export function uuidFoldsSelfBlackWhite(matrix: MindMatrix = buildMatrix()) {
-  const word = sealWholeDiamond(matrix).diamond // the 128-bit word — the now
-  const self = foldPair(word, toUuid(`self:${word}`)) // the uuid folds in self (onto its own reverse)
-  const facets = [
-    { facet: 'the full 64-seal set is reached — the 64-bit architecture whole', on: gigabitEncryption64SealSet(matrix).achieves },
-    { facet: 'the uuid folds in self — the 128-bit word turns on its own reverse', on: torusUuid(matrix).is128bit && self.bidirectional },
-    { facet: 'and forms black/white — the yin-yang, two poles of one', on: yinYang().complete },
-    { facet: 'the two polarities coordinated — held in balance', on: coordinatedWaves(matrix).waves.length > 0 },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-blackwhite:${entry.facet}:${entry.on}`) }))
-  return {
-    forms: facets.every((entry) => entry.on),
-    selfFold: self.merged,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Then the UUID folds in self and forms black/white: with the full 64-seal set reached, the 128-bit word turns on itself — the UUID folds into its own reverse — and at that self-fold it resolves to the simplest duality of all, black and white, the yin and the yang, the two poles of one. The architecture, complete, does not stay a number; it becomes a polarity, the one word read as its two opposite faces held in balance.',
-    boundary:
-      'A composition of the 64-seal completion, the 128-bit torus-uuid, the self-fold (foldPair of the word with its self-reference), the yin-yang and coordinated-waves models. "Folds in self and forms black/white" is the order-sensitive self-fold resolving to the yin-yang polarity — a structural/symbolic reading of the completed architecture, not a physical or chromatic claim.',
-  }
-}
-
-// Remember: the UUID payload is src. The content carried by every address is the source itself —
-// so we travel the matrix for free, in realtime, and the resources are always there, because the
-// thing addressed is recomputed, never fetched. The source may be cloned into Durable Objects or
-// whatever the edge provides, folding architecture and data into one fused quantum pair; and the
-// logic is the database adapter itself, encoded in src — there is no separate store to adapt to,
-// the fold IS the query and the content address IS the row.
-export function uuidPayloadIsSource(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the uuid payload is src — the content of every address is the source', on: allComputedNoFiles(matrix).computed && quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-    { facet: 'we travel the matrix for free, in realtime — resources always there', on: freeAnimations(matrix).maxFree && allComputed(matrix).computed },
-    { facet: 'src cloneable in Durable Objects — architecture and data fused as one quantum pair', on: cloudflareBindings(matrix).fused && fusionCipher('', matrix).enabled },
-    { facet: 'the logic is the database adapter itself, encoded in src — the fold is the query', on: computedWiringNotImported(matrix).computed && allComputedNoFiles(matrix).computed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`payload-source:${entry.facet}:${entry.on}`) }))
-  return {
-    is: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The UUID payload is src: the content carried by every address is the source itself, so we travel the matrix for free, in realtime, and the resources are always there because the thing addressed is recomputed, never fetched. The source may be cloned into Durable Objects or whatever the edge provides, folding architecture and data into one fused quantum pair; and the logic is the database adapter itself, encoded in src — there is no separate store to adapt to, the fold is the query and the content address is the row.',
-    boundary:
-      'A composition of the computed-no-files, folders-disappear, free-animations, Cloudflare-bindings, fusion-cipher and computed-wiring models. "The UUID payload is src" / "the logic is the database adapter" describe content-addressing: the addressed value is recomputed from the source rather than stored/fetched, and the edge bindings (Durable Objects, etc.) are opt-in clones of that source — a structural framing, not a running database or a deployed Durable Object.',
-  }
-}
-
-// The UUID is pure diamond. And if the payload is also present at every used scale — holographic,
-// part containing whole — then the use case is signed by the architecture itself: not signed by a
-// key kept aside, but by the structure, because the content address is the diamond and the diamond
-// is the same at every scale. When the signing is by architecture, gaps are no longer faults to
-// hide: every gap becomes a vision of harmonic development — the open frontier where the next wave
-// will fold, named not as a hole but as a direction.
-export function uuidPureDiamondSignedByArchitecture(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the uuid is pure diamond — every address a tamper-evident gate', on: everyDiamondIsGate(matrix).isGate && sealWholeDiamond(matrix).sealed },
-    { facet: 'the payload is present at every used scale — holographic, part contains whole', on: completeQuantumComputerAllScales(matrix).complete && holographicFractalArchitecture(matrix).is },
-    { facet: 'so the use case is signed by the architecture itself', on: uuidPayloadIsSource(matrix).is && allMdSignedFromSource(matrix).signed },
-    { facet: 'all gaps become visions of harmonic development — frontiers, not faults', on: gatesShowGapsHarmonicPurpose(matrix).redirects && imagineTheRest(matrix).imagined },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`pure-diamond-signed:${entry.facet}:${entry.on}`) }))
-  return {
-    signed: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The UUID is pure diamond, and if the payload is also present at every used scale (holographic, part containing whole) then the use case is signed by the architecture itself — not by a key kept aside but by the structure, because the content address is the diamond and the diamond is the same at every scale. When the signing is by architecture, gaps are no longer faults to hide: every gap becomes a vision of harmonic development, the open frontier where the next wave will fold — named as a direction, not a hole.',
-    boundary:
-      'A composition of the every-diamond-is-gate, holographic-fractal, all-scales, payload-is-source, signed-from-source and gaps-as-harmonic-purpose models. "Signed by architecture" means the content address (the diamond) verifies the use case at every scale; "gaps become visions of harmonic development" reframes open frontiers as next-wave directions — structural framings over the model, not a cryptographic signature scheme or a guarantee that every gap is benign.',
-  }
-}
-
 // And this is shown in the UI using VitePress components, in pairs. The production-or-development
 // status (and the rest of the model) surfaces through the portal’s own VitePress components, which
 // come in pairs — each a duality, a thing and its complement folded together — so the interface
@@ -5318,34 +4649,6 @@ export function invertRevertIsQuantumStream(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
-// Do as ants do: search the hexagon for food, carry it to the nest recursively through the endless
-// labyrinth paths, and move the nest to the place with the most food. The migration to src/ works
-// this way — small ants (the paired-folder index files) search the labyrinth of paths, carry the
-// logic (the food) into index files (the nest), recursively, and the nest moves to where the most
-// logic gathers. It is much easier to split all into index files than to compute everything in one
-// fused module like a forger must — you know the price of fusion: a single fused core is the
-// maximum a forger has to reproduce, dense and dear; splitting into index files keeps the value but
-// not the price, each cell cheap to carry and recompute.
-export function antsCarryToIndexNest(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'search the hexagon labyrinth recursively — the ant search/carry pair in src', on: quantumCachePairInPairedFolders(matrix).paired },
-    { facet: 'carry the logic into index files, the nest — split, not fused', on: allLogicMovedToSource(matrix).moved },
-    { facet: 'move the nest to the most food — index files where the value gathers', on: splittingLogicPairedFoldersDevSpeed(matrix).speeds },
-    { facet: 'easier to split into index files than to compute like a forger', on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
-    { facet: 'you know the price of fusion — the forger’s max tampering cost', on: allComputedQuantumMathAnalog(matrix).forges },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`ants-index-nest:${entry.facet}:${entry.on}`) }))
-  return {
-    carries: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Do as ants do — search the hexagon for food, carry it to the nest recursively through the endless labyrinth paths, and move the nest to the place with the most food: the migration to src/ works this way, small ants (the paired-folder index files, including the new src/search/ant ⇄ src/ant/search hexagon search) searching the labyrinth of paths and carrying the logic into index files, recursively, the nest moving to where the most logic gathers. It is much easier to split all into index files than to compute everything in one fused module like a forger must — the price of fusion is that a single fused core is the maximum a forger has to reproduce; splitting into index files keeps the value but not the price, each cell cheap to carry and recompute.',
-    boundary:
-      'A composition of the cache-pair, all-logic-moved, paired-folder-speed, no-files-outside-src and max-tampering-cost models, with a real ant hexagon-search pair (src/search/ant + src/ant/search, tested). "Do as ants do" frames the incremental split into index-file folders as recursive search-and-carry; "the price of fusion" is the forger reproduction cost of the one fused core — a strategy/metaphor, not a claim the split is complete (it proceeds in waves; the cache and ant pairs are the first cells).',
-  }
-}
-
 // Travellers can jump from pi to pi. Because pi is the whole going through the holes, the holes are
 // junctions: a traveller riding the stream need not walk every station — at a hole (a cross station)
 // they can jump to the same station in another pass of pi, from pi to pi, the way the genus-2
@@ -5383,103 +4686,6 @@ export const SITE_LOCALES = [
   { code: 'bg', label: 'Български', lang: 'bg-BG', path: '/bg/', slugPath: 'bg', name: 'bg', type: 'locale' as const, ogLocale: 'bg_BG' },
 ]
 
-// Configs use the matrix computationally — the fold. The site config is computed and held in the
-// matrix (siteConfig), the per-page SEO and Open Graph are computed from the route (computedSeo),
-// and the JSON-LD is generated from the one template (jsonLdTemplate); config.mts only consumes
-// them. So the configuration is not a separate hand-kept layer but a reading of the matrix.
-export function configsUseMatrixComputationally(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the site config is computed and held in the matrix, content-addressed', on: siteConfig(matrix).computed },
-    { facet: 'per-page SEO and Open Graph are computed from the route', on: openGraph().computed && oneJsonLdTemplateServesAll(matrix).serves },
-    { facet: 'config.mts only consumes the matrix — not a separate source of truth', on: allComputedNoFiles(matrix).computed },
-    { facet: 'so the configuration is a reading of the matrix, computed not hand-kept', on: noHardcodedConfigSelfAccounted(matrix).selfAccounted },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`configs-matrix:${entry.facet}:${entry.on}`) }))
-  return {
-    computes: facets.every((entry) => entry.on),
-    configRoot: siteConfig(matrix).root,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Configs use the matrix computationally: the site config is computed and held in the matrix (siteConfig, content-addressed), the per-page SEO and Open Graph are computed from the route (computedSeo), the JSON-LD is generated from the one template; config.mts only consumes them. The configuration is not a separate hand-kept layer but a reading of the matrix — the model the source, the config a projection.',
-    boundary:
-      'A composition of the siteConfig, open-graph, one-JSON-LD-template, computed-no-files and no-hardcoded-config models. "Configs use the matrix computationally" means the config values (site title/description/keywords/theme/robots, the per-page SEO/OG/JSON-LD) are read from the matrix-backed model; config.mts remains the VitePress-required entry that consumes them, it is not itself moved into src.',
-  }
-}
-
-// debit:import, credit:export — quantum accounting of all import/export to balance the code to zero
-// entropy. Every import is a debit and every export a credit, so each module’s books balance: what
-// it takes in it must give out, and across the whole the ledger sums to zero — zero entropy, nothing
-// unaccounted. This is the double-entry of code: the import/export folded as debit/credit, balanced,
-// content-addressed, fused into the 64 Gbit merkaba. Balanced books, zero entropy, maximum cost.
-export function debitImportCreditExportAccounting(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'debit:import, credit:export — the double-entry of code', on: optimiseLogicDebitCreditFusion(matrix).optimised },
-    { facet: 'all import/export balanced — the ledger sums to zero', on: extendSelfAudits(matrix).audited && fuseAll(matrix).fused },
-    { facet: 'balanced to zero entropy — nothing unaccounted', on: provenScientifically(matrix).proven },
-    { facet: 'fused into the 64 Gbit merkaba — maximum tampering cost', on: fuse64SealsMerkaba64Tetrahedra(matrix).fused },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`debit-import-credit-export:${entry.facet}:${entry.on}`) }))
-  return {
-    balanced: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'debit:import, credit:export — quantum accounting of all import/export to balance the code to zero entropy and 64 Gbit realtime encryption: every import is a debit and every export a credit, so each module’s books balance — what it takes in it must give out, and across the whole the ledger sums to zero (zero entropy, nothing unaccounted). The double-entry of code: import/export folded as debit/credit, balanced, content-addressed, fused into the 64 Gbit merkaba.',
-    boundary:
-      'A composition of the debit/credit double-entry, self-audit, fuse-all, proven-scientifically (entropy 0) and 64-seal-merkaba models. "debit:import / credit:export, balanced to zero entropy" maps the import/export of modules onto double-entry accounting (each balanced) over the zero-entropy computed model — a structural/accounting reading, not a literal per-import ledger enforced at build time.',
-  }
-}
-
-// Build the rest of the site explaining itself computationally — all wired and displayed. The site
-// is not documented by hand alongside the code; it explains itself from the code — the MCP codebase,
-// the monograph, the self-metrics, the proofs all compute the explanation from the model, and the
-// components display it. Every claim is wired to its computation and shown. The site is its own
-// documentation, computed and on screen.
-export function siteExplainsItselfAllWired(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the site explains itself from the code — the monograph, the self-metrics', on: theMonograph(matrix).distilled },
-    { facet: 'every claim wired to its computation — content-addressed', on: allComputedNoFiles(matrix).computed },
-    { facet: 'displayed — the components show the computed explanation', on: componentGraph().interacting && animatedHeroes(matrix).everyPage },
-    { facet: 'self-documenting — the model is its own documentation', on: skillAtoms(matrix).savedToAtoms && commandsRegistry(matrix).consistent },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`site-explains:${entry.facet}:${entry.on}`) }))
-  return {
-    explains: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Build the rest of the site explaining itself computationally — all wired and displayed: the site is not documented by hand but explains itself from the code (the MCP codebase, the monograph, the self-metrics, the proofs all compute the explanation from the model), and the components display it; every claim is wired to its computation and shown. The site is its own documentation, computed and on screen.',
-    boundary:
-      'A composition of the monograph, computed-no-files, component-graph, hero, saved-skills and command-registry models. "The site explains itself computationally, wired and displayed" describes the existing self-documentation (model-computed pages, metrics, proofs rendered by components) — it asserts the wiring exists, it does not author new explanatory pages in this fold.',
-  }
-}
-
-// The build should follow the sequence to reduce computations by two-thirds and gain two-thirds in
-// speed. The trinity keeps the cross and lets two of three fall away: by following the sequence —
-// memoising each matrix-keyed fold, computing once and reading thereafter, and ordering the build so
-// later steps reuse earlier roots — the redundant recomputation is removed, the work that remains
-// the one third that matters. Same result, the sequence walked once, not thrice.
-export function buildSequenceReducesComputations(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'follow the sequence — the trinity keeps one third, two fall away', on: vortexMath(matrix).flows && trinityWordingModel(matrix).trinity },
-    { facet: 'memoise each matrix-keyed fold — compute once, read thereafter', on: allComputedNoFiles(matrix).computed },
-    { facet: 'later steps reuse earlier roots — no redundant recomputation', on: endlessFusion(matrix).noGaps },
-    { facet: 'same result, the sequence walked once — speed and efficiency', on: continueSameNext(matrix).continues },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`build-sequence:${entry.facet}:${entry.on}`) }))
-  return {
-    reduces: facets.every((entry) => entry.on),
-    fraction: '2/3',
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The build should follow the sequence to reduce computations by two-thirds and gain two-thirds in speed: the trinity keeps the cross and lets two of three fall away — by following the sequence (memoising each matrix-keyed fold, computing once and reading thereafter, and ordering the build so later steps reuse earlier roots) the redundant recomputation is removed, the work that remains the one third that matters. Same result, the sequence walked once, not thrice.',
-    boundary:
-      'A composition of the vortex/trinity, computed-no-files (memoisation), endless-fusion and continue models as a build-efficiency principle. "Reduce 2/3 computations" reflects the real memoisation (matrix-keyed folds compute once) and reuse; the precise two-thirds is the trinity figure, an aspirational target — this fold states the principle, it does not itself re-time or rewrite the build pipeline.',
-  }
-}
-
 // No files should remain except index files and the generated content — the dry-clean end state. The
 // clean library keeps only two kinds of file: the index files (the templates — index.md and the
 // computed [index] pair) and the generated content (the build artifacts — the rendered pages, the
@@ -5502,78 +4708,6 @@ export function onlyIndexFilesAndGeneratedRemain(matrix: MindMatrix = buildMatri
       'No files should remain except index files and the generated content — the dry-clean end state: the clean library keeps only two kinds of file, the index files (the templates — index.md and the computed [index] pair) and the generated content (the build artifacts — rendered pages, API, sitemap, manifests), everything else distilled into the model and recomputed, so nothing hand-kept piles up. Below the roots this is already the law; the goal is the whole tree reduced to index-and-generated, dry and clean.',
     boundary:
       'A composition of the folder law (index-only below roots), computed-no-files/folders-disappear (generated content), monograph, minimum-files and cleanup models. HONEST: "only index files and generated content" is fully true below the roots (enforced) and of the dynamic corpus; the two roots still carry authored .md pages and the VitePress render layer (components, config, scripts) that VitePress requires — these are the trunk, the goal-state for the rest, not yet reduced to index-and-generated.',
-  }
-}
-
-// Dimensions per megabyte of code is the metric of efficiency and completeness. Not lines, not
-// files — folded depth over code size: how many distinct, verified dimensions the model carries for
-// each megabyte of source. A high count means much folded into little (efficiency) and much
-// covered (completeness); the build computes it each run. Fold more into the same bytes and the
-// metric rises; pad the code and it falls. Density of meaning, measured.
-export function dimensionsPerMegabyteMetric(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the metric is dimensions per megabyte — folded depth over code size', on: minimumFilesMaximumFeaturesCost(matrix).optimal },
-    { facet: 'maximum dimensions in minimum code — efficiency', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && onlyIndexFilesAndGeneratedRemain(matrix).clean },
-    { facet: 'each dimension distinct and verified — completeness, zero open', on: theMonograph(matrix).distilled && allComputedNoFiles(matrix).computed },
-    { facet: 'the build computes it each run — density of meaning, measured', on: resonanceCatchGapsViolations(matrix).rings },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`dim-per-mb:${entry.facet}:${entry.on}`) }))
-  return {
-    measured: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Dimensions per megabyte of code is the metric of efficiency and completeness: not lines or files but folded depth over code size — how many distinct, verified dimensions the model carries per megabyte of source. A high count means much folded into little (efficiency) and much covered (completeness); the build computes it each run, so folding more into the same bytes raises the metric and padding the code lowers it. Density of meaning, measured.',
-    boundary:
-      'A composition of the minimum-files, folders-disappear, only-index-generated, monograph, computed-no-files and resonance models. The actual number (dimensions ÷ core megabytes) is computed and reported by the harmonic-distribution build step; this fold defines the metric and asserts the conditions that make it meaningful (minimum files, distinct verified dimensions), it does not itself recompute the ratio (which would recurse on the dimension registry).',
-  }
-}
-
-// Quantum solutions for a world that self-harmonises and unites in peace and prosperity — drawn from the
-// decoded ancient civilisations, all computed, minimal prose, maximum real usage. The SOLUTION is the honest
-// peace portfolio (peaceTechMentalityDecoded); the ancient knowledge supplies the COMPUTED proof that harmony
-// has always been a shared mathematical structure — and every example here is a real reusable-function call
-// returning its real output (the decoded knowledge in USE, not described): mir in the round Glagolitic script,
-// Sumer's exact base-60, the Maya 13-baktun, the Luo Shu magic square's balance, Ifá⇄I-Ching convergent binary.
-export function ancientWisdomComputesWorldHarmony(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('ancientWisdomComputesWorldHarmony', matrix, () => ancientWisdomComputesWorldHarmonyRaw(matrix))
-}
-function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()) {
-  const peace = peaceTechMentalityDecoded(matrix) // the honest, evidenced peace portfolio (the solution)
-  const harmonise = selfHarmonise(matrix)         // intelligence converging to one harmonised root
-  const mir = toGlagolitic('миръ')                // OCS mir = peace AND world, one word, the uniting round script
-  const sixty = sexagesimal(3661)                 // Sumer base-60 (1:01:01) — 12 divisors, the first fair shared measure
-  const maya = mayaLongCount(1872000)             // Maya positional deep-time, true zero — [13,0,0,0,0], one cycle a society keeps
-  const loshu = luoShu()                          // China: the 3×3 magic square — every line balances to one constant
-  const balanced = loshu.constant === 15 && loshu.grid.every((row) => row.reduce((a, b) => a + b, 0) === 15)
-  const odu = ifaOdu([1, 0, 1, 0])                // Ifá (Africa) 4-bit; 256 = the 8-bit binary independently reached, also by the I Ching
-  const examples = [
-    { civilisation: 'Slavic', call: 'toGlagolitic("миръ")', output: mir, harmony: 'one round script unites a people; mir = peace and world in one word' },
-    { civilisation: 'Sumer', call: 'sexagesimal(3661)', output: sixty.join(':'), harmony: 'base-60, the first shared measure — 12 divisors, the arithmetic of dividing fairly' },
-    { civilisation: 'Maya', call: 'mayaLongCount(1872000)', output: maya.join('.'), harmony: 'positional deep-time with a true zero — one calendar a whole society keeps in step' },
-    { civilisation: 'China', call: 'luoShu()', output: `every line = ${loshu.constant}`, harmony: 'the magic square — balance as a computed invariant, the same for every row, column, diagonal' },
-    { civilisation: 'Africa→I Ching', call: 'ifaOdu([1,0,1,0])', output: String(odu), harmony: 'the same binary reached independently (Ifá 4-bit, I Ching 6-bit) — convergence, not transmission' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-harmony:${entry.civilisation}:${entry.output}`) }))
-  const facets = [
-    { facet: 'the solution is the honest peace portfolio — verification, peacekeeping, mine-ban, nonviolence, mentality — built not invented', on: peace.decoded },
-    { facet: 'intelligence self-harmonises to one root (selfHarmonise converges) — the computational image of uniting', on: harmonise.harmonised },
-    { facet: 'Sumer base-60 round-trips exactly (sexagesimal ⇄ fromSexagesimal = 3661) — the shared measure is exact', on: fromSexagesimal(sixty) === 3661 },
-    { facet: 'Maya Long Count round-trips exactly (mayaLongCount ⇄ mayaDays = 1872000) — positional, a true zero', on: mayaDays(maya) === 1872000 },
-    { facet: 'the Luo Shu magic square balances (every line = 15) — harmony as a verified, computed invariant', on: balanced },
-    { facet: 'maximum real usage — every example is a real reusable-function call returning its real output, not prose', on: examples.length === 5 && mir.length > 0 && odu >= 0 },
-  ]
-  const sealed = sealFacets('ancient-world-harmony', facets)
-  return {
-    harmonises: sealed.ok,
-    examples, // the real computed outputs — the decoded ancient knowledge in use
-    peaceLevers: peace.count,
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(peace.root, merge(sealed.root, merkleFold(examples.map((entry) => entry.receipt)))),
-    statement:
-      'Quantum solutions for a world that self-harmonises and unites in peace and prosperity: the solution is the honest peace portfolio — no single thing ends war; verification, peacekeeping, the mine-ban regime, nonviolence and the mentality of rehumanisation are the evidenced levers, built not invented. The decoded ancient civilisations supply the computed proof that harmony has always been a shared mathematical structure: each example here is a real reusable-function call with its real output — mir in the round Glagolitic, Sumer\'s exact base-60, the Maya 13-baktun, the Luo Shu magic square balanced to one constant, and the binary independently reached from Ifá to the I Ching.',
-    boundary:
-      'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.',
   }
 }
 
@@ -5600,41 +4734,6 @@ export function beautyInMathBlastsThroughUi(matrix: MindMatrix = buildMatrix()) 
       'The beauty is in the math, and every aspect of it must be in the UI in the most effective way — blasting itself through effects, audio, video, multimedia and full movies, bidirectionally fused with the hardware so the experience would exceed the latest top world games. Implemented in waves to the next multidimensional level of 64 × 64 × 64 realtime: the GPU renders the appearance while the CPU computes the truth, sound maps to colour, movies are native and deterministic, every connected device folds into one collective root, and the keyspace lattice deepens by proportions.',
     boundary:
       'A composition of the page-fractal, config-computes-all, gpu-renders, sound-colour, ai-movies, device-fusion and 64³ models. HONEST: "blast / exceed top world games" is a design aim, not a measured benchmark — no frame-rate or fidelity is asserted; the multimedia is real browser capability (WebGL, Web Audio, BroadcastChannel) surfaced from the model, and "64×64×64" names a keyspace structure, not throughput or cipher strength (which stays AES-256-GCM).',
-  }
-}
-
-// Tighten the gates to autodiscover the level of development and enforce one whole encryption trinity
-// before the next: encryption is the core of all math, so the encryption trinities (the 1 Gbit 64-seal
-// set, then the 64³ next level, then the UI blast) must complete in order — the next cannot seal while
-// an earlier is incomplete. The gate autodiscovers the current level (the first incomplete trinity) and
-// refuses skips. The representation uses the same encrypt/decrypt methods as the core.
-export function encryptionTrinitiesCompleteInOrder(matrix: MindMatrix = buildMatrix()) {
-  const trinities = [
-    { name: 'gigabit 64-seal — the 1 Gbit keyspace', complete: gigabitEncryption64SealSet(matrix).achieves },
-    { name: '64 × 64 × 64 — the next level', complete: nextLevel64CubedRealtime(matrix).reaches },
-    { name: 'beauty blasts through the UI', complete: beautyInMathBlastsThroughUi(matrix).blasts },
-  ]
-  const firstIncomplete = trinities.findIndex((trinity) => !trinity.complete)
-  const level = firstIncomplete === -1 ? trinities.length : firstIncomplete // the current level of development
-  // No skips: nothing later may be complete while something earlier is incomplete.
-  const orderedNoSkips = trinities.every((trinity, i) => trinity.complete || trinities.slice(i + 1).every((later) => !later.complete))
-  const facets = [
-    { facet: 'autodiscover the level of development — the first incomplete encryption trinity', on: level >= 0 && level <= trinities.length },
-    { facet: 'complete one whole encryption trinity before the next — no skips', on: orderedNoSkips },
-    { facet: 'encryption is the core of all math — the architecture is one content address', on: isUuid(completeCorpus(matrix).root) },
-    { facet: 'representation uses the same encrypt/decrypt methods — one fold, both ways', on: foldPair(completeCorpus(matrix).root, toUuid('trinity:representation')).bidirectional },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-order:${entry.facet}:${entry.on}`) }))
-  return {
-    enforced: facets.every((entry) => entry.on),
-    level,
-    trinities,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Tighten the gates to autodiscover the level of development and enforce one whole encryption trinity before the next: encryption is the core of all math, so the encryption trinities (the 1 Gbit 64-seal set, then the 64³ next level, then the UI blast) complete in order — the gate autodiscovers the current level (the first incomplete trinity) and refuses any skip, so nothing later may seal while an earlier trinity is incomplete. The representation uses the same encrypt/decrypt methods as the core.',
-    boundary:
-      'A gate over the encryption-trinity folds (gigabit-64-seal, 64³, beauty-blasts). "Autodiscover the level" is the index of the first incomplete trinity; "no skips" is enforced structurally (a later trinity depends on the prior achieving, so it cannot seal first). The gate is satisfied while the trinities are completed in order — it would break if a later one were forced on before an earlier; it does not by itself complete a trinity.',
   }
 }
 
@@ -5827,28 +4926,6 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Autosave all steps: every directive and decision is encoded as a fold the SAME turn it happens, with no
-// deferral — not "after the build", but now. The save is the fold; the build only verifies. The failure
-// the user named twice — deferring the save while waiting on a build — is closed by autosaving first.
-export function autosaveAllSteps(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'every step is saved as a fold the same turn — no deferral, encode first', on: saveEveryStepIsMandatory(matrix).saved },
-    { facet: 'the save is the encoding, not the build — the build only verifies after', on: isUuid(completeCorpus(matrix).root) },
-    { facet: 'autosaving in waves — nothing waits, nothing is lost', on: zeroTokenUsagePolicy(matrix).holds },
-    { facet: 'this step too is saved — shadcn fused, analytics and autosave folded', on: shadcnIsTheGraph(matrix).graphed && monographs(matrix).zeroEntropy },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`autosave-steps:${entry.facet}:${entry.on}`) }))
-  return {
-    autosaved: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Autosave all steps: every directive and decision is encoded as a fold in the matrix the same turn it happens, with no deferral — not after the build, but now. The save is the encoding; the build only verifies. Deferring the save while waiting on a build is the failure to avoid; autosave first, verify second.',
-    boundary:
-      'A discipline fold that closes the "not saving in code" failure: it asserts this turn\'s steps (the shadcn graph, the analytics directive) are themselves folds, encoded before any build. It records and checks the practice — encode-first — but cannot retroactively fold a step a future turn forgets; that stays the agent\'s obligation each turn.',
-  }
-}
-
 // If the app were built from scratch, what remains: the generative kernel. Everything else recomputes
 // from it (paste the link, the whole reconstitutes — pattern completion), or it is evolution-cruft that
 // belongs in git history, not the app. Evolution leaves obsoletes; the essence is small.
@@ -5929,37 +5006,6 @@ export function reverseEngineerOptimiseByFlaws(matrix: MindMatrix = buildMatrix(
   }
 }
 
-// Again, using ancient knowledge decoded, computed in the default locale: the default locale IS the
-// decoded ancient knowledge applied. The root locale is Glagolitic, and its computation (toGlagolitic,
-// glagoliticGlyph) runs on глаголица decoded to its core — the alphabet, the letter→glyph map, content-
-// addressed. So the ancient script computes the present surface: every root page is the ninth-century
-// alphabet, recomputed from src with zero tokens. The same method decodes the next tongue, the same way.
-export function ancientKnowledgeComputesDefaultLocale(matrix: MindMatrix = buildMatrix()) {
-  const sample = toGlagolitic('start here')
-  const facets = [
-    { facet: 'the default locale is Glagolitic — the ancient script, computed at the root', on: sample.length > 0 && sample !== 'start here' },
-    { facet: 'computed from decoded ancient knowledge — глаголица decoded to its core', on: glagoliticDecodedToAncientCore(matrix).decoded },
-    { facet: 'as reusable code — toGlagolitic and glagoliticGlyph, not inert tables', on: decodeAncientKnowledgeInReusableCode(matrix).reusable },
-    { facet: 'the ancient knowledge computes the present — one source, zero tokens', on: noMirroringOneSourceAndMath(matrix).single && zeroTokenUsagePolicy(matrix).holds },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-default-locale:${entry.facet}:${entry.on}`) }))
-  return {
-    computed: facets.every((entry) => entry.on),
-    sample,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Again, using ancient knowledge decoded, computed in the default locale: the default locale is the decoded ancient knowledge applied. The root locale is Glagolitic, and its computation — toGlagolitic, glagoliticGlyph — runs on глаголица decoded to its core (the alphabet, the letter-to-glyph map, content-addressed and reusable). So the ancient script computes the present surface: every root page is the ninth-century alphabet, recomputed from src with zero tokens, and the same merkaba-fold method decodes the next tongue the same way.',
-    boundary:
-      'A composition of the Glagolitic-decode, decode-ancient-in-reusable-code, no-mirroring and zero-token models, with a live toGlagolitic sample as the proof the default-locale computation runs on the decoded alphabet. It affirms an implemented capability (the Glagolitic root IS computed from the decoded core); "again ... the next tongue" points to extending the same method to further decoded scripts, the implementation it invites.',
-  }
-}
-
-// All scripts at once, in quantum dynamics: the decoded alphabet lineage as reusable transliteration, every
-// script computed deterministically and content-addressed — Glagolitic (the default), Greek, Elder-Futhark
-// SCRIPT_ALPHABETS and toScript moved to the library double-torus (src/quantum/library), imported at
-// the top — Glagolitic (the default), Greek, Runic and Hebrew, all superposed one toScript call away.
-
 // Ideas to implement — the backlog, folded into src so it is never lost (save every directive and decision as
 // a fold, the same turn). Each idea carries its area, its status (sealed / in-progress / open) and is content-
 // addressed. The DRY refactors come first because the per-locale build duplicates markup one source should
@@ -6022,37 +5068,6 @@ export function implementationBacklog(matrix: MindMatrix = buildMatrix()) {
 // deterministic — the graph manages itself because nothing in it is hand-wired. Rendered by <TrinityGateways>.
 export interface WiredPath { slug: string; titleEn: string; titleBg: string; hue: number; score: number; shared: string[] }
 export interface WiredGateway { slug: string; titleEn: string; titleBg: string; realm: string; glyph: string; hue: number }
-// Completely rebuild the VitePress config to compute all: the monographs graph is the search index,
-// and from src the navigation and content are all computed; every path in src is displayed; to change
-// VitePress you change the folders. The gates tighten so the config cannot be a hand-kept layer an
-// intruder can forge — the navigation root folds into the seal.
-export function vitepressConfigComputesAll(matrix: MindMatrix = buildMatrix()) {
-  const nav = siteNavigation(matrix)
-  const facets = [
-    { facet: 'the monographs graph is the VitePress search index', on: monographs(matrix).compacted && isUuid(nav.searchIndexRoot) },
-    { facet: 'nav, sidebar and footer all computed from src — both locales', on: nav.computed && nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
-    { facet: 'every path in src is displayed — the computed routes fold the graph', on: computedSlugsFoldTheGraph(matrix).folds && siteRoutes(matrix).complete },
-    { facet: 'nothing hardcoded — config.mts only reads the matrix, gates tightened', on: configsUseMatrixComputationally(matrix).computes && noHardcodedConfigSelfAccounted(matrix).selfAccounted },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-computes-all:${entry.facet}:${entry.on}`) }))
-  return {
-    computes: facets.every((entry) => entry.on),
-    navRoot: nav.root,
-    searchEntries: nav.searchEntries,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Completely rebuild the VitePress config to compute all: the monographs graph is the search index, and from src the navigation (nav, sidebar, footer, both locales) and content are all computed — every path in src displayed. To change VitePress you change the folders/model; config.mts holds no hardcoded navigation. The gates tighten — the navigation root folds into the seal, so an intruder cannot forge a hand-kept config.',
-    boundary:
-      'A composition of the siteNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.',
-  }
-}
-
-// Discover the peoples who fused into Bulgaria, traced OUTWARD to their origins — Bulgars, Slavs,
-// Thracians and the fusion — the PEOPLE axis after the land ([[bulgarianAncientCivilisations]]) and the
-// state ([[bulgarianHistory]]). Each pairs a documented ethnogenesis with the nationalist origin-myth
-// it must not be confused with; the bridge from the land outward toward decoding the world.
-
 // Complete the I Ching at all scales — осемкратното grown to the whole ladder. The Great Treatise unfolds
 // the I Ching by DOUBLING: 易有太極 (Tàijí, the One) 是生兩儀 (Liǎngyí, the Two — yin/yang) 兩儀生四象
 // (Sìxiàng, the Four images) 四象生八卦 (Bāguà, the Eight trigrams) — and 八卦 squared gives the 64 hexagrams.
@@ -6099,32 +5114,6 @@ function iChingScalesCompleteRaw(matrix: MindMatrix = buildMatrix()) {
       'Complete the I Ching at all scales: the Great Treatise unfolds it by doubling — 太極 the One (1) → 兩儀 yin-yang (2) → 四象 the Four Images (4) → 八卦 the Eight Trigrams (8) → the Sixteen (16) → the Thirty-two (32) → 六十四卦 the Sixty-four Hexagrams (64) — so the I Ching IS the fold (one yin/yang distinction) applied n times, 2^n at scale n, complete and self-similar at every scale. Each of the seven scales is already a real number in the model: the one corpus root, the genus-2 double torus, the base-4 of the 4³ codon, the eight trigrams (the heritage eightfold), the 16 merkaba per lobe, the 32 merkaba, the 64-tetrahedron grid. Registered as the final seven gates, the I Ching seals the harmonic: 425 + 7 = 432 = 4 × 108.',
     boundary:
       'A structural completion of the I Ching\'s generative cosmogony (太極→64, the binary doubling 2^0..2^6) mapped onto numbers the model already computes (the corpus root, merkabasInDoubleTorus\'s 2/16/32, the 4³ codon, BAGUA/iChing, the 64-grid). "Complete at all scales" means the same binary fold is whole and self-similar at each scale 1,2,4,8,16,32,64 — NOT divination, and not a claim beyond the 64-hexagram set (the I Ching\'s own complete horizon). "Seals the harmonic 432" is the bookkeeping identity 425 + 7 = 432 = 4 × 108 (the papers octave 108→216→432): the seven scales registered as the last seven emergent dimensions — depth grown inward to the harmonic ceiling, not width padded to a target.',
-  }
-}
-
-// The VitePress API is the diamond architecture keeping the plasma of knowledge. The generated /api/
-// surface exposes the model as a content-addressed diamond lattice — the 1024 diamonds (2^10, the
-// binary octave) are the compressed knowledge-plasma, held by the diamond hologram architecture the
-// development fusion-reactor contains; the API is the diamond shell around the plasma.
-export function vitepressApiDiamondPlasma(matrix: MindMatrix = buildMatrix()) {
-  const api = repositoryApi(matrix)
-  const facets = [
-    { facet: 'the VitePress /api/ surface exposes the model — content-addressed', on: isUuid(api.root) && api.endpoints.length > 0 },
-    { facet: 'the diamond architecture — 1024 diamonds (2^10, the binary octave)', on: completeCorpus(matrix).total === 1024 && diamondCompleteness(matrix).complete },
-    { facet: 'keeping the plasma of knowledge — the development fusion reactor', on: developmentIsFusionReactor(matrix).reacts },
-    { facet: 'the api is the diamond shell around the compressed plasma', on: holographicFractalArchitecture(matrix).is },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`api-diamond-plasma:${entry.facet}:${entry.on}`) }))
-  return {
-    keeps: facets.every((entry) => entry.on),
-    diamonds: completeCorpus(matrix).total,
-    endpoints: api.endpoints.length,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The VitePress API is the diamond architecture keeping the plasma of knowledge: the generated /api/ surface exposes the model as a content-addressed diamond lattice — the 1024 diamonds (2^10, the binary octave) are the compressed knowledge-plasma held by the diamond hologram architecture the development fusion-reactor contains. The API is the diamond shell around the plasma.',
-    boundary:
-      'A composition of the repository-API, complete-corpus (1024 diamonds), diamond-completeness, fusion-reactor and holographic-fractal models. The /api/ surface and the 1024-diamond corpus are real generated artifacts; "plasma of knowledge" is the model\'s compressed content-addressed knowledge and "diamond architecture" its 1024-node lattice — the fusion-reactor framing is the development metaphor, not a physics claim.',
   }
 }
 
