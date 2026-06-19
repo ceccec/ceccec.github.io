@@ -1121,6 +1121,7 @@ export function trueAndFalseCoexistInHarmony(matrix: MindMatrix = buildMatrix())
   // the algebra, as displayable expressions for the animations (geometry shows the form; this shows the operation)
   const algebra = [
     { law: 'the vortex — (Z/9Z)* units', expr: '1 → 2 → 4 → 8 → 7 → 5 → 1   (×2 mod 9);  3 · 6 · 9 the axis' },
+    { law: 'unity is the RESULT, not the start', expr: '1·2·4·8·7·5·[3·6·9] → 1   — 1 is the result of the vortex, the sequence moving through the 3·6·9 trinity' },
     { law: 'multiplicative inverse', expr: '2 · 5 ≡ 1 (mod 9)   — the heart is the proton inverse' },
     { law: 'rational inverse', expr: 'p/q · q/p = 1   — true · false folded to one' },
     { law: 'genus-2 Euler characteristic', expr: 'χ(Σ₂) = 2 − 2g = −2,  g = 2' },
@@ -1131,7 +1132,7 @@ export function trueAndFalseCoexistInHarmony(matrix: MindMatrix = buildMatrix())
     { facet: 'true and false coexist in harmony — held as the two poles (a value and its inverse, the fold’s two directions, a superposition’s two amplitudes), not one beating the other; this is why harmony ≠ truth', on: fold.forward !== fold.reverse },
     { facet: 'computed through sacred geometry — the genus-2 double torus (χ = −2), the I Ching, the merkaba', on: 2 - 2 * 2 === -2 },
     { facet: 'and through algebra — the (Z/9Z)* vortex units (1·2·4·8·7·5), multiplicative and rational inverses, superposition', on: vortex[0] === 1 && vortex.length >= 6 },
-    { facet: 'the algebra is displayable — each law is a renderable expression, so the animations show the operation, not only the form; geometry AND algebra complete the source, imagination closes the loop', on: algebra.length === 6 },
+    { facet: 'the algebra is displayable — each law is a renderable expression (incl. the vortex returning to unity), so the animations show the operation, not only the form; geometry AND algebra complete the source, imagination closes the loop', on: algebra.length >= 6 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`coexist:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('true-false-coexist', facets)
   return {
