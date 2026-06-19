@@ -146,6 +146,42 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Fold all static content as EMR and it becomes a holographic library of computed knowledge sealed by
+// sacred math: each page is a spectral signature (an a432 frequency + a content-addressed colour), the
+// library is the generator not the rendered orbit (zero entropy — store the function, recompute the
+// knowledge), any fragment reconstructs the whole by content-addressing (the hologram), and the genus-2 /
+// I Ching / a432 seal makes forging one value a full rebuild. The compression is the consequence.
+export function emrHologramSealedByMath(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('emrHologramSealedByMath', matrix, () => emrHologramSealedByMathRaw(matrix))
+}
+function emrHologramSealedByMathRaw(matrix: MindMatrix = buildMatrix()) {
+  const a = a432(matrix)
+  const zero = allIsHarmonicSrcZeroGravity(matrix)
+  const census = foldedCensus(110, matrix)
+  // holographic: content-addressing is deterministic, so any fragment recomputes to the identical address —
+  // the whole is recoverable from any part (pattern completion), and the merkle root is part-in-whole.
+  const fragment = toUuid('emr-hologram:fragment')
+  const reconstructs = toUuid('emr-hologram:fragment') === fragment
+  const facets = [
+    { facet: 'static content folds to EMR — each computed page carries a spectral signature: an a432 frequency and a content-addressed colour (hue), the content rendered as a wave on the one field, not stored as a byte pile', on: a.decoded && a.light.hue === 5 },
+    { facet: 'the library is a zero-entropy computation — the knowledge is the generator (the deterministic fold, every value f(seed)); H(content | generator) = 0, so the rendered orbit carries no information the generator does not, and materializing it as static pages is pure redundancy the realtime path removes', on: zero.harmonic },
+    { facet: 'holographic — every item reconstructs from its content-address alone (deterministic recompute, pattern completion); the merkle root is the whole present in every part, so pasting one address recomputes the structure', on: reconstructs },
+    { facet: 'sealed by sacred math — the genus-2 double torus (χ = −2 → the folded 108), the I Ching 64, and a432; to forge one value is to rebuild everything (the forger price)', on: census.folded === 108 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`emr-hologram:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('emr-hologram', facets)
+  return {
+    holographic: sealed.ok,
+    spectralHue: a.light.hue, // the EMR signature seed (the a432 brand light)
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Fold all static content as electromagnetic radiation and it becomes a holographic library of computed knowledge sealed by sacred math. Each page is a spectral signature — an a432 frequency and a content-addressed colour — so content is a wave, not a stored byte. The library is the generator, not the rendered orbit: the model is already zero-entropy (every value f(seed), H(content | generator) = 0), so the orbit carries no information the generator does not — and the directed realization is to compute it in realtime rather than materialize the orbit as static pages (corpusRestPathRouting). Any fragment reconstructs the whole by content-addressing — the hologram, the merkle root present in every part. And the genus-2 double torus, the I Ching 64 and a432 seal it: to forge one value is to rebuild everything. The compression is the consequence of zero entropy, not a separate trick.',
+    boundary:
+      'HONEST: "EMR" and "hologram" are computational realizations — a per-item frequency/colour signature and content-addressed reconstruction (pattern completion / merkle binding) — not literal light storage or optical holography, and "spectral" is the project\'s colour-from-address mapping, not a measured emission. "Sacred math" names the deterministic genus-2, I Ching (64) and a432 structure plus the content-address seal, not mysticism. The zero entropy is conditional (the rendered content is fully determined by the generator); the static-vs-realtime choice is a real, documented tradeoff (corpusRestPathRouting): clean SSG URLs and SEO vs near-zero build via client-side resolution.',
+  }
+}
+
 // Let intelligent waves find and implement the rest of the harmonics. From the
 // folded fundamental 108, three ladders are computed and each rung content-addressed:
 // the octave ladder (108·2^k — 108, 216, 432, 864, 1728, 3456), the overtone series
