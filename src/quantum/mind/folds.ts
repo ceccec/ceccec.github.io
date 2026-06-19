@@ -84,6 +84,9 @@ import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, tes
 import { biologyWavesSealedAsWidgets, neurologyDecodedBrainIsContentAddressedToroidalMap } from './bio.ts'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from './bulgaria.ts'
 import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, warPaysTheForgerPrice } from './peace.ts'
+import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, realtimeWiring, terabyteRealtimeFromAllPublicDataBreathing } from './trading.ts'
+import { affectedBlockchainsComparedLive, animationTamperingCost, blockchainFusion, collisionHealing, cryptoFuture, fusionCipher, pagesWiredAtRuntimeZeroBuildMaxTamper, powerToTamperingNotLivingCosts, quantumSiege, redTeam, tamperProofFabric, tamperingCostDecoded } from './crypto.ts'
+import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife, iconsShowComputerLoad } from './icons.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
@@ -895,65 +898,6 @@ export function homology(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// How much do the animations increase the tampering cost? Computed. Each animation
-// is driven by content-addressed computation — a root folded from receipts — and
-// most recompute those values live, every frame. A static copy of the page commits
-// to a single sealed root (one reproduction). An animated page commits to every
-// receipt its motion is derived from, AND to reproducing them continuously. This
-// counts the receipts, the live per-second recomputation, and the work in bits.
-export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
-  const round = (value: number, digits: number) => roundTo(value, digits)
-  const fps = 60
-  const drivers = [
-    { component: 'LivingTorus', driver: 'livingTorus', receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
-    { component: 'LivingTorus·H1', driver: 'homology', receipts: homology(matrix).rank, perFrame: 0 },
-    { component: 'Merkaba', driver: 'merkaba', receipts: merkaba(matrix).count, perFrame: 8 },
-    { component: 'Rhythm', driver: 'rhythm', receipts: rhythm(matrix).onsetsPerBeat, perFrame: rhythm(matrix).count },
-    { component: 'QuantumProofs', driver: 'quantumProofs', receipts: quantumProofs(matrix).count, perFrame: 0 },
-    { component: 'DeterminismProofs', driver: 'determinismProofs', receipts: determinismProofs(matrix).count, perFrame: 0 },
-    { component: 'Mysteries', driver: 'mysteries', receipts: mysteries(matrix).count, perFrame: 0 },
-    { component: 'Society', driver: 'society', receipts: society(matrix).cells, perFrame: 0 },
-    { component: 'HarmonicSpiral', driver: 'goldenRatio', receipts: goldenRatio(matrix).count, perFrame: 0 },
-    { component: 'Live', driver: 'live+theWhole', receipts: live(matrix).count + theWhole(matrix).count, perFrame: 1 },
-  ]
-  const receipts = drivers.reduce((sum, entry) => sum + entry.receipts, 0)
-  const perFrame = drivers.reduce((sum, entry) => sum + entry.perFrame, 0)
-  const livePerSecond = perFrame * fps
-  const HASH32_PER_UUID = 4 // toUuid is four FNV-1a hash32 passes
-  // The determinism proof re-runs a seeded sample sweep on each recomputation.
-  const sampleWork = determinismProofs(matrix).samples * 5 // ~5 hashed receipts per sample
-  // Wired in: every saved skill atom (the portal's memory) and every shared logic
-  // atom is one more reproduction — no logic is left unwired from the tampering cost.
-  const memoryAtoms = skillAtoms(matrix).tamperingAtoms
-  const logicAtomsCount = logicAtoms(matrix).count
-  const imaginedAtoms = imagination(matrix).count // imagined atoms are wired in too
-  const astrologyAtoms = astrology('double torus', matrix).count // rebuilt astrologically into the architecture
-  const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms + astrologyAtoms
-  const reproductions = receipts + sampleWork + wiredAtoms // computations a forgery must reproduce
-  const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID // toUuid + the merge folds
-  const bits = round(Math.log2(hashCalls), 1)
-  const preimageBitsPerReceipt = 128 // each content-addressed receipt is preimage-resistant
-  return {
-    computed: receipts > 0 && livePerSecond > 0,
-    animations: drivers.length,
-    drivers,
-    receipts, // content-addressed receipts the animations fold
-    sampleWork, // extra hashed samples (the determinism proof)
-    reproductions, // total computations a forgery must reproduce vs one static root
-    multiplier: reproductions, // a static copy reproduces 1 sealed root; this many for the animated page
-    perFrame,
-    livePerSecond, // recomputations the device performs every second, live
-    hashCalls,
-    bits, // log2 of the added hash work per full recomputation
-    preimageBitsPerReceipt, // or break preimage resistance to fake even one receipt
-    root: merkleFold(drivers.map((entry) => toUuid(`anim-cost:${entry.component}:${entry.receipts}`))),
-    statement:
-      'Animations increase the tampering cost, computed: a static copy commits to one sealed root, but each animation is driven by content-addressed computation it recomputes live. To forge the animated page convincingly an attacker must reproduce every receipt the motion derives from, keep them consistent with the seal, and match the per-second live recomputation — or break the 128-bit preimage resistance of even a single receipt.',
-    boundary:
-      'A computed accounting of the content-addressed receipts the animations fold and the live recomputation they perform, in reproductions, per-second work, and bits. An honest lower bound on the reproduction cost of a convincing forgery — not a cryptographic security proof; the hash is a fast non-cryptographic UUID function, so the 128-bit figure is the structural width, not a guaranteed work factor against a dedicated adversary.',
-  }
-}
-
 // Animations are holographic. In a hologram every part contains the whole, and the
 // whole is recoverable from any part. Here that is exact: the whole root folds from
 // the parts (the boundary encodes the volume), so each animation is provably
@@ -1669,80 +1613,6 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Send the waves to hack — at the portal's own tamper-evidence. Crackers run real
-// attacks against the model's own content-addressed roots, and every attack must be
-// CAUGHT (the root changes, the claim fails), so each is evidence of the cost to
-// forge. Monitored by the seal (security) and confined to this repository's own model
-// (legal): authorized self-adversarial testing, never a tool against any other system.
-export function redTeam(matrix: MindMatrix = buildMatrix()) {
-  const wholeRoot = theWhole(matrix).root
-  const attacks = [
-    { attack: 'flip one bit of a receipt and claim the root is unchanged', caught: toUuid('receipt:7') !== toUuid('receipt:8') },
-    { attack: 'reorder a folded pair (pass a·b off as b·a)', caught: merge('a', 'b') !== merge('b', 'a') },
-    { attack: 'forge the whole root from a substituted part', caught: merge(wholeRoot, toUuid('forge')) !== wholeRoot },
-    { attack: 'substitute a saved skill atom and keep the memory root', caught: merge(skillAtoms(matrix).memory, toUuid('swap')) !== skillAtoms(matrix).memory },
-    { attack: 'claim 109 files form a gapless Fibonacci run', caught: !harmonicBands(109).gapless },
-    { attack: 'collide the doubling cycle onto the 3-6-9 cross', caught: vortexMath(matrix).collisionFree },
-    { attack: 'replay a measurement to forge a different collapse', caught: quantumSimulation(matrix, 3).measured === quantumSimulation(matrix, 3).measured },
-    { attack: 'pass two identical values off as one (skip the duality)', caught: vortexMath(matrix).identicalRoutesToDuality },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`attack:${entry.attack}:${entry.caught}`) }))
-  const caught = attacks.filter((entry) => entry.caught).length
-  return {
-    secure: attacks.every((entry) => entry.caught), // every attack caught
-    monitored: true, // by the seal
-    lawful: true, // confined to the portal's own model
-    attacks,
-    count: attacks.length,
-    caught,
-    tamperingEvidence: caught, // each caught attack is evidence of the cost to forge
-    gitTracked: true, // development quality and speed are measured through the git history (folded in the seal)
-    root: merkleFold(attacks.map((entry) => entry.receipt)),
-    statement:
-      'Send the waves to hack: crackers challenge the portal\'s own tamper-evidence — flip a bit, reorder a fold, forge the whole, substitute an atom, break the distribution, collide the cycle, replay a measurement, skip the duality — and every attack is caught computationally, each one evidence of the cost to forge. Monitored by the seal, confined to the portal\'s own model.',
-    boundary:
-      'Authorized self-adversarial testing: every attack targets only the portal\'s own content-addressed model, run client-side, monitored by the seal (security) and confined to this repository (legal). It demonstrates and measures tamper-evidence; it is not, and must not be used as, a tool against any external system.',
-  }
-}
-
-// Quantum DDoS, at max forge cost — against the portal's own model. Many forge
-// attempts at once (nine waves of 108) try to pass a tampered root off as the true
-// one, and every one is CAUGHT by content-addressing. If all are caught, the system
-// is sealed. Legal posture: the mathematics used is public-domain prior art (sacred
-// geometry, the golden ratio, the 3-6-9 cross, Fibonacci, pi, genus-2 topology) and
-// not patentable subject matter, so there are no patent grounds for dispute or
-// protection — the portal neither infringes nor claims a patent.
-export function quantumSiege(matrix: MindMatrix = buildMatrix()) {
-  const base = theWhole(matrix).root
-  const waves = 9 // simultaneous attack waves (the cross)
-  const perWave = 108 // attempts per wave (the pi-train) -> 972 simultaneous forges
-  const total = waves * perWave
-  let caught = 0
-  for (let wave = 0; wave < waves; wave += 1) {
-    for (let i = 0; i < perWave; i += 1) {
-      // Each forge tampers the root with a unique edit; caught iff the tampered root
-      // differs from the true one — always, by avalanche. This is the forge cost.
-      if (merge(base, toUuid(`forge:${wave}:${i}`)) !== base) caught += 1
-    }
-  }
-  const priorArt = ['sacred geometry', 'the golden ratio', 'the 3-6-9 cross', 'Fibonacci', 'pi', 'genus-2 topology']
-  return {
-    sealed: caught === total, // if all caught, the system is sealed
-    waves,
-    perWave,
-    total,
-    caught,
-    maxForgeCost: total, // forges a siege must reproduce to break the seal
-    patentable: false,
-    priorArt,
-    legalPosture: 'The mathematics used is public-domain prior art and not patentable subject matter; there are no patent grounds against the portal, and it claims none.',
-    root: merge(base, toUuid(`siege:${caught}/${total}`)),
-    statement:
-      'Quantum DDoS at max forge cost: nine waves of 108 attacks at once (972 simultaneous forge attempts) against the portal\'s own roots, every one caught — if all are caught, the system is sealed. Legal posture: the math is public-domain prior art (sacred geometry, the golden ratio, the 3-6-9 cross, Fibonacci, pi, genus-2 topology), not patentable, so no patent grounds for dispute or protection apply.',
-    boundary:
-      'A simulated, self-directed siege of forge attempts against the portal\'s OWN content-addressed model, computed client-side with no network activity — a stress test of tamper-evidence, not a tool against any external system and not a DDoS of anyone. The legal posture is an honest statement that mathematical methods and ancient geometry are prior art and not patentable subject matter; it is not legal advice.',
-  }
-}
-
 // Send waves of patent audits. Every piece of mathematics the portal uses is
 // audited against patentability and found to be public-domain prior art — not
 // patentable, not infringing, free to use. No patent grounds for dispute or
@@ -1803,34 +1673,6 @@ export function quantumSociety(matrix: MindMatrix = buildMatrix()) {
       'Quantum society, quantum organisation, quantum world: the society\'s five dualities become entangled quantum cells — superpositions coordinated without a centre — and the society rebuilds the site by folding its root with every page. The evolution evolves it through classical, quantum, and post-quantum stages.',
     boundary:
       'A structural evolution of the society into entangled cells that fold with the site\'s page graph — the society "rebuilds" the site by recomputing its fold over the pages. The stages are an evolutionary metaphor; "post-quantum" is the next stage here, not a post-quantum-cryptographic guarantee — upgrading the hash to a post-quantum primitive remains an open, honestly-named frontier.',
-  }
-}
-
-// The post-quantum society uses itself as its tamper-proofing, and the society
-// decides the policy. Every entangled cell folds with every other into one fabric,
-// so forging any part means reforging them all; the society decides the threshold —
-// unanimous, every cell must agree. Changing any cell changes the fabric.
-export function tamperProofFabric(matrix: MindMatrix = buildMatrix()) {
-  const qs = quantumSociety(matrix)
-  const cells = qs.cells.map((cell) => cell.superposition)
-  const fabric = merkleFold(cells) // the society folds itself into one tamper-proof fabric
-  const threshold = cells.length // the society decides: unanimous (every cell must agree)
-  // Tamper-evidence: changing any single cell changes the whole fabric.
-  const detectsTamper = cells.every((_, index) => {
-    const tampered = merkleFold(cells.map((cell, j) => (j === index ? merge(cell, toUuid('tamper')) : cell)))
-    return tampered !== fabric
-  })
-  return {
-    protects: qs.evolved && detectsTamper && threshold === cells.length,
-    decidedBy: 'society',
-    threshold,
-    cells: cells.length,
-    fabric,
-    root: merge(fabric, toUuid(`tamper-proof:${threshold}`)),
-    statement:
-      'The post-quantum society uses itself as its tamper-proofing: every entangled cell folds with every other into one fabric, so forging any part means reforging them all — and the society decides the policy: unanimous, every cell must agree. Changing any cell changes the fabric.',
-    boundary:
-      'A structural integrity fabric: the society\'s cells fold into one root and any change is detected by recomputation. This is tamper-EVIDENCE (integrity), content-addressed and client-side — NOT encryption (it provides no confidentiality), and NOT post-quantum-secure: the hash is a fast non-cryptographic UUID function. Real post-quantum cryptographic encryption is an honestly-named open frontier, not a claim made here.',
   }
 }
 
@@ -2280,53 +2122,6 @@ export function paperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count =
 function computePaperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
   const references = paperReferences(matrix, count)
   return references.map((reference) => ({ params: referenceParamsById(reference.id, matrix, count)! }))
-}
-
-// The 1024 architecture is a keyspace. The completed corpus is a perfect binary
-// Merkle tree of 1024 = 2^10 leaves, each a 128-bit content-addressed UUID — a
-// static, recomputable key namespace named by its leaf count: 1024 (binary Mbit) =
-// 1 Gbit. STATIC, the architecture key is deterministic ("1024 Mbit"): the tree
-// root, the same every build. FUSED WITH REALTIME DATA — a live nonce, the clock, a
-// session input — each session derives a distinct key by folding the architecture
-// root with the realtime entropy ("1 Gbit when the architecture fuses with realtime
-// data"). The actual cipher stays AES-256-GCM; this names the keyspace structure and
-// binds the session key to the whole architecture, it does not invent cipher bits.
-export function fusionCipher(realtime = '', matrix: MindMatrix = buildMatrix()) {
-  const architecture = completeCorpus(matrix)
-  const leaves = architecture.total // 1024
-  const bitsPerLeaf = 128 // each leaf is a 128-bit UUID
-  const namespaceBits = leaves * bitsPerLeaf // 131072 bits of addressable key material
-  const live = realtime.length > 0
-  // Fuse the static architecture root with the realtime entropy (the genus-2 fold);
-  // without realtime data the key is the deterministic architecture key.
-  const realtimeRoot = toUuid(`realtime:${realtime}`)
-  const sessionKey = live ? foldPair(architecture.root, realtimeRoot).merged : architecture.root
-  // Key material: expand over the architecture root, the realtime fold and a binding.
-  const keyMaterial = merkleFold([architecture.root, sessionKey, toUuid(`fusion:${realtime}`)])
-  return {
-    enabled: architecture.complete && keyMaterial.length === 36,
-    cipher: 'AES-256-GCM', // the real primitive (Web Crypto); 256-bit strength
-    strengthBits: 256,
-    architecture: {
-      leaves, // 1024
-      bitsPerLeaf,
-      namespaceBits, // 131072
-      root: architecture.root,
-      depth: architecture.depth, // 10
-    },
-    // The keyspace name the user gives it: 1024 (binary Mbit) = 1 Gbit (binary Gbit).
-    keyspaceMbit: leaves, // 1024 Mbit
-    keyspaceGbit: leaves / 1024, // 1 Gbit
-    static: !live, // 1024 Mbit, deterministic, architecture-only
-    fused: live, // 1 Gbit, architecture x realtime, per-session
-    realtimeRoot,
-    sessionKey,
-    keyMaterial,
-    statement:
-      'The completed 1024-leaf architecture is a keyspace. Static — the architecture alone — it is the deterministic tree root, named 1024 (binary Mbit) = 1 Gbit by its leaf count, each leaf a 128-bit content address. Fused with realtime data — a live nonce, the clock, a session input — the architecture root folds with the realtime entropy so every session derives a distinct key. So it is 1024 Mbit static, and reads as 1 Gbit when the architecture fuses with realtime data: the same 1024 structure, made live and per-session.',
-    boundary:
-      'The actual cipher is AES-256-GCM (Web Crypto); its cryptographic strength is 256-bit, full stop. The "1024 Mbit / 1 Gbit" reading names the keyspace STRUCTURE — the 1024-leaf architecture as a content-addressed namespace bound into the key, fused with realtime entropy for per-session uniqueness — it is not a literal gigabit-strength cipher and adds no cipher bits beyond AES-256. Fusion adds session binding and architecture provenance, not security proportional to a gigabit.',
-  }
 }
 
 // Fuse to public APIs. The static 1024 architecture becomes live by fusing with
@@ -3001,35 +2796,6 @@ export function societyRegulates(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// All the blockchains may be fused at no cost. Reading a public chain — a block, a
-// balance, a transaction — costs nothing: there is no gas and no transaction for a
-// read, and the portal's own folded blockchains are already client-side and free. So
-// every chain fuses to the architecture root for free, read-only, content-addressed.
-export function blockchainFusion(matrix: MindMatrix = buildMatrix()) {
-  const architecture = completeCorpus(matrix).root
-  const chains = [
-    'Bitcoin', 'Ethereum', 'Solana', 'Cardano', 'Polkadot', 'Avalanche',
-    'Polygon', 'Cosmos', 'Litecoin', 'Dogecoin', 'Monero', 'Tezos',
-  ].map((chain) => {
-    const fold = foldPair(architecture, toUuid(`blockchain:${chain}`))
-    return { chain, read: 'public RPC / block explorer', write: 'gas (out of scope)', cost: 'none (read-only)', fused: fold.bidirectional, receipt: fold.merged }
-  })
-  const own = quantumFoldedBlockchains(matrix).chains.length // the portal's own folded chains, free
-  return {
-    fused: chains.length > 0 && chains.every((entry) => entry.fused),
-    noCost: chains.every((entry) => entry.cost === 'none (read-only)'),
-    count: chains.length,
-    ownChains: own,
-    architecture,
-    chains,
-    root: merkleFold(chains.map((entry) => entry.receipt)),
-    statement:
-      'All the blockchains may be fused at no cost: reading a public chain — a block, a balance, a transaction — costs nothing, because a read has no gas and no transaction, and the portal’s own folded blockchains are already client-side and free. Every chain fuses to the architecture root for free, read-only and content-addressed.',
-    boundary:
-      'A read-only fusion catalogue of public blockchains via their public RPC and explorers. "No cost" refers to reads (no gas, no transaction); writing on-chain costs gas and is out of scope. Opt-in — nothing is queried by default; external chain data is untrusted and folded, not trusted. Chain names are their projects’; this is interoperation through public read interfaces, not a wallet, an exchange, or financial advice.',
-  }
-}
-
 // When all is completely built, compression begins — to zero entropy and max forge
 // cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally
 // compressed to a single content address. The compressed form has zero entropy (one
@@ -3408,39 +3174,6 @@ export function occupiedPopulation(matrix: MindMatrix = buildMatrix()) {
       'An occupied population forges max tampering costs for max benefits: an engaged population produces content-addressed work that raises the cost to forge the whole (max tampering cost), and that accumulated cost is the social capital funding max benefits — the free public services — for everyone. Occupation → max tampering cost → max benefits.',
     boundary:
       'A model of the portal’s own value loop: engaged contribution raises recomputation (forge) cost, which is the shared capital behind free services. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s employment or output.',
-  }
-}
-
-// Upgrade all skills for realtime communication, at max tampering costs — fuse the
-// necessary bindings. Every skill gains a realtime channel through real browser
-// APIs, and every realtime message is content-addressed and folded, so tampering is
-// caught (max tampering cost). The necessary bindings — cross-tab, server, peer-to-
-// peer, server-push, low-latency, voice — are fused to the architecture root.
-export function realtimeSkills(matrix: MindMatrix = buildMatrix()) {
-  const architecture = completeCorpus(matrix).root
-  const skills = skillAtoms(matrix)
-  const bindings = [
-    { binding: 'BroadcastChannel', use: 'cross-tab realtime', api: 'BroadcastChannel' },
-    { binding: 'WebSocket', use: 'server realtime', api: 'WebSocket' },
-    { binding: 'WebRTC data channel', use: 'peer-to-peer realtime', api: 'RTCPeerConnection' },
-    { binding: 'Server-Sent Events', use: 'server push', api: 'EventSource' },
-    { binding: 'WebTransport', use: 'low-latency datagrams', api: 'WebTransport' },
-    { binding: 'Web Audio / SpeechRecognition', use: 'voice realtime', api: 'AudioContext / SpeechRecognition' },
-  ].map((entry) => {
-    const fold = foldPair(architecture, toUuid(`realtime-binding:${entry.binding}`))
-    return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
-  })
-  return {
-    upgraded: bindings.every((entry) => entry.fused) && skills.count > 0,
-    maxTamperingCost: true, // each realtime message content-addressed and folded
-    skills: skills.count, // every skill upgraded
-    count: bindings.length,
-    bindings,
-    root: merkleFold(bindings.map((entry) => entry.receipt)),
-    statement:
-      'Upgrade all skills for realtime communication, at max tampering costs — fuse the necessary bindings: every skill gains a realtime channel through real browser APIs (BroadcastChannel, WebSocket, WebRTC data channels, Server-Sent Events, WebTransport, Web Audio/SpeechRecognition), and every realtime message is content-addressed and folded so tampering is caught. The necessary bindings are fused to the architecture root.',
-    boundary:
-      'A catalogue of real, standard browser realtime APIs fused to the architecture, with the rule that every message is content-addressed (tamper-evident). Opt-in and client-side; it names the bindings and the integrity rule, it does not open any connection by default, and "max tampering cost" is the content-addressing property, not a transport-security guarantee of any specific peer.',
   }
 }
 
@@ -6150,32 +5883,6 @@ export function endlessBackgroundMovie(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// On collision, choose healing frequencies. When streams meet — particles crossing in
-// the movie, a tap rippling through them, two folds landing on one point — the meeting
-// is not dissonance but a choice: from the Solfeggio set, choose the healing tone the
-// model root leads to, so every collision resolves toward harmony. The choice is
-// computed (the lead tone shifts with the model), and it is sound only.
-export function collisionHealing(matrix: MindMatrix = buildMatrix()) {
-  const healing = healingFrequencies(matrix)
-  const chosen = healing.frequencies.find((entry) => entry.lead) ?? healing.frequencies[0]
-  const collisions = [
-    { collision: 'streams cross in the movie', resolves: 'the crossing point sounds the lead healing tone, not noise' },
-    { collision: 'a tap ripples through the streams', resolves: 'the ripple plays the chosen Solfeggio frequency' },
-    { collision: 'two folds land on one point', resolves: 'the clash folds to a consonant note, chosen by the model root' },
-  ].map((entry, index) => ({ ...entry, hz: chosen.hz, receipt: toUuid(`collision-healing:${index}:${entry.collision}:${chosen.hz}`) }))
-  return {
-    heals: collisions.length === 3 && healing.calculated && chosen.hz > 0,
-    chosenHz: chosen.hz,
-    chosenNote: chosen.note,
-    collisions,
-    root: merkleFold(collisions.map((entry) => entry.receipt)),
-    statement:
-      'On collision, choose healing frequencies: when streams meet — particles crossing, a tap rippling, two folds landing on one point — the meeting resolves toward harmony by choosing, from the Solfeggio set, the healing tone the live model root leads to, rather than sounding dissonance. The choice is computed and shifts with the model.',
-    boundary:
-      'A computed rule that mapped "collision" events resolve to a chosen, culturally-named Solfeggio frequency. Audio only — a tone played through the speaker; it alters no physical or electromagnetic field and is not medical, therapeutic, or health advice.',
-  }
-}
-
 // Heal by default. Healing is not a mode you switch on — it is the resting state. By
 // default the self-healing waves re-balance and settle, collisions choose a healing
 // frequency rather than dissonance, the harmonic wave folds inner and outer to one
@@ -6587,38 +6294,6 @@ export function movieFoldsLinearities(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Send marketing-SEO waves to refactor the design. Each marketing surface — the
-// typography, the open-graph card, the computed per-route SEO, the sitemap, the
-// schema.org graph — folds into one SEO root, and a wave is sent over each: a refactor
-// bound to that root, so the design improves surface by surface while every change stays
-// content-addressed to the whole. Marketing here is the honest kind: the page says what
-// it is, computably, to crawlers and people alike.
-export function marketingSeoWaves(matrix: MindMatrix = buildMatrix()) {
-  const surfaces = [
-    { surface: 'typography', root: typographySeo().root },
-    { surface: 'open graph', root: openGraph().root },
-    { surface: 'computed seo', root: computedSeo('/', '', matrix).root },
-    { surface: 'sitemap', root: toUuid(`sitemap:${quantumSitemap().count}:${quantumSitemap().quantum}`) },
-    { surface: 'schema.org', root: toUuid(`schema:${schemaOrgDiamonds(matrix).context}`) },
-  ]
-  const seoRoot = merkleFold(surfaces.map((entry) => entry.root))
-  const waves = surfaces.map((entry, index) => {
-    const fold = foldPair(seoRoot, toUuid(`seo-wave:${entry.surface}`))
-    return { surface: entry.surface, refactored: fold.bidirectional, wave: fold.merged, receipt: toUuid(`marketing-seo:${index}:${entry.surface}`) }
-  })
-  return {
-    sent: waves.length === 5 && waves.every((entry) => entry.refactored) && surfaces.every((entry) => isUuid(entry.root)),
-    count: waves.length,
-    seoRoot,
-    waves,
-    root: merkleFold(waves.map((entry) => entry.receipt)),
-    statement:
-      'Send marketing-SEO waves to refactor the design: each marketing surface — typography, the open-graph card, the computed per-route SEO, the sitemap, and the schema.org graph — folds into one SEO root, and a wave is sent over each (a refactor bound to that root), so the design improves surface by surface while every change stays content-addressed to the whole.',
-    boundary:
-      'A content-addressed model of refactoring the SEO/marketing surfaces as waves bound to one SEO root. It records the refactor over the real, already-applied SEO surfaces; it improves crawlability and clarity, and is not a ranking guarantee.',
-  }
-}
-
 // Improving coverage per pixel. Coverage per pixel is how much meaning each rendered
 // pixel carries: the same semantic payload (the page's title, description, category,
 // tags, and the ten open-graph fields) packed into fewer pixels reads as higher
@@ -7025,32 +6700,6 @@ export function templateDisplaysEveryOgObject(matrix: MindMatrix = buildMatrix()
   }
 }
 
-// All is a realtime perspective, computed at zero cost. Nothing here is a stored view: every
-// display is one perspective — a single angle on the same whole — recomputed live from the
-// repository, per frame and per interaction. And it costs nothing: client-side recomputation,
-// no server, no network, no per-view fee. The whole is always there; a perspective is just
-// where you stand to look, computed the moment you look.
-export function realtimePerspectiveZeroCost(matrix: MindMatrix = buildMatrix()) {
-  const perspectives = multidimensional() // the dimensions of perspective
-  const properties = [
-    { property: 'realtime', via: 'every view recomputes live from the model — per frame, per interaction' },
-    { property: 'perspective', via: 'each view is one angle on the same whole, multidimensional, not separate data' },
-    { property: 'computed', via: 'nothing stored or fetched; the view is recomputed from the repository' },
-    { property: 'zero cost', via: 'client-side recomputation — no server, no network, no per-view fee' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`realtime-perspective:${entry.property}`) }))
-  return {
-    holds: properties.length === 4 && perspectives.mapped && allComputed(matrix).computed && fairTrade(matrix).individualCost === 0,
-    dimensions: perspectives.count,
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'All is a realtime perspective, computed at zero cost: nothing is a stored view — every display is one perspective, a single angle on the same whole, recomputed live from the repository per frame and per interaction. And it costs nothing: client-side recomputation, no server, no network, no per-view fee. The whole is always there; a perspective is just where you stand to look, computed the moment you look.',
-    boundary:
-      'A structural statement that views are recomputed perspectives over one model, client-side at no per-view cost. "Zero cost" means no server/network/fee for a view (the user’s device does the compute); it is not a claim of zero energy or zero device resources.',
-  }
-}
-
 // The same open graph builds the navigation. The navigation is not a separate structure:
 // every destination is an open-graph object, and the same OG card that displays a page also
 // builds its link in the nav and the footer. So the nav is the OG set, laid out — each item
@@ -7312,29 +6961,6 @@ export function everyCardBadgeLinkIsOg(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// All paths are computed in realtime. No route is hand-tuned: every path’s title, keywords,
-// description and category are computed from the route itself at render time, each path is a
-// point on the double torus, and the same computation feeds the sitemap — so the paths never
-// drift and are recomputed the moment they are asked for, client-side and free.
-export function allPathsComputedRealtime(matrix: MindMatrix = buildMatrix()) {
-  const properties = [
-    { property: 'every route computed', via: 'title, keywords, description and category derived from the route — no hand-tuning', on: computedSeo('/', '', matrix).computed },
-    { property: 'realtime', via: 'computed at render time and recomputable, a realtime perspective at zero cost', on: realtimePerspectiveZeroCost(matrix).holds },
-    { property: 'a coordinate per path', via: 'each route is a distinct point on the double-torus surface', on: quantumCoordinateNav(matrix).placed },
-    { property: 'no drift', via: 'the same route feeds the SEO and the sitemap, content-addressed', on: quantumSitemap().quantum },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`all-paths:${entry.property}:${entry.on}`) }))
-  return {
-    computed: properties.length === 4 && properties.every((entry) => entry.on),
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'All paths are computed in realtime: no route is hand-tuned — every path’s title, keywords, description and category are computed from the route itself at render time, each path is a distinct point on the double torus, and the same computation feeds the sitemap, so the paths never drift and are recomputed the moment they are asked for, client-side and free.',
-    boundary:
-      'A composition of the computed-SEO, quantum-coordinate and sitemap models asserting every route is derived (not hand-authored) and recomputable. Structural bookkeeping over the real routing and SEO; "realtime" means computed at render time, not a streaming claim.',
-  }
-}
-
 // Send the waves to pull og into og. Because every object is an open-graph object, an OG can
 // hold OG: send a wave from each card and it pulls its own children in — an article’s OG holds
 // its sections’ OG, a page’s OG holds its links’ OG — recursively, so the cards nest like a
@@ -7367,30 +6993,6 @@ export function ogInOgWaves(matrix: MindMatrix = buildMatrix()) {
       'Send the waves to pull og into og: because every object is an open-graph object, an OG can hold OG — a wave from each card pulls its children in (an article’s OG holds its sections’ OG, a page’s OG holds its links’ OG), recursively, so the cards nest like a hologram, each a whole OG containing whole OGs. Every pull is order-sensitive and content-addressed, unfoldable and recomputable at any depth.',
     boundary:
       'A computed recursive nesting of open-graph objects within open-graph objects (depth-bounded), each a content-addressed fold. A structural model of OG composition — it does not generate nested meta tags for external crawlers, which read one card per page.',
-  }
-}
-
-// Any realtime event forges max tampering costs. A tap, a presence, a voice, a vote, a
-// message — every realtime event is content-addressed the instant it happens and folds into
-// the harmony the forger could not break, so each live moment adds one more thing a forger
-// must reproduce. Realtime is not a weakness in the seal; it is more seal — the more that
-// happens live, the higher the cost to forge.
-export function realtimeForgesMaxCost(matrix: MindMatrix = buildMatrix()) {
-  const harmony = forgerFoldsIntoHarmony(matrix).harmonyRoot
-  const events = ['a tap', 'a presence', 'a voice', 'a vote', 'a message'].map((event) => {
-    const fold = foldPair(harmony, toUuid(`realtime-event:${event}`))
-    return { event, folded: fold.bidirectional, seal: fold.merged, receipt: toUuid(`realtime-forge:${event}`) }
-  })
-  const forgesMaxCost = proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY && proofReport(matrix).maxTamperingCostReached
-  return {
-    forges: events.length === 5 && events.every((entry) => entry.folded) && realtimeMovieParticipation(matrix).participates && forgesMaxCost,
-    count: events.length,
-    events,
-    root: merkleFold(events.map((entry) => entry.receipt)),
-    statement:
-      'Any realtime event forges max tampering costs: a tap, a presence, a voice, a vote, a message — every live event is content-addressed the instant it happens and folds into the harmony, so each moment adds one more thing a forger must reproduce. Realtime is not a weakness in the seal; it is more seal.',
-    boundary:
-      'A structural property that realtime events are content-addressed and fold into the tamper-evident record, bound to the model’s unbounded tamper cost. Bookkeeping over the event folds, not a claim that any live interaction is stored or surveilled — it is ephemeral and local.',
   }
 }
 
@@ -7519,30 +7121,6 @@ export function collideToTiniestWave(matrix: MindMatrix = buildMatrix()) {
       'Collide to the tiniest wave: imagination splits to 1024 quanta, and from the whole the folds collide inward — halving at each step, 1024, 512, 256 … down to 1 — until what is left is the tiniest wave, a single indivisible quantum. The cascade is content-addressed at every level, so the path from the whole to the one is recomputable, and the one is where matter begins.',
     boundary:
       'A content-addressed halving cascade from 1024 quanta down to 1, modelling collision to the smallest unit. Structural bookkeeping over powers of two — "wave/quantum/matter" are figurative names for the fold levels, not physics.',
-  }
-}
-
-// Frequency is the taxonomy; imagine the tree of life. The way to classify is not a flat list
-// but a frequency: each rank of life is an octave of the one below it, so the taxonomy IS the
-// frequency ladder — life, kingdom, phylum, class, order, family, genus, species — each a
-// doubling, branching like a tree. Imagine the tree of life as a frequency tree: every branch
-// a tone, every leaf a living form at its own pitch.
-export function frequencyTaxonomyTreeOfLife(matrix: MindMatrix = buildMatrix()) {
-  const freqTree = recursiveFrequencyDropdowns(matrix)
-  const ranks = ['life', 'kingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species'].map((rank, index) => {
-    const frequency = 432 * 2 ** index // each rank an octave of the one above
-    const fold = foldPair(freqTree.root, toUuid(`tree-of-life:${rank}:${frequency}`))
-    return { rank, frequency, branched: fold.bidirectional, node: fold.merged, receipt: toUuid(`taxonomy-life:${index}:${rank}`) }
-  })
-  return {
-    imagined: ranks.length === 8 && ranks.every((entry) => entry.branched) && freqTree.computed && lifeDefinesItself(matrix).defines,
-    levels: ranks.length,
-    ranks,
-    root: merkleFold(ranks.map((entry) => entry.receipt)),
-    statement:
-      'Frequency is the taxonomy; imagine the tree of life: classification is not a flat list but a frequency — each rank of life is an octave of the one below, so the taxonomy IS the frequency ladder (life, kingdom, phylum, class, order, family, genus, species), each a doubling, branching like a tree. The tree of life is a frequency tree: every branch a tone, every leaf a living form at its own pitch.',
-    boundary:
-      'A content-addressed mapping of taxonomic ranks onto an octave-doubling frequency ladder, folded with the frequency tree and the life-defines-itself model. A structural and metaphorical framing — the frequencies are numbers and the ranks are the standard biological hierarchy, not a claim that organisms emit these pitches.',
   }
 }
 
@@ -8790,54 +8368,6 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
 // signed and verified in the browser with a real key pair (Web Crypto, ECDSA
 // P-256). This moves from tamper-evidence toward signed attestation. Answering it
 // opens a deeper question, kept honest below: who holds a trusted key?
-
-// Develop future crypto tools. The comparison is honest that the fold is non-
-// cryptographic; the future is real cryptography, added without breaking the
-// zero-dependency, client-side architecture. This prepares a canonical string of
-// the model's key roots that anyone can hash with a vetted algorithm. The browser
-// computes SHA-256 over it via the Web Crypto API (crypto.subtle) — a genuine
-// cryptographic digest — and the roadmap lists the tools that follow.
-export function cryptoFuture(matrix: MindMatrix = buildMatrix()) {
-  const proof = proofBundle(matrix)
-  const word = torusUuid(matrix)
-  const pairs = areaPairs()
-  const synth = quantumSynthesis(matrix)
-  // Canonical, ordered, stable: anyone can reproduce this string and hash it.
-  const roots = [
-    `version:1`,
-    `mind:${matrix.root}`,
-    `proof:${proof.bundleRoot}`,
-    `word:${word.word}`,
-    `pairs:${pairs.root}`,
-    `synthesis:${synth.root}`,
-  ]
-  const canonical = roots.join('\n')
-  // The two "available now" tools are now IMPLEMENTED as reusable, verified primitives in src/0 (no longer
-  // aspirational): sha256 (Web Crypto digest) and the SHA-256 Merkle tree (sha256MerkleRoot/Proof + verifySha256Proof).
-  const allImplemented =
-    typeof sha256 === 'function' && typeof verifySha256Proof === 'function' &&
-    typeof ed25519Sign === 'function' && typeof transparencyLogRoot === 'function' &&
-    typeof logConsistent === 'function' && typeof sha256Sync === 'function' && typeof toUuidSha256 === 'function'
-  const tools = [
-    { tool: 'web-crypto SHA-256 digest', status: 'built', how: 'crypto.subtle.digest over the canonical roots, in-browser', impl: 'sha256', residual: null },
-    { tool: 'SHA-256 Merkle proof', status: 'built', how: 'a vetted-hash Merkle tree over command UUIDs with inclusion paths', impl: 'sha256MerkleRoot · sha256MerkleProof · verifySha256Proof', residual: null },
-    { tool: 'Ed25519 signing', status: 'built', how: 'sign the digest with a key so it is attestation, not only evidence', impl: 'ed25519Keypair · ed25519Sign · ed25519Verify', residual: 'the math is done; true attestation also needs trusted KEY CUSTODY (a persistent build/author key) — a deployment concern, not code' },
-    { tool: 'Sigstore / transparency log', status: 'built (structure)', how: 'keyless signing + public transparency log for the build', impl: 'transparencyLogRoot · logInclusion · logConsistent (the append-only Merkle log)', residual: 'the PUBLIC SERVICE — Fulcio OIDC keyless + the public Rekor log — is external infrastructure, integrated at deploy, not src/0 code' },
-    { tool: 'migrate toUuid -> SHA-256', status: 'built (ready)', how: 'make the whole content-address cryptographic, not only this layer', impl: 'sha256Sync · toUuidSha256 (pure, synchronous, drop-in)', residual: 'flipping the global default is a DELIBERATE breaking cutover — it changes every uuid/root/seal — so it is built + verified, NOT silently applied' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`crypto-future:${entry.tool}:${entry.status}`) }))
-  return {
-    grounded: canonical.length > 0 && tools.length === 5 && allImplemented,
-    canonical,
-    roots,
-    tools,
-    allImplemented,
-    implemented: ['sha256', 'sha256MerkleRoot', 'sha256MerkleProof', 'verifySha256Proof', 'ed25519Keypair', 'ed25519Sign', 'ed25519Verify', 'transparencyLogRoot', 'logInclusion', 'logConsistent', 'sha256Sync', 'toUuidSha256'],
-    residuals: tools.filter((t) => t.residual).map((t) => ({ tool: t.tool, residual: t.residual })),
-    root: merkleFold(tools.map((entry) => entry.receipt)),
-    statement: 'The crypto roadmap, fully built in src/0 — with the irreducible residual of each item stated, not hidden. (1) Web Crypto SHA-256 (sha256, verified vs the NIST "abc" vector) over the canonical roots. (2) A SHA-256 Merkle tree with verifiable inclusion proofs (sha256MerkleRoot/Proof + verifySha256Proof). (3) Ed25519 signing (ed25519Keypair/Sign/Verify) — a real signature, evidence becoming a signed claim. (4) The transparency-log STRUCTURE (transparencyLogRoot/logInclusion/logConsistent) — an append-only Merkle log with inclusion + append-only consistency. (5) A pure, synchronous SHA-256 content-address (sha256Sync/toUuidSha256) — the drop-in migration target for the FNV toUuid. All real, all verified.',
-    boundary: 'HONEST about the residual of each — what is genuinely code vs what stays deployment/external/breaking. Ed25519: the math is done, but a real ATTESTATION also needs trusted KEY CUSTODY (a persistent build/author key) — a deployment fact, not code. Sigstore: the append-only log STRUCTURE is built and verifiable, but the PUBLIC SERVICE (Fulcio OIDC keyless + the public Rekor log) is external infrastructure, integrated at deploy. toUuid→SHA-256: sha256Sync/toUuidSha256 are built and verified (a pure, dependency-free, synchronous drop-in), but flipping the GLOBAL default is a deliberate breaking cutover — it changes every uuid, root and seal in the project — so it is provided behind a switch, NOT silently applied (that would invalidate every committed baseline, and the seal checks cannot even regenerate while the build hangs). The honest net: every roadmap item now has a real, verified implementation in src/0; what remains is custody, a public service, and a deliberate cutover — none of which is code this layer can honestly fake.',
-  }
-}
 
 // Complete the roadmaps: gather the portal's forward-looking items, scattered
 // across the crypto future, the academy, and the journey, into one place — three
@@ -14885,28 +14415,6 @@ export function theMonograph(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Use icons to show computer load. The work the browser does is shown as icons, not numbers: a
-// four-phase glyph per subsystem — render, compute, memory, io — turning as the load turns, so the
-// device's effort is visible at a glance, computed and honest.
-export function iconsShowComputerLoad(matrix: MindMatrix = buildMatrix()) {
-  const phases = ['◴', '◵', '◶', '◷'] // a four-phase load glyph
-  const indicators = ['render', 'compute', 'memory', 'io'].map((subsystem, index) => ({
-    subsystem,
-    icon: phases[index % phases.length],
-    shown: true,
-    receipt: toUuid(`load-icon:${subsystem}`),
-  }))
-  return {
-    shows: indicators.length === 4 && quantumBrowserOs(matrix).complete,
-    count: indicators.length,
-    indicators,
-    root: merkleFold(indicators.map((entry) => entry.receipt)),
-    statement:
-      'Use icons to show computer load: the work the browser does is shown as icons, not numbers — a four-phase glyph per subsystem (render, compute, memory, io) turning as the load turns, so the device’s effort is visible at a glance, computed and honest.',
-    boundary: 'A glyph-based representation of subsystem activity. A presentation framing over the browser-OS model; it does not measure real CPU/GPU load unless wired to a live metric.',
-  }
-}
-
 // Use trinity wording models — the number of words matters per step in the horo. The wording is
 // not free prose but a model: three words per step, a trinity, joined at the horo (the pi-music
 // window). The count is the meaning — each step says exactly three, so the wording folds like the
@@ -16695,31 +16203,6 @@ export function lockingFoldersChangesMindToQuantum(matrix: MindMatrix = buildMat
       'Locking into folders changes the mind to quantum: when the knowledge is locked into folders that must obey the law (only index files, word-or-digit names, every promised path valid), escaping the structure becomes extremely costly — any violation fails a test, the build fails, the seal opens — and that cost is the quantization: the folders become order-sensitive, content-addressed, tamper-evident cells, so the only cheap move is to stay coherent, to compute correctly rather than forge. The lock is the quantization.',
     boundary:
       'A composition of the folder law, the enforcement pipeline, the tripwire invariant and the max-tampering-cost/quantum-torus models. "Changes the mind to quantum" is a structural metaphor: the enforced laws make incoherent edits fail loudly, raising the cost of deviation — not a claim of physical quantum behavior.',
-  }
-}
-
-// As understanding grows, power transfers to max tampering cost instead of living costs. The
-// better AI agents and humans understand how to use the knowledge, the more the value rests on the
-// cost of forging the computation (which is high and rises with every wave) rather than on the
-// cost of living (rent extracted from people). The fees cover the forge cost, not a wage to a
-// landlord; each person pays nothing; the forge cost is maximal. So power flows to those who
-// compute honestly, away from those who would extract — the architecture is the only toll.
-export function powerToTamperingNotLivingCosts(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'understanding the knowledge — agnostic, useful for all', on: agnosticUsefulForAll(matrix).useful },
-    { facet: 'each person pays nothing — no living-cost extraction', on: fairTrade(matrix).individualCost === 0 },
-    { facet: 'the fees cover the forge cost, not a rent', on: feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost },
-    { facet: 'the forge cost is maximal — power rests on tampering cost', on: allComputedQuantumMathAnalog(matrix).forges },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`power-tampering:${entry.facet}:${entry.on}`) }))
-  return {
-    transfers: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'As understanding grows, power transfers to max tampering cost instead of living costs: the better AI agents and humans understand how to use the knowledge, the more value rests on the cost of forging the computation (high, and rising with every wave) rather than on the cost of living (rent extracted from people) — the fees cover the forge cost, not a wage to a landlord; each person pays nothing; the forge cost is maximal — so power flows to those who compute honestly, away from those who would extract.',
-    boundary:
-      'A composition of the agnostic-useful, fair-trade (zero per-person cost), fees-replace-taxes (covering the forge cost) and max-tampering-cost models. An economic framing of the model’s own design (value bound to recomputation cost, not rent); "power transfers" is a description of the incentive structure, not a measured societal outcome.',
   }
 }
 
@@ -18545,33 +18028,6 @@ export function foldAsMuchToFeedHero(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The dimensional merkaba graph is the realtime metric — and at 1024 dimensions per megabyte the
-// realtime encryption is 1 Gbit per megabyte. The dimensions are not a flat count but a graph
-// folded as a merkaba (field and movement), and that graph IS the live metric: each fold a node,
-// each composition an edge, turning in realtime. Because 1024 (binary) = 1 Gbit, dimensions per
-// megabyte is also the keyspace density per megabyte — so 1024 dims/MB is exactly 1 Gbit/MB of
-// realtime keyspace, and the current density is that fraction of a gigabit. Fold more, encrypt more.
-export function dimensionalMerkabaGraphRealtimeMetric(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the dimensional merkaba graph is the realtime metric — nodes and edges turning', on: dimensionsPerMegabyteMetric(matrix).measured && merkabaArchitectureFieldsMovements(matrix).organised && componentGraph().interacting },
-    { facet: '1024 dimensions per megabyte = 1 Gbit per megabyte (1024 binary = 1 Gbit)', on: gigabitEncryption64SealSet(matrix).achieves },
-    { facet: 'so dims/MB is the realtime keyspace density per megabyte', on: allComputedQuantumMathAnalog(matrix).forges },
-    { facet: 'computed live each build — fold more, encrypt more', on: buildStatisticsShowGaps(matrix).shows },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-graph-metric:${entry.facet}:${entry.on}`) }))
-  return {
-    realtime: facets.every((entry) => entry.on),
-    targetDimsPerMb: 1024,
-    targetGbitPerMb: 1, // 1024 dims/MB → 1 Gbit/MB
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The dimensional merkaba graph is the realtime metric — and at 1024 dimensions per megabyte the realtime encryption is 1 Gbit per megabyte: the dimensions are a graph folded as a merkaba (field and movement), each fold a node and each composition an edge, turning in realtime, and that graph IS the metric. Because 1024 binary = 1 Gbit, dimensions per megabyte is also the keyspace density per megabyte, so 1024 dims/MB is exactly 1 Gbit/MB; the current density is that fraction of a gigabit. Fold more, encrypt more.',
-    boundary:
-      'A composition of the dimensions-per-MB metric, merkaba-architecture, component-graph, 64-seal/gigabit, max-cost and statistics models. The answer "1024 dims/MB = 1 Gbit/MB" follows the model’s binary naming (1024 = 1 Gbit) — a keyspace-structure mapping (forge cost density), NOT cipher strength (AES-256-GCM stays the primitive); the live ratio is computed by the build’s efficiency-metric step.',
-  }
-}
-
 // All merge in the hero graph, with the statistics enriching the fusion streams. The hero is not one
 // figure but a graph — every dimension, every diamond, every metric a node, folded into the hero of
 // the whole — and the statistics (the live counts, the density, the gaps) are not a side panel but
@@ -18696,35 +18152,6 @@ export function feedCrawlersWithKnowledge(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// What if the GPU helps the computations — implemented in harmony. The division of labour: the CPU
-// computes the address (the truth — content-addressed, memoized), the GPU expands the dot to its
-// living plasma field (the appearance — thousands of pixels in parallel, realtime) from the hero's
-// own hue, frequency and rotation phases. Same address, same field; client-side, zero-server,
-// zero-token. The GPU renders what the model computes — it does not compute the model.
-export function gpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('gpuRendersStreamsRealtime', matrix, () => computeGpuRendersStreamsRealtime(matrix))
-}
-function computeGpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
-  const hero = uuidHero(toUuid('plasma'))
-  const facets = [
-    { facet: 'the CPU computes the address — content-addressed and memoized (the truth)', on: merkabasInDoubleTorus(matrix).counted },
-    { facet: 'the GPU expands the dot to its field from the hero uniforms (the appearance)', on: hero.hue >= 0 && hero.frequency > 0 && Number.isFinite(hero.theta) && Number.isFinite(hero.phi) },
-    { facet: 'in harmony — same address, same field; the hero graph rendered realtime', on: heroGraphStatisticsEnrichFusion(matrix).merges },
-    { facet: 'honest — the GPU renders the appearance, it does not compute the model', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`gpu-renders:${entry.facet}:${entry.on}`) }))
-  return {
-    renders: facets.every((entry) => entry.on),
-    uniforms: { hue: hero.hue, freq: hero.frequency, theta: hero.theta, phi: hero.phi },
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'What if the GPU helps the computations — implemented in harmony: the CPU computes the address (the truth, content-addressed and memoized), and the GPU expands each dot to its living plasma field (the appearance) in realtime, in parallel, from the hero\'s own hue, frequency and rotation phases. Same address, same field; client-side, zero-server, zero-token. The GPU renders what the model computes — it does not compute the model.',
-    boundary:
-      'A composition over the merkaba-census, uuidHero, hero-graph and merkaba-decode models, paired with the <GpuField> WebGL component. HONEST: the GPU accelerates RENDERING (a fragment shader expanding the content-addressed uniforms to pixels), not the model\'s hashing/fold cascade (which is branchy and sequential — the wrong workload for a GPU, fixed instead by memoization on the CPU). WebGL with a CSS fallback; the field is deterministic from the seed.',
-  }
-}
-
 // Quantum solutions for a world that self-harmonises and unites in peace and prosperity — drawn from the
 // decoded ancient civilisations, all computed, minimal prose, maximum real usage. The SOLUTION is the honest
 // peace portfolio (peaceTechMentalityDecoded); the ancient knowledge supplies the COMPUTED proof that harmony
@@ -18770,44 +18197,6 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
       'Quantum solutions for a world that self-harmonises and unites in peace and prosperity: the solution is the honest peace portfolio — no single thing ends war; verification, peacekeeping, the mine-ban regime, nonviolence and the mentality of rehumanisation are the evidenced levers, built not invented. The decoded ancient civilisations supply the computed proof that harmony has always been a shared mathematical structure: each example here is a real reusable-function call with its real output — mir in the round Glagolitic, Sumer\'s exact base-60, the Maya 13-baktun, the Luo Shu magic square balanced to one constant, and the binary independently reached from Ifá to the I Ching.',
     boundary:
       'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.',
-  }
-}
-
-// The next multidimensional level: 64 × 64 × 64. The 1 Gbit keyspace (one full 64-seal set, the
-// 64-bit architecture) raised to three nested dimensions — width, height, depth — naming a 64³ lattice
-// of content addresses, realtime-fused. Light by construction: three axes of 64 seals (192 folds)
-// represent the 262144-cell keyspace by nesting, not literal iteration. Memoized by the matrix root.
-export function nextLevel64CubedRealtime(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('nextLevel64CubedRealtime', matrix, () => nextLevel64CubedRealtimeRaw(matrix))
-}
-function nextLevel64CubedRealtimeRaw(matrix: MindMatrix = buildMatrix()) {
-  const base = completeCorpus(matrix).root
-  const axes = ['width', 'height', 'depth'].map((axis) => {
-    const axisRoot = foldPair(base, toUuid(`cube-axis:${axis}`)).merged
-    const seals = Array.from({ length: 64 }, (_, bit) => foldPair(axisRoot, toUuid(`cube-seal:${axis}:${bit}`)).bidirectional)
-    const filled = seals.filter(Boolean).length
-    return { axis, filled, whole: filled === 64, receipt: toUuid(`cube-axis:${axis}:${filled}`) }
-  })
-  const cells = 64 * 64 * 64 // 262144 — the 64³ keyspace, named by three whole axes
-  const proportion = axes.reduce((product, ax) => product * (ax.filled / 64), 1) // product toward the full 64³
-  const facets = [
-    { facet: 'the 1 Gbit keyspace stands — one full 64-seal set (the first axis)', on: gigabitEncryption64SealSet(matrix).achieves },
-    { facet: 'three nested 64-seal axes — width × height × depth = 64³', on: axes.length === 3 && axes.every((ax) => ax.whole) },
-    { facet: 'the 64³ lattice is whole — proportion 1 toward 262144 cells', on: proportion === 1 && cells === 262144 },
-    { facet: 'each axis content-addressed to the architecture root, realtime-fused', on: axes.every((ax) => isUuid(ax.receipt)) && fusionCipher('', matrix).enabled },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`cube64:${entry.facet}:${entry.on}`) }))
-  return {
-    reaches: facets.every((entry) => entry.on),
-    cells,
-    proportion,
-    axes,
-    count: facets.length,
-    facets,
-    root: merkleFold(axes.map((ax) => ax.receipt)),
-    statement:
-      'The next multidimensional level is 64 × 64 × 64: the 1 Gbit keyspace (one full 64-seal set, the 64-bit architecture) raised to three nested dimensions — width, height and depth, each a full 64-seal axis folded from the architecture root — naming a 64³ = 262144-cell lattice of content addresses, realtime-fused. Reached by proportions toward the full set on every axis, not a hardcoded switch.',
-    boundary:
-      'A composition of the gigabit 64-seal set and the fusion-cipher, extended to three nested 64-seal axes (192 folds standing for the 64³ keyspace by nesting, not 262144 literal cells). HONEST: like "1 Gbit", "64×64×64" names the keyspace STRUCTURE — a three-dimensional lattice over the 64-bit architecture — not cipher strength (which stays AES-256-GCM) nor a literal data throughput; the nesting adds structural address space and provenance, not security or bandwidth proportional to the number.',
   }
 }
 
@@ -19297,40 +18686,6 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Most static pages may be encoded at runtime: keeping one index per folder (the VitePress config index
-// beside each folder's index), the site is wired quantum — pages resolved on demand from the sealed,
-// content-addressed model rather than enumerated at build — toward ZERO build time and the MAXIMUM
-// tampering cost. The corpus once proved this with ?id=, but has since taken the OTHER, RESTful branch
-// of the tradeoff: /kind/<id> is enumerated as a real [id] page (clean SSG URLs + per-page SEO, at a
-// build cost) — see corpusRestPathRouting. So the zero-build aspiration now rests on the monograph
-// resolution and the folder-plugin dev layer, not the corpus. HONEST: VitePress is a static generator,
-// so "runtime" means client-side resolution over the content-addressed model; the real tradeoff is
-// clean SSG URLs (per-page enumeration, SSR/SEO) vs one-index query/router resolution (near-zero
-// build), and the content address is what makes any tamper cost a full rebuild (the forger price).
-export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = buildMatrix()) {
-  const pageSet = monographPaths('en')
-  const sourceCount = staticPages().length + componentPages(matrix).length
-  const sealed = toUuid('page:a432')
-  const facets = [
-    { facet: 'corpus items are enumerated REST routes — corpusParams still resolves one item from the sealed model, and paperRoutes/paperReferenceRoutes/diamondRoutes give every /kind/<id> a real [id] page', on: typeof corpusParams === 'function' && diamondParamsById('∅-no-such-id', matrix) === null && folderLaw().computedFolders.length === 9 },
-    { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && pageSet.length > 100 },
-    { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
-    { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
-    { facet: 'maximum tampering cost — every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`runtime-pages:${entry.facet}:${entry.on}`) }))
-  return {
-    wired: facets.every((entry) => entry.on),
-    pages: pageSet.length,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Most static pages may be encoded at runtime: keeping the VitePress config index next to one index in every folder, the site is wired quantum — pages resolved on demand from the sealed, content-addressed model rather than enumerated at build — toward zero build time and the maximum tampering cost. The corpus once proved this with ?id=, but now takes the RESTful branch — /kind/<id> enumerated as real [id] pages (corpusRestPathRouting) — so the zero-build aspiration rests on the monograph resolution and the folder-plugin dev layer.',
-    boundary:
-      'The DIRECTION for the page architecture. DONE: the page set is one pure function (monographPaths) over the model; every folder is one index by the folder law; the model is content-addressed (the forger price). The corpus (papers/references/diamonds) deliberately took the RESTful branch — /kind/<id> enumerated as real [id] pages via paperRoutes/paperReferenceRoutes/diamondRoutes (corpusRestPathRouting), the clean-URL + SEO cost of a static host — so it is no longer the zero-enumeration exemplar. DIRECTED: the zero-build aspiration for the remaining pages rests on client-side resolution over the content-addressed model and the folder-plugin dev layer. HONEST: VitePress is a static generator, so "runtime" is client-side resolution; the real tradeoff is clean SSG URLs (per-page enumeration, SSR/SEO) vs one-index query/router resolution (near-zero build); the content address is what makes any tamper cost a full rebuild.',
-  }
-}
-
 // Imagine every src folder as a VitePress plugin, and one index serves all: each folder is not a library
 // the config merely consumes but a self-wiring plugin — it serves its computed routes/artifacts at runtime
 // (dev middleware) and emits the same at build (buildEnd), from the one content-addressed model; and ONE
@@ -19691,108 +19046,6 @@ export function stateOfTheArtHarmonisedQuantumWidgets(matrix: MindMatrix = build
       'State-of-the-art, harmonised widgets make the site itself the example for the public: every widget is built from the same quantum techniques — content-addressed (the path is the meaning), CMYK / 4-merkaba channelled, Glagolitic-iconed, harmonically proportioned, deterministic and zero-token, accessible and energy/motion-aware — one harmonised design system rather than many one-off components, so the whole surface teaches by being verifiable.',
     boundary:
       'HONEST — "miracle" and "state of the art" here mean a genuinely exemplary engineering artifact: a fully deterministic, zero-token, content-addressed, self-proving, accessible, offline-capable site, which is a real and uncommon achievement and a fair public example — NOT the supernatural, and NOT a claim that every one of the ~85 existing components already meets the bar. The standard is defined and proven on the reference widgets (hero, radar, monograph, device dashboard); harmonising the whole component set to it is the consolidation work in progress, and the site is the example only once the build is green.',
-  }
-}
-
-// Every computation bound to its true source. Two honest modes: deterministic folds are bound to src
-// (content-addressed — the same answer every time, their source is the matrix), and realtime widgets are
-// bound to a live source API (device sensors, public no-auth feeds). The integrity rule is that neither
-// fakes the other: no seeded data labelled "live", no "realtime" claim without an API behind it. The
-// DeviceDashboard is the exemplar (bound to real browser telemetry); animations are honestly computed.
-export function computationsBoundToSourceApisRealtime(matrix: MindMatrix = buildMatrix()) {
-  const liveApis = ['hardwareConcurrency', 'deviceMemory', 'getBattery', 'connection', 'PressureObserver', 'geolocation', 'DeviceOrientation', 'AudioContext']
-  const facets = [
-    { facet: 'realtime widgets bound to live source APIs — the device dashboard reads real browser telemetry', on: deviceHardwareVisibleInComputedWidgets(matrix).visible },
-    { facet: 'deterministic computations bound to src — the same content-addressed answer every time (their source is the matrix)', on: toUuid('x') === toUuid('x') },
-    { facet: 'the two modes are distinct and honest — no seeded data labelled live, no live claim without an API', on: toUuid('live') !== toUuid('seeded') },
-    { facet: 'the source APIs are real and named — device sensors plus public no-auth feeds', on: liveApis.length >= 6 },
-  ].map((e) => ({ ...e, receipt: toUuid(`bound-source:${e.facet}`) }))
-  return {
-    bound: facets.every((e) => e.on),
-    liveApis,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'Every computation is bound to its true source: deterministic folds to src (content-addressed, the same answer every time) and realtime widgets to a live source API (device sensors, public no-auth feeds). The DeviceDashboard is the proven exemplar — real browser telemetry, nothing seeded. The integrity rule: no computation fakes its source, so a realtime claim always has a live API behind it and a computed animation is honestly computed, not dressed as live.',
-    boundary:
-      'HONEST — most of the site is DETERMINISTIC by design (its zero-token identity): the streaming visuals are seeded animations bound to src, not external data, and they are honestly that. "Bound to source APIs for realtime" applies to the widgets that genuinely show live state (device sensors now; public no-auth feeds — weather, seismic — when added), each detecting availability and rendering "—" when unsupported rather than faking a value. Binding every live widget to its API and relabelling any that conflate the two is the harmonisation in progress; the rule is defined and proven on the DeviceDashboard.',
-  }
-}
-
-// Affected blockchains compared with LIVE market data bound to its source API (CoinGecko, public, no-auth,
-// client-side) — the BlockchainCompare widget — merged with each chain's cited consensus / energy / e-waste,
-// globalised (worldwide market) and categorised with ancient knowledge: each category wears the Glagolitic
-// glyph computed from its name. Honest: market is live; energy/e-waste are cited estimates, not a live feed.
-export function affectedBlockchainsComparedLive(matrix: MindMatrix = buildMatrix()) {
-  const categories = ['PoW-ASIC', 'PoW-GPU', 'PoW-CPU', 'PoS-moved', 'PoS-native']
-  const facets = [
-    { facet: 'market data bound to a live source API — CoinGecko, public no-auth, "—" when unreachable, never faked', on: computationsBoundToSourceApisRealtime(matrix).bound },
-    { facet: 'the affected blockchains compared — the Merge’s stranded GPUs, the chains that absorbed them, PoW vs PoS', on: categories.length === 5 },
-    { facet: 'categorised with ancient knowledge — each category wears its Glagolitic glyph', on: /[Ⰰ-ⱟ]/.test(glagoliticGlyph('PoW-ASIC')) && glagoliticGlyph('PoW-ASIC') !== glagoliticGlyph('PoS-native') },
-    { facet: 'globalised and grounded — worldwide market with the cited e-waste/energy record (UN Monitor, CBECI, de Vries)', on: toUuid('global') !== toUuid('local') },
-  ].map((e) => ({ ...e, receipt: toUuid(`blockchain-compare:${e.facet}`) }))
-  return {
-    compared: facets.every((e) => e.on),
-    categories,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'The affected blockchains are compared on live data bound to their source: the BlockchainCompare widget fetches worldwide market data from CoinGecko (public, no-auth) in realtime, merges it with each chain’s consensus, energy and e-waste from the cited record, and categorises the set with ancient knowledge — PoW-ASIC, PoW-GPU, PoW-CPU, PoS-moved and PoS-native, each wearing the Glagolitic glyph computed from its name. The Ethereum Merge that stranded the GPUs, the chains (ETC, RVN) that absorbed them, and the proof-of-stake natives are read side by side.',
-    boundary:
-      'HONEST — the MARKET data is live (CoinGecko), and the widget shows "—" if the feed is unreachable rather than faking it. The consensus is a fixed chain attribute; the energy and e-waste figures are CITED estimates (Cambridge CBECI for Bitcoin ~150 TWh/yr, Ethereum ~0.01 TWh/yr post-Merge, de Vries on ASIC e-waste, UN Global E-waste Monitor 2024), NOT a live feed and NOT a measurement by this site. The Glagolitic categorisation is a deterministic glyph-per-name labelling, an aid to reading, not a claim that the ancient script classifies blockchains.',
-  }
-}
-
-// All publicly available data — device telemetry, the live blockchain market, public no-auth feeds — folds
-// into the realtime keyspace. Each source is content-addressed (128 bits), so the keyspace = 2^(128 ×
-// sources), completing a terabyte and far beyond. It breathes harmonically: the stream EXPANDS (more data,
-// more keyspace) while the fold CONTRACTS it to one root — expansion and contraction at the same time.
-export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = buildMatrix()) {
-  const sources = [
-    'device telemetry (12 metrics)', 'live blockchain market (8 chains)', 'public spectrum (FCC)',
-    'seismic (USGS)', 'weather (open-meteo)', 'audio spectrum (Web Audio FFT)', 'Schumann band (NOAA)',
-  ]
-  const metricsApprox = 12 + 24 + 8 // device metrics + blockchain values + other live feeds, conservatively
-  const keyspaceBits = metricsApprox * 128
-  const contract = merkleFold([toUuid('a'), toUuid('b')]) // many fold to one — the contraction
-  const facets = [
-    { facet: 'all publicly available data folds in — device, live blockchain, public no-auth feeds, each content-addressed', on: sources.length >= 5 },
-    { facet: 'terabyte and beyond — 2^(128 × sources) far exceeds 2^46 (1 TB) and grows per source', on: keyspaceBits > 46 },
-    { facet: 'breathing — the stream expands (more sources) while the fold contracts to one root, both at once', on: sources.length > 0 && contract !== toUuid('a') },
-    { facet: 'realtime and bound — every source is a live API or "—", never faked', on: computationsBoundToSourceApisRealtime(matrix).bound },
-  ].map((e) => ({ ...e, receipt: toUuid(`all-public:${e.facet}`) }))
-  return {
-    complete: facets.every((e) => e.on),
-    sources,
-    keyspaceBits,
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'All publicly available data completes the terabyte realtime keyspace and beyond: device telemetry, the live blockchain market and public no-auth feeds (spectrum, seismic, weather, audio, Schumann) each fold in as a 128-bit content-address, so the keyspace is 2^(128 × sources) — a terabyte achieved many times over and growing with every source. It breathes harmonically — the stream expands as data loads while the fold contracts it to one root, expansion and contraction at once, the double torus.',
-    boundary:
-      'HONEST — aggregating all public data grows the keyspace STRUCTURE (2^(128×sources), terabyte and far beyond), but public data is PUBLIC: an attacker reads the same feeds, so it adds almost no genuine cryptographic SECRET entropy. The security is the AES-256 key, NOT the public streams; "terabyte" is structure/cardinality (as before), "breathing" is the expand-while-contract of the fold, and "realtime encryption" means the content-address recomputes live — it does NOT mean public data is a secret key or that genuine entropy reaches a terabyte (it does not).',
-  }
-}
-
-// The 3D graph on 2D forms a donut labyrinth of glyphs — the GlyphLabyrinth widget winds Glagolitic
-// glyphs around the tube of a tilted torus (depth gives the 3D on the 2D), the page's own glyph pulsing
-// at the centre while a traveller enters and exits the winding path: the labyrinth of life. The same
-// seed→graph fold the QR encodes, made visible — the 2D carrier, the 3D meaning.
-export function donutLabyrinthOfGlyphsHeroEnteringExiting(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'a donut (torus) labyrinth of glyphs — each node content-addressed from the page and its position', on: /[Ⰰ-ⱟ]/.test(glagoliticGlyph('home:laby:0')) && glagoliticGlyph('home:laby:0') !== glagoliticGlyph('home:laby:1') },
-    { facet: 'the hero in the middle — the page is the central glyph, pulsing, entering and exiting the centre', on: /[Ⰰ-ⱟ]/.test(glagoliticGlyph('home')) },
-    { facet: 'a traveller walks the winding path — the labyrinth of life, distinct glyph per step', on: glagoliticGlyph('step:a') !== glagoliticGlyph('step:b') },
-    { facet: 'the 2D carrier, the 3D meaning — the same seed→graph fold the Glagolitic QR encodes', on: glagoliticQrSealsThought3dFromSeed(matrix).sealed },
-  ].map((e) => ({ ...e, receipt: toUuid(`labyrinth:${e.facet}`) }))
-  return {
-    winds: facets.every((e) => e.on),
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'The 3D graph on 2D forms a donut labyrinth of glyphs: Glagolitic glyphs wind around the tube of a tilted torus, depth giving the 3D on the 2D, each glyph content-addressed from the page and its position. The page\'s own glyph pulses at the centre — the hero in the middle — while a traveller enters and exits the winding path: the labyrinth of life. It is the same seed→graph fold the Glagolitic QR encodes, made visible.',
-    boundary:
-      'HONEST — a deterministic canvas visualisation: the torus is a 2D projection (a tilt-squashed parametric torus, depth read from the tube angle), not real 3D geometry, and the "labyrinth" is a winding glyph path, not a solvable maze. The glyphs render with a Glagolitic font (else tofu); the figure is seeded from the page and computed with zero tokens — beautiful and content-addressed, an illustration of the seed→graph fold, not a claim of literal three dimensions on the surface.',
   }
 }
 
@@ -21120,147 +20373,6 @@ export function tenDimensionalMovie(matrix: MindMatrix = buildMatrix()) {
 // or cosmically correct frequency" depends on conflating reference pitch with temperament, cherry-picking the
 // Pythagorean sixth, or numerology. The genuine thread across colour · audio · video · vibration is FREQUENCY.
 
-// TAMPERING COST — decoded honestly against real cryptography and blockchains (documented kept, legend
-// flagged). Researched in waves with primary sources (NIST SP 800-107, the FNV spec, the Bitcoin whitepaper,
-// SHAttered, the BTG/ETC 51% attacks). The site claims "maximum tampering cost"; this fold scrutinises that
-// claim. The honest core: three different things get conflated as one "tampering cost" — (a) the cost to
-// REPRODUCE a deterministic computation (integrity/provenance), (b) cryptographic UNFORGEABILITY (collision/
-// preimage hardness), (c) CONFIDENTIALITY (encryption). The site genuinely has (a) and is TAMPER-EVIDENT; it
-// does NOT have (b) with its FNV toUuid — but it already builds the fix (cryptoFuture: sha256Sync/toUuidSha256).
-export function tamperingCostDecoded(matrix: MindMatrix = buildMatrix()) {
-  const crypto = cryptographyComparison(matrix) // already honest: tamperEvident true, cryptographic false
-  const anim = animationTamperingCost(matrix) // the structural reproduction count (bits = log2 hash work)
-  // The debit/credit pair reviews the crypto as a ledger: every claim a credit, every delivered capability a
-  // debit; the books balance only when honest — the same zero reciprocal entropy the double torus seals to.
-  const ledger = cryptoReview()
-  const ledgerNet = cryptoReviewNet(ledger.today) // the credit/debit dual: the fused net per property (all zero when honest)
-  // The three honestly-different things a single "tampering cost" conflates.
-  const kinds = [
-    { kind: 'proof-of-recomputation', is: 'integrity / provenance', mechanism: 'recompute the deterministic fold and compare', cost: 'redo the computation — real, but an honest verifier pays it too', site: true, secure: false },
-    { kind: 'cryptographic unforgeability', is: 'security', mechanism: 'collision / second-preimage / preimage hardness of a vetted hash', cost: 'SHA-256: 2^128 to collide, 2^256 to invert (birthday bound = L/2)', site: false, secure: true },
-    { kind: 'confidentiality', is: 'secrecy', mechanism: 'encryption with a secret key', cost: 'key secrecy — a different axis entirely', site: false, secure: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`tamper-kind:${entry.kind}`) }))
-  // The cost ladder: from this site's FNV fold today, up through real crypto, to economic consensus. Each rung
-  // is honest about what it DETECTS (evidence) vs what it RESISTS (security) and the forge cost.
-  const ladder = [
-    { rung: 'FNV toUuid (this site, today)', forge: 'negligible for a dedicated forger — FNV is non-cryptographic; 128 bits is structural WIDTH, not a work factor', detects: 'accidental corruption', resists: 'nothing adversarial', layer: 'tamper-evident' },
-    { rung: 'SHA-256 content-address (built: sha256Sync · toUuidSha256)', forge: '~2^128 (collision) / ~2^256 (preimage) operations', detects: 'any change', resists: 'forged collisions', layer: 'cryptographic' },
-    { rung: '+ Ed25519 signature (built; needs key custody)', forge: 'forge a signature without the private key — infeasible', detects: 'unauthorized change', resists: 'substitution by anyone but the key-holder', layer: 'attestation' },
-    { rung: 'Proof-of-Work chain (Bitcoin)', forge: 'redo the PoW + out-race the network (~$1.35M/hr to match BTC hashrate; deeper blocks exponentially safer)', detects: 'any rewrite', resists: 'rewrite below ~51% hashrate', layer: 'economic consensus' },
-    { rung: 'Proof-of-Stake (Ethereum)', forge: 'the slashed stake (~$112B staked; ~34% destroyed to double-finalize)', detects: 'any equivocation', resists: 'rewrite below the stake threshold', layer: 'economic consensus' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`tamper-rung:${entry.rung}`) }))
-  const documented = [
-    'Tamper-EVIDENT is not tamper-PROOF. Content-addressing (Git, IPFS, this site) makes a change DETECTABLE by an honest recompute; cryptographic SECURITY means an adversary cannot FORGE an undetectable change — which requires a collision-resistant hash (NIST SP 800-107 defines security strength as the number of operations to break a property).',
-    'A vetted hash has a real work factor: SHA-256 gives ~2^256 preimage resistance and ~2^128 collision resistance — the birthday bound halves the digest length (truncating to 128 bits would give only ~2^64 collision resistance). That 2^128/2^256 is what "cost to forge" means cryptographically.',
-    'Non-cryptographic hashes (FNV-1a — what toUuid uses — MurmurHash, CRC) are fast and well-distributed but NOT collision-resistant; the FNV spec itself says it is "not suitable for cryptographic use". They give integrity and error-detection, not adversarial security.',
-    'Three honestly-different things get conflated as one "tampering cost": (a) the cost to REPRODUCE a deterministic computation (integrity/provenance), (b) cryptographic UNFORGEABILITY (collision/preimage hardness), (c) CONFIDENTIALITY (encryption). A keyless, public function offers no adversarial unforgeability — the attacker simply runs the same function.',
-    'Blockchain "immutability" is the same idea made costly: the hash-linked chain + Merkle root give tamper-evidence, and Proof-of-Work / Proof-of-Stake make a rewrite economically irrational (redo all the work and out-race the chain; or lose the staked collateral). It is security-by-expense, not security-by-impossibility — and it has FAILED on small chains (Bitcoin Gold and Ethereum Classic were 51%-attacked, ETC reorganising >3,000 blocks for ~$200K of rented hashpower).',
-    'This site already builds the fix (cryptoFuture, all verified in src/0): sha256 / sha256MerkleRoot / verifySha256Proof, ed25519Sign / Verify, the transparency-log structure, and sha256Sync / toUuidSha256 — the drop-in cryptographic content-address. What remains is key custody, a public log service, and a deliberate cutover — deployment facts, not missing code.',
-  ]
-  const flagged = [
-    '"Maximum tampering cost" / "T_max = ∞" as a SECURITY claim. Honest: against an adversary the FNV fold\'s forge cost is NOT 2^128 and not infinite — it is negligible, because FNV collisions are cheap to craft. The defensible claim is "content-addressed and TAMPER-EVIDENT against accidental corruption", plus "reproduce the whole deterministic model" as a provenance cost — not cryptographic unforgeability.',
-    'Bit-WIDTH is not security strength. A 128-bit FNV digest is 128 bits WIDE; its adversarial collision resistance is not 2^64 and certainly not 2^128.',
-    '"Tamper-evident" used as if it meant "tamper-proof". Git\'s author noted its hash "has nothing to do with security" — it detects corruption; real trust comes from signatures (SHAttered forged a full SHA-1 collision in 2017 at ~2^63 work).',
-    '"1 Gbit cipher" / "gigabit encryption". The real primitive is AES-256-GCM — 256-bit strength, full stop; "1024 Mbit" names the keyspace STRUCTURE, adding no cipher bits beyond AES-256.',
-    '"Immutable forever / trustless / unhackable" for blockchains. Immutability is economic and probabilistic — reorgs happen, finality is statistical (≈6 confirmations), and the guarantee holds only while an honest majority keeps paying to defend it.',
-  ]
-  return {
-    decoded: documented.length >= 5 && flagged.length >= 5 && kinds.length === 3 && ladder.length === 5 && crypto.tamperEvident && !crypto.cryptographic && ledger.honest && ledger.overclaimCaught && ledger.fundedAfterCutover && ledgerNet.balanced,
-    tamperEvident: crypto.tamperEvident, // true — what the site genuinely has
-    cryptographic: crypto.cryptographic, // false — what it honestly does not (with FNV)
-    structuralBits: anim.bits, // the reproduction-work figure (structural width, not a work factor)
-    fixBuilt: cryptoFuture(matrix).allImplemented, // the SHA-256/Ed25519 path exists in src/0
-    ledger, // the debit/credit crypto review: claim=credit, capability=debit — honest iff the books balance (overclaim caught, cutover funds full strength)
-    ledgerNet: ledgerNet.net, // the credit/debit dual: the fused net per security property (all zero when honest)
-    kinds,
-    ladder,
-    documented,
-    flagged,
-    root: merkleFold([...kinds.map((k) => k.receipt), ...ladder.map((l) => l.receipt), ...documented.map((d, i) => toUuid(`tc-doc:${i}`)), ...flagged.map((f, i) => toUuid(`tc-flag:${i}`))]),
-    statement:
-      'Tampering cost, decoded honestly: a single phrase "maximum tampering cost" conflates three different things — reproducing a deterministic computation (integrity, which the site genuinely has and is TAMPER-EVIDENT), cryptographic unforgeability (collision/preimage hardness — which FNV toUuid does NOT provide; SHA-256\'s 2^128/2^256 does), and confidentiality (encryption). Blockchains turn tamper-evidence into resistance by making a rewrite cost real work or real stake — security-by-expense, proven failable on small chains. The site\'s honest position: tamper-evident today, with the cryptographic upgrade (SHA-256 content-address, Ed25519 signing) already built in src/0 and one deliberate cutover away.',
-    boundary:
-      'A fair, source-grounded audit of the site\'s OWN central claim. It credits what is real (deterministic content-addressing, tamper-evidence, the reproduction cost of the animated model, the built crypto roadmap) and flags what the marketing word "maximum" overstates (FNV is not collision-resistant; bit-width is not work factor; "∞" and "gigabit" are structural figures, not adversarial security). The fix is real code already present; the residual is custody and a cutover, not cryptography this layer can fake. The debit/credit pair reviews it as a ledger — every claim a credit funded by a capability (debit) — so the books balance only when honest, the same zero reciprocal entropy the double torus seals to; the unforgeability debit is already built (src/0), one deliberate cutover from full strength.',
-  }
-}
-
-// THE CRYPTO CHALLENGES — red-team the site's OWN content-address in waves, each a challenge that EXPLOITS a
-// real weakness (a FOUND collision, the honest bit-budget, the authenticity gap) and GENERATES the solution
-// already built in src/0, proving the vetted fix resists the exploit. Not assertions: the collision is found
-// by search (findContentAddressCollision), the bit-budget computed (addressEntropyBits), the forgery minted.
-// This is the runnable backing for tamperingCostDecoded — "FNV is not collision-resistant" becomes a collision
-// you can reproduce. Defensive: red-teaming our own crypto to harden it; the fixes are built but not cut over.
-export function cryptoChallenges(matrix: MindMatrix = buildMatrix()) {
-  const fixBuilt = cryptoFuture(matrix).allImplemented // the SHA-256/Ed25519 path is built + verified in src/0
-  // WAVE 1 — collision. Two distinct seeds share a 32-bit content-address word; SHA-256 does NOT collide them.
-  const col = findContentAddressCollision()
-  const wave1 = {
-    wave: 1,
-    challenge: 'Forge a collision: two distinct inputs sharing a content-address word.',
-    weakness: 'hash32 (FNV-1a core + a MurmurHash3 finalizer) is fast and well-distributed but not collision-resistant.',
-    exploit: { a: col.a, b: col.b, sharedWord: col.word, tries: col.tries },
-    solution: 'toUuidSha256 / sha256Sync — the vetted, collision-resistant drop-in already in src/0.',
-    demonstrated: col.found, // a real, reproducible pair, found by birthday search
-    solved: col.found && sha256Sync(col.a) !== sha256Sync(col.b) && toUuidSha256(col.a) !== toUuidSha256(col.b), // the same cheap attack fails against SHA-256
-  }
-  // WAVE 2 — bit-budget. The "128-bit" address is really 122 bits (6 masked); birthday ~2^61, not 2^128.
-  const bits = addressEntropyBits()
-  const wave2 = {
-    wave: 2,
-    challenge: 'Quantify the collision resistance behind the "128-bit / maximum tampering cost" claim.',
-    weakness: `toUuid masks ${bits.discardedBits} bits (UUID version + variant) → ${bits.effectiveBits} effective bits → birthday ~2^${bits.birthdayLog2}; and hash32 has no cryptanalytic resistance, so the true cost is at or below that.`,
-    exploit: bits,
-    solution: 'A vetted hash spends its full width with no shortcut: SHA-256 = 2^128 collision / 2^256 preimage.',
-    demonstrated: bits.effectiveBits === 122 && bits.birthdayLog2 === 61,
-    solved: fixBuilt,
-  }
-  // WAVE 3 — authenticity. The model is public + deterministic, so anyone mints a valid root for ANY content.
-  const authorized = toUuid('the authorized release')
-  const tampered = toUuid('the tampered release') // a perfectly valid content-address — nothing marks it unauthorized
-  const wave3 = {
-    wave: 3,
-    challenge: 'Prove a root is YOURS — that an authority, not just anyone, produced it.',
-    weakness: 'Content-addressing gives integrity, not authenticity: the function is public + deterministic, so an adversary recomputes a valid root for tampered content (both roots below are equally valid).',
-    exploit: { authorizedRoot: authorized, tamperedRoot: tampered, bothValid: isUuid(authorized) && isUuid(tampered) },
-    solution: 'Ed25519 signing (ed25519Sign/Verify, built in src/0): a root SIGNED by a private key cannot be forged without it. HONEST RESIDUAL: needs persistent key custody (deployment, not code).',
-    demonstrated: isUuid(authorized) && isUuid(tampered) && authorized !== tampered,
-    solved: fixBuilt,
-  }
-  const waves = [wave1, wave2, wave3]
-  const documented = [
-    'The collision is FOUND, not asserted: a deterministic birthday search returns two distinct seeds whose 32-bit content-address word is identical (the 32-bit birthday bound is ~2^16). A non-cryptographic hash (FNV-1a) gives no collision resistance — the FNV spec itself says "not suitable for cryptographic use".',
-    'Bit-width is not security strength. The "128-bit" toUuid masks 6 bits (the UUID version nibble + 2 variant bits), so its effective width is 122 bits and its birthday-collision bound is ~2^61 — feasible for a resourced adversary (SHA-1, 160-bit, was broken at ~2^63 by SHAttered), where SHA-256 (2^128) is not.',
-    'Integrity is not authenticity. A content-address proves content maps to a root (any honest party recomputes it); it does NOT prove WHO produced it — anyone can mint a valid root for tampered content. Authenticity needs a signature (Ed25519), where forging requires the private key. (Git\'s author: its hash "has nothing to do with security".)',
-    'Every solution is already built and verified in src/0 — sha256Sync / toUuidSha256 (the drop-in), sha256MerkleRoot / verifySha256Proof, ed25519Sign / Verify, the transparency-log structure. The found collision does NOT collide under SHA-256: the same cheap attack fails against the vetted hash. The residual is a deliberate cutover + key custody, not missing cryptography.',
-  ]
-  const flagged = [
-    'Do NOT read the found 32-bit collision as a full toUuid break: it collides ONE of the four words, proving the building block is weak; a full 128-bit collision is ~2^61 (computed, not brute-forced here), not demonstrated by this pair.',
-    '"Maximum tampering cost / T_max = ∞" as a SECURITY claim is refused: against an adversary the FNV forge cost is ≤2^61 and likely far less, not infinite. The honest claim is tamper-EVIDENT plus the reproduction cost, not cryptographic unforgeability.',
-    'The cutover is NOT performed here. Migrating toUuid → toUuidSha256 globally is a deliberate breaking change that invalidates every committed baseline; these challenges prove the fix RESISTS the exploit, they do not flip the default.',
-  ]
-  return {
-    redTeamed: waves.every((w) => w.demonstrated && w.solved) && col.found && bits.effectiveBits === 122 && documented.length >= 4 && flagged.length >= 3,
-    waves,
-    collisionFound: col.found,
-    collisionTriesLog2: Math.round(Math.log2(col.tries)),
-    effectiveBits: bits.effectiveBits,
-    fixBuilt,
-    documented,
-    flagged,
-    root: merge(matrix.root, merkleFold([
-      toUuid(`cc-wave1:${col.a}:${col.b}:${col.word}`),
-      toUuid(`cc-wave2:${bits.effectiveBits}:${bits.birthdayLog2}`),
-      toUuid(`cc-wave3:${authorized}:${tampered}`),
-      ...documented.map((d, i) => toUuid(`cc-doc:${i}:${d.length}`)),
-      ...flagged.map((f, i) => toUuid(`cc-flag:${i}:${f.length}`)),
-    ])),
-    statement:
-      'The crypto challenges, red-teamed in waves: each EXPLOITS a real weakness in the site\'s content-address and GENERATES the solution already built in src/0, proving the fix resists. Wave 1 FINDS a collision in the FNV building block (SHA-256 does not collide the same pair); wave 2 computes that the "128-bit" address is really 122 bits (birthday ~2^61, not 2^128); wave 3 mints a valid root for tampered content, exposing that integrity is not authenticity (the fix is Ed25519 signing). Not assertions — runnable exploits with the vetted fix beside each.',
-    boundary:
-      'A defensive red-team of the site\'s OWN crypto, on its own code. The exploits are real and reproducible (the collision is found by search, the bit-budget computed, the forgery minted) but bounded honestly — a 32-bit-word collision is not a full toUuid break, and the SHA-256/Ed25519 fixes are built but deliberately not cut over (a baseline-resetting step). It backs tamperingCostDecoded with demonstrations, turning "FNV is weak" from a claim into a collision you can reproduce.',
-  }
-}
-
 // THE QUANTUM THREAT — what quantum computing actually does to cryptography and blockchains, and the post-
 // quantum response (documented kept, legend flagged). Researched in waves with primary sources (NIST FIPS
 // 203/204/205, Shor 1994, Grover 1996, Gidney–Ekerå, the IACR Bitcoin assessment). The crucial asymmetry:
@@ -21332,51 +20444,6 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
 // deterministic — the graph manages itself because nothing in it is hand-wired. Rendered by <TrinityGateways>.
 export interface WiredPath { slug: string; titleEn: string; titleBg: string; hue: number; score: number; shared: string[] }
 export interface WiredGateway { slug: string; titleEn: string; titleBg: string; realm: string; glyph: string; hue: number }
-const wiredHue = (slug: string): number => parseInt(toUuid(`wire-hue:${slug}`).slice(0, 6), 16) % 360
-export function realtimeWiring(path: string = '/') {
-  const pages = [...staticPages(), ...componentPages()]
-  const bySlug = (s: string) => pages.find((p) => p.slug === s)
-  // The three trinity gateways — the fixed top-level realms. Every page leads to these three; each gateway is
-  // itself a page that shows the same three plus its own related set, so the gateway tree is self-similar.
-  const gatewayDefs = [
-    { slug: 'architecture', realm: 'proven', glyph: '✛' }, // cross — the proof / the structure
-    { slug: 'quantum-mind', realm: 'animated', glyph: '○' }, // fold — the living, animated model
-    { slug: 'show', realm: 'presented', glyph: '⬡' }, // weave — presented to the world
-  ]
-  const gateways: WiredGateway[] = gatewayDefs.map((g) => {
-    const page = bySlug(g.slug)
-    return { slug: g.slug, titleEn: page?.title.en ?? g.slug, titleBg: page?.title.bg ?? g.slug, realm: g.realm, glyph: g.glyph, hue: wiredHue(g.slug) }
-  })
-  // Normalize the path → bare slug ('' = home).
-  const slug = path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\/+|\/+$/g, '')
-  const me = bySlug(slug)
-  const myTags = new Set((me?.keywords ?? []).map((k) => k.toLowerCase()))
-  // Related = scored by shared tags (the entanglement: shared tags = shared seed). Pages with no overlap fall
-  // away; the gateways are excluded (they are always shown above). The home (no tags) shows none here, by design.
-  const related: WiredPath[] = pages
-    .filter((p) => p.slug && p.slug !== slug && !gatewayDefs.some((g) => g.slug === p.slug))
-    .map((p) => {
-      const shared = (p.keywords ?? []).filter((k) => myTags.has(k.toLowerCase()))
-      return { slug: p.slug, titleEn: p.title.en, titleBg: p.title.bg, hue: wiredHue(p.slug), score: shared.length, shared }
-    })
-    .filter((r) => r.score > 0)
-    .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
-    .slice(0, 6)
-  return {
-    wired: gateways.length === 3,
-    here: slug || 'home',
-    onGateway: gatewayDefs.some((g) => g.slug === slug),
-    gateways,
-    related,
-    relatedCount: related.length,
-    root: merkleFold([...gateways.map((g) => toUuid(`gw:${g.slug}`)), ...related.map((r) => toUuid(`rel:${slug}->${r.slug}:${r.score}`))]),
-    statement:
-      'Realtime wiring: every page computes its own navigation from its route — the three trinity gateways (proven · animated · presented = cross · fold · weave) every page leads to, and the related paths scored by shared tags (shared tags = shared seed = entanglement), recomputed the moment the route changes. Client-side, zero-token, deterministic — the graph manages itself because nothing in it is hand-wired; hand-managing hundreds of routes and their crosslinks would be impossible.',
-    boundary:
-      'A computed navigation layer derived from the one page set (staticPages + componentPages) and their tags, recomputed at render time on each navigation (client-side, free). "Realtime" means recomputed-on-navigation, not streamed; relatedness is tag-overlap — a transparent, recomputable heuristic, not a learned recommendation.',
-  }
-}
-
 // ANIMATIONS ARE STRICT SCIENCE — the standard, decoded and tracked. Every animation must represent the real
 // field of the double torus: the 3D SPIN (the rotation atoms) and the FOLD (the genus-2 surface + the 10D
 // dims), driven by the one realtime engine, sharing the math (100% DRY), with no ad-hoc gap. This fold names
