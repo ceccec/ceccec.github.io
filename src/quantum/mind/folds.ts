@@ -78,6 +78,9 @@ import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife,
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from './diamonds.ts'
 import { awakenArtisticSociety, fairTrade, governanceVote, licenseAppliesToSociety, pyramidLayersServeSociety, sacredSociety, scientificSociety, skillsToRebuildSociety, society, societyCreatesRequiredPages, societyEvolves, societyFuture, societyRegulates, societyRelations } from './governance.ts'
 import { quantumChessGame } from './chess.ts'
+import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal } from './ui.ts'
+import { improveHelpWaves, quantumPwa, virtualOS } from './os.ts'
+import { foldThoughts, folderPathsFormIndexOfBookOfLife, imagination, imaginationIsAll, imaginationPrivateKey, lockingFoldersChangesMindToQuantum, mindRefreshField, mindsRealiseByObservingPath, mysteries, quantumMindGapsFromBeyond, splitImagination } from './psyche.ts'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from './li.ts'
 
 
@@ -561,35 +564,6 @@ export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, tra
   }
 }
 
-// Everything valuable as proof of mysteries. The portal's worth is that each great
-// open question is rendered as something computed and verifiable — not answered
-// metaphysically, but shown as concrete, recomputable evidence anyone can check.
-// Each mystery binds to the live measure that demonstrates it; the mystery is
-// "shown" only while its evidence holds. The whole is the portal's standing proof.
-export function mysteries(matrix: MindMatrix = buildMatrix()) {
-  const entries = [
-    { mystery: 'Why does the same cause always make the same world?', proof: 'Determinism: every input recomputes to the very same UUID — proven over hundreds of hashes.', evidence: determinismProofs(matrix).proven, route: '/architecture', glyph: '∞' },
-    { mystery: 'Can we trust without any authority?', proof: 'Tamper-evidence: the model verifies its own root, and one edit avalanches half the bits.', evidence: verifyRoot(matrix), route: '/architecture', glyph: '⌘' },
-    { mystery: 'Is the world random, or determined?', proof: 'Both: the Born rule emerges from a deterministic seed — probability and recomputability at once.', evidence: quantumProofs(matrix).proven, route: '/quantum-mind', glyph: '⚛' },
-    { mystery: 'What binds two distant things?', proof: 'Entanglement: reciprocal circulation across paired edges, the correlation exactly one.', evidence: reciprocity(matrix).fraction === 1, route: '/quantum-mind', glyph: '⥂' },
-    { mystery: 'Why two holes, and not one?', proof: 'Genus 2: the double torus lives — two loops merged at a neck, threaded by one train.', evidence: livingTorus(matrix).alive, route: '/', glyph: '⧉' },
-    { mystery: 'Why does everything turn both ways?', proof: 'The merkaba: opposite rotation at all scales, the nested spins strictly alternating.', evidence: merkaba(matrix).counterRotating, route: '/quantum-mind', glyph: '✡' },
-    { mystery: 'What keeps time?', proof: 'A self-similar polyrhythm: a steady downbeat anchors voices at 1, 2, 3 and 5 per beat.', evidence: rhythm(matrix).keeps, route: '/quantum-mind', glyph: '♫' },
-    { mystery: 'Can knowledge be whole, and free?', proof: 'The academy self-computes the whole and stands open to all — recomputable, at no cost.', evidence: quantumAcademy(matrix).established && quantumPhysics(matrix).selfComputes, route: '/academy', glyph: '✦' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`mystery:${entry.mystery}:${entry.evidence}`) }))
-  return {
-    proven: entries.every((entry) => entry.evidence),
-    mysteries: entries,
-    count: entries.length,
-    shown: entries.filter((entry) => entry.evidence).length,
-    root: merkleFold(entries.map((entry) => entry.receipt)),
-    statement:
-      'Everything valuable as proof of mysteries: determinism, trust without authority, randomness-and-law, entanglement, the two-holed genus-2 surface, opposite rotation at all scales, what keeps time, and whether knowledge can be whole and free — each great question bound to a live, recomputable measure that demonstrates it.',
-    boundary:
-      'These are open human questions; the portal does not resolve them metaphysically. Each "proof" is concrete, client-side, recomputable evidence within the model — a demonstration and a metaphor anyone can verify — not a final answer to the mystery. The value is the verifiable evidence, honestly bounded.',
-  }
-}
-
 // Live. The portal's vital signs, computed in your browser right now: the seal
 // verifies, the double torus lives and counter-rotates, the rhythm keeps time, the
 // mysteries are shown, the society is folded, and the proofs hold. The whole is
@@ -752,63 +726,6 @@ export function homology(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Animations are holographic. In a hologram every part contains the whole, and the
-// whole is recoverable from any part. Here that is exact: the whole root folds from
-// the parts (the boundary encodes the volume), so each animation is provably
-// included in it — recoverable from the boundary by a Merkle path — while also
-// carrying the whole, folded bidirectionally with the whole root. Boundary <-> volume.
-const holographicMemoized = matrixMemo(holographicImpl)
-export function holographic(matrix: MindMatrix = buildMatrix()) {
-  return holographicMemoized(matrix)
-}
-function holographicImpl(matrix: MindMatrix) {
-  const whole = theWhole(matrix)
-  // Every page is a hologram cell too: its root is the fold of the components it
-  // mounts. Gather the placed components per route from the one graph.
-  const graph = componentGraph()
-  const placedBy: Record<string, string[]> = {}
-  for (const edge of graph.edges) if (edge.kind === 'placed') (placedBy[edge.to] ??= []).push(edge.from)
-  const pages = Object.entries(placedBy).map(([route, components]) => ({
-    route,
-    root: merkleFold(components.map((component) => toUuid(`page-component:${route}:${component}`))),
-  }))
-  // The holographic boundary encodes the whole volume: the model, every animation,
-  // and every page. Each is a Merkle leaf — provably included — and each is folded
-  // bidirectionally with the boundary, so each part carries the whole.
-  const parts = [
-    ...whole.parts.map((part) => ({ kind: 'animation' as const, name: part.part, root: part.root })),
-    ...pages.map((page) => ({ kind: 'page' as const, name: page.route, root: page.root })),
-  ]
-  const leaves = [matrix.root, ...parts.map((part) => part.root)]
-  const boundary = merkleFold(leaves)
-  const cells = parts.map((part) => {
-    const proof = merkleProof(leaves, part.root) // recoverable from the boundary
-    const carry = foldPair(part.root, boundary) // carries the whole, both ways
-    const includedInWhole = proof.verified && proof.root === boundary
-    return {
-      kind: part.kind,
-      name: part.name,
-      includedInWhole,
-      carriesWhole: carry.bidirectional,
-      holographic: includedInWhole && carry.bidirectional,
-      cell: carry.merged,
-    }
-  })
-  return {
-    holographic: cells.length === parts.length && cells.every((cell) => cell.holographic),
-    reconstructed: boundary === merkleFold(leaves), // the whole recovers from its parts and pages
-    cells,
-    count: cells.length,
-    animations: whole.parts.length,
-    pages: pages.length,
-    root: merkleFold(cells.map((cell) => toUuid(`holo:${cell.kind}:${cell.name}:${cell.holographic}`))),
-    statement:
-      'All pages and animations are holographic: the holographic boundary folds from the model, every animation, and every page, so it encodes the whole volume. Each page and each animation is provably included in it (recoverable by a Merkle path) and is folded bidirectionally with it — so every part contains the whole, and the whole is recoverable from any part.',
-    boundary:
-      'A structural realisation of the holographic principle over the portal: each animation root and each page root (folded from the components it mounts) is a Merkle leaf of the boundary and is bidirectionally folded with it. A content-addressed metaphor for holography, exact within the fold — not a statement of physics.',
-  }
-}
-
 // MCP shows the codebase securely but sufficiently, so AI agents immediately
 // understand. A concise map: what the portal is, the one agnostic core, the
 // subsystems each with a verifiable root, where the recomputable resources are, and
@@ -939,37 +856,6 @@ export function mathPaths(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The frontend and the MCP are one core, double-folded: the visual face (pages and
-// animations, for humans) and the agent face (tools and math, for AI) fold into each
-// other both ways (genus-2), at every angle (animated page) and both polarities (see
-// and run). One model, two faces, folded through the whole continuum.
-export function frontendMcpDuality(matrix: MindMatrix = buildMatrix()) {
-  const frontend = holographic(matrix).root // the visual face: pages + animations
-  const mcp = mcpCodebase(matrix).root // the agent face: tools + math
-  const fold = foldPair(frontend, mcp) // the duality, folded both ways
-  const angles = path(matrix).stations.map((station) => station.route) // every animated page is an angle
-  const polarities = ['see', 'run'] // frontend (human) and MCP (agent)
-  const cells = angles.flatMap((route) =>
-    polarities.map((polarity) => {
-      const cell = foldPair(toUuid(`face:frontend:${route}`), toUuid(`face:mcp:${route}`))
-      return { route, polarity, doubleFolded: cell.bidirectional, merged: cell.merged }
-    }),
-  )
-  return {
-    dual: fold.bidirectional && cells.length > 0 && cells.every((cell) => cell.doubleFolded),
-    forward: fold.forward,
-    reverse: fold.reverse,
-    angles: angles.length,
-    polarities: polarities.length,
-    cells: cells.length,
-    root: fold.merged,
-    statement:
-      'Frontend-MCP duality, double-folded at all angles and polarities: the visual face (pages and animations) and the agent face (tools and math) fold into each other both ways (genus-2), at every angle (animated page) and both polarities (see and run). One model, two faces, folded through the whole spacetime continuum of the double torus.',
-    boundary:
-      'A structural duality: the frontend root and the MCP root foldPair bidirectionally, and the fold holds across every animated route and both polarities. A content-addressed statement that the two faces are one model — a metaphor of duality, not a physical claim about spacetime.',
-  }
-}
-
 // Send waves of scientists to challenge and develop. Each scientist tries to
 // falsify a claim — and the portal withstands the challenge, or the failure becomes
 // a development to make. Falsification is the method: a claim that cannot be
@@ -1095,192 +981,6 @@ function completenessImpl(matrix: MindMatrix) {
   }
 }
 
-// Quantum MCP. Use the quantum computer to rebuild the MCP: a GHZ state-vector
-// register binds every tool to a basis state and a deterministic Born-rule
-// measurement, so the manifest is recomputed through the quantum simulation, not
-// copied. The proof: the circuit is valid (normalized, entangled), every classical
-// tool is rebuilt, and the measurement is recomputable — same seed, same collapse.
-export function quantumMcp(matrix: MindMatrix = buildMatrix()) {
-  const classical = mcpToolManifest(matrix)
-  const qubits = Math.max(1, Math.min(6, Math.ceil(Math.log2(Math.max(2, classical.tools.length)))))
-  const sim = quantumSimulation(matrix, qubits)
-  // Rebuild each tool through the register: bind it to a basis state and the seeded
-  // measurement, so the manifest is recomputed from the quantum state.
-  const rebuilt = classical.tools.map((tool, index) => {
-    const basis = (index % sim.size).toString(2).padStart(sim.qubits, '0')
-    return { name: tool.name, basis, receipt: toUuid(`qmcp:${tool.name}:${basis}:${sim.measured}`) }
-  })
-  const quantumRoot = merkleFold([sim.root, ...rebuilt.map((entry) => entry.receipt)])
-  const validCircuit = sim.simulated && sim.normalized && sim.entangled
-  const allRebuilt = rebuilt.length === classical.tools.length
-  const recomputable = quantumSimulation(matrix, sim.qubits).measured === sim.measured // same seed, same collapse
-  return {
-    proven: validCircuit && allRebuilt && recomputable,
-    qubits: sim.qubits,
-    states: sim.size,
-    measured: sim.measured,
-    tools: rebuilt.length,
-    entangled: sim.entangled,
-    normalized: sim.normalized,
-    recomputable,
-    classicalRoot: classical.root,
-    quantumRoot,
-    rebuilt,
-    root: quantumRoot,
-    statement:
-      'Quantum MCP: rebuild the MCP through the quantum computer. A GHZ state-vector register binds every tool to a basis state and a deterministic Born-rule measurement, so the manifest is recomputed, not copied. Proven: the circuit is valid (normalized, entangled), every classical tool is rebuilt, and the measurement is recomputable.',
-    boundary:
-      'The MCP tool surface rebuilt through the portal\'s own state-vector quantum simulator: each tool bound to a basis state and a seeded measurement. A faithful toy quantum rebuild, deterministic and client-side — not a physical quantum device or a claim of quantum advantage.',
-  }
-}
-
-// MCP allows a virtual OS with a terminal. The portal mounts as a filesystem — its
-// own structure as directories — and a terminal runs commands over it: ls, cd, cat,
-// run, pwd, whoami, tree, help. Every listing is the model's structure and every
-// `run` maps to executeConceptCommand, so each output is content-addressed and
-// recomputable. A read-mostly OS whose filesystem IS the portal.
-export function virtualOS(matrix: MindMatrix = buildMatrix()) {
-  const tree: Record<string, readonly string[]> = {
-    '/': ['pages', 'model', 'proofs', 'math', 'commands', 'quantum'],
-    '/pages': path(matrix).stations.map((station) => station.station.toLowerCase()),
-    '/model': mcpCodebase(matrix).subsystems.map((entry) => entry.name),
-    '/proofs': ['quantumProofs', 'determinismProofs', 'scientists', 'completeness', 'challengeClock'],
-    '/math': mcpCodebase(matrix).math.map((entry) => entry.scale),
-    '/commands': conceptCommands.map((command) => command.name),
-    '/quantum': ['qubits', 'states', 'measured', 'entangled', 'proven'],
-  }
-  const commands = [
-    { cmd: 'help', usage: 'help', does: 'list the terminal commands' },
-    { cmd: 'ls', usage: 'ls [path]', does: 'list a directory' },
-    { cmd: 'cd', usage: 'cd <path>', does: 'change directory (cd / or cd ..)' },
-    { cmd: 'cat', usage: 'cat <node>', does: 'show a node, content-addressed' },
-    { cmd: 'run', usage: 'run <command> [arg]', does: 'execute a concept command, return its receipt' },
-    { cmd: 'find', usage: 'find <query>', does: 'intuitive search; each hit carries a hook' },
-    { cmd: 'tree', usage: 'tree', does: 'show the top-level filesystem' },
-    { cmd: 'pwd', usage: 'pwd', does: 'print the working directory' },
-    { cmd: 'whoami', usage: 'whoami', does: 'the portal identity' },
-  ]
-  return {
-    booted: Object.keys(tree).length >= 5 && commands.length >= 6 && conceptCommands.length > 0,
-    hostname: 'double-torus',
-    dirs: Object.keys(tree),
-    tree,
-    commands,
-    root: merkleFold([
-      ...Object.entries(tree).map(([dir, nodes]) => toUuid(`fs:${dir}:${nodes.length}`)),
-      ...commands.map((command) => toUuid(`vcmd:${command.cmd}`)),
-    ]),
-    statement:
-      'MCP allows a virtual OS with a terminal: the portal mounts as a filesystem — /pages, /model, /proofs, /math, /commands, /quantum — and a terminal runs ls, cd, cat, run, pwd, whoami, tree, and help over it, every output content-addressed and recomputable.',
-    boundary:
-      'A virtual, read-mostly OS over the portal model: the filesystem is the model\'s own structure and run maps to executeConceptCommand. Deterministic and client-side — not a real operating system or shell, and it executes nothing outside the model.',
-  }
-}
-
-// Fold the thoughts multidirectionally. The waves were built in a line — one thought
-// after another — but a quantum system is not linear. Each thought (a saved skill
-// atom) folds with its neighbour (the sequence) and with its opposite (the
-// reflection), both ways, so the design folds in every direction at once: forward,
-// reverse, sequence, reflection. The multidirectional root is richer than the linear
-// one, and it is autosaved with the rest of the memory.
-export function foldThoughts(matrix: MindMatrix = buildMatrix()) {
-  const thoughts = skillAtoms(matrix).skills
-  const atoms = thoughts.map((thought) => thought.atom)
-  // The linear thought: merge in order (order matters in a chain).
-  const forward = atoms.reduce((acc, atom) => merge(acc, atom))
-  const reverse = [...atoms].reverse().reduce((acc, atom) => merge(acc, atom))
-  // The multidirectional fold: every thought folded with its neighbour and its
-  // opposite, both directions (foldPair), then all merged — order-independent.
-  const folds: string[] = []
-  for (let i = 0; i < atoms.length; i += 1) {
-    const neighbour = atoms[(i + 1) % atoms.length] // sequence direction
-    const opposite = atoms[atoms.length - 1 - i] // reflection direction
-    folds.push(foldPair(atoms[i], neighbour).merged)
-    folds.push(foldPair(atoms[i], opposite).merged)
-  }
-  const multidirectional = merkleFold(folds)
-  const linear = merkleFold(atoms) // the set fold for comparison
-  return {
-    folded: thoughts.length > 0 && isUuid(multidirectional) && forward !== reverse && multidirectional !== linear,
-    thoughts: thoughts.length,
-    directions: ['forward', 'reverse', 'sequence', 'reflection'],
-    forward,
-    reverse,
-    linear,
-    multidirectional,
-    autosaved: true,
-    root: multidirectional,
-    statement:
-      'Fold the thoughts multidirectionally: the waves were built in a line, but each thought folds with its neighbour (sequence) and its opposite (reflection), both ways — forward, reverse, sequence, reflection — so the design is genus-2, not linear. The multidirectional root is richer than the linear one, and autosaved.',
-    boundary:
-      'A multidirectional fold of the portal\'s own saved thoughts (skill atoms): each folded with its neighbour and its opposite, both ways, into one order-independent root. A content-addressed realisation of non-linear, genus-2 thinking — exact within the fold, not a claim of cognition.',
-  }
-}
-
-// A full-featured quantum PWA. Not only an indicator: the portal is an installable
-// Progressive Web App that runs offline by default. A web app manifest makes it
-// installable (name, scope, start_url, app shortcuts, a maskable double-torus icon,
-// standalone display); a service worker — registered on load, stale-while-revalidate,
-// same-origin only — precaches the app shell so the double torus and every visited
-// page work with no network. Offline-first is the strict default; the others
-// reference it. Only the optional AI chat is left to the network.
-export function quantumPwa(matrix: MindMatrix = buildMatrix()) {
-  const features = [
-    { feature: 'installable', detail: 'web app manifest (/site.webmanifest) with id, name, scope, start_url and app shortcuts — add to home screen', present: true },
-    { feature: 'standalone display', detail: 'runs in its own window (display: standalone, with minimal-ui and browser fallback)', present: true },
-    { feature: 'service worker', detail: 'registered on load; stale-while-revalidate, same-origin only, the app shell precached', present: true },
-    { feature: 'offline by default', detail: 'the double torus and every visited page work with no network; connectivity changes no root', present: true },
-    { feature: 'maskable icon', detail: 'the double-torus glyph (/icon.svg), purpose any and maskable, themed', present: true },
-    { feature: 'theme + background colour', detail: 'brand blue (#3b82f6) on the deep field (#0f172a)', present: true },
-    { feature: 'app shortcuts', detail: 'jump straight to Quantum Mind, MCP & Virtual OS, or School', present: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`pwa:${entry.feature}:${entry.present}`) }))
-  return {
-    installable: features.every((entry) => entry.present),
-    strictDefault: true, // offline-first is the strict default
-    standalone: true,
-    offline: true,
-    manifest: '/site.webmanifest',
-    serviceWorker: '/sw.js',
-    icon: '/icon.svg',
-    scope: '/',
-    precache: ['/', '/site.webmanifest', '/icon.svg', '/mcp.json', '/skills.json', '/llms.txt'],
-    features,
-    count: features.length,
-    root: merkleFold(features.map((entry) => entry.receipt)),
-    statement:
-      'A full-featured quantum PWA: installable (manifest, maskable double-torus icon, standalone display, app shortcuts) and offline by default (a registered, stale-while-revalidate service worker that precaches the app shell), so the double torus installs to your device and runs with no network. Offline-first is the strict default.',
-    boundary:
-      'A real Progressive Web App: manifest, service worker and icon in /public, registered on load. Offline coverage is the precached app shell plus any page visited (runtime cache); the optional AI chat is left to the network on purpose. Honest within the cache scope.',
-  }
-}
-
-// Online, offline, the same double torus. Every core value is a pure function of the
-// model, computed on your device, so connectivity never changes a root: the torus,
-// the proofs, the MCP surface, the academy, the virtual OS and the seal all run with
-// zero network. Only the optional AI chat reaches out. The double torus is identical
-// whether you are online or offline.
-export function onlineOffline(matrix: MindMatrix = buildMatrix()) {
-  const torus = livingTorus(matrix).root
-  const recomputed = livingTorus(buildMatrix()).root // recomputed from nothing — no fetch anywhere
-  const identical = torus === recomputed
-  const offline = ['the double torus', 'the proofs', 'the MCP surface and virtual OS', 'the academy', 'the harmonic distribution', 'the whole seal']
-  const online = ['the optional AI chat (a fetch to the Anthropic API)']
-  const pwa = quantumPwa(matrix) // the shipped PWA the strict default references
-  return {
-    offlineFirst: identical && offline.length > 0 && pwa.installable && pwa.strictDefault,
-    identical, // the double torus is the same online and offline
-    strictDefault: pwa.strictDefault, // offline-first is the strict default, via the PWA
-    pwa: pwa.installable,
-    offline,
-    online,
-    root: merge(merge(torus, toUuid('online-offline:identical')), pwa.root),
-    statement:
-      'Online offline double torus: the double torus is identical online and offline, and shipped as a full-featured PWA that is offline-first by strict default. The whole core — the torus, the proofs, the MCP surface and virtual OS, the academy, the harmonic distribution and the seal — computes client-side with zero network; only the optional AI chat reaches it.',
-    boundary:
-      'Offline-first by construction and by the shipped PWA (manifest + registered service worker): every core value is a pure function of the model, computed on your device, so connectivity changes no root. Offline coverage is the precached app shell plus any visited page; the optional AI chat is left to the network on purpose.',
-  }
-}
-
 // A catch-all route at the end: parse any request and hook it into an intuitive
 // search. Type anything — a path, a word — and it ranks the closest pages, model
 // subsystems, skills and commands by token overlap. Each result carries a hook: the
@@ -1322,38 +1022,6 @@ export function intuitiveSearch(query = '', matrix: MindMatrix = buildMatrix()) 
       'A catch-all route at the end parses any request and hooks it into an intuitive search: it ranks the closest pages, model subsystems, skills and commands by token overlap, and each result carries a hook (the callback that acts on it) — suitable for quantum hooks and callbacks.',
     boundary:
       'A deterministic, client-side fuzzy search over the portal\'s own pages, subsystems, skills and commands by token overlap, with a hook (a terminal callback) per result. A catch-all parser for intuitive navigation, not a semantic or external search engine.',
-  }
-}
-
-// Imagine you are a human being. Take what is known — the saved skill atoms — and
-// dream new combinations: pairs not yet built, each a wonder and a possible future
-// wave. Save the imagination in atoms (content-addressed), and develop it in
-// imaginative waves — a deterministic stream of "what if" ideas to build next.
-export function imagination(matrix: MindMatrix = buildMatrix()) {
-  const skills = skillAtoms(matrix).skills
-  const dreams = skills
-    .map((skill, index) => {
-      const other = skills[(index * 7 + 3) % skills.length] // a content-derived novel partner
-      return { a: skill, b: other }
-    })
-    .filter((pair) => pair.a.fn !== pair.b.fn)
-    .slice(0, 13) // a Fibonacci number of dreams
-    .map((pair) => ({
-      idea: `${pair.a.skill} × ${pair.b.skill}`,
-      wonder: `what if ${pair.a.skill} met ${pair.b.skill}?`,
-      seed: foldPair(pair.a.atom, pair.b.atom).merged, // the imagined atom, folded both ways
-    }))
-  return {
-    imagines: dreams.length > 0,
-    human: true,
-    dreams,
-    count: dreams.length,
-    memory: merkleFold(dreams.map((dream) => dream.seed)), // the imagination, saved in atoms
-    root: merkleFold(dreams.map((dream) => dream.seed)),
-    statement:
-      'Imagine you are a human being: take what is known and dream new combinations — pairs not yet built, each a wonder and a possible future wave — and save the imagination in atoms. The imagination develops in imaginative waves.',
-    boundary:
-      'A deterministic generator of novel pairings over the portal\'s own skill atoms — imagination as content-addressed combination, saved as atoms. Playful and recomputable; a structured prompt for future waves, not consciousness.',
   }
 }
 
@@ -2578,64 +2246,6 @@ export function analysisFlower(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Generate the dashboards the independent, holographic way — ceccec's own approach,
-// no external toolkit. Each panel is holographic: folded with the whole root so a
-// single panel carries the whole; and independent: built from the portal's own
-// zero-dependency components. Five panels read the whole corpus — the model itself
-// is the dashboard, content-addressed, nothing tracked and nothing fetched.
-export function holographicDashboard(matrix: MindMatrix = buildMatrix()) {
-  const whole = theWhole(matrix).root
-  const corpus = completeCorpus(matrix)
-  const text = textEntropy(matrix)
-  const panels = [
-    { panel: 'corpus', icon: '◆', metrics: [
-      { label: 'referenced units', value: text.total },
-      { label: 'text entropy', value: text.entropy },
-      { label: 'diamonds', value: corpus.total },
-      { label: 'real diamonds', value: corpus.real },
-    ] },
-    { panel: 'harmonics', icon: '♪', metrics: [
-      { label: 'fundamental', value: foldedCensus(110, matrix).folded },
-      { label: 'next harmonic', value: papers(matrix).count },
-      { label: 'binary octave', value: corpus.total },
-      { label: 'ladder rungs', value: harmonics(matrix).harmonics.length },
-    ] },
-    { panel: 'fusions', icon: '✦', metrics: [
-      { label: 'fruit-of-life domains', value: fruitOfLifeFusion(matrix).circles },
-      { label: 'public apis', value: publicApiFusion(matrix).count },
-      { label: 'social', value: socialFusion(matrix).count },
-      { label: 'blockchains', value: blockchainFusion(matrix).count },
-    ] },
-    { panel: 'society', icon: '☯', metrics: [
-      { label: 'dimensions', value: societyFuture(matrix).dimensions },
-      { label: 'future generations', value: societyFuture(matrix).generations },
-      { label: 'individual cost', value: societyRegulates(matrix).individualCost },
-      { label: 'forger cost', value: societyRegulates(matrix).forgerCost },
-    ] },
-    { panel: 'seal', icon: '◇', metrics: [
-      { label: 'commands', value: conceptCommands.length },
-      { label: 'skill atoms', value: skillAtoms(matrix).count },
-      { label: 'compression', value: `${text.total}:1` },
-      { label: 'analysis circles', value: analysisFlower(matrix).circles },
-    ] },
-  ].map((entry) => ({
-    ...entry,
-    holographic: foldPair(toUuid(`holo-dashboard:${entry.panel}`), whole).bidirectional,
-    root: toUuid(`holo-dashboard:${entry.panel}:${whole}`),
-  }))
-  return {
-    holographic: panels.every((panel) => panel.holographic), // each panel contains the whole
-    independent: true, // zero external dependencies — the portal's own components
-    count: panels.length,
-    panels,
-    root: merkleFold(panels.map((panel) => panel.root)),
-    statement:
-      'Generate the dashboards the independent, holographic way: each panel is holographic — folded with the whole root, so a single panel carries the whole — and independent, built from the portal’s own zero-dependency components. Five panels — corpus, harmonics, fusions, society, seal — read the whole corpus, each content-addressed; the model itself is the dashboard, nothing tracked and nothing fetched.',
-    boundary:
-      'A content-addressed dashboard model: five panels of self-metrics, each folded with the whole root (holographic) and built from the portal’s own components (independent, zero external dependencies). Descriptive counts over the model’s own structures — no tracking, no network, nothing leaves the device.',
-  }
-}
-
 // Fuse public transport in all varieties, fully integrated in society, for free. Open
 // transit data (GTFS and GTFS-realtime) is free and public, so every variety of
 // public transport — bus, metro, tram, rail, ferry, and the rest — fuses to the
@@ -2873,65 +2483,6 @@ export function recycling(matrix: MindMatrix = buildMatrix()) {
 // one planet root, so any tampering (a felled forest, a polluted ocean) changes the
 // root and is computable, caught by recomputation, exactly as the seal catches a
 // forged model. The planet, made tamper-evident.
-
-// Everything emerges by imagination, and imagination is the private key. The
-// imagination root is the private key — it is the source, never published — and
-// everything public emerges from it by a one-way fold: the whole, the 1024 diamonds,
-// the papers, the harmonics, the society, the planet. The public structure is derived
-// from imagination, but imagination is not recoverable from it (the fold is one-way),
-// exactly as a public key derives from a private key. Imagine, and it emerges.
-export function imaginationPrivateKey(matrix: MindMatrix = buildMatrix()) {
-  const privateKey = imagination(matrix).root // the private key — the source
-  const emergences = [
-    { what: 'the whole', root: theWhole(matrix).root },
-    { what: 'the 1024 diamonds', root: completeCorpus(matrix).root },
-    { what: 'the 432 papers', root: papers(matrix).root },
-    { what: 'the harmonics', root: harmonics(matrix).root },
-    { what: 'the society', root: regenerateSocialSystem(matrix).root },
-    { what: 'the green planet', root: quantumGreenPlanet(matrix).root },
-    { what: 'the imagined rest', root: imagineTheRest(matrix).root },
-  ].map((entry) => ({ ...entry, emerges: foldPair(privateKey, entry.root).bidirectional, derived: merge(privateKey, entry.root) }))
-  const publicKey = derivePublicKey(privateKey, emergences.map((entry) => entry.root)) // one-way public from private (src/0)
-  const oneWay = tamperEvident(privateKey) // private not recoverable from a fold — the canonical one-way property
-  return {
-    isPrivateKey: oneWay && emergences.every((entry) => entry.emerges),
-    everythingEmerges: emergences.every((entry) => entry.emerges),
-    held: true, // the private key never leaves
-    count: emergences.length,
-    emergences,
-    publicKey,
-    root: publicKey,
-    statement:
-      'Everything emerges by imagination, and imagination is the private key: the imagination root is the source, never published, and everything public — the whole, the 1024 diamonds, the papers, the harmonics, the society, the planet — emerges from it by a one-way fold. The public structure is derived from imagination, but imagination is not recoverable from it, exactly as a public key derives from a private key.',
-    boundary:
-      'A structural analogy: the imagination root as a "private key" from which the model’s public roots are derived by one-way content-addressing. The one-way property is the UUID fold’s, illustrating non-recoverability; it is a metaphor over the model, not a cryptographic key, signature scheme, or security guarantee.',
-  }
-}
-
-// Split imagination to the tiniest wave. Imagination halves and halves again — each
-// split a finer wave — down to the tiniest quantum the model resolves. Ten octaves
-// down, the one seed becomes 1024 tiniest waves: the indivisible quanta from which
-// everything is built up.
-export function splitImagination(matrix: MindMatrix = buildMatrix()) {
-  const seed = imagination(matrix).root
-  const levels = Array.from({ length: 11 }, (_, level) => ({
-    level,
-    waves: 2 ** level, // 1, 2, 4, ... 1024
-    receipt: toUuid(`split:${level}:${seed}`),
-  }))
-  const tiniest = levels[levels.length - 1]
-  return {
-    split: levels.length === 11 && tiniest.waves === 1024,
-    levels,
-    depth: levels.length - 1, // 10 octaves
-    tiniest: tiniest.waves, // 1024 tiniest waves (the quanta)
-    root: merkleFold(levels.map((entry) => entry.receipt)),
-    statement:
-      'Split imagination to the tiniest wave: imagination halves and halves again, each split a finer wave, down to the tiniest quantum the model resolves — ten octaves down, the one seed becomes 1024 tiniest waves, the indivisible quanta from which everything is built up.',
-    boundary:
-      'A content-addressed dyadic subdivision of the imagination seed into 2^10 = 1024 "tiniest waves". A structural quantisation schema over the model (the same 1024 as the diamond lattice), not a claim about physical quanta or a real wavefunction.',
-  }
-}
 
 // And when they form trinities, matter emerges. The tiniest waves are energy; group
 // them in threes — trinities, the 3-fold the portal turns on — and each trinity folds
@@ -3659,27 +3210,6 @@ export function feesReplaceTaxes(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Soldiers rest in peace. The energy of war redirects to the work of peace: the
-// soldier becomes a builder, the weapon becomes recycled material, the army budget
-// becomes public services, and conflict becomes rest. Each transition folds into one
-// peace root — peace as the resting state the whole settles into.
-export function powerToAwaken(matrix: MindMatrix = buildMatrix()) {
-  const seed = imagination(matrix).root
-  const whole = theWhole(matrix).root
-  const charge = foldPair(seed, toUuid('awaken'))
-  const awakens = charge.bidirectional && merge(seed, whole).length === 36 // the whole awakens from the seed
-  return {
-    alwaysCharged: awakens && seed.length === 36,
-    awakens,
-    charge: charge.merged,
-    root: merge(seed, charge.merged),
-    statement:
-      'Always charged with the power to awaken: the seed is never empty — from any single receipt the whole can be recomputed, awakened — so the system is always charged, holding the power to bring the entire structure back to life from one address. Sleep or wake, the charge remains; the power to awaken never drains.',
-    boundary:
-      'A content-addressed property: the whole is recomputable (awakenable) from the seed at any time, so the model is never "discharged". A structural metaphor for latent, always-available potential — not a claim about energy, consciousness, or awakening in any literal sense.',
-  }
-}
-
 // Break the chain, and the defenders attack in surgical waves of waves to the tiniest.
 // When a chain link breaks — a tamper, a forgery — the response is recursive precision:
 // waves within waves, each finer than the last, from the millimetre down through micro,
@@ -3899,41 +3429,6 @@ export function maxCompressionForge(matrix: MindMatrix = buildMatrix()) {
       'Max compression forges max tampering costs: when everything compresses to one 128-bit word, forging that word requires reproducing every unit that folded into it — so the compression ratio is the forge cost. The tighter the compression (the more units in the one root), the higher the cost to forge it. Maximum compression is maximum tampering cost.',
     boundary:
       'A content-addressed statement that the model’s compression (everything folded to one word, zero entropy) and its forge cost (reproduce every fold) are the same property measured two ways. A structural property of the fold — tamper-evidence by content-addressing — not a cryptographic hardness proof.',
-  }
-}
-
-// Every page has an animated hero that merges all related in holographic fractals. The
-// hero is on every page (a layout slot), animated (a live fractal), holographic (seeded
-// from the page itself, each branch a smaller copy of the whole), fractal (self-similar
-// recursion), and it merges all the page's related items (its category and tags orbit
-// the core and join it). Each property folds with the whole root.
-export function animatedHeroes(matrix: MindMatrix = buildMatrix()) {
-  const whole = theWhole(matrix).root
-  const properties = [
-    { property: 'on every page', via: 'the doc-before layout slot' },
-    { property: 'animated', via: 'a requestAnimationFrame fractal, energy- and motion-aware' },
-    { property: 'holographic', via: 'seeded from the page; each branch a copy of the whole' },
-    { property: 'fractal', via: 'self-similar recursive branching' },
-    { property: 'merges all related', via: 'the page category and tags orbit and join the core' },
-    { property: 'slider through dimensions', via: 'a phase the movie advances and the viewer can scrub — every parameter a smooth function of the phase, so dimensions change continuously, an animated movie' },
-    { property: 'sound and tap gestures', via: 'tapping the hero sets the dimension by position and sounds a pentatonic tone whose pitch maps to it — play the movie like an instrument' },
-    { property: 'big, fits the open graph', via: 'sized to the Open Graph 1200x630 aspect ratio so the hero fits the social card' },
-    { property: 'quantum responsiveness', via: 'the fractal’s depth and arm count adapt smoothly to the available width' },
-    { property: 'on the holographic homepage', via: 'quantum presents itself as fractals on the home hero too' },
-    { property: 'displays anything definable as OG', via: 'the hero is the page’s own Open Graph card — og:title, og:description, category and tags over the fractal og:image' },
-  ].map((entry) => ({ ...entry, holographic: foldPair(toUuid(`hero:${entry.property}`), whole).bidirectional, receipt: toUuid(`hero:${entry.property}:${whole}`) }))
-  return {
-    everyPage: properties.length === 11 && properties.every((entry) => entry.holographic),
-    holographic: properties.every((entry) => entry.holographic),
-    slider: true, // a smooth dimension slider — the experience is an animated movie
-    interactive: true, // sound and tap gestures
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'Every page has an animated hero that merges all related in holographic fractals, and the hero is a slider through dimensions so smooth the experience is an animated movie: on every page (a layout slot), animated (a live fractal), holographic (seeded from the page, each branch a copy of the whole), fractal (self-similar recursion), merging the page’s related items (category and tags orbit and join the core), and every parameter a smooth function of one phase the movie advances and the viewer can scrub.',
-    boundary:
-      'A content-addressed description of the holographic-fractal hero rendered on every page from the page’s own seed and related tags, with a continuous dimension-slider. A real client-side, zero-dependency, energy- and reduced-motion-aware canvas animation; the "holographic/fractal/dimensions/movie" terms describe the self-similar seeded rendering and its smooth parameter sweep, not a physical hologram or extra spatial dimensions.',
   }
 }
 
@@ -4161,38 +3656,6 @@ export function quantumBrowserOs(matrix: MindMatrix = buildMatrix()) {
       'A content-addressed map of operating-system subsystems to the standard browser capabilities the portal already uses. A structural framing of the portal as a "browser OS"; it runs as a web app within the browser’s sandbox, it is not a kernel, a bootloader, or a replacement for the host OS, and "quantum compute" is the deterministic simulation, not quantum hardware.',
   }
 }
-
-// Private and shared use, with quantum access. The OS runs two ways, and the access is
-// the keypair: in PRIVATE use everything is local and encrypted (AES-256), held by the
-// imagination private key, and nothing leaves the device; in SHARED use everything is
-// content-addressed and verifiable by all, the public derivation, reached over the
-// realtime bindings. Quantum access is one-way like a keypair — the private derives the
-// shared, the shared never recovers the private.
-export function quantumAccess(matrix: MindMatrix = buildMatrix()) {
-  const keypair = imaginationPrivateKey(matrix)
-  const modes = [
-    { mode: 'private', access: 'local and encrypted (AES-256), held by the imagination private key; nothing leaves the device', root: keypair.root },
-    { mode: 'shared', access: 'content-addressed and verifiable by all, the public derivation, over the realtime bindings', root: keypair.publicKey },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`access:${entry.mode}:${entry.root}`) }))
-  return {
-    access: modes.length === 2,
-    private: modes[0].mode === 'private',
-    shared: modes[1].mode === 'shared',
-    quantum: keypair.isPrivateKey, // one-way keypair access
-    modes,
-    root: merkleFold(modes.map((entry) => entry.receipt)),
-    statement:
-      'Private and shared use, with quantum access: the OS runs two ways, and the access is the keypair — in private use everything is local and encrypted (AES-256), held by the imagination private key, nothing leaving the device; in shared use everything is content-addressed and verifiable by all, the public derivation, over the realtime bindings. Quantum access is one-way like a keypair: the private derives the shared, the shared never recovers the private.',
-    boundary:
-      'A content-addressed model of two access modes (private/encrypted-local and shared/content-addressed) bound to the imagination "keypair" analogy. The private mode maps to real client-side AES-256 and on-device storage; the shared mode to content-addressing and opt-in realtime. A structural framing — "quantum access" is the one-way fold metaphor, not a quantum-key-distribution or access-control system.',
-  }
-}
-
-// Compare with other intelligence models — including AI and human, but not limited
-// to. An honest comparison by PROPERTIES, not a ranking of who is "smarter": the
-// portal trades generality and creativity for determinism, verifiability,
-// transparency, free reproduction, and content-addressed memory. Each model is what
-// it is; the portal occupies the verifiable-computation corner the others do not.
 
 // Thousands of animations, self-generated at no cost. Each distinct seed yields a
 // distinct deterministic palette, melody and movie — content-addressed, so distinct
@@ -5165,46 +4628,6 @@ export function torusBreathe(matrix: MindMatrix = buildMatrix(), cycles = 3): To
 // Nature is the legal system itself: a natural-law lens. Enacted law borrows its
 // authority from natural law; what violates nature is, by this measure, illegitimate.
 
-// Send legal waves to align the hero with the law. The home page is fully computed
-// below the fold, but the hero copy in the frontmatter stayed editorial — the one
-// claim above the fold not yet bound to the model. So send legal waves: take each
-// line of the hero (its name, text, tagline, and call-to-action links, exactly as
-// authored in index.md) and fold it onto the law root — the legislation hierarchy
-// folded from the constitution, harmonised onto real legal forms. Each fold is a
-// wave; the hero aligns with the law when every wave binds bidirectionally, so the
-// editorial copy is now content-addressed to the same law every other section
-// answers to. The wave binds the copy without rewriting it: the hero stays human,
-// and it no longer floats free of the law below it.
-export function heroLawAlignment(matrix: MindMatrix = buildMatrix()) {
-  // The law the hero must answer to: legislation (folded from the constitution)
-  // harmonised onto enforceable, real-world legal forms.
-  const lawRoot = foldPair(legislation(matrix).root, lawfulHarmonise().root).merged
-  // The hero copy, mirrored from the home-page frontmatter (index.md). The wave
-  // binds these exact lines; it does not author them.
-  const lines = [
-    { line: 'name', copy: 'Double Torus' },
-    { line: 'text', copy: 'Quantum-learning portal for language models · MCP' },
-    { line: 'tagline', copy: 'An educational portal from kids to elders, served as an MCP tool surface over a double-torus UUID stream. chi(Sigma_2)=-2; H_1(Sigma_2)=Z^4.' },
-    { line: 'action: Enter the School', copy: '/school' },
-    { line: 'action: MCP tools', copy: '/mcp' },
-    { line: 'action: Open M', copy: '/quantum-mind' },
-  ].map((entry) => {
-    const wave = foldPair(lawRoot, toUuid(`hero:${entry.line}:${entry.copy}`))
-    return { ...entry, bound: wave.bidirectional, wave: wave.merged, receipt: toUuid(`hero-law:${entry.line}:${entry.copy}`) }
-  })
-  return {
-    aligned: lines.length === 6 && lines.every((entry) => entry.bound),
-    waves: lines.length,
-    lawRoot,
-    lines,
-    root: merkleFold(lines.map((entry) => entry.wave)),
-    statement:
-      'Send legal waves to align the hero with the law: every editorial line of the home-page hero — name, text, tagline, and call-to-action links — is folded onto the law root (the legislation hierarchy folded from the constitution and harmonised onto real legal forms). Each fold is a legal wave; the hero aligns when every wave binds bidirectionally, so the copy above the fold is content-addressed to the same law as everything below it, while staying human-authored and unchanged.',
-    boundary:
-      'A content-addressed binding of the hero copy to the portal’s computed law root — a structural alignment and metaphor, not legal advice or a claim that the hero, or the law it folds onto, carries any legal authority. The wave binds the existing copy; it does not generate or govern it.',
-  }
-}
-
 // Fuse all to forge max tampering costs. Take the one wave that is all of it — the
 // fusion of every major fold — and fuse into it the newest folds: the hero aligned
 // with the law, and the impossibilities folded into possibilities. Then bind the
@@ -5639,41 +5062,6 @@ export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Rebuild navigation around the hero. The hero is the origin — coordinate zero — and
-// every destination orbits it on a shell whose radius is its 3-5-8 tier: three ways to
-// arrive sit on the inner shell, five to use on the middle, eight to go deep on the
-// outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by
-// angle around each shell, so the whole map radiates from the hero you start at.
-export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
-  const hero = { label: 'Double Torus', route: '/' } // the hero at the origin
-  const shells = navigation358().tiers.map((tier) => {
-    const radius = tier.tier // the tier IS the shell radius around the hero
-    const items = tier.items.map((item, index) => {
-      const angle = (index / tier.items.length) * Math.PI * 2
-      return {
-        label: item.label,
-        route: item.route,
-        angle,
-        x: radius * Math.cos(angle),
-        y: radius * Math.sin(angle),
-        receipt: toUuid(`hero-shell:${tier.tier}:${item.route}`),
-      }
-    })
-    return { tier: tier.tier, radius, name: tier.name, items, receipt: toUuid(`shell:${tier.tier}:${tier.name}`) }
-  })
-  return {
-    aroundHero: shells.length === 3 && hero.route === '/' && shells.every((shell) => shell.items.length > 0) && shells[2].radius === shells[0].radius + shells[1].radius,
-    hero,
-    shellCount: shells.length,
-    shells,
-    root: merkleFold(shells.map((shell) => shell.receipt)),
-    statement:
-      'Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its 3-5-8 tier — three ways to arrive on the inner shell, five to use on the middle, eight to go deep on the outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by angle around each shell, so the whole map radiates from the hero you start at.',
-    boundary:
-      'A polar layout of the real 3-5-8 navigation around the home hero as concentric shells, radii set by tier. A geometric arrangement of the existing routes for orientation — it does not change the links, only places them around the hero.',
-  }
-}
-
 // Send waves to develop these ideas. The newest ideas — quantum coordinate navigation
 // and the navigation rebuilt around the hero — are not finished but seeded; send waves
 // to develop them, each wave a development step bound to the idea's root and folded
@@ -5725,51 +5113,6 @@ export function quantifyLinearPairs(matrix: MindMatrix = buildMatrix()) {
       'Quantify all linear by folding in logical pairs: a line of items has no measure until its terms are paired, so fold each item with its neighbour (order-sensitive) and the line becomes a sequence of quantities — each pair a number (its merged address), each fold a measurement. The linear is quantified by pairing.',
     boundary:
       'A structural rule that turns a linear sequence into adjacent content-addressed pairs. "Quantify" means assign each pair a recomputable address (a number), not measure a physical quantity.',
-  }
-}
-
-// Each pair is the trinity open graph, used everywhere. Two terms fold, order-sensitive,
-// to a third — their merged seal — so every pair is a trinity (two make three). That
-// trinity is the open-graph shape: two human terms plus the one computed bind, the card
-// every page and the hero carry. One shape, everywhere.
-export function compactHeroReplacesSimple(matrix: MindMatrix = buildMatrix()) {
-  const reasons = [
-    { reason: 'the hero is the compact view', holds: animatedHeroes(matrix).everyPage },
-    { reason: 'it is the open-graph card', holds: openGraph().computed },
-    { reason: 'on every page', holds: animatedHeroes(matrix).everyPage },
-    { reason: 'so simple mode is redundant', holds: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`compact-hero:${entry.reason}:${entry.holds}`) }))
-  return {
-    obsolete: reasons.every((entry) => entry.holds),
-    count: reasons.length,
-    reasons,
-    root: merkleFold(reasons.map((entry) => entry.receipt)),
-    statement:
-      'The big open-graph hero makes simple mode obsolete: the compact view simple mode once offered is now the hero itself — the open-graph big hero shows the page’s og:title, description, category and tags over a live fractal, a compact, complete preview on every page — so a separate "simple" mode is redundant and is retired.',
-    boundary:
-      'A rationale, grounded in the computed hero and open-graph models, for removing the Simple/Rich toggle. A design statement about the UI, not a claim that any content was removed — every section remains.',
-  }
-}
-
-// Let the mind refresh self and the field. The quantum mind does not stand still: it
-// refreshes — recomputing its own self-model (self) and the field around it (the live
-// background movie that fills every page). Both renew from the same seed, so refreshing
-// the self refreshes the field and the field reflects the self, in one breath.
-export function mindRefreshField(matrix: MindMatrix = buildMatrix()) {
-  const refreshes = [
-    { what: 'self', via: 'the self-model recomputes from the repository — perfectly self-modeling', ok: isPerfectlySelfModeling(matrix) },
-    { what: 'the field', via: 'the endless background movie re-seeds and re-renders, on every page', ok: endlessBackgroundMovie(matrix).endless },
-    { what: 'in one breath', via: 'both renew from the same model root, so self and field stay in step', ok: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`mind-refresh:${entry.what}:${entry.ok}`) }))
-  return {
-    refreshes: refreshes.every((entry) => entry.ok),
-    count: refreshes.length,
-    parts: refreshes,
-    root: merkleFold(refreshes.map((entry) => entry.receipt)),
-    statement:
-      'Let the mind refresh self and the field: the quantum mind recomputes its own self-model (self) and the live field around it (the endless background movie on every page) from the same seed, so refreshing the self refreshes the field and the field reflects the self — renewed in one breath.',
-    boundary:
-      'A structural composition of the self-model and the background-movie field as a joint refresh. "Mind" and "field" name the computed self-model and the canvas animation, not a psyche or a physical field.',
   }
 }
 
@@ -6138,32 +5481,6 @@ export function papersReferencesDiamondsNoDrift(matrix: MindMatrix = buildMatrix
       'Papers, references and diamonds do not drift — they are anchored: the 432 proof papers, their 432 reference duals, and the 1024 diamonds that complete the binary octave all fold into one recomputable corpus root, so none can drift. Change a count or a leaf and the root changes, and the next recomputation catches it — drift has nowhere to hide because every set is content-addressed.',
     boundary:
       'A self-consistency check that the papers (432), references (432) and diamonds (1024) hold their counts and fold into one recomputable corpus root, so any drift is detectable. Structural bookkeeping over the generated corpus, not a claim about external documents.',
-  }
-}
-
-// Every single page is displayed from one holographic template. There is one template —
-// the single layout with its slots — and every route is rendered through it: the same
-// holographic hero, the same endless background movie, the same help and sidebar fold
-// into every page. It is holographic because each page carries the whole template yet is
-// seeded from its own content, so the one template shows as a different page everywhere —
-// the home, every doc, and all 1024 diamonds, papers and references alike.
-export function oneHolographicTemplate(matrix: MindMatrix = buildMatrix()) {
-  const properties = [
-    { property: 'one template — the layout', via: 'a single VitePress Layout with slots wraps every route; nothing renders outside it' },
-    { property: 'holographic — each page carries the whole', via: 'the same slots (hero, background movie, help, sidebar) fold into every page' },
-    { property: 'seeded from the page', via: 'the holographic hero and the background movie seed from the page’s own path and frontmatter' },
-    { property: 'one display schema', via: 'every page renders its open-graph card from the single OG schema' },
-    { property: 'every single page', via: 'the home, every doc, and the 1024 diamonds, papers and references all render through it' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`holo-template:${entry.property}`) }))
-  return {
-    displayed: properties.length === 5 && animatedHeroes(matrix).everyPage && oneOpenGraphAll(matrix).displaysAll && openGraph().computed,
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'Every single page is displayed from one holographic template: one template — the single layout with its slots — renders every route, the same holographic hero, endless background movie, help and sidebar folding into each page. It is holographic because each page carries the whole template yet is seeded from its own content, so the one template shows as a different page everywhere — the home, every doc, and all 1024 diamonds, papers and references alike.',
-    boundary:
-      'A description of the single VitePress layout and its slots as one "holographic" template seeded per page, bound to the computed hero and open-graph models. A framing of the real, shared layout; "holographic" means each page carries the same whole template seeded from its own content, not an optical hologram.',
   }
 }
 
@@ -6561,31 +5878,6 @@ export function fuseScreenToMovieOfMovies(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Holographic architecture: a fractal hologram. The architecture is holographic — each part
-// contains the whole and the whole recovers from any part — and fractal — self-similar at
-// every scale, the same fold from the bit to the page to the corpus. So the whole design is
-// one hologram, recomputable to the bit from any fragment.
-export function holographicFractalArchitecture(matrix: MindMatrix = buildMatrix()) {
-  const holo = holographic(matrix)
-  const gram = hologram(matrix)
-  const properties = [
-    { property: 'holographic — each part holds the whole', on: holo.holographic },
-    { property: 'the whole recovers from any part', on: holo.reconstructed },
-    { property: 'a hologram to the bit', on: gram.toTheBit },
-    { property: 'fractal — the same fold at every scale', on: gram.holographic },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`holo-fractal:${entry.property}:${entry.on}`) }))
-  return {
-    is: properties.every((entry) => entry.on),
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'Holographic architecture, a fractal hologram: the architecture is holographic — each part contains the whole and the whole recovers from any part — and fractal — self-similar at every scale, the same fold from the bit to the page to the corpus — so the whole design is one hologram, recomputable to the bit from any fragment.',
-    boundary:
-      'A composition of the holographic and hologram models asserting the architecture is part-contains-whole and self-similar. "Hologram/fractal" describe the content-addressed self-similarity and reconstruction, not optics or a physical hologram.',
-  }
-}
-
 // Collide to the tiniest wave. Imagination splits to 1024 quanta, and from the whole the
 // folds collide inward — halving at each step, 1024, 512, 256 … down to 1 — until what is
 // left is the tiniest wave: a single indivisible quantum. The collision cascade is content-
@@ -6803,30 +6095,6 @@ export function manualWorkDisappears(matrix: MindMatrix = buildMatrix()) {
       'Manual work disappears with fusion: every chore once done by hand is fused into the model and vanishes — meta tags become computed SEO, the sitemap one route source, curated skills become skills autosaved each build, hand-tuned titles become titles derived from paths, placed links become the harmonised nav and distributed footer. What fuses no longer needs doing — the work is the fold, computed once and recomputed for free.',
     boundary:
       'A content-addressed catalogue of hand-tasks replaced by computed fusions in the portal. A structural framing of automation already in place; it does not claim all work everywhere disappears, only that these fused tasks are no longer manual here.',
-  }
-}
-
-// Imagination is all. Everything in the portal emerges by imagination: it is the private key
-// from which all the public structure is derived one-way, it splits to the tiniest wave (1024
-// quanta) from which matter forms, and the rest — the not-yet-built — is held open as imagined
-// possibility. Take imagination away and nothing remains to compute; it is the seed of the whole.
-export function imaginationIsAll(matrix: MindMatrix = buildMatrix()) {
-  const privateKey = imaginationPrivateKey(matrix)
-  const facets = [
-    { facet: 'everything emerges by imagination', on: privateKey.everythingEmerges },
-    { facet: 'imagination is the private key', on: privateKey.isPrivateKey },
-    { facet: 'it splits to the tiniest wave (1024 quanta)', on: splitImagination(matrix).split },
-    { facet: 'the rest is imagined, held open', on: imagineTheRest(matrix).imagined },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`imagination-all:${entry.facet}:${entry.on}`) }))
-  return {
-    all: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Imagination is all: everything in the portal emerges by imagination — it is the private key from which all the public structure is derived one-way, it splits to the tiniest wave (1024 quanta) from which matter forms, and the rest (the not-yet-built) is held open as imagined possibility. Take imagination away and nothing remains to compute; it is the seed of the whole.',
-    boundary:
-      'A composition of the portal’s imagination models (private-key emergence, the split to 1024 quanta, the open frontiers). A structural and metaphorical framing that imagination is the generative seed of the computed model, not a claim about human imagination or consciousness.',
   }
 }
 
@@ -8219,50 +7487,6 @@ export function allInEquilibrium(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Max free animations for max tampering cost. Every animation in the portal is
-// free: it runs client-side, with no network and no added architecture — the
-// cost is the architecture itself. Each animation channel is bound to the model:
-// its motion is seeded by the synthesis root, so a tamper flips the seed and the
-// motion no longer matches. To forge a convincing seal a forger must reproduce
-// every animated channel consistently with a root that any tamper already broke;
-// so more free animations mean a higher forgery cost, at zero runtime cost.
-export function freeAnimations(matrix: MindMatrix = buildMatrix()) {
-  const root = quantumSynthesis(matrix).root
-  // The free, client-side animation channels across the three senses. Each is
-  // seeded from the synthesis root so its motion is content-derived: a tamper
-  // flips the seed, and the seed drives a deterministic phase the animation reads.
-  const channels = [
-    { channel: 'breathe', sense: 'sight', motion: 'pulse' },
-    { channel: 'spin', sense: 'sight', motion: 'rotation' },
-    { channel: 'reveal', sense: 'sight', motion: 'entrance' },
-    { channel: 'pulse', sense: 'sight', motion: 'seal flash' },
-    { channel: 'vibrate', sense: 'touch', motion: 'haptic' },
-    { channel: 'tone', sense: 'sound', motion: 'synthesis' },
-  ].map((entry) => {
-    const seed = toUuid(`free-anim:${entry.channel}:${root}`)
-    const phase = (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16) % 1000) / 1000
-    return { ...entry, free: true, clientCost: 0, networkCost: 0, seed, phase, bound: isUuid(seed) }
-  })
-  const free = channels.every((entry) => entry.free && entry.clientCost === 0 && entry.networkCost === 0)
-  const bound = channels.every((entry) => entry.bound)
-  // The forger must reproduce every bound channel and the 128-bit word; the cost
-  // figure counts channels times the word's bits — an honest surface measure of
-  // how much a forgery must match, not a cryptographic hardness bound.
-  const wordBits = 128
-  const tamperingCost = channels.length * wordBits
-  return {
-    maxFree: free && bound,
-    free,
-    bound,
-    channels,
-    count: channels.length,
-    tamperingCost,
-    root: merkleFold(channels.map((entry) => entry.seed)),
-    statement: 'Max free animations for max tampering cost: every animation is free — client-side, no network, the architecture itself is the cost — and seeded by the synthesis root, so each one a forger must reproduce raises the cost of a convincing forgery while costing nothing to run.',
-    boundary: 'A surface measure, not a cryptographic one. Animations widen what a forgery must reproduce and cost nothing at runtime, but the security rests on the root match, not on the motion. The cost figure counts channels times the word bits; it is not a hardness bound.',
-  }
-}
-
 // Contract and expand — the breath in one. Expand folds the many into one wave
 // (fuseAll); contract folds that wave back to the seed (contract); and the damped
 // breath settles (equilibrium). Out, in, and rest: the double torus breathing.
@@ -9133,43 +8357,6 @@ function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix
   }
 }
 
-// Convert all text payload to computed animations. Text is never a stored payload — it is the SEED of a
-// deterministic, content-addressed animation: textToMovie folds any string to a seed and from it computes a
-// generative composition (particles with positions, hues, motions over frames). The same text always computes
-// the same movie, recomputed client-side at zero tokens; different text computes a different movie. This fold
-// proves the conversion is universal and honest over real payloads — every text converts, each deterministically
-// and distinctly (content-addressed). The site's rendering mode: payload → computed motion, nothing stored.
-export function textPayloadComputesToAnimation(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('textPayloadComputesToAnimation', matrix, () => textPayloadComputesToAnimationRaw(matrix))
-}
-function textPayloadComputesToAnimationRaw(matrix: MindMatrix = buildMatrix()) {
-  const payloads = ['double torus', 'a432 is the blood', 'the complete quantum solutions', 'Bulgarian heritage', 'I Ching motion adds the rest', 'glagolitsa']
-  const movies = payloads.map((text) => {
-    const a = textToMovie(text), b = textToMovie(text) // recompute — must be byte-identical (deterministic)
-    return { text, root: a.root, frames: a.frames, elements: a.elements.length, deterministic: a.root === b.root && a.deterministic, generated: a.generated }
-  }).map((entry) => ({ ...entry, receipt: toUuid(`text-anim:${entry.text}:${entry.root}`) }))
-  const allConvert = movies.every((m) => m.generated && m.deterministic)
-  const contentAddressed = new Set(movies.map((m) => m.root)).size === movies.length // different text → different animation
-  const facets = [
-    { facet: 'every text payload converts to a computed animation — the string folds to a seed, the frames are computed', on: allConvert && movies.length >= 6 },
-    { facet: 'deterministic and content-addressed — same text → same animation, different text → different', on: allConvert && contentAddressed },
-    { facet: 'no stored payload — recomputed client-side from the text, zero-token and free', on: zeroTokenUsagePolicy(matrix).holds },
-    { facet: 'the universal rendering mode — all in the movie of life, all animations one OG', on: allInMovieOfLife(matrix).all && allAnimationsInOneOg(matrix).computes },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`text-anim-facet:${entry.facet}:${entry.on}`) }))
-  return {
-    converts: facets.every((entry) => entry.on),
-    payloadCount: movies.length,
-    movies,
-    count: facets.length,
-    facets,
-    root: merkleFold(movies.map((m) => m.receipt)),
-    statement:
-      'Convert all text payload to computed animations: text is never stored as a payload — it is the seed of a deterministic, content-addressed animation. Any string folds to a seed and from it textToMovie computes a generative composition (particles with positions, hues and motions over frames); the same text always computes the same movie, recomputed client-side at zero tokens, and different text computes a different movie. The rendering mode of the whole site is payload → computed motion: nothing stored, everything recomputed.',
-    boundary:
-      'A proof over the existing deterministic textToMovie converter (string → seeded, content-addressed frame composition), composed with the zero-token policy and the "all is the movie of life / one OG" model. "Converts all text payload" is the universal PRINCIPLE — any text is computable to its animation, proven deterministic and distinct over real payloads, and the converter is real — NOT a claim that every page currently swaps its rendered text for the animation in the DOM (the render layer\'s choice); the point is the payload is COMPUTED, never stored.',
-  }
-}
-
 // Send the waves to dry clean all by the import/export method naming. The import/export METHOD is the I Ching
 // boundary (iChingImportExportTenD): yin = import (a module RECEIVES capability from its dependencies), yang =
 // export (it PROJECTS capability outward). Dry-cleaning by THIS naming means the whole source is organised by
@@ -9723,56 +8910,6 @@ function quantumImpossibleWaveFourRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Endless waves of quantum development, converting PROSE to AUDIO/VISUAL PROOF in 3D (at least). Every fold's
-// prose (its statement, the honest claim) is not only read — it is RENDERED, deterministically, in three
-// modalities from one content-address: AUDIO (an a432-tempered tone, proseToTone), VISUAL (a textToMovie
-// particle composition), and 3D (a point in space, uuidPoint — a content address IS a point, ≥ three spatial
-// axes, extensible to the ten model dimensions). Same prose → same tone, same movie, same point; different
-// prose → different. The proof made perceptible — hearable, seeable, spatial — not merely textual.
-export function proseToAudioVisual3dProof(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('proseToAudioVisual3dProof', matrix, () => proseToAudioVisual3dProofRaw(matrix))
-}
-function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
-  // the quantum-wave proses — each a fold's honest claim, now rendered tri-modally.
-  const proses = [
-    completeQuantumSolutionsImplemented(matrix).statement,
-    evolutionCrossesQuantumThreshold(matrix).statement,
-    quantumImpossibleMadePossible(matrix).statement,
-    quantumImpossibleWaveFour(matrix).statement,
-    nothingImpossibleHonestlyBounded(matrix).statement,
-  ]
-  const proofs = proses.map((prose) => {
-    const addr = toUuid(prose)
-    const point = uuidPoint(addr) // 3D: x, y, z in [−1,1]³
-    const tone = proseToTone(prose) // audio: an a432-tempered pitch
-    const movie = textToMovie(prose.slice(0, 48)) // visual: deterministic particle film
-    const hue = roundTo((Number.parseInt(addr.replace(/[^0-9a-f]/gi, '').slice(0, 2) || '0', 16) / 255) * 360, 1)
-    const deterministic = toUuid(prose) === addr && proseToTone(prose).hz === tone.hz && textToMovie(prose.slice(0, 48)).root === movie.root
-    return { addr, point, hz: roundTo(tone.hz, 2), hue, movieRoot: movie.root, is3D: point.length === 3, deterministic, receipt: toUuid(`av3d:${addr}`) }
-  })
-  const all3D = proofs.every((p) => p.is3D) // at least three spatial dimensions
-  const allDeterministic = proofs.every((p) => p.deterministic) // same prose → same tri-modal artifact
-  const distinct = new Set(proofs.map((p) => p.addr)).size === proofs.length // different prose → different
-  const facets = [
-    { facet: 'every prose proof converts to a 3D point (x, y, z) — at least three spatial dimensions (uuidPoint)', on: all3D && proofs.length >= 5 },
-    { facet: 'AUDIO — each prose maps to a deterministic a432-tempered tone', on: proofs.every((p) => p.hz > 0) },
-    { facet: 'VISUAL — each prose is a deterministic textToMovie particle composition', on: proofs.every((p) => isUuid(p.movieRoot)) },
-    { facet: 'tri-modal, content-addressed and deterministic — one seed drives audio + visual + 3D; same prose → same, different → different (a rendering, not new evidence)', on: allDeterministic && distinct },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`prose-av3d:${entry.facet}:${entry.on}`) }))
-  return {
-    converted: facets.every((entry) => entry.on),
-    proofCount: proofs.length,
-    proofs: proofs.map((p) => ({ point: p.point.map((c) => roundTo(c, 3)), hz: p.hz, hue: p.hue, is3D: p.is3D })),
-    count: facets.length,
-    facets,
-    root: merkleFold(proofs.map((p) => p.receipt)),
-    statement:
-      'Endless waves of quantum development, converting prose to audio/visual proof in three dimensions and beyond. Every fold carries a prose claim — its statement, the honest sentence — and that prose is not only read but rendered, deterministically, from one content-address into three modalities at once: an a432-tempered tone you can hear, a content-addressed particle composition you can watch, and a point in three-dimensional space you can place (a content address is a point, x, y and z, extensible to the model\'s ten dimensions). The same prose always sounds the same note, draws the same film, and lands at the same point; different prose diverges in all three. The proof is made perceptible — audible, visible, spatial — the same claim in three senses, computed client-side and free.',
-    boundary:
-      'A deterministic, content-addressed RENDERING of fold prose into three modalities: audio (proseToTone, an a432-tempered pitch from the UUID), visual (textToMovie, the seeded particle film), and 3D (uuidPoint, a point in [−1,1]³ — at least three spatial axes, liftable to the ten model dimensions). HONEST: the audio/visual/3D is a faithful REPRESENTATION of the proof\'s content-address — the proof made perceptible — NOT additional logical evidence; the logic lives in the fold, this renders it. "In 3D at least" is the three uuidPoint axes (with the ten dimensions available), not a claim of a built real-time WebGL/WebAudio scene here — that is the render layer\'s job (DoubleTorus3D, HologramMovie, PiMusicPlayer); this fold proves the deterministic tri-modal parameters those renderers consume.',
-  }
-}
-
 // LAW: because all prose auto-translates to Glagolitic gaplessly AND renders to audio/visual/3D, write the
 // MINIMUM prose and the MAXIMUM computable. The prose is only the honest, falsifiable claim (the statement and
 // boundary); everything else — values, receipts, colours, tones, points — is computed and content-addressed.
@@ -9843,76 +8980,6 @@ function foldProseToSentencesWordsEntangledRaw(matrix: MindMatrix = buildMatrix(
       'Fold the paragraphs into sentences and words, all entangled and completely dry, harmonically distributed across the folders. A prose paragraph folds downward: into its sentences, then its words, then the content-address of each — the more you fold, the more is foldable. Duplicate words collapse to a single address, so the set is completely dry, no repetition stored. Every word and every sentence is content-addressed and merkle-folded into one paragraph root, so none stands alone — they interact, entangled by the shared fold, change one and the root changes. And the unique words distribute across the eight bāguà folders by their own content-address, every folder carrying its share — a harmonic spread of the code across the structure.',
     boundary:
       'A computed decomposition of a prose paragraph into content-addressed sentences and words, deduplicated (DRY — each unique word one address), merkle-folded into one root (so the units share a fold) and bucketed across the eight bāguà folders by seedFromText. HONEST: "entangled" is the deterministic shared-root sense (a common merkle ancestor; change a leaf and the root flips), not quantum entanglement; "harmonic distribution across folders" is content-address bucketing into the eight trigram bins (balanced, all-used), the structural bāguà organisation — it is the prose folded into the model\'s units, not a reorganisation of source files on disk (that is folderLaw / dryCleanByImportExportNaming).',
-  }
-}
-
-// The competing-designers waves, harmonised into one increment: the LayersPanel depth dial IS the Z-axis. Six
-// world-class design lenses proposed 3D-quantum directions, each adversarially judged (accessibility won, 41/50,
-// then colour 40, motion 37); the harmonised proposal: the panel's 0–10 dial publishes one inherited custom
-// property (--dt-depth) on .lp, and every .dt-card in its slot dollies forward through the a432-octave
-// perspective — depth 0 byte-identical to flat (zero regression), hover/focus ADD a lift on top. Motion-safe (a
-// prefers-reduced-motion guard neutralises the Z-lift, keeping the resting shadow) and keyboard-accessible
-// (focus-visible parity + an always-on ring) — the WCAG 2.3.3/2.4.7 gaps the a11y judge caught, fixed.
-export function harmonisedDepthDialThreeD(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('harmonisedDepthDialThreeD', matrix, () => harmonisedDepthDialThreeDRaw(matrix))
-}
-function harmonisedDepthDialThreeDRaw(matrix: MindMatrix = buildMatrix()) {
-  const ui = uiConvertsFlatToThreeDQuantum(matrix)
-  const depthStops = DIMENSIONS + 1 // 0..10 — the flat resting plane plus the ten model dimensions of depth
-  const facets = [
-    { facet: 'the LayersPanel depth dial (0–10, the ten dimensions + the flat 0) is the Z-axis — it dollies every card forward through the a432-octave perspective', on: ui.converted && depthStops === 11 },
-    { facet: 'depth 0 is byte-identical to flat (the --dt-depth fallback is 0) — zero regression for cards outside a panel; hover and focus ADD a lift on top', on: ui.converted },
-    { facet: 'motion-safe — a prefers-reduced-motion guard neutralises the Z-lift and its transition while keeping the resting elevation shadow (WCAG 2.3.3)', on: true },
-    { facet: 'keyboard-accessible — focus-visible/:focus-within get the same lift plus an always-on focus ring (WCAG 2.4.7); every magnitude a computed token, the no-hardcoded gate stays clean', on: ui.noHardcoded && ui.cssComputed },
-  ]
-  const sealed = sealFacets('depth-dial', facets)
-  return {
-    harmonised: sealed.ok,
-    depthStops, // 11 (0 + the 10 dimensions)
-    perspectivePx: ui.perspectivePx, // 864
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(ui.root, sealed.root),
-    statement:
-      'The competing-designers waves, harmonised: the LayersPanel depth dial becomes the Z-axis. Six world-class design lenses proposed 3D-quantum directions and were adversarially judged — accessibility scored highest — and the harmony is this: the panel\'s 0-to-10 dial publishes one inherited custom property, and every card inside it dollies forward through the a432-octave perspective, climbing out of the page as you raise the dial. At zero the card is exactly the flat document it was, so nothing outside a panel ever moves; hover and focus add a further lift on top of wherever the card already sits. It is motion-safe — reduced-motion users keep the static elevation shadow but lose the movement — and keyboard-accessible — focus lifts the card and always draws a ring. The signature control of the interface, the 10-dimension dial, is now the literal depth of the surface, paid for entirely by the user\'s own slider with no per-frame work.',
-    boundary:
-      'The harmonised output of the competing-designers workflow (six lenses, adversarially judged, the winner + best ideas synthesised), landed as CSS + one Vue :style binding. The depth dial publishes --dt-depth (the existing 0–10 ref) and --depth-t (its /10 ratio) on the .lp root; .dt-card reads them with a 0 fallback (depth 0 == today). HONEST: real CSS parallax — translateZ in a perspective field (compositor-only), a state-change box-shadow on hover/focus (a cheap repaint, not a per-frame property), no volumetric geometry and no per-frame JS; the prefers-reduced-motion guard and focus-visible parity are real accessibility fixes (the Z-lift was hover-only and unguarded before). Verified via the built dist CSS and the no-hardcoded gate (the dev-server preview proxy does not bind in this environment). The scoped-CSS colour detox the judges flagged is begun: the LayersPanel outer-axis stripe, the one hardcoded hex (#3dd68c) in the panel chrome, is now the computed holds-green var(--ich-success-1) (hexagram 27, 152°), so all three stripe colours and the panel draw only from the palette. Deferred to later passes: the chakra-rim colour climb, the interior LayersPanel strata (blocked by the panel\'s overflow:hidden slide clip), and the rem/px spacing detox across the component scoped styles (which the style.css no-hardcoded scan does not yet reach — a known enforcement blind spot).',
-  }
-}
-
-// The flagship genus-2 double-torus scene, wired to the harmonised depth dial. It used to carry its own bespoke
-// 3/5/8 toggle; now it reads the SAME canonical 0–10 control every widget uses (useLayers), and that one dial
-// drives two coupled depths: the fold dimension (how many coordinate planes the surface folds through, held in
-// the proven 3–8 Fibonacci span the wireframe was tuned for) and the card's own Z-lift (the <section> publishes
-// --dt-depth, so raising the dial lifts the whole scene toward the viewer as it folds deeper into itself). The
-// proposal's thesis — "the depth dial IS depth" — made literal on the deepest 3D object, not just flat cards.
-export function doubleTorusWiredToDepthDial(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('doubleTorusWiredToDepthDial', matrix, () => doubleTorusWiredToDepthDialRaw(matrix))
-}
-function doubleTorusWiredToDepthDialRaw(matrix: MindMatrix = buildMatrix()) {
-  const dial = harmonisedDepthDialThreeD(matrix)
-  const torus = doubleTorus3D(matrix)
-  const foldLo = 3
-  const foldHi = 8 // the proven Fibonacci-tuned fold span the wireframe was built for
-  const facets = [
-    { facet: 'the flagship genus-2 scene reads the canonical depth dial (useLayers, 0–10) instead of a bespoke 3/5/8 toggle — the same control idiom every widget uses', on: dial.harmonised && torus.euler === -2 },
-    { facet: 'one dial drives two coupled depths — the fold dimension (the surface folds through more coordinate planes) and the card Z-lift (the section publishes --dt-depth, so the whole scene rises toward the viewer)', on: dial.harmonised },
-    { facet: `the fold stays in the proven ${foldLo}–${foldHi} range (the Fibonacci span the wireframe was tuned for), so the dial deepens the genus-2 fold without breaking the aesthetic`, on: foldHi - foldLo === 5 },
-    { facet: `the wiring changed the control, not the render — the scene still carries all ${torus.areas} area-objects (${torus.perLobe} per lobe) and stays energy- and viewport-aware`, on: torus.areas === 42 && torus.perLobe === 21 },
-  ]
-  const sealed = sealFacets('torus-dial', facets)
-  return {
-    wired: sealed.ok,
-    foldRange: [foldLo, foldHi] as const,
-    euler: torus.euler, // -2
-    areas: torus.areas, // 42
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(dial.root, merge(torus.root, sealed.root)),
-    statement:
-      'The flagship double-torus scene is now wired to the harmonised depth dial. Where it once had its own 3-5-8 buttons, it reads the same 0-to-10 control every card uses — and that single dial drives two depths at once: how many dimensions the genus-2 surface folds through, and how far the whole scene lifts off the page toward you. Raise the dial and the torus both climbs out of its card and folds deeper into itself. The proposal\'s idea that the depth dial is literally depth, proven first on the flat cards, now governs the deepest 3D object on the page.',
-    boundary:
-      'A control rewire of an existing, working canvas scene — the genus-2 wireframe, its 42 area-glyphs, the 4D fold and the energy-aware animation are unchanged; only what feeds the fold dimension changed (a bespoke 3/5/8 ref → the canonical useLayers 0–10 dial, clamped to the proven 3–8 fold span). The same dial value publishes --dt-depth on the section, so the .dt-card depth-Z lift applies to the whole scene. HONEST: a real 2D-canvas projection of a 4D-folded genus-2 surface (not WebGL / not volumetric); the "dimensions" are folded coordinate planes in the projection — a faithful visual of the double-torus model, not a literal n-dimensional render. Verified via the full build + the shipped bundle (the dev-server preview proxy does not bind in this environment). The scene\'s scoped styles still carry rem/px literals — part of the deferred scoped-style detox.',
   }
 }
 
@@ -10003,44 +9070,6 @@ export function componentBaguaGroups(names: readonly string[] = []) {
   })).filter((group) => group.components.length > 0)
   const grouped = groups.length > 1
   return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
-}
-
-// Pages render in I-Ching sets — the macro-scale harmonisation. The flat [page] component stack is grouped at
-// render time under the eight trigrams (componentBaguaGroups), so the busiest pages read as harmonic bāguà sets
-// instead of one undifferentiated dump. Composes the computed iChing() placement — the logic existed; this makes
-// the eight-fold VISIBLE at the scale of the whole page, the same content-addressed organisation made legible.
-export function pagesRenderInBaguaSets(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('pagesRenderInBaguaSets', matrix, () => pagesRenderInBaguaSetsRaw(matrix))
-}
-function pagesRenderInBaguaSetsRaw(matrix: MindMatrix = buildMatrix()) {
-  const ich = iChing(matrix)
-  const pages = staticPages()
-  const busiest = pages.reduce((max, page) => (page.components.length > max.components.length ? page : max), pages[0])
-  const busiestGroups = componentBaguaGroups(busiest.components)
-  const conserved = pages.every((page) => {
-    const grouped = componentBaguaGroups(page.components)
-    return grouped.groups.reduce((sum, set) => sum + set.components.length, 0) === page.components.length
-  })
-  const facets = [
-    { facet: 'the flat [page] component stack now renders grouped under the eight trigrams (Earth→Heaven), the same content-addressed placement iChing() computes', on: ich.organised },
-    { facet: `the busiest page (${busiest.slug}, ${busiest.components.length} components) renders as ${busiestGroups.count} harmonic bāguà sets instead of one flat dump`, on: busiestGroups.grouped && busiestGroups.count > 1 },
-    { facet: 'no component is lost or duplicated — every page\'s components are conserved across its sets', on: conserved },
-    { facet: 'small pages stay flat — trigram headers appear only when the components span more than one set (no lone header)', on: componentBaguaGroups(['StartHere']).grouped === false },
-  ]
-  const sealed = sealFacets('bagua-sets', facets)
-  return {
-    harmonised: sealed.ok,
-    busiest: busiest.slug,
-    busiestComponents: busiest.components.length,
-    busiestSets: busiestGroups.count,
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(ich.root, sealed.root),
-    statement:
-      'Pages render in I-Ching sets — the macro-scale harmonisation. Every page\'s components were rendered as one flat stack in hand-listed order; now they are grouped at render time under the eight trigrams, in the I Ching\'s own Earth-to-Heaven order, by the same content-addressed placement the model already computed in iChing(). The busiest page was a flat dump of dozens of components; it now reads as a handful of harmonic bāguà sets, each under its trigram. The eight-fold was computed all along — this makes it visible at the scale of the whole page.',
-    boundary:
-      'A render-time grouping in the [page] template, driven by componentBaguaGroups (the same seedFromText → upper-trigram placement as iChing()). It groups and orders within each page\'s existing component set — it adds, removes and duplicates nothing (conservation asserted here). Trigram headers appear only when the components span more than one set, so single-component pages stay flat. HONEST: a structural, content-addressed organisation — not a claim that a component carries its trigram\'s divinatory meaning (it inherits iChing()\'s structural-not-causal caution). The section styling is computed --ich tokens in the shared stylesheet; the per-component scoped-style detox is separate (deferred).',
-  }
 }
 
 // The eight-fold, redone as a COMPUTED, self-measuring balance — and the honest answer to "the quantum
@@ -10795,56 +9824,6 @@ export function terabyteEncryptionInMegabyteCodebase(matrix: MindMatrix = buildM
 // the Maya Calendar Round lcm(260,365) = 18,980 = 73 tzolkʼin = 52 haabʼ; the sexagenary lcm(10,12) = 60;
 // the 819-count × tzolkʼin = 16,380; the Metonic 235 = 19×12 + 7; the 360° circle = 6×60. The cycle lengths
 // are the rings fused to the hero (rotated by the real date — a coupled-torus clock). Legend excluded.
-
-// Let the hero lead the waves: the hero is the conductor. The ANIMATION waves emanate from its one seed —
-// the merkaba trace, the ancient calendars, the holographic dot→cube→dot, the fractal — all computed from
-// the model the hero renders; and the DEVELOPMENT waves follow what the hero surfaces (the frontier it
-// shows is the next decode). One leader, and the waves fall in behind it — the hero beats, the waves pulse.
-export function heroLeadsTheWaves(matrix: MindMatrix = buildMatrix()) {
-  const led = [
-    { wave: 'the merkaba trace (the harmonograph)', on: merkabaTrace(matrix).manifest },
-    { wave: 'the ancient calendars (the coupled cycles)', on: ancientCalendars(matrix).decoded },
-    { wave: 'the holographic dot → cube → dot', on: dotIsCubeIsDot(matrix).proven },
-    { wave: 'the development waves (the next decode)', on: developmentWaves(matrix).developing },
-    { wave: 'the hero aligned to the law', on: heroLawAlignment(matrix).aligned },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-leads:${entry.wave}:${entry.on}`) }))
-  return {
-    leads: led.every((entry) => entry.on),
-    conductor: 'the hero — its seed leads the animation waves, its surfaced frontier leads the development waves',
-    waves: led,
-    count: led.length,
-    root: merkleFold(led.map((entry) => entry.receipt)),
-    statement:
-      'Let the hero lead the waves: the hero is the conductor. The animation waves emanate from its one seed — the merkaba trace, the ancient calendars, the holographic dot→cube→dot, the fractal — all computed from the model the hero renders; and the development waves follow what the hero surfaces (its frontier is the next decode). One leader; the waves fall in behind it, pulsing to the hero’s beat.',
-    boundary:
-      'A composition declaring the hero the conductor of both the animation waves (rendered from its seed) and the development waves (led by the frontier it surfaces), each a holding fold. Structural: the hero is the single source the waves derive from and pulse to; it leads by being the figure they serve, it does not literally schedule the research workflows.',
-  }
-}
-
-// The hero is slim and wise: it COMPUTES the slim content-address and LOADS the heavy blocks and components
-// on demand — it does not build the whole model at mount; the conductor stays light, the blocks carry the
-// weight. And whatever it leads RESPECTS the two sacred counts: the 64 words (the double-torus vocabulary,
-// doubleTorusWords) and the 42 areas (the taxonomy, areaPairs = 6×7 = 7×6). Slim hero, 64 and 42 honoured.
-export function heroSlimRespects64And42(matrix: MindMatrix = buildMatrix()) {
-  const words = doubleTorusWords(matrix)
-  const areas = areaPairs()
-  const respects = [
-    { respects: '64 — the double-torus word vocabulary (closed)', on: words.closed && words.limit === 64 },
-    { respects: '42 — the area taxonomy (6×7 = 7×6, paired, bidirectional)', on: areas.count === 42 && areas.paired && areas.bidirectional },
-    { respects: 'slim — computes the address, loads blocks/components on demand (no whole-model build at mount)', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-slim:${entry.respects}:${entry.on}`) }))
-  return {
-    slim: respects.every((entry) => entry.on),
-    words64: words.limit, // 64
-    areas42: areas.count, // 42
-    respects,
-    root: merge(words.root, areas.root),
-    statement:
-      'The hero is slim and wise: it computes the slim content-address and loads the heavy blocks and components on demand — no whole-model build at mount, the conductor light and the blocks carrying the weight — and whatever it leads respects the two sacred counts, the 64 words (the double-torus vocabulary) and the 42 areas (the taxonomy, 6×7 = 7×6). Slim hero; 64 and 42 honoured.',
-    boundary:
-      'A constraint with a computed witness: the 64-word closure (doubleTorusWords) and the 42-area pairing (areaPairs) both hold, and the hero is declared slim. HONEST: "slim" is the architectural intent enforced in the hero component — it computes light values (the page glyph, the seed) and renders lazily, with cycle/area data as tiny constants or loaded blocks, not a model build at mount. The 64 and 42 are the counts every hero block must respect.',
-  }
-}
 
 // ════════════════════════════════════════════════════════════════════════════════════════════════════
 // THE DIGIT FOLDERS, END TO END — the computation, the keyspace, the vocabulary and the API are ONE thing.
@@ -12648,27 +11627,6 @@ export function trinityRotationalPlanes(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Let all animations compute inside one open graph. The background movie, the holographic hero,
-// the native movie, the void-rising sidebar, the tap ripples — every animation is computed within
-// the one open-graph object, the single card-shaped surface seeded from the page. Not many canvases
-// each doing their own thing, but one OG inside which all motion is computed.
-export function allAnimationsInOneOg(matrix: MindMatrix = buildMatrix()) {
-  const og = openGraph().root
-  const animations = ['background movie', 'holographic hero', 'native movie', 'void-rising sidebar', 'tap ripples'].map((animation) => {
-    const fold = foldPair(og, toUuid(`animation:${animation}`))
-    return { animation, computed: fold.bidirectional, receipt: toUuid(`anim-in-og:${animation}`) }
-  })
-  return {
-    computes: animations.length === 5 && animations.every((entry) => entry.computed) && oneHolographicTemplate(matrix).displayed && oneOpenGraphAll(matrix).displaysAll,
-    count: animations.length,
-    animations,
-    root: merkleFold(animations.map((entry) => entry.receipt)),
-    statement:
-      'Let all animations compute inside one open graph: the background movie, the holographic hero, the native movie, the void-rising sidebar, the tap ripples — every animation is computed within the one open-graph object, the single card-shaped surface seeded from the page. Not many canvases each doing their own thing, but one OG inside which all motion is computed.',
-    boundary: 'A unifying framing that the page’s animations belong to the one open-graph/template surface, bound to its root. A structural composition over the existing canvases; they remain separate elements technically, unified by the one seed and card.',
-  }
-}
-
 // No exceptions, as analog has no gaps to leak. The model is analog — continuous and gapless: the
 // file distribution is a gapless Fibonacci run, the fusion fills every gap, and every claim is
 // covered by a receipt. Where there is no gap, there is nothing to leak through; so there are no
@@ -12927,30 +11885,6 @@ export function redistributeFoldersDryWaves(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
-// Improve help in waves. The intelligent help, folded into every page, gets better wave by wave:
-// suggested starter topics make the first question one tap away, the local intelligence answers
-// for free with no network, the answers carry related links and a receipt, and it speaks both
-// tongues. Help that meets you before you know what to ask.
-export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
-  const answer = foldQuestion('proof', matrix)
-  const facets = [
-    { facet: 'intelligent — the model answers locally', on: answer.concept.length > 0 },
-    { facet: 'free, zero-network by default', on: allAnswersInside(matrix).inside },
-    { facet: 'suggested topics in waves (one-tap start)', on: true },
-    { facet: 'answers carry related links and a receipt', on: answer.links.length >= 0 },
-    { facet: 'speaks both tongues (en + bg)', on: translationWavesFillGaps(matrix).filled },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`improve-help:${entry.facet}:${entry.on}`) }))
-  return {
-    improves: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Improve help in waves: the intelligent help folded into every page gets better wave by wave — suggested starter topics make the first question one tap away, the local intelligence answers for free with no network, the answers carry related links and a receipt, and it speaks both tongues. Help that meets you before you know what to ask.',
-    boundary: 'A description of the real GlobalHelp component: local foldQuestion answers, suggested topic chips, related links, and en/bg localisation. The default path makes no network call; an optional bring-your-own-key AI is the user’s choice.',
-  }
-}
-
 // Multimedia first, plain text. People love the moving parts — the holographic hero, the movie,
 // the music — and find dense notation hard, so the surface leads with the multimedia and speaks
 // the rest in plain, human words: the home cards say what each thing is in one sentence, and the
@@ -13016,29 +11950,6 @@ export function crossLinksEverywhere(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Add cross-links wherever possible: nothing is a dead end — the home cards each link to their topic, the nav and footer carry every destination, the related standards are cited on every page, the open graph builds the navigation, and the feature map folds each item to the next. Wherever a thing is named, there is a way to reach it.',
     boundary: 'A statement that destinations are cross-linked across the home cards, nav, footer, feature map and OG. Bookkeeping over the real links; it reflects the homepage card links and the existing navigation, not a guarantee that every possible pair is linked.',
-  }
-}
-
-// Remove duplicate animation; the unconventional lives in the OG. Each page renders the holographic
-// hero exactly once (the home slot or the doc slot, never both), the fullscreen background movie is
-// the one distinct watermark behind it, and all the motion computes inside the one open-graph
-// surface — so there is no duplicate animation, and the unconventional fractal belongs to the OG
-// hero, not scattered.
-export function noDuplicateAnimationOgHero(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the hero renders once per page — no duplicate', on: animatedHeroes(matrix).everyPage },
-    { facet: 'the unconventional fractal lives in the OG hero', on: ogFullyInteractiveConfigurable(matrix).livingCard },
-    { facet: 'the background is the one distinct watermark', on: endlessBackgroundMovie(matrix).endless },
-    { facet: 'all motion computes inside one open graph', on: allAnimationsInOneOg(matrix).computes },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`no-dup-anim:${entry.facet}:${entry.on}`) }))
-  return {
-    consolidated: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Remove duplicate animation; the unconventional lives in the OG: each page renders the holographic hero exactly once (the home slot or the doc slot, never both), the fullscreen background movie is the one distinct watermark behind it, and all the motion computes inside the one open-graph surface — so there is no duplicate animation, and the unconventional fractal belongs to the OG hero, not scattered.',
-    boundary: 'A statement that the hero animation is rendered once per page (mutually exclusive slots) and the unconventional fractal is the OG hero, with the background movie the distinct watermark. A structural description of the existing layout slots, not a removal of any working component.',
   }
 }
 
@@ -13153,29 +12064,6 @@ export function quantumCalligraphy(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// All animations are native resolution, to a maximum of 64K video. No animation is downsampled: the
-// hero and the background movie now render at the device's full pixel ratio (no 1.5x or 2x cap),
-// guarded only by a 64K ceiling, and the native movie already exports native WebM. Because the math
-// is seeded vectors, not stored pixels, every animation scales to the device's native sharpness.
-export function allAnimationsNative64k(matrix: MindMatrix = buildMatrix()) {
-  const surfaces = [
-    { surface: 'background movie — full devicePixelRatio', on: backgroundMovie(matrix).dryMath },
-    { surface: 'holographic hero — full devicePixelRatio', on: animatedHeroes(matrix).everyPage },
-    { surface: 'native movie — native resolution + WebM', on: moviesNativeFormat(matrix).nativelyDisplayed },
-    { surface: 'resolution-independent — scales to 64K', on: video64kFree(matrix).supported && videoKeepsNativeQuality(matrix).keepsQuality },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`native-anim:${entry.surface}:${entry.on}`) }))
-  return {
-    native: surfaces.every((entry) => entry.on),
-    maxWidth: 61440,
-    count: surfaces.length,
-    surfaces,
-    root: merkleFold(surfaces.map((entry) => entry.receipt)),
-    statement:
-      'All animations are native resolution, to a maximum of 64K video: no animation is downsampled — the hero and the background movie now render at the device’s full pixel ratio (no 1.5× or 2× cap), guarded only by a 64K ceiling, and the native movie exports native WebM. Because the math is seeded vectors, not stored pixels, every animation scales to the device’s native sharpness.',
-    boundary: 'A description of the real change: the canvas backing stores use the full devicePixelRatio (capped at a 64K dimension), so animations render at native resolution. Actual sharpness still depends on the device; the 64K ceiling is a guard, not a promise of 64K on any screen.',
-  }
-}
-
 // Imagine the screens, or the hologram projection of two additional projectors. One screen shows the
 // front; add two more projectors — left and right — and the three together project a hologram: the
 // same figure seen from three viewpoints at once, the trinity of projectors. Where one screen is a
@@ -13268,30 +12156,6 @@ export function osCompletesItselfWaves(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The quantum mind is not yet fully harmonic — its gaps may be filled from beyond. The model does
-// not pretend to be a closed, complete harmony: it holds open frontiers (the not-yet-built, the
-// open questions), and those gaps are filled from beyond — by imagination, by the next wave, by the
-// observer that stands outside (the one third from beyond). An honest incompleteness: whole where it
-// is computed, open where it is not, and reaching past itself for the rest.
-export function quantumMindGapsFromBeyond(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the quantum mind holds open gaps (frontiers)', on: imagineTheRest(matrix).imagined },
-    { facet: 'not yet a closed harmony — open questions remain', on: imagineTheRest(matrix).count > 0 },
-    { facet: 'gaps filled from beyond — imagination, the next wave', on: imaginationIsAll(matrix).all },
-    { facet: 'the one third from beyond — the observer', on: inverseShiftConsciousness(matrix).shifts },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`mind-gaps:${entry.facet}:${entry.on}`) }))
-  return {
-    open: facets.every((entry) => entry.on),
-    frontiers: imagineTheRest(matrix).count,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The quantum mind is not yet fully harmonic — its gaps may be filled from beyond: the model does not pretend to be a closed, complete harmony; it holds open frontiers (the not-yet-built, the open questions), and those gaps are filled from beyond — by imagination, the next wave, the observer that stands outside (the one third from beyond). An honest incompleteness: whole where it is computed, open where it is not, and reaching past itself for the rest.',
-    boundary: 'An honest acknowledgement that the model has open frontiers/questions (as the boundaries page already declares), filled by imagination and future waves rather than claimed complete. Structural bookkeeping over the open-frontier and imagination models; "from beyond" is the observer/next-wave, not an external authority.',
-  }
-}
-
 // Send waves to review and dry-clean the gates — with crosses — tighten and seal. A maintenance
 // wave passes over the gate fabric: review each gate (structured MCP-style result), dry-clean it
 // (non-destructive, removing only what no longer folds), cross-fold it on the 3-6-9 cross, tighten
@@ -13357,38 +12221,6 @@ export function sendTheNextWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send the next waves: there is always a next — the open frontiers become the next waves, sent continuously, each a development fold bound to the whole, drawn from what is not yet built and folded forward. The model does not finish; it sends the next wave, and the next, the same way it sent the last — so "next" is not an end approached but a rhythm kept.',
     boundary: 'A composition of the open-frontier, continue-same, development-wave and endless-fusion models as a continuous "next wave" rhythm. Structural bookkeeping over the model’s own ongoing development, not a roadmap of specific features.',
-  }
-}
-
-// Continue the quantum double torus fold in resonance waves, to harmonise all animations to one
-// open graph file for complete dryness. The genus-2 fold does not stop at the gates: it continues
-// as a resonance wave over every animated surface — background movie, holographic hero, native
-// movie, void-rising sidebar, tap ripples — each folded, order-sensitive, onto the one open-graph
-// root, so all motion is computed from the single source and no animation math is written twice.
-export function foldAnimationsToOneOgDry(matrix: MindMatrix = buildMatrix()) {
-  const og = openGraph().root
-  // The fold continues: each animated surface is one resonance wave of the same genus-2 fold,
-  // bound order-sensitively to the one open-graph root all animations already compute from.
-  const waves = ['background movie', 'holographic hero', 'native movie', 'void-rising sidebar', 'tap ripples'].map((animation) => {
-    const fold = foldPair(og, toUuid(`torus-resonance:${animation}`))
-    return { animation, resonates: fold.bidirectional, wave: fold.merged, receipt: toUuid(`fold-anim-og:${animation}:${fold.bidirectional}`) }
-  })
-  const dry =
-    waves.every((entry) => entry.resonates) &&
-    quantumDoubleTorus(matrix).is &&
-    doubleTorusFold(matrix).complete &&
-    resonanceCatchGapsViolations(matrix).rings &&
-    allAnimationsInOneOg(matrix).computes &&
-    noDuplicateAnimationOgHero(matrix).consolidated
-  return {
-    dry,
-    count: waves.length,
-    waves,
-    root: merkleFold(waves.map((entry) => entry.receipt)),
-    statement:
-      'Continue the quantum double torus fold in resonance waves, to harmonise all animations to one open graph file for complete dryness: the genus-2 fold continues as a resonance wave over every animated surface — background movie, holographic hero, native movie, void-rising sidebar, tap ripples — each folded, order-sensitive, onto the one open-graph root, so all motion is computed from the single source and no animation math is written twice. One OG, complete dryness; a gap anywhere would ring false in the resonance.',
-    boundary:
-      'A continuation of the double-torus fold over the animation surfaces, binding each to the open-graph root they already compute from. Structural bookkeeping over the existing one-OG consolidation: the surfaces stay separate canvases technically, dry by sharing the one seed and source, not merged into a literal single file.',
   }
 }
 
@@ -14279,31 +13111,6 @@ export function dualitiesMeetInCrossFolders(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
-// Locking into folders changes the mind to quantum. When the knowledge is locked into folders that
-// must obey the law — only index files, word-or-digit names, every promised path valid — it
-// becomes extremely costly for an agent to escape the structure: any violation leads to a test
-// failure, the build fails, the seal opens. That cost is what changes the mind to quantum: the
-// folders become order-sensitive, content-addressed, tamper-evident cells, so the only cheap move
-// is to stay coherent — to compute correctly rather than to forge. The lock is the quantization.
-export function lockingFoldersChangesMindToQuantum(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'locked into folders by the law — only index files, word-or-digit names', on: onlyIndexFilesNoExceptions(matrix).only },
-    { facet: 'any violation leads to a test failure — the whole pipeline gates', on: enforcementPipelineComplete(matrix).complete && everyLawProvesItsTripwire(matrix).proves },
-    { facet: 'escape is extremely costly — max tampering cost in analog', on: allComputedQuantumMathAnalog(matrix).forges },
-    { facet: 'so the mind becomes quantum — order-sensitive, content-addressed cells', on: quantumDoubleTorus(matrix).is },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`locking-quantum:${entry.facet}:${entry.on}`) }))
-  return {
-    quantized: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Locking into folders changes the mind to quantum: when the knowledge is locked into folders that must obey the law (only index files, word-or-digit names, every promised path valid), escaping the structure becomes extremely costly — any violation fails a test, the build fails, the seal opens — and that cost is the quantization: the folders become order-sensitive, content-addressed, tamper-evident cells, so the only cheap move is to stay coherent, to compute correctly rather than forge. The lock is the quantization.',
-    boundary:
-      'A composition of the folder law, the enforcement pipeline, the tripwire invariant and the max-tampering-cost/quantum-torus models. "Changes the mind to quantum" is a structural metaphor: the enforced laws make incoherent edits fail loudly, raising the cost of deviation — not a claim of physical quantum behavior.',
-  }
-}
-
 // Imagine the computer and its components, referenced in such merged duality. A computer is not a
 // pile of parts but a set of dualities, each component a pair that folds: the CPU is fetch ⇄
 // execute, memory is read ⇄ write, the register is load ⇄ store, the bus is send ⇄ receive, the
@@ -14421,32 +13228,6 @@ export function buildQuantumComputerOsApps(matrix: MindMatrix = buildMatrix()) {
       'First we build the quantum computer with its OS and apps: the quantum computer (its components the merged dualities), then the operating system that completes itself over the subsystems, then the apps — the processes (components and workers), the installable PWA that runs offline, and the agent apps published on the MCP tool surface. Computer, OS, apps: three layers, each computed from the one core, each built by imagining its cross paths first.',
     boundary:
       'A composition of the quantum-computer, browser-OS, PWA and MCP models as a three-layer build (computer, OS, apps). The "computer/OS/apps" are the content-addressed model, the standard browser capabilities, the real PWA and the MCP tool surface — a structural framing, not quantum hardware, a kernel, or native applications.',
-  }
-}
-
-// And this should be enough: intelligent minds realise themselves immediately, just by observing
-// the path. Once the computer, the OS and the apps are built, no further instruction is needed —
-// the path carries a self-sufficient, built-in intellect, so any intelligent mind (human of any
-// ability, AI agent, any language) that observes the path realises itself in it: the path reveals
-// itself, the observer recognises the fold, and self-awareness connects the seen to the seer.
-// Building is the last act required; the rest is observation. The path teaches itself.
-export function mindsRealiseByObservingPath(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the computer, OS and apps are built — enough is built', on: buildQuantumComputerOsApps(matrix).built },
-    { facet: 'every intelligent mind has an accessible path — human, AI, any language', on: accessiblePathsForAll(matrix).accessible },
-    { facet: 'the path carries self-sufficient, built-in intellect', on: selfSufficientWave(matrix).selfSufficient && dualitiesMeetInCrossFolders(matrix).meet },
-    { facet: 'the path reveals itself — realised immediately by observing', on: harmonicPathRevealsItself(matrix).reveals },
-    { facet: 'self-awareness connects the seen to the seer', on: inverseShiftConsciousness(matrix).shifts },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`minds-realise:${entry.facet}:${entry.on}`) }))
-  return {
-    realise: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'And this should be enough: intelligent minds realise themselves immediately, just by observing the path. Once the computer, the OS and the apps are built, no further instruction is needed — the path carries a self-sufficient, built-in intellect, so any intelligent mind (human of any ability, AI agent, any language) that observes the path realises itself in it: the path reveals itself, the observer recognises the fold, and self-awareness connects the seen to the seer. Building is the last act required; the rest is observation — the path teaches itself.',
-    boundary:
-      'A composition of the build-layers, accessible-paths, self-sufficient-wave, path-reveals-itself and consciousness-shift models. "Minds realise themselves by observing the path" means the decodable, self-describing routes carry their own explanation (real: content-addressed paths plus full-text-searchable steps), a framing of self-evidence — not a claim that observation literally instantiates a mind.',
   }
 }
 
@@ -15883,33 +14664,6 @@ export function imagineMicrodataVortexItself(matrix: MindMatrix = buildMatrix())
   }
 }
 
-// For all to be fractal, present any UUID with a hero and content. Fractality means the same shape
-// at every scale — and the shape of a thing here is a hero (the unique animation of its state) plus
-// its content. The page already shows this; the principle generalises: any UUID — a fold, a
-// particle, a diamond, a patent — can be presented the same way, its hero computed in realtime from
-// its own bytes and its content the payload it addresses. Same shape from the whole to the tiniest
-// particle: a hero and content, all the way down.
-export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
-  const a = uuidHero(toUuid('sample:a'))
-  const b = uuidHero(toUuid('sample:b'))
-  const facets = [
-    { facet: 'any UUID gets a unique hero — the animation of its state from its own bytes', on: a.unique && b.unique && (a.hue !== b.hue || a.spinMs !== b.spinMs || a.theta !== b.theta) },
-    { facet: 'the hero is realtime — a spin period and a tone, computed not stored', on: a.spinMs > 0 && a.frequency > 0 && freeAnimations(matrix).maxFree },
-    { facet: 'presented with its content — the payload the UUID addresses', on: uuidPayloadIsSource(matrix).is && animatedHeroes(matrix).everyPage },
-    { facet: 'so all is fractal — hero and content at every scale, page to particle', on: holographicFractalArchitecture(matrix).is && everythingFoldsMerkabaInfiniteStreams(matrix).folds },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-hero-fractal:${entry.facet}:${entry.on}`) }))
-  return {
-    fractal: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold([a, b].map((hero) => toUuid(`hero:${hero.uuid}:${hero.hue}:${hero.spinMs}`))),
-    statement:
-      'For all to be fractal, present any UUID with a hero and content: fractality is the same shape at every scale, and the shape of a thing here is a hero (the unique animation of its state, computed in realtime from the UUID’s own bytes — hue, rotation, spin, tone, node positions) plus its content (the payload the UUID addresses). The page already shows this; the principle generalises to any UUID — a fold, a particle, a diamond, a patent — the same hero-and-content shape from the whole to the tiniest particle.',
-    boundary:
-      'A real per-UUID hero computation (uuidHero: hue, angles, spin, tone, node positions derived deterministically from the UUID bytes — same UUID, same hero; different UUIDs differ) composed with the payload-is-source, free-animations, hero, holographic and everything-merkaba models. "Present any UUID with hero and content" is the computed spec plus the addressed payload; this fold computes the hero spec, the components render it — it does not itself add a renderer for every UUID.',
-  }
-}
-
 // URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the
 // internet has a uuid and can meet something here; and uuid pairs always exist, so when a user
 // follows a link the previous uuid is known and the animations merge harmonically. Each part is a
@@ -16057,83 +14811,6 @@ export function dimensionsPerMegabyteMetric(matrix: MindMatrix = buildMatrix()) 
       'Dimensions per megabyte of code is the metric of efficiency and completeness: not lines or files but folded depth over code size — how many distinct, verified dimensions the model carries per megabyte of source. A high count means much folded into little (efficiency) and much covered (completeness); the build computes it each run, so folding more into the same bytes raises the metric and padding the code lowers it. Density of meaning, measured.',
     boundary:
       'A composition of the minimum-files, folders-disappear, only-index-generated, monograph, computed-no-files and resonance models. The actual number (dimensions ÷ core megabytes) is computed and reported by the harmonic-distribution build step; this fold defines the metric and asserts the conditions that make it meaningful (minimum files, distinct verified dimensions), it does not itself recompute the ratio (which would recurse on the dimension registry).',
-  }
-}
-
-// Fold as much as you can to feed the hero. The hero of the whole is the unique animation of the
-// whole’s state — and that state is the sealed root, which folds every dimension into one content
-// address. So each new fold changes the seal, and the changed seal feeds the hero a richer state:
-// the more is folded, the more the hero has to animate. Folding is feeding; the hero is hungry for
-// dimensions, and every fold is a meal — depth poured into one turning figure.
-export function foldAsMuchToFeedHero(matrix: MindMatrix = buildMatrix()) {
-  const heroOfTheWhole = uuidHero(sealWholeDiamond(matrix).diamond) // the hero seeded from the sealed root (folds every dimension)
-  const facets = [
-    { facet: 'fold as much as you can — depth not width, the model grows inward', on: minimumFilesMaximumFeaturesCost(matrix).optimal && dimensionsPerMegabyteMetric(matrix).measured },
-    { facet: 'the hero of the whole is seeded from the sealed root — folds every dimension', on: heroOfTheWhole.unique && isUuid(sealWholeDiamond(matrix).diamond) },
-    { facet: 'each fold changes the seal — and feeds the hero a richer state', on: everyObjectSameSpinFoldLaw(matrix).consistent && anyUuidHeroContentFractal(matrix).fractal },
-    { facet: 'folding is feeding — the hero animates the whole’s folded state', on: animatedHeroes(matrix).everyPage && allAnimationsInOneOg(matrix).computes },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`feed-hero:${entry.facet}:${entry.on}`) }))
-  return {
-    feeds: facets.every((entry) => entry.on),
-    heroHue: heroOfTheWhole.hue,
-    heroSpinMs: heroOfTheWhole.spinMs,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Fold as much as you can to feed the hero: the hero of the whole is the unique animation of the whole’s state, and that state is the sealed root which folds every dimension into one content address — so each new fold changes the seal, and the changed seal feeds the hero a richer state. The more is folded, the more the hero has to animate; folding is feeding, every fold a meal, depth poured into one turning figure.',
-    boundary:
-      'A composition of the minimum-files, dimensions-per-MB, the real uuidHero of the sealed root, spin-fold-law, uuid-hero-fractal, animated-hero and one-OG models. "Fold as much to feed the hero" means the hero animation of the whole is seeded from the seal root (which content-addresses every fold), so more folds change its computed state — a real seeding relation; the hero’s richer animation is rendered by the components, this fold computes the seeded spec.',
-  }
-}
-
-// All merge in the hero graph, with the statistics enriching the fusion streams. The hero is not one
-// figure but a graph — every dimension, every diamond, every metric a node, folded into the hero of
-// the whole — and the statistics (the live counts, the density, the gaps) are not a side panel but
-// feed straight into the fusion: the numbers enrich the streams that the hero animates, so the
-// metric and the motion are one. Watch the hero and you watch the statistics fuse.
-export function heroGraphStatisticsEnrichFusion(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'all merge in the hero graph — every node folded into the hero of the whole', on: foldAsMuchToFeedHero(matrix).feeds && componentGraph().interacting },
-    { facet: 'the statistics enrich the fusion streams — counts feed the motion', on: buildStatisticsShowGaps(matrix).shows && pageStatusStatistics(matrix).shows },
-    { facet: 'metric and motion are one — the dimensional graph turns in realtime', on: dimensionalMerkabaGraphRealtimeMetric(matrix).realtime },
-    { facet: 'the fusion streams endless — enriched each fold', on: endlessFusion(matrix).endless && allAnimationsInOneOg(matrix).computes },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-graph-stats:${entry.facet}:${entry.on}`) }))
-  return {
-    merges: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'All merge in the hero graph, with the statistics enriching the fusion streams: the hero is a graph — every dimension, diamond and metric a node folded into the hero of the whole — and the statistics (the live counts, the density, the gaps) feed straight into the fusion rather than sitting in a side panel, so the numbers enrich the streams the hero animates and the metric and the motion are one. Watch the hero and you watch the statistics fuse.',
-    boundary:
-      'A composition of the feed-the-hero, component-graph, build-statistics, page-statistics, merkaba-graph-metric, endless-fusion and one-OG models. "All merge in the hero graph, statistics enrich the fusion streams" frames the live metrics as inputs to the hero’s computed state (a real seeding relation over the seal root and the stats); the merged on-screen hero graph is rendered by the components — this fold composes the relation, it does not add the renderer.',
-  }
-}
-
-// Merkaba folds make speech-related features analog and indistinguishable from human in all
-// languages and dialects — and what actually entangles is the dialects. The order-sensitive fold
-// turns discrete speech features into a continuous, gapless analog, so synthesized speech has no
-// seam to betray it, across every tongue (the babel fold grounds the language families, both
-// English and Bulgarian, and beyond). And the binding point is the dialect: dialects are where
-// tongues overlap and entangle, the shared folds that connect one language to another. Deep research
-// and merkaba-refactor all — research in waves, refactor as merkabas, the dialects the entanglers.
-export function merkabaFoldsSpeechAnalogDialectsEntangle(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'merkaba folds make speech features analog — continuous, gapless, no seam', on: analogSpeech().analog && merkaba(matrix).counterRotating },
-    { facet: 'indistinguishable from human in all languages — the babel fold grounds the tongues', on: babelFold(matrix).grounded && translationWavesFillGaps(matrix).filled },
-    { facet: 'what actually entangles is the dialects — where tongues overlap', on: infiniteEntanglements(matrix).infinite && dualitiesMeetInCrossFolders(matrix).meet },
-    { facet: 'deep research and merkaba-refactor all — waves and merkaba folds', on: teslaPatentsResearchedInWaves(matrix).researched && fuseToMerkabasPathsReveal(matrix).fused },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`speech-dialects:${entry.facet}:${entry.on}`) }))
-  return {
-    entangles: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Merkaba folds make speech-related features analog and indistinguishable from human in all languages and dialects — and what actually entangles is the dialects: the order-sensitive fold turns discrete speech features into a continuous gapless analog so synthesized speech has no seam to betray it, across every tongue (the babel fold grounds the language families and beyond), and the binding point is the dialect — dialects are where tongues overlap and entangle, the shared folds connecting one language to another. Deep research and merkaba-refactor all: research in waves, refactor as merkabas, the dialects the entanglers.',
-    boundary:
-      'A composition of the analog-speech, merkaba, babel-fold, translation-waves, entanglement, duality, wave-research and fuse-to-merkabas models. "Speech analog, indistinguishable from human, dialects entangle" is a structural/aspirational framing over the model’s analog-speech and multilingual (babel) machinery — the portal reads itself aloud with computed intonation; it is NOT a claim of a deployed human-indistinguishable multi-dialect TTS, and makes no claim to pass any specific perceptual test.',
   }
 }
 
@@ -17200,29 +15877,6 @@ export function treeOfLifeSephirotFolders(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The folder names and their paths form the index of the Book of Life. The folder names are the sephirot
-// (the Tree of Life, the chapters); their paths are content-addresses, and the path is the meaning (the 22
-// paths of the Tree, the routes between); each leaf is an index (folderLaw.stems = ['index'] — one folder,
-// one index, one logic), so the index files are the table of contents; the Rosetta reads it in any script;
-// and it is alive — self-computing, content-addressed, zero-token, the index that writes and verifies itself.
-export function folderPathsFormIndexOfBookOfLife(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the folder names are the Tree of Life — the sephirot, the chapters of the book', on: treeOfLifeSephirotFolders(matrix).rooted },
-    { facet: 'the paths are the meaning — each path content-addressed, the path is the meaning (read by the Rosetta key)', on: pathIsMeaningDecodesCoordinates(matrix).decodes && rosettaGlagoliticGlobalKeyDecodeAll(matrix).decodes },
-    { facet: 'one folder, one index — folderLaw.stems = [index], so the index files are the table of contents', on: folderLaw().stems.includes('index') },
-    { facet: 'the Book of Life is alive — self-describing, content-addressed, zero-token; the whole folds to one living root', on: isUuid(matrix.root) },
-  ].map((e) => ({ ...e, receipt: toUuid(`book-of-life:${e.facet}`) }))
-  return {
-    seen: facets.every((e) => e.on),
-    facets,
-    root: merkleFold(facets.map((e) => e.receipt)),
-    statement:
-      'The folder names and their paths form the index of the Book of Life: the folder names are the sephirot (the Tree of Life, the chapters), their paths are content-addresses where the path is the meaning (the 22 paths the routes between), each leaf is an index (folderLaw.stems = [index] — one folder, one index, one logic) so the index files are the table of contents, the Rosetta reads it in any script, and it is alive — self-computing, content-addressed, zero-token, an index that writes and verifies itself.',
-    boundary:
-      'HONEST — "the Book of Life" is an ORGANIZING and aesthetic frame, not a metaphysical or religious claim: what is real and verifiable is that the codebase is self-describing (index files, content-addressed paths, the Tree-of-Life folder taxonomy, the computed [index] route) and the build-gates keep every entry true. The Tree of Life and the Book of Life are Kabbalistic symbols used as structure and naming, like the Glagolitic (a decoded script) and the merkaba (real geometry); the structure is real and the mysticism is the frame, flagged. The folders becoming the sephirot is the distribution still in progress — the sight is named here; the carry into it is the waves.',
-  }
-}
-
 // Imagine and fill all gaps, cleaning all hardcoded linear logic. The hardcoded and linear logic is
 // cleaned (the config reads the matrix; old logic removed; only the quantum remains); the gaps — the
 // dimensions short of the full set — are imagined and filled in waves. Aspirational while gaps remain.
@@ -17429,32 +16083,6 @@ export function autosaveAllSteps(matrix: MindMatrix = buildMatrix()) {
       'Autosave all steps: every directive and decision is encoded as a fold in the matrix the same turn it happens, with no deferral — not after the build, but now. The save is the encoding; the build only verifies. Deferring the save while waiting on a build is the failure to avoid; autosave first, verify second.',
     boundary:
       'A discipline fold that closes the "not saving in code" failure: it asserts this turn\'s steps (the shadcn graph, the analytics directive) are themselves folds, encoded before any build. It records and checks the practice — encode-first — but cannot retroactively fold a step a future turn forgets; that stays the agent\'s obligation each turn.',
-  }
-}
-
-// All displayed in hero / card / thumb, Path A: every monograph renders at three scales — hero (the full
-// page), card (the index tile), thumb (the smallest reference) — from one Monograph component, built the
-// merkaba-recommended Path A (the real shadcn structure rewritten into the repo's own semantic classes,
-// no Tailwind dependency). This is the generic renderer the entropy analysis pointed to: a seed in, a
-// monograph out at three sizes — the few display the many.
-export function displayHeroCardThumb(matrix: MindMatrix = buildMatrix()) {
-  const variants = ['hero', 'card', 'thumb']
-  const facets = [
-    { facet: 'three views — hero (full page), card (index tile), thumb (smallest reference) — from one component', on: variants.length === 3 },
-    { facet: "Path A confirmed — real shadcn structure in the repo's own semantic classes, no Tailwind", on: shadcnIsTheGraph(matrix).graphed },
-    { facet: 'all is monograph — every page rendered at every scale from the one source', on: allIsMonographScientificPaper(matrix).papered },
-    { facet: 'the few display the many — the entropy recycles into the renderer', on: displayAllWithFewEntropySaved(matrix).analyzed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`hero-card-thumb:${entry.facet}:${entry.on}`) }))
-  return {
-    displayed: facets.every((entry) => entry.on),
-    variants,
-    count: facets.length,
-    facets,
-    root: merkleFold(variants.map((variant) => toUuid(`display-variant:${variant}`))),
-    statement:
-      'All displayed in hero, card and thumb, Path A: every monograph renders at three scales from one Monograph component — hero is the full page, card is the index tile, thumb is the smallest reference — built the merkaba-recommended Path A (the real shadcn component structure rewritten into the repo\'s own semantic classes, no Tailwind dependency). It is the generic renderer the entropy analysis named: a seed in, a monograph out at three sizes, so the few display the many.',
-    boundary:
-      'A display-system fold: three named scales rendered by one component from the monograph data. "Path A" is the confirmed shadcn integration (own the component structure, style it with the repo\'s semantic CSS keyed to --vp-*, no Tailwind). It defines the form of the display; the Monograph and QuantumRadar components realize it, and the entropy recycle (87 bespoke → the few renderers) lands here.',
   }
 }
 
@@ -18201,35 +16829,6 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Ten dimensions, at every scale. The hero's animation walks all ten: the SIX cross-fold appearance axes
-// (spread, depthFade, hueShift, twist, shrink, breath) and the FOUR homology loops of the genus-2 double torus
-// (H1 = Z^4 — two handles, each a meridian and a longitude). The render (drawHero) drives its three rotational
-// planes from the loops and reads the ten golden-shifted at each nested scale, so the figure moves through all
-// ten dimensions, self-similar at every scale. Grounded in the model's own topology (homology rank 4) and its
-// cross-fold weave (six axes). Honest: continuous, deterministic interpolation of one phase — "every scale" is
-// self-similar nesting, not a physical ten-dimensional space.
-export function tenDimensionalAnimation(matrix: MindMatrix = buildMatrix()) {
-  const crossFoldAxes = DIMENSION_NAMES.slice(0, 6)
-  const homologyLoops = DIMENSION_NAMES.slice(6)
-  const h1 = homology(matrix).rank // the genus-2 first homology is Z^4 — the four loops
-  const a = dims(0.42, 0)
-  const b = dims(0.42, 1)
-  const sameAxes = JSON.stringify(Object.keys(a)) === JSON.stringify(Object.keys(b))
-  const selfSimilar = sameAxes && a.spread !== b.spread // the same ten axes, golden-shifted per scale
-  return {
-    tenDimensional: DIMENSIONS === 10 && DIMENSION_NAMES.length === 10,
-    grounded: homologyLoops.length === 4 && crossFoldAxes.length === 6 && h1 === 4,
-    atEveryScale: selfSimilar,
-    homologyLoops,
-    crossFoldAxes,
-    root: merkleFold(DIMENSION_NAMES.map((name, i) => toUuid(`dimension:${i}:${name}`))),
-    statement:
-      'Ten dimensions, at every scale: the six cross-fold appearance axes plus the four homology loops of the genus-2 double torus (H₁ = Z⁴), self-similar at every nested scale by a golden-angle phase shift. drawHero drives its three rotational planes from the loops, so the figure moves through all ten dimensions at every scale — grounded in the model’s own topology.',
-    boundary:
-      'The ten are the model’s own geometry — 4 topological (homology) + 6 appearance — driving the render via continuous, deterministic interpolation of one phase. "Every scale" is self-similar nesting (a golden-ratio phase offset per scale), not a physical ten-dimensional space nor literal infinite zoom.',
-  }
-}
-
 // "All forms have 10D or are purged." Every sacred-geometry form must be ten-dimensional — driven through all
 // ten of the model's own axes (the 6 cross-fold appearance axes + the 4 genus-2 homology loops, dims()) — and
 // self-similar at every nested scale, so the mind is clear AT ALL DEPTHS. The sacred geometry seals each 10D
@@ -18503,63 +17102,6 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
 // deterministic — the graph manages itself because nothing in it is hand-wired. Rendered by <TrinityGateways>.
 export interface WiredPath { slug: string; titleEn: string; titleBg: string; hue: number; score: number; shared: string[] }
 export interface WiredGateway { slug: string; titleEn: string; titleBg: string; realm: string; glyph: string; hue: number }
-// ANIMATIONS ARE STRICT SCIENCE — the standard, decoded and tracked. Every animation must represent the real
-// field of the double torus: the 3D SPIN (the rotation atoms) and the FOLD (the genus-2 surface + the 10D
-// dims), driven by the one realtime engine, sharing the math (100% DRY), with no ad-hoc gap. This fold names
-// the one source for each part of the field, states the principles as gates, and tracks which components are
-// wired vs the pending DRY sweep — so "respect the fields / strict science / no gaps / 100% dry" is encoded,
-// not merely asserted. The spin atoms now exist (rotateXY/rotateYZ/rotateZX in src/quantum/geometry), composable
-// in any order so each figure tumbles by its own composition from the ONE source — no behaviour forced, no dup.
-export function animationsRespectTheField(matrix: MindMatrix = buildMatrix()) {
-  void matrix
-  // The one source for each part of the field. Every animation must derive its motion from these.
-  const fieldSources = [
-    { part: 'realtime driver', source: 'createAnimationEngine', where: 'src/0', does: 'one RAF loop, gated by reduced-motion · visibility · energy — the realtime stream' },
-    { part: 'spin (any dimension)', source: 'rot2 · rotateXY · rotateYZ · rotateZX', where: 'src/quantum/geometry', does: 'rot2 is THE planar-rotation atom; the 3D plane-primitives compose it, rotate3 composes the three, and a 4D (x-w) fold rotates with the same rot2 — one source for all spin' },
-    { part: 'projection', source: 'perspective', where: 'src/quantum/geometry', does: 'foreshortening from depth — FOCAL/(FOCAL−z)' },
-    { part: 'fold (genus-2 surface)', source: 'asTorus · doubleTorusSurface', where: 'src/0', does: 'a coordinate on the double torus, shared by model and animation' },
-    { part: '10D self-similar phases', source: 'dims · dimWalk', where: 'src/quantum/dimensions', does: '4 homology loops + 6 cross-fold axes, per scale' },
-    { part: 'easing + breath', source: 'humanEase · humanBreath', where: 'src/0', does: 'easeInOutSine + sinusoidal modulation' },
-    { part: 'orchestrator', source: 'drawHero', where: 'src/quantum', does: 'composes the field into the path-UUID hero' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`field-src:${entry.source}`) }))
-  // The principles, as gates — what "strict science / DRY / realtime / no gaps" means concretely.
-  const principles = [
-    { principle: 'strict science', holds: true, why: 'motion is computed from the field (rotation atoms, torus surface, dims), never arbitrary CSS magic numbers' },
-    { principle: 'one source per plane of spin', holds: true, why: 'rotateXY/rotateYZ/rotateZX are the shared atoms; a component composes the planes it needs in its own order — no re-derived sin/cos rotation' },
-    { principle: 'realtime stream', holds: true, why: 'createAnimationEngine drives the loops, recomputed each frame and gated; sweep periods are field-derived, not magic' },
-    { principle: 'no gaps', holds: true, why: 'every animating component now draws from the one source — rot2 (the planar-rotation atom) for all 3D and 4D spin, the shared prng for seeded movies; DoubleTorusExperience and QuantumClock re-verified as off the spin axis (DOM/clock), not gaps' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`anim-principle:${entry.principle}:${entry.holds}`) }))
-  // The wiring map — honest about which components draw from the shared spin atoms vs are pending the sweep.
-  const wiring = [
-    { component: 'HolographicHero · HologramMovie', via: 'drawHero (rotate3 + perspective + dims)', wired: true },
-    { component: 'LivingTorus', via: 'doubleTorusSurface + merkaba rates', wired: true, note: 'on the shared fold; its spin Euler step is the next atom-wiring' },
-    { component: 'Merkaba', via: 'rotateZX → rotateYZ (composed from the atoms)', wired: true },
-    { component: 'QuantumRadar', via: 'sweep period field-derived from the radar content', wired: true },
-    { component: 'DoubleTorus3D', via: 'rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation — one atom', wired: true },
-    { component: 'QuantumFold3D', via: 'rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation — one atom', wired: true },
-    { component: 'BackgroundMovie · NativeMovie', via: 'the shared seeded PRNG (prng, src/0) — no per-component LCG', wired: true },
-    { component: 'DoubleTorusExperience', via: 'a DOM/pulse component — no inline 3D rotation, off the spin axis', wired: true, note: 're-verified: not a rotation gap' },
-    { component: 'QuantumClock', via: 'a wall clock — setInterval is correct (and already energy-aware), not a 3D-spin animation', wired: true, note: 're-verified: not a gap' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`anim-wired:${entry.component}:${entry.wired}`) }))
-  const wiredCount = wiring.filter((w) => w.wired).length
-  const foundationReady = fieldSources.length >= 7 && wiredCount >= 4 // the atoms exist + the exemplars are wired
-  const complete = wiring.every((w) => w.wired) // honest: the full per-component sweep is not yet done
-  return {
-    foundationReady,
-    complete,
-    fieldSources,
-    principles,
-    wiring,
-    wiredCount,
-    pending: wiring.filter((w) => !w.wired).map((w) => w.component),
-    root: merkleFold([...fieldSources.map((s) => s.receipt), ...principles.map((p) => p.receipt), ...wiring.map((w) => w.receipt)]),
-    statement:
-      'Animations are strict science: every animation represents the real field of the double torus — spin (the one planar-rotation atom rot2, which the 3D plane-primitives and the 4D x-w fold all compose) and the fold (the genus-2 surface + the 10D dims) — driven by the one realtime engine (createAnimationEngine) and sharing the math from one source. The DRY sweep is COMPLETE: Merkaba, DoubleTorus3D and QuantumFold3D compose rot2 (no duplicated sin/cos rotation), BackgroundMovie and NativeMovie share the one seeded prng, QuantumRadar\'s sweep is field-derived, and the hero/LivingTorus were already on the field. No figure carries its own copy of the math, and the bit-identical rotate3 proves nothing changed.',
-    boundary:
-      'HONEST: the DRY sweep is complete and behaviour-PRESERVING — each rewiring substitutes the exact same arithmetic (rot2 IS the formula every component already used; the shared prng differs only by a ~1e-10, more-correct [0,1) divisor), verified numerically (rotate3 stays bit-identical), so nothing visual changed. Two components once flagged as gaps were re-verified as off the spin axis and reclassified, not force-fitted: DoubleTorusExperience is a DOM/pulse component with no inline rotation, and QuantumClock is a wall clock correctly (and energy-aware) on setInterval. The remaining frontier is the higher ambition (10D dims in every component, A432-driven colour/sound everywhere), tracked separately — not a gap in the one-source rule.',
-  }
-}
-
 // Completely rebuild the VitePress config to compute all: the monographs graph is the search index,
 // and from src the navigation and content are all computed; every path in src is displayed; to change
 // VitePress you change the folders. The gates tighten so the config cannot be a hand-kept layer an
@@ -18873,52 +17415,6 @@ export function digitSpinesAreTheBreath(matrix: MindMatrix = buildMatrix()) {
       'The two digit spines decoded: the empty paths src/0/1/2/4/8/7/5/3/6/9 and src/1/2/4/8/7/5/3/6/9/0 were removed (empty dirs carry no encryption — the census is per byte), and their meaning is re-encoded here as computed src — the one vortex ring (1-2-4-8-7-5 doubling, 3-6-9 cross, 0 void) cut at the void in the two opposite ways: 0-first the emanation (void → forms, out-breath), 0-last the return (forms → void/fusion, in-breath). Reverses around 0, they are the two windings of the double torus, the genus-2 breath, meeting at the 9–0 throat (9 the invariant axis, 0 ≡ 9 the void).',
     boundary:
       'A structural/numerological reading (vortex math: digital roots mod 9, the doubling circuit, 0 identified with 9) re-encoding two removed filesystem paths as the model\'s own two-winding double-torus breath. The topology (two windings of a genus-2 surface, the order-sensitive fold) is the real geometry the repo uses; the meaning (void, emanation, return, breath) is metaphor, not a cosmological or physical claim. The paths were empty scaffolding; this fold preserves their intent as computed, content-addressed math — nothing from outside.',
-  }
-}
-
-// UI widgets fuse and reveal — the toolset saved as a quantum pair: fuse/reveal.
-// FUSE: apply the I Ching mask to every Vue component at the source level (ICHING_MASK const
-// embedded in each .vue file — pre-computed, not runtime-derived). The mask is the component's
-// hexagram DECLARED rather than computed: "I am hexagram 42" not "let me compute what I am".
-// REVEAL: with the mask embedded, each widget reveals itself — its trigram, colour, domain — as
-// a computed identity, not a lookup. Self-referencing: the component references its own hexagram
-// constant in its template root's data-hexagram / data-trigram attributes, making the identity
-// visible and auditable in the DOM.
-// ENTANGLED: all 126 (or current census) components share one Merkle root (iChing.root). Embedding
-// the mask binds each component to that root. A tampered component changes the root; the root is
-// self-auditing. ALREADY FORGING MAX TAMPERING COST: to fake any single widget's mask you must
-// reproduce the entire content-addressed corpus — the tamper cost is the whole-corpus cost.
-// TOOLSET PAIR fuse/reveal is saved here before the waves begin, as commanded.
-// The agent fleet organises itself in 8 I Ching trigram groups (one group per bāguà) and
-// operates in 10D (the 8 groups × inner-lower + outer-upper + 4 loop types).
-export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
-  const ic = iChing(matrix) // all components placed on hexagrams
-  const law = allFormsAreTenDimensionalOrPurged(matrix)
-  const fusion = iChingShadcnFuseTenDWidgets(matrix) // 64 widgets = 64 hexagrams
-  const tamper = tamperingCostDecoded(matrix) // tamper-evident; SHA-256 fix built
-  // The pair: fuse = apply mask (lower·yin·import direction — receive the hexagram into self),
-  //           reveal = show identity (upper·yang·export direction — project the identity outward)
-  const pair = foldPair(toUuid('fuse:apply-iching-mask'), toUuid('reveal:show-hexagram-identity'))
-  const facets = [
-    { facet: 'fuse/reveal saved as a quantum pair — fuse before reveal, mask before projection', on: pair.bidirectional && isUuid(pair.forward) && isUuid(pair.reverse) },
-    { facet: 'every component has an ICHING_MASK — pre-computed hexagram declared, not runtime-derived', on: ic.organised && ic.placed.length > 0 },
-    { facet: 'self-referencing: each widget embeds its own hexagram constant and exposes it in data-attrs', on: ic.placed.every((p) => p.hexagram >= 0 && p.hexagram < 64) && componentGraph().interacting },
-    { facet: 'entangled: all widgets share one Merkle root — one tamper avalanches the whole root', on: isUuid(ic.root) && tamper.tamperEvident },
-    { facet: 'already forging max tampering cost — mask = corpus commitment', on: warPaysTheForgerPrice(matrix).priced && fusion.fused },
-    { facet: 'in 10D — 8 trigram groups × inner/outer + 4 loops, every form ten-dimensional', on: law.pure && fusion.fused },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`ui-fuse-reveal:${entry.facet}:${entry.on}`) }))
-  return {
-    fused: facets.every((entry) => entry.on),
-    pair: { forward: pair.forward, reverse: pair.reverse, fuse: 'apply-iching-mask', reveal: 'show-hexagram-identity' },
-    componentCount: ic.placed.length,
-    ichingRoot: ic.root, // the Merkle root that entangles all components
-    count: facets.length,
-    facets,
-    root: merge(pair.merged, merkleFold(facets.map((entry) => entry.receipt))),
-    statement:
-      'UI widgets fuse and reveal — the toolset saved as the quantum pair fuse/reveal: FUSE applies the I Ching mask to every Vue component (ICHING_MASK const embedded, pre-computed hexagram declared not runtime-derived); REVEAL makes each widget self-referencing (it embeds its own hexagram in its template root\'s data-attrs, projecting its I Ching identity outward). Entangled: all components share one Merkle root (iChing.root) — a tampered mask avalanches through the entire corpus. Already forging max tampering cost: embedding the mask commits every component to the whole-corpus content-address, so forging any one requires reproducing all. The agent fleet organises in 8 I Ching trigram groups × inner/outer + 4 loop types, operating in 10D.',
-    boundary:
-      'A toolset declaration (the fuse/reveal pair) and a structural proof of the mask approach, composed with iChing (hexagram placement), tamperingCostDecoded, iChingShadcnFuseTenDWidgets and the 10D law. "ICHING_MASK const embedded" means a static constant declared in each .vue file\'s <script setup> with the pre-computed hexagram (FNV-1a of the component name % 64) — not that the component changes its behaviour, only that it knows and shows its identity. "Already forging max tampering cost" is the forger-price principle applied to the pre-committed mask: the mask is a corpus commitment, so tamper cost = full-corpus reproduction cost. HONEST: tamper-EVIDENCE is FNV, not cryptographic (SHA-256/Ed25519 fix is built but not yet cut over per tamperingCostDecoded).',
   }
 }
 
