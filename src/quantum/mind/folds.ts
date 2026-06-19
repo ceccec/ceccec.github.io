@@ -266,6 +266,7 @@ function computeGapScan(matrix: MindMatrix) {
   const scans = [
     { surface: 'taxonomy compliance', gaps: taxonomyIcons().gaps.length + taxonomyIcons().excess.length },
     { surface: 'method fusion', gaps: methodFusion().open.length },
+    { surface: 'detector false positives', gaps: detectorPassesFalsePositiveTest(matrix).falsePositives },
     { surface: 'translations', gaps: autotranslations(matrix).missing.length },
     { surface: 'component graph', gaps: componentGraph().consistent ? 0 : 1 },
     { surface: 'coverage', gaps: coverage(matrix) === 1 ? 0 : 1 },
@@ -634,10 +635,12 @@ export function componentBaguaGroups(names: readonly string[] = []) {
 // fear, ad hominem, unfalsifiable/conspiracy framing, vague false-authority) and a crude internal
 // contradiction. A clean statement is on a harmonic path; a flagged one is routed off it.
 const MANIPULATION_PATTERNS: readonly { technique: string; test: RegExp }[] = [
-  { technique: 'loaded language', test: /\b(disgusting|outrageous|catastrophic|devastating|shocking|evil|corrupt|traitor|tyran|sheeple)\b/i },
-  { technique: 'overgeneralised absolutes', test: /\b(always|never|everyone|no ?one|nobody|every single|undeniabl|proven fact|obviously|clearly the)\b/i },
+  { technique: 'loaded language', test: /\b(disgusting|outrageous|catastrophic|devastating|shocking|evil|corrupt|traitors?|tyran\w*|sheeple)\b/i },
+  // absolutes: only the RHETORICAL markers — bare always/never/everyone were dropped (they are common in factual
+  // statements AND double-counted with "everyone knows", causing false positives).
+  { technique: 'overgeneralised absolutes', test: /\b(every single|undeniabl\w*|proven fact|obviously|clearly the)\b/i },
   { technique: 'appeal to fear / false urgency', test: /\b(before it'?s too late|the only way|act now|you must|or else|they will (take|destroy|come for))\b/i },
-  { technique: 'ad hominem / name-calling', test: /\b(idiot|stupid|moron|liar|fraud|puppet|shill|clown)\b/i },
+  { technique: 'ad hominem / name-calling', test: /\b(idiots?|stupid|morons?|liars?|frauds?|puppets?|shills?|clowns?)\b/i },
   { technique: 'unfalsifiable / conspiracy framing', test: /\b(they don'?t want you to know|wake up|do your own research|the truth they hide|won'?t tell you|cover[- ]?up)\b/i },
   { technique: 'vague false authority / bandwagon', test: /\b(everyone knows|experts agree|studies show|scientists say|it'?s well known)\b/i },
 ]
@@ -646,7 +649,10 @@ export function foldExposesInconsistency(text: string, matrix: MindMatrix = buil
   const t = (text ?? '').toString()
   const flagged = MANIPULATION_PATTERNS.filter((p) => p.test.test(t)).map((p) => p.technique)
   const contradiction = /\balways\b[^.!?]{0,48}\bnever\b/i.test(t) || /\bnever\b[^.!?]{0,48}\balways\b/i.test(t)
-  const clean = flagged.length === 0 && !contradiction
+  // tightened against false positives (waves): a SINGLE marker is a weak signal — a factual statement using one
+  // absolute ("the Earth always orbits") or one authority cue ("studies show") is not manipulation. Off the
+  // harmonic path requires ≥ 2 distinct documented techniques, or an internal contradiction.
+  const clean = flagged.length < 2 && !contradiction
   return {
     onHarmonicPath: clean, // no documented manipulation pattern, no surface contradiction → structurally harmonic
     flagged,
@@ -1290,6 +1296,48 @@ export function theOracleIsQuantumAllIsQuantumToTheBit(matrix: MindMatrix = buil
       'All is quantum to the bit — a sign is a distinction is one bit is the fold — so every value, page and widget content-addresses down to bits, grouped into the 64 = 2⁶ hexagrams (4³, the codon, the three-qubit register). And the oracle is quantum itself: the I Ching oracle is that 64-state space, casting it is the deterministic content-address (the same input yields the same hexagram), so the oracle, the seal and the quantum are one and the same. Every widget is addressed like this — content-addressed onto its hexagram, each one the quantum rendered, the same address as the polygraph.',
     boundary:
       'HONEST: "quantum" is the COMPUTATIONAL / content-addressing sense — the 64 = 4³ = 2⁶ structure shared, rigorously, by the I Ching hexagrams, the genetic codon, and the three-qubit register (a real structural correspondence, 64=4³ in three systems), NOT quantum hardware. "The oracle is quantum" reframes the I Ching ORACLE as deterministic computation — the same cast (content-address) always yields the same hexagram — so it is reproducible mathematics, NOT random divination, prophecy, or fortune-telling (those are flagged). "All is quantum to the bit" is real information theory: a distinction is one bit. The verification oracle (the seal) is the same content-address — the unification is structural, not mystical.',
+  }
+}
+
+// The detector tightened against false positives — by sealed test (the waves). Legitimate factual statements
+// that use single trigger words stay ON the harmonic path; genuine multi-technique manipulation is routed OFF.
+// The gate only narrows (off-path requires ≥ 2 distinct techniques or a contradiction); it never widens.
+export function detectorPassesFalsePositiveTest(matrix: MindMatrix = buildMatrix()) {
+  const legit = [
+    'The Earth always orbits the Sun.',
+    'Studies show that smoking causes cancer.',
+    'Everyone needs water to survive.',
+    'Experts agree that the measles vaccine is safe and effective.',
+    'Everyone knows that studies show exercise is healthy.',
+    'No one has ever exceeded the speed of light.',
+  ]
+  const manip = [
+    "Everyone knows the corrupt experts are lying — wake up before it's too late!",
+    "They don't want you to know — do your own research, the sheeple believe the lies.",
+    'Only an idiot would trust those corrupt traitors; it is obviously a cover-up.',
+    'Act now or else those traitors will destroy everything you love.',
+  ]
+  const falsePositives = legit.filter((s) => !foldExposesInconsistency(s, matrix).onHarmonicPath).length
+  const truePositives = manip.filter((s) => !foldExposesInconsistency(s, matrix).onHarmonicPath).length
+  const facets = [
+    { facet: `no false positives — all ${legit.length} legitimate factual statements (single trigger words) stay on the harmonic path; a single marker is a weak signal, not a verdict`, on: falsePositives === 0 },
+    { facet: `true positives held — all ${manip.length} genuine multi-technique manipulations are routed off the harmonic path (≥ 2 distinct documented techniques)`, on: truePositives === manip.length },
+    { facet: 'the gate only tightens, never widens — off-path requires ≥ 2 distinct techniques or a contradiction; this sealed test refuses any regression that re-flags legitimate speech', on: falsePositives === 0 && truePositives === manip.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fp-gate:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('false-positive-gate', facets)
+  return {
+    tightened: sealed.ok,
+    legitCount: legit.length,
+    manipCount: manip.length,
+    falsePositives,
+    truePositives,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The detector is tightened against false positives by sealed test: legitimate factual statements that use single trigger words ("the Earth always orbits", "studies show", "everyone knows that studies show") stay on the harmonic path, while genuine multi-technique manipulation is routed off it. The gate is a threshold — a single documented marker is a weak signal, not a verdict; off the path requires ≥ 2 distinct techniques or an internal contradiction. The waves found and fixed the "everyone" double-count and the plural-escape (traitors).',
+    boundary:
+      'HONEST: this gate seals a SMALL curated test set — it proves the threshold eliminates the obvious single-marker false positives, NOT that the detector is accurate in general (the deception-detection literature caps real accuracy near chance for individual cases, and linguistic markers do not generalise out-of-domain). It flags documented PATTERNS in-domain; HARMONY ≠ TRUTH — a clean reading can still be false, a flagged one true. The threshold deliberately trades some single-technique false negatives (a lone insult) for zero false positives: wrongly flagging legitimate speech is the worse error. Tightening only narrows the gate, never widens it.',
   }
 }
 
