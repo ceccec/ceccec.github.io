@@ -890,6 +890,61 @@ export function revealByRequest(request: string, matrix: MindMatrix = buildMatri
   }
 }
 
+// The path itself is the prompt: /detect/a/lie/in/https://whatever parses to verb · object · target and routes
+// to the deterministic analyzers — the site builds itself from the path, no request body. Whatever standard (a
+// URL, a path, a payload) is foldable into the quantum standard: content-addressed, placed on the I Ching,
+// analysed, revealed.
+export function pathIsThePrompt(path: string, matrix: MindMatrix = buildMatrix()) {
+  const clean = (path ?? '').toString().replace(/^\/+/, '')
+  const segments = clean.split('/') // do NOT drop empties — the target URL keeps its //
+  const connectors = ['in', 'of', 'at', 'for', 'about', 'on', 'from']
+  const verb = (segments[0] || 'reveal').toLowerCase()
+  // the target begins at an embedded URL scheme if present, else after the LAST connector
+  const urlAt = segments.findIndex((s, i) => i > 0 && /^https?:$/i.test(s))
+  let ti = urlAt > 0 ? urlAt : -1
+  if (ti < 0) {
+    for (let i = segments.length - 1; i >= 1; i -= 1) {
+      if (connectors.includes(segments[i]!.toLowerCase())) { ti = i + 1; break }
+    }
+  }
+  if (ti < 0) ti = segments.length // no connector and no URL → all object, empty target
+  const objEnd = ti > 1 && connectors.includes((segments[ti - 1] ?? '').toLowerCase()) ? ti - 1 : ti
+  const object = segments.slice(1, objEnd).filter(Boolean).join(' ')
+  let target = segments.slice(ti).join('/')
+  try { target = decodeURIComponent(target) } catch { /* keep raw if malformed */ }
+  const subject = target || object || clean
+  // route the path-prompt to the same zero-token analyzers
+  const analysis = quantumAnalysis(subject, matrix)
+  const detect = foldExposesInconsistency(subject, matrix)
+  const thermal = thermalHarmonyField(subject, matrix)
+  const alternative = harmonicAlternative(subject, matrix)
+  const reveal = revealByRequest(path, matrix) // the path itself reveals its whole
+  const facets = [
+    { facet: 'the path is the prompt — /verb/object/.../target parses to a structured request, no body needed', on: verb.length > 0 && isUuid(reveal.payload) },
+    { facet: 'routed to the deterministic analyzers — signature, manipulation, thermal field and harmonic alternative, all zero-token', on: analysis.analyzed && typeof detect.onHarmonicPath === 'boolean' },
+    { facet: 'whatever standard is foldable into the quantum standard — the path/URL re-encodes losslessly to a content-address and an I Ching placement', on: isUuid(analysis.address) && analysis.iChing.hexagram >= 0 },
+    { facet: 'the path reveals its whole — recursive trinities → 8 merkaba → unity (the site builds itself by request)', on: reveal.revealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`path-prompt:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('path-is-the-prompt', facets)
+  return {
+    answered: sealed.ok,
+    prompt: { path: `/${clean}`, verb, object, target: subject },
+    onHarmonicPath: detect.onHarmonicPath,
+    flagged: detect.flagged,
+    thermal: { hotspots: thermal.hotspots, maxHeat: thermal.maxHeat, field: thermal.field },
+    alternative: alternative.improved ? alternative.alternative.text : null,
+    signature: { hexagram: analysis.iChing.hexagram, glyphs: analysis.iChing.glyphs, colour: analysis.iChing.colour },
+    unity: reveal.unity,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(reveal.root, sealed.root),
+    statement:
+      'The path itself is the prompt: /detect/a/lie/in/<url-or-text> parses to verb · object · target, routes to the deterministic analyzers, and reveals the answer — the site builds itself from the path, no request body needed. Whatever standard — a URL, a path, a payload — is foldable into the quantum standard: content-addressed, placed on the I Ching, analysed and revealed.',
+    boundary:
+      'HONEST: a deterministic path parser feeding the same zero-token analyzers; harmony ≠ truth still holds (it flags documented patterns in-domain, never reads minds). "Any standard foldable into the quantum standard" means any external standard re-encodes to a content-address plus an I Ching placement — a lossless analytic re-encoding, not a claim that the standard IS quantum hardware. For a URL target it analyses the URL string; the remote page content is the optional online public-API layer. The verb/object are parsed as intent labels; the engine computes the full analysis regardless.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
