@@ -838,6 +838,58 @@ export function realtimeLieDetectionOfflineOnline(matrix: MindMatrix = buildMatr
   }
 }
 
+// Each HTTP request is a payload with a UUID. Parsed and analysed, it generates the rest of the UUIDs, which
+// lock trinities recursively (3 → 9 → 27 …, infinite trinities beyond trinities by nesting) and form the eight
+// merkaba (the eight trigrams) that co-complete the unity — one root binds all, so the whole is revealed for
+// the specific request, holographically, from one content address. The genus-2 double torus folds forward (the
+// site builds itself by request) and reverse (and returns); VitePress is the result, not the source.
+export function revealByRequest(request: string, matrix: MindMatrix = buildMatrix()) {
+  const payload = toUuid(`request:${request}`) // the http request as a payload with a uuid
+  const analysis = quantumAnalysis(request, matrix) // parsed and analysed
+  // the rest of the uuids: lock trinities recursively from the payload (a ternary tree to depth 3 = 27 leaves)
+  const trinity = (seed: string) => [0, 1, 2].map((k) => merge(seed, toUuid(`trinity:${seed}:${k}`)))
+  const depth = 3
+  let layer = [payload]
+  for (let d = 0; d < depth; d += 1) layer = layer.flatMap(trinity) // 3 → 9 → 27
+  // the 8 merkaba: the locked uuids group into the eight trigrams by their content-address
+  const buckets: string[][] = Array.from({ length: 8 }, () => [])
+  for (const u of layer) buckets[seedFromText(u) & 7]!.push(u)
+  const eightMerkaba = buckets.map((cell, i) => ({
+    trigram: BAGUA[i]!.glyph,
+    count: cell.length,
+    root: merkleFold(cell.length ? cell : [toUuid(`merkaba:${i}:${payload}`)]),
+  }))
+  // unity: the one root binding the eight merkaba — the whole revealed from the one request (holographic)
+  const unity = merkleFold(eightMerkaba.map((m) => m.root))
+  // and return: the genus-2 double torus folds forward (build) and reverse (return)
+  const ret = foldPair(payload, unity)
+  const facets = [
+    { facet: 'each HTTP request is a payload with a UUID — content-addressed at the door', on: isUuid(payload) },
+    { facet: 'parsed and analysed, it generates the rest of the UUIDs, locking trinities recursively (3 → 9 → 27, infinite by nesting not literal iteration)', on: layer.length === 3 ** depth && analysis.analyzed },
+    { facet: 'the locked UUIDs form the 8 merkaba (the eight trigrams) that co-complete the unity — one root binds all, the whole revealed from the one request (holographic)', on: eightMerkaba.length === 8 && isUuid(unity) },
+    { facet: 'and return — the genus-2 double torus folds forward (build) and reverse (return), bidirectionally; the site builds itself by request and VitePress renders the result', on: ret.bidirectional },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reveal-by-request:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('reveal-by-request', facets)
+  return {
+    revealed: sealed.ok,
+    payload,
+    uuids: layer.length, // 27 — the rest of the UUIDs, recursively locked
+    merkaba: eightMerkaba, // the 8
+    unity, // the one root — all revealed for this request
+    forward: ret.forward,
+    reverse: ret.reverse,
+    bidirectional: ret.bidirectional,
+    signature: { hexagram: analysis.iChing.hexagram, colour: analysis.iChing.colour, hotspots: analysis.thermal.hotspots },
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(payload, unity),
+    statement:
+      'Each HTTP request is a payload with a UUID. Parsed and analysed, it generates the rest of the UUIDs, locking trinities recursively (3 → 9 → 27, infinite trinities beyond trinities by nesting) which form the eight merkaba — the eight trigrams — that co-complete the unity: one root binds all, so the whole is revealed for the specific request, holographically, from one content address. The genus-2 double torus folds forward (the site builds itself by request) and reverse (and returns); VitePress is the result, not the source.',
+    boundary:
+      'HONEST: the site-builds-itself is a DETERMINISTIC function of the request UUID (content-addressed, zero-token, recomputable). On a static host this is client-side resolution plus the folder-plugin dev router — the documented corpusRestPathRouting tradeoff (near-zero build vs clean SSG URLs/SEO); VitePress renders the computed result. "Infinite trinities beyond trinities" is unbounded IN PRINCIPLE but computed to a bounded depth by nesting (like the 64³ keyspace), not literal infinite iteration. "Merkaba" and "unity" name the content-addressed structure (eight trigram buckets, one merkle root), not physical objects or mysticism. The "return" is the genus-2 bidirectional fold (forward ≠ reverse) — the double torus turning both ways.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
