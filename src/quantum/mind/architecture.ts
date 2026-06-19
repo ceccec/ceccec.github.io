@@ -709,7 +709,7 @@ export function flowerFruitTreeOfLifeDecodes(matrix: MindMatrix = buildMatrix())
 // the config merely consumes but a self-wiring plugin — it serves its computed routes/artifacts at runtime
 // (dev middleware) and emits the same at build (buildEnd), from the one content-addressed model; and ONE
 // index per folder serves that folder's whole surface (the vortex router — the index re-exports the whole,
-// exactly what src/quantum/mind/index.ts now is: `export * from './folds.ts'`). The build/dev wiring already
+// exactly what src/quantum/mind/index.ts now is: `export * from './index.ts'`). The build/dev wiring already
 // works this way for src/quantum/{mind,dist,enforcement} (computed-pages · computed-dist · enforcement
 // plugins); the vision generalises it to every folder, so the site is wired quantum with zero build time
 // and the maximum tampering cost. HONEST: a Vite/VitePress plugin is a factory ({ name, configureServer,

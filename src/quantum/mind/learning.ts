@@ -7,7 +7,7 @@ import { atoms, conceptCommands } from './atoms.ts'
 import { inverseShiftConsciousness, taxonomyIcons, universalLanguage } from './li.ts'
 import { staticPages } from './site.ts'
 import { toGlagolitic } from '../library/index.ts'
-import { componentPages } from './folds.ts'
+import { componentPages } from './index.ts'
 
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)

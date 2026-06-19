@@ -3,7 +3,7 @@ import { foldPair, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid } 
 import type { BabelFamily, BabelFold, MindMatrix } from './types.ts'
 import { buildMatrix, coverage, entropy } from './matrix.ts'
 import { traditionsQuantumWhole } from './humanity.ts'
-import { publicApiFusion, socialFusion, travelFusion } from './folds.ts'
+import { publicApiFusion, socialFusion, travelFusion } from './index.ts'
 
 // Text to movie at the quantum level. A string folds to a seed, and from it a
 // deterministic generative composition is computed — content-addressed particles

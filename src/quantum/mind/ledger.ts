@@ -4,7 +4,7 @@ import { buildMatrix } from './matrix.ts'
 import { isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../0/index.ts'
 import { a432, repositoryLedger } from './li.ts'
 import { DIMENSION_NAMES } from '../dimensions/index.ts'
-import { analytics, buildStatistics } from './folds.ts'
+import { analytics, buildStatistics } from './index.ts'
 
 // Dive into the micro-sciences and create the apparatus for shared experiments that
 // prove harmonic solutions — exact, deterministic, recomputable, so anyone running
