@@ -174,6 +174,16 @@ export function setAzimuthDeg(latDeg: number, declinationDeg: number, horizonAlt
   return rise === null ? null : 360 - rise
 }
 
+// The Moon's orbit is tilted ~5.145° to the ecliptic, and its nodes regress over the ~18.6-year nodal cycle. So
+// the Moon's declination extreme swings between ε + i (the MAJOR standstill — wider than the solstice Sun) and
+// ε − i (the MINOR standstill — narrower) across that cycle: the basis of the megalithic standstill markers.
+export const MOON_ORBIT_INCLINATION_DEG = 5.145
+export const LUNAR_NODAL_PERIOD_YEARS = 18.613
+// The Moon's extreme declination magnitude at a standstill, for the obliquity of the epoch: major = ε + i, minor = ε − i.
+export function lunarStandstillDeclinationDeg(obliquityDeg: number, major: boolean): number {
+  return major ? obliquityDeg + MOON_ORBIT_INCLINATION_DEG : obliquityDeg - MOON_ORBIT_INCLINATION_DEG
+}
+
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)
