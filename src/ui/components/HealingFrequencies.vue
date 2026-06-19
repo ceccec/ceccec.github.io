@@ -206,7 +206,7 @@ const t = computed(() =>
 }
 .freq__marker.yang {
   background: rgba(16, 185, 129, 0.16);
-  color: #059669;
+  color: var(--ich-success-1);
 }
 .freq__marker.lead {
   outline: 2px solid var(--vp-c-brand-1);

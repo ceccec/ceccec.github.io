@@ -165,7 +165,7 @@ onMounted(() => { loadBtc(); loadUsgs() })
       <!-- Device sensors -->
       <div v-for="s in sensors" :key="s.id" class="rt__panel">
         <h4>{{ s.label }} <span class="rt__tag dev">device</span></h4>
-        <button v-if="dev[s.id].status === 'idle'" class="rt__btn" @click="s.enable()">{{ bg ? 'разреши' : 'enable' }}</button>
+        <button type="button" v-if="dev[s.id].status === 'idle'" class="rt__btn" @click="s.enable()">{{ bg ? 'разреши' : 'enable' }}</button>
         <p v-else-if="dev[s.id].status === 'requesting'" class="rt__muted">{{ bg ? 'искане на достъп…' : 'requesting…' }}</p>
         <p v-else-if="dev[s.id].status === 'unavailable'" class="rt__muted">{{ bg ? 'няма сензор/разрешение тук' : 'no sensor / permission here' }}</p>
         <p v-else class="rt__big">{{ dev[s.id].value }}</p>

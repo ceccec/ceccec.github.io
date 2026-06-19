@@ -37,7 +37,7 @@ const accent = computed(() => props.mask.color ?? 'var(--vp-c-brand-1)')
         <span class="lp-depth-num">{{ depth }}</span><span class="lp-d">D</span>
       </span>
 
-      <button class="lp-step" :disabled="depth === 0"
+      <button type="button" class="lp-step" :disabled="depth === 0"
         @click="depth = Math.max(0, depth - 1)" aria-label="decrease depth">−</button>
 
       <input
@@ -47,10 +47,11 @@ const accent = computed(() => props.mask.color ?? 'var(--vp-c-brand-1)')
         aria-label="dimension depth 0 to 10"
       />
 
-      <button class="lp-step" :disabled="depth === 10"
+      <button type="button" class="lp-step" :disabled="depth === 10"
         @click="depth = Math.min(10, depth + 1)" aria-label="increase depth">+</button>
 
       <button
+        type="button"
         class="lp-toggle" :class="{ 'lp-toggle--open': open }"
         @click="open = !open"
         :aria-expanded="open"
@@ -75,6 +76,7 @@ const accent = computed(() => props.mask.color ?? 'var(--vp-c-brand-1)')
             role="listitem"
           >
             <button
+              type="button"
               class="lp-eye"
               @click="toggle(i)"
               :aria-pressed="visible[i]"

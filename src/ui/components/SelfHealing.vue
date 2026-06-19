@@ -89,13 +89,13 @@ const t = computed(() =>
   vector-effect: non-scaling-stroke;
 }
 .heal__waves li.ok .heal__trace {
-  stroke: #059669;
+  stroke: var(--ich-success-1);
 }
 .heal__mark {
   color: var(--vp-c-text-3);
 }
 .heal__waves li.ok .heal__mark {
-  color: #059669;
+  color: var(--ich-success-1);
 }
 .heal__foot {
   margin: 0;

@@ -104,7 +104,7 @@ const t = computed(() =>
   padding-left: 0.7rem;
 }
 .roadmaps__list li.done {
-  border-left-color: #059669;
+  border-left-color: var(--ich-success-1);
 }
 .roadmaps__list li.next {
   border-left-color: var(--vp-c-brand-1);
