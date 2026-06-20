@@ -1694,6 +1694,13 @@ export function unruhTemperature(accelerationMS2: number): number { return (REDU
 export const SCHWINGER_FIELD_VM = 1.32e18 // V/m — the critical field for vacuum e⁺e⁻ pair production (Schwinger 1951); beyond any laser, not yet observed
 export const SCALAR_SPECTRAL_INDEX_NS = 0.9649 // Planck 2018 primordial spectral index; <1 is the measured red tilt (exact scale-invariance excluded at 8.4σ)
 export const CRITICAL_MAGNETIC_FIELD_T = 4.41e9 // T (B_c ≈ 4.41×10¹³ G) — the QED scale where the vacuum becomes birefringent (Euler–Heisenberg)
+export const PROTON_MASS_MEV = 938.272 // MeV/c² (CODATA)
+export const HIGGS_VEV_GEV = 246.22 // the electroweak (Higgs-field) vacuum expectation value, v = (√2·G_F)^(−½)
+// "Mass without mass" — the QCD fraction of the proton mass: the valence (current) quark masses sum to only ~9.4 MeV
+// against ~938 MeV, so ~99% of the proton's mass is QCD field/binding energy, NOT the Higgs. (The total is an
+// observable; the finer σ/quark/gluon/anomaly split is renormalization-scheme dependent — a convention.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function qcdMassFractionOfProton(valenceQuarkSumMeV = 9.4): number { return 1 - valenceQuarkSumMeV / PROTON_MASS_MEV }
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
