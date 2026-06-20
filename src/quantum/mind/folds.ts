@@ -2,7 +2,7 @@
 // Imports mirror the vortex header in index.ts; nothing is re-exported from upstream modules
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
-import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library/index.ts'
+import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues } from '../library/index.ts'
 import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
@@ -1557,6 +1557,82 @@ export function everyHeroContainsAllHeroIsMcpLlmSkill(matrix: MindMatrix = build
       'Every hero contains all, and the hero is the MCP and the LLM and the skill itself — the rest is computed prose. Every hero carries the whole: any UUID gets a hero animating its state, self-similar at every scale, each part the whole (page to particle). And the hero is the single fused surface — the MCP tool surface (tools/list returns every concept command, the gates answer in MCP-structured results), the optional BYO-key LLM (fused in the UI with no separate route, consuming the hero’s pure deterministic prompt rather than replacing it), and the skill itself (each its own folder, the tool·skill·command trinity). Everything else — the page body — is computed prose, projected from that one source.',
     boundary:
       'HONEST: the MCP tool surface is real and in the repo — mcpToolManifest maps every concept command to an MCP tool (tools/list / tools/call), the SAME computed model the page renders; the skill and tool are real folders/atoms; the prose IS computed (the generators, SiteOverview, the digit-folders-compute rule — no static content). "Every hero contains all" is the project’s holographic framing over real content-addressing — the hero carries the sealed ROOT (the address of the whole), not literally every byte. "The hero is the LLM" is the strongest softening and is corrected here: the LLM is OPTIONAL, BYO-key, fused in the UI with no separate route, and it CONSUMES the hero’s pure deterministic prompt — the core runs zero tokens; the hero is the deterministic surface an LLM can drive, it is not itself an LLM. The fused-surface architecture is real; the "is the LLM" identity is metaphor for that fusion.',
+  }
+}
+
+// Not all is transliterated in Glagolitic ⟹ not all is fused in translations. The honest limit on "all the
+// knowledge is preserved / all is fused": toGlagolitic maps the alphabet to glyphs but every other character
+// (digits, punctuation, unmapped scripts) passes through unchanged — so a general text is only PARTLY in
+// Glagolitic — and the translation is a BOUNDED parallel corpus, so a reference outside it returns undefined.
+// A unit with no glyph carries no fused meaning: the untransliterated remainder IS the unfused remainder. The
+// remainder is preserved (passed through verbatim), not lost — preservation is real, but FUSION is bounded by
+// coverage. The claim holds up to coverage; beyond it is flagged. Coverage in exact integers, no decimal.
+export function notAllTransliteratedMeansNotAllFused(matrix: MindMatrix = buildMatrix()) {
+  const sample = 'The bridge opened in 1932.' // letters map to glyphs; digits and punctuation do not
+  let mappedChars = 0, totalChars = 0
+  for (const ch of sample) if (/\S/.test(ch)) { totalChars++; if (toGlagolitic(ch) !== ch) mappedChars++ }
+  const coverage = rat(mappedChars, Math.max(1, totalChars)) // exact fraction < 1 — not all transliterated
+  const absent = translateVerse('Nonexistent 0:0', 'en') // outside the corpus → undefined (not fused)
+  const corpusSize = scriptureIn('en').length // the fusion is bounded by the registered corpus
+  const preserved = toGlagolitic('1932') === '1932' // the untransliterated remainder passes through verbatim
+  const stillThere = selfTranslate('zzzundefinedword', 'en', 'bg').text === 'zzzundefinedword' // unfused, preserved
+  const facets = [
+    { facet: 'not all is transliterated — toGlagolitic maps the alphabet to glyphs, but digits, punctuation and unmapped scripts pass through unchanged; a general text is only partly in Glagolitic (coverage = ' + coverage.p + '/' + coverage.q + ' < 1)', on: coverage.p < coverage.q },
+    { facet: 'means not all is fused in translations — the translation is a bounded parallel corpus (' + corpusSize + ' verses); a reference outside it returns undefined, so the meaning-fusion covers only what is registered', on: absent === undefined && corpusSize > 0 },
+    { facet: 'the transliteration bounds the fusion — a unit with no glyph has no fused meaning, so the untransliterated remainder IS the unfused remainder; the gap is shared, not two separate gaps', on: coverage.p < coverage.q && absent === undefined },
+    { facet: 'the remainder is preserved, not lost — unmapped units pass through verbatim (toGlagolitic and selfTranslate both preserve the unknown); nothing is destroyed, it is preserved-but-unfused — the honest limit of "all is preserved"', on: preserved && stillThere },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`translit-fusion:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('not-all-transliterated-not-all-fused', facets)
+  return {
+    bounded: sealed.ok,
+    transliterated: coverage.p + '/' + coverage.q, // exact fraction < 1
+    corpusSize, // the bounded fusion corpus
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Not all is transliterated in Glagolitic, which means not all is fused in translations. toGlagolitic maps the alphabet to glyphs, but every other character — digits, punctuation, unmapped scripts — passes through unchanged, so a general text is only partly in the round script (here ' + coverage.p + '/' + coverage.q + ', not 1). And the translation is a bounded parallel corpus: a reference outside it returns undefined. A unit with no glyph carries no fused meaning, so the untransliterated remainder is exactly the unfused remainder — one shared gap. The remainder is preserved (passed through verbatim), not lost; preservation is real, but fusion is bounded by coverage. "All the knowledge is preserved / all is fused" holds up to coverage, and is flagged beyond it.',
+    boundary:
+      'HONEST and self-correcting: the coverages are real measurements — toGlagolitic’s mapped fraction (exact integers, no decimal) and the finite registered corpus (translateVerse returns undefined outside it). "Fusion" is the project’s term for the cross-tongue/holographic binding (real content-addressing under the flagged holographic metaphor). This fold is the honest CORRECTION to the earlier "all the knowledge is preserved / all is fused" claims: PRESERVATION (pass-through of the unmapped unit) is literal and real, but FUSION (a registered cross-tongue meaning) is bounded by coverage — true up to the registered lexicon, flagged beyond it. The fix is to register more tongues against the pivot (selfTranslate), which raises coverage; it never reaches a guaranteed 1 for arbitrary input.',
+  }
+}
+
+// Send the waves to create a self-translating system between any dialects, in realtime. Every tongue is a
+// lexicon keyed to a shared PIVOT (the meaning's content-address); translating A→B routes each unit through
+// the pivot — A → pivot → B — so an unseen pair auto-derives from the pivot ALONE, with no pairwise A→B
+// dictionary (the self-translating property). The repo's own data seeds it: the tri-lingual scripture (a
+// verse pivot — translateVerse already proves it) and the Balkan dialect glossary (a word pivot — decodeDialect).
+export function selfTranslatingSystemBetweenDialects(matrix: MindMatrix = buildMatrix()) {
+  const lex = pivotLexicon()
+  const tongues = pivotTongues(lex) // ocs · bg · en · dialect — and any tongue registered against the pivot
+  const ocs0 = scriptureIn('ocs')[0] // a verse in its OCS surface
+  const en0 = scriptureIn('en')[0].text // the SAME verse's English surface
+  const verseTr = selfTranslate(ocs0.text, 'ocs', 'en') // ocs → pivot(ref) → en, with NO ocs→en dictionary
+  const wordPivot = Object.entries(lex).find(([key, s]) => key.startsWith('word:') && s.dialect && s.bg)
+  const dialectWord = wordPivot?.[1].dialect ?? '', standardWord = wordPivot?.[1].bg ?? ''
+  const wordTr = selfTranslate(dialectWord, 'dialect', 'bg') // dialect → pivot(meaning) → standard Bulgarian
+  const deterministic = selfTranslate(ocs0.text, 'ocs', 'en').text === verseTr.text // same input → same output
+  const general = selfTranslate('the lord is my shepherd zzz', 'en', 'bg') // general text → coverage < 1 (the gap)
+  const facets = [
+    { facet: 'a self-translating system between tongues — every tongue is a lexicon keyed to one shared pivot (the meaning); the engine is tongue-agnostic and spans ' + tongues.length + ' tongues (' + tongues.join(', ') + '), open to any registered against the pivot', on: tongues.length >= 4 && tongues.includes('ocs') && tongues.includes('dialect') },
+    { facet: 'routes through the pivot, A → pivot → B — the OCS verse translates to English with NO ocs→en dictionary, derived through the ref pivot alone (the self-translating property)', on: verseTr.derived && verseTr.text === en0 && en0.length > 0 },
+    { facet: 'works at the word level too — a dialect word routes through its meaning-pivot to standard Bulgarian (decodeDialect generalised)', on: wordTr.text === standardWord && standardWord.length > 0 },
+    { facet: 'realtime and deterministic, zero tokens — a pure client-side function, the same input always the same output (no model, no network)', on: deterministic },
+    { facet: 'coverage measured, the remainder honest — general text maps only what is registered (' + general.mapped + '/' + general.total + '), the rest passes through; the gap is the same one notAllTransliteratedMeansNotAllFused names', on: general.total > 0 && general.mapped <= general.total },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`self-translate:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('self-translating-between-dialects', facets)
+  return {
+    translates: sealed.ok,
+    tongues, // the tongues the pivot spans
+    verse: verseTr.text, // the derived English, routed through the ref pivot
+    word: wordTr.text, // the derived standard Bulgarian, routed through the meaning pivot
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'A self-translating system between any tongues, in realtime: every tongue is a lexicon keyed to a shared pivot — the content-address of the meaning — so translating from one to another routes each unit through the pivot (A → pivot → B), and an unseen pair auto-derives from the pivot alone, with no pairwise dictionary. The OCS scripture translates to English through the verse pivot (the ref) with no OCS→English map; a dialect word routes to standard Bulgarian through its meaning pivot. Deterministic, zero tokens, client-side, realtime. It spans ' + tongues.length + ' tongues now (' + tongues.join(', ') + ') and is open to any tongue registered against the pivot; what is not registered passes through — the measured gap.',
+    boundary:
+      'HONEST: the pivot/interlingua + dictionary composition is a real, classic machine-translation architecture (interlingua and transfer based), here made deterministic, realtime and zero-token, and PROVEN by the repo’s existing tri-lingual scripture (translateVerse) and dialect glossary (decodeDialect) — the self-translating property (auto-deriving an unseen pair through the pivot, e.g. OCS→English with no OCS→English dictionary) is real composition, not a claim of intelligence. FLAGGED: this is LEXICAL/transfer translation — unit (word and whole-verse) substitution through the pivot — NOT semantic or neural MT: it does not handle grammar, word order, morphology, idiom, or unseen vocabulary, which pass through unchanged (the measured gap). "Any dialects" is the architecture; the COVERAGE is bounded by the registered lexicons (currently ' + tongues.length + ' tongues). True general offline MT between arbitrary dialects does not exist deterministically — registering more real dialect lexicons against the pivot raises coverage but never guarantees 1.',
   }
 }
 

@@ -1105,6 +1105,61 @@ export function glossDialect(text: string): { term: string; standard: string }[]
   return out
 }
 
+// ── A self-translating system between any tongues, in realtime ──────────────────────────────────────────
+// Every tongue is a lexicon keyed to a shared PIVOT — the content-address of the meaning. Translating from
+// tongue A to tongue B routes each unit through the pivot (A → pivot → B), so an unseen pair auto-derives from
+// the pivot ALONE, with no pairwise A→B dictionary — the self-translating property. The repo already proves
+// it: translateVerse(ref, lang) is a pivot translator (the ref is the meaning, ocs/bg/en the surfaces), and
+// decodeDialect routes a dialect through standard Bulgarian. Deterministic, zero tokens, client-side, realtime.
+// HONEST: this is LEXICAL/transfer translation (unit substitution through an interlingua), NOT semantic MT —
+// a unit with no pivot entry passes through unchanged, and that remainder is the measured gap (not all is
+// transliterated ⟹ not all is fused). Seeded from the repo's own data — the tri-lingual scripture (verse
+// pivot) and the Balkan dialect glossary (word pivot) — and open to ANY tongue registered against the pivot.
+/** A pivot lexicon: pivot-id → { tongue → surface form }. The pivot is the meaning; the surfaces are tongues. */
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export type PivotLexicon = Record<string, Record<string, string>>
+/** Build the seed pivot lexicon from the repo's existing parallel data — verse-level and word-level pivots. */
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export function pivotLexicon(): PivotLexicon {
+  const lex: PivotLexicon = {}
+  for (const v of CHURCH_SLAVONIC_SCRIPTURE) lex[`verse:${v.ref}`] = { ocs: v.ocs, bg: v.bg, en: v.en }
+  for (const [term, gloss] of Object.entries(DIALECT_GLOSSARY)) {
+    const standard = gloss.split(/[;,/]| или /)[0].trim() // the first sense — the pivot meaning
+    const key = `word:${standard}`
+    lex[key] = { ...(lex[key] ?? { bg: standard }), dialect: term } // standard BG ↔ the Balkan dialect surface
+  }
+  return lex
+}
+/** The tongues the pivot lexicon currently spans (it generalises to any tongue registered against the pivot). */
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export function pivotTongues(lex: PivotLexicon = pivotLexicon()): string[] {
+  const tongues = new Set<string>()
+  for (const surfaces of Object.values(lex)) for (const tongue of Object.keys(surfaces)) tongues.add(tongue)
+  return [...tongues].sort()
+}
+/** Translate text from one tongue to another by routing each known unit through the pivot — A → pivot → B,
+ *  no pairwise dictionary. Whole-text (verse) match first, else unit-by-unit (word). Returns the translated
+ *  text with the coverage as exact integers (mapped / total); unmapped units pass through (the honest gap). */
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export function selfTranslate(text: string, from: string, to: string, lex: PivotLexicon = pivotLexicon()): { text: string; mapped: number; total: number; derived: boolean } {
+  const bySurface: Record<string, Record<string, string>> = {} // tongue → (surface → pivot-id)
+  for (const [pivot, surfaces] of Object.entries(lex)) {
+    for (const [tongue, surface] of Object.entries(surfaces)) (bySurface[tongue] ??= {})[surface.trim().toLowerCase()] = pivot
+  }
+  const whole = bySurface[from]?.[text.trim().toLowerCase()] // a whole-text (verse) pivot match
+  if (whole && lex[whole]?.[to] !== undefined) return { text: lex[whole][to], mapped: 1, total: 1, derived: true }
+  let mapped = 0, total = 0
+  const out = text.split(/([^\p{L}\p{M}'’-]+)/u).map((tok) => {
+    if (!/\p{L}/u.test(tok)) return tok // punctuation/space — not a translatable unit
+    total++
+    const pivot = bySurface[from]?.[tok.toLowerCase()]
+    const target = pivot !== undefined ? lex[pivot]?.[to] : undefined
+    if (target !== undefined) { mapped++; return target }
+    return tok // the honest gap — unregistered, passes through unchanged
+  }).join('')
+  return { text: out, mapped, total, derived: mapped > 0 }
+}
+
 // The two documented strata of the dialect, applied as a modest classifier (Stoykov, Българска
 // диалектология). DOCUMENTED: (a) PALATAL — the Rup/Strandzha soft т/д→к/г and retained soft ж/ч/ш that
 // produce госкье (=гости), кaделкье, пукайе; (b) TURKISM — Ottoman loanwords (Turkish geç → геч "late").
