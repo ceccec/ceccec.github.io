@@ -189,6 +189,16 @@ export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)
 }
 
+// A UUID splits into its DUALITY (the content — the first four groups, the dual pair) and its SUFFIX (the last
+// group, 12 hex). The suffix is the LINK to the NEXT duality: forging it yields the next UUID, so a UUID
+// self-extends into a deterministic sequence of dualities — the recursive spine under the merkaba and auto-advance.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function uuidDuality(uuid: string): string { return uuid.split('-').slice(0, 4).join('-').toLowerCase() } // the content, sans link
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function uuidSuffix(uuid: string): string { return (uuid.split('-')[4] ?? '').toLowerCase() } // the last group — the next-duality link
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function nextDuality(uuid: string): string { return toUuid(`link:${uuidSuffix(uuid)}`) } // the suffix forges the next duality
+
 // A content address IS a point in space: derive a 3-vector in [−1,1]³ from a UUID's hex (three 32-bit chunks).
 // The geometric foundation of the metatron math — 3 such points span a plane, three orthogonal planes a cube.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
