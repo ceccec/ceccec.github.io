@@ -1534,6 +1534,19 @@ export function radarRange(roundTripSeconds: number): number { return (SPEED_OF_
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function dopplerShift(radialVelocityMs: number, carrierHz: number): number { return (2 * radialVelocityMs * carrierHz) / SPEED_OF_LIGHT }
 
+// ── Acoustics — sound as a pressure wave (a DIFFERENT speed from light: ~343 m/s in air, temperature-dependent) ──
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const SPEED_OF_SOUND_AIR = 343 // m/s, dry air at 20 °C — adiabatic (Laplace's c = √(γRT/M), not Newton's isothermal)
+// Speed of sound in dry air at θ °C: c = 331.3·√(1 + θ/273.15) — the adiabatic temperature dependence.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function speedOfSoundAir(tempC: number): number { return 331.3 * Math.sqrt(1 + tempC / 273.15) } // m/s
+// Sound wavelength λ = c/f at temperature θ — the same c = fλ as light, but at the (much slower) speed of sound.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function soundWavelength(frequencyHz: number, tempC = 20): number { return speedOfSoundAir(tempC) / frequencyHz } // metres
+// Sound pressure level in decibels: L_p = 20·log₁₀(p/p₀), p₀ = 20 µPa (≈ the threshold of hearing at 1 kHz).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function soundPressureLevelDb(pressurePa: number): number { return 20 * Math.log10(pressurePa / 20e-6) } // dB SPL
+
 // ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const REDUCED_PLANCK = PLANCK / (2 * Math.PI) // ħ = h/2π, J·s ≈ 1.054571817e-34
