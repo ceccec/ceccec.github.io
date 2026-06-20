@@ -576,6 +576,25 @@ export function bibleInGlagolitic(): readonly { ref: string; ocs: string; glagol
   return CHURCH_SLAVONIC_SCRIPTURE.map((v) => ({ ref: v.ref, ocs: v.ocs, glagolitic: toGlagoliticOCS(v.ocs), en: v.en }))
 }
 
+// ── Молитва За Плодородие — gabchik's 2017 art-prayer, decoded ──────────────────────────────────────────
+// The artist gabchik (http://gabchik.com/molitva.html, 22 June 2017) wove a Bulgarian maiden's prayer for
+// fertility (плодородие) from FIVE folk symbols. Decoded to their DOCUMENTED meaning, the esoteric overlay
+// flagged. The page also quotes the creation verses (Genesis 1:1, 1:3) — the seam to the multilingual
+// scripture pivot. Decode, not decoration: the symbols become reusable data beside toGlagolitic.
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export interface FolkSymbol { name: string; latin: string; meaning: string; documented: boolean }
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export const MOLITVA_SYMBOLS: readonly FolkSymbol[] = [
+  { name: 'Семето на живота', latin: 'Semeto na zhivota', meaning: 'the Seed of Life — a six-petal rosette (шестлъчна розета), a real compass construction and the kernel of the Flower of Life, attested on the Round Church at Preslav', documented: true },
+  { name: 'Ромб', latin: 'Romb', meaning: 'the rhombus/diamond — vertical and horizontal at once, read in folk symbolism as the union of matter and spirit, the down/up triangles joined: balance', documented: true },
+  { name: 'Шевици', latin: 'Shevitsi', meaning: 'the traditional embroidery patterns — protective and fertility signs woven into Bulgarian dress, the geometry carried in thread', documented: true },
+  { name: 'Пендари', latin: 'Pendari', meaning: 'the gold-coin adornments — dowry, status and protective jewellery worn by Bulgarian women, bound to marriage and fertility', documented: true },
+  { name: 'Здравец', latin: 'Zdravets', meaning: 'the geranium (Geranium macrorrhizum) — the folk plant of health (здраве), with documented astringent and antimicrobial compounds; the specific folk-medicine claims flagged', documented: true },
+]
+/** The creation verses the art-prayer quotes verbatim in Bulgarian — the seam to the multilingual pivot. */
+/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+export function molitvaCreationRefs(): readonly string[] { return ['Genesis 1:1', 'Genesis 1:3'] }
+
 
 
 
