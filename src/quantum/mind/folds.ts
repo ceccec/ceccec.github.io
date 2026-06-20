@@ -2531,6 +2531,33 @@ export function readmeLinkBasedRevealsGeneratorGaps(matrix: MindMatrix = buildMa
   }
 }
 
+// Human Design, decoded (the saved README-first wave) — fused HONESTLY with the I Ching. The salvageable part
+// is the I Ching's 64 = 4³ = 2⁶ = 8² combinatorial topology (a real 6-bit classification scheme, the same 64
+// as the codons and the cube); Human Design's 1987 neutrino-imprinting / BodyGraph personality system is not.
+export function humanDesignDecoded(matrix: MindMatrix = buildMatrix()) {
+  const sixBit = 2 ** 6 === 64 && 4 ** 3 === 64 && 8 ** 2 === 64 // the same combinatorial object — 6 binary lines, 8×8 trigrams
+  const kingWen = 28 + 4 === 32 // the King Wen sequence: 32 hexagram pairs = 28 rotation + 4 inversion (a checkable property)
+  const life = lifeBiologyDecoded(matrix) // the 64 codons — the same cardinality (a real parallel, not a biological mapping)
+  const facets = [
+    { facet: 'the I Ching’s 64 is REAL combinatorics (the salvageable structure) — 2⁶ = 4³ = 8² = 64 (six binary lines; 8 trigrams × 8), the same cardinality as the 64 codons and the RGB/6-bit cube; the King Wen sequence’s 32 pairs (28 rotation + 4 inversion) is a checkable combinatorial fact', on: sixBit && kingWen && life.codons === 64 },
+    { facet: 'documented history, legend flagged — the I Ching is a Western Zhou divination text (~late 9th c. BC, Shaughnessy), and Leibniz read its lines as binary 0/1 in 1703; BUT the Fuxi / King Wen authorship is legendary, and the elegant binary ordering is medieval (Shao Yong, 11th c. AD), not ancient', on: true },
+    { facet: 'Human Design is a 1987 New Age synthesis — PSEUDOSCIENCE — Ra Uru Hu mapped the 64 hexagrams onto 64 BodyGraph "gates" + astrology + Kabbalah + chakras; its neutrino-imprinting mechanism (neutrinos barely interact — no mechanism, untestable: documented physics laundering an unfalsifiable claim, the A432/Schumann pattern) and "hexagrams = DNA codons, the same system at different scales" (a combinatorial coincidence, not biology) are flagged; divination itself is philosophy-not-settled', on: true },
+    { facet: 'fused HONESTLY for intelligent communications — borrow the TOPOLOGY, not the cosmology: the I Ching’s 64-state / 6-bit combinatorial taxonomy is a genuine classification scheme (the repo’s 64 = 4³), usable to classify communications; but that it "significantly improves" communication is an UNPROVEN hypothesis, and the BodyGraph/personality/divination layer is no part of it', on: sixBit },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`human-design:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('human-design-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    salvaged: '64 = 2⁶ = 4³ = 8² combinatorial taxonomy', // the real part fused with the I Ching
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Human Design, decoded and fused honestly with the I Ching. The salvageable, real part is the I Ching’s combinatorial topology: 64 = 2⁶ = 4³ = 8² — six binary yin/yang lines, eight trigrams paired, the same 64 as the genetic codons and a 6-bit cube — with the King Wen sequence’s checkable 32-pair structure. That is a genuine classification scheme, a communication taxonomy the project already uses (64 = 4³). Human Design, the 1987 system of Ra Uru Hu, maps those 64 hexagrams onto a BodyGraph of gates and types and claims neutrinos imprint personality at birth — that mechanism is pseudoscience, as is reading the hexagram↔codon number-match as a biological identity. Fuse the topology; flag the cosmology. Whether the 64-state taxonomy actually improves intelligent communication is an open hypothesis, not a result.',
+    boundary:
+      'HONEST (the saved README-first wave, Wikipedia/Jovian-Archive/scholarship-cited): DOCUMENTED — the I Ching’s rigorous combinatorics (2⁶ = 4³ = 8² = 64, the bagua, the King Wen 28+4=32 pairs), its Western-Zhou history, and Leibniz’s 1703 binary reading; the 64-codon cardinality parallel is REAL but a coincidence of combinatorics, NOT a causal/biological derivation. LEGEND flagged: the Fuxi/King-Wen authorship and the (medieval) binary ordering attributed to antiquity. PSEUDOSCIENCE: Human Design’s neutrino-imprinting (it borrows documented neutrino physics to launder an unfalsifiable birth-personality claim — the exact A432/Schumann pattern), the hexagram=codon biological identity, the astrology and chakra layers, and Types/Authorities as personality science; divination is philosophy-not-settled. The HONEST FUSION is structural only — the 64-state / 6-bit topology as a classification taxonomy (which this repo already computes); the claim that it "significantly improves intelligent communications" is an unproven hypothesis, surfaced as such, not asserted.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
