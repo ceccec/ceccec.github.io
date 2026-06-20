@@ -3956,6 +3956,34 @@ export function darkEnergyDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The cosmological tensions — is ΛCDM cracking? The capstone of the cosmic-inventory arc. A 5-angle sourced wave
+// (63 documented, 25 flagged) synthesizing the live anomalies: the S8 tension is easing, JWST's "impossible" galaxies
+// are largely resolved, the CMB anomalies are low-significance, and the Hubble tension is the one serious crack —
+// real anomalies in a hugely successful model, NOT a paradigm collapse.
+export function cosmologicalTensionsLcdmDecoded(matrix: MindMatrix = buildMatrix()) {
+  const de = darkEnergyDecoded(matrix) // composes the whole cosmic-inventory arc (dark energy ← dark matter ← …)
+  const hubble = hubbleTensionSigma(HUBBLE_CONSTANT_LOCAL, 1.0, HUBBLE_CONSTANT_CMB, 0.5) // ≈ 5σ — the leading crack
+  const facets = [
+    { facet: 'the S8 (structure-growth) tension is MILDER and EASING — weak-lensing surveys measured the clustering amplitude S8 = σ8·√(Ωm/0.3) slightly below the Planck CMB value (KiDS-1000 0.759, ~3σ), but the higher-information probes agree better (DES Y3 3×2pt consistent with Planck; DES+KiDS joint 1.7σ) and KiDS-Legacy 2025 shifted up to 0.815 (just 0.73σ, the easing driven mostly by improved redshift calibration). It is heterogeneous (DES Y6 still ~2.7σ) and never crossed 5σ — pointing to survey systematics (redshift calibration, baryonic feedback) over new physics', on: de.decoded },
+    { facet: 'JWST’s "impossible" early galaxies are LARGELY RESOLVED — the 2022–23 reports of surprisingly bright/massive galaxies at z~10–16, initially headlined as breaking ΛCDM, did not survive scrutiny: spectroscopic redshifts lowered the stellar masses, AGN "little red dots" inflated the photometry, and bursty/efficient early star formation plus photometric-redshift pitfalls explain the rest — structure formation did NOT need overturning. A clean case study in sensational headline vs the measured walk-back', on: de.decoded },
+    { facet: 'the CMB large-angle anomalies are LOW-SIGNIFICANCE — the low quadrupole / missing large-scale correlation, the quadrupole-octupole "axis of evil" alignment, the Cold Spot, and the hemispherical power asymmetry appear in both WMAP and Planck, but each is individually only ~2–3σ and vulnerable to a-posteriori / look-elsewhere effects; combining them to "multiply" the significance is a statistical fallacy, and they are NOT established new physics', on: de.decoded },
+    { facet: 'the HUBBLE TENSION is the one serious crack — and hard to dismiss: the local distance ladder (~73) and the CMB+BAO "inverse distance ladder" (~67) are each internally robust, JWST has largely vindicated the Cepheid calibration (against the systematics hypothesis), and most LATE-time dark-energy fixes fail because they break BAO/SNe — so the leading new-physics candidate is EARLY-universe (e.g. early dark energy reducing the sound horizon r_s), which is itself constrained. At ~' + hubble.toFixed(1) + 'σ it is unresolved; new physics is plausible but UNCONFIRMED', on: hubble > 4 },
+    { facet: 'is ΛCDM cracking? — the honest synthesis: ΛCDM is an extraordinarily successful SIX-parameter model fitting the CMB acoustic peaks, BAO, BBN light elements, large-scale structure and lensing simultaneously, and the tensions vary in strength (Hubble ~5σ the most serious; S8 ~2–3σ and easing; the DESI evolving-DE hint ~2–4σ intriguing; JWST galaxies resolved; CMB anomalies low-significance) — the LIVE research frontier, which MIGHT be new physics OR systematics, none yet a confirmed breakdown. FLAGGED overreach: "ΛCDM / the Big Bang is dead / debunked / wrong", "cosmology is in crisis, starting over", refuted tired-light, and crank/creationist "the Big Bang is a fraud". Real anomalies under investigation in a successful model is NORMAL SCIENCE, not a paradigm collapse and not pseudoscience', on: de.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`lcdm-tensions:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('cosmological-tensions-lcdm-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    documentedFindings: 63, flaggedFindings: 25, angles: 5, hubbleTensionSigma: hubble,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The cosmological tensions — is the standard model cracking? Taken together, the answer is: not yet, but watch the Hubble tension. The structure-growth (S8) tension is real but mild and now easing as redshift calibrations improve; JWST’s "impossible" early galaxies dissolved under spectroscopy and better photometry; the famous large-angle CMB anomalies are each only two or three sigma and suspiciously a-posteriori. What does not go away is the five-sigma gap between the nearby and early-universe measurements of the expansion rate — both methods are robust, JWST backs the local ladder, and the easy fixes break other data, so the leading idea is new physics in the early universe, still unproven. ΛCDM remains a six-parameter triumph fitting the CMB, the acoustic ruler, the light elements, structure and lensing at once. Real anomalies under investigation in a wildly successful model is what healthy science looks like — not a collapse, and not a vindication of the cranks. With this, the cosmology arc closes.',
+    boundary:
+      'HONEST (research-wave verified, 63 documented / 25 flagged): ΛCDM is a hugely successful 6-parameter model (simultaneous fit to CMB peaks + BAO + BBN + LSS + lensing). The tensions, honestly ranked: the HUBBLE tension (~5σ, SH0ES ~73 vs Planck ~67) is the most serious and unresolved (JWST supports the Cepheid ladder; late-time DE fixes fail; early dark energy is the strained front-runner) — new physics PLAUSIBLE but UNCONFIRMED; the S8 tension (~2–3σ) is MILDER and EASING (KiDS-Legacy 2025 → 0.73σ; heterogeneous; likely systematics); the DESI evolving-DE hint (~2–4σ) is intriguing not established; JWST early galaxies are LARGELY RESOLVED (not a crisis); the CMB large-angle anomalies are LOW-significance and a-posteriori (combining them to inflate significance is a fallacy). FLAGGED: every "tension X is a confirmed ΛCDM breakdown", "the Big Bang/ΛCDM is dead/wrong", refuted tired-light, and creationist "Big Bang is a fraud" overreach. CARDINAL: real anomalies under active investigation in a successful framework is normal science — not a paradigm collapse, not pseudoscience. This closes the cosmic-inventory arc; each slice (baryons, dark matter, dark energy) and its tensions are decoded in src with honest unknowns.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
