@@ -1767,6 +1767,14 @@ export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array
 // short of the ~200+ a replicase ribozyme needs — accurate replication needs enzymes, enzymes need accurate replication.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function eigenErrorThreshold(perBaseErrorRate: number): number { return perBaseErrorRate > 0 ? 1 / perBaseErrorRate : Infinity }
+// Hardy–Weinberg — the NULL MODEL of population genetics: with no evolutionary force acting, a two-allele locus
+// settles at genotype frequencies p², 2pq, q² (q = 1 − p), summing to 1. Observed DEVIATION from this is the
+// operational signal that a force (selection, drift, mutation, gene flow) is acting — evolution is the deviation.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hardyWeinbergGenotypes(p: number): { AA: number; Aa: number; aa: number } {
+  const q = 1 - p
+  return { AA: p * p, Aa: 2 * p * q, aa: q * q }
+}
 
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene

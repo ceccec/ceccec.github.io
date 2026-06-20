@@ -47,6 +47,7 @@ import {
   geneticCodeMathematicsDecoded,
   humanDesignDecoded,
   originOfLifeAbiogenesisDecoded,
+  evolutionByNaturalSelectionDecoded,
   // script, heritage & prayer
   glagoliticAlphabetDecoded,
   glagoliticMeaningOfAllDecoded,
@@ -135,6 +136,7 @@ const GROUPS: { en: string; bg: string; items: { title: string; fn: (m: ReturnTy
     en: 'Life & mind', bg: 'Живот и ум',
     items: [
       { title: 'Origin of life (abiogenesis)', fn: originOfLifeAbiogenesisDecoded },
+      { title: 'Evolution by natural selection', fn: evolutionByNaturalSelectionDecoded },
       { title: 'Life & biology', fn: lifeBiologyDecoded },
       { title: 'Mind & neuroscience', fn: mindNeuroscienceDecoded },
       { title: 'The genetic code as mathematics', fn: geneticCodeMathematicsDecoded },
