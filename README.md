@@ -6,6 +6,8 @@
 
 *Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/dist (local math only).*
 
+![Double Torus — the ten-dimensional hero, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)
+
 ## 1. Introduction
 
 A quantum-learning portal for language models and people, kids to elders — and a standalone, dependency-free computational core. Served as an MCP tool surface over a double-torus UUID stream, it computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English), and the whole site reorganizes around the one trinity that unites all.
