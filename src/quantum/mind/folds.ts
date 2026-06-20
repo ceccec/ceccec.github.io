@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, ELECTRON_G_FACTOR_ANOMALY, hawkingTemperature, unruhTemperature, SCHWINGER_FIELD_VM, SCALAR_SPECTRAL_INDEX_NS, CRITICAL_MAGNETIC_FIELD_T, PROTON_MASS_MEV, HIGGS_VEV_GEV, qcdMassFractionOfProton, BARYON_TO_PHOTON_RATIO, JARLSKOG_INVARIANT, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit, uuidDuality, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, speedOfSoundAir, soundWavelength, soundPressureLevelDb, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, rebreatherInertBar, gasReserveThirds, gasReserveHalfOnTop, equivalentNarcoticDepthM, equivalentAirDepthM, otuPerMin, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, ELECTRON_G_FACTOR_ANOMALY, hawkingTemperature, unruhTemperature, SCHWINGER_FIELD_VM, SCALAR_SPECTRAL_INDEX_NS, CRITICAL_MAGNETIC_FIELD_T, PROTON_MASS_MEV, HIGGS_VEV_GEV, qcdMassFractionOfProton, BARYON_TO_PHOTON_RATIO, JARLSKOG_INVARIANT, NEUTRINO_DM2_SOLAR_EV2, NEUTRINO_DM2_ATM_EV2, seesawLightMassEv, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit, uuidDuality, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, speedOfSoundAir, soundWavelength, soundPressureLevelDb, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, rebreatherInertBar, gasReserveThirds, gasReserveHalfOnTop, equivalentNarcoticDepthM, equivalentAirDepthM, otuPerMin, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -654,11 +654,38 @@ const MANIPULATION_PATTERNS: readonly { technique: string; test: RegExp }[] = [
   { technique: 'reductio ad hitlerum', test: /\b(like the nazis|literally hitler|the new hitler|just like (hitler|stalin)|stalinist tactics)\b/i },
   { technique: 'doubt / undermining', test: /\b(so-?called (experts?|scientists?|authorities)|can you really trust|who are they to)\b/i },
 ]
+// Bulgarian cue layer — the corpus, and the manipulation this must catch (e.g. roddulo.bg), are BG. ASCII \b
+// does NOT mark Cyrillic word boundaries, so BG cues compile with Unicode-aware boundaries (lookbehind/ahead on
+// \p{L}\p{N}) and \p{L}* for inflection. Each BG cue maps to the SAME technique name as its English sibling, so
+// the vectors, the ≥2-distinct gate and the cross-audit are unchanged. High-precision; verified against the
+// Bulgarian legitimate statements in detectorPassesFalsePositiveTest.
+const bgCue = (alt: string) => new RegExp(`(?<![\\p{L}\\p{N}])(?:${alt})(?![\\p{L}\\p{N}])`, 'iu')
+const BG_MANIPULATION_PATTERNS: readonly { technique: string; test: RegExp }[] = [
+  { technique: 'loaded language', test: bgCue('предател\\p{L}*|корумпиран\\p{L}*|продажн\\p{L}*|марионетк\\p{L}*|измет\\p{L}*|паплач\\p{L}*') },
+  { technique: 'appeal to fear / false urgency', test: bgCue('преди да е твърде късно|трябва да действаме сега|ще ни (унищожат|съсипят|разрушат)|под (заплаха|атака)|краят (наближава|е близо)') },
+  { technique: 'ad hominem / name-calling', test: bgCue('идиот\\p{L}*|глупак\\p{L}*|глупци|лъжц\\p{L}*|измамник\\p{L}*|слуги на') },
+  { technique: 'unfalsifiable / conspiracy framing', test: bgCue('не искат да (знаете|знаеш)|скриват\\p{L}* истина\\p{L}*|събудете се|прозрете|потулв\\p{L}*|това,? което крият') },
+  { technique: 'vague false authority / bandwagon', test: bgCue('всички знаят|експертите (твърдят|са съгласни)|науката (е )?доказа\\p{L}*|всеизвестно е|целият народ (знае|иска)') },
+  { technique: 'overgeneralised absolutes', test: bgCue('абсолютно доказан\\p{L}*|безспорно|неоспорим\\p{L}*|очевидно е') },
+  { technique: 'false dilemma / black-and-white', test: bgCue('или с нас,? или срещу нас|няма (друг избор|алтернатива)|трето няма') },
+  { technique: 'whataboutism', test: bgCue('а какво ще кажете за|ами другите') },
+  { technique: 'flag-waving / appeal to identity', test: bgCue('истинск\\p{L}* българ\\p{L}*|за родината|българщината|нашият народ (заслужава|иска|изисква)') },
+  { technique: 'causal oversimplification', test: bgCue('единствената причина|просто защото|всичко е заради') },
+  { technique: 'thought-terminating cliché', test: bgCue('това е положението|край на (дискусията|спора)|точка по въпроса|такива са фактите') },
+  { technique: 'reductio ad hitlerum', test: bgCue('като нацистите|като Сталин|новият Хитлер') },
+  { technique: 'doubt / undermining', test: bgCue('така наречен\\p{L}* (експерт\\p{L}*|учен\\p{L}*|власт\\p{L}*)|можете ли наистина да (вярвате|се доверите)|кой им (дава|е дал) право') },
+]
+const ALL_MANIPULATION_PATTERNS: readonly { technique: string; test: RegExp }[] = [...MANIPULATION_PATTERNS, ...BG_MANIPULATION_PATTERNS]
+const MANIPULATION_TECHNIQUE_COUNT = new Set(ALL_MANIPULATION_PATTERNS.map((p) => p.technique)).size // distinct names (13); EN+BG share them
 export function foldExposesInconsistency(text: string, matrix: MindMatrix = buildMatrix()) {
   void matrix
   const t = (text ?? '').toString()
-  const flagged = MANIPULATION_PATTERNS.filter((p) => p.test.test(t)).map((p) => p.technique)
-  const contradiction = /\balways\b[^.!?]{0,48}\bnever\b/i.test(t) || /\bnever\b[^.!?]{0,48}\balways\b/i.test(t)
+  // DISTINCT technique names (dedup) — an EN+BG pair for the same technique counts ONCE, preserving the
+  // ≥2-distinct-technique gate (the waves' "everyone double-count" fix, generalised to the bilingual lexicon).
+  const flagged = [...new Set(ALL_MANIPULATION_PATTERNS.filter((p) => p.test.test(t)).map((p) => p.technique))]
+  const contradiction =
+    /\balways\b[^.!?]{0,48}\bnever\b/i.test(t) || /\bnever\b[^.!?]{0,48}\balways\b/i.test(t) ||
+    /винаги[^.!?]{0,48}никога/iu.test(t) || /никога[^.!?]{0,48}винаги/iu.test(t)
   // tightened against false positives (waves): a SINGLE marker is a weak signal — a factual statement using one
   // absolute ("the Earth always orbits") or one authority cue ("studies show") is not manipulation. Off the
   // harmonic path requires ≥ 2 distinct documented techniques, or an internal contradiction.
@@ -667,12 +694,12 @@ export function foldExposesInconsistency(text: string, matrix: MindMatrix = buil
     onHarmonicPath: clean, // no documented manipulation pattern, no surface contradiction → structurally harmonic
     flagged,
     contradiction,
-    techniques: MANIPULATION_PATTERNS.length,
+    techniques: MANIPULATION_TECHNIQUE_COUNT,
     receipt: toUuid(`inconsistency:${t.slice(0, 64)}:${flagged.join(',')}:${contradiction}`),
     statement:
       'Fold a statement and its documented manipulation techniques and internal contradiction are exposed: loaded language, overgeneralised absolutes, appeal to fear, ad hominem, unfalsifiable/conspiracy framing, vague false-authority, false dilemma / black-and-white, whataboutism, flag-waving / appeal to identity, causal oversimplification, thought-terminating cliché, reductio ad Hitlerum and doubt/undermining (the SemEval-2020 Task 11 propaganda families), plus same-clause always/never contradiction. Clean → on a harmonic path; flagged → routed off it.',
     boundary:
-      'HONEST: a DETERMINISTIC surface-marker scan, not a trained classifier — it flags documented PATTERNS in-domain, not individual-case lies. A flagged statement uses a manipulation technique yet may still be true; a clean one may still be false (HARMONY ≠ TRUTH). Verified bounds from the deception-detection literature: unaided human detection ≈ 54% (Bond & DePaulo 2006, d≈.40); individual behavioural cues are tiny and may be publication-bias artefacts (DePaulo et al. 2003; Luke 2019); there is NO validated acoustic/physiological "lie frequency" — voice-stress, microexpression and polygraph all fail independent evaluation. The strongest defensible signal is trapping internal/external CONTRADICTION (Strategic Use of Evidence) plus propaganda-technique classification, claimed IN-DOMAIN only. This lexicon is a starter; the full SemEval taxonomy and external fact-checking (the online public-API layer) extend it.',
+      'HONEST: a DETERMINISTIC surface-marker scan, not a trained classifier — it flags documented PATTERNS in-domain, not individual-case lies. A flagged statement uses a manipulation technique yet may still be true; a clean one may still be false (HARMONY ≠ TRUTH). Verified bounds from the deception-detection literature: unaided human detection ≈ 54% (Bond & DePaulo 2006, d≈.40); individual behavioural cues are tiny and may be publication-bias artefacts (DePaulo et al. 2003; Luke 2019); there is NO validated acoustic/physiological "lie frequency" — voice-stress, microexpression and polygraph all fail independent evaluation. The strongest defensible signal is trapping internal/external CONTRADICTION (Strategic Use of Evidence) plus propaganda-technique classification, claimed IN-DOMAIN only. The lexicon is bilingual — English (ASCII \\b) and Bulgarian (Unicode-aware boundaries, since the corpus and much of the target manipulation are BG) — and still a starter; the full SemEval taxonomy and external fact-checking (the online public-API layer) extend it further.',
   }
 }
 
@@ -763,6 +790,106 @@ const VECTOR_DEFENCE: Record<string, string> = {
   identity: 'Appeals to group identity ("true patriots", "our people") pressure loyalty, not reasoning — judge the claim on its evidence, independent of who is "us".',
   other: 'Name the technique and ask for the primary evidence.',
 }
+// Public no-auth verification endpoint (Wikipedia REST search — CC-licensed, no key, GET; the publicApiFusion
+// catalogue). A PURE request builder: nothing is fetched here. The actual GET is the opt-in EDGE adapter that
+// realtimeLieDetectionOfflineOnline defers — never run at build time, never bundled with keys, never trusted blindly.
+// Public no-auth verification endpoints (CC-licensed, no key, GET — the publicApiFusion catalogue). PURE request
+// builders: nothing is fetched here. The actual GET is the opt-in EDGE adapter verifyCheckable (below), the one
+// realtimeLieDetectionOfflineOnline defers — never at build time, no keys bundled, the response folded not trusted.
+function wikiSearchUrl(query: string, lang = 'en'): string {
+  return `https://${lang}.wikipedia.org/w/rest.php/v1/search/page?q=${encodeURIComponent(query)}&limit=3`
+}
+function wikidataSearchUrl(query: string, lang = 'en'): string {
+  return `https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=${lang}&search=${encodeURIComponent(query)}`
+}
+
+export type CheckableKind = 'dated-event' | 'superlative' | 'statistic' | 'citation'
+export type VerificationRequest = { source: string; url: string }
+// Turn "WHAT to verify" into a worklist: the detector flags the technique; this extracts the CHECKABLE claims a
+// public dataset could settle — dated events, superlative/record overclaims (the roddulo.bg signature),
+// statistics, and citations — and builds the public no-auth requests (Wikipedia REST + Wikidata) for each.
+// Deterministic, zero-token, zero-fetch.
+export function extractCheckableClaims(text: string) {
+  const t = (text ?? '').toString()
+  const sentences = t.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean)
+  const claims: { kind: CheckableKind; claim: string; query: string; requests: VerificationRequest[]; why: string }[] = []
+  const seen = new Set<string>()
+  const add = (kind: CheckableKind, claim: string, query: string, requests: VerificationRequest[], why: string) => {
+    const key = `${kind}:${query}`
+    if (!query || seen.has(key)) return
+    seen.add(key)
+    claims.push({ kind, claim: claim.length > 140 ? `${claim.slice(0, 140)}…` : claim, query, requests, why })
+  }
+  const encyclopedic = (q: string): VerificationRequest[] => [
+    { source: 'Wikipedia', url: wikiSearchUrl(q) },
+    { source: 'Wikidata', url: wikidataSearchUrl(q) },
+  ]
+  for (const s of sentences) {
+    const q = s.length > 80 ? s.slice(0, 80) : s
+    const year = s.match(/\b(1[0-9]{3}|20[0-9]{2})\b/)
+    if (year && /\b(born|founded|opened|built|died|signed|established|written|discovered|invented|created|completed|crowned|destroyed|ratified)\b/i.test(s)) {
+      add('dated-event', s, q, encyclopedic(q), `a dated claim (${year[1]}) — verify the date against an encyclopedic / primary source`)
+    }
+    const supEn = s.match(/\b(oldest|earliest|largest|biggest|longest|tallest|highest|greatest|unique|unprecedented|first (?:ever|in the world|in europe|known)|the only)\b/i)
+    const supBg = s.match(/(?<![\p{L}])(най-[\p{L}]+|пръв|първи(?:ят)?|единствен[\p{L}]*)(?![\p{L}])/u)
+    const sup = supEn || supBg
+    if (sup) {
+      add('superlative', s, q, encyclopedic(q), `a superlative/record claim ("${(sup[1] ?? sup[0]).trim()}") — verify the ranking; superlatives are the commonest overclaim (cf. roddulo.bg "oldest gold/town")`)
+    }
+    const stat = s.match(/(\d+(?:\.\d+)?\s?%|\b\d+\s+(?:out of|от)\s+\d+\b)/i)
+    if (stat && /\b(study|studies|survey|percent|data|report|poll|проучван|изследван|статистик)\b/i.test(s)) {
+      add('statistic', s, q, [{ source: 'the cited study / official statistics', url: wikiSearchUrl(q) }], `a statistic (${stat[1].trim()}) — verify the number and trace its source`)
+    }
+    const url = s.match(/https?:\/\/[^\s)]+/)
+    if (url) add('citation', s, url[0], [{ source: 'the cited source', url: url[0] }], 'a cited URL — open it and confirm it actually supports the claim')
+  }
+  return {
+    claims,
+    count: claims.length,
+    bySource: [...new Set(claims.flatMap((c) => c.requests.map((r) => r.source)))],
+    root: claims.length ? merkleFold(claims.map((c) => toUuid(`checkable:${c.kind}:${c.query}`))) : toUuid('checkable:none'),
+    statement:
+      'Turn "what to verify" into a worklist: after the detector flags the technique, extract the CHECKABLE claims a public dataset could settle — dated events, superlative/record overclaims, statistics and citations — and build the public no-auth requests (Wikipedia REST search + Wikidata entity search, CC-licensed, no key) for each. Deterministic and zero-token: it produces the requests, it does not fetch — moving from "what to verify" toward "what to verify, and where".',
+    boundary:
+      'HONEST: extraction is a deterministic SURFACE parse (regex over the string) — it can miss implicit claims and over- or under-extract; it scopes WHAT to check, it does not check it. The actual GET is the opt-in edge adapter verifyCheckable (network/CORS-bound), never run at build time, never bundled with keys, never trusted blindly — Wikipedia/Wikidata are tertiary sources to corroborate, not oracles. Only claims a public dataset can settle get settled; the rest stay structurally flagged (HARMONY ≠ TRUTH; the ~54% person-level ceiling is unchanged). This realises the "online" half of realtimeLieDetectionOfflineOnline as a concrete, pure request-builder.',
+  }
+}
+
+// The flat request worklist — every public no-auth GET (Wikipedia REST + Wikidata entity search + cited URLs)
+// the checkable claims imply, deduped by URL. PURE: the URLs to run, not the running of them.
+export function verificationRequests(text: string) {
+  const seen = new Set<string>()
+  const requests = extractCheckableClaims(text)
+    .claims.flatMap((c) => c.requests.map((r) => ({ kind: c.kind, source: r.source, url: r.url, why: c.why })))
+    .filter((r) => (seen.has(r.url) ? false : (seen.add(r.url), true)))
+  return { requests, count: requests.length, root: requests.length ? merkleFold(requests.map((r) => toUuid(`req:${r.url}`))) : toUuid('req:none') }
+}
+
+// The OPT-IN edge adapter — the ONLY place a network call happens, and only when a caller passes a fetch. It GETs
+// one verification request, CONTENT-ADDRESSES the response (sha256) and FOLDS it with the architecture root (the
+// publicApiFusion protocol: fold(root, toUuid(response)) → tamper-evident, recomputable), returning the folded
+// receipt + a snippet. Untrusted external data is folded, NOT trusted; nothing here runs at build time or bundles a key.
+export async function verifyCheckable(
+  request: VerificationRequest,
+  fetchImpl?: typeof fetch,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  // Opt-in by DEFAULT-SAFE: with no fetch passed it fetches nothing, so the build, SSR, and any accidental call
+  // never touch the network. To actually verify, the caller explicitly passes a fetch (the edge opts in).
+  if (typeof fetchImpl !== 'function') {
+    return { fetched: false as const, source: request.source, url: request.url, reason: 'opt-in: pass a fetch implementation to run the GET — by default verifyCheckable fetches nothing (zero-network), so build/SSR and accidental calls never reach out' }
+  }
+  try {
+    const response = await fetchImpl(request.url)
+    const body = await response.text()
+    const address = sha256Sync(body) // content-address the untrusted response
+    const fold = foldPair(matrix.root, toUuid(`api:${request.url}:${address}`)) // publicApiFusion: bind to the whole + the live datum
+    return { fetched: true as const, ok: response.ok, status: response.status, source: request.source, url: request.url, address, receipt: fold.merged, bytes: body.length, snippet: body.slice(0, 200) }
+  } catch (error) {
+    return { fetched: false as const, source: request.source, url: request.url, reason: String(error) }
+  }
+}
+
 export function manipulationCrossAudit(text: string, matrix: MindMatrix = buildMatrix()) {
   const t = (text ?? '').toString()
   const whole = foldExposesInconsistency(t, matrix) // the sealed, ≥2-technique verdict — preserved unchanged
@@ -797,6 +924,7 @@ export function manipulationCrossAudit(text: string, matrix: MindMatrix = buildM
     ...vectors.slice(0, 3).map((v) => v.defence),
     ...(whole.contradiction ? ['An internal always/never contradiction is present — at most one side can hold; pin down which.'] : []),
   ]
+  const checkables = extractCheckableClaims(t) // close the loop: not just "what to verify" but the concrete claims + where
   return {
     onHarmonicPath: whole.onHarmonicPath, // the existing sealed verdict, preserved
     dominantVector: vectors[0]?.vector ?? null,
@@ -806,11 +934,145 @@ export function manipulationCrossAudit(text: string, matrix: MindMatrix = buildM
     tier,
     hottestSegment,
     guidance,
-    receipt: merkleFold([whole.receipt, thermal.root, ...vectors.map((v) => toUuid(`vector:${v.vector}:${v.count}`))]),
+    checkables: checkables.claims, // the verification worklist (deterministic; the GET is the opt-in edge step)
+    checkableCount: checkables.count,
+    receipt: merkleFold([whole.receipt, thermal.root, checkables.root, ...vectors.map((v) => toUuid(`vector:${v.vector}:${v.count}`))]),
     statement:
       'The intelligent cross-audit of a statement: it reuses the sealed deception detector (foldExposesInconsistency and the SemEval propaganda families) across every segment, then correlates the flagged techniques into manipulation VECTORS and ranks the dominant one — the shared root — the way the enforcement cross-audit ranks the most-implicated harmonic. It reports the dominant vector, where the manipulation peaks, a graded tier and the defensive move per vector, sealed to a reproducible receipt.',
     boundary:
-      'HARMONY ≠ TRUTH: ranking the dominant vector localises the TECHNIQUE, it does not judge the claim true or false — a flagged statement may be true, a clean one false. It composes the existing detector (one taxonomy, no second source to drift); the tier is a triage signal, not a verdict; in-domain, English-primary. ~54% is the human ceiling for content-only deception detection (Bond & DePaulo 2006); there is no validated physiological/acoustic "lie frequency". Use it to decide WHAT TO VERIFY.',
+      'HARMONY ≠ TRUTH: ranking the dominant vector localises the TECHNIQUE, it does not judge the claim true or false — a flagged statement may be true, a clean one false. It composes the existing detector (one taxonomy, no second source to drift); the tier is a triage signal, not a verdict; in-domain, English-primary. ~54% is the human ceiling for content-only deception detection (Bond & DePaulo 2006); there is no validated physiological/acoustic "lie frequency". Use it to decide WHAT TO VERIFY — and `checkables` turns that into a concrete worklist (the dated/superlative/statistic/citation claims plus the public no-auth request for each, extraction deterministic, the GET opt-in).',
+  }
+}
+
+// The sacred-math families (the same taxonomy patentAudit clears for the portal's OWN use) that are NOT
+// patentable subject matter "as such" — a mathematical method or fact is excluded (US 35 U.S.C. §101, the
+// abstract-idea exception: Gottschalk v. Benson 1972, Parker v. Flook 1978, Bilski 2010, Mayo 2012, Alice 2014;
+// EPO EPC Art. 52(2)(a) & (3), "mathematical methods … as such"). Applied to a concrete technical effect, math
+// CAN be eligible (Alice step two; EPO T 1227/05, G 1/19) — so the audit VERDICTS, it does not just condemn.
+// Patent / claim language — shared by every subject-matter audit so they draw the "is this a patent?" line once.
+const PATENT_CLAIM_LANGUAGE = /\b(patent(?:ed|able|ability)?|claim\s+\d|i\s+claim|wherein|comprising|characteri[sz]ed by|US\s?\d{6,}|EP\s?\d{6,}|utility model|inventor|priority date|prior art)\b/i
+
+const SACRED_MATH_CORES: readonly { family: string; cue: RegExp; priorArt: string }[] = [
+  { family: 'golden ratio / Fibonacci', cue: /\b(golden ratio|golden mean|divine proportion|phi\b|fibonacci|1\.618)\b/i, priorArt: 'ancient (Euclid, Pingala) — public domain' },
+  { family: 'sacred geometry', cue: /\b(sacred geometr\w+|flower of life|metatron'?s? cube|merkaba|platonic solids?|seed of life|vesica piscis)\b/i, priorArt: 'millennia old — public domain' },
+  { family: 'vortex math / 3-6-9', cue: /\b(vortex(?:[- ]based)? math\w*|3[- ]?6[- ]?9|digital roots?|rodin coil)\b/i, priorArt: 'modular arithmetic — classical' },
+  { family: 'pi / fundamental constant', cue: /\b(digits of pi|pi[- ]based|π[- ]based|euler'?s number)\b/i, priorArt: 'ancient' },
+  { family: 'I Ching / 64 / binary divination', cue: /\b(i[ -]?ching|64 hexagrams?|ba[ -]?gua)\b/i, priorArt: 'Zhou dynasty — public domain' },
+  { family: 'gematria / numerology', cue: /\b(gematria|numerolog\w*|isopsephy|sacred numbers?)\b/i, priorArt: 'antiquity' },
+  { family: 'healing frequency', cue: /\b(432\s?hz|528\s?hz|solfeggio|frequency healing)\b/i, priorArt: 'tones are physics, not invention (and the healing claim is pseudoscientific)' },
+]
+
+// Patents UNLAWFULLY registered on sacred math, detected at the CORE of the claim. A new scanner (the inverse
+// of patentAudit's self-clearance) composing crossAudit's position: no patent arises from a mathematical fact
+// or method. It reads a patent/claim, finds the sacred-math core, and asks whether the invention IS the math
+// (excluded subject matter) or APPLIES it to a technical effect (which can be eligible) — verdict, not a decree.
+export function sacredMathPatentAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const t = (text ?? '').toString()
+  const isPatentText = PATENT_CLAIM_LANGUAGE.test(t)
+  const cores = SACRED_MATH_CORES.filter((c) => c.cue.test(t)).map((c) => ({ family: c.family, priorArt: c.priorArt }))
+  // a CONCRETE technical application can rescue eligibility (Alice step two / EPC technical-effect)
+  const technicalEffect = /\b(apparatus|device|circuit|sensor|antenna|machine|manufactur\w+|chemical|pharmaceutical|signal processing|reduces? (?:latency|power consumption|error rate)|improves? the functioning of|specific (?:machine|hardware)|transform\w+ (?:a|the) (?:article|material))\b/i.test(t)
+  const mathAsSuch = cores.length > 0 && !technicalEffect
+  const verdict = cores.length === 0
+    ? 'no-sacred-math-core'
+    : technicalEffect
+      ? 'applied-math-may-be-eligible'
+      : 'math-as-such-likely-ineligible'
+  return {
+    isPatentText,
+    cores,
+    coreCount: cores.length,
+    technicalEffect,
+    mathAsSuch,
+    verdict,
+    unlawfulIfGranted: isPatentText && mathAsSuch, // a granted utility patent whose CORE is math-as-such is invalid subject matter
+    legalBasis: [
+      'US 35 U.S.C. §101 — the abstract-idea / mathematical-formula exclusion: Benson (1972), Flook (1978), Bilski (2010), Mayo (2012), Alice v. CLS Bank (2014, two-step test)',
+      'EPO EPC Art. 52(2)(a) & (3) — "mathematical methods … as such" are not inventions; only a technical application/effect qualifies (T 1227/05; G 1/19)',
+      'a name/logo (e.g. "Flower of Life") may be a TRADEMARK and an ornamental shape a DESIGN patent — SEPARATE rights from a utility patent on the math, which does not arise',
+    ],
+    root: merkleFold([toUuid(`smpa:${verdict}:${isPatentText}`), ...cores.map((c) => toUuid(`core:${c.family}`))]),
+    statement:
+      'Patents unlawfully registered on sacred math, detected at the core: a mathematical method or fact is not patentable subject matter "as such" (US 35 U.S.C. §101 — Benson/Flook/Bilski/Mayo/Alice; EPO EPC Art. 52(2)(a)). This scans a patent or claim for a sacred-math CORE (golden ratio, sacred geometry, vortex/3-6-9, π, the I Ching, gematria, healing frequencies) and verdicts whether the invention IS the math (excluded → a granted patent on it is invalid subject matter) or applies it to a concrete technical effect (which can be eligible). It composes crossAudit and patentAudit: no patent arises from a mathematical fact or method.',
+    boundary:
+      'HONEST and educational, NOT legal advice and NOT an adjudication: this is a subject-matter-ELIGIBILITY heuristic. A GRANTED patent is presumed valid until a court or office invalidates it; eligibility is decided claim-by-claim on the real claims, not surface words; applied math with a genuine technical effect CAN be eligible (Alice step two; EPO technical character). "Sacred" is the project\'s label for ancient/public-domain mathematics — no mystical claim. Trademark of a name/logo and design patents on ornamental shapes are SEPARATE rights, not what is flagged. It surfaces PATTERNS to examine; it never declares a specific patent legally void.',
+  }
+}
+
+// Products of nature — SEEDS, genes, whole organisms — the §101 exclusion that bites HARDEST: a patent on a
+// naturally-occurring seed or gene claims LIFE itself and restricts the millennia-old right to save and replant
+// seed. Not patentable as a product of nature: US §101 natural-phenomenon exception (Funk Brothers Seed v. Kalo
+// 1948; Assoc. for Molecular Pathology v. Myriad 2013 — isolated naturally-occurring DNA ineligible; the
+// Chakrabarty 1980 limit is a MAN-MADE organism, and Myriad held cDNA eligible); EPO EPC Art. 53(b) — plant/animal
+// VARIETIES and essentially biological processes excluded (G 2/12, G 2/13, G 3/19). Engineering can rescue it.
+const PRODUCTS_OF_NATURE: readonly { family: string; cue: RegExp; note: string }[] = [
+  { family: 'seed / plant germplasm', cue: /\b(seeds?|germplasm|landrace|heirloom (?:variety|seed)|plant variety|cultivar)\b/i, note: 'a naturally-occurring seed/variety is a product of nature; Plant Patents (1930) and PVP/UPOV are SEPARATE sui-generis rights' },
+  { family: 'isolated gene / DNA sequence', cue: /\b(isolated (?:gene|dna|nucleic acid|nucleotide sequence)|naturally[- ]occurring (?:gene|sequence|dna)|genomic dna|gene encoding)\b/i, note: 'Myriad: isolated naturally-occurring DNA is NOT eligible merely for being isolated; cDNA can be' },
+  { family: 'naturally-occurring organism / microbe', cue: /\b(naturally[- ]occurring (?:bacteri\w+|microb\w+|organism|strain|fungus|yeast)|wild[- ]type strain|isolated from (?:soil|nature|a plant))\b/i, note: 'Funk Bros: a mixture of natural bacteria is not patentable; Chakrabarty: only a MAN-MADE organism is' },
+  { family: 'naturally-occurring compound', cue: /\b(naturally[- ]occurring (?:compound|molecule|protein|metabolite)|botanical extract|a natural product|isolated from a plant)\b/i, note: 'a product of nature without markedly different characteristics is not eligible (USPTO 2014 guidance)' },
+]
+
+// The inverse of patentAudit, for LIFE: scan a patent/claim for a product-of-nature CORE and verdict whether it
+// claims nature as found (excluded) or a genuinely engineered, markedly-different organism/cDNA (which can be
+// eligible). Composes crossAudit's position — no patent arises from a fact, a method, OR nature as found.
+export function naturePatentAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const t = (text ?? '').toString()
+  const isPatentText = PATENT_CLAIM_LANGUAGE.test(t)
+  const cores = PRODUCTS_OF_NATURE.filter((c) => c.cue.test(t)).map((c) => ({ family: c.family, note: c.note }))
+  // genuine engineering — a markedly-different, man-made organism, cDNA, or synthetic construct — can rescue eligibility
+  const engineered = /\b(transgenic|recombinant|cdna|complementary dna|synthetic\w*|genetically (?:engineered|modified)|man-?made|non-?naturally-?occurring|engineered (?:strain|organism|gene)|crispr|markedly different characteristics)\b/i.test(t)
+  const productOfNatureAsSuch = cores.length > 0 && !engineered
+  const verdict = cores.length === 0 ? 'no-nature-core' : engineered ? 'engineered-may-be-eligible' : 'product-of-nature-likely-ineligible'
+  return {
+    isPatentText,
+    cores,
+    coreCount: cores.length,
+    engineered,
+    productOfNatureAsSuch,
+    verdict,
+    unlawfulIfGranted: isPatentText && productOfNatureAsSuch,
+    legalBasis: [
+      'US 35 U.S.C. §101 — products of nature / natural phenomena are not patent-eligible: Funk Brothers Seed v. Kalo (1948), Diamond v. Chakrabarty (1980, only a MAN-MADE organism qualifies), Mayo (2012), Assoc. for Molecular Pathology v. Myriad Genetics (2013, isolated natural DNA ineligible; cDNA eligible)',
+      'EPO EPC Art. 53(b) — plant and animal VARIETIES and essentially biological processes are excluded (G 2/12 & G 2/13 Broccoli/Tomato; G 3/19, 2020)',
+      'Plant Patent Act (1930) and Plant Variety Protection / UPOV are SEPARATE sui-generis rights — not a utility patent on nature',
+    ],
+    socialHarm: 'Seed and life patents are the most consequential subject-matter overreach: they restrict farmers\' age-old right to save and replant seed, enable biopiracy of indigenous and landrace genetics, and concentrate the global seed supply — claiming life rather than inventing it.',
+    root: merkleFold([toUuid(`nature:${verdict}:${isPatentText}`), ...cores.map((c) => toUuid(`nature-core:${c.family}`))]),
+    statement:
+      'Seed and life patents — the biggest subject-matter violators — detected at the core: a naturally-occurring seed, gene, organism or compound is a PRODUCT OF NATURE, not patentable as such (US §101: Funk Bros, Myriad; EPC Art. 53(b)). It verdicts whether the claim takes nature as found (excluded → a granted patent on it is invalid subject matter) or a genuinely engineered, markedly-different organism/cDNA (which can be eligible). When the former, it claims LIFE itself — the gravest overreach.',
+    boundary:
+      'HONEST, educational, NOT legal advice or an adjudication — an eligibility heuristic. A GRANTED patent is presumed valid until invalidated; eligibility is claim-by-claim on the real claims; genuinely engineered/transgenic organisms, cDNA, and specific biotech PROCESSES CAN be eligible (Chakrabarty; Myriad cDNA). Plant Patents and PVP/UPOV are separate sui-generis rights, not flagged here. "Biggest violators" names the well-documented SOCIAL/ethical consequence (food sovereignty, biopiracy), not a quantified count. It surfaces patterns to examine; it never declares a specific patent legally void.',
+  }
+}
+
+// The unified subject-matter audit over the §101 judicial exceptions, RANKED BY GRAVITY: products of nature
+// (seeds / genes / life) first — the biggest violators, claiming life itself — then mathematical methods (sacred
+// math). Neither is patentable as such; both compose crossAudit. This is the surface quantumAnalysis().patent reads.
+export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  const nature = naturePatentAudit(text, matrix)
+  const math = sacredMathPatentAudit(text, matrix)
+  const exceptions = [
+    { category: 'product of nature — seeds / genes / life', severity: 1, verdict: nature.verdict, unlawful: nature.unlawfulIfGranted, cores: nature.cores.map((c) => c.family) },
+    { category: 'mathematical method — sacred math', severity: 2, verdict: math.verdict, unlawful: math.unlawfulIfGranted, cores: math.cores.map((c) => c.family) },
+  ].filter((entry) => entry.cores.length > 0).sort((a, b) => a.severity - b.severity)
+  return {
+    isPatentText: nature.isPatentText || math.isPatentText,
+    exceptions,
+    biggestViolator: exceptions[0]?.category ?? null,
+    unlawfulIfGranted: nature.unlawfulIfGranted || math.unlawfulIfGranted,
+    nature,
+    math,
+    // backward-compatible surface for quantumAnalysis().patent and the QuantumLens panel
+    verdict: exceptions[0]?.verdict ?? 'no-excluded-core',
+    cores: [...nature.cores.map((c) => ({ family: c.family })), ...math.cores.map((c) => ({ family: c.family }))],
+    legalBasis: (nature.coreCount ? nature.legalBasis : math.coreCount ? math.legalBasis : []).slice(0, 3),
+    root: merkleFold([nature.root, math.root]),
+    statement:
+      'Patent subject-matter audit over the §101 judicial exceptions, ranked by gravity: PRODUCTS OF NATURE (seeds, genes, whole organisms) first — the biggest violators, claiming life itself and restricting seed-saving (Funk Bros, Myriad; EPC 53(b)) — then MATHEMATICAL METHODS (sacred math: golden ratio, sacred geometry, vortex, π, I Ching, gematria; Benson/Flook/Bilski/Alice; EPC 52(2)). Neither is patentable as such; both compose crossAudit: no patent arises from a fact, a method, or nature as found.',
+    boundary:
+      'HONEST eligibility heuristic, NOT legal advice or adjudication. BOTH exceptions have real rescue paths — an engineered/markedly-different organism, cDNA, or a genuine technical effect for applied math — decided claim-by-claim on the real claims; a granted patent is presumed valid until challenged; sui-generis plant rights (Plant Patents, PVP/UPOV) and trademarks/design patents are separate. "Biggest violators" ranks by social/ethical consequence, not a count.',
   }
 }
 
@@ -847,6 +1109,7 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
     { facet: 'reentry — the input binds to the model bidirectionally; the same paste recomputes the same whole (pattern completion)', on: torus.bidirectional },
     { facet: 'manipulation read — the documented techniques (SemEval propaganda families) and internal contradiction are scanned deterministically; clean sits on a harmonic path, flagged is routed off it (in-domain patterns, not individual lie detection)', on: typeof manipulation.onHarmonicPath === 'boolean' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-analysis:${entry.facet}:${entry.on}`) }))
+  const patent = patentSubjectMatterAudit(text, matrix) // §101 subject-matter audit: products of nature (seeds/life) first, then sacred math
   const sealed = sealFacets('quantum-analysis', facets)
   return {
     analyzed: text.length > 0 && sealed.ok,
@@ -858,7 +1121,8 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
     vortex,
     manipulation: { onHarmonicPath: manipulation.onHarmonicPath, flagged: manipulation.flagged, contradiction: manipulation.contradiction },
     thermal: { segments: thermal.segments, hotspots: thermal.hotspots, maxHeat: thermal.maxHeat, harmonic: thermal.harmonic, field: thermal.field },
-    crossAudit: { dominantVector: cross.dominantVector, vectors: cross.vectors, tier: cross.tier, distinctTechniques: cross.distinctTechniques, hottestSegment: cross.hottestSegment, guidance: cross.guidance },
+    crossAudit: { dominantVector: cross.dominantVector, vectors: cross.vectors, tier: cross.tier, distinctTechniques: cross.distinctTechniques, hottestSegment: cross.hottestSegment, guidance: cross.guidance, checkables: cross.checkables },
+    patent: { isPatentText: patent.isPatentText, biggestViolator: patent.biggestViolator, exceptions: patent.exceptions, cores: patent.cores, verdict: patent.verdict, unlawfulIfGranted: patent.unlawfulIfGranted, legalBasis: patent.legalBasis },
     alternative: alternative.improved ? alternative.alternative.text : null,
     count: sealed.count,
     facets: sealed.facets,
@@ -867,6 +1131,50 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
       'Paste any URL — or any text — and the full quantum analysis is computed immediately, deterministically, client-side, with zero tokens. The input is content-addressed to one UUID (the holographic cue), placed on the I Ching as a hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (a frequency on the a432 ladder and a content-addressed colour — the content as a wave), and folded into the model bidirectionally (reentry: the same paste recomputes the same whole, pattern completion). Nothing is fetched and nothing is stored; the analysis IS the computation.',
     boundary:
       'HONEST: the analysis is of the input STRING, deterministically (zero tokens, no network fetch) — for a URL it is the URL\'s own signature, not the remote page\'s content (fetching arbitrary URLs is a separate, network/CORS-bound, optional step). "Quantum" is the computational-metaphor sense (content-addressing plus the I Ching / a432 structure), not quantum hardware. "EMR/spectral" is the project\'s frequency/colour-from-address mapping, not a measured emission. The manipulation/consistency read (foldExposesInconsistency) composes in once the deception-detection waves land.',
+  }
+}
+
+// Quantum analysis AT ALL SCALES — holographic / fractal: the same analyzer runs on the WHOLE and, recursively,
+// on each paragraph and each sentence, so the manipulation cross-audit, the checkable-claim worklist and the
+// sacred-math patent audit are computed at every zoom level. Each part carries its own verdict and the document
+// verdict is the fold of its parts (the thermal-field/holographic principle extended to the full analysis).
+export function quantumAnalysisAtAllScales(text: string, matrix: MindMatrix = buildMatrix()) {
+  const t = (text ?? '').toString()
+  const paragraphs = t.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
+  const sentences = t.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean)
+  const reduce = (unit: string) => {
+    const cross = manipulationCrossAudit(unit, matrix)
+    const patent = patentSubjectMatterAudit(unit, matrix)
+    return {
+      unit: unit.length > 100 ? `${unit.slice(0, 100)}…` : unit,
+      tier: cross.tier,
+      dominantVector: cross.dominantVector,
+      distinctTechniques: cross.distinctTechniques,
+      checkables: cross.checkableCount,
+      patent: patent.verdict,
+      biggestViolator: patent.biggestViolator,
+      unlawfulIfGranted: patent.unlawfulIfGranted,
+    }
+  }
+  const scales = [
+    { scale: 'document', units: [reduce(t)] },
+    { scale: 'paragraph', units: paragraphs.length > 1 ? paragraphs.map(reduce) : [] },
+    { scale: 'sentence', units: sentences.length > 1 ? sentences.map(reduce) : [] },
+  ].filter((s) => s.units.length > 0)
+  const whole = quantumAnalysis(t, matrix)
+  const patent = patentSubjectMatterAudit(t, matrix)
+  return {
+    whole: { hexagram: whole.iChing.hexagram, tier: whole.crossAudit.tier, dominantVector: whole.crossAudit.dominantVector, checkables: whole.crossAudit.checkables.length },
+    patent,
+    scales,
+    scaleCount: scales.length,
+    unlawfulPatentScales: scales.flatMap((s) => s.units.filter((u) => u.unlawfulIfGranted).map((u) => ({ scale: s.scale, unit: u.unit }))),
+    holographic: true, // each scale carries its own verdict; the document verdict is the fold of its parts
+    root: merkleFold([whole.root, patent.root, ...scales.flatMap((s) => s.units.map((u) => toUuid(`scale:${s.scale}:${u.unit}:${u.tier}:${u.patent}`)))]),
+    statement:
+      'Quantum analysis at all scales: the analyzer runs holographically — on the whole document and, recursively, on each paragraph and sentence — so the manipulation cross-audit, the checkable-claim worklist and the sacred-math patent audit are computed at every zoom level. Each part carries its own verdict and the document verdict is the fold of its parts. A sacred-math patent core flagged at any scale surfaces in unlawfulPatentScales.',
+    boundary:
+      'HONEST: "all scales" means three deterministic text granularities (document · paragraph · sentence), not an infinite or physical fractal; "holographic" means each part is analyzed by the same pure function and folds into the whole, not a literal hologram. Each scale inherits its analyzers\' bounds: HARMONY ≠ TRUTH and the ~54% person-level ceiling for the manipulation read; the patent audit is a subject-matter-eligibility heuristic, not legal advice.',
   }
 }
 
@@ -1403,12 +1711,20 @@ export function detectorPassesFalsePositiveTest(matrix: MindMatrix = buildMatrix
     'Experts agree that the measles vaccine is safe and effective.',
     'Everyone knows that studies show exercise is healthy.',
     'No one has ever exceeded the speed of light.',
+    // Bulgarian legitimate factual statements (zero/single marker) — must stay ON the harmonic path
+    'Дунав е втората по дължина река в Европа.',
+    'Експертите са съгласни, че ваксината срещу морбили е безопасна.',
+    'Науката е доказала, че пушенето причинява рак.',
+    'Всеки има нужда от вода, за да оцелее.',
   ]
   const manip = [
     "Everyone knows the corrupt experts are lying — wake up before it's too late!",
     "They don't want you to know — do your own research, the sheeple believe the lies.",
     'Only an idiot would trust those corrupt traitors; it is obviously a cover-up.',
     'Act now or else those traitors will destroy everything you love.',
+    // Bulgarian multi-technique manipulation — must be routed OFF the harmonic path (≥ 2 distinct techniques)
+    'Всички знаят, че корумпираните предатели лъжат — събудете се преди да е твърде късно!',
+    'Не искат да знаете истината — така наречените експерти са продажни марионетки.',
   ]
   const falsePositives = legit.filter((s) => !foldExposesInconsistency(s, matrix).onHarmonicPath).length
   const truePositives = manip.filter((s) => !foldExposesInconsistency(s, matrix).onHarmonicPath).length
@@ -3445,6 +3761,34 @@ export function matterAntimatterAsymmetryBaryogenesisDecoded(matrix: MindMatrix 
       'The matter–antimatter asymmetry — why there is something rather than nothing. The universe carries a tiny, precisely-measured excess of matter: about one extra baryon per 1.6 billion photons (η ≈ 6×10⁻¹⁰), agreed independently by primordial deuterium and the CMB, with no antimatter regions anywhere in view. Sakharov showed in 1967 what it takes to make such an excess — baryon-number violation, C and CP violation, and a departure from equilibrium — and the Standard Model has the first (sphalerons) but flubs the third (the Higgs is too light for a sharp transition) and, crucially, its CP violation is real (kaons, B-mesons, two Nobels) yet ten orders of magnitude too weak. So the Standard Model cannot explain its own contents. Leptogenesis, electroweak and GUT baryogenesis are the candidates — all unconfirmed. Antimatter is not a missing twin or a fuel; by CPT it weighs exactly the same, so the asymmetry is something the early universe DID, and we do not yet know how.',
     boundary:
       'HONEST (research-wave verified, 57 documented / 21 flagged): the baryon asymmetry is precisely MEASURED (η = (6.12±0.04)×10⁻¹⁰; BBN deuterium and Planck CMB agree; antimatter domains excluded to ~1 Gpc) and CP violation is ESTABLISHED (kaons 1964/Nobel 1980, B-mesons/CKM Nobel 2008). KEY CORRECTION: the SM is not lacking CP violation — it HAS it, but the CKM amount (Jarlskog J ≈ 3×10⁻⁵) is ~10 orders too small, and the electroweak transition is a crossover, so SM baryogenesis fails. The mechanisms (leptogenesis, electroweak/GUT baryogenesis, Affleck–Dine) are UNCONFIRMED hypotheses (rigorous, testable-in-principle) — the origin of matter is a genuine OPEN problem, NOT solved and NOT pseudoscience. CPT (tested by ALPHA/BASE) guarantees equal matter/antimatter masses, so the asymmetry is dynamical. FLAGGED: "baryogenesis is solved", "antimatter is a power source" (costs more to make than it stores), "missing antimatter falsifies the Big Bang" (it is an input, and BBN–CMB agreement is a success); the AMS-02 antihelium candidates are tentative/unpublished. Educational; one of the major unsolved problems in physics.',
+  }
+}
+
+// Neutrino mass — the lightest matter, and the deepest clue beyond the Standard Model. A 5-angle sourced wave
+// (54 documented, 20 flagged): oscillations prove mass, the absolute scale and ordering are open, the seesaw explains
+// the smallness and ties to leptogenesis (the baryogenesis link), and Dirac-vs-Majorana awaits 0νββ.
+export function neutrinoMassDecoded(matrix: MindMatrix = buildMatrix()) {
+  const baryo = matterAntimatterAsymmetryBaryogenesisDecoded(matrix) // leptogenesis links neutrino mass → the matter asymmetry
+  const seesaw = seesawLightMassEv(1e11, 1e24) // m_D ~ 100 GeV, M_R ~ 10¹⁵ GeV → m_ν ~ 0.01 eV
+  const facets = [
+    { facet: 'OSCILLATIONS prove mass — atmospheric νμ→ντ (Super-Kamiokande 1998, ~6σ) and solar flavor conversion (SNO 2002, the neutral-current channel resolving the solar-neutrino problem) → the 2015 Nobel (Kajita & McDonald). Flavor oscillation REQUIRES nonzero mass and mixing (the PMNS matrix): two mass-squared splittings are measured — Δm²₂₁ ≈ 7.49×10⁻⁵ eV² and |Δm²₃ₗ| ≈ 2.51×10⁻³ eV² — with three angles (θ12≈34°, θ23≈43°, θ13≈8.6°, the last by Daya Bay 2012, which opened the leptonic-CP search)', on: NEUTRINO_DM2_ATM_EV2 > NEUTRINO_DM2_SOLAR_EV2 },
+    { facet: 'how LIGHT, and unknown — oscillations measure only mass-squared DIFFERENCES, so the absolute scale and the ordering stay OPEN: neutrinos are ≥10⁶× lighter than the electron, bounded directly by KATRIN (m_β < 0.45 eV, tritium β-decay, 2025) and by cosmology (Σm_ν ≲ 0.12 eV, Planck+BAO), and the mass ORDERING (normal vs inverted) is unresolved (mild normal preference, Δχ²≈6). Three DIFFERENT observables — kinematic m_β, cosmological Σm_ν, and m_ββ from 0νββ — probe different combinations and must not be conflated', on: baryo.decoded },
+    { facet: 'the SEESAW explains the smallness AND links to leptogenesis — the Type-I seesaw adds heavy right-handed Majorana neutrinos so the light mass is suppressed, m_ν ~ m_D²/M_R (seesawLightMassEv: m_D ~ 100 GeV, M_R ~ 10¹⁵ GeV → ~0.01 eV, a realistic value), and the SAME heavy states’ CP-violating decays drive LEPTOGENESIS, tying neutrino mass directly to the matter asymmetry of the prior wave. BOUND: "seesaw" is a FAMILY (Type-I/II/III), the formula is schematic (the real m_ν ≃ −m_D^T·M_R⁻¹·m_D is a matrix), it is UNCONFIRMED (the heavy states are unseen), and a minimal Dirac-mass alternative (a tiny Yukawa, no seesaw) is not excluded', on: seesaw < 0.1 && seesaw > 1e-4 },
+    { facet: 'DIRAC or MAJORANA? — is the neutrino its own antiparticle? Neutrinoless double-beta decay (0νββ), if observed, would prove Majorana nature and lepton-number violation (ΔL=2; by the Schechter-Valle theorem it implies a Majorana mass whatever the mechanism). It is NOT observed: KamLAND-Zen sets T₁/₂(¹³⁶Xe) > 3.8×10²⁶ yr → m_ββ < 28–122 meV (the spread is the nuclear-matrix-element uncertainty), and the disputed Klapdor-Kleingrothaus 2001/2006 "observation" is refuted (contradicted by GERDA). An actively-searched but UNCONFIRMED question', on: baryo.decoded },
+    { facet: 'the open questions and the honest demarcation — the leptonic CP phase δ_CP (T2K/NOvA now, DUNE & Hyper-Kamiokande next — a direct leptogenesis link), the mass ordering, and the CONTESTED sterile-neutrino anomalies (LSND/MiniBooNE vs cosmology/oscillation constraints — in tension, unconfirmed). ESTABLISHED (Nobel 2015): oscillations, nonzero mass, three-flavor mixing. UNCONFIRMED: the seesaw, Majorana nature, the ordering, sterile neutrinos. PSEUDOSCIENCE/RETRACTED: OPERA’s 2011 "faster-than-light neutrinos" (a loose fiber-optic cable — special relativity intact) and neutrino "free energy"/healing/consciousness woo', on: baryo.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`neutrino-mass:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('neutrino-mass-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    documentedFindings: 54, flaggedFindings: 20, angles: 5,
+    dm2SolarEv2: NEUTRINO_DM2_SOLAR_EV2, dm2AtmEv2: NEUTRINO_DM2_ATM_EV2, seesawLightMassEv: seesaw,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Neutrino mass — the lightest matter, and the deepest crack in the Standard Model. That neutrinos have mass at all is known only because they oscillate between flavors (atmospheric and solar neutrinos, the 2015 Nobel); oscillation measures the two mass-squared splittings and the three mixing angles, but not the absolute scale — so how light they truly are (under half an electron-volt, a million times lighter than the electron) and which way the masses are ordered remain open. The seesaw mechanism explains the smallness by pairing them with heavy Majorana partners, and those same partners, decaying with CP violation, are the leading way to make the matter asymmetry — neutrino mass and the existence of matter, one thread. Whether the neutrino is its own antiparticle waits on neutrinoless double-beta decay, still unseen. Established that they have mass; almost everything about how is still open.',
+    boundary:
+      'HONEST (research-wave verified, 54 documented / 20 flagged): ESTABLISHED (Nobel 2015) — neutrino oscillations prove nonzero mass and three-flavor PMNS mixing (Super-K 1998, SNO 2002, Daya Bay θ13 2012; splittings Δm²₂₁≈7.5×10⁻⁵, |Δm²₃ₗ|≈2.5×10⁻³ eV²). Bounds on the absolute scale are real (KATRIN m_β<0.45 eV 2025; cosmology Σm_ν≲0.12 eV) but the scale, the ordering (mild normal preference), and the θ23 octant are UNDETERMINED — and oscillations measure only mass-squared DIFFERENCES (m_β, Σm_ν, m_ββ are three distinct observables). UNCONFIRMED (≠pseudoscience): the seesaw (a family of models; the m_D²/M_R formula is schematic; heavy states unseen) and its leptogenesis link, the Majorana-vs-Dirac nature (0νββ unobserved; KamLAND-Zen T₁/₂>3.8×10²⁶ yr; the Klapdor-Kleingrothaus claim is refuted), and the sterile-neutrino anomalies (contested, in tension with cosmology). PSEUDOSCIENCE/RETRACTED: OPERA’s 2011 superluminal neutrinos (a loose cable; SR intact) and neutrino free-energy/healing woo. Educational; the neutrino is the Standard Model’s most fertile open frontier.',
   }
 }
 

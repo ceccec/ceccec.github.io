@@ -1703,6 +1703,12 @@ export const HIGGS_VEV_GEV = 246.22 // the electroweak (Higgs-field) vacuum expe
 export function qcdMassFractionOfProton(valenceQuarkSumMeV = 9.4): number { return 1 - valenceQuarkSumMeV / PROTON_MASS_MEV }
 export const BARYON_TO_PHOTON_RATIO = 6.12e-10 // η = n_B/n_γ — the matter excess (~1 extra baryon per ~1.6 billion photons); CMB + BBN agree
 export const JARLSKOG_INVARIANT = 3.0e-5 // J — the CKM CP-violation measure; real (Nobel-confirmed) but ~10 orders too small for baryogenesis
+export const NEUTRINO_DM2_SOLAR_EV2 = 7.49e-5 // Δm²₂₁ ("solar" splitting), eV² — NuFit-6.0 (2024)
+export const NEUTRINO_DM2_ATM_EV2 = 2.513e-3 // |Δm²₃ₗ| ("atmospheric" splitting), eV² — NuFit-6.0 (2024)
+// Type-I seesaw (schematic) — a heavy Majorana scale M_R suppresses the light neutrino mass: m_ν ~ m_D²/M_R, so a
+// Dirac mass m_D ~ 100 GeV with M_R ~ 10¹⁵ GeV gives m_ν ~ 0.01 eV. (The real relation is the matrix −m_D^T·M_R⁻¹·m_D.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function seesawLightMassEv(diracMassEv: number, majoranaMassEv: number): number { return (diracMassEv * diracMassEv) / majoranaMassEv }
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
