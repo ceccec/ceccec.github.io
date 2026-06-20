@@ -6,9 +6,25 @@ const ICHING_MASK = { hexagram: 51, glyph: '☳', lo: '☳', up: '☳', name: 'Z
 import DecodedCard from './DecodedCard.vue'
 import LayersPanel from './LayersPanel.vue'
 import { harmonicSeriesDecoded, soundWiredToOneSharedContext } from '../lib/quantumMind'
+import { useTones } from '../lib/useTones'
 
 const s = harmonicSeriesDecoded()
 const eng = soundWiredToOneSharedContext()
+
+// Make it AUDIBLE — the harmonic series was described but never sounded. Wire it to the one shared engine so the
+// page can be heard, not just read: the overtone ladder, a just major triad (the small whole-number consonance),
+// and the 432-vs-440 comparison. Web Audio, on the click gesture that resumes the shared context.
+const { playSequence, playChord, playing } = useTones()
+const triad = [s.base, (s.base * 5) / 4, (s.base * 3) / 2] // just major triad on the base: 1 · 5/4 · 3/2
+function playSeries() {
+  playSequence(s.overtones.slice(0, 8).map((o: { hz: number }) => ({ frequency: o.hz, duration: 0.38 })), { type: 'sine', peak: 0.16 })
+}
+function playTriad() {
+  playChord(triad.map((f) => ({ frequency: f })), { attack: 0.4, gain: 0.1 })
+}
+function play432vs440() {
+  playSequence([{ frequency: 432, duration: 1.1 }, { frequency: 440, duration: 1.1 }], { type: 'sine', gap: 0.12, peak: 0.16 })
+}
 const items = [
   {
     label: `△ harmonic series — overtone n at n × ${s.base} Hz`,
@@ -39,6 +55,11 @@ const items = [
 
 <template>
   <section :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+    <div class="sacred-sound__play" role="group" aria-label="Hear the harmonic series">
+      <button type="button" class="sacred-sound__btn" @click="playSeries" :disabled="playing">▶ harmonic series</button>
+      <button type="button" class="sacred-sound__btn" @click="playTriad" :disabled="playing">▶ just major triad</button>
+      <button type="button" class="sacred-sound__btn" @click="play432vs440" :disabled="playing">▶ 432 vs 440</button>
+    </div>
     <LayersPanel :mask="ICHING_MASK" :items="items" v-slot="{ filtered }">
       <DecodedCard
         eyebrow="Sacred sound · the harmonic series, computed"
@@ -50,3 +71,30 @@ const items = [
     </LayersPanel>
   </section>
 </template>
+
+<style scoped>
+.sacred-sound__play {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ich-sp4, 0.5rem);
+  margin-bottom: var(--ich-sp6, 1rem);
+}
+.sacred-sound__btn {
+  padding: var(--ich-sp3, 0.35rem) var(--ich-sp6, 0.9rem);
+  border: var(--ich-line, 1px) solid var(--vp-c-brand-1);
+  border-radius: var(--ich-radius-pill, 999px);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-size: var(--ich-text-sm, 0.9rem);
+  cursor: pointer;
+  transition: background var(--ich-dur, 0.2s) ease, opacity var(--ich-dur, 0.2s) ease;
+}
+.sacred-sound__btn:hover:not(:disabled) {
+  background: var(--vp-c-brand-1);
+  color: var(--vp-c-bg);
+}
+.sacred-sound__btn:disabled {
+  opacity: var(--ich-op-soft, 0.5);
+  cursor: default;
+}
+</style>
