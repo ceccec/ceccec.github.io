@@ -1683,6 +1683,17 @@ export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.
 // The electron anomalous magnetic moment a_e = (g−2)/2 — vacuum (QED radiative) corrections measured to ~12 sig
 // figs; the most precisely tested prediction in physics, the strongest evidence the quantum vacuum is not empty.
 export const ELECTRON_G_FACTOR_ANOMALY = 1.15965218073e-3 // CODATA experimental a_e (g−2)/2
+// Hawking temperature of a black hole — T_H = ħc³/(8πGMk_B). A solar mass ≈ 62 nK, FAR below the 2.7 K CMB, so
+// real stellar black holes absorb more than they radiate (not net-evaporating). THEORETICAL, unconfirmed for real gravity.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hawkingTemperature(massKg: number): number { return (REDUCED_PLANCK * SPEED_OF_LIGHT ** 3) / (8 * Math.PI * NEWTON_G * massKg * BOLTZMANN) }
+// Unruh temperature — a uniformly accelerated observer sees the vacuum as a thermal bath, T_U = ħa/(2πck_B);
+// ~1 K needs a ≈ 2.5×10²⁰ m/s². THEORETICAL, not experimentally observed.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function unruhTemperature(accelerationMS2: number): number { return (REDUCED_PLANCK * accelerationMS2) / (2 * Math.PI * SPEED_OF_LIGHT * BOLTZMANN) }
+export const SCHWINGER_FIELD_VM = 1.32e18 // V/m — the critical field for vacuum e⁺e⁻ pair production (Schwinger 1951); beyond any laser, not yet observed
+export const SCALAR_SPECTRAL_INDEX_NS = 0.9649 // Planck 2018 primordial spectral index; <1 is the measured red tilt (exact scale-invariance excluded at 8.4σ)
+export const CRITICAL_MAGNETIC_FIELD_T = 4.41e9 // T (B_c ≈ 4.41×10¹³ G) — the QED scale where the vacuum becomes birefringent (Euler–Heisenberg)
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
