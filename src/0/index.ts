@@ -1564,6 +1564,26 @@ export function buhlmannCeilingBar(compartmentBar: number, halfTimeMin: number):
   return (compartmentBar - buhlmannA(halfTimeMin)) * buhlmannB(halfTimeMin) // bar — below this ambient pressure, DCS risk rises
 }
 
+// The 16 Bühlmann ZHL-16 nitrogen half-times (minutes) — the deterministic dive computer's tissue compartments.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const ZHL16_N2_HALFTIMES: readonly number[] = [4, 8, 12.5, 18.5, 27, 38.3, 54.3, 77, 109, 146, 187, 239, 305, 390, 498, 635]
+// A deterministic dive computer: load the 16 compartments over a constant-depth bottom segment, then report the
+// controlling ascent ceiling and whether a direct (no-decompression) ascent is allowed. Same dive → same plan.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function buhlmannDivePlan(depthM: number, bottomTimeMin: number, surfaceN2Bar = 0.79): {
+  ambientBar: number; controllingCeilingBar: number; noDecoOk: boolean;
+  compartments: { halfTimeMin: number; loadBar: number; ceilingBar: number }[]
+} {
+  const ambientBar = 1 + depthM / 10 // ~1 bar per 10 m of seawater above the 1 bar surface
+  const inspiredN2Bar = (ambientBar - 0.0627) * 0.79 // alveolar N2: subtract water-vapour pressure, then the N2 fraction
+  const compartments = ZHL16_N2_HALFTIMES.map((t) => {
+    const loadBar = haldaneLoad(surfaceN2Bar, inspiredN2Bar, t, bottomTimeMin)
+    return { halfTimeMin: t, loadBar, ceilingBar: buhlmannCeilingBar(loadBar, t) }
+  })
+  const controllingCeilingBar = Math.max(...compartments.map((c) => c.ceilingBar))
+  return { ambientBar, controllingCeilingBar, noDecoOk: controllingCeilingBar <= 1, compartments } // ≤1 bar ⇒ direct ascent ok
+}
+
 // ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const REDUCED_PLANCK = PLANCK / (2 * Math.PI) // ħ = h/2π, J·s ≈ 1.054571817e-34
