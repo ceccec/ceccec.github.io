@@ -32,6 +32,33 @@ import {
   decimalsInsteadOfFractionsCouldKill,
   deviceSensorsWiredAtAllDimensions,
   shadcnGraphCompletionInRepoIdiom,
+  // fundamental physics (earlier decodes, now catalogued)
+  fundamentalPhysicsDecoded,
+  quantumDecoded,
+  quantumFieldsDecoded,
+  gravityDecoded,
+  thermodynamicsEntropyDecoded,
+  zeroPointDecoded,
+  emergenceMatterChemistryDecoded,
+  cosmologyDecoded,
+  // life & mind
+  lifeBiologyDecoded,
+  mindNeuroscienceDecoded,
+  geneticCodeMathematicsDecoded,
+  humanDesignDecoded,
+  // script, heritage & prayer
+  glagoliticAlphabetDecoded,
+  glagoliticMeaningOfAllDecoded,
+  glagoliticRecursiveTaxonomyDecoded,
+  glagoliticMapsToCodeAndQuantumDecoded,
+  glagoliticBulgarianReceptionDecoded,
+  bulgarianHeritageDecoded,
+  molitvaZaPlodorodieDecoded,
+  // senses & systems
+  acousticsCymaticsDecoded,
+  publicFrequencyApisDecoded,
+  herbalApisDecoded,
+  sessionToolsDecoded,
 } from '../lib/quantumMind'
 import { useLocale } from '../lib/useLocale'
 
@@ -88,6 +115,49 @@ const GROUPS: { en: string; bg: string; items: { title: string; fn: (m: ReturnTy
       { title: 'Decimals instead of fractions could kill', fn: decimalsInsteadOfFractionsCouldKill },
       { title: 'Device sensors at every dimension', fn: deviceSensorsWiredAtAllDimensions },
       { title: 'The shadcn graph, in the repo idiom', fn: shadcnGraphCompletionInRepoIdiom },
+    ],
+  },
+  {
+    en: 'Fundamental physics', bg: 'Фундаментална физика',
+    items: [
+      { title: 'Fundamental physics — the arc', fn: fundamentalPhysicsDecoded },
+      { title: 'Quantum, decoded', fn: quantumDecoded },
+      { title: 'Quantum fields (the Standard Model)', fn: quantumFieldsDecoded },
+      { title: 'Gravity', fn: gravityDecoded },
+      { title: 'Thermodynamics & entropy', fn: thermodynamicsEntropyDecoded },
+      { title: 'Zero-point energy (the ½ħω core)', fn: zeroPointDecoded },
+      { title: 'Emergence — atoms & chemistry', fn: emergenceMatterChemistryDecoded },
+      { title: 'Cosmology', fn: cosmologyDecoded },
+    ],
+  },
+  {
+    en: 'Life & mind', bg: 'Живот и ум',
+    items: [
+      { title: 'Life & biology', fn: lifeBiologyDecoded },
+      { title: 'Mind & neuroscience', fn: mindNeuroscienceDecoded },
+      { title: 'The genetic code as mathematics', fn: geneticCodeMathematicsDecoded },
+      { title: 'Human Design', fn: humanDesignDecoded },
+    ],
+  },
+  {
+    en: 'Script, heritage & prayer', bg: 'Писменост, наследство и молитва',
+    items: [
+      { title: 'The Glagolitic alphabet', fn: glagoliticAlphabetDecoded },
+      { title: 'Glagolitic — the meaning of all letters', fn: glagoliticMeaningOfAllDecoded },
+      { title: 'Glagolitic as recursive taxonomy (flagged)', fn: glagoliticRecursiveTaxonomyDecoded },
+      { title: 'Glagolitic → code & quantum', fn: glagoliticMapsToCodeAndQuantumDecoded },
+      { title: 'Glagolitic — the Bulgarian reception', fn: glagoliticBulgarianReceptionDecoded },
+      { title: 'Bulgarian heritage', fn: bulgarianHeritageDecoded },
+      { title: 'Molitva za plodorodie (prayer for fertility)', fn: molitvaZaPlodorodieDecoded },
+    ],
+  },
+  {
+    en: 'Senses, systems & sources', bg: 'Сетива, системи и източници',
+    items: [
+      { title: 'Acoustics & cymatics', fn: acousticsCymaticsDecoded },
+      { title: 'Public frequency APIs', fn: publicFrequencyApisDecoded },
+      { title: 'Herbal / botanical APIs', fn: herbalApisDecoded },
+      { title: 'Session tools', fn: sessionToolsDecoded },
     ],
   },
 ]
