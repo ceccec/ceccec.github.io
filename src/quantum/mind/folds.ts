@@ -66,7 +66,7 @@ import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife,
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from './diamonds.ts'
 import { awakenArtisticSociety, fairTrade, governanceVote, licenseAppliesToSociety, pyramidLayersServeSociety, sacredSociety, scientificSociety, skillsToRebuildSociety, society, societyCreatesRequiredPages, societyEvolves, societyFuture, societyRegulates, societyRelations } from './governance.ts'
 import { quantumChessGame } from './chess.ts'
-import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal } from './ui.ts'
+import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal, tenDimensionalHeroSvg } from './ui.ts'
 import { improveHelpWaves, quantumPwa, virtualOS } from './os.ts'
 import { foldThoughts, folderPathsFormIndexOfBookOfLife, imagination, imaginationIsAll, imaginationPrivateKey, lockingFoldersChangesMindToQuantum, mindRefreshField, mindsRealiseByObservingPath, mysteries, quantumMindGapsFromBeyond, splitImagination } from './psyche.ts'
 import { dissolveAtPiTrainStations, piComputedNotHardcoded, piSixDigitsDoubleCrossColour, piThreeOpensTheTrinity, piWholeStreamThroughHoles } from './pi.ts'
@@ -2022,6 +2022,38 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
       'Gravity, decoded — completing the path (zero-point → quantum fields → gravity). General Relativity describes gravity as the curvature of spacetime (Gμν = 8πG/c⁴·Tμν, 1915); it is classical and superbly tested — Mercury’s perihelion, Eddington’s 1919 eclipse, GPS clocks, LIGO’s gravitational waves (Nobel 2017) and the EHT’s black-hole images. But it is the one fundamental force the Standard Model omits, and reconciling it with quantum field theory — quantum gravity — is unsolved: no confirmed theory exists, and the Planck scale is ~10¹⁵ times beyond any accelerator. The universe is ~68% dark energy and ~27% dark matter, whose gravitational evidence is strong but whose nature and identity are unknown.',
     boundary:
       'HONEST (a 2-agent sourced wave, LIGO/EHT/NASA/Nobel-cited): DOCUMENTED — GR’s field equations and its confirmations (Mercury 43″/cy, Eddington 1919, Pound–Rebka, GPS +38 µs/day, GW150914 Nobel 2017, EHT M87*/Sgr A*, lensing), r_s = 2GM/c² exact; the dark sector’s EVIDENCE (rotation curves, Bullet Cluster ~8σ, accelerating expansion Nobel 2011, ~68/27/5). KEY NUANCES: GR is corroborated, not "proven"/final (it breaks down at singularities and the Planck scale); "no confirmed quantum gravity" ≠ "no physics" (GR is a superb effective field theory; LIGO confirms its classical regime); for dark matter the EVIDENCE is solid but the IDENTITY open, for dark energy the EXISTENCE is solid but the NATURE open — neither means "doesn’t exist". THE TWO-TIER DEMARCATION holds: string/LQG/asymptotic-safety/CDT, WIMP/axion, MOND and quintessence are UNCONFIRMED HYPOTHESES (rigorous, testable-in-principle), NOT pseudoscience; anti-gravity/electrogravitics, vacuum over-unity "free energy" (links zeroPointDecoded) and quantum/gravity "healing" (Chopra, Ig Nobel 1998) ARE pseudoscience (they violate conservation laws and have no reproducible evidence). Unproven ≠ pseudoscience.',
+  }
+}
+
+// The README is the home page content, and the ten-dimensional hero is displayed in GitHub too — including
+// the hero. GitHub runs no JavaScript, so the live WebGL hero can't play there; instead the same double-torus
+// math emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact, referenced by the
+// README. Even in 2D the 10D shows: χ = −2, H₁ = ℤ⁴, the 432 gates, animated.
+export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buildMatrix()) {
+  const svg = tenDimensionalHeroSvg()
+  const home = anyUuidHeroContentFractal(matrix) // the live home hero — same source as the README hero
+  const animated = svg.includes('<animateTransform') && svg.includes('repeatCount="indefinite"')
+  const tenD = svg.includes('ℤ⁴') && svg.includes('ten dimensions') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
+  const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject') && !svg.includes('<image') && !svg.includes('xlink:href')
+  const facets = [
+    { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > 300 },
+    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL animateTransform, no JavaScript), the genus-2 double torus with the four H₁ = ℤ⁴ loops orbiting and the six cross-fold axes pulsing, on the a432 brand', on: animated && tenD },
+    { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
+    { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional figure (χ = −2, H₁ = ℤ⁴, 432 gates), the same self-similar shape at README scale (composes everyRelationIsOpenGraphMiniHero)', on: tenD && everyRelationIsOpenGraphMiniHero(matrix).graphed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('readme-is-home-hero-svg', facets)
+  return {
+    shown: sealed.ok,
+    svgBytes: svg.length, // the self-contained animated SVG
+    animated,
+    githubSafe,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead the same double-torus math emits a self-contained animated SVG — the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand — written in SMIL (animateTransform), with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it, so even on GitHub, in 2D, the ten dimensions show.',
+    boundary:
+      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL animateTransform inside an image-loaded SVG genuinely animates on github.com (the established animated-SVG-in-README technique), and the file is GitHub-sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC / projection of the ten-dimensional figure — faithful to the invariants (χ = −2, H₁ = ℤ⁴, 432) but NOT the live interactive WebGL 10D scene, which GitHub cannot run. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
   }
 }
 

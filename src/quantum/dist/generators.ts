@@ -5,7 +5,7 @@
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
 import { merkleFold, toUuid, foldVortex } from '../../0/index.ts'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded } from '../mind/index.ts'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg } from '../mind/index.ts'
 import { glagoliticHomeFromEnglish } from '../mind/li.ts'
 import { bibleParallel, toGlagoliticOCS, pesnopoika } from '../library/index.ts'
 import { computedDistFiles, readmeMarkdown } from './index.ts'
@@ -197,6 +197,9 @@ export function generators(): Generator[] {
         const write = filter.length ? files.filter((file) => filter.some((prefix) => file.path === prefix || file.path.startsWith(prefix))) : files
         const out = write.map((file) => ({ path: `.vitepress/dist/${file.path}`, content: file.content }))
         if (!filter.length || filter.includes('README.md')) out.push({ path: 'README.md', content: readmeMarkdown() })
+        // The README's ten-dimensional hero — emitted as a self-contained animated SVG so GitHub (which runs
+        // no JavaScript) displays the same double torus the live site animates. Computed from src, no script.
+        if (!filter.length || filter.includes('hero.svg')) out.push({ path: 'hero.svg', content: tenDimensionalHeroSvg() })
         // The computed I Ching design system — re-emit src/ui/tokens.css (the only place real numbers live, all
         // canonical) as part of the manifest. The body (src/ui/style.css) references only these tokens.
         if (!filter.length || filter.includes('src/ui/tokens.css')) out.push({ path: 'src/ui/tokens.css', content: ichingTokensCss() })

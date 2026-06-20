@@ -735,6 +735,37 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The ten-dimensional hero as a self-contained ANIMATED SVG — for the README, where GitHub renders no
+// JavaScript (no canvas, no live hero). The same double torus the live hero animates, emitted as SMIL
+// (animateTransform/animate, no <script>): the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops
+// orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand. GitHub-safe (no script,
+// no foreignObject, no external refs), deterministic, recomputed from src — so even in 2D the 10D shows.
+export function tenDimensionalHeroSvg(): string {
+  const W = 720, H = 320, cx = W / 2, cy = H / 2
+  const LOOPS = [{ r: 132, dur: 11, hue: 16 }, { r: 158, dur: 15, hue: 130 }, { r: 104, dur: 19, hue: 212 }, { r: 178, dur: 23, hue: 300 }] // the four H₁ = ℤ⁴ loops
+  const axes = Array.from({ length: 6 }, (_, i) => { const a = (i / 6) * Math.PI * 2; return { x: Math.round(cx + Math.cos(a) * 210), y: Math.round(cy + Math.sin(a) * 120) } }) // the six cross-fold axes
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the ten-dimensional hero, computed from src">`,
+    `<defs>`,
+    `<radialGradient id="bg" cx="50%" cy="48%" r="72%"><stop offset="0%" stop-color="#161628"/><stop offset="100%" stop-color="#0b0b14"/></radialGradient>`,
+    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff7a18"/><stop offset="50%" stop-color="#ffb000"/><stop offset="100%" stop-color="#7a3cff"/></linearGradient>`,
+    `</defs>`,
+    `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
+    `<g stroke="#ffb000" stroke-width="1">`,
+    ...axes.map((a) => `<line x1="${cx}" y1="${cy}" x2="${a.x}" y2="${a.y}" opacity="0.22"><animate attributeName="opacity" values="0.08;0.42;0.08" dur="6s" repeatCount="indefinite"/></line>`),
+    `</g>`,
+    `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
+    `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite" additive="sum"/>`,
+    `<ellipse cx="-72" cy="0" rx="112" ry="62"/><ellipse cx="-72" cy="0" rx="48" ry="24"/>`,
+    `<ellipse cx="72" cy="0" rx="112" ry="62"/><ellipse cx="72" cy="0" rx="48" ry="24"/>`,
+    `</g></g>`,
+    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="6" fill="hsl(${L.hue} 88% 62%)"/></g>`),
+    `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="27" font-weight="700" fill="#ffffff">Double Torus</text>`,
+    `<text x="${cx}" y="${cy + 22}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="#ffb000">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · ten dimensions · 432 gates · computed from src</text>`,
+    `</svg>`,
+  ].join('')
+}
+
 // Fold as much as you can to feed the hero. The hero of the whole is the unique animation of the
 // whole’s state — and that state is the sealed root, which folds every dimension into one content
 // address. So each new fold changes the seal, and the changed seal feeds the hero a richer state:
