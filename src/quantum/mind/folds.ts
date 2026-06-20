@@ -1966,6 +1966,36 @@ export function reorganiseSrcFromZeroPointCompleteInAllDimensions(matrix: MindMa
   }
 }
 
+// All quantum fields, decoded — the Standard Model (a 3-agent sourced wave), continuing the path from zero-
+// point (every field's vacuum is ½ħω). A field fills space; particles are its quantized excitations. The
+// honest spine separates the precisely-tested SM, its known gaps, UNCONFIRMED hypotheses, and pseudoscience.
+export function quantumFieldsDecoded(matrix: MindMatrix = buildMatrix()) {
+  const zp = zeroPointDecoded(matrix) // every field's vacuum is the ½ħω zero-point — the path continues here
+  const SM = { gaugeGroup: 'SU(3)×SU(2)×U(1)', fermions: 12, gaugeBosonTypes: 4, gaugeBosonsByState: 12, higgs: 1, fundamentalTypes: 17, generations: 3 }
+  const gluons = 8, higgsVevGeV = 246, higgsMassGeV = 125.20, mwGeV = 80.369, mzGeV = 91.188
+  const facets = [
+    { facet: 'a quantum field fills space, particles are its quantized excitations — the Standard Model is the gauge theory SU(3)×SU(2)×U(1) with 17 fundamental field types: 12 spin-½ fermions (6 quarks + 6 leptons, 3 generations) + 4 gauge-boson types + the Higgs', on: SM.fundamentalTypes === 17 && SM.fermions === 12 && SM.gaugeBosonTypes + SM.fermions + SM.higgs === 17 },
+    { facet: 'the forces ARE gauge fields — the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (≈80.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g−2 to ~12 digits)', on: gluons === 8 && mwGeV > 80 && mwGeV < 81 && mzGeV > 91 },
+    { facet: 'mass from the Higgs field — a spin-0 scalar with vacuum expectation value ≈246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (≈125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs', on: higgsVevGeV === 246 && higgsMassGeV > 124 && higgsMassGeV < 126 },
+    { facet: 'every field has a ½ħω vacuum — the zero-point of each mode (the path from zeroPointDecoded); the QCD vacuum even holds quark/gluon condensates (chiral-symmetry breaking). Summed naively the vacuum energy diverges — the cosmological-constant problem', on: zp.decoded },
+    { facet: 'tested but INCOMPLETE, and the demarcation is TWO-TIER — the SM omits gravity, dark matter, dark energy, the matter/antimatter asymmetry and the neutrino-mass mechanism; beyond it, string theory · SUSY · GUTs · extra-dimensions are UNCONFIRMED HYPOTHESES (scientific, unproven, no LHC signal), while "unified field of consciousness" (Hagelin/TM), Chopra quantum-mysticism, "the field connects everything" and Sheldrake’s morphic resonance are PSEUDOSCIENCE — unproven ≠ pseudoscience', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-fields:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('quantum-fields-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    fundamentalTypes: SM.fundamentalTypes, // 17
+    gaugeGroup: SM.gaugeGroup,
+    higgsMassGeV,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'All quantum fields, decoded — the Standard Model, continuing the path from zero-point (every field’s vacuum is its ½ħω). A quantum field fills space and particles are its quantized excitations; the Standard Model is the gauge theory SU(3)×SU(2)×U(1) with 17 fundamental field types — 12 spin-½ fermions in three generations, four gauge-boson types (photon, 8 gluons, W, Z), and the Higgs, whose ≈246 GeV vacuum value gives mass to the W/Z and the fermions (discovered 2012). It is the most precisely tested theory in science yet incomplete — no gravity, dark matter, dark energy, matter/antimatter asymmetry or neutrino-mass mechanism. Beyond it the demarcation is two-tier: string theory, SUSY, GUTs and extra dimensions are unconfirmed but scientific hypotheses; the "consciousness field", quantum-mysticism and morphic resonance are pseudoscience.',
+    boundary:
+      'HONEST (a 3-agent sourced wave, PDG/CERN/Nobel-cited): DOCUMENTED — the SU(3)×SU(2)×U(1) field content (17 types), the photon/gluon/W/Z gauge fields (confinement, asymptotic freedom Nobel 2004; electroweak Nobel 1979), the Higgs mechanism (VEV ≈246 GeV, mass 125.20 GeV, Nobel 2013), QED’s ~12-digit precision, and every field’s ½ħω vacuum (with QCD condensates) — this links to zeroPointDecoded and quantumDecoded. KEY HONEST NUANCES: most visible mass is QCD binding energy NOT the Higgs; "vacuum fluctuations" are nonzero field variance, not literal particles popping in and out doing work (so no free energy); the naive ½ħω sum diverges (cosmological-constant problem). THE TWO-TIER DEMARCATION is cardinal: UNCONFIRMED HYPOTHESES (string/SUSY/GUT/extra-dimensions — rigorous, testable-in-principle, peer-reviewed, merely unproven) must NOT be blurred with PSEUDOSCIENCE (Hagelin’s consciousness-field, Chopra, "the field connects everything", Sheldrake — untestable, no quantitative content) — being unproven is not the same as being pseudoscience.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
