@@ -1564,6 +1564,16 @@ export function buhlmannCeilingBar(compartmentBar: number, halfTimeMin: number):
   return (compartmentBar - buhlmannA(halfTimeMin)) * buhlmannB(halfTimeMin) // bar — below this ambient pressure, DCS risk rises
 }
 
+// Gradient-factor (GF) adjusted ascent ceiling — the modern conservatism on ZHL-16. The GF is passed as a
+// HARMONIC FRACTION of integers (gfNum/gfDen, e.g. 30/100), so an arbitrary unharmonic decimal cannot be set:
+// P_amb,tol = (P − gf·a) / (1 − gf + gf/b). GF = 1/1 recovers the raw Bühlmann ceiling; GF < 1 is more conservative.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function buhlmannGfCeilingBar(compartmentBar: number, halfTimeMin: number, gfNum: number, gfDen: number): number {
+  const gf = gfNum / gfDen // an exact ratio of integers in; the float lives only in the analog ceiling output
+  const a = buhlmannA(halfTimeMin), b = buhlmannB(halfTimeMin)
+  return (compartmentBar - gf * a) / (1 - gf + gf / b)
+}
+
 // The 16 Bühlmann ZHL-16 nitrogen half-times (minutes) — the deterministic dive computer's tissue compartments.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const ZHL16_N2_HALFTIMES: readonly number[] = [4, 8, 12.5, 18.5, 27, 38.3, 54.3, 77, 109, 146, 187, 239, 305, 390, 498, 635]
@@ -1582,6 +1592,22 @@ export function buhlmannDivePlan(depthM: number, bottomTimeMin: number, surfaceN
   })
   const controllingCeilingBar = Math.max(...compartments.map((c) => c.ceilingBar))
   return { ambientBar, controllingCeilingBar, noDecoOk: controllingCeilingBar <= 1, compartments } // ≤1 bar ⇒ direct ascent ok
+}
+
+// A gradient-factor dive plan with 3-METRE deco-stop steps. Loads the 16 compartments, finds the controlling
+// GF ceiling, converts it to a depth, and rounds UP to the next 3 m step (deco stops sit at 3/6/9/… m). The
+// final ascent from the 3 m stop to the surface is the steepest relative pressure change — take it slowly.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number, gfNum: number, gfDen: number, surfaceN2Bar = 0.79): {
+  ambientBar: number; controllingCeilingBar: number; ceilingM: number; firstStopM: number; noDecoOk: boolean
+} {
+  const ambientBar = 1 + depthM / 10
+  const inspiredN2Bar = (ambientBar - 0.0627) * 0.79
+  const ceilings = ZHL16_N2_HALFTIMES.map((t) => buhlmannGfCeilingBar(haldaneLoad(surfaceN2Bar, inspiredN2Bar, t, bottomTimeMin), t, gfNum, gfDen))
+  const controllingCeilingBar = Math.max(...ceilings)
+  const ceilingM = Math.max(0, (controllingCeilingBar - 1) * 10)
+  const firstStopM = Math.ceil(ceilingM / 3) * 3 // round UP to the next 3 m step (deco stops at 3/6/9/… m)
+  return { ambientBar, controllingCeilingBar, ceilingM, firstStopM, noDecoOk: firstStopM <= 0 }
 }
 
 // ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
