@@ -1610,16 +1610,25 @@ export function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number, gfNum:
   return { ambientBar, controllingCeilingBar, ceilingM, firstStopM, noDecoOk: firstStopM <= 0 }
 }
 
+// THE HYDROSTATIC MASK — the salt/fresh "metres per bar" are NOT two magic constants but one formula: a water
+// column adds ρ·g pressure per metre (÷ 1e5 Pa/bar). Salt 9.949 and fresh 10.197 m/bar fall out of the two water
+// densities through P = ρ·g·h — find the mask, and the magic numbers vanish. (Standard gravity ≠ NEWTON_G.)
+export const STANDARD_GRAVITY = 9.80665 // m/s² (the defined standard gravity)
+export const WATER_DENSITY_FRESH = 1000 // kg/m³
+export const WATER_DENSITY_SALT = 1025 // kg/m³ (seawater — the diving-standard basis, s.g. ≈ 1.025)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function barPerMetre(densityKgM3: number): number { return (densityKgM3 * STANDARD_GRAVITY) / 1e5 } // bar per metre of column
+const waterDensity = (freshWater: boolean) => (freshWater ? WATER_DENSITY_FRESH : WATER_DENSITY_SALT)
+
 // Ambient absolute pressure at depth, accounting for WATER DENSITY (salt vs fresh) and ALTITUDE surface pressure.
-// Fresh water is less dense, so it takes more metres to add one bar; at altitude the surface pressure is below 1.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function ambientPressureBar(depthM: number, freshWater = false, surfaceBar = 1.013): number {
-  return surfaceBar + depthM / (freshWater ? 10.197 : 9.949) // hydrostatic m/bar: salt 9.949 (ρ≈1025), fresh 10.197 (ρ≈1000)
+  return surfaceBar + depthM * barPerMetre(waterDensity(freshWater)) // P = surface + ρ·g·h
 }
 // Maximum operating depth of a breathing gas — the depth where its O₂ fraction reaches the PPO₂ ceiling (toxicity).
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function maxOperatingDepthM(fO2: number, ppo2MaxBar = 1.4, freshWater = false, surfaceBar = 1.013): number {
-  return (ppo2MaxBar / fO2 - surfaceBar) * (freshWater ? 10.197 : 9.949) // metres
+  return (ppo2MaxBar / fO2 - surfaceBar) / barPerMetre(waterDensity(freshWater)) // metres
 }
 // Best (richest safe) breathing-gas O₂ fraction for a target PPO₂ at a depth — gas blending by partial pressure.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -1635,6 +1644,25 @@ export function rebreatherInertBar(ambientBar: number, ppo2SetpointBar = 1.3): n
 export function gasReserveThirds(totalLitres: number): number { return totalLitres / 3 } // 1/3 of the total held in reserve
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function gasReserveHalfOnTop(requiredLitres: number): number { return requiredLitres * 3 / 2 } // required + 1/2 reserve
+
+// Equivalent narcotic depth — the air-equivalent depth with the same inert-gas narcotic load. Narcosis tracks the
+// narcotic partial pressure; END is the depth at which AIR (narcotic fraction ≈ 0.79) gives the same. Helium is
+// non-narcotic, so trimix LOWERS the END. (Whether oxygen is narcotic is unsettled — pass the fraction you count.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function equivalentNarcoticDepthM(depthM: number, fNarcotic: number, freshWater = false, surfaceBar = 1.013): number {
+  const pEnd = (ambientPressureBar(depthM, freshWater, surfaceBar) * fNarcotic) / 0.79 // air's narcotic (N₂) fraction
+  return (pEnd - surfaceBar) / barPerMetre(waterDensity(freshWater))
+}
+// Equivalent air depth — for the inert (decompression) loading of a nitrox mix: the depth at which AIR gives the
+// same nitrogen partial pressure. Same algebra as END, using the mix's nitrogen fraction (1 − fO₂).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function equivalentAirDepthM(depthM: number, fO2: number, freshWater = false, surfaceBar = 1.013): number {
+  return equivalentNarcoticDepthM(depthM, 1 - fO2, freshWater, surfaceBar)
+}
+// Pulmonary oxygen-toxicity dose rate — OTU (oxygen tolerance units / UPTD) per minute, the REPEX power law; zero
+// below a 0.5 bar PPO₂ threshold. (Acute CNS toxicity is a SEPARATE, table-based, probabilistic accounting.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function otuPerMin(ppo2Bar: number): number { return ppo2Bar <= 0.5 ? 0 : Math.pow((ppo2Bar - 0.5) / 0.5, 0.83) }
 
 // ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
