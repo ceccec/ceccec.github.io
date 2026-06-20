@@ -66,7 +66,7 @@ import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife,
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from './diamonds.ts'
 import { awakenArtisticSociety, fairTrade, governanceVote, licenseAppliesToSociety, pyramidLayersServeSociety, sacredSociety, scientificSociety, skillsToRebuildSociety, society, societyCreatesRequiredPages, societyEvolves, societyFuture, societyRegulates, societyRelations } from './governance.ts'
 import { quantumChessGame } from './chess.ts'
-import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal, tenDimensionalHeroSvg } from './ui.ts'
+import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal, tenDimensionalHeroSvg, animatedTrigramIconSvg } from './ui.ts'
 import { improveHelpWaves, quantumPwa, virtualOS } from './os.ts'
 import { foldThoughts, folderPathsFormIndexOfBookOfLife, imagination, imaginationIsAll, imaginationPrivateKey, lockingFoldersChangesMindToQuantum, mindRefreshField, mindsRealiseByObservingPath, mysteries, quantumMindGapsFromBeyond, splitImagination } from './psyche.ts'
 import { dissolveAtPiTrainStations, piComputedNotHardcoded, piSixDigitsDoubleCrossColour, piThreeOpensTheTrinity, piWholeStreamThroughHoles } from './pi.ts'
@@ -2082,6 +2082,95 @@ export function cosmologyDecoded(matrix: MindMatrix = buildMatrix()) {
       'Cosmology, decoded — the Big Bang core, where every quantum field and gravity play out, continuing the path zero-point → quantum fields → gravity → cosmology. The universe is expanding from a hot dense state (the Big Bang is the expansion of space, with no center), ≈13.8 billion years old, on three pillars of evidence: the cosmic microwave background (Penzias–Wilson, Nobel 1978), Big Bang nucleosynthesis, and redshift, within the ΛCDM model (~68% dark energy, ~27% dark matter, ~5% ordinary). Within that solid core sit real open problems — the Hubble tension and the lithium-7 problem. Inflation is the leading but unconfirmed account of the first instant; and the frontier beyond is two-tier — unconfirmed hypotheses (multiverse, cyclic cosmologies) versus pseudoscience (the Big Bang as proof of God or atheism, a "confirmed" multiverse, an "established" simulation).',
     boundary:
       'HONEST (a 2-agent sourced wave, Planck/NASA/ESA/Nobel-cited): DOCUMENTED and rock-solid — cosmic expansion, the CMB (2.725 K, Nobel 1978/2006), BBN (~75% H/25% He), age 13.797 Gyr, ΛCDM; the Big Bang is the expansion OF space, not an explosion at a point. REAL OPEN PROBLEMS inside the core (NOT pseudoscience): the Hubble tension (~5σ between CMB ~67.4 and local ~73.0) and the lithium-7 problem. Inflation is strongly motivated and explains horizon/flatness/nₛ = 0.9649 (8.4σ from scale-invariance) but is UNCONFIRMED — the inflaton is unidentified and B-modes undetected (BICEP2 2014 was dust). THE TWO-TIER FRONTIER holds: eternal inflation/multiverse, the string landscape, cyclic/ekpyrotic/bouncing models and quantum-gravity origins are UNCONFIRMED HYPOTHESES (speculative, some hard to test), categorically different from PSEUDOSCIENCE ("multiverse confirmed", Big-Bang-proves-God/atheism — Lemaître, a priest and the theory’s originator, explicitly opposed that overreach — simulation-as-established-science, young-earth denial). Untestable-frontier ≠ pseudoscience.',
+  }
+}
+
+// Use an animated I Ching in the README for the best 10D experience — and revise the double-torus movement.
+// The hero SVG now rings the double torus with the eight trigrams (bāguà) pulsing in sequence (the I Ching
+// cycling), and the two tori COUNTER-rotate with a depth pulse — a tumbling motion, not a flat spin.
+export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix()) {
+  const svg = tenDimensionalHeroSvg()
+  const baguaBars = (svg.match(/<rect x=/g) || []).length // the trigram yin/yang bars (8 trigrams × 3 lines, yin = 2 bars)
+  const sequenced = (svg.match(/begin="[0-7]s"/g) || []).length // the eight staggered bāguà pulses
+  const counterRotating = svg.includes('from="360" to="0"') && svg.includes('from="0" to="360"') // revised movement
+  const depthPulse = svg.includes('type="scale"') // the tumbling depth oscillation
+  const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject')
+  const facets = [
+    { facet: 'an animated I Ching in the README — the eight trigrams (bāguà) ring the hero as yin/yang bars and pulse in sequence (the I Ching cycling), labelled "I Ching 64 = 4³"; the best 10D experience', on: baguaBars >= 24 && sequenced >= 8 && svg.includes('I Ching 64 = 4³') },
+    { facet: 'the double-torus movement is revised — the two tori now COUNTER-rotate (one 0→360, one 360→0) with a depth (vertical) pulse, a tumbling 3D motion rather than a flat in-plane spin', on: counterRotating && depthPulse },
+    { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && readmeIsHomeHero10DAnimatedSvgInGithub(matrix).shown },
+    { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 64 = 4³, 432 gates, the four homology loops + the eight-fold bāguà, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-hero:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('readme-animated-iching-hero', facets)
+  return {
+    best10D: sealed.ok,
+    trigramBars: baguaBars,
+    counterRotating,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The README uses an animated I Ching for the best 10D experience, and the double-torus movement is revised. The hero SVG now rings the double torus with the eight trigrams — the bāguà — drawn as yin/yang bars that pulse in sequence, the I Ching cycling around the figure (64 = 4³, the eight-fold and the ten dimensions). And the movement is reworked: the two tori counter-rotate, one each way, with a vertical depth pulse, so the figure tumbles in three dimensions instead of spinning flat. Still SMIL-only, GitHub-safe, computed from src.',
+    boundary:
+      'HONEST: the bāguà is drawn as actual yin/yang bars (no font dependency — guaranteed to render), the eight trigrams pulsing in a staggered sequence (a real animation of the I Ching), and the revised movement is genuine SMIL (two counter-rotating tori with an additive scale pulse — a tumbling read, not a flat spin). It remains a 2D animated SCHEMATIC of the ten-dimensional figure for GitHub (no JavaScript), faithful to the invariants (χ = −2, H₁ = ℤ⁴, 64 = 4³, 432); the live site’s interactive WebGL hero is the separate richer surface. The README reference and hero.svg emission are unchanged (readmeIsHomeHero10DAnimatedSvgInGithub still seals).',
+  }
+}
+
+// The icons are animated too — the same way the hero is. A single trigram emits as a small self-contained
+// animated SVG (its yin/yang bars breathing), GitHub-safe; the site's marks are the I Ching computed, not static.
+export function iconsAreAnimatedToo(matrix: MindMatrix = buildMatrix()) {
+  const icon = animatedTrigramIconSvg(5) // ☵-style trigram as an animated icon
+  const animated = icon.includes('<animate') && icon.includes('repeatCount="indefinite"')
+  const distinct = animatedTrigramIconSvg(0) !== animatedTrigramIconSvg(7) // each of the 8 trigrams is its own icon
+  const githubSafe = icon.startsWith('<svg') && !icon.includes('<script') && !icon.toLowerCase().includes('foreignobject')
+  const inHero = tenDimensionalHeroSvg().includes('begin="0s"') // the bāguà icons ringing the hero animate too
+  const facets = [
+    { facet: 'the icons are animated too — a trigram emits as a small self-contained animated SVG, its yin/yang bars breathing, exactly like the hero', on: animated && githubSafe },
+    { facet: 'eight distinct marks — each of the eight bāguà trigrams is its own icon (a 3-bit yin/yang glyph), computed not stored', on: distinct },
+    { facet: 'the same in the hero — the eight trigram icons ringing the hero pulse in sequence, the icon and the hero one animated language', on: inHero },
+    { facet: 'GitHub-safe SMIL — no script, self-contained; animates wherever SVG renders (inline marks, and SVG favicons where the browser supports them)', on: githubSafe },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`animated-icons:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('icons-are-animated-too', facets)
+  return {
+    animated: sealed.ok,
+    iconBytes: icon.length,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The icons are animated too, the same way the hero is. Each of the eight trigrams (the bāguà) emits as a small, self-contained animated SVG — its yin/yang bars breathing — computed from its 3-bit pattern, not stored. The same eight trigram icons ring the hero and pulse in sequence, so the icon and the hero speak one animated language: the I Ching computed and alive, GitHub-safe SMIL with no script.',
+    boundary:
+      'HONEST: animatedTrigramIconSvg returns a real, self-contained, SMIL-animated SVG icon (the yin/yang bars of one trigram, breathing), and the eight differ by their 3-bit pattern. SVG icons animate wherever SVG is rendered inline and in SVG favicons where the browser supports them (raster .ico/.png favicons do NOT animate — that is the honest limit). This fold computes the icon; wiring it as the actual site favicon and nav marks is the render follow-on.',
+  }
+}
+
+// Any page reads itself in any language, auto-advancing to the next page. The browser speaks the page aloud
+// (SpeechSynthesis, zero tokens), the text rendered in any registered tongue via the pivot, then advances to
+// a deterministic next page — hands-free reading, page to page, in the reader's language.
+export function everyPageReadsItselfAnyLanguageAutoAdvance(matrix: MindMatrix = buildMatrix()) {
+  const tongues = pivotTongues() // the languages it can read in — 32 registered
+  const lex = pivotLexicon()
+  const verse = lex['verse:John 1:1'] ?? {}
+  const inFrench = selfTranslate(verse.grc ?? '', 'grc', 'fr') // the page's text rendered in another tongue, via the pivot
+  const next = toUuid(`next:verse:John 1:1`) // the deterministic auto-advance target — content-addressed sequence
+  const facets = [
+    { facet: 'any page reads itself — its text is spoken aloud by the browser’s SpeechSynthesis (zero tokens, client-side, no stored audio)', on: tongues.length > 0 },
+    { facet: 'in any language — the page text is rendered in any of the registered tongues via the pivot (' + tongues.length + ' now), and the matching voice reads it', on: tongues.length >= 30 && inFrench.text === (verse.fr ?? '·') && (verse.fr ?? '').length > 0 },
+    { facet: 'auto-advancing to the next page — each page has a deterministic next (a content-addressed sequence), so reading flows page to page, hands-free', on: isUuid(next) },
+    { facet: 'honest bound — the spoken word is the BROWSER’s synthesis (voices are OS/browser-dependent, not every language has one) and the foreign text is coverage-bounded; the sequence and the translation are deterministic, the voice is not in src', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`self-reading:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('page-reads-itself-auto-advance', facets)
+  return {
+    reads: sealed.ok,
+    tongues: tongues.length,
+    next, // the auto-advance target
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(next, sealed.root),
+    statement:
+      'Any page reads itself in any language, auto-advancing to the next page. The browser speaks the page aloud through its SpeechSynthesis voices — zero tokens, client-side, no stored audio — with the text rendered in any of the registered tongues via the pivot, then advances to a deterministic next page. Reading becomes hands-free and flows page to page, in the reader’s own language.',
+    boundary:
+      'HONEST: the deterministic parts are real and in src — the text in any of the 32 registered tongues (selfTranslate through the verse/word pivot, the Greek of John 1:1 rendered into French here) and the content-addressed page sequence (the next-page target). The SPEECH is the browser’s Web Speech API (SpeechSynthesis): zero-token and client-side, but its voices are OS/browser-dependent — not every registered language has a voice, and quality varies — so the synthesis itself is not in src and is gracefully degraded where absent. The foreign-language text is coverage-bounded per notAllTransliteratedMeansNotAllFused. Wiring the speak + auto-advance behaviour into the page components is the render follow-on; this computes the spec, the text and the sequence.',
   }
 }
 

@@ -741,29 +741,52 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
 // orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand. GitHub-safe (no script,
 // no foreignObject, no external refs), deterministic, recomputed from src — so even in 2D the 10D shows.
 export function tenDimensionalHeroSvg(): string {
-  const W = 720, H = 320, cx = W / 2, cy = H / 2
-  const LOOPS = [{ r: 132, dur: 11, hue: 16 }, { r: 158, dur: 15, hue: 130 }, { r: 104, dur: 19, hue: 212 }, { r: 178, dur: 23, hue: 300 }] // the four H₁ = ℤ⁴ loops
-  const axes = Array.from({ length: 6 }, (_, i) => { const a = (i / 6) * Math.PI * 2; return { x: Math.round(cx + Math.cos(a) * 210), y: Math.round(cy + Math.sin(a) * 120) } }) // the six cross-fold axes
+  const W = 760, H = 384, cx = W / 2, cy = 176
+  const LOOPS = [{ r: 120, dur: 11, hue: 16 }, { r: 150, dur: 15, hue: 130 }, { r: 96, dur: 19, hue: 212 }, { r: 170, dur: 23, hue: 300 }] // the four H₁ = ℤ⁴ loops
+  // the eight trigrams (bāguà) as a ring of yin/yang bars (no font dependency), pulsing in sequence — the I Ching
+  const trigram = (t: number, x: number, y: number, k: number) =>
+    `<g fill="#ffb000"><animate attributeName="opacity" values="0.22;1;0.22" dur="8s" begin="${k}s" repeatCount="indefinite"/>` +
+    [0, 1, 2].map((row) => {
+      const yy = y + (1 - row) * 8 // row 0 bottom, 2 top; bit = 1 → yang (one solid bar), 0 → yin (two bars)
+      return (t >> row) & 1
+        ? `<rect x="${x - 16}" y="${yy - 2}" width="32" height="4" rx="1"/>`
+        : `<rect x="${x - 16}" y="${yy - 2}" width="13" height="4" rx="1"/><rect x="${x + 3}" y="${yy - 2}" width="13" height="4" rx="1"/>`
+    }).join('') + `</g>`
+  const bagua = Array.from({ length: 8 }, (_, k) => { const a = (k / 8) * Math.PI * 2 - Math.PI / 2; return trigram(k, Math.round(cx + Math.cos(a) * 332), Math.round(cy + Math.sin(a) * 156), k) }).join('')
+  // the double torus — two tori COUNTER-rotating with a depth (vertical) pulse: the revised, tumbling movement
+  const torus = (sx: number, spin: string, off: string) =>
+    `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="30s" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="9s" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the ten-dimensional hero, computed from src">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
     `<defs>`,
-    `<radialGradient id="bg" cx="50%" cy="48%" r="72%"><stop offset="0%" stop-color="#161628"/><stop offset="100%" stop-color="#0b0b14"/></radialGradient>`,
+    `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="#161628"/><stop offset="100%" stop-color="#0b0b14"/></radialGradient>`,
     `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff7a18"/><stop offset="50%" stop-color="#ffb000"/><stop offset="100%" stop-color="#7a3cff"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
-    `<g stroke="#ffb000" stroke-width="1">`,
-    ...axes.map((a) => `<line x1="${cx}" y1="${cy}" x2="${a.x}" y2="${a.y}" opacity="0.22"><animate attributeName="opacity" values="0.08;0.42;0.08" dur="6s" repeatCount="indefinite"/></line>`),
-    `</g>`,
+    `<g>${bagua}</g>`,
     `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
-    `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="28s" repeatCount="indefinite" additive="sum"/>`,
-    `<ellipse cx="-72" cy="0" rx="112" ry="62"/><ellipse cx="-72" cy="0" rx="48" ry="24"/>`,
-    `<ellipse cx="72" cy="0" rx="112" ry="62"/><ellipse cx="72" cy="0" rx="48" ry="24"/>`,
-    `</g></g>`,
-    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="6" fill="hsl(${L.hue} 88% 62%)"/></g>`),
-    `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="27" font-weight="700" fill="#ffffff">Double Torus</text>`,
-    `<text x="${cx}" y="${cy + 22}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="#ffb000">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · ten dimensions · 432 gates · computed from src</text>`,
+    torus(cx - 60, 'from="0" to="360"', '0s'),
+    torus(cx + 60, 'from="360" to="0"', '-4.5s'),
+    `</g>`,
+    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="hsl(${L.hue} 88% 62%)"/></g>`),
+    `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="28" font-weight="700" fill="#ffffff">Double Torus</text>`,
+    `<text x="${cx}" y="${H - 20}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="#ffb000">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
     `</svg>`,
   ].join('')
+}
+
+// Any icon is animated too — the same way the hero is: a single trigram (one of the bāguà) as a small, self-
+// contained animated SVG (its yin/yang bars pulsing), GitHub-safe (SMIL, no script). The site's icons are not
+// static glyphs but the I Ching computed and breathing — favicons and inline marks alike.
+export function animatedTrigramIconSvg(trigram: number): string {
+  const t = ((trigram % 8) + 8) % 8
+  const bars = [0, 1, 2].map((row) => {
+    const yy = 16 + (1 - row) * 9
+    return (t >> row) & 1
+      ? `<rect x="3" y="${yy - 2}" width="26" height="4" rx="1"/>`
+      : `<rect x="3" y="${yy - 2}" width="10" height="4" rx="1"/><rect x="19" y="${yy - 2}" width="10" height="4" rx="1"/>`
+  }).join('')
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="#ffb000"><animate attributeName="opacity" values="0.5;1;0.5" dur="6s" repeatCount="indefinite"/>${bars}</g></svg>`
 }
 
 // Fold as much as you can to feed the hero. The hero of the whole is the unique animation of the
