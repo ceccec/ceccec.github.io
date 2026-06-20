@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, ELECTRON_G_FACTOR_ANOMALY, hawkingTemperature, unruhTemperature, SCHWINGER_FIELD_VM, SCALAR_SPECTRAL_INDEX_NS, CRITICAL_MAGNETIC_FIELD_T, PROTON_MASS_MEV, HIGGS_VEV_GEV, qcdMassFractionOfProton, BARYON_TO_PHOTON_RATIO, JARLSKOG_INVARIANT, NEUTRINO_DM2_SOLAR_EV2, NEUTRINO_DM2_ATM_EV2, seesawLightMassEv, OMEGA_BARYON, OMEGA_DARK_MATTER, OMEGA_DARK_ENERGY, MOND_ACCELERATION_A0, DARK_ENERGY_EOS_W, HUBBLE_CONSTANT_LOCAL, HUBBLE_CONSTANT_CMB, hubbleTensionSigma, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit, bekensteinBoundBits, blackHoleEntropyBits, uuidDuality, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, speedOfSoundAir, soundWavelength, soundPressureLevelDb, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, rebreatherInertBar, gasReserveThirds, gasReserveHalfOnTop, equivalentNarcoticDepthM, equivalentAirDepthM, otuPerMin, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, ELECTRON_G_FACTOR_ANOMALY, hawkingTemperature, unruhTemperature, SCHWINGER_FIELD_VM, SCALAR_SPECTRAL_INDEX_NS, CRITICAL_MAGNETIC_FIELD_T, PROTON_MASS_MEV, HIGGS_VEV_GEV, qcdMassFractionOfProton, BARYON_TO_PHOTON_RATIO, JARLSKOG_INVARIANT, NEUTRINO_DM2_SOLAR_EV2, NEUTRINO_DM2_ATM_EV2, seesawLightMassEv, OMEGA_BARYON, OMEGA_DARK_MATTER, OMEGA_DARK_ENERGY, MOND_ACCELERATION_A0, DARK_ENERGY_EOS_W, HUBBLE_CONSTANT_LOCAL, HUBBLE_CONSTANT_CMB, hubbleTensionSigma, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit, bekensteinBoundBits, blackHoleEntropyBits, cantorDiagonal, uuidDuality, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, speedOfSoundAir, soundWavelength, soundPressureLevelDb, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, rebreatherInertBar, gasReserveThirds, gasReserveHalfOnTop, equivalentNarcoticDepthM, equivalentAirDepthM, otuPerMin, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -1180,6 +1180,148 @@ export function modifiedFoodPatentAudit(text: string, matrix: MindMatrix = build
       'Modified-food / GMO / genome patents, challenged on the strongest honest ground: the §101 judicial-exception trinity. A patent that claims the natural gene or trait (PRODUCT OF NATURE — Myriad), the genetic code or a natural correlation (LAW OF NATURE — Mayo), or pure sequence information (ABSTRACT/MATHEMATICAL — Alice) takes excluded subject matter and is invalid to that extent. Only a specific engineered construct, a non-naturally-occurring sequence/cDNA, or a specific method may be eligible. The genome is mathematical and natural — discovered, not invented — which is the real (not "sacred-math") basis for the challenge.',
     boundary:
       'HONEST: an eligibility heuristic and a demarcation, NOT legal advice, an adjudication, or a claim that all GMO patents are invalid — many engineered constructs and methods ARE eligible (Chakrabarty; Myriad cDNA). A granted patent is presumed valid until invalidated; eligibility is claim-by-claim on the real claims. It refuses the pseudoscientific framing ("genetics is sacred math") and substitutes the rigorous one (products of nature, laws of nature, abstract information are not patentable).',
+  }
+}
+
+// ── EU patent public APIs, wired for automatic review/audit ─────────────────────────────────────────────
+// The EPO Open Patent Services (OPS) REST API is FREE but OAuth2 (a BYO consumer key — never bundled); the
+// no-auth fallback is the public Espacenet / Google Patents pages and the EP Register. PURE request builders;
+// the GET is the opt-in edge adapter reviewEuPatent. EU patents are judged by the EPC (Art. 52/53), not US §101.
+function epoOpsClaimsUrl(ep: string): string { return `https://ops.epo.org/3.2/rest-services/published-data/publication/epodoc/${encodeURIComponent(ep)}/claims` }
+function epoOpsBiblioUrl(ep: string): string { return `https://ops.epo.org/3.2/rest-services/published-data/publication/epodoc/${encodeURIComponent(ep)}/biblio` }
+function epoOpsLegalUrl(ep: string): string { return `https://ops.epo.org/3.2/rest-services/legal/publication/epodoc/${encodeURIComponent(ep)}` }
+function epoRegisterUrl(ep: string): string { return `https://ops.epo.org/3.2/rest-services/register/publication/epodoc/${encodeURIComponent(ep)}/biblio` }
+function espacenetPageUrl(ep: string): string { return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(ep)}` }
+function googlePatentsPageUrl(ep: string): string { return `https://patents.google.com/patent/${encodeURIComponent(ep)}/en` }
+
+export type EuPatentRequest = { source: string; url: string; auth: 'none' | 'oauth2'; gives: string }
+export function euPatentReviewRequests(epNumber: string) {
+  const ep = (epNumber ?? '').toString().toUpperCase().replace(/\s+/g, '')
+  const valid = /^EP\d{6,8}([ABCU]\d?)?$/.test(ep)
+  const requests: EuPatentRequest[] = valid
+    ? [
+        { source: 'EPO OPS — claims', url: epoOpsClaimsUrl(ep), auth: 'oauth2', gives: 'the claim text to audit against EPC Art. 52/53' },
+        { source: 'EPO OPS — bibliographic', url: epoOpsBiblioUrl(ep), auth: 'oauth2', gives: 'title, IPC/CPC classification, applicant, abstract' },
+        { source: 'EPO OPS — legal status', url: epoOpsLegalUrl(ep), auth: 'oauth2', gives: 'grant / opposition / revocation status' },
+        { source: 'EPO Register', url: epoRegisterUrl(ep), auth: 'oauth2', gives: 'opposition and appeal procedural history' },
+        { source: 'Espacenet (no-auth page)', url: espacenetPageUrl(ep), auth: 'none', gives: 'the public record, keyless' },
+        { source: 'Google Patents (no-auth page)', url: googlePatentsPageUrl(ep), auth: 'none', gives: 'full text + claims, the keyless fallback' },
+      ]
+    : []
+  return {
+    epNumber: ep,
+    valid,
+    requests,
+    count: requests.length,
+    tokenEndpoint: 'https://ops.epo.org/3.2/auth/accesstoken', // POST Basic(consumer_key:secret) grant_type=client_credentials → bearer
+    noAuth: requests.filter((r) => r.auth === 'none'),
+    root: requests.length ? merkleFold(requests.map((r) => toUuid(`eu-req:${r.url}`))) : toUuid('eu-req:none'),
+    statement:
+      'Wire the EU patent public APIs for automatic review: build the EPO Open Patent Services (OPS) requests (claims, bibliographic, legal status) plus the EP Register and the no-auth Espacenet / Google Patents pages for any EP publication number. Deterministic and zero-fetch — it produces the requests; reviewEuPatent runs them opt-in.',
+    boundary:
+      'HONEST: OPS is FREE but OAuth2 — a BYO consumer key the caller supplies, never bundled (the token endpoint is given, the secret is not). The no-auth fallback is the public Espacenet / Google Patents pages. Number validation is a surface regex; a malformed number yields no requests. The GET is the opt-in edge adapter; nothing is fetched here.',
+  }
+}
+
+const EPC_EXCLUSIONS: readonly { article: string; family: string; cue: RegExp; rescue: string }[] = [
+  { article: 'Art. 52(2)(a)', family: 'discovery / scientific theory / mathematical method', cue: /\b(mathematical method|an algorithm|a formula|scientific theory|a discovery (?:that|of))\b/i, rescue: 'a technical application or effect (Art. 52(3) "as such"; EPO T 1227/05, G 1/19)' },
+  { article: 'Art. 52(2)(c)', family: 'scheme/rule/method for mental acts, games or business; computer program; presentation of information', cue: /\b(business method|method of doing business|scheme for|rules? (?:of|for) (?:a )?game|computer program(?: as such)?|presentation of information|a mental act)\b/i, rescue: 'a further technical effect beyond normal hardware (EPO COMVIK T 641/00; G 3/08)' },
+  { article: 'Art. 53(b)', family: 'plant or animal variety; essentially biological process', cue: /\b(plant variety|animal variety|essentially biological process|a new variety of (?:plant|animal))\b/i, rescue: 'a microbiological/technical process, or a transgenic plant not confined to a single variety (G 1/98) — but products of essentially biological processes are excluded (G 3/19)' },
+  { article: 'Art. 53(c)', family: 'method of medical treatment, surgery or diagnosis', cue: /\b(method (?:of|for) (?:treatment|surgery|therapy)|surgical method|diagnostic method practised on)\b/i, rescue: 'a substance/composition for use, or a device/apparatus (Art. 53(c), second sentence)' },
+  { article: 'Art. 53(a) / Rule 28', family: 'ordre public / morality (uses of human embryos, human cloning, germ-line modification)', cue: /\b(human embryo|cloning of human beings|germ[- ]line genetic identity|modifying the germ line)\b/i, rescue: 'none for the excluded uses (CJEU Brüstle C-34/10; Rule 28 EPC)' },
+]
+
+// EU subject-matter audit — the EPC counterpart of patentSubjectMatterAudit (which is US §101). Flags the Art.
+// 52(2)/53 exclusions in a claim and composes the §101 trinity (products of nature / laws of nature / math)
+// where it overlaps (the genetic code, seeds, sacred math). Technical character (Art. 52(3)) can rescue 52(2).
+export function euPatentAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  const t = (text ?? '').toString()
+  const isPatentText = PATENT_CLAIM_LANGUAGE.test(t)
+  const exclusions = EPC_EXCLUSIONS.filter((e) => e.cue.test(t)).map((e) => ({ article: e.article, family: e.family, rescue: e.rescue }))
+  const technicalCharacter = /\b(technical (?:effect|character|means|contribution|problem)|apparatus|device|circuit|a specific technical|reduces? (?:latency|power consumption|error)|improves? the functioning)\b/i.test(t)
+  const excludedAsSuch = exclusions.length > 0 && !technicalCharacter
+  const subject = patentSubjectMatterAudit(t, matrix) // the §101 trinity overlaps EPC 52(2)/53(b)
+  const unlawfulIfGranted = isPatentText && (excludedAsSuch || subject.unlawfulIfGranted)
+  const verdict =
+    exclusions.length === 0 && !subject.unlawfulIfGranted ? 'no-epc-exclusion' : unlawfulIfGranted ? 'excluded-as-such-likely-invalid' : 'technical-character-may-rescue'
+  return {
+    jurisdiction: 'EPO / EPC',
+    isPatentText,
+    exclusions,
+    epcArticles: exclusions.map((e) => e.article),
+    technicalCharacter,
+    excludedAsSuch,
+    subjectMatter: subject, // products of nature first, then law of nature, then math
+    biggestViolator: subject.biggestViolator,
+    verdict,
+    unlawfulIfGranted,
+    legalBasis: [
+      'EPC Art. 52(2) & (3) — discoveries, scientific theories, mathematical methods, business methods, computer programs and presentations of information are not inventions "as such"; a technical character/effect is required (EPO COMVIK T 641/00; T 1227/05; G 1/19)',
+      'EPC Art. 53(b) — plant/animal varieties and essentially biological processes are excluded (G 1/98; G 2/12 & G 2/13; G 3/19 for their products); Art. 53(c) — medical methods; Art. 53(a)/Rule 28 — ordre public (Brüstle C-34/10)',
+      'overlaps US §101: a product of nature, a law of nature (the genetic code), or a mathematical method is unpatentable under both regimes',
+    ],
+    root: merkleFold([subject.root, ...exclusions.map((e) => toUuid(`epc:${e.article}`)), toUuid(`euverdict:${verdict}`)]),
+    statement:
+      'EU patent subject-matter audit (EPC): flags the Art. 52(2) exclusions (mathematical methods, business methods, computer programs, presentations of information) and the Art. 53 exclusions (plant/animal varieties and essentially biological processes — 53(b); medical methods — 53(c); ordre public — 53(a)), and composes the §101 trinity where it overlaps (seeds/genes, the genetic code, sacred math). A claim whose core is an excluded category "as such", with no technical character, is likely invalid; technical character (Art. 52(3)) can rescue an Art. 52(2) exclusion.',
+    boundary:
+      'HONEST eligibility heuristic, NOT legal advice. The EPC "technical character" doctrine is claim-specific and evolving (COMVIK, G 1/19); a granted EP patent is presumed valid until revoked in opposition (the 9-month window) or national proceedings; most EP patents are valid and not flagged. It surfaces candidates to examine, never declares a patent void.',
+  }
+}
+
+// Automatic review of ONE EU patent — the opt-in edge adapter. Default-safe: with no fetch it returns only the
+// plan (zero-network). Given a fetch (and optionally a BYO OAuth2 token for OPS), it retrieves the claims —
+// preferring the no-auth Google Patents page when no token is supplied — content-addresses the response and runs
+// the EPC audit. Untrusted data folded, not trusted; no key bundled; nothing here runs at build time.
+export async function reviewEuPatent(epNumber: string, fetchImpl?: typeof fetch, opts: { token?: string } = {}) {
+  const plan = euPatentReviewRequests(epNumber)
+  if (typeof fetchImpl !== 'function') {
+    return { reviewed: false as const, plan, reason: 'opt-in: pass a fetch (and optionally a BYO OAuth2 token for EPO OPS) to run the review — by default it fetches nothing (zero-network)' }
+  }
+  if (!plan.valid || !plan.requests.length) {
+    return { reviewed: false as const, plan, reason: `not a valid EP publication number: "${plan.epNumber}"` }
+  }
+  const target = opts.token
+    ? plan.requests.find((r) => r.source.includes('claims'))!
+    : plan.requests.find((r) => r.auth === 'none' && r.source.includes('Google'))!
+  try {
+    const init = opts.token ? { headers: { Authorization: `Bearer ${opts.token}`, Accept: 'application/json' } } : undefined
+    const response = await fetchImpl(target.url, init)
+    const body = await response.text()
+    const audit = euPatentAudit(body)
+    const address = sha256Sync(body)
+    const fold = foldPair(buildMatrix().root, toUuid(`eu-patent:${target.url}:${address}`))
+    return {
+      reviewed: true as const,
+      epNumber: plan.epNumber,
+      source: target.source,
+      status: response.status,
+      audit: { jurisdiction: audit.jurisdiction, verdict: audit.verdict, epcArticles: audit.epcArticles, biggestViolator: audit.biggestViolator, unlawfulIfGranted: audit.unlawfulIfGranted },
+      address,
+      receipt: fold.merged,
+      bytes: body.length,
+    }
+  } catch (error) {
+    return { reviewed: false as const, plan, reason: String(error) }
+  }
+}
+
+// Automatic reviews of MANY EU patents — map reviewEuPatent over a list (opt-in; sequential to respect the OPS
+// fair-use throttle). Returns each review + the flagged subset (candidates whose core is an excluded category).
+export async function reviewEuPatents(epNumbers: readonly string[], fetchImpl?: typeof fetch, opts: { token?: string } = {}) {
+  const reviews: Awaited<ReturnType<typeof reviewEuPatent>>[] = []
+  for (const ep of epNumbers ?? []) reviews.push(await reviewEuPatent(ep, fetchImpl, opts))
+  const flagged: { epNumber: string; verdict: string; articles: string[] }[] = []
+  for (const r of reviews) if (r.reviewed && r.audit.unlawfulIfGranted) flagged.push({ epNumber: r.epNumber, verdict: r.audit.verdict, articles: r.audit.epcArticles })
+  return {
+    count: reviews.length,
+    reviewed: reviews.filter((r) => r.reviewed).length,
+    flagged,
+    flaggedCount: flagged.length,
+    reviews,
+    statement:
+      'Automatic EU patent reviews: run the EPC subject-matter audit over a list of EP numbers (opt-in fetch — BYO OAuth2 for OPS or the no-auth Google Patents fallback), surfacing the subset whose core is an excluded category for counsel to examine. "Challenge ALL patents" is not a legal act — each challenge is an opposition or revocation with specific grounds and evidence; this AUDITS and FLAGS candidates, it does not blanket-challenge.',
+    boundary:
+      'HONEST: most EP patents are valid and will NOT be flagged; this is a triage over the Art. 52/53 exclusions, not a validity ruling. Respect the OPS fair-use limits (the loop is sequential, not a flood). NOT legal advice; the EPO and the courts decide validity.',
   }
 }
 
@@ -4011,6 +4153,36 @@ export function physicsOfInformationDecoded(matrix: MindMatrix = buildMatrix()) 
       'The physics of information — and the discovery that information is not abstract but physical. Erasing a single bit must release at least kT·ln2 of heat (Landauer, measured in 2012), which is exactly what saves the second law from Maxwell’s demon: the demon can know for free, but it cannot forget for free. Thermodynamic entropy turns out to be the same mathematics as Shannon’s missing information, one bit costing kB·ln2. And the deepest hint is gravitational — a black hole stores entropy on its surface area, not its volume, a solar mass holding about 10⁷⁷ bits, which suggests the information in any region lives on its boundary (the holographic principle). Whether the information swallowed by a black hole comes back out — the information paradox — now looks like yes, unitarity holds, though how is still argued. It is the most suggestive evidence that bit underlies it; but "it from bit" as a literal claim, and the simulation hypothesis, remain philosophy, not proven physics. This is the bridge from what the universe is to how it computes.',
     boundary:
       'HONEST (research-wave verified, 53 documented / 22 flagged): ESTABLISHED — information is physical (Landauer kT·ln2, ≈2.9×10⁻²¹ J/bit, confirmed Bérut 2012 + replications), Maxwell’s demon is resolved by the cost of memory ERASURE (Szilard/Bennett/Koski), Shannon and Boltzmann entropy share one functional (1 bit = kB·ln2), the Bekenstein bound and the black-hole AREA-law entropy (S = A/4ℓ_P²) are rigorous. NUANCED/DEBATED (philosophy-not-settled): whether Landauer is a first-principles theorem (Norton), whether thermodynamic and Shannon entropy are "literally the same", and whether unitarity is truly inviolable. UNCONFIRMED (≠pseudoscience): the holographic principle for OUR universe (AdS/CFT is a well-supported conjecture for anti-de Sitter, not a proof), the detailed information-escape mechanism, and "it from bit"/digital-physics/the simulation hypothesis (a philosophical argument, neither proven nor refuted). PSEUDOSCIENCE flagged: "physics proves we live in a simulation", observer/consciousness-creates-reality, and information/quantum free-energy or healing. CARDINAL: information being physical is established; "reality is fundamentally/only information" is an unconfirmed philosophical stance, not a proven fact. This pivot bridges physics to the repo’s own nature (a content-addressed, deterministic information system) — honestly, as analogy and foundation, not as a claim the universe IS this repo.',
+  }
+}
+
+// The limits of computation — what can and cannot be computed, and what is hard. A 5-angle sourced wave (62 documented,
+// 18 flagged): Turing & the Church-Turing thesis, the halting problem, Gödel's incompleteness, P vs NP, and the
+// physical thesis. One technique — DIAGONALIZATION — underlies the halting problem, Gödel and Cantor. The limits of
+// any deterministic information system, including this repo.
+export function limitsOfComputationDecoded(matrix: MindMatrix = buildMatrix()) {
+  const info = physicsOfInformationDecoded(matrix) // continues the information arc
+  const diag = cantorDiagonal([[0, 1, 1], [1, 1, 0], [0, 0, 0]]) // → [1,0,1]; differs from row i at position i
+  const escapes = diag.every((bit, i) => bit !== ([[0, 1, 1], [1, 1, 0], [0, 0, 0]][i][i])) // the escaping row is in no row
+  const facets = [
+    { facet: 'TURING and the CHURCH-TURING thesis — Turing’s 1936 a-machine and the UNIVERSAL machine (which simulates any machine from its Gödel-numbered description) define computability; the Church-Turing thesis — every "effectively calculable" function is Turing-computable — is a THESIS, not a theorem (one side, the intuitive "effective method", is informal), supported by CONFLUENCE: Turing machines, Church’s λ-calculus (1936), Gödel-Herbrand recursive functions, and Post/Markov systems all define the EXACT SAME class. Church’s negative answer to Hilbert’s Entscheidungsproblem preceded Turing’s by ~7 months', on: info.decoded },
+    { facet: 'the HALTING PROBLEM is UNDECIDABLE — Turing 1936: no algorithm can decide whether an arbitrary program halts on a given input, proved by DIAGONALIZATION / self-reference (cantorDiagonal builds a row differing from every row in a list — verified here, escapes = ' + escapes + '; the same move builds a program no halting-decider can classify). Other undecidables: Rice’s theorem (EVERY non-trivial semantic property of programs is undecidable), Hilbert’s 10th / Diophantine equations (MRDP, Matiyasevich 1970), the group word problem. BOUND: "undecidable" = no GENERAL algorithm; specific instances can still be decided', on: escapes },
+    { facet: 'GÖDEL’s INCOMPLETENESS (1931) — any consistent, recursively-axiomatized system strong enough for arithmetic contains TRUE statements it cannot prove (first theorem), and cannot prove its own consistency (second); the self-reference/diagonal lemma at its heart is the SAME technique as the halting problem (Turing undecidability gives an alternative route to incompleteness). DEMARCATION: incompleteness does NOT mean "mathematics is broken/inconsistent", does NOT prove "human minds surpass machines" (the Lucas-Penrose argument is widely rejected), and does NOT license "nothing is knowable" relativism', on: info.decoded },
+    { facet: 'COMPLEXITY and P vs NP — P (solvable in polynomial time) vs NP (a solution is VERIFIABLE in polynomial time); NP-completeness via the Cook-Levin theorem (1971: SAT is NP-complete, so if any one NP-complete problem is in P then P = NP). P vs NP is one of the seven Clay Millennium Prize problems ($1M, 2000), widely BELIEVED to be P ≠ NP but UNPROVEN as of today — and much of modern cryptography rests on the assumption that one-way functions exist (a stronger cousin)', on: info.decoded },
+    { facet: 'the PHYSICAL thesis and the demarcation — the MATHEMATICAL Church-Turing thesis (about computable functions) is distinct from the PHYSICAL one (Deutsch’s conjecture that any physically realizable process is Turing-simulable — UNCONFIRMED, empirical, "a distant relative"); a QUANTUM computer does NOT violate computability — it computes the SAME functions (a speedup, e.g. factoring, not super-Turing power), and hypercomputation has no known physical realization. FLAGGED: "Gödel proves God / the soul / free will / that minds are non-computational" (Lucas-Penrose, rejected), "the brain is a quantum hypercomputer" (Orch-OR, flagged elsewhere in this repo), "P=NP would instantly break reality", and "consciousness solves the halting problem" / computational-theology woo. CARDINAL: undecidability and incompleteness are rigorous THEOREMS; their metaphysical extrapolations are NOT proven', on: info.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`limits-of-computation:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('limits-of-computation-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    documentedFindings: 62, flaggedFindings: 18, angles: 5,
+    diagonalEscapes: escapes, escapingRow: diag,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The limits of computation — the deepest results about what cannot be done. Turing pinned down what "computable" means with a single abstract machine, and the Church-Turing thesis says nothing effective escapes it — a claim no proof can close, but every rival definition (λ-calculus, recursive functions) collapses onto the same class. From one trick, diagonalization, comes the whole cliff edge: the halting problem cannot be decided, arithmetic cannot be made both complete and consistent (Gödel), and the same self-reference recurs wherever a system tries to fully describe itself. Where things ARE computable, P vs NP asks whether checking an answer is as easy as finding one — believed not, unproven, and the assumption cryptography leans on. Quantum machines are faster, not more powerful in what they can compute. And the famous overreaches — Gödel proves the soul, the mind beats the machine, a simulation runs it all — are exactly that. A deterministic information system, this repo included, lives inside these limits.',
+    boundary:
+      'HONEST (research-wave verified, 62 documented / 18 flagged): ESTABLISHED — Turing computability and the universal machine; the Church-Turing thesis as a THESIS supported by the confluence of TM = λ-calculus = recursive functions = Post/Markov; the halting problem’s undecidability and Gödel’s two incompleteness theorems (both diagonalization/self-reference, demonstrated here via cantorDiagonal); Rice’s theorem; MRDP (Hilbert’s 10th); NP-completeness (Cook-Levin, SAT). UNPROVEN/OPEN: P vs NP (Clay Millennium, believed P≠NP). UNCONFIRMED (≠pseudoscience): the PHYSICAL Church-Turing thesis (Deutsch) and hypercomputation (no known physical realization). DEMARCATION (the metaphysical overreaches are NOT proven): incompleteness does not break mathematics; Lucas-Penrose "minds surpass machines" is widely rejected; quantum computers give speedups, not new computability (they do not violate the thesis); "Gödel proves God/the soul", "the brain is a quantum hypercomputer" (Orch-OR), "P=NP breaks reality", and computational-theology are FLAGGED. CARDINAL: undecidability and incompleteness are rigorous theorems about formal systems; their leaps to minds, gods and simulations are philosophy, not mathematics. The repo is a deterministic information system and lives honestly inside these limits.',
   }
 }
 

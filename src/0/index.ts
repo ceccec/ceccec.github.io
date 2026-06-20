@@ -1751,6 +1751,13 @@ export function bekensteinBoundBits(radiusM: number, energyJ: number): number { 
 // Schwarzschild black hole S/k_B = 4πGM²/(ℏc), so a solar mass holds ~10⁷⁷ bits. The basis of the holographic principle.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function blackHoleEntropyBits(massKg: number): number { return (4 * Math.PI * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
+// The diagonal argument — the ONE technique behind Cantor's theorem, the halting problem, and Gödel's incompleteness:
+// given a list of binary rows, flip the diagonal to build a row that DIFFERS from every row (it differs from row i at
+// position i), so no list can contain all rows. Self-reference escapes enumeration. Returns the escaping row.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array<0 | 1> {
+  return rows.map((row, i) => (row[i] ? 0 : 1) as 0 | 1) // flip the i-th bit of the i-th row
+}
 
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
