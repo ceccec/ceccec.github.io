@@ -48,6 +48,7 @@ import {
   humanDesignDecoded,
   originOfLifeAbiogenesisDecoded,
   evolutionByNaturalSelectionDecoded,
+  consciousnessHardProblemDecoded,
   // script, heritage & prayer
   glagoliticAlphabetDecoded,
   glagoliticMeaningOfAllDecoded,
@@ -139,6 +140,7 @@ const GROUPS: { en: string; bg: string; items: { title: string; fn: (m: ReturnTy
       { title: 'Evolution by natural selection', fn: evolutionByNaturalSelectionDecoded },
       { title: 'Life & biology', fn: lifeBiologyDecoded },
       { title: 'Mind & neuroscience', fn: mindNeuroscienceDecoded },
+      { title: 'Consciousness — the hard problem', fn: consciousnessHardProblemDecoded },
       { title: 'The genetic code as mathematics', fn: geneticCodeMathematicsDecoded },
       { title: 'Human Design', fn: humanDesignDecoded },
     ],

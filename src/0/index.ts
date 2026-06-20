@@ -1581,6 +1581,37 @@ export function buhlmannGfCeilingBar(compartmentBar: number, halfTimeMin: number
 // The 16 Bühlmann ZHL-16 nitrogen half-times (minutes) — the deterministic dive computer's tissue compartments.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const ZHL16_N2_HALFTIMES: readonly number[] = [4, 8, 12.5, 18.5, 27, 38.3, 54.3, 77, 109, 146, 187, 239, 305, 390, 498, 635]
+// The 16 ZHL-16 HELIUM compartment half-times (min), paired with the N2 set above. Helium is the FAST gas —
+// every compartment quicker than its nitrogen partner — which is exactly what drives isobaric counterdiffusion.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const ZHL16_HE_HALFTIMES: readonly number[] = [1.51, 3.02, 4.72, 6.99, 10.21, 14.48, 20.53, 29.11, 41.2, 55.19, 70.69, 90.34, 115.29, 147.42, 188.24, 240.03]
+// Isobaric counterdiffusion (ICD) — two inert gases counter-diffusing across tissue at CONSTANT ambient pressure
+// (Lambertsen & Idicula, 1975). After a gas switch the gas washing IN and the gas washing OUT move in OPPOSITE
+// directions; when the entering gas is FASTER than the leaving one (He in, N2 out), the tissue's total inert
+// tension transiently RISES above ambient — supersaturation that can bubble with NO change in pressure. It
+// composes two haldaneLoad curves; the peak of their SUM above ambient is where the two counter-flows meet.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function isobaricCounterdiffusion(
+  ambientInertBar: number,
+  gasOut: { tissue0Bar: number; inspiredBar: number; halfTimeMin: number },
+  gasIn: { tissue0Bar: number; inspiredBar: number; halfTimeMin: number },
+  timeMin: number,
+  steps = 64,
+): {
+  series: { t: number; out: number; in: number; total: number; superBar: number }[]
+  peakSuperBar: number; peakAtMin: number; supersaturates: boolean
+} {
+  const series = Array.from({ length: steps + 1 }, (_, i) => {
+    const t = (timeMin * i) / steps
+    const out = haldaneLoad(gasOut.tissue0Bar, gasOut.inspiredBar, gasOut.halfTimeMin, t)
+    const inn = haldaneLoad(gasIn.tissue0Bar, gasIn.inspiredBar, gasIn.halfTimeMin, t)
+    const total = out + inn
+    return { t, out, in: inn, total, superBar: total - ambientInertBar }
+  })
+  let peak = series[0]!
+  for (const point of series) if (point.superBar > peak.superBar) peak = point
+  return { series, peakSuperBar: peak.superBar, peakAtMin: peak.t, supersaturates: peak.superBar > 1e-9 }
+}
 // A deterministic dive computer: load the 16 compartments over a constant-depth bottom segment, then report the
 // controlling ascent ceiling and whether a direct (no-decompression) ascent is allowed. Same dive → same plan.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -1775,6 +1806,10 @@ export function hardyWeinbergGenotypes(p: number): { AA: number; Aa: number; aa:
   const q = 1 - p
   return { AA: p * p, Aa: 2 * p * q, aa: q * q }
 }
+// The Perturbational Complexity Index cutoff (PCI*) — the empirically-validated threshold (~0.31; Casali 2013,
+// Casarotto 2016) above which a TMS-EEG response is complex enough to mark a CONSCIOUS state, below which it does
+// not. A real clinical measure of the LEVEL of consciousness — NOT a solution to the hard problem of WHY there is any.
+export const PCI_CONSCIOUSNESS_THRESHOLD = 0.31 // PCI* — conscious above, unconscious below (empirical, not a presence certificate)
 
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
