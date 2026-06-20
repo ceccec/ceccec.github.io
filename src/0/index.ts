@@ -1614,12 +1614,12 @@ export function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number, gfNum:
 // Fresh water is less dense, so it takes more metres to add one bar; at altitude the surface pressure is below 1.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function ambientPressureBar(depthM: number, freshWater = false, surfaceBar = 1.013): number {
-  return surfaceBar + depthM / (freshWater ? 10.331 : 10.064) // m per bar: salt 10.064, fresh 10.331
+  return surfaceBar + depthM / (freshWater ? 10.197 : 9.949) // hydrostatic m/bar: salt 9.949 (ρ≈1025), fresh 10.197 (ρ≈1000)
 }
 // Maximum operating depth of a breathing gas — the depth where its O₂ fraction reaches the PPO₂ ceiling (toxicity).
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function maxOperatingDepthM(fO2: number, ppo2MaxBar = 1.4, freshWater = false, surfaceBar = 1.013): number {
-  return (ppo2MaxBar / fO2 - surfaceBar) * (freshWater ? 10.331 : 10.064) // metres
+  return (ppo2MaxBar / fO2 - surfaceBar) * (freshWater ? 10.197 : 9.949) // metres
 }
 // Best (richest safe) breathing-gas O₂ fraction for a target PPO₂ at a depth — gas blending by partial pressure.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
