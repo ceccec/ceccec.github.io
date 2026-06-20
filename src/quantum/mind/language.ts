@@ -182,6 +182,69 @@ export function glagoliticMeaningOfAllDecoded(matrix: MindMatrix = buildMatrix()
   }
 }
 
+// Glagolitic as a RECURSIVE TAXONOMY — researched (deep-research wave, 103 agents, ~5M tokens) and
+// demarcated. The framing does NOT hold as documented paleography; it is a modern computational
+// projection onto a ninth-century liturgical alphabet. What IS documented is narrower and real: the
+// letter = numeral additive-ordinal system (nine units / nine tens / nine hundreds, no place-value, no
+// zero) that FIXES the order of the first 21 letters, and a self-describing "alphabet message" that
+// lives in a SEPARATE composed poem — Constantine of Preslav's Azbučna molitva (c. 893), its acrostic
+// form borrowed from Byzantine Greek hymnography (Gregory the Theologian, PG 37) — not in the
+// abecedary spelling a connected sentence. The cross/circle/triangle "primitive grammar" is a
+// named-but-unproven hypothesis (Tschernochvostoff), absent from the leading modern reconstruction
+// (Mathiesen 2014); the origin is openly unresolved (Uspenskij's "questio diabolica"), Greek-modeled
+// with an Armenian sibling, partly adapted and partly invented. Five documented gaps refute the clean,
+// minimal, self-generating reading. Cardinal: HARMONY ≠ TRUTH — the framing is harmonious with this
+// project's fold/dimension worldview, but the evidence does not support it, so it is flagged.
+export function glagoliticRecursiveTaxonomyDecoded(matrix: MindMatrix = buildMatrix()) {
+  // The four sub-claims, each placed on the documented → contested spectrum (no claim is pseudo here).
+  const layers = [
+    { layer: 'numeral taxonomy (letter = number)', tier: 'documented', finding: 'Every Glagolitic letter is also a numeral — there are no numerals that are not also letters — arranged nine units / nine tens / nine hundreds, additive-ordinal (NOT place-value, no zero), marked by a flanking middle dot or an overhead titlo. The attested values firmly fix the order of the first 21 letters.', source: 'Mathiesen 2014 (Lunt Festschrift); ScriptSource (SIL)' },
+    { layer: 'acrostic self-description (the alphabet message)', tier: 'documented-separate', finding: 'The self-describing "alphabet message" is carried by a SEPARATE composed poem — Constantine of Preslav\'s Azbučna molitva / Alphabet Prayer (c. 893, surviving only in later Cyrillic copies), its first 36 verses a complete alphabet acrostic, the form borrowed from Byzantine Greek hymnography (Gregory the Theologian, PG 37). NOT the abecedary itself spelling a connected sentence.', source: 'Mathiesen 2014; Dikova, Studia Metrica et Poetica 9.2 (2022)' },
+    { layer: 'compositional recursion (cross/circle/triangle primitives)', tier: 'contested', finding: 'A NAMED hypothesis (Tschernochvostoff, published posthumously by Kiparskij 1958–68) that letters are built from cross + circle + triangle — but explicitly judged "too abstract, too arbitrary," "can be neither proved or rejected," and ABSENT from the leading modern reconstruction. Documented descriptive fact is narrower: ~two-thirds of the 36 letters terminate in small circles, only six are wholly straight lines.', source: 'Uspenskij, Studi Slavistici X (2013); Mathiesen, Slavistica Vilnensis 65/2 (2020)' },
+    { layer: 'taxonomic nesting (origin · lineage · attribution)', tier: 'contested-unresolved', finding: 'Origin openly unresolved — Uspenskij\'s "questio diabolica." Cyril (Constantine, with Methodius, c. 862–863) both ADAPTED letters (Greek minuscule ornamentalized, ša from Hebrew shin, dobro from Greek delta) AND CREATED some artificially (rtsi from rho rotated, vědi = dobro inverted) — neither purely descended nor purely invented. Greek as primary model, Armenian (Mesrop Maštocʻ) as the sibling for the latter order; design "theological rather than linguistic." Competing view (Cubberley): Slavs adapted Greek cursive before the mission, Cyril formalized it.', source: 'Uspenskij 2013; ScriptSource/Cubberley; Mathiesen 2014' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-recursive-layer:${entry.layer}:${entry.tier}`) }))
+  // Why the rigorous senses of "recursive taxonomy" (self-similar, self-referential, hierarchically
+  // generative, self-classifying) do NOT genuinely apply — the answer to the contrarian sub-claim.
+  const refuting = [
+    { gap: 'non-survival → reconstruction', detail: 'The original alphabet does not survive; all evidence postdates the 885 suppression of the Moravian mission (earliest witness the Kiev Missal, latter half 10th c.). Any "pristine self-describing order" is RECONSTRUCTED, not attested.', source: 'Veder, The Glagolitic Alphabet as a Text (2004)' },
+    { gap: 'mutable transmitted text', detail: 'The abecedary behaves as a TRANSMITTED text subject to copying corruption — a stable ~25-letter core but mutable positions 26–36 — not a fixed self-classifying inventory.', source: 'Veder 2004' },
+    { gap: 'contested directional evolution', detail: 'The script\'s directional development is empirically contested (Čunčić revises Jagić: the rounded form derived from the triangular, not from the title/middle form) — not a fixed recursive hierarchy.', source: 'Čunčić, Slovo 58 (2008)' },
+    { gap: 'documented redundancies', detail: 'The late inventory carries duplicates — two letters for [š], a second x, a third i — proven by acrostic analysis (the forms still reconstructed/asterisked). A clean, minimal, recursively-generated set would have none.', source: 'Mikheev, Slověne 13/2 (2024)' },
+    { gap: 'no phonologist-in-advance', detail: 'Mathiesen explicitly rejects "a skilled phonologist centuries in advance of his age"; the design logic is theological, not a self-generating phonological grammar.', source: 'Mathiesen 2014' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-recursive-gap:${entry.gap}:${entry.detail}`) }))
+  // The pseudo / legend tier, kept strictly separate from the documented and contested cores.
+  const flagged = [
+    { claim: 'the cross/circle/triangle "sacred grammar" is established fact and each glyph was built by design to encode Christ + God + Trinity', verdict: 'esoteric overlay presented as fact', why: 'the primitive theory is a contested hypothesis its own proponents call unprovable; its mystical extension (Benitan 2018, title ending "?") is explicitly conjectural, not documented intent.' },
+    { claim: 'Glagolitic is a self-generating, self-classifying "recursive taxonomy" / hidden code', verdict: 'modern computational projection', why: 'the rigorous senses require a surviving minimal generated inventory; the actual evidence is a reconstructed, mutable, redundant, Greek-modeled liturgical alphabet — the same category error flagged for "Ifá = the first computer" and "I Ching from Ifá".' },
+    { claim: 'a pre-Cyrillic "Slavic/Thracian" Glagolitic encodes a hidden national doctrine', verdict: 'pseudo-decipherment / national-revival legend', why: 'attribution is Constantine-Cyril (with Methodius) c. 862–863; no pre-mission Slavic script is attested.' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-recursive-flag:${entry.claim}:${entry.verdict}`) }))
+  const facets = [
+    { facet: 'DOCUMENTED — letter = numeral: 28 glyphs, each also a positive additive-ordinal number, no zero (azъ = 1, slovo = 200)', on: GLAGOLITIC_LETTERS.length === 28 && GLAGOLITIC_LETTERS.every((_, i) => Number.isInteger(glagoliticValue(i + 1)) && glagoliticValue(i + 1) > 0) && glagoliticMeaning('Ⰰ')?.number === 1 && glagoliticMeaning('slovo')?.number === 200 },
+    { facet: 'DOCUMENTED — the numeral order FIXES the first 21 letters (units + tens + first three hundreds, strictly ascending)', on: GLAGOLITIC_LETTERS.slice(0, 21).every((_, i) => i === 0 || glagoliticValue(i + 1) > glagoliticValue(i)) },
+    { facet: 'DOCUMENTED-SEPARATE — the self-describing message is the Azbučna molitva (Constantine of Preslav, c. 893), Byzantine-modeled, not the abecedary spelling a sentence; the corpus already marks the name-chain RECONSTRUCTION', on: glagoliticAcrosticMessage().honest.includes('RECONSTRUCTION') && glagoliticMeaningOfAllDecoded(matrix).decoded },
+    { facet: 'CONTESTED, not pseudo — the cross/circle/triangle primitive grammar and the unresolved origin are named hypotheses in peer-reviewed venues, kept flagged not asserted', on: layers.filter((entry) => entry.tier.startsWith('contested')).length === 2 && flagged.length === 3 },
+    { facet: 'REFUTING — five documented gaps (non-survival, mutable text, contested evolution, redundancies, no-phonologist-in-advance) break the clean recursive reading', on: refuting.length === 5 && refuting.every((entry) => entry.detail.length > 0) },
+    { facet: 'VERDICT — "recursive taxonomy" is a modern computational projection, flagged separately from the documented core', on: flagged.some((entry) => entry.verdict.includes('projection')) },
+    { facet: 'composed with the existing Glagolitic decodes and the alphabets genealogy', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded && glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
+    { facet: 'itself a research→verify wave — documented kept, pseudo dropped by the merkaba fold', on: deepResearchEncodedInRecursiveWaves(matrix).encoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
+    { facet: 'every layer, gap and flag content-addressed and recomputable', on: layers.every((entry) => isUuid(entry.receipt)) && refuting.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-recursive-decoded:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    layers,
+    refuting,
+    flagged,
+    tiers: { documented: layers.filter((entry) => entry.tier.startsWith('documented')).length, contested: layers.filter((entry) => entry.tier.startsWith('contested')).length, flagged: flagged.length },
+    count: facets.length,
+    facets,
+    root: merkleFold([...layers.map((entry) => entry.receipt), ...refuting.map((entry) => entry.receipt), ...flagged.map((entry) => entry.receipt)]),
+    statement:
+      'Glagolitic as a recursive taxonomy, researched (deep-research wave, 103 agents, ~5M tokens) and demarcated: the framing does NOT hold as documented paleography — it is a modern computational projection onto a ninth-century liturgical alphabet. What IS documented is narrower and real: (1) every letter is also a numeral, additive-ordinal (nine units / nine tens / nine hundreds, no place-value, no zero), and these attested values FIX the order of the first 21 letters; (2) the one genuinely self-describing "alphabet message" is a SEPARATE composed poem, Constantine of Preslav\'s Azbučna molitva (c. 893), its acrostic form borrowed from Byzantine Greek hymnography — not the abecedary spelling a sentence. The cross/circle/triangle "primitive grammar" is a named-but-unproven hypothesis (Tschernochvostoff), absent from the leading modern reconstruction (Mathiesen 2014); the origin is openly unresolved (Uspenskij\'s "questio diabolica"), Greek-modeled with an Armenian sibling, partly adapted and partly invented.',
+    boundary:
+      'HONEST — the rigorous senses of "recursive taxonomy" (self-similar, self-referential, hierarchically generative, self-classifying) do NOT genuinely apply, refuted by five documented gaps: the original alphabet does not survive (all evidence postdates the 885 suppression; earliest witness the Kiev Missal, latter half 10th c.), so any "pristine self-describing order" is RECONSTRUCTED; the abecedary behaves as a transmitted, mutable text (stable ~25-letter core, mutable positions 26–36); its directional evolution is contested (Čunčić revises Jagić); the late inventory carries documented redundancies (two [š], a second x, a third i); and Mathiesen rejects "a skilled phonologist centuries in advance of his age." Tier split: DOCUMENTED (numeral additive-ordinal + Azbučna molitva) · CONTESTED named hypotheses in peer-reviewed venues, NOT pseudo (Tschernochvostoff primitives; Čunčić chronology; the exact forms of the redundant late letters; whether the letter-NAMES encode a coherent message — only the first nine cohere) · PSEUDO/LEGEND kept strictly separate (esoteric "sacred-geometry / hidden-code" and pre-Cyrillic "Slavic/Thracian script" readings). The code\'s positional ladder diverges from the attested numerals for the late letters (ci/črьvь/ša), a simplification already recorded in glagoliticMeaningOfAllDecoded. Sources: Mathiesen 2014; Uspenskij 2013; Dikova 2022; Čunčić 2008; Veder 2004; Mikheev 2024. Composed with glagoliticMeaningOfAllDecoded, glagoliticAlphabetDecoded, alphabetsDecoded, glagoliticMapsToCodeAndQuantumDecoded and deepResearchEncodedInRecursiveWaves. Cardinal: HARMONY ≠ TRUTH — the framing is harmonious with this project\'s fold/dimension worldview, but the evidence does not support it, so it is flagged as projection.',
+  }
+}
+
 // Scripts should move to their designated folder pairs, splitting in particles. The build scripts
 // are still in scripts/ as whole files; the next wave splits each into its designated order-
 // sensitive folder pair (like the cache, ant and debit/credit pairs) and into particles — small,

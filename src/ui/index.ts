@@ -17,6 +17,7 @@ import DynSim from './components/DynSim.vue'
 import DoubleTorus3D from './components/DoubleTorus3D.vue'
 import Dualities from './components/Dualities.vue'
 import ElectromagneticRadiation from './components/ElectromagneticRadiation.vue'
+import Frontiers from './components/Frontiers.vue'
 import Equilibrium from './components/Equilibrium.vue'
 import Fold358853 from './components/Fold358853.vue'
 import Genesis from './components/Genesis.vue'
@@ -31,6 +32,7 @@ import HarmonicSpiral from './components/HarmonicSpiral.vue'
 import HumanLens from './components/HumanLens.vue'
 import KnowledgeAtlas from './components/KnowledgeAtlas.vue'
 import LearnDeveloper from './components/LearnDeveloper.vue'
+import LearningPortal from './components/LearningPortal.vue'
 import Live from './components/Live.vue'
 import LivingTorus from './components/LivingTorus.vue'
 import Magnetometer from './components/Magnetometer.vue'
@@ -265,6 +267,7 @@ export default {
     app.component('DoubleTorus3D', DoubleTorus3D)
     app.component('Dualities', Dualities)
     app.component('ElectromagneticRadiation', ElectromagneticRadiation)
+    app.component('Frontiers', Frontiers)
     app.component('Equilibrium', Equilibrium)
     app.component('Fold358853', Fold358853)
     app.component('Genesis', Genesis)
@@ -279,6 +282,7 @@ export default {
     app.component('HumanLens', HumanLens)
     app.component('KnowledgeAtlas', KnowledgeAtlas)
     app.component('LearnDeveloper', LearnDeveloper)
+    app.component('LearningPortal', LearningPortal)
     app.component('Live', Live)
     app.component('LivingTorus', LivingTorus)
     app.component('Magnetometer', Magnetometer)

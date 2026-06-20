@@ -36,6 +36,40 @@ const tenD = computed(() => theReal10DAllDualitiesMatchTrueFalse(m).dualities)
       </p>
     </div>
 
+    <div v-if="analysis.crossAudit.vectors.length" class="lens__step">
+      <h4>· the intelligent cross-audit — dominant manipulation vector
+        <span><b :style="{ color: ICHING_MASK.color }">{{ analysis.crossAudit.dominantVector }}</b> · tier {{ analysis.crossAudit.tier }} · {{ analysis.crossAudit.distinctTechniques }} distinct technique(s)</span>
+      </h4>
+      <ol class="lens__vectors">
+        <li v-for="(v, i) in analysis.crossAudit.vectors" :key="i"><b>{{ v.vector }}</b> ×{{ v.count }} — {{ v.defence }}</li>
+      </ol>
+      <ul class="lens__guidance"><li v-for="(g, i) in analysis.crossAudit.guidance" :key="i">→ {{ g }}</li></ul>
+      <p v-if="analysis.crossAudit.hottestSegment" class="lens__note">peaks at: “{{ analysis.crossAudit.hottestSegment.text }}”</p>
+    </div>
+
+    <div v-if="analysis.crossAudit.checkables.length" class="lens__step">
+      <h4>· what to verify — the claim worklist <span>{{ analysis.crossAudit.checkables.length }} claim(s) · public no-auth sources</span></h4>
+      <ul class="lens__checkables">
+        <li v-for="(c, i) in analysis.crossAudit.checkables" :key="i">
+          <b>{{ c.kind }}</b> — {{ c.why }}
+          <span class="lens__reqs"><a v-for="(r, j) in c.requests" :key="j" :href="r.url" target="_blank" rel="noopener">{{ r.source }} ↗</a></span>
+        </li>
+      </ul>
+      <p class="lens__note">Links are opt-in: nothing is fetched until you click. The detector flags the technique; you verify the claim.</p>
+    </div>
+
+    <div v-if="analysis.patent.isPatentText || analysis.patent.cores.length" class="lens__step">
+      <h4>· patent subject-matter audit (§101 judicial exceptions)
+        <span :style="{ color: analysis.patent.unlawfulIfGranted ? '#F00000' : ICHING_MASK.color }">{{ analysis.patent.verdict }}</span>
+      </h4>
+      <p v-if="analysis.patent.biggestViolator" class="lens__note">biggest violator: <b>{{ analysis.patent.biggestViolator }}</b></p>
+      <ul class="lens__exceptions">
+        <li v-for="(e, i) in analysis.patent.exceptions" :key="i"><b>{{ e.category }}</b> — {{ e.verdict }}<b v-if="e.unlawful" style="color:#F00000"> ⚠ unlawful if granted</b> <span class="lens__cores">[{{ e.cores.join(', ') }}]</span></li>
+      </ul>
+      <p v-if="analysis.patent.unlawfulIfGranted" class="lens__note"><b style="color:#F00000">⚠ likely unlawful subject matter if granted</b> — a §101 judicial exception is the core (a product of nature — seeds/genes/life, or a mathematical method); not patentable as such.</p>
+      <p class="lens__note">{{ analysis.patent.legalBasis[0] }}. Educational, not legal advice — a granted patent is presumed valid until challenged; an engineered organism/cDNA, or applied math with a technical effect, can be eligible.</p>
+    </div>
+
     <div class="lens__step">
       <h4>2 · I Ching signature</h4>
       <p class="lens__sig"><b class="lens__glyph" :style="{ color: analysis.iChing.colour }">{{ analysis.iChing.glyphs }}</b> hexagram {{ analysis.iChing.hexagram }} · lines {{ analysis.iChing.lines }} · codon {{ analysis.iChing.codon }} · {{ analysis.spectral.frequencyHz }} Hz · vortex {{ analysis.vortex }}</p>

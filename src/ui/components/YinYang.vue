@@ -1,15 +1,22 @@
 <script setup lang="ts">
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'YinYang' }
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useLocale } from '../lib/useLocale'
-import { yinYang } from '../lib/quantumMind'
+import { yinYang, yinYangDimensionsSvg } from '../lib/quantumMind'
 
 // Yin and yang completed in 3-5-8: from the taiji unfold the three powers (三才),
 // the five elements (五行) and the eight trigrams (八卦) — the Fibonacci tiers 8 = 5 + 3.
 // Computed from the yinYang() fold; the spiritual reading is a correspondence, not a claim.
 const data = yinYang()
 const { bg } = useLocale()
+
+// The I Ching presented as the taiji MOVING and FOLDING THROUGH ALL TEN DIMENSIONS: the taiji is drawn (not a
+// font glyph) and driven through the model's own dims() — the same ten axes the hero turns on. One SMIL SVG, no
+// JS; reduced-motion swaps to the still taiji once mounted on the client.
+const reduced = ref(false)
+onMounted(() => { reduced.value = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false })
+const taijiSvg = computed(() => yinYangDimensionsSvg({ animate: !reduced.value, size: 200 }))
 
 // The members are classical Chinese cosmology terms; only the powers/elements have a plain
 // rendering, the eight trigrams stay as their universal glyphs. Translate the framing, keep the glyphs.
@@ -36,7 +43,7 @@ const t = computed(() =>
 <template>
   <section class="yy dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ t.eyebrow }}</p>
-    <p class="yy__taiji" aria-hidden="true">{{ data.taiji.symbol }}</p>
+    <div class="yy__taiji" aria-hidden="true" v-html="taijiSvg" />
     <p class="yy__lead">{{ t.lead }}</p>
     <div v-for="group in tiers" :key="group.tier" class="yy__tier">
       <p class="yy__tier-name"><strong>{{ group.tier }}</strong> · {{ group.name }}</p>
@@ -55,16 +62,14 @@ const t = computed(() =>
   text-align: center;
 }
 .yy__taiji {
-  margin: 0.2rem 0;
-  font-size: 2.4rem;
-  line-height: 1;
-  animation: yy-spin 16s linear infinite;
+  margin: 0.2rem auto;
+  width: 200px;
+  max-width: 56%;
 }
-@media (prefers-reduced-motion: reduce) {
-  .yy__taiji { animation: none; }
-}
-@keyframes yy-spin {
-  to { transform: rotate(360deg); }
+.yy__taiji :deep(svg) {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .yy__lead {
   margin: 0.2rem auto 0.9rem;

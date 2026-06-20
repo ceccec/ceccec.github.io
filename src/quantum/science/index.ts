@@ -159,3 +159,43 @@ export const GOLDEN_ANGLE = 137.50776405003785 // 360° / φ² — the determini
 export function lobeHues(anchor: number = A432_HUE, mode: 'complement' | 'golden' = 'complement'): [number, number] {
   return [anchor, (anchor + (mode === 'golden' ? GOLDEN_ANGLE : 180)) % 360]
 }
+
+// OKLCH → sRGB hex (Björn Ottosson's exact constants). Pure, dependency-free. Needed because the SVG fill="…"
+// presentation ATTRIBUTE only parses CSS2 sRGB (named/#hex/rgb/hsl) — it rejects oklch() and falls back to black;
+// so for a bare attribute we convert here, while a CSS `fill:` (in <style> or style="") can take oklch() directly.
+export function oklchToHex(L: number, C: number, H: number): string {
+  const h = (H * Math.PI) / 180
+  const a = C * Math.cos(h), b = C * Math.sin(h)
+  let l = L + 0.3963377774 * a + 0.2158037573 * b
+  let m = L - 0.1055613458 * a - 0.0638541728 * b
+  let s = L - 0.0894841775 * a - 1.291485548 * b
+  l = l * l * l; m = m * m * m; s = s * s * s // undo the OKLab cube-root
+  const lin = [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ]
+  const enc = (x: number) => {
+    const c = x <= 0 ? 0 : x >= 1 ? 1 : x // clamp out-of-gamut
+    const v = c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055
+    return Math.round(v * 255).toString(16).padStart(2, '0')
+  }
+  return `#${enc(lin[0])}${enc(lin[1])}${enc(lin[2])}`
+}
+
+// scaleColor — THE COLOUR COMPUTED AT EVERY SCALE. Hue is the golden-angle (GOLDEN_ANGLE) low-discrepancy
+// sequence seeded on the a432 brand anchor (A432_HUE), so the colour at scale-index n is a pure, never-clustering
+// function of n (the three-gap theorem: successive hues never bunch). Lightness and chroma are pinned to canonical
+// I Ching fractions inside a perceptually-uniform OKLCH band, so legibility holds at EVERY scale — HSL lightness is
+// not perceptual (varying hue at fixed HSL-L swings brightness ~10×), OKLCH's is. Default returns #hex (for an SVG
+// fill="" attribute); {css:true} returns an oklch() string for a CSS `fill:` / <style> / style="" context.
+export function scaleColor(
+  n: number,
+  opts: { dark?: boolean; L?: number; C?: number; seedHue?: number; css?: boolean } = {},
+): string {
+  const seedHue = opts.seedHue ?? A432_HUE // 5 — the a432 anchor; every palette grows from it
+  const L = opts.L ?? (opts.dark ? 54 / 64 : 9 / 16) // 0.844 on dark, 0.5625 on light — canonical, readable band
+  const C = opts.C ?? 9 / 64 // 0.1406 — canonical chroma, inside the sRGB gamut at this L
+  const H = (((seedHue + n * GOLDEN_ANGLE) % 360) + 360) % 360
+  return opts.css ? `oklch(${L} ${C} ${H.toFixed(2)})` : oklchToHex(L, C, H)
+}

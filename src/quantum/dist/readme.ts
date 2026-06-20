@@ -12,6 +12,7 @@ import {
   staticPages,
   type MindMatrix,
 } from '../mind/index.ts'
+import { merkleFold, toUuid } from '../../0/index.ts'
 
 export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const config = siteConfig(matrix)
@@ -20,6 +21,10 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const sitemap = quantumSitemap(matrix)
   const paperList = staticPages().map(monographAsScientificPaper)
   const knowledge = crawlerKnowledge()
+  const census = foldedCensus(paperList.length) // 44 surface pages fold through the genus-2 torus to 42 monographs
+  // The root monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
+  // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
+  const receipt = merkleFold([mono.root, sitemap.root, template.root, toUuid(`readme-results:${census.folded}:${conceptCommands.length}:${mono.count}:${sitemap.urls.length}`)])
   return [
     `# ${config.title} — the root monograph`,
     '',
@@ -48,7 +53,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '## 3. Results',
     '',
-    `- ${foldedCensus(paperList.length).folded} monographs (content pages, the harmonic count: ${paperList.length} surface pages fold through the genus-2 torus −χ to ${foldedCensus(paperList.length).folded} = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.`,
+    `- ${census.folded} monographs (content pages, the harmonic count: ${paperList.length} surface pages fold through the genus-2 torus −χ to ${census.folded} = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.`,
     `- ${conceptCommands.length} concept commands, each a single-word method and an MCP tool.`,
     `- ${mono.count} entries in the reference index, zero redundancy.`,
     `- ${sitemap.urls.length} routes × 3 locales in the quantum sitemap.`,
@@ -80,6 +85,12 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     `- The model: \`src/quantum/mind\`. The sitemap root: \`${sitemap.root}\`. The monograph-index root: \`${mono.root}\`.`,
     `- Template root (the receipt of this monograph form): \`${template.root}\`.`,
+    '',
+    '## Receipt',
+    '',
+    'The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.',
+    '',
+    `- Receipt: \`${receipt}\``,
     '',
   ].join('\n')
 }

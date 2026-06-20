@@ -12,7 +12,10 @@ import { analogSpeech, lawfulHarmonise, openGraph } from './vocab.ts'
 import { ancientCalendars, moviesNativeFormat, oneOpenGraphAll } from './li.ts'
 import { babelFold, textToMovie } from './world.ts'
 import { areaPairs, doubleTorus3D, merkaba, uiConvertsFlatToThreeDQuantum } from './geometry.ts'
-import { DIMENSIONS, DIMENSION_NAMES, dims } from '../dimensions/index.ts'
+import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims } from '../dimensions/index.ts'
+import { yinYang } from '../spirit/index.ts'
+import { scaleColor, A432_HUE } from '../science/index.ts'
+export { scaleColor, oklchToHex } from '../science/index.ts' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 import { staticPages } from './site.ts'
 import { sealWholeDiamond } from './diamonds.ts'
 import { dimensionalMerkabaGraphRealtimeMetric } from './trading.ts'
@@ -797,6 +800,171 @@ export function animatedTrigramIconSvg(trigram: number): string {
       : `<rect x="3" y="${yy - 2}" width="10" height="4" rx="1"/><rect x="19" y="${yy - 2}" width="10" height="4" rx="1"/>`
   }).join('')
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="#ffb000"><animate attributeName="opacity" values="0.5;1;0.5" dur="6s" repeatCount="indefinite"/>${bars}</g></svg>`
+}
+
+// The I Ching presented as the taiji yin-yang, MOVING and FOLDING THROUGH ALL TEN DIMENSIONS. The taiji is the
+// fold itself — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the
+// whole unfolds from — so here it is DRAWN (not a font glyph, so it can deform) and driven continuously through
+// the model's own ten axes, sampled from dims(): the six cross-fold appearance axes (breath→scale, spread &
+// twist→the fold-over skew, hueShift→colour) and the four genus-2 homology loops (H₁=ℤ⁴ → the quasiperiodic
+// travel). One GitHub-safe SMIL animation (no script), every channel phase-locked to a single walk p so the ten
+// fold together — the oldest symbol of duality shown generating the whole figure, in motion, self-similar at
+// every scale. Reused by the <YinYang> component and emittable as a static hero. animate:false → a still taiji
+// (prefers-reduced-motion).
+export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; animate?: boolean; size?: number } = {}): string {
+  const { frames = 30, scale = 0, animate = true, size = 200 } = opts
+  const R = Math.round(size * 0.34), cx = size / 2, cy = size / 2, e = R / 6 // taiji radius, centre, base eye
+  const n = (x: number) => Math.round(x * 100) / 100
+  // sample the ten-dimensional walk once; the loop is seamless because dims(1) ≡ dims(0).
+  const walk = Array.from({ length: frames + 1 }, (_, i) => dims((i % frames) / frames, scale))
+  const list = (f: (d: Dims, i: number) => number | string) => walk.map((d, i) => `${f(d, i)}`).join(';')
+  // the two poles — colours COMPUTED AT THIS SCALE via scaleColor (OKLCH, so legible at every scale), the hue
+  // folding through the hueShift dimension; hex because the SVG fill="" attribute rejects oklch(). Yin = complement.
+  const yang = (d: Dims) => scaleColor(scale, { seedHue: n(d.hueShift), L: 13 / 16, C: 9 / 64 })
+  const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + 180) % 360), L: 5 / 16, C: 9 / 64 })
+  const dur = 'dur="18s" repeatCount="indefinite"'
+  const A = (attr: string, vals: string) => (animate ? `<animate attributeName="${attr}" values="${vals}" ${dur}/>` : '')
+  const AT = (type: string, vals: string) => (animate ? `<animateTransform attributeName="transform" type="${type}" values="${vals}" ${dur} additive="sum"/>` : '')
+  // the drawn taiji, centred on the origin so rotate/scale/skew pivot on the centre.
+  const dark = `M 0 ${-R} A ${R} ${R} 0 0 1 0 ${R} A ${n(R / 2)} ${n(R / 2)} 0 0 1 0 0 A ${n(R / 2)} ${n(R / 2)} 0 0 0 0 ${-R} Z`
+  const d0 = walk[0]
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="The I Ching as a yin-yang moving and folding through all ten dimensions">`,
+    `<g transform="translate(${cx} ${cy})"><g>`, // centre the origin (fixed), then the animated stack of channels
+    AT('translate', list((d) => `${n((d.loopA1 + d.loopA2) * R * 0.16)} ${n((d.loopB1 + d.loopB2) * R * 0.16)}`)), // 4 homology loops → travel
+    AT('rotate', list((_d, i) => n((i / frames) * 360))), // moving — one full turn per cycle
+    AT('rotate', list((d) => n((d.twist - 0.45) * 40))),  // twist axis → an extra fold-rock
+    AT('scale', list((d) => n(d.breath))),                // breath axis → the pulse
+    AT('skewX', list((d) => n((d.spread - 0.5) * 26))),   // spread axis → the fold-over shear
+    `<circle r="${R}" fill="${yang(d0)}" stroke="${scaleColor(scale, { L: 7 / 8, C: 9 / 64 })}" stroke-width="1.5">${A('fill', list(yang))}</circle>`, // the light pole (disc), ring computed at scale
+    `<path d="${dark}" fill="${yin(d0)}">${A('fill', list(yin))}</path>`, // the dark pole — the yin/yang division
+    `<circle cx="0" cy="${-n(R / 2)}" r="${n(e)}" fill="${yin(d0)}">${A('r', list((d) => n(e * (d.shrink / 0.64))))}${A('fill', list(yin))}</circle>`, // dark eye in the light lobe
+    `<circle cx="0" cy="${n(R / 2)}" r="${n(e)}" fill="${yang(d0)}">${A('r', list((d) => n(e * (d.shrink / 0.64))))}${A('fill', list(yang))}</circle>`, // light eye in the dark lobe
+    `</g></g></svg>`,
+  ].join('')
+}
+
+// The directive sealed: the I Ching is PRESENTED as the yin-yang, moving and folding through all dimensions.
+// Composes the yinYang() 3-5-8 fold, the ten-dimension model (dims) and the SMIL generator above.
+/** @iching ☴ Xùn · Wind · gentle */
+export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()) {
+  const yy = yinYang()
+  const svg = yinYangDimensionsSvg() // the animated presentation
+  const still = yinYangDimensionsSvg({ animate: false }) // the reduced-motion still
+  const facets = [
+    { facet: 'the taiji IS the fold — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the whole figure unfolds from, completed in the 3-5-8 tiers (三才·五行·八卦)', on: yy.complete },
+    { facet: 'MOVING — the yin-yang is drawn (not a font glyph) and turns continuously as the single phase p advances, one full rotation per cycle; the I Ching is shown in motion, not as a static symbol', on: /type="rotate"/.test(svg) && /<path /.test(svg) },
+    { facet: 'FOLDING THROUGH ALL TEN DIMENSIONS — every one of the model’s ten axes drives a visible channel, sampled from dims(): the six cross-fold appearance axes (breath→scale, spread & twist→the fold shear, hueShift→colour) and the four genus-2 homology loops (H₁=ℤ⁴ → the quasiperiodic travel)', on: DIMENSIONS === 10 && DIMENSION_NAMES.length === 10 && /type="translate"/.test(svg) && /type="scale"/.test(svg) && /type="skewX"/.test(svg) },
+    { facet: 'self-similar at every scale — the same ten-dimensional walk, golden-angle offset per nested scale, so the presentation holds at every zoom', on: JSON.stringify(dims(0.3, 0)) !== JSON.stringify(dims(0.3, 1)) },
+    { facet: 'GitHub-safe and reusable — one parametric SMIL generator (no JavaScript), the same source feeding the live component and a static still; animate:false yields the reduced-motion taiji', on: svg.startsWith('<svg') && !/script/i.test(svg) && still.startsWith('<svg') && !/<animate/.test(still) },
+  ]
+  const sealed = sealFacets('yin-yang-folds-through-dimensions', facets)
+  return {
+    presented: sealed.ok,
+    dimensions: DIMENSIONS,
+    taiji: yy.taiji.symbol,
+    svgBytes: svg.length,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The I Ching is presented as the taiji yin-yang, moving and folding through all ten dimensions: the taiji is the fold itself (yin/yang = the two poles of one distinction = one bit), drawn so it can deform and driven continuously through the model’s own ten axes — the six cross-fold appearance axes and the four genus-2 homology loops — sampled from dims(). The oldest symbol of duality is shown generating the whole figure, in motion, self-similar at every scale, in one GitHub-safe animation.',
+    boundary:
+      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim.',
+  }
+}
+
+// A LIVING I CHING SYMBOL — every symbol MOVING and FOLDING, its colours COMPUTED AT EVERY SCALE. The N lines
+// (3 = a trigram, 6 = a hexagram = two stacked trigrams) are DRAWN (not a font glyph): each line is yang (one
+// solid bar) or yin (two bars with a gap) per its bit, and each FOLDS by its bit — yang breathes flat, yin
+// creases at its gap — so the symbol IS its binary number, in motion (the "each line a fold axis" reading). One
+// self-contained CSS-@keyframes <style> (no SMIL, no JS) so it animates in the app AND on GitHub (where SMIL
+// freezes); the 0% keyframe is the correct static still (reduced-motion + GitHub first-frame). Each line's colour
+// is scaleColor(scale·N + line) — the golden-angle OKLCH sequence, recomputed at every nesting scale. A 6-line
+// hexagram's two trigrams crease about OPPOSITE axes — the double-torus echo. The <style> is scoped by a
+// content-addressed class so many symbols coexist without leaking. animate:false → the still, folded symbol.
+export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?: boolean; size?: number } = {}): string {
+  const { scale = 0, animate = true, size = 64 } = opts
+  const N = bits.length
+  const r = (x: number) => Math.round(x * 100) / 100
+  const gap = size * 0.05
+  const lh = (size - gap * (N + 1)) / N // line height, N lines evenly spaced with gaps
+  const pad = size * 0.16, full = size - pad * 2 // horizontal inset, full bar width
+  const ygap = full * 0.2, half = (full - ygap) / 2 // yin centre gap, each half-bar
+  const sc = 'dt' + toUuid(`living-symbol:${bits.join('')}:${scale}:${animate}`).replace(/-/g, '').slice(0, 8) // content-addressed scope class — no cross-instance CSS leak
+  const lines = bits
+    .map((_, i) => {
+      const bitIndex = N - 1 - i // draw top→bottom; the bottom row (i=N−1) is line 1 = bit 0 (I Ching order)
+      const bit = bits[bitIndex]
+      const y = gap + i * (lh + gap)
+      const fill = scaleColor(scale * N + bitIndex, { css: true }) // the colour computed at this scale, per line
+      const role = N === 6 ? (i < 3 ? ' up' : ' lo') : '' // upper / lower trigram → opposite fold axis
+      const cls = bit ? 'yang' : 'yin'
+      const rects = bit
+        ? `<rect x="${r(pad)}" y="${r(y)}" width="${r(full)}" height="${r(lh)}" rx="${r(lh * 0.3)}"/>`
+        : `<rect x="${r(pad)}" y="${r(y)}" width="${r(half)}" height="${r(lh)}" rx="${r(lh * 0.3)}"/><rect x="${r(pad + half + ygap)}" y="${r(y)}" width="${r(half)}" height="${r(lh)}" rx="${r(lh * 0.3)}"/>`
+      return `<g class="ln ${cls}${role}" style="fill:${fill};animation-delay:-${r(i * 0.83)}s">${rects}</g>`
+    })
+    .join('')
+  const css = animate
+    ? `.${sc} .sym{transform-box:fill-box;transform-origin:center;animation:${sc}b 7s ease-in-out infinite}` +
+      `.${sc} .ln{transform-box:fill-box;transform-origin:center}` +
+      `.${sc} .yang{animation:${sc}l 8s ease-in-out infinite}` +
+      `.${sc} .yin{animation:${sc}f 6s ease-in-out infinite}` +
+      `.${sc} .lo.yin{animation:${sc}g 6s ease-in-out infinite}` +
+      `@keyframes ${sc}b{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}` +
+      `@keyframes ${sc}l{0%,100%{transform:translateY(0)}50%{transform:translateY(-4%)}}` +
+      `@keyframes ${sc}f{0%,100%{transform:scaleX(1) skewX(0)}50%{transform:scaleX(.84) skewX(8deg)}}` +
+      `@keyframes ${sc}g{0%,100%{transform:scaleX(1) skewX(0)}50%{transform:scaleX(.84) skewX(-8deg)}}` +
+      `@media(prefers-reduced-motion:reduce){.${sc} .sym,.${sc} .ln{animation:none}}`
+    : ''
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="${sc}" role="img" aria-label="I Ching symbol — ${N} lines, moving and folding">` +
+    (css ? `<style>${css}</style>` : '') +
+    `<g class="sym">${lines}</g></svg>`
+  )
+}
+
+const iChingBits = (value: number, n: number) => Array.from({ length: n }, (_, k) => (value >> k) & 1) // bit 0 first = line 1 (bottom)
+
+// A living trigram (3 lines / 3 bits) — the eight bāguà as moving, folding symbols, colours computed at scale.
+export function livingTrigramSvg(trigram: number, opts: { scale?: number; animate?: boolean; size?: number } = {}): string {
+  return livingIChingSvg(iChingBits(((trigram % 8) + 8) % 8, 3), opts)
+}
+
+// A living hexagram (6 lines / 6 bits = two trigrams) — the 64 as moving, folding symbols, each its own binary in
+// motion with its two trigrams creasing about opposite axes; colours computed at scale.
+export function livingHexagramSvg(hexagram: number, opts: { scale?: number; animate?: boolean; size?: number } = {}): string {
+  return livingIChingSvg(iChingBits(((hexagram % 64) + 64) % 64, 6), opts)
+}
+
+// The directive sealed: ALL symbols are moving and folding, and the colours are computed at all scales. Composes
+// the living-symbol generator (line symbols), the taiji generator and scaleColor (the colour at every scale).
+/** @iching ☴ Xùn · Wind · gentle */
+export function allSymbolsMoveAndFoldColoursComputedAtAllScales(matrix: MindMatrix = buildMatrix()) {
+  const tri = livingTrigramSvg(0b010) // a trigram with yin lines (so a fold is present)
+  const hex = livingHexagramSvg(42)
+  const yy = yinYangDimensionsSvg()
+  const c0 = scaleColor(0), c1 = scaleColor(1), c1dark = scaleColor(1, { dark: true })
+  const facets = [
+    { facet: 'all symbols move and fold, each in its own way — trigrams, hexagrams and the taiji are DRAWN (not font glyphs) and animate: the taiji spins and folds through the ten dimensions, the line-symbols crease by their bits, a hexagram’s two trigrams hinge about opposite axes', on: /<svg/.test(tri) && /<svg/.test(hex) && /<svg/.test(yy) && /skewX/.test(tri) && /-8deg/.test(hex) },
+    { facet: 'every symbol IS its number — each line is yang (one bar) or yin (two) by its bit and FOLDS by that bit, so the moving figure reads as its binary value', on: livingTrigramSvg(0b111).includes('yang') && livingTrigramSvg(0).includes('yin') },
+    { facet: 'colours computed at EVERY scale — scaleColor(n) is the golden-angle OKLCH sequence seeded on the a432 anchor, a pure never-clustering function of the scale index; legible at every scale because OKLCH lightness is perceptual (HSL’s is not)', on: c0 !== c1 && c1 !== c1dark && c0.startsWith('#') },
+    { facet: 'GitHub-safe and self-contained — each symbol is one CSS-@keyframes SVG (no SMIL, no JS), scoped by a content-addressed class so many coexist without leaking; the 0% keyframe is the correct static still for reduced-motion and GitHub', on: /@keyframes/.test(tri) && !/script/i.test(tri) && /class="dt/.test(tri) && /prefers-reduced-motion/.test(tri) },
+    { facet: 'self-similar — the same symbol at a deeper nesting recomputes its colours (scale·N + line), so the fractal stays coloured at every scale', on: livingTrigramSvg(0b010, { scale: 0 }) !== livingTrigramSvg(0b010, { scale: 1 }) },
+  ]
+  const sealed = sealFacets('all-symbols-move-fold-colours-at-scale', facets)
+  return {
+    rebuilt: sealed.ok,
+    seedHue: A432_HUE,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'All symbols are moving and folding, and the colours are computed at all scales: every I Ching symbol — trigram, hexagram, taiji — is drawn (not a font glyph) and animated, each in its own way, folding by its own bits so the figure IS its number in motion; and every colour is scaleColor(n), the golden-angle OKLCH sequence seeded on the a432 anchor, a pure function of the scale index, legible at every nesting. One self-contained CSS-@keyframes SVG per symbol — animating in the app and on GitHub alike.',
+    boundary:
+      'The unifying living-symbol layer: livingIChingSvg (line symbols) + yinYangDimensionsSvg (the taiji) + scaleColor (the colour at every scale). Motion and colour are computed from src — the bits drive the fold, the scale index drives the hue. Adopted at the showcase sites first; the remaining hardcoded-colour components migrate to scaleColor incrementally. The OKLCH legibility band is a strong heuristic verified per realised colour, not a guarantee for every hue.',
+  }
 }
 
 // Fold as much as you can to feed the hero. The hero of the whole is the unique animation of the

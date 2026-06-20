@@ -273,7 +273,7 @@ export function navigationIsMovie(matrix: MindMatrix = buildMatrix()) {
 // one place to find them all.
 export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const routes = ['/start', '/explore', '/school', '/academy', '/learn-developer', '/console', '/commands', '/mcp', '/show', '/quantum-mind', '/architecture', '/boundaries', '/governance', '/papers', '/references', '/diamonds']
+  const routes = ['/start', '/explore', '/learn', '/frontiers', '/learn-developer', '/console', '/commands', '/mcp', '/show', '/quantum-mind', '/architecture', '/boundaries', '/governance', '/papers', '/references', '/diamonds']
   const titleOf = (path: string) => path.slice(1).split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   const slugOf = (title: string) => title.toLowerCase().replace(/ /g, '-')
   const items = routes.map((path) => {

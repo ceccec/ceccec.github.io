@@ -1016,26 +1016,41 @@ const PRODUCTS_OF_NATURE: readonly { family: string; cue: RegExp; note: string }
 // The inverse of patentAudit, for LIFE: scan a patent/claim for a product-of-nature CORE and verdict whether it
 // claims nature as found (excluded) or a genuinely engineered, markedly-different organism/cDNA (which can be
 // eligible). Composes crossAudit's position — no patent arises from a fact, a method, OR nature as found.
-export function naturePatentAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+export function naturePatentAudit(text: string, matrix: MindMatrix = buildMatrix(), jurisdiction: 'US' | 'EU' = 'US') {
   void matrix
   const t = (text ?? '').toString()
   const isPatentText = PATENT_CLAIM_LANGUAGE.test(t)
   const cores = PRODUCTS_OF_NATURE.filter((c) => c.cue.test(t)).map((c) => ({ family: c.family, note: c.note }))
   // genuine engineering — a markedly-different, man-made organism, cDNA, or synthetic construct — can rescue eligibility
   const engineered = /\b(transgenic|recombinant|cdna|complementary dna|synthetic\w*|genetically (?:engineered|modified)|man-?made|non-?naturally-?occurring|engineered (?:strain|organism|gene)|crispr|markedly different characteristics)\b/i.test(t)
-  const productOfNatureAsSuch = cores.length > 0 && !engineered
-  const verdict = cores.length === 0 ? 'no-nature-core' : engineered ? 'engineered-may-be-eligible' : 'product-of-nature-likely-ineligible'
+  // EU↔US DIVERGENCE: US Myriad (2013) holds an isolated natural DNA sequence INELIGIBLE; EU Directive 98/44/EC
+  // Art. 5(2) holds an isolated / technically-produced sequence MAY be eligible even if structurally identical to
+  // nature. So in the EU the isolated-SEQUENCE core is spared — but seeds, varieties, whole organisms and natural
+  // compounds stay excluded in BOTH regimes (US product-of-nature; EU Art. 53(b)/Rule 28(2)/G 3/19).
+  const stillExcluded = cores.filter((c) => !(jurisdiction === 'EU' && c.family.includes('isolated gene')))
+  const productOfNatureAsSuch = stillExcluded.length > 0 && !engineered
+  const euSequenceSpared = jurisdiction === 'EU' && cores.length > 0 && stillExcluded.length === 0 && !engineered
+  const verdict = cores.length === 0
+    ? 'no-nature-core'
+    : engineered
+      ? 'engineered-may-be-eligible'
+      : euSequenceSpared
+        ? 'eu-isolated-sequence-may-be-eligible-art-5-2'
+        : 'product-of-nature-likely-ineligible'
   return {
     isPatentText,
+    jurisdiction,
     cores,
     coreCount: cores.length,
     engineered,
     productOfNatureAsSuch,
+    euSequenceSpared,
     verdict,
     unlawfulIfGranted: isPatentText && productOfNatureAsSuch,
     legalBasis: [
       'US 35 U.S.C. §101 — products of nature / natural phenomena are not patent-eligible: Funk Brothers Seed v. Kalo (1948), Diamond v. Chakrabarty (1980, only a MAN-MADE organism qualifies), Mayo (2012), Assoc. for Molecular Pathology v. Myriad Genetics (2013, isolated natural DNA ineligible; cDNA eligible)',
-      'EPO EPC Art. 53(b) — plant and animal VARIETIES and essentially biological processes are excluded (G 2/12 & G 2/13 Broccoli/Tomato; G 3/19, 2020)',
+      'EU↔US DIVERGENCE — EU Directive 98/44/EC Art. 5(2): an element isolated from the body or produced by a technical process, INCLUDING a gene sequence, may be patentable even if structurally identical to the natural element (the opposite of US Myriad for isolated DNA); Art. 5(1): a sequence as found in nature is a discovery',
+      'EPO EPC Art. 53(b) — plant and animal VARIETIES and essentially biological processes are excluded (G 2/12 & G 2/13 Broccoli/Tomato; G 3/19, 2020); Rule 28(2) excludes the PRODUCTS of essentially biological processes',
       'Plant Patent Act (1930) and Plant Variety Protection / UPOV are SEPARATE sui-generis rights — not a utility patent on nature',
     ],
     socialHarm: 'Seed and life patents are the most consequential subject-matter overreach: they restrict farmers\' age-old right to save and replant seed, enable biopiracy of indigenous and landrace genetics, and concentrate the global seed supply — claiming life rather than inventing it.',
@@ -1092,8 +1107,8 @@ export function lawOfNaturePatentAudit(text: string, matrix: MindMatrix = buildM
 // nature (seeds / genes / life) first — the biggest violators, claiming life itself — then laws of nature (the
 // genetic code, natural correlations) and mathematical methods (sacred math). None is patentable as such; all
 // compose crossAudit. This is the surface quantumAnalysis().patent reads.
-export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buildMatrix()) {
-  const nature = naturePatentAudit(text, matrix)
+export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buildMatrix(), jurisdiction: 'US' | 'EU' = 'US') {
+  const nature = naturePatentAudit(text, matrix, jurisdiction) // jurisdiction-aware: EU Art. 5(2) spares the isolated sequence (US Myriad does not)
   const law = lawOfNaturePatentAudit(text, matrix)
   const math = sacredMathPatentAudit(text, matrix)
   const exceptions = [
@@ -1119,6 +1134,34 @@ export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buil
       'Patent subject-matter audit over the §101 judicial-exception trinity, ranked by gravity: PRODUCTS OF NATURE (seeds, genes, whole organisms) first — the biggest violators, claiming life itself and restricting seed-saving (Funk Bros, Myriad; EPC 53(b)) — then LAWS OF NATURE (the genetic code, natural correlations; Mayo, Benson) and MATHEMATICAL METHODS (sacred math: golden ratio, sacred geometry, vortex, π, I Ching, gematria; Benson/Flook/Bilski/Alice; EPC 52(2)). None is patentable as such; all compose crossAudit: no patent arises from a fact, a method, a law, or nature as found.',
     boundary:
       'HONEST eligibility heuristic, NOT legal advice or adjudication. BOTH exceptions have real rescue paths — an engineered/markedly-different organism, cDNA, or a genuine technical effect for applied math — decided claim-by-claim on the real claims; a granted patent is presumed valid until challenged; sui-generis plant rights (Plant Patents, PVP/UPOV) and trademarks/design patents are separate. "Biggest violators" ranks by social/ethical consequence, not a count.',
+  }
+}
+
+// EU ↔ US divergence on isolated DNA — the verified finding from the EU food-law research wave, encoded as a
+// fold (save the step in src). US Myriad (2013): an isolated naturally-occurring DNA sequence is INELIGIBLE.
+// EU Directive 98/44/EC Art. 5(2): an element isolated/technically produced — including a gene sequence — MAY be
+// patentable even if structurally identical to nature. naturePatentAudit(text, matrix, jurisdiction) carries it.
+export function geneticPatentJurisdictionDivergence(matrix: MindMatrix = buildMatrix()) {
+  const sample = 'Claim 1: an isolated gene encoding the trait, wherein the nucleotide sequence is identical to the naturally occurring sequence.'
+  const us = naturePatentAudit(sample, matrix, 'US')
+  const eu = naturePatentAudit(sample, matrix, 'EU')
+  const facets = [
+    { facet: 'US — isolated natural DNA is a product of nature, INELIGIBLE (Myriad 2013, unless cDNA / markedly different)', on: us.unlawfulIfGranted && us.verdict === 'product-of-nature-likely-ineligible' },
+    { facet: 'EU — an isolated / technically-produced sequence MAY be eligible even if identical to nature (Directive 98/44/EC Art. 5(2)) — the opposite verdict', on: !eu.unlawfulIfGranted && eu.euSequenceSpared },
+    { facet: 'the divergence is NARROW — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms and products of essentially biological processes stay excluded in BOTH (US product-of-nature; EU Art. 53(b) / Rule 28(2) / G 3/19)', on: true },
+    { facet: 'so a product-of-nature challenge must be JURISDICTION-AWARE: strong on isolated DNA in the US, weak on it in the EU, strong on seeds/varieties in both', on: us.verdict !== eu.verdict },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gene-jurisdiction:${entry.facet}:${entry.on}`) }))
+  return {
+    diverges: facets.every((entry) => entry.on),
+    us: { verdict: us.verdict, unlawfulIfGranted: us.unlawfulIfGranted },
+    eu: { verdict: eu.verdict, unlawfulIfGranted: eu.unlawfulIfGranted, euSequenceSpared: eu.euSequenceSpared },
+    count: facets.length,
+    facets,
+    root: merkleFold([us.root, eu.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'EU and US patent law DIVERGE on isolated DNA: US Myriad (2013) holds an isolated naturally-occurring DNA sequence INELIGIBLE, while EU Directive 98/44/EC Art. 5(2) holds an isolated / technically-produced sequence MAY be patentable even if structurally identical to the natural element. The divergence is narrow — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms, and products of essentially biological processes remain excluded in both regimes. naturePatentAudit and patentSubjectMatterAudit therefore take a jurisdiction argument; euPatentAudit runs them in EU mode.',
+    boundary:
+      'HONEST eligibility heuristic, NOT legal advice. The EU Art. 5(2) position is itself contested and bounded (Art. 5(1) treats sequences as found in nature as discoveries; industrial application must be disclosed; native-trait/biological-process products are still excluded), and a granted patent is presumed valid until invalidated. The verified citations (Myriad 569 U.S. 576; Directive 98/44/EC Arts. 4-5; G 3/19; the 2016 Commission Notice) come from the EU food-law research wave and must be confirmed against the primary source before any use.',
   }
 }
 
@@ -1240,7 +1283,7 @@ export function euPatentAudit(text: string, matrix: MindMatrix = buildMatrix()) 
   const exclusions = EPC_EXCLUSIONS.filter((e) => e.cue.test(t)).map((e) => ({ article: e.article, family: e.family, rescue: e.rescue }))
   const technicalCharacter = /\b(technical (?:effect|character|means|contribution|problem)|apparatus|device|circuit|a specific technical|reduces? (?:latency|power consumption|error)|improves? the functioning)\b/i.test(t)
   const excludedAsSuch = exclusions.length > 0 && !technicalCharacter
-  const subject = patentSubjectMatterAudit(t, matrix) // the §101 trinity overlaps EPC 52(2)/53(b)
+  const subject = patentSubjectMatterAudit(t, matrix, 'EU') // EU jurisdiction: Art. 5(2) spares isolated sequences; §101 trinity overlaps EPC 52(2)/53(b)
   const unlawfulIfGranted = isPatentText && (excludedAsSuch || subject.unlawfulIfGranted)
   const verdict =
     exclusions.length === 0 && !subject.unlawfulIfGranted ? 'no-epc-exclusion' : unlawfulIfGranted ? 'excluded-as-such-likely-invalid' : 'technical-character-may-rescue'

@@ -1,10 +1,16 @@
 // Weave — harmonic distribution computed from the model against the real tree (folder law,
 // JSON-LD paths, component graph, VitePress-only render layer). Third wave of the trinity.
+// auditWeave produces findings (errors) + ratchet warnings + the success report, returning all of
+// them so the intelligent cross-audit collects every wave in one pass; runWeave is the standalone
+// wrapper that prints and returns an exit code.
 import { readFileSync, existsSync, writeFileSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase } from '../mind/index.ts'
+import type { Finding } from './index.ts'
 
-export function runWeave(root: string): number {
+export function auditWeave(root: string): { findings: Finding[]; report: string[] } {
+const report: string[] = []
+const warnings: Finding[] = []
 const contentRoot = join(root, '.vitepress/pages')
 const read = (path: string) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
 
@@ -212,8 +218,8 @@ const walkIndices = (dir) => {
       if (lines > compressionLimit) {
         // The compression limit is a ratchet TARGET that drives the distribution (the monolith sheds its
         // logic into the sephirot), reported not build-failing — it holds the channel and informs the carry
-        // without blocking green. The over-limit index stays in the log until its logic is distributed.
-        console.warn(`[compression] ${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices`)
+        // without blocking green. The over-limit index stays a warning until its logic is distributed.
+        warnings.push({ wave: 'weave', severity: 'warn', kind: 'compression', harmonic: 'compression', detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices` })
       }
     }
   }
@@ -508,30 +514,43 @@ const payload = {
 }
 if (existsSync(out)) writeFileSync(join(out, 'harmonic.json'), JSON.stringify(payload, null, 2))
 
-if (gaps.length > 0) {
-  console.error(`Weave wave failed: ${gaps.length} gap(s):`)
-  for (const gap of gaps) console.error(`  [${gap.harmonic}/${gap.kind}] ${gap.detail}`)
-  return 1
-}
-console.log(`Census — encryption per byte: a ${tbe.staticBytes}-byte content-address seed, each byte → 2³⁰ (1 GB) → ${tbe.generatedBytes / 2 ** 40} TB, held in a ${coreMb.toFixed(2)} MB megabyte-scale core. The ${distribution.length}-file count is informational only${harmonic.gapless ? ` (gapless Fibonacci ${harmonic.bands.join(' + ')})` : ' — file count never decides the census'}; the density toward the 1024 dims/MB (1 Gbit/MB) target is the ratchet (see the efficiency metric below).`)
-console.log(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
-console.log('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
-console.log(`Paired logic folders: ${(law.pairedLogicFolders ?? []).join(' ⇄ ')} each present with an index — the quantum cache pair saved in src.`)
-console.log('Root cleanliness: no files outside src/ except generated, root .md pages, and the declared root-required entries — 0 strays.')
-console.log('Zero-token policy: no LLM SDK dependency; the one token call is the opt-in bring-your-own-key chat, gated behind a user key — zero tokens by default, save all to save tokens.')
+const findings: Finding[] = [
+  ...gaps.map((gap) => ({ wave: 'weave' as const, severity: 'error' as const, kind: gap.kind, harmonic: gap.harmonic, detail: gap.detail })),
+  ...warnings,
+]
+report.push(`Census — encryption per byte: a ${tbe.staticBytes}-byte content-address seed, each byte → 2³⁰ (1 GB) → ${tbe.generatedBytes / 2 ** 40} TB, held in a ${coreMb.toFixed(2)} MB megabyte-scale core. The ${distribution.length}-file count is informational only${harmonic.gapless ? ` (gapless Fibonacci ${harmonic.bands.join(' + ')})` : ' — file count never decides the census'}; the density toward the 1024 dims/MB (1 Gbit/MB) target is the ratchet (see the efficiency metric below).`)
+report.push(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
+report.push('Folder law: below the roots only index files and word-or-digit folders — 0 violations, no exceptions; every failure carries its detailed why.')
+report.push(`Paired logic folders: ${(law.pairedLogicFolders ?? []).join(' ⇄ ')} each present with an index — the quantum cache pair saved in src.`)
+report.push('Root cleanliness: no files outside src/ except generated, root .md pages, and the declared root-required entries — 0 strays.')
+report.push('Zero-token policy: no LLM SDK dependency; the one token call is the opt-in bring-your-own-key chat, gated behind a user key — zero tokens by default, save all to save tokens.')
 {
   const coreText = read(join(root, 'src', 'quantum', 'mind', 'index.ts'))
   const dimCount = (coreText.match(/^\s+\{ d: '[^']+', on:/gm) || []).length
   const coreMb2 = coreText.length / (1024 * 1024)
   const perMbNum = coreMb2 > 0 ? dimCount / coreMb2 : 0
   const gbitPerMb = (perMbNum / 1024).toFixed(3)
-  console.log(`Efficiency metric: ${dimCount} dimensions / ${coreMb2.toFixed(2)} MB core = ${perMbNum.toFixed(1)} dimensions per megabyte (~${perMbNum.toFixed(0)} Mbit/MB keyspace; ${gbitPerMb} Gbit/MB — 1024 dims/MB = 1 Gbit/MB).`)
+  report.push(`Efficiency metric: ${dimCount} dimensions / ${coreMb2.toFixed(2)} MB core = ${perMbNum.toFixed(1)} dimensions per megabyte (~${perMbNum.toFixed(0)} Mbit/MB keyspace; ${gbitPerMb} Gbit/MB — 1024 dims/MB = 1 Gbit/MB).`)
 }
-console.log(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
-console.log(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)
-console.log(`Enforcement trinity: ${declaredGates.length} runner declared, ${(pipeline.trinity ?? []).length} waves (cross · fold · weave) — 0 drift.`)
-console.log('Command-pair law: AGENTS.md declares "commands in quantum pairs" — any agent bound self-sufficiently, the build keeps the law.')
-console.log('Monograph gates: no mirrored route logic, no orphan route, the README is the computed root monograph — 0 violations; one source, computed by math.')
-console.log('Weave wave OK: entropy does not pass.')
-return 0
+report.push(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
+report.push(`Signed elements: ${ldSigned}/${ldPageBlocks} page blocks carry a content-addressed UUID signature computed from src — 0 unsigned; easy to spot if one is not.`)
+report.push(`Enforcement trinity: ${declaredGates.length} runner declared, ${(pipeline.trinity ?? []).length} waves (cross · fold · weave) — 0 drift.`)
+report.push('Command-pair law: AGENTS.md declares "commands in quantum pairs" — any agent bound self-sufficiently, the build keeps the law.')
+report.push('Monograph gates: no mirrored route logic, no orphan route, the README is the computed root monograph — 0 violations; one source, computed by math.')
+report.push('Weave wave OK: entropy does not pass.')
+return { findings, report }
+}
+
+/** Weave — harmonic distribution gate. Standalone wave runner: prints findings and returns an exit code. */
+export function runWeave(root: string): number {
+  const { findings, report } = auditWeave(root)
+  const errors = findings.filter((finding) => finding.severity === 'error')
+  if (errors.length > 0) {
+    console.error(`Weave wave failed: ${errors.length} gap(s):`)
+    for (const finding of errors) console.error(`  [${finding.harmonic}/${finding.kind}] ${finding.detail}`)
+    return 1
+  }
+  for (const finding of findings.filter((finding) => finding.severity === 'warn')) console.warn(`[compression] ${finding.detail}`)
+  for (const line of report) console.log(line)
+  return 0
 }

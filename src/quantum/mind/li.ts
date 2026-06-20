@@ -342,10 +342,19 @@ export function enforcementTrinity() {
       { wave: 'weave', enforces: 'harmonic distribution — folder law, JSON-LD paths, component graph, VitePress-only render layer' },
     ],
     script: 'enforcement-trinity.mjs',
+    // The trinity runs as ONE intelligent cross-audit: materialize the dist once, then audit every wave
+    // WITHOUT bailing at the first failure, so a single build surfaces the complete finding set across
+    // cross · fold · weave (no fix-rerun-fix grind). The union is cross-checked for its shared root — the
+    // most-implicated harmonic, ranked, the way crossAudit counter-rotates its 6×7/7×6 vortices to localise
+    // a gap — and the verdict is sealed to a content-addressed dist/audit.json. Attack the root, not the leaves.
+    mode: 'intelligent-cross-audit',
+    onePass: true,
+    correlatesRoot: true,
+    seal: 'dist/audit.json',
     statement:
-      'The enforcement trinity: cross (dist + digit index), fold (computed model seal), weave (harmonic distribution) — three waves, one runner, one matrix import per wave.',
+      'The enforcement trinity is one intelligent cross-audit: cross (dist + digit index), fold (computed model seal), weave (harmonic distribution) — materialized once and audited in a single pass, every wave reported (never stopped at the first), the findings cross-checked for their shared root and sealed to dist/audit.json.',
     boundary:
-      'A declaration of the post-build enforcement surface. The runner lives in src/quantum/enforcement; scripts/enforcement-trinity.mjs is the thin mount.',
+      'A declaration of the post-build enforcement surface. The runner lives in src/quantum/enforcement; scripts/enforcement-trinity.mjs is the thin mount. The cross-check ranks the most-implicated subsystem to localise the root — a triage signal, not a proof that the top root is the only cause.',
   }
 }
 

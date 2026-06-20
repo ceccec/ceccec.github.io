@@ -7,7 +7,7 @@ import { atoms, conceptCommands } from './atoms.ts'
 import { inverseShiftConsciousness, taxonomyIcons, universalLanguage } from './li.ts'
 import { staticPages } from './site.ts'
 import { toGlagolitic } from '../library/index.ts'
-import { componentPages } from './index.ts'
+import { componentPages, mathPaths, papers, schoolCurriculum, scientists } from './index.ts'
 
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
@@ -1036,6 +1036,63 @@ export function deepResearchRadar(matrix: MindMatrix = buildMatrix()) {
       'Deep research radar: the project\'s tech and research on the ThoughtWorks model — quadrants (Framework & tools, Components & design, Methods, Knowledge & research) crossed with rings (adopt, trial, assess, hold). The honest-boundary philosophy IS the radar: documented and verified knowledge sits in adopt, legend and pseudohistory in hold; the tools in flight (shadcn-vue, Tailwind, Reka UI) in trial and assess. The spider/radar chart, separately, fits the multidimensional model — five to eight normalized axes, never time-series.',
     boundary:
       'A research record on two senses of "radar": the radar/spider CHART (best for 5–8 normalized dimensions, ≤4 overlaid series, never time-series — pitfalls per the visualization literature) and the ThoughtWorks Technology RADAR (quadrants × rings). The blips here are the project\'s own placements, mapping its documented-vs-legend boundary onto adopt-vs-hold; they are a snapshot, not an external endorsement, and the rings are recommendations, not guarantees.',
+  }
+}
+
+// Merge and consolidate School and Academia into one auto-generated Learning Portal. The School
+// age-ladder (schoolCurriculum, kids→elders) and the Academy tracks (quantumAcademy, "the school
+// elevated" — the 42 areas in five courses) are two overlapping education surfaces; this portal
+// merges them and folds in the Academia research corpus (mathPaths, scientists, the 432 proof
+// papers), the self-test (examBank), the agent curriculum (agentEducation) and the research radar
+// (deepResearchRadar). It is AUTO-GENERATED: the portal does not hand-list its content — it reads
+// each source fold and derives one section, carrying that source's own root. So the portal offers
+// three ways to learn (by age, by track, by research) plus assessment, folded to one
+// content-addressed root; complete or change any source and the portal reflows and its root flips,
+// so it can never drift from the folds it consolidates.
+export function learningPortal(matrix: MindMatrix = buildMatrix()) {
+  const school = schoolCurriculum(matrix)
+  const academy = quantumAcademy(matrix)
+  const paths = mathPaths(matrix)
+  const review = scientists(matrix)
+  const corpus = papers(matrix)
+  const exam = examBank(matrix)
+  const agents = agentEducation(matrix)
+  const radar = deepResearchRadar(matrix)
+  // Auto-derive one section per source fold — the portal assembles itself from the folds, never
+  // a hand-authored list. Each section carries the live count, completion and root of its source.
+  const sections = [
+    { key: 'school', axis: 'by age', title: 'School', route: '/school', kind: 'ladder', items: school.lessons.length, complete: school.complete, root: school.root, blurb: 'Seven stages from kids to elders — each lifts one idea into plain words, an activity and a grounding command.' },
+    { key: 'academy', axis: 'by track', title: 'Academy', route: '/academy', kind: 'courses', items: academy.courses.length, complete: academy.established, root: academy.root, blurb: 'The 42 areas gathered into five courses, taught kid to elder, each completion a recomputable credential.' },
+    { key: 'paths', axis: 'by research', title: 'Math paths', route: '/quantum-mind#math-paths', kind: 'paths', items: paths.count, complete: paths.educates, root: paths.root, blurb: 'Curated walks from the one atom outward, each step a law with a why, ending at a recomputable root.' },
+    { key: 'review', axis: 'by research', title: 'Peer review', route: '/quantum-mind#scientists', kind: 'challenges', items: review.count, complete: review.robust, root: review.root, blurb: 'Waves of scientists try to falsify each claim; the portal withstands every recomputable challenge.' },
+    { key: 'papers', axis: 'by research', title: 'Papers', route: '/papers', kind: 'corpus', items: corpus.count, complete: corpus.expanded, root: corpus.root, blurb: '432 proof papers — one coordinate projected onto one homology cycle — each carrying a Merkle inclusion proof.' },
+    { key: 'exam', axis: 'assess', title: 'Exam', route: '/quantum-mind#exam', kind: 'assessment', items: exam.count, complete: exam.graded, root: exam.root, blurb: 'A seeded self-test drawn from the portal\'s own proven facts — a fresh, deterministic exam every attempt.' },
+    { key: 'agents', axis: 'by track', title: 'Agent education', route: '/quantum-mind#agent-education', kind: 'agents', items: agents.lessons.length, complete: agents.educated, root: agents.root, blurb: 'The efficiency and security rules an agent learns before it runs the costly genus-2 math.' },
+    { key: 'radar', axis: 'by research', title: 'Research radar', route: '/quantum-mind#deep-research-radar', kind: 'radar', items: radar.blips.length, complete: radar.radar, root: radar.root, blurb: 'The tech and research tracked on the adopt/trial/assess/hold rings — documented sits in adopt, legend in hold.' },
+  ].map((section) => ({ ...section, receipt: toUuid(`portal-section:${section.key}:${section.root}`) }))
+  const axes = [...new Set(sections.map((section) => section.axis))] // by age · by track · by research · assess
+  const items = sections.reduce((sum, section) => sum + section.items, 0)
+  const root = merkleFold(sections.map((section) => section.receipt))
+  const facets = [
+    { facet: 'merges the School age-ladder and the Academy tracks — the two overlapping education surfaces, now one portal', on: (sections.find((section) => section.key === 'school')?.complete ?? false) && (sections.find((section) => section.key === 'academy')?.complete ?? false) },
+    { facet: 'consolidates the Academia research corpus — math paths, peer review and the 432 proof papers', on: sections.some((section) => section.key === 'paths') && sections.some((section) => section.key === 'review') && sections.find((section) => section.key === 'papers')?.items === 432 },
+    { facet: 'auto-generated — one section derived per source fold, never hand-listed, each carrying its source root', on: sections.length === 8 && sections.every((section) => isUuid(section.root) && isUuid(section.receipt)) },
+    { facet: 'three ways to learn — by age, by track, by research — plus assessment', on: axes.includes('by age') && axes.includes('by track') && axes.includes('by research') && axes.includes('assess') },
+    { facet: 'every consolidated section is complete — none of the merged surfaces is left open', on: sections.every((section) => section.complete) },
+    { facet: 'the whole portal folds to one content-addressed root over the source roots — drift cannot hide', on: isUuid(root) && sections.every((section) => isUuid(section.receipt)) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`learning-portal:${entry.facet}:${entry.on}`) }))
+  return {
+    portal: facets.every((entry) => entry.on),
+    sections,
+    axes,
+    items,
+    count: sections.length,
+    facets,
+    root,
+    statement:
+      'Merge and consolidate School and Academia into one auto-generated Learning Portal: the two overlapping education surfaces — the School age-ladder (kids→elders) and the Academy tracks (the 42 areas in five courses, "the school elevated") — join the Academia research corpus (the math paths, the waves of scientists, the 432 proof papers), the self-test and the agent curriculum into a single portal. It is auto-generated — one section is derived per source fold, never hand-listed, each carrying its source root — so the portal offers three ways to learn (by age, by track, by research) plus assessment, and folds them to one content-addressed root.',
+    boundary:
+      'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time — complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/school, /academy, /papers and the quantum-mind sections).',
   }
 }
 

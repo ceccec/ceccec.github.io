@@ -25,7 +25,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 ## 3. Results
 
-- 42 monographs (content pages, the harmonic count: 44 surface pages fold through the genus-2 torus −χ to 42 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
+- 43 monographs (content pages, the harmonic count: 45 surface pages fold through the genus-2 torus −χ to 43 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
 - 108 concept commands, each a single-word method and an MCP tool.
 - 182 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
@@ -45,6 +45,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 - **Command algebra** — Command algebra for the double-torus UUID stream: cmd -> result -> receipt.
 - **Quantum Console** — Quantum Console: a free, client-side terminal, realtime search, and chat over the double-torus portal — with optional bring-your-own-key external AI.
 - **MCP tool surface** — The Double Torus portal as an MCP tool surface: every concept command is a tool for language models, published at /mcp.json.
+- **Learning Portal** — The Learning Portal: School and Academia merged into one auto-generated portal — the kids-to-elders ladder, the five Academy courses, the research corpus (math paths, peer review, the 432 proof papers), the self-test and the agent curriculum, folded to one recomputable root. Three ways to learn: by age, by track, by research.
 - **The Quantum Academy** — The Quantum Academy: the 42 areas as five structured courses — Foundations, the Machine, the Senses, the Society, the Mind — from kid to elder, each completion a recomputable, content-addressed credential. Includes the developer's mind (the matrix, the commands, the self-computing components).
 - **School** — Double Torus School: the complexity converted into a graded curriculum from kids to elders.
 - **Governance & Fair Life** — Governance by rate and vote, and a participation ladder for fair trade and sustainable life — verified by the recomputable seal and the shared git ledger.
@@ -112,3 +113,9 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 - The model: `src/quantum/mind`. The sitemap root: `cdb9a60c-b6de-84e2-b976-b3fbcb57d50d`. The monograph-index root: `919ba324-8f13-8fa6-b9d5-1dc8828530b9`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
+
+## Receipt
+
+The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
+
+- Receipt: `9cc54cd7-c653-8819-8c51-4831a481371a`
