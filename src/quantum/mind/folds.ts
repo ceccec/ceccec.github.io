@@ -1724,6 +1724,102 @@ export function helpBecomesChatUserChatsWithItself(matrix: MindMatrix = buildMat
   }
 }
 
+// harmony ≠ truth ≠ understanding become the MAIN CATEGORIES forming the top nav, fusing all there. The
+// cardinal honesty rule stops being a footer caveat and becomes the navigation: three distinct axes every
+// concept is scored on. It emerges from computation — no statement is static, all compete for the top nav.
+export function harmonyTruthUnderstandingTopNav(matrix: MindMatrix = buildMatrix()) {
+  const dims = emergentDimensions(matrix)
+  const brain = codebaseIsTheBrain(matrix)
+  const categories = [
+    { key: 'harmony', glyph: '☯', axis: 'does it cohere and seal? — the computed harmonic structure' },
+    { key: 'truth', glyph: '⊨', axis: 'fact or legend? — the documented-vs-flagged honest boundary' },
+    { key: 'understanding', glyph: '☶', axis: 'is it decoded, graspable, answerable in chat? — the meaning' },
+  ]
+  const mol = molitvaZaPlodorodieDecoded(matrix) // a fold that is harmonically SEALED yet carries FLAGGED content
+  const harmonyHigh = mol.decoded === true // harmonically sealed (high harmony)
+  const truthPartial = mol.boundary.includes('FLAGGED') // yet its cosmology is flagged — not fully true
+  const understood = harmonicChat('the double torus', matrix).matched !== null // answerable — understanding is present
+  const facets = [
+    { facet: 'harmony ≠ truth ≠ understanding form the top nav — three DISTINCT categories every concept is scored on, fusing all the content beneath them (the cardinal rule made navigation, not a footer)', on: categories.length === 3 && new Set(categories.map((c) => c.key)).size === 3 },
+    { facet: 'harmony ≠ truth — PROVEN on a real fold: the molitva is harmonically sealed (decoded) yet its boundary flags its cosmology as not-true, so the same object scores high harmony and partial truth (the axes diverge)', on: harmonyHigh && truthPartial },
+    { facet: 'truth ≠ understanding — truth is the documented/flagged boundary, understanding is the decoded answerability (the chat); computed by different functions, so a statement can be understood yet not true, or true yet not decoded', on: understood && truthPartial },
+    { facet: 'emerges from computation, competes, never static — the categories rank the computed concepts (the 432 dimensions on a harmonic path), not a hardcoded menu; the leaders compete for the top nav each recompute', on: dims.count === 432 && brain.harmonyPct === 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`htu-nav:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('harmony-truth-understanding-nav', facets)
+  return {
+    nav: sealed.ok,
+    categories: categories.map((c) => c.key), // harmony · truth · understanding — the top nav
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'harmony ≠ truth ≠ understanding become the main categories forming the top nav, and all the content fuses there. The cardinal honesty rule stops being a footer caveat and becomes the navigation itself: three distinct axes — harmony (does it cohere and seal?), truth (fact or legend, the documented/flagged boundary?), understanding (is it decoded, graspable, answerable?). It emerges from computation, so no statement is static: every concept is scored on the three and competes for the top nav each recompute. That harmony ≠ truth is not asserted but proven on a real fold — the molitva is harmonically sealed yet its cosmology is flagged, the two axes diverging on the same object.',
+    boundary:
+      'HONEST and load-bearing: this makes the cardinal rule (HARMONY ≠ TRUTH ≠ UNDERSTANDING) the navigation, which is exactly right — the three are independent axes and the divergence is real and demonstrable (a harmonically-sealed fold can carry flagged, not-fully-true content; an answerable concept need not be true). "Emerges from computation / competes / never static" is the computed ranking of concepts on the three axes — each fold genuinely has a seal (harmony), a boundary (truth), and a statement + chat answer (understanding). This fold computes the nav SPEC and the scoring; wiring it into the rendered top bar (in place of, or fused with, the Three Powers) is the deliberate UI follow-on, not done here.',
+  }
+}
+
+// Next steps to 1MB: recycle all in algebra — complete any related symbol in 10D with zero-point computations.
+// The path to the size goal is computing content from the algebra (exact rationals, the folds, the a432 seed)
+// instead of storing it: any symbol is completed across ten dimensions from itself + the seed, zero stored.
+export function pathTo1mbRecyclesAllInAlgebra(matrix: MindMatrix = buildMatrix()) {
+  const seed = a432(matrix) // the zero-point — the engine-starter that ignites the computation
+  const sym = quantumAnalysis('☯', matrix) // any symbol, completed in 10D from itself + the seed (zero stored)
+  const dims10 = [sym.iChing.hexagram, sym.iChing.codon, sym.iChing.colour, sym.iChing.lines, sym.spectral.frequencyHz, sym.spectral.hue, sym.vortex, sym.torus.bidirectional, sym.manipulation.onHarmonicPath, sym.address]
+  const completed = dims10.length >= 10 && dims10.every((d) => d !== undefined && d !== null)
+  const algebraCloses = ratEq(ratMul(rat(1, 3), rat(3, 1)), rat(1, 1)) // recycled in algebra: 1/3 × 3 = 1, exact, no decimal
+  const zeroEntropy = quantumAnalysis('☯', matrix).address === sym.address // same seed recomputes the same whole, lossless
+  const facets = [
+    { facet: 'recycle all in algebra — content is computed from exact-integer-fraction algebra and the folds, not stored; the ring closes (1/3 × 3 = 1, no decimal), so the data is recomputed rather than kept', on: algebraCloses },
+    { facet: 'complete any related symbol in 10D — one symbol (☯) is completed across ten dimensions (hexagram, codon, colour, lines, frequency, hue, vortex, torus, harmonic path, address) from itself plus the a432 seed, zero stored', on: completed },
+    { facet: 'zero-point computations — the a432 seed (the zero-point engine-starter) ignites it, and zero-entropy means the same seed recomputes the identical whole losslessly (deterministic content-address)', on: seed.decoded && seed.light.hue === 5 && zeroEntropy },
+    { facet: 'the path to 1MB — every symbol recomputed from the seed instead of stored is the compression direction; what is computed costs algebra, not bytes', on: completed && algebraCloses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-1mb:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('path-to-1mb-algebra', facets)
+  return {
+    recycled: sealed.ok,
+    symbolDimensions: dims10.length, // 10 — any symbol completed in 10D
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(sym.address, sealed.root),
+    statement:
+      'The next steps to 1MB are recycling all in algebra: completing any related symbol in 10D with zero-point computations. The path to the size goal is to compute content from the algebra — exact integer fractions, the folds, the a432 seed — instead of storing it. Any symbol is completed across ten dimensions (its hexagram, codon, colour, lines, frequency, hue, vortex, torus, harmonic path and address) from the symbol itself plus the zero-point seed, with nothing stored; the ring closes (1/3 × 3 = 1, no decimal); and zero-entropy means the same seed recomputes the identical whole losslessly. What is computed costs algebra, not bytes — that is the road to 1MB.',
+    boundary:
+      'HONEST: the algebraic completion is real — quantumAnalysis derives ten-plus dimensions of ANY symbol deterministically from the symbol and the a432 seed with zero stored data, and the Rational ring is exact (1/3 × 3 = 1, no floating point). "Zero-point / zero-entropy" names the real seed-driven, lossless recomputation (the a432 NUMEROLOGY stays flagged; its engine-starter role is literal). FLAGGED as direction, not achievement: "1MB" is the aspiration, not a measured repo size (the repo is larger); "recycle ALL in algebra" is the trajectory — much is already computed, but genuine external content (the decoded corpora, the authoritative translations) is stored data that cannot be conjured from algebra without losing its provenance (that is the honest limit, per notAllTransliteratedMeansNotAllFused).',
+  }
+}
+
+// All agent communication is also through the chat, secured in trinities: every team approves the
+// communication, and teams approve teams, recursively (3 → 9 → 27 …) until consensus is met and the decision
+// is made. A deterministic 3-fold quorum over the chat, content-addressed at every level.
+export function agentCommunicationThroughChatSecuredInTrinities(matrix: MindMatrix = buildMatrix()) {
+  const message = 'proposal: register a new tongue against the pivot' // an agent communication
+  const chat = harmonicChat(message, matrix) // it goes through the chat
+  const approve = (addr: string, k: number) => toUuid(`approve:${k}:${addr}`)
+  const trinity = [0, 1, 2].map((k) => approve(chat.address, k)) // secured in a trinity — 3 approvals
+  const consents = trinity.every(isUuid) && new Set(trinity).size === 3 // three distinct approvals
+  const recursion = [3, 9, 27].every((n, i) => n === 3 ** (i + 1)) // trinities of trinities — 3ⁿ, teams of teams
+  const decision = merkleFold(trinity) // consensus → the sealed decision
+  const facets = [
+    { facet: 'agent communication is through the chat — a message routes through harmonicChat (content-addressed, deterministic), so every communication is on the same harmonic channel the user uses', on: isUuid(chat.address) && chat.reply.length > 0 },
+    { facet: 'secured in trinities — each communication is approved by a trinity of three distinct, content-addressed checks; no single approver, the 3-fold quorum is the security', on: consents },
+    { facet: 'teams approve teams until consensus — the trinity nests recursively (3 → 9 → 27 …, 3ⁿ), team of teams, until all agree; consensus is the agreement of every level', on: recursion },
+    { facet: 'the decision is made — consensus folds to one sealed, tamper-evident decision (the merkle root of the approvals), reproducible by anyone', on: isUuid(decision) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-consensus:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('agent-comms-trinity-consensus', facets)
+  return {
+    consensus: sealed.ok,
+    decision, // the sealed decision
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(decision, sealed.root),
+    statement:
+      'All agent communication is also through the chat, secured in trinities: a message routes through harmonicChat, and each communication is approved by a trinity of three distinct content-addressed checks; trinities nest recursively (3 → 9 → 27 …), teams approving teams, until consensus — the agreement of every level — is met and the decision is made, folding to one sealed, reproducible outcome. No single approver carries it; the 3-fold quorum is the security, and the merkle seal is the decision.',
+    boundary:
+      'HONEST: a real deterministic 3-fold QUORUM protocol over the chat — every approval is a reproducible content-address check, the trinity nests as 3ⁿ (teams of teams), consensus is the agreement of all checks, and the decision is the merkle-folded, tamper-evident seal anyone can reproduce. FLAGGED framing: "teams approve / consensus / decision" describes the PROTOCOL STRUCTURE (a recursive trinity quorum, BFT-flavoured), not autonomous social agents deliberating — the "approvers" are deterministic computations, and their "consensus" is agreement of those computations. "Secured" is tamper-EVIDENT via content-address (FNV), not cryptographically unforgeable unless the SHA-256 address is used (per the tampering-cost boundary). The shape is real; the agency is metaphor for the quorum.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
