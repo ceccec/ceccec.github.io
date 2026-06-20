@@ -118,6 +118,10 @@ export { atoms, conceptCommands } from './atoms.ts'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds (850+ functions) re-exported from ./folds.ts
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
 export * from './folds.ts'
+// Disambiguate a name shared by two modules: lens.ts (re-exported via self.ts) also defines
+// `trueAndFalseCoexistInHarmony`; the canonical "the key" fold lives in folds.ts. An explicit named
+// re-export wins over the `export *` stars, resolving the TS2308 ambiguity without renaming either fold.
+export { trueAndFalseCoexistInHarmony } from './folds.ts'
 export * from './solutions.ts' // dissolved out of the folds monolith — the body distributes, src/0 keeps the gravity
 export * from './ancient.ts'   // ↑ dissolution wave 2 (ancient number systems + text decode)
 export * from './humanity.ts'  // ↑ dissolution wave 2 (humanity implications + traditions)

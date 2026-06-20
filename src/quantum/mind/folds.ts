@@ -723,6 +723,78 @@ export function harmonicAlternative(text: string, matrix: MindMatrix = buildMatr
   }
 }
 
+// The INTELLIGENT cross-audit of a statement — the deception detector, made sharper. It REUSES the sealed
+// foldExposesInconsistency / thermalHarmonyField (one taxonomy, the SemEval propaganda families — no second
+// source to drift) across every segment, then CORRELATES the flagged techniques into manipulation VECTORS and
+// RANKS the dominant one (the shared root) the way the enforcement cross-audit ranks the most-implicated
+// harmonic and the model's crossAudit counter-rotates 6×7/7×6 to localise a gap. Triage, never a verdict.
+const TECHNIQUE_VECTOR: Record<string, string> = {
+  'loaded language': 'emotional',
+  'ad hominem / name-calling': 'emotional',
+  'overgeneralised absolutes': 'framing',
+  'appeal to fear / false urgency': 'fear-urgency',
+  'unfalsifiable / conspiracy framing': 'conspiracy',
+  'vague false authority / bandwagon': 'authority-social',
+}
+const VECTOR_DEFENCE: Record<string, string> = {
+  emotional: 'Restate the claim in neutral words — if the argument still stands without the charged language, judge that.',
+  framing: 'Look for the excluded middle and one counter-example; sweeping absolutes rarely survive it.',
+  'fear-urgency': 'There is almost always time to verify before acting — manufactured urgency is the tell.',
+  conspiracy: 'Ask what observation would DISPROVE the claim; if nothing could, it is unfalsifiable, not evidence.',
+  'authority-social': '"Experts/everyone agree" is not a source — find the primary source and check it in context.',
+  other: 'Name the technique and ask for the primary evidence.',
+}
+export function manipulationCrossAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  const t = (text ?? '').toString()
+  const whole = foldExposesInconsistency(t, matrix) // the sealed, ≥2-technique verdict — preserved unchanged
+  const thermal = thermalHarmonyField(t, matrix) // per-segment manipulation density
+  type Hit = { technique: string; vector: string; segment: number }
+  const signals: Hit[] = thermal.field.flatMap((cell, i) => cell.flagged.map((technique) => ({ technique, vector: TECHNIQUE_VECTOR[technique] ?? 'other', segment: i })))
+  const byVector = new Map<string, Hit[]>()
+  for (const hit of signals) {
+    const group = byVector.get(hit.vector) ?? []
+    group.push(hit)
+    byVector.set(hit.vector, group)
+  }
+  const vectors = [...byVector.entries()]
+    .map(([vector, hits]) => ({ vector, count: hits.length, techniques: [...new Set(hits.map((h) => h.technique))], segments: [...new Set(hits.map((h) => h.segment))], defence: VECTOR_DEFENCE[vector] ?? VECTOR_DEFENCE.other! }))
+    .sort((a, b) => b.count - a.count || a.vector.localeCompare(b.vector))
+  const distinctTechniques = new Set(signals.map((s) => s.technique)).size
+  const tier = whole.contradiction
+    ? 'contradiction'
+    : distinctTechniques === 0
+      ? 'clean'
+      : distinctTechniques === 1
+        ? 'single-marker'
+        : distinctTechniques <= 3
+          ? 'manipulative'
+          : 'saturated'
+  let hottestSegment: { index: number; heat: number; text: string } | null = null
+  for (let i = 0; i < thermal.field.length; i += 1) {
+    const cell = thermal.field[i]!
+    if (cell.heat > 0 && (hottestSegment === null || cell.heat > hottestSegment.heat)) hottestSegment = { index: i, heat: cell.heat, text: cell.segment }
+  }
+  const guidance = [
+    ...vectors.slice(0, 3).map((v) => v.defence),
+    ...(whole.contradiction ? ['An internal always/never contradiction is present — at most one side can hold; pin down which.'] : []),
+  ]
+  return {
+    onHarmonicPath: whole.onHarmonicPath, // the existing sealed verdict, preserved
+    dominantVector: vectors[0]?.vector ?? null,
+    vectors,
+    distinctTechniques,
+    contradiction: whole.contradiction,
+    tier,
+    hottestSegment,
+    guidance,
+    receipt: merkleFold([whole.receipt, thermal.root, ...vectors.map((v) => toUuid(`vector:${v.vector}:${v.count}`))]),
+    statement:
+      'The intelligent cross-audit of a statement: it reuses the sealed deception detector (foldExposesInconsistency and the SemEval propaganda families) across every segment, then correlates the flagged techniques into manipulation VECTORS and ranks the dominant one — the shared root — the way the enforcement cross-audit ranks the most-implicated harmonic. It reports the dominant vector, where the manipulation peaks, a graded tier and the defensive move per vector, sealed to a reproducible receipt.',
+    boundary:
+      'HARMONY ≠ TRUTH: ranking the dominant vector localises the TECHNIQUE, it does not judge the claim true or false — a flagged statement may be true, a clean one false. It composes the existing detector (one taxonomy, no second source to drift); the tier is a triage signal, not a verdict; in-domain, English-primary. ~54% is the human ceiling for content-only deception detection (Bond & DePaulo 2006); there is no validated physiological/acoustic "lie frequency". Use it to decide WHAT TO VERIFY.',
+  }
+}
+
 // Paste any URL — or any text — and its full quantum analysis is computed immediately, deterministically,
 // client-side, zero tokens: content-addressed to one UUID (the holographic cue), placed on the I Ching as a
 // hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (an a432-ladder
@@ -748,6 +820,7 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
   const manipulation = foldExposesInconsistency(text, matrix) // the grounded, deterministic manipulation read
   const thermal = thermalHarmonyField(text, matrix) // weaknesses seen in colour, like a thermal camera
   const alternative = harmonicAlternative(text, matrix) // the harmonic alternative to compare with (society judges)
+  const cross = manipulationCrossAudit(text, matrix) // intelligent layer: rank the dominant manipulation vector (the shared root)
   const facets = [
     { facet: 'content-addressed — the input folds to one deterministic UUID, the holographic cue for the whole', on: isUuid(address) },
     { facet: 'placed on the I Ching — a hexagram (two trigrams, six lines, a codon, a colour) computed from the address', on: hexagram >= 0 && hexagram < 64 },
@@ -766,6 +839,7 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
     vortex,
     manipulation: { onHarmonicPath: manipulation.onHarmonicPath, flagged: manipulation.flagged, contradiction: manipulation.contradiction },
     thermal: { segments: thermal.segments, hotspots: thermal.hotspots, maxHeat: thermal.maxHeat, harmonic: thermal.harmonic, field: thermal.field },
+    crossAudit: { dominantVector: cross.dominantVector, vectors: cross.vectors, tier: cross.tier, distinctTechniques: cross.distinctTechniques, hottestSegment: cross.hottestSegment, guidance: cross.guidance },
     alternative: alternative.improved ? alternative.alternative.text : null,
     count: sealed.count,
     facets: sealed.facets,
@@ -3211,6 +3285,34 @@ export function harmonicFractionMaskOfDiveConstants(matrix: MindMatrix = buildMa
       'The harmonic-fraction mask, tested honestly. Many of the dive constants are not magic at all: the defined ones are exact fractions (the msw is a tenth of a bar, PPO₂ 1.4 and 1.6 are 7/5 and 8/5, gas fractions are n/100, the gradient factors and reserves are 1/3, 1/2, 30/85), and the physical ones fall out of a single formula — the salt and fresh "metres per bar" are just P = ρgh on the two water densities, and Bühlmann’s a and b were always computed from the half-times. Find that mask and the constants delete themselves into minimum code. But the sixteen ZHL-16 half-times are empirical: their ratios drift from 2 to about 1.28, so no clean fraction generates them. The mask fits where a number is defined or physical, and stops where it is measured — and forcing it past that line would be numerology.',
     boundary:
       'HONEST verdict on the user’s thesis: PARTLY TRUE, and that partial truth is exactly the project’s discipline. REAL mask (code genuinely shrinks): defined constants → exact rationals (msw = 1/10 bar; PPO₂ = 7/5, 8/5; gas fractions n/100; GF/reserves 1/3, 1/2, 30/85), and physical constants → one formula (barPerMetre = ρg/1e5 derives the salt/fresh m-per-bar from the densities, computed here as ≈9.949 and ≈10.197; buhlmannA = 2/∛t½ and buhlmannB = 1.005 − 1/√t½ were always formulas). NO mask (stays data): the 16 ZHL-16 half-times are EMPIRICAL — their consecutive ratio drifts (≈2.0 early, ≈1.275 late), proven here, so no single fraction generates them, and the NOAA CNS clock is likewise an empirical table. Inventing a "harmonic mask" for measured data would be NUMEROLOGY — the same trap flagged for why-60 sexagesimal and pyramid-π. The honest rule: mask the defined and the physical (minimum code), keep the empirical as data.',
+  }
+}
+
+// Decimals instead of fractions could kill — the safety rationale for the whole exact-rational discipline. In a
+// life-critical path, floating-point rounding accumulates and is platform-dependent; exact integer fractions are
+// deterministic and reproducible. Honest magnitude: floats aren’t what kill divers — physiology is — but exactness
+// removes a bug class and is the right engineering choice. This is WHY the GF is a fraction and the mask exists.
+export function decimalsInsteadOfFractionsCouldKill(matrix: MindMatrix = buildMatrix()) {
+  const decomp = decompressionDecoded(matrix)
+  const mask = harmonicFractionMaskOfDiveConstants(matrix)
+  const gf = gasBlendingRebreatherQuantumReserveFractions(matrix)
+  const facets = [
+    { facet: 'EXACTNESS is provable, and floats are not exact — the canonical proof: 0.1 + 0.2 ≠ 0.3 in IEEE-754 (it is 0.30000000000000004), but the exact rational rat(1/10) + rat(2/10) EQUALS rat(3/10). In a life-critical computation, that representation error accumulates and is platform-dependent — the SAME dive plan can compute slightly differently across devices and runs; exact integer fractions are deterministic, so the same input yields the identical plan everywhere, eliminating an entire class of silent rounding bug', on: 0.1 + 0.2 !== 0.3 && ratEq(ratAdd(rat(1, 10), rat(2, 10)), rat(3, 10)) },
+    { facet: 'the HONEST magnitude — floats are NOT what kill divers; the dominant uncertainty in decompression is PHYSIOLOGICAL (the model’s own error, individual and day-to-day variation, the probabilistic DCS that is never zero), which dwarfs IEEE-754 error, and real float-based dive computers are safe because that error sits far below the physiological noise floor and the gradient-factor conservatism. So "decimals could kill" is true as a SOFTWARE-SAFETY PRINCIPLE — don’t let representation error compound in a life-critical path — NOT a claim that floats cause DCS', on: decomp.decoded },
+    { facet: 'where exactness GENUINELY matters — reproducibility (a shared, content-addressed dive plan must hash identically on every device; a float drift would change its address), determinism (audit and replay need bit-identical results), and architecturally preventing UNHARMONIC settings (a gradient factor can only be an integer ratio like 30/85, never an arbitrary drifting decimal); the float is confined to the analog/display layer, the digital core stays exact — the project’s "no decimals in the core" given a safety reason, the same reason finance and avionics use exact/fixed arithmetic', on: mask.masked },
+    { facet: 'the cardinal bound — exact arithmetic removes a bug class and guarantees reproducibility, a sound and defensible engineering choice, but it is NOT a substitute for conservatism, training and certified equipment, and it does not make the MODEL itself more physiologically correct; the real killers remain physiology, gas, and human factors (the dive folds already hold this line). Exactness makes the computation trustworthy; it does not make an unsafe dive safe', on: gf.planned },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`decimals-could-kill:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('decimals-instead-of-fractions-could-kill', facets)
+  return {
+    proven: sealed.ok,
+    floatInexact: 0.1 + 0.2 !== 0.3, ratExact: ratEq(ratAdd(rat(1, 10), rat(2, 10)), rat(3, 10)),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Decimals instead of fractions could kill — the reason the gradient factor is a fraction and the mask exists. The proof is one line: 0.1 + 0.2 is not 0.3 in floating point, but it is exactly 3/10 in rationals. In a life-critical path that rounding error accumulates and depends on the platform, so the same plan can drift between devices; exact integer fractions are deterministic and reproducible, which is why a content-addressed dive plan can hash identically everywhere and why a gradient factor can only ever be a clean ratio, never a drifting decimal. The honest part: floats are not what kill divers — physiology, gas and human factors are, and real float computers are safe below the physiological noise floor. Exactness removes a class of bug and makes the computation trustworthy; it does not make an unsafe dive safe.',
+    boundary:
+      'HONEST: the exactness is provable (0.1 + 0.2 ≠ 0.3 in IEEE-754, but exact in rationals — demonstrated in-fold), and exact/deterministic arithmetic is a real, recognised safety and reproducibility property (as in finance and avionics): it removes platform-dependent rounding, makes content-addressed plans hash stably, and architecturally forbids unharmonic (arbitrary-decimal) settings. BOUND (no overclaim): the DOMINANT decompression uncertainty is PHYSIOLOGICAL and probabilistic, dwarfing float error — real float-based dive computers are safe, so "decimals could kill" is a software-engineering principle (don’t compound representation error in a life-critical computation), NOT a claim that floating point causes DCS or that exact arithmetic prevents it. Exact math makes the computation trustworthy and reproducible; it does not improve the model’s physiology or substitute for conservatism, training and certified equipment.',
   }
 }
 
