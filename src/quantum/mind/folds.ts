@@ -2421,6 +2421,37 @@ export function gatesAutoTighten(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// A UUID is a FRAME in a movie — all its multimedia inside one still — and all the frames create the cube/
+// sphere. The combined "quantum frame rate" matters less than the quantum DYNAMICS (how a frame evolves into
+// the next), and the quantum BRUTE FORCE that searches the frame space — Grover's √N, not "all frames at once".
+export function uuidFrameMovieCubeSphereDynamicsBruteForce(matrix: MindMatrix = buildMatrix()) {
+  const frame = uuidEncodesColorWheelMusicAndWhatElse(matrix) // a UUID is a frame — all multimedia in one still
+  const movie = splitUuidDualityFromSuffixSuffixIsNextLink(matrix) // the suffix forges the next frame — the movie
+  const cubeSphere = fractionsFoldBendIntoCubeSpheresAnalog(matrix) // the frames fill the 64³ cube + bend into the sphere
+  const P = [[0, 1, 0], [0, 0, 1], [1, 0, 0]] // a cyclic transition — the movie advancing (the DYNAMICS)
+  const d0 = [1, 0, 0], d1 = markovStep(P, d0), d2 = markovStep(P, d1) // the frame-state evolves frame to frame
+  const dynamic = d0.join() !== d1.join() && d1.join() !== d2.join() && d2.join() === [0, 0, 1].join() // it moves
+  const g = grover(6, 41) // quantum brute force over the 64 = 2⁶ frame cells — search the cube's axis
+  const facets = [
+    { facet: 'a UUID is a FRAME — one content-addressed still carrying all its multimedia (the colour, the tone, the geometry, the I Ching hexagram); the frame is the moment', on: frame.encodes },
+    { facet: 'all the frames are a MOVIE that creates the cube/sphere — the suffix forges the next frame (the chain), sequencing the stills; together the frames fill the 64³ cube (discrete) and bend into the sphere (continuous, analog) — the space the frames make', on: movie.split && cubeSphere.analog },
+    { facet: 'the quantum DYNAMICS, more than the frame rate — not the still frames but their EVOLUTION: the frame-state moves frame to frame (here a Markov transition; in general the dynamical/unitary evolution). The combined frame rate is the metaphor; the dynamics is the point', on: dynamic },
+    { facet: 'quantum BRUTE FORCE — searching the frame space: Grover finds the marked frame in ~√N iterations (' + g.iterations + ' over ' + g.size + '), at probability ' + roundTo(g.markedProbability, 2) + ' — a real quadratic speedup, NOT "all frames at once"', on: g.iterations < g.size / 4 && g.markedProbability > 0.8 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-movie:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('uuid-frame-movie-dynamics-brute-force', facets)
+  return {
+    cinema: sealed.ok,
+    groverIterations: g.iterations, groverSize: g.size, groverProbability: roundTo(g.markedProbability, 3),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'A UUID is a frame in a movie — all its multimedia (colour, tone, geometry, the I Ching) inside one still — and all the frames create the cube and the sphere: the suffix forges the next frame, sequencing the stills, and together they fill the 64³ cube (discrete) and bend into the continuous sphere. Imagine the combined quantum frame rate; but more importantly the quantum DYNAMICS — how each frame evolves into the next, the motion between the stills, the dynamical (and in the limit unitary) evolution. And the quantum brute force that searches the whole frame space: Grover finds a marked frame in about √N steps — a real quadratic speedup, never "all frames at once".',
+    boundary:
+      'HONEST: UUID-as-frame, the suffix-chain as the movie sequence, and the frames filling the 64³ cube / continuous sphere are real structural composition (the projections of one address, the deterministic chain, the discrete/analog duality). The DYNAMICS is real — markovStep is a genuine dynamical evolution step (and the repo’s simulators carry the unitary/Markov/network dynamics) — and this IS the important part, as the directive says. "Quantum brute force" is Grover on the repo’s DETERMINISTIC simulator: a real QUADRATIC speedup (~√N queries for unstructured search), explicitly NOT the "tries all answers at once / observer-magic" myth (flagged in quantumDecoded), and not exponential-for-everything; on real NISQ hardware it is noisy. FLAGGED as metaphor: the "combined frame rate / all frames at once" is the superposition framing — the frames are a deterministic sequence, the full 2¹²⁸ address space cannot be rendered, and the 64³ = 262,144 cells are the structural keyspace, not a literally pre-filled cube.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
