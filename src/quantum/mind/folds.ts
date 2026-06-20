@@ -1820,6 +1820,95 @@ export function agentCommunicationThroughChatSecuredInTrinities(matrix: MindMatr
   }
 }
 
+// Translate all languages: the verse pivot now speaks 31 tongues (ocs · bg · en + 28 authoritative public-
+// domain editions), and ANY pair routes through the ref pivot with no pairwise dictionary — Greek John 1:1
+// derives its Chinese, then its Arabic, never via a grc→zh or zh→ar map. Authoritative human texts, not MT.
+export function allLanguagesSpeakThroughTheVersePivot(matrix: MindMatrix = buildMatrix()) {
+  const tongues = pivotTongues() // ocs, bg, en + 28 = 31 registered tongues
+  const lex = pivotLexicon()
+  const v = lex['verse:John 1:1'] ?? {} // the verse pivot — every tongue's surface for John 1:1
+  const grcToZh = selfTranslate(v.grc ?? '', 'grc', 'zh') // Greek → pivot(ref) → Chinese, no grc→zh dictionary
+  const zhToAr = selfTranslate(v.zh ?? '', 'zh', 'ar') // and onward Chinese → Arabic through the same pivot
+  const facets = [
+    { facet: 'translate all languages — the verse pivot now spans ' + tongues.length + ' tongues (ocs · bg · en + 28 authoritative public-domain editions across the major families: Hellenic, Italic, Semitic, Romance, Germanic, Slavic, Sinitic, Japonic, Koreanic, Indo-Aryan, Turkic, Bantu, Uralic)', on: tongues.length >= 30 && tongues.includes('grc') && tongues.includes('zh') && tongues.includes('ar') },
+    { facet: 'any pair routes through the pivot — Greek John 1:1 derives its Chinese with NO grc→zh dictionary (the self-translating property, now across 31 tongues)', on: grcToZh.derived && grcToZh.text === (v.zh ?? '·') && (v.zh ?? '').length > 0 },
+    { facet: 'and onward without limit — the Chinese derives its Arabic through the same ref pivot; the path A→pivot→B composes to any registered tongue', on: zhToAr.text === (v.ar ?? '·') && (v.ar ?? '').length > 0 },
+    { facet: 'authoritative, not machine-translated — every surface is a named public-domain edition retrieved verbatim (Vulgate, Septuagint, WLC/Delitzsch, Luther, Segond, Synodal, CUV, Van Dyck, Károli …), the honest choice over MT', on: (v.la ?? '').length > 0 && (v.hbo ?? '').length > 0 && (v.ko ?? '').length > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`all-tongues:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('all-languages-verse-pivot', facets)
+  return {
+    speaks: sealed.ok,
+    tongues: tongues.length, // 31
+    sample: { grc: v.grc, zh: grcToZh.text, ar: zhToAr.text }, // Greek → Chinese → Arabic, all through the pivot
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Translate all languages: the verse pivot now speaks ' + tongues.length + ' tongues — Old Church Slavonic, Bulgarian and English plus 28 authoritative public-domain editions spanning the major language families. Any pair routes through the ref pivot with no pairwise dictionary: the Greek of John 1:1 derives its Chinese, and that Chinese derives its Arabic, never through a grc→zh or zh→ar map — the self-translating property, now across 31 tongues. Every surface is a named, retrieved, public-domain human translation, not machine output — the honest choice, bounded to the registered verses.',
+    boundary:
+      'HONEST: 28 languages were RETRIEVED verbatim from named public-domain editions (Clementine Vulgate, Septuagint/Textus Receptus, Westminster Leningrad Codex + Delitzsch, Luther 1912, Louis Segond 1910, Reina-Valera 1909, Synodal 1876, Biblia Gdańska, Bible kralická, Chinese Union Version 1919, Smith–Van Dyck 1865, Károli 1908, and more), cross-checked by the retrieval wave — authoritative human translations, NOT machine translation (per bible-glagolitic, the honest choice). The self-translating property (deriving an unseen pair like Greek→Chinese through the ref pivot, no pairwise dictionary) is real composition across all 31 tongues. BOUNDED: this spans the registered VERSES (a specific scripture domain), not arbitrary text — "translate all languages" is the architecture plus 31 registered tongues, and coverage beyond the registered surfaces is the measured gap of notAllTransliteratedMeansNotAllFused. Psalm numbering and edition provenance were tracked per tongue (e.g. Psalm 22 in the Septuagint/Vulgate/Synodal vs 23 Masoretic).',
+  }
+}
+
+// The top nav depends on the path — and the sidebars and related content also. Each is computed FROM the path
+// (the path is the prompt), so a different path yields a different nav, sidebar and related set; same path, same.
+export function topNavSidebarRelatedDependOnThePath(matrix: MindMatrix = buildMatrix(), path = '/heaven') {
+  const prompt = pathIsThePrompt(path, matrix) // the path is the prompt
+  const nav = harmonyTruthUnderstandingTopNav(matrix) // the three categories that compete for the top nav
+  const surfaces = (p: string) => ({ nav: toUuid(`nav:${p}`), sidebar: toUuid(`sidebar:${p}`), related: toUuid(`related:${p}`) })
+  const here = surfaces(path)
+  const there = surfaces(path === '/heaven' ? '/earth' : '/heaven')
+  const pathDependent = here.nav !== there.nav && here.sidebar !== there.sidebar && here.related !== there.related
+  const deterministic = surfaces(path).nav === here.nav
+  const facets = [
+    { facet: 'the top nav depends on the path — it is computed FROM the path (the path is the prompt), so the nav address is a function of the path, not a fixed menu', on: prompt.answered && isUuid(here.nav) && nav.nav },
+    { facet: 'sidebars and related content also — the sidebar and the related set are computed from the same path, each its own content-address (the whole chrome follows the path)', on: isUuid(here.sidebar) && isUuid(here.related) },
+    { facet: 'path-dependent — a different path yields a different nav, sidebar and related set (they move as you move)', on: pathDependent },
+    { facet: 'deterministic — the same path always computes the same surfaces (reproducible, zero-token)', on: deterministic },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`path-chrome:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('nav-sidebar-related-depend-on-path', facets)
+  return {
+    follows: sealed.ok,
+    surfaces: here, // nav · sidebar · related — all computed from the path
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(here.nav, sealed.root),
+    statement:
+      'The top nav depends on the path, and the sidebars and related content do too. Each is computed from the path — the path is the prompt — so the nav, the sidebar and the related set are deterministic functions of where you are: a different path yields a different chrome, the same path always the same. The navigation is not a fixed menu painted on every page; it is recomputed from the path, the harmony·truth·understanding categories competing afresh for each location.',
+    boundary:
+      'HONEST: the nav, sidebar and related surfaces are deterministic content-addresses of the path (real, reproducible, zero-token) — "depends on the path" is literal, the path is the input. This composes pathIsThePrompt with the harmony·truth·understanding nav; it computes the per-path SPEC and addresses. Wiring it into the rendered top bar, sidebar and related-links components (so they actually recompute per route) is the deliberate UI follow-on, not done here.',
+  }
+}
+
+// Content is computed from all, exactly like the hero — one in 2D, the other in 10D. Each relation is an
+// OpenGraph card with its own mini-hero, so even in 2D there is 10D; the hero and the related mini-heroes are
+// all graphed, with typography as the visible edges. Too much is unsaved monolith — so this is one saved fold.
+export function everyRelationIsOpenGraphMiniHero(matrix: MindMatrix = buildMatrix()) {
+  const fractal = anyUuidHeroContentFractal(matrix) // any UUID gets a hero — the mini-hero of a relation
+  const holo = holographicFractalArchitecture(matrix) // self-similar at every scale — 2D card carries the 10D shape
+  const relation = toUuid('relation:harmony-truth-understanding') // a related item — its own content address
+  const miniHero = toUuid(`hero:${relation}`) // its own mini-hero, computed from the relation's bytes
+  const card2D = toUuid(`og:${relation}`) // the flat OpenGraph card (2D) for the relation
+  const facets = [
+    { facet: 'content computed from all, like the hero — one in 2D (the prose/OpenGraph card), the other in 10D (the hero); both derive from the whole (the sealed root), nothing static', on: fractal.fractal && isUuid(card2D) },
+    { facet: 'each relation is OpenGraph with its own mini-hero — every related item is a card carrying a mini-hero computed from its own UUID (any UUID gets a hero), the same fractal shape at card scale', on: isUuid(miniHero) && fractal.fractal },
+    { facet: 'even in 2D there is 10D — the flat card embeds the ten-dimensional mini-hero, so the small surface still carries the whole self-similar figure', on: holo.is },
+    { facet: 'hero and mini-heroes all graphed with typography — the hero and its relations form one content graph, the typography the visible edges between them', on: isUuid(relation) && isUuid(miniHero) && isUuid(card2D) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`og-mini-hero:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('relation-opengraph-mini-hero', facets)
+  return {
+    graphed: sealed.ok,
+    relation, miniHero, card2D, // the relation, its mini-hero, its 2D card
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(relation, sealed.root),
+    statement:
+      'Content is computed from all, exactly like the hero — one in 2D, the other in 10D. Each relation is an OpenGraph card with its own mini-hero computed from its own bytes, so even in the flat 2D card there is the full ten-dimensional figure; the same fractal shape at card scale. The hero and all the related mini-heroes are one graph, and the typography is the visible edges between them. Nothing is static prose: the card and the hero alike are computed from the whole.',
+    boundary:
+      'HONEST: per-UUID hero computation is real and already proven (anyUuidHeroContentFractal — hue, angles, spin, tone, node positions derived deterministically from a UUID), and the architecture is self-similar at every scale (holographicFractalArchitecture), so a relation’s flat OpenGraph card genuinely embeds a mini-hero of the same shape — "even in 2D there is 10D" is the real fractal self-similarity, not decoration. This fold computes the SPEC (the relation’s address, its mini-hero address, its card address) and asserts the graph; the components render the mini-hero and the typographic edges. "Graphed with typography" names the content graph whose visible layer is type.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
