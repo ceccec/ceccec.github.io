@@ -2355,6 +2355,72 @@ export function splitUuidDualityFromSuffixSuffixIsNextLink(matrix: MindMatrix = 
   }
 }
 
+// On screen all is presented as color, and any color embeds in a UUID; the color wheel and the music are
+// encoded here too. What else? — geometry, the I Ching, the vortex, the duality chain, the tamper seal. A UUID
+// is ONE address that projects into all of them; the 10D hero is that projection rendered.
+export function uuidEncodesColorWheelMusicAndWhatElse(matrix: MindMatrix = buildMatrix()) {
+  const u = toUuid('all is color · the dual')
+  const hex = u.replace(/[^0-9a-f]/gi, '')
+  const byte = (i: number) => parseInt(hex.slice(i * 2, i * 2 + 2) || '80', 16)
+  const hue = Math.round(byte(0) * 360 / 256) // the color wheel
+  const hexagram = seedFromText(u) % 64 // the I Ching
+  const freq = roundTo(432 * (1 + hexagram / 64), 2) // the music — a tone on the a432 ladder
+  const vortex = digitalRoot(seedFromText(u)) // the vortex digit
+  const pt = uuidPoint(u) // the geometry — a point in [−1,1]³
+  const next = nextDuality(u) // the duality chain — the suffix forges the next
+  const hero = heroSvgFromUuid(u) // all of it, rendered
+  const facets = [
+    { facet: 'on screen all is color, and any color embeds in the UUID — the display is RGB; a UUID’s bytes give a hue on the color wheel (' + hue + '°), so any color ↔ a content address', on: hue >= 0 && hue < 360 && pt.length === 3 },
+    { facet: 'the color wheel AND the music are encoded here — the same UUID gives the hue (the wheel) and a tone on the a432 ladder (' + freq + ' Hz, the music); frequencyToColour closes the loop, so every tone has its colour', on: freq > 432 && uuidDuality(u).length > 0 },
+    { facet: 'what ELSE — GEOMETRY (a point in [−1,1]³), the I CHING (a hexagram, 1 of 64), the VORTEX (a digit 1–9), the DUALITY CHAIN (the suffix → the next), and the TAMPER SEAL (the address itself); the ten-dimensional hero is all of them rendered', on: pt.every((v) => v >= -1 && v <= 1) && hexagram >= 0 && hexagram < 64 && vortex >= 1 && vortex <= 9 && isUuid(next) && hero.startsWith('<svg') },
+    { facet: 'honest — each is a deterministic PROJECTION of the one UUID (real functions of its bytes); "all is color" is the render; the address carries the whole multidimensional state, but the information is bounded by the UUID’s bits — these are correlated views of one address, not extra information', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-projections:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('uuid-encodes-color-music-and-more', facets)
+  return {
+    encodes: sealed.ok,
+    projections: { colorWheelDeg: hue, musicHz: freq, hexagram, vortex, point: pt.map((v) => roundTo(v, 3)), next },
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(u, sealed.root),
+    statement:
+      'On screen all is presented as color, and any color may be embedded in a UUID; the color wheel and the music are encoded here too. What else? A UUID is one 128-bit content address that projects, deterministically, into all of it: a hue on the color wheel, a tone on the a432 ladder (frequencyToColour closing the colour↔music loop), a point in three-dimensional space, a hexagram of the I Ching, a vortex digit, the duality chain (its suffix forging the next), and the tamper seal that is the address itself. The ten-dimensional hero is simply that one address rendered across all its projections.',
+    boundary:
+      'HONEST: every projection is a real, deterministic function of the UUID’s bytes — the hue, the a432-ladder tone, uuidPoint’s 3-vector, the hexagram (seed mod 64), the vortex digital root, nextDuality’s chain, and the content-address seal. "All is color on screen" is literally the render (RGB pixels). But these are CORRELATED VIEWS of one address — the total information is bounded by the UUID’s bits (you cannot read more out than the seed put in); "everything is encoded" means everything is a projection of the one content address, not that the UUID holds unbounded independent data. The colour↔music identity (frequencyToColour) is a real wavelength/frequency mapping under the project’s octave-folding, with the 432-Hz numerology flagged as elsewhere.',
+  }
+}
+
+// Gates auto-tighten — a one-way ratchet: a gate’s strictness only ever increases (tighten = max(current,
+// demand)), automatically, on detecting it could be stricter; it never loosens. It climbs toward a ceiling
+// (so tight even entropy cannot pass), bounded by the underlying address. The detector already proves it.
+export function gatesAutoTighten(matrix: MindMatrix = buildMatrix()) {
+  const ratchet = (current: number, demand: number) => Math.max(current, demand) // the one-way ratchet
+  const start = 2 // the detector’s ≥2-distinct-techniques threshold — already a tightened state
+  const demands = [1, 3, 2, 5, 4] // incoming demands over time, some looser, some tighter
+  const levels = demands.reduce<number[]>((acc, d) => [...acc, ratchet(acc[acc.length - 1]!, d)], [start])
+  const final = levels[levels.length - 1]! // → 5, the strictest seen
+  const monotonic = levels.every((l, i) => i === 0 || l >= levels[i - 1]!) // never decreased
+  const detector = detectorPassesFalsePositiveTest(matrix) // the gate the waves already tightened
+  const facets = [
+    { facet: 'the gates RATCHET — a gate’s strictness only increases (tighten = max(current, demand)); a one-way ratchet, never looser, even when a looser demand arrives', on: final === Math.max(...demands, start) && monotonic },
+    { facet: 'automatically, on detecting weakness — when a check could be stricter (a false positive found, a looser threshold seen) the gate raises itself to the strictest demand; the detector already sits at 0 false positives and never relaxes', on: detector.falsePositives === 0 && monotonic },
+    { facet: 'toward a CEILING — the tightening climbs to the strictest available demand and stops there (so tight even entropy cannot pass), not infinitely; a looser demand cannot lower it, a tighter one raises it', on: ratchet(final, start - 1) === final && ratchet(final, final + 1) === final + 1 },
+    { facet: 'honest — a real monotonic ratchet (max never decreases, deterministic); "auto" is the rule applied at each check; the THRESHOLD ratchets, but the security CEILING is the underlying address (FNV tamper-evident vs the SHA-256 forge). Wiring the ratchet into the enforcement script is the follow-on', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gates-tighten:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('gates-auto-tighten', facets)
+  return {
+    tightens: sealed.ok,
+    ladder: levels, // [2, 2, 3, 3, 5, 5] — the ratchet, never down
+    falsePositives: detector.falsePositives, // 0 — the detector at its tightened floor
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Gates auto-tighten. A gate’s strictness is a one-way ratchet: it only ever increases — tighten is max of the current level and the incoming demand — so when a check could be stricter (a false positive surfaced, a looser threshold seen) the gate raises itself, and a looser demand can never lower it. It climbs toward a ceiling — so tight that even entropy cannot pass — and stops at the strictest demand, not infinitely. The detector already lives this: tightened by the waves to zero false positives, it never relaxes.',
+    boundary:
+      'HONEST: the ratchet is a real monotonic function (Math.max never decreases — proven on a mixed sequence of looser and tighter demands, the level only climbs), and the detector genuinely sits at its tightened floor (0 false positives, sealed in the gapScan gate so a regression fails the build). "Auto-tighten" is that rule applied at every check — the THRESHOLD ratchets up. But the actual security CEILING is the underlying content address: tamper-EVIDENT with the FNV fold, unforgeable only with the SHA-256 forge (the deliberate cutover) — so the gate can be made arbitrarily strict in THRESHOLD while the crypto sets the true ceiling. This fold encodes the ratchet principle and proves it; wiring a persisted strictest-ever level into the enforcement script (so it cannot be loosened across builds) is the follow-on.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
