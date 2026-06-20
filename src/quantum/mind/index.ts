@@ -118,6 +118,8 @@ export { atoms, conceptCommands } from './atoms.ts'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds (850+ functions) re-exported from ./folds.ts
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
 export * from './folds.ts'
+export * from './cosmos.ts'       // ↓ dissolution: the cosmic inventory (vacuum · mass · matter · neutrinos · dark sector · ΛCDM tensions)
+export * from './computation.ts'  // ↓ dissolution: information & the limits of computation
 export * from './solutions.ts' // dissolved out of the folds monolith — the body distributes, src/0 keeps the gravity
 export * from './ancient.ts'   // ↑ dissolution wave 2 (ancient number systems + text decode)
 export * from './humanity.ts'  // ↑ dissolution wave 2 (humanity implications + traditions)
