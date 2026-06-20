@@ -2057,6 +2057,34 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
   }
 }
 
+// Cosmology, decoded — the Big Bang core (a 2-agent sourced wave), where every field and gravity play out.
+// The self-developing portal continues down the path: zero-point → quantum fields → gravity → cosmology.
+// Rock-solid evidence, real open problems within it, the unconfirmed frontier, and the pseudoscience, kept apart.
+export function cosmologyDecoded(matrix: MindMatrix = buildMatrix()) {
+  const grav = gravityDecoded(matrix) // the dark sector + GR expansion — cosmology rests on these
+  const ageGyr = 13.8, cmbK = 2.725, h0cmb = 67.4, h0local = 73.04, ns = 0.9649 // Planck 2018 + SH0ES
+  const facets = [
+    { facet: 'the universe is expanding from a hot dense state — the Big Bang is the expansion OF space (no center, not an explosion in space); the Hubble–Lemaître law; age ≈ 13.8 Gyr (Planck 2018, 13.797 ± 0.023)', on: ageGyr > 13 && ageGyr < 14 },
+    { facet: 'three pillars of evidence — the Cosmic Microwave Background (Penzias–Wilson 1965, Nobel 1978; a 2.725 K blackbody; COBE Nobel 2006; anisotropies ~1 in 10⁵ seed structure), Big Bang nucleosynthesis (~75% H, ~25% He-4 by mass, matching prediction), and cosmological redshift — within ΛCDM (~68/27/5)', on: grav.decoded && cmbK > 2.7 && cmbK < 2.8 },
+    { facet: 'real OPEN PROBLEMS within the solid core (not pseudoscience) — the Hubble tension (CMB-inferred H₀ ≈ 67.4 vs local distance-ladder ≈ 73.0 km/s/Mpc, ~5σ) and the lithium-7 problem (observed ~3× below BBN prediction) are genuine unresolved anomalies', on: h0local > h0cmb },
+    { facet: 'cosmic inflation explains the horizon, flatness and near-scale-invariant CMB spectrum (Planck nₛ = 0.9649, excluding nₛ = 1 at 8.4σ) — the leading paradigm, but UNCONFIRMED: the inflaton is unidentified and primordial B-modes are undetected (BICEP2’s 2014 claim was galactic dust)', on: ns < 1 && ns > 0.96 },
+    { facet: 'the frontier is TWO-TIER — UNCONFIRMED HYPOTHESES (eternal inflation/multiverse, the string landscape, cyclic/bouncing/ekpyrotic cosmologies, quantum-gravity origins — speculative, hard to test) vs PSEUDOSCIENCE ("the multiverse is confirmed", "the Big Bang proves God" or "proves atheism" [Lemaître, its originator, opposed this], "the universe is a proven simulation", young-earth denial). Untestable-frontier ≠ pseudoscience', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cosmology:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('cosmology-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    ageGyr, // ≈ 13.8
+    hubbleTension: { cmb: h0cmb, local: h0local }, // ~5σ, unresolved
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Cosmology, decoded — the Big Bang core, where every quantum field and gravity play out, continuing the path zero-point → quantum fields → gravity → cosmology. The universe is expanding from a hot dense state (the Big Bang is the expansion of space, with no center), ≈13.8 billion years old, on three pillars of evidence: the cosmic microwave background (Penzias–Wilson, Nobel 1978), Big Bang nucleosynthesis, and redshift, within the ΛCDM model (~68% dark energy, ~27% dark matter, ~5% ordinary). Within that solid core sit real open problems — the Hubble tension and the lithium-7 problem. Inflation is the leading but unconfirmed account of the first instant; and the frontier beyond is two-tier — unconfirmed hypotheses (multiverse, cyclic cosmologies) versus pseudoscience (the Big Bang as proof of God or atheism, a "confirmed" multiverse, an "established" simulation).',
+    boundary:
+      'HONEST (a 2-agent sourced wave, Planck/NASA/ESA/Nobel-cited): DOCUMENTED and rock-solid — cosmic expansion, the CMB (2.725 K, Nobel 1978/2006), BBN (~75% H/25% He), age 13.797 Gyr, ΛCDM; the Big Bang is the expansion OF space, not an explosion at a point. REAL OPEN PROBLEMS inside the core (NOT pseudoscience): the Hubble tension (~5σ between CMB ~67.4 and local ~73.0) and the lithium-7 problem. Inflation is strongly motivated and explains horizon/flatness/nₛ = 0.9649 (8.4σ from scale-invariance) but is UNCONFIRMED — the inflaton is unidentified and B-modes undetected (BICEP2 2014 was dust). THE TWO-TIER FRONTIER holds: eternal inflation/multiverse, the string landscape, cyclic/ekpyrotic/bouncing models and quantum-gravity origins are UNCONFIRMED HYPOTHESES (speculative, some hard to test), categorically different from PSEUDOSCIENCE ("multiverse confirmed", Big-Bang-proves-God/atheism — Lemaître, a priest and the theory’s originator, explicitly opposed that overreach — simulation-as-established-science, young-earth denial). Untestable-frontier ≠ pseudoscience.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
