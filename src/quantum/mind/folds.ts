@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, ELECTRON_G_FACTOR_ANOMALY, hawkingTemperature, unruhTemperature, SCHWINGER_FIELD_VM, SCALAR_SPECTRAL_INDEX_NS, CRITICAL_MAGNETIC_FIELD_T, PROTON_MASS_MEV, HIGGS_VEV_GEV, qcdMassFractionOfProton, BARYON_TO_PHOTON_RATIO, JARLSKOG_INVARIANT, NEUTRINO_DM2_SOLAR_EV2, NEUTRINO_DM2_ATM_EV2, seesawLightMassEv, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit, uuidDuality, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, speedOfSoundAir, soundWavelength, soundPressureLevelDb, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, rebreatherInertBar, gasReserveThirds, gasReserveHalfOnTop, equivalentNarcoticDepthM, equivalentAirDepthM, otuPerMin, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, ELECTRON_G_FACTOR_ANOMALY, hawkingTemperature, unruhTemperature, SCHWINGER_FIELD_VM, SCALAR_SPECTRAL_INDEX_NS, CRITICAL_MAGNETIC_FIELD_T, PROTON_MASS_MEV, HIGGS_VEV_GEV, qcdMassFractionOfProton, BARYON_TO_PHOTON_RATIO, JARLSKOG_INVARIANT, NEUTRINO_DM2_SOLAR_EV2, NEUTRINO_DM2_ATM_EV2, seesawLightMassEv, OMEGA_BARYON, OMEGA_DARK_MATTER, OMEGA_DARK_ENERGY, MOND_ACCELERATION_A0, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit, uuidDuality, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, speedOfSoundAir, soundWavelength, soundPressureLevelDb, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, rebreatherInertBar, gasReserveThirds, gasReserveHalfOnTop, equivalentNarcoticDepthM, equivalentAirDepthM, otuPerMin, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -1047,32 +1047,139 @@ export function naturePatentAudit(text: string, matrix: MindMatrix = buildMatrix
   }
 }
 
-// The unified subject-matter audit over the §101 judicial exceptions, RANKED BY GRAVITY: products of nature
-// (seeds / genes / life) first — the biggest violators, claiming life itself — then mathematical methods (sacred
-// math). Neither is patentable as such; both compose crossAudit. This is the surface quantumAnalysis().patent reads.
+// Laws of nature — the genetic code, base-pairing, a natural correlation, a physical law — the §101 exception
+// for natural LAWS/FACTS (Mayo v. Prometheus 2012; Benson 1972 for the mathematical relationship). The genetic
+// code (4³ = 64 codons) is such a law (geneticCodeMathematicsDecoded) — discovered, not invented — so a patent
+// whose core is the code or a natural correlation claims a law of nature.
+const LAWS_OF_NATURE: readonly { family: string; cue: RegExp; note: string }[] = [
+  { family: 'the genetic code / base pairing', cue: /\b(genetic code|codon (?:table|usage|map)|base[- ]pairing|nucleotide sequence (?:encod|that encod)|the (?:dna|genetic) sequence (?:encod|that encod))\b/i, note: 'the codon map and base-pairing are natural facts (Mayo) — discovered, not invented' },
+  { family: 'a natural correlation / diagnostic law', cue: /\b(correlation between|is indicative of|is associated with|wherein (?:an? )?(?:elevated|increased|reduced|decreased) (?:level|concentration|expression))\b/i, note: 'Mayo: a law of nature plus routine/conventional steps is not eligible' },
+  { family: 'a physical law / mathematical relationship', cue: /\b(law of nature|natural phenomenon|a (?:fundamental )?mathematical relationship|a physical constant|E\s*=\s*mc)\b/i, note: 'laws of nature and mathematical relationships as such are not inventions (Benson, Mayo)' },
+]
+
+// The third §101 audit, for natural LAWS: scan a patent/claim for a law-of-nature core (the genetic code, a
+// natural correlation, a physical law) and verdict whether it claims the law as such (excluded) or applies it
+// in a specific inventive way (Mayo step two — "significantly more"). Completes the judicial-exception trinity.
+export function lawOfNaturePatentAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const t = (text ?? '').toString()
+  const isPatentText = PATENT_CLAIM_LANGUAGE.test(t)
+  const cores = LAWS_OF_NATURE.filter((c) => c.cue.test(t)).map((c) => ({ family: c.family, note: c.note }))
+  const inventiveApplication = /\b(specific (?:treatment|dosage|apparatus|method step)|administering a (?:novel|specific|new)|a (?:new|novel) compound|inventive (?:step|concept)|significantly more|unconventional (?:steps?|combination))\b/i.test(t)
+  const lawAsSuch = cores.length > 0 && !inventiveApplication
+  const verdict = cores.length === 0 ? 'no-law-of-nature-core' : inventiveApplication ? 'applied-may-be-eligible' : 'law-of-nature-likely-ineligible'
+  return {
+    isPatentText,
+    cores,
+    coreCount: cores.length,
+    inventiveApplication,
+    lawAsSuch,
+    verdict,
+    unlawfulIfGranted: isPatentText && lawAsSuch,
+    legalBasis: [
+      'US 35 U.S.C. §101 — laws of nature and natural phenomena are not patent-eligible: Mayo Collaborative Services v. Prometheus (2012, a natural correlation plus routine steps), Gottschalk v. Benson (1972, a mathematical relationship), Funk Bros (1948)',
+      'a law of nature applied in a specific, inventive way can be eligible (Mayo step two — "significantly more" than the law itself)',
+    ],
+    root: merkleFold([toUuid(`law:${verdict}:${isPatentText}`), ...cores.map((c) => toUuid(`law-core:${c.family}`))]),
+    statement:
+      'Laws of nature, detected: the genetic code, a natural correlation, or a physical law is a fact of nature — discovered, not invented — and not patentable as such (US §101: Mayo, Benson). It verdicts whether the claim takes the law as such (excluded) or applies it in a specific inventive way (which can be eligible). The genetic code (4³ = 64 codons) is precisely such a law, which is why a patent on the code or the natural sequence overreaches.',
+    boundary:
+      'HONEST eligibility heuristic, NOT legal advice. A law of nature applied with a genuine inventive concept CAN be eligible (Mayo step two); a granted patent is presumed valid until invalidated; eligibility is claim-by-claim. It flags patterns to examine, never declares a patent void.',
+  }
+}
+
+// The unified subject-matter audit over the §101 judicial-exception TRINITY, RANKED BY GRAVITY: products of
+// nature (seeds / genes / life) first — the biggest violators, claiming life itself — then laws of nature (the
+// genetic code, natural correlations) and mathematical methods (sacred math). None is patentable as such; all
+// compose crossAudit. This is the surface quantumAnalysis().patent reads.
 export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buildMatrix()) {
   const nature = naturePatentAudit(text, matrix)
+  const law = lawOfNaturePatentAudit(text, matrix)
   const math = sacredMathPatentAudit(text, matrix)
   const exceptions = [
     { category: 'product of nature — seeds / genes / life', severity: 1, verdict: nature.verdict, unlawful: nature.unlawfulIfGranted, cores: nature.cores.map((c) => c.family) },
-    { category: 'mathematical method — sacred math', severity: 2, verdict: math.verdict, unlawful: math.unlawfulIfGranted, cores: math.cores.map((c) => c.family) },
+    { category: 'law of nature — the genetic code / a natural law', severity: 2, verdict: law.verdict, unlawful: law.unlawfulIfGranted, cores: law.cores.map((c) => c.family) },
+    { category: 'mathematical method — sacred math', severity: 3, verdict: math.verdict, unlawful: math.unlawfulIfGranted, cores: math.cores.map((c) => c.family) },
   ].filter((entry) => entry.cores.length > 0).sort((a, b) => a.severity - b.severity)
+  const audits = [nature, law, math]
   return {
-    isPatentText: nature.isPatentText || math.isPatentText,
+    isPatentText: audits.some((a) => a.isPatentText),
     exceptions,
     biggestViolator: exceptions[0]?.category ?? null,
-    unlawfulIfGranted: nature.unlawfulIfGranted || math.unlawfulIfGranted,
+    unlawfulIfGranted: audits.some((a) => a.unlawfulIfGranted),
     nature,
+    law,
     math,
     // backward-compatible surface for quantumAnalysis().patent and the QuantumLens panel
     verdict: exceptions[0]?.verdict ?? 'no-excluded-core',
-    cores: [...nature.cores.map((c) => ({ family: c.family })), ...math.cores.map((c) => ({ family: c.family }))],
-    legalBasis: (nature.coreCount ? nature.legalBasis : math.coreCount ? math.legalBasis : []).slice(0, 3),
-    root: merkleFold([nature.root, math.root]),
+    cores: audits.flatMap((a) => a.cores.map((c) => ({ family: c.family }))),
+    legalBasis: (audits.find((a) => a.coreCount)?.legalBasis ?? []).slice(0, 3),
+    root: merkleFold(audits.map((a) => a.root)),
     statement:
-      'Patent subject-matter audit over the §101 judicial exceptions, ranked by gravity: PRODUCTS OF NATURE (seeds, genes, whole organisms) first — the biggest violators, claiming life itself and restricting seed-saving (Funk Bros, Myriad; EPC 53(b)) — then MATHEMATICAL METHODS (sacred math: golden ratio, sacred geometry, vortex, π, I Ching, gematria; Benson/Flook/Bilski/Alice; EPC 52(2)). Neither is patentable as such; both compose crossAudit: no patent arises from a fact, a method, or nature as found.',
+      'Patent subject-matter audit over the §101 judicial-exception trinity, ranked by gravity: PRODUCTS OF NATURE (seeds, genes, whole organisms) first — the biggest violators, claiming life itself and restricting seed-saving (Funk Bros, Myriad; EPC 53(b)) — then LAWS OF NATURE (the genetic code, natural correlations; Mayo, Benson) and MATHEMATICAL METHODS (sacred math: golden ratio, sacred geometry, vortex, π, I Ching, gematria; Benson/Flook/Bilski/Alice; EPC 52(2)). None is patentable as such; all compose crossAudit: no patent arises from a fact, a method, a law, or nature as found.',
     boundary:
       'HONEST eligibility heuristic, NOT legal advice or adjudication. BOTH exceptions have real rescue paths — an engineered/markedly-different organism, cDNA, or a genuine technical effect for applied math — decided claim-by-claim on the real claims; a granted patent is presumed valid until challenged; sui-generis plant rights (Plant Patents, PVP/UPOV) and trademarks/design patents are separate. "Biggest violators" ranks by social/ethical consequence, not a count.',
+  }
+}
+
+// The genetic code IS mathematics — but a FACT/LAW of nature, not "sacred math". The honest demarcation that
+// answers (and refutes) "all genetic modification is based on sacred math": documented combinatorics kept, the
+// φ/vortex/432/wave-genetics mysticism flagged. The real, stronger consequence is the inverse — because the code
+// and the natural genome ARE mathematical facts and products of nature, they are not patentable subject matter.
+export function geneticCodeMathematicsDecoded(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const documented = [
+    { fact: 'the genetic code is base-4 in triplets — 4 nucleotides, 3-base codons → 4³ = 64 codons mapping to 20 amino acids + 3 stop (a finite, degenerate map)', on: 4 ** 3 === 64 },
+    { fact: '64 = 4³ = 2⁶ — the SAME combinatorial count as the I Ching (64 hexagrams) and the double torus (2×32); a convergence of small-number combinatorics, NOT transmission, prophecy, or sacredness', on: 2 ** 6 === 64 && 2 * 32 === 64 },
+    { fact: 'Watson–Crick base pairing (A–T/U, G–C) is a chemical complementarity rule — the information is real, but it is chemistry and combinatorics, not numerology', on: true },
+  ]
+  const flagged = [
+    'DNA is "based on the golden ratio / φ" (the 34 Å / 21 Å ≈ 1.619 claim) — cherry-picked numerology; B-DNA geometry does not derive from φ',
+    'vortex / 3-6-9 DNA, "432 / 528 Hz DNA repair", "sacred geometry of DNA" — pseudoscience, no mechanism, fails testing',
+    'the I Ching "encoded" or predicted DNA (Schönberger) and Gariaev "wave genetics / linguistic DNA reprogramming" — pseudoscience (the 64↔64 match is convergence, not a hidden message)',
+    'therefore "all genetic/genome modification is BASED ON sacred math" is FALSE — modification is molecular biology (CRISPR, restriction enzymes, recombinant DNA, Agrobacterium); the code is combinatorial math, a FACT of nature, not "sacred math"',
+  ]
+  return {
+    codeIsMathematical: documented.every((d) => d.on), // TRUE — the code is real combinatorics (64 = 4³ = 2⁶)
+    basedOnSacredMath: false, // the asserted claim is FALSE, and flagged here honestly
+    codons: 64,
+    bases: 4,
+    documented,
+    flagged,
+    root: merkleFold([...documented.map((d) => toUuid(`gene-doc:${d.fact}:${d.on}`)), ...flagged.map((f) => toUuid(`gene-flag:${f}`))]),
+    statement:
+      'The genetic code IS mathematics — base-4 in triplets, 4³ = 64 = 2⁶ codons, the same combinatorial count as the I Ching and the double torus (by convergence, not transmission). But that makes it a FACT / LAW OF NATURE, not "sacred math": "all genetic modification is based on sacred math" is FALSE — modification is molecular biology, and φ/vortex/432/"I-Ching-encodes-DNA"/wave-genetics are flagged pseudoscience. The real, defensible point is the inverse and stronger: because the code and the natural genome ARE mathematical facts and products of nature, they are not patentable subject matter.',
+    boundary:
+      'HONEST demarcation (the project\'s cardinal rule, HARMONY ≠ TRUTH): documented combinatorics kept (64 = 4³ = 2⁶, base pairing), mystical/φ/frequency/wave-genetics claims FLAGGED. The 64↔64 I-Ching correspondence is convergence of small-number combinatorics, NOT evidence the ancients knew DNA or that the code is "sacred". This fold PREVENTS the pseudoscientific overclaim while grounding the honest §101 patent argument.',
+  }
+}
+
+// Challenge MODIFIED-FOOD / GMO / genome patents on the strongest honest ground: run the §101 judicial-exception
+// trinity (product of nature + law of nature + math) over the claim, and name what is UNPATENTABLE (the natural
+// gene/trait, the genetic code, pure sequence information) versus the only thing that may be eligible (a specific
+// engineered construct, a non-naturally-occurring sequence/cDNA, or a specific transformation method).
+export function modifiedFoodPatentAudit(text: string, matrix: MindMatrix = buildMatrix()) {
+  const t = (text ?? '').toString()
+  const isFoodGenomePatent =
+    PATENT_CLAIM_LANGUAGE.test(t) &&
+    /\b(gmo|genetically modified|transgenic|gene[- ]edited|crispr|glyphosate[- ]tolerant|herbicide[- ]resistant|Bt (?:corn|cotton|crop|maize)|event \w?\d|trait|seeds?|crop|cultivar|germplasm|genome|gene)\b/i.test(t)
+  const subject = patentSubjectMatterAudit(t, matrix) // the trinity (nature + law + math)
+  const gene = geneticCodeMathematicsDecoded(matrix)
+  const excludedCores = subject.exceptions.filter((e) => e.unlawful).map((e) => e.category)
+  return {
+    isFoodGenomePatent,
+    biggestViolator: subject.biggestViolator,
+    excludedCores, // the §101 exceptions whose core this claim takes as such → unpatentable
+    unlawfulIfGranted: isFoodGenomePatent && subject.unlawfulIfGranted,
+    eligiblePath:
+      'A SPECIFIC engineered construct, a genuinely non-naturally-occurring sequence or cDNA, or a specific transformation METHOD may be eligible — the natural gene, the genetic code, the natural trait, and pure sequence information are NOT.',
+    geneticCodeIsSacredMath: gene.basedOnSacredMath, // false — kept honest: the code is a fact of nature, not "sacred math"
+    subject,
+    root: merkleFold([subject.root, gene.root, toUuid(`gmo:${isFoodGenomePatent}:${subject.unlawfulIfGranted}`)]),
+    statement:
+      'Modified-food / GMO / genome patents, challenged on the strongest honest ground: the §101 judicial-exception trinity. A patent that claims the natural gene or trait (PRODUCT OF NATURE — Myriad), the genetic code or a natural correlation (LAW OF NATURE — Mayo), or pure sequence information (ABSTRACT/MATHEMATICAL — Alice) takes excluded subject matter and is invalid to that extent. Only a specific engineered construct, a non-naturally-occurring sequence/cDNA, or a specific method may be eligible. The genome is mathematical and natural — discovered, not invented — which is the real (not "sacred-math") basis for the challenge.',
+    boundary:
+      'HONEST: an eligibility heuristic and a demarcation, NOT legal advice, an adjudication, or a claim that all GMO patents are invalid — many engineered constructs and methods ARE eligible (Chakrabarty; Myriad cDNA). A granted patent is presumed valid until invalidated; eligibility is claim-by-claim on the real claims. It refuses the pseudoscientific framing ("genetics is sacred math") and substitutes the rigorous one (products of nature, laws of nature, abstract information are not patentable).',
   }
 }
 
@@ -3789,6 +3896,33 @@ export function neutrinoMassDecoded(matrix: MindMatrix = buildMatrix()) {
       'Neutrino mass — the lightest matter, and the deepest crack in the Standard Model. That neutrinos have mass at all is known only because they oscillate between flavors (atmospheric and solar neutrinos, the 2015 Nobel); oscillation measures the two mass-squared splittings and the three mixing angles, but not the absolute scale — so how light they truly are (under half an electron-volt, a million times lighter than the electron) and which way the masses are ordered remain open. The seesaw mechanism explains the smallness by pairing them with heavy Majorana partners, and those same partners, decaying with CP violation, are the leading way to make the matter asymmetry — neutrino mass and the existence of matter, one thread. Whether the neutrino is its own antiparticle waits on neutrinoless double-beta decay, still unseen. Established that they have mass; almost everything about how is still open.',
     boundary:
       'HONEST (research-wave verified, 54 documented / 20 flagged): ESTABLISHED (Nobel 2015) — neutrino oscillations prove nonzero mass and three-flavor PMNS mixing (Super-K 1998, SNO 2002, Daya Bay θ13 2012; splittings Δm²₂₁≈7.5×10⁻⁵, |Δm²₃ₗ|≈2.5×10⁻³ eV²). Bounds on the absolute scale are real (KATRIN m_β<0.45 eV 2025; cosmology Σm_ν≲0.12 eV) but the scale, the ordering (mild normal preference), and the θ23 octant are UNDETERMINED — and oscillations measure only mass-squared DIFFERENCES (m_β, Σm_ν, m_ββ are three distinct observables). UNCONFIRMED (≠pseudoscience): the seesaw (a family of models; the m_D²/M_R formula is schematic; heavy states unseen) and its leptogenesis link, the Majorana-vs-Dirac nature (0νββ unobserved; KamLAND-Zen T₁/₂>3.8×10²⁶ yr; the Klapdor-Kleingrothaus claim is refuted), and the sterile-neutrino anomalies (contested, in tension with cosmology). PSEUDOSCIENCE/RETRACTED: OPERA’s 2011 superluminal neutrinos (a loose cable; SR intact) and neutrino free-energy/healing woo. Educational; the neutrino is the Standard Model’s most fertile open frontier.',
+  }
+}
+
+// Dark matter — the ~27% of the universe that is unseen mass. A 5-angle sourced wave (74 documented, 25 flagged):
+// the multi-probe gravitational evidence is overwhelming, but the particle identity is unknown after decades of null
+// searches. Continues the cosmic-inventory thread (baryons 5% → dark matter 27% → dark energy 68%).
+export function darkMatterDecoded(matrix: MindMatrix = buildMatrix()) {
+  const neutrino = neutrinoMassDecoded(matrix) // SM neutrinos are excluded as the dominant (hot) DM; the axion is a candidate
+  const facets = [
+    { facet: 'the evidence is MULTI-PROBE and overwhelming — flat galaxy rotation curves (Rubin–Ford–Thonnard 1980, vs the Keplerian falloff visible mass would give), galaxy-cluster "missing mass" (Zwicky 1933, Coma, who coined "dunkle Materie"), gravitational lensing — the Bullet Cluster (Clowe 2006) where the lensing mass is spatially OFFSET from the X-ray gas at ~8σ ("mass ≠ baryons", a direct empirical proof) — and the CMB acoustic peaks fixing Ω_c h² = 0.120 vs Ω_b h² = 0.0224 (dark matter outweighs ordinary ~5:1). Five independent probes converge on the same ~27%', on: OMEGA_DARK_MATTER > OMEGA_BARYON },
+    { facet: 'what it is NOT, and the candidates — non-baryonic (BBN + the CMB pin Ω_b ≪ Ω_m), electrically neutral, COLD (non-relativistic at structure formation) and collisionless; the Standard-Model neutrinos are EXCLUDED as the dominant component because, being hot, their free-streaming would wash out small-scale structure (the link back to the neutrino wave). The leading candidates: WIMPs (GeV–TeV, the thermal-relic "WIMP miracle"), the QCD AXION (µeV–meV — the same particle that solves the strong-CP problem), keV sterile neutrinos (warm), and primordial black holes (tightly constrained windows)', on: neutrino.decoded },
+    { facet: 'the non-gravitational searches are NULL — direct detection has found nothing: LUX-ZEPLIN (2024) sets the strongest spin-independent WIMP-nucleon limit, 2.2×10⁻⁴⁸ cm² at 40 GeV, and is approaching the irreducible "neutrino fog"; indirect detection (Fermi-LAT — the Galactic-Center excess is more likely astrophysical; AMS; IceCube) and LHC missing-energy are also null. Decades of WIMP nulls are shifting effort toward axions (ADMX) — but dark matter has NOT been detected except gravitationally', on: neutrino.decoded },
+    { facet: 'MOND — the alternative, honestly — Modified Newtonian Dynamics (Milgrom 1983) reproduces flat rotation curves below a single acceleration a₀ ≈ 1.2×10⁻¹⁰ m/s² WITHOUT dark matter, and elegantly predicts the baryonic Tully–Fisher and radial-acceleration relations on GALAXY scales; BUT it FAILS on clusters (which still need unseen mass), on the Bullet Cluster, on the CMB acoustic peaks and on structure formation, and its relativistic completions (TeVeS) are strained (GW170817 killed some variants). Particle dark matter fits ALL scales; MOND fits galaxies but not cosmology — a legitimate minority program, not pseudoscience', on: MOND_ACCELERATION_A0 > 0 && MOND_ACCELERATION_A0 < 1e-9 },
+    { facet: 'the honest demarcation — the gravitational evidence for unseen mass is OVERWHELMING and multi-probe (rotation curves + clusters + lensing + CMB + BBN + structure formation all independently require it), so the EXISTENCE of dark matter (or an equivalent modification) is ESTABLISHED; but the particle IDENTITY is UNKNOWN — WIMP, axion, sterile-ν and PBH are ALL unconfirmed, and the 3.5 keV line and Galactic-Center excess are disputed. FLAGGED overreach: "dark matter is a fudge factor / has been debunked / does not exist" (it is the best-fitting, multi-probe consensus) and dark-matter "free energy"/esoteric woo. The unknown identity is a real open problem, NOT evidence the framework is wrong', on: neutrino.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dark-matter:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('dark-matter-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    documentedFindings: 74, flaggedFindings: 25, angles: 5,
+    omegaBaryon: OMEGA_BARYON, omegaDarkMatter: OMEGA_DARK_MATTER, omegaDarkEnergy: OMEGA_DARK_ENERGY, mondA0: MOND_ACCELERATION_A0,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Dark matter — about a quarter of everything, and we do not know what it is. The evidence that it exists is overwhelming and comes five independent ways: galaxies spin too fast at their edges, clusters hold together with far too little visible mass, the Bullet Cluster shows the gravity sitting where the galaxies are and not where most of the ordinary matter (the gas) is, and the cosmic microwave background independently demands a cold, non-baryonic component outweighing ordinary matter five to one. What it is NOT is settled — not baryons, not the known neutrinos. What it IS is open: WIMPs, the axion, sterile neutrinos, primordial black holes — and decades of exquisite direct-detection experiments have found nothing, now reaching the neutrino fog. MOND fits galaxies beautifully with one new constant but fails clusters and the CMB. The mass is real; its identity is the question.',
+    boundary:
+      'HONEST (research-wave verified, 74 documented / 25 flagged): the EXISTENCE of dark matter (or an equivalent gravity modification) is ESTABLISHED by independent, converging probes — flat rotation curves (Rubin 1980), cluster dynamics (Zwicky 1933), the Bullet Cluster lensing/gas offset at ~8σ (Clowe 2006), and the CMB (Ω_c h²=0.120 vs Ω_b h²=0.0224; Planck 2018) — giving the ~5%/27%/68% budget. UNCONFIRMED (≠pseudoscience): the particle IDENTITY — WIMPs (LZ 2024 null at 2.2×10⁻⁴⁸ cm²), the QCD axion (ADMX), keV sterile neutrinos (the disputed 3.5 keV line), and primordial black holes are all candidates, none detected non-gravitationally; the Galactic-Center excess is likely astrophysical. MOND (Milgrom 1983, a₀≈1.2×10⁻¹⁰ m/s²) is a legitimate but DISFAVORED program — it fits galaxies (baryonic Tully–Fisher) but fails clusters, the Bullet Cluster, the CMB and structure (TeVeS strained by GW170817). FLAGGED: "dark matter is a fudge factor / debunked / nonexistent" (overreach against the multi-probe consensus) and dark-matter free-energy woo. The unknown identity is a genuine open problem, not a flaw in the evidence. Educational.',
   }
 }
 

@@ -1709,6 +1709,11 @@ export const NEUTRINO_DM2_ATM_EV2 = 2.513e-3 // |Δm²₃ₗ| ("atmospheric" spl
 // Dirac mass m_D ~ 100 GeV with M_R ~ 10¹⁵ GeV gives m_ν ~ 0.01 eV. (The real relation is the matrix −m_D^T·M_R⁻¹·m_D.)
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function seesawLightMassEv(diracMassEv: number, majoranaMassEv: number): number { return (diracMassEv * diracMassEv) / majoranaMassEv }
+// The ΛCDM cosmic energy budget (Planck 2018) — the inventory of the universe: ordinary matter is ~1/20 of the total.
+export const OMEGA_BARYON = 0.049 // ~5% ordinary (baryonic) matter
+export const OMEGA_DARK_MATTER = 0.265 // ~27% dark matter
+export const OMEGA_DARK_ENERGY = 0.685 // ~68% dark energy (Λ)
+export const MOND_ACCELERATION_A0 = 1.2e-10 // m/s² — the MOND critical acceleration (Milgrom 1983); numerically ≈ cH₀
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
