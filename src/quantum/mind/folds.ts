@@ -2452,6 +2452,30 @@ export function uuidFrameMovieCubeSphereDynamicsBruteForce(matrix: MindMatrix = 
   }
 }
 
+// Always start the research by reading the README. The README is the computed root monograph (the home
+// content, generated from src), so reading it first grounds every research wave in the project's conventions,
+// what it has ALREADY decoded (DRY), and its documented-vs-flagged honesty discipline — before any external search.
+export function researchStartsByReadingTheReadme(matrix: MindMatrix = buildMatrix()) {
+  const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix) // the README IS the computed home content
+  const facets = [
+    { facet: 'the README is the computed root monograph — the home content generated from src (the model, conventions, results, and the documented-vs-flagged library); it cannot drift from the source', on: home.shown },
+    { facet: 'research ALWAYS starts by reading it — every research wave reads the README FIRST (the saved decode-wave’s Context phase), grounding the agent in the project before any external search', on: home.shown },
+    { facet: 'so the research is DRY and aligned — knowing what is already decoded avoids re-research, and the README’s honesty discipline (the two-tier demarcation, documented · unconfirmed-hypothesis · pseudoscience) aligns the findings', on: true },
+    { facet: 'and it catches the repo’s traps — grounded in the project, the research respects its structure (e.g. 64 = 4³ is real structure, NOT esoteric meaning; element/song counts are not sacred)', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`research-readme:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('research-starts-by-reading-readme', facets)
+  return {
+    grounded: sealed.ok,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Always start the research by reading the README. The README is the computed root monograph — the home content, generated from src — so reading it first grounds every research wave in the project: its model and conventions, the domains it has already decoded (so the research stays DRY, never re-deriving), and its documented-vs-flagged honesty discipline (the two-tier demarcation). Only then does the wave search outward. Grounded this way, the findings align to the project and respect its traps — that a structural fact like 64 = 4³ is real structure, not esoteric meaning.',
+    boundary:
+      'HONEST: this is a PROCESS rule for the decode waves, enforced in the saved workflow (.claude/workflows/decode-wave.mjs has a Context phase that reads README.md and injects its summary into every research agent) and recorded here. The README is computed FROM src (readmeMarkdown), so it is always current — reading it cannot ground the research in stale claims. It grounds the research (DRY, demarcation-aligned, trap-aware); it does NOT replace external sourcing — the agents still verify each claim against authoritative sources. This fold records the rule and asserts the README is the computed home content; the workflow is where the rule actually runs.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
