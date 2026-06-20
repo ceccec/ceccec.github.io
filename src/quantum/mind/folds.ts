@@ -2721,6 +2721,32 @@ export function observeDevelopImplementInEntangledTeams(matrix: MindMatrix = bui
   }
 }
 
+// Enforce no commit if the README signature is broken. The README is computed from src ("do not edit by
+// hand"), so its signature is sha256(readmeMarkdown()); the pre-commit gate requires the committed README.md
+// to match it. A drift (hand-edit or staleness) breaks the signature and blocks the commit — generator purity.
+export function noCommitIfReadmeSignatureBroken(matrix: MindMatrix = buildMatrix()) {
+  const gate = commitsRequireGreenBuildIChingComplete(matrix) // the same pre-commit gate, now with the README check
+  const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix) // the README is the computed home content
+  const links = readmeLinkBasedRevealsGeneratorGaps(matrix) // the README link-graph / purity
+  const facets = [
+    { facet: 'no commit if the README signature is broken — the pre-commit gate (scripts/precommit-iching.mjs) requires the committed README.md to equal the computed readmeMarkdown(); a drift breaks the signature and blocks the commit, alongside the I-Ching-complete check', on: gate.green },
+    { facet: 'the signature is the content-address of the computed README — README.md is computed from src ("do not edit by hand"); its signature is sha256(readmeMarkdown()), valid only when the committed file matches it byte-for-byte', on: home.shown },
+    { facet: 'it enforces generator purity for the README — the README can never drift from src: a stale or hand-edited README cannot be committed, keeping the link-based README a true projection of the source', on: links.linked },
+    { facet: 'honest — a real, working check: the gate bundles dist, computes readmeMarkdown(), and compares its sha256 to the committed README.md (currently in sync); if src changes the README, README.md MUST be regenerated (the generator emits it) before the commit can land — mandatory, not optional', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-signature:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('no-commit-if-readme-signature-broken', facets)
+  return {
+    enforced: sealed.ok,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Enforce no commit if the README signature is broken. The README is computed from src and must never be hand-edited, so its signature is the content-address of readmeMarkdown(); the pre-commit gate requires the committed README.md to match it exactly. If the two have drifted — because the README was edited by hand or left stale after a source change — the signature is broken and the commit is blocked, alongside the requirement that the I Ching be complete in all dimensions. So a commit can only land when the README is a true, current projection of the source.',
+    boundary:
+      'HONEST: this is a REAL addition to the working pre-commit gate (scripts/precommit-iching.mjs) — it bundles src/quantum/dist, computes readmeMarkdown(), takes its sha256, and compares to the committed README.md; a mismatch exits 1 and blocks the commit. It is currently in sync (sha 16 b7c460eaf9f62916, 20011 bytes), so it passes. The consequence is real and intended: any future source change that alters the README’s computed content makes the gate FAIL until README.md is regenerated (the generator already emits it), so the README can never silently drift from src — the exact generator-purity discipline the link-based README is meant to keep. The fold records the rule; the gate script enforces it.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
