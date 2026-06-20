@@ -1714,6 +1714,14 @@ export const OMEGA_BARYON = 0.049 // ~5% ordinary (baryonic) matter
 export const OMEGA_DARK_MATTER = 0.265 // ~27% dark matter
 export const OMEGA_DARK_ENERGY = 0.685 // ~68% dark energy (Λ)
 export const MOND_ACCELERATION_A0 = 1.2e-10 // m/s² — the MOND critical acceleration (Milgrom 1983); numerically ≈ cH₀
+export const DARK_ENERGY_EOS_W = -1.0 // w = p/ρ for a cosmological constant Λ (measured ≈ −1); w < −1/3 drives acceleration
+export const HUBBLE_CONSTANT_LOCAL = 73.0 // km/s/Mpc — late-universe distance ladder (SH0ES, Cepheid + Type Ia SNe)
+export const HUBBLE_CONSTANT_CMB = 67.4 // km/s/Mpc — early-universe CMB inference assuming ΛCDM (Planck 2018)
+// The Hubble tension in σ — the discordance between two H₀ measurements, combining their uncertainties in quadrature.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hubbleTensionSigma(localKmsMpc: number, localErr: number, cmbKmsMpc: number, cmbErr: number): number {
+  return Math.abs(localKmsMpc - cmbKmsMpc) / Math.sqrt(localErr * localErr + cmbErr * cmbErr)
+}
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
