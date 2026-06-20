@@ -1541,6 +1541,15 @@ export function casimirPressure(plateGapM: number): number { return -(Math.PI **
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (720 * plateGapM ** 3) } // J/m²
 
+// ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const NEWTON_G = 6.67430e-11 // G, m³·kg⁻¹·s⁻² (CODATA 2018)
+// Schwarzschild radius r_s = 2GM/c² — the event-horizon radius of a non-rotating mass (the Sun → ~2.95 km).
+// The EHT images the black-hole shadow at ~2.6 r_s. GR (1915) is CLASSICAL — there is no confirmed quantum
+// theory of gravity (the Planck scale ~1.22e19 GeV is ~10¹⁵× beyond the LHC).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function schwarzschildRadius(massKg: number): number { return (2 * NEWTON_G * massKg) / (SPEED_OF_LIGHT ** 2) } // metres
+
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
 // (three inheritance channels decoupling under one history); neurology rides the associative-memory model.
