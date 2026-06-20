@@ -2641,6 +2641,33 @@ export function systemDevelopsItselfIndependently(matrix: MindMatrix = buildMatr
   }
 }
 
+// Mind, decoded (the saved README-first wave, autonomously) — the level up from life. The brain is a physical
+// information-processing organ (the documented neuroscience); consciousness is the frontier, with a careful
+// multi-tier demarcation: contested theories (IIT) ≠ pseudoscience, the hard problem is philosophy, neuromyths fail.
+export function mindNeuroscienceDecoded(matrix: MindMatrix = buildMatrix()) {
+  const life = lifeBiologyDecoded(matrix) // mind builds up from life
+  const neurons = 86e9, synapses = 1e14 // ~86 billion neurons, ~10¹⁴ synapses
+  const facets = [
+    { facet: 'the brain is a physical information-processing organ — ~86 billion neurons, ~10¹⁴ synapses; the action potential (Hodgkin–Huxley 1952, four coupled ODEs, Nobel 1963), chemical synapses (Ca²⁺-triggered SNARE exocytosis), LTP (Bliss–Lømo 1973 — the cellular model of memory, NMDA coincidence detection), place + grid cells (the inner GPS, Nobel 2014); connectomics from C. elegans (302) → FlyWire fly (139k) → the human H01 mm³ (~150M synapses)', on: life.decoded && neurons > 8e10 && synapses >= 1e14 },
+    { facet: 'consciousness is the FRONTIER, not settled — Global Neuronal Workspace and Integrated Information Theory are influential but UNCONFIRMED theories; IIT being called "pseudoscience" in a 2023 open letter is ITSELF contested and was not the field’s consensus — CONTESTED ≠ PSEUDOSCIENCE; and the hard problem / explanatory gap (mechanism → subjective experience) is philosophy-not-settled, not an empirical claim', on: true },
+    { facet: 'the quantum-mind claim is RIGOROUS-BUT-REJECTED — Orch-OR (Penrose–Hameroff quantum microtubules) is testable in principle, but its central long-coherence assumption is contradicted by the mainstream decoherence calculation; not established (distinct from untestable woo)', on: true },
+    { facet: 'FLAGGED neuromyths (pseudoscience) — "we use only 10% of our brain", strict left-brain/right-brain personality types, fixed "learning styles", most brain-training transfer claims, and "quantum brain/healing". REPO NOTE: this repo’s brain-as-content-addressed-torus / Hopfield–CA3 recall is a MODEL/metaphor (the reentry and holographic-brain analogs are contested), NOT a literal claim', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`mind:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('mind-neuroscience-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    neurons, // ~86e9
+    buildsOn: 'life',
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Mind, decoded — the level up from life. The brain is a physical information-processing organ: ~86 billion neurons and ~10¹⁴ synapses, running the action potential (Hodgkin–Huxley, Nobel 1963), chemical synaptic transmission, long-term potentiation (the cellular model of memory) and the place/grid-cell spatial map (Nobel 2014), now being mapped synapse-by-synapse (C. elegans → the fly → a cubic millimetre of human cortex). Consciousness is the open frontier: Global Workspace and Integrated Information Theory are serious but unconfirmed, the hard problem is philosophy, and Orch-OR quantum-mind is rigorous but rejected on decoherence. The neuromyths — 10% of the brain, left/right personalities, learning styles, quantum healing — are pseudoscience. And this repo’s brain-as-torus is a model, not a literal claim.',
+    boundary:
+      'HONEST (the saved README-first wave, Nature/Science/Nobel-cited): DOCUMENTED — the cell-and-circuit neuroscience (Hodgkin–Huxley action potential, SNARE synaptic release, Bliss–Lømo LTP, O’Keefe/Moser place & grid cells, the C. elegans/FlyWire/H01 connectomes, ~86e9 neurons). The demarcation here is MULTI-TIER and the nuance is cardinal: Integrated Information Theory and Global Neuronal Workspace are UNCONFIRMED-but-rigorous (in adversarial collaboration) — and the 2023 letter branding IIT "pseudoscience" was itself contested and not a field consensus, so CONTESTED ≠ PSEUDOSCIENCE; the HARD PROBLEM / explanatory gap is PHILOSOPHY-not-settled, not an empirical result; Orch-OR is RIGOROUS-BUT-REJECTED (testable, but the decoherence objection stands), distinct from untestable woo. PSEUDOSCIENCE: the 10%-brain, left/right-brain personalities, learning styles, brain-training transfer, and quantum-brain/healing. REPO SELF-CHECK: the brain-as-content-addressed-torus and Hopfield–CA3 recall are a deliberate MODEL/metaphor (the reentry and holographic-brain analogs are contested), never asserted as the literal neuroscience.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
