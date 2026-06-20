@@ -2476,6 +2476,33 @@ export function researchStartsByReadingTheReadme(matrix: MindMatrix = buildMatri
   }
 }
 
+// Life, decoded — the level up from chemistry (the saved decode-wave, README-first). The molecular basis of
+// life and evolution by natural selection: DNA → the central dogma → the 64 = 4³ genetic code → the cell →
+// LUCA → evolution (observed, not only inferred). The origin of life is the frontier; creationism the pseudoscience.
+export function lifeBiologyDecoded(matrix: MindMatrix = buildMatrix()) {
+  const chem = emergenceMatterChemistryDecoded(matrix) // life builds up from chemistry
+  const codons = 4 ** 3 // 64 — four bases over three positions; real structure, not esoteric
+  const facets = [
+    { facet: 'life is molecular — DNA (Watson–Crick 1953, antiparallel double helix, A=T / G≡C); the central dogma (DNA→RNA→protein; reverse transcription is ALLOWED, not a violation); the genetic code (64 = 4³ codons = 61 sense + 3 stop → 20 amino acids, degenerate, Met/Trp single); the ribosome is a ribozyme', on: codons === 64 && chem.decoded },
+    { facet: 'all life shares ONE ancestry — the universal code and machinery point to LUCA, and universal common ancestry is statistically TESTED (Theobald 2010, Nature), not merely assumed', on: true },
+    { facet: 'evolution by natural selection — Darwin–Wallace 1858; the four conditions (heritable variation, overproduction, differential survival, advantageous traits rise); the modern synthesis (Fisher/Wright/Haldane/Dobzhansky/Mayr) + neutral theory (Kimura 1968). OBSERVED, not only inferred: Tiktaalik (a predicted transitional fossil), speciation in progress (Rhagoletis, Podarcis sicula), the MEGA-plate, Lenski’s LTEE (Cit+ at ~31,500 generations)', on: true },
+    { facet: 'the frontier and the flags (two-tier) — UNCONFIRMED: the ORIGIN of life (RNA-world / hydrothermal-vent / metabolism-first — competing, unconfirmed). PSEUDOSCIENCE: intelligent design & young-earth creationism (Earth is old, common descent is evidenced), irreducible complexity (refuted; Kitzmiller v. Dover 2005), vitalism (abandoned), "DNA as a quantum/consciousness antenna" / "528 Hz repairs DNA". BOUNDED: epigenetics is real but is NOT general Lamarckism', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`life:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('life-biology-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    codons, // 64 = 4³
+    buildsOn: 'emergence-chemistry',
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Life, decoded — the level up from chemistry. Life is molecular: the DNA double helix (Watson–Crick, 1953), the central dogma (DNA→RNA→protein, with reverse transcription an allowed pathway), and the genetic code — 64 = 4³ codons (61 sense + 3 stop) for 20 amino acids, degenerate, read by the ribosome (itself a ribozyme). All known life shares one code and machinery, pointing to a last universal common ancestor, and universal common ancestry has been statistically tested. Evolution by natural selection (Darwin–Wallace, 1858; the modern synthesis; neutral theory) is observed in the lab and field, not only inferred from fossils. The origin of life is the open scientific frontier; intelligent design and creationism are the pseudoscience.',
+    boundary:
+      'HONEST (the saved README-first decode-wave, NCBI/Nature/PNAS/Science-cited): DOCUMENTED — molecular biology (DNA, the central dogma, the 64-codon code, the ribozyme ribosome), common descent (LUCA, Theobald 2010), and evolution by natural selection with OBSERVED evidence (Tiktaalik’s predicted-then-found transitional, Rhagoletis/Podarcis speciation, the MEGA-plate, Lenski’s Cit+). REPO NOTE the README-first rule catches: 64 codons = 4³ is REAL structure (four bases over three positions), the same 4³ as the I Ching and the Pauli basis — a genuine structural correspondence, NOT esoteric meaning. KEY NUANCES: reverse transcription is ALLOWED by Crick’s dogma (a common misconception that it violates it); evolution is observed, not only inferred. TWO-TIER: the origin of life (abiogenesis — RNA-world / vents / metabolism-first) is UNCONFIRMED-but-scientific frontier; intelligent design, young-earth creationism, irreducible complexity (refuted) and DNA-quantum/528-Hz woo are PSEUDOSCIENCE; epigenetics is real but bounded, NOT general Lamarckism.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
