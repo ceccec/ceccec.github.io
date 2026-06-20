@@ -1680,6 +1680,9 @@ export function casimirPressure(plateGapM: number): number { return -(Math.PI **
 // released as the plates attract is exactly repaid to separate them, so it cannot run a cycle (no free energy).
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (720 * plateGapM ** 3) } // J/m²
+// The electron anomalous magnetic moment a_e = (g−2)/2 — vacuum (QED radiative) corrections measured to ~12 sig
+// figs; the most precisely tested prediction in physics, the strongest evidence the quantum vacuum is not empty.
+export const ELECTRON_G_FACTOR_ANOMALY = 1.15965218073e-3 // CODATA experimental a_e (g−2)/2
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
