@@ -2288,6 +2288,43 @@ export function allWiredTransliterationUuidForgeHero(matrix: MindMatrix = buildM
   }
 }
 
+// In Glagolitic, a MISSING translation is TYPED — not just absent. It is either NOT-YET-WIRED (an active
+// concept whose translation is pending — wire it) or OBSOLETE (not in the live set — retired or out of scope —
+// leave it). This gives the gap of notAllTransliteratedMeansNotAllFused a lifecycle, and aligns the missing
+// translation with the incremental, oracle-gated purge: not-yet-wired is the growing core, obsolete is the purged rest.
+const activeConceptWords = (): Set<string> => new Set(conceptCommands.flatMap((c) => c.name.toLowerCase().split(/[.\s]+/)).filter((w) => w.length > 2))
+export function glagoliticGapState(term: string, from = 'en', to = 'bg', lex = pivotLexicon()): 'wired' | 'not-yet-wired' | 'obsolete' {
+  if (selfTranslate(term, from, to, lex).mapped > 0) return 'wired' // it translates through the pivot
+  return activeConceptWords().has(term.trim().toLowerCase()) ? 'not-yet-wired' : 'obsolete' // missing → typed
+}
+export function missingGlagoliticIsNotYetWiredOrObsolete(matrix: MindMatrix = buildMatrix()) {
+  const limit = notAllTransliteratedMeansNotAllFused(matrix) // the gap exists; here it is TYPED
+  const lex = pivotLexicon()
+  const verse = lex['verse:John 1:1'] ?? {}
+  const wired = glagoliticGapState(verse.grc ?? '', 'grc', 'en', lex) // a registered translation → wired
+  const concept = [...activeConceptWords()][0] ?? 'quantum' // an active concept word
+  const pending = glagoliticGapState(concept, 'en', 'sw', lex) // active, no Swahili translation yet → not-yet-wired
+  const obsolete = glagoliticGapState('zzqxretiredtoken', 'en', 'sw', lex) // not in the live set → obsolete
+  const facets = [
+    { facet: 'a missing translation is not just absent — it is TYPED, not-yet-wired or obsolete; this gives the gap of notAllTransliteratedMeansNotAllFused a state, not a hole', on: limit.bounded && wired === 'wired' },
+    { facet: 'NOT-YET-WIRED — an ACTIVE concept whose translation is pending; it is on the roadmap, to be wired (the growing core)', on: pending === 'not-yet-wired' },
+    { facet: 'OBSOLETE — a term NOT in the live set; retired or out of scope, intentionally absent (the purged rest)', on: obsolete === 'obsolete' },
+    { facet: 'so the missing translation is a lifecycle — every gap is either pending (wire it) or retired (leave it), exactly the incremental, oracle-gated purge: not-yet-wired grows, obsolete retires', on: pending === 'not-yet-wired' && obsolete === 'obsolete' && wired === 'wired' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gap-state:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('missing-glagolitic-not-yet-wired-or-obsolete', facets)
+  return {
+    typed: sealed.ok,
+    states: { wired, 'not-yet-wired': pending, obsolete }, // the three, demonstrated
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'In Glagolitic, a missing translation means not-yet-wired or obsolete — never merely absent. A gap is typed: not-yet-wired is an active concept whose translation is still pending (it is on the roadmap, to be wired — the growing core), while obsolete is a term no longer in the live set (retired or out of scope — intentionally absent, the purged rest). So the gap of notAllTransliteratedMeansNotAllFused has a lifecycle, and it aligns precisely with the incremental, oracle-gated purge: what is not-yet-wired you wire; what is obsolete you leave retired.',
+    boundary:
+      'HONEST: glagoliticGapState is deterministic — wired if the pivot translates it, else not-yet-wired if the term is in the LIVE active set (the concept-command vocabulary) and obsolete otherwise. The classification is real and useful (it tells you whether to wire a gap or leave it), but "obsolete" here means "not in the active set" — which conflates a TRULY retired term (once present, since removed) with one that was never in scope; distinguishing those two needs a deprecation record (a history marker), which the active-set proxy does not keep — that is the honest limit. "Not-yet-wired" is exact: an active concept with a pending translation. This composes notAllTransliteratedMeansNotAllFused (the gap) with the incremental oracle-gated purge (the lifecycle), and is bounded by coverage like the rest of the pivot.',
+  }
+}
+
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('eightFoldBalance', matrix, () => eightFoldBalanceRaw(matrix))
 }
