@@ -1610,6 +1610,32 @@ export function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number, gfNum:
   return { ambientBar, controllingCeilingBar, ceilingM, firstStopM, noDecoOk: firstStopM <= 0 }
 }
 
+// Ambient absolute pressure at depth, accounting for WATER DENSITY (salt vs fresh) and ALTITUDE surface pressure.
+// Fresh water is less dense, so it takes more metres to add one bar; at altitude the surface pressure is below 1.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ambientPressureBar(depthM: number, freshWater = false, surfaceBar = 1.013): number {
+  return surfaceBar + depthM / (freshWater ? 10.331 : 10.064) // m per bar: salt 10.064, fresh 10.331
+}
+// Maximum operating depth of a breathing gas — the depth where its O₂ fraction reaches the PPO₂ ceiling (toxicity).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function maxOperatingDepthM(fO2: number, ppo2MaxBar = 1.4, freshWater = false, surfaceBar = 1.013): number {
+  return (ppo2MaxBar / fO2 - surfaceBar) * (freshWater ? 10.331 : 10.064) // metres
+}
+// Best (richest safe) breathing-gas O₂ fraction for a target PPO₂ at a depth — gas blending by partial pressure.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bestMixFO2(depthM: number, ppo2Bar = 1.4, freshWater = false, surfaceBar = 1.013): number {
+  return ppo2Bar / ambientPressureBar(depthM, freshWater, surfaceBar) // the O₂ fraction (0..1)
+}
+// Closed-circuit REBREATHER: with a constant PPO₂ setpoint held by the loop, the diluent (inert) pressure is
+// ambient − setpoint; the inert gas load therefore tracks depth differently from a fixed open-circuit fraction.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function rebreatherInertBar(ambientBar: number, ppo2SetpointBar = 1.3): number { return Math.max(0, ambientBar - ppo2SetpointBar) }
+// Gas reserve as a FRACTION — the rule of thirds (reserve = 1/3 of the total) and the 1/2-on-top rule (×3/2).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function gasReserveThirds(totalLitres: number): number { return totalLitres / 3 } // 1/3 of the total held in reserve
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function gasReserveHalfOnTop(requiredLitres: number): number { return requiredLitres * 3 / 2 } // required + 1/2 reserve
+
 // ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const REDUCED_PLANCK = PLANCK / (2 * Math.PI) // ħ = h/2π, J·s ≈ 1.054571817e-34
