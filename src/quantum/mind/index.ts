@@ -120,6 +120,8 @@ export { atoms, conceptCommands } from './atoms.ts'
 export * from './folds.ts'
 export * from './cosmos.ts'       // ↓ dissolution: the cosmic inventory (vacuum · mass · matter · neutrinos · dark sector · ΛCDM tensions)
 export * from './computation.ts'  // ↓ dissolution: information & the limits of computation
+export * from './diving.ts'       // ↓ dissolution: diving · water · space — decompression, gas, narcosis, the harmonic mask
+export * from './interface.ts'    // ↓ dissolution: the device-sensor & shadcn UI interface layer
 export * from './solutions.ts' // dissolved out of the folds monolith — the body distributes, src/0 keeps the gravity
 export * from './ancient.ts'   // ↑ dissolution wave 2 (ancient number systems + text decode)
 export * from './humanity.ts'  // ↑ dissolution wave 2 (humanity implications + traditions)
