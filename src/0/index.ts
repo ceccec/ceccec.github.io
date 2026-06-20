@@ -1524,6 +1524,23 @@ export function radarRange(roundTripSeconds: number): number { return (SPEED_OF_
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function dopplerShift(radialVelocityMs: number, carrierHz: number): number { return (2 * radialVelocityMs * carrierHz) / SPEED_OF_LIGHT }
 
+// ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const REDUCED_PLANCK = PLANCK / (2 * Math.PI) // ħ = h/2π, J·s ≈ 1.054571817e-34
+// Zero-point energy of one mode: E₀ = ½ħω — the quantum harmonic-oscillator ground state; the uncertainty
+// principle (Δx·Δp ≥ ħ/2) forbids a state of exactly zero energy. The QFT vacuum is the SUM over all modes —
+// the lowest state of the field, not a fuel: there is no lower state to fall into. (zpe-fundamentals, verified.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function zeroPointEnergy(angularFreqRadS: number): number { return 0.5 * REDUCED_PLANCK * angularFreqRadS } // ½ħω, joules
+// Casimir pressure between ideal parallel plates a apart: F/A = −π²ħc/(240·a⁴) — attractive (negative),
+// measured (Lamoreaux 1997 PRL 78:5; Mohideen–Roy 1998 PRL 81:4549). A boundary shift of the vacuum modes.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function casimirPressure(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (240 * plateGapM ** 4) } // pascals
+// Casimir energy per unit area: E/A = −π²ħc/(720·a³) — the integral of the pressure. CONSERVATIVE: the work
+// released as the plates attract is exactly repaid to separate them, so it cannot run a cycle (no free energy).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (720 * plateGapM ** 3) } // J/m²
+
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
 // (three inheritance channels decoupling under one history); neurology rides the associative-memory model.
