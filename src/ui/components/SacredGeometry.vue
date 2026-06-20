@@ -9,6 +9,17 @@ const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { sacredGeometry, createAnimationEngine } from '../lib/quantumMind'
 import { formSvg, formDims10D, SACRED_FORMS, FORM_LABEL } from '../lib/sacredForms'
+import { blip } from '../lib/useTones'
+
+// Sound the form (a432 = colour · sound · form, one frequency). HONEST: a CHOSEN sonification — the five solids as a
+// just-intonation ascent on 432 Hz (1 · 9/8 · 5/4 · 3/2 · 2) — NOT a claim the solid "has" a pitch (that would be the
+// flagged numerology this very component warns against). It maps the form to a note so it can be heard, deterministically.
+const A432 = 432
+const SOLID_RATIO: Record<string, [number, number]> = { tetrahedron: [1, 1], cube: [9, 8], octahedron: [5, 4], dodecahedron: [3, 2], icosahedron: [2, 1] }
+function soundSolid(name: string) {
+  const [num, den] = SOLID_RATIO[name] ?? [1, 1]
+  blip((A432 * num) / den, { peak: 0.1, duration: 0.5, type: 'triangle' })
+}
 
 const sg = sacredGeometry()
 const phase = ref(0) // 0..1000 — the manual dimension walk (the slider)
@@ -38,7 +49,7 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
     </header>
 
     <h3 class="sg__h3">The five Platonic solids</h3>
-    <p class="sg__lead">Exactly five — a proven theorem (only triangles, squares and pentagons can close a regular convex corner). Euler’s formula <strong>V − E + F = 2</strong> holds for every one; they fall into dual pairs.</p>
+    <p class="sg__lead">Exactly five — a proven theorem (only triangles, squares and pentagons can close a regular convex corner). Euler’s formula <strong>V − E + F = 2</strong> holds for every one; they fall into dual pairs. <em>Tap ♪ to hear each as a chosen sonification — a just-intonation degree on 432 Hz (a mapping, not a claim the solid has a pitch).</em></p>
     <ul class="sg__solids">
       <li v-for="s in sg.platonicSolids" :key="s.name" class="sg__solid">
         <span class="sg__glyph" aria-hidden="true">{{ SOLID_GLYPH[s.name] }}</span>
@@ -46,6 +57,7 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
         <span class="sg__vef">V {{ s.v }} · E {{ s.e }} · F {{ s.f }}</span>
         <span class="sg__euler">V−E+F = {{ s.v - s.e + s.f }}</span>
         <span class="sg__meta">{{ s.face }} faces · {{ s.element }} · dual: {{ s.dual }}</span>
+        <button type="button" class="sg__sound" @click="soundSolid(s.name)" :aria-label="'sound the ' + s.name">♪ sound</button>
       </li>
     </ul>
 
@@ -110,6 +122,8 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
 .sg__vef { font-family: var(--vp-font-family-mono, monospace); font-size: 0.74rem; color: var(--vp-c-text-1); }
 .sg__euler { font-size: 0.72rem; color: var(--vp-c-green-1); }
 .sg__meta { font-size: 0.7rem; color: var(--vp-c-text-3); }
+.sg__sound { margin-top: 0.35rem; align-self: flex-start; font-size: 0.72rem; padding: 0.18rem 0.6rem; border-radius: 999px; border: 1px solid hsl(265, 60%, 58%); background: hsla(265, 60%, 50%, 0.08); color: hsl(265, 65%, 62%); cursor: pointer; transition: background 0.2s ease; }
+.sg__sound:hover { background: hsla(265, 60%, 50%, 0.22); }
 .sg__walk { display: flex; align-items: center; gap: 0.5rem; font-size: 0.76rem; color: var(--vp-c-text-2); margin-bottom: 0.6rem; }
 .sg__walk input { flex: 1; max-width: 280px; accent-color: hsl(265, 70%, 58%); }
 .sg__forms { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 0.7rem; }
