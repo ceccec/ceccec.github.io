@@ -1743,6 +1743,14 @@ export function carnotEfficiency(coldK: number, hotK: number): number { return 1
 // reaches it. The honest floor under "zero-entropy computation": recompute, don't erase — and never claim zero.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function landauerLimit(tempK: number): number { return BOLTZMANN * tempK * Math.LN2 } // joules per bit erased
+// The Bekenstein bound — the MAXIMUM information (bits) a region of radius R holding energy E can contain:
+// I ≤ 2πRE/(ℏc·ln2). No Newton's G appears, so it bounds non-gravitational systems too; black holes saturate it.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bekensteinBoundBits(radiusM: number, energyJ: number): number { return (2 * Math.PI * radiusM * energyJ) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
+// Bekenstein–Hawking black-hole entropy in BITS — proportional to the horizon AREA, not the volume: for a
+// Schwarzschild black hole S/k_B = 4πGM²/(ℏc), so a solar mass holds ~10⁷⁷ bits. The basis of the holographic principle.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function blackHoleEntropyBits(massKg: number): number { return (4 * Math.PI * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
 
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
