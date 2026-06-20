@@ -872,7 +872,9 @@ export function sample(state: QuantumState, shots = 1024, seed = 'sample'): Reco
 }
 
 // Demo — the Bell pair (|00> + |11>)/√2: H on qubit 0, then CNOT(0→1). Maximally entangled; measuring one
-// bellPair moved to src/0/bell.ts (proof-only, not bundled at runtime)
+// bellPair lives in src/0/bell.ts; folded back into the index by the strict barrel rule (enter a folder only
+// through its index — the index may be omitted), so callers route through '../../0', never the internal file.
+export { bellPair } from './bell.ts'
 
 // Demo — Grover search: find the one marked item among N = 2^n in ~(π/4)√N iterations. On a REAL machine this
 // is a quadratic speedup; here it is SIMULATED classically with no speedup. Uniform superposition, then repeat
@@ -1299,7 +1301,9 @@ export function rtoffoli(bits: number, control1: number, control2: number, targe
   return (bits & (1 << control1)) !== 0 && (bits & (1 << control2)) !== 0 ? bits ^ (1 << target) : bits
 }
 
-// caStep and caEvolve moved to src/0/ca.ts (proof-only, not bundled at runtime)
+// caStep/caEvolve live in src/0/ca.ts; folded back into the index by the strict barrel rule — callers enter
+// through the index ('../../0'), never the internal file.
+export { caStep, caEvolve } from './ca.ts'
 
 // ── Probabilistic process primitives (beside pflip) — the honest model for most decoded domains ─────────
 // A research fleet decoded 18 "aspects of life" and the verify pass found them mostly CLASSICAL, not quantum
@@ -1758,6 +1762,11 @@ export function blackHoleEntropyBits(massKg: number): number { return (4 * Math.
 export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array<0 | 1> {
   return rows.map((row, i) => (row[i] ? 0 : 1) as 0 | 1) // flip the i-th bit of the i-th row
 }
+// Eigen's error threshold — the maximum genome length a replicator can maintain against copy errors: L_max ≈ 1/μ
+// (μ = per-base error rate). The origin-of-life paradox: enzyme-free RNA copies at μ ≈ 0.05 → L_max ≈ 20 bases, far
+// short of the ~200+ a replicase ribozyme needs — accurate replication needs enzymes, enzymes need accurate replication.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function eigenErrorThreshold(perBaseErrorRate: number): number { return perBaseErrorRate > 0 ? 1 / perBaseErrorRate : Infinity }
 
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
@@ -1799,7 +1808,10 @@ export function congruence(a: readonly number[], b: readonly number[]): number {
 
 // Associative memory (neurology): content-addressed recall — the brain's torus map, the project's own model.
 // Store ±1 patterns as a Hopfield weight matrix (Hebbian, zero diagonal); recall descends the energy to the
-// Hopfield network moved to src/0/hopfield.ts (proof-only, not bundled at runtime)
+// The Hopfield network lives in src/0/hopfield.ts and the grid-cell bump in src/0/bump.ts; both folded back
+// into the index by the strict barrel rule — callers enter through the index ('../../0'), not the internal file.
+export { hopfieldStore, hopfieldEnergy, hopfieldRecall } from './hopfield.ts'
+export { bumpStep, bumpProfile, bumpEvolve } from './bump.ts'
 
 // ── The genetic code (trinity sciences) — the error-robust 64 = 4³ table ──
 // The standard genetic code: bases U/C/A/G = 0/1/2/3, codon = b1·16 + b2·4 + b3 (b1 the high two bits). The

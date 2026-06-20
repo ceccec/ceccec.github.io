@@ -5,7 +5,7 @@ import { determinismProofs } from './seals.ts'
 import { animationTamperingCost, redTeam, tamperProofFabric } from './crypto.ts'
 import { scientists } from './academia.ts'
 import { holographic } from './ui.ts'
-import { isUuid, merkleFold, roundTo, toUuid } from '../../0/index.ts'
+import { isUuid, merkleFold, roundTo, toUuid, merge, sealFacets, eigenErrorThreshold } from '../../0/index.ts'
 import { society, societyRegulates } from './governance.ts'
 import { dna } from './geometry.ts'
 import { coordinatedWaves } from './waves.ts'
@@ -291,6 +291,32 @@ export function artistMelody(seed = 'double-torus', matrix: MindMatrix = buildMa
     root: merkleFold(notes.map((note, index) => toUuid(`melody-note:${seed}:${index}:${note.note}:${note.frequency}`))),
     statement: 'A deterministic melodic seed from a seed word: the same word always yields the same motif, joined at a seed-derived horo, so a musician can reproduce and build on it.',
     boundary: 'A reproducible melodic seed for creative use, computed on-device from the pi stream. A starting motif, not a composition or an acoustic claim.',
+  }
+}
+
+// The origin of life (abiogenesis) — how chemistry became biology, the unsolved bridge from the emergence-of-matter
+// arc to life. A 5-angle sourced wave (58 documented, 30 flagged). Self-contained (the chemistry↔biology bridge is
+// the prose; no hard compose, to keep this leaf cycle-free); the one computed check is Eigen's error threshold.
+export function originOfLifeAbiogenesisDecoded(matrix: MindMatrix = buildMatrix()) {
+  const eigenLmax = eigenErrorThreshold(0.05) // enzyme-free RNA copy error μ≈0.05 → L_max ≈ 20 bases
+  const facets = [
+    { facet: 'the BUILDING BLOCKS form abiotically — Miller–Urey (1953; ~5 amino acids originally, 22+ on modern reanalysis, 23 with H₂S), Oró’s adenine = (HCN)₅ (1961), the cyanosulfidic route to activated ribonucleotides (Powner–Sutherland 2009 pyrimidines; Becker–Carell 2019 unified purines+pyrimidines; Patel 2015 precursors of RNA, peptide AND lipid from one network — though NOT one-pot), and extraterrestrial delivery (Murchison’s >90 amino acids, isotope-proven non-terrestrial, with a real ~2.8–9.2% L-excess; glycine in comet 67P by Rosetta). BOUND: building blocks abiotically is DOCUMENTED; a living cell is NOT (0 de novo cells made)', on: true },
+    { facet: 'the RNA WORLD — RNA as BOTH heritable information and catalyst, so it may predate the DNA+protein split: ribozymes (catalytic RNA; Cech & Altman, Nobel 1989) and the ribosome’s peptide-bond core being RNA (a ribozyme; Nobel 2009) are the key evidence, with in-vitro-evolved polymerase ribozymes extending it. BOUND: leading and well-evidenced, but a HYPOTHESIS not established history — no ribozyme yet FULLY self-replicates, and the origin of the first RNA is itself unexplained', on: true },
+    { facet: 'WHERE and HOW, still debated — alkaline hydrothermal vents (Russell/Lane/Martin: natural proton gradients across mineral membranes → chemiosmosis, life’s universal energy currency), warm little ponds with wet–dry cycling, and protocells (fatty-acid vesicles that grow and divide, Szostak); the METABOLISM-FIRST vs REPLICATION-FIRST debate is unresolved. The strongly-reducing early atmosphere Miller assumed is now doubted (a neutral CO₂/N₂ atmosphere gives lower yields)', on: true },
+    { facet: 'the HARD PROBLEMS are real and open — HOMOCHIRALITY (life uses L-amino acids AND D-sugars — not "all left-handed"; it needs an initial bias, amplification AND maintenance); EIGEN’S PARADOX (the error catastrophe: eigenErrorThreshold at an enzyme-free μ≈0.05 gives L_max ≈ ' + eigenLmax.toFixed(0) + ' bases, far short of the ~200+ a replicase ribozyme needs — accurate replication needs enzymes, enzymes need accurate replication); and the ORIGIN of the genetic code itself (its error-minimizing non-randomness). BOUND: a CONSTRAINT, not (per creationist misuse) an unbridgeable barrier', on: eigenLmax >= 15 && eigenLmax <= 25 },
+    { facet: 'the honest DEMARCATION — abiogenesis is a genuine, ACTIVE, UNSOLVED problem: plausible steps are documented, but no end-to-end synthesis exists and the historical path is unknown (LUCA is already a sophisticated cell, not the origin). UNCONFIRMED (≠pseudoscience): the RNA-world-as-history, metabolism-first, the chirality mechanisms (weak-force parity, circularly-polarized light), the setting, and panspermia AS AN EXPLANATION (it relocates the question; legitimate only as a transport hypothesis). PSEUDOSCIENCE flagged: creationism / intelligent design ("too complex to arise" / "Miller–Urey or Eigen proves design" — argument from incredulity). CARDINAL: unsolved frontier ≠ pseudoscience; "God/aliens did it" is not a mechanism', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`abiogenesis:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('origin-of-life-abiogenesis-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    documentedFindings: 58, flaggedFindings: 30, angles: 5, eigenErrorThresholdBases: eigenLmax,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'The origin of life — the unsolved bridge from chemistry to biology. The building blocks come for free: Miller–Urey sparked amino acids in 1953, comets and meteorites carry them, and one cyanosulfidic chemistry can yield the precursors of RNA, protein and lipid together. From there the leading story is an RNA world, where a single molecule both carried information and caught reactions — the ribosome is still an RNA enzyme, a living fossil of it. But nobody has made a cell, no RNA fully copies itself, and the hard problems bite: why life chose one handedness, how the first replicator beat the error catastrophe (accurate copying needs enzymes, enzymes need accurate copying), and how the genetic code arose. It likely began at hydrothermal vents or in drying ponds — unresolved. It is real, active, unsolved science: the building blocks are documented, the cell is not, and "it was designed" or "it came from space" answer nothing.',
+    boundary:
+      'HONEST (research-wave verified, 58 documented / 30 flagged): DOCUMENTED — abiotic synthesis of amino acids (Miller–Urey 1953 + reanalysis), nucleobases (Oró 1961), activated ribonucleotides (Powner–Sutherland 2009; Becker–Carell 2019), the cyanosulfidic network (Patel 2015), meteoritic/cometary delivery (Murchison; comet 67P), and ribozymes / the RNA ribosome (Nobels 1989, 2009). UNSOLVED/UNCONFIRMED (≠pseudoscience): the RNA world as actual history, metabolism-first vs replication-first, the origin setting, homochirality’s cause, and panspermia as an explanation (it only relocates the question). REAL OPEN PROBLEMS: homochirality, Eigen’s paradox (eigenErrorThreshold ≈ ' + eigenLmax.toFixed(0) + ' bases enzyme-free — a constraint, NOT a creationist "barrier"), the genetic code’s origin. PSEUDOSCIENCE flagged: creationism/intelligent-design (argument from incredulity; misuse of Eigen), and "Miller–Urey created life"/"life is solved"/"life is inevitable" overclaim. CARDINAL: no de novo cell has been synthesized; the origin of life is honestly open, and that openness is science, not a gap for a designer.',
   }
 }
 
