@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 import { buildMatrix, matrixMemo } from './matrix.ts'
 import type { MindMatrix } from './types.ts'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, uuidHero, uuidPoint } from '../../0/index.ts'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0/index.ts'
 import { merkleProof } from './proofs.ts'
 import { harmonics } from './music.ts'
 import { blockchainFusion, tamperingCostDecoded } from './crypto.ts'
@@ -740,9 +740,12 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
 // (animateTransform/animate, no <script>): the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops
 // orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand. GitHub-safe (no script,
 // no foreignObject, no external refs), deterministic, recomputed from src — so even in 2D the 10D shows.
-export function tenDimensionalHeroSvg(): string {
+export function heroSvgFromUuid(uuid: string): string {
+  const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
+  const byte = (k: number) => parseInt(hex.slice((k * 2) % 28, ((k * 2) % 28) + 2), 16) || 128 // one byte of the forged UUID
   const W = 760, H = 384, cx = W / 2, cy = 176
-  const LOOPS = [{ r: 120, dur: 11, hue: 16 }, { r: 150, dur: 15, hue: 130 }, { r: 96, dur: 19, hue: 212 }, { r: 170, dur: 23, hue: 300 }] // the four H₁ = ℤ⁴ loops
+  const G0 = Math.round(byte(12) * 360 / 256), G1 = Math.round(byte(13) * 360 / 256) // the torus gradient hues, forged from the UUID
+  const LOOPS = [0, 1, 2, 3].map((k) => ({ r: 96 + (byte(k) % 88), dur: 10 + (byte(k + 4) % 16), hue: Math.round(byte(k + 8) * 360 / 256) })) // the four H₁ = ℤ⁴ loops, forged from the UUID's bytes
   // the eight trigrams (bāguà) as a ring of yin/yang bars (no font dependency), pulsing in sequence — the I Ching
   const trigram = (t: number, x: number, y: number, k: number) =>
     `<g fill="#ffb000"><animate attributeName="opacity" values="0.22;1;0.22" dur="8s" begin="${k}s" repeatCount="indefinite"/>` +
@@ -760,7 +763,7 @@ export function tenDimensionalHeroSvg(): string {
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
     `<defs>`,
     `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="#161628"/><stop offset="100%" stop-color="#0b0b14"/></radialGradient>`,
-    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff7a18"/><stop offset="50%" stop-color="#ffb000"/><stop offset="100%" stop-color="#7a3cff"/></linearGradient>`,
+    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="hsl(${G0} 92% 60%)"/><stop offset="50%" stop-color="#ffb000"/><stop offset="100%" stop-color="hsl(${G1} 80% 58%)"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
     `<g>${bagua}</g>`,
@@ -773,6 +776,13 @@ export function tenDimensionalHeroSvg(): string {
     `<text x="${cx}" y="${H - 20}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="#ffb000">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
     `</svg>`,
   ].join('')
+}
+
+// tenDimensionalHeroSvg — the README hero, FORGED: the brand is content-addressed at MAX tampering cost (the
+// SHA-256 UUID) and that UUID directly computes the hero (heroSvgFromUuid). Much less code — one parametric
+// generator for ANY uuid — and a lot more features: every uuid forges its own hero. All wired through the forge.
+export function tenDimensionalHeroSvg(): string {
+  return heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432'))
 }
 
 // Any icon is animated too — the same way the hero is: a single trigram (one of the bāguà) as a small, self-
