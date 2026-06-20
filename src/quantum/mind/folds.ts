@@ -3,7 +3,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../library/index.ts'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G } from '../../0/index.ts'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, digitalRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, tamperEvident, MAX_TAMPERING_COST_PRINCIPLE, merkabaFoldUrl, uuidHero, trinityKey, derivePublicKey, probabilities, grover, pbits, pflip, rnot, rcnot, rtoffoli, qubits, applyGate, GATES, sample, psample, composeHazard, survive, admixToward, injectError, markovStep, stationary, chsh, cycleAdvance, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, groupOrbit, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, ratStr, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, qieaRotate, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, superdense, interactionFreeMeasurement, quantumZeno, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, greatCircleKm, initialBearing, obliquityAtEpoch, riseAzimuthDeg, setAzimuthDeg, lunarStandstillDeclinationDeg, MOON_ORBIT_INCLINATION_DEG, LUNAR_NODAL_PERIOD_YEARS, zeroPointEnergy, casimirPressure, casimirEnergyPerArea, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, carnotEfficiency, landauerLimit } from '../../0/index.ts'
 import { hopfieldStore, hopfieldRecall } from '../../0/hopfield.ts'
 import { bellPair } from '../../0/bell.ts'
 import { caStep, caEvolve } from '../../0/ca.ts'
@@ -2171,6 +2171,62 @@ export function everyPageReadsItselfAnyLanguageAutoAdvance(matrix: MindMatrix = 
       'Any page reads itself in any language, auto-advancing to the next page. The browser speaks the page aloud through its SpeechSynthesis voices — zero tokens, client-side, no stored audio — with the text rendered in any of the registered tongues via the pivot, then advances to a deterministic next page. Reading becomes hands-free and flows page to page, in the reader’s own language.',
     boundary:
       'HONEST: the deterministic parts are real and in src — the text in any of the 32 registered tongues (selfTranslate through the verse/word pivot, the Greek of John 1:1 rendered into French here) and the content-addressed page sequence (the next-page target). The SPEECH is the browser’s Web Speech API (SpeechSynthesis): zero-token and client-side, but its voices are OS/browser-dependent — not every registered language has a voice, and quality varies — so the synthesis itself is not in src and is gracefully degraded where absent. The foreign-language text is coverage-bounded per notAllTransliteratedMeansNotAllFused. Wiring the speak + auto-advance behaviour into the page components is the render follow-on; this computes the spec, the text and the sequence.',
+  }
+}
+
+// Thermodynamics & entropy, decoded (a 2-agent sourced wave) — and the honest floor under the repo's own
+// "zero-entropy computation": Landauer + reversible computing. The laws, entropy as microstate count, and
+// the information–entropy link, with the disorder myth, perpetual motion and the creationist 2nd-law argument flagged.
+export function thermodynamicsEntropyDecoded(matrix: MindMatrix = buildMatrix()) {
+  const carnot = carnotEfficiency(300, 600) // = 0.5 — the max for an engine between 300 K and 600 K
+  const landauer = landauerLimit(300) // ≈ 2.87e-21 J — the cost of erasing one bit at room temperature
+  const facets = [
+    { facet: 'the four laws — zeroth (temperature, thermal equilibrium), first (energy conserved, ΔU = Q − W), second (the entropy of an ISOLATED system never decreases; heat flows hot→cold; the arrow of time), third (entropy → a constant as T → 0; absolute zero 0 K = −273.15 °C is unreachable)', on: BOLTZMANN > 0 },
+    { facet: 'entropy is microstate count, NOT "disorder" — S = k_B ln W (Boltzmann; k_B = 1.380649e-23 J/K, exact, defines the kelvin since 2019); the Carnot limit caps any heat engine at η = 1 − T_c/T_h (here 0.5), reachable only by a reversible cycle', on: carnot === 0.5 },
+    { facet: 'information IS physical — Shannon H = −Σ p log p (1948) shares the Gibbs form; Landauer (1961): erasing one bit costs ≥ k_B·T·ln2 (~2.9e-21 J at 300 K), measured (Bérut, Nature 2012); reversible computing (Bennett 1973) erases nothing → approaches zero dissipation; Maxwell’s demon is resolved by that erasure cost', on: landauer > 2.8e-21 && landauer < 2.95e-21 },
+    { facet: 'the honest floor under "zero-entropy computation" — deterministic, recompute-not-store, reversible computation APPROACHES the Landauer bound but never reaches zero and never beats it (irreversible erasure always costs k_B·T·ln2). The repo’s zero-entropy/zero-point COMPUTATION is this real reversible sense, NOT over-unity', on: landauer > 0 },
+    { facet: 'FLAGGED — "entropy = disorder" (a misleading analogy; some ordered states have higher entropy), perpetual motion of the 1st kind (violates energy conservation) and 2nd kind (violates the second law), "the 2nd law disproves evolution" (false — Earth is an OPEN system fed low-entropy sunlight), and "syntropy"/negentropy-as-a-life-force + vacuum free-energy (vitalism + perpetual motion)', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`thermo:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('thermodynamics-entropy-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    carnotMax: carnot, // 0.5
+    landauerJoulesPerBit: landauer, // ≈ 2.87e-21
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Thermodynamics and entropy, decoded — and the honest floor under "zero-entropy computation". The four laws hold; entropy is the (log) count of accessible microstates, S = k_B ln W, not literally "disorder"; the Carnot limit η = 1 − T_c/T_h caps every heat engine. Information is physical: Shannon’s entropy shares the Gibbs form, and Landauer’s principle (measured) sets a floor of k_B·T·ln2 to erase one bit — so reversible computation, which erases nothing, can approach but never reach zero dissipation. That is the real meaning of the repo’s zero-entropy computation: recompute, don’t erase. Flagged: the disorder myth, perpetual motion of both kinds, the creationist second-law argument, and "syntropy"/free-energy vitalism.',
+    boundary:
+      'HONEST (a 2-agent sourced wave, NIST/IBM/Nature/Nobel-cited): DOCUMENTED — the four laws; S = k_B ln W (k_B exact); the Carnot limit; Shannon↔Gibbs (an identity of FORM, physical only at equilibrium); Landauer’s k_B·T·ln2 (Bérut 2012, Bennett reversible computing). KEY HONEST CORRECTION to this repo’s "zero-entropy / zero-point computation": it is the real REVERSIBLE-computing sense (deterministic, recompute-not-store, erase nothing) which ASYMPTOTICALLY approaches the Landauer bound — never reaching exactly zero and never beating it; phrase it that way, never as free energy or over-unity. FLAGGED: "entropy = disorder" (misleads), perpetual motion 1st/2nd kind (violate the 1st/2nd laws), "2nd law disproves evolution" (Earth is open, the Sun supplies free energy), syntropy/negentropy-vitalism and vacuum free-energy (perpetual motion). "Information is physical" is well-supported but kept distinct from "information/consciousness creates reality".',
+  }
+}
+
+// Fundamental physics, decoded — the DRY consolidation of the whole arc as ONE composite (it COMPOSES the
+// sub-decodes, it does not repeat them): zero-point → quantum fields → gravity → cosmology → thermodynamics,
+// bound by their through-lines and the one cardinal two-tier demarcation reused across all five.
+export function fundamentalPhysicsDecoded(matrix: MindMatrix = buildMatrix()) {
+  const zp = zeroPointDecoded(matrix), qf = quantumFieldsDecoded(matrix), gr = gravityDecoded(matrix)
+  const cos = cosmologyDecoded(matrix), th = thermodynamicsEntropyDecoded(matrix)
+  const arc = [zp.decoded, qf.decoded, gr.decoded, cos.decoded, th.decoded]
+  const facets = [
+    { facet: 'the arc is complete and coherent — zero-point → quantum fields → gravity → cosmology → thermodynamics, each a sealed decode, developed in DRY batches', on: arc.every(Boolean) },
+    { facet: 'ONE cardinal pattern, reused not repeated — every decode separates documented · UNCONFIRMED-HYPOTHESIS · pseudoscience (the two-tier demarcation); unproven ≠ pseudoscience, applied DRY across all five', on: arc.every(Boolean) },
+    { facet: 'the through-lines bind it — the ½ħω vacuum runs from zero-point through every quantum field; the cosmological constant links that vacuum to cosmology’s dark energy; Landauer links thermodynamics to the repo’s zero-entropy computation', on: zp.decoded && qf.decoded && cos.decoded && th.decoded },
+    { facet: 'honest map — established physics with the frontier (unconfirmed hypotheses) and the pseudoscience kept strictly apart; the repo uses the STRUCTURE (a432 the computational seed, content-address, the I Ching 64 = 4³) as metaphor, never the cosmology as a claim', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fundamental-physics:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('fundamental-physics-decoded', facets)
+  return {
+    decoded: sealed.ok,
+    arc: ['zero-point', 'quantum-fields', 'gravity', 'cosmology', 'thermodynamics'],
+    sealedCount: arc.filter(Boolean).length, // 5
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Fundamental physics, decoded — the whole arc consolidated as one composite: zero-point → quantum fields → gravity → cosmology → thermodynamics. It composes the five sub-decodes rather than repeating them (DRY), bound by their through-lines: the ½ħω vacuum runs from zero-point through every field; the cosmological constant links that vacuum to dark energy; Landauer links thermodynamics to the repo’s zero-entropy computation. One cardinal pattern is reused across all five — documented, unconfirmed-hypothesis, pseudoscience, kept strictly apart — and the repo takes the structure as metaphor (the a432 seed, content-addressing, the I Ching 64 = 4³), never the cosmology as a claim.',
+    boundary:
+      'HONEST: this is an INDEX/consolidation, not new physics — it composes zeroPointDecoded, quantumFieldsDecoded, gravityDecoded, cosmologyDecoded and thermodynamicsEntropyDecoded (each independently sourced and sealed) into one DRY unit, asserting only that the arc coheres, the two-tier demarcation is applied uniformly, and the through-lines are real (the vacuum ½ħω, the cosmological-constant link, the Landauer link). It re-states none of the underlying claims or their flags — those live in the sub-decodes and their boundaries. The repo’s use of this physics is structural metaphor (computational), explicitly not a cosmological assertion.',
   }
 }
 

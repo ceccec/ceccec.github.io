@@ -1550,6 +1550,18 @@ export const NEWTON_G = 6.67430e-11 // G, m³·kg⁻¹·s⁻² (CODATA 2018)
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function schwarzschildRadius(massKg: number): number { return (2 * NEWTON_G * massKg) / (SPEED_OF_LIGHT ** 2) } // metres
 
+// ── Thermodynamics — entropy, the Carnot limit, and the Landauer cost of erasing a bit ──
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const BOLTZMANN = 1.380649e-23 // k_B, J/K — EXACT (SI-2019; it defines the kelvin)
+// Carnot efficiency η = 1 − T_c/T_h (kelvin) — the max for ANY heat engine; η = 1 needs T_c = 0 K (forbidden, 3rd law).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function carnotEfficiency(coldK: number, hotK: number): number { return 1 - coldK / hotK }
+// Landauer's principle: erasing ONE bit dissipates at least k_B·T·ln2 (~2.9e-21 J at 300 K) — measured (Bérut
+// 2012). Reversible computation (Bennett 1973) erases nothing and so APPROACHES zero dissipation, but never
+// reaches it. The honest floor under "zero-entropy computation": recompute, don't erase — and never claim zero.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function landauerLimit(tempK: number): number { return BOLTZMANN * tempK * Math.LN2 } // joules per bit erased
+
 // ── Network primitives (graphs of values · coupled channels · associative memory) ──
 // The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
 // (three inheritance channels decoupling under one history); neurology rides the associative-memory model.
