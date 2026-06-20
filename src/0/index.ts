@@ -1701,6 +1701,8 @@ export const HIGGS_VEV_GEV = 246.22 // the electroweak (Higgs-field) vacuum expe
 // observable; the finer σ/quark/gluon/anomaly split is renormalization-scheme dependent — a convention.)
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function qcdMassFractionOfProton(valenceQuarkSumMeV = 9.4): number { return 1 - valenceQuarkSumMeV / PROTON_MASS_MEV }
+export const BARYON_TO_PHOTON_RATIO = 6.12e-10 // η = n_B/n_γ — the matter excess (~1 extra baryon per ~1.6 billion photons); CMB + BBN agree
+export const JARLSKOG_INVARIANT = 3.0e-5 // J — the CKM CP-violation measure; real (Nobel-confirmed) but ~10 orders too small for baryogenesis
 
 // ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
