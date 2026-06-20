@@ -1547,6 +1547,23 @@ export function soundWavelength(frequencyHz: number, tempC = 20): number { retur
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function soundPressureLevelDb(pressurePa: number): number { return 20 * Math.log10(pressurePa / 20e-6) } // dB SPL
 
+// ── Decompression — inert-gas tissue loading (Haldane/Bühlmann), the basis of dive tables, computers, chambers ──
+// Haldane/Schreiner exponential gas loading of a tissue compartment: P(t) = P0 + (P_inspired − P0)·(1 − 2^(−t/t½)).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function haldaneLoad(initialBar: number, inspiredBar: number, halfTimeMin: number, timeMin: number): number {
+  return initialBar + (inspiredBar - initialBar) * (1 - Math.pow(2, -timeMin / halfTimeMin)) // partial pressure, bar
+}
+// Bühlmann ZHL-16 coefficients from a compartment half-time: a = 2/∛t½ (bar), b = 1.005 − 1/√t½ (dimensionless).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function buhlmannA(halfTimeMin: number): number { return 2 / Math.cbrt(halfTimeMin) } // bar
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function buhlmannB(halfTimeMin: number): number { return 1.005 - 1 / Math.sqrt(halfTimeMin) }
+// The tolerated ambient pressure (the ascent ceiling) for a compartment at inert-gas pressure P: P_amb,tol = (P − a)·b.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function buhlmannCeilingBar(compartmentBar: number, halfTimeMin: number): number {
+  return (compartmentBar - buhlmannA(halfTimeMin)) * buhlmannB(halfTimeMin) // bar — below this ambient pressure, DCS risk rises
+}
+
 // ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const REDUCED_PLANCK = PLANCK / (2 * Math.PI) // ħ = h/2π, J·s ≈ 1.054571817e-34
