@@ -1537,7 +1537,12 @@ export function design358() {
 }
 
 /** @iching ☲ Lí · Fire · clinging */
+let _taxonomyIconsMemo: TaxonomyIcons | undefined
 export function taxonomyIcons(): TaxonomyIcons {
+  // Pure over the command set (conceptCommands); the cascade calls it hundreds of times — memoize once.
+  return _taxonomyIconsMemo ?? (_taxonomyIconsMemo = taxonomyIconsRaw())
+}
+function taxonomyIconsRaw(): TaxonomyIcons {
   const byArea = new Map<string, string[]>()
   for (const command of conceptCommands) {
     const area = command.name.split('.')[1]
@@ -1646,7 +1651,14 @@ export function complete358NextTrinity(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** @iching ☲ Lí · Fire · clinging */
-export function torusUuid(matrix: MindMatrix = buildMatrix()) {
+let _torusUuidMemo: ReturnType<typeof torusUuidRaw> | undefined
+export function torusUuid(_matrix: MindMatrix = buildMatrix()) {
+  // Invariant: the torus word is computed from module constants (conceptCommands, SINGLE_WORD_METHODS),
+  // not from the matrix — so it never varies. The dimension cascade calls it thousands of times; memoize
+  // it once (the gapScan / eightFoldBalance idiom). Pure → bit-identical output, ~42s of recompute → ~0.
+  return _torusUuidMemo ?? (_torusUuidMemo = torusUuidRaw())
+}
+function torusUuidRaw() {
   const hex = (uuid: string) => uuid.replace(/-/g, '')
   const digitSum = (uuid: string) => hex(uuid).split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
   // Do the math: order every command by the digit-fold of its UUID (the ceccec
@@ -1995,7 +2007,7 @@ export function animationEngineLivesInZero(matrix: MindMatrix = buildMatrix()) {
   // The ~19 animated components that each hand-rolled the loop and now fold through the one engine.
   const components = [
     'HolographicHero', // + the healing-burst sub-loop (runWhile)
-    'LivingTorus', 'QuantumField', 'CreativePalette', 'Hologram', 'NativeMovie', 'GlyphLabyrinth',
+    'LivingTorus', 'QuantumField', 'Hologram', 'NativeMovie', 'GlyphLabyrinth',
     'QuantumPlasma', 'Merkaba', 'QuantumFold3D', 'DnaHelix', 'DoubleTorus3D', 'DoubleTorusExperience',
     'Live', 'Rhythm', 'BackgroundMovie', // canvas loops
     'GpuField', // WebGL render loop (start/dispose alongside the GL teardown)
@@ -2010,12 +2022,12 @@ export function animationEngineLivesInZero(matrix: MindMatrix = buildMatrix()) {
     api,
     importsNothing: true, // rAF/cancelAnimationFrame are browser globals, referenced lazily + guarded (SSR no-op)
     components,
-    count: components.length, // ~19 — every animated component folds through the one engine
+    count: components.length, // the live count — every animated component folds through the one engine
     homed,
     reExportedVia: ['quantum/mind (the quantumMind barrel)', 'quantum (the hero barrel)'], // both barrels surface it from src/0
     root: merge(matrix.root, merkleFold(homed.map((entry) => entry.receipt))),
     statement:
-      'The animation engine lives in src/0. The requestAnimationFrame driver that every animated component hand-rolled — the loop·start·stop·sync·one-shot quartet over a single `raf` handle and a `running` flag — is folded into one dependency-free factory, createAnimationEngine(draw), homed in the void/origin (0/0, the fusion the site unfolds from). It imports nothing (rAF is a guarded browser global, a no-op under SSR) and is re-exported through the mind barrel and the hero barrel, so all ~19 components import the one engine and pass only their own draw and their own gating flag — the engine owns the control-flow, the component owns the picture and the condition.',
+      'The animation engine lives in src/0. The requestAnimationFrame driver that every animated component hand-rolled — the loop·start·stop·sync·one-shot quartet over a single `raf` handle and a `running` flag — is folded into one dependency-free factory, createAnimationEngine(draw), homed in the void/origin (0/0, the fusion the site unfolds from). It imports nothing (rAF is a guarded browser global, a no-op under SSR) and is re-exported through the mind barrel and the hero barrel, so every animated component imports the one engine and passes only its own draw and its own gating flag — the engine owns the control-flow, the component owns the picture and the condition.',
     boundary:
       'A manifest of the move, not a filesystem probe. It honestly widens src/0\'s charter from pure quantum arithmetic to the driver that RENDERS it — control-flow, not a number → number fold — but the engine is the single dependency-free leaf every animated component now folds through, which is what the void/origin station is for. The gating policy (in-view ∧ not-saving-energy ∧ not-reduced-motion) stays in the component, computed from the Vue composables (useInView, useDeviceEnergy); the engine receives only the resolved boolean, so it stays framework-free and importless.',
   }

@@ -332,7 +332,12 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
 // deals them into 21 dual pairs (an inner area paired with an outer area). The
 // gate holds only at exactly 42 areas, so the limit is enforced: a 43rd area is
 // an odd one out and breaks the pairing, failing the build.
+let _areaPairsMemo: ReturnType<typeof areaPairsRaw> | undefined
 export function areaPairs() {
+  // Pure over the area taxonomy (constant output); the dimension cascade calls it many times — memoize once.
+  return _areaPairsMemo ?? (_areaPairsMemo = areaPairsRaw())
+}
+function areaPairsRaw() {
   const digitOf = (uuid: string) =>
     uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
   const areas = taxonomyIcons().entries
