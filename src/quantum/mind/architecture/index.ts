@@ -520,6 +520,12 @@ export function folderLaw() {
         shadcn: 'every canonical component is built FROM the 64 shadcn primitives (Path A: reka-ui Primitive + cva + cn + the computed ui-* tokens, no Tailwind dependency) — a bespoke widget that re-implements a primitive must collapse onto the graph (shadcnIsTheGraph)',
       },
     },
+    // The convergence ratchets are BLOCKING gates, not warnings (architect's directive: "non-blocking ratchets
+    // become blocking"). The weave routes each (compression, eight-fold, index-harmony, harmonic-fraction,
+    // component-64) through ratchetPush → gaps when true, so a violation FAILS the deploy until the dry-clean
+    // closes it. The forcing function: no new green deploy until the book is harmonised. Flip to false to return
+    // them to non-blocking ratchet warnings.
+    ratchetsBlock: true,
     // No files outside src/ except generated and those that need to stay in root. The logic lives in
     // src/; only the VitePress render layer, the root config, the build tooling, and generated
     // artifacts may stay outside. Every top-level entry must be src/, a root .md page, a dot-entry

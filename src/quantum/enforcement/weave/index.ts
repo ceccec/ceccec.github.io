@@ -143,6 +143,13 @@ for (const file of renderLayer) {
 const law = folderLaw()
 const wordRe = new RegExp(law.word)
 const digitRe = new RegExp(law.digit)
+// The convergence ratchets route through here: BLOCKING (→ gaps, deploy fails) when folderLaw.ratchetsBlock is
+// true, else non-blocking warnings. The architect flipped them blocking ("non-blocking ratchets become blocking")
+// — a violation now FAILS the deploy until the dry-clean closes it (the live site holds at the last green deploy).
+const ratchetPush = (finding: { harmonic: string; kind: string; detail: string }) =>
+  law.ratchetsBlock
+    ? gaps.push({ harmonic: finding.harmonic, kind: finding.kind, detail: finding.detail })
+    : warnings.push({ wave: 'weave', severity: 'warn', harmonic: finding.harmonic, kind: finding.kind, detail: finding.detail })
 const stemOf = (file) => file.replace(/\.paths\.ts$|\.md$/, '').replace(/^\[(.+)\]$/, '$1')
 const configText = read(join(root, '.vitepress', 'config.mts'))
 for (const outside of law.outsidePageTree) {
@@ -219,7 +226,7 @@ const walkIndices = (dir) => {
         // The compression limit is a ratchet TARGET that drives the distribution (the monolith sheds its
         // logic into the sephirot), reported not build-failing — it holds the channel and informs the carry
         // without blocking green. The over-limit index stays a warning until its logic is distributed.
-        warnings.push({ wave: 'weave', severity: 'warn', kind: 'compression', harmonic: 'compression', detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices` })
+        ratchetPush({ kind: 'compression', harmonic: 'compression', detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices` })
       }
     }
   }
@@ -249,7 +256,7 @@ const mindFlatFiles = existsSync(mindDir)
 const fanoutTop = overEightFold.slice(0, 5).map((entry) => `${entry.dir} (${entry.count})`).join(', ')
 report.push(`8-fold fan-out (live): ${overEightFold.length} level(s) over ${eightFold} subfolders${fanoutTop ? ` — worst ${fanoutTop}` : ''}; ${mindFlatFiles} non-index method files in src/quantum/mind. Recomputed against the real tree each build — the core keeps no frozen tally (folderLaw.strict.eightFold, a ratchet toward ≤ ${eightFold} per level).`)
 if (overEightFold.length || mindFlatFiles > eightFold) {
-  warnings.push({ wave: 'weave', severity: 'warn', kind: 'eight-fold', harmonic: 'folder', detail: `${overEightFold.length} folder level(s) exceed the ${eightFold}-fold fan-out${fanoutTop ? ` (worst: ${fanoutTop})` : ''} and src/quantum/mind holds ${mindFlatFiles} non-index method files — nest each over-8 level into ≤ ${eightFold} and dissolve flat methods into name-path folders; tracked as a ratchet (not build-failing) until the tree converges (folderLaw.strict.eightFold)` })
+  ratchetPush({ kind: 'eight-fold', harmonic: 'folder', detail: `${overEightFold.length} folder level(s) exceed the ${eightFold}-fold fan-out${fanoutTop ? ` (worst: ${fanoutTop})` : ''} and src/quantum/mind holds ${mindFlatFiles} non-index method files — nest each over-8 level into ≤ ${eightFold} and dissolve flat methods into name-path folders; BLOCKING (folderLaw.ratchetsBlock) — the deploy is red until the tree converges to ≤ ${eightFold} per level (folderLaw.strict.eightFold)` })
 }
 
 // Index harmony — the typography graph as a book (the `book` fold states the law; this is its LIVE scan).
@@ -282,7 +289,7 @@ const singlePct = folderCount ? Math.round((100 * singleChild) / folderCount) : 
 const noisePct = folderCount ? Math.round((100 * noiseLeaves) / folderCount) : 0
 report.push(`Index harmony (live, book): ${folderCount} folders — ${singlePct}% single-child pass-through, ${noiseLeaves} pure re-export leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ⌈log${eightFold} N⌉ ≈ ${idealDepth}. A harmonic index is a balanced bāguà of crosses, not noise (book · cross · noise).`)
 if (singlePct > 25 || noisePct > 10 || maxFolderDepth > idealDepth * 2) {
-  warnings.push({ wave: 'weave', severity: 'warn', kind: 'index-harmony', harmonic: 'folder', detail: `the index is not yet harmonic — ${singlePct}% single-child pass-throughs + ${noiseLeaves} pure re-export noise leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ≈ ${idealDepth}; collapse the noise spread (single-child + forwarding leaves) and distribute the over-${eightFold} hubs until the index is a shallow, wide bāguà of real crossings (the book fold) — a ratchet, not build-failing` })
+  ratchetPush({ kind: 'index-harmony', harmonic: 'folder', detail: `the index is not yet harmonic — ${singlePct}% single-child pass-throughs + ${noiseLeaves} pure re-export noise leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ≈ ${idealDepth}; collapse the noise spread (single-child + forwarding leaves) and distribute the over-${eightFold} hubs until the index is a shallow, wide bāguà of real crossings (the book fold) — BLOCKING (folderLaw.ratchetsBlock), the deploy is red until it converges` })
 }
 
 // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
@@ -472,7 +479,7 @@ if (harmonicLaw && existsSync(join(root, 'src', 'quantum', 'mind'))) {
   if (decimals > 0) {
     hotspots.sort((a, b) => b.hits - a.hits)
     const top = hotspots.slice(0, 3).map((entry) => `${entry.file}(${entry.hits})`)
-    warnings.push({ wave: 'weave', severity: 'warn', kind: 'harmonic-fraction-ratchet', harmonic: 'harmonic', detail: `${decimals} raw decimal literals in the model core to re-express as harmonic fractions (e.g. ${top.join(', ')} …) — ${harmonicLaw.why.decimal}` })
+    ratchetPush({ kind: 'harmonic-fraction-ratchet', harmonic: 'harmonic', detail: `${decimals} raw decimal literals in the model core to re-express as harmonic fractions (e.g. ${top.join(', ')} …) — ${harmonicLaw.why.decimal}` })
   }
   report.push(`Sacred-math ratchet: the fusion folds integers (foldKernel ${harmonicLaw.foldKernel.join(' · ')}); ${decimals} decimal literals in the model core to fold into harmonic fractions (rat p/q); the float lives only at the analog edge (${harmonicLaw.analogEdge.join(', ')}).`)
 }
@@ -494,7 +501,7 @@ const compClosure = law.componentClosure
 if (compClosure) {
   const componentCount = graph.components.length
   const over = Math.max(0, componentCount - compClosure.limit)
-  if (over > 0) warnings.push({ wave: 'weave', severity: 'warn', kind: 'component-64-ratchet', harmonic: 'component', detail: `${componentCount} components — the double torus is 2×32 = ${compClosure.limit} = 2⁶ = 4³ = 8²; fold the ${over} over the ${compClosure.limit} onto the renderer each is a variant of (${compClosure.why.count})` })
+  if (over > 0) ratchetPush({ kind: 'component-64-ratchet', harmonic: 'component', detail: `${componentCount} components — the double torus is 2×32 = ${compClosure.limit} = 2⁶ = 4³ = 8²; fold the ${over} over the ${compClosure.limit} onto the renderer each is a variant of (${compClosure.why.count})` })
   report.push(`Component closure: ${componentCount} components toward the ${compClosure.limit}-component double torus (2×32 = 64); ${over} over — a ratchet while the surface folds onto the renderers (folderLaw.componentClosure).`)
 }
 
