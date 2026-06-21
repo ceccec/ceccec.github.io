@@ -216,8 +216,10 @@ export default {
       // from the current route and recomputed on every navigation — the graph manages itself.
       'sidebar-nav-after': () => h(TrinityGateways),
       // Intelligent help + collective-mind self-development folded into every page,
-      // plus the playful quantum-mind badge (the exam that happens by just playing).
-      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind), h(PlayMind)],
+      // plus the playful quantum-mind badge (the exam that happens by just playing),
+      // plus the speech reader so EVERY page reads itself aloud — harmonic human
+      // voices, selectable by the visitor (speechSynthesis, client-only, zero tokens).
+      'layout-bottom': () => [h(GlobalHelp), h(CollectiveMind), h(PlayMind), h(SpeechReader)],
     })
   },
   enhanceApp({ app, router }) {
