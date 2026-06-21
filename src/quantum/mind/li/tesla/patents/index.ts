@@ -1,1 +1,0 @@
-export { teslaPatents } from '../../../li'

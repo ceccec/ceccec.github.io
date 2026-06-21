@@ -1,1 +1,0 @@
-export { treeStackRotationCollapse } from '../../../../../architecture'

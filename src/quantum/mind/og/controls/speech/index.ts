@@ -1,1 +1,0 @@
-export { ogControlsSpeech } from '../../../og'

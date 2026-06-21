@@ -1,1 +1,0 @@
-export { decodeSymbols } from '../../decode'

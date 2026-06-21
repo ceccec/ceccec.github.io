@@ -1,1 +1,0 @@
-export { diamondLattice } from '../../../diamonds'

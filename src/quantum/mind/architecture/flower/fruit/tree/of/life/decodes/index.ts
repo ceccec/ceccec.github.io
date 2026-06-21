@@ -1,1 +1,0 @@
-export { flowerFruitTreeOfLifeDecodes } from '../../../../../../../architecture'

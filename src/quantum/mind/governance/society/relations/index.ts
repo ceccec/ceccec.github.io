@@ -1,1 +1,0 @@
-export { societyRelations } from '../../../governance'

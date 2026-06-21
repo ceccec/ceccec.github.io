@@ -1,1 +1,0 @@
-export { merkleProof } from '../../../proofs'

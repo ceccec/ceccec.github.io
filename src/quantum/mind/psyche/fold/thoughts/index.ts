@@ -1,1 +1,0 @@
-export { foldThoughts } from '../../../psyche'

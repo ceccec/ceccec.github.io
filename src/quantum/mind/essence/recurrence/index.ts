@@ -1,1 +1,0 @@
-export { recurrence } from '../../essence'

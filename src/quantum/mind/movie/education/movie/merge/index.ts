@@ -1,1 +1,0 @@
-export { educationMovieMerge } from '../../../../movie'

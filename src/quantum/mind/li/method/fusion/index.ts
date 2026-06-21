@@ -1,1 +1,0 @@
-export { methodFusion } from '../../../li'

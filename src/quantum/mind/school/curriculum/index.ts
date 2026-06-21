@@ -1,1 +1,0 @@
-export { schoolCurriculum } from '../../school'

@@ -1,1 +1,0 @@
-export { tenDimensionalMovie } from '../../../../movie'

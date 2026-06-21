@@ -1,1 +1,0 @@
-export { trinitiesMatter } from '../../../essence'

@@ -1,1 +1,0 @@
-export { everyRelationIsOpenGraphMiniHero } from '../../../../../../../../folds'

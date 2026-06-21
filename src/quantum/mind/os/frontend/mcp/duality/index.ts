@@ -1,1 +1,0 @@
-export { frontendMcpDuality } from '../../../../os'

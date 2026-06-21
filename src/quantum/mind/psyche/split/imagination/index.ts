@@ -1,1 +1,0 @@
-export { splitImagination } from '../../../psyche'

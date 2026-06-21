@@ -1,1 +1,0 @@
-export { glagoliticHomeFromEnglish } from '../../../../../li'

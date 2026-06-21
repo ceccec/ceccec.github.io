@@ -1,1 +1,0 @@
-export { digitFolders } from '../../../architecture'

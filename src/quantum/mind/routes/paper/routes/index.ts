@@ -1,1 +1,0 @@
-export { paperRoutes } from '../../../routes'

@@ -1,1 +1,0 @@
-export { bulgarianAncientCivilisationsDecoded } from '../../../../../bulgaria'

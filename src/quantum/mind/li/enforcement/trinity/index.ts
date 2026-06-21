@@ -1,1 +1,0 @@
-export { enforcementTrinity } from '../../../li'

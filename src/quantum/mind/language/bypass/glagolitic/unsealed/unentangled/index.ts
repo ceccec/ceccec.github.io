@@ -1,1 +1,0 @@
-export { bypassGlagoliticUnsealedUnentangled } from '../../../../../language'

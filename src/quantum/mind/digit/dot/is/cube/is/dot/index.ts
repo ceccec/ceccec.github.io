@@ -1,1 +1,0 @@
-export { dotIsCubeIsDot } from '../../../../../../digit'

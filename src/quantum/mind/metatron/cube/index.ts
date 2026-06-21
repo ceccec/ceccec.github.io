@@ -1,1 +1,0 @@
-export { metatronCube } from '../../metatron'

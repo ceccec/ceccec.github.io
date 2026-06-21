@@ -1,1 +1,0 @@
-export { kidsDefineEducation } from '../../../../li'

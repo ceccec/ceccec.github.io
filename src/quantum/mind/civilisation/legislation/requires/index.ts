@@ -1,1 +1,0 @@
-export { legislationRequires } from '../../../civilisation'

@@ -1,1 +1,0 @@
-export { occupiedPopulation } from '../../../civilisation'

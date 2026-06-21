@@ -1,1 +1,0 @@
-export { gatesHealSpottedCompromise } from '../../../../gates'

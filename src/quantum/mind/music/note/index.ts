@@ -1,1 +1,0 @@
-export { musicNote } from '../../music'

@@ -1,1 +1,0 @@
-export { quantumAcademy } from '../../../learning'

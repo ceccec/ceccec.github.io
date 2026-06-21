@@ -1,1 +1,0 @@
-export { microdata } from '../../og'

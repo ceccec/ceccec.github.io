@@ -1,1 +1,0 @@
-export { quantumProofs } from '../../../quantumproofs'

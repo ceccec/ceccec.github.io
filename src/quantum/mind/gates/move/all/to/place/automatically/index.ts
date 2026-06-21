@@ -1,1 +1,0 @@
-export { gatesMoveAllToPlaceAutomatically } from '../../../../../../gates'

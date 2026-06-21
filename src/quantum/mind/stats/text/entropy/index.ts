@@ -1,1 +1,0 @@
-export { textEntropy } from '../../../stats'

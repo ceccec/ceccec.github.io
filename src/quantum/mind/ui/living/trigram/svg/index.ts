@@ -1,1 +1,0 @@
-export { livingTrigramSvg } from '../../../../ui'

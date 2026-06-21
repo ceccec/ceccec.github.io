@@ -1,1 +1,0 @@
-export { redTeam } from '../../../crypto'

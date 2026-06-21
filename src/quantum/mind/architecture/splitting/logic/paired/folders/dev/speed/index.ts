@@ -1,1 +1,0 @@
-export { splittingLogicPairedFoldersDevSpeed } from '../../../../../../../architecture'

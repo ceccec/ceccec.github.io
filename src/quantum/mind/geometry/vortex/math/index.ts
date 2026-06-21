@@ -1,1 +1,0 @@
-export { vortexMath } from '../../../geometry'

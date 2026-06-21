@@ -1,1 +1,0 @@
-export { doubleTorusSurface } from '../../../../topology'

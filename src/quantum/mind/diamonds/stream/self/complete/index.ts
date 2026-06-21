@@ -1,1 +1,0 @@
-export { streamSelfComplete } from '../../../../diamonds'

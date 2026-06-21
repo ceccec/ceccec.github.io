@@ -1,1 +1,0 @@
-export { agentStreamWire } from '../../../../diamonds'

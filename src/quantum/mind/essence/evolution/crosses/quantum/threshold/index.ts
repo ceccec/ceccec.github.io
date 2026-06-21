@@ -1,1 +1,0 @@
-export { evolutionCrossesQuantumThreshold } from '../../../../../essence'

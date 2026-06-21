@@ -1,1 +1,0 @@
-export { soldiersRestInPeace } from '../../../../../li'

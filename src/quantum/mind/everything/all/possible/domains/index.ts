@@ -1,1 +1,0 @@
-export { allPossibleDomains } from '../../../../everything'

@@ -1,1 +1,0 @@
-export { securityScan } from '../../../li'

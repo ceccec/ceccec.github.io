@@ -1,1 +1,0 @@
-export { cosmologyDecoded } from '../../../folds'

@@ -1,1 +1,0 @@
-export { bulgarianHeritageDecoded } from '../../../../bulgaria'

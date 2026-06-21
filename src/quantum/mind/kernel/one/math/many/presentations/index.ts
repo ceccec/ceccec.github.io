@@ -1,1 +1,0 @@
-export { oneMathManyPresentations } from '../../../../../kernel'

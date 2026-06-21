@@ -1,1 +1,0 @@
-export { herbalApisDecoded } from '../../../../decode'

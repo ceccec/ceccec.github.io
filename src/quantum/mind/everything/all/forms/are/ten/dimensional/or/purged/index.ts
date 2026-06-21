@@ -1,1 +1,0 @@
-export { allFormsAreTenDimensionalOrPurged } from '../../../../../../../../everything'

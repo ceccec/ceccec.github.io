@@ -1,1 +1,0 @@
-export { primitiveKernelLivesInZero } from '../../../../../../kernel'

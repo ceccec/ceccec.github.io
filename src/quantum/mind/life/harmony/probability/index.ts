@@ -1,1 +1,0 @@
-export { harmonyProbability } from '../../../life'

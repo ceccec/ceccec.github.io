@@ -1,1 +1,0 @@
-export { universalLanguage } from '../../../li'

@@ -1,1 +1,0 @@
-export { playMind } from '../../../media'

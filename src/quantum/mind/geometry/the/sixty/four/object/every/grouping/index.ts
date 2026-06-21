@@ -1,1 +1,0 @@
-export { theSixtyFourObjectEveryGrouping } from '../../../../../../../geometry'

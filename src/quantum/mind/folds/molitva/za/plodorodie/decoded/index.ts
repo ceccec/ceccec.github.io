@@ -1,1 +1,0 @@
-export { molitvaZaPlodorodieDecoded } from '../../../../../folds'

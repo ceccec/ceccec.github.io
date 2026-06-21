@@ -1,1 +1,0 @@
-export { sacredGeometry } from '../../../geometry'

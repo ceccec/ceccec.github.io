@@ -1,1 +1,0 @@
-export { harmonicAlternative } from '../../../folds'

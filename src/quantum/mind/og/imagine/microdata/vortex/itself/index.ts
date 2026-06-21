@@ -1,1 +1,0 @@
-export { imagineMicrodataVortexItself } from '../../../../../og'

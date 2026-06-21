@@ -1,1 +1,0 @@
-export { fullscreenSidebarsInMovie } from '../../../../../movie'

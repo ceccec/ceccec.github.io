@@ -1,1 +1,0 @@
-export { iChingImportExportTenD } from '../../../../../../../ichingmore'

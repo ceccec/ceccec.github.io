@@ -1,1 +1,0 @@
-export { livingHexagramSvg } from '../../../../ui'

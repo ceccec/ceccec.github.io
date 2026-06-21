@@ -1,1 +1,0 @@
-export { doubleTorusWire } from '../../../../matrix'

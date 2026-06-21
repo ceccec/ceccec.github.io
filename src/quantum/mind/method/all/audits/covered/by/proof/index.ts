@@ -1,1 +1,0 @@
-export { allAuditsCoveredByProof } from '../../../../../../method'

@@ -1,1 +1,0 @@
-export { paperParamsById } from '../../../../../academia'

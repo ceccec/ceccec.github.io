@@ -1,1 +1,0 @@
-export { quantumComputer } from '../../../features'

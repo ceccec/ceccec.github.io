@@ -1,1 +1,0 @@
-export { selfAdvising } from '../../self'

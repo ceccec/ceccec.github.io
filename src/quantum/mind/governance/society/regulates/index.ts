@@ -1,1 +1,0 @@
-export { societyRegulates } from '../../../governance'

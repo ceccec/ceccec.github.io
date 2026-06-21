@@ -1,1 +1,0 @@
-export { geneticCodeMathematicsDecoded } from '../../../../../folds'

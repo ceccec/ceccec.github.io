@@ -1,1 +1,0 @@
-export { gatesAutoTighten } from '../../../../folds'

@@ -1,1 +1,0 @@
-export { folderPathsFormIndexOfBookOfLife } from '../../../../../../../../../psyche'

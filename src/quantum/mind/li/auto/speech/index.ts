@@ -1,1 +1,0 @@
-export { autoSpeech } from '../../../li'

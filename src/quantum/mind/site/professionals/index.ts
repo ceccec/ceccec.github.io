@@ -1,1 +1,0 @@
-export { professionals } from '../../site'

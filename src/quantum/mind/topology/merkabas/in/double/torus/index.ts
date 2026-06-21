@@ -1,1 +1,0 @@
-export { merkabasInDoubleTorus } from '../../../../../topology'

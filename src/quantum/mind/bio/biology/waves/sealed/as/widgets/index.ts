@@ -1,1 +1,0 @@
-export { biologyWavesSealedAsWidgets } from '../../../../../../bio'

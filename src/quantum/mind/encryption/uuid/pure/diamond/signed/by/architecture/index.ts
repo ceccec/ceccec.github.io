@@ -1,1 +1,0 @@
-export { uuidPureDiamondSignedByArchitecture } from '../../../../../../../encryption'

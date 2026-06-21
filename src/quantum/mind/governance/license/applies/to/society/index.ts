@@ -1,1 +1,0 @@
-export { licenseAppliesToSociety } from '../../../../../governance'

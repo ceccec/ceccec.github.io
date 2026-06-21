@@ -1,1 +1,0 @@
-export { everyFolderIsAPluginOneIndexServesAll } from '../../../../../../../../../../architecture'

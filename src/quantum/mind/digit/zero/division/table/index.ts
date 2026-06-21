@@ -1,1 +1,0 @@
-export { zeroDivisionTable } from '../../../../digit'

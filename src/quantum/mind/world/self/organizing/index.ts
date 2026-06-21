@@ -1,1 +1,0 @@
-export { selfOrganizing } from '../../../world'

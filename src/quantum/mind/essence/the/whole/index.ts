@@ -1,1 +1,0 @@
-export { theWhole } from '../../../essence'

@@ -1,1 +1,0 @@
-export { verifyRoot } from '../../../matrix'

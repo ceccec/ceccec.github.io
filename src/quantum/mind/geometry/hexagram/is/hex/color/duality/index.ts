@@ -1,1 +1,0 @@
-export { hexagramIsHexColorDuality } from '../../../../../../geometry'

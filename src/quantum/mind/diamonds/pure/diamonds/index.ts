@@ -1,1 +1,0 @@
-export { pureDiamonds } from '../../../diamonds'

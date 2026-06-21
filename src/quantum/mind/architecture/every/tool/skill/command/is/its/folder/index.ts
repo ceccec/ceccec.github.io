@@ -1,1 +1,0 @@
-export { everyToolSkillCommandIsItsFolder } from '../../../../../../../../architecture'

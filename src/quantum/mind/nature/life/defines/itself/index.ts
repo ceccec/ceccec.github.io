@@ -1,1 +1,0 @@
-export { lifeDefinesItself } from '../../../../nature'

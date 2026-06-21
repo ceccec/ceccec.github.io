@@ -1,1 +1,0 @@
-export { selfCompassion } from '../../self'

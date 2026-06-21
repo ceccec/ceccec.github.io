@@ -1,1 +1,0 @@
-export { quantumSongNoteTrinity } from '../../../../../music'

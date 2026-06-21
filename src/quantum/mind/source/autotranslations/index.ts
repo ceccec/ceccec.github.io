@@ -1,1 +1,0 @@
-export { autotranslations } from '../../source'

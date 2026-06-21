@@ -1,1 +1,0 @@
-export { ancientNumberSystems } from '../../../ancient'

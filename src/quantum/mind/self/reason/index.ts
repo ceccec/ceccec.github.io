@@ -1,1 +1,0 @@
-export { selfReason } from '../../self'

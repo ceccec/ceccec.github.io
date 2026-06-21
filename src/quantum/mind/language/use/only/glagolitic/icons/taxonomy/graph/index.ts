@@ -1,1 +1,0 @@
-export { useOnlyGlagoliticIconsTaxonomyGraph } from '../../../../../../../language'

@@ -1,1 +1,0 @@
-export { everyDiamondIsGate } from '../../../../../gates'

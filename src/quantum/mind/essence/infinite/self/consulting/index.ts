@@ -1,1 +1,0 @@
-export { infiniteSelfConsulting } from '../../../../essence'

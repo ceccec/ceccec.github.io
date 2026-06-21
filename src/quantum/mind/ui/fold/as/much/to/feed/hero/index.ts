@@ -1,1 +1,0 @@
-export { foldAsMuchToFeedHero } from '../../../../../../../ui'

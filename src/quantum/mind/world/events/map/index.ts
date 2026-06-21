@@ -1,1 +1,0 @@
-export { worldEventsMap } from '../../../world'

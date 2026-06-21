@@ -1,1 +1,0 @@
-export { theMonograph } from '../../../routes'

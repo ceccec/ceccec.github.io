@@ -1,1 +1,0 @@
-export { fairLife } from '../../../li'

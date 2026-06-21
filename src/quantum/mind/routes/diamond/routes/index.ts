@@ -1,1 +1,0 @@
-export { diamondRoutes } from '../../../routes'

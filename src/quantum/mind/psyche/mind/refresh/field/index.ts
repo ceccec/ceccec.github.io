@@ -1,1 +1,0 @@
-export { mindRefreshField } from '../../../../psyche'

@@ -1,1 +1,0 @@
-export { schwarzschildProtonComputedInSource } from '../../../../../../geometry'

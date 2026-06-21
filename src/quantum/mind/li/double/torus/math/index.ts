@@ -1,1 +1,0 @@
-export { doubleTorusMath } from '../../../../li'

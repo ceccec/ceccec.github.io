@@ -1,1 +1,0 @@
-export { reciprocity } from '../../matrix'

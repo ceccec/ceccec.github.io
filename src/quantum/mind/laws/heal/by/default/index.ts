@@ -1,1 +1,0 @@
-export { healByDefault } from '../../../../laws'

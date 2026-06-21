@@ -1,1 +1,0 @@
-export { ogFullyInteractiveConfigurable } from '../../../../og'

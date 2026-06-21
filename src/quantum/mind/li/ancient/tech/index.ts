@@ -1,1 +1,0 @@
-export { ancientTech } from '../../../li'

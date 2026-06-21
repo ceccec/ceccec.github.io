@@ -1,1 +1,0 @@
-export { spiritShiftsInWaves } from '../../../../../waves'

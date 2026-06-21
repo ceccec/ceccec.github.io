@@ -1,1 +1,0 @@
-export { regenerateSocialSystem } from '../../../../civilisation'

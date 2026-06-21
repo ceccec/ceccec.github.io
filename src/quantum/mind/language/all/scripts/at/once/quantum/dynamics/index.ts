@@ -1,1 +1,0 @@
-export { allScriptsAtOnceQuantumDynamics } from '../../../../../../../language'

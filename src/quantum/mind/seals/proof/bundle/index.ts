@@ -1,1 +1,0 @@
-export { proofBundle } from '../../../seals'

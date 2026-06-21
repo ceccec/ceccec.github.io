@@ -1,1 +1,0 @@
-export { coveragePerPixel } from '../../../../stats'

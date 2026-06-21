@@ -1,1 +1,0 @@
-export { uiConvertsFlatToThreeDQuantum } from '../../../../../../../../geometry'

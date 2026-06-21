@@ -1,1 +1,0 @@
-export { routesAndNavFromFolderTree } from '../../../../../../../architecture'

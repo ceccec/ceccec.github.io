@@ -1,1 +1,0 @@
-export { minimumFilesMaximumFeaturesCost } from '../../../../../../laws'

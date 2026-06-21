@@ -1,1 +1,0 @@
-export { threeWordWaves } from '../../../../learning'

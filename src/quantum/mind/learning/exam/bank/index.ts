@@ -1,1 +1,0 @@
-export { examBank } from '../../../learning'

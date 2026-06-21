@@ -1,1 +1,0 @@
-export { eachFolderIsMerkaba } from '../../../../../topology'

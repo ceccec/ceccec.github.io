@@ -1,1 +1,0 @@
-export { planetDescribesItself } from '../../../../li'

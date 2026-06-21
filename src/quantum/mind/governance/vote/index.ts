@@ -1,1 +1,0 @@
-export { governanceVote } from '../../governance'

@@ -1,1 +1,0 @@
-export { corpusParams } from '../../../routes'

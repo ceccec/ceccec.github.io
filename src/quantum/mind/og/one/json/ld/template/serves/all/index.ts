@@ -1,1 +1,0 @@
-export { oneJsonLdTemplateServesAll } from '../../../../../../../og'

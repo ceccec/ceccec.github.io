@@ -863,6 +863,32 @@ export function name(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// A ratchet is BLOCKING or SOLVING — never a passive warning (architect: "non-blocking ratchets become blocking
+// or solving"). Either it BLOCKS the deploy until fixed (folderLaw.ratchetsBlock), or a deterministic SOLVER
+// resolves it (the dry-clean collapses the noise — noise.collapses — a self-heal). A ratchet a solver can auto-fix
+// SOLVES (no block needed); one needing judgment BLOCKS. No ratchet is left merely warning.
+export function solve(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const dryClean = noise(matrix) // the solver path — collapse the noise spread (re-export shims, single-child) toward crosses
+  const facets = [
+    { facet: 'a ratchet ACTS — it is BLOCKING or SOLVING, never a passive warning (folderLaw.ratchetsBlock is on)', on: law.ratchetsBlock === true },
+    { facet: 'BLOCKING — a ratchet needing judgment (group the fold-modules ≤ 8, fold 159 → 64 components, decimals → rat) fails the deploy until resolved', on: law.ratchetsBlock === true },
+    { facet: 'SOLVING — a ratchet a deterministic solver can auto-fix is SOLVED, not blocked: collapse the unimported pure re-export noise leaves (forwarders, `export { x } from "../.."`) and the single-child pass-throughs, git-recoverable', on: dryClean.collapses },
+    { facet: 'the SOLVE is the dry-clean — collapse the noise (spread) toward real crossings (noise → cross), shrinking index-harmony, fan-out and depth at once; the barrels (the real code) remain', on: dryClean.collapses },
+    { facet: 'HONEST — "solving" is automated only for the MECHANICAL ratchets (collapse unimported pure-re-export folders); the judgment ones still BLOCK until a designed solve lands. A solver runs BEFORE the gate (it edits the tree); the gate itself only audits. HARMONY ≠ TRUTH', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`solve:${entry.facet}:${entry.on}`) }))
+  return {
+    acts: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold([dryClean.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'A ratchet is blocking or solving — never a passive warning. Either it blocks the deploy until fixed, or a deterministic solver resolves it: the dry-clean collapses the noise — the unimported pure re-export shim leaves and the single-child pass-throughs — toward real crossings, while the barrels that hold the code remain. A ratchet the solver can auto-fix solves and never needs to block; one that needs judgment blocks until a designed solve lands. No ratchet is left merely warning.',
+    boundary:
+      'HONEST: the SOLVING half is automated only for the mechanical ratchets — collapsing folders that are pure forwarders (re-export from an ancestor) and import nothing, which is safe and git-recoverable. The judgment ratchets (grouping ~80 fold-modules into ≤ 8, folding 159 components onto 64 renderers, converting 275 decimals to exact fractions) still BLOCK until designed and applied. The solver edits the tree and runs BEFORE the gate; the enforcement gate itself is read-only (it audits, it cannot fix). "Solved" means the violation is gone from the tree, not that harmony is proven. HARMONY ≠ TRUTH.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it

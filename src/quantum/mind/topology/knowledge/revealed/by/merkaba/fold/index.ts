@@ -1,1 +1,0 @@
-export { knowledgeRevealedByMerkabaFold } from '../../../../../../topology'

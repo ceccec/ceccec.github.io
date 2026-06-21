@@ -1,1 +1,0 @@
-export { artistMelody } from '../../../life'

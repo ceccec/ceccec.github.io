@@ -1,1 +1,0 @@
-export { completeness } from '../../folds'

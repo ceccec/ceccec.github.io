@@ -1,1 +1,0 @@
-export { iChingDomainMap } from '../../../../../folds'

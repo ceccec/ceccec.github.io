@@ -1,1 +1,0 @@
-export { qubitTrinityPauliBloch } from '../../../../../li'

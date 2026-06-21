@@ -1,1 +1,0 @@
-export { spinBothDirections } from '../../../../essence'

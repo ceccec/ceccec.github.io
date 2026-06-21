@@ -1,1 +1,0 @@
-export { cellHomology } from '../../../geometry'

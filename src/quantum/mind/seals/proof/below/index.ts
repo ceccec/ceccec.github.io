@@ -1,1 +1,0 @@
-export { proofBelow } from '../../../seals'

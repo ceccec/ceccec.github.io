@@ -1,1 +1,0 @@
-export { metatronsCube } from '../../../li'

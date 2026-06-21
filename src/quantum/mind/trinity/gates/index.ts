@@ -1,1 +1,0 @@
-export { trinityGates } from '../../trinity'

@@ -1,1 +1,0 @@
-export { tamperProofFabric } from '../../../../crypto'

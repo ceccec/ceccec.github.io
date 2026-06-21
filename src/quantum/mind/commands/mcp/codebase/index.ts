@@ -1,1 +1,0 @@
-export { mcpCodebase } from '../../../commands'

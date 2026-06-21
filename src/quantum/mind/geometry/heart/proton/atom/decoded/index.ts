@@ -1,1 +1,0 @@
-export { heartProtonAtomDecoded } from '../../../../../geometry'

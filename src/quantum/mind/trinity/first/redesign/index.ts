@@ -1,1 +1,0 @@
-export { trinityFirstRedesign } from '../../../trinity'

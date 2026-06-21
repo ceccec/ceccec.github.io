@@ -1,1 +1,0 @@
-export { geneticCodeIsTheRealFourCubed } from '../../../../../../../../geometry'

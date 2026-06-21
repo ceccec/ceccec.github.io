@@ -1,1 +1,0 @@
-export { oneWordNamingGravity } from '../../../../../laws'

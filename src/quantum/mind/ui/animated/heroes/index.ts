@@ -1,1 +1,0 @@
-export { animatedHeroes } from '../../../ui'

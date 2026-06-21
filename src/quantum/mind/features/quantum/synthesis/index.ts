@@ -1,1 +1,0 @@
-export { quantumSynthesis } from '../../../features'

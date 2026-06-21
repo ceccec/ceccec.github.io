@@ -1,1 +1,0 @@
-export { nothingImpossibleHonestlyBounded } from '../../../../../laws'

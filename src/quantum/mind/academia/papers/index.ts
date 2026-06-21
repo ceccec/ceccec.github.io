@@ -1,1 +1,0 @@
-export { papers } from '../../academia'

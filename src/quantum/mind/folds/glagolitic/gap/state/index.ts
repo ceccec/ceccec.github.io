@@ -1,1 +1,0 @@
-export { glagoliticGapState } from '../../../../folds'

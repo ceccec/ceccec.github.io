@@ -1,1 +1,0 @@
-export { equilibrium } from '../../nature'

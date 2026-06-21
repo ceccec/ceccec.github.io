@@ -1,1 +1,0 @@
-export { livingIChingSvg } from '../../../../../ui'

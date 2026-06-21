@@ -1,1 +1,0 @@
-export { treeOfLifeSephirotFolders } from '../../../../../../architecture'

@@ -1,1 +1,0 @@
-export { quantumNetworkHashing } from '../../../../proofs'

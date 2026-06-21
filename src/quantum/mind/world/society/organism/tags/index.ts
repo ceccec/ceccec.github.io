@@ -1,1 +1,0 @@
-export { societyOrganismTags } from '../../../../world'

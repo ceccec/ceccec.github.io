@@ -1,1 +1,0 @@
-export { glagoliticAlphabetDecoded } from '../../../../li'

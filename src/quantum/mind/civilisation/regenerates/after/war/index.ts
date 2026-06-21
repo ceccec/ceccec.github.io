@@ -1,1 +1,0 @@
-export { regeneratesAfterWar } from '../../../../civilisation'

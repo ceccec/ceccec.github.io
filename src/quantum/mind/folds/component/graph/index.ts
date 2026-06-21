@@ -1,1 +1,0 @@
-export { componentGraph } from '../../../folds'

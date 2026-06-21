@@ -1,1 +1,0 @@
-export { fairTrade } from '../../../governance'

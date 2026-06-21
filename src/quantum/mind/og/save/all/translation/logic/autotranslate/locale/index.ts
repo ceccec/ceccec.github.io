@@ -1,1 +1,0 @@
-export { saveAllTranslationLogicAutotranslateLocale } from '../../../../../../../og'

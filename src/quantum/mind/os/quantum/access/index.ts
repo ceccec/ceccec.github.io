@@ -1,1 +1,0 @@
-export { quantumAccess } from '../../../os'

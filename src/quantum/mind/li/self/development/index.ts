@@ -1,1 +1,0 @@
-export { selfDevelopment } from '../../../li'

@@ -1,1 +1,0 @@
-export { enforceAllAtGatesEntropyRecycled } from '../../../../../../../nature'

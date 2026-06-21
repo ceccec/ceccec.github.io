@@ -1,1 +1,0 @@
-export { doubleTorusWiredToDepthDial } from '../../../../../../../ui'

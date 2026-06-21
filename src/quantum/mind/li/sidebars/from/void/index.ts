@@ -1,1 +1,0 @@
-export { sidebarsFromVoid } from '../../../../li'

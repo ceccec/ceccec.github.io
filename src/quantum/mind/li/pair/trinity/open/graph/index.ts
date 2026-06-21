@@ -1,1 +1,0 @@
-export { pairTrinityOpenGraph } from '../../../../../li'

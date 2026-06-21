@@ -1,1 +1,0 @@
-export { peaceTechMentalityDecoded } from '../../../../peace'

@@ -1,1 +1,0 @@
-export { noFilesOutsideSrcExceptGeneratedAndRoot } from '../../../../../../../../../laws'

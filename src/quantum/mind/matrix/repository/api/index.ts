@@ -1,1 +1,0 @@
-export { repositoryApi } from '../../../matrix'

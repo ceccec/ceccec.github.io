@@ -1,1 +1,0 @@
-export { zeroTokenLawForAgentsAndForever } from '../../../../../../../../agents'

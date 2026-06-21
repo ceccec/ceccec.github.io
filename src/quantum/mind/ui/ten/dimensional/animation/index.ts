@@ -1,1 +1,0 @@
-export { tenDimensionalAnimation } from '../../../../ui'

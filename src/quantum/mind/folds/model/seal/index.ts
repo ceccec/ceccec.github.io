@@ -1,1 +1,0 @@
-export { modelSeal } from '../../../folds'

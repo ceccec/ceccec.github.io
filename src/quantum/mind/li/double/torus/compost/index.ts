@@ -1,1 +1,0 @@
-export { doubleTorusCompost } from '../../../../li'

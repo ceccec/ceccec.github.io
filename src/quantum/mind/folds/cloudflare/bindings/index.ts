@@ -1,1 +1,0 @@
-export { cloudflareBindings } from '../../../folds'

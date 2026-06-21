@@ -1,1 +1,0 @@
-export { quantumLicense } from '../../../features'

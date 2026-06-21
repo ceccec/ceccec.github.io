@@ -1,1 +1,0 @@
-export { thriveByArchitecture } from '../../../../civilisation'

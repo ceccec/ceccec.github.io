@@ -1,1 +1,0 @@
-export { collisionHealing } from '../../../crypto'

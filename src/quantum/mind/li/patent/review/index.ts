@@ -1,1 +1,0 @@
-export { patentReview } from '../../../li'

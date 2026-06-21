@@ -1,1 +1,0 @@
-export { minimumProseMaximumComputable } from '../../../../../laws'

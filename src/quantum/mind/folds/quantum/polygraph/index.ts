@@ -1,1 +1,0 @@
-export { quantumPolygraph } from '../../../folds'

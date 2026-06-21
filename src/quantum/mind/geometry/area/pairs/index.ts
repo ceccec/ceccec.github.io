@@ -1,1 +1,0 @@
-export { areaPairs } from '../../../geometry'

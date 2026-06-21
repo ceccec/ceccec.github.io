@@ -1,1 +1,0 @@
-export { quantumPhysics } from '../../../physics'

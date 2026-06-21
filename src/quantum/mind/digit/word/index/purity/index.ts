@@ -1,1 +1,0 @@
-export { digitWordIndexPurity } from '../../../../digit'

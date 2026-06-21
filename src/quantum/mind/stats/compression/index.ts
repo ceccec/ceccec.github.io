@@ -1,1 +1,0 @@
-export { compression } from '../../stats'

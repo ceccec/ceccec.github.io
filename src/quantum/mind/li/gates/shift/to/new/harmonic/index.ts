@@ -1,1 +1,0 @@
-export { gatesShiftToNewHarmonic } from '../../../../../../li'

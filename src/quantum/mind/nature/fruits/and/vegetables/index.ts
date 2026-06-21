@@ -1,1 +1,0 @@
-export { fruitsAndVegetables } from '../../../../nature'

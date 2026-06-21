@@ -1,1 +1,0 @@
-export { piTrainDiamonds } from '../../../../diamonds'

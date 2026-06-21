@@ -1,1 +1,0 @@
-export { colorFromSound } from '../../../../li'

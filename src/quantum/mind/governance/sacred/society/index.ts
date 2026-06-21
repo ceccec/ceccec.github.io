@@ -1,1 +1,0 @@
-export { sacredSociety } from '../../../governance'

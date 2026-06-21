@@ -1,1 +1,0 @@
-export { paperReferences } from '../../../academia'

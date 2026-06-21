@@ -1,1 +1,0 @@
-export { jsonLdPathRules } from '../../../../../li'

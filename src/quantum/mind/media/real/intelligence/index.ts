@@ -1,1 +1,0 @@
-export { realIntelligence } from '../../../media'

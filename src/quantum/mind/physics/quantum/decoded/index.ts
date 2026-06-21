@@ -1,1 +1,0 @@
-export { quantumDecoded } from '../../../physics'

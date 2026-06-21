@@ -1,1 +1,0 @@
-export { pathIsMeaningDecodesCoordinates } from '../../../../../../decode'

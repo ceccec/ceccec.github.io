@@ -1,1 +1,0 @@
-export { jsonLdTemplate } from '../../../../og'

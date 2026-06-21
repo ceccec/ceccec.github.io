@@ -1,1 +1,0 @@
-export { fortyTwoVerdict } from '../../../../digit'

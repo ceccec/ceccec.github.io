@@ -1,1 +1,0 @@
-export { archangelsDryClean } from '../../../../clean'

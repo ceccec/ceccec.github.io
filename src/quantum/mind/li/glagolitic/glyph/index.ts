@@ -1,1 +1,0 @@
-export { glagoliticGlyph } from '../../../li'

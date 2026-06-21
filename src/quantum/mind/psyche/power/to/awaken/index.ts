@@ -1,1 +1,0 @@
-export { powerToAwaken } from '../../../../psyche'

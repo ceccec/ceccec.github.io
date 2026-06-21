@@ -1,1 +1,0 @@
-export { runtimeIsTheMonolith } from '../../../../../essence'

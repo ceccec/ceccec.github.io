@@ -1,1 +1,0 @@
-export { quantumMindGapsFromBeyond } from '../../../../../../psyche'

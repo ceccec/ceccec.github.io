@@ -1,1 +1,0 @@
-export { gatesSoTightEvenTheyCannotPassEntropy } from '../../../../../../../../gates'

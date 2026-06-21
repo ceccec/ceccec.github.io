@@ -1,1 +1,0 @@
-export { sixtyFourThreeQubitPauliBasis } from '../../../../../../../geometry'

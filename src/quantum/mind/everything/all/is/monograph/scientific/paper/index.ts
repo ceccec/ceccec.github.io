@@ -1,1 +1,0 @@
-export { allIsMonographScientificPaper } from '../../../../../../everything'

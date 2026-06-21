@@ -1,1 +1,0 @@
-export { createByDefault } from '../../../../laws'

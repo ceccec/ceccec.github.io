@@ -1,1 +1,0 @@
-export { soundColor } from '../../../music'

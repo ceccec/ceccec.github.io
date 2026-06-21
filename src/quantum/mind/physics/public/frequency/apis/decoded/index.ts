@@ -1,1 +1,0 @@
-export { publicFrequencyApisDecoded } from '../../../../../physics'

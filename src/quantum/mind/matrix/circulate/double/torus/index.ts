@@ -1,1 +1,0 @@
-export { circulateDoubleTorus } from '../../../../matrix'

@@ -1,1 +1,0 @@
-export { frequencyTaxonomyTreeOfLife } from '../../../../../../icons'

@@ -1,1 +1,0 @@
-export { coherenceAnomaly } from '../../../matrix'

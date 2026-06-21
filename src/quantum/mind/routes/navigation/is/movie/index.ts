@@ -1,1 +1,0 @@
-export { navigationIsMovie } from '../../../../routes'

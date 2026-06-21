@@ -1,1 +1,0 @@
-export { healingOuter } from '../../../li'

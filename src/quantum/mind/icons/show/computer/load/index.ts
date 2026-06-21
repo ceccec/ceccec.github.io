@@ -1,1 +1,0 @@
-export { iconsShowComputerLoad } from '../../../../icons'

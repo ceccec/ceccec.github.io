@@ -1,1 +1,0 @@
-export { threeIsRealButNotOneTrinity } from '../../../../../../../../geometry'

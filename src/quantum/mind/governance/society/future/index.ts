@@ -1,1 +1,0 @@
-export { societyFuture } from '../../../governance'

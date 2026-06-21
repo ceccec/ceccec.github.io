@@ -1,1 +1,0 @@
-export { calligraphyStroke } from '../../../li'

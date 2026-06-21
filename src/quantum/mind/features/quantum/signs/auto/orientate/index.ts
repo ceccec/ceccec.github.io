@@ -1,1 +1,0 @@
-export { quantumSignsAutoOrientate } from '../../../../../features'

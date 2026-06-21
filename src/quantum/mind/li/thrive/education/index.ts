@@ -1,1 +1,0 @@
-export { thriveEducation } from '../../../li'

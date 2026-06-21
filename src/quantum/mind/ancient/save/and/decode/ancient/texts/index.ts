@@ -1,1 +1,0 @@
-export { saveAndDecodeAncientTexts } from '../../../../../../ancient'

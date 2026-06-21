@@ -1,1 +1,0 @@
-export { harmonicApparatus } from '../../../ledger'

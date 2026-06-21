@@ -1,1 +1,0 @@
-export { BAGUA } from '../../folds'

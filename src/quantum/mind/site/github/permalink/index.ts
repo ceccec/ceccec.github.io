@@ -1,1 +1,0 @@
-export { githubPermalink } from '../../../site'

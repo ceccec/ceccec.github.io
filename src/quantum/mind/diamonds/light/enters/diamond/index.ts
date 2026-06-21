@@ -1,1 +1,0 @@
-export { lightEntersDiamond } from '../../../../diamonds'

@@ -1,1 +1,0 @@
-export { heroTapMusic } from '../../../../music'

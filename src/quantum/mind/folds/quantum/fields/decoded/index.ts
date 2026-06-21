@@ -1,1 +1,0 @@
-export { quantumFieldsDecoded } from '../../../../folds'

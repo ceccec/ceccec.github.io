@@ -1,1 +1,0 @@
-export { proveAllOnHomePage } from '../../../../../../routes'

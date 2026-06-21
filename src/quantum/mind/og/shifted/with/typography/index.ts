@@ -1,1 +1,0 @@
-export { ogShiftedWithTypography } from '../../../../og'

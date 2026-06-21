@@ -1,1 +1,0 @@
-export { compactHeroReplacesSimple } from '../../../../../ui'

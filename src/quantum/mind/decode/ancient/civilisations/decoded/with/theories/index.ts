@@ -1,1 +1,0 @@
-export { ancientCivilisationsDecodedWithTheories } from '../../../../../../decode'

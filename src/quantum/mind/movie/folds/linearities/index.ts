@@ -1,1 +1,0 @@
-export { movieFoldsLinearities } from '../../../movie'

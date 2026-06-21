@@ -1,1 +1,0 @@
-export { scriptsToFolderPairsParticles } from '../../../../../../language'

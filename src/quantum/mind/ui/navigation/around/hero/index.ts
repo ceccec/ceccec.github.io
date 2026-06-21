@@ -1,1 +1,0 @@
-export { navigationAroundHero } from '../../../../ui'

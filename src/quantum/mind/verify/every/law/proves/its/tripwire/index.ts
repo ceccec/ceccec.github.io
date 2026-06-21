@@ -1,1 +1,0 @@
-export { everyLawProvesItsTripwire } from '../../../../../../verify'

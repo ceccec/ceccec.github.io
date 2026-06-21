@@ -1,1 +1,0 @@
-export { merkaba } from '../../geometry'

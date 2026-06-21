@@ -1,1 +1,0 @@
-export { searchTrinity } from '../../../learning'

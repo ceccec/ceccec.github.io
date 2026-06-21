@@ -1,1 +1,0 @@
-export { allLanguagesSpeakThroughTheVersePivot } from '../../../../../../../../folds'

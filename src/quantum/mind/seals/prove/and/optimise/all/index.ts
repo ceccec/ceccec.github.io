@@ -1,1 +1,0 @@
-export { proveAndOptimiseAll } from '../../../../../seals'

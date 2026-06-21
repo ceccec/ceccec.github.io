@@ -1,1 +1,0 @@
-export { geneticPatentJurisdictionDivergence } from '../../../../../folds'

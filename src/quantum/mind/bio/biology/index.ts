@@ -1,1 +1,0 @@
-export { biology } from '../../bio'

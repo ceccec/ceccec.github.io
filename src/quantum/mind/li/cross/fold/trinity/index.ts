@@ -1,1 +1,0 @@
-export { crossFoldTrinity } from '../../../../li'

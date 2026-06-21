@@ -1,1 +1,0 @@
-export { tamperHealingFrequencies } from '../../../../music'

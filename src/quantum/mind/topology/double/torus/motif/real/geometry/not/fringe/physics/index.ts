@@ -1,1 +1,0 @@
-export { doubleTorusMotifRealGeometryNotFringePhysics } from '../../../../../../../../../topology'

@@ -1,1 +1,0 @@
-export { simulations } from '../../media'

@@ -1,1 +1,0 @@
-export { pyramidLayersServeSociety } from '../../../../../governance'

@@ -1,1 +1,0 @@
-export { taxonomyIcons } from '../../../li'

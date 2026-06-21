@@ -1,1 +1,0 @@
-export { iconsAreAnimatedToo } from '../../../../../folds'

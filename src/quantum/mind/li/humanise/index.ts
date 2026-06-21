@@ -1,1 +1,0 @@
-export { humanise } from '../../li'

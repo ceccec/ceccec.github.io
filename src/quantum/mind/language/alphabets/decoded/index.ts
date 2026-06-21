@@ -1,1 +1,0 @@
-export { alphabetsDecoded } from '../../../language'

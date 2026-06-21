@@ -1,1 +1,0 @@
-export { foldImpossibilities } from '../../../geometry'

@@ -1,1 +1,0 @@
-export { enforcementTrinitySpread } from '../../../../trinity'

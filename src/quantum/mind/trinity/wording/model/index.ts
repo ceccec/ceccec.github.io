@@ -1,1 +1,0 @@
-export { trinityWordingModel } from '../../../trinity'

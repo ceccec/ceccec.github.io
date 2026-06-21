@@ -1,1 +1,0 @@
-export { threeTrinitiesRenderAsRgb } from '../../../../../../geometry'

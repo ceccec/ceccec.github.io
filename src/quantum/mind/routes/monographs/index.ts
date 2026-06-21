@@ -1,1 +1,0 @@
-export { monographs } from '../../routes'

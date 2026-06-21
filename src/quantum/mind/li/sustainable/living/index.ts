@@ -1,1 +1,0 @@
-export { sustainableLiving } from '../../../li'

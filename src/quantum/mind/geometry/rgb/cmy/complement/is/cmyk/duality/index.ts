@@ -1,1 +1,0 @@
-export { rgbCmyComplementIsCmykDuality } from '../../../../../../../geometry'

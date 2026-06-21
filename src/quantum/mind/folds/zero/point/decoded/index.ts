@@ -1,1 +1,0 @@
-export { zeroPointDecoded } from '../../../../folds'

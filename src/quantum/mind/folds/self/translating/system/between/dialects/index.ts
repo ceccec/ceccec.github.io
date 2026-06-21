@@ -1,1 +1,0 @@
-export { selfTranslatingSystemBetweenDialects } from '../../../../../../folds'

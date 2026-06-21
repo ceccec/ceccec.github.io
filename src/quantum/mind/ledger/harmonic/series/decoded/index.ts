@@ -1,1 +1,0 @@
-export { harmonicSeriesDecoded } from '../../../../ledger'

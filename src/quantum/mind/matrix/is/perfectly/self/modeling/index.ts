@@ -1,1 +1,0 @@
-export { isPerfectlySelfModeling } from '../../../../../matrix'

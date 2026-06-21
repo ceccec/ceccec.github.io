@@ -1,1 +1,0 @@
-export { genesis } from '../../nature'

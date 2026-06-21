@@ -1,1 +1,0 @@
-export { agentEducation } from '../../../learning'

@@ -1,1 +1,0 @@
-export { rosettaGlagoliticGlobalKeyDecodeAll } from '../../../../../../../language'

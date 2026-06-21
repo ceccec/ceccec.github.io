@@ -1,1 +1,0 @@
-export { invertRevertIsQuantumStream } from '../../../../../../essence'

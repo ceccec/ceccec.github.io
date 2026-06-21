@@ -1,1 +1,0 @@
-export { selfAddressed } from '../../../li'

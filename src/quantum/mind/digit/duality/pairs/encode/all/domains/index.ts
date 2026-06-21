@@ -1,1 +1,0 @@
-export { digitDualityPairsEncodeAllDomains } from '../../../../../../digit'

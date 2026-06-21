@@ -1,1 +1,0 @@
-export { anglesComeFromFractions } from '../../../../../folds'

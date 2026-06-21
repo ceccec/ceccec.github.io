@@ -1,1 +1,0 @@
-export { distributedCompute } from '../../../li'
