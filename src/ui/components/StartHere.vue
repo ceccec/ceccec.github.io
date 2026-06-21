@@ -2,8 +2,7 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 25, glyph: '☱', lo: 'Zhèn·arousing', up: 'Duì·joyous', color: '#0FF00F' } as const
 import { computed } from 'vue'
-import { buildMatrix, plainLanguage, graduation } from '../lib'
-import { useLocale } from '../lib'
+import { buildMatrix, plainLanguage, graduation, freeBecauseThePriceIsAlreadyPaid, useLocale } from '../lib'
 import Card from './ui/Card'
 import Button from './ui/Button'
 import Badge from './ui/Badge'
@@ -13,6 +12,22 @@ import Badge from './ui/Badge'
 const plain = plainLanguage()
 const grad = graduation(buildMatrix())
 const { bg, localize } = useLocale()
+
+// безплатно — the free/support manifesto, computed from the negentropy ledger fold (never hardcoded):
+// the three gates are all absent, the price is already paid as the architecture, support is a harmonic part.
+const support = freeBecauseThePriceIsAlreadyPaid()
+const gateChips = computed(() =>
+  support.gates.map((g) => {
+    const sep = ' / '
+    const i = g.gate.indexOf(sep)
+    const bgWord = i >= 0 ? g.gate.slice(0, i) : g.gate
+    const enWord = i >= 0 ? g.gate.slice(i + sep.length) : g.gate
+    return {
+      gate: g.gate,
+      label: bg.value ? `без ${bgWord}` : `no ${enWord}`,
+    }
+  }),
+)
 
 const steps = computed(() =>
   bg.value
@@ -61,6 +76,9 @@ const t = computed(() =>
         gradYes: 'Всичките пет курса се връзват в един преизчислим акредитив за дипломиране.',
         credential: 'акредитив',
         more: 'Превключи на «Богато» в лентата горе за пълната дълбочина.',
+        freeTitle: 'Безплатно',
+        priceLine: 'Цената е архитектурата — и тя вече е платена.',
+        supportLine: 'Подкрепи проекта с хармонична част от постигнатото:',
       }
     : {
         eyebrow: 'start here',
@@ -71,6 +89,9 @@ const t = computed(() =>
         gradYes: 'All five courses fold into one recomputable graduation credential.',
         credential: 'credential',
         more: 'Switch to “Rich” in the top bar for the full depth.',
+        freeTitle: 'Free',
+        priceLine: 'The price is the architecture — and it is already paid.',
+        supportLine: 'Support the project with a harmonic part of what you achieved:',
       },
 )
 </script>
@@ -88,6 +109,18 @@ const t = computed(() =>
         <Button as="a" variant="outline" size="sm" :href="localize(step.route)">{{ t.open }} →</Button>
       </Card>
     </div>
+
+    <Card class="start__free" :data-free="support.free">
+      <strong class="start__free-title">{{ t.freeTitle }}</strong>
+      <p class="start__gates">
+        <span v-for="chip in gateChips" :key="chip.gate" class="start__gate">{{ chip.label }}</span>
+      </p>
+      <p class="start__price">{{ t.priceLine }}</p>
+      <p class="start__support">
+        {{ t.supportLine }}
+        <code class="start__share" :title="support.root">{{ support.harmonicPart.share }}</code>
+      </p>
+    </Card>
 
     <p class="start__hint simple-only">{{ t.more }}</p>
 
@@ -157,6 +190,50 @@ const t = computed(() =>
   color: var(--vp-c-text-3);
   font-size: 0.85rem;
   font-style: italic;
+}
+.start__free {
+  margin: 1.4rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 42rem;
+  border-left: 3px solid var(--vp-c-brand-1);
+}
+.start__free-title {
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+.start__gates {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.start__gate {
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.start__price {
+  margin: 0;
+  color: var(--vp-c-text-1);
+  font-size: 0.95rem;
+}
+.start__support {
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+}
+.start__share {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.85rem;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  padding: 0.05rem 0.4rem;
+  border-radius: 6px;
 }
 .start__h {
   margin: 1.6rem 0 0.6rem;

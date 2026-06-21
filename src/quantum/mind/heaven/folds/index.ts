@@ -30,7 +30,7 @@ export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded
 
 // ☱ Duì · Lake · joyous · lower·yin · spread — Merkle proof utilities + quantum network verification
 import { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof } from '../../lake/proofs'
-export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof } from '../../lake/proofs'
+export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/proofs'
 
 
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — matrix core: buildMatrix, proofReport, repositoryApi, consciousness
