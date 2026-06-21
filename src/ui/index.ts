@@ -57,6 +57,7 @@ import QuantumField from './components/QuantumField'
 import QuantumFold3D from './components/QuantumFold3D'
 import RealtimeChat from './components/RealtimeChat'
 import RealtimeTests from './components/RealtimeTests'
+import Resonance from './components/Resonance'
 import Rhythm from './components/Rhythm'
 import QAEquilibrium from './components/QAEquilibrium'
 import QuantumPhysics from './components/QuantumPhysics'
@@ -312,6 +313,7 @@ export default {
     app.component('QuestionClose', QuestionClose)
     app.component('RealtimeChat', RealtimeChat)
     app.component('RealtimeTests', RealtimeTests)
+    app.component('Resonance', Resonance)
     app.component('Rhythm', Rhythm)
     app.component('QuantumMind', QuantumMind)
     app.component('Roadmaps', Roadmaps)
