@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { buildMatrix, createAnimationEngine, threeWordWaves, prng, buildStatistics } from '../../lib'
+import { buildMatrix, createAnimationEngine, threeWordWaves, prng, buildStatistics, toGlagolitic } from '../../lib'
 import { useDeviceEnergy } from '../../lib'
 import { useTones } from '../../lib'
 import { usePlayMind, recordPlay, noteOf, artBiasOf } from '../../lib'
@@ -63,8 +63,11 @@ function pageWords(): string[] {
 // at the void; fall back to the portal's words where a page names nothing.
 function applyPage() {
   const pw = pageWords()
-  words = pw.length ? [...pw, ...baseWords] : baseWords
-  phrases = [(title.value || basePhrases[0] || 'double torus').toString(), ...basePhrases]
+  // The movie's script IS the glagolyphic transliteration: the page's own words and its
+  // title-sentence are transcoded to Glagolitic, so the streams that fold from digit →
+  // letter → word → the sentence at the void read the content back in the movie's script.
+  words = (pw.length ? [...pw, ...baseWords] : baseWords).map(toGlagolitic)
+  phrases = [(title.value || basePhrases[0] || 'double torus').toString(), ...basePhrases].map(toGlagolitic)
 }
 
 
