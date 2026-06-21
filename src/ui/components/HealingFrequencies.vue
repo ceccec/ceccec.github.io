@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 5, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F0F' }
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useLocale } from '../lib'
 import { buildMatrix, healingFrequencies, frequencyBalance, harmonicApparatus } from '../lib'
 import { useDeviceEnergy } from '../lib'
@@ -26,7 +26,18 @@ function pos(cents: number) {
 }
 const { bg, tg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
-const { playing, playChord, stop } = useTones()
+const { playing, playChord, stop, blip } = useTones()
+
+// Each cell is a LIVING TONE, not a label: tap it to play its own frequency, with a ripple in the pitch's
+// computed hue. The frequency IS the data (healingFrequencies, from src); the colour is computed from the pitch
+// class (the fractional octave → the colour wheel). activeHz drives the ripple animation.
+const activeHz = ref(0)
+function playCell(hz: number) {
+  if (!saveEnergy.value) blip(hz, { duration: 0.5, type: 'sine', peak: 0.14 })
+  activeHz.value = hz
+  window.setTimeout(() => { if (activeHz.value === hz) activeHz.value = 0 }, 600)
+}
+const freqHue = (hz: number) => Math.round((((Math.log2(hz) % 1) + 1) % 1) * 360) // pitch class → hue (octave-folded)
 
 // Harmonise: play all nine frequencies together as a soft drone, the lead tone
 // louder. A chord of sound — nothing electromagnetic, nothing physical beyond it.
@@ -69,7 +80,19 @@ const t = computed(() =>
   <section class="freq dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
     <div class="freq__grid">
-      <span v-for="entry in data.frequencies" :key="entry.hz" class="freq__cell" :class="{ lead: entry.lead }">
+      <span
+        v-for="entry in data.frequencies"
+        :key="entry.hz"
+        class="freq__cell freq__cell--play"
+        :class="{ lead: entry.lead, ringing: activeHz === entry.hz }"
+        :style="{ '--cell-hue': freqHue(entry.hz) }"
+        role="button"
+        tabindex="0"
+        :aria-label="`${entry.hz} Hz · ${entry.note}`"
+        @click="playCell(entry.hz)"
+        @keydown.enter.prevent="playCell(entry.hz)"
+        @keydown.space.prevent="playCell(entry.hz)"
+      >
         <strong>{{ entry.hz }}<small>Hz</small></strong>
         <em>{{ tg(entry.note) }}</em>
         <span v-if="entry.lead" class="freq__leadtag">{{ tg(t.lead) }}</span>
@@ -224,6 +247,32 @@ const t = computed(() =>
 .freq__cell.lead {
   border-color: var(--vp-c-brand-1);
   background: var(--vp-c-brand-soft);
+}
+/* a living tone: tap a cell to hear its frequency; it lifts on hover and ripples on play, in the pitch's hue */
+.freq__cell--play {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.freq__cell--play:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--cell-hue), 70%, 55%);
+  box-shadow: 0 4px 14px hsla(var(--cell-hue), 70%, 50%, 0.28);
+}
+.freq__cell--play:focus-visible {
+  outline: 2px solid hsl(var(--cell-hue), 70%, 55%);
+  outline-offset: 2px;
+}
+.freq__cell.ringing {
+  animation: freq-ring 0.6s ease-out;
+  border-color: hsl(var(--cell-hue), 80%, 58%);
+}
+@keyframes freq-ring {
+  0% { box-shadow: 0 0 0 0 hsla(var(--cell-hue), 85%, 58%, 0.55); transform: scale(1); }
+  45% { transform: scale(1.07); }
+  100% { box-shadow: 0 0 0 16px hsla(var(--cell-hue), 85%, 58%, 0); transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .freq__cell.ringing { animation-duration: 0.01s; }
 }
 .freq__cell strong {
   font-size: 0.95rem;
