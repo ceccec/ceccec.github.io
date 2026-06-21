@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 5, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F0F' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib'
-import { buildMatrix, healingFrequencies, frequencyBalance, harmonicApparatus } from '../lib'
+import { buildMatrix, healingFrequencies, frequencyBalance, harmonicApparatus, colorFromSound } from '../lib'
 import { useDeviceEnergy } from '../lib'
 import { useTones } from '../lib'
 
@@ -37,7 +37,7 @@ function playCell(hz: number) {
   activeHz.value = hz
   window.setTimeout(() => { if (activeHz.value === hz) activeHz.value = 0 }, 600)
 }
-const freqHue = (hz: number) => Math.round((((Math.log2(hz) % 1) + 1) % 1) * 360) // pitch class → hue (octave-folded)
+const freqHue = (hz: number) => colorFromSound(hz).hue // each frequency HAS a colour — the canonical sound→hue (colorFromSound, the one SoundColor uses)
 
 // Harmonise: play all nine frequencies together as a soft drone, the lead tone
 // louder. A chord of sound — nothing electromagnetic, nothing physical beyond it.
@@ -269,14 +269,21 @@ const t = computed(() =>
   padding: 0.4rem 0.3rem;
   position: relative;
 }
+/* each frequency wears its own colour (colorFromSound) — the lead emphasised in its hue */
 .freq__cell.lead {
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
+  border-color: hsl(var(--cell-hue), 70%, 52%);
+  background: hsla(var(--cell-hue), 70%, 50%, 0.18);
+  box-shadow: inset 0 0 0 1px hsla(var(--cell-hue), 70%, 50%, 0.4);
 }
-/* a living tone: tap a cell to hear its frequency; it lifts on hover and ripples on play, in the pitch's hue */
+/* a living tone: each cell IS its frequency's colour; tap to hear it; it lifts on hover and ripples on play */
 .freq__cell--play {
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border-color: hsla(var(--cell-hue), 55%, 50%, 0.5);
+  background: hsla(var(--cell-hue), 70%, 50%, 0.07);
+}
+.freq__cell--play strong {
+  color: hsl(var(--cell-hue), 62%, 52%);
 }
 .freq__cell--play:hover {
   transform: translateY(-2px);
