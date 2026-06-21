@@ -42,6 +42,7 @@ import NativeMovie from './components/NativeMovie'
 import NetSim from './components/NetSim'
 import VoidSidebar from './components/VoidSidebar'
 import Multidimensional from './components/Multidimensional'
+import MatrixCube from './components/MatrixCube'
 import Nav358 from './components/Nav358'
 import NothingToDo from './components/NothingToDo'
 import OpenQuestions from './components/OpenQuestions'
@@ -287,6 +288,7 @@ export default {
     app.component('NetSim', NetSim)
     app.component('VoidSidebar', VoidSidebar)
     app.component('Multidimensional', Multidimensional)
+    app.component('MatrixCube', MatrixCube)
     app.component('Nav358', Nav358)
     app.component('NothingToDo', NothingToDo)
     app.component('OpenQuestions', OpenQuestions)

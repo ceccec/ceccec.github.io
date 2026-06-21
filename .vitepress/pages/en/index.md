@@ -137,6 +137,8 @@ The living shape, the hologram, and the vital signs — the same ten-dimensional
 
 <LivingTorus />
 
+<MatrixCube />
+
 <Hologram />
 
 <Live />
