@@ -2,7 +2,7 @@
 // Dual: src/science/quantum (browse/display primitives). Pure, only src/0 + mind/atoms imports.
 
 // ☰ Qián · Heaven · creative · lower·yin · spread — core utilities: uuid, merkle fold, speed of light
-import { toUuid, merkleFold, SPEED_OF_LIGHT } from '../../0'
+import { toUuid, merkleFold, SPEED_OF_LIGHT, resonantAmplitude, resonancePeakGain, resonanceBandwidth } from '../../0'
 // ☳ Zhèn · Thunder · arousing · lower·yin · depthFade — concept commands from mind atoms
 import { conceptCommands } from '../mind'
 
@@ -173,6 +173,42 @@ export function rifeFrequenciesDecoded() {
       'Rife "frequencies" decoded honestly: the HISTORY is real — Royal Raymond Rife (1888–1971) built microscopes and a "Beam Ray" he claimed destroyed microbes at a "mortal oscillatory rate" — but the THERAPY is FALSIFIED pseudoscience and a documented health fraud. No peer-reviewed evidence and no plausible mechanism support a frequency selectively destroying pathogens or cancer cells in the body; the FDA and FTC have prosecuted Rife-device sellers, and people have died forgoing real treatment for them. Documented kept (as history), the therapy flagged (as pseudoscience).',
     boundary:
       'DOCUMENTED: Rife is a real historical figure and the device/claim history is verifiable. FLAGGED: the "mortal oscillatory rate" therapy is unproven and disproven — cells are not tuned resonators, tissue damps, no field couples selectively to a microbe\'s "frequency", the BX virus was never replicated, and Rife-device marketing is a documented health fraud (ACS: no evidence; FDA/FTC actions; criminal convictions). This fold RECORDS the claim, it does NOT endorse it, and it is NOT medical advice — relying on Rife frequencies instead of evidence-based treatment is dangerous. The repo plays frequencies as SOUND with a computed colour and makes NO health claim. HARMONY ≠ TRUTH: a number, a name, or a colour gives a frequency no medical power.',
+  }
+}
+
+// Resonance, as the MATH confirms — the same curve that shatters a wine glass shows why a "mortal oscillatory
+// rate" cannot selectively destroy a microbe in the body. Develop what the math confirms; flag what it does not
+// (rifeFrequenciesDecoded). Computed from src/0 (resonantAmplitude / resonancePeakGain / resonanceBandwidth).
+/** @iching ☵ Kǎn · Water · the resonant deep */
+export function resonanceDecoded() {
+  const omega0 = 2 * Math.PI * 440 // any natural frequency (here A440)
+  const glassQ = 1000 // a wine glass in air — high quality factor
+  const tissueQ = 1.2 // a cell in living tissue — heavily damped, low Q
+  const glassGain = resonantAmplitude(omega0, omega0, glassQ) // amplification at resonance ≈ Q
+  const tissueGain = resonantAmplitude(omega0, omega0, tissueQ)
+  const offResonance = resonantAmplitude(omega0 * 1.5, omega0, glassQ) // far from the peak
+  const glassBandHz = resonanceBandwidth(omega0, glassQ) / (2 * Math.PI) // narrow → selective
+  const tissueBandHz = resonanceBandwidth(omega0, tissueQ) / (2 * Math.PI) // broad → not selective
+  const facets = [
+    { facet: 'resonance is REAL — at the natural frequency a driven damped oscillator amplifies by ≈ Q (the resonance gain)', on: Math.abs(glassGain - glassQ) / glassQ < 0.01 && Math.abs(resonancePeakGain(glassQ) - glassQ) / glassQ < 0.01 },
+    { facet: 'HIGH-Q shatters — a wine glass in air (Q≈1000) amplifies ~1000× at its tone; the opera-singer demo is real physics', on: glassGain > 100 },
+    { facet: 'LOW-Q does NOT — a cell in living tissue is heavily damped (Q≈1), so it barely amplifies (~1×): no frequency selectively destroys it', on: tissueGain < 3 },
+    { facet: 'selectivity needs a sharp peak — off-resonance the gain collapses; bandwidth = ω₀/Q, so low Q is broad and unselective', on: offResonance < glassGain / 10 && tissueBandHz > glassBandHz * 100 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`resonance-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    glassQ,
+    tissueQ,
+    glassGain: Math.round(glassGain),
+    tissueGain: Math.round(tissueGain * 100) / 100,
+    glassBandwidthHz: Math.round(glassBandHz * 100) / 100,
+    tissueBandwidthHz: Math.round(tissueBandHz),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Resonance, as the math confirms: a driven damped oscillator amplifies near its natural frequency by ≈ Q (the quality factor), with half-power bandwidth ω₀/Q. A HIGH-Q resonator — a wine glass in air (Q ~ 10³) — amplifies ~1000× and can shatter (the opera-singer demo is real). A LOW-Q, heavily-damped system — a living cell in tissue (Q ~ 1) — barely amplifies, and its "resonance" is so broad it is not selective. So resonance is genuine physics AND the same math shows why a "mortal oscillatory rate" (Rife) cannot selectively destroy a microbe in the body. Develop what the math confirms; flag what it does not.',
+    boundary:
+      'DOCUMENTED (computed from src/0): the steady-state resonance curve A(ω) = ω₀²/√((ω₀²−ω²)² + (ω₀ω/Q)²), peak gain ≈ Q, half-power bandwidth ω₀/Q — standard driven-damped-oscillator physics; the wine-glass shattering at high Q is real. FLAGGED: extrapolating to "frequencies destroy pathogens or cancer in the body" (Rife) — living tissue is low-Q and heavily damped, cells are not tuned high-Q resonators, and no external field couples selectively (rifeFrequenciesDecoded). HARMONY ≠ TRUTH: the very math that makes resonance real is the math that bounds it.',
   }
 }
 

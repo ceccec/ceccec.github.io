@@ -1515,6 +1515,26 @@ export function oscillatorBank(seed: string, modes: readonly { freq: number; q: 
   }
   return out
 }
+
+// Driven damped harmonic oscillator — steady-state resonance, the curve A(omega). With natural frequency
+// `omega0` and quality factor `q`, normalized so the DC (omega→0) response is 1: at resonance the gain is ≈ q,
+// and the half-power (−3 dB) bandwidth is omega0/q. THE math of resonance — it confirms both the phenomenon and
+// its limit: a HIGH-Q resonator (a wine glass in air, q ~ 10³) amplifies ~q× at omega0 and can shatter; a LOW-Q,
+// heavily-damped system (a cell in living tissue, q ≲ 1) barely amplifies, so no "mortal oscillatory rate"
+// selectively destroys it (rifeFrequenciesDecoded). The same math that makes resonance real bounds it.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function resonantAmplitude(omega: number, omega0: number, q: number): number {
+  const denom = Math.sqrt((omega0 * omega0 - omega * omega) ** 2 + ((omega0 * omega) / Math.max(q, 1e-9)) ** 2)
+  return denom === 0 ? Infinity : (omega0 * omega0) / denom
+}
+/** The resonance gain (peak amplification ≈ q) — how much a driven oscillator amplifies at its natural frequency. */
+export function resonancePeakGain(q: number): number {
+  return q / Math.sqrt(Math.max(1 - 1 / (4 * q * q), 1e-9))
+}
+/** The half-power (−3 dB) bandwidth Δω = omega0 / q — narrow (selective) only for high q. */
+export function resonanceBandwidth(omega0: number, q: number): number {
+  return omega0 / Math.max(q, 1e-9)
+}
 // A real-DFT magnitude spectrum in dB, clamped to 0..255 to match Web Audio's getByteFrequencyData.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function powerSpectrum(samples: readonly number[], bins = 64): number[] {
