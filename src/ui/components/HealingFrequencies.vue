@@ -108,10 +108,16 @@ const t = computed(() =>
         <span
           v-for="tone in balance.tones"
           :key="tone.hz"
-          class="freq__marker"
-          :class="[tone.polarity, { lead: tone.lead }]"
-          :style="{ left: pos(tone.cents) + '%' }"
+          class="freq__marker freq__marker--play"
+          :class="[tone.polarity, { lead: tone.lead, ringing: activeHz === tone.hz }]"
+          :style="{ left: pos(tone.cents) + '%', '--cell-hue': freqHue(tone.hz) }"
+          role="button"
+          tabindex="0"
+          :aria-label="`${tone.hz} Hz · ${tone.note} · ${tone.cents > 0 ? '+' : ''}${tone.cents} cents`"
           :title="`${tone.note} · ${tone.hz} Hz · ${tone.cents > 0 ? '+' : ''}${tone.cents} cents · ${tone.polarity}`"
+          @click="playCell(tone.hz)"
+          @keydown.enter.prevent="playCell(tone.hz)"
+          @keydown.space.prevent="playCell(tone.hz)"
         ><small>{{ tone.note }}</small></span>
       </div>
     </div>
@@ -234,6 +240,25 @@ const t = computed(() =>
 .freq__marker.lead {
   outline: 2px solid var(--vp-c-brand-1);
   font-weight: 700;
+}
+.freq__marker--play {
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.18s ease;
+}
+.freq__marker--play:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 3;
+}
+.freq__marker--play:focus-visible {
+  outline: 2px solid hsl(var(--cell-hue), 70%, 55%);
+  outline-offset: 1px;
+}
+.freq__marker.ringing {
+  animation: freq-ring-marker 0.6s ease-out;
+}
+@keyframes freq-ring-marker { /* box-shadow only — keeps the marker's translate(-50%,-50%) positioning */
+  0% { box-shadow: 0 0 0 0 hsla(var(--cell-hue), 85%, 58%, 0.6); }
+  100% { box-shadow: 0 0 0 13px hsla(var(--cell-hue), 85%, 58%, 0); }
 }
 .freq__cell {
   display: flex;
