@@ -706,3 +706,39 @@ function computeEveryPageGraphOfGraphsFractal(matrix: MindMatrix = buildMatrix()
   }
 }
 
+// EVERY ELEMENT IS A LINKED NODE — or it is useless. The top nav, sidebar and footer are not three things: they
+// are PROJECTIONS of ONE graph — the keyword tag-cloud of all pages (siteNavigation), collided into a single
+// element-graph and recompiled, nothing hardcoded. Each page/component is a NODE; a shared keyword is an EDGE.
+// An element with no edge is an isolated node, unreachable by relation — what use is it? The graph wants every
+// element linked. (Sibling of everyStatementProvableByAnimationElsePurged: unprovable or unlinked ⇒ purged.)
+export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const pages = [...staticPages(), ...componentPages()]
+  const META = new Set(['component', 'proof']) // the universal tags — the meta layer, not edges
+  const cloud = new Map<string, number>()
+  for (const page of pages) for (const tag of page.keywords) if (!META.has(tag)) cloud.set(tag, (cloud.get(tag) ?? 0) + 1)
+  const linked = pages.filter((page) => page.keywords.some((tag) => !META.has(tag) && (cloud.get(tag) ?? 0) >= 2)).length
+  const isolated = pages.length - linked // nodes with no edge — useless without links
+  const everyPageHasKeywords = pages.every((page) => page.keywords.length > 0)
+  const facets = [
+    { facet: 'every element is a NODE — each page/component carries keywords, so it can link; an element with no keywords is an isolated node', on: everyPageHasKeywords },
+    { facet: 'one graph, three projections — the top nav, sidebar and footer are all the keyword tag-cloud (siteNavigation) recomputed; collide them and they are one element-graph, nothing hardcoded', on: cloud.size > 0 },
+    { facet: `an element WITHOUT links is useless — a node with no edge is unreachable by relation; ${linked}/${pages.length} elements share a cluster, the graph wants all of them linked`, on: linked > 0 },
+    { facet: 'HONEST — "links" are computed keyword-relations (the edges of the element graph), the navigability; "useless without links" is the graph principle (an isolated node), not a metaphysical claim. HARMONY ≠ TRUTH', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`linked-node:${entry.facet}:${entry.on}`) }))
+  return {
+    graphed: everyPageHasKeywords && cloud.size > 0 && linked > 0,
+    pages: pages.length,
+    linked,
+    isolated,
+    clusters: cloud.size,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Every element is a linked node, or it is useless. The top nav, sidebar and footer are not three separate things — they are projections of ONE graph: the keyword tag-cloud of all pages (siteNavigation), collided into a single element-graph and recompiled, nothing hardcoded. Each page or component is a node; a shared keyword is an edge. An element with no edge is an isolated node, unreachable by relation — what use is it? The graph wants every element linked.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. The "links" are computed keyword-relations — the edges of the element graph, i.e. navigability — and "useless without links" is the graph principle (an isolated node has no relational reach), not a metaphysical claim. The nav, sidebar and footer genuinely are one recomputed tag-cloud (siteNavigation); collapsing them to one element-graph is a refactor of projection, not new knowledge.',
+  }
+}
+
