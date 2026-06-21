@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { useDeviceEnergy } from '../../lib'
 import { useTones } from '../../lib'
+import { useLocale } from '../../lib'
 import { recordPlay } from '../../lib'
 import { drawHero, buildArchNodes, makeBurst, seedOf, hueOf, armsOf, HEALING_PAIRS, createAnimationEngine, type Burst } from '../../lib'
 
@@ -15,6 +16,7 @@ import { drawHero, buildArchNodes, makeBurst, seedOf, hueOf, armsOf, HEALING_PAI
 const { page, frontmatter, title, description } = useData()
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
+const { tg } = useLocale() // transcode the healing-mode label in the gla locale
 
 // Anything definable as Open Graph is displayed here: the hero is the page's own OG card, showing the
 // og:title, og:description and category over the fractal og:image.
@@ -192,7 +194,7 @@ function tap(event: PointerEvent | MouseEvent) {
           :title="musicOn ? 'Healing music streams: on' : 'Healing music streams: off'"
           @click="musicOn = !musicOn"
         >♪ {{ musicOn ? 'on' : 'off' }}</button>
-        <span class="holo-hero__mode">healing · {{ healingPair }}</span>
+        <span class="holo-hero__mode">{{ tg('healing · ' + healingPair) }}</span>
       </div>
       <div class="holo-hero__og">
         <span class="holo-hero__cat">{{ category }}</span>

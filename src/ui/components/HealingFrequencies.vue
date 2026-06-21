@@ -71,7 +71,7 @@ const t = computed(() =>
     <div class="freq__grid">
       <span v-for="entry in data.frequencies" :key="entry.hz" class="freq__cell" :class="{ lead: entry.lead }">
         <strong>{{ entry.hz }}<small>Hz</small></strong>
-        <em>{{ entry.note }}</em>
+        <em>{{ tg(entry.note) }}</em>
         <span v-if="entry.lead" class="freq__leadtag">{{ tg(t.lead) }}</span>
       </span>
     </div>

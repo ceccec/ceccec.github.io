@@ -11,7 +11,7 @@ import { useTones } from '../lib'
 // shared audio engine. Raw overtone frequencies climb high, so playback folds
 // each note into a comfortable listening octave — the model keeps the true Hz.
 const data = harmonicMap(buildMatrix())
-const { bg } = useLocale()
+const { bg, pickDeep } = useLocale()
 const { playing, current, playSequence, stop } = useTones()
 const activeOctave = ref(-1)
 
@@ -35,9 +35,10 @@ function playBand(octave: number, members: { frequency: number }[]) {
 }
 
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'хармонична карта · структурата като обертонове', sub: `основа ${data.fundamental} Hz · ${data.count} обертона · ${data.octaves} октави`, play: 'Свири октавата', stop: 'Спри', octave: 'октава' }
-    : { eyebrow: 'harmonic map · the structure as overtones', sub: `fundamental ${data.fundamental} Hz · ${data.count} overtones · ${data.octaves} octaves`, play: 'Play octave', stop: 'Stop', octave: 'octave' },
+  pickDeep(
+    { eyebrow: 'harmonic map · the structure as overtones', sub: `fundamental ${data.fundamental} Hz · ${data.count} overtones · ${data.octaves} octaves`, play: 'Play octave', stop: 'Stop', octave: 'octave' },
+    { eyebrow: 'хармонична карта · структурата като обертонове', sub: `основа ${data.fundamental} Hz · ${data.count} обертона · ${data.octaves} октави`, play: 'Свири октавата', stop: 'Спри', octave: 'октава' },
+  ),
 )
 </script>
 
