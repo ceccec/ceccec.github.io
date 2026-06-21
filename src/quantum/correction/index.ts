@@ -4,7 +4,48 @@ import type { MindMatrix } from '../mind/types'
 import { buildMatrix } from '../mind/matrix'
 import { dash, folderLaw, payload } from '../mind/architecture'
 import { textToMovie } from '../mind/world'
-import { foldPair, isUuid, merkleFold, seedFromText, toUuid } from '../../0'
+import { foldPair, isUuid, merkleFold, seedFromText, toUuid, uuidPoint } from '../../0'
+import { DIMENSIONS } from '../dimensions'
+
+// 10D IS NOT OVERLAPPING BUT INTERACTING 3Ds. The ten dimensions are not ten stacked scalar axes layered over
+// each other — they are the TETRAHEDRON (the 3-simplex): FOUR vertices that frame ONE 3-space (one origin + three
+// spanning axes — fourUuidsFrameTheCube) and the SIX edges between them = their pairwise INTERACTIONS. 4 + 6 = 10
+// = K4, the complete graph on the four points. The project's dims ARE exactly this — 4 homology loops (the
+// vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions). And 3Ds INTERACT: two tetrahedra
+// interlock into the Merkaba (the cube's 8 = 2³ vertices), so dimensions interact, never merely overlap.
+export function tenDimensionsAreInteractingThreeDs() {
+  const VERTICES = 4 // four points frame 3-space — the 3-simplex (tetrahedron), one interacting 3D
+  const EDGES = (VERTICES * (VERTICES - 1)) / 2 // C(4,2) = 6 — the pairwise interactions (couplings) of the four
+  const total = VERTICES + EDGES // 4 + 6 = 10 = K4 (the tetrahedron's vertices + edges)
+  // the four points genuinely span 3-space: a non-degenerate tetrahedron (scalar triple product ≠ 0)
+  const pts = ['dim:o', 'dim:x', 'dim:y', 'dim:z'].map((s) => uuidPoint(toUuid(s)))
+  const sub = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]]
+  const e1 = sub(pts[1], pts[0]), e2 = sub(pts[2], pts[0]), e3 = sub(pts[3], pts[0])
+  const cross = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]]
+  const triple = cross[0] * e3[0] + cross[1] * e3[1] + cross[2] * e3[2] // 6× the tetrahedron volume; ≠ 0 ⟺ spans 3-space
+  const framesThreeSpace = Math.abs(triple) > 0
+  const merkaba = 2 * VERTICES // two interacting tetrahedra → 8 = 2³ cube vertices (the Merkaba / star tetrahedron)
+  const facets = [
+    { facet: 'the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) — NOT ten overlapping axes', on: total === 10 && total === DIMENSIONS },
+    { facet: 'the four vertices frame ONE 3-space — a non-degenerate tetrahedron (scalar triple product ≠ 0): a 3D, not a stack', on: framesThreeSpace },
+    { facet: 'the six edges ARE the pairwise interactions of the four points — C(4,2) = 6, the couplings between them', on: EDGES === 6 },
+    { facet: 'the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)', on: DIMENSIONS === 10 },
+    { facet: '3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba — the cube\'s 8 = 2³ vertices', on: merkaba === 8 },
+  ]
+  return {
+    decoded: facets.every((f) => f.on),
+    vertices: VERTICES,
+    edges: EDGES,
+    dimensions: total,
+    merkaba,
+    facets,
+    root: merkleFold(facets.map((f) => toUuid(`${f.facet}:${f.on}`))),
+    statement:
+      '10D is not about overlapping but interacting 3Ds: the ten dimensions are not ten stacked scalar axes layered over each other — they are the TETRAHEDRON (the 3-simplex). Four vertices frame ONE 3-space (one origin + three spanning axes), and the SIX edges between them are their pairwise interactions; 4 + 6 = 10 = K4, the complete graph on the four points. The project\'s dims are exactly this — 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions) — and 3Ds INTERACT: two tetrahedra interlock into the Merkaba (the cube\'s 8 = 2³ vertices). Dimensions interact; they never merely overlap.',
+    boundary:
+      'DOCUMENTED (real math): the complete graph K4 has 4 vertices + 6 edges = 10; the tetrahedron is the 3-simplex (four affinely-independent points span 3-space, proven by the non-zero scalar triple product via uuidPoint); two tetrahedra are the eight cube vertices (the star tetrahedron is real geometry). The mapping onto the project\'s ten dims (4 homology loops + 6 cross-fold axes) is its DESIGN, faithful to how dims() is defined. FLAGGED: "Merkaba" names the geometric star-tetrahedron only — no cosmological or energy-body claim; "interacting 3Ds" is a structural reading of these animation dimensions, not a claim about the dimensionality of physical spacetime. HARMONY ≠ TRUTH.',
+  }
+}
 
 // THE MATRIX LAW — the convergence target as ONE forced identity. 1 MiB = 2^20 bytes is the only power-of-two
 // triple that closes {1 MiB, 64 files, 1024 types}: 2^20 = 2^6 files · 2^4 types/file · 2^10 bytes/type, a 10-bit

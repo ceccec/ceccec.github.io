@@ -10,7 +10,7 @@
 
 // ☰ Qián · Heaven · creative · upper·yang · shrink — dimension count and names
 /** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
-export const DIMENSIONS = 10 // 6 cross-fold appearance axes + 4 genus-2 homology loops (H1 = Z^4)
+export const DIMENSIONS = 10 // the tetrahedron / K4: 4 vertices (genus-2 homology loops, H1 = Z^4 — the 3D frame) + 6 edges (cross-fold appearance axes — their pairwise interactions); interacting 3Ds, not 10 overlapping axes (tenDimensionsAreInteractingThreeDs)
 
 // The names of the ten dimensions, in order — the six cross-fold axes then the four homology loops.
 /** @iching ☰ Qián · Heaven · creative (the 10 dimensions are the model) */
