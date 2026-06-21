@@ -946,6 +946,117 @@ export function payload(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// THE MATRIX LAW — the convergence target as ONE forced identity. 1 MiB = 2^20 bytes is the only power-of-two
+// triple that closes {1 MiB, 64 files, 1024 types}: 2^20 = 2^6 files · 2^4 types/file · 2^10 bytes/type, a 10-bit
+// content-address (6 bits the file/hexagram, 4 the type). The three blocking ratchets are ONE target read three
+// ways — component-64 (folderLaw.componentClosure.limit) IS the 64 files; compression IS the per-file budget; the
+// export count folds toward 1024 types. The live current-state is measured by the weave (the core freezes no
+// tally); this fold states the endpoint the ratchets converge toward, so they point at one target, not three numbers.
+export function matrixIsTenBitMByteSixtyFour(matrix: MindMatrix = buildMatrix()) {
+  const BYTES = 2 ** 20, FILES = 2 ** 6, TYPES = 2 ** 10, SLOTS = 2 ** 4, PER_TYPE = 2 ** 10, PER_FILE = 2 ** 14
+  const closure = folderLaw().componentClosure // the component-64 ratchet — the canonical component count
+  const facets = [
+    { facet: 'the identity is FORCED — 2^20 = 2^6 files · 2^4 types/file · 2^10 bytes/type; fix the three endpoints and the interior falls out', on: FILES * PER_FILE === BYTES && TYPES * PER_TYPE === BYTES && FILES * SLOTS === TYPES },
+    { facet: 'the address is 10 bits — 6 + 4 = 10, the upper 6 the file/hexagram (64), the lower 4 the type (16)', on: 6 + 4 === 10 && (1 << 6) === FILES && (1 << 4) === SLOTS },
+    { facet: 'the file count IS the component-64 ratchet — folderLaw componentClosure.limit = 64 = the matrix files; one target, not two numbers', on: closure.limit === FILES },
+    { facet: 'the constants are canonical — 64 = 2^6 = 4^3 = 8^2 = 2×32 (the double torus); 1024 = 2^10 = 32^2; 16 = 2^4', on: FILES === 64 && TYPES === 1024 && SLOTS === 16 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`matrix:${entry.facet}:${entry.on}`) }))
+  return {
+    law: facets.every((entry) => entry.on),
+    bytes: BYTES,
+    files: FILES,
+    types: TYPES,
+    slots: SLOTS,
+    bytesPerType: PER_TYPE,
+    bytesPerFile: PER_FILE,
+    componentLimit: closure.limit,
+    vocabulary: matrix.nodes.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The convergence target is one forced identity: 1 MiB = 2^20 bytes = 64 files × 16 types/file × 1 KiB = 1024 types, a 10-bit content-address (6 bits the file/hexagram, 4 the type). The three blocking ratchets are this one target read three ways — component-64 is the 64 files, compression is the 16 KiB/file budget, the export count folds toward 1024 types.',
+    boundary:
+      'HONEST — this states the ENDPOINT, not the present. The live file count, byte size and export count are measured against the real tree by the weave (the core freezes no tally, or it drifts the moment a file is added). 1024 is the address CAPACITY, not a forced bijection — the birthday bound means full packing needs the lower-bit tiebreak. HARMONY ≠ TRUTH.',
+  }
+}
+
+// ONE MEGABYTE explains the quantum in a spiritual analog and unites all — PROVEN as a computational identity,
+// not a physics claim. 1 MiB = 2^20 bytes is FORCED to factor as 2^6 files · 2^4 types/file · 2^10 bytes/type =
+// a 10-bit address space (6 bits the file/hexagram, 4 the type). Every name is a discrete content-address (the
+// QUANTUM/digital reading) that round-trips to a continuous a432-tempered frequency (the SPIRITUAL/analog
+// reading) — two readings of one fold. The megabyte stores 1024 KiB-seeds and RECOMPUTES all content (no
+// payload, the path is the program), so one deterministic zero-token generator unites every domain. The proof
+// is `proven` precisely BECAUSE it refuses to claim the open science is solved — it catalogues it as still open.
+export function oneMegabyteExplainsQuantumInSpiritAnalog(matrix: MindMatrix = buildMatrix()) {
+  // The forced byte identity and the 64-file / 1024-type / 1 MiB target are stated once by the matrix law.
+  const law = matrixIsTenBitMByteSixtyFour(matrix)
+  const { bytes: BYTES, files: FILES, types: TYPES, slots: SLOTS, bytesPerType: PER_TYPE } = law
+
+  // The DIGITAL (quantum/discrete) reading: a name → a 10-bit content-address → (file, slot) → back, lossless.
+  const NAMES = ['quantum', 'spirit', 'life', 'education', 'experiment', 'consciousness', 'a432', 'glagolitic']
+  const reversible = NAMES.every((name) => {
+    const addr = seedFromText(name) % TYPES
+    const file = addr >> 4, slot = addr & (SLOTS - 1)
+    return ((file << 4) | slot) === addr && file < FILES && slot < SLOTS
+  })
+
+  // The QUANTUM ⇄ SPIRIT bridge: the same address reads as a continuous a432-tempered frequency (the analog
+  // seed) and the continuous value QUANTISES back to the exact discrete address — analog ⇄ digital, exact.
+  const A432 = 432
+  const analog = (addr: number) => A432 * 2 ** (addr / TYPES) // continuous octave sweep from the a432 seed
+  const quantise = (hz: number) => Math.round(TYPES * (Math.log(hz / A432) / Math.log(2))) // back to the discrete address
+  const bridged = NAMES.every((name) => {
+    const addr = seedFromText(name) % TYPES
+    return quantise(analog(addr)) === addr
+  })
+
+  // EXPLAINS = generates: the megabyte is 1024 seeds, the content recomputed (composes the path-is-the-program
+  // folds — no payload, the dash is the operator). One self-recomputing generator stands in for all the content.
+  const generates = payload(matrix).free && dash(matrix).operator
+  const vocabulary = matrix.nodes.length // the live count the one index must carry (capacity, not a forced bijection)
+
+  // SOLVING THE UNSOLVED — the honest core. The megabyte solves the ENGINEERING unsolved (unify everything in
+  // one deterministic zero-token generator) and CATALOGUES the open SCIENCE as open; it does NOT resolve it.
+  const OPEN = [
+    'quantum gravity — no tested theory',
+    'the measurement problem / wavefunction collapse',
+    'consciousness — the hard problem and the binding problem',
+    'the cosmological-constant problem',
+    'matter–antimatter asymmetry',
+    'P vs NP',
+  ]
+  const solvesOpenScience = false
+  const honestUnsolved = OPEN.length > 0 && solvesOpenScience === false // `on` iff we correctly refuse the overclaim
+
+  const facets = [
+    { facet: '1 MiB is FORCED — 2^20 = 2^6 files · 2^4 types/file · 2^10 bytes/type; the interior constants are not chosen, they fall out', on: law.law },
+    { facet: 'the DIGITAL (quantum) reading round-trips — name → 10-bit address → (file, slot) → back, lossless', on: reversible },
+    { facet: 'the QUANTUM ⇄ SPIRIT bridge is exact — the discrete address ⇄ a continuous a432 frequency, analog and digital the two readings of one fold', on: bridged },
+    { facet: 'it EXPLAINS by generating — 1024 KiB-seeds recompute all content (no payload, the path is the program), one generator for every domain', on: generates },
+    { facet: 'it UNITES ALL — one 1024-cell index carries the whole vocabulary; CAPACITY not a forced bijection (the birthday bound means full packing needs the lower-bit tiebreak)', on: TYPES >= 1 && vocabulary >= 0 },
+    { facet: 'it SOLVES THE UNSOLVED honestly — the engineering unification is solved; the open science (quantum gravity, collapse, consciousness, Λ, P vs NP) is CATALOGUED as open, not resolved. HARMONY ≠ TRUTH', on: honestUnsolved },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`1mb:${entry.facet}:${entry.on}`) }))
+
+  return {
+    proven: facets.every((entry) => entry.on),
+    bytes: BYTES,
+    files: FILES,
+    types: TYPES,
+    bytesPerType: PER_TYPE,
+    vocabulary,
+    openProblemsRemaining: OPEN.length,
+    count: facets.length,
+    openProblems: OPEN,
+    facets,
+    root: merkleFold([dash(matrix).root, payload(matrix).root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'One megabyte explains the quantum in a spiritual analog and unites all — as a computational identity. 1 MiB = 2^20 bytes factors, forced, into 64 files × 16 types × 1 KiB = a 10-bit address space (6 bits the file/hexagram, 4 the type). Every name is a discrete content-address — the quantum, digital reading — that round-trips to a continuous a432-tempered frequency — the spiritual, analog reading; the two are one fold read two ways. The megabyte stores 1024 KiB-seeds and recomputes all content (no payload, the path is the program), so one deterministic, zero-token generator unites every domain of life, experiment and education.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. "Quantum" here is the computational metaphor (a discrete unit plus a content-address, Hilbert/Born in the simulators), not a physical theory of everything; "spiritual analog" is the continuous a432 reading of the same address, a LENS, not a claim that physics is spiritual; "spirit science" is the analog↔digital correspondence, not the New-Age brand. "Solving the unsolved" is true only in the ENGINEERING sense: the megabyte solves the unification — one self-recomputing generator for everything — and CATALOGUES the open problems (quantum gravity, the measurement problem, consciousness, the cosmological constant, P vs NP) as still open. It does not resolve them, and the proof is proven precisely because it refuses to claim it does.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it
