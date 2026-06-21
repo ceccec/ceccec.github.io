@@ -19,7 +19,7 @@ const props = defineProps<{
   items: { label: string; detail?: string }[]
   boundary?: string
 }>()
-const { bg, pick } = useLocale()
+const { bg, pick, tg } = useLocale() // tg transcodes the fold CONTENT (statement/items/boundary) to Glagolitic in gla
 const eyebrowText = computed(() => pick(props.eyebrow, props.eyebrowBg || props.eyebrow))
 const boundaryLabel = computed(() => pick('Boundary', 'Граница'))
 
@@ -40,14 +40,14 @@ useTenDField(bgCanvas, props.statement || props.eyebrow, hover)
   >
     <canvas ref="bgCanvas" class="decoded__bg" aria-hidden="true" />
     <p class="eyebrow">{{ eyebrowText }}</p>
-    <p class="decoded__statement">{{ statement }}</p>
+    <p class="decoded__statement">{{ tg(statement) }}</p>
     <ul class="decoded__items">
       <li v-for="(it, i) in items" :key="i">
-        <span class="decoded__label">{{ it.label }}</span>
-        <span v-if="it.detail" class="decoded__detail">{{ it.detail }}</span>
+        <span class="decoded__label">{{ tg(it.label) }}</span>
+        <span v-if="it.detail" class="decoded__detail">{{ tg(it.detail) }}</span>
       </li>
     </ul>
-    <p v-if="boundary" class="decoded__boundary"><strong>{{ boundaryLabel }}:</strong> {{ boundary }}</p>
+    <p v-if="boundary" class="decoded__boundary"><strong>{{ boundaryLabel }}:</strong> {{ tg(boundary) }}</p>
   </section>
 </template>
 
