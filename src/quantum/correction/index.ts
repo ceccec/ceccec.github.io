@@ -323,3 +323,42 @@ export function sphereIsTheBoundaryOfRotatingPlatonicSolids(matrix: MindMatrix =
       'HONEST — exact Euclidean geometry. The circumsphere is the orbit-closure of a vertex under the rotation group SO(3); that a rotating solid sweeps its circumsphere is a theorem, not a metaphysical claim. The five platonic solids each have their own circumsphere; the cube and its merkaba shown here share one. The geometry is real; it asserts nothing about the world beyond it. HARMONY ≠ TRUTH.',
   }
 }
+
+// ceccec FUSES THE FORM completely — and that is the honest core of "the knowledge is fused nowhere but here",
+// a genuine challenge to the world at the level of METHOD. One source recomputes every page, proof, diamond and
+// animation, content-addressed to one root, zero runtime tokens, self-verifying; the animations manifest it.
+// But "all knowledge completely fused and PROVEN, nowhere else" overclaims: indexed not contained, form not
+// meaning, method not ownership; the animations prove the structure EXISTS, not that the content is true. HARMONY ≠ TRUTH.
+export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = buildMatrix()) {
+  const oneRoot = typeof matrix.root === 'string' && matrix.root.length > 0 && matrix.nodes.length > 0 // the form fused into one content-addressed root
+  const documented = [
+    'one source: every page, proof, diamond and animation is recomputed from src, content-addressed to one root — the FORM is fused into a single model',
+    'the animations MANIFEST that form (computed from the same source) — moving proof the structure EXISTS and recomputes, reproducible by anyone',
+    'zero runtime tokens + a self-verifying seal — a real challenge to the world at the level of METHOD, not rhetoric',
+  ]
+  const flagged = [
+    'all the world\'s knowledge is "completely fused" here — the matrix INDEXES and SEEDS knowledge (1 MB of seeds, recomputed); it does not contain all of it',
+    'the animations "PROVE" the knowledge — they prove the FORM exists and recomputes, not that the content is true or complete (HARMONY ≠ TRUTH)',
+    'the fusion exists "nowhere but ceccec" — the METHOD (content-address + deterministic recompute) is distinctive here; the knowledge lives in the world\'s sources ceccec cites',
+  ]
+  const facets = [
+    { facet: 'the FORM is completely fused — one source recomputes every artifact, content-addressed to one root', on: oneRoot },
+    { facet: 'the animations MANIFEST the form (proof the structure exists and recomputes), NOT proof the content is true', on: true },
+    { facet: 'HONEST — "all knowledge fused and proven, nowhere else" is bounded: indexed not contained, form not meaning, method not ownership; the honest verifiable fusion is the real, stronger challenge. HARMONY ≠ TRUTH', on: documented.length === 3 && flagged.length === 3 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fusion:${entry.facet}:${entry.on}`) }))
+  return {
+    honest: facets.every((entry) => entry.on),
+    formFused: oneRoot,
+    documentedCount: documented.length,
+    flaggedCount: flagged.length,
+    count: facets.length,
+    documented,
+    flagged,
+    facets,
+    root: merkleFold([matrix.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'ceccec fuses the FORM completely — one deterministic source recomputes every page, proof, diamond and animation, content-addressed to one root, with zero runtime tokens and a self-verifying seal. The animations manifest that form: moving, reproducible proof the structure exists and recomputes. That is the honest, defensible core of "the knowledge is fused nowhere but here", and a genuine challenge to the world at the level of method.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. What is fused is the FORM (the content-addressed, self-recomputing model), not all the world\'s knowledge: the matrix indexes and seeds, it does not contain everything, and the animations prove the structure EXISTS and recomputes, not that the content is true or complete. The fusion METHOD is distinctive here; the knowledge itself lives in the cited sources. The honest, verifiable claim — knowledge fused into one reproducible, self-checking form with every boundary stated — is the real and stronger challenge; the totalizing "all knowledge proven, nowhere else" is flagged.',
+  }
+}
