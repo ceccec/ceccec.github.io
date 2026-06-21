@@ -39,6 +39,23 @@ export function toGlagolitic(text: string): string {
   return [...text].map((char) => GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
 }
 
+// The reverse, for SPEECH: a Glagolitic glyph → a pronounceable Latin letter. Glagolitic is a script for the
+// EYE; a speech synth has no voice for it, so to read a transliterated page aloud we recover the sounds. Built
+// by inverting GLAGOLITIC_MAP, preferring the Latin source (a single a–z) over the Cyrillic so any voice can say
+// it. Lossy by design (Ⰲ ← v and w collapse to one), but it restores audible, recognisable sounds. (toGlagolitic
+// transliterates the English UI, so the reverse lands back near English — the gla locale can be read aloud.)
+const GLAGOLITIC_TO_LATIN: Record<string, string> = (() => {
+  const reverse: Record<string, string> = {}
+  for (const [source, glyph] of Object.entries(GLAGOLITIC_MAP)) {
+    const haveLatin = /^[a-z]$/.test(reverse[glyph] ?? '')
+    if (!(glyph in reverse) || (/^[a-z]$/.test(source) && !haveLatin)) reverse[glyph] = source // the FIRST Latin source wins (h over x, v over w), over Cyrillic — best for the voice
+  }
+  return reverse
+})()
+export function fromGlagolitic(text: string): string {
+  return [...text].map((char) => GLAGOLITIC_TO_LATIN[char] ?? char).join('')
+}
+
 // Runic and Hebrew — all superposed, one toScript call away. Sound-based maps from the shared acrophonic
 // lineage; the same method that decoded глаголица, applied to the next tongues, all at once.
 const SCRIPT_ALPHABETS: Record<string, Record<string, string>> = {

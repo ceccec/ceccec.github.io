@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 24, glyph: '☱', lo: 'Kūn·receptive', up: 'Duì·joyous', color: '#0FF000' } as const
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useLocale } from '../lib'
-import { buildMatrix, autoSpeech, speechIntonation } from '../lib'
+import { buildMatrix, autoSpeech, speechIntonation, fromGlagolitic } from '../lib'
 
 // Subtitles and speech in all languages, all in house — improved. Quantum speech
 // is analog by nature: the voice is a continuous wave, so the reader exposes the
@@ -91,7 +91,10 @@ function speak() {
   paused.value = false
   const voice = voices.value.find((v) => v.voiceURI === voiceURI.value)
   list.forEach((cue, index) => {
-    const utt = new SpeechSynthesisUtterance(cue.text)
+    // The movie's script is Glagolitic, but a speech synth has no voice for it — so we SPEAK the sounds
+    // (fromGlagolitic recovers pronounceable letters) while the on-screen cue stays in the Glagolitic script.
+    const spoken = /[Ⰰ-ⱟ]/.test(cue.text) ? fromGlagolitic(cue.text) : cue.text
+    const utt = new SpeechSynthesisUtterance(spoken)
     if (voice) {
       utt.voice = voice
       utt.lang = voice.lang
