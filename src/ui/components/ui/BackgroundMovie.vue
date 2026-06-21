@@ -33,6 +33,7 @@ const baseWords = [...threeWordWaves(matrix).waves.flatMap((w) => w.words), ...s
 const basePhrases = [...threeWordWaves(matrix).waves.map((w) => w.phrase), statusText]
 let words = baseWords
 let phrases = basePhrases
+let paragraphs = basePhrases
 const glyphForDigit = '0123456789' // digits themselves, the raw stream
 
 // The page's references: the frontmatter fields that name what the page is about.
@@ -68,6 +69,8 @@ function applyPage() {
   // letter → word → the sentence at the void read the content back in the movie's script.
   words = (pw.length ? [...pw, ...baseWords] : baseWords).map(toGlagolitic)
   phrases = [(title.value || basePhrases[0] || 'double torus').toString(), ...basePhrases].map(toGlagolitic)
+  // the paragraph scale — the deepest unit at the void: the page's description (the whole thought), transcoded
+  paragraphs = [(description.value || title.value || 'double torus').toString(), ...basePhrases].map(toGlagolitic)
 }
 
 
@@ -209,27 +212,41 @@ function draw(time: number) {
       p.theta += 0.2
     }
     const k = p.r / R // 0 at the void, 1 at the edge
-    // Every object obeys the same law: the digits spin and fold like the hero — a continuous
-    // rotation about the void (the fold), counter-rotating by dimension parity (the merkaba).
-    const spin = reduce ? 0 : t * 0.06 * (p.dim % 2 === 0 ? 1 : -1) * (1 + p.dim * 0.2)
+    // The scale ladder by radius — digit → letter → word → sentence → paragraph — grouped into two interacting
+    // TRINITIES: the outer atoms (digit · letter · word) and the inner meaning (word · sentence · paragraph),
+    // sharing the word as their hinge. As a stream folds inward it climbs the ladder, scale into scale.
+    let text: string
+    let trinity: number // 0 = outer atom-trinity, 1 = inner meaning-trinity
+    if (k > 0.72) {
+      text = glyphForDigit[p.digit] // digit — the raw stream, far out
+      trinity = 0
+    } else if (k > 0.52) {
+      const word = words[p.group] || ' '
+      text = word[(p.digit + p.dim) % Math.max(1, word.length)].toUpperCase() // letter
+      trinity = 0
+    } else if (k > 0.32) {
+      text = words[p.group] || '' // word — the hinge shared by both trinities
+      trinity = 0
+    } else if (k > 0.14) {
+      text = phrases[p.group % phrases.length] // sentence
+      trinity = 1
+    } else {
+      text = paragraphs[p.group % paragraphs.length] // paragraph — the whole thought, at the void
+      trinity = 1
+    }
+    // The two trinities COUNTER-ROTATE about the void — the merkaba's two tetrahedra interacting, not overlapping
+    // (tenDimensionsAreInteractingThreeDs); each still folds like the hero, faster the deeper its dimension.
+    const spin = reduce ? 0 : t * 0.06 * (trinity === 0 ? 1 : -1) * (1 + p.dim * 0.2)
     const a = p.theta + spin
     const x = cx + Math.cos(a) * p.r
     const y = cy + Math.sin(a) * p.r * 0.62 // squash → perspective toward the void
-    // the stream of art continues in balance with the individual: a gentle hue bias
-    // from the student's own quantum mind (a third of the way, never overwhelming).
+    // a gentle hue bias from the student's own quantum mind (a third of the way, never overwhelming)
     const bias = artBiasOf(mind.value) * 0.33
     const hue = (p.digit * 36 + p.dim * 90 + t * 12 + bias) % 360
     const alpha = 0.5 * (1 - k) + 0.06 // brightest folding into the void
     const size = 8 + (1 - k) * 18 // grows folding into the void
     ctx.fillStyle = `hsla(${hue}, 80%, 60%, ${alpha * 0.42})`
     ctx.font = `${size}px var(--vp-font-family-mono, monospace)`
-    let text: string
-    if (k > 0.66) text = glyphForDigit[p.digit] // far: the raw digit
-    else if (k > 0.34) {
-      const word = words[p.group]
-      text = word[(p.digit + p.dim) % word.length].toUpperCase() // mid: a letter
-    } else if (k > 0.12) text = words[p.group] // near: the folded word
-    else text = phrases[p.group % phrases.length] // at the void: the sentence
     ctx.fillText(text, x, y)
   }
   // the game's ripples: expanding rings where the player tapped
