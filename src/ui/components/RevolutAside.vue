@@ -7,13 +7,13 @@ const ICHING_MASK = { hexagram: 48, glyph: '☴', lo: '☷', up: '☴', color: '
 import { computed } from 'vue'
 import { useLocale, revolutChannel } from '../lib'
 
-const { bg } = useLocale()
+const { pick } = useLocale() // en · bg · gla(transcoded) — prose only; the URL/handle stay raw identity
 const channel = revolutChannel() // { handle, url, purposes, share, free, ... } — locale-independent data
 const purpose = (name: string) => channel.purposes.find((p) => p.purpose === name)
-const label = computed(() => (bg.value ? 'монетизация' : 'monetisation'))
-const supportText = computed(() => (bg.value ? purpose('support')?.bg : purpose('support')?.en))
-const contactText = computed(() => (bg.value ? purpose('contact')?.bg : purpose('contact')?.en))
-const freeText = computed(() => (bg.value ? 'безплатно · доброволно' : 'free · voluntary'))
+const label = computed(() => pick('monetisation', 'монетизация'))
+const supportText = computed(() => pick(purpose('support')?.en ?? '', purpose('support')?.bg ?? ''))
+const contactText = computed(() => pick(purpose('contact')?.en ?? '', purpose('contact')?.bg ?? ''))
+const freeText = computed(() => pick('free · voluntary · return → source', 'безплатно · доброволно · return → source'))
 </script>
 
 <template>
@@ -24,6 +24,6 @@ const freeText = computed(() => (bg.value ? 'безплатно · добров�
     </a>
     <p class="revolut-aside__formula">{{ supportText }} ({{ channel.share }})</p>
     <p class="revolut-aside__formula">{{ contactText }}</p>
-    <p class="revolut-aside__formula">{{ freeText }} · return → source</p>
+    <p class="revolut-aside__formula">{{ freeText }}</p>
   </aside>
 </template>
