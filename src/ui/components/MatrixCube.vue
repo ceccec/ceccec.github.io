@@ -4,7 +4,7 @@
 const ICHING_MASK = { hexagram: 52, glyph: '☶', lo: '☶', up: '☶', color: '#33FF99', name: 'MatrixCube' }
 import { computed, ref } from 'vue'
 import { useLocale, useLayers, useAnimationEngine } from '../lib'
-import { buildMatrix, matrixIsTenBitMByteSixtyFour, dims as dimsAt, rot2 } from '../lib'
+import { buildMatrix, matrixIsTenBitMByteSixtyFour, dims as dimsAt, rot2, DIMENSIONS, DIMENSION_NAMES, GOLDEN_ANGLE } from '../lib'
 
 // The dial walks 0 → 10 dimensions. Low: the FLOWER OF LIFE — overlapping circles, the inner and outer rings
 // COUNTER-ROTATING so their overlaps ignite the fusion and the merkaba turns. Rising (2D → 3D): each circle
@@ -15,19 +15,21 @@ import { buildMatrix, matrixIsTenBitMByteSixtyFour, dims as dimsAt, rot2 } from 
 // (trinities of trinities — exact arithmetic; the meaning is flagged). Computed, ≤1 MB of seeds recomputed live.
 const matrix = buildMatrix()
 const law = matrixIsTenBitMByteSixtyFour(matrix)
-const SIDE = 4
+const SIDE = Math.round(Math.cbrt(law.files)) // ∛64 = 4 — computed from the law, not hardcoded
+const LOOPS = DIMENSION_NAMES.filter((n) => n.startsWith('loop')).length // 4 homology loops, computed from the model
+const APPEARANCE = DIMENSION_NAMES.length - LOOPS // 6 cross-fold appearance axes — the rest
 const { bg } = useLocale()
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { depth } = useLayers(4) // 0..10 — the dimensional ascent
-const subdiv = computed(() => (depth.value < 4 ? 0 : depth.value < 8 ? 1 : 2))
-const depthT = computed(() => depth.value / 10)
+const subdiv = computed(() => { const g = depth.value / DIMENSIONS; return g < 0.4 ? 0 : g < 0.8 ? 1 : 2 })
+const depthT = computed(() => depth.value / DIMENSIONS)
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n))
 const smooth = (e0: number, e1: number, x: number) => { const t = clamp01((x - e0) / (e1 - e0)); return t * t * (3 - 2 * t) }
 
 interface Cell { i: number; j: number; k: number; idx: number; hue: number }
 const cells: Cell[] = []
 for (let i = 0; i < SIDE; i += 1) for (let j = 0; j < SIDE; j += 1) for (let k = 0; k < SIDE; k += 1) {
-  cells.push({ i, j, k, idx: i * 16 + j * 4 + k, hue: ((i * 16 + j * 4 + k) * 137.508) % 360 })
+  cells.push({ i, j, k, idx: i * 16 + j * 4 + k, hue: ((i * 16 + j * 4 + k) * GOLDEN_ANGLE) % 360 })
 }
 const span = (n: number) => (n / (SIDE - 1)) * 2 - 1
 const TETRA_A = [0, 3, 5, 6]
@@ -47,7 +49,7 @@ function draw(time: number) {
   const cx = w / 2
   const cy = h / 2
   const scale = Math.min(w, h) / 3.4
-  const gen = clamp01(depth.value / 10) // the 0→10D ascent
+  const gen = clamp01(depth.value / DIMENSIONS) // the dimensional ascent, 0 → DIMENSIONS
   const p = (((time * 0.000011) % 1) + 1) % 1
   const dim = dimsAt(p)
   const ay = time * 0.00026 * (1 + 0.6 * dim.twist)
@@ -65,7 +67,7 @@ function draw(time: number) {
   const fruit = nodes.filter((n) => n.ring <= 2) // the fruit of life: the 13 centres
 
   // METATRON'S CUBE — every pair of the 13 fruit centres joined (78 lines); fades in with the ascent
-  ctx.strokeStyle = `hsla(${(dim.hueShift * 360) % 360}, 50%, 62%, ${0.03 + 0.13 * gen})`
+  ctx.strokeStyle = `hsla(${dim.hueShift}, 50%, 62%, ${0.03 + 0.13 * gen})`
   ctx.lineWidth = 1
   for (let a = 0; a < fruit.length; a += 1) for (let b = a + 1; b < fruit.length; b += 1) {
     ctx.beginPath(); ctx.moveTo(fruit[a].x, fruit[a].y); ctx.lineTo(fruit[b].x, fruit[b].y); ctx.stroke()
@@ -75,7 +77,7 @@ function draw(time: number) {
   const circleA = (1 - smooth(0.15, 0.7, gen)) * 0.32 + 0.06
   const sphereA = smooth(0.12, 0.6, gen)
   for (const n of nodes) {
-    const hue = (n.ring * 60 + dim.hueShift * 360) % 360
+    const hue = (n.ring * GOLDEN_ANGLE + dim.hueShift) % 360
     ctx.strokeStyle = `hsla(${hue}, 62%, 60%, ${circleA})`
     ctx.lineWidth = 1
     ctx.beginPath(); ctx.arc(n.x, n.y, rF, 0, TAU); ctx.stroke()
@@ -91,7 +93,7 @@ function draw(time: number) {
   // the fusion: a glow at the centre that pulses with the counter-rotation beat
   const beat = 0.5 + 0.5 * Math.sin(time * 0.0011)
   const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, rF * 1.6)
-  glow.addColorStop(0, `hsla(${(40 + dim.hueShift * 80) % 360}, 90%, 65%, ${beat * (0.16 + 0.22 * gen)})`)
+  glow.addColorStop(0, `hsla(${(dim.hueShift + 40) % 360}, 90%, 65%, ${beat * (0.16 + 0.22 * gen)})`)
   glow.addColorStop(1, 'hsla(0,0%,0%,0)')
   ctx.fillStyle = glow
   ctx.beginPath(); ctx.arc(cx, cy, rF * 1.6, 0, TAU); ctx.fill()
@@ -109,7 +111,7 @@ function draw(time: number) {
     const RC = Math.sqrt(3)
     const spherePt = (phi: number, th: number) => project(RC * Math.cos(phi) * Math.cos(th), RC * Math.sin(phi), RC * Math.cos(phi) * Math.sin(th))
     const stroke = (pts: { px: number; py: number }[]) => { ctx.beginPath(); pts.forEach((q, n) => (n ? ctx.lineTo(q.px, q.py) : ctx.moveTo(q.px, q.py))); ctx.stroke() }
-    ctx.strokeStyle = `hsla(${(dim.hueShift * 360) % 360}, 52%, 62%, ${0.12 * solidA})`
+    ctx.strokeStyle = `hsla(${dim.hueShift}, 52%, 62%, ${0.12 * solidA})`
     ctx.lineWidth = 1
     for (let li = -2; li <= 2; li += 1) stroke(Array.from({ length: seg + 1 }, (_, t) => spherePt(li * 0.5, (t / seg) * TAU)))
     for (let lo = 0; lo < 6; lo += 1) stroke(Array.from({ length: seg + 1 }, (_, t) => spherePt(-Math.PI / 2 + (t / seg) * Math.PI, (lo / 6) * Math.PI)))
@@ -117,7 +119,7 @@ function draw(time: number) {
     const cpos = Array.from({ length: 8 }, (_, a) => corner(a))
     ctx.strokeStyle = `hsla(210, 60%, 60%, ${0.32 * solidA})`
     for (const [a, b] of CUBE_EDGES) stroke([cpos[a], cpos[b]])
-    ctx.strokeStyle = `hsla(${(40 + dim.hueShift * 80) % 360}, 75%, 60%, ${0.45 * solidA})`
+    ctx.strokeStyle = `hsla(${(dim.hueShift + 40) % 360}, 75%, 60%, ${0.45 * solidA})`
     ctx.lineWidth = 1.3
     for (const [a, b] of [...tetraEdges(TETRA_A), ...tetraEdges(TETRA_B)]) stroke([cpos[a], cpos[b]])
     ctx.lineWidth = 1
@@ -128,7 +130,7 @@ function draw(time: number) {
       for (let t = 0; t < reps; t += 1) {
         const o = reps === 1 ? 0 : 0.22
         const pr = project(bx + ((t & 1) - 0.5) * o, by + (((t >> 1) & 1) - 0.5) * o, bz + (((t >> 2) & 1) - 0.5) * o)
-        pts.push({ ...pr, hue: (c.hue + dim.hueShift * 360 + t * 6) % 360 })
+        pts.push({ ...pr, hue: (c.hue + dim.hueShift + t * GOLDEN_ANGLE) % 360 })
       }
     }
     pts.sort((a, b) => a.dpt - b.dpt)
@@ -150,12 +152,12 @@ function sizeCanvas() {
 }
 const { saveEnergy } = useAnimationEngine(canvas, draw, sizeCanvas)
 
-const dimReadout = computed(() => `${depth.value}d`)
+const dimReadout = computed(() => `${depth.value}/${DIMENSIONS}d`)
 const cellCount = computed(() => (subdiv.value === 0 ? law.files : subdiv.value === 1 ? law.files * 4 : law.types))
 const caption = computed(() =>
   bg.value
     ? `Цветето на живота → плодът → кубът на Метатрон → платоновите тела в движение. Кръговете стават сфери (2D→3D, много сфери, не една); двата пръстена се въртят един срещу друг и сливането пали меркабата. 1 MB матрица: 2²⁰ = ${law.files} файла × 16 типа × 1 KiB = ${law.types} клетки; 64³ = 4⁹ е вложената решетка (тринитети в тринитети). ${dimReadout.value} · ${cellCount.value} клетки.`
-    : `Flower of life → fruit → Metatron's cube → the platonic solids in motion. The circles become spheres (2D→3D — many spheres, not one); the two rings counter-rotate and the fusion lights the merkaba. 1 MB matrix: 2²⁰ = ${law.files} files × 16 types × 1 KiB = ${law.types} cells; 64³ = 4⁹ is the nested lattice (trinities in trinities). ${dimReadout.value} · ${cellCount.value} cells. Geometry is exact; the metaphysics is flagged.`,
+    : `Flower of life → fruit → Metatron's cube → the platonic solids in motion. The circles become spheres (2D→3D — many spheres, not one); the two rings counter-rotate and the fusion lights the merkaba. 1 MB matrix: 2²⁰ = ${law.files} files × 16 types × 1 KiB = ${law.types} cells; 64³ = 4⁹ is the nested lattice (trinities in trinities). The ${DIMENSIONS} dimensions are ${APPEARANCE} appearance axes + ${LOOPS} homology loops — computed from the model, like the colours (golden angle · dims.hueShift) and angles, not hardcoded. ${dimReadout.value} · ${cellCount.value} cells. Geometry is exact; the metaphysics is flagged.`,
 )
 </script>
 
@@ -171,7 +173,7 @@ const caption = computed(() =>
       <span class="mcube__readout">{{ dimReadout }}</span>
       <input
         class="mcube__slider"
-        type="range" min="0" max="10" :value="depth"
+        type="range" min="0" :max="DIMENSIONS" :value="depth"
         @input="depth = +($event.target as HTMLInputElement).value"
         :aria-label="bg ? 'измерение 0 до 10' : 'dimension 0 to 10'"
       />

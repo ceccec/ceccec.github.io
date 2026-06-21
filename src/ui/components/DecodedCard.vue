@@ -2,7 +2,7 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — the shared decode card, now an interactive 10D widget
 const ICHING_MASK = { hexagram: 19, glyph: '☵', lower: '☱', upper: '☵', color: '#0F00FF' } as const
 import { computed, ref } from 'vue'
-import { useLocale, useAnimationEngine, dims as dimsAt, seedFromText } from '../lib'
+import { useLocale, useAnimationEngine, dims as dimsAt, seedFromText, DIMENSION_NAMES, GOLDEN_ANGLE } from '../lib'
 
 // The shared renderer for a decoded-knowledge fold: a verified statement, the fold's data list, and the honest
 // boundary (documented kept, legend flagged). Every domain fold has the same { statement, items, boundary }
@@ -25,7 +25,8 @@ const boundaryLabel = computed(() => (bg.value ? 'Граница' : 'Boundary'))
 // content-address: this card's own text seeds its hue and point-count, so each card has its own 10D motion
 const seed = seedFromText(`${props.eyebrow}|${props.statement}`)
 const baseHue = seed % 360
-const points = 6 + (seed % 4) // 6–9 points per ring
+const loops = DIMENSION_NAMES.filter((n) => n.startsWith('loop')).length // 4 homology loops, computed from the model
+const points = DIMENSION_NAMES.length - loops + (seed % loops) // appearance axes + a content-addressed 0..loops (not hardcoded)
 const bgCanvas = ref<HTMLCanvasElement | null>(null)
 const hover = ref(false)
 
@@ -45,11 +46,11 @@ function draw(time: number) {
   const breath = 0.9 + 0.1 * Math.max(0, Math.min(1, (dim.breath - 0.85) / 0.15))
   const amp = hover.value ? 1 : 0.5 // hover intensifies the field
   const R = Math.min(w, h) * 0.4
-  const hue = (baseHue + dim.hueShift * 120) % 360
+  const hue = (baseHue + dim.hueShift) % 360 // dims.hueShift is already degrees — the computed colour
   for (let ring = 0; ring < 2; ring += 1) {
     const dir = ring === 0 ? 1 : -1 // the two rings counter-rotate
     const rr = R * (ring === 0 ? 0.55 : 1) * breath
-    ctx.strokeStyle = `hsla(${(hue + ring * 40) % 360}, 64%, 60%, ${0.05 * amp})`
+    ctx.strokeStyle = `hsla(${(hue + ring * GOLDEN_ANGLE) % 360}, 64%, 60%, ${0.05 * amp})`
     ctx.lineWidth = 1
     ctx.beginPath()
     ctx.arc(cx, cy, rr, 0, Math.PI * 2)
@@ -59,7 +60,7 @@ function draw(time: number) {
       const rk = rr * (1 + 0.12 * Math.sin(a * 2 + time * 0.0004 * (1 + dim.loopA1))) // 4D fold wobble (loopA1)
       const x = cx + Math.cos(a) * rk
       const y = cy + Math.sin(a) * rk
-      ctx.fillStyle = `hsla(${(hue + k * 12) % 360}, 70%, 62%, ${0.18 * amp})`
+      ctx.fillStyle = `hsla(${(hue + k * GOLDEN_ANGLE) % 360}, 70%, 62%, ${0.18 * amp})`
       ctx.beginPath()
       ctx.arc(x, y, 2.2 * (hover.value ? 1.4 : 1), 0, Math.PI * 2)
       ctx.fill()
