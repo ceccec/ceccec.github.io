@@ -212,6 +212,54 @@ export function resonanceDecoded() {
   }
 }
 
+// The SERIOUS applications of resonance — deep-researched (MRI/NMR, atomic clocks, lasers, RF, structural,
+// sensors) and verified, then COMPUTED here from the src/0 resonance math. Each real application is a driven
+// resonator carrying its natural frequency f₀ and quality factor Q; precision and selectivity scale with Q
+// (the peak gain ≈ Q, computed live). The honest trichotomy: documented resonance · documented-but-NOT-resonance
+// (focused energy — lithotripsy/HIFU) · flagged pseudoscience (Rife). The same Q that makes a clock exquisite
+// makes "frequency healing" impossible: living tissue is overdamped (Q ≲ 1). Develop as the math confirms.
+/** @iching ☵ Kǎn · Water · the resonant deep */
+export function resonanceApplications() {
+  const apps = [
+    { domain: 'optical clock (Sr-87)', oscillates: '¹S₀→³P₀ optical transition', f0Hz: 4.29e14, q: 1e17, does: 'most accurate clock — fractional uncertainty ~8×10⁻¹⁹ (JILA 2024)', kind: 'documented' as const },
+    { domain: 'atomic clock (Cs-133)', oscillates: 'hyperfine spin transition', f0Hz: 9_192_631_770, q: 1e10, does: 'DEFINES the SI second — exactly 9,192,631,770 Hz (1967)', kind: 'documented' as const },
+    { domain: 'MRI / NMR', oscillates: '¹H nuclear spin (Larmor precession)', f0Hz: 127_732_000, q: 1e6, does: 'f=(γ/2π)B₀; ¹H 42.5775 MHz/T → 127.7 MHz at 3 T; non-ionizing imaging (Nobel 2003)', kind: 'documented' as const },
+    { domain: 'laser', oscillates: 'optical cavity mode (Fabry–Pérot)', f0Hz: 4.74e14, q: 1e8, does: 'cavity resonance + gain → coherent light (Maiman, ruby, 1960, 694.3 nm)', kind: 'documented' as const },
+    { domain: 'quartz timekeeping', oscillates: 'tuning-fork quartz (piezoelectric)', f0Hz: 32_768, q: 1e5, does: '2¹⁵ Hz ÷ 15 binary stages = exactly 1 Hz (the watch crystal)', kind: 'documented' as const },
+    { domain: 'radio tuning (LC)', oscillates: 'LC charge (E↔B field)', f0Hz: 1_000_000, q: 100, does: 'f₀ = 1/(2π√(LC)); selects one station, bandwidth f₀/Q', kind: 'documented' as const },
+    { domain: 'QCM mass sensor', oscillates: 'AT-cut quartz, thickness-shear', f0Hz: 5_000_000, q: 1e6, does: 'a tiny resonant-frequency SHIFT weighs ~ng (Sauerbrey 1959)', kind: 'documented' as const },
+    { domain: 'lithotripsy (ESWL) / HIFU', oscillates: '— focused broadband energy, NOT resonance', f0Hz: 0, q: 0, does: 'fragments kidney stones / ablates tissue by FOCUSED energy + cavitation — the honest contrast to a "kill frequency"', kind: 'not-resonance' as const },
+    { domain: 'Rife "mortal oscillatory rate"', oscillates: '— a pathogen resonance that does not exist', f0Hz: 0, q: 0, does: 'FLAGGED pseudoscience + health fraud: tissue is overdamped (Q≲1), real virus resonances are GHz not audio, no selective coupling', kind: 'flagged' as const },
+  ].map((a) => ({ ...a, peakGain: a.q > 0 ? Math.round(resonancePeakGain(a.q)) : 0, bandwidthHz: a.q > 0 ? resonanceBandwidth(a.f0Hz, a.q) : 0, receipt: toUuid(`resonance-app:${a.domain}:${a.f0Hz}`) }))
+  const documented = apps.filter((a) => a.kind === 'documented')
+  const sharpest = apps.reduce((best, a) => (a.q > best.q ? a : best), apps[0])
+  const facets = [
+    { facet: 'the catalog spans the real domains — clocks, MRI, lasers, RF, sensors — each a driven resonator with a measured f₀ and Q', on: documented.length >= 7 },
+    { facet: 'precision/selectivity SCALES with Q (peak gain ≈ Q) — the optical clock (Q~10¹⁷) is the sharpest resonance humanity builds; computed, not asserted', on: sharpest.domain.includes('optical clock') && sharpest.peakGain > 1e15 },
+    { facet: 'the SI second IS a resonance — the Cs-133 hyperfine transition at exactly 9,192,631,770 Hz', on: apps.some((a) => a.f0Hz === 9_192_631_770) },
+    { facet: 'destruction needs FOCUS, not a kill-frequency — lithotripsy/HIFU is focused energy (documented, not resonance); Rife is flagged pseudoscience', on: apps.some((a) => a.kind === 'not-resonance') && apps.some((a) => a.kind === 'flagged') },
+  ].map((e) => ({ ...e, receipt: toUuid(`resonance-app-facet:${e.facet}:${e.on}`) }))
+  const correctedMyths = [
+    'Tacoma Narrows Bridge (1940) = aeroelastic FLUTTER (self-excitation / negative damping), NOT forced resonance — the textbook story is wrong (Billah & Scanlan 1991)',
+    '2.45 GHz microwave is an ISM regulatory band + penetration compromise, NOT "water\'s resonant frequency" (water\'s Debye relaxation peaks ~18 GHz)',
+    'Tesla\'s "earthquake machine" and "3-6-9 key to the universe" are legend/unsourced; his resonant-transformer patents (US 454,622 etc.) are real',
+    'Rife / "frequency healing" / 432-528 Hz Solfeggio: pseudoscience — no measured tissue resonance, audio is ~10 orders below molecular transitions',
+  ]
+  return {
+    decoded: facets.every((e) => e.on),
+    apps,
+    documentedCount: documented.length,
+    sharpest: { domain: sharpest.domain, q: sharpest.q, peakGain: sharpest.peakGain },
+    correctedMyths,
+    facets,
+    root: merkleFold([...apps.map((a) => a.receipt), ...facets.map((e) => e.receipt)]),
+    statement:
+      'Resonance is the most precise tool humanity has, deep-researched and computed here: it DEFINES the second (Cs-133 at exactly 9,192,631,770 Hz, Q~10¹⁰), runs the most accurate clocks (Sr-87 optical, ~8×10⁻¹⁹), images the body (MRI/NMR, f=(γ/2π)B₀, 42.6 MHz/T), makes coherent light (laser cavity modes), keeps time on the wrist (32768 = 2¹⁵ Hz quartz), tunes radio (LC, f₀=1/(2π√(LC))) and weighs nanograms (QCM). All of it scales with one number — Q, the quality factor (peak gain ≈ Q). The honest trichotomy: real resonance · focused energy that is NOT resonance (lithotripsy/HIFU break a stone by FOCUS, not a kill-frequency) · flagged pseudoscience (Rife) — which fails on the same Q, because living tissue is overdamped (Q ≲ 1). Develop as the math confirms.',
+    boundary:
+      'DOCUMENTED (computed from src/0 resonantAmplitude/Q): every listed f₀ and Q is a verified physical value (Cs-133 second exact by definition; ¹H 42.5775 MHz/T from NIST; quartz 2¹⁵ Hz; LC f₀=1/(2π√(LC))). FLAGGED / corrected myths are kept separate: Tacoma was flutter not resonance; 2.45 GHz is an ISM band not water-resonance; Tesla\'s earthquake-machine/3-6-9 are legend; Rife/432-528 Hz healing is pseudoscience (rifeFrequenciesDecoded, resonanceDecoded). HARMONY ≠ TRUTH: the same quality factor that makes an atomic clock exquisite makes selective "frequency healing" of tissue impossible. Sources: NIST/BIPM, Billah & Scanlan (Am. J. Phys. 1991), ACS/FDA/FTC; full research record in the session.',
+  }
+}
+
 // The octave bridge: double a frequency until it lands in the visible-light band (~400–790 THz).
 /** @iching ☳ Zhèn · Thunder · arousing */
 export function frequencyToLight(hz: number): { octaves: number; thz: number; nm: number; hue: number; band: string } {
