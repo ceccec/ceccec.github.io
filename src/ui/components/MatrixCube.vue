@@ -1,23 +1,25 @@
 <script setup lang="ts">
-// ☶ Gèn · Mountain · stillness · upper·yang · shrink — the 1 MB knowledge matrix, manifested as a living cube/sphere
+// ☶ Gèn · Mountain · stillness · upper·yang · shrink — the 1 MB knowledge matrix, manifested as the platonic
+// solids in motion whose swept boundary IS the sphere.
 const ICHING_MASK = { hexagram: 52, glyph: '☶', lo: '☶', up: '☶', color: '#33FF99', name: 'MatrixCube' }
 import { computed, ref } from 'vue'
 import { useLocale, useLayers, useAnimationEngine } from '../lib'
 import { buildMatrix, matrixIsTenBitMByteSixtyFour, dims as dimsAt, rot2 } from '../lib'
 
-// The matrix made visible — the manifestation that proves the structure exists. 2^20 bytes = 64 files × 16
-// types × 1 KiB = a 10-bit content-address (6 bits the file/hexagram, 4 the type). The 64 files are the 4×4×4
-// cube cells; they breathe between a cube and a sphere (the cube/sphere matrix), and the dial subdivides each
-// cell into its 16 types — 64 → 256 → 1024, all scales. The motion IS the ten dimensions (dims): the six
-// appearance axes (spread · depthFade · hueShift · twist · shrink · breath) and the four homology loops. A new
-// exact structure, not a faked one: 4³ = 64 is exact, the address is exact; the cells INDEX the sciences, the
-// geometry does not fake their constants. Computed, deterministic, ≤1 MB of seeds recomputed live.
+// The matrix made visible. 2^20 bytes = 64 files × 16 types × 1 KiB = a 10-bit content-address (6 bits the
+// file/hexagram, 4 the type). The 64 files are the 4×4×4 cube; the dial subdivides each cell into its 16 types
+// — 64 → 256 → 1024, all scales. The SPHERE is not a shape we morph to: it is the BOUNDARY created by the
+// motion of the platonic solids. The cube and its merkaba (two tetrahedra on the 8 corners) rotate through the
+// ten dimensions (dims: 6 appearance axes + 4 homology loops); every vertex sits at the circumradius, so as the
+// solids turn their vertices sweep the circumsphere — the sphere emerges from the motion. Exact geometry (the
+// circumsphere is the orbit-closure of a vertex under rotation); the cells INDEX the sciences, they do not fake
+// their constants. Computed, deterministic, ≤1 MB of seeds recomputed live — the UI is the proof of existence.
 const matrix = buildMatrix()
 const law = matrixIsTenBitMByteSixtyFour(matrix) // files 64, types 1024, bytes 2^20 — the one source
 const SIDE = 4 // 4³ = 64
 const { bg } = useLocale()
 const canvas = ref<HTMLCanvasElement | null>(null)
-const { depth } = useLayers(3) // 0..10 — the scale dial: how deep into the 16-type subdivision
+const { depth } = useLayers(3) // 0..10 — the scale dial into the 16-type subdivision
 const subdiv = computed(() => (depth.value < 4 ? 0 : depth.value < 8 ? 1 : 2)) // 0:64 · 1:256 · 2:1024
 const depthT = computed(() => depth.value / 10)
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n))
@@ -28,13 +30,13 @@ for (let i = 0; i < SIDE; i += 1) for (let j = 0; j < SIDE; j += 1) for (let k =
   const idx = i * 16 + j * 4 + k // the 6-bit file address (upper trigram · lower trigram)
   cells.push({ i, j, k, idx, hue: (idx * 137.508) % 360 }) // golden-angle hue by content-address
 }
-const span = (n: number) => ((n - (SIDE - 1) / 2) / ((SIDE - 1) / 2)) * 1.5 // cube coord, centred [-1.5, 1.5]
-function spherePoint(idx: number) {
-  const n = SIDE * SIDE * SIDE
-  const phi = Math.acos(1 - (2 * (idx + 0.5)) / n)
-  const theta = Math.PI * (1 + Math.sqrt(5)) * idx // Fibonacci sphere
-  return { x: 1.65 * Math.sin(phi) * Math.cos(theta), y: 1.65 * Math.sin(phi) * Math.sin(theta), z: 1.65 * Math.cos(phi) }
-}
+const span = (n: number) => (n / (SIDE - 1)) * 2 - 1 // 0..3 → -1..1 (cube half-edge 1)
+const RC = Math.sqrt(3) // circumradius of the unit cube — the radius its vertices sweep
+// the two tetrahedra of the merkaba (stella octangula) = the cube's 8 corners split by parity
+const TETRA_A = [0, 3, 5, 6]
+const TETRA_B = [1, 2, 4, 7]
+const tetraEdges = (t: number[]) => [[t[0], t[1]], [t[0], t[2]], [t[0], t[3]], [t[1], t[2]], [t[1], t[3]], [t[2], t[3]]]
+const CUBE_EDGES = [[0, 1], [0, 2], [0, 4], [1, 3], [1, 5], [2, 3], [2, 6], [3, 7], [4, 5], [4, 6], [5, 7], [6, 7]]
 
 function draw(time: number) {
   const el = canvas.value
@@ -46,14 +48,13 @@ function draw(time: number) {
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
   const cy = h / 2
-  const scale = Math.min(w, h) / 3.1
-  // The ten dimensions drive the motion (a slow ~90s phase samples dims(p)); cube ⇄ sphere is the breath.
+  const scale = Math.min(w, h) / 3.4
+  // the ten dimensions drive the motion (a slow ~90s phase samples dims(p))
   const p = (((time * 0.000011) % 1) + 1) % 1
   const dim = dimsAt(p)
-  const morph = (Math.sin(time * 0.00017) + 1) / 2 // 0 = cube, 1 = sphere
-  const ay = time * 0.00025 * (1 + 0.6 * dim.twist) // 3D spin breathes with d.twist
-  const aw = time * 0.00015 * (1 + 0.6 * dim.loopA1) // 4D fold rate from homology loop A1
-  const breath = 0.9 + 0.18 * clamp01((dim.breath - 0.85) / 0.15) // gentle pulse from d.breath
+  const ay = time * 0.00026 * (1 + 0.6 * dim.twist) // primary spin breathes with d.twist
+  const aw = time * 0.00016 * (1 + 0.6 * dim.loopA1) // 4D fold rate from homology loop A1
+  const breath = 0.9 + 0.18 * clamp01((dim.breath - 0.85) / 0.15)
 
   const project = (qx: number, qy: number, qz: number) => {
     let x = qx
@@ -68,51 +69,56 @@ function draw(time: number) {
     const dpt = 1 / (3 - z)
     return { px: cx + x * scale * dpt * hyper * breath, py: cy + qy * scale * dpt * hyper * breath, dpt }
   }
-
-  // the cube/sphere frame: 8 corners (cube ⇄ their sphere projection), 12 edges — so the morph reads as a cube
-  // breathing into a sphere, not a scatter. Each corner lerps cube→sphere by the same morph as the cells.
-  const corners = []
-  for (let a = 0; a < 8; a += 1) {
-    const cxp = a & 1 ? 1.5 : -1.5
-    const cyp = a & 2 ? 1.5 : -1.5
-    const czp = a & 4 ? 1.5 : -1.5
-    const len = Math.sqrt(cxp * cxp + cyp * cyp + czp * czp)
-    const sx = (cxp / len) * 1.65
-    const sy = (cyp / len) * 1.65
-    const sz = (czp / len) * 1.65
-    corners.push(project(cxp + (sx - cxp) * morph, cyp + (sy - cyp) * morph, czp + (sz - czp) * morph))
-  }
-  const edges = [[0, 1], [0, 2], [0, 4], [1, 3], [1, 5], [2, 3], [2, 6], [3, 7], [4, 5], [4, 6], [5, 7], [6, 7]]
-  ctx.strokeStyle = `hsla(${(dim.hueShift * 360) % 360}, 60%, 58%, 0.28)`
-  ctx.lineWidth = 1
-  for (const [a, b] of edges) {
+  const stroke = (pts: { px: number; py: number }[]) => {
     ctx.beginPath()
-    ctx.moveTo(corners[a].px, corners[a].py)
-    ctx.lineTo(corners[b].px, corners[b].py)
+    pts.forEach((pt, n) => (n ? ctx.lineTo(pt.px, pt.py) : ctx.moveTo(pt.px, pt.py)))
     ctx.stroke()
   }
 
-  const reps = saveEnergy.value ? 1 : subdiv.value === 0 ? 1 : subdiv.value === 1 ? 4 : 16 // all scales
+  // THE SWEPT BOUNDARY — the circumsphere the rotating vertices trace, drawn as a faint lat/long wireframe at RC.
+  // It is the boundary the motion creates, not a separate shape; it turns with the same rotation as the solids.
+  const spherePt = (phi: number, theta: number) =>
+    project(RC * Math.cos(phi) * Math.cos(theta), RC * Math.sin(phi), RC * Math.cos(phi) * Math.sin(theta))
+  ctx.strokeStyle = `hsla(${(dim.hueShift * 360) % 360}, 52%, 62%, 0.14)`
+  ctx.lineWidth = 1
+  const seg = saveEnergy.value ? 18 : 30
+  for (let li = -2; li <= 2; li += 1) {
+    const phi = li * 0.5
+    stroke(Array.from({ length: seg + 1 }, (_, t) => spherePt(phi, (t / seg) * Math.PI * 2)))
+  }
+  for (let lo = 0; lo < 6; lo += 1) {
+    const th = (lo / 6) * Math.PI
+    stroke(Array.from({ length: seg + 1 }, (_, t) => spherePt(-Math.PI / 2 + (t / seg) * Math.PI, th)))
+  }
+
+  // THE PLATONIC SOLIDS IN MOTION — the cube (12 edges) and its merkaba (two tetrahedra on the 8 corners). Their
+  // vertices ride at RC, so the wireframe above is exactly the surface they sweep.
+  const corner = (a: number) => project((a & 1 ? 1 : -1), (a & 2 ? 1 : -1), (a & 4 ? 1 : -1))
+  const cpos = Array.from({ length: 8 }, (_, a) => corner(a))
+  ctx.strokeStyle = 'hsla(210, 60%, 60%, 0.3)'
+  for (const [a, b] of CUBE_EDGES) stroke([cpos[a], cpos[b]])
+  ctx.strokeStyle = `hsla(${(40 + dim.hueShift * 80) % 360}, 75%, 60%, 0.42)`
+  ctx.lineWidth = 1.3
+  for (const [a, b] of [...tetraEdges(TETRA_A), ...tetraEdges(TETRA_B)]) stroke([cpos[a], cpos[b]])
+  ctx.lineWidth = 1
+
+  // THE CELLS — the 64 → 1024 matrix cells inside the solid (no morph; they ride the same rotation).
+  const reps = saveEnergy.value ? 1 : subdiv.value === 0 ? 1 : subdiv.value === 1 ? 4 : 16
   const pts: { px: number; py: number; dpt: number; hue: number }[] = []
   for (const c of cells) {
-    const sp = spherePoint(c.idx)
-    const bx = span(c.i) + (sp.x - span(c.i)) * morph
-    const by = span(c.j) + (sp.y - span(c.j)) * morph
-    const bz = span(c.k) + (sp.z - span(c.k)) * morph
+    const bx = span(c.i)
+    const by = span(c.j)
+    const bz = span(c.k)
     for (let t = 0; t < reps; t += 1) {
-      const o = reps === 1 ? 0 : 0.3
-      const ox = reps === 1 ? 0 : ((t & 1) - 0.5) * o
-      const oy = reps === 1 ? 0 : (((t >> 1) & 1) - 0.5) * o
-      const oz = reps === 1 ? 0 : (((t >> 2) & 1) - 0.5) * o
-      const pr = project(bx + ox, by + oy, bz + oz)
+      const o = reps === 1 ? 0 : 0.22
+      const pr = project(bx + ((t & 1) - 0.5) * o, by + (((t >> 1) & 1) - 0.5) * o, bz + (((t >> 2) & 1) - 0.5) * o)
       pts.push({ ...pr, hue: (c.hue + dim.hueShift * 360 + t * 6) % 360 })
     }
   }
-  pts.sort((a, b) => a.dpt - b.dpt) // painter order
+  pts.sort((a, b) => a.dpt - b.dpt)
   for (const pt of pts) {
     const sz = Math.max(2.5, (reps > 4 ? 5 : 12) * pt.dpt * (0.7 + 0.3 * clamp01(dim.shrink)))
-    const light = 40 + 28 * pt.dpt * clamp01(dim.depthFade)
-    ctx.fillStyle = `hsla(${pt.hue}, 72%, ${light}%, ${0.4 + 0.5 * pt.dpt})`
+    ctx.fillStyle = `hsla(${pt.hue}, 72%, ${40 + 28 * pt.dpt * clamp01(dim.depthFade)}%, ${0.4 + 0.5 * pt.dpt})`
     ctx.beginPath()
     ctx.arc(pt.px, pt.py, sz, 0, Math.PI * 2)
     ctx.fill()
@@ -132,8 +138,8 @@ const { saveEnergy } = useAnimationEngine(canvas, draw, sizeCanvas)
 const cellCount = computed(() => (subdiv.value === 0 ? law.files : subdiv.value === 1 ? law.files * 4 : law.types))
 const caption = computed(() =>
   bg.value
-    ? `1 MB матрица: 2²⁰ байта = ${law.files} файла × 16 типа × 1 KiB = ${law.types} клетки, 10-битов адрес (6 файл/хексаграма + 4 тип). Кубът диша към сфера през 10-те измерения; дискът разделя всяка клетка на 16 — всички мащаби. Сега показани ${cellCount.value}.`
-    : `1 MB matrix: 2²⁰ bytes = ${law.files} files × 16 types × 1 KiB = ${law.types} cells, a 10-bit address (6 file/hexagram + 4 type). The cube breathes to a sphere through the ten dimensions; the dial subdivides each cell into its 16 — all scales. Showing ${cellCount.value} now.`,
+    ? `1 MB матрица: 2²⁰ байта = ${law.files} файла × 16 типа × 1 KiB = ${law.types} клетки (10-битов адрес). Сферата НЕ е форма, към която сгъваме — тя е границата, която създава движението на платоновите тела: кубът и неговата меркаба се въртят, върховете им (на радиуса на описаната сфера) помитат сферата. Показани ${cellCount.value}.`
+    : `1 MB matrix: 2²⁰ bytes = ${law.files} files × 16 types × 1 KiB = ${law.types} cells (10-bit address). The sphere is NOT a shape we morph to — it is the boundary created by the motion of the platonic solids: the cube and its merkaba rotate, and their vertices (at the circumradius) sweep the circumsphere. Showing ${cellCount.value}.`,
 )
 </script>
 
@@ -144,7 +150,7 @@ const caption = computed(() =>
     :data-hexagram="ICHING_MASK.hexagram"
     :data-trigram="ICHING_MASK.glyph"
   >
-    <p class="eyebrow">{{ bg ? 'куб ⇄ сфера · 64 → 1024 · 10 измерения' : 'cube ⇄ sphere · 64 → 1024 · ten dimensions' }}</p>
+    <p class="eyebrow">{{ bg ? 'платоновите тела в движение · сферата е границата · 64 → 1024' : 'platonic solids in motion · the sphere is the boundary · 64 → 1024' }}</p>
     <div class="mcube__depth" role="group" :aria-label="bg ? 'мащаб' : 'scale'">
       <span class="mcube__readout">{{ cellCount }}</span>
       <input
@@ -154,7 +160,7 @@ const caption = computed(() =>
         :aria-label="bg ? 'мащаб 0 до 10' : 'scale 0 to 10'"
       />
     </div>
-    <canvas role="img" aria-label="knowledge matrix cube sphere 10D visualisation" ref="canvas" class="mcube__canvas" />
+    <canvas role="img" aria-label="platonic solids sweeping the sphere boundary, 10D matrix" ref="canvas" class="mcube__canvas" />
     <p class="mcube__caption">{{ caption }}</p>
   </section>
 </template>

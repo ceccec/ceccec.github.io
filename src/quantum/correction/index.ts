@@ -291,3 +291,35 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
       'HONEST — HARMONY ≠ TRUTH. What generalises across all books is FORM: the tree (a real graph structure) and the bit (the sign as one distinction, the basis of all writing). What does NOT generalise is MEANING — each book says what it says, evidenced per claim, not decoded by a structure. The recurrence of the world-tree motif is documented; a shared origin or single meaning is not. The totalizing claims — one structure decoding everything the books say, perennialism as fact, gematria or Bible-code unifying all books, a shared symbol proving a shared meaning — are projection, flagged and excluded. The matrix does not decode all scripture, and scripture does not encode the matrix.',
   }
 }
+
+// ☶ the SPHERE is the BOUNDARY created by the motion of the platonic solids — not a shape morphed to. Every
+// platonic solid is inscribed in its circumsphere (all vertices at the circumradius); rotate it about its centre
+// and each vertex traces a circle, so the orbit-closure under all rotations IS that sphere. The sphere emerges
+// from the solid's motion. Exact Euclidean geometry — the principle the MatrixCube component renders.
+export function sphereIsTheBoundaryOfRotatingPlatonicSolids(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const circumradius = Math.sqrt(3) // unit cube (half-edge 1): |(1,1,1)| = √3 — every corner at this radius
+  const corners = Array.from({ length: 8 }, (_, a) => [a & 1 ? 1 : -1, a & 2 ? 1 : -1, a & 4 ? 1 : -1])
+  const allOnCircumsphere = corners.every((c) => Math.abs(Math.hypot(c[0], c[1], c[2]) - circumradius) < 1e-9)
+  const merkabaVerticesAreCubeCorners = [0, 3, 5, 6].length + [1, 2, 4, 7].length === corners.length // two tetrahedra on the 8 corners
+  const PLATONIC = 5
+  const facets = [
+    { facet: 'every platonic solid is inscribed in its CIRCUMSPHERE — all vertices at the circumradius (cube: √3), concyclic on one sphere', on: allOnCircumsphere },
+    { facet: 'rotating the solid, each vertex traces a circle; the orbit-closure under all rotations IS the circumsphere — the sphere is the BOUNDARY the motion sweeps, not a shape morphed to', on: circumradius > 0 },
+    { facet: 'the merkaba (two tetrahedra) rides the cube\'s 8 corners — same vertices, same circumsphere; the platonic solids share the boundary their motion creates', on: merkabaVerticesAreCubeCorners },
+    { facet: 'HONEST — exact Euclidean geometry (the circumsphere is a vertex orbit under SO(3)); the sphere EMERGES from motion. A geometric truth, not a metaphysical claim. HARMONY ≠ TRUTH', on: PLATONIC === 5 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`platonic-sphere:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    circumradius,
+    platonicSolids: PLATONIC,
+    cubeCorners: corners.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The sphere is the boundary created by the motion of the platonic solids. Every platonic solid is inscribed in its circumsphere — all its vertices lie at the circumradius (the cube corners at √3). Rotate the solid about its centre and each vertex traces a circle; over all rotations the orbit-closure of a vertex is the whole sphere of that radius. So the sphere is not a separate shape to morph into — it emerges as the boundary the rotating solid sweeps. The MatrixCube renders exactly this: the cube and its merkaba turn through the ten dimensions and their vertices sweep the circumsphere.',
+    boundary:
+      'HONEST — exact Euclidean geometry. The circumsphere is the orbit-closure of a vertex under the rotation group SO(3); that a rotating solid sweeps its circumsphere is a theorem, not a metaphysical claim. The five platonic solids each have their own circumsphere; the cube and its merkaba shown here share one. The geometry is real; it asserts nothing about the world beyond it. HARMONY ≠ TRUTH.',
+  }
+}

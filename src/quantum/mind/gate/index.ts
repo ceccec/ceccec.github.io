@@ -37,7 +37,7 @@ export function greenBuildGate(matrix: MindMatrix = buildMatrix()) {
 // fold → home folder; the commit shell (precommit-iching.mjs) and the weave (deploy) BOTH read it, so the law has
 // a single source, not two that drift. Add a fold here when it earns a domain; the gate then enforces its home.
 export const FOLD_HOMES: Record<string, readonly string[]> = {
-  'src/quantum/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning'],
+  'src/quantum/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids'],
   'src/quantum/hash': ['quantumHalvesTheHashDoublingRestoresIt'],
 }
 
