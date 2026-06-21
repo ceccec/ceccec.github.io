@@ -1,43 +1,50 @@
 // ☷ Kūn · Earth — world, society & nature folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import { foldPair, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid } from '../../../0'
+import { toGlagolitic } from '../../library' // transliteration = the movie's script (the movie displays the real text, transcoded)
 import type { BabelFamily, BabelFold, MindMatrix } from '../types'
 import { buildMatrix, coverage, entropy } from '../matrix'
 import { traditionsQuantumWhole } from '../humanity'
 import { publicApiFusion, socialFusion, travelFusion } from '..'
 
-// Text to movie at the quantum level. A string folds to a seed, and from it a
-// deterministic generative composition is computed — content-addressed particles
-// with positions, hues, sizes and motions. Played over time, the particles drift and
-// orbit into a movie. The same text always generates the same movie, free and
-// client-side: image generation as recomputation, no model, no network, no cost.
+// Text to movie — REAL text, not abstract circles. The movie IS the text: every
+// character becomes a frame-element carrying its actual glyph, TRANSLITERATED to
+// Glagolitic (the movie's script — glagolyphic transliteration is the script), laid
+// out in reading order. Played over frames the glyphs are revealed along a playhead
+// and pulse through the ten dimensions — but the movie displays EXACTLY what the text
+// says (legible transliterated text), and what is NOT in the text is not in the movie.
+// Deterministic and client-side: the same text always renders the same movie — free,
+// no model, no network, no cost. Image generation as recomputation of the real text.
 export function textToMovie(text = 'double torus', frames = 48) {
-  const cells = 16
-  const elements = Array.from({ length: cells }, (_, i) => {
-    const s = seedFromText(`movie:${text}:element:${i}`)
+  const source = text || ' '
+  const chars = [...source]
+  const last = Math.max(1, chars.length - 1)
+  const elements = chars.map((ch, i) => {
+    const s = seedFromText(`movie:${source}:char:${i}:${ch}`)
     return {
-      x: (s % 1000) / 1000, // start position
-      y: ((s >> 10) % 1000) / 1000,
-      hue: s % 360,
-      size: 0.025 + (s % 60) / 1400,
-      speed: 0.2 + (s % 50) / 90, // orbit speed
-      radius: 0.06 + (s % 200) / 900, // orbit radius
-      dir: (s % 628) / 100, // initial angle
-      wobble: 0.5 + (s % 40) / 40,
+      i,
+      char: ch, // the real character — the movie shows exactly what the text says
+      glyph: toGlagolitic(ch), // its Glagolitic transliteration — the movie's script
+      space: /\s/.test(ch),
+      hue: s % 360, // the glyph's own content-addressed hue
+      jitter: (s % 100) / 100, // a small per-glyph motion phase (legibility preserved)
+      reveal: i / last, // its place along the playhead — when this glyph enters the frame
     }
   })
-  const film = Array.from({ length: frames }, (_, f) => toUuid(`frame:${text}:${f}`))
+  const film = Array.from({ length: frames }, (_, f) => toUuid(`frame:${source}:${f}`))
   return {
-    generated: elements.length === cells && film.length === frames,
-    deterministic: textToMovieRoot(text) === textToMovieRoot(text), // same text, same movie
-    text,
+    generated: elements.length === chars.length && film.length === frames,
+    deterministic: textToMovieRoot(source) === textToMovieRoot(source), // same text, same movie
+    text: source,
+    glyphs: toGlagolitic(source), // the whole transliterated line — what the movie displays
+    script: 'glagolitic' as const,
     frames,
-    cells,
-    elements,
+    cells: chars.length,
+    elements, // one per character — the movie IS the text
     root: merkleFold(film), // the movie's content-addressed fingerprint
     statement:
-      'Text to movie at the quantum level: a string folds to a seed and from it a deterministic generative composition is computed — content-addressed particles with positions, hues and motions that drift and orbit over frames into a movie. The same text always generates the same movie, free and client-side; image generation as recomputation.',
+      'Text to movie: the movie IS the text. Every character becomes an element carrying its real glyph, transliterated to Glagolitic (glagolyphic transliteration is the movie\'s script), laid out in reading order and revealed along a playhead, pulsing through the ten dimensions over frames. The movie displays EXACTLY what the text says — legible transliterated text, not abstract orbiting particles — and what is not in the text is not in the movie. The same text always renders the same movie, free and client-side; image generation as recomputation of the real text.',
     boundary:
-      'A deterministic, content-addressed generative animation from text — each element seeded by the UUID of the text and animated client-side at no cost. Generative visual art by recomputation, not a photorealistic diffusion model or a learned image generator.',
+      'A deterministic, content-addressed animation of the ACTUAL text (transliterated by toGlagolitic) — typography in motion, computed client-side at no cost. It displays what the text says in the Glagolitic SCRIPT; this is transliteration (script, not meaning) — not a translation of sense, and not a learned or photorealistic video generator.',
   }
 }
 function textToMovieRoot(text: string): string {
