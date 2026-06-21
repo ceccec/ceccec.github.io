@@ -9,7 +9,7 @@ import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358,
 // (three powers, five elements, eight trigrams), on the chessboard (minor piece,
 // rook, the 8 x 8 board), and — mapped honestly as belief frameworks, not science
 // — in the yogic chakra tradition and in Human Design.
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const domains = computed(() => {
   const yy = yinYang()
@@ -21,21 +21,22 @@ const domains = computed(() => {
   const ge = geometry358()
   const ef = emf358()
   return [
-    { key: 'yinyang', icon: '☯', title: bg.value ? 'ин-ян' : 'yin-yang', belief: false, rows: yy.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
-    { key: 'chess', icon: '♛', title: bg.value ? `шах · ${ch.squares} полета` : `chess · ${ch.squares} squares`, belief: false, rows: ch.tiers.map((tier) => ({ n: tier.tier, text: tier.where })) },
-    { key: 'computer', icon: '🖳', title: bg.value ? 'компютърен дизайн' : 'computer design', belief: false, rows: cd.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
-    { key: 'music', icon: '♫', title: bg.value ? 'музика' : 'music', belief: false, rows: mu.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
-    { key: 'geometry', icon: '△', title: bg.value ? 'геометрия' : 'geometry', belief: false, rows: ge.tiers.map((tier) => ({ n: tier.tier, text: tier.name })) },
-    { key: 'emf', icon: '⚡', title: bg.value ? 'ЕМ поле' : 'emf', belief: false, rows: ef.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
-    { key: 'chakras', icon: '🧘', title: bg.value ? 'чакри и аура' : 'chakras & aura', belief: true, rows: ck.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
-    { key: 'humandesign', icon: '⌘', title: bg.value ? 'хюман дизайн' : 'human design', belief: true, rows: hd.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'yinyang', icon: '☯', title: pick('yin-yang', 'ин-ян'), belief: false, rows: yy.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'chess', icon: '♛', title: pick(`chess · ${ch.squares} squares`, `шах · ${ch.squares} полета`), belief: false, rows: ch.tiers.map((tier) => ({ n: tier.tier, text: tier.where })) },
+    { key: 'computer', icon: '🖳', title: pick('computer design', 'компютърен дизайн'), belief: false, rows: cd.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'music', icon: '♫', title: pick('music', 'музика'), belief: false, rows: mu.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'geometry', icon: '△', title: pick('geometry', 'геометрия'), belief: false, rows: ge.tiers.map((tier) => ({ n: tier.tier, text: tier.name })) },
+    { key: 'emf', icon: '⚡', title: pick('emf', 'ЕМ поле'), belief: false, rows: ef.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'chakras', icon: '🧘', title: pick('chakras & aura', 'чакри и аура'), belief: true, rows: ck.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
+    { key: 'humandesign', icon: '⌘', title: pick('human design', 'хюман дизайн'), belief: true, rows: hd.tiers.map((tier) => ({ n: tier.tier, text: `${tier.name}: ${tier.members.join(' · ')}` })) },
   ]
 })
 const method = computed(() => design358().method)
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: '3-5-8 през областите · и метод за дизайн', method: 'И самият 3-5-8 е метод за дизайн на нови идеи:', note: 'Чакрите/аурата и хюман дизайн са духовни/вярови рамки, не наука — съответствия и учебни средства, без медицински или фактически твърдения.' }
-    : { eyebrow: '3-5-8 across domains · and a design method', method: 'And 3-5-8 is itself a method to design new ideas:', note: 'Chakras/aura and human design are spiritual / belief frameworks, not science — correspondences and teaching devices, with no medical or factual claim.' },
+  pickDeep(
+    { eyebrow: '3-5-8 across domains · and a design method', method: 'And 3-5-8 is itself a method to design new ideas:', note: 'Chakras/aura and human design are spiritual / belief frameworks, not science — correspondences and teaching devices, with no medical or factual claim.' },
+    { eyebrow: '3-5-8 през областите · и метод за дизайн', method: 'И самият 3-5-8 е метод за дизайн на нови идеи:', note: 'Чакрите/аурата и хюман дизайн са духовни/вярови рамки, не наука — съответствия и учебни средства, без медицински или фактически твърдения.' },
+  ),
 )
 </script>
 

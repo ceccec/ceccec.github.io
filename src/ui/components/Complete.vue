@@ -9,18 +9,19 @@ import { buildMatrix, complete } from '../lib'
 // make, folded into one. Shown as a checklist; the whole is complete when all
 // hold, and the open questions keep it alive.
 const data = complete(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 const bgWhat: Record<string, string> = {
   'no gaps': 'без пролуки', 'answers closed': 'отговорите затворени', 'genesis whole': 'генезисът цял',
   fusion: 'сливане', synthesis: 'синтез', equilibrium: 'равновесие', trinity: 'троица',
   school: 'училище', academy: 'академия', 'all computed': 'всичко изчислено', 'self build': 'само-изграждане',
   proof: 'доказателство', 'components shown': 'компонентите показани',
 }
-const checks = computed(() => data.checks.map((c) => ({ ...c, label: bg.value ? bgWhat[c.what] ?? c.what : c.what })))
+const checks = computed(() => data.checks.map((c) => ({ ...c, label: pick(c.what, bgWhat[c.what] ?? c.what) })))
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'завърши всичко', lead: `${data.passed}/${data.total} доказателства за завършеност — всички наведнъж.`, alive: 'И отворените въпроси го държат живо.' }
-    : { eyebrow: 'complete all', lead: `${data.passed}/${data.total} completion proofs — all at once.`, alive: 'And the open questions keep it alive.' },
+  pickDeep(
+    { eyebrow: 'complete all', lead: `${data.passed}/${data.total} completion proofs — all at once.`, alive: 'And the open questions keep it alive.' },
+    { eyebrow: 'завърши всичко', lead: `${data.passed}/${data.total} доказателства за завършеност — всички наведнъж.`, alive: 'И отворените въпроси го държат живо.' },
+  ),
 )
 </script>
 

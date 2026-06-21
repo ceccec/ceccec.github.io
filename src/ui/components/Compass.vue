@@ -5,12 +5,13 @@
 // Zero-network — the filter is client-side over the already-computed nav; no separate index, no query to a host.
 const ICHING_MASK = { hexagram: 30, glyph: '☲', lo: '☲', up: '☲', name: 'Lí', attribute: 'clinging', color: '#F00F0F' } as const
 import { ref, computed } from 'vue'
-import { siteNavigation } from '../lib'
+import { siteNavigation, useLocale } from '../lib'
 import { useData } from 'vitepress'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')
-const nav = computed(() => (bg.value ? siteNavigation().bg.nav : siteNavigation().en.nav))
+const { pick, pickDeep } = useLocale()
+const nav = computed(() => pickDeep(siteNavigation().en.nav, siteNavigation().bg.nav))
 // The Earth power (地) is the SEMANTIC eight-fold — pages by their iChingDomainMap trigram, each page once.
 // (Heaven and Human reorganise the same pages by the other two cube axes; here we navigate the meaningful one.)
 const sections = computed(() => nav.value.find((d: { text: string }) => /地/.test(d.text))?.items ?? [])
@@ -33,10 +34,10 @@ const hits = computed(() => filtered.value.reduce((n, s) => n + s.items.length, 
       class="compass__q"
       v-model="q"
       type="search"
-      :placeholder="bg ? '⌖ търси или навигирай осемкратното…' : '⌖ search or navigate the eight-fold…'"
-      :aria-label="bg ? 'търсене в портала' : 'search the portal'"
+      :placeholder="pick('⌖ search or navigate the eight-fold…', '⌖ търси или навигирай осемкратното…')"
+      :aria-label="pick('search the portal', 'търсене в портала')"
     />
-    <p class="compass__hits">{{ q ? `${hits} ${bg ? 'намерени' : 'found'}` : (bg ? 'или разгледай осемте тригарама' : 'or browse the eight trigrams') }}</p>
+    <p class="compass__hits">{{ q ? `${hits} ${pick('found', 'намерени')}` : pick('or browse the eight trigrams', 'или разгледай осемте тригарама') }}</p>
     <div class="compass__grid">
       <section v-for="s in filtered" :key="s.text" class="compass__sec">
         <h4 class="compass__sec-name">{{ s.text }}</h4>

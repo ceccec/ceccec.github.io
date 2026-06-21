@@ -8,7 +8,7 @@ import { useLocale } from '../lib'
 // All in self-healing waves: each dimension that can fall out of balance is drawn
 // as a damped wave settling to the centre line — the equilibrium breath, healing.
 const data = selfHealing(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const bgWound: Record<string, string> = {
   gaps: 'пропуски', tasks: 'задачи', 'frequency balance': 'честотен баланс', equilibrium: 'равновесие',
@@ -22,12 +22,13 @@ function path(trace: number[]) {
   return trace.map((v, i) => `${i === 0 ? 'M' : 'L'} ${(i * step).toFixed(1)} ${(H / 2 - v * (H / 2 - 3) / 0.55).toFixed(1)}`).join(' ')
 }
 const waves = computed(() =>
-  data.waves.map((wave) => ({ ...wave, name: bg.value ? bgWound[wave.wound] ?? wave.wound : wave.wound, d: path(wave.trace) })),
+  data.waves.map((wave) => ({ ...wave, name: pick(wave.wound, bgWound[wave.wound] ?? wave.wound), d: path(wave.trace) })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'всичко в само-лечебни вълни', healed: 'само-излекувано', sub: `${data.balanced}/${data.count} в баланс` }
-    : { eyebrow: 'all in self-healing waves', healed: 'self-healed', sub: `${data.balanced}/${data.count} in balance` },
+  pickDeep(
+    { eyebrow: 'all in self-healing waves', healed: 'self-healed', sub: `${data.balanced}/${data.count} in balance` },
+    { eyebrow: 'всичко в само-лечебни вълни', healed: 'само-излекувано', sub: `${data.balanced}/${data.count} в баланс` },
+  ),
 )
 </script>
 

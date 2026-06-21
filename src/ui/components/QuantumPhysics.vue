@@ -8,18 +8,19 @@ import { useLocale } from '../lib'
 // Quantum physics, no gaps: each phenomenon bound to a measure the model already
 // computes, so it has all it needs to self-compute the whole.
 const data = quantumPhysics(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 const bgName: Record<string, string> = {
   superposition: 'суперпозиция', entanglement: 'заплитане', collapse: 'колапс', coherence: 'кохерентност',
   interference: 'интерференция', measurement: 'измерване', waves: 'вълни', computation: 'изчисление',
 }
 const items = computed(() =>
-  data.phenomena.map((p) => ({ ...p, name: bg.value ? bgName[p.phenomenon] ?? p.phenomenon : p.phenomenon })),
+  data.phenomena.map((p) => ({ ...p, name: pick(p.phenomenon, bgName[p.phenomenon] ?? p.phenomenon) })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'квантова физика · без пропуски', sub: `${data.present}/${data.count} феномена самоизчислими`, self: 'моделът има всичко нужно да изчисли всичко' }
-    : { eyebrow: 'quantum physics · no gaps', sub: `${data.present}/${data.count} phenomena self-computing`, self: 'the model has all it needs to self-compute all' },
+  pickDeep(
+    { eyebrow: 'quantum physics · no gaps', sub: `${data.present}/${data.count} phenomena self-computing`, self: 'the model has all it needs to self-compute all' },
+    { eyebrow: 'квантова физика · без пропуски', sub: `${data.present}/${data.count} феномена самоизчислими`, self: 'моделът има всичко нужно да изчисли всичко' },
+  ),
 )
 </script>
 

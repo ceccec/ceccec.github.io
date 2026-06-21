@@ -10,7 +10,7 @@ import Badge from './ui/Badge'
 // The roadmaps, complete: three tracks, every milestone marked done, next, or
 // later. One source for where the portal is and where it is going.
 const data = roadmaps(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const bgTrack: Record<string, string> = { cryptography: 'криптография', learning: 'учене', journey: 'пътуване' }
 const bgStatus: Record<string, string> = { done: 'готово', next: 'следва', later: 'по-късно' }
@@ -26,18 +26,19 @@ const bgMilestone: Record<string, string> = {
 const tracks = computed(() =>
   data.tracks.map((track) => ({
     ...track,
-    name: bg.value ? bgTrack[track.track] ?? track.track : track.track,
+    name: pick(track.track, bgTrack[track.track] ?? track.track),
     milestones: track.milestones.map((entry) => ({
       ...entry,
-      title: bg.value ? bgMilestone[entry.milestone] ?? entry.milestone : entry.milestone,
-      label: bg.value ? bgStatus[entry.status] ?? entry.status : entry.status,
+      title: pick(entry.milestone, bgMilestone[entry.milestone] ?? entry.milestone),
+      label: pick(entry.status, bgStatus[entry.status] ?? entry.status),
     })),
   })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'пътни карти · цялостно', sub: `${data.done} готови · ${data.planned} планирани` }
-    : { eyebrow: 'roadmaps · complete', sub: `${data.done} done · ${data.planned} planned` },
+  pickDeep(
+    { eyebrow: 'roadmaps · complete', sub: `${data.done} done · ${data.planned} planned` },
+    { eyebrow: 'пътни карти · цялостно', sub: `${data.done} готови · ${data.planned} планирани` },
+  ),
 )
 </script>
 

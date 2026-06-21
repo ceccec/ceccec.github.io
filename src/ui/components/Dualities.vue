@@ -8,7 +8,7 @@ import { dualities } from '../lib'
 // Compare all dualities, in 3-5-8 (Fibonacci) tiers. Each pair is a real duality
 // because folding left-then-right differs from right-then-left.
 const data = dualities()
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const bgPole: Record<string, string> = {
   inner: 'вътрешен', outer: 'външен', yin: 'ин', yang: 'ян', zero: 'нула', one: 'едно',
@@ -31,11 +31,12 @@ const bgPole: Record<string, string> = {
   order: 'ред', chaos: 'хаос', read: 'чети', write: 'пиши', public: 'публично', private: 'лично',
   teacher: 'учител', student: 'ученик', past: 'минало', future: 'бъдеще', body: 'тяло', mind: 'ум',
 }
-const pole = (p: string) => (bg.value ? bgPole[p] ?? p : p)
+const pole = (p: string) => pick(p, bgPole[p] ?? p)
 const tierName = (tier: number) =>
-  bg.value
-    ? { 3: 'основни', 5: 'структурни', 8: 'изразни', 13: 'възникнали', 21: 'открити' }[tier]
-    : { 3: 'core', 5: 'structural', 8: 'expressive', 13: 'emergent', 21: 'discovered' }[tier]
+  pick(
+    { 3: 'core', 5: 'structural', 8: 'expressive', 13: 'emergent', 21: 'discovered' }[tier],
+    { 3: 'основни', 5: 'структурни', 8: 'изразни', 13: 'възникнали', 21: 'открити' }[tier],
+  )
 
 const tiers = computed(() =>
   [3, 5, 8, 13, 21].map((tier) => ({
@@ -45,9 +46,10 @@ const tiers = computed(() =>
   })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'всички дуалности · 3-5-8-13-21', lead: `${data.count} двустранни двойки в петте тиера на Фибоначи; всяка е истинска дуалност, защото редът има значение (ляво⇄дясно се различават) и се сгъва в двете посоки.` }
-    : { eyebrow: 'all dualities · 3-5-8-13-21', lead: `${data.count} two-sided pairs across the five Fibonacci tiers; each is a real duality because order matters (left⇄right differ) and it folds both ways.` },
+  pickDeep(
+    { eyebrow: 'all dualities · 3-5-8-13-21', lead: `${data.count} two-sided pairs across the five Fibonacci tiers; each is a real duality because order matters (left⇄right differ) and it folds both ways.` },
+    { eyebrow: 'всички дуалности · 3-5-8-13-21', lead: `${data.count} двустранни двойки в петте тиера на Фибоначи; всяка е истинска дуалност, защото редът има значение (ляво⇄дясно се различават) и се сгъва в двете посоки.` },
+  ),
 )
 </script>
 

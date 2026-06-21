@@ -19,9 +19,9 @@ const props = defineProps<{
   items: { label: string; detail?: string }[]
   boundary?: string
 }>()
-const { bg } = useLocale()
-const eyebrowText = computed(() => (bg.value && props.eyebrowBg ? props.eyebrowBg : props.eyebrow))
-const boundaryLabel = computed(() => (bg.value ? 'Граница' : 'Boundary'))
+const { bg, pick } = useLocale()
+const eyebrowText = computed(() => pick(props.eyebrow, props.eyebrowBg || props.eyebrow))
+const boundaryLabel = computed(() => pick('Boundary', 'Граница'))
 
 // the STATEMENT is the prompt: its own text computes its animation (textToMovie, deterministic & reproducible —
 // the animation IS the statement's signature/proof of identity). One shared engine; hover intensifies it.

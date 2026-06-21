@@ -10,7 +10,7 @@ import { buildMatrix, genesis } from '../lib'
 // sequence with 3-5-8 marked, the recurrence, the threads, and a golden spiral
 // (static SVG — no animation loop).
 const data = genesis(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 const tierSet = new Set(data.tiers)
 
 // A logarithmic (golden) spiral path: r = a * phi^(theta / (pi/2)).
@@ -40,14 +40,15 @@ const bgDomain: Record<string, { domain: string; is: string }> = {
 }
 const unfoldings = computed(() =>
   data.unfoldings.map((u) => ({
-    domain: bg.value ? bgDomain[u.domain]?.domain ?? u.domain : u.domain,
-    is: bg.value ? bgDomain[u.domain]?.is ?? u.is : u.is,
+    domain: pick(u.domain, bgDomain[u.domain]?.domain ?? u.domain),
+    is: pick(u.is, bgDomain[u.domain]?.is ?? u.is),
   })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'генезис на двойния тор', lead: 'От едно семе 1, 1 се разгръщат много области заедно — включително, но не само, генетика.', unfoldLabel: 'разгръщания от семето:' }
-    : { eyebrow: 'double-torus genesis', lead: 'From one seed 1, 1 many domains unfold together — including, but not limited to, genetics.', unfoldLabel: 'unfoldings from the seed:' },
+  pickDeep(
+    { eyebrow: 'double-torus genesis', lead: 'From one seed 1, 1 many domains unfold together — including, but not limited to, genetics.', unfoldLabel: 'unfoldings from the seed:' },
+    { eyebrow: 'генезис на двойния тор', lead: 'От едно семе 1, 1 се разгръщат много области заедно — включително, но не само, генетика.', unfoldLabel: 'разгръщания от семето:' },
+  ),
 )
 </script>
 

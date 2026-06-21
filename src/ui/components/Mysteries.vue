@@ -25,8 +25,8 @@ const bgText: Record<string, { mystery: string; proof: string }> = {
 const items = computed(() =>
   data.mysteries.map((entry) => ({
     ...entry,
-    mysteryText: bg.value ? bgText[entry.mystery]?.mystery ?? entry.mystery : entry.mystery,
-    proofText: bg.value ? bgText[entry.mystery]?.proof ?? entry.proof : entry.proof,
+    mysteryText: pick(entry.mystery, bgText[entry.mystery]?.mystery ?? entry.mystery),
+    proofText: pick(entry.proof, bgText[entry.mystery]?.proof ?? entry.proof),
   })),
 )
 const t = computed(() =>

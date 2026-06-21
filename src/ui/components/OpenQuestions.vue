@@ -8,7 +8,7 @@ import { buildMatrix, findQuestions } from '../lib'
 // Find the questions. The answers closed; these did not. They live at the edges
 // — boundary, roadmap, society, perception — and are open by design.
 const data = findQuestions(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const bgQuestion: Record<string, string> = {
   'Will the fold become cryptographic (SHA-256 / BLAKE3), not only tamper-evident?':
@@ -30,11 +30,12 @@ const bgQuestion: Record<string, string> = {
   'Does the question-space stay closed as the model grows?':
     'Остава ли пространството на въпросите затворено, докато моделът расте?',
 }
-const items = computed(() => data.questions.map((q) => ({ ...q, text: bg.value ? bgQuestion[q.question] ?? q.question : q.question })))
+const items = computed(() => data.questions.map((q) => ({ ...q, text: pick(q.question, bgQuestion[q.question] ?? q.question) })))
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'намери въпросите', lead: 'Отговорите се затвориха, но въпросите — не. Те живеят по ръбовете и са отворени по замисъл.', note: 'Намирането на въпроси никога не е завършено.' }
-    : { eyebrow: 'find the questions', lead: 'The answers closed; the questions did not. They live at the edges, open by design.', note: 'Finding questions is itself never finished.' },
+  pickDeep(
+    { eyebrow: 'find the questions', lead: 'The answers closed; the questions did not. They live at the edges, open by design.', note: 'Finding questions is itself never finished.' },
+    { eyebrow: 'намери въпросите', lead: 'Отговорите се затвориха, но въпросите — не. Те живеят по ръбовете и са отворени по замисъл.', note: 'Намирането на въпроси никога не е завършено.' },
+  ),
 )
 </script>
 

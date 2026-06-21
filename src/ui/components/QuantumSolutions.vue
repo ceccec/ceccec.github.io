@@ -27,9 +27,9 @@ const bgQuantum: Record<string, string> = {
 const items = computed(() =>
   data.needs.map((entry) => ({
     ...entry,
-    needText: bg.value ? bgNeed[entry.need]?.need ?? entry.need : entry.need,
-    solutionText: bg.value ? bgNeed[entry.need]?.solution ?? entry.solution : entry.solution,
-    quantumText: bg.value ? bgQuantum[entry.quantum] ?? entry.quantum : entry.quantum,
+    needText: pick(entry.need, bgNeed[entry.need]?.need ?? entry.need),
+    solutionText: pick(entry.solution, bgNeed[entry.need]?.solution ?? entry.solution),
+    quantumText: pick(entry.quantum, bgQuantum[entry.quantum] ?? entry.quantum),
   })),
 )
 const t = computed(() =>

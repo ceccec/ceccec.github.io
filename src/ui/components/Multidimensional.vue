@@ -11,7 +11,7 @@ import { useLocale } from '../lib'
 const data = multidimensional()
 const eq = allInEquilibrium(buildMatrix())
 const active = ref(0)
-const { bg, localize: href } = useLocale()
+const { bg, localize: href, pick, pickDeep } = useLocale()
 
 const bgDim: Record<string, string> = {
   see: 'виж', hear: 'чуй', ask: 'питай', prove: 'докажи', learn: 'учи', pattern: 'шарка', sense: 'усети', create: 'твори',
@@ -56,16 +56,18 @@ const bgItem: Record<string, { label: string; tip: string }> = {
 const dims = computed(() =>
   data.dimensions.map((d) => ({
     ...d,
-    name: bg.value ? bgDim[d.dimension] ?? d.dimension : d.dimension,
-    items: bg.value
-      ? d.items.map((item) => ({ ...item, label: bgItem[item.label]?.label ?? item.label, tip: bgItem[item.label]?.tip ?? item.tip }))
-      : d.items,
+    name: pick(d.dimension, bgDim[d.dimension] ?? d.dimension),
+    items: pickDeep(
+      d.items,
+      d.items.map((item) => ({ ...item, label: bgItem[item.label]?.label ?? item.label, tip: bgItem[item.label]?.tip ?? item.tip })),
+    ),
   })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'всичко · многоизмерно', equilibrium: `равновесие е, когато всичко е в равновесие — ${eq.balanced}/${eq.total} части в баланс` }
-    : { eyebrow: 'all · multidimensional', equilibrium: `equilibrium is when all is in equilibrium — ${eq.balanced}/${eq.total} parts balanced` },
+  pickDeep(
+    { eyebrow: 'all · multidimensional', equilibrium: `equilibrium is when all is in equilibrium — ${eq.balanced}/${eq.total} parts balanced` },
+    { eyebrow: 'всичко · многоизмерно', equilibrium: `равновесие е, когато всичко е в равновесие — ${eq.balanced}/${eq.total} части в баланс` },
+  ),
 )
 </script>
 

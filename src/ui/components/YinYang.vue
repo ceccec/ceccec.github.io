@@ -9,7 +9,7 @@ import { yinYang, yinYangDimensionsSvg } from '../lib'
 // the five elements (五行) and the eight trigrams (八卦) — the Fibonacci tiers 8 = 5 + 3.
 // Computed from the yinYang() fold; the spiritual reading is a correspondence, not a claim.
 const data = yinYang()
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 // The I Ching presented as the taiji MOVING and FOLDING THROUGH ALL TEN DIMENSIONS: the taiji is drawn (not a
 // font glyph) and driven through the model's own dims() — the same ten axes the hero turns on. One SMIL SVG, no
@@ -24,19 +24,21 @@ const bgMember: Record<string, string> = {
   heaven: 'небе', earth: 'земя', human: 'човек',
   wood: 'дърво', fire: 'огън', metal: 'метал', water: 'вода',
 }
-const member = (m: string) => (bg.value ? bgMember[m] ?? m : m)
+const member = (m: string) => pick(m, bgMember[m] ?? m)
 const tierName = (tier: number) =>
-  bg.value
-    ? { 3: 'три сили (三才)', 5: 'пет елемента (五行)', 8: 'осем триграми (八卦)' }[tier]
-    : { 3: 'three powers (三才)', 5: 'five elements (五行)', 8: 'eight trigrams (八卦)' }[tier]
+  pick(
+    { 3: 'three powers (三才)', 5: 'five elements (五行)', 8: 'eight trigrams (八卦)' }[tier],
+    { 3: 'три сили (三才)', 5: 'пет елемента (五行)', 8: 'осем триграми (八卦)' }[tier],
+  )
 
 const tiers = computed(() =>
   data.tiers.map((group) => ({ tier: group.tier, name: tierName(group.tier), members: group.members })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'ин · ян · 3-5-8', lead: `От тайдзи ${data.taiji.symbol} се разгръщат трите сили, петте елемента и осемте триграми — 3, 5, 8, тиерите на Фибоначи, в най-древната космология.` }
-    : { eyebrow: 'yin · yang · 3-5-8', lead: `From the taiji ${data.taiji.symbol} unfold the three powers, the five elements and the eight trigrams — 3, 5, 8, the Fibonacci tiers, in the oldest cosmology.` },
+  pickDeep(
+    { eyebrow: 'yin · yang · 3-5-8', lead: `From the taiji ${data.taiji.symbol} unfold the three powers, the five elements and the eight trigrams — 3, 5, 8, the Fibonacci tiers, in the oldest cosmology.` },
+    { eyebrow: 'ин · ян · 3-5-8', lead: `От тайдзи ${data.taiji.symbol} се разгръщат трите сили, петте елемента и осемте триграми — 3, 5, 8, тиерите на Фибоначи, в най-древната космология.` },
+  ),
 )
 </script>
 

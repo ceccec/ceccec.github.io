@@ -40,8 +40,8 @@ const bgClaim: Record<string, string> = {
 const proofs = computed(() =>
   data.proofs.map((proof) => ({
     ...proof,
-    principleText: bg.value ? bgPrinciple[proof.id] ?? proof.principle : proof.principle,
-    claimText: bg.value ? bgClaim[proof.id] ?? proof.claim : proof.claim,
+    principleText: pick(proof.principle, bgPrinciple[proof.id] ?? proof.principle),
+    claimText: pick(proof.claim, bgClaim[proof.id] ?? proof.claim),
     bitRows: has(proof, 'bits') ? chunk(proof.bits as number[], 16) : null,
   })),
 )

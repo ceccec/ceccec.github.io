@@ -11,7 +11,7 @@ import { buildMatrix, autoSpeech, speechIntonation } from '../lib'
 // utterance's boundary events, and can pause and resume. Voices and languages
 // come from the device's Web Speech API — no cloud, no cost.
 const props = defineProps<{ text?: string }>()
-const { bg } = useLocale()
+const { bg, pickDeep } = useLocale()
 
 const source = ref(props.text ?? '')
 const cues = computed(() => autoSpeech(source.value, buildMatrix()).cues)
@@ -147,21 +147,22 @@ onMounted(() => {
 onUnmounted(stop)
 
 const t = computed(() =>
-  bg.value
-    ? {
-        eyebrow: 'реч от текст · аналогова по природа · в къщи',
-        language: 'език', rate: 'темпо', pitch: 'тон', harmonic: 'хармонична интонация', harmonicHint: 'Тонът следва хармоничен контур от балансирания спектър — напев, не монотонно.',
-        play: 'Чети на глас', pause: 'Пауза', resume: 'Продължи', stop: 'Спри',
-        unsupported: 'Web Speech не е наличен на това устройство.',
-        note: 'Речта е непрекъсната вълна — темпото и тонът се менят плавно. Гласовете идват от устройството ти, без облак и без цена.',
-      }
-    : {
-        eyebrow: 'speech from text · analog by nature · in house',
-        language: 'language', rate: 'rate', pitch: 'pitch', harmonic: 'harmonic intonation', harmonicHint: 'Pitch follows a harmonic contour from the balanced spectrum — a chant, not a monotone.',
-        play: 'Read aloud', pause: 'Pause', resume: 'Resume', stop: 'Stop',
-        unsupported: 'Web Speech is unavailable on this device.',
-        note: 'Speech is a continuous wave — rate and pitch vary smoothly. Voices come from your device, no cloud, no cost.',
-      },
+  pickDeep(
+    {
+      eyebrow: 'speech from text · analog by nature · in house',
+      language: 'language', rate: 'rate', pitch: 'pitch', harmonic: 'harmonic intonation', harmonicHint: 'Pitch follows a harmonic contour from the balanced spectrum — a chant, not a monotone.',
+      play: 'Read aloud', pause: 'Pause', resume: 'Resume', stop: 'Stop',
+      unsupported: 'Web Speech is unavailable on this device.',
+      note: 'Speech is a continuous wave — rate and pitch vary smoothly. Voices come from your device, no cloud, no cost.',
+    },
+    {
+      eyebrow: 'реч от текст · аналогова по природа · в къщи',
+      language: 'език', rate: 'темпо', pitch: 'тон', harmonic: 'хармонична интонация', harmonicHint: 'Тонът следва хармоничен контур от балансирания спектър — напев, не монотонно.',
+      play: 'Чети на глас', pause: 'Пауза', resume: 'Продължи', stop: 'Спри',
+      unsupported: 'Web Speech не е наличен на това устройство.',
+      note: 'Речта е непрекъсната вълна — темпото и тонът се менят плавно. Гласовете идват от устройството ти, без облак и без цена.',
+    },
+  ),
 )
 </script>
 

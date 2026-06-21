@@ -15,7 +15,7 @@ const data = analytics(matrix)
 // The independent, holographic dashboard — ceccec's own approach, zero external
 // toolkit. Each panel is folded with the whole root, so it carries the whole.
 const holo = holographicDashboard(matrix)
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const bgBoard: Record<string, string> = { model: 'моделът', proof: 'доказателството', reach: 'обхватът' }
 const bgMetric: Record<string, string> = {
@@ -27,14 +27,15 @@ const bgMetric: Record<string, string> = {
 const boards = computed(() =>
   data.boards.map((board) => ({
     ...board,
-    name: bg.value ? bgBoard[board.board] ?? board.board : board.board,
-    metrics: board.metrics.map((entry) => ({ ...entry, label: bg.value ? bgMetric[entry.metric] ?? entry.metric : entry.metric })),
+    name: pick(board.board, bgBoard[board.board] ?? board.board),
+    metrics: board.metrics.map((entry) => ({ ...entry, label: pick(entry.metric, bgMetric[entry.metric] ?? entry.metric) })),
   })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'квантови табла · самометрики', note: 'Описателни броеве на собствените структури — без проследяване, нищо не напуска устройството.' }
-    : { eyebrow: 'quantum dashboards · self-metrics', note: 'Descriptive counts over the model\'s own structures — no tracking, nothing leaves the device.' },
+  pickDeep(
+    { eyebrow: 'quantum dashboards · self-metrics', note: 'Descriptive counts over the model\'s own structures — no tracking, nothing leaves the device.' },
+    { eyebrow: 'квантови табла · самометрики', note: 'Описателни броеве на собствените структури — без проследяване, нищо не напуска устройството.' },
+  ),
 )
 </script>
 
@@ -56,7 +57,7 @@ const t = computed(() =>
       </Card>
     </div>
 
-    <p class="eyebrow dash__holo-eyebrow">{{ bg ? 'холографско табло · независимо · нулеви зависимости' : 'holographic dashboard · independent · zero dependencies' }}</p>
+    <p class="eyebrow dash__holo-eyebrow">{{ pick('holographic dashboard · independent · zero dependencies', 'холографско табло · независимо · нулеви зависимости') }}</p>
     <div class="dash__grid">
       <Card v-for="panel in holo.panels" :key="panel.panel" class="dash__board dash__board--holo">
         <header class="dash__head">

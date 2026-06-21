@@ -7,8 +7,10 @@ const ICHING_MASK = { hexagram: 1, glyph: '☰', name: 'Qián', attribute: 'the 
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { staticPages, conceptCommands, monographs, foldedCensus, buildMatrix } from '../lib'
+import { useLocale } from '../lib'
 
 const { localeIndex } = useData()
+const { pick } = useLocale()
 const bg = computed(() => localeIndex.value === 'bg')
 const pfx = computed(() => (localeIndex.value === 'bg' ? '/bg/' : localeIndex.value === 'en' ? '/en/' : '/'))
 
@@ -22,27 +24,28 @@ const foldedDomains = foldedCensus(pages.length).folded
 const domains = computed(() =>
   pages.map((p) => ({
     slug: p.slug,
-    title: bg.value && p.title.bg ? p.title.bg : p.title.en,
-    abstract: bg.value && p.description.bg ? p.description.bg : p.description.en,
+    title: pick(p.title.en, p.title.bg || p.title.en),
+    abstract: pick(p.description.en, p.description.bg || p.description.en),
     keywords: (p.keywords ?? []).slice(0, 4),
     components: p.components.length,
     link: pfx.value + p.slug,
   })),
 )
 const stats = computed(() => [
-  { n: foldedDomains, label: bg.value ? 'области (6×7, сгънати)' : 'domains (6×7, folded)' },
-  { n: conceptCommands.length, label: bg.value ? 'команди' : 'commands' },
-  { n: refCount, label: bg.value ? 'референции' : 'references' },
+  { n: foldedDomains, label: pick('domains (6×7, folded)', 'области (6×7, сгънати)') },
+  { n: conceptCommands.length, label: pick('commands', 'команди') },
+  { n: refCount, label: pick('references', 'референции') },
 ])
 </script>
 
 <template>
   <section class="ov" :data-hexagram="ICHING_MASK.hexagram" :style="{ '--ov-accent': ICHING_MASK.color }">
-    <p class="ov__eyebrow">{{ bg ? 'порталът — изчислен от ядрото' : 'the portal — computed from the core' }}</p>
+    <p class="ov__eyebrow">{{ pick('the portal — computed from the core', 'порталът — изчислен от ядрото') }}</p>
     <p class="ov__lead">
-      {{ bg
-        ? `Всяка област по-долу е изчислена от един източник (същия като README): заглавие, един честен ред, връзка към дълбочината. Броят е хармоничен — ${pages.length} страници на повърхността се сгъват през генус-2 тора (−χ) в ${foldedDomains} = 6×7, както цензусът сгъва 110 → 108.`
-        : `Every domain below is computed from one source (the same as the README): a title, one honest line, a link into the depth. The count is harmonic — the ${pages.length} surface pages fold through the genus-2 torus (−χ) to ${foldedDomains} = 6×7, exactly as the census folds 110 → 108.` }}
+      {{ pick(
+        `Every domain below is computed from one source (the same as the README): a title, one honest line, a link into the depth. The count is harmonic — the ${pages.length} surface pages fold through the genus-2 torus (−χ) to ${foldedDomains} = 6×7, exactly as the census folds 110 → 108.`,
+        `Всяка област по-долу е изчислена от един източник (същия като README): заглавие, един честен ред, връзка към дълбочината. Броят е хармоничен — ${pages.length} страници на повърхността се сгъват през генус-2 тора (−χ) в ${foldedDomains} = 6×7, както цензусът сгъва 110 → 108.`,
+      ) }}
     </p>
     <ul class="ov__stats">
       <li v-for="s in stats" :key="s.label"><strong>{{ s.n }}</strong> {{ s.label }}</li>

@@ -10,7 +10,7 @@ import { useLocale } from '../lib'
 // and shown inline. Internal routes get the /bg prefix in Bulgarian.
 const data = navigation358()
 // localize handles the /bg prefix and leaves static artifacts (json/txt/...) as-is.
-const { bg, localize: href } = useLocale()
+const { bg, localize: href, pick, pickDeep } = useLocale()
 
 // Bulgarian tooltips, keyed by the English label.
 const bgTip: Record<string, string> = {
@@ -34,9 +34,9 @@ const bgTip: Record<string, string> = {
 const bgTier: Record<number, string> = { 3: 'пристигни', 5: 'използвай', 8: 'навлез' }
 
 function tip(label: string, fallback: string) {
-  return bg.value ? bgTip[label] ?? fallback : fallback
+  return pick(fallback, bgTip[label] ?? fallback)
 }
-const t = computed(() => (bg.value ? { eyebrow: 'навигация · 3-5-8', tiers: bgTier } : { eyebrow: 'navigation · 3-5-8', tiers: { 3: 'arrive', 5: 'use', 8: 'go deep' } as Record<number, string> }))
+const t = computed(() => pickDeep({ eyebrow: 'navigation · 3-5-8', tiers: { 3: 'arrive', 5: 'use', 8: 'go deep' } as Record<number, string> }, { eyebrow: 'навигация · 3-5-8', tiers: bgTier }))
 </script>
 
 <template>

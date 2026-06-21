@@ -24,7 +24,7 @@ const bgCell: Record<string, { cell: string; principle: string }> = {
   'Free learning': { cell: 'Свободно учене', principle: 'От деца до старци, академията сама изчислява цялото, отворена за всички.' },
   'Self-healing balance': { cell: 'Самолекуващ баланс', principle: 'Нито колапс, нито бягство — цялото се установява в затихващи, самолекуващи вълни.' },
 }
-const tr = (cell: string, field: 'cell' | 'principle', fallback: string) => (bg.value ? bgCell[cell]?.[field] ?? fallback : fallback)
+const tr = (cell: string, field: 'cell' | 'principle', fallback: string) => pick(fallback, bgCell[cell]?.[field] ?? fallback)
 
 const pairs = computed(() =>
   data.pairs.map((pair) => ({
@@ -66,8 +66,8 @@ const reqMetBg: Record<string, string> = {
 const requiredPages = computed(() =>
   required.pages.map((page) => ({
     id: page.page.slice(1),
-    label: bg.value ? reqLabelBg[page.requirement] ?? page.requirement : page.requirement,
-    satisfies: bg.value ? reqMetBg[page.requirement] ?? page.satisfies : page.satisfies,
+    label: pick(page.requirement, reqLabelBg[page.requirement] ?? page.requirement),
+    satisfies: pick(page.satisfies, reqMetBg[page.requirement] ?? page.satisfies),
     root: page.root,
   })),
 )

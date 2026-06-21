@@ -8,7 +8,7 @@ import { humanize } from '../lib'
 // Humanize. Behind the maths and the 3d+ are a few simple promises to a person.
 // Said plainly, warmly — what it means for you, in your language.
 const data = humanize()
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 // Warm, natural Bulgarian (not literal) keyed to each idea.
 const bgHuman: Record<string, string> = {
@@ -32,14 +32,15 @@ const bgIdea: Record<string, string> = {
 
 const items = computed(() =>
   data.translations.map((entry) => ({
-    idea: bg.value ? bgIdea[entry.idea] ?? entry.idea : entry.idea,
-    human: bg.value ? bgHuman[entry.idea] ?? entry.human : entry.human,
+    idea: pick(entry.idea, bgIdea[entry.idea] ?? entry.idea),
+    human: pick(entry.human, bgHuman[entry.idea] ?? entry.human),
   })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'по човешки', lead: 'Зад математиката и 3d+ стоят няколко прости обещания към теб:' }
-    : { eyebrow: 'in human terms', lead: 'Behind the maths and the 3d+ are a few simple promises to you:' },
+  pickDeep(
+    { eyebrow: 'in human terms', lead: 'Behind the maths and the 3d+ are a few simple promises to you:' },
+    { eyebrow: 'по човешки', lead: 'Зад математиката и 3d+ стоят няколко прости обещания към теб:' },
+  ),
 )
 </script>
 

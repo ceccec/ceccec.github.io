@@ -9,7 +9,7 @@ import { useLocale } from '../lib'
 // or jump to any station. Each step says why you are there.
 const data = path(buildMatrix())
 const here = ref(0)
-const { bg, localize } = useLocale()
+const { bg, localize, pick, pickDeep } = useLocale()
 
 const bgStation: Record<string, { station: string; why: string }> = {
   Home: { station: 'Начало', why: 'Живият двоен торус и пулсът на портала.' },
@@ -27,8 +27,8 @@ const bgStation: Record<string, { station: string; why: string }> = {
 const items = computed(() =>
   data.stations.map((s) => ({
     ...s,
-    label: bg.value ? bgStation[s.station]?.station ?? s.station : s.station,
-    why: bg.value ? bgStation[s.station]?.why ?? s.why : s.why,
+    label: pick(s.station, bgStation[s.station]?.station ?? s.station),
+    why: pick(s.why, bgStation[s.station]?.why ?? s.why),
     link: localize(s.route),
   })),
 )
@@ -37,9 +37,10 @@ function step(delta: number) {
   here.value = (here.value + delta + items.value.length) % items.value.length
 }
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'следвай пътя', prev: 'Назад', next: 'Напред', go: 'Иди', of: 'от' }
-    : { eyebrow: 'follow the path', prev: 'Back', next: 'Next', go: 'Go', of: 'of' },
+  pickDeep(
+    { eyebrow: 'follow the path', prev: 'Back', next: 'Next', go: 'Go', of: 'of' },
+    { eyebrow: 'следвай пътя', prev: 'Назад', next: 'Напред', go: 'Иди', of: 'от' },
+  ),
 )
 </script>
 

@@ -17,7 +17,7 @@ const data = cryptoFuture(matrix)
 // passphrase fused with the static architecture root (so the key is bound to the
 // whole completed corpus) and, per session, a realtime nonce.
 const fusion = fusionCipher('', matrix)
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const digest = ref('')
 const computing = ref(false)
@@ -95,30 +95,31 @@ async function decrypt() {
     const key = await deriveKey(passphrase.value, salt)
     decrypted.value = new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct))
   } catch {
-    cryptoErr.value = bg.value ? 'Неуспешно дешифриране — грешна парола или повреден токен.' : 'Decryption failed — wrong passphrase or corrupted token.'
+    cryptoErr.value = pick('Decryption failed — wrong passphrase or corrupted token.', 'Неуспешно дешифриране — грешна парола или повреден токен.')
   }
 }
 
 const t = computed(() =>
-  bg.value
-    ? {
-        eyebrow: 'бъдещи крипто инструменти · истински SHA-256 (Web Crypto)',
-        digest: 'SHA-256 дайджест на каноничните корени',
-        recompute: 'Преизчисли',
-        computing: 'изчислява…',
-        roadmap: 'Пътна карта',
-        unsupported: 'Web Crypto не е наличен в този контекст.',
-        note: 'Това е истински SHA-256, изчислен в браузъра. Каноничният низ е възпроизводим — всеки може да го хешира със стандартен инструмент и да получи същия дайджест.',
-      }
-    : {
-        eyebrow: 'future crypto tools · real SHA-256 (Web Crypto)',
-        digest: 'SHA-256 digest of the canonical roots',
-        recompute: 'Recompute',
-        computing: 'computing…',
-        roadmap: 'Roadmap',
-        unsupported: 'Web Crypto is unavailable in this context.',
-        note: 'This is a real SHA-256 computed in your browser. The canonical string is reproducible — anyone can hash it with a standard tool and get the same digest.',
-      },
+  pickDeep(
+    {
+      eyebrow: 'future crypto tools · real SHA-256 (Web Crypto)',
+      digest: 'SHA-256 digest of the canonical roots',
+      recompute: 'Recompute',
+      computing: 'computing…',
+      roadmap: 'Roadmap',
+      unsupported: 'Web Crypto is unavailable in this context.',
+      note: 'This is a real SHA-256 computed in your browser. The canonical string is reproducible — anyone can hash it with a standard tool and get the same digest.',
+    },
+    {
+      eyebrow: 'бъдещи крипто инструменти · истински SHA-256 (Web Crypto)',
+      digest: 'SHA-256 дайджест на каноничните корени',
+      recompute: 'Преизчисли',
+      computing: 'изчислява…',
+      roadmap: 'Пътна карта',
+      unsupported: 'Web Crypto не е наличен в този контекст.',
+      note: 'Това е истински SHA-256, изчислен в браузъра. Каноничният низ е възпроизводим — всеки може да го хешира със стандартен инструмент и да получи същия дайджест.',
+    },
+  ),
 )
 </script>
 
@@ -133,22 +134,22 @@ const t = computed(() =>
     <p v-else class="wcs__unsupported">⚠ {{ t.unsupported }}</p>
 
     <div v-if="supported" class="wcs__enc">
-      <p class="wcs__label">{{ bg ? 'Шифроване (AES-256-GCM, в браузъра)' : 'Encryption (AES-256-GCM, in your browser)' }}</p>
+      <p class="wcs__label">{{ pick('Encryption (AES-256-GCM, in your browser)', 'Шифроване (AES-256-GCM, в браузъра)') }}</p>
       <p class="wcs__fusion">
         <span class="wcs__fusion-key">{{ fusion.keyspaceMbit }} Mbit · {{ fusion.keyspaceGbit }} Gbit</span>
-        {{ bg ? 'архитектурно пространство от ключове (1024 = 2¹⁰ листа), вплетено в ключа; реалното време прави всяка сесия отделна' : 'architecture keyspace (1024 = 2¹⁰ leaves) woven into the key; realtime makes every session distinct' }}
+        {{ pick('architecture keyspace (1024 = 2¹⁰ leaves) woven into the key; realtime makes every session distinct', 'архитектурно пространство от ключове (1024 = 2¹⁰ листа), вплетено в ключа; реалното време прави всяка сесия отделна') }}
         <span class="wcs__fusion-root mono">{{ fusion.architecture.root }}</span>
       </p>
-      <input v-model="passphrase" class="wcs__in" type="password" autocomplete="off" :placeholder="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" :aria-label="bg ? 'парола (не напуска браузъра)' : 'passphrase (never leaves the browser)'" />
-      <textarea v-model="plaintext" class="wcs__in wcs__ta" rows="2" :placeholder="bg ? 'текст за шифроване' : 'text to encrypt'"></textarea>
+      <input v-model="passphrase" class="wcs__in" type="password" autocomplete="off" :placeholder="pick('passphrase (never leaves the browser)', 'парола (не напуска браузъра)')" :aria-label="pick('passphrase (never leaves the browser)', 'парола (не напуска браузъра)')" />
+      <textarea v-model="plaintext" class="wcs__in wcs__ta" rows="2" :placeholder="pick('text to encrypt', 'текст за шифроване')"></textarea>
       <div class="wcs__row">
-        <button class="dt-btn" type="button" @click="encrypt">{{ bg ? 'Шифровай ▸' : 'Encrypt ▸' }}</button>
-        <button class="dt-btn dt-btn--ghost" type="button" :disabled="!token" @click="decrypt">{{ bg ? '◂ Дешифровай' : '◂ Decrypt' }}</button>
+        <button class="dt-btn" type="button" @click="encrypt">{{ pick('Encrypt ▸', 'Шифровай ▸') }}</button>
+        <button class="dt-btn dt-btn--ghost" type="button" :disabled="!token" @click="decrypt">{{ pick('◂ Decrypt', '◂ Дешифровай') }}</button>
       </div>
-      <p v-if="token" class="wcs__token mono"><span>{{ bg ? 'токен:' : 'token:' }}</span> {{ token }}</p>
-      <p v-if="decrypted" class="wcs__token"><span>{{ bg ? 'дешифрирано:' : 'decrypted:' }}</span> {{ decrypted }}</p>
+      <p v-if="token" class="wcs__token mono"><span>{{ pick('token:', 'токен:') }}</span> {{ token }}</p>
+      <p v-if="decrypted" class="wcs__token"><span>{{ pick('decrypted:', 'дешифрирано:') }}</span> {{ decrypted }}</p>
       <p v-if="cryptoErr" class="wcs__err">⚠ {{ cryptoErr }}</p>
-      <p class="wcs__caveat">{{ bg ? 'Истинско AES-256-GCM, силно класическо шифроване, изцяло клиентско. Ключът е вплетен с архитектурния корен (1024 листа) и реалновремева сол; силата остава AES-256, „1024 Mbit / 1 Gbit“ е структура на пространството от ключове, не гигабитов шифър. Не е пост-квантово: ML-KEM още не е в Web Crypto.' : 'Real AES-256-GCM — strong classical encryption, fully client-side. The key is woven with the architecture root (1024 leaves) and a realtime salt; strength stays AES-256, and “1024 Mbit / 1 Gbit” names the keyspace structure, not a gigabit cipher. Not post-quantum: ML-KEM is not yet in Web Crypto.' }}</p>
+      <p class="wcs__caveat">{{ pick('Real AES-256-GCM — strong classical encryption, fully client-side. The key is woven with the architecture root (1024 leaves) and a realtime salt; strength stays AES-256, and “1024 Mbit / 1 Gbit” names the keyspace structure, not a gigabit cipher. Not post-quantum: ML-KEM is not yet in Web Crypto.', 'Истинско AES-256-GCM, силно класическо шифроване, изцяло клиентско. Ключът е вплетен с архитектурния корен (1024 листа) и реалновремева сол; силата остава AES-256, „1024 Mbit / 1 Gbit“ е структура на пространството от ключове, не гигабитов шифър. Не е пост-квантово: ML-KEM още не е в Web Crypto.') }}</p>
     </div>
 
     <p class="wcs__roadmap-title">{{ t.roadmap }}</p>

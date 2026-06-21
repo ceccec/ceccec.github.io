@@ -11,11 +11,13 @@ const ICHING_MASK = { hexagram: 46, name: 'Dǐng', glyph: '☲☴', lower: 'Xùn
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useTones } from '../lib'
+import { useLocale } from '../lib'
 import { cryptoChallenges, findContentAddressCollision, addressEntropyBits, toUuid, sha256Sync, toUuidSha256 } from '../lib'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')
-const t = (en, b) => (bg.value ? b : en)
+const { pick } = useLocale()
+const t = (en, b) => pick(en, b)
 
 const cc = cryptoChallenges()
 const real = findContentAddressCollision() // the verified 32-bit-word collision (deterministic): a, b, word

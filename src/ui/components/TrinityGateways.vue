@@ -8,10 +8,11 @@ const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', col
 // Mounted in the left sidebar (sidebar-nav-after) on every page. Locale-aware like the corpus-index components.
 import { computed } from 'vue'
 import { useRoute, useData } from 'vitepress'
-import { realtimeWiring } from '../lib'
+import { realtimeWiring, useLocale } from '../lib'
 
 const route = useRoute()
 const { localeIndex } = useData()
+const { pick } = useLocale()
 const bg = computed(() => localeIndex.value === 'bg')
 const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
 
@@ -19,32 +20,32 @@ const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.val
 const wiring = computed(() => realtimeWiring(route.path))
 const href = (slug) => `${pfx.value}/${slug}`
 const REALM_BG = { proven: 'доказано', animated: 'анимирано', presented: 'представено' }
-const realm = (r) => (bg.value ? REALM_BG[r] ?? r : r)
+const realm = (r) => pick(r, REALM_BG[r] ?? r)
 </script>
 
 <template>
-  <nav class="tg" :aria-label="bg ? 'Троични портали и свързани пътища' : 'Trinity gateways and related paths'" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="tg__label">{{ bg ? 'Портали' : 'Gateways' }}</p>
+  <nav class="tg" :aria-label="pick('Trinity gateways and related paths', 'Троични портали и свързани пътища')" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+    <p class="tg__label">{{ pick('Gateways', 'Портали') }}</p>
     <ul class="tg__gateways" role="list">
       <li v-for="g in wiring.gateways" :key="g.slug" :style="{ '--hue': g.hue }">
         <a class="tg__gw" :class="{ 'tg--here': wiring.here === g.slug }" :href="href(g.slug)" :aria-current="wiring.here === g.slug ? 'page' : undefined">
           <span class="tg__glyph" aria-hidden="true">{{ g.glyph }}</span>
           <span class="tg__gw-text">
             <span class="tg__realm">{{ realm(g.realm) }}</span>
-            <span class="tg__name">{{ bg ? g.titleBg : g.titleEn }}</span>
+            <span class="tg__name">{{ pick(g.titleEn, g.titleBg) }}</span>
           </span>
         </a>
       </li>
     </ul>
 
     <template v-if="wiring.related.length">
-      <p class="tg__label">{{ bg ? 'Свързани пътища' : 'Related paths' }}</p>
+      <p class="tg__label">{{ pick('Related paths', 'Свързани пътища') }}</p>
       <ul class="tg__related" role="list">
         <li v-for="r in wiring.related" :key="r.slug" :style="{ '--hue': r.hue }">
-          <a class="tg__rel" :href="href(r.slug)" :title="(bg ? 'споделени етикети' : 'shared tags') + ': ' + r.shared.join(', ')">
+          <a class="tg__rel" :href="href(r.slug)" :title="pick('shared tags', 'споделени етикети') + ': ' + r.shared.join(', ')">
             <span class="tg__dot" aria-hidden="true"></span>
-            <span class="tg__name">{{ bg ? r.titleBg : r.titleEn }}</span>
-            <span class="tg__score" :aria-label="`${r.score} ${bg ? 'споделени' : 'shared'}`">{{ r.score }}</span>
+            <span class="tg__name">{{ pick(r.titleEn, r.titleBg) }}</span>
+            <span class="tg__score" :aria-label="`${r.score} ${pick('shared', 'споделени')}`">{{ r.score }}</span>
           </a>
         </li>
       </ul>

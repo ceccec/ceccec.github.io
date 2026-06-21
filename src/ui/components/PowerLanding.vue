@@ -5,26 +5,27 @@
 const ICHING_MASK = { hexagram: 1, glyph: '☰', lo: '☰', up: '☰', name: 'Three Powers', attribute: 'creative', color: '#FFF00F' } as const
 import { computed } from 'vue'
 import { siteNavigation, threeEightFoldsTopNav } from '../lib'
+import { useLocale } from '../lib'
 import { useData } from 'vitepress'
 
-const { params, localeIndex } = useData()
-const bg = computed(() => localeIndex.value === 'bg')
+const { params } = useData()
+const { bg, pick, pickDeep } = useLocale()
 const slug = computed(() => String((params.value as { page?: string } | undefined)?.page ?? ''))
 // the three power pages map to the three power doors in the nav (1 Heaven · 2 Human · 3 Earth)
 const idx = computed(() => (({ heaven: 1, human: 2, earth: 3 }) as Record<string, number>)[slug.value] ?? 1)
-const door = computed(() => (bg.value ? siteNavigation().bg.nav : siteNavigation().en.nav)[idx.value])
+const door = computed(() => pickDeep(siteNavigation().en.nav, siteNavigation().bg.nav)[idx.value])
 const sections = computed(() => (door.value?.items ?? []) as { text: string; items?: { text: string; link: string }[] }[])
 const pageCount = computed(() => sections.value.reduce((n, s) => n + (s.items?.length ?? 0), 0))
 // the computed sancai intro for this power (research-grounded: Heaven initiates · Human mediates · Earth completes)
 const power = computed(() => threeEightFoldsTopNav().categories.find((c: { axis: string }) => c.axis === slug.value))
-const intro = computed(() => (bg.value ? (power.value as { summaryBg?: string } | undefined)?.summaryBg : (power.value as { summary?: string } | undefined)?.summary) ?? '')
+const intro = computed(() => pick((power.value as { summary?: string } | undefined)?.summary, (power.value as { summaryBg?: string } | undefined)?.summaryBg) ?? '')
 </script>
 
 <template>
   <section class="power dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <p class="power__head">
       <span class="power__glyph">{{ door?.text }}</span>
-      <span class="power__count">{{ pageCount }} {{ bg ? 'страници' : 'pages' }}</span>
+      <span class="power__count">{{ pageCount }} {{ pick('pages', 'страници') }}</span>
     </p>
     <p v-if="intro" class="power__intro">{{ intro }}</p>
     <div class="power__grid">

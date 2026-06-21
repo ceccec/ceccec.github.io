@@ -14,7 +14,7 @@ import { useLocale } from '../lib'
 // no central server, no cost: the architecture develops and distributes itself.
 const matrix = buildMatrix()
 const route = useRoute()
-const { bg } = useLocale()
+const { bg, pick } = useLocale()
 const STORE = 'double-torus.visits'
 const dev = ref(selfDevelopment([], matrix))
 const peers = new Map<string, string>()
@@ -80,10 +80,11 @@ watch(() => route.path, (path) => record(path))
 
 const label = computed(() => {
   const peerCount = distributed.value.peers
-  const net = online.value ? (bg.value ? 'онлайн' : 'online') : (bg.value ? 'офлайн' : 'offline')
-  return bg.value
-    ? `колективен ум · ниво ${dev.value.level} · ${dev.value.visits}${peerCount ? ` · ${peerCount} устройства` : ''} · ${net}`
-    : `collective mind · level ${dev.value.level} · ${dev.value.visits}${peerCount ? ` · ${peerCount} peers` : ''} · ${net}`
+  const net = online.value ? pick('online', 'онлайн') : pick('offline', 'офлайн')
+  return pick(
+    `collective mind · level ${dev.value.level} · ${dev.value.visits}${peerCount ? ` · ${peerCount} peers` : ''} · ${net}`,
+    `колективен ум · ниво ${dev.value.level} · ${dev.value.visits}${peerCount ? ` · ${peerCount} устройства` : ''} · ${net}`,
+  )
 })
 </script>
 

@@ -65,7 +65,7 @@ import {
 } from '../lib'
 import { useLocale } from '../lib'
 
-const { bg } = useLocale()
+const { bg, pick } = useLocale()
 const matrix = buildMatrix()
 
 // Each decode is a pure fold returning { statement, boundary, facets:[{facet,on}], count }. Render them uniformly —
@@ -171,7 +171,7 @@ const GROUPS: { en: string; bg: string; items: { title: string; fn: (m: ReturnTy
 // Compute every fold once. Defensive: a fold that throws degrades to an empty card rather than crashing SSR.
 const groups = computed(() =>
   GROUPS.map((group) => ({
-    title: bg.value ? group.bg : group.en,
+    title: pick(group.en, group.bg),
     items: group.items.map((item) => {
       try {
         const r = item.fn(matrix) || {}
@@ -200,12 +200,12 @@ const totals = computed(() => {
 <template>
   <section class="frontiers" aria-label="Frontiers — the decoded catalog">
     <p class="frontiers__eyebrow">
-      {{ bg ? 'граници · декодираният каталог' : 'frontiers · the decoded catalog' }}
+      {{ pick('frontiers · the decoded catalog', 'граници · декодираният каталог') }}
     </p>
     <p class="frontiers__lede">
-      {{ bg
-        ? `${totals.decodes} декода · ${totals.passed}/${totals.checks} изчислени проверки · всяко с твърдение, проверки и честна граница`
-        : `${totals.decodes} decodes · ${totals.passed}/${totals.checks} computed checks pass · each with its statement, its verifications, and its honest boundary` }}
+      {{ pick(
+        `${totals.decodes} decodes · ${totals.passed}/${totals.checks} computed checks pass · each with its statement, its verifications, and its honest boundary`,
+        `${totals.decodes} декода · ${totals.passed}/${totals.checks} изчислени проверки · всяко с твърдение, проверки и честна граница`) }}
     </p>
 
     <div v-for="group in groups" :key="group.title" class="frontiers__group">
@@ -222,7 +222,7 @@ const totals = computed(() => {
           </li>
         </ul>
         <p v-if="item.boundary" class="frontiers__boundary">
-          <strong>{{ bg ? 'граница' : 'boundary' }}:</strong> {{ item.boundary }}
+          <strong>{{ pick('boundary', 'граница') }}:</strong> {{ item.boundary }}
         </p>
       </article>
     </div>

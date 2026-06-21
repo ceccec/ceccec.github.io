@@ -7,13 +7,12 @@ const ICHING_MASK = { hexagram: 59, trigram: '☱☰', glyph: '☱☰', lo: 'Du�
 // in via CSS), legible (the hexagram, its trigrams, and the component it lands on, all as text). The cast uses
 // browser Math.random (a game, not a model computation); the resolution from the cast is deterministic.
 import { ref, computed } from 'vue'
-import { useData } from 'vitepress'
 import { useTones } from '../lib'
 import { iChing } from '../lib'
+import { useLocale } from '../lib'
 
-const { localeIndex } = useData()
-const bg = computed(() => localeIndex.value === 'bg')
-const t = (en, b) => (bg.value ? b : en)
+const { pick } = useLocale()
+const t = (en, b) => pick(en, b)
 const tones = useTones()
 const ic = iChing()
 

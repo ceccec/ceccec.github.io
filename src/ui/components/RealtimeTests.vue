@@ -10,7 +10,7 @@ import { useLocale } from '../lib'
 // no-key public APIs (auto-fetched) + device sensors (permission-gated, graceful fallback). Each capture is
 // content-addressed (liveCapture) into a reproducible snapshot. HONEST: mic audio is SOUND not EM; device
 // motion feeds the radar EQUATION not real radar; magnetometer→Larmor is a real field, no actual NMR.
-const { bg } = useLocale()
+const { bg, pick } = useLocale()
 const fold = realtimeExperiments() // the source catalogue + honest notes (deterministic)
 
 const api = reactive({
@@ -67,7 +67,7 @@ async function enableAudio() {
     const bins = new Uint8Array(analyser.frequencyBinCount)
     analyser.getByteFrequencyData(bins)
     const spec = spectrumFromSamples(Array.from(bins), 32)
-    dev.audio.value = bg.value ? `доминантна кошница k=${spec.dominant.k} (звук, не ЕМ)` : `dominant bin k=${spec.dominant.k} (sound, not EM)`
+    dev.audio.value = pick(`dominant bin k=${spec.dominant.k} (sound, not EM)`, `доминантна кошница k=${spec.dominant.k} (звук, не ЕМ)`)
     dev.audio.status = 'ok'
     src.disconnect(); stream.getTracks().forEach((t) => t.stop()) // release the mic; the shared context stays alive
   } catch (e) { dev.audio.status = 'unavailable' }
@@ -82,7 +82,7 @@ async function enableMotion() {
       window.addEventListener('devicemotion', (ev: any) => {
         const a = ev.acceleration || ev.accelerationIncludingGravity || {}
         const v = Math.hypot(a.x || 0, a.y || 0, a.z || 0) // a rough proxy "speed" (m/s²→m/s placeholder)
-        dev.motion.value = bg.value ? `Доплер ${dopplerFromMotion(v, 10e9).toFixed(0)} Hz @10 GHz` : `Doppler ${dopplerFromMotion(v, 10e9).toFixed(0)} Hz @10 GHz`
+        dev.motion.value = pick(`Doppler ${dopplerFromMotion(v, 10e9).toFixed(0)} Hz @10 GHz`, `Доплер ${dopplerFromMotion(v, 10e9).toFixed(0)} Hz @10 GHz`)
         clearTimeout(to); resolve()
       }, { once: true })
     })
@@ -99,7 +99,7 @@ async function enableMagnet() {
       const to = setTimeout(() => reject(new Error('no reading')), 2500)
       m.addEventListener('reading', () => {
         const uT = Math.hypot(m.x, m.y, m.z) // microtesla magnitude
-        dev.magnet.value = bg.value ? `B=${uT.toFixed(1)} µT → Лармор ${larmorFromMicrotesla(uT).toFixed(0)} Hz` : `B=${uT.toFixed(1)} µT → Larmor ${larmorFromMicrotesla(uT).toFixed(0)} Hz`
+        dev.magnet.value = pick(`B=${uT.toFixed(1)} µT → Larmor ${larmorFromMicrotesla(uT).toFixed(0)} Hz`, `B=${uT.toFixed(1)} µT → Лармор ${larmorFromMicrotesla(uT).toFixed(0)} Hz`)
         clearTimeout(to); m.stop(); resolve()
       })
       m.addEventListener('error', () => { clearTimeout(to); reject(new Error('sensor error')) })
@@ -130,51 +130,52 @@ onMounted(() => { loadBtc(); loadUsgs() })
 
 <template>
   <section class="rt dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="eyebrow">{{ bg ? 'тествай всичко с реални данни (API + сензори)' : 'test all with realtime data (APIs + device sensors)' }}</p>
+    <p class="eyebrow">{{ pick('test all with realtime data (APIs + device sensors)', 'тествай всичко с реални данни (API + сензори)') }}</p>
 
     <div class="rt__grid">
       <!-- LIVE APIs (auto-fetched, no key) -->
       <div class="rt__panel">
-        <h4>{{ bg ? 'Coinbase BTC-USD → бектест' : 'Coinbase BTC-USD → backtest' }} <span class="rt__tag api">api</span></h4>
-        <p v-if="api.btc.status === 'loading'" class="rt__muted">{{ bg ? 'зареждане…' : 'loading live prices…' }}</p>
-        <p v-else-if="api.btc.status === 'error'" class="rt__muted">{{ bg ? 'мрежата недостъпна' : 'network unavailable' }}</p>
+        <h4>{{ pick('Coinbase BTC-USD → backtest', 'Coinbase BTC-USD → бектест') }} <span class="rt__tag api">api</span></h4>
+        <p v-if="api.btc.status === 'loading'" class="rt__muted">{{ pick('loading live prices…', 'зареждане…') }}</p>
+        <p v-else-if="api.btc.status === 'error'" class="rt__muted">{{ pick('network unavailable', 'мрежата недостъпна') }}</p>
         <template v-else>
-          <p class="rt__muted">{{ bg ? 'последна' : 'latest' }} ${{ api.btc.latest.toLocaleString() }}</p>
+          <p class="rt__muted">{{ pick('latest', 'последна') }} ${{ api.btc.latest.toLocaleString() }}</p>
           <ul class="rt__rows">
             <li v-for="r in api.btc.rows" :key="r.name">
               <span>{{ r.name }}</span>
               <code :class="{ neg: r.ret < 0 }">{{ pct(r.ret) }}</code>
-              <small>{{ bg ? 'купи&дръж' : 'b&h' }} {{ pct(r.bench) }}</small>
+              <small>{{ pick('b&h', 'купи&дръж') }} {{ pct(r.bench) }}</small>
             </li>
           </ul>
-          <code class="rt__receipt" :title="bg ? 'възпроизводим адрес на моментната снимка' : 'reproducible snapshot address'">{{ api.btc.receipt.slice(0, 8) }}</code>
+          <code class="rt__receipt" :title="pick('reproducible snapshot address', 'възпроизводим адрес на моментната снимка')">{{ api.btc.receipt.slice(0, 8) }}</code>
         </template>
       </div>
 
       <!-- USGS seismic spectrum -->
       <div class="rt__panel">
-        <h4>{{ bg ? 'USGS сеизмика → спектър' : 'USGS seismic → spectrum' }} <span class="rt__tag api">api</span></h4>
-        <p v-if="api.usgs.status === 'loading'" class="rt__muted">{{ bg ? 'зареждане…' : 'loading live quakes…' }}</p>
-        <p v-else-if="api.usgs.status === 'error'" class="rt__muted">{{ bg ? 'мрежата недостъпна' : 'network unavailable' }}</p>
+        <h4>{{ pick('USGS seismic → spectrum', 'USGS сеизмика → спектър') }} <span class="rt__tag api">api</span></h4>
+        <p v-if="api.usgs.status === 'loading'" class="rt__muted">{{ pick('loading live quakes…', 'зареждане…') }}</p>
+        <p v-else-if="api.usgs.status === 'error'" class="rt__muted">{{ pick('network unavailable', 'мрежата недостъпна') }}</p>
         <template v-else>
-          <p class="rt__muted">{{ api.usgs.count }} {{ bg ? 'труса (24ч)' : 'quakes (24h)' }}</p>
-          <p class="rt__big">k={{ api.usgs.k }} · {{ bg ? 'период' : 'period' }} {{ api.usgs.period }}</p>
+          <p class="rt__muted">{{ api.usgs.count }} {{ pick('quakes (24h)', 'труса (24ч)') }}</p>
+          <p class="rt__big">k={{ api.usgs.k }} · {{ pick('period', 'период') }} {{ api.usgs.period }}</p>
         </template>
       </div>
 
       <!-- Device sensors -->
       <div v-for="s in sensors" :key="s.id" class="rt__panel">
         <h4>{{ s.label }} <span class="rt__tag dev">device</span></h4>
-        <button type="button" v-if="dev[s.id].status === 'idle'" class="rt__btn" @click="s.enable()">{{ bg ? 'разреши' : 'enable' }}</button>
-        <p v-else-if="dev[s.id].status === 'requesting'" class="rt__muted">{{ bg ? 'искане на достъп…' : 'requesting…' }}</p>
-        <p v-else-if="dev[s.id].status === 'unavailable'" class="rt__muted">{{ bg ? 'няма сензор/разрешение тук' : 'no sensor / permission here' }}</p>
+        <button type="button" v-if="dev[s.id].status === 'idle'" class="rt__btn" @click="s.enable()">{{ pick('enable', 'разреши') }}</button>
+        <p v-else-if="dev[s.id].status === 'requesting'" class="rt__muted">{{ pick('requesting…', 'искане на достъп…') }}</p>
+        <p v-else-if="dev[s.id].status === 'unavailable'" class="rt__muted">{{ pick('no sensor / permission here', 'няма сензор/разрешение тук') }}</p>
         <p v-else class="rt__big">{{ dev[s.id].value }}</p>
       </div>
     </div>
 
-    <p class="rt__note">{{ fold.wired ? '◆ ' : '◇ ' }}{{ bg
-      ? 'Поглъщането е в браузъра; src е чист и адресира по съдържание. Честно: микрофонът е ЗВУК, не ЕМ; движението храни радарното УРАВНЕНИЕ, не радар; магнитометър→Лармор е реално поле, без ЯМР; бектест≠реално, не е съвет.'
-      : 'Ingestion is in the browser; src stays pure and content-addresses each capture. Honest: the mic is SOUND not EM; motion feeds the radar EQUATION not radar; magnetometer→Larmor is a real field, no NMR; backtest≠live, not financial advice.' }}</p>
+    <p class="rt__note">{{ fold.wired ? '◆ ' : '◇ ' }}{{ pick(
+      'Ingestion is in the browser; src stays pure and content-addresses each capture. Honest: the mic is SOUND not EM; motion feeds the radar EQUATION not radar; magnetometer→Larmor is a real field, no NMR; backtest≠live, not financial advice.',
+      'Поглъщането е в браузъра; src е чист и адресира по съдържание. Честно: микрофонът е ЗВУК, не ЕМ; движението храни радарното УРАВНЕНИЕ, не радар; магнитометър→Лармор е реално поле, без ЯМР; бектест≠реално, не е съвет.',
+    ) }}</p>
   </section>
 </template>
 

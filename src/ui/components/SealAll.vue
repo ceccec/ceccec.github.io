@@ -9,7 +9,7 @@ import { useLocale } from '../lib'
 // Each wave shows its seal and the running fold it merges into; the footer shows
 // whether the whole is sealed and the master root that carries them all.
 const data = sealAll(buildMatrix())
-const { bg } = useLocale()
+const { bg, pick, pickDeep } = useLocale()
 
 const bgWave: Record<string, string> = {
   breath: 'дишане',
@@ -28,12 +28,13 @@ const bgWave: Record<string, string> = {
   multidimensional: 'многоизмерност',
 }
 const waves = computed(() =>
-  data.waves.map((wave) => ({ ...wave, name: bg.value ? bgWave[wave.wave] ?? wave.wave : wave.wave })),
+  data.waves.map((wave) => ({ ...wave, name: pick(wave.wave, bgWave[wave.wave] ?? wave.wave) })),
 )
 const t = computed(() =>
-  bg.value
-    ? { eyebrow: 'запечатай всичко · на вълни', sealed: 'всичко запечатано', open: 'отворена вълна', master: 'главен печат', closed: `${data.closed}/${data.count} вълни запечатани` }
-    : { eyebrow: 'seal all · in waves', sealed: 'all sealed', open: 'open wave', master: 'master seal', closed: `${data.closed}/${data.count} waves sealed` },
+  pickDeep(
+    { eyebrow: 'seal all · in waves', sealed: 'all sealed', open: 'open wave', master: 'master seal', closed: `${data.closed}/${data.count} waves sealed` },
+    { eyebrow: 'запечатай всичко · на вълни', sealed: 'всичко запечатано', open: 'отворена вълна', master: 'главен печат', closed: `${data.closed}/${data.count} вълни запечатани` },
+  ),
 )
 </script>
 
