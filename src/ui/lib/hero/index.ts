@@ -3,4 +3,4 @@
 // compute trio: the hero IS the quantum math rendered. This file remains as a transparent re-export so the
 // HolographicHero component imports `../../lib/hero` unchanged: the path is the render-substrate handle, the
 // source is in src/ — exactly as lib/quantumMind re-exports src/quantum/mind.
-export * from '../../../../src/quantum'
+export * from '../../../quantum'

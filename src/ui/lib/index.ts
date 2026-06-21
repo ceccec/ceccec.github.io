@@ -1,5 +1,5 @@
 // src/ui/lib — the render layer's lib folder. This index is its ONE public surface: every Vue
-// component enters the folder through here (`import { … } from '../lib'`), never by reaching past
+// component enters the folder through here (`import { … } from './'`), never by reaching past
 // the index into an internal file (the folder-only import law). A folder is a module; its index is
 // the only thing the outside may couple to, so the internals stay free to move.
 //

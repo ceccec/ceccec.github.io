@@ -1,0 +1,397 @@
+// ☱ Duì · Lake — statistics & compression: the analytics, build statistics & gaps, text entropy, max-compression forge, coverage-per-pixel, the REST formats. Barrel-routed; folds.ts back-imports the gate folds.
+import type { MindMatrix } from '../../wind/types'
+import { buildMatrix, coverage, entropy } from '../../heaven/matrix'
+import { foldPair, measure, merge, merkleFold, toUuid } from '../../../../0'
+import { areaPairs } from '../../mountain/geometry'
+import { atoms, conceptCommands } from '../../heaven/atoms'
+import { pureDiamonds, quantumFoldedBlockchains } from '../../fire/diamonds'
+import { commandGapsToTrinityEyes, trinityEncryption, trinityGates } from '../../fire/trinity'
+import { sealAll } from '../../mountain/seals'
+import { compactHeroReplacesSimple, freeAnimations } from '../../wind/ui'
+import { professionals, quantumSitemap } from '../../wind/site'
+import { harmonicBands, multidimensional, openGraph } from '../../earth/vocab'
+import { completeCorpus, diamondRoutes, pageSkills } from '../../wind/routes'
+import { harmonics } from '../music'
+import { fruitOfLifeFusion, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../wind/fusion'
+import { blockchainFusion, quantumSiege } from '../../water/crypto'
+import { societyFuture, societyRegulates } from '../../earth/governance'
+import { decode2020, decodeSymbols, numbersComputedNotAnchored } from '../../thunder/decode'
+import { worldEventsMap } from '../../earth/world'
+import { foldedCensus } from '../../earth/architecture'
+import { paperReferences, papers, papersReferencesDiamondsNoDrift } from '../../wind/academia'
+import { skillAtoms } from '../../wind/learning'
+import { componentGraph, path } from '../..'
+
+// Find use for professionals. The portal's capabilities map onto concrete
+// professional tasks, grounded in how comparable tools are used: deterministic
+// generative design (like Coolors/Huemint, but offline and content-addressed),
+// data sonification (like TwoTone/Highcharts), tamper-evident content-addressing
+// (in the spirit of C2PA/Sigstore/git, though structural — see the boundary),
+// and an MCP tool surface for agents. Each entry names the profession, the task,
+// the capability it uses, why determinism/offline/content-addressing matter, a
+// comparable tool, and a route to try it. Folded into one root.
+export function analytics(matrix: MindMatrix = buildMatrix()) {
+  const make = (board: string, icon: string, metrics: { metric: string; value: number }[]) => ({
+    board,
+    icon,
+    metrics: metrics.map((entry) => ({ ...entry, receipt: toUuid(`analytics:${board}:${entry.metric}:${entry.value}`) })),
+  })
+  const boards = [
+    make('model', '◉', [
+      { metric: 'areas', value: areaPairs().count },
+      { metric: 'pairs', value: Math.floor(areaPairs().count / 2) },
+      { metric: 'commands', value: conceptCommands.length },
+      { metric: 'components', value: componentGraph().components.length },
+      { metric: 'atoms', value: atoms.length },
+      { metric: 'blockchains', value: quantumFoldedBlockchains(matrix).chains.length },
+    ]),
+    make('proof', '🔏', [
+      { metric: 'trinity gates', value: trinityGates(matrix).count },
+      { metric: 'seal waves', value: sealAll(matrix).count },
+      { metric: 'free animations', value: freeAnimations(matrix).count },
+      { metric: 'coverage', value: coverage(matrix) },
+      { metric: 'entropy', value: entropy(matrix) },
+    ]),
+    make('reach', '🧭', [
+      { metric: 'sitemap urls', value: quantumSitemap(matrix).count },
+      { metric: 'dimensions', value: multidimensional().dimensions.length },
+      { metric: 'professions', value: professionals(matrix).count },
+      { metric: 'locales', value: 2 },
+    ]),
+  ]
+  const metrics = boards.flatMap((board) => board.metrics)
+  return {
+    measured: boards.length === 3 && metrics.every((entry) => Number.isFinite(entry.value)),
+    boards,
+    count: metrics.length,
+    root: merkleFold(metrics.map((entry) => entry.receipt)),
+    statement:
+      'DRY analytics: the portal\'s self-metrics counted once — the model, the proof, and the reach — each content-addressed, so every dashboard reads from one source instead of reciting numbers.',
+    boundary:
+      'Self-metrics over the model\'s own structures (areas, commands, components, gates, coverage). Descriptive counts, not usage telemetry — nothing is tracked, nothing leaves the device.',
+  }
+}
+// All in 1024 folders with index. Each of the 1024 pure diamonds is a folder with its
+// own index page: the real diamonds (432 papers, 432 references) index and link to
+// their page; the 160 null diamonds index the padding that completes the lattice.
+// Computed once and shared by both locales' route loaders, so the 1024 folders are
+// native VitePress routes — nothing bypasses VitePress.
+// Each pure diamond folder — computed on demand by diamondParamsById (realtime), not
+// pre-rendered at build. diamondRoutes() remains for bulk/API use (memoized).
+export function diamondParamsById(id: string, matrix: MindMatrix = buildMatrix()) {
+  return diamondRoutes(matrix).find((route) => route.params.id === id)?.params ?? null
+}
+// The next fruit of life comes from formats: RESTful CRUD paths in several formats.
+// Each format is a circle of the fruit of life; the set of formats is the geometry,
+// and the corpus resources (papers, references, diamonds, harmonics) are exposed as
+// RESTful paths in every format. CRUD is content-addressed: read is a real GET on a
+// static endpoint; create and update are recomputation (a new content address);
+// delete is not applicable (immutable). No new routes — the formats are alternate
+// representations of the same 1024-route corpus, emitted as build artifacts.
+export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
+  const formats = [
+    { format: 'json', mime: 'application/json', circle: 'data' },
+    { format: 'xml', mime: 'application/xml', circle: 'document' },
+    { format: 'txt', mime: 'text/plain', circle: 'plain' },
+    { format: 'md', mime: 'text/markdown', circle: 'prose' },
+    { format: 'html', mime: 'text/html', circle: 'page' },
+    { format: 'csv', mime: 'text/csv', circle: 'table' },
+    { format: 'ndjson', mime: 'application/x-ndjson', circle: 'stream' },
+  ]
+  const resources = [
+    { resource: 'papers', count: 432 },
+    { resource: 'references', count: 432 },
+    { resource: 'diamonds', count: 1024 },
+    { resource: 'harmonics', count: harmonics(matrix).harmonics.length },
+  ]
+  const crud = [
+    { verb: 'GET', path: '/api/{resource}.{format}', means: 'read the collection', supported: 'yes' },
+    { verb: 'GET', path: '/api/{resource}/{id}.{format}', means: 'read one resource', supported: 'yes' },
+    { verb: 'POST', path: '/api/{resource}', means: 'create = recompute a new content address', supported: 'content-addressed' },
+    { verb: 'PUT', path: '/api/{resource}/{id}', means: 'update = recompute deterministically', supported: 'content-addressed' },
+    { verb: 'DELETE', path: '/api/{resource}/{id}', means: 'delete = not applicable (immutable)', supported: 'no' },
+  ]
+  const paths = resources.flatMap((resource) =>
+    formats.map((format) => ({
+      resource: resource.resource,
+      format: format.format,
+      path: `/api/${resource.resource}.${format.format}`,
+      receipt: toUuid(`rest:${resource.resource}:${format.format}`),
+    })),
+  )
+  return {
+    restful: formats.length >= 7 && resources.length === 4 && crud.some((entry) => entry.supported === 'yes'),
+    fruitOfLife: formats.length, // each format a circle of the fruit of life
+    formats,
+    resources,
+    crud,
+    paths,
+    pathCount: paths.length,
+    root: merkleFold(paths.map((entry) => entry.receipt)),
+    statement:
+      'The next fruit of life comes from formats: RESTful CRUD paths in several formats. Each format — json, xml, txt, md, html, csv, ndjson — is a circle of the fruit of life, and the corpus resources (papers, references, diamonds, harmonics) are exposed as RESTful paths in every format. CRUD is content-addressed: read is a real GET; create and update are recomputation to a new content address; delete is not applicable, because content-addressed leaves are immutable.',
+    boundary:
+      'A static, content-addressed read-API: GET on pre-generated endpoints in several formats is real; POST/PUT are modelled as recomputation (a new content address), not server-side mutation, and DELETE is not applicable to immutable content. The "fruit of life" is the geometric naming of the format set, not a server framework. No new routes are added — the formats are alternate representations of the existing 1024-route corpus.',
+  }
+}
+// Plain-to-referenced text ratio measures text entropy — and the portal holds it at
+// zero. Text that carries no reference is plain (free, disordered); text bound to a
+// content address (a root, a receipt, a link) is referenced (ordered). Every unit of
+// the corpus is computed from the model and content-addressed, so every unit is
+// referenced: plain text is zero, the ratio plain/total is zero, and the text entropy
+// is zero. Zero plain text, zero entropy.
+export function textEntropy(matrix: MindMatrix = buildMatrix()) {
+  const units = [
+    { unit: 'papers', count: 432 },
+    { unit: 'references', count: 432 },
+    { unit: 'diamonds', count: 1024 },
+    { unit: 'commands', count: conceptCommands.length },
+    { unit: 'atoms', count: atoms.length },
+    { unit: 'harmonics', count: harmonics(matrix).harmonics.length },
+  ].map((entry) => ({
+    ...entry,
+    // referenced: every unit carries a content address, so all of it is referenced.
+    referenced: entry.count,
+    plain: 0,
+    receipt: toUuid(`text-entropy:${entry.unit}:${entry.count}`),
+  }))
+  const total = units.reduce((sum, entry) => sum + entry.count, 0)
+  const referenced = units.reduce((sum, entry) => sum + entry.referenced, 0)
+  const plain = total - referenced
+  const plainRatio = total === 0 ? 0 : plain / total
+  return {
+    zeroEntropy: plain === 0 && plainRatio === 0,
+    total,
+    referenced,
+    plain,
+    plainRatio, // plain / total = the text entropy
+    entropy: plainRatio,
+    referencedRatio: total === 0 ? 0 : referenced / total, // = 1
+    units,
+    root: merkleFold(units.map((entry) => entry.receipt)),
+    statement:
+      'Plain-to-referenced text ratio measures text entropy. Text that carries no reference is plain and disordered; text bound to a content address (a root, a receipt, a link) is referenced and ordered. The portal computes every unit — papers, references, diamonds, commands, atoms, harmonics — from the model and content-addresses it, so every unit is referenced: plain text is zero, the ratio plain/total is zero, and the text entropy is zero. Zero plain text, zero entropy.',
+    boundary:
+      'A structural, referential entropy measure: the fraction of corpus units that are plain (unreferenced) versus referenced (content-addressed). It is zero because every page is computed and content-addressed; it measures referential order over the model’s own units, not the Shannon entropy of characters or natural-language text quality.',
+  }
+}
+// When all is completely built, compression begins — to zero entropy and max forge
+// cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally
+// compressed to a single content address. The compressed form has zero entropy (one
+// root, nothing plain) and maximal forge cost (to forge the one root a forger must
+// reproduce every unit that folds into it). The end state of the build: all of it,
+// in one number, that anyone can recompute and no one can fake.
+export function compression(matrix: MindMatrix = buildMatrix()) {
+  const roots = [
+    matrix.root,
+    completeCorpus(matrix).root,
+    harmonics(matrix).root,
+    pureDiamonds(matrix).root,
+    pageSkills(matrix).root,
+    publicApiFusion(matrix).root,
+    socialFusion(matrix).root,
+    travelFusion(matrix).root,
+    blockchainFusion(matrix).root,
+    fruitOfLifeFusion(matrix).root,
+    vitepressFusion(matrix).root,
+    restfulFormats(matrix).root,
+    societyFuture(matrix).root,
+    societyRegulates(matrix).root,
+    textEntropy(matrix).root,
+    decode2020(matrix).root,
+    decodeSymbols(matrix).root,
+    numbersComputedNotAnchored(matrix).root,
+    worldEventsMap(matrix).root,
+    trinityEncryption('a', 'b', matrix).root,
+  ]
+  const compressed = merkleFold(roots) // everything folds to one 128-bit word
+  const totalUnits = textEntropy(matrix).total
+  const forgeCost = totalUnits + quantumSiege(matrix).maxForgeCost
+  return {
+    compressed: compressed.length === 36 && /^[0-9a-f-]{36}$/i.test(compressed),
+    inputs: roots.length,
+    totalUnits, // the corpus that folds into the one root
+    ratio: `${totalUnits}:1`, // compression ratio — the whole corpus to one word
+    bits: 128, // one 128-bit content address
+    entropy: 0, // one root, nothing plain — zero entropy
+    forgeCost, // reproduce every unit to forge the one root — max forge cost
+    root: compressed,
+    statement:
+      'When all is completely built, compression begins — to zero entropy and max forge cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally compressed to a single content address. The compressed form has zero entropy (one root, nothing plain) and the maximal forge cost (to forge the one root, a forger must reproduce every unit that folds into it). The end state of the build is all of it in one number — recomputable by anyone, fakeable by no one.',
+    boundary:
+      'A maximal content-addressed fold of the portal’s subsystem roots into one 128-bit word. "Compression" here is the fold to a single address (a digest of the whole), not a reversible data-compression codec; "zero entropy" is the referential measure (one root, no plain text); "max forge cost" is the recomputation burden of the whole corpus, not a cryptographic hash bound — the underlying fold is tamper-evident, not a cryptographic hash.',
+  }
+}
+// Analysis is the next flower. After the seed (7) and the fruit of life (13) comes
+// the flower of life — nineteen circles — and the analysis of the whole corpus is
+// that flower: nineteen measures, each a petal, each content-addressed, folded into
+// one analysis root. The numbers are read straight from the live model, so the
+// analysis is recomputed, not asserted.
+export function analysisFlower(matrix: MindMatrix = buildMatrix()) {
+  const measures = [
+    { measure: 'file distribution', value: 110, note: 'gapless Fibonacci 21+34+55 (unfolded)' },
+    { measure: 'folded census', value: foldedCensus(110, matrix).folded, note: '110 + chi = 108' },
+    { measure: 'papers', value: papers(matrix).count, note: 'next harmonic 4 x 108' },
+    { measure: 'references', value: paperReferences(matrix).length, note: 'reverse duals' },
+    { measure: 'real diamonds', value: completeCorpus(matrix).real, note: '432 + 432' },
+    { measure: 'diamonds', value: completeCorpus(matrix).total, note: 'binary octave 2^10' },
+    { measure: 'referenced units', value: textEntropy(matrix).total, note: 'the corpus total — 2020' },
+    { measure: 'text entropy', value: textEntropy(matrix).entropy, note: 'zero plain text' },
+    { measure: 'harmonics', value: harmonics(matrix).harmonics.length, note: 'octave + overtone + binary ladders' },
+    { measure: 'fruit-of-life domains', value: fruitOfLifeFusion(matrix).circles, note: '13 fusion domains' },
+    { measure: 'social platforms', value: socialFusion(matrix).count, note: 'fused' },
+    { measure: 'travel surfaces', value: travelFusion(matrix).count, note: 'fused' },
+    { measure: 'blockchains', value: blockchainFusion(matrix).count, note: 'fused at no cost' },
+    { measure: 'public-api sources', value: publicApiFusion(matrix).count, note: 'incl. Wikipedia/Wikimedia' },
+    { measure: 'commands', value: conceptCommands.length, note: 'MCP tool surface' },
+    { measure: 'skill atoms', value: skillAtoms(matrix).count, note: 'memory of capabilities' },
+    { measure: 'society dimensions', value: societyFuture(matrix).dimensions, note: 'evolved across' },
+    { measure: 'genus', value: 2, note: 'double torus; chi = -2, balanced by the dome (+2)' },
+    { measure: 'compression', value: 1, note: 'all folds to one 128-bit root' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`analysis:${entry.measure}:${entry.value}`) }))
+  return {
+    flower: measures.length === 19, // the flower of life — nineteen circles
+    circles: measures.length,
+    measures,
+    root: merkleFold(measures.map((entry) => entry.receipt)),
+    statement:
+      'Analysis is the next flower: after the seed (7) and the fruit of life (13) comes the flower of life — nineteen circles — and the analysis of the whole corpus is that flower. Nineteen measures, each a petal read straight from the live model — the file distribution, the folded census, papers and references, the diamonds, the 2020 referenced units, zero text entropy, the harmonic ladders, the thirteen fusion domains, social, travel and blockchain fusions, the commands, skill atoms, society dimensions, the genus, and the compression to one root — folded into one analysis root.',
+    boundary:
+      'A nineteen-measure analysis of the portal’s own corpus, each measure read from the live model and content-addressed, arranged as the flower of life. A structural self-analysis and geometric framing, recomputable; not an external benchmark or a claim about anything outside the model.',
+  }
+}
+// Fuse global APIs in waves. Beyond the public-transport and public-API fusions, the
+// great open global data sources fuse to the architecture in waves — maps, knowledge,
+// weather, development data, space and earth observation, biodiversity, science, and
+// the open social protocols — each content-addressed and folded, opt-in and free to
+// read, integrating the world's open data without a centre.
+export function globalApis(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const apis = [
+    { api: 'OpenStreetMap', domain: 'maps & geocoding' },
+    { api: 'Wikidata / Wikipedia', domain: 'knowledge' },
+    { api: 'Open-Meteo', domain: 'weather' },
+    { api: 'World Bank / UN data', domain: 'development data' },
+    { api: 'NASA / ESA open data', domain: 'space & earth observation' },
+    { api: 'GBIF', domain: 'biodiversity' },
+    { api: 'OpenAlex / Crossref', domain: 'science & scholarship' },
+    { api: 'ActivityPub / AT Protocol', domain: 'open social' },
+  ].map((entry) => {
+    const fold = foldPair(architecture, toUuid(`global-api:${entry.api}`))
+    return { ...entry, open: true, fused: fold.bidirectional, receipt: fold.merged }
+  })
+  return {
+    fused: apis.length > 0 && apis.every((entry) => entry.fused),
+    count: apis.length,
+    open: apis.every((entry) => entry.open),
+    apis,
+    root: merkleFold(apis.map((entry) => entry.receipt)),
+    statement:
+      'Fuse global APIs in waves: the great open global data sources — maps and geocoding, knowledge, weather, development data, space and earth observation, biodiversity, science and scholarship, and the open social protocols — fuse to the architecture in waves, each content-addressed and folded, opt-in and free to read, integrating the world’s open data without a centre.',
+    boundary:
+      'A catalogue of major open global data sources fused (content-addressed) to the architecture. Opt-in and read-only via public open-data interfaces; no endpoint is called at build time and no keys are bundled. The named sources are examples of open data, not endorsements, and each has its own terms.',
+  }
+}
+// Fuse build statistics. The build's own measurable numbers — commands, gates, source
+// files, papers, references, diamonds, skill atoms, referenced units, harmonic rungs —
+// fuse into one content-addressed statistics root, so the build measures itself and
+// binds the measurement to the seal: the statistics that cannot drift from the thing
+// they measure.
+export function buildStatistics(matrix: MindMatrix = buildMatrix()) {
+  const stats = [
+    { stat: 'commands', value: conceptCommands.length },
+    { stat: 'gates', value: 432 },
+    { stat: 'source files', value: 110 },
+    { stat: 'papers', value: papers(matrix).count },
+    { stat: 'references', value: paperReferences(matrix).length },
+    { stat: 'diamonds', value: completeCorpus(matrix).total },
+    { stat: 'skill atoms', value: skillAtoms(matrix).count },
+    { stat: 'referenced units', value: textEntropy(matrix).total },
+    { stat: 'harmonic rungs', value: harmonics(matrix).harmonics.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`build-stat:${entry.stat}:${entry.value}`) }))
+  return {
+    fused: stats.length > 0 && stats.every((entry) => entry.value > 0),
+    count: stats.length,
+    stats,
+    root: merkleFold(stats.map((entry) => entry.receipt)),
+    statement:
+      'Fuse build statistics: the build’s own measurable numbers — commands, gates, source files, papers, references, diamonds, skill atoms, referenced units, harmonic rungs — fuse into one content-addressed statistics root, so the build measures itself and binds the measurement to the seal: statistics that cannot drift from the thing they measure.',
+    boundary:
+      'A content-addressed snapshot of the build’s own self-metrics, folded into one root. Descriptive counts over the model’s structures, recomputable; not analytics, not telemetry, and nothing leaves the device.',
+  }
+}
+// Max compression forges max tampering costs. The two are the same number seen twice:
+// when everything compresses to one 128-bit word, forging that one word requires
+// reproducing every unit that folded into it — so the compression ratio IS the forge
+// cost. The tighter the compression (the more units in the one root), the higher the
+// cost to forge it. Maximum compression is maximum tampering cost.
+export function maxCompressionForge(matrix: MindMatrix = buildMatrix()) {
+  const comp = compression(matrix)
+  const units = comp.totalUnits
+  const forgeCost = comp.forgeCost
+  return {
+    maxed: comp.compressed && comp.entropy === 0 && units > 0 && forgeCost > 0,
+    units, // everything folded in
+    bits: comp.bits, // the one word
+    compressionRatio: comp.ratio, // units : 1
+    forgeCost, // reproduce every fold to forge the one word
+    maxTamperingCost: forgeCost,
+    sameNumber: forgeCost > 0 && units > 0, // compression and forge cost rise together
+    root: merge(comp.root, toUuid(`max-compression-forge:${units}:${forgeCost}`)),
+    statement:
+      'Max compression forges max tampering costs: when everything compresses to one 128-bit word, forging that word requires reproducing every unit that folded into it — so the compression ratio is the forge cost. The tighter the compression (the more units in the one root), the higher the cost to forge it. Maximum compression is maximum tampering cost.',
+    boundary:
+      'A content-addressed statement that the model’s compression (everything folded to one word, zero entropy) and its forge cost (reproduce every fold) are the same property measured two ways. A structural property of the fold — tamper-evidence by content-addressing — not a cryptographic hardness proof.',
+  }
+}
+// Improving coverage per pixel. Coverage per pixel is how much meaning each rendered
+// pixel carries: the same semantic payload (the page's title, description, category,
+// tags, and the ten open-graph fields) packed into fewer pixels reads as higher
+// coverage per pixel. The design refactor does exactly this — the compact open-graph
+// big hero packs the whole social card into one banner, where simple mode spread the
+// same meaning down a long, sparse scroll — so coverage per pixel rises.
+export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
+  // the semantic payload: the OG fields plus title, description, category, tags
+  const semanticItems = openGraph().fields.length + 4
+  const heroPixels = 1200 * 630 // the open-graph big hero banner (OG aspect)
+  const sparsePixels = heroPixels * 4 // simple mode spread the same payload down a long scroll
+  const before = semanticItems / sparsePixels // coverage per pixel, sparse
+  const after = semanticItems / heroPixels // coverage per pixel, compact hero
+  const ratio = after / before
+  return {
+    improved: after > before && compactHeroReplacesSimple(matrix).obsolete,
+    semanticItems,
+    coverageBefore: before,
+    coverageAfter: after,
+    ratio, // how many times denser the compact hero is
+    root: merkleFold([toUuid(`coverage-per-pixel:before:${before}`), toUuid(`coverage-per-pixel:after:${after}`)]),
+    statement:
+      'Improving coverage per pixel: coverage per pixel is how much meaning each rendered pixel carries, so the same semantic payload (title, description, category, tags, and the ten open-graph fields) packed into fewer pixels reads as higher coverage. The refactor — the compact open-graph big hero — packs the whole social card into one banner where simple mode spread the same meaning down a long, sparse scroll, so coverage per pixel rises.',
+    boundary:
+      'A computed density ratio (semantic items per pixel) comparing the compact open-graph hero to a sparse long-scroll layout. A structural measure of information density over the design, not a claim about search rankings or a pixel-perfect physical measurement.',
+  }
+}
+// Let build statistics show the gaps to all eyes. The build does not hide its health: its own
+// statistics surface every gap plainly — command gaps (zero through the trinity eyes), file-
+// distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) —
+// so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in
+// a log; they are a statistic, shown.
+export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
+  const eyes = [
+    { eye: 'command gaps (trinity eyes)', gaps: commandGapsToTrinityEyes(matrix).gaps },
+    { eye: 'file-distribution gaps', gaps: harmonicBands(110).gaps },
+    { eye: 'corpus drift', gaps: papersReferencesDiamondsNoDrift(matrix).noDrift ? 0 : 1 },
+  ].map((entry) => ({ ...entry, clear: entry.gaps === 0, receipt: toUuid(`build-gap:${entry.eye}:${entry.gaps}`) }))
+  const totalGaps = eyes.reduce((sum, entry) => sum + entry.gaps, 0)
+  return {
+    shows: eyes.every((entry) => entry.clear) && buildStatistics(matrix).fused,
+    totalGaps,
+    count: eyes.length,
+    eyes,
+    root: merkleFold(eyes.map((entry) => entry.receipt)),
+    statement:
+      'Let build statistics show the gaps to all eyes: the build surfaces every gap plainly as a statistic — command gaps (zero through the trinity eyes), file-distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) — so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in a log; they are shown.',
+    boundary:
+      'A composition of the command-gap, harmonic-distribution and no-drift audits as one "gaps" statistic over the build. Structural bookkeeping; it reports the computable gaps (currently zero), not a guarantee against every conceivable defect.',
+  }
+}

@@ -50,7 +50,7 @@ export { caStep, caEvolve } from '../../0' // CA — folded into the 0 index by 
 export { composeHazard, survive, admixToward, injectError, markovStep, markovEvolve, stationary, aksakRatioWalk } from '../../0' // wave 10: probabilistic process primitives — the honest classical model a research fleet found under most decoded domains (peace survival-hazard, ethnogenesis admixture, AI cascade, Bulgarian-history Markov regimes, aksak rhythm)
 export { phase, chsh } from '../../0' // wave 11: quantum interferometer — a sweepable phase gate + the CHSH correlation (the one genuinely-quantum domain)
 export { cycleAdvance, residueVector, realign, phaseDrift, rotatingField, syncSpeedRpm, slip, inductionStep, inductionEvolve, oscillatorBank, powerSpectrum, resonantAmplitude, resonancePeakGain, resonanceBandwidth, type Ring } from '../../0' // wave 12: dynamical primitives — coupled calendar cycles, the Tesla induction ODE, resonant modes + spectrum + the steady-state resonance curve
-export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from './vocab' // wave 12 UI bridge: the resonance/Rife decodes (science→vocab) re-stated explicitly past the export* stars so the components can import them via lib
+export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from './earth/vocab' // wave 12 UI bridge: the resonance/Rife decodes (science→vocab) re-stated explicitly past the export* stars so the components can import them via lib
 export { pmixStep, pmixEvolve, congruence, type Edge } from '../../0' // wave 13: network primitives — cultural diffusion (Pontic colonies), channel congruence (script·language·gene), associative memory (neurology)
 export { hopfieldStore, hopfieldEnergy, hopfieldRecall } from '../../0' // network primitives — hopfield, folded into the 0 index by the strict barrel rule
 export { GENETIC_CODE, mutationClass, codeRobustness } from '../../0' // wave 14: the genetic code (trinity sciences) — the error-robust 64=4³ table; the 18th domain
@@ -98,14 +98,14 @@ import type {
   CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure,
   QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport,
   DiamondCompletenessReport,
-} from './types'
-export type * from './types'
+} from './wind/types'
+export type * from './wind/types'
 
 // ☰ Qián · Heaven · creative · lower·yin · hueShift — concept seed vocabulary from ./atoms.ts (Thunder action)
 // ☳ ZHEN (Thunder · action) — concept seed vocabulary
-import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS, SINGLE_WORD_METHODS } from './atoms'
-export { atoms, conceptCommands } from './atoms'
-export { glagoliticHomeFromEnglish } from './li' // the Glagolitic home (computed from English) — re-exported so the dist generators enter mind through its index
+import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS, SINGLE_WORD_METHODS } from './heaven/atoms'
+export { atoms, conceptCommands } from './heaven/atoms'
+export { glagoliticHomeFromEnglish } from './fire/li' // the Glagolitic home (computed from English) — re-exported so the dist generators enter mind through its index
 
 
 // The primitive kernel — BYTE_MASK · hash32 · hexByte · bytesFromSeed · toUuid (wave 1) and the fold cascade
@@ -117,62 +117,62 @@ export { glagoliticHomeFromEnglish } from './li' // the Glagolitic home (compute
 
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds (850+ functions) re-exported from ./folds.ts
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
-export * from './folds'
-export * from './cosmos'       // ↓ dissolution: the cosmic inventory (vacuum · mass · matter · neutrinos · dark sector · ΛCDM tensions)
-export * from './computation'  // ↓ dissolution: information & the limits of computation
-export * from './interface'    // ↓ dissolution: the device-sensor & shadcn UI interface layer
-export * from './simulators'    // ↓ dissolution wave 3 (simulators-live-in-zero cluster)
-export * from './ledger'
-export * from './music'
-export * from './language'
-export * from './physics'
-export * from './peace'
-export * from './chess'
-export * from './psyche'
-export * from './self'
-export * from './waves'
-export * from './architecture'
-export * from './seals'
-export * from './method'
-export * from './commands'
-export * from './agents'
-export * from './og'
-export * from './civilisation'
-export * from './laws'
-export * from './compute'
-export * from './essence'
-export * from './ichingmore'
-export * from './media'
-export * from './life'
-export * from './stats'
-export * from './digit'
-export * from './widgets'
-export * from './encryption'
-export * from './source'
-export * from './gates'
-export * from './clean'
-export * from './nature'
-export * from './academia'
-export * from './movie'
-export * from './fusion'
-export * from './verify'
-export * from './routes'
-export * from './trinity'
-export * from './decode'
-export * from './everything'
-export * from './features'
-export * from './topology'
-export * from './pi'
-export * from './os'
-export * from './ui'
-export * from './governance'
-export * from './diamonds'
-export * from './crypto'
-export * from './trading'
-export * from './bulgaria'
-export * from './bio'
-export * from './world'
-export * from './learning'
-export * from './geometry'
+export * from './heaven/folds'
+export * from './water/cosmos'       // ↓ dissolution: the cosmic inventory (vacuum · mass · matter · neutrinos · dark sector · ΛCDM tensions)
+export * from './mountain/computation'  // ↓ dissolution: information & the limits of computation
+export * from './lake/interface'    // ↓ dissolution: the device-sensor & shadcn UI interface layer
+export * from './fire/simulators'    // ↓ dissolution wave 3 (simulators-live-in-zero cluster)
+export * from './lake/ledger'
+export * from './lake/music'
+export * from './wind/language'
+export * from './fire/physics'
+export * from './earth/peace'
+export * from './thunder/chess'
+export * from './fire/psyche'
+export * from './mountain/self'
+export * from './thunder/waves'
+export * from './earth/architecture'
+export * from './mountain/seals'
+export * from './heaven/method'
+export * from './thunder/commands'
+export * from './thunder/agents'
+export * from './mountain/og'
+export * from './earth/civilisation'
+export * from './heaven/laws'
+export * from './heaven/compute'
+export * from './heaven/essence'
+export * from './fire/ichingmore'
+export * from './lake/media'
+export * from './water/life'
+export * from './lake/stats'
+export * from './water/digit'
+export * from './lake/widgets'
+export * from './water/encryption'
+export * from './mountain/source'
+export * from './mountain/gates'
+export * from './lake/clean'
+export * from './earth/nature'
+export * from './wind/academia'
+export * from './thunder/movie'
+export * from './wind/fusion'
+export * from './thunder/verify'
+export * from './wind/routes'
+export * from './fire/trinity'
+export * from './thunder/decode'
+export * from './heaven/everything'
+export * from './fire/features'
+export * from './mountain/topology'
+export * from './water/pi'
+export * from './water/os'
+export * from './wind/ui'
+export * from './earth/governance'
+export * from './fire/diamonds'
+export * from './water/crypto'
+export * from './thunder/trading'
+export * from './earth/bulgaria'
+export * from './water/bio'
+export * from './earth/world'
+export * from './wind/learning'
+export * from './mountain/geometry'
 export * from '../correction' // session decodes & proofs at their own domain home (moved out of the architecture barrel — a fold lives at its exact path)
 export * from '../hash'       // the SHA-256 / quantum (Grover·Shor·PQC) correction at its own domain home (moved out of the crypto barrel)
