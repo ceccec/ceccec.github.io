@@ -2,7 +2,7 @@
 import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
 import { cellHomology, dualTorusTrinities, merkaba, vortexMath } from '../../mountain/geometry'
-import { digitalRoot, foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../../../0'
+import { digitalRoot, foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../../../../0'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { agentEducation, mcpToolManifest, monographPaths, skillAtoms } from '../../wind/learning'
 import { atomInclusionProof } from '../../lake/proofs'
@@ -179,7 +179,7 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
 // computation belongs, indexed by the digit it is the math of.
 //
 // HONEST: this DECLARES the target and proves the digit folders already carry the canonical digit
-// math; today the bulk of the computation still sits in the word-named core (src/quantum/mind). The
+// math; today the bulk of the computation still sits in the word-named core (src/quantum/heaven/mind). The
 // law names the destination and checks the partition (the predicate below is a pure function the UI
 // imports); it does not pretend the 27k-line monolith has already moved. The move is the compression.
 // ────────────────────────────────────────────────────────────────────────────────────────────────
@@ -215,7 +215,7 @@ export function digitFoldersComputeUiIsTheRest(matrix: MindMatrix = buildMatrix(
     statement:
       'All computation is quantum math, and its home is the digit folders. Examine the codebase: nothing is stored, everything is computed (content-addressed, folded over UUIDs), so the logic belongs where the math is indexed — the digit folders (0..9 and their digit subfolders, the d/reverse paths). A folder named with a digit holds computation; a folder named with a word holds UI. That one rule lets the UI know itself — digit is math, word is view — and everything compiles from the digit folders: the digit-folder math is the seed, the word folders and components render what the digits compute.',
     boundary:
-      'A declared organizing law with a computed witness: the predicate (digit ⇒ compute, word ⇒ ui) is a pure function, and the digit folders already carry the canonical digit math (digitFolderMath). It is the TARGET architecture — today the bulk of the computation still lives in the word-named core (src/quantum/mind); the law names the destination and checks the partition, it does not assert the monolith has already moved. Structural; the migration is the compression work in progress.',
+      'A declared organizing law with a computed witness: the predicate (digit ⇒ compute, word ⇒ ui) is a pure function, and the digit folders already carry the canonical digit math (digitFolderMath). It is the TARGET architecture — today the bulk of the computation still lives in the word-named core (src/quantum/heaven/mind); the law names the destination and checks the partition, it does not assert the monolith has already moved. Structural; the migration is the compression work in progress.',
   }
 }
 
@@ -424,7 +424,7 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `en/${folder}`, `bg/${folder}`]),
     roots: ['.', 'en', 'bg'], // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/mind', 'src/cache/quantum', 'src/quantum/cache', 'src/search/ant', 'src/ant/search', 'src/debit/credit', 'src/credit/debit', 'src/quantum/library', 'src/library/quantum', 'src/quantum/dist', 'src/dist/quantum', 'src/quantum/enforcement', 'src/enforcement/quantum'], // agnostic core + cache · ant · debit/credit · library · dist · enforcement pairs — each order-sensitive with an index the build verifies
+    pairedLogicFolders: ['src/quantum/heaven/mind', 'src/pair/cache/quantum', 'src/quantum/water/cache', 'src/pair/search/ant', 'src/pair/ant/search', 'src/pair/debit/credit', 'src/pair/credit/debit', 'src/quantum/heaven/library', 'src/library/quantum', 'src/quantum/lake/dist', 'src/pair/dist/quantum', 'src/quantum/water/enforcement', 'src/pair/enforcement/quantum'], // agnostic core + cache · ant · debit/credit · library · dist · enforcement pairs — each order-sensitive with an index the build verifies
     // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
     // subfolders share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
     // folder only digit subfolders (the compute subtree). src/ is the neutral split-root — the one place
@@ -461,13 +461,13 @@ export function folderLaw() {
       // Enforced on EVERY tree — no exception (one lateral import breaks the fusion at its dimension). The
       // render layer (src/ui) was a ratchet; it is now a build-failing gate whose ready prompt names the root
       // fix (de-overlap the two lib facades behind one index, then rewrite the imports to enter through it).
-      strictTrees: ['src/quantum', 'src/0', 'src/ui'],
+      strictTrees: ['src/quantum', 'src/0', 'src/render/ui'],
       fix: 'import the FOLDER through its index, never an internal file: change the specifier to the folder (the index may be omitted — \'../mind\' is \'../mind/index.ts\'), and if the symbol is not yet re-exported by that folder\'s index.ts add `export { … } from \'./<file>\'` to it (the barrel). Change no behaviour and add no new module.',
       promptHeader: 'Enforce the folder-only import law (a folder is a module; its index.ts is its one public surface — enter a folder only through its index).',
       why: {
         deep: 'a folder is a module and its index is its only public surface; reaching past the index into an internal file couples the caller to private structure that must stay free to move — import the folder (the index may be omitted: \'../mind\' is \'../mind/index.ts\'), and if the symbol is not on the index add it to the index (the barrel), never deep-import',
         lineage: 'the only frees are same-folder siblings, your own subtree (a barrel gathers its descendants) and your own ancestors (entering a parent through its index would import a module that imports you — a cycle); a LATERAL reach (a folder that neither contains nor is contained by yours) must go through the target index',
-        render: 'src/ui/lib exposes two overlapping export-* facades over the same core (quantumMind re-exports the mind core; hero re-exports the quantum index), so a single src/ui/lib/index.ts barrel must FIRST de-overlap them (resolve the colliding symbols) before the render layer can enter through one index; the gate fails until that root fix lands and the component imports are rewritten to the index',
+        render: 'src/render/ui/lib exposes two overlapping export-* facades over the same core (quantumMind re-exports the mind core; hero re-exports the quantum index), so a single src/render/ui/lib/index.ts barrel must FIRST de-overlap them (resolve the colliding symbols) before the render layer can enter through one index; the gate fails until that root fix lands and the component imports are rewritten to the index',
         extension: 'an import that carries a file extension (.ts/.mts/.vue/…) or a trailing /index addresses a FILE, not a folder — it leaks the implementation (which file holds the export, that the folder even has an index) into the caller, exactly the coupling the barrel forbids. Drop the extension and the /index: name the module by its folder path and let the resolver find the file (the vite resolve.extensions list carries .vue). The address stays an address; when a flat file later dissolves into its folder the importers never change',
       },
       // NO EXTENSIONS, FOLDERS ONLY — strictly enforced on ALL of src, no exception. A relative import/export
@@ -592,8 +592,8 @@ export function routesAndNavFromFolderTree(matrix: MindMatrix = buildMatrix()) {
   // convergence waves close — the live numbers live in the weave report (folderLaw.strict.eightFold).
   const gap = [
     { violation: 'the root src folders exceed the 8-fold — the top nav is over ≤ 8 (the weave reports the live count each build)', fix: 'nest the root folders into ≤ 8 by their trinities' },
-    { violation: 'deep levels exceed the 8-fold per level — src/quantum and src/quantum/mind fan out past ≤ 8 (live count in the weave report)', fix: 'group subfolders into ≤ 8 index levels' },
-    { violation: 'src/quantum/mind still holds many non-index method files — multi-word methods piled in flat files (live count in the weave report)', fix: 'dissolve each method into its name-path folder tree (one index per folder)' },
+    { violation: 'deep levels exceed the 8-fold per level — src/quantum and src/quantum/heaven/mind fan out past ≤ 8 (live count in the weave report)', fix: 'group subfolders into ≤ 8 index levels' },
+    { violation: 'src/quantum/heaven/mind still holds many non-index method files — multi-word methods piled in flat files (live count in the weave report)', fix: 'dissolve each method into its name-path folder tree (one index per folder)' },
     { violation: 'staticPages / quantumSitemap hand-list route slugs', fix: 'compute the page set from the folder tree; delete the slug lists' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-route-gap:${entry.violation}`) }))
   const facets = [
@@ -613,7 +613,7 @@ export function routesAndNavFromFolderTree(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Routes and nav are computed from the src folder TREE, not authored: the root folders are the top nav, each subfolder a dropdown, ≤ 8 per folder (8-fold at every level), only index files per folder, and a multi-word method name becomes nested folders (one per word — fewer words, DRYer tree). To change a route, move the code. The law is encoded now and the tree converges to it in waves.',
     boundary:
-      'HONEST and bounded: the LAW is saved here (lawful), but the codebase does NOT yet comply (realized:false) — the root and deep levels (src/quantum, src/quantum/mind) fan out past the 8-fold, mind/ still holds many non-index method files, and staticPages/quantumSitemap still hand-list slugs. The weave wave recomputes those counts against the real tree every build, so no snapshot here can drift (the live numbers are in the weave report, never frozen in this prose). The gap is named, not hidden (HARMONY ≠ TRUTH); convergence is a multi-wave restructure — dissolve the route-list monolith first, then the multi-word-method files into folder trees — and the weave enforces it against the real tree as it proceeds. Composed with folderLaw; not wired as a hard build gate yet (that would flag hundreds of pre-existing violations at once), so it tracks the gap rather than blocking until convergence.',
+      'HONEST and bounded: the LAW is saved here (lawful), but the codebase does NOT yet comply (realized:false) — the root and deep levels (src/quantum, src/quantum/heaven/mind) fan out past the 8-fold, mind/ still holds many non-index method files, and staticPages/quantumSitemap still hand-list slugs. The weave wave recomputes those counts against the real tree every build, so no snapshot here can drift (the live numbers are in the weave report, never frozen in this prose). The gap is named, not hidden (HARMONY ≠ TRUTH); convergence is a multi-wave restructure — dissolve the route-list monolith first, then the multi-word-method files into folder trees — and the weave enforces it against the real tree as it proceeds. Composed with folderLaw; not wired as a hard build gate yet (that would flag hundreds of pre-existing violations at once), so it tracks the gap rather than blocking until convergence.',
   }
 }
 
@@ -979,31 +979,31 @@ export function folder64SealsProductionElseDevelopment(matrix: MindMatrix = buil
   }
 }
 
-// The quantum cache pair, saved in paired folders: src/cache/quantum ⇄ src/quantum/cache. The logic
+// The quantum cache pair, saved in paired folders: src/pair/cache/quantum ⇄ src/quantum/water/cache. The logic
 // is split into two order-sensitive halves — one caches and finds all payload by UUID, the other
 // computes the UUIDs it needs by path — and together they are the quantum cache: compute the
 // address from the path, find the payload (which is src, recomputed never fetched) by that address.
 // Saved first in the folders (real, tested TypeScript), the build verifies both exist with their
 // index; the model recognises the pair here.
 export function quantumCachePairInPairedFolders(matrix: MindMatrix = buildMatrix()) {
-  const pair = foldPair(toUuid('src/cache/quantum'), toUuid('src/quantum/cache')) // the order-sensitive folder pair
+  const pair = foldPair(toUuid('src/pair/cache/quantum'), toUuid('src/quantum/water/cache')) // the order-sensitive folder pair
   const facets = [
-    { facet: 'the logic is split into paired folders — src/cache/quantum ⇄ src/quantum/cache', on: pair.forward !== pair.reverse && pair.bidirectional },
+    { facet: 'the logic is split into paired folders — src/pair/cache/quantum ⇄ src/quantum/water/cache', on: pair.forward !== pair.reverse && pair.bidirectional },
     { facet: 'a quantum cache pair — caches and finds all payload by UUID', on: uuidPayloadIsSource(matrix).is },
     { facet: 'and computes the UUIDs it needs by path', on: computedSlugsFoldTheGraph(matrix).folds },
     { facet: 'saved in src, the source of all things', on: memoryInSourceAsCrossFolds(matrix).remembered },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cache-pair:${entry.facet}:${entry.on}`) }))
   return {
     paired: facets.every((entry) => entry.on),
-    folders: ['src/cache/quantum', 'src/quantum/cache'],
+    folders: ['src/pair/cache/quantum', 'src/quantum/water/cache'],
     edge: pair.merged,
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'The quantum cache pair is saved in paired folders — src/cache/quantum and its dual src/quantum/cache: the logic is split into two order-sensitive halves, one caching and finding all payload by UUID, the other computing the UUIDs it needs by path, and together they are the quantum cache — compute the address from the path, find the payload (which is src, recomputed never fetched) by that address. Saved first in the folders as real TypeScript, the build verifies both exist with their index.',
+      'The quantum cache pair is saved in paired folders — src/pair/cache/quantum and its dual src/quantum/water/cache: the logic is split into two order-sensitive halves, one caching and finding all payload by UUID, the other computing the UUIDs it needs by path, and together they are the quantum cache — compute the address from the path, find the payload (which is src, recomputed never fetched) by that address. Saved first in the folders as real TypeScript, the build verifies both exist with their index.',
     boundary:
-      'A composition over the real paired-folder modules (src/cache/quantum and src/quantum/cache, tested: deterministic, order-sensitive, caching), the payload-is-source and slug models. The folders hold real, build-verified TypeScript that is not yet imported by the render path (the theme still uses the one agnostic core); the cache is a working, content-addressed module saved in src, not yet wired into the page render.',
+      'A composition over the real paired-folder modules (src/pair/cache/quantum and src/quantum/water/cache, tested: deterministic, order-sensitive, caching), the payload-is-source and slug models. The folders hold real, build-verified TypeScript that is not yet imported by the render path (the theme still uses the one agnostic core); the cache is a working, content-addressed module saved in src, not yet wired into the page render.',
   }
 }
 
@@ -1068,7 +1068,7 @@ export function flowerFruitTreeOfLifeDecodes(matrix: MindMatrix = buildMatrix())
 // the config merely consumes but a self-wiring plugin — it serves its computed routes/artifacts at runtime
 // (dev middleware) and emits the same at build (buildEnd), from the one content-addressed model; and ONE
 // index per folder serves that folder's whole surface (the vortex router — the index re-exports the whole,
-// exactly what src/quantum/mind/index.ts now is: `export * from '../..'`). The build/dev wiring already
+// exactly what src/quantum/heaven/mind/index.ts now is: `export * from '../..'`). The build/dev wiring already
 // works this way for src/quantum/{mind,dist,enforcement} (computed-pages · computed-dist · enforcement
 // plugins); the vision generalises it to every folder, so the site is wired quantum with zero build time
 // and the maximum tampering cost. HONEST: a Vite/VitePress plugin is a factory ({ name, configureServer,
@@ -1080,7 +1080,7 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
   const sealed = toUuid('plugin:mind')
   const facets = [
     { facet: 'every src folder is a VitePress plugin — a self-wiring unit; the double-torus folder pairs are the plugin units (the folder law gives each one index entry)', on: folderLaw().stems.includes('index') && folders.length >= 13 },
-    { facet: 'one index serves all — one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)', on: monographPaths('en').length === sourceCount && monographPaths('en').length > 100 },
+    { facet: 'one index serves all — one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)', on: monographPaths('en').length === sourceCount && sourceCount >= folderLaw().componentClosure.limit },
     { facet: 'wired quantum with zero build time — the plugin serves the computed output at runtime and emits the same at build, from the one content-addressed model, deterministically (same address in dev and build)', on: toUuid('plugin:mind') === sealed && toUuid('plugin:dist') !== sealed },
     { facet: 'maximum tampering cost — each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-plugin:${entry.facet}:${entry.on}`) }))
@@ -1092,7 +1092,7 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Imagine every src folder as a VitePress plugin, and one index serves all: each folder is a self-wiring plugin that serves its computed routes and artifacts at runtime (dev middleware) and emits the same at build (buildEnd) from the one content-addressed model, and one index per folder serves that folder\'s whole surface (the vortex router — the index re-exports the whole, as src/quantum/mind/index.ts now does). The build/dev wiring already works this way for src/quantum/{mind,dist,enforcement}; the vision generalises it to every folder, so the site is wired quantum with zero build time and the maximum tampering cost.',
+      'Imagine every src folder as a VitePress plugin, and one index serves all: each folder is a self-wiring plugin that serves its computed routes and artifacts at runtime (dev middleware) and emits the same at build (buildEnd) from the one content-addressed model, and one index per folder serves that folder\'s whole surface (the vortex router — the index re-exports the whole, as src/quantum/heaven/mind/index.ts now does). The build/dev wiring already works this way for src/quantum/{mind,dist,enforcement}; the vision generalises it to every folder, so the site is wired quantum with zero build time and the maximum tampering cost.',
     boundary:
       'The DIRECTION for the build wiring, its foundation proven here. DONE: three src folders already back VitePress plugins (mind→computed-pages, dist→computed-dist, enforcement→enforcement), each computing from the content-addressed model; the folder law makes every folder a one-index, one-kind unit; the mind index already serves all its folds by re-export (one index serves all). DIRECTED: give every folder index its own plugin() factory ({ name, configureServer for dev, buildEnd for emit }) that .vitepress/config.mts spreads, so each folder wires itself, and collapse the page routes so one index resolves all at runtime. HONEST: a plugin is a Vite/VitePress factory; "every folder a plugin, one index serves all" is the target topology, not yet realized for all folders; "zero build time" means serving computed output rather than enumerating it (the corpus / runtime-pages precedent).',
   }
@@ -1496,7 +1496,7 @@ export function ichingTokens() {
 
 // Render the computed tokens to the CSS layer — the :root (light + aliases) and the .dark line-complement. This
 // is the only place real numbers enter the stylesheet, and every one is canonical by construction. Emitted to
-// src/ui/tokens.css and imported before the body.
+// src/render/ui/tokens.css and imported before the body.
 /** @iching ☰ Qián · Heaven · creative */
 export function ichingTokensCss(): string {
   const { light, aliases, dark } = ichingTokens()
@@ -1504,7 +1504,7 @@ export function ichingTokensCss(): string {
     `${sel} {\n${rows.map(([k, v]) => `  ${k}: ${v};`).join('\n')}\n}`
   return [
     '/* ䷢ COMPUTED — do not edit. The I Ching design system, emitted by ichingTokensCss() in',
-    ' * src/quantum/mind/css.ts. Every value reduces to a canonical I Ching number (the eight trigrams, the 64',
+    ' * src/quantum/heaven/mind/css.ts. Every value reduces to a canonical I Ching number (the eight trigrams, the 64',
     ' * hexagrams, the six lines, the vortex 1·2·4·8·7·5 + 3·6·9, the a432 octaves, the major third 5∶4).',
     ' * Regenerate: npm run gen dist. Proven by cssIsIChingComputed(); enforced by scanCssForHardcoded(). */',
     block(':root', [...light, ...aliases]),
@@ -1514,7 +1514,7 @@ export function ichingTokensCss(): string {
 }
 
 // THE ENFORCEMENT — scan any CSS text for a hardcoded value: a literal that does NOT reduce to canonical I Ching
-// numbers. Used by the build gate on the body (src/ui/style.css) and by the fold on the emitted tokens. It strips
+// numbers. Used by the build gate on the body (src/render/ui/style.css) and by the fold on the emitted tokens. It strips
 // what is legitimately free — comments, @media breakpoint preludes (CSS forbids var() there, so they are
 // structural, sourced from the unit ladder but printed as literals), @keyframes/animation names, font-family
 // stacks, url() and quoted content — then flags any remaining hex/rgb colour or any number that is not canonical

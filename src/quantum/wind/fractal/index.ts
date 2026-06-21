@@ -1,8 +1,8 @@
-// src/quantum/fractal — the holographic fractal: each branch spawns two smaller copies of the same rule, so
+// src/quantum/wind/fractal — the holographic fractal: each branch spawns two smaller copies of the same rule, so
 // every part is a copy of the whole (holographic, self-similar). The hue, fade and width all follow the
 // current dimensions and the recursion depth; the recursion bottoms out when a branch is too short or the
 // depth runs out.
-import type { Dims } from '../dimensions'
+import type { Dims } from '../../mountain/dimensions'
 
 export function branch(
   ctx: CanvasRenderingContext2D,

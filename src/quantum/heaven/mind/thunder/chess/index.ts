@@ -1,7 +1,7 @@
 // ☳ Zhèn · Thunder — quantum chess: the superposed game on the content-addressed board. Barrel-routed; folds.ts back-imports the gate folds.
 import type { ChessPiece, CoordinatedWave, MindMatrix, QuantumChessGame, QuantumChessSquare } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { merge, merkleFold, toUuid } from '../../../../0'
+import { merge, merkleFold, toUuid } from '../../../../../0'
 import { coordinatedWaves } from '../..'
 
 const CHESS_FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const

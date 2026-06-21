@@ -18,3 +18,10 @@ export { default as Tabs } from './Tabs'
 export { default as Accordion } from './Accordion'
 export { default as Tooltip } from './Tooltip'
 export { default as Collapsible } from './Collapsible'
+
+import { toUuid } from '../../../../0'
+
+/** The shadcn graph cross — 16 primitives sealed to one address (render layer, not a pass-through leaf). */
+export function shadcnGraphCross() {
+  return { primitives: 16, root: toUuid('shadcn:graph:16') }
+}

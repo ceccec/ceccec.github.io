@@ -1,10 +1,10 @@
-// src/voice/quantum — the dual of src/quantum/voice. Where quantum/voice SEALS the plain-language
+// src/spirit/voice/quantum — the dual of src/quantum/lake/voice. Where quantum/lake/voice SEALS the plain-language
 // glossary, play-learn letters, speech params, typography/SEO principles, Open Graph fields,
 // char/word UUIDs, humanization, and the multidimensional portal map, this half provides
 // browse/display primitives: term lists, field tables, dimension summaries.
-// Does NOT import from src/quantum/voice — the pair stays decoupled. Pure, deterministic, zero tokens.
+// Does NOT import from src/quantum/lake/voice — the pair stays decoupled. Pure, deterministic, zero tokens.
 
-export const dual = 'src/quantum/voice'
+export const dual = 'src/quantum/lake/voice'
 
 export type GlossaryLine = { term: string; plain: string; route: string }
 export type DimItem = { label: string; route: string; tip: string }

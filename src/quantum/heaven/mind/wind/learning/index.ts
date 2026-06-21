@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import type { AgentEducation, AgentLesson, ConceptSiteSection, McpTool, McpToolManifest, MindMatrix, StaticPage, SchoolCurriculum, SchoolLesson } from '../types'
 import { buildMatrix, coherenceAnomaly, verifyRoot, coverage, reciprocity } from '../../heaven/matrix'
-import { isUuid, merge, merkleFold, toUuid, fold } from '../../../../0'
+import { isUuid, merge, merkleFold, toUuid, fold } from '../../../../../0'
 import { movie } from '../../thunder/movie'
 import { AREA_ICONS, chakrasAura, efficiency, multidimensional } from '../../earth/vocab'
 import { atoms, conceptCommands } from '../../heaven/atoms'

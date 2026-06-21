@@ -1,12 +1,12 @@
-// src/quantum/architecture — the architecture drawn into the hero. The 9 logic folders are 3 trinities (4
+// src/quantum/earth/architecture — the architecture drawn into the hero. The 9 logic folders are 3 trinities (4
 // double-torus pairs + the core pivot, 9 = 3×3), each node wearing the Glagolitic glyph computed from its
 // folder name, so the figure IS the architecture based on Glagolitic relations, from one source of truth
 // (folderLaw). Consumed, not recomputed — zero tokens. The ring tumbles through the same three planes as the
 // fractal (geometry), so the hero is one figure: the page at the core, the architecture turning around it.
 // A word folder importing the model (word) and the geometry (word) — the UI reads the math, never the reverse.
-import { folderLaw, glagoliticGlyph } from '../mind'
-import { perspective, rotate3 } from '../geometry'
-import type { Dims } from '../dimensions'
+import { folderLaw, glagoliticGlyph } from '../../heaven/mind'
+import { perspective, rotate3 } from '../../wind/geometry'
+import type { Dims } from '../../mountain/dimensions'
 
 export interface ArchNode {
   folder: string
@@ -46,7 +46,7 @@ export function drawArchitecture(
     const hueT = (hue + node.trinity * 120) % 360
     return { ...node, x: cx + v.X * R * persp, y: cy + v.Y * R * persp, persp, hueT }
   })
-  // the double-torus pairs: join each folder to its reverse-path dual (cache/quantum ⇄ quantum/cache)
+  // the double-torus pairs: join each folder to its reverse-path dual (cache/quantum ⇄ quantum/water/cache)
   for (const node of placed) {
     const dual = node.folder.split('/').reverse().join('/')
     if (node.folder < dual) {

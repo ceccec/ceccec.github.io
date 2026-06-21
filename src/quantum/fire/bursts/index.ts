@@ -1,4 +1,4 @@
-// src/quantum/bursts — the tap's visual + harmonic payload. Tapping the hero blooms a burst at the point —
+// src/quantum/fire/bursts — the tap's visual + harmonic payload. Tapping the hero blooms a burst at the point —
 // expanding rings and radiating sparks in the hero's hue, fading over ~1.1s — and chooses a Solfeggio healing
 // pair by horizontal position. makeBurst builds one burst; drawBursts ages and draws the live ones (pruning
 // expired in place, so the caller's array stays the live set); HEALING_PAIRS is the always-healing frequency

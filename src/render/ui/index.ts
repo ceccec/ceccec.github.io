@@ -192,7 +192,7 @@ import Pyramids from './components/Pyramids'
 import QuantumLaws from './components/QuantumLaws'
 import QuantumLens from './components/QuantumLens'
 // The computed I Ching design system — every colour, space, radius, size, duration, angle and opacity derived
-// from a canonical I Ching number (src/quantum/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
+// from a canonical I Ching number (src/quantum/heaven/mind/css.ts → ichingTokensCss). Loaded BEFORE style.css so the
 // body, which references only these tokens, resolves against them. "no hardcoded values whatsoever."
 import './tokens.css'
 import './style.css'

@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { animatedHeroes, holographic } from '../../wind/ui'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, uuidPoint } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, uuidPoint } from '../../../../../0'
 import { textToMovie } from '../../earth/world'
 import { foldThoughts, mindRefreshField } from '../../fire/psyche'
 import { dimensions, multidimensional } from '../../earth/vocab'
@@ -18,7 +18,7 @@ import { atoms, conceptCommands } from '../../heaven/atoms'
 import { atomInclusionProof } from '../../lake/proofs'
 import { sealWholeDiamond } from '../../fire/diamonds'
 import { trinityRotationalPlanes } from '../../fire/trinity'
-import { DIMENSIONS } from '../../../dimensions'
+import { DIMENSIONS } from '../../../../mountain/dimensions'
 import { lifeDefinesItself, path, playMind, studentQuantumMind, theWhole } from '../..'
 
 // Entangled groups of digits fill the background movie as colourful watermarks,

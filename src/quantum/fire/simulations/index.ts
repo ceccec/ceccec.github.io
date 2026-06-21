@@ -1,10 +1,10 @@
 // ☲ Lí · Fire · clinging (EM simulators) · upper·yang · depthFade — deterministic plane-wave / X-ray-CT / MRI-Bloch / FMCW-radar simulators
-// src/quantum/simulations — the deterministic EM simulators (plane wave · X-ray/CT · MRI Bloch · FMCW radar),
+// src/quantum/fire/simulations — the deterministic EM simulators (plane wave · X-ray/CT · MRI Bloch · FMCW radar),
 // moved out of the src/0 origin into their own home. Classical teaching models; each run a content-addressed
 // shared experiment. They compose the foundational EM constants/conversions from src/0; the FOLDS that RUN them
-// live in src/quantum/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
+// live in src/quantum/fire/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☲ Lí · Fire · clinging · lower·yin · spread — EM primitives (constants, conversions, content-addressing)
-import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, wavelengthOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, prng, merkleFold, toUuid, roundTo } from '../../0'
+import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, wavelengthOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, prng, merkleFold, toUuid, roundTo } from '../../../0'
 
 // ── EM simulators: deterministic, content-addressed teaching models of the field and its three modalities ──
 // Developed + adversarially verified in a research wave (every governing equation re-derived, every test vector

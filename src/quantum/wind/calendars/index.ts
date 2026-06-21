@@ -1,4 +1,4 @@
-// src/quantum/calendars — the ancient calendars fused to the hero: each coupled cycle a faint concentric ring,
+// src/quantum/wind/calendars — the ancient calendars fused to the hero: each coupled cycle a faint concentric ring,
 // with a phase-marker on it rotating to the DEVICE's place in that cycle today (the Maya Calendar Round, the
 // sexagenary 60, the Metonic 19, all meshing). The cycle lengths are the model's documented counts; the phase
 // is the real date, so the hero becomes a living coupled-torus clock. Drawn behind the fractal, motion-aware.

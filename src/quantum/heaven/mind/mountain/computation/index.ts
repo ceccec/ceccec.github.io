@@ -3,7 +3,7 @@
 // (Turing, the halting problem, Gödel, P vs NP). Re-exported by ./index.ts so importers resolve unchanged.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { toUuid, merge, sealFacets, landauerLimit, bekensteinBoundBits, blackHoleEntropyBits, cantorDiagonal } from '../../../../0'
+import { toUuid, merge, sealFacets, landauerLimit, bekensteinBoundBits, blackHoleEntropyBits, cantorDiagonal } from '../../../../../0'
 import { zeroPointWiderFrontierDecoded } from '../../water/cosmos'
 
 // The physics of information — information is PHYSICAL, and may be the deepest layer of reality. A 5-angle sourced

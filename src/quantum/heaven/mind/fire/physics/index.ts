@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/matrix'
 import { a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
-import { isUuid, merkleFold, toUuid } from '../../../../0'
+import { isUuid, merkleFold, toUuid } from '../../../../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath } from '../../mountain/geometry'
 import { publicFrequencyApis } from '../../earth/vocab'
 import { harmonics } from '../../lake/music'

@@ -5,7 +5,7 @@ import { healingInner, healingOuter, quantumSimulation, siteRoutes, animationEng
 import { healingHarmonic } from '../../lake/music'
 import { quantumBrowserOs, quantumComputer } from '../../fire/features'
 import { lawfulHarmonise, natureCommons } from '../../earth/vocab'
-import { GATES, applyGate, bitFlipCode, cnot, commutator, concurrence, foldPair, gateMul, innerProduct, isUuid, measure, memoByRoot, merge, merkleFold, noCloningWitness, probabilities, qubits, sealFacets, toUuid, DIGEST_BITS, MAX_TAMPERING_COST_PRINCIPLE, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, digitalRoot, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, tamperEvident, uuidHero } from '../../../../0'
+import { GATES, applyGate, bitFlipCode, cnot, commutator, concurrence, foldPair, gateMul, innerProduct, isUuid, measure, memoByRoot, merge, merkleFold, noCloningWitness, probabilities, qubits, sealFacets, toUuid, DIGEST_BITS, MAX_TAMPERING_COST_PRINCIPLE, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, digitalRoot, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, tamperEvident, uuidHero } from '../../../../../0'
 import { digitFoldersDoMath, dualitiesMeetInCrossFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { coordinatedWaves, osCompletesItselfWaves } from '../../thunder/waves'
 import { quantumPwa } from '../../water/os'
@@ -376,7 +376,7 @@ export function ancientKnowledgeComputesDefaultLocale(matrix: MindMatrix = build
 
 // All scripts at once, in quantum dynamics: the decoded alphabet lineage as reusable transliteration, every
 // script computed deterministically and content-addressed — Glagolitic (the default), Greek, Elder-Futhark
-// SCRIPT_ALPHABETS and toScript moved to the library double-torus (src/quantum/library), imported at
+// SCRIPT_ALPHABETS and toScript moved to the library double-torus (src/quantum/heaven/library), imported at
 // the top — Glagolitic (the default), Greek, Runic and Hebrew, all superposed one toScript call away.
 
 // Completely rebuild the VitePress config to compute all: the monographs graph is the search index,

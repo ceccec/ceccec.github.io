@@ -1,5 +1,5 @@
-// src/search/ant — the search half of the ant pair. Ants search a hexagon grid recursively, walking
-// the endless labyrinth paths, scoring the food (value) at each cell. The dual is src/ant/search,
+// src/pair/search/ant — the search half of the ant pair. Ants search a hexagon grid recursively, walking
+// the endless labyrinth paths, scoring the food (value) at each cell. The dual is src/pair/ant/search,
 // which carries what is found to the nest and moves the nest to the most food. Pure, deterministic,
 // zero-dependency — split into an index file rather than computed in one fused module (cheaper than
 // a forger reproducing the whole fusion).
@@ -35,4 +35,4 @@ export function search(start: Hex, depth: number, foodAt: (h: Hex) => number, se
   return found
 }
 
-export const dual = 'src/ant/search'
+export const dual = 'src/pair/ant/search'

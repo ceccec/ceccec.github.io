@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../0'
+import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../../0'
 import { imagination } from '../../fire/psyche'
 import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, solarSystem, torusUuid, universalLanguage } from '../../fire/li'
 import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology'

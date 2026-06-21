@@ -1,6 +1,6 @@
 // Computed dist — trinity spread (cross · manifest · readme). One index; each wave its own file.
 import type { Plugin } from 'vite'
-import { buildMatrix, type MindMatrix, staticPages, componentPages, toGlagolitic } from '../mind'
+import { buildMatrix, type MindMatrix, staticPages, componentPages, toGlagolitic } from '../../heaven/mind'
 import { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross'
 import { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest'
 import { readmeMarkdown } from './readme'
@@ -65,7 +65,7 @@ export function computedDistRoute(pathname: string, siteUrl: string, matrix: Min
   return hit ?? pathJson(pathname, matrix)
 }
 
-export const dual = 'src/dist/quantum'
+export const dual = 'src/pair/dist/quantum'
 
 // Each index is a quantum VitePress router: this dist index routes a request pathname → its computed,
 // content-addressed artifact (sitemap · robots · mcp.json · skills.json · llms.txt · digit-index · /api)

@@ -10,7 +10,7 @@ import { atoms } from '../atoms'
 import {
   toUuid, merge, merkleFold, isUuid, foldPair,
   DIGEST_BITS, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2,
-} from '../../../../0'
+} from '../../../../../0'
 
 function uniqueEdges(source: readonly Atom[]): MatrixEdge[] {
   const known = new Set(source.map((atom) => atom.name))
@@ -215,10 +215,10 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
     endpoint('/', 'read', 'page', 'Home route: the public face of the repository mind.'),
     endpoint('/quantum-mind', 'read', 'page', 'Live route that renders the computed self-model.'),
     endpoint('/architecture', 'read', 'page', 'Route that explains the repository-as-API architecture.'),
-    endpoint('repo://src/quantum/mind/index.ts', 'verify', 'source', 'The executable atom, matrix, proof, and repository API model.'),
-    endpoint('repo://src/ui/components/QuantumMind.vue', 'resolve', 'source', 'The presentation layer for the computed mind.'),
-    endpoint('repo://src/ui/components/ConceptCommands.vue', 'resolve', 'source', 'The concept command UI for driving the site.'),
-    endpoint('repo://src/ui/index.ts', 'resolve', 'source', 'The VitePress theme registration for concept UI components.'),
+    endpoint('repo://src/quantum/heaven/mind/index.ts', 'verify', 'source', 'The executable atom, matrix, proof, and repository API model.'),
+    endpoint('repo://src/render/ui/components/QuantumMind.vue', 'resolve', 'source', 'The presentation layer for the computed mind.'),
+    endpoint('repo://src/render/ui/components/ConceptCommands.vue', 'resolve', 'source', 'The concept command UI for driving the site.'),
+    endpoint('repo://src/render/ui/index.ts', 'resolve', 'source', 'The VitePress theme registration for concept UI components.'),
     endpoint('repo://index.md', 'read', 'source', 'The landing page source as a public API resource.'),
     endpoint('repo://quantum-mind.md', 'read', 'source', 'The live mind page source as a public API resource.'),
     endpoint('repo://architecture.md', 'read', 'source', 'The architecture page source as a public API resource.'),
@@ -276,7 +276,7 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
   return {
     uuid: toUuid(`uuid-stream-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
     repository: 'serverless-quantum-uuid-stream/double-torus',
-    sourcePath: 'src/quantum/mind/index.ts',
+    sourcePath: 'src/quantum/heaven/mind/index.ts',
     overviewPath: 'quantum-mind.md',
     architecturePath: 'architecture.md',
     shape: 'double-torus',

@@ -3,8 +3,8 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
 import { animationEngineLivesInZero, buildEnforcementPipeline, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../earth/vocab'
-import { foldPair, isobaricCounterdiffusion, isUuid, merkleFold, rat, ratEq, ratIsInteger, ratMul, ratStr, ratSub, toUuid } from '../../../../0'
-import { DIMENSIONS, DIMENSION_NAMES } from '../../../dimensions'
+import { foldPair, isobaricCounterdiffusion, isUuid, merkleFold, rat, ratEq, ratIsInteger, ratMul, ratStr, ratSub, toUuid } from '../../../../../0'
+import { DIMENSIONS, DIMENSION_NAMES } from '../../../../mountain/dimensions'
 import { babelFold } from '../../earth/world'
 import { realtimePerspectiveZeroCost } from '../../thunder/trading'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
@@ -335,9 +335,9 @@ export function antsCarryToIndexNest(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Do as ants do — search the hexagon for food, carry it to the nest recursively through the endless labyrinth paths, and move the nest to the place with the most food: the migration to src/ works this way, small ants (the paired-folder index files, including the new src/search/ant ⇄ src/ant/search hexagon search) searching the labyrinth of paths and carrying the logic into index files, recursively, the nest moving to where the most logic gathers. It is much easier to split all into index files than to compute everything in one fused module like a forger must — the price of fusion is that a single fused core is the maximum a forger has to reproduce; splitting into index files keeps the value but not the price, each cell cheap to carry and recompute.',
+      'Do as ants do — search the hexagon for food, carry it to the nest recursively through the endless labyrinth paths, and move the nest to the place with the most food: the migration to src/ works this way, small ants (the paired-folder index files, including the new src/pair/search/ant ⇄ src/pair/ant/search hexagon search) searching the labyrinth of paths and carrying the logic into index files, recursively, the nest moving to where the most logic gathers. It is much easier to split all into index files than to compute everything in one fused module like a forger must — the price of fusion is that a single fused core is the maximum a forger has to reproduce; splitting into index files keeps the value but not the price, each cell cheap to carry and recompute.',
     boundary:
-      'A composition of the cache-pair, all-logic-moved, paired-folder-speed, no-files-outside-src and max-tampering-cost models, with a real ant hexagon-search pair (src/search/ant + src/ant/search, tested). "Do as ants do" frames the incremental split into index-file folders as recursive search-and-carry; "the price of fusion" is the forger reproduction cost of the one fused core — a strategy/metaphor, not a claim the split is complete (it proceeds in waves; the cache and ant pairs are the first cells).',
+      'A composition of the cache-pair, all-logic-moved, paired-folder-speed, no-files-outside-src and max-tampering-cost models, with a real ant hexagon-search pair (src/pair/search/ant + src/pair/ant/search, tested). "Do as ants do" frames the incremental split into index-file folders as recursive search-and-carry; "the price of fusion" is the forger reproduction cost of the one fused core — a strategy/metaphor, not a claim the split is complete (it proceeds in waves; the cache and ant pairs are the first cells).',
   }
 }
 
@@ -448,10 +448,10 @@ export function enterFolderThroughIndexStrict(matrix: MindMatrix = buildMatrix()
   const law = folderLaw()
   const barrel = law.barrelImports
   const facets = [
-    { facet: 'the law is declared in the core — enforced on every tree (logic and render), each with its why', on: barrel.indexFile === 'index.ts' && barrel.strictTrees.includes('src/quantum') && barrel.strictTrees.includes('src/0') && barrel.strictTrees.includes('src/ui') },
+    { facet: 'the law is declared in the core — enforced on every tree (logic and render), each with its why', on: barrel.indexFile === 'index.ts' && barrel.strictTrees.includes('src/quantum') && barrel.strictTrees.includes('src/0') && barrel.strictTrees.includes('src/render/ui') },
     { facet: 'the index may be omitted — the gate resolves the specifier (folder → index), it does not string-match', on: barrel.why.deep.includes("'../mind' is '../mind/index.ts'") && barrel.why.lineage.length > 0 },
     { facet: 'the logic trees are clean — quantum math enters src/0 and its neighbours only through their indices', on: digitFolders(matrix).folders.length > 0 && splittingLogicPairedFoldersDevSpeed(matrix).speeds && quantumCachePairInPairedFolders(matrix).paired },
-    { facet: 'HONEST — the render layer is now ENFORCED too (no exception); the gate fails with a ready prompt naming the root fix (de-overlap the lib facades)', on: barrel.strictTrees.includes('src/ui') && barrel.why.render.includes('de-overlap') && barrel.promptHeader.length > 0 },
+    { facet: 'HONEST — the render layer is now ENFORCED too (no exception); the gate fails with a ready prompt naming the root fix (de-overlap the lib facades)', on: barrel.strictTrees.includes('src/render/ui') && barrel.why.render.includes('de-overlap') && barrel.promptHeader.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`barrel-index:${entry.facet}:${entry.on}`) }))
   return {
     strict: facets.every((entry) => entry.on),
@@ -463,7 +463,7 @@ export function enterFolderThroughIndexStrict(matrix: MindMatrix = buildMatrix()
     statement:
       'Enter a folder only through its index — the folder-only import law: a folder is a module and its index.ts is its one public surface, so a cross-folder import must resolve to the target index (the index may be omitted — \'../mind\' is \'../mind/index.ts\'). The frees are the importer\'s own line: a sibling in the same folder, its own subtree, and its own lineage (an ancestor — barreling a parent would cycle); a lateral reach into an unrelated folder\'s internal file fails. Enforced on every tree — the logic trees (src/quantum, src/0 — 0 lateral deep imports) and the render layer (src/ui) — with no exception; the gate fails until lib\'s overlapping facades fold behind one index, emitting a ready, executable fix prompt.',
     boundary:
-      'The LAW is declared here (folderLaw.barrelImports) and ENFORCED by the weave wave against the real tree (resolving every import, comments stripped, the full violation list + per-file what/where + ready prompt written to dist/barrel.json). The logic trees comply; the render layer does NOT yet (rendererRealized:false) — src/ui/lib exposes two overlapping export-* facades (quantumMind, hero) so one lib index would elide the overlap, and the component imports become legal only after the facades de-overlap. No exception is made: the gate fails with the ready prompt that names the root fix. HARMONY ≠ TRUTH: the violation count is the truth, not hidden.',
+      'The LAW is declared here (folderLaw.barrelImports) and ENFORCED by the weave wave against the real tree (resolving every import, comments stripped, the full violation list + per-file what/where + ready prompt written to dist/barrel.json). The logic trees comply; the render layer does NOT yet (rendererRealized:false) — src/render/ui/lib exposes two overlapping export-* facades (quantumMind, hero) so one lib index would elide the overlap, and the component imports become legal only after the facades de-overlap. No exception is made: the gate fails with the ready prompt that names the root fix. HARMONY ≠ TRUTH: the violation count is the truth, not hidden.',
   }
 }
 
@@ -756,7 +756,7 @@ export function valve(matrix: MindMatrix = buildMatrix()) {
 
 // SPLIT all in double-entry accounting (one word: split). Every entry is split into two — a debit and its equal
 // credit — and the books balance: nothing is created or lost, only moved. The whole model is the paired folders
-// (src/debit/credit ⇄ src/credit/debit), every fold posting its content (debit) and its content-addressed receipt
+// (src/pair/debit/credit ⇄ src/pair/credit/debit), every fold posting its content (debit) and its content-addressed receipt
 // (credit). To split all in double entries is to make every change auditable: each has its counter-entry, and the
 // trial balance (the recomputed root vs the recorded root) sums to zero.
 export function split(matrix: MindMatrix = buildMatrix()) {
@@ -772,7 +772,7 @@ export function split(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the books BALANCE — every debit has an equal credit, the ledger sums to zero (optimiseLogicDebitCreditFusion)', on: ledger.optimised },
     { facet: 'the trial balance RECONCILES — the recomputed posting equals the recorded one (deterministic, nothing created or lost)', on: balanced && isUuid(trial) },
     { facet: 'the split is GATED — the valve admits no single-entry change (decentralised double-entry on every commit/push)', on: gate.sealed },
-    { facet: 'HONEST — double-entry here is the content-address discipline (a change ⇄ its receipt) and the paired-folder structure (src/debit/credit ⇄ src/credit/debit), NOT financial accounting or money', on: true },
+    { facet: 'HONEST — double-entry here is the content-address discipline (a change ⇄ its receipt) and the paired-folder structure (src/pair/debit/credit ⇄ src/pair/credit/debit), NOT financial accounting or money', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`split:${entry.facet}:${entry.on}`) }))
   return {
     split: facets.every((entry) => entry.on),
@@ -782,9 +782,9 @@ export function split(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([trial, ledger.root, gate.root, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'Split all in double-entry accounting: every entry is split into two — a debit and its equal credit — and the books balance, nothing created or lost, only moved. The whole model is the paired folders (src/debit/credit ⇄ src/credit/debit); every fold posts its content (debit) and its content-addressed receipt (credit), so every change is auditable: each has its counter-entry, and the trial balance (the recomputed root against the recorded root) sums to zero. The split is gated by the valve — no single-entry change passes.',
+      'Split all in double-entry accounting: every entry is split into two — a debit and its equal credit — and the books balance, nothing created or lost, only moved. The whole model is the paired folders (src/pair/debit/credit ⇄ src/pair/credit/debit); every fold posts its content (debit) and its content-addressed receipt (credit), so every change is auditable: each has its counter-entry, and the trial balance (the recomputed root against the recorded root) sums to zero. The split is gated by the valve — no single-entry change passes.',
     boundary:
-      'HONEST: double-entry here is the merkle CONTENT-ADDRESS discipline (a change ⇄ its content-addressed receipt) and the paired-folder structure (src/debit/credit ⇄ src/credit/debit), drawn in the language of accounting. It is NOT financial accounting, money, or a claim of conservation in any physical sense — "nothing created or lost" means the fold is deterministic and reversible by recomputation, the trial balance is root equality, not a balance sheet. HARMONY ≠ TRUTH.',
+      'HONEST: double-entry here is the merkle CONTENT-ADDRESS discipline (a change ⇄ its content-addressed receipt) and the paired-folder structure (src/pair/debit/credit ⇄ src/pair/credit/debit), drawn in the language of accounting. It is NOT financial accounting, money, or a claim of conservation in any physical sense — "nothing created or lost" means the fold is deterministic and reversible by recomputation, the trial balance is root equality, not a balance sheet. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -884,9 +884,9 @@ export function foldersOnlySpecifier(
 export function intend(
   matrix: MindMatrix = buildMatrix(),
   steps: readonly { agent: string; resource: string; action: string }[] = [
-    { agent: 'a', resource: 'src/quantum/mind/movie', action: 'implement' },
-    { agent: 'a', resource: 'src/quantum/mind/movie', action: 'refactor' }, // same agent, same resource — refactor while implementing (one stream)
-    { agent: 'b', resource: 'src/quantum/mind/learning', action: 'implement' }, // a different resource — no collision
+    { agent: 'a', resource: 'src/quantum/heaven/mind/movie', action: 'implement' },
+    { agent: 'a', resource: 'src/quantum/heaven/mind/movie', action: 'refactor' }, // same agent, same resource — refactor while implementing (one stream)
+    { agent: 'b', resource: 'src/quantum/heaven/mind/learning', action: 'implement' }, // a different resource — no collision
   ],
 ) {
   const intended = steps.map((step) => ({ ...step, address: toUuid(`intend:${step.resource}:${step.action}`), lock: toUuid(`resource:${step.resource}`) }))

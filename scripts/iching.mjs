@@ -1,6 +1,6 @@
 // ䷀ The I Ching generator — ONE trigram-indexed runner that replaces the four bespoke
 // generate-*.mjs scripts. The eight bāguà slots and every pure plan live in
-// src/quantum/dist/generators.ts (every step in src); this shell only does the I/O the plans can't:
+// src/quantum/lake/dist/generators.ts (every step in src); this shell only does the I/O the plans can't:
 // gather inputs, write the planned files, print messages, gate the exit code.
 //
 //   node --experimental-strip-types scripts/iching.mjs                 # list the eight slots
@@ -12,7 +12,7 @@
 //       CF_BINDINGS=kv,r2 scripts/iching.mjs cloudflare
 //       scripts/iching.mjs ☵                      # the Glagolitic home (debug echo)
 //
-// The eight slots live in src/quantum/dist/generators (every step in src). This shell BUNDLES that entry
+// The eight slots live in src/quantum/lake/dist/generators (every step in src). This shell BUNDLES that entry
 // through esbuild rather than importing it raw — src imports are folders only, with NO file extensions
 // (the strict barrel rule), and `node --experimental-strip-types` cannot resolve extensionless specifiers
 // while esbuild can. The shell then does the I/O the plans can't: gather inputs, write files, gate the exit.
@@ -22,7 +22,7 @@ import { dirname, join } from 'node:path'
 
 const require = createRequire(import.meta.url)
 const esbuild = require('esbuild')
-const built = await esbuild.build({ entryPoints: ['src/quantum/dist/generators.ts'], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
+const built = await esbuild.build({ entryPoints: ['src/quantum/lake/dist/generators.ts'], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
 const { generators, runGenerator } = await import('data:text/javascript;base64,' + Buffer.from(built.outputFiles[0].text).toString('base64'))
 
 const root = process.cwd()

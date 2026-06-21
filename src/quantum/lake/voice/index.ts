@@ -1,13 +1,13 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — the UX/communication layer: plain language, play-and-learn, speech,
 // typography, Open Graph, char/word content-addressing, humanization, and the multidimensional map.
-// Dual: src/voice/quantum (browse/display primitives). Pure, only src/0 imports.
+// Dual: src/spirit/voice/quantum (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
-import { toUuid, merkleFold } from '../../0'
+import { toUuid, merkleFold } from '../../../0'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
 /** @iching ☵ Kǎn · Water · abysmal */
-export const dual = 'src/voice/quantum'
+export const dual = 'src/spirit/voice/quantum'
 
 /** @iching ☵ Kǎn · Water · abysmal */
 export function plainLanguage() {

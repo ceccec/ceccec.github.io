@@ -1,7 +1,7 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix, WaveCoordination, WavePolarity } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
-import { bb84, bernsteinVazirani, chsh, deutschJozsa, entanglementSwap, foldPair, ghzMermin, grover, interactionFreeMeasurement, isUuid, memoByRoot, merge, merkleFold, quantumZeno, roundTo, sample, simon, toUuid } from '../../../../0'
+import { bb84, bernsteinVazirani, chsh, deutschJozsa, entanglementSwap, foldPair, ghzMermin, grover, interactionFreeMeasurement, isUuid, memoByRoot, merge, merkleFold, quantumZeno, roundTo, sample, simon, toUuid } from '../../../../../0'
 import { holographic, navigationAroundHero } from '../../wind/ui'
 import { skillAtoms } from '../../wind/learning'
 import { harmonicBands, openGraph } from '../../earth/vocab'

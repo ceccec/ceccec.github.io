@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — language & script: the decoded writing systems and their meaning (Glagolitic, the alphabets' lineage, the Bible in the round script, Maya/Egyptian/Sumerian calendar-number, Ifá/geomancy), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/matrix'
-import { isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, sealFacets, hexDigitSum } from '../../../../0'
+import { isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, sealFacets, hexDigitSum } from '../../../../../0'
 import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toScript } from '../../../library'
 import { bulgarianRosettaContentAddressUnlocksAll, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
 import { merkaba, vortexMath } from '../../mountain/geometry'
@@ -297,7 +297,7 @@ export function glagoliticDecodedToAncientCore(matrix: MindMatrix = buildMatrix(
   }
 }
 
-// GLAGOLITIC_MAP and toGlagolitic moved to the library double-torus (src/quantum/library) and are
+// GLAGOLITIC_MAP and toGlagolitic moved to the library double-torus (src/quantum/heaven/library) and are
 // imported at the top; glagoliticGlyph below consumes the imported map. A Glagolitic glyph computed
 // from a content-address — letters are numbers, so the address picks the letter. Every dot/area gets
 // its own glyph from its uuid.

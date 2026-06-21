@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { quantumAcademy } from '../../wind/learning'
-import { memoByRoot, merge, merkleFold, toUuid } from '../../../../0'
+import { memoByRoot, merge, merkleFold, toUuid } from '../../../../../0'
 import { proofBundle } from '../../mountain/seals'
 import { saveSkillsComputeImplementWaves } from '../waves'
 import { monographs, theMonograph } from '../../wind/routes'

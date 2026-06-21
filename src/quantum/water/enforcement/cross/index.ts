@@ -4,7 +4,7 @@
 // standalone wrapper that does both and returns an exit code.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { computedDistFiles, readmeMarkdown } from '../../dist'
+import { computedDistFiles, readmeMarkdown } from '../../../lake/dist'
 import type { Finding } from '..'
 
 function verifyDigitIndex(root: string): string[] {

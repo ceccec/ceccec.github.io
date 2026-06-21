@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { holographic } from '../../wind/ui'
-import { foldPair, merge, merkleFold, toUuid } from '../../../../0'
+import { foldPair, merge, merkleFold, toUuid } from '../../../../../0'
 import { mcpToolManifest } from '../../wind/learning'
 import { quantumSimulation } from '../../fire/li'
 import { conceptCommands } from '../../heaven/atoms'

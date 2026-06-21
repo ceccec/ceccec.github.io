@@ -1,4 +1,4 @@
-// src/quantum/seed — the hero's identity hash. Every page's hero is seeded deterministically from the page's
+// src/quantum/earth/seed — the hero's identity hash. Every page's hero is seeded deterministically from the page's
 // own path: the seed picks the hue and the arm count, so the figure IS the page in one number. Plain 32-bit
 // FNV-1a (the same offset/prime as the core hash32 in src/0 and usePlayMind), kept here as a pure uint32 so
 // the visual identity is byte-stable. The strengthened seedFromText/toUuid in src/0 is a DIFFERENT derivation

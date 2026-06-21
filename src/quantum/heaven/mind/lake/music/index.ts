@@ -1,7 +1,7 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, rat, ratEq, ratStr, roundTo, sealFacets, seedFromText, tamperEvident, toUuid, vortexContinuedFrac, vortexHarmonicRatios } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, rat, ratEq, ratStr, roundTo, sealFacets, seedFromText, tamperEvident, toUuid, vortexContinuedFrac, vortexHarmonicRatios } from '../../../../../0'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { dimensions, harmonicBands, lawfulHarmonise } from '../../earth/vocab'
 import { selfOrganizing, textToMovie } from '../../earth/world'
@@ -10,7 +10,7 @@ import { harmonicSeriesDecoded, healingFrequencies } from '../ledger'
 import { staticPages } from '../../wind/site'
 import { conceptCommands } from '../../heaven/atoms'
 import { skillAtoms } from '../../wind/learning'
-import { DIMENSIONS } from '../../../dimensions'
+import { DIMENSIONS } from '../../../../mountain/dimensions'
 import { cssIsIChingComputed } from '../../earth/architecture'
 import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, backgroundMovie, commandGapsToTrinityEyes, completeQuantumSolutionsImplemented, componentGraph, computedSlugsFoldTheGraph, continueSameNext, decodeSymbols, digitFolderMath, digitFoldersDoMath, digitIndexReferences, digitSpinesAreTheBreath, encryptionLivesInZero, endlessFusion, enforcementPipelineComplete, evolutionCrossesQuantumThreshold, fairTrade, feesReplaceTaxes, foldThoughts, foldedCensus, fruitOfLifeFusion, gatesBehaveAsMcp, harmonyProbability, honestlyComputed, iChing, infiniteEntanglements, infiniteSelfConsulting, jsonLdValidPaths, lockingFoldersChangesMindToQuantum, maxCompressionForge, merkabasInDoubleTorus, noHardcodedLogicFailsStreams, nothingImpossibleHonestlyBounded, oneWordNamingGravity, piComputedNotHardcoded, piTrainDiamonds, quantumConfigurableFoldersDisappear, quantumDoubleTorus, quantumFoldedBlockchains, quantumImpossibleMadePossible, quantumThreat, quantumVsDigitalEncryption, realtimePerspectiveZeroCost, resonanceCatchGapsViolations, reverseHarmony, sealSpiritToPath, selfHarmonise, society, societyRegulates, startIChingDoubleTorus, tamperingCostDecoded, trinityWordingModel, warPaysTheForgerPrice } from '../..'
 

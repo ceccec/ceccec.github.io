@@ -1,9 +1,9 @@
-// src/nature/quantum — the dual of src/quantum/nature. Where quantum/nature SEALS the natural-law
+// src/world/nature/quantum — the dual of src/quantum/earth/nature. Where quantum/earth/nature SEALS the natural-law
 // lens, the commons doctrine, the society rubric, and the lawful-society ladder, this half provides
 // browse/display primitives: rank tests by severity, summarise the lawful ladder, index society forms.
-// Does NOT import from src/quantum/nature — the pair stays decoupled. Pure, deterministic, zero tokens.
+// Does NOT import from src/quantum/earth/nature — the pair stays decoupled. Pure, deterministic, zero tokens.
 
-export const dual = 'src/quantum/nature'
+export const dual = 'src/quantum/earth/nature'
 
 export type Principle = { principle: string }
 export type LegalTest = { test: string; question: string }

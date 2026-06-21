@@ -54,9 +54,9 @@ export function cryptoReview() {
     overdraft: balance(overclaim), // −128 — the size of the overclaim, in security bits
     quantumSignificance:
       'double-entry balance = the double-torus zero reciprocal entropy = the seal: a crypto claim is honest iff a capability funds it, exactly as the two torus loops must sum to zero — so an overclaim is caught by the system\'s own conservation law, and the unforgeability debit (SHA-256/Ed25519, built in src/0) is already there to fund it.',
-    dual: 'src/credit/debit', // the credit-side view (cryptoReviewNet) fuses the ledger to its net per account
+    dual: 'src/pair/credit/debit', // the credit-side view (cryptoReviewNet) fuses the ledger to its net per account
   }
 }
 
 /** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export const dual = 'src/credit/debit'
+export const dual = 'src/pair/credit/debit'

@@ -5,7 +5,7 @@ import type { MindMatrix, MerkleStep, MerkleProof, AtomInclusionProof } from '..
 // ☰ Qián · Heaven · creative · lower·yin · depthFade — matrix builder
 import { buildMatrix } from '../../heaven/matrix'
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — fold primitives (merge, merkleFold, foldPair, toUuid)
-import { merge, merkleFold, foldPair, toUuid, fold, roundTo, seedFromText } from '../../../../0'
+import { merge, merkleFold, foldPair, toUuid, fold, roundTo, seedFromText } from '../../../../../0'
 import { quantumSimulation } from '../../fire/li'
 
 // A Merkle audit path: the ordered siblings that recompute the root from one

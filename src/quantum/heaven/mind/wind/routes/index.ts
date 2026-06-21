@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/matrix'
 import { livingTorus } from '../../fire/diamonds'
-import { foldPair, isUuid, memoByRoot, merkleFold, seedFromText, toUuid } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, seedFromText, toUuid } from '../../../../../0'
 import { skillAtoms } from '../learning'
 import { mcpCodebase } from '../../thunder/commands'
 import { oneOpenGraphAll, siteRoutes } from '../../fire/li'
@@ -399,7 +399,7 @@ export function corpusRestPathRouting(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Corpus REST path routing: the resource identity lives in the PATH — /papers/<id>, /references/<id>, /diamonds/<id> are real VitePress [id] dynamic routes (paths enumerated from one source: paperRoutes / paperReferenceRoutes / diamondRoutes), not a ?id= query. Each item is a real page (HTTP 200, per-page SEO); Corpus.vue selects the item from useData().params, and the sitemap promises /kind/<id> URLs from src/quantum/dist/cross. This is the deliberate REST branch of the clean-SSG-URLs vs one-index-query tradeoff — required because GitHub Pages is a static host, where a clean path must be enumerated at build to return 200.',
+      'Corpus REST path routing: the resource identity lives in the PATH — /papers/<id>, /references/<id>, /diamonds/<id> are real VitePress [id] dynamic routes (paths enumerated from one source: paperRoutes / paperReferenceRoutes / diamondRoutes), not a ?id= query. Each item is a real page (HTTP 200, per-page SEO); Corpus.vue selects the item from useData().params, and the sitemap promises /kind/<id> URLs from src/quantum/lake/dist/cross. This is the deliberate REST branch of the clean-SSG-URLs vs one-index-query tradeoff — required because GitHub Pages is a static host, where a clean path must be enumerated at build to return 200.',
     boundary:
       'A composition of the corpus route enumerators (paperRoutes/paperReferenceRoutes/diamondRoutes), corpusParams, folderLaw.computedFolders and papers-references-diamonds-no-drift. Detail pages are enumerated [id] routes (the price of REST on a static host); Corpus.vue distinguishes index from detail by the presence of useData().params.id — no query string, no second router.',
   }

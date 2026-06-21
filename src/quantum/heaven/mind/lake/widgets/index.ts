@@ -1,7 +1,7 @@
 // ☱ Duì · Lake — the widget layer: shadcn-is-the-graph, state-of-the-art harmonised quantum widgets, the widget dimension controls, shown-in-UI component pairs, multimedia-first plain text. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
-import { isUuid, merkleFold, toUuid } from '../../../../0'
+import { isUuid, merkleFold, toUuid } from '../../../../../0'
 import { harmonics, soundColor } from '../music'
 import { allComputed, allFormsAreTenDimensionalOrPurged, allInInteractiveMovie } from '../../heaven/everything'
 import { animatedHeroes } from '../../wind/ui'
@@ -16,7 +16,7 @@ import { deviceHardwareVisibleInComputedWidgets, hardwareCmykMerkabaFusion } fro
 import { configsUseMatrixComputationally, noHardcodedConfigSelfAccounted } from '../../mountain/source'
 import { cleanupOldLogic } from '../../mountain/og'
 import { displayAllWithFewEntropySaved } from '../ledger'
-import { DIMENSION_NAMES } from '../../../dimensions'
+import { DIMENSION_NAMES } from '../../../../mountain/dimensions'
 import { componentGraph, gapScan, harmonyProbability, iChing, onlyQuantumRemains, path } from '../..'
 import type { FreqNode } from '../..'
 
@@ -277,7 +277,7 @@ export function widgetDimensionControls(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Widget dimension controls: every widget carries a layer panel (useLayers + LayersPanel.vue) with 10 interactive dimension rows and a 0–10D depth slider — the same interaction model as Photoshop layers or a DAW track list. 0D = no items shown (void), 10D = all layers fused (the full hologram). The 10 DIMENSION_NAMES become 10 toggleable eye-icons: inner group (spread·depthFade·hueShift = lower-trigram yin, import direction), outer group (twist·shrink·breath = upper-trigram yang, export direction), loop group (loopA1·loopB1·loopA2·loopB2 = the four dependency-flow types / homology loops). Items are distributed across dimensions by the formula dim = ⌊i×10/N⌋, spreading N items evenly. The ICHING_MASK.color accents the widget\'s native layers (innerAxis, outerAxis). The user can select any depth 0-10 and toggle any layer, fusing the visible content from active dimensions exactly as in image/audio/video editing.',
     boundary:
-      'The layer/depth metaphor comes from visual/audio editing (Photoshop layers, AE timeline, DAW tracks). HONEST: item distribution (⌊i×10/N⌋) is a linear bucketing, not a rigorous dimensional projection — it organises data by ordinal position, not by the mathematical content of each dimension. The 10 dimensions (DIMENSION_NAMES) have genuine I Ching / toroidal meaning in the model; the layer control makes them interactive. "Fusing" here = showing all active-layer items together, not a pixel blend-mode. The composable (useLayers) is in src/ui/lib/useLayers.ts; the panel component (LayersPanel.vue) wraps any DecodedCard widget with no fold dependencies.',
+      'The layer/depth metaphor comes from visual/audio editing (Photoshop layers, AE timeline, DAW tracks). HONEST: item distribution (⌊i×10/N⌋) is a linear bucketing, not a rigorous dimensional projection — it organises data by ordinal position, not by the mathematical content of each dimension. The 10 dimensions (DIMENSION_NAMES) have genuine I Ching / toroidal meaning in the model; the layer control makes them interactive. "Fusing" here = showing all active-layer items together, not a pixel blend-mode. The composable (useLayers) is in src/render/ui/lib/useLayers.ts; the panel component (LayersPanel.vue) wraps any DecodedCard widget with no fold dependencies.',
   }
 }
 

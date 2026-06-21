@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, tamperEvident, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, landauerLimit, helmholtzFreeEnergy, conditionalEntropyBits, uuidPoint, rat, ratMul, ratToFloat, ratStr, ratIsInteger } from '../../../../0'
+import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, tamperEvident, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, landauerLimit, helmholtzFreeEnergy, conditionalEntropyBits, uuidPoint, rat, ratMul, ratToFloat, ratStr, ratIsInteger } from '../../../../../0'
 import { areaPairs, merkaba, vortexMath } from '../../mountain/geometry'
 import { rhythm } from '../../lake/music'
 import { quantumProofs } from '../../lake/proofs'
@@ -12,8 +12,8 @@ import { harmonicBands } from '../../earth/vocab'
 import { healingFrequencies } from '../../lake/ledger'
 import { staticPages } from '../../wind/site'
 import { computationsBoundToSourceApisRealtime } from '../../thunder/trading'
-import { cryptoReview } from '../../../../debit/credit'
-import { cryptoReviewNet } from '../../../../credit/debit'
+import { cryptoReview } from '../../../../../pair/debit/credit'
+import { cryptoReviewNet } from '../../../../../pair/credit/debit'
 import { agnosticUsefulForAll, allComputedQuantumMathAnalog, completeCorpus, componentPages, corpusParams, determinismProofs, diamondParamsById, fairTrade, feesReplaceTaxes, folderLaw, homology, imagination, live, livingTorus, mysteries, proofBundle, quantumFoldedBlockchains, quantumSociety, quantumSynthesis, society, theWhole } from '../..'
 
 // How much do the animations increase the tampering cost? Computed. Each animation
@@ -368,7 +368,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
   const sealed = toUuid('page:a432')
   const facets = [
     { facet: 'corpus items are enumerated REST routes — corpusParams still resolves one item from the sealed model, and paperRoutes/paperReferenceRoutes/diamondRoutes give every /kind/<id> a real [id] page', on: typeof corpusParams === 'function' && diamondParamsById('∅-no-such-id', matrix) === null && folderLaw().computedFolders.length === 9 },
-    { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && pageSet.length > 100 },
+    { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount >= folderLaw().componentClosure.limit },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
     { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
     { facet: 'maximum tampering cost — every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },

@@ -9,25 +9,25 @@
 // The render subfolders (the hero's dimensions) are: seed (page→identity), dimensions (the continuous phase), geometry
 // (the trinity of rotation + perspective), fractal (the self-similar arms), flower (the fruit of life),
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
-import { dims, dimWalk } from './dimensions'
-import { perspective, rotate3 } from './geometry'
-import { branch } from './fractal'
-import { drawFlower } from './flower'
-import { drawCalendars } from './calendars'
-import { drawArchitecture, type ArchNode } from './architecture'
-import { drawBursts, type Burst } from './bursts'
-import { glagoliticGlyph } from './mind'
+import { dims, dimWalk } from './mountain/dimensions'
+import { perspective, rotate3 } from './wind/geometry'
+import { branch } from './wind/fractal'
+import { drawFlower } from './wind/flower'
+import { drawCalendars } from './wind/calendars'
+import { drawArchitecture, type ArchNode } from './earth/architecture'
+import { drawBursts, type Burst } from './fire/bursts'
+import { glagoliticGlyph } from './heaven/mind'
 
 export { createAnimationEngine, type AnimationEngine } from '../0' // the rAF driver from the void/origin — the hero's loop folds through it too
 export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0' // the one math (the fold) and its presentations — projections of a single address
-export { seedOf, hueOf, armsOf } from './seed'
-export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './dimensions'
-export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, type Vec3 } from './geometry'
-export { branch } from './fractal'
-export { drawFlower } from './flower'
-export { drawCalendars } from './calendars'
-export { buildArchNodes, drawArchitecture, type ArchNode } from './architecture'
-export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './bursts'
+export { seedOf, hueOf, armsOf } from './earth/seed'
+export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions'
+export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, type Vec3 } from './wind/geometry'
+export { branch } from './wind/fractal'
+export { drawFlower } from './wind/flower'
+export { drawCalendars } from './wind/calendars'
+export { buildArchNodes, drawArchitecture, type ArchNode } from './earth/architecture'
+export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/bursts'
 
 // The whole scene for one frame: the resolved time t and phase p, the page's seeded identity (hue, arms), the
 // related tags and the architecture nodes, the responsiveness inputs (reduce, cssWidth) and the live bursts.

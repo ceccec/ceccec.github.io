@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
 import { skillAtoms } from '../../wind/learning'
-import { foldPair, isUuid, memoByRoot, merkleFold, toUuid, uuidHero } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, toUuid, uuidHero } from '../../../../../0'
 import { dimensions, multidimensional, openGraph, typographySeo } from '../../earth/vocab'
 import { quantumSitemap, staticPages } from '../../wind/site'
 import { realtimeMovieParticipation } from '../../earth/world'

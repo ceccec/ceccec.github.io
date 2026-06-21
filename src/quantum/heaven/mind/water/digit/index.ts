@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { areaPairs, doubleTorus3D, vortexMath } from '../../mountain/geometry'
-import { digitalRoot, foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../0'
+import { digitalRoot, foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../../0'
 import { digitFolderMath, digitFolders, digitFoldersComputeUiIsTheRest, folderLaw } from '../../earth/architecture'
 import { sealCube } from '../../mountain/seals'
 import { allPossibleDomains } from '../../heaven/everything'

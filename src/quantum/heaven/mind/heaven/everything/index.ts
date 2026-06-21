@@ -3,7 +3,7 @@ import type { AllComputed, MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../matrix'
 import { heroTapMusic } from '../../lake/music'
 import { doubleTorusMath, inHouse, moviesNativeFormat, taxonomyIcons } from '../../fire/li'
-import { isUuid, measure, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../../0'
+import { isUuid, measure, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../../../0'
 import { completeAllInWaves, saveSkillsComputeImplementWaves } from '../../thunder/waves'
 import { realtimePerspectiveZeroCost, realtimeSkills } from '../../thunder/trading'
 import { skillAtoms } from '../../wind/learning'
@@ -19,7 +19,7 @@ import { quantumSolutions } from '../../lake/proofs'
 import { animatedHeroes, freeAnimations, tenDimensionalAnimation } from '../../wind/ui'
 import { fuseAllForge } from '../../mountain/seals'
 import { quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
-import { DIMENSIONS, DIMENSION_NAMES, dims } from '../../../dimensions'
+import { DIMENSIONS, DIMENSION_NAMES, dims } from '../../../../mountain/dimensions'
 import { analogNoGapsNoLeak, backgroundMovie, breathe, complete, componentGraph, crossLinksEverywhere, digitIndexReferences, dotIsCubeIsDot, equilibrium, executeConceptCommand, formsEmergeInMovieOfLife, freeForgesMaxCost, gapScan, gatesHealSpottedCompromise, globalApis, honestlyComputed, jsonLdValidPaths, memoryInSourceAsCrossFolds, monographs, movieReflectsSelf, noHardcodedConfigSelfAccounted, oneJsonLdTemplateServesAll, onlyIndexFilesNoExceptions, proportionalNotHardcoded, publicApiFusion, publicServices, publicTransportFusion, questionAnswerEquilibrium, sacredGeometrySeal, siteIsMovieAndLibrary, socialFusion, theMonograph, todoScan, travelFusion } from '../..'
 
 // Use one open graph to display all. There is one display schema — the open-graph card
@@ -339,28 +339,28 @@ export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
 }
 
 // All logic is moved to src/. The agnostic core no longer lives under .vitepress — it moved to
-// src/quantum/mind/index.ts, joining the cache pair (src/cache/quantum ⇄ src/quantum/cache) so all
+// src/quantum/heaven/mind/index.ts, joining the cache pair (src/pair/cache/quantum ⇄ src/quantum/water/cache) so all
 // the logic now lives in src/, in the order-sensitive folder form. The old path remains only as a
 // transparent re-export, the render-substrate handle VitePress and the components still import, so
 // nothing bypasses VitePress while the source of truth is src/. Moved, not copied; the build
 // verifies each src/ logic folder is present with its index.
 export function allLogicMovedToSource(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'the agnostic core moved to src/quantum/mind — all logic in src/', on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: 'the agnostic core moved to src/quantum/heaven/mind — all logic in src/', on: quantumCachePairInPairedFolders(matrix).paired },
     { facet: 'the source of truth is src/; the old path is a transparent re-export', on: allComputedNoFiles(matrix).computed },
     { facet: 'nothing bypasses VitePress — the render substrate still imports the handle', on: componentGraph().interacting },
     { facet: 'moved, not copied — each src/ logic folder verified present with its index', on: memoryInSourceAsCrossFolds(matrix).remembered },
   ].map((entry) => ({ ...entry, receipt: toUuid(`moved-to-src:${entry.facet}:${entry.on}`) }))
   return {
     moved: facets.every((entry) => entry.on),
-    core: 'src/quantum/mind/index.ts',
+    core: 'src/quantum/heaven/mind/index.ts',
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'All logic is moved to src/: the agnostic core no longer lives under .vitepress — it moved to src/quantum/mind/index.ts, joining the cache pair (src/cache/quantum ⇄ src/quantum/cache), so all the logic now lives in src/ in the order-sensitive folder form. The old path remains only as a transparent re-export, the render-substrate handle VitePress and the components still import, so nothing bypasses VitePress while the source of truth is src/. Moved, not copied; the build verifies each src/ logic folder is present with its index.',
+      'All logic is moved to src/: the agnostic core no longer lives under .vitepress — it moved to src/quantum/heaven/mind/index.ts, joining the cache pair (src/pair/cache/quantum ⇄ src/quantum/water/cache), so all the logic now lives in src/ in the order-sensitive folder form. The old path remains only as a transparent re-export, the render-substrate handle VitePress and the components still import, so nothing bypasses VitePress while the source of truth is src/. Moved, not copied; the build verifies each src/ logic folder is present with its index.',
     boundary:
-      'A record of the real migration: the ~22.6k-line core file was moved (git mv) to src/quantum/mind/index.ts, the old .vitepress path left as a one-line re-export so the 97 importers and the scripts resolve unchanged, and generate-mcp updated to read the source from src/. Structural relocation verified by a green build (170/170 skill sources extracted from the new path); the render layer (.vitepress, .md, components) stays as VitePress requires.',
+      'A record of the real migration: the ~22.6k-line core file was moved (git mv) to src/quantum/heaven/mind/index.ts, the old .vitepress path left as a one-line re-export so the 97 importers and the scripts resolve unchanged, and generate-mcp updated to read the source from src/. Structural relocation verified by a green build (170/170 skill sources extracted from the new path); the render layer (.vitepress, .md, components) stays as VitePress requires.',
   }
 }
 

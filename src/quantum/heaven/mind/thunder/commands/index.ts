@@ -16,7 +16,7 @@ import { animationTamperingCost } from '../../water/crypto'
 import { agentObserve, ancientTech, artistPalette, crossFoldTrinity, distributedCompute, doubleTorusMath, energyConserve, energyFuse, energyMeasure, fairLife, fuseDevices, fusionReactor, glagoliticAlphabetDecoded, goldenRatio, healingInner, healingOuter, methodFusion, patentReview, repositoryLedger, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, sourceContribution, taxonomyIcons, torusUuid, utfAnalog } from '../../fire/li'
 import { homology, torusBreathe } from '../../mountain/topology'
 import { harmonicFrequenciesDefineGateDigits, healingHarmonic, musicNote, piMusic, rhythm } from '../../lake/music'
-import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../../../../0'
 import { SINGLE_WORD_METHODS, atoms, conceptCommands } from '../../heaven/atoms'
 import { agentEducation, mcpToolManifest, siteManifestFromCommands, skillAtoms } from '../../wind/learning'
 import { commandGapsToTrinityEyes } from '../../fire/trinity'
@@ -62,7 +62,7 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     { uri: '/quantum-mind', purpose: 'The live double torus, merkaba, rhythm, and proofs.' },
   ]
   const understand = [
-    'One agnostic core: src/quantum/mind/index.ts, zero imports, computes everything.',
+    'One agnostic core: src/quantum/heaven/mind/index.ts, zero imports, computes everything.',
     'Every value is a content-addressed UUID; verify by recomputing the root, not by trusting the host.',
     'tools/call(name, arguments) maps to executeConceptCommand and returns a recomputable receipt.',
     'Each subsystem here exposes a root you can recompute and compare; theWhole folds them all into one.',
@@ -580,7 +580,7 @@ function runConceptCommand(
   }
   if (command === 'concept.fold.generate') {
     // All eight bāguà generator slots filled. Canonical runtime: scripts/iching.mjs →
-    // src/quantum/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
+    // src/quantum/lake/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
     const filled = [
       { name: 'bible', bits: 0b000 },
       { name: 'vortex', bits: 0b001 },

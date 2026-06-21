@@ -1,11 +1,11 @@
 // ☱ correction — the honest decodes and proofs from the session, moved out of the architecture barrel to their
 // own domain (a fold lives at its exact path, never dumped in a foreign monolith). Documented vs flagged; HARMONY ≠ TRUTH.
-import type { MindMatrix } from '../mind/wind/types'
-import { buildMatrix } from '../mind/heaven/matrix'
-import { dash, folderLaw, payload } from '../mind/earth/architecture'
-import { textToMovie } from '../mind/earth/world'
-import { foldPair, isUuid, merkleFold, seedFromText, toUuid, uuidPoint } from '../../0'
-import { DIMENSIONS } from '../dimensions'
+import type { MindMatrix } from '../../heaven/mind/wind/types'
+import { buildMatrix } from '../../heaven/mind/heaven/matrix'
+import { dash, folderLaw, payload } from '../../heaven/mind/earth/architecture'
+import { textToMovie } from '../../heaven/mind/earth/world'
+import { foldPair, isUuid, merkleFold, seedFromText, toUuid, uuidPoint } from '../../../0'
+import { DIMENSIONS } from '../../mountain/dimensions'
 
 // 10D IS NOT OVERLAPPING BUT INTERACTING 3Ds. The ten dimensions are not ten stacked scalar axes layered over
 // each other — they are the TETRAHEDRON (the 3-simplex): FOUR vertices that frame ONE 3-space (one origin + three

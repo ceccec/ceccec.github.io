@@ -1,4 +1,4 @@
-// src/quantum/flower — the fruit of life, dancing. Thirteen circles (the centre, the six around it, the six
+// src/quantum/wind/flower — the fruit of life, dancing. Thirteen circles (the centre, the six around it, the six
 // beyond) and in EVERY one a merkaba dances: a small harmonograph, the same nested counter-rotating arms as
 // the hero's own spin, leaving a fading trail. The whole flower precesses with the hero's rotation and each
 // merkaba is phase-shifted, so they dance out of step. A background layer behind the fractal; motion-aware

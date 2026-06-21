@@ -1,4 +1,4 @@
-// src/quantum/geometry — the hero's 3D toolkit: the trinity of rotational planes and the perspective it projects
+// src/quantum/wind/geometry — the hero's 3D toolkit: the trinity of rotational planes and the perspective it projects
 // with. rotate3 turns a vector through all three planes (xy, yz, zx) so the figure tumbles in space, not just
 // spins in the plane; perspective() turns the rotated z into a foreshortening factor (nearer grows, farther
 // recedes), shared by the fractal arms, the architecture ring and the tag ring so they tumble as one figure.

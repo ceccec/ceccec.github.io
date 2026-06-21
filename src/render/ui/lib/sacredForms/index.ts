@@ -4,7 +4,7 @@
 // real (the Flower of Life's six-around-one circles, the merkaba's two triangles, Metatron's 13 centres + lines,
 // the 1·2·4·8·7·5 vortex circuit, the torus rings, the Sri Yantra triangles). Pure, deterministic.
 
-import { dims, dimWalk } from '../../../quantum/dimensions'
+import { dims, dimWalk } from '../../../../quantum/mountain/dimensions'
 
 export const SACRED_FORMS = ['flower', 'merkaba', 'metatron', 'vortex', 'torus', 'yantra'] as const
 export type SacredForm = (typeof SACRED_FORMS)[number]

@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — geometry, topology & colour folds (merkaba, double-torus, sacred geometry, the RGB/CMY/CMYK & hex-colour dualities, the 64=4³ cube, heart/proton, the genetic code, imperial fractions), dissolved out of the monolith. Independent; folds.ts back-imports the gate folds. Re-exported through the mind barrel.
 import type { AnalogChannel, DualTorusTrinities, MindMatrix, TrinityAxis, TrinityPair, TrinityPhase, TrinityStep, MetatronCubeReport, MetatronEdge, MetatronNode, SacredGeometrySeal, SealLeaf } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { VORTEX_SEQUENCE, digitalRoot, foldPair, gcd, groupOrbit, isUuid, memoByRoot, merge, merkleFold, modUnits, rat, ratAdd, ratEq, ratMul, ratStr, sealFacets, seedFromText, toUuid, vortexHarmonicRatios, LUNAR_NODAL_PERIOD_YEARS, MOON_ORBIT_INCLINATION_DEG, greatCircleKm, initialBearing, lunarStandstillDeclinationDeg, obliquityAtEpoch, riseAzimuthDeg, roundTo, setAzimuthDeg } from '../../../../0'
+import { VORTEX_SEQUENCE, digitalRoot, foldPair, gcd, groupOrbit, isUuid, memoByRoot, merge, merkleFold, modUnits, rat, ratAdd, ratEq, ratMul, ratStr, sealFacets, seedFromText, toUuid, vortexHarmonicRatios, LUNAR_NODAL_PERIOD_YEARS, MOON_ORBIT_INCLINATION_DEG, greatCircleKm, initialBearing, lunarStandstillDeclinationDeg, obliquityAtEpoch, riseAzimuthDeg, roundTo, setAzimuthDeg } from '../../../../../0'
 import { REQUIRED_ANALOG_CHANNELS } from '../../heaven/atoms'
 import { taxonomyIcons, torusUuid, crossFoldTrinity, selfAddressed, selfInteraction } from '../../fire/li'
 import { A432_HUE, GOLDEN_ANGLE, frequencyToLight, lobeHues } from '../../earth/vocab'

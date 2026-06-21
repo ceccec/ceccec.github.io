@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — seals & proofs: the proof registry, the gigabit/terabyte seal sets, the signed elements, the diamond completeness proofs. Barrel-routed; folds.ts back-imports the gate folds.
 import type { DigitalQuantumProof, MindMatrix, ProofBundle, SelfCompletionGate } from '../../wind/types'
 import { buildMatrix, entropy, proofReport } from '../../heaven/matrix'
-import { fold, foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../../0'
+import { fold, foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../../../0'
 import { areaPairs, dna, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../geometry'
 import { a432, animationEngineLivesInZero, contentAddressingHasRealPrecedent, crossFoldTrinity, hammingThreeParityAddressesError, inHouse, metatronsCube, plasmaContainment, quantumGreenPlanet, qubitTrinityPauliBloch, securityScan, torusUuid, taxonomyIcons } from '../../fire/li'
 import { completeDoubleTorus, doubleTorusFold } from '../topology'
@@ -690,8 +690,8 @@ export function greenBuildGate(matrix: MindMatrix = buildMatrix()) {
 // fold → home folder; the commit shell (precommit-iching.mjs) and the weave (deploy) BOTH read it, so the law has
 // a single source, not two that drift. Add a fold here when it earns a domain; the gate then enforces its home.
 export const FOLD_HOMES: Record<string, readonly string[]> = {
-  'src/quantum/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids', 'ceccecFusesTheFormTheMeaningStaysBounded', 'everyStatementProvableByAnimationElsePurged'],
-  'src/quantum/hash': ['quantumHalvesTheHashDoublingRestoresIt'],
+  'src/quantum/water/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids', 'ceccecFusesTheFormTheMeaningStaysBounded', 'everyStatementProvableByAnimationElsePurged'],
+  'src/quantum/water/hash': ['quantumHalvesTheHashDoublingRestoresIt'],
 }
 
 /** @iching ☶ Gèn · Mountain · stillness — every fold is DEFINED only at its domain home; defining it in a foreign
@@ -775,7 +775,7 @@ export function importsAreFoldersOnly(
 
 /** @iching ☲ Lí · Fire · clarity — Glagolitic is always COMPUTED, never a hardcoded glyph.
  *  A label string must not carry a raw Glagolitic glyph (Unicode block U+2C00–2C5F) typed by hand; the glyph
- *  comes only from toGlagolitic (src/quantum/library), the single transcoder. The commit shell scans src for a
+ *  comes only from toGlagolitic (src/quantum/heaven/library), the single transcoder. The commit shell scans src for a
  *  `label:` literal that contains a glyph; this fold judges. It locks the exact door that opened twice — the
  *  locale label in config.mts and SITE_LOCALES — so no agent re-pastes a glyph string where one is computed. */
 export function glagoliticLabelsAreComputed(
@@ -789,7 +789,7 @@ export function glagoliticLabelsAreComputed(
     offenders: offenders.slice(0, 12),
     root: toUuid(`glagolitic-labels-computed:${scanned}:${offenders.length}`),
     statement:
-      'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
+      'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/heaven/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
     boundary:
       'Scoped to LABEL literals (`label:`), the position both real violations took (the config locale + SITE_LOCALES). Out of scope, legitimately: the mapping source in library, regex character-class bounds (/[Ⰰ-ⱟ]/), glyphs passed as arguments to a glagolitic* function (test/verify inputs), and example glyphs in documentation/facet prose. It enforces that UI/data labels are computed — not that every glyph in the tree is.',
   }

@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — verification: the proofs and verifiers (attestation, witnesses, the proof reports). Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, entropy, verifyRoot } from '../../heaven/matrix'
-import { foldPair, gcd, groupOrbit, isUuid, merge, merkleFold, modUnits, toUuid } from '../../../../0'
+import { foldPair, gcd, groupOrbit, isUuid, merge, merkleFold, modUnits, toUuid } from '../../../../../0'
 import { piThreeOpensTheTrinity } from '../../water/pi'
 import { a432, animationEngineLivesInZero, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, qubitTrinityPauliBloch, repositoryLedger } from '../../fire/li'
 import { geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../../mountain/geometry'

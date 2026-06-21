@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Commit gate — a THIN ENTRY-POINT SHELL. Git hooks invoke a file on disk, so this file must exist; but it
-// holds NO judgment. Every predicate is a TYPED SRC FOLD (src/quantum/mind/gate.ts · dist/readme.ts):
+// holds NO judgment. Every predicate is a TYPED SRC FOLD (src/quantum/heaven/mind/gate.ts · dist/readme.ts):
 //   greenBuildGate()  ·  toolsSavedInSrcFirst()  ·  readmeSignatureValid()
 //   greenBuildGate() · toolsSavedInSrcFirst() · importsAreFoldersOnly() · readmeSignatureValid()
 // The shell only bundles src, gathers the filesystem facts the folds cannot reach, and reports.
@@ -18,7 +18,7 @@ async function bundle(entry) {
 const fail = (msg, detail) => { console.error('✗ commit blocked — ' + msg); if (detail) console.error('   ' + detail); process.exit(1) }
 
 try {
-  const mind = await bundle('src/quantum/mind/index.ts')
+  const mind = await bundle('src/quantum/heaven/mind/index.ts')
 
   // 1. GREEN BUILD — the I Ching complete in all 432 quantum dimensions (the predicate is a src fold, not this file)
   const gate = mind.greenBuildGate()
@@ -94,7 +94,7 @@ try {
   if (!situation.clear) console.error('⚠ ' + situation.anomalies.join('\n⚠ '))
 
   // 6. README SIGNATURE — the committed README.md must equal the src-computed readmeMarkdown()
-  const dist = await bundle('src/quantum/dist/index.ts')
+  const dist = await bundle('src/quantum/lake/dist/index.ts')
   let committed = ''
   try { committed = readFileSync('README.md', 'utf8') } catch { committed = '' }
   const readme = dist.readmeSignatureValid(committed)

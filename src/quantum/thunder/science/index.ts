@@ -1,13 +1,13 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · depthFade — verified physics & technology data: EMF spectrum, efficiency model, Tesla patents, patent discovery sources, public frequency APIs, herbal APIs, and the octave bridge.
-// Dual: src/science/quantum (browse/display primitives). Pure, only src/0 + mind/atoms imports.
+// Dual: src/world/science/quantum (browse/display primitives). Pure, only src/0 + mind/atoms imports.
 
 // ☰ Qián · Heaven · creative · lower·yin · spread — core utilities: uuid, merkle fold, speed of light
-import { toUuid, merkleFold, SPEED_OF_LIGHT, resonantAmplitude, resonancePeakGain, resonanceBandwidth } from '../../0'
+import { toUuid, merkleFold, SPEED_OF_LIGHT, resonantAmplitude, resonancePeakGain, resonanceBandwidth } from '../../../0'
 // ☳ Zhèn · Thunder · arousing · lower·yin · depthFade — concept commands from mind atoms
-import { conceptCommands } from '../mind'
+import { conceptCommands } from '../../heaven/mind'
 
 /** @iching ☳ Zhèn · Thunder · arousing */
-export const dual = 'src/science/quantum'
+export const dual = 'src/world/science/quantum'
 
 // ☳ Zhèn · Thunder · arousing · upper·yang · depthFade — science exports: EMF, efficiency, patents, frequencies, octave bridge
 

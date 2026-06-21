@@ -7,7 +7,7 @@
 import type { Plugin } from 'vite'
 import { existsSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { merkleFold, toUuid } from '../../0'
+import { merkleFold, toUuid } from '../../../0'
 import { auditCross, materializeCross } from './cross'
 import { auditFold } from './fold'
 import { auditWeave } from './weave'

@@ -1,7 +1,7 @@
 // Simulators — dissolved out of the folds monolith into its own harmonic file (the body
 // distributes; src/0 keeps the gravity). Imports only base modules — no import cycle with folds.ts.
 // Strict barrel rule: enter src/0 through its index — bell/bump/ca/hopfield are folded into the 0 barrel.
-import { GATES, admixToward, applyGate, bellPair, bumpEvolve, caEvolve, caStep, chsh, codeRobustness, composeHazard, congruence, fold, grover, hopfieldRecall, hopfieldStore, injectError, markovStep, merge, merkleFold, pbits, pflip, phaseDrift, pmixEvolve, probabilities, psample, qubits, rcnot, realign, rnot, rtoffoli, sample, stationary, survive, toUuid } from '../../../../0'
+import { GATES, admixToward, applyGate, bellPair, bumpEvolve, caEvolve, caStep, chsh, codeRobustness, composeHazard, congruence, fold, grover, hopfieldRecall, hopfieldStore, injectError, markovStep, merge, merkleFold, pbits, pflip, phaseDrift, pmixEvolve, probabilities, psample, qubits, rcnot, realign, rnot, rtoffoli, sample, stationary, survive, toUuid } from '../../../../../0'
 import { glagolitic } from '../li'
 import { buildMatrix } from '../../heaven/matrix'
 import type { MindMatrix } from '../../wind/types'

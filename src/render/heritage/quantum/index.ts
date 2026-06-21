@@ -1,9 +1,9 @@
-// src/heritage/quantum — the dual of src/quantum/heritage. Where quantum/heritage SEALS the decoded
+// src/render/heritage/quantum — the dual of src/quantum/earth/heritage. Where quantum/earth/heritage SEALS the decoded
 // Bulgarian history, civilisations, ethnogenesis, genetics, and Glagolitic reception, this half provides
 // display/browse primitives: sort era timelines, compare documented vs legend counts, index topics by span.
-// Does NOT import from src/quantum/heritage — the pair stays decoupled. Pure, deterministic, zero tokens.
+// Does NOT import from src/quantum/earth/heritage — the pair stays decoupled. Pure, deterministic, zero tokens.
 
-export const dual = 'src/quantum/heritage'
+export const dual = 'src/quantum/earth/heritage'
 
 export type HeritageSlice = { topic: string; documented: string; legend: string }
 export type Era = { era: string; span: string; documented: string; legend: string }

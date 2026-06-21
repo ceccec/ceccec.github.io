@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water — π: the digits computed not hardcoded, π whole-stream through the holes, π's three opening the trinity, the pi-train stations. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { digitalRoot, merge, merkleFold, toUuid } from '../../../../0'
+import { digitalRoot, merge, merkleFold, toUuid } from '../../../../../0'
 import { PI_TRAIN_DIGITS, computePiDigits, conceptCommands } from '../../heaven/atoms'
 import { vortexMath } from '../../mountain/geometry'
 import { piNotHarmonic } from '../../lake/music'

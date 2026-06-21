@@ -1,5 +1,5 @@
 // ☰ Qián · Heaven · creative (the 10 dimensions are the model) · upper·yang · shrink — continuous 10D hero axes: 6 cross-fold appearance + 4 genus-2 homology loops, self-similar at every scale
-// src/quantum/dimensions — the continuous TEN dimensions of the hero, at every scale. Every parameter of the
+// src/quantum/mountain/dimensions — the continuous TEN dimensions of the hero, at every scale. Every parameter of the
 // figure is a smooth function of one phase p (0..1), so the movie slides from one dimension to the next with no
 // jumps. The ten are grounded in the model's own geometry: the genus-2 double torus has H1 = Z^4 — FOUR
 // independent homology loops (two handles, each a meridian + a longitude) — and the figure's appearance is the

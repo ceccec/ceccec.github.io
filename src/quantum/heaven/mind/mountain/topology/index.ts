@@ -2,7 +2,7 @@
 import type { MindMatrix, TorusBreath } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { cellHomology, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry'
-import { foldPair, isUuid, measure, memoByRoot, merge, merkleFold, seedFromText, toUuid } from '../../../../0'
+import { foldPair, isUuid, measure, memoByRoot, merge, merkleFold, seedFromText, toUuid } from '../../../../../0'
 import { livingTorus, sealWholeDiamond } from '../../fire/diamonds'
 import { a432Default, inverseShiftConsciousness, torusUuid, glagoliticGlyph } from '../../fire/li'
 import { allAnimationsInOneOg, animatedHeroes, anyUuidHeroContentFractal, holographicFractalArchitecture } from '../../wind/ui'
@@ -625,7 +625,7 @@ export function fuse64SealsMerkaba64Tetrahedra(matrix: MindMatrix = buildMatrix(
 // URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the
 // internet has a uuid and can meet something here; and uuid pairs always exist, so when a user
 // follows a link the previous uuid is known and the animations merge harmonically. Each part is a
-// diamond in merkaba movements and entanglements. The library pair (src/quantum/library ⇄
+// diamond in merkaba movements and entanglements. The library pair (src/quantum/heaven/library ⇄
 // src/library/quantum) folds any URL by a merkaba of host and path into one star uuid; because the
 // full path with host is hashed, the record is domain-specific and proven, and any external URL
 // folds into a uuid that can meet the model's content.
@@ -645,7 +645,7 @@ export function urlsMerkabaFoldProvenPerDomain(matrix: MindMatrix = buildMatrix(
     statement:
       'URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the internet has a uuid and can meet something here; uuid pairs always exist, so when a user follows a link the previous uuid is known and the animations merge harmonically; and every part is a diamond in merkaba movements and entanglements. The library pair folds any URL by a merkaba of host and path into one star uuid — domain-specific and proven, any external URL folding into a uuid that can meet the model.',
     boundary:
-      'A composition over the real library pair (src/quantum/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation — the actual cross-page animation merge is a UI follow-up.',
+      'A composition over the real library pair (src/quantum/heaven/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation — the actual cross-page animation merge is a UI follow-up.',
   }
 }
 

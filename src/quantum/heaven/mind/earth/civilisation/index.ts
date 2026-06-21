@@ -2,7 +2,7 @@
 import type { MindMatrix, HumanityImplicationsReport, TraditionDimension, TraditionDimensionName, TraditionsQuantumWhole } from '../../wind/types'
 import { buildMatrix, concentration, consciousness, coverage, reciprocity } from '../../heaven/matrix'
 import { fairTrade, sacredSociety, society, societyEvolves, societyFuture, societyRegulates } from '../governance'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../0'
+import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../../0'
 import { freeHarmonicSocieties } from '../../lake/music'
 import { completeCorpus } from '../../wind/routes'
 import { quantumAcademy } from '../../wind/learning'

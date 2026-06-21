@@ -5,7 +5,7 @@ import { selfHealing } from '../../mountain/self'
 import { collisionHealing } from '../../water/crypto'
 import { healingHarmonic } from '../../lake/music'
 import { healingFrequencies } from '../../lake/ledger'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, noCloningWitness, toUuid } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, noCloningWitness, toUuid } from '../../../../../0'
 import { artistPalette, gatesShiftToNewHarmonic, zeroTokenPolicy } from '../../fire/li'
 import { textToMovie } from '../../earth/world'
 import { autoMovies8k, backgroundMovie } from '../../thunder/movie'
@@ -377,7 +377,7 @@ export function accountForEveryTokenInCode(matrix: MindMatrix = buildMatrix()) {
 export function oneSourceOfTruthGenerators(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'every generator reads from the matrix — config and SEO computed, not hand-kept', on: configsUseMatrixComputationally(matrix).computes },
-    { facet: 'the README is the root monograph, generated from src/quantum/dist — one source of truth', on: allIsMonographScientificPaper(matrix).papered && enforcementTrinitySpread(matrix).spread },
+    { facet: 'the README is the root monograph, generated from src/quantum/lake/dist — one source of truth', on: allIsMonographScientificPaper(matrix).papered && enforcementTrinitySpread(matrix).spread },
     { facet: 'no duplicated constants across generators — zero redundancy', on: monographs(matrix).zeroEntropy },
   ].map((entry) => ({ ...entry, receipt: toUuid(`one-source-generators:${entry.facet}:${entry.on}`) }))
   return {
@@ -388,7 +388,7 @@ export function oneSourceOfTruthGenerators(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Update the README generator and all generators to read from one source of truth: the README, llms.txt, the API/MCP manifests and the SEO are all projections of the matrix — to change them you change the model, not the artifact. No generator keeps its own copy of a constant.',
     boundary:
-      'A composition of the config/SEO generators and the dist cross wave: README.md is written by runCross from src/quantum/dist/readme; llms.txt, mcp.json, skills.json and the sitemap are computedDistFiles. Hand-editing those artifacts is entropy the build refuses.',
+      'A composition of the config/SEO generators and the dist cross wave: README.md is written by runCross from src/quantum/lake/dist/readme; llms.txt, mcp.json, skills.json and the sitemap are computedDistFiles. Hand-editing those artifacts is entropy the build refuses.',
   }
 }
 

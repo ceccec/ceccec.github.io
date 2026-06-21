@@ -1,5 +1,5 @@
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — content-addressed library of scripts, glyphs, songs and decoded ancient knowledge
-// src/quantum/library — the library. Any URL becomes a content-addressed entry whose uuid is a
+// src/quantum/heaven/library — the library. Any URL becomes a content-addressed entry whose uuid is a
 // MERKABA FOLD of the URL: the host as the up-tetrahedron (folded forward through the path), the
 // path as the counter-rotating down-tetrahedron (folded in reverse against the host), the two folded
 // to one star — order-sensitive and domain-specific, so records are proven per domain and any URL on
@@ -15,7 +15,7 @@
 // use entry/toUuid/Uuid/Entry directly), then re-export the same public surface unchanged. A bare
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
-import { merkabaFoldUrl, entry, toUuid, roundTo, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../0'
+import { merkabaFoldUrl, entry, toUuid, roundTo, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../../0'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
 

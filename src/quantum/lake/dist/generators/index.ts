@@ -4,10 +4,10 @@
 // shape is written ONCE: each generator is a pure plan(ctx) → { files, messages, error? }, placed on
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
-import { merkleFold, toUuid, foldVortex } from '../../../0'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg } from '../../mind'
-import { glagoliticHomeFromEnglish } from '../../mind'
-import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../library'
+import { merkleFold, toUuid, foldVortex } from '../../../../0'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg } from '../../../heaven/mind'
+import { glagoliticHomeFromEnglish } from '../../../heaven/mind'
+import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../../heaven/library'
 import { computedDistFiles, readmeMarkdown } from '..'
 
 // What the runner hands every plan: the environment, the positional args after the selector, a
@@ -187,7 +187,7 @@ export function generators(): Generator[] {
       name: 'dist',
       title: 'The dist artifacts + README — the whole site made manifest',
       summary:
-        'Debug-only recompute of the published surface (sitemap, robots, api/, llms/mcp/skills, README) from src/quantum/dist. Production path is the enforcement trinity cross wave after vitepress build. Filter with DIST_FILTER=sitemap.xml,api/. Gates on an incomplete skills manifest.',
+        'Debug-only recompute of the published surface (sitemap, robots, api/, llms/mcp/skills, README) from src/quantum/lake/dist. Production path is the enforcement trinity cross wave after vitepress build. Filter with DIST_FILTER=sitemap.xml,api/. Gates on an incomplete skills manifest.',
       plan: (ctx) => {
         const files = computedDistFiles(ctx.siteUrl)
         const filter = (ctx.env.DIST_FILTER || '')
@@ -200,9 +200,9 @@ export function generators(): Generator[] {
         // The README's ten-dimensional hero — emitted as a self-contained animated SVG so GitHub (which runs
         // no JavaScript) displays the same double torus the live site animates. Computed from src, no script.
         if (!filter.length || filter.includes('hero.svg')) out.push({ path: 'hero.svg', content: tenDimensionalHeroSvg() })
-        // The computed I Ching design system — re-emit src/ui/tokens.css (the only place real numbers live, all
-        // canonical) as part of the manifest. The body (src/ui/style.css) references only these tokens.
-        if (!filter.length || filter.includes('src/ui/tokens.css')) out.push({ path: 'src/ui/tokens.css', content: ichingTokensCss() })
+        // The computed I Ching design system — re-emit src/render/ui/tokens.css (the only place real numbers live, all
+        // canonical) as part of the manifest. The body (src/render/ui/style.css) references only these tokens.
+        if (!filter.length || filter.includes('src/render/ui/tokens.css')) out.push({ path: 'src/render/ui/tokens.css', content: ichingTokensCss() })
 
         let error: string | undefined
         const skillsFile = write.find((file) => file.path === 'skills.json')
@@ -213,10 +213,10 @@ export function generators(): Generator[] {
         // Gate "no hardcoded values whatsoever" over the real stylesheet: scan the body for any literal that is
         // not a canonical I Ching number. The emitted tokens.css is clean by construction (cssIsIChingComputed);
         // here we enforce the same law on the hand-maintained body, reading the actual file.
-        const bodyCss = ctx.read('src/ui/style.css')
+        const bodyCss = ctx.read('src/render/ui/style.css')
         if (bodyCss != null) {
           const offenders = scanCssForHardcoded(bodyCss)
-          if (offenders.length > 0) error = `Hardcoded CSS values in src/ui/style.css (${offenders.length}): ${offenders.slice(0, 5).join(' · ')}${offenders.length > 5 ? ' …' : ''}`
+          if (offenders.length > 0) error = `Hardcoded CSS values in src/render/ui/style.css (${offenders.length}): ${offenders.slice(0, 5).join(' · ')}${offenders.length > 5 ? ' …' : ''}`
         }
         return { files: out, messages: [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`], error }
       },

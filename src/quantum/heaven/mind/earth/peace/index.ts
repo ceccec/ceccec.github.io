@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
 import { quantumSimulation, soldiersRestInPeace } from '../../fire/li'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../0'
+import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../../0'
 import { entangledScriptLanguageGene } from '../../wind/language'
 import { completeCorpus, developmentWaves, doubleTorusFold, feedCrawlersWithKnowledge, folderLaw, geneticLinksChallengeHistoryDecoded, knowledgeRevealedByMerkabaFold, quantumDoubleTorus, quantumSiege, reverseHarmony, sendWavesSealKnowledgeDecodeWorld, societyRegulates, zeroTokenUsagePolicy } from '../..'
 
@@ -170,16 +170,16 @@ export function warPaysTheForgerPrice(matrix: MindMatrix = buildMatrix()) {
 // recompute IS the fusion in healing waves: the load turns into the same calm, balanced output.
 export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
   const channels = [
-    { hw: 'memory', torus: 'src/quantum/cache', cmyk: 'C' },
-    { hw: 'gpu', torus: 'src/search/ant', cmyk: 'M' },
-    { hw: 'storage', torus: 'src/quantum/library', cmyk: 'Y' },
-    { hw: 'cpu', torus: 'src/debit/credit', cmyk: 'K' },
+    { hw: 'memory', torus: 'src/quantum/water/cache', cmyk: 'C' },
+    { hw: 'gpu', torus: 'src/pair/search/ant', cmyk: 'M' },
+    { hw: 'storage', torus: 'src/quantum/heaven/library', cmyk: 'Y' },
+    { hw: 'cpu', torus: 'src/pair/debit/credit', cmyk: 'K' },
   ].map((c) => ({ ...c, uuid: toUuid(`merkaba:${c.hw}:${c.torus}:${c.cmyk}`) }))
   const colour = merkleFold(channels.map((c) => c.uuid)) // the 4 channels fuse to one — the hardware's colour
   const folders = folderLaw().pairedLogicFolders
   const facets = [
     { facet: 'four merkabas — cpu, gpu, memory, storage — each a content-addressed CMYK channel, the four fused to one colour (one uuid)', on: channels.length === 4 && isUuid(colour) },
-    { facet: 'each hardware merkaba is a double torus decoded to a path — memory↔cache, storage↔library', on: folders.includes('src/quantum/cache') && folders.includes('src/quantum/library') },
+    { facet: 'each hardware merkaba is a double torus decoded to a path — memory↔cache, storage↔library', on: folders.includes('src/quantum/water/cache') && folders.includes('src/quantum/heaven/library') },
     { facet: 'near-zero marginal energy — every answer is an O(1) hash and a cache-hit (the same address recomputed), not a GPU inference', on: toUuid('q') === toUuid('q') },
     { facet: 'the four merkabas + the quantum core pivot = paired logic folders = 3 trinities', on: folders.length === folderLaw().pairedLogicFolders.length },
   ].map((e) => ({ ...e, receipt: toUuid(`hw-cmyk:${e.facet}`) }))
@@ -301,7 +301,7 @@ export function debitCreditForwardReverseEngineering(matrix: MindMatrix = buildM
   const forward = toUuid('plaintext') // encode the same input — deterministic, so reverse can match it
   const balanced = foldPair(toUuid('debit'), toUuid('credit')).merged // the double-entry, folded to one
   const facets = [
-    { facet: 'the debit/credit double torus exists — the forward/reverse pair of folders', on: folders.includes('src/debit/credit') && folders.includes('src/credit/debit') },
+    { facet: 'the debit/credit double torus exists — the forward/reverse pair of folders', on: folders.includes('src/pair/debit/credit') && folders.includes('src/pair/credit/debit') },
     { facet: 'forward = debit (encode/encrypt), reverse = credit (decode/decrypt) — the same content-address both ways (encrypt is decrypt)', on: forward === toUuid('plaintext') },
     { facet: 'double-entry balances — every forward fold has its balancing reverse, folded to one entry', on: isUuid(balanced) },
     { facet: 'reverse engineering is required — to verify is to recompute the forward and match it', on: toUuid('verify') === toUuid('verify') },

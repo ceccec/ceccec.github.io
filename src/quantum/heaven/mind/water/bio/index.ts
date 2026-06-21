@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, verifyRoot } from '../../heaven/matrix'
 import { skillAtoms } from '../../wind/learning'
-import { isUuid, memoByRoot, merkleFold, seedFromText, toUuid } from '../../../../0'
+import { isUuid, memoByRoot, merkleFold, seedFromText, toUuid } from '../../../../../0'
 import { a432IsTheBlood, colorRootsAtA432HeartBalances } from '../../lake/music'
 import { glagoliticOcrReverseClosesRoundTrip } from '../../wind/language'
 import { allFormsAreTenDimensionalOrPurged, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, iChingShadcnFuseTenDWidgets, immuneSystem, livingTorus, pathIsMeaningDecodesCoordinates, quantumSociety, selfBuild, theWhole } from '../..'

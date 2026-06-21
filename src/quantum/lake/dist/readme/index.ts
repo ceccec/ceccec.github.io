@@ -13,8 +13,8 @@ import {
   staticPages,
   githubPermalink,
   type MindMatrix,
-} from '../../mind'
-import { isUuid, merkleFold, toUuid } from '../../../0'
+} from '../../../heaven/mind'
+import { isUuid, merkleFold, toUuid } from '../../../../0'
 
 /** The README signature check, as a typed src fold: the committed README.md must equal the src-computed
  *  readmeMarkdown() (the README is computed from src — do not hand-edit). The commit shell reads the file
@@ -51,7 +51,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     `**Keywords.** ${config.keywords.join(', ')}.`,
     '',
-    '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/dist (local math only).*',
+    '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only).*',
     '',
     '![Double Torus — the ten-dimensional hero, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)',
     '',
@@ -79,7 +79,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     // Each result links to the SOURCE CODE that proves it — its primary component (the widget that renders the
     // proof), or the page registry when a section page has none. "The README links to source code."
-    ...paperList.map((paper) => `- **${paper.title}** — ${paper.abstract} · [source](${githubPermalink(paper.results?.[0] ? `src/ui/components/${paper.results[0]}.vue` : 'src/quantum/mind/site.ts')})`),
+    ...paperList.map((paper) => `- **${paper.title}** — ${paper.abstract} · [source](${githubPermalink(paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts')})`),
     '',
     '## 4. The Library — documented kept, legend flagged',
     '',
@@ -110,7 +110,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '## References',
     '',
-    `- The model: \`src/quantum/mind\`. The sitemap root: \`${sitemap.root}\`. The monograph-index root: \`${mono.root}\`.`,
+    `- The model: \`src/quantum/heaven/mind\`. The sitemap root: \`${sitemap.root}\`. The monograph-index root: \`${mono.root}\`.`,
     `- Template root (the receipt of this monograph form): \`${template.root}\`.`,
     '',
     '## Receipt',

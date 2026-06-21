@@ -1,7 +1,7 @@
 // Fold wave — computed model seal + tripwire. Second trinity wave.
 // auditFold produces findings (no I/O, no early exit) so the intelligent cross-audit can collect
 // every wave in one pass; runFold is the standalone wrapper that prints and returns an exit code.
-import { buildMatrix, modelSeal } from '../../mind'
+import { buildMatrix, modelSeal } from '../../../heaven/mind'
 import type { Finding } from '..'
 
 const HARMONIC_PURPOSE = [

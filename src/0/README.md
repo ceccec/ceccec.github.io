@@ -1,7 +1,7 @@
 # `src/0` — the void / origin (0/0)
 
 The dependency-free leaf the whole tree is built on. **It imports nothing.** Every other digit-folder
-and the core (`src/quantum/mind`) import *from here* and re-export; nothing here imports back. `0/0` is the
+and the core (`src/quantum/heaven/mind`) import *from here* and re-export; nothing here imports back. `0/0` is the
 fusion the site unfolds from — the throat both halves of the double torus pass through — so the origin is
 where the content-address, the math, the engine, and the security model all live.
 
@@ -21,7 +21,7 @@ security *property* of that atom (the log2 work to forge a content-addressed sea
 ## The surface, by wave
 
 `src/0` was assembled out of the word-named monolith in waves; each is recorded as a proof fold in
-`src/quantum/mind` (`primitiveKernelLivesInZero`, `animationEngineLivesInZero`, `oneMathManyPresentations`,
+`src/quantum/heaven/mind` (`primitiveKernelLivesInZero`, `animationEngineLivesInZero`, `oneMathManyPresentations`,
 `tamperingCostAndUuidLiveInZero`).
 
 ### Waves 1–2 · the content-address kernel (the fold cascade)
@@ -121,7 +121,7 @@ built from hash functions — a category difference, not an engineering gap.
 
 ### Waves 15–16 · vetted crypto — the whole `cryptoFuture` roadmap, built
 `toUuid` (FNV‑1a) is a strong **structural** integrity check but **not** collision-resistant. The
-[`cryptoFuture`](src/quantum/mind/index.ts) roadmap charts the path to vetted crypto — and every item now has a
+[`cryptoFuture`](src/quantum/heaven/mind/index.ts) roadmap charts the path to vetted crypto — and every item now has a
 real, verified implementation here, with each item's irreducible **residual** stated (not hidden):
 | export | what it is | residual |
 |---|---|---|
@@ -138,10 +138,10 @@ which is code this layer can fake. The math and structures are real and verified
 
 `src/0` exports; two barrels re-export so callers import unchanged:
 
-- **`src/quantum/mind`** (→ `src/ui/lib/quantumMind`) — the kernel, the engine, the motion math, the
+- **`src/quantum/heaven/mind`** (→ `src/render/ui/lib/quantumMind`) — the kernel, the engine, the motion math, the
   fold + presentations, the cost math, and `uuidHero`.
-- **`src/quantum`** (→ `src/ui/lib/hero`) — the engine and the fold + presentations, for the hero.
-- **`src/quantum/library`** — re-exports `Uuid`/`Entry`/`merkabaFoldUrl`/`entry` (byte-for-byte).
+- **`src/quantum`** (→ `src/render/ui/lib/hero`) — the engine and the fold + presentations, for the hero.
+- **`src/quantum/heaven/library`** — re-exports `Uuid`/`Entry`/`merkabaFoldUrl`/`entry` (byte-for-byte).
 
 ```ts
 import { fold, asVortex, asMerkle, asTrace, createAnimationEngine } from '../lib/quantumMind'
@@ -177,6 +177,6 @@ This project's discipline is to separate what the math **derives** from what it 
    it in the core and have it *pass params* to the pure function here.
 2. **Stay pure** (and SSR-safe): only `Math` and the other `src/0` primitives. No `Date.now()` / `Math.random()`
    in deterministic paths.
-3. **Record the move.** Every relocation into `src/0` is logged as a proof fold in `src/quantum/mind` and wired
+3. **Record the move.** Every relocation into `src/0` is logged as a proof fold in `src/quantum/heaven/mind` and wired
    into its checks / dimensions / proofs registries.
 4. **Preserve baselines byte-for-byte** — relocations must not change any computed UUID or root.

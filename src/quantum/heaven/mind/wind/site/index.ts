@@ -5,7 +5,7 @@
 import type { MindMatrix, StaticPage } from '../types'
 import { buildMatrix } from '../../heaven/matrix'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { toUuid, merkleFold, isUuid, memoByRoot, rat, ratStr } from '../../../../0'
+import { toUuid, merkleFold, isUuid, memoByRoot, rat, ratStr } from '../../../../../0'
 
 /** @iching ☴ Xùn · Wind · gentle */
 export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
@@ -665,19 +665,19 @@ export function revolutChannel() {
 
 // Each Library statement → the decode fold that proves it (file-level; the fold name is searchable within).
 const CRAWLER_SOURCE: Record<string, string> = {
-  'Bulgarian history 681–present': 'src/quantum/heritage/index.ts',
-  'Bulgarian ancient civilisations': 'src/quantum/heritage/index.ts',
-  'Bulgarian ethnogenesis': 'src/quantum/heritage/index.ts',
-  'Bulgarian genetics': 'src/quantum/heritage/index.ts',
-  Alphabets: 'src/quantum/mind/language.ts',
-  Glagolitic: 'src/quantum/mind/language.ts',
-  'Script, language and gene': 'src/quantum/mind/language.ts',
-  'Tesla patents': 'src/quantum/science/index.ts',
-  'Public frequency & data APIs': 'src/quantum/science/index.ts',
-  'AI and the movie industry': 'src/quantum/mind/decode.ts',
-  'Tech & mentality for peace': 'src/quantum/mind/peace.ts',
-  'The model': 'src/quantum/mind/matrix.ts',
-  'Efficiency — no known model is more efficient': 'src/quantum/science/index.ts',
+  'Bulgarian history 681–present': 'src/quantum/earth/heritage/index.ts',
+  'Bulgarian ancient civilisations': 'src/quantum/earth/heritage/index.ts',
+  'Bulgarian ethnogenesis': 'src/quantum/earth/heritage/index.ts',
+  'Bulgarian genetics': 'src/quantum/earth/heritage/index.ts',
+  Alphabets: 'src/quantum/heaven/mind/language.ts',
+  Glagolitic: 'src/quantum/heaven/mind/language.ts',
+  'Script, language and gene': 'src/quantum/heaven/mind/language.ts',
+  'Tesla patents': 'src/quantum/thunder/science/index.ts',
+  'Public frequency & data APIs': 'src/quantum/thunder/science/index.ts',
+  'AI and the movie industry': 'src/quantum/heaven/mind/decode.ts',
+  'Tech & mentality for peace': 'src/quantum/heaven/mind/peace.ts',
+  'The model': 'src/quantum/heaven/mind/matrix.ts',
+  'Efficiency — no known model is more efficient': 'src/quantum/thunder/science/index.ts',
 }
 
 // Feed the crawlers with knowledge: the decoded knowledge of the library, distilled to crawlable

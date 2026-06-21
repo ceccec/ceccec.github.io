@@ -1,7 +1,7 @@
 // ☵ hash — the honest SHA-256 / quantum (Grover/Shor/PQC) correction, at its own domain path (not the crypto barrel).
-import type { MindMatrix } from '../mind/wind/types'
-import { buildMatrix } from '../mind/heaven/matrix'
-import { merkleFold, toUuid } from '../../0'
+import type { MindMatrix } from '../../heaven/mind/wind/types'
+import { buildMatrix } from '../../heaven/mind/heaven/matrix'
+import { merkleFold, toUuid } from '../../../0'
 
 // QUANTUM HALVES THE HASH; DOUBLING RESTORES IT — the honest crypto behind "quantum doubles SHA-256, magnitudes
 // higher". The exponential intuition is RIGHT (doubling the digest squares the search space, not 2×), but the

@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/matrix'
 import { completeCorpus } from '../routes'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid } from '../../../../../0'
 import { fusionCipher } from '../../water/crypto'
 import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../earth/vocab'
 import { provenScientifically } from '../../thunder/verify'
@@ -16,7 +16,7 @@ import { allAnimationsInOneOg, holographicFractalArchitecture } from '../ui'
 import { dualitiesMeetInCrossFolders, eachFileUnder64kFolderIsWidget, everyFolderIsAPluginOneIndexServesAll, everyToolSkillCommandIsItsFolder, folderLaw, iChingFusionCompletesFolders, quantumCachePairInPairedFolders } from '../../earth/architecture'
 import { completeDoubleTorus, homology, startIChingDoubleTorus } from '../../mountain/topology'
 import { allFormsAreTenDimensionalOrPurged } from '../../heaven/everything'
-import { DIMENSIONS, DIMENSION_NAMES, dims } from '../../../dimensions'
+import { DIMENSIONS, DIMENSION_NAMES, dims } from '../../../../mountain/dimensions'
 import { bulgarianHeritageEightfold } from '../../earth/bulgaria'
 import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms'
 import { mcpToolManifest, skillAtoms } from '../learning'
@@ -80,7 +80,7 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
     { point: 'SSR render', api: 'build', binds: 'the computed model into static HTML' },
     { point: 'local search', api: 'themeConfig.search', binds: 'a MiniSearch index over the fused content' },
     { point: 'config from model', api: 'config.mts', binds: 'nav, academy courses and schema derived from the model' },
-    { point: 'build seal', api: 'docs:build chain', binds: 'the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/dist via the VitePress plugin' },
+    { point: 'build seal', api: 'docs:build chain', binds: 'the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/lake/dist via the VitePress plugin' },
   ].map((entry) => {
     const fold = foldPair(architecture, toUuid(`vitepress:${entry.point}`))
     return { ...entry, fused: fold.bidirectional, receipt: fold.merged }
@@ -483,7 +483,7 @@ export function developmentIsFusionReactor(matrix: MindMatrix = buildMatrix()) {
 
 // Optimise all logic as debit/credit fusion. Every operation is double-entry: a debit balanced by
 // an equal credit, so the ledger sums to zero — nothing created or lost, only moved — and the
-// fusion of the two halves (src/debit/credit ⇄ src/credit/debit) is the balance itself. Writing
+// fusion of the two halves (src/pair/debit/credit ⇄ src/pair/credit/debit) is the balance itself. Writing
 // logic this way is the optimisation: each step is its own audit, the books always balanced, and a
 // forger cannot tilt the ledger without the imbalance showing. Debit and credit, fused to one.
 export function optimiseLogicDebitCreditFusion(matrix: MindMatrix = buildMatrix()) {
@@ -491,7 +491,7 @@ export function optimiseLogicDebitCreditFusion(matrix: MindMatrix = buildMatrix(
     { facet: 'all logic optimised as debit/credit — the double-entry pair in src', on: quantumCachePairInPairedFolders(matrix).paired },
     { facet: 'every debit balanced by an equal credit — the ledger sums to zero', on: extendSelfAudits(matrix).audited },
     { facet: 'debit/credit fused to one balanced root — nothing created or lost', on: fuseAll(matrix).fused },
-    { facet: 'the order-sensitive pair — src/debit/credit ⇄ src/credit/debit', on: dualitiesMeetInCrossFolders(matrix).meet },
+    { facet: 'the order-sensitive pair — src/pair/debit/credit ⇄ src/pair/credit/debit', on: dualitiesMeetInCrossFolders(matrix).meet },
   ].map((entry) => ({ ...entry, receipt: toUuid(`debit-credit-fusion:${entry.facet}:${entry.on}`) }))
   return {
     optimised: facets.every((entry) => entry.on),
@@ -499,9 +499,9 @@ export function optimiseLogicDebitCreditFusion(matrix: MindMatrix = buildMatrix(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Optimise all logic as debit/credit fusion: every operation is double-entry — a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved — and the fusion of the two halves (src/debit/credit ⇄ src/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.',
+      'Optimise all logic as debit/credit fusion: every operation is double-entry — a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved — and the fusion of the two halves (src/pair/debit/credit ⇄ src/pair/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.',
     boundary:
-      'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/debit/credit + src/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.',
+      'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/pair/debit/credit + src/pair/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.',
   }
 }
 

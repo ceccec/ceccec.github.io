@@ -1,12 +1,12 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — natural law and lawful society: the jurisprudential commons lens, patent eligibility, a society-law rubric, the lawful-society ladder, and attestation.
-// Dual: src/nature/quantum (browse/display primitives). Pure, only src/0 imports.
+// Dual: src/world/nature/quantum (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
-import { toUuid, merkleFold } from '../../0'
+import { toUuid, merkleFold } from '../../../0'
 
 // ☴ Xùn · Wind · gentle · upper·yang · twist — natural law and lawful society exports
 /** @iching ☴ Xùn · Wind · gentle */
-export const dual = 'src/nature/quantum'
+export const dual = 'src/world/nature/quantum'
 
 // Nature is the legal system itself: a natural-law lens.
 /** @iching ☴ Xùn · Wind · gentle */

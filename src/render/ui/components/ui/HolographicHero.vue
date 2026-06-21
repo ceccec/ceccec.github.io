@@ -31,7 +31,7 @@ const tags = computed(() => ((frontmatter.value.tags as string[]) || []).slice(0
 const category = computed(() => (frontmatter.value.category as string) || 'double torus')
 
 // The architecture, drawn into the hero: the 9 logic folders as 3 trinities, each wearing its Glagolitic
-// glyph, built once from the one source of truth (folderLaw, via src/quantum/architecture).
+// glyph, built once from the one source of truth (folderLaw, via src/quantum/earth/architecture).
 const archNodes = buildArchNodes()
 
 const canvas = ref<HTMLCanvasElement | null>(null)

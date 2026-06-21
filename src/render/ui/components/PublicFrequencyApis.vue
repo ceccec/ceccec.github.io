@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 27, lower: 3, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'twist', outerAxis: 'twist', color: '#0FF0FF' } as const
 import DecodedCard from './DecodedCard'
 import LayersPanel from './LayersPanel'
-import { publicFrequencyApis } from '../lib'
+import { publicFrequencyApis } from '../../../quantum/thunder/science'
 
 const d = publicFrequencyApis()
 const items = d.sources.map((s) => ({ label: s.api, detail: `${s.band} · ${s.data} · ${s.auth}` }))

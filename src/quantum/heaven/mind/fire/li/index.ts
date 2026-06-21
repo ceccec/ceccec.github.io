@@ -26,7 +26,7 @@ import {
   seedFromText, roundTo, foldPair, merge, digitalRoot, MAX_TAMPERING_COST_PRINCIPLE,
   tamperEvident, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostLog2,
   maxTamperingCostReached, ed25519Sign, humanEase,
-} from '../../../../0'
+} from '../../../../../0'
 // ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — library: toGlagolitic, glagoliticBits, GLAGOLITIC_MAP
 import {
   toGlagolitic, glagoliticBits, glagoliticFromBits, GLAGOLITIC_MAP,
@@ -354,7 +354,7 @@ export function enforcementTrinity() {
     statement:
       'The enforcement trinity is one intelligent cross-audit: cross (dist + digit index), fold (computed model seal), weave (harmonic distribution) — materialized once and audited in a single pass, every wave reported (never stopped at the first), the findings cross-checked for their shared root and sealed to dist/audit.json.',
     boundary:
-      'A declaration of the post-build enforcement surface. The runner lives in src/quantum/enforcement; scripts/enforcement-trinity.mjs is the thin mount. The cross-check ranks the most-implicated subsystem to localise the root — a triage signal, not a proof that the top root is the only cause.',
+      'A declaration of the post-build enforcement surface. The runner lives in src/quantum/water/enforcement; scripts/enforcement-trinity.mjs is the thin mount. The cross-check ranks the most-implicated subsystem to localise the root — a triage signal, not a proof that the top root is the only cause.',
   }
 }
 
@@ -1144,7 +1144,7 @@ export function jsonLdPathRules() {
 export function zeroTokenPolicy() {
   return {
     llmSdks: ['openai', '@anthropic-ai/sdk', '@anthropic-ai/bedrock-sdk', 'cohere-ai', 'langchain', '@google/generative-ai', 'mistralai', 'replicate', 'together-ai'], // none may be a dependency
-    tokenPath: 'src/ui/lib/useQuantumChat.ts', // the single opt-in BYOK chat; the only token egress
+    tokenPath: 'src/render/ui/lib/useQuantumChat.ts', // the single opt-in BYOK chat; the only token egress
     byokGate: 'runAiChat(apiKey', // the call must require a user-supplied key — never automatic
     why: {
       sdk: 'an LLM SDK as a dependency means the portal could spend tokens on its own; the portal answers from its own computed model (zero tokens), so no LLM SDK belongs in the dependencies — remove it and answer locally, or keep token use to the opt-in bring-your-own-key chat',
@@ -2024,7 +2024,7 @@ export function animationEngineLivesInZero(matrix: MindMatrix = buildMatrix()) {
     components,
     count: components.length, // the live count — every animated component folds through the one engine
     homed,
-    reExportedVia: ['quantum/mind (the quantumMind barrel)', 'quantum (the hero barrel)'], // both barrels surface it from src/0
+    reExportedVia: ['quantum/heaven/mind (the quantumMind barrel)', 'quantum (the hero barrel)'], // both barrels surface it from src/0
     root: merge(matrix.root, merkleFold(homed.map((entry) => entry.receipt))),
     statement:
       'The animation engine lives in src/0. The requestAnimationFrame driver that every animated component hand-rolled — the loop·start·stop·sync·one-shot quartet over a single `raf` handle and a `running` flag — is folded into one dependency-free factory, createAnimationEngine(draw), homed in the void/origin (0/0, the fusion the site unfolds from). It imports nothing (rAF is a guarded browser global, a no-op under SSR) and is re-exported through the mind barrel and the hero barrel, so every animated component imports the one engine and passes only its own draw and its own gating flag — the engine owns the control-flow, the component owns the picture and the condition.',
@@ -2071,11 +2071,11 @@ export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
     api,
     forbidden,
     strict: true,
-    scanned: 'every .vue in src/ui (recursive) + src/ui/index.ts',
+    scanned: 'every .vue in src/ui (recursive) + src/render/ui/index.ts',
     holds: true, // enforced over the whole render tree by the harmonic gate's render/non-vitepress-api check
     root: merge(matrix.root, merkleFold(forbidden.map((f) => toUuid(`only-vitepress:${f}`)))),
     statement:
-      'STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), and no History API (history.pushState / replaceState). One render API, no drift.',
+      'STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/render/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), and no History API (history.pushState / replaceState). One render API, no drift.',
     boundary:
       'A strict structural rule over the render layer (.vue + the theme entry), enforced by scanning the real tree (render/non-vitepress-api). It governs routing, navigation and page data — the surface VitePress owns — not a component\'s own computation: canvas, Web Audio, Web Crypto and fetch to data endpoints remain theirs. Reading location (origin, reload, search) is allowed; only navigation that bypasses VitePress is refused.',
   }
@@ -2188,14 +2188,14 @@ export function buildEnforcementPipeline() {
   const trinity = enforcementTrinity()
   return {
     // The cross · fold · weave trinity runs as the post-build script scripts/enforcement-trinity.mjs (a
-    // thin mount over src/quantum/enforcement), wired into docs:build AFTER `vitepress build` so it reads
+    // thin mount over src/quantum/water/enforcement), wired into docs:build AFTER `vitepress build` so it reads
     // the real SSG dist (including the computed home at dist/index.html), not a stale one. The weave wave
     // verifies the declared script exists in scripts/ and is wired into docs:build.
     gates: [{ script: trinity.script, enforces: trinity.statement }],
     trinity: trinity.waves,
     why: {
       drift:
-        'the model declares its enforcement surface so it can describe itself honestly; the cross·fold·weave trinity is the post-build script scripts/enforcement-trinity.mjs (a thin mount over src/quantum/enforcement), so the declared script must exist in scripts/ and be wired into docs:build — and a declaration that drifts from the real script fails the build',
+        'the model declares its enforcement surface so it can describe itself honestly; the cross·fold·weave trinity is the post-build script scripts/enforcement-trinity.mjs (a thin mount over src/quantum/water/enforcement), so the declared script must exist in scripts/ and be wired into docs:build — and a declaration that drifts from the real script fails the build',
     },
     statement: trinity.statement,
     boundary:

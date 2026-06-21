@@ -1,9 +1,9 @@
 // ☱ Duì · Lake — analytics, ledger & widget folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../../../0'
+import { isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../../../../0'
 import { a432, repositoryLedger } from '../../fire/li'
-import { DIMENSION_NAMES } from '../../../dimensions'
+import { DIMENSION_NAMES } from '../../../../mountain/dimensions'
 import { analytics, buildStatistics } from '../..'
 
 // Dive into the micro-sciences and create the apparatus for shared experiments that
@@ -253,7 +253,7 @@ export function displayAllWithFewEntropySaved(matrix: MindMatrix = buildMatrix()
 // The analytics ledger — the ONE source for every metric, composed from the previously-scattered folds
 // (analytics + buildStatistics) and deduplicated so each metric is computed once (DRY: no metric computed
 // twice). Two reusable views over the one ledger: a chart series and a data table, rendered on the shadcn
-// Chart and DataTable primitives (src/ui/components/Chart.vue, DataTable.vue, Analytics.vue).
+// Chart and DataTable primitives (src/render/ui/components/Chart.vue, DataTable.vue, Analytics.vue).
 export function analyticsLedger(matrix: MindMatrix = buildMatrix()) {
   const sources = [
     ...analytics(matrix).boards.flatMap((b) => b.metrics.map((m) => ({ name: m.metric, value: m.value, group: b.board }))),

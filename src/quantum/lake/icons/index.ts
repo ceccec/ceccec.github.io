@@ -1,16 +1,16 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — icons, glyphs, computer architecture, harmonic bands, and area labels.
 // The visual and structural form layer: the area-icon map, translations, computer design in 3-5-8,
 // the harmonic Fibonacci band decomposition, and the glyph/icon/artifact seal.
-// Dual: src/icons/quantum (browse/display primitives). Only src/0 + mind/types imports.
+// Dual: src/render/icons/quantum (browse/display primitives). Only src/0 + mind/types imports.
 
 // ☶ Gèn · Mountain · keeping still · lower·yin · spread — type: sealed icon artifact shape
-import type { IconSeal } from '../mind'
+import type { IconSeal } from '../../heaven/mind'
 // ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — uuid + merkle fold primitives
-import { toUuid, merkleFold } from '../../0'
+import { toUuid, merkleFold } from '../../../0'
 
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
 /** @iching ☶ Gèn · Mountain · keeping still */
-export const dual = 'src/icons/quantum'
+export const dual = 'src/render/icons/quantum'
 
 // emoji AREA_ICONS (used by areaLabel + iconGlyphs + iconSeal neighbour)
 /** @iching ☶ Gèn · Mountain · keeping still */

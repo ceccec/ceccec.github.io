@@ -1,10 +1,10 @@
 // ☷ Kūn · Earth · receptive · upper·yang · spread — heritage: sealed knowledge of Bulgarian history, ancient civilisations,
 // ethnogenesis, genetics, and the Glagolitic reception. Each record pairs a documented core with the
 // national-revival legend it must NOT be confused with — dual-mind adversarially verified, zero LLM tokens.
-// Dual: src/heritage/quantum (browse/display primitives). Pure, zero matrix dependency.
+// Dual: src/render/heritage/quantum (browse/display primitives). Pure, zero matrix dependency.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — core content-addressing primitives (toUuid, merkleFold)
-import { toUuid, merkleFold } from '../../0'
+import { toUuid, merkleFold } from '../../../0'
 
 /** @iching ☷ Kūn · Earth · receptive */
 export function bulgarianHeritage() {
@@ -158,4 +158,4 @@ export function glagoliticBulgarianReception() {
 
 // ☷ Kūn · Earth · receptive · upper·yang · spread — dual pointer to the browse/display counterpart
 /** @iching ☷ Kūn · Earth · receptive */
-export const dual = 'src/heritage/quantum'
+export const dual = 'src/render/heritage/quantum'

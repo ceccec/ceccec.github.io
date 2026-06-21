@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 55, lower: 7, upper: 6, glyph: '☴', trigram: 'Xùn', name: 'Wind', attribute: 'gentle', innerAxis: 'loopB1', outerAxis: 'loopA1', color: '#FF0FFF' } as const
 import DecodedCard from './DecodedCard'
 import LayersPanel from './LayersPanel'
-import { fuseTeslaPatents } from '../lib'
+import { fuseTeslaPatents } from '../../../quantum/thunder/science'
 
 const d = fuseTeslaPatents()
 const items = d.patents.map((p) => ({ label: `${p.number} · ${p.title} (${p.year})`, detail: p.prefigures }))

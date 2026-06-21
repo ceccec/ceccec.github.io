@@ -1,7 +1,7 @@
 // ☷ Kūn · Earth — world, society & nature folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
-import { foldPair, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid } from '../../../../0'
+import { foldPair, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid } from '../../../../../0'
 import { toGlagolitic, glagoliticBits } from '../../../library' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
-import { DIMENSIONS } from '../../../dimensions' // the 10D — the coordinates reaching all the way down to the bit
+import { DIMENSIONS } from '../../../../mountain/dimensions' // the 10D — the coordinates reaching all the way down to the bit
 import type { BabelFamily, BabelFold, MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, entropy } from '../../heaven/matrix'
 import { traditionsQuantumWhole } from '../civilisation'

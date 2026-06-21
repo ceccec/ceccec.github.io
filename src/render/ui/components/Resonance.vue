@@ -3,7 +3,9 @@
 const ICHING_MASK = { hexagram: 29, glyph: '☵', trigram: 'Kǎn·abysmal', color: '#0040FF' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib'
-import { resonantAmplitude, resonancePeakGain, resonanceBandwidth, resonanceDecoded, resonanceApplications, colorFromSound } from '../lib'
+import { resonantAmplitude, resonancePeakGain, resonanceBandwidth } from '../../../0'
+import { resonanceDecoded, resonanceApplications } from '../../../quantum/thunder/science'
+import { colorFromSound } from '../../../quantum/heaven/mind/fire/li'
 import DecodedCard from './DecodedCard'
 
 // THE interactive resonance curve. The shape is COMPUTED live from src/0 (resonantAmplitude, the steady-state

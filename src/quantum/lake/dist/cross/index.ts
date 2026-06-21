@@ -8,7 +8,7 @@ import {
   piTrainDiamonds,
   quantumSitemap,
   type MindMatrix,
-} from '../../mind'
+} from '../../../heaven/mind'
 
 export function idxUuid(seed: string): string {
   let h = 0x811c9dc5

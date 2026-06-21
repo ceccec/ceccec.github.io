@@ -1,9 +1,9 @@
-// src/icons/quantum — the dual of src/quantum/icons. Where quantum/icons SEALS the area-icon maps,
+// src/render/icons/quantum — the dual of src/quantum/lake/icons. Where quantum/lake/icons SEALS the area-icon maps,
 // computer architecture tiers, harmonic bands, and glyph/artifact seals, this half provides
 // browse/display primitives: icon lookups, area-label lists, glyph tables.
-// Does NOT import from src/quantum/icons — the pair stays decoupled. Pure, deterministic, zero tokens.
+// Does NOT import from src/quantum/lake/icons — the pair stays decoupled. Pure, deterministic, zero tokens.
 
-export const dual = 'src/quantum/icons'
+export const dual = 'src/quantum/lake/icons'
 
 // Look up an area icon by key, with a fallback glyph.
 export function iconFor(icons: Readonly<Record<string, string>>, area: string, fallback = '◇'): string {

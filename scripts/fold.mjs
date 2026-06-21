@@ -7,7 +7,7 @@ import { createRequire } from 'node:module'
 
 const require = createRequire(import.meta.url)
 const esbuild = require('esbuild')
-const built = await esbuild.build({ entryPoints: ['src/quantum/mind/index.ts'], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
+const built = await esbuild.build({ entryPoints: ['src/quantum/heaven/mind/index.ts'], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
 const mod = await import('data:text/javascript;base64,' + Buffer.from(built.outputFiles[0].text).toString('base64'))
 
 const name = process.argv[2]

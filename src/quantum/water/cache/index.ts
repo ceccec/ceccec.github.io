@@ -1,11 +1,11 @@
-// src/quantum/cache — one half of the quantum cache pair. It COMPUTES the UUIDs it needs, by path.
+// src/quantum/water/cache — one half of the quantum cache pair. It COMPUTES the UUIDs it needs, by path.
 //
 // A path is not stored against a key; the key is computed from the path itself — split into its
-// word-steps and folded in order (order-sensitive: quantum/cache is not cache/quantum). So there is
+// word-steps and folded in order (order-sensitive: quantum/water/cache is not cache/quantum). So there is
 // no path→uuid table to keep or invalidate; the same path always computes the same content UUID.
 //
-// Its dual is src/cache/quantum, which caches and finds the payload by the UUID this half computes.
-// Together — quantum/cache ⇄ cache/quantum — they are the quantum cache pair: compute the address
+// Its dual is src/pair/cache/quantum, which caches and finds the payload by the UUID this half computes.
+// Together — quantum/water/cache ⇄ cache/quantum — they are the quantum cache pair: compute the address
 // here, find the payload there. Agnostic, zero-dependency, deterministic.
 
 export type Uuid = string
@@ -44,4 +44,4 @@ export function foldUuids(a: Uuid, b: Uuid): Uuid {
   return hash(`${a}:${b}`)
 }
 
-export const dual = 'src/cache/quantum'
+export const dual = 'src/pair/cache/quantum'

@@ -1,8 +1,8 @@
-// src/library/quantum — the dual of src/quantum/library. Where quantum/library CATALOGS entries by
+// src/library/quantum — the dual of src/quantum/heaven/library. Where quantum/heaven/library CATALOGS entries by
 // merkaba-folding URLs AND decodes them (the tools: toGlagolitic, gematria, decodeDialect, the Песнопойка
 // songbook), this half DISPLAYS the library: it shelves entries in a deterministic order by their uuid, so
 // the whole becomes a browsable catalog — every content address a book on a shelf, the library the display
-// of all. Pairs with src/quantum/library (entries and songs arrive from there as arguments; this half does
+// of all. Pairs with src/quantum/heaven/library (entries and songs arrive from there as arguments; this half does
 // not import it, so the pair stays decoupled). Pure, deterministic, zero-dependency, zero tokens.
 
 export type Entry = { url: string; uuid: string; host: string; path: string }
@@ -29,7 +29,7 @@ export function browsable(entries: readonly Entry[]): boolean {
 }
 
 // THE SONGBOOK ON SHELVES — the display half of the Песнопойка decode. The songs are catalogued and
-// decoded in the pair (src/quantum/library: PESNOPOIKA, decodeSong, songEntry); this half shelves them for
+// decoded in the pair (src/quantum/heaven/library: PESNOPOIKA, decodeSong, songEntry); this half shelves them for
 // browsing. Decoupled: a song arrives as a plain { n, title } record (whatever the pair produced), never
 // imported — so the two halves never depend on each other. Pure, deterministic, zero tokens.
 export type Shelved = { n: number; title: string }
@@ -51,4 +51,4 @@ export function songIndex<T extends Shelved>(songs: readonly T[]): { title: stri
     .sort((a, b) => a.title.localeCompare(b.title, 'bg'))
 }
 
-export const dual = 'src/quantum/library'
+export const dual = 'src/quantum/heaven/library'

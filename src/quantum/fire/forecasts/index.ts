@@ -1,11 +1,11 @@
 // ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast stream folded as content-addressed weather feeds
-// src/quantum/forecasts — the realtime forecast feeds (weather), folded as a content-addressed realtime stream.
+// src/quantum/fire/forecasts — the realtime forecast feeds (weather), folded as a content-addressed realtime stream.
 // weatherForecastQuantumComputedRealtime is referenced by mind's duality matrix, so mind imports it back (an
 // ESM-safe function-binding cycle). (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind matrix and merkaba fold imports
-import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../mind'
+import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — core uuid and merkle primitives
-import { toUuid, merkleFold, isUuid } from '../../0'
+import { toUuid, merkleFold, isUuid } from '../../../0'
 
 // ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast feeds
 // Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+

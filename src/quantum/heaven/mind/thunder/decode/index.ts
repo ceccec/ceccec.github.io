@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — the decode method: how knowledge is decoded (research↔verify waves, legend-vs-documented, the decode pipeline). Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { digitalRoot, foldPair, isUuid, merkleFold, toUuid } from '../../../../0'
+import { digitalRoot, foldPair, isUuid, merkleFold, toUuid } from '../../../../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, yinYang } from '../../earth/vocab'
@@ -280,7 +280,7 @@ export function pathIsMeaningDecodesCoordinates(matrix: MindMatrix = buildMatrix
     { facet: 'the path is the meaning — date, coordinate and route each map to a unique content-addressed uuid', on: date !== coord && date.includes('-') },
     { facet: 'order-sensitive — the path order carries the meaning (a→b→c differs from a→c→b)', on: forward !== reverse },
     { facet: 'coupled cycles are a torus — calendars (day×year), GPS (lat×long) and the site share the double-torus coordinate structure: paired logic folders + the core pivot', on: folders.length === folderLaw().pairedLogicFolders.length },
-    { facet: 'each double torus flows internally — the two lobes are reverses (cache/quantum ⇄ quantum/cache), the bidirectional fold', on: folders.includes('src/cache/quantum') && folders.includes('src/quantum/cache') },
+    { facet: 'each double torus flows internally — the two lobes are reverses (cache/quantum ⇄ quantum/water/cache), the bidirectional fold', on: folders.includes('src/pair/cache/quantum') && folders.includes('src/quantum/water/cache') },
   ].map((e) => ({ ...e, receipt: toUuid(`path-meaning:${e.facet}`) }))
   return {
     decodes: facets.every((e) => e.on),

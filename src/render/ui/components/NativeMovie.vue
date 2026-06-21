@@ -17,7 +17,7 @@ const { saveEnergy } = useDeviceEnergy()
 
 // The movie is HERE — render theMovieIsHere itself: the computed matrix as a deterministic movie, seeded from
 // its content-address, computable from ANY perspective (each perspective re-seeds the projection). It IS the
-// matrix, made playable. (theMovieIsHere lives in src/quantum/mind/movie, bridged through lib/quantumMind.)
+// matrix, made playable. (theMovieIsHere lives in src/quantum/heaven/mind/movie, bridged through lib/quantumMind.)
 const here = movie(buildMatrix())
 const perspective = ref(here.perspectives[0]?.view ?? 'front')
 const playing = ref(true)        // the player's transport state

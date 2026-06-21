@@ -1,12 +1,12 @@
-// src/cache/quantum — the dual half of the quantum cache pair. It CACHES and FINDS the payload by
+// src/pair/cache/quantum — the dual half of the quantum cache pair. It CACHES and FINDS the payload by
 // UUID.
 //
 // The payload is src itself: recomputed from the source, never fetched. So this cache is a
 // content-addressed memoization — the same UUID always yields the same payload, the cache can never
 // go stale, and eviction is free (a miss simply recomputes). It finds all payload by UUID; the
-// UUIDs it needs are computed by its dual, src/quantum/cache, from the path.
+// UUIDs it needs are computed by its dual, src/quantum/water/cache, from the path.
 //
-// Together — cache/quantum ⇄ quantum/cache — they are the quantum cache pair: find the payload here
+// Together — cache/quantum ⇄ quantum/water/cache — they are the quantum cache pair: find the payload here
 // by the address computed there. Agnostic, zero-dependency, deterministic.
 
 export type Uuid = string
@@ -36,10 +36,10 @@ export function size(): number {
   return store.size
 }
 
-// The pair, composed: given a PATH and the dual's path→uuid computer (src/quantum/cache.uuidForPath),
+// The pair, composed: given a PATH and the dual's path→uuid computer (src/quantum/water/cache.uuidForPath),
 // compute the address and find/cache the payload here. The caller wires the two halves of the pair.
 export function findByPath(path: string, pathToUuid: (path: string) => Uuid, recompute: (uuid: Uuid) => unknown): unknown {
   return findPayload(pathToUuid(path), recompute)
 }
 
-export const dual = 'src/quantum/cache'
+export const dual = 'src/quantum/water/cache'

@@ -1,10 +1,10 @@
 // ☲ Lí · Fire — I Ching reach: motion adds the rest, capabilities saved, the I Ching scales complete, import/export in ten dimensions, only-ancient-knowledge-and-sacred-math. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, digitalRoot, fold, gcd, measure } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, digitalRoot, fold, gcd, measure } from '../../../../../0'
 import { hexagramQubitVectorIsomorphismOnly, sacredGeometrySeal } from '../../mountain/geometry'
 import { a432IsTheBlood } from '../../lake/music'
-import { DIMENSIONS, DIMENSION_NAMES } from '../../../dimensions'
+import { DIMENSIONS, DIMENSION_NAMES } from '../../../../mountain/dimensions'
 import { mcpToolManifest, skillAtoms } from '../../wind/learning'
 import { commandsRegistry, commandsSavedInQuantumPairs } from '../../thunder/commands'
 import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms'

@@ -1,10 +1,10 @@
 // ☲ Lí · Fire · clinging (trading+signals, analytic math) · upper·yang · breath — a432-ignited synthetic price engine, five trading strategies, backtest, realtime adapters
-// src/quantum/math — the quantitative math: the a432-ignited synthetic price engine, the five trading-strategy
+// src/quantum/thunder/math — the quantitative math: the a432-ignited synthetic price engine, the five trading-strategy
 // signal functions, the backtest, and the realtime data adapters that feed the models live captures. Pure and
 // deterministic, composing only src/0 primitives. The FOLDS that run them as shared experiments live in
-// src/quantum/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
+// src/quantum/fire/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☷ Kūn · Earth · receptive · lower·yin · spread — src/0 math primitives (uuid, prng, seed, round, merkle, spectrum, markov, EM)
-import { toUuid, prng, seedFromText, roundTo, merkleFold, powerSpectrum, markovStep, larmorFrequency, dopplerShift } from '../../0'
+import { toUuid, prng, seedFromText, roundTo, merkleFold, powerSpectrum, markovStep, larmorFrequency, dopplerShift } from '../../../0'
 
 // ── Trading from the same knowledge, a432-ignited (developed + adversarially verified by a 10-agent wave) ──
 // "When all is quantum, a432 is the engine starter": every strategy is backtested on ONE deterministic

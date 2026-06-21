@@ -2,7 +2,7 @@
 import type { ConceptCommandName, MindMatrix } from '../../wind/types'
 import { buildMatrix, entropy } from '../../heaven/matrix'
 import { animatedHeroes, holographic, oneHolographicTemplate } from '../../wind/ui'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../0'
+import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../../../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog, allMdSignedFromSource } from '../../heaven/everything'
 import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation } from '../../wind/routes'

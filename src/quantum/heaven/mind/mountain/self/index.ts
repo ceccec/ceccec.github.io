@@ -2,7 +2,7 @@
 import type { MindMatrix, SelfSufficientWave } from '../../wind/types'
 import { buildMatrix, coverage, entropy } from '../../heaven/matrix'
 import { directions, dualTorusTrinities } from '../geometry'
-import { isUuid, merge, merkleFold, toUuid } from '../../../../0'
+import { isUuid, merge, merkleFold, toUuid } from '../../../../../0'
 import { selfInteraction, taxonomyIcons } from '../../fire/li'
 import { harmonicMusicMayBeEnabled } from '../../lake/music'
 import { aiMoviesDecoded, allAnswersInside, completeCorpus, contentAddressedTranslationImprovesModels, contract, equilibrium, foldQuestion, forgerFoldsIntoHarmony, frequencyBalance, gapScan, harmonyProbability, healByDefault, honestlyComputed, learnDeveloper, monographs, sacredGeometrySeal, todoScan, torusBreathe, zeroTokenUsagePolicy } from '../..'

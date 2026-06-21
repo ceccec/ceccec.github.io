@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water — encryption: encryption lives in zero, the encryption trinities in order, terabyte encryption in a megabyte codebase, the uuid pure-diamond signed by architecture. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/matrix'
-import { derivePublicKey, foldPair, isUuid, merge, merkleFold, tamperEvident, toUuid, trinityKey } from '../../../../0'
+import { derivePublicKey, foldPair, isUuid, merge, merkleFold, tamperEvident, toUuid, trinityKey } from '../../../../../0'
 import { trinityEncryption } from '../../fire/trinity'
 import { imaginationPrivateKey } from '../../fire/psyche'
 import { fusionCipher } from '../crypto'

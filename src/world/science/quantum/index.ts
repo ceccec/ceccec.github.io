@@ -1,10 +1,10 @@
-// src/science/quantum — the dual of src/quantum/science. Where quantum/science SEALS the verified
+// src/world/science/quantum — the dual of src/quantum/thunder/science. Where quantum/thunder/science SEALS the verified
 // physics & technology data (EMF spectrum, Tesla patents, frequency APIs, herbal APIs, octave bridge),
 // this half provides browse/display primitives: rank bands by frequency, compare sensor capabilities,
-// index patents by year. Does NOT import from src/quantum/science — the pair stays decoupled.
+// index patents by year. Does NOT import from src/quantum/thunder/science — the pair stays decoupled.
 // Pure, deterministic, zero tokens.
 
-export const dual = 'src/quantum/science'
+export const dual = 'src/quantum/thunder/science'
 
 export type SpectrumBand = { band: string; range: string; use: string }
 export type Patent = { number: string; title: string; year: number; prefigures: string; concept: string }

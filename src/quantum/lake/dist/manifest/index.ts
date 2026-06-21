@@ -18,7 +18,7 @@ import {
   skillAtoms,
   toUuid,
   type MindMatrix,
-} from '../../mind'
+} from '../../../heaven/mind'
 import type { DistFile } from '..'
 
 function extractFunction(coreSource: string[], fn: string) {
@@ -33,7 +33,7 @@ function extractFunction(coreSource: string[], fn: string) {
   return { signature: lines[0].replace(/\s*\{?\s*$/, '').replace('export function ', '').trim(), lines: lines.length, source: lines.join('\n') }
 }
 
-export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = join(process.cwd(), 'src/quantum/mind/index.ts')) {
+export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = join(process.cwd(), 'src/quantum/heaven/mind/index.ts')) {
   const manifest = mcpToolManifest(matrix)
   const codebase = mcpCodebase(matrix)
   const quantum = quantumMcp(matrix)
@@ -54,7 +54,7 @@ export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = join(proc
   }, null, 2)
 }
 
-export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = join(process.cwd(), 'src/quantum/mind/index.ts')) {
+export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = join(process.cwd(), 'src/quantum/heaven/mind/index.ts')) {
   const coreSource = readFileSync(corePath, 'utf8').split('\n')
   const memory = skillAtoms(matrix)
   const completed = memory.skills.map((skill) => {

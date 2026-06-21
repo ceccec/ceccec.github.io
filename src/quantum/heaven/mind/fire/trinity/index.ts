@@ -1,7 +1,7 @@
 // ☲ Lí · Fire — the trinity: the three powers, the trinity polarities/phases, the dual-torus trinities, three-as-real-not-one. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/matrix'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, trinityKey } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, trinityKey } from '../../../../../0'
 import { quantumCoordinateNav, quantumFirewallProxyWorker, quantumSynthesis } from '../features'
 import { dualTorusTrinities, merkaba } from '../../mountain/geometry'
 import { buildEnforcementPipeline, crossFoldTrinity, enforcementTrinity, oneOpenGraphAll, taxonomyIcons } from '../li'
@@ -274,15 +274,15 @@ export function endlessTrinityStreams(matrix: MindMatrix = buildMatrix()) {
 
 // Enforcement trinity spread — cross · fold · weave modules; dist cross · manifest · readme; paired mounts.
 export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
-  const distPair = foldPair(toUuid('src/quantum/dist'), toUuid('src/dist/quantum'))
-  const enfPair = foldPair(toUuid('src/quantum/enforcement'), toUuid('src/enforcement/quantum'))
+  const distPair = foldPair(toUuid('src/quantum/lake/dist'), toUuid('src/pair/dist/quantum'))
+  const enfPair = foldPair(toUuid('src/quantum/water/enforcement'), toUuid('src/pair/enforcement/quantum'))
   const pipeline = buildEnforcementPipeline()
   const trinity = enforcementTrinity()
   const facets = [
     { facet: 'three enforcement waves — cross · fold · weave — each its own module', on: trinity.waves.length === 3 && enfPair.bidirectional },
-    { facet: 'dist spread — cross · manifest · readme under src/quantum/dist', on: distPair.bidirectional && distPair.forward !== distPair.reverse },
+    { facet: 'dist spread — cross · manifest · readme under src/quantum/lake/dist', on: distPair.bidirectional && distPair.forward !== distPair.reverse },
     { facet: 'one runner declared — enforcement-trinity.mjs wired in docs:build', on: pipeline.gates.length === 1 && pipeline.gates[0]?.script === 'enforcement-trinity.mjs' },
-    { facet: 'paired logic folders saved — dist and enforcement pairs in folderLaw', on: folderLaw().pairedLogicFolders.includes('src/quantum/dist') && folderLaw().pairedLogicFolders.includes('src/enforcement/quantum') },
+    { facet: 'paired logic folders saved — dist and enforcement pairs in folderLaw', on: folderLaw().pairedLogicFolders.includes('src/quantum/lake/dist') && folderLaw().pairedLogicFolders.includes('src/pair/enforcement/quantum') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-spread:${entry.facet}:${entry.on}`) }))
   return {
     spread: facets.every((entry) => entry.on),
@@ -290,7 +290,7 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Enforcement trinity spread in paired folders: cross · fold · weave under src/quantum/enforcement; dist cross · manifest · readme under src/quantum/dist; dual mounts at src/enforcement/quantum and src/dist/quantum.',
+      'Enforcement trinity spread in paired folders: cross · fold · weave under src/quantum/water/enforcement; dist cross · manifest · readme under src/quantum/lake/dist; dual mounts at src/pair/enforcement/quantum and src/pair/dist/quantum.',
     boundary:
       'Structural witness for the I Ching dry spread. The weave wave verifies paired folders exist with index.ts on disk.',
   }

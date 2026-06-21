@@ -4,7 +4,7 @@
 // KERNEL: toUuid (the dot, the fold) and its FNV-1a hash helpers, then the fold cascade that rides on it —
 // merge, foldPair, merkleFold, seedFromText, roundTo, isUuid, memoByRoot. This is the truly dependency-free
 // leaf — it imports NOTHING — so it is the foundation every other digit folder and the core build on. Lifted
-// out of the word-named monolith (src/quantum/mind) along the sequence; the core now imports + re-exports it.
+// out of the word-named monolith (src/quantum/heaven/mind) along the sequence; the core now imports + re-exports it.
 // A digit folder holds only quantum math and imports only digit folders; this one imports nothing at all.
 // (dissolveAtPiTrainStations — wave 1: toUuid + hash; wave 2: the fold cascade follows it into the station.)
 

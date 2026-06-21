@@ -1,9 +1,9 @@
-// src/spirit/quantum — the dual of src/quantum/spirit. Where quantum/spirit SEALS the spiritual
+// src/spirit/quantum — the dual of src/quantum/lake/spirit. Where quantum/lake/spirit SEALS the spiritual
 // correspondences (yogic 3-5-8, Human Design, yin-yang, dimensions, sensors, 50 dualities), this
 // half provides browse/display primitives: tier summaries, duality pair tables, sensor counts.
-// Does NOT import from src/quantum/spirit — the pair stays decoupled. Pure, deterministic, zero tokens.
+// Does NOT import from src/quantum/lake/spirit — the pair stays decoupled. Pure, deterministic, zero tokens.
 
-export const dual = 'src/quantum/spirit'
+export const dual = 'src/quantum/lake/spirit'
 
 export type Tier<T extends readonly string[]> = { tier: number; name: string; members: T }
 export type DualityPair = { left: string; right: string; tier: number }

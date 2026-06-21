@@ -54,7 +54,7 @@ function resize() {
 function project(v: readonly [number, number, number], angle: number, tilt: number) {
   // spin about the vertical axis (yaw = the zx plane), then tilt about X (pitch = the yz plane) — the pitch
   // varies in time so the star actually tumbles rather than spinning flat. Both planes come from the one shared
-  // source of 3D spin (src/quantum/geometry), composed here in the merkaba's own order — identical math, no dup.
+  // source of 3D spin (src/quantum/wind/geometry), composed here in the merkaba's own order — identical math, no dup.
   const yaw = rotateZX(v[0], v[1], v[2], angle)
   const t = rotateYZ(yaw.X, yaw.Y, yaw.Z, tilt)
   return { x: t.X, y: t.Y, z: t.Z }

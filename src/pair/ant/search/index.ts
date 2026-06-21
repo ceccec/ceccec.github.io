@@ -1,6 +1,6 @@
-// src/ant/search — the carry half of the ant pair. The ant carries the food it finds to the nest,
+// src/pair/ant/search — the carry half of the ant pair. The ant carries the food it finds to the nest,
 // and the nest moves to the cell with the most food: recursion in the endless labyrinth, the nest
-// following the search to where the value is densest. The dual is src/search/ant (the search half);
+// following the search to where the value is densest. The dual is src/pair/search/ant (the search half);
 // a caller wires the two halves. Pure, deterministic, zero-dependency.
 
 export type Cell = { readonly q: number; readonly r: number }
@@ -28,4 +28,4 @@ export function recur(found: readonly Found[]): { nest: Found | null; carried: n
   return { nest: moveNest(found), carried: carry(found) }
 }
 
-export const dual = 'src/search/ant'
+export const dual = 'src/pair/search/ant'

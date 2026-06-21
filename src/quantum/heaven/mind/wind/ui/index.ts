@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 import { buildMatrix, matrixMemo } from '../../heaven/matrix'
 import type { MindMatrix } from '../types'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../../../../0'
 import { merkleProof } from '../../lake/proofs'
 import { harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
@@ -12,10 +12,10 @@ import { analogSpeech, lawfulHarmonise, openGraph } from '../../earth/vocab'
 import { ancientCalendars, moviesNativeFormat, oneOpenGraphAll } from '../../fire/li'
 import { babelFold, textToMovie } from '../../earth/world'
 import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
-import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims } from '../../../dimensions'
-import { yinYang } from '../../../spirit'
-import { scaleColor, A432_HUE } from '../../../science'
-export { scaleColor, oklchToHex } from '../../../science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
+import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims } from '../../../../mountain/dimensions'
+import { yinYang } from '../../../../lake/spirit'
+import { scaleColor, A432_HUE } from '../../../../thunder/science'
+export { scaleColor, oklchToHex } from '../../../../thunder/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
 import { staticPages } from '../site'
 import { sealWholeDiamond } from '../../fire/diamonds'
@@ -1163,17 +1163,17 @@ export function tenDimensionalAnimation(matrix: MindMatrix = buildMatrix()) {
 // dims), driven by the one realtime engine, sharing the math (100% DRY), with no ad-hoc gap. This fold names
 // the one source for each part of the field, states the principles as gates, and tracks which components are
 // wired vs the pending DRY sweep — so "respect the fields / strict science / no gaps / 100% dry" is encoded,
-// not merely asserted. The spin atoms now exist (rotateXY/rotateYZ/rotateZX in src/quantum/geometry), composable
+// not merely asserted. The spin atoms now exist (rotateXY/rotateYZ/rotateZX in src/quantum/wind/geometry), composable
 // in any order so each figure tumbles by its own composition from the ONE source — no behaviour forced, no dup.
 export function animationsRespectTheField(matrix: MindMatrix = buildMatrix()) {
   void matrix
   // The one source for each part of the field. Every animation must derive its motion from these.
   const fieldSources = [
     { part: 'realtime driver', source: 'createAnimationEngine', where: 'src/0', does: 'one RAF loop, gated by reduced-motion · visibility · energy — the realtime stream' },
-    { part: 'spin (any dimension)', source: 'rot2 · rotateXY · rotateYZ · rotateZX', where: 'src/quantum/geometry', does: 'rot2 is THE planar-rotation atom; the 3D plane-primitives compose it, rotate3 composes the three, and a 4D (x-w) fold rotates with the same rot2 — one source for all spin' },
-    { part: 'projection', source: 'perspective', where: 'src/quantum/geometry', does: 'foreshortening from depth — FOCAL/(FOCAL−z)' },
+    { part: 'spin (any dimension)', source: 'rot2 · rotateXY · rotateYZ · rotateZX', where: 'src/quantum/wind/geometry', does: 'rot2 is THE planar-rotation atom; the 3D plane-primitives compose it, rotate3 composes the three, and a 4D (x-w) fold rotates with the same rot2 — one source for all spin' },
+    { part: 'projection', source: 'perspective', where: 'src/quantum/wind/geometry', does: 'foreshortening from depth — FOCAL/(FOCAL−z)' },
     { part: 'fold (genus-2 surface)', source: 'asTorus · doubleTorusSurface', where: 'src/0', does: 'a coordinate on the double torus, shared by model and animation' },
-    { part: '10D self-similar phases', source: 'dims · dimWalk', where: 'src/quantum/dimensions', does: '4 homology loops + 6 cross-fold axes, per scale' },
+    { part: '10D self-similar phases', source: 'dims · dimWalk', where: 'src/quantum/mountain/dimensions', does: '4 homology loops + 6 cross-fold axes, per scale' },
     { part: 'easing + breath', source: 'humanEase · humanBreath', where: 'src/0', does: 'easeInOutSine + sinusoidal modulation' },
     { part: 'orchestrator', source: 'drawHero', where: 'src/quantum', does: 'composes the field into the path-UUID hero' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`field-src:${entry.source}`) }))

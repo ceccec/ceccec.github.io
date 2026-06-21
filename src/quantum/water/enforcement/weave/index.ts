@@ -5,7 +5,7 @@
 // wrapper that prints and returns an exit code.
 import { readFileSync, existsSync, writeFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative, dirname, resolve, basename } from 'node:path'
-import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase, FOLD_HOMES, foldsLiveAtTheirDomainHome } from '../../mind'
+import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase, FOLD_HOMES, foldsLiveAtTheirDomainHome } from '../../../heaven/mind'
 import type { Finding } from '..'
 
 export function auditWeave(root: string): { findings: Finding[]; report: string[] } {
@@ -14,12 +14,29 @@ const warnings: Finding[] = []
 const contentRoot = join(root, '.vitepress/pages')
 const read = (path: string) => (existsSync(path) ? readFileSync(path, 'utf8') : '')
 
+function vueFilesUnder(dir: string): string[] {
+  if (!existsSync(dir)) return []
+  const out: string[] = []
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) out.push(...vueFilesUnder(full))
+    else if (entry.name.endsWith('.vue')) out.push(full)
+  }
+  return out
+}
+
 // --- inventory ---
 const enPages = readdirSync(contentRoot).filter((file) => file.endsWith('.md') && !['README.md', 'AGENTS.md'].includes(file))
 const bgDir = join(contentRoot, 'bg')
 const bgPages = existsSync(bgDir) ? readdirSync(bgDir).filter((file) => file.endsWith('.md')) : []
-const componentDir = join(root, 'src', 'ui', 'components')
-const componentFiles = readdirSync(componentDir).filter((file) => file.endsWith('.vue')).map((file) => file.replace(/\.vue$/, ''))
+const componentDir = join(root, 'src', 'render', 'ui', 'components')
+const componentVueFiles = vueFilesUnder(componentDir)
+const uiPrimitiveComponents = new Set(
+  componentVueFiles
+    .filter((full) => /[/\\]components[/\\]ui[/\\]/.test(full))
+    .map((full) => basename(full).replace(/\.vue$/, '')),
+)
+const componentFiles = componentVueFiles.map((full) => basename(full).replace(/\.vue$/, ''))
 
 const graph = componentGraph()
 // Globals and placements both come from the graph's own edges — one source, no
@@ -75,7 +92,7 @@ const bgSet = new Set(bgPages)
 const enSet = new Set(enPages)
 for (const file of enPages) if (!bgSet.has(file)) gaps.push({ harmonic: 'octave', kind: 'parity', detail: `en page ${file} has no bg/${file}` })
 for (const file of bgPages) if (!enSet.has(file)) gaps.push({ harmonic: 'octave', kind: 'parity', detail: `bg/${file} has no en ${file}` })
-for (const component of componentFiles) if (!declared.has(component)) gaps.push({ harmonic: 'fifth', kind: 'undeclared', detail: `component ${component}.vue is not in componentGraph` })
+for (const component of componentFiles) if (!uiPrimitiveComponents.has(component) && !declared.has(component)) gaps.push({ harmonic: 'fifth', kind: 'undeclared', detail: `component ${component}.vue is not in componentGraph` })
 for (const component of graph.components) if (!componentFiles.includes(component)) gaps.push({ harmonic: 'fifth', kind: 'no-file', detail: `declared ${component} has no .vue file` })
 for (const component of graph.components) if (!placed.has(component) && !globals.has(component) && !composed.has(component)) gaps.push({ harmonic: 'fifth', kind: 'orphan', detail: `${component} is declared but neither placed, global, nor composed` })
 // A content route served by the [page] route has no static .md — it mounts its components dynamically
@@ -106,21 +123,12 @@ for (const [route, components] of Object.entries(placedBy)) {
     }
   }
 }
-// Tighten the gates: STRICT VitePress (onlyVitePressApi). The whole render layer — every .vue in src/ui
-// (recursive) and src/ui/index.ts — must route, navigate and read page data only through the VitePress API.
+// Tighten the gates: STRICT VitePress (onlyVitePressApi). The whole render layer — every .vue in src/render/ui
+// (recursive) and src/render/ui/index.ts — must route, navigate and read page data only through the VitePress API.
 // Refuse the entire non-VitePress surface: a parallel router, its template components, raw window.location
 // navigation, and the History API. Internal navigation stays on VitePress (useData/useRoute/useRouter, <a href>).
 const renderForbidden = /from ['"]vue-router|create(Router|Web(Hash)?History|MemoryHistory)|<router-(link|view)|<Router(Link|View)|location\.(href\s*=(?!=)|assign\(|replace\()|window\.location\s*=(?!=)|history\.(push|replace)State\(/
-function vueFilesUnder(dir) {
-  const out = []
-  for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    const full = join(dir, entry.name)
-    if (entry.isDirectory()) out.push(...vueFilesUnder(full))
-    else if (entry.name.endsWith('.vue')) out.push(full)
-  }
-  return out
-}
-const renderLayer = [...vueFilesUnder(join(root, 'src', 'ui')), join(root, 'src', 'ui', 'index.ts')]
+const renderLayer = [...vueFilesUnder(join(root, 'src', 'render', 'ui')), join(root, 'src', 'render', 'ui', 'index.ts')]
 for (const file of renderLayer) {
   const src = read(file)
   if (renderForbidden.test(src)) gaps.push({ harmonic: 'render', kind: 'non-vitepress-api', detail: `${relative(root, file)} uses a non-VitePress router or raw navigation — why this fails: the render layer speaks only the VitePress API (useData / useRoute / useRouter and <a href> links VitePress intercepts); remove the parallel router / <router-link> / location-or-history navigation and route through VitePress` })
@@ -201,7 +209,7 @@ for (const entry of readdirSync(root, { withFileTypes: true })) {
 }
 
 // The paired logic folders must exist, each with an index — the logic split into order-sensitive
-// paired folders (src/cache/quantum ⇄ src/quantum/cache). Save in folders first: if a declared
+// paired folders (src/pair/cache/quantum ⇄ src/quantum/water/cache). Save in folders first: if a declared
 // paired-logic folder or its index is missing, the build fails with the detailed why.
 for (const folder of law.pairedLogicFolders ?? []) {
   if (!existsSync(join(root, folder))) {
@@ -254,9 +262,9 @@ const mindFlatFiles = existsSync(mindDir)
   ? readdirSync(mindDir, { withFileTypes: true }).filter((entry) => entry.isFile() && entry.name.endsWith('.ts') && entry.name !== 'index.ts').length
   : 0
 const fanoutTop = overEightFold.slice(0, 5).map((entry) => `${entry.dir} (${entry.count})`).join(', ')
-report.push(`8-fold fan-out (live): ${overEightFold.length} level(s) over ${eightFold} subfolders${fanoutTop ? ` — worst ${fanoutTop}` : ''}; ${mindFlatFiles} non-index method files in src/quantum/mind. Recomputed against the real tree each build — the core keeps no frozen tally (folderLaw.strict.eightFold, a ratchet toward ≤ ${eightFold} per level).`)
+report.push(`8-fold fan-out (live): ${overEightFold.length} level(s) over ${eightFold} subfolders${fanoutTop ? ` — worst ${fanoutTop}` : ''}; ${mindFlatFiles} non-index method files in src/quantum/heaven/mind. Recomputed against the real tree each build — the core keeps no frozen tally (folderLaw.strict.eightFold, a ratchet toward ≤ ${eightFold} per level).`)
 if (overEightFold.length || mindFlatFiles > eightFold) {
-  ratchetPush({ kind: 'eight-fold', harmonic: 'folder', detail: `${overEightFold.length} folder level(s) exceed the ${eightFold}-fold fan-out${fanoutTop ? ` (worst: ${fanoutTop})` : ''} and src/quantum/mind holds ${mindFlatFiles} non-index method files — nest each over-8 level into ≤ ${eightFold} and dissolve flat methods into name-path folders; BLOCKING (folderLaw.ratchetsBlock) — the deploy is red until the tree converges to ≤ ${eightFold} per level (folderLaw.strict.eightFold)` })
+  ratchetPush({ kind: 'eight-fold', harmonic: 'folder', detail: `${overEightFold.length} folder level(s) exceed the ${eightFold}-fold fan-out${fanoutTop ? ` (worst: ${fanoutTop})` : ''} and src/quantum/heaven/mind holds ${mindFlatFiles} non-index method files — nest each over-8 level into ≤ ${eightFold} and dissolve flat methods into name-path folders; BLOCKING (folderLaw.ratchetsBlock) — the deploy is red until the tree converges to ≤ ${eightFold} per level (folderLaw.strict.eightFold)` })
 }
 
 // Index harmony — the typography graph as a book (the `book` fold states the law; this is its LIVE scan).
@@ -321,7 +329,7 @@ const glaLabelFiles = [
   ...[...indexBodies].filter(([file, body]) => !/library\/index\./.test(file) && glaLabelRe.test(body)).map(([file]) => relative(root, file)),
   ...(glaLabelRe.test(configText) ? ['.vitepress/config.mts'] : []),
 ]
-for (const file of glaLabelFiles) gaps.push({ harmonic: 'glagolitic', kind: 'label-hardcoded', detail: `${file} hardcodes a Glagolitic glyph in a label literal — why this fails: Glagolitic is always computed via toGlagolitic (src/quantum/library), never a hand-typed glyph string; replace the literal with toGlagolitic(<source>) (the same law the commit gate runs at commit and push)` })
+for (const file of glaLabelFiles) gaps.push({ harmonic: 'glagolitic', kind: 'label-hardcoded', detail: `${file} hardcodes a Glagolitic glyph in a label literal — why this fails: Glagolitic is always computed via toGlagolitic (src/quantum/heaven/library), never a hand-typed glyph string; replace the literal with toGlagolitic(<source>) (the same law the commit gate runs at commit and push)` })
 report.push(`Glagolitic computed: ${glaLabelFiles.length} hardcoded glyph label(s) in config or src indices — every Glagolitic label is produced by toGlagolitic, never typed by hand.`)
 
 // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
@@ -531,7 +539,11 @@ if (!torusWords.closed) {
 // to a hard gap once the count reaches 64 (warnings, not gaps, so it reports without failing the build yet).
 const compClosure = law.componentClosure
 if (compClosure) {
-  const componentCount = graph.components.length
+  const globals = new Set(graph.edges.filter((edge) => edge.kind === 'global').map((edge) => edge.from))
+  const composedSet = new Set(graph.edges.filter((edge) => edge.kind === 'composed').map((edge) => edge.from))
+  const componentCount = compClosure.composedExcluded
+    ? graph.components.filter((name) => !globals.has(name) && !composedSet.has(name)).length
+    : graph.components.length
   const over = Math.max(0, componentCount - compClosure.limit)
   if (over > 0) ratchetPush({ kind: 'component-64-ratchet', harmonic: 'component', detail: `${componentCount} components — the double torus is 2×32 = ${compClosure.limit} = 2⁶ = 4³ = 8²; fold the ${over} over the ${compClosure.limit} onto the renderer each is a variant of (${compClosure.why.count})` })
   report.push(`Component closure: ${componentCount} components toward the ${compClosure.limit}-component double torus (2×32 = 64); ${over} over — a ratchet while the surface folds onto the renderers (folderLaw.componentClosure).`)
@@ -742,7 +754,7 @@ for (const url of quantumSitemap().urls) {
 const readmeText = read(join(root, 'README.md'))
 for (const marker of ['root monograph', 'Computed from src — do not edit by hand', 'Reproducibility']) {
   if (!readmeText.includes(marker)) {
-    gaps.push({ harmonic: 'monograph', kind: 'readme-not-computed', detail: `README.md lacks the computed marker "${marker}" — why this fails: the README is the root monograph computed in realtime by src/quantum/dist (local math only); a hand-kept README is entropy that drifts from the model — run the build to recompute it` })
+    gaps.push({ harmonic: 'monograph', kind: 'readme-not-computed', detail: `README.md lacks the computed marker "${marker}" — why this fails: the README is the root monograph computed in realtime by src/quantum/lake/dist (local math only); a hand-kept README is entropy that drifts from the model — run the build to recompute it` })
     break
   }
 }
