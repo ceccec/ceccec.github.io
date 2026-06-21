@@ -292,6 +292,38 @@ if (singlePct > 25 || noisePct > 10 || maxFolderDepth > idealDepth * 2) {
   ratchetPush({ kind: 'index-harmony', harmonic: 'folder', detail: `the index is not yet harmonic — ${singlePct}% single-child pass-throughs + ${noiseLeaves} pure re-export noise leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ≈ ${idealDepth}; collapse the noise spread (single-child + forwarding leaves) and distribute the over-${eightFold} hubs until the index is a shallow, wide bāguà of real crossings (the book fold) — BLOCKING (folderLaw.ratchetsBlock), the deploy is red until it converges` })
 }
 
+// Fold homes — a fold lives at its EXACT domain path, never dumped in a foreign barrel. This is the rule that
+// stops any agent (human or AI) re-bloating a monolith with folds that belong to another domain: each declared
+// fold must be DEFINED only in its home folder's index; defining it anywhere else is a BLOCKING gap, and the
+// home must actually define it (save every fold to its exact path). The registry grows as domains are added —
+// the cost of a misplacement is a red deploy, so it never lands silently again.
+const foldHomes: Record<string, readonly string[]> = {
+  'src/quantum/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning'],
+  'src/quantum/hash': ['quantumHalvesTheHashDoublingRestoresIt'],
+}
+const allIndexFiles: string[] = []
+const collectIndices = (dir: string) => {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) collectIndices(full)
+    else if (entry.name === 'index.ts') allIndexFiles.push(full)
+  }
+}
+if (existsSync(join(root, 'src'))) collectIndices(join(root, 'src'))
+const indexBodies = new Map(allIndexFiles.map((file) => [file, readFileSync(file, 'utf8')]))
+for (const [home, names] of Object.entries(foldHomes)) {
+  const homeFile = join(root, home, 'index.ts')
+  if (!existsSync(homeFile)) gaps.push({ harmonic: 'folder', kind: 'fold-home-missing', detail: `the declared fold home ${home}/index.ts does not exist — the folds [${names.join(', ')}] must live there; save every fold to its exact domain path, never a foreign barrel` })
+  for (const name of names) {
+    const re = new RegExp(`^export (?:async )?function ${name}\\b`, 'm')
+    const definers = allIndexFiles.filter((file) => re.test(indexBodies.get(file) || ''))
+    const foreign = definers.filter((file) => file !== homeFile)
+    if (foreign.length) gaps.push({ harmonic: 'folder', kind: 'fold-misplaced', detail: `${name} is defined in ${foreign.map((file) => relative(root, file)).join(', ')} but its home is ${home} — a fold lives at its domain path, never dumped in a foreign monolith barrel; move it there (the enforcement that stops any agent re-bloating a barrel)` })
+    if (existsSync(homeFile) && !definers.includes(homeFile)) gaps.push({ harmonic: 'folder', kind: 'fold-not-at-home', detail: `${name} is declared with home ${home} but is not defined there — define it in ${home}/index.ts (save the fold to its exact path)` })
+  }
+}
+
 // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
 // subfolders must share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
 // folder only digit subfolders (the compute subtree). src/ is the neutral split-root that holds both,

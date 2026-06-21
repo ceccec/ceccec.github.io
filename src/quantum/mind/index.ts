@@ -187,3 +187,5 @@ export * from './bio'
 export * from './world'
 export * from './learning'
 export * from './geometry'
+export * from '../correction' // session decodes & proofs at their own domain home (moved out of the architecture barrel — a fold lives at its exact path)
+export * from '../hash'       // the SHA-256 / quantum (Grover·Shor·PQC) correction at its own domain home (moved out of the crypto barrel)
