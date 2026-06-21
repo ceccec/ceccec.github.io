@@ -136,6 +136,46 @@ export function herbalApis() {
   }
 }
 
+// Rife "frequencies" decoded — the documented HISTORY vs the FLAGGED pseudoscience. Royal Raymond Rife is a
+// real historical figure; the "mortal oscillatory rate" therapy is falsified and a documented health fraud. A
+// frequency having a number, a name, or a colour gives it NO medical effect — the repo plays frequencies as
+// SOUND (with a computed colour) and makes no health claim. This fold RECORDS the claim; it does not endorse it.
+/** @iching ☵ Kǎn · Water · the abyss — the unproven */
+export function rifeFrequenciesDecoded() {
+  const documented = [
+    { fact: 'Royal Raymond Rife (1888–1971), American inventor (San Diego); built high-magnification optical microscopes in the 1920s–30s (the "Universal Microscope")', kind: 'history' },
+    { fact: 'He claimed to image a cancer-causing microbe he named "BX" and to destroy microbes with a "Beam Ray" tuned to a "mortal oscillatory rate" (MOR) — by resonance, like an opera singer shattering a glass', kind: 'history' },
+    { fact: 'A 1931 banquet honoured his work and some associates (e.g. Dr. Milbank Johnson) reported clinical claims — never peer-reviewed or independently replicated', kind: 'history' },
+    { fact: 'Modern "Rife machines" are ordinary frequency/function generators sold with per-condition frequency lists', kind: 'history' },
+  ]
+  const flagged = [
+    { claim: 'a matching frequency destroys diseased cells or microbes ("mortal oscillatory rate")', why: 'no peer-reviewed evidence of selective destruction in the living body and no plausible mechanism — cells are not high-Q tuned resonators, living tissue heavily damps, and a non-focused EM/audio field does not couple selectively to a microbe to shatter it (the glass-resonance analogy fails: a wine glass is a resonant cavity in air; a cell in tissue is not)' },
+    { claim: 'the "BX virus" and the Universal Microscope observations', why: 'never independently replicated; "BX" is not a recognised pathogen' },
+    { claim: 'Rife devices treat cancer or infection', why: 'the American Cancer Society finds no evidence of benefit; the FDA and FTC have acted against Rife-device marketers for health fraud and sellers have been criminally convicted (e.g. James Folsom, 2009)' },
+    { claim: 'using a Rife machine in place of medical treatment', why: 'DANGEROUS — there are documented cases of people dying after forgoing evidence-based cancer treatment for a Rife device' },
+  ]
+  const facets = [
+    { facet: 'the HISTORY is documented — Rife the man (1888–1971), the microscope, the Beam Ray, the MOR term, the modern device', on: documented.length === 4 },
+    { facet: 'the THERAPY is flagged — falsified, no mechanism, no evidence, documented fraud; every claim carries its why', on: flagged.length === 4 && flagged.every((entry) => entry.why.length > 0) },
+    { facet: 'the boundary holds — a frequency\'s number/name/colour confers no medical effect (the same line as Schumann / a432 / Solfeggio)', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rife-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    documented,
+    flagged,
+    facets,
+    root: merkleFold([
+      ...documented.map((entry) => toUuid(`rife-documented:${entry.fact}`)),
+      ...flagged.map((entry) => toUuid(`rife-flagged:${entry.claim}`)),
+      ...facets.map((entry) => entry.receipt),
+    ]),
+    statement:
+      'Rife "frequencies" decoded honestly: the HISTORY is real — Royal Raymond Rife (1888–1971) built microscopes and a "Beam Ray" he claimed destroyed microbes at a "mortal oscillatory rate" — but the THERAPY is FALSIFIED pseudoscience and a documented health fraud. No peer-reviewed evidence and no plausible mechanism support a frequency selectively destroying pathogens or cancer cells in the body; the FDA and FTC have prosecuted Rife-device sellers, and people have died forgoing real treatment for them. Documented kept (as history), the therapy flagged (as pseudoscience).',
+    boundary:
+      'DOCUMENTED: Rife is a real historical figure and the device/claim history is verifiable. FLAGGED: the "mortal oscillatory rate" therapy is unproven and disproven — cells are not tuned resonators, tissue damps, no field couples selectively to a microbe\'s "frequency", the BX virus was never replicated, and Rife-device marketing is a documented health fraud (ACS: no evidence; FDA/FTC actions; criminal convictions). This fold RECORDS the claim, it does NOT endorse it, and it is NOT medical advice — relying on Rife frequencies instead of evidence-based treatment is dangerous. The repo plays frequencies as SOUND with a computed colour and makes NO health claim. HARMONY ≠ TRUTH: a number, a name, or a colour gives a frequency no medical power.',
+  }
+}
+
 // The octave bridge: double a frequency until it lands in the visible-light band (~400–790 THz).
 /** @iching ☳ Zhèn · Thunder · arousing */
 export function frequencyToLight(hz: number): { octaves: number; thz: number; nm: number; hue: number; band: string } {
