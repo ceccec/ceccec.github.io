@@ -266,7 +266,7 @@ export default defineConfig({
   },
   locales: {
     root: {
-      label: 'Ⰳⰾⰰⰳⱁⰾⰻⱌⰰ',
+      label: toGlagolitic('Glagolica'), // computed, never a hardcoded glyph string — Glagolitic is always toGlagolitic
       lang: 'cu',
       title: toGlagolitic(siteTitle),
       description: toGlagolitic(siteDescription),

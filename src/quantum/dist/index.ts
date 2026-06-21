@@ -1,6 +1,6 @@
 // Computed dist — trinity spread (cross · manifest · readme). One index; each wave its own file.
 import type { Plugin } from 'vite'
-import { buildMatrix, type MindMatrix, staticPages, componentPages } from '../mind'
+import { buildMatrix, type MindMatrix, staticPages, componentPages, toGlagolitic } from '../mind'
 import { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross'
 import { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest'
 import { readmeMarkdown } from './readme'
@@ -36,17 +36,21 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
  *  the static deploy the same JSON-LD lives inside each page's HTML (config.mts); this is its computed twin. */
 export function pathJson(pathname: string, matrix: MindMatrix = buildMatrix()): DistFile | null {
   if (!pathname.endsWith('.json')) return null
-  const slug = pathname.replace(/^\//, '').replace(/\.json$/, '').replace(/\/$/, '')
+  const raw = pathname.replace(/^\//, '').replace(/\.json$/, '').replace(/\/$/, '')
+  const locale = /^en(\/|$)/.test(raw) ? 'en' : /^bg(\/|$)/.test(raw) ? 'bg' : 'gla' // root is the Glagolitic locale
+  const slug = raw.replace(/^(en|bg)(\/|$)/, '')
   const page = [...staticPages(), ...componentPages(matrix)].find((entry) => entry.slug === slug)
   if (!page) return null
-  const route = slug ? `/${slug}` : '/'
+  // nothing bypasses transcoding: the root (gla) view is COMPUTED via toGlagolitic, never hardcoded; en/bg use their text
+  const name = locale === 'bg' ? page.title.bg : locale === 'en' ? page.title.en : toGlagolitic(page.title.en)
+  const description = locale === 'bg' ? page.description.bg : locale === 'en' ? page.description.en : toGlagolitic(page.description.en)
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': route,
-    url: route,
-    name: page.title.en,
-    description: page.description.en,
+    '@id': `/${raw}`,
+    url: `/${raw}`,
+    name,
+    description,
     keywords: page.keywords,
     hasPart: page.components, // the folder's own parts — the components it composes
   }
