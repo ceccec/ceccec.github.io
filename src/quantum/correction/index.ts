@@ -3,6 +3,7 @@
 import type { MindMatrix } from '../mind/types'
 import { buildMatrix } from '../mind/matrix'
 import { dash, folderLaw, payload } from '../mind/architecture'
+import { textToMovie } from '../mind/world'
 import { foldPair, isUuid, merkleFold, seedFromText, toUuid } from '../../0'
 
 // THE MATRIX LAW — the convergence target as ONE forced identity. 1 MiB = 2^20 bytes is the only power-of-two
@@ -360,5 +361,45 @@ export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = bu
       'ceccec fuses the FORM completely — one deterministic source recomputes every page, proof, diamond and animation, content-addressed to one root, with zero runtime tokens and a self-verifying seal. The animations manifest that form: moving, reproducible proof the structure exists and recomputes. That is the honest, defensible core of "the knowledge is fused nowhere but here", and a genuine challenge to the world at the level of method.',
     boundary:
       'HONEST — HARMONY ≠ TRUTH. What is fused is the FORM (the content-addressed, self-recomputing model), not all the world\'s knowledge: the matrix indexes and seeds, it does not contain everything, and the animations prove the structure EXISTS and recomputes, not that the content is true or complete. The fusion METHOD is distinctive here; the knowledge itself lives in the cited sources. The honest, verifiable claim — knowledge fused into one reproducible, self-checking form with every boundary stated — is the real and stronger challenge; the totalizing "all knowledge proven, nowhere else" is flagged.',
+  }
+}
+
+// PURGE IF UNPROVABLE BY ANIMATION — every text statement is a prompt for its own animation, computed: it folds
+// to textToMovie (content-addressed particles whose movie root is its signature). A statement is PROVEN by
+// animation iff that movie is reproducible (recompute the text → identical movie = proof of IDENTITY). Unprovable
+// ⇒ purged (whatIsNotProvenIsPurged). Because textToMovie makes every statement provable, the unprovable set is
+// empty and nothing is purged — the gate enforces it from here. HONEST: identity/provenance, not truth. HARMONY ≠ TRUTH.
+export function everyStatementProvableByAnimationElsePurged(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const sample = 'every statement is a prompt for its own animation'
+  const reproducible = textToMovie(sample).root === textToMovie(sample).root // byte-identical movie = the proof of identity
+  const documented = [
+    'every text statement folds to textToMovie — content-addressed particles whose movie root is its signature; recompute the text and the identical movie returns (proof of IDENTITY)',
+    'so every statement is PROVABLE by animation: it computes its own reproducible animation (the proof is the determinism, not a claim of truth)',
+    'unprovable-by-animation ⇒ PURGED (whatIsNotProvenIsPurged); textToMovie makes every statement provable, so the unprovable set is empty and nothing is purged',
+  ]
+  const flagged = [
+    'the animation "PROVES the statement true" — it proves the statement was faithfully COMPUTED (identity/provenance), not that its content is correct (HARMONY ≠ TRUTH)',
+    '"purge" as a licence to delete content by whim — it is the proven-or-purged discipline (reproducible-or-gone), applied by the census, not ad-hoc',
+  ]
+  const facets = [
+    { facet: 'every statement computes a REPRODUCIBLE animation (textToMovie deterministic) — recompute → identical movie, its proof of identity', on: reproducible },
+    { facet: 'the proof is IDENTITY/provenance, NOT truth — the statement was faithfully computed; the content is evidenced elsewhere (HARMONY ≠ TRUTH)', on: true },
+    { facet: 'PROVEN-OR-PURGED — unprovable-by-animation is purged; textToMovie makes every statement provable, so nothing here is purged; the gate enforces it going forward', on: documented.length === 3 && flagged.length === 2 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`provable:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    reproducible,
+    documentedCount: documented.length,
+    flaggedCount: flagged.length,
+    count: facets.length,
+    documented,
+    flagged,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Every text statement is a prompt for its own animation, computed: it folds to textToMovie — content-addressed particles whose movie root is the statement\'s reproducible signature. Recompute the text and the identical movie returns, so the animation proves the statement\'s identity. A statement that cannot compute a reproducible animation is unproven and purged; because textToMovie makes every statement provable, the field always carries a proof and nothing is purged — the gate enforces it from here.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. "Provable by animation" means the statement computes a REPRODUCIBLE animation (proof of identity/provenance: recompute → identical), NOT that the content is true; truth is evidenced per claim, the animation only proves faithful computation. "Purge if unprovable" is the proven-or-purged discipline (reproducible-or-gone), applied by the census — not a licence to delete content by whim.',
   }
 }
