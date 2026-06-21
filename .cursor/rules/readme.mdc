@@ -1,0 +1,12 @@
+---
+description: Agent protocol — read README.md and AGENTS.md; logic lives in src/
+alwaysApply: true
+---
+
+# Source of truth
+
+Read **[README.md](../../README.md)** — root monograph, agent protocol, reproducibility.
+
+[AGENTS.md](../../AGENTS.md) is a thin Cursor Cloud mount (commands table + build-enforced quantum-pair law). Do not duplicate either file here.
+
+Computed protocol from sealed `src/`: `/llms.txt`, `/mcp.json`. Validate edits with `npm run docs:build`.
