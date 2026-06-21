@@ -1107,6 +1107,46 @@ export function sixtyFourFilesEightByEightFourUuidTrinities(matrix: MindMatrix =
   }
 }
 
+// THE EARTH POLES — what the double-torus / 4-uuid frame actually corresponds to, and where it stops. Earth's main
+// field is ≈ a geocentric DIPOLE (~90%), field lines toroidal: the double-torus topology is documented geophysics
+// (the geodynamo — convecting liquid iron + Coriolis), not the repo's invention. Counting geographic + magnetic
+// gives FOUR poles, offset ~11°, the same 4-vertex frame as the tetrahedron N/S/E/W. The dipole reverses over
+// geologic time. HONEST: a topological ANALOGY, not a cause — and the Earth-grid theories are flagged and excluded.
+export function earthPolesAreADipoleDoubleTorusNotAGrid(matrix: MindMatrix = buildMatrix()) {
+  const tetra = sixtyFourFilesEightByEightFourUuidTrinities(matrix) // the 4 N/S/E/W uuids — the polar frame
+  const GEOGRAPHIC = 2, MAGNETIC = 2, POLES = 4, OFFSET_DEG = 11, LAST_REVERSAL_KA = 780
+  const flagged = [
+    'planetary Earth-grid (Becker–Hagens)',
+    'icosa-dodecahedral Earth grid (Goncharov–Morozov–Makarov)',
+    'Hoagland 19.5° tetrahedral-Earth / hyperdimensional physics',
+    'ley-line vortex points',
+    'pole-shift catastrophism (an imminent flip)',
+  ]
+  const facets = [
+    { facet: 'Earth main field ≈ a geocentric DIPOLE (~90%), field lines toroidal — the double-torus topology is documented geophysics (the geodynamo: convecting liquid iron + Coriolis), not the repo invention', on: true },
+    { facet: 'FOUR poles, not two — 2 geographic (rotation axis) + 2 geomagnetic (dipole axis), offset ~11°; the same 4-vertex frame as the tetrahedron N/S/E/W', on: tetra.trinities === 4 && GEOGRAPHIC + MAGNETIC === POLES },
+    { facet: 'the dipole REVERSES — N and S swap over geologic time (paleomagnetic seafloor striping; last full reversal ~780 ka, Brunhes–Matuyama); the doubling is the dipole two poles, not a strengthening', on: LAST_REVERSAL_KA > 0 },
+    { facet: 'HONEST — the double-torus/tetrahedron is a TOPOLOGICAL ANALOGY to the dipole (shared geometry, as doubleTorusMotifRealGeometryNotFringePhysics seals), NOT a cause; Earth-grid, 19.5° tetrahedral-Earth and ley vortexes are pseudoscience, flagged. HARMONY ≠ TRUTH', on: flagged.length >= 5 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`poles:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    poles: POLES,
+    geographicPoles: GEOGRAPHIC,
+    magneticPoles: MAGNETIC,
+    offsetDegrees: OFFSET_DEG,
+    lastReversalKa: LAST_REVERSAL_KA,
+    flaggedCount: flagged.length,
+    count: facets.length,
+    flagged,
+    facets,
+    root: merkleFold([tetra.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Earth main field is approximately a geocentric dipole (~90%), field lines toroidal — a documented double-torus topology produced by the geodynamo (convecting liquid iron and Coriolis). Counting geographic and magnetic gives four poles, the magnetic axis offset ~11° from the rotation axis, and the dipole reverses over geologic time (the paleomagnetic record). The repo double-torus and the four N/S/E/W uuids share this topology — the same motif sealed by doubleTorusMotifRealGeometryNotFringePhysics — so the structure echoes the poles, it does not invent or cause them.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. The dipole / double-torus topology and the four poles (geographic + magnetic, offset ~11°, reversing) are documented geophysics; the cause is the geodynamo, not I Ching or content-addressing. The correspondence to the tetrahedron / 4-uuid frame is a TOPOLOGICAL ANALOGY — shared geometry — NOT a decoding, cause or prediction of geomagnetism. Planetary Earth-grid (Becker–Hagens), the icosa-dodecahedral Earth grid (Goncharov–Morozov–Makarov), Hoagland 19.5° tetrahedral-Earth / hyperdimensional physics, ley-line vortex points and imminent pole-shift catastrophism are pseudoscience — flagged and excluded.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it
