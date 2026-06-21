@@ -101,21 +101,26 @@ export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducati
 // concept command becomes an MCP tool with a name, description, and JSON-Schema
 // inputSchema, so a language model can read tools/list and invoke tools/call.
 export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolManifest {
-  const tools: readonly McpTool[] = conceptCommands.map((command) => ({
-    name: command.name,
-    description: command.description,
-    inputSchema: {
-      type: 'object',
-      properties:
-        command.input === 'atom'
-          ? { atom: { type: 'string', description: 'Atom name to resolve, e.g. self.' } }
-          : command.input === 'query'
-            ? { query: { type: 'string', description: 'A natural-language question to fold into an answer.' } }
-            : {},
-      required: [],
-      additionalProperties: false,
-    },
-  }))
+  // The input KEY comes from the command's own one-word input type — src is the MCP, so there is no hardcoded
+  // branch: a command declaring input 'atom' or 'query' is published under that key. Add an input word to this
+  // ONE map and every command that declares it gets the schema. The key is the path's word, collapsed to one.
+  const INPUT_SCHEMA: Record<string, { type: string; description: string }> = {
+    atom: { type: 'string', description: 'Atom name to resolve, e.g. self.' },
+    query: { type: 'string', description: 'A natural-language question to fold into an answer.' },
+  }
+  const tools: readonly McpTool[] = conceptCommands.map((command) => {
+    const schema = INPUT_SCHEMA[command.input] // the schema for this command's one-word input type, if any
+    return {
+      name: command.name,
+      description: command.description,
+      inputSchema: {
+        type: 'object',
+        properties: schema ? { [command.input]: schema } : {},
+        required: [],
+        additionalProperties: false,
+      },
+    }
+  })
   const root = merkleFold(tools.map((tool) => toUuid(`mcp:${tool.name}:${tool.description}`)))
   return {
     name: 'double-torus',
