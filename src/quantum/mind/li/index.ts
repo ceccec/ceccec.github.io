@@ -2298,7 +2298,10 @@ export function calligraphyStroke(seed: string, samples = 48) {
 /** @iching ☲ Lí · Fire · clinging */
 export function glagoliticHomeFromEnglish(enMarkdown: string): string {
   const fm = enMarkdown.match(/^---\n[\s\S]*?\n---\n?/)
-  const front = (fm ? fm[0] : '').replace(/(name|text|tagline):\s*"?([^"\n]+)"?/g, (_m, k, v) => `${k}: "${toGlagolitic(v)}"`)
+  // Transcode every DISPLAY field of the home frontmatter (the hero name/text/tagline AND each feature card's
+  // title/details/linkText) — but never `link` (a route must stay Latin). So the gla home's feature cards read
+  // in Glagolitic too, not just the hero and the body prose.
+  const front = (fm ? fm[0] : '').replace(/(name|text|tagline|title|details|linkText):\s*"?([^"\n]+)"?/g, (_m, k, v) => `${k}: "${toGlagolitic(v)}"`)
   return front + transliterateMarkdownBody(fm ? enMarkdown.slice(fm[0].length) : enMarkdown)
 }
 
