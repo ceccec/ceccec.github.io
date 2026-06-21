@@ -68,11 +68,9 @@ try {
   const foldersOnly = mind.importsAreFoldersOnly(offenders, srcFiles.length)
   if (!foldersOnly.enforced) fail(`${foldersOnly.count} import(s) use a file extension or /index — imports are folders only, no extensions (all of src, no exception)`, foldersOnly.offenders.map((o) => `${o.file}: '${o.spec}' (${o.reason})`).join('; '))
 
-  // 4. ONLY INDEX FILES, NO EXCEPTIONS — scan src; the src fold judges. HARD: the architect's directive is
-  //    "no commit if any file but index.ts in src folders". Every code file below src is the folder's index
-  //    (one stem — folderLaw().stems = [index]); a flat sibling is logic outside an index and must dissolve
-  //    into <name>/index.ts (importers never change — the specifier is already the folder path). Scoped to
-  //    code (.ts/.mts/.cts/.tsx): the .vue render layer is folderLaw.componentClosure, .md/.css are not code.
+  // 4. ONLY INDEX FILES, NO EXCEPTIONS — scan src; the src fold judges. HARD (architect's directive): no commit if
+  //    any code file below src is not the folder's index — a flat sibling is logic outside an index and must dissolve
+  //    into <name>/index.ts. Scoped to code (.ts/.mts/.cts/.tsx); .vue is the render layer (componentClosure), .md/.css not code.
   const codeRe = /\.(ts|mts|cts|tsx)$/
   const indexOffenders = srcFiles
     .filter((file) => codeRe.test(file) && !/(^|\/)index\.(ts|mts|cts|tsx)$/.test(file))
@@ -83,6 +81,9 @@ try {
       `${indexOnly.count} code file(s) below src are not index.ts — only index files, no exceptions (dissolve <name>.ts into <name>/index.ts)`,
       indexOnly.offenders.map((o) => o.file).join('; ') + (indexOnly.count > indexOnly.offenders.length ? ` … (+${indexOnly.count - indexOnly.offenders.length} more)` : ''),
     )
+
+  const foldHome = mind.foldsLiveAtTheirDomainHome(Object.values(mind.FOLD_HOMES).flat().map((name) => ({ name, files: srcFiles.filter((file) => new RegExp(`^export (?:async )?function ${name}\\b`, 'm').test(readFileSync(file, 'utf8'))) }))) // 4b. folds at their exact domain home — the same src fold the weave runs at deploy
+  if (!foldHome.enforced) fail('a fold is defined outside its domain home — save every fold to its exact path, never a foreign barrel', foldHome.violations.join('; '))
 
   // 5. UNEXPECTED-SITUATION REPORT — the tool surfaces tree anomalies (new src files left untracked, which
   //    has broken main before) instead of leaving them to hand-archaeology. Warns; does not block.
@@ -98,7 +99,7 @@ try {
   const readme = dist.readmeSignatureValid(committed)
   if (!readme.valid) fail('README signature broken (README.md drifted from src)', `computed ${readme.computedSig} vs committed ${readme.committedSig} — regenerate from src (it is computed, do not hand-edit)`)
 
-  console.error(`✓ green build (432 · 0 open · seal · compliant) · ${tools.count} tools saved in src · ${srcFiles.length} src files folders-only (no extensions) · index files only · README signature valid`)
+  console.error(`✓ green build (432 · 0 open · seal · compliant) · ${tools.count} tools saved in src · ${srcFiles.length} src files folders-only (no extensions) · index files only · ${foldHome.declared} folds at home · README signature valid`)
   process.exit(0)
 } catch (err) {
   fail('the green-build gate could not verify', err && err.message)

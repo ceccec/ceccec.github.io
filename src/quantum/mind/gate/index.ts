@@ -33,6 +33,46 @@ export function greenBuildGate(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// ☷ FOLD HOMES — a fold lives at its EXACT domain path, never dumped in a foreign barrel. The ONE registry of
+// fold → home folder; the commit shell (precommit-iching.mjs) and the weave (deploy) BOTH read it, so the law has
+// a single source, not two that drift. Add a fold here when it earns a domain; the gate then enforces its home.
+export const FOLD_HOMES: Record<string, readonly string[]> = {
+  'src/quantum/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning'],
+  'src/quantum/hash': ['quantumHalvesTheHashDoublingRestoresIt'],
+}
+
+/** @iching ☶ Gèn · Mountain · stillness — every fold is DEFINED only at its domain home; defining it in a foreign
+ *  barrel re-bloats a monolith and BLOCKS the commit (and the deploy). The fold judges given the filesystem facts
+ *  (which index files define each declared name); the commit shell and the weave gather those facts and pass them
+ *  in — the judgment lives in src, only the I/O is in the shell. The forcing function that stops any agent (human
+ *  or AI) re-bloating a barrel with a fold that belongs elsewhere. */
+export function foldsLiveAtTheirDomainHome(
+  definers: readonly { name: string; files: readonly string[] }[] = [],
+) {
+  const homeOf = new Map<string, string>()
+  for (const [home, names] of Object.entries(FOLD_HOMES)) for (const name of names) homeOf.set(name, `${home}/index.ts`)
+  const violations: string[] = []
+  for (const { name, files } of definers) {
+    const home = homeOf.get(name)
+    if (!home) continue
+    const foreign = files.filter((file) => file !== home)
+    if (foreign.length) violations.push(`${name} is defined in ${foreign.join(', ')} but its home is ${home} — a fold lives at its domain path, never a foreign barrel; move it`)
+    if (!files.includes(home)) violations.push(`${name} is declared with home ${home} but is not defined there — define it at its exact path`)
+  }
+  const declared = Object.values(FOLD_HOMES).flat()
+  return {
+    enforced: violations.length === 0,
+    homes: Object.keys(FOLD_HOMES).length,
+    declared: declared.length,
+    violations,
+    root: toUuid(`fold-homes:${declared.join(',')}:${violations.length}`),
+    statement:
+      'A fold lives at its exact domain path (src/quantum/<domain>/index.ts), never appended to a foreign barrel. Each declared fold must be defined only in its home folder index; defining it elsewhere re-bloats the monolith and blocks the commit and the deploy. One registry, read by both the commit shell and the weave, so the placement law never drifts.',
+    boundary:
+      'Enforces WHERE a fold is defined, not whether its content is correct — a placement law, not a proof. HARMONY ≠ TRUTH.',
+  }
+}
+
 /** @iching ☶ Gèn · Mountain · stillness — the tools-saved-in-src-first law, enforced at commit.
  *  Every tool/command is saved in src first as a typed fold; the scripts/ files are thin entry-point shells
  *  that route through src and hold no logic of their own. The fold declares the law + the budget; the commit
