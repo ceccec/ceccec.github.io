@@ -889,6 +889,63 @@ export function solve(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The path SEPARATORS are the index logic — the "dashes" carry the fold DIRECTION, not just hierarchy. A forward
+// slash "/" is the FORWARD fold (the harmonic, 9·digit); a backslash "\" is the DUAL fold (the ten's-complement
+// reverse, 10−digit) — so src/0\1\2\4\8/7/5/3\6\9 is a SEQUENCE of directional folds, each dash a / or a \. The
+// filesystem cannot store a "\" separator (only "/"), so the dual direction is the QUANTUM meaning of the path,
+// computed not stored — digitFolders already folds each digit both ways (forward harmonic + backslash dual).
+export function dash(matrix: MindMatrix = buildMatrix()) {
+  const cross = dualitiesMeetInCrossFolders(matrix) // "/" and "\" are the order-sensitive duals (a·b ⇄ b·a)
+  const forward = (d: number) => 9 * d // the "/" fold — the forward harmonic (digitFolders)
+  const dual = (d: number) => 10 - d // the "\" fold — the ten's-complement reverse (digitFolders' backslash dual)
+  const facets = [
+    { facet: 'the DASH is the operator — "/" is the forward fold, "\\" is the dual fold; the separator carries the index logic, not just hierarchy', on: cross.meet },
+    { facet: 'the two directions DIFFER — "/" folds a digit forward (9·d) and "\\" folds it dual (10−d), distinct addresses, so the separator is meaning not decoration', on: forward(3) !== dual(3) },
+    { facet: 'a path is a directional SEQUENCE — src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as the vortex doubling threaded by per-step direction (each dash a / or a \\), impossible on the fs yet exact in meaning', on: forward(4) === 36 && dual(4) === 6 },
+    { facet: 'the FILESYSTEM stores only "/" — so the "\\" direction is the QUANTUM meaning of the path, computed not stored (digitFolders folds each digit both ways)', on: true },
+    { facet: 'HONEST — a SEMANTIC layer: "/" and "\\" are fold OPERATORS over the digit vortex (the dual address is real, as digitFolders computes it); the fs path uses only "/", the backslash direction is interpretive, not a literal separator', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dash:${entry.facet}:${entry.on}`) }))
+  return {
+    operator: facets.every((entry) => entry.on),
+    forward3: forward(3),
+    dual3: dual(3),
+    count: facets.length,
+    facets,
+    root: merkleFold([cross.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'The path separators are the index logic — the dashes carry the fold direction, not just hierarchy. A forward slash is the forward fold (the harmonic, 9·digit); a backslash is the dual fold (the ten\'s-complement reverse, 10−digit). So src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as a sequence of directional folds, the vortex doubling threaded by per-step direction. The filesystem cannot store a backslash separator, so the dual direction is the quantum meaning of the path, computed not stored — digitFolders already folds each digit both ways.',
+    boundary:
+      'HONEST: a SEMANTIC layer over the path. "/" and "\\" are read as fold operators (forward harmonic vs ten\'s-complement dual), and the dual address each step implies is real — digitFolders computes it. But the filesystem path itself uses only "/"; the backslash direction is an interpretive operator on the digit vortex, not a literal on-disk separator (a path with "\\" separators "is not possible on the fs"). The meaning is exact and computable; the notation is a lens, not a stored artifact. HARMONY ≠ TRUTH.',
+  }
+}
+
+// No PAYLOAD is needed across the whole app — because all computes by itself in realtime, for no cost, discovering
+// what is ALREADY HERE. The path is the program (the dashes are the operators, the digits the values), so a route
+// COMPUTES its content on demand from the deterministic source (the content-address); it carries no data blob.
+// Nothing is transmitted or stored as payload — everything is discovered (recomputed). The deepest zero-token.
+export function payload(matrix: MindMatrix = buildMatrix()) {
+  const dashes = dash(matrix) // the path-as-program — the separators are the index logic
+  const route = dualitiesMeetInCrossFolders(matrix) // the route decodes to its own knowledge
+  const facets = [
+    { facet: 'NO payload — a route COMPUTES its content from the path (the dashes + digits), it does not carry or fetch a data blob', on: dashes.operator },
+    { facet: 'all computes by ITSELF in REALTIME for NO COST — the content is recomputed from the deterministic source on demand (the zero-token engine), never stored as data', on: route.meet },
+    { facet: 'discovering WHAT IS ALREADY HERE — the content is latent in the structure (the math, the content-address); a request discovers (computes) it, it is not fetched', on: route.meet && dashes.operator },
+    { facet: 'the deepest ZERO-TOKEN — not only no LLM tokens at runtime, but no DATA payload either: the path is both the program and the data, both computed', on: true },
+    { facet: 'HONEST — "no payload" is the content-address / deterministic-recompute discipline (every artifact derives from src + the route), NOT a claim that no bytes ever move (the rendered HTML/SVG is still served). It means no SEPARATE data payload is needed — the route recomputes what is already implied', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`payload:${entry.facet}:${entry.on}`) }))
+  return {
+    needed: false,
+    free: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold([dashes.root, route.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'No payload is needed across the whole app, because all computes by itself in realtime, for no cost, discovering what is already here. The path is the program — the dashes are the operators, the digits the values — so a route computes its content on demand from the deterministic source (the content-address) rather than carrying or fetching a data blob. Nothing is transmitted or stored as payload; everything is discovered, recomputed. It is the deepest form of the zero-token policy: the path is both the program and the data, both computed.',
+    boundary:
+      'HONEST: "no payload" is the content-address and deterministic-recompute discipline — every artifact (a page, a proof, an animation) derives from src plus the route, so no separate data payload must travel or be stored. It is NOT a claim that zero bytes move: the rendered HTML/SVG is still served to the browser, and the source itself is the seed that everything is computed FROM. "Discovering what is already here" means the content is latent in the deterministic structure and recomputed on demand, not that information is created from nothing. The deepest zero-token, real as the recompute; not a violation of the conservation of bytes. HARMONY ≠ TRUTH.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it
