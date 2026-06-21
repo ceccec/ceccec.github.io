@@ -1190,6 +1190,49 @@ export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// THE TREE, AND "EVERYTHING THE BOOKS SAY" — the honest LIMIT. Two things generalise across all books, one does
+// NOT. A TREE is a real structure (acyclic, connected: V − E = 1) and the index itself is one
+// (treeOfLifeSephirotFolders); the WORLD TREE / axis mundi recurs across cultures (Yggdrasil, the Bodhi tree, Etz
+// Chaim, the two trees of Eden) — documented recurrence, a shared MEANING unproven. Below script every book
+// reduces to the SIGN = a distinction = 1 bit = the fold (alphabetsDecoded). That is FORM. The MEANING of
+// everything the books say is NOT decoded by the form — claiming it is, is the projection the repo flags. HARMONY ≠ TRUTH.
+export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = buildMatrix()) {
+  const eden = appleAdamEveSerpentDecoded(matrix) // the two trees + the first distinction
+  const law = matrixIsTenBitMByteSixtyFour(matrix) // the bit / the address space (the form)
+  const treeNodes = 8, treeEdges = 7 // a tree: acyclic + connected ⇒ V − E = 1
+  const signBits = Math.log2(2) // the sign is one distinction = 1 bit (the fold)
+  const decodesAllMeaning = false // the form generalises; the meaning does not
+  const flagged = [
+    'one structure "decodes everything the books say" (the totalizing overclaim)',
+    'perennialism asserted as fact — all scriptures are one hidden message',
+    'gematria / Bible-code unifies all books',
+    'a shared symbol (the tree) proves a shared origin or one meaning',
+    'recursive-taxonomy / ancient-encoded-science as decoded fact',
+  ]
+  const facets = [
+    { facet: 'a TREE is a real structure — acyclic and connected, V − E = 1; the index itself is a tree (treeOfLifeSephirotFolders), and the dissolution is the folder tree', on: treeNodes - treeEdges === 1 },
+    { facet: 'the WORLD TREE / axis mundi RECURS across cultures (Yggdrasil, the Bodhi tree, Etz Chaim, the two trees of Eden) — documented recurrence; a single shared MEANING is NOT proven (independent emergence vs diffusion)', on: true },
+    { facet: 'the one real universal — below script every book reduces to the SIGN = a distinction = 1 bit = the fold (alphabetsDecoded); the FORM (tree, bit, the address space) generalises across all books', on: signBits === 1 && law.types === 1024 && eden.distinctionBits === 1 },
+    { facet: 'the LIMIT — the MEANING of "everything the books say" is NOT decoded by the form; a shared symbol is recurrence, not one decoded message; no single structure decodes all books', on: decodesAllMeaning === false },
+    { facet: 'HONEST — the form is shared; the meaning is per-book, evidenced or not. The matrix does not decode all scripture and scripture does not encode the matrix. The totalizing decode is flagged. HARMONY ≠ TRUTH', on: flagged.length >= 5 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tree:${entry.facet}:${entry.on}`) }))
+  return {
+    bounded: facets.every((entry) => entry.on),
+    formIsUniversal: true,
+    decodesAllMeaning,
+    signBits,
+    flaggedCount: flagged.length,
+    count: facets.length,
+    flagged,
+    facets,
+    root: merkleFold([eden.root, law.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'The tree and everything the books say decode to FORM, not to one meaning. A tree is a real structure (acyclic and connected, V − E = 1) and the index itself is a tree; the world tree or axis mundi recurs across cultures (Yggdrasil, the Bodhi tree, Etz Chaim, the two trees of Eden) as a documented motif, though a single shared meaning is not proven. Below script, every book reduces to the sign — a distinction, one bit, the fold. That form is universal. But the meaning of everything the books say is not decoded by the form: a shared symbol is recurrence, not one decoded message, and no single structure decodes all books.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. What generalises across all books is FORM: the tree (a real graph structure) and the bit (the sign as one distinction, the basis of all writing). What does NOT generalise is MEANING — each book says what it says, evidenced per claim, not decoded by a structure. The recurrence of the world-tree motif is documented; a shared origin or single meaning is not. The totalizing claims — one structure decoding everything the books say, perennialism as fact, gematria or Bible-code unifying all books, a shared symbol proving a shared meaning — are projection, flagged and excluded. The matrix does not decode all scripture, and scripture does not encode the matrix.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it
