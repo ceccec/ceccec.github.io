@@ -881,9 +881,11 @@ export function sample(state: QuantumState, shots = 1024, seed = 'sample'): Reco
 }
 
 // Demo — the Bell pair (|00> + |11>)/√2: H on qubit 0, then CNOT(0→1). Maximally entangled; measuring one
-// bellPair lives in src/0/bell.ts; folded back into the index by the strict barrel rule (enter a folder only
-// through its index — the index may be omitted), so callers route through '../../0', never the internal file.
-export { bellPair } from './bell'
+// bellPair is inlined here (was src/0/bell.ts): src/0 is a DIGIT-kind folder, so a word-named primitive must
+// live IN the digit index, never in a word subfolder (kind-purity). Uses qubits/applyGate/GATES/cnot above.
+export function bellPair() {
+  return cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
+}
 
 // Demo — Grover search: find the one marked item among N = 2^n in ~(π/4)√N iterations. On a REAL machine this
 // is a quadratic speedup; here it is SIMULATED classically with no speedup. Uniform superposition, then repeat
@@ -1310,9 +1312,30 @@ export function rtoffoli(bits: number, control1: number, control2: number, targe
   return (bits & (1 << control1)) !== 0 && (bits & (1 << control2)) !== 0 ? bits ^ (1 << target) : bits
 }
 
-// caStep/caEvolve live in src/0/ca.ts; folded back into the index by the strict barrel rule — callers enter
-// through the index ('../../0'), never the internal file.
-export { caStep, caEvolve } from './ca'
+// caStep/caEvolve inlined here (was src/0/ca.ts): src/0 is a DIGIT-kind folder, so the primitive lives IN the
+// digit index, not in a word subfolder (kind-purity). Rule 110 / Rule 30 elementary CA, used in mind's proofs.
+export function caStep(rule: number, state: readonly number[]): number[] {
+  const n = state.length
+  const result = new Array<number>(n)
+  for (let i = 0; i < n; i++) {
+    const left = state[(i - 1 + n) % n]
+    const center = state[i]
+    const right = state[(i + 1) % n]
+    const index = (left << 2) | (center << 1) | right
+    result[i] = (rule >> index) & 1
+  }
+  return result
+}
+
+export function caEvolve(rule: number, initial: readonly number[], steps: number): number[][] {
+  const history = [initial.slice()]
+  let state = initial.slice()
+  for (let t = 0; t < steps; t++) {
+    state = caStep(rule, state)
+    history.push(state.slice())
+  }
+  return history
+}
 
 // ── Probabilistic process primitives (beside pflip) — the honest model for most decoded domains ─────────
 // A research fleet decoded 18 "aspects of life" and the verify pass found them mostly CLASSICAL, not quantum
@@ -1872,10 +1895,62 @@ export function congruence(a: readonly number[], b: readonly number[]): number {
 
 // Associative memory (neurology): content-addressed recall — the brain's torus map, the project's own model.
 // Store ±1 patterns as a Hopfield weight matrix (Hebbian, zero diagonal); recall descends the energy to the
-// The Hopfield network lives in src/0/hopfield.ts and the grid-cell bump in src/0/bump.ts; both folded back
-// into the index by the strict barrel rule — callers enter through the index ('../../0'), not the internal file.
-export { hopfieldStore, hopfieldEnergy, hopfieldRecall } from './hopfield'
-export { bumpStep, bumpProfile, bumpEvolve } from './bump'
+// The Hopfield network (was src/0/hopfield.ts) and the grid-cell bump (was src/0/bump.ts) are inlined here:
+// src/0 is a DIGIT-kind folder, so these word-named primitives live IN the digit index, not in word subfolders
+// (kind-purity). Hopfield = discrete associative-memory attractor; bump = its continuous twin on a 1D ring.
+export function hopfieldStore(patterns: readonly (readonly number[])[]): number[][] {
+  const N = patterns[0]?.length ?? 0
+  const W = Array.from({ length: N }, () => new Array<number>(N).fill(0))
+  for (const p of patterns) for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) if (i !== j) W[i][j] += (p[i] * p[j]) / N
+  return W
+}
+
+export function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number {
+  let e = 0
+  for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= 0.5 * W[i][j] * s[i] * s[j]
+  return e
+}
+
+export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = 12): { state: number[]; energy: number; iters: number } {
+  let s = probe.slice()
+  let iters = 0
+  for (let t = 0; t < steps; t++) {
+    let changed = false
+    for (let i = 0; i < s.length; i++) {
+      const h = W[i].reduce((acc, w, j) => acc + w * s[j], 0)
+      const ns = h >= 0 ? 1 : -1
+      if (ns !== s[i]) { s[i] = ns; changed = true }
+    }
+    iters++
+    if (!changed) break
+  }
+  return { state: s, energy: hopfieldEnergy(W, s), iters }
+}
+
+// Grid-cell bump attractor on a 1D periodic ring — path integration on a torus (Burak & Fiete 2009; Gardner 2022).
+const BUMP_TWO_PI = 2 * Math.PI
+
+export function bumpStep(theta: number, v: number): number {
+  return ((theta + v) % BUMP_TWO_PI + BUMP_TWO_PI) % BUMP_TWO_PI
+}
+
+export function bumpProfile(theta: number, width: number, N: number): number[] {
+  return Array.from({ length: N }, (_, i) => {
+    const phi = (i / N) * BUMP_TWO_PI
+    const d = Math.min(Math.abs(phi - theta), BUMP_TWO_PI - Math.abs(phi - theta))
+    return Math.exp(-(d * d) / (2 * width * width))
+  })
+}
+
+export function bumpEvolve(theta0: number, velocities: readonly number[]): number[] {
+  const history = [theta0]
+  let theta = theta0
+  for (const v of velocities) {
+    theta = bumpStep(theta, v)
+    history.push(theta)
+  }
+  return history
+}
 
 // ── The genetic code (trinity sciences) — the error-robust 64 = 4³ table ──
 // The standard genetic code: bases U/C/A/G = 0/1/2/3, codon = b1·16 + b2·4 + b3 (b1 the high two bits). The
