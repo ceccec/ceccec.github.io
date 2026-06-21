@@ -1,5 +1,5 @@
 import type { IconSeal } from '../mind/types.ts';
-export declare const dual = "src/icons/quantum";
+export declare const dual = "src/render/icons/quantum";
 export declare const AREA_ICONS: Record<string, string>;
 export declare const AREA_LABELS: Record<string, {
     en: string;

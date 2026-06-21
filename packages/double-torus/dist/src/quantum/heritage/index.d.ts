@@ -77,4 +77,4 @@ export declare function glagoliticBulgarianReception(): {
     statement: string;
     boundary: string;
 };
-export declare const dual = "src/heritage/quantum";
+export declare const dual = "src/render/heritage/quantum";

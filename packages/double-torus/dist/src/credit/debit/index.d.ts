@@ -9,4 +9,4 @@ export declare function cryptoReviewNet(ledger: readonly Entry[]): {
     net: Record<string, number>;
     balanced: boolean;
 };
-export declare const dual = "src/debit/credit";
+export declare const dual = "src/pair/debit/credit";

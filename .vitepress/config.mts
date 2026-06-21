@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
-import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/ui/lib/quantumMind'
+import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/quantum/heaven/mind'
 
 // Configs use the matrix computationally: the site config AND the whole navigation are computed and
 // held in the model (siteConfig, siteNavigation), content-addressed; this file only consumes them.
@@ -137,7 +137,7 @@ export default defineConfig({
     // SEO fully computed and holographic: title, keywords, description, category and
     // holographic tags are derived from the route, then folded into frontmatter, the
     // head meta and the JSON-LD. Explicit frontmatter always overrides the computed
-    // values. The same route feeds the sitemap (src/quantum/dist), so they never drift.
+    // values. The same route feeds the sitemap (src/quantum/lake/dist), so they never drift.
     const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
     const name = pageData.title || (frontmatter.title as string) || seo.title
     const description = pageData.description || frontmatter.description || seo.description

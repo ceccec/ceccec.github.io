@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { join, normalize } from 'node:path'
-import { glagoliticHomeFromEnglish } from '../src/ui/lib/quantumMind'
+import { glagoliticHomeFromEnglish } from '../src/quantum/heaven/mind'
 
 // The Glagolitic root home has no file on disk — it is computed from the English home at build/dev time.
 export function computedPagesPlugin(projectRoot: string) {

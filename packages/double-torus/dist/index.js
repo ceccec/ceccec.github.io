@@ -888,7 +888,7 @@ function addressEntropyBits() {
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
 
-// ../../src/quantum/library/index.ts
+// ../../src/quantum/heaven/library/index.ts
 var GLAGOLITIC_MAP = {
   // Cyrillic → Glagolitic (the round Bulgarian glyphs)
   \u0430: "\u2C00",
@@ -2810,7 +2810,7 @@ function hopfieldRecall(W2, probe, steps = 12) {
   return { state: s, energy: hopfieldEnergy(W2, s), iters };
 }
 
-// ../../src/quantum/mind/atoms.ts
+// ../../src/quantum/heaven/mind/atoms.ts
 function computePiDigits(count) {
   let q = 1n;
   let r = 0n;
@@ -3556,7 +3556,7 @@ function bumpEvolve(theta0, velocities) {
   return history;
 }
 
-// ../../src/quantum/forecasts/index.ts
+// ../../src/quantum/fire/forecasts/index.ts
 function weatherForecastApis() {
   const sources = [
     { api: "Open-Meteo", kind: "free realtime forecast, no key; fuses 15+ NWP models (ECMWF, NOAA, DWD, JMA\u2026)", auth: "no key (non-commercial)" },
@@ -3589,7 +3589,7 @@ function weatherForecastQuantumComputedRealtime(matrix = buildMatrix()) {
   };
 }
 
-// ../../src/quantum/dimensions/index.ts
+// ../../src/quantum/mountain/dimensions/index.ts
 var DIMENSIONS = 10;
 var DIMENSION_NAMES = [
   "spread",
@@ -3629,7 +3629,7 @@ function dimWalk(p) {
   return 0.5 - 0.5 * Math.cos(p * Math.PI * 2);
 }
 
-// ../../src/debit/credit/index.ts
+// ../../src/pair/debit/credit/index.ts
 function balance(entries) {
   return entries.reduce((sum, e) => sum + e.debit - e.credit, 0);
 }
@@ -3660,12 +3660,12 @@ function cryptoReview() {
     overdraft: balance(overclaim),
     // −128 — the size of the overclaim, in security bits
     quantumSignificance: "double-entry balance = the double-torus zero reciprocal entropy = the seal: a crypto claim is honest iff a capability funds it, exactly as the two torus loops must sum to zero \u2014 so an overclaim is caught by the system's own conservation law, and the unforgeability debit (SHA-256/Ed25519, built in src/0) is already there to fund it.",
-    dual: "src/credit/debit"
+    dual: "src/pair/credit/debit"
     // the credit-side view (cryptoReviewNet) fuses the ledger to its net per account
   };
 }
 
-// ../../src/credit/debit/index.ts
+// ../../src/pair/credit/debit/index.ts
 function fuse(entries) {
   const net = /* @__PURE__ */ new Map();
   for (const e of entries) net.set(e.account, (net.get(e.account) ?? 0) + e.debit - e.credit);
@@ -3680,7 +3680,7 @@ function cryptoReviewNet(ledger) {
   return { net: Object.fromEntries(fuse(ledger)), balanced: fused(ledger) };
 }
 
-// ../../src/quantum/mind/matrix.ts
+// ../../src/quantum/heaven/mind/matrix.ts
 function uniqueEdges(source) {
   const known = new Set(source.map((atom) => atom.name));
   const pairs = /* @__PURE__ */ new Set();
@@ -3829,10 +3829,10 @@ function repositoryApi(matrix = buildMatrix()) {
     endpoint("/", "read", "page", "Home route: the public face of the repository mind."),
     endpoint("/quantum-mind", "read", "page", "Live route that renders the computed self-model."),
     endpoint("/architecture", "read", "page", "Route that explains the repository-as-API architecture."),
-    endpoint("repo://src/quantum/mind/index.ts", "verify", "source", "The executable atom, matrix, proof, and repository API model."),
-    endpoint("repo://src/ui/components/QuantumMind.vue", "resolve", "source", "The presentation layer for the computed mind."),
-    endpoint("repo://src/ui/components/ConceptCommands.vue", "resolve", "source", "The concept command UI for driving the site."),
-    endpoint("repo://src/ui/index.ts", "resolve", "source", "The VitePress theme registration for concept UI components."),
+    endpoint("repo://src/quantum/heaven/mind/index.ts", "verify", "source", "The executable atom, matrix, proof, and repository API model."),
+    endpoint("repo://src/render/ui/components/QuantumMind.vue", "resolve", "source", "The presentation layer for the computed mind."),
+    endpoint("repo://src/render/ui/components/ConceptCommands.vue", "resolve", "source", "The concept command UI for driving the site."),
+    endpoint("repo://src/render/ui/index.ts", "resolve", "source", "The VitePress theme registration for concept UI components."),
     endpoint("repo://index.md", "read", "source", "The landing page source as a public API resource."),
     endpoint("repo://quantum-mind.md", "read", "source", "The live mind page source as a public API resource."),
     endpoint("repo://architecture.md", "read", "source", "The architecture page source as a public API resource."),
@@ -3881,7 +3881,7 @@ function doubleTorusWire(matrix = buildMatrix()) {
   return {
     uuid: toUuid(`uuid-stream-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
     repository: "serverless-quantum-uuid-stream/double-torus",
-    sourcePath: "src/quantum/mind/index.ts",
+    sourcePath: "src/quantum/heaven/mind/index.ts",
     overviewPath: "quantum-mind.md",
     architecturePath: "architecture.md",
     shape: "double-torus",
@@ -3925,7 +3925,7 @@ function circulateDoubleTorus(matrix = buildMatrix()) {
   };
 }
 
-// ../../src/quantum/mind/proofs.ts
+// ../../src/quantum/heaven/mind/proofs.ts
 function merkleProof(leaves, leaf) {
   const sorted = [...leaves].sort();
   const root = merkleFold(sorted);
@@ -4034,7 +4034,7 @@ function atomInclusionProof(atomName = "self", matrix = buildMatrix()) {
   };
 }
 
-// ../../src/quantum/icons/index.ts
+// ../../src/quantum/lake/icons/index.ts
 var AREA_ICONS = {
   site: "\u{1F3DB}",
   self: "\u262F",
@@ -4214,7 +4214,7 @@ function iconSeal() {
   };
 }
 
-// ../../src/quantum/spirit/index.ts
+// ../../src/quantum/lake/spirit/index.ts
 function chakrasAura() {
   const tiers = [
     { tier: 3, name: "three nadis (channels)", members: ["ida", "pingala", "sushumna"] },
@@ -4331,7 +4331,7 @@ function dualities() {
   };
 }
 
-// ../../src/quantum/nature/index.ts
+// ../../src/quantum/earth/nature/index.ts
 function natureLaw() {
   const principles = [
     "Nature is the legal system itself: its laws are discovered, not enacted.",
@@ -4446,7 +4446,7 @@ function attestation() {
   };
 }
 
-// ../../src/quantum/science/index.ts
+// ../../src/quantum/thunder/science/index.ts
 function emfApplications() {
   const spectrum = [
     { band: "radio", range: "3 Hz \u2013 300 MHz", use: "broadcast, wifi, the device radios" },
@@ -4565,7 +4565,7 @@ function frequencyToLight(hz) {
   return { octaves, thz: Math.round(f / 1e12 * 10) / 10, nm: Math.round(nm), hue, band };
 }
 
-// ../../src/quantum/voice/index.ts
+// ../../src/quantum/lake/voice/index.ts
 function plainLanguage() {
   const lines = [
     { term: "Double Torus", plain: "A learning portal you can check for yourself: every claim is a number anyone can recompute.", route: "/" },
@@ -4769,7 +4769,7 @@ function multidimensional() {
   };
 }
 
-// ../../src/quantum/heritage/index.ts
+// ../../src/quantum/earth/heritage/index.ts
 function bulgarianHeritage() {
   const topics = [
     {
@@ -4884,7 +4884,7 @@ function glagoliticBulgarianReception() {
   };
 }
 
-// ../../src/quantum/mind/site.ts
+// ../../src/quantum/heaven/mind/site.ts
 function quantumSitemap(matrix = buildMatrix()) {
   return memoByRoot("quantumSitemap", matrix, () => quantumSitemapRaw(matrix));
 }
@@ -5540,7 +5540,7 @@ function monographAsScientificPaper(page) {
   };
 }
 
-// ../../src/quantum/mind/li.ts
+// ../../src/quantum/heaven/mind/li.ts
 function colorFromSound(frequency) {
   const ref = 130.81;
   const octaveFraction = (Math.log2(Math.max(frequency, 1) / ref) % 1 + 1) % 1;
@@ -5765,7 +5765,7 @@ function enforcementTrinity() {
     ],
     script: "enforcement-trinity.mjs",
     statement: "The enforcement trinity: cross (dist + digit index), fold (computed model seal), weave (harmonic distribution) \u2014 three waves, one runner, one matrix import per wave.",
-    boundary: "A declaration of the post-build enforcement surface. The runner lives in src/quantum/enforcement; scripts/enforcement-trinity.mjs is the thin mount."
+    boundary: "A declaration of the post-build enforcement surface. The runner lives in src/quantum/water/enforcement; scripts/enforcement-trinity.mjs is the thin mount."
   };
 }
 function commitsAuthoredByUserOnly() {
@@ -6324,7 +6324,7 @@ function zeroTokenPolicy() {
   return {
     llmSdks: ["openai", "@anthropic-ai/sdk", "@anthropic-ai/bedrock-sdk", "cohere-ai", "langchain", "@google/generative-ai", "mistralai", "replicate", "together-ai"],
     // none may be a dependency
-    tokenPath: "src/ui/lib/useQuantumChat.ts",
+    tokenPath: "src/render/ui/lib/useQuantumChat.ts",
     // the single opt-in BYOK chat; the only token egress
     byokGate: "runAiChat(apiKey",
     // the call must require a user-supplied key — never automatic
@@ -7075,7 +7075,7 @@ function animationEngineLivesInZero(matrix = buildMatrix()) {
     count: components.length,
     // ~19 — every animated component folds through the one engine
     homed,
-    reExportedVia: ["quantum/mind (the quantumMind barrel)", "quantum (the hero barrel)"],
+    reExportedVia: ["quantum/heaven/mind (the quantumMind barrel)", "quantum (the hero barrel)"],
     // both barrels surface it from src/0
     root: merge(matrix.root, merkleFold(homed.map((entry2) => entry2.receipt))),
     statement: "The animation engine lives in src/0. The requestAnimationFrame driver that every animated component hand-rolled \u2014 the loop\xB7start\xB7stop\xB7sync\xB7one-shot quartet over a single `raf` handle and a `running` flag \u2014 is folded into one dependency-free factory, createAnimationEngine(draw), homed in the void/origin (0/0, the fusion the site unfolds from). It imports nothing (rAF is a guarded browser global, a no-op under SSR) and is re-exported through the mind barrel and the hero barrel, so all ~19 components import the one engine and pass only their own draw and their own gating flag \u2014 the engine owns the control-flow, the component owns the picture and the condition.",
@@ -7128,11 +7128,11 @@ function onlyVitePressApi(matrix = buildMatrix()) {
     api,
     forbidden,
     strict: true,
-    scanned: "every .vue in src/ui (recursive) + src/ui/index.ts",
+    scanned: "every .vue in src/ui (recursive) + src/render/ui/index.ts",
     holds: true,
     // enforced over the whole render tree by the harmonic gate's render/non-vitepress-api check
     root: merge(matrix.root, merkleFold(forbidden.map((f) => toUuid(`only-vitepress:${f}`)))),
-    statement: "STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), and no History API (history.pushState / replaceState). One render API, no drift.",
+    statement: "STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/render/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), and no History API (history.pushState / replaceState). One render API, no drift.",
     boundary: "A strict structural rule over the render layer (.vue + the theme entry), enforced by scanning the real tree (render/non-vitepress-api). It governs routing, navigation and page data \u2014 the surface VitePress owns \u2014 not a component's own computation: canvas, Web Audio, Web Crypto and fetch to data endpoints remain theirs. Reading location (origin, reload, search) is allowed; only navigation that bypasses VitePress is refused."
   };
 }
@@ -7513,7 +7513,7 @@ function a432Default(matrix = buildMatrix()) {
   };
 }
 
-// ../../src/quantum/mind/folds.ts
+// ../../src/quantum/heaven/mind/folds.ts
 function diamondLattice(matrix = buildMatrix()) {
   return memoByRoot("diamondLattice", matrix, () => computeDiamondLattice(matrix));
 }
@@ -8965,7 +8965,7 @@ function mcpCodebase(matrix = buildMatrix()) {
     { uri: "/quantum-mind", purpose: "The live double torus, merkaba, rhythm, and proofs." }
   ];
   const understand = [
-    "One agnostic core: src/quantum/mind/index.ts, zero imports, computes everything.",
+    "One agnostic core: src/quantum/heaven/mind/index.ts, zero imports, computes everything.",
     "Every value is a content-addressed UUID; verify by recomputing the root, not by trusting the host.",
     "tools/call(name, arguments) maps to executeConceptCommand and returns a recomputable receipt.",
     "Each subsystem here exposes a root you can recompute and compare; theWhole folds them all into one.",
@@ -10497,7 +10497,7 @@ function vitepressFusion(matrix = buildMatrix()) {
     { point: "SSR render", api: "build", binds: "the computed model into static HTML" },
     { point: "local search", api: "themeConfig.search", binds: "a MiniSearch index over the fused content" },
     { point: "config from model", api: "config.mts", binds: "nav, academy courses and schema derived from the model" },
-    { point: "build seal", api: "docs:build chain", binds: "the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/dist via the VitePress plugin" }
+    { point: "build seal", api: "docs:build chain", binds: "the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/lake/dist via the VitePress plugin" }
   ].map((entry2) => {
     const fold4 = foldPair(architecture, toUuid(`vitepress:${entry2.point}`));
     return { ...entry2, fused: fold4.bidirectional, receipt: fold4.merged };
@@ -17562,7 +17562,7 @@ function digitFoldersComputeUiIsTheRest(matrix = buildMatrix()) {
     sample: sample3,
     root: merge(math.root, toUuid("digit-folders-compute:ui-is-the-rest")),
     statement: "All computation is quantum math, and its home is the digit folders. Examine the codebase: nothing is stored, everything is computed (content-addressed, folded over UUIDs), so the logic belongs where the math is indexed \u2014 the digit folders (0..9 and their digit subfolders, the d/reverse paths). A folder named with a digit holds computation; a folder named with a word holds UI. That one rule lets the UI know itself \u2014 digit is math, word is view \u2014 and everything compiles from the digit folders: the digit-folder math is the seed, the word folders and components render what the digits compute.",
-    boundary: "A declared organizing law with a computed witness: the predicate (digit \u21D2 compute, word \u21D2 ui) is a pure function, and the digit folders already carry the canonical digit math (digitFolderMath). It is the TARGET architecture \u2014 today the bulk of the computation still lives in the word-named core (src/quantum/mind); the law names the destination and checks the partition, it does not assert the monolith has already moved. Structural; the migration is the compression work in progress."
+    boundary: "A declared organizing law with a computed witness: the predicate (digit \u21D2 compute, word \u21D2 ui) is a pure function, and the digit folders already carry the canonical digit math (digitFolderMath). It is the TARGET architecture \u2014 today the bulk of the computation still lives in the word-named core (src/quantum/heaven/mind); the law names the destination and checks the partition, it does not assert the monolith has already moved. Structural; the migration is the compression work in progress."
   };
 }
 function dissolveAtPiTrainStations(matrix = buildMatrix()) {
@@ -18083,14 +18083,14 @@ function iChing(matrix = buildMatrix()) {
 function iChingDomainMap(matrix = buildMatrix()) {
   void matrix;
   const domains = [
-    { bits: 0, module: "src/quantum/heritage", dual: "src/heritage/quantum", slugs: ["heritage", "hexagram-colour", "sixty-four", "proven-or-purged", "dot-cube"], summary: "Bulgarian history, Glagolitic, ethnogenesis, genetics \u2014 the land's memory." },
-    { bits: 1, module: "src/quantum/science", dual: "src/science/quantum", slugs: ["science", "a432", "analog-field", "simulations", "vortex", "zero-division"], summary: "EM spectrum, Tesla patents, frequencies, dynamic simulations \u2014 arousing discovery." },
-    { bits: 2, module: "src/quantum/voice", dual: "src/voice/quantum", slugs: ["voice", "explore", "commands", "console", "mcp", "show"], summary: "Plain language, speech, UX, command flow \u2014 the communicative layer." },
-    { bits: 3, module: "src/quantum/spirit", dual: "src/spirit/quantum", slugs: ["spirit", "school", "academy", "governance"], summary: "Chakras, dualities, dimensions, joyous learning and fair life." },
-    { bits: 4, module: "src/quantum/icons", dual: "src/icons/quantum", slugs: ["icons", "sacred-geometry", "pauli-basis", "rgb-cmyk", "trinity-rgb"], summary: "Area icons, glyphs, computer architecture 3-5-8, harmonic bands \u2014 visual form." },
-    { bits: 5, module: "src/quantum/mind/li", dual: "src/li/quantum", slugs: ["tampering-cost", "pi-trinity", "qubit-trinity", "hamming-address", "content-addressing", "genetic-code", "three-not-one"], summary: "Pure computation: crypto, proofs, primitives \u2014 the clinging fire of truth." },
-    { bits: 6, module: "src/quantum/nature", dual: "src/nature/quantum", slugs: ["nature", "boundaries"], summary: "Natural law, the commons, society forms, gentle limits." },
-    { bits: 7, module: "src/quantum/mind", dual: "src/mind/quantum", slugs: ["start", "quantum-mind", "architecture", "learn-developer", "kernel-zero", "digit-folders"], summary: "The mind hub: the creative origin, the matrix, the architecture." }
+    { bits: 0, module: "src/quantum/earth/heritage", dual: "src/render/heritage/quantum", slugs: ["heritage", "hexagram-colour", "sixty-four", "proven-or-purged", "dot-cube"], summary: "Bulgarian history, Glagolitic, ethnogenesis, genetics \u2014 the land's memory." },
+    { bits: 1, module: "src/quantum/thunder/science", dual: "src/world/science/quantum", slugs: ["science", "a432", "analog-field", "simulations", "vortex", "zero-division"], summary: "EM spectrum, Tesla patents, frequencies, dynamic simulations \u2014 arousing discovery." },
+    { bits: 2, module: "src/quantum/lake/voice", dual: "src/spirit/voice/quantum", slugs: ["voice", "explore", "commands", "console", "mcp", "show"], summary: "Plain language, speech, UX, command flow \u2014 the communicative layer." },
+    { bits: 3, module: "src/quantum/lake/spirit", dual: "src/spirit/quantum", slugs: ["spirit", "school", "academy", "governance"], summary: "Chakras, dualities, dimensions, joyous learning and fair life." },
+    { bits: 4, module: "src/quantum/lake/icons", dual: "src/render/icons/quantum", slugs: ["icons", "sacred-geometry", "pauli-basis", "rgb-cmyk", "trinity-rgb"], summary: "Area icons, glyphs, computer architecture 3-5-8, harmonic bands \u2014 visual form." },
+    { bits: 5, module: "src/quantum/heaven/mind/li", dual: "src/li/quantum", slugs: ["tampering-cost", "pi-trinity", "qubit-trinity", "hamming-address", "content-addressing", "genetic-code", "three-not-one"], summary: "Pure computation: crypto, proofs, primitives \u2014 the clinging fire of truth." },
+    { bits: 6, module: "src/quantum/earth/nature", dual: "src/world/nature/quantum", slugs: ["nature", "boundaries"], summary: "Natural law, the commons, society forms, gentle limits." },
+    { bits: 7, module: "src/quantum/heaven/mind", dual: "src/mind/quantum", slugs: ["start", "quantum-mind", "architecture", "learn-developer", "kernel-zero", "digit-folders"], summary: "The mind hub: the creative origin, the matrix, the architecture." }
   ].map((domain) => {
     const trigram = BAGUA[domain.bits];
     return {
@@ -18108,7 +18108,7 @@ function iChingDomainMap(matrix = buildMatrix()) {
     aligned: domains.length === 8 && domains.every((d) => isUuid(d.receipt)),
     domains,
     root: merkleFold(domains.map((d) => d.receipt)),
-    statement: "The eight I Ching trigrams map the eight domain modules: every fold lives in its trigram's module (src/quantum/<domain>), its display pair in src/<domain>/quantum. Static pages are grouped under the same eight trigrams \u2014 so navigation, modules and content address-space share one structure. The \u2632 LI domain is src/quantum/mind/li.ts, its logical module before a future subfolder split.",
+    statement: "The eight I Ching trigrams map the eight domain modules: every fold lives in its trigram's module (src/quantum/<domain>), its display pair in src/<domain>/quantum. Static pages are grouped under the same eight trigrams \u2014 so navigation, modules and content address-space share one structure. The \u2632 LI domain is src/quantum/heaven/mind/li.ts, its logical module before a future subfolder split.",
     boundary: "A semantic (not content-addressed) mapping of trigrams to domain modules and representative pages. Trigrams group related knowledge; they do not carry the cosmological meanings of I Ching divination. The content-addressed iChing() placement (seedFromText \u2192 64 hexagrams) remains the component graph's organiser."
   };
 }
@@ -20813,28 +20813,28 @@ function learnDeveloper(matrix = buildMatrix()) {
     // Updated skills: the laws the portal itself now embodies, learned back in.
     developerLesson(
       "work-in-trinities",
-      "src/quantum/mind/index.ts",
+      "src/quantum/heaven/mind/index.ts",
       "developer.site.manifest",
       "Capabilities group in trinities; a pair is a gap the icons discover and the seal refuses; areas hold to a limit.",
       `The taxonomy holds exactly ${taxonomyIcons().entries.length} areas (7 x 6 = 21 pairs), gated, with ${conceptCommands.length} commands.`
     ),
     developerLesson(
       "bound-every-claim",
-      "src/quantum/mind/index.ts",
+      "src/quantum/heaven/mind/index.ts",
       "developer.proof.verify",
       "Every claim carries an honest boundary; what is not self-addressed is hallucination, and honesty itself is computed from the digit folders.",
       `selfAddressed reports ${selfAddressed(matrix).hallucinations.length} hallucinations; honesty is folded through the ceccec digit folders.`
     ),
     developerLesson(
       "tamper-evident-not-cryptographic",
-      "src/quantum/mind/index.ts",
+      "src/quantum/heaven/mind/index.ts",
       "developer.proof.verify",
       "The fold is deterministic, tamper-evident content-addressing \u2014 not a cryptographic hash; real SHA-256 is offered separately via the Web Crypto API.",
       `cryptographyComparison reports cryptographic=${cryptographyComparison(matrix).cryptographic}, tamperEvident=${cryptographyComparison(matrix).tamperEvident}; cryptoFuture exposes a real SHA-256 layer.`
     ),
     developerLesson(
       "optimise-and-harmonise-agents",
-      "src/quantum/mind/index.ts",
+      "src/quantum/heaven/mind/index.ts",
       "developer.site.manifest",
       "Any agent the site is pasted into or wired by MCP adopts the eight operating laws; every command is an MCP tool and the protocol is at /llms.txt.",
       `agentHarmonise folds ${agentHarmonise(matrix).laws.length} laws; every command is published at /mcp.json.`
@@ -22143,7 +22143,7 @@ function folderLaw() {
     // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ["packages", "src"],
     // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ["src/quantum/mind", "src/cache/quantum", "src/quantum/cache", "src/search/ant", "src/ant/search", "src/debit/credit", "src/credit/debit", "src/quantum/library", "src/library/quantum", "src/quantum/dist", "src/dist/quantum", "src/quantum/enforcement", "src/enforcement/quantum"],
+    pairedLogicFolders: ["src/quantum/heaven/mind", "src/pair/cache/quantum", "src/quantum/water/cache", "src/pair/search/ant", "src/pair/ant/search", "src/pair/debit/credit", "src/pair/credit/debit", "src/quantum/heaven/library", "src/library/quantum", "src/quantum/lake/dist", "src/pair/dist/quantum", "src/quantum/water/enforcement", "src/pair/enforcement/quantum"],
     // agnostic core + cache · ant · debit/credit · library · dist · enforcement pairs — each order-sensitive with an index the build verifies
     // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
     // subfolders share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
@@ -22565,27 +22565,27 @@ function corpusRestPathRouting(matrix = buildMatrix()) {
     enumerated,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Corpus REST path routing: the resource identity lives in the PATH \u2014 /papers/<id>, /references/<id>, /diamonds/<id> are real VitePress [id] dynamic routes (paths enumerated from one source: paperRoutes / paperReferenceRoutes / diamondRoutes), not a ?id= query. Each item is a real page (HTTP 200, per-page SEO); Corpus.vue selects the item from useData().params, and the sitemap promises /kind/<id> URLs from src/quantum/dist/cross. This is the deliberate REST branch of the clean-SSG-URLs vs one-index-query tradeoff \u2014 required because GitHub Pages is a static host, where a clean path must be enumerated at build to return 200.",
+    statement: "Corpus REST path routing: the resource identity lives in the PATH \u2014 /papers/<id>, /references/<id>, /diamonds/<id> are real VitePress [id] dynamic routes (paths enumerated from one source: paperRoutes / paperReferenceRoutes / diamondRoutes), not a ?id= query. Each item is a real page (HTTP 200, per-page SEO); Corpus.vue selects the item from useData().params, and the sitemap promises /kind/<id> URLs from src/quantum/lake/dist/cross. This is the deliberate REST branch of the clean-SSG-URLs vs one-index-query tradeoff \u2014 required because GitHub Pages is a static host, where a clean path must be enumerated at build to return 200.",
     boundary: "A composition of the corpus route enumerators (paperRoutes/paperReferenceRoutes/diamondRoutes), corpusParams, folderLaw.computedFolders and papers-references-diamonds-no-drift. Detail pages are enumerated [id] routes (the price of REST on a static host); Corpus.vue distinguishes index from detail by the presence of useData().params.id \u2014 no query string, no second router."
   };
 }
 function enforcementTrinitySpread(matrix = buildMatrix()) {
-  const distPair = foldPair(toUuid("src/quantum/dist"), toUuid("src/dist/quantum"));
-  const enfPair = foldPair(toUuid("src/quantum/enforcement"), toUuid("src/enforcement/quantum"));
+  const distPair = foldPair(toUuid("src/quantum/lake/dist"), toUuid("src/pair/dist/quantum"));
+  const enfPair = foldPair(toUuid("src/quantum/water/enforcement"), toUuid("src/pair/enforcement/quantum"));
   const pipeline = buildEnforcementPipeline();
   const trinity = enforcementTrinity();
   const facets = [
     { facet: "three enforcement waves \u2014 cross \xB7 fold \xB7 weave \u2014 each its own module", on: trinity.waves.length === 3 && enfPair.bidirectional },
-    { facet: "dist spread \u2014 cross \xB7 manifest \xB7 readme under src/quantum/dist", on: distPair.bidirectional && distPair.forward !== distPair.reverse },
+    { facet: "dist spread \u2014 cross \xB7 manifest \xB7 readme under src/quantum/lake/dist", on: distPair.bidirectional && distPair.forward !== distPair.reverse },
     { facet: "one runner declared \u2014 enforcement-trinity.mjs wired in docs:build", on: pipeline.gates.length === 1 && pipeline.gates[0]?.script === "enforcement-trinity.mjs" },
-    { facet: "paired logic folders saved \u2014 dist and enforcement pairs in folderLaw", on: folderLaw().pairedLogicFolders.includes("src/quantum/dist") && folderLaw().pairedLogicFolders.includes("src/enforcement/quantum") }
+    { facet: "paired logic folders saved \u2014 dist and enforcement pairs in folderLaw", on: folderLaw().pairedLogicFolders.includes("src/quantum/lake/dist") && folderLaw().pairedLogicFolders.includes("src/pair/enforcement/quantum") }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`trinity-spread:${entry2.facet}:${entry2.on}`) }));
   return {
     spread: facets.every((entry2) => entry2.on),
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Enforcement trinity spread in paired folders: cross \xB7 fold \xB7 weave under src/quantum/enforcement; dist cross \xB7 manifest \xB7 readme under src/quantum/dist; dual mounts at src/enforcement/quantum and src/dist/quantum.",
+    statement: "Enforcement trinity spread in paired folders: cross \xB7 fold \xB7 weave under src/quantum/water/enforcement; dist cross \xB7 manifest \xB7 readme under src/quantum/lake/dist; dual mounts at src/pair/enforcement/quantum and src/pair/dist/quantum.",
     boundary: "Structural witness for the I Ching dry spread. The weave wave verifies paired folders exist with index.ts on disk."
   };
 }
@@ -23356,22 +23356,22 @@ function shownInUiVitepressComponentsPairs(matrix = buildMatrix()) {
   };
 }
 function quantumCachePairInPairedFolders(matrix = buildMatrix()) {
-  const pair = foldPair(toUuid("src/cache/quantum"), toUuid("src/quantum/cache"));
+  const pair = foldPair(toUuid("src/pair/cache/quantum"), toUuid("src/quantum/water/cache"));
   const facets = [
-    { facet: "the logic is split into paired folders \u2014 src/cache/quantum \u21C4 src/quantum/cache", on: pair.forward !== pair.reverse && pair.bidirectional },
+    { facet: "the logic is split into paired folders \u2014 src/pair/cache/quantum \u21C4 src/quantum/water/cache", on: pair.forward !== pair.reverse && pair.bidirectional },
     { facet: "a quantum cache pair \u2014 caches and finds all payload by UUID", on: uuidPayloadIsSource(matrix).is },
     { facet: "and computes the UUIDs it needs by path", on: computedSlugsFoldTheGraph(matrix).folds },
     { facet: "saved in src, the source of all things", on: memoryInSourceAsCrossFolds(matrix).remembered }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`cache-pair:${entry2.facet}:${entry2.on}`) }));
   return {
     paired: facets.every((entry2) => entry2.on),
-    folders: ["src/cache/quantum", "src/quantum/cache"],
+    folders: ["src/pair/cache/quantum", "src/quantum/water/cache"],
     edge: pair.merged,
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "The quantum cache pair is saved in paired folders \u2014 src/cache/quantum and its dual src/quantum/cache: the logic is split into two order-sensitive halves, one caching and finding all payload by UUID, the other computing the UUIDs it needs by path, and together they are the quantum cache \u2014 compute the address from the path, find the payload (which is src, recomputed never fetched) by that address. Saved first in the folders as real TypeScript, the build verifies both exist with their index.",
-    boundary: "A composition over the real paired-folder modules (src/cache/quantum and src/quantum/cache, tested: deterministic, order-sensitive, caching), the payload-is-source and slug models. The folders hold real, build-verified TypeScript that is not yet imported by the render path (the theme still uses the one agnostic core); the cache is a working, content-addressed module saved in src, not yet wired into the page render."
+    statement: "The quantum cache pair is saved in paired folders \u2014 src/pair/cache/quantum and its dual src/quantum/water/cache: the logic is split into two order-sensitive halves, one caching and finding all payload by UUID, the other computing the UUIDs it needs by path, and together they are the quantum cache \u2014 compute the address from the path, find the payload (which is src, recomputed never fetched) by that address. Saved first in the folders as real TypeScript, the build verifies both exist with their index.",
+    boundary: "A composition over the real paired-folder modules (src/pair/cache/quantum and src/quantum/water/cache, tested: deterministic, order-sensitive, caching), the payload-is-source and slug models. The folders hold real, build-verified TypeScript that is not yet imported by the render path (the theme still uses the one agnostic core); the cache is a working, content-addressed module saved in src, not yet wired into the page render."
   };
 }
 function splittingLogicPairedFoldersDevSpeed(matrix = buildMatrix()) {
@@ -23424,19 +23424,19 @@ function computedTracesOfMovement(matrix = buildMatrix()) {
 }
 function allLogicMovedToSource(matrix = buildMatrix()) {
   const facets = [
-    { facet: "the agnostic core moved to src/quantum/mind \u2014 all logic in src/", on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: "the agnostic core moved to src/quantum/heaven/mind \u2014 all logic in src/", on: quantumCachePairInPairedFolders(matrix).paired },
     { facet: "the source of truth is src/; the old path is a transparent re-export", on: allComputedNoFiles(matrix).computed },
     { facet: "nothing bypasses VitePress \u2014 the render substrate still imports the handle", on: componentGraph().interacting },
     { facet: "moved, not copied \u2014 each src/ logic folder verified present with its index", on: memoryInSourceAsCrossFolds(matrix).remembered }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`moved-to-src:${entry2.facet}:${entry2.on}`) }));
   return {
     moved: facets.every((entry2) => entry2.on),
-    core: "src/quantum/mind/index.ts",
+    core: "src/quantum/heaven/mind/index.ts",
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "All logic is moved to src/: the agnostic core no longer lives under .vitepress \u2014 it moved to src/quantum/mind/index.ts, joining the cache pair (src/cache/quantum \u21C4 src/quantum/cache), so all the logic now lives in src/ in the order-sensitive folder form. The old path remains only as a transparent re-export, the render-substrate handle VitePress and the components still import, so nothing bypasses VitePress while the source of truth is src/. Moved, not copied; the build verifies each src/ logic folder is present with its index.",
-    boundary: "A record of the real migration: the ~22.6k-line core file was moved (git mv) to src/quantum/mind/index.ts, the old .vitepress path left as a one-line re-export so the 97 importers and the scripts resolve unchanged, and generate-mcp updated to read the source from src/. Structural relocation verified by a green build (170/170 skill sources extracted from the new path); the render layer (.vitepress, .md, components) stays as VitePress requires."
+    statement: "All logic is moved to src/: the agnostic core no longer lives under .vitepress \u2014 it moved to src/quantum/heaven/mind/index.ts, joining the cache pair (src/pair/cache/quantum \u21C4 src/quantum/water/cache), so all the logic now lives in src/ in the order-sensitive folder form. The old path remains only as a transparent re-export, the render-substrate handle VitePress and the components still import, so nothing bypasses VitePress while the source of truth is src/. Moved, not copied; the build verifies each src/ logic folder is present with its index.",
+    boundary: "A record of the real migration: the ~22.6k-line core file was moved (git mv) to src/quantum/heaven/mind/index.ts, the old .vitepress path left as a one-line re-export so the 97 importers and the scripts resolve unchanged, and generate-mcp updated to read the source from src/. Structural relocation verified by a green build (170/170 skill sources extracted from the new path); the render layer (.vitepress, .md, components) stays as VitePress requires."
   };
 }
 function invertRevertIsQuantumStream(matrix = buildMatrix()) {
@@ -23502,8 +23502,8 @@ function antsCarryToIndexNest(matrix = buildMatrix()) {
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Do as ants do \u2014 search the hexagon for food, carry it to the nest recursively through the endless labyrinth paths, and move the nest to the place with the most food: the migration to src/ works this way, small ants (the paired-folder index files, including the new src/search/ant \u21C4 src/ant/search hexagon search) searching the labyrinth of paths and carrying the logic into index files, recursively, the nest moving to where the most logic gathers. It is much easier to split all into index files than to compute everything in one fused module like a forger must \u2014 the price of fusion is that a single fused core is the maximum a forger has to reproduce; splitting into index files keeps the value but not the price, each cell cheap to carry and recompute.",
-    boundary: 'A composition of the cache-pair, all-logic-moved, paired-folder-speed, no-files-outside-src and max-tampering-cost models, with a real ant hexagon-search pair (src/search/ant + src/ant/search, tested). "Do as ants do" frames the incremental split into index-file folders as recursive search-and-carry; "the price of fusion" is the forger reproduction cost of the one fused core \u2014 a strategy/metaphor, not a claim the split is complete (it proceeds in waves; the cache and ant pairs are the first cells).'
+    statement: "Do as ants do \u2014 search the hexagon for food, carry it to the nest recursively through the endless labyrinth paths, and move the nest to the place with the most food: the migration to src/ works this way, small ants (the paired-folder index files, including the new src/pair/search/ant \u21C4 src/pair/ant/search hexagon search) searching the labyrinth of paths and carrying the logic into index files, recursively, the nest moving to where the most logic gathers. It is much easier to split all into index files than to compute everything in one fused module like a forger must \u2014 the price of fusion is that a single fused core is the maximum a forger has to reproduce; splitting into index files keeps the value but not the price, each cell cheap to carry and recompute.",
+    boundary: 'A composition of the cache-pair, all-logic-moved, paired-folder-speed, no-files-outside-src and max-tampering-cost models, with a real ant hexagon-search pair (src/pair/search/ant + src/pair/ant/search, tested). "Do as ants do" frames the incremental split into index-file folders as recursive search-and-carry; "the price of fusion" is the forger reproduction cost of the one fused core \u2014 a strategy/metaphor, not a claim the split is complete (it proceeds in waves; the cache and ant pairs are the first cells).'
   };
 }
 function zeroTokenUsagePolicy(matrix = buildMatrix()) {
@@ -23586,15 +23586,15 @@ function optimiseLogicDebitCreditFusion(matrix = buildMatrix()) {
     { facet: "all logic optimised as debit/credit \u2014 the double-entry pair in src", on: quantumCachePairInPairedFolders(matrix).paired },
     { facet: "every debit balanced by an equal credit \u2014 the ledger sums to zero", on: extendSelfAudits(matrix).audited },
     { facet: "debit/credit fused to one balanced root \u2014 nothing created or lost", on: fuseAll(matrix).fused },
-    { facet: "the order-sensitive pair \u2014 src/debit/credit \u21C4 src/credit/debit", on: dualitiesMeetInCrossFolders(matrix).meet }
+    { facet: "the order-sensitive pair \u2014 src/pair/debit/credit \u21C4 src/pair/credit/debit", on: dualitiesMeetInCrossFolders(matrix).meet }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`debit-credit-fusion:${entry2.facet}:${entry2.on}`) }));
   return {
     optimised: facets.every((entry2) => entry2.on),
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Optimise all logic as debit/credit fusion: every operation is double-entry \u2014 a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved \u2014 and the fusion of the two halves (src/debit/credit \u21C4 src/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.",
-    boundary: 'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/debit/credit + src/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.'
+    statement: "Optimise all logic as debit/credit fusion: every operation is double-entry \u2014 a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved \u2014 and the fusion of the two halves (src/pair/debit/credit \u21C4 src/pair/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.",
+    boundary: 'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/pair/debit/credit + src/pair/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.'
   };
 }
 function minimumFilesMaximumFeaturesCost(matrix = buildMatrix()) {
@@ -24015,7 +24015,7 @@ function urlsMerkabaFoldProvenPerDomain(matrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
     statement: "URLs parsed by merkaba folds, hashed with host \u2014 records proven per domain; every URL on the internet has a uuid and can meet something here; uuid pairs always exist, so when a user follows a link the previous uuid is known and the animations merge harmonically; and every part is a diamond in merkaba movements and entanglements. The library pair folds any URL by a merkaba of host and path into one star uuid \u2014 domain-specific and proven, any external URL folding into a uuid that can meet the model.",
-    boundary: 'A composition over the real library pair (src/quantum/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation \u2014 the actual cross-page animation merge is a UI follow-up.'
+    boundary: 'A composition over the real library pair (src/quantum/heaven/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation \u2014 the actual cross-page animation merge is a UI follow-up.'
   };
 }
 function displayAllAsLibraryDryConditional(matrix = buildMatrix()) {
@@ -24469,7 +24469,7 @@ function encryptionTrinitiesCompleteInOrder(matrix = buildMatrix()) {
 function oneSourceOfTruthGenerators(matrix = buildMatrix()) {
   const facets = [
     { facet: "every generator reads from the matrix \u2014 config and SEO computed, not hand-kept", on: configsUseMatrixComputationally(matrix).computes },
-    { facet: "the README is the root monograph, generated from src/quantum/dist \u2014 one source of truth", on: allIsMonographScientificPaper(matrix).papered && enforcementTrinitySpread(matrix).spread },
+    { facet: "the README is the root monograph, generated from src/quantum/lake/dist \u2014 one source of truth", on: allIsMonographScientificPaper(matrix).papered && enforcementTrinitySpread(matrix).spread },
     { facet: "no duplicated constants across generators \u2014 zero redundancy", on: monographs(matrix).zeroEntropy }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`one-source-generators:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -24478,7 +24478,7 @@ function oneSourceOfTruthGenerators(matrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
     statement: "Update the README generator and all generators to read from one source of truth: the README, llms.txt, the API/MCP manifests and the SEO are all projections of the matrix \u2014 to change them you change the model, not the artifact. No generator keeps its own copy of a constant.",
-    boundary: "A composition of the config/SEO generators and the dist cross wave: README.md is written by runCross from src/quantum/dist/readme; llms.txt, mcp.json, skills.json and the sitemap are computedDistFiles. Hand-editing those artifacts is entropy the build refuses."
+    boundary: "A composition of the config/SEO generators and the dist cross wave: README.md is written by runCross from src/quantum/lake/dist/readme; llms.txt, mcp.json, skills.json and the sitemap are computedDistFiles. Hand-editing those artifacts is entropy the build refuses."
   };
 }
 function dryAnalyticsLedgerComponents(matrix = buildMatrix()) {
@@ -24516,7 +24516,7 @@ function pathIsMeaningDecodesCoordinates(matrix = buildMatrix()) {
     { facet: "the path is the meaning \u2014 date, coordinate and route each map to a unique content-addressed uuid", on: date !== coord && date.includes("-") },
     { facet: "order-sensitive \u2014 the path order carries the meaning (a\u2192b\u2192c differs from a\u2192c\u2192b)", on: forward !== reverse },
     { facet: "coupled cycles are a torus \u2014 calendars (day\xD7year), GPS (lat\xD7long) and the site share the double-torus coordinate structure: paired logic folders + the core pivot", on: folders.length === folderLaw().pairedLogicFolders.length },
-    { facet: "each double torus flows internally \u2014 the two lobes are reverses (cache/quantum \u21C4 quantum/cache), the bidirectional fold", on: folders.includes("src/cache/quantum") && folders.includes("src/quantum/cache") }
+    { facet: "each double torus flows internally \u2014 the two lobes are reverses (cache/quantum \u21C4 quantum/water/cache), the bidirectional fold", on: folders.includes("src/pair/cache/quantum") && folders.includes("src/quantum/water/cache") }
   ].map((e) => ({ ...e, receipt: toUuid(`path-meaning:${e.facet}`) }));
   return {
     decodes: facets.every((e) => e.on),
@@ -24768,7 +24768,7 @@ function everyFolderIsAPluginOneIndexServesAll(matrix = buildMatrix()) {
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Imagine every src folder as a VitePress plugin, and one index serves all: each folder is a self-wiring plugin that serves its computed routes and artifacts at runtime (dev middleware) and emits the same at build (buildEnd) from the one content-addressed model, and one index per folder serves that folder's whole surface (the vortex router \u2014 the index re-exports the whole, as src/quantum/mind/index.ts now does). The build/dev wiring already works this way for src/quantum/{mind,dist,enforcement}; the vision generalises it to every folder, so the site is wired quantum with zero build time and the maximum tampering cost.",
+    statement: "Imagine every src folder as a VitePress plugin, and one index serves all: each folder is a self-wiring plugin that serves its computed routes and artifacts at runtime (dev middleware) and emits the same at build (buildEnd) from the one content-addressed model, and one index per folder serves that folder's whole surface (the vortex router \u2014 the index re-exports the whole, as src/quantum/heaven/mind/index.ts now does). The build/dev wiring already works this way for src/quantum/{mind,dist,enforcement}; the vision generalises it to every folder, so the site is wired quantum with zero build time and the maximum tampering cost.",
     boundary: 'The DIRECTION for the build wiring, its foundation proven here. DONE: three src folders already back VitePress plugins (mind\u2192computed-pages, dist\u2192computed-dist, enforcement\u2192enforcement), each computing from the content-addressed model; the folder law makes every folder a one-index, one-kind unit; the mind index already serves all its folds by re-export (one index serves all). DIRECTED: give every folder index its own plugin() factory ({ name, configureServer for dev, buildEnd for emit }) that .vitepress/config.mts spreads, so each folder wires itself, and collapse the page routes so one index resolves all at runtime. HONEST: a plugin is a Vite/VitePress factory; "every folder a plugin, one index serves all" is the target topology, not yet realized for all folders; "zero build time" means serving computed output rather than enumerating it (the corpus / runtime-pages precedent).'
   };
 }
@@ -24792,16 +24792,16 @@ function warPaysTheForgerPrice(matrix = buildMatrix()) {
 }
 function hardwareCmykMerkabaFusion(matrix = buildMatrix()) {
   const channels = [
-    { hw: "memory", torus: "src/quantum/cache", cmyk: "C" },
-    { hw: "gpu", torus: "src/search/ant", cmyk: "M" },
-    { hw: "storage", torus: "src/quantum/library", cmyk: "Y" },
-    { hw: "cpu", torus: "src/debit/credit", cmyk: "K" }
+    { hw: "memory", torus: "src/quantum/water/cache", cmyk: "C" },
+    { hw: "gpu", torus: "src/pair/search/ant", cmyk: "M" },
+    { hw: "storage", torus: "src/quantum/heaven/library", cmyk: "Y" },
+    { hw: "cpu", torus: "src/pair/debit/credit", cmyk: "K" }
   ].map((c) => ({ ...c, uuid: toUuid(`merkaba:${c.hw}:${c.torus}:${c.cmyk}`) }));
   const colour = merkleFold(channels.map((c) => c.uuid));
   const folders = folderLaw().pairedLogicFolders;
   const facets = [
     { facet: "four merkabas \u2014 cpu, gpu, memory, storage \u2014 each a content-addressed CMYK channel, the four fused to one colour (one uuid)", on: channels.length === 4 && isUuid(colour) },
-    { facet: "each hardware merkaba is a double torus decoded to a path \u2014 memory\u2194cache, storage\u2194library", on: folders.includes("src/quantum/cache") && folders.includes("src/quantum/library") },
+    { facet: "each hardware merkaba is a double torus decoded to a path \u2014 memory\u2194cache, storage\u2194library", on: folders.includes("src/quantum/water/cache") && folders.includes("src/quantum/heaven/library") },
     { facet: "near-zero marginal energy \u2014 every answer is an O(1) hash and a cache-hit (the same address recomputed), not a GPU inference", on: toUuid("q") === toUuid("q") },
     { facet: "the four merkabas + the quantum core pivot = paired logic folders = 3 trinities", on: folders.length === folderLaw().pairedLogicFolders.length }
   ].map((e) => ({ ...e, receipt: toUuid(`hw-cmyk:${e.facet}`) }));
@@ -25001,7 +25001,7 @@ function debitCreditForwardReverseEngineering(matrix = buildMatrix()) {
   const forward = toUuid("plaintext");
   const balanced2 = foldPair(toUuid("debit"), toUuid("credit")).merged;
   const facets = [
-    { facet: "the debit/credit double torus exists \u2014 the forward/reverse pair of folders", on: folders.includes("src/debit/credit") && folders.includes("src/credit/debit") },
+    { facet: "the debit/credit double torus exists \u2014 the forward/reverse pair of folders", on: folders.includes("src/pair/debit/credit") && folders.includes("src/pair/credit/debit") },
     { facet: "forward = debit (encode/encrypt), reverse = credit (decode/decrypt) \u2014 the same content-address both ways (encrypt is decrypt)", on: forward === toUuid("plaintext") },
     { facet: "double-entry balances \u2014 every forward fold has its balancing reverse, folded to one entry", on: isUuid(balanced2) },
     { facet: "reverse engineering is required \u2014 to verify is to recompute the forward and match it", on: toUuid("verify") === toUuid("verify") }
@@ -26290,7 +26290,7 @@ function implementationBacklog(matrix = buildMatrix()) {
     // broader opportunities
     { area: "components", idea: 'reorganize the ~64 orphan components (registered, placed nowhere) into trinities or retire them \u2014 the deferred "drop the non-trinity" wave', status: "open" },
     { area: "10d", idea: "dims(p, scale) in every animation component \u2014 SWEPT (multi-agent workflow, one agent wires + one independently verifies): Merkaba, DnaHelix, Hologram, QuantumField, QuantumPlasma, CreativePalette, GpuField, DoubleTorus3D, QuantumFold3D, NativeMovie, Rhythm all read dims(p, elementIndex) (self-similar per element/scale) for their motion rates/amplitude; the hero, LivingTorus and HologramMovie already did. Live (1D EKG) honestly takes a dimWalk envelope, not full 10D. All compile-verified + esbuild-checked + tsc 0; the verify stage caught + fixed a DoubleTorus3D import collision and a Rhythm reduced-motion gap", status: "sealed" },
-    { area: "animation", idea: "animations are strict science / 100% DRY (animationsRespectTheField) \u2014 SEALED: rot2 is the one planar-rotation atom (src/quantum/geometry); the 3D plane-primitives and the 4D x-w fold all compose it. Merkaba, DoubleTorus3D and QuantumFold3D wired to rot2 (behaviour-preserving, rotate3 bit-identical); BackgroundMovie/NativeMovie share the one src/0 prng; QuantumRadar sweep field-derived; DoubleTorusExperience + QuantumClock re-verified off the spin axis. The remaining frontier (10D dims in every component, A432 colour/sound everywhere) is tracked under the 10d + a432 ideas, not the one-source rule", status: "sealed" },
+    { area: "animation", idea: "animations are strict science / 100% DRY (animationsRespectTheField) \u2014 SEALED: rot2 is the one planar-rotation atom (src/quantum/wind/geometry); the 3D plane-primitives and the 4D x-w fold all compose it. Merkaba, DoubleTorus3D and QuantumFold3D wired to rot2 (behaviour-preserving, rotate3 bit-identical); BackgroundMovie/NativeMovie share the one src/0 prng; QuantumRadar sweep field-derived; DoubleTorusExperience + QuantumClock re-verified off the spin axis. The remaining frontier (10D dims in every component, A432 colour/sound everywhere) is tracked under the 10d + a432 ideas, not the one-source rule", status: "sealed" },
     { area: "a432", idea: "fuse every animation + audio to A432 harmonics \u2014 COLOUR SWEPT (multi-agent workflow): the base hue of Merkaba, DnaHelix, Hologram, QuantumField, QuantumPlasma, CreativePalette, GpuField, DoubleTorus3D, QuantumFold3D, NativeMovie, Rhythm, Live is now frequencyToLight(432).hue (the red-orange of 432 Hz bridged to ~631 nm), stepped by the golden angle / a432().octaves and slid by the dims hueShift \u2014 colour shares one frequency lineage. AUDIO: tied to 432-harmonics where a component has sound (Rhythm strikes the a432 octaves; Live baseline at the 27\xB7108\xB7432 chord); the rest are visual. Compile + tsc verified", status: "sealed" },
     { area: "pages", idea: "develop-or-purge the thin pages (per the page audit): purge NothingToDo (unclear purpose); develop or merge learn-developer (\u224885 lines) into academy; merge BoundaryAudit into OpenQuestions; consolidate the tiny /show viz (Calligraphy \xB7 TaxonomyGraph \xB7 Dot \xB7 Vortex) into one gallery; review the thin quantum-mind twins (SoundColor \xB7 QuantumPlasma \xB7 QuantumPhysics)", status: "open" },
     { area: "dry", idea: "dry-refactor every component to best web-design standards (semantic HTML, ARIA/labelled controls, responsive grids, reduced-motion) and extract shared logic \u2014 the sacredForms.ts extraction and the A432 / SacredGeometry / corpus-index components are the exemplars; a per-component sweep, ideal as a workflow", status: "open" },
@@ -26597,10 +26597,10 @@ function animationsRespectTheField(matrix = buildMatrix()) {
   void matrix;
   const fieldSources = [
     { part: "realtime driver", source: "createAnimationEngine", where: "src/0", does: "one RAF loop, gated by reduced-motion \xB7 visibility \xB7 energy \u2014 the realtime stream" },
-    { part: "spin (any dimension)", source: "rot2 \xB7 rotateXY \xB7 rotateYZ \xB7 rotateZX", where: "src/quantum/geometry", does: "rot2 is THE planar-rotation atom; the 3D plane-primitives compose it, rotate3 composes the three, and a 4D (x-w) fold rotates with the same rot2 \u2014 one source for all spin" },
-    { part: "projection", source: "perspective", where: "src/quantum/geometry", does: "foreshortening from depth \u2014 FOCAL/(FOCAL\u2212z)" },
+    { part: "spin (any dimension)", source: "rot2 \xB7 rotateXY \xB7 rotateYZ \xB7 rotateZX", where: "src/quantum/wind/geometry", does: "rot2 is THE planar-rotation atom; the 3D plane-primitives compose it, rotate3 composes the three, and a 4D (x-w) fold rotates with the same rot2 \u2014 one source for all spin" },
+    { part: "projection", source: "perspective", where: "src/quantum/wind/geometry", does: "foreshortening from depth \u2014 FOCAL/(FOCAL\u2212z)" },
     { part: "fold (genus-2 surface)", source: "asTorus \xB7 doubleTorusSurface", where: "src/0", does: "a coordinate on the double torus, shared by model and animation" },
-    { part: "10D self-similar phases", source: "dims \xB7 dimWalk", where: "src/quantum/dimensions", does: "4 homology loops + 6 cross-fold axes, per scale" },
+    { part: "10D self-similar phases", source: "dims \xB7 dimWalk", where: "src/quantum/mountain/dimensions", does: "4 homology loops + 6 cross-fold axes, per scale" },
     { part: "easing + breath", source: "humanEase \xB7 humanBreath", where: "src/0", does: "easeInOutSine + sinusoidal modulation" },
     { part: "orchestrator", source: "drawHero", where: "src/quantum", does: "composes the field into the path-UUID hero" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`field-src:${entry2.source}`) }));
@@ -26914,7 +26914,7 @@ function digitSpinesAreTheBreath(matrix = buildMatrix()) {
   };
 }
 
-// ../../src/quantum/geometry/index.ts
+// ../../src/quantum/wind/geometry/index.ts
 var FOCAL = 2.4;
 function rot2(u, v, a) {
   const c = Math.cos(a);
@@ -26942,7 +26942,7 @@ function perspective(z) {
   return FOCAL / (FOCAL - z);
 }
 
-// ../../src/quantum/fractal/index.ts
+// ../../src/quantum/wind/fractal/index.ts
 function branch(ctx, x, y, len, angle, depth, d, hue) {
   if (depth <= 0 || len < 3) return;
   const x2 = x + Math.cos(angle) * len;
@@ -26957,7 +26957,7 @@ function branch(ctx, x, y, len, angle, depth, d, hue) {
   branch(ctx, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d, hue);
 }
 
-// ../../src/quantum/flower/index.ts
+// ../../src/quantum/wind/flower/index.ts
 var FOL_ARMS = [
   { r: 0.5, w: 0.7 },
   { r: 0.28, w: -1.6 },
@@ -27007,7 +27007,7 @@ function drawFlower(ctx, cx, cy, w, h, t, hue, reduce) {
   ctx.restore();
 }
 
-// ../../src/quantum/calendars/index.ts
+// ../../src/quantum/wind/calendars/index.ts
 var CAL_CYCLES = [
   { cycle: "week", days: 7 },
   { cycle: "trecena", days: 13 },
@@ -27043,7 +27043,7 @@ function drawCalendars(ctx, cx, cy, w, h, t, hue, reduce) {
   ctx.restore();
 }
 
-// ../../src/quantum/architecture/index.ts
+// ../../src/quantum/earth/architecture/index.ts
 function buildArchNodes() {
   const folders = folderLaw().pairedLogicFolders;
   return (folders.length >= 9 ? folders.slice(0, 9) : folders).map((folder, i) => ({
@@ -27086,7 +27086,7 @@ function drawArchitecture(ctx, cx, cy, w, h, t, d, archNodes, hue) {
   }
 }
 
-// ../../src/quantum/bursts/index.ts
+// ../../src/quantum/fire/bursts/index.ts
 var HEALING_PAIRS = [
   { hz: [174, 285], note: "foundation \xB7 restoration" },
   { hz: [396, 528], note: "release \xB7 transformation" },
@@ -27127,7 +27127,7 @@ function drawBursts(ctx, w, h, bursts) {
   }
 }
 
-// ../../src/quantum/seed/index.ts
+// ../../src/quantum/earth/seed/index.ts
 function seedOf(text) {
   let h = 2166136261;
   for (let i = 0; i < text.length; i += 1) {

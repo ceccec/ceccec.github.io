@@ -1,4 +1,4 @@
-export declare const dual = "src/science/quantum";
+export declare const dual = "src/world/science/quantum";
 export declare function emfApplications(): {
     grounded: boolean;
     spectrum: {

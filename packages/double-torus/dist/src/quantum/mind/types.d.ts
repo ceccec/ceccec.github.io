@@ -84,7 +84,7 @@ export interface ConsciousnessDimensionWire {
 export interface DoubleTorusWire {
     readonly uuid: string;
     readonly repository: 'serverless-quantum-uuid-stream/double-torus';
-    readonly sourcePath: 'src/quantum/mind/index.ts';
+    readonly sourcePath: 'src/quantum/heaven/mind/index.ts';
     readonly overviewPath: 'quantum-mind.md';
     readonly architecturePath: 'architecture.md';
     readonly shape: 'double-torus';

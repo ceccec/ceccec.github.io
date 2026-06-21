@@ -1,4 +1,4 @@
-export declare const dual = "src/nature/quantum";
+export declare const dual = "src/world/nature/quantum";
 export declare function natureLaw(): {
     grounded: boolean;
     principles: {

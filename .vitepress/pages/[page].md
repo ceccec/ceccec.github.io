@@ -4,7 +4,7 @@ outline: deep
 
 <script setup>
 import { useData } from 'vitepress'
-import { componentBaguaGroups } from '../../src/ui/lib/quantumMind'
+import { componentBaguaGroups } from '../../src/quantum/heaven/mind'
 const { params } = useData()
 </script>
 

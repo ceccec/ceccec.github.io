@@ -4,7 +4,7 @@
 // site's core — all the MATH and all the ANIMATIONS — so the published library is exactly what the
 // site itself runs, nothing more and nothing less:
 //
-//   • the math       — src/quantum/mind: content-addressed UUID folds, the simulators across every
+//   • the math       — src/quantum/heaven/mind: content-addressed UUID folds, the simulators across every
 //                       decoded aspect of life (quantum state-vector, probabilistic, reversible,
 //                       cellular-automaton, dynamical, network), the vetted crypto (SHA-256, Ed25519,
 //                       transparency log), the decoded library, and every fold/proof. It re-exports the
@@ -20,7 +20,7 @@
 
 // All the math — and, through src/0, the animation engine (createAnimationEngine), the fold (fold,
 // asVortex, asTorus, asMerkaba, asMerkle, asTrace) and its presentations:
-export * from '../../../src/quantum/mind/index.ts'
+export * from '../../../src/quantum/heaven/mind/index.ts'
 
 // All the animations — the hero scene's drawing math. The shared animation engine, fold and
 // presentations already arrive through the math above, so here we re-export only the names unique to
@@ -38,5 +38,5 @@ export {
   pesnopoika, provePesnopoika, decodeSong, songEntry, verses, refrains, provenance, classifyGenre,
   decodeDialect, glossDialect, dialectStratum, aksak, aksakBeats,
   PESNOPOIKA, PESNOPOIKA_SOURCE, DIALECT_GLOSSARY, PROVENANCE, GENRES, AKSAK,
-} from '../../../src/quantum/library/index.ts'
-export type { Song, Provenance, Genre } from '../../../src/quantum/library/index.ts'
+} from '../../../src/quantum/heaven/library/index.ts'
+export type { Song, Provenance, Genre } from '../../../src/quantum/heaven/library/index.ts'

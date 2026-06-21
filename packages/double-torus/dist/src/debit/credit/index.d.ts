@@ -17,4 +17,4 @@ export declare function cryptoReview(): {
     quantumSignificance: string;
     dual: string;
 };
-export declare const dual = "src/credit/debit";
+export declare const dual = "src/pair/credit/debit";

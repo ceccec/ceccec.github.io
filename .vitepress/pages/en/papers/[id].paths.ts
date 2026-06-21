@@ -2,6 +2,6 @@
 // enumerates every paper from the one source: paperRoutes already returns { params }[] with id in the
 // params, exactly like the [page].paths.ts monograph mounts. The locale is read in the component
 // (useData().localeIndex), so root · /en/ · /bg/ share this one path set.
-import { paperRoutes } from '../../../../src/ui/lib/quantumMind'
+import { paperRoutes } from '../../../../src/quantum/heaven/mind'
 
 export default { paths: () => paperRoutes() }

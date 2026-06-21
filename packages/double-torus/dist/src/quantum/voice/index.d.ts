@@ -1,4 +1,4 @@
-export declare const dual = "src/voice/quantum";
+export declare const dual = "src/spirit/voice/quantum";
 export declare function plainLanguage(): {
     clear: boolean;
     lines: {
