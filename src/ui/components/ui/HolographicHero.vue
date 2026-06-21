@@ -44,6 +44,17 @@ let reduce = false
 // The player control toggles the music streams; the streams are always healing (the Solfeggio set).
 const musicOn = ref(true)
 const healingPair = ref(HEALING_PAIRS[1].note) // the pair currently sounding
+// The hero's OWN sound: a content-addressed signature pair chosen by the page seed (like its hue and arms), so
+// every page's hero sounds its own identity. It is ANNOUNCED once on the first user gesture (browsers gate audio
+// behind a gesture, so a hero cannot autoplay) — then tapping plays it like an instrument. Music- and energy-gated.
+const signature = computed(() => HEALING_PAIRS[Math.abs(seed.value) % HEALING_PAIRS.length])
+let announced = false
+function announceHero() {
+  if (announced || !musicOn.value || saveEnergy.value) return
+  announced = true // once per page; the page-change watch resets it so each hero announces itself
+  healingPair.value = signature.value.note
+  signature.value.hz.forEach((hz, i) => window.setTimeout(() => blip(hz, { duration: 0.5, type: 'sine', peak: 0.085 - i * 0.015 }), i * 110))
+}
 const bursts: Burst[] = []
 
 // A big hero at the Open Graph aspect ratio (1200x630); the fractal's depth and arm count adapt to the width.
@@ -93,12 +104,14 @@ function sync() {
 watch([saveEnergy, () => page.value.relativePath], () => {
   size()
   sync()
+  announced = false // a new page → its hero announces its own signature on the next gesture
 })
 onMounted(() => {
   reduce = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
   // Belt-and-suspenders with the ResizeObserver below: window.resize covers orientation/window changes too;
   // size() is idempotent (same width → same dimensions) so the two firing together is harmless.
   window.addEventListener('resize', size)
+  window.addEventListener('pointerdown', announceHero) // the hero announces its signature on the visitor's first gesture
 })
 // <ClientOnly> mounts the canvas a tick after the component, so size it the moment the ref populates and observe
 // its own box — then it stays responsive on layout settle, container resize and orientation, not just window
@@ -121,6 +134,7 @@ onUnmounted(() => {
   ro?.disconnect()
   ro = null
   window.removeEventListener('resize', size)
+  window.removeEventListener('pointerdown', announceHero)
 })
 
 // Scrubbing the slider changes the dimension by hand; if the movie is paused (energy-saving or reduced
@@ -140,6 +154,7 @@ function play() {
 function tap(event: PointerEvent | MouseEvent) {
   const el = canvas.value
   if (!el) return
+  announced = true // a hero tap IS the gesture — it plays its own pair below; skip the global first-gesture announce
   const rect = el.getBoundingClientRect()
   const x = Math.min(1, Math.max(0, (event.clientX - rect.left) / Math.max(1, rect.width)))
   manual.value = true
