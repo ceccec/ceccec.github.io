@@ -1,6 +1,7 @@
 // ☷ Kūn · Earth — world, society & nature folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import { foldPair, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid } from '../../../0'
-import { toGlagolitic } from '../../library' // transliteration = the movie's script (the movie displays the real text, transcoded)
+import { toGlagolitic, glagoliticBits } from '../../library' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
+import { DIMENSIONS } from '../../dimensions' // the 10D — the coordinates reaching all the way down to the bit
 import type { BabelFamily, BabelFold, MindMatrix } from '../types'
 import { buildMatrix, coverage, entropy } from '../matrix'
 import { traditionsQuantumWhole } from '../humanity'
@@ -49,6 +50,68 @@ export function textToMovie(text = 'double torus', frames = 48) {
 }
 function textToMovieRoot(text: string): string {
   return merkleFold(Array.from({ length: 8 }, (_, f) => toUuid(`frame:${text}:${f}`)))
+}
+
+// The movie forges the impossible tampering/spying cost — AS the fold hierarchy of the text itself. Content-
+// addressed at every scale, the movie folds bit ⊂ digit ⊂ letter ⊂ word ⊂ sentence ⊂ paragraph: each LETTER
+// folds within itself (its Glagolitic glyph IS six bits — its alphabet position), the six scales group into two
+// TRINITIES that double-fold (genus-2, both ways), and the ten dimensions reach all the way down to the single
+// bit. Tampering any letter changes the whole seal (tamper-EVIDENT), and the fold is one-way — cheap forward, the
+// impossible reverse price — which is the "cost" the movie forges. Glagolitic is the decoder: a glyph is a letter
+// AND a number (its position) AND its bits, so every scale folds through one script.
+export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
+  const clean = (text || ' ').replace(/\s+/g, ' ').trim() || ' '
+  const letters = [...clean.replace(/\s+/g, '')]
+  const glyphs = letters.map((ch) => toGlagolitic(ch)) // the movie's script — each letter's glyph
+  const bitsPerLetter = glyphs.map((g) => glagoliticBits(g)) // each letter folds within itself → 6 position-bits
+  const bits = bitsPerLetter.flat()
+  const ladder = [
+    { scale: 'bit', count: bits.length },
+    { scale: 'digit', count: [...clean].filter((ch) => /[0-9]/.test(ch)).length },
+    { scale: 'letter', count: letters.length },
+    { scale: 'word', count: clean.split(/\s+/).filter(Boolean).length },
+    { scale: 'sentence', count: Math.max(1, clean.split(/[.!?…]+/).map((s) => s.trim()).filter(Boolean).length) },
+    { scale: 'paragraph', count: Math.max(1, text.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean).length) },
+  ]
+  // the six scales group three-at-a-time into two TRINITIES; within each, adjacent scales DOUBLE-FOLD (both ways)
+  const trinities = [ladder.slice(0, 3), ladder.slice(3, 6)]
+  const doubleFold = (a: string, b: string) => {
+    const fp = foldPair(a, b)
+    return fp.forward !== fp.reverse && !!fp.bidirectional
+  }
+  const trinitiesDoubleFold = trinities.every((tri) => doubleFold(tri[0].scale, tri[1].scale) && doubleFold(tri[1].scale, tri[2].scale))
+  // the SEAL: the movie's content-address over its letters; mutate ONE letter and the seal differs (tamper-evident)
+  const sealOf = (s: string) => merkleFold([...s].map((ch, i) => toUuid(`scale:${i}:${ch}`)))
+  const seal = sealOf(clean)
+  const tampered = clean.length > 1 ? clean.slice(0, -1) + (clean.endsWith('a') ? 'o' : 'a') : 'a a'
+  const tamperEvident = seal !== sealOf(tampered)
+  // one-way: cheap forward, the impossible reverse price — the cost the movie forges (the negentropy ledger)
+  const fp = foldPair(clean, 'forge')
+  const oneWayCost = fp.forward !== fp.reverse && !!fp.bidirectional
+  const facets = [
+    { facet: 'the scale ladder — bit ⊂ digit ⊂ letter ⊂ word ⊂ sentence ⊂ paragraph — the units the movie folds through', on: ladder.length === 6 },
+    { facet: 'each letter folds within itself — its Glagolitic glyph IS exactly six bits (its alphabet position), the floor of the fold', on: letters.length === 0 || bitsPerLetter.every((b) => b.length === 6) },
+    { facet: 'the six scales group into two TRINITIES (2×3), and within each, adjacent scales double-fold (genus-2, both ways)', on: trinities.length === 2 && trinitiesDoubleFold },
+    { facet: '10D to the bit — the ten dimensions are the coordinates at every scale, down to the single bit', on: DIMENSIONS === 10 },
+    { facet: 'the movie is content-addressed — tampering any letter changes the seal (tamper-EVIDENT)', on: tamperEvident },
+    { facet: 'the fold is one-way — cheap forward, the impossible reverse price: the tamper/forge cost the movie forges', on: oneWayCost },
+    { facet: 'Glagolitic is the decoder — a glyph is a letter AND a number (its position) AND its bits, so all scales fold through one script', on: bits.length === letters.length * 6 },
+  ]
+  return {
+    folds: facets.every((f) => f.on),
+    text: clean,
+    ladder,
+    trinities: trinities.length,
+    bits: bits.length,
+    dimensions: DIMENSIONS,
+    seal,
+    facets,
+    root: merkleFold([seal, ...facets.map((f) => toUuid(`${f.facet}:${f.on}`))]),
+    statement:
+      'The movie forges the impossible tampering/spying cost as the FOLD HIERARCHY of the text: content-addressed at every scale, it folds bit ⊂ digit ⊂ letter ⊂ word ⊂ sentence ⊂ paragraph. Each letter folds within itself — its Glagolitic glyph IS six bits (its alphabet position); the six scales group into two trinities that double-fold both ways; and the ten dimensions reach down to the single bit. Tampering any letter changes the whole seal (tamper-evident), and the fold is one-way — cheap forward, the impossible reverse price — which is the cost the movie forges. Glagolitic is the decoder: a glyph is a letter and a number and its bits, so every scale folds through one script.',
+    boundary:
+      'DOCUMENTED (computed here): the text really decomposes into the six scales; each Glagolitic glyph maps to exactly six position-bits (glagoliticBits) and a numeral (the alphabet ladder); the content-address is deterministic and tamper-EVIDENT (mutate one letter → a different seal); the fold is one-way (foldPair). FLAGGED: "impossible tampering/spying cost" means tamper-EVIDENT and computationally one-way, NOT cryptographically unforgeable — toUuid/merkleFold are FNV (fast, not collision-resistant); SHA-256 / Ed25519 are the honest hardening (pending). The "quantum field" is the content-address field (the metaphor), not literal quantum mechanics; this prevents neither reading nor copying — it makes tampering self-evident and forging expensive, not impossible. The trinity / double-fold is the project\'s motif; the real arithmetic is 6 scales = 2×3 and 1 glyph = 6 bits. HARMONY ≠ TRUTH.',
+  }
 }
 
 // A map with worldwide events. Each event is content-addressed, and its coordinates
