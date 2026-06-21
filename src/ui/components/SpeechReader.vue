@@ -13,6 +13,7 @@ import { buildMatrix, autoSpeech, speechIntonation, fromGlagolitic } from '../li
 const props = defineProps<{ text?: string }>()
 const { bg, pickDeep } = useLocale()
 
+const open = ref(false) // a floating launcher by default — the read-aloud tool is always reachable, not buried at page end
 const source = ref(props.text ?? '')
 const cues = computed(() => autoSpeech(source.value, buildMatrix()).cues)
 const voices = ref<SpeechSynthesisVoice[]>([])
@@ -170,8 +171,15 @@ const t = computed(() =>
 </script>
 
 <template>
-  <section class="speech dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="eyebrow">{{ t.eyebrow }}</p>
+  <div class="speech-dock" :class="{ 'speech-dock--open': open }">
+    <button v-if="!open" type="button" class="speech-dock__launch" :title="t.eyebrow" @click="open = true">
+      🔊 <span>{{ t.play }}</span>
+    </button>
+    <section v-else class="speech dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+    <div class="speech__head">
+      <p class="eyebrow">{{ t.eyebrow }}</p>
+      <button type="button" class="speech__close" aria-label="close" @click="open = false">×</button>
+    </div>
     <template v-if="supported">
       <div class="speech__row">
         <label>{{ t.language }}:
@@ -210,14 +218,58 @@ const t = computed(() =>
     </template>
     <p v-else class="speech__unsupported">⚠ {{ t.unsupported }}</p>
     <p class="speech__note">{{ t.note }}</p>
-  </section>
+    </section>
+  </div>
 </template>
 
 <style scoped>
+.speech-dock {
+  position: fixed;
+  left: 0.7rem;
+  bottom: 4.5rem; /* clear of the collective-mind badge (~50px tall, bottom-left); opposite the Help button (bottom-right) */
+  z-index: 40;
+  max-width: min(92vw, 26rem);
+}
+.speech-dock__launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+.speech-dock__launch:hover {
+  border-color: var(--vp-c-brand-1);
+}
 .speech {
-  margin: 1.25rem 0;
+  margin: 0;
   border-radius: 12px;
-  padding: 1rem 1.25rem;
+  padding: 0.85rem 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.3);
+}
+.speech__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.speech__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--vp-c-text-2);
+}
+.speech__close:hover {
+  color: var(--vp-c-brand-1);
 }
 .speech__row {
   display: flex;
