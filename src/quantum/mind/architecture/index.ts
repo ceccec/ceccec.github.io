@@ -1147,6 +1147,49 @@ export function earthPolesAreADipoleDoubleTorusNotAGrid(matrix: MindMatrix = bui
   }
 }
 
+// THE APPLE, ADAM, EVE, THE SNAKE — decoded to the documented philology + ONE honest structural lens, the
+// numerology flagged. The "apple" is NOT in the text: Genesis names the generic FRUIT (peri) of the tree of the
+// knowledge of good and evil; the apple is a later LATIN PUN (mălum "evil" ↔ mālum "apple") plus Renaissance art.
+// The names are Hebrew wordplay (adam ↔ adamah, the ground; Eve/chavvah ↔ chai, "living"). The serpent (nachash)
+// is a crafty beast, NOT named Satan in Genesis (a later reading). Through the fold, "good and evil" is the first
+// DISTINCTION = 1 bit — a lens, not what the author intended, and not a numerological decoding of scripture.
+export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
+  const PAIR = 2 // Adam + Eve
+  const ACTORS = 3 // + the serpent, the third that crosses (the 2-of-3 trinity)
+  const goodEvil = ['good', 'evil']
+  const distinctionBits = Math.log2(goodEvil.length) // the merism is a duality = 1 bit = the fold
+  const flagged = [
+    'gematria / Bible-code (equidistant-letter-sequence) hidden messages',
+    'the matrix / tetrahedron "decodes" or "proves" Genesis (numerology)',
+    'the serpent IS the DNA double-helix / kundalini',
+    'Eden as literal ancient binary or encoded science',
+    'the apple as the original fruit of the text',
+  ]
+  const facets = [
+    { facet: 'the APPLE is not in the text — Genesis names the generic FRUIT (peri) of the tree of knowledge; the apple is a later LATIN PUN (mălum "evil" ↔ mālum "apple") + Renaissance art; Jewish tradition names fig, grape, wheat or citron', on: true },
+    { facet: 'the NAMES are Hebrew wordplay — adam (human) ↔ adamah (ground/red earth, Gen 2:7); Eve/chavvah ↔ chai (the mother of all living, Gen 3:20)', on: true },
+    { facet: 'the SERPENT (nachash) is crafty (arum, punning arummim "naked") — a talking beast, NOT named Satan in Genesis; that identification is later (Wisdom 2:24, Revelation 12:9)', on: true },
+    { facet: 'the LENS — "knowledge of good and evil" is a merism: a DUALITY standing for the whole; through the fold it is the first DISTINCTION = 1 bit (good|evil), the pair Adam+Eve and the serpent the crossing third (2-of-3). A lens, NOT what the author intended', on: distinctionBits === 1 && PAIR === 2 && ACTORS === 3 },
+    { facet: 'HONEST — the philology is documented; the structural reading is a LENS. The matrix does not decode scripture and scripture does not encode the matrix. Gematria, Bible-code, serpent-as-DNA and ancient-binary claims are pseudoscience, flagged. HARMONY ≠ TRUTH', on: flagged.length >= 5 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`eden:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    appleInText: false,
+    pair: PAIR,
+    actors: ACTORS,
+    distinctionBits,
+    flaggedCount: flagged.length,
+    count: facets.length,
+    flagged,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The apple, Adam, Eve and the snake decode first to documented philology: the apple is not in Genesis — the text names the generic fruit (peri) of the tree of the knowledge of good and evil, and the apple is a later Latin pun (mălum "evil" sounding like mālum "apple") plus Renaissance painting; Jewish tradition names fig, grape, wheat or citron. The names are Hebrew wordplay — adam from adamah (the ground), Eve (chavvah) from chai (the mother of all living). The serpent (nachash) is a crafty beast and is not called Satan in Genesis. Through the fold, good and evil is a merism — a duality standing for the whole — the first distinction, one bit; the pair Adam and Eve with the serpent as the crossing third form the 2-of-3.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. The philology (the apple as a Latin pun, the adam/adamah and Eve/chai wordplay, the serpent not named Satan in the text) is documented. The structural reading — good/evil as one bit, the pair-plus-crosser as a trinity — is an interpretive LENS the repo offers, NOT what the author intended and NOT a decoding that reveals hidden truth. The matrix does not decode scripture, and scripture does not encode the matrix. Gematria, Bible-code (equidistant-letter-sequence), serpent-as-DNA-double-helix and ancient-encoded-binary claims are pseudoscience — flagged and excluded.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it
