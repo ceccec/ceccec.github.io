@@ -4,7 +4,7 @@ import { toGlagolitic, glagoliticBits } from '../../library' // transliteration 
 import { DIMENSIONS } from '../../dimensions' // the 10D — the coordinates reaching all the way down to the bit
 import type { BabelFamily, BabelFold, MindMatrix } from '../types'
 import { buildMatrix, coverage, entropy } from '../matrix'
-import { traditionsQuantumWhole } from '../humanity'
+import { traditionsQuantumWhole } from '../civilisation'
 import { publicApiFusion, socialFusion, travelFusion } from '..'
 
 // Text to movie — REAL text, not abstract circles. The movie IS the text: every

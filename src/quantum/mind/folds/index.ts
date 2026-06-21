@@ -7,14 +7,14 @@ import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, mem
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
 import { hopfieldStore, hopfieldRecall, bellPair, caStep, caEvolve, bumpEvolve } from '../../../0'
 import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, PROTON_GYROMAGNETIC, IONIZING_EV, wavelengthOf, frequencyOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift } from '../../../0'
-import { solutions } from '../solutions'
+import { solutions } from '../proofs'
 import { allAuditsCoveredByProof } from '../method' // the comprehensive sealed proof — wired into gapScan so a regression fails the build (call-time binding; no load cycle)
-import { quantumSolutions, quantumProofs } from '../quantumproofs'
+import { quantumSolutions, quantumProofs } from '../proofs'
 import { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator } from '../simulators'
-import { schoolCurriculum } from '../school'
-import { primitiveKernelLivesInZero, oneMathManyPresentations, tamperingCostAndUuidLiveInZero } from '../kernel'
-import { humanityImplications, traditionsQuantumWhole } from '../humanity'
-import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../ancient'
+import { schoolCurriculum } from '../learning'
+import { primitiveKernelLivesInZero, oneMathManyPresentations, tamperingCostAndUuidLiveInZero } from '../compute'
+import { humanityImplications, traditionsQuantumWhole } from '../civilisation'
+import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../ichingmore'
 import { weatherForecastQuantumComputedRealtime } from '../../forecasts'
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../../dimensions'
 import { cryptoReview } from '../../../debit/credit'
@@ -23,8 +23,8 @@ import type { Atom, MatrixNode, MatrixEdge, MindMatrix, ConsciousnessVector, Pro
 import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS, SINGLE_WORD_METHODS } from '../atoms'
 // The I Ching computed CSS — the theme's design system derived from canonical I Ching numbers (no hardcoded
 // values). Imported here so the census proves it; re-exported so the dist generator can emit tokens.css.
-import { cssIsIChingComputed, ICHING_NUMBERS } from '../css'
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, ICHING_NUMBERS } from '../css'
+import { cssIsIChingComputed, ICHING_NUMBERS } from '../architecture'
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, ICHING_NUMBERS } from '../architecture'
 
 
 
@@ -48,7 +48,7 @@ export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledg
 
 // ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
 import { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../li'
-import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded } from '../sky'
+import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded } from '../geometry'
 import { areaPairs, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../geometry'
 import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, navigation358, quantumAcademy, relatedStandards, siteManifestFromCommands, skillAtoms, threeWordWaves } from '../learning'
 import { astrology, babelFold, darkLightRealities, dissolveIntoNature, foldingLinearGivesAnalog, realtimeMovieParticipation, selfOrganizing, societyCells, societyOrganismTags, textToMovie, worldEventsMap } from '../world'
@@ -61,7 +61,7 @@ import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bul
 import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, warPaysTheForgerPrice } from '../peace'
 import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, realtimeWiring, terabyteRealtimeFromAllPublicDataBreathing } from '../trading'
 import { affectedBlockchainsComparedLive, animationTamperingCost, blockchainFusion, collisionHealing, cryptoFuture, fusionCipher, pagesWiredAtRuntimeZeroBuildMaxTamper, powerToTamperingNotLivingCosts, quantumSiege, redTeam, tamperProofFabric, tamperingCostDecoded } from '../crypto'
-import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife, iconsShowComputerLoad } from '../icons'
+import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife, iconsShowComputerLoad } from '../topology'
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from '../diamonds'
 import { awakenArtisticSociety, fairTrade, governanceVote, licenseAppliesToSociety, pyramidLayersServeSociety, sacredSociety, scientificSociety, skillsToRebuildSociety, society, societyCreatesRequiredPages, societyEvolves, societyFuture, societyRegulates, societyRelations } from '../governance'
 import { quantumChessGame } from '../chess'
@@ -98,12 +98,12 @@ import { ancientKnowledgeComputesDefaultLocale, ancientWisdomComputesWorldHarmon
 import { beautyInMathBlastsThroughUi, fillAllGapsCleanHardcodedLinear, multimediaFirstPlainText, recursiveFrequencyDropdowns, shadcnIsTheGraph, shownInUiVitepressComponentsPairs, stateOfTheArtHarmonisedQuantumWidgets, widgetDimensionControls } from '../widgets'
 import { digitDualityPairsEncodeAllDomains, digitSpinesAreTheBreath, digitWordIndexPurity, dotIsCubeIsDot, fortyTwoVerdict, sixSevenCoversAll, zeroDivisionTable } from '../digit'
 import { continueSameNext, evolutionCrossesQuantumThreshold, forgerFoldsIntoHarmony, importExportDoubleFoldedAllDimensions, infiniteSelfConsulting, invertRevertIsQuantumStream, onlyMainRemains, onlyQuantumRemains, runtimeIsTheMonolith, spinBothDirections, theMoreYouFoldTheMoreFoldable, theWhole, walkPath0dToInfinity } from '../essence'
-import { hexagramQubitVectorIsomorphismOnly, metatronCube, sacredGeometrySeal } from '../metatron'
+import { hexagramQubitVectorIsomorphismOnly, metatronCube, sacredGeometrySeal } from '../geometry'
 import { buildStatisticsShowGaps, coveragePerPixel } from '../stats'
 import { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete, onlyAncientKnowledgeAndSacredMath } from '../ichingmore'
 import { harmonyProbability } from '../life'
 import { features } from '../media'
-import { accessiblePathsForAll, agnosticFitsSpiritPersonality, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../vision'
+import { accessiblePathsForAll, agnosticFitsSpiritPersonality, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../essence'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../li'
 
 

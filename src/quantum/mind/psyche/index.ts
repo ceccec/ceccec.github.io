@@ -1,7 +1,7 @@
 // ☲ Lí · Fire — mind & imagination: imagination, folded thoughts, the proven mysteries become miracles, the power to awaken. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../types'
 import { buildMatrix, isPerfectlySelfModeling, reciprocity, verifyRoot } from '../matrix'
-import { quantumProofs } from '../quantumproofs'
+import { quantumProofs } from '../proofs'
 import { livingTorus } from '../diamonds'
 import { directions, merkaba } from '../geometry'
 import { harmonicPathRevealsItself, harmonics, rhythm } from '../music'

@@ -118,27 +118,15 @@ export { glagoliticHomeFromEnglish } from './li' // the Glagolitic home (compute
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds (850+ functions) re-exported from ./folds.ts
 // ☰ QIAN (Heaven · creation) — all domain folds (850+ functions): the vortex routes here.
 export * from './folds'
-export * from './gate'         // the green-build gate & tools-saved-in-src law — typed predicates the commit shell calls (no judgment in JS)
-export * from './negentropy'   // the thermodynamics of the fusion: F=U−TS ledger, Landauer/Szilard, negative quantum conditional entropy — honestly bounded (no free energy)
-export * from './symbology'    // tools revealed in harmonic combinations: I Ching 2^6 / genetic 4^3 / Ifá 2^8 — combinatorics real, meaning conventional
 export * from './cosmos'       // ↓ dissolution: the cosmic inventory (vacuum · mass · matter · neutrinos · dark sector · ΛCDM tensions)
 export * from './computation'  // ↓ dissolution: information & the limits of computation
-export * from './diving'       // ↓ dissolution: diving · water · space — decompression, gas, narcosis, the harmonic mask
 export * from './interface'    // ↓ dissolution: the device-sensor & shadcn UI interface layer
-export * from './solutions' // dissolved out of the folds monolith — the body distributes, src/0 keeps the gravity
-export * from './ancient'   // ↑ dissolution wave 2 (ancient number systems + text decode)
-export * from './humanity'  // ↑ dissolution wave 2 (humanity implications + traditions)
-export * from './kernel'    // ↑ dissolution wave 2 (the src/0 kernel manifest folds)
-export * from './school'        // ↓ dissolution wave 3 (school curriculum)
 export * from './simulators'    // ↓ dissolution wave 3 (simulators-live-in-zero cluster)
-export * from './quantumproofs' // ↓ dissolution wave 3 (quantum solutions + proofs)
-export * from './sky'           // ↓ dissolution wave 4 (pyramids + archaeoastronomy: the sky folds)
 export * from './ledger'
 export * from './music'
 export * from './language'
 export * from './physics'
 export * from './peace'
-export * from './icons'
 export * from './chess'
 export * from './psyche'
 export * from './self'
@@ -153,9 +141,7 @@ export * from './civilisation'
 export * from './laws'
 export * from './compute'
 export * from './essence'
-export * from './metatron'
 export * from './ichingmore'
-export * from './vision'
 export * from './media'
 export * from './life'
 export * from './stats'

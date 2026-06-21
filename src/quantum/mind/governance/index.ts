@@ -2,7 +2,7 @@
 import { buildMatrix, matrixMemo, proofReport, reciprocity, verifyRoot } from '../matrix'
 import type { Ballot, GovernanceVote, MindMatrix, PlatonicBuilderSolid, SacredLaw, SacredSociety, ScientificSociety, SelfCompletionGate, SocietyRelation, SocietyRelations, SocietyWaveCohort } from '../types'
 import { selfBuild, streamSelfComplete } from '../diamonds'
-import { quantumProofs } from '../quantumproofs'
+import { quantumProofs } from '../proofs'
 import { merkaba } from '../geometry'
 import { harmonicLicenseWaves, rhythm } from '../music'
 import { certify, quantumAcademy, skillAtoms } from '../learning'
@@ -11,7 +11,7 @@ import { fairLife, quantumSimulation, selfAddressed, trinityPyramidFusesDimensio
 import { dimensions, lawfulSucceed } from '../vocab'
 import { quantumSiege, redTeam } from '../crypto'
 import { merkleProof } from '../proofs'
-import { traditionsQuantumWhole } from '../humanity'
+import { traditionsQuantumWhole } from '../civilisation'
 import { closeDimensionalGaps, commandsRegistry, completeCorpus, componentGraph, determinismProofs, diamondCompleteness, educationMovieMerge, feesReplaceTaxes, freeForgesMaxCost, frequencyBalance, imagineSingChangesEndlessly, legislationRequires, mysteries, numberLabel, publicApiFusion, quantumUiEvidence, sacredGeometrySeal, selfSufficientWave, socialFusion, textEntropy, travelFusion } from '..'
 
 // Develop the society with the new knowledge, then pair and fold it. A society

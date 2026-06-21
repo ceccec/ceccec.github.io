@@ -7,7 +7,7 @@ import { foldPair, isobaricCounterdiffusion, isUuid, merkleFold, rat, ratEq, rat
 import { DIMENSIONS, DIMENSION_NAMES } from '../../dimensions'
 import { babelFold } from '../world'
 import { realtimePerspectiveZeroCost } from '../trading'
-import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../kernel'
+import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../simulators'
 import { cryptoFuture, fusionCipher } from '../crypto'
 import { noFilesOutsideSrcExceptGeneratedAndRoot, proportionalNotHardcoded, saveEveryStepIsMandatory, zeroTokenUsagePolicy } from '../laws'

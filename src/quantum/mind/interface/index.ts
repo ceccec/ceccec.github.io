@@ -4,7 +4,7 @@
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../matrix'
 import { toUuid, merge, sealFacets } from '../../../0'
-import { saltFreshAltitudeTemperatureComputableFactors } from '../diving'
+import { saltFreshAltitudeTemperatureComputableFactors } from '../cosmos'
 
 // Device sensors, wired at every dimension that physically HAS one. The phone’s pointer/orientation/motion,
 // magnetometer, microphone and light sensor each map to a real physical dimension (the dive instrument, the NMR

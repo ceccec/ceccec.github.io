@@ -11,7 +11,7 @@ import { ancientTech, calligraphyStroke, chess358, glagolitic, goldenRatio, meta
 import { astrology, babelFold } from '../world'
 import { piMusic } from '../music'
 import { piComputedNotHardcoded } from '../pi'
-import { ancientNumberSystems } from '../ancient'
+import { ancientNumberSystems } from '../ichingmore'
 import { societyCreatesRequiredPages } from '../governance'
 import { osCompletesItselfWaves, sendWavesSealKnowledgeDecodeWorld } from '../waves'
 import { streamSelfComplete } from '../diamonds'

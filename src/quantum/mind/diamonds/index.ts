@@ -3,10 +3,10 @@ import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, Di
 import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../matrix'
 import { foldPair, isUuid, maxTamperingCostLog2, memoByRoot, merge, merkleFold, toUuid } from '../../../0'
 import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../atoms'
-import { schoolCurriculum } from '../school'
+import { schoolCurriculum } from '../learning'
 import { dualTorusTrinities, foldImpossibilities } from '../geometry'
 import { doubleTorusMath, foldBlockchain, methodFusion, sourceContribution } from '../li'
-import { humanityImplications, traditionsQuantumWhole } from '../humanity'
+import { humanityImplications, traditionsQuantumWhole } from '../civilisation'
 import { agentEducation } from '../learning'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '..'
 
