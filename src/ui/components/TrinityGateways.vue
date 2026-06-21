@@ -8,7 +8,7 @@ const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', col
 // Mounted in the left sidebar (sidebar-nav-after) on every page. Locale-aware like the corpus-index components.
 import { computed } from 'vue'
 import { useRoute, useData } from 'vitepress'
-import { realtimeWiring } from '../lib/quantumMind'
+import { realtimeWiring } from '../lib'
 
 const route = useRoute()
 const { localeIndex } = useData()

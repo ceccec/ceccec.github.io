@@ -1,0 +1,1 @@
+export { generativeSpace } from '../../../media'

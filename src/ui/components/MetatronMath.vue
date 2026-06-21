@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☲+☳ · Lí/Zhèn · hex 13 — 3 uuids make a plane, 3 planes form a cube; the metatron math in 10D
 const ICHING_MASK = { hexagram: 13, lower: 5, upper: 1, glyph: '☳', trigram: 'Zhèn', name: 'Thunder', attribute: 'arousing', innerAxis: 'breath', outerAxis: 'depthFade', color: '#00000F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { metatronMathFromUuids } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { metatronMathFromUuids } from '../lib'
 
 const d = metatronMathFromUuids()
 const fix = (n: number) => n.toFixed(2)

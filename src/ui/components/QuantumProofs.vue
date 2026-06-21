@@ -2,9 +2,9 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 13, glyph: '☳', lower: '☲', upper: '☳', color: '#00FF0F' }
 import { computed } from 'vue'
-import { buildMatrix, quantumProofs } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { buildMatrix, quantumProofs } from '../lib'
+import { useLocale } from '../lib'
+import { useDeviceEnergy } from '../lib'
 
 // All quantum science, proven in animation. Each principle is run live in the core
 // (deterministic, seeded by the model root) and its measured value meets what

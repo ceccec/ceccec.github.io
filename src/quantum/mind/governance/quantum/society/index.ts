@@ -1,0 +1,1 @@
+export { quantumSociety } from '../../../governance'

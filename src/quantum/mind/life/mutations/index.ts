@@ -1,0 +1,1 @@
+export { mutations } from '../../life'

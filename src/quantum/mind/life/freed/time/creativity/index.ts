@@ -1,0 +1,1 @@
+export { freedTimeCreativity } from '../../../../life'

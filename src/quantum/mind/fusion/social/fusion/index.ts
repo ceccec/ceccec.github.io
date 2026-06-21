@@ -1,0 +1,1 @@
+export { socialFusion } from '../../../fusion'

@@ -1,0 +1,1 @@
+export { frequencyTaxonomyTreeOfLife } from '../../../../../../icons'

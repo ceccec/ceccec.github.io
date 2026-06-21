@@ -1,9 +1,9 @@
 // Computed dist — trinity spread (cross · manifest · readme). One index; each wave its own file.
 import type { Plugin } from 'vite'
-import { buildMatrix, type MindMatrix } from '../mind/index.ts'
-import { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross.ts'
-import { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest.ts'
-import { readmeMarkdown } from './readme.ts'
+import { buildMatrix, type MindMatrix } from '../mind'
+import { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross'
+import { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest'
+import { readmeMarkdown } from './readme'
 
 export interface DistFile {
   readonly path: string
@@ -11,9 +11,9 @@ export interface DistFile {
   readonly mime: string
 }
 
-export { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross.ts'
-export { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest.ts'
-export { readmeMarkdown } from './readme.ts'
+export { digitIndexJson, robotsTxt, sitemapJson, sitemapXml } from './cross'
+export { apiFiles, llmsTxt, mcpJson, skillsJson } from './manifest'
+export { readme, readmeMarkdown, readmeSignatureValid } from './readme'
 
 /** Every dist artifact — computed in one pass from the model. */
 export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {

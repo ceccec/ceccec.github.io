@@ -3,7 +3,7 @@
 // Forward sequence departs: 1→2→4→8→7→5→3→6→9→0 (doubling circuit opens from one).
 // Digit folders import only digit folders — this imports only the root kernel.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../../../../..'
 
 export const digit = 1
 export const role = 'circuit' as const // first step of the period-6 doubling circuit 1→2→4→8→7→5

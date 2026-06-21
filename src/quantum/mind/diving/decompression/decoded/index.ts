@@ -1,0 +1,1 @@
+export { decompressionDecoded } from '../../../diving'

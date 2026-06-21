@@ -2,10 +2,10 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 2, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000F0' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, quantumFoldedBlockchains, blockchainMusic } from '../lib/quantumMind'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
+import { useLocale } from '../lib'
+import { buildMatrix, quantumFoldedBlockchains, blockchainMusic } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
 
 // Playing the blockchain returns unique harmonic waves: pick a chain, press
 // play, and hear each block's hash as a note. Deterministic — the same chain

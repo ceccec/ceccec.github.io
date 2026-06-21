@@ -4,7 +4,7 @@
 // deterministic, composing only src/0 primitives. The FOLDS that run them as shared experiments live in
 // src/quantum/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☷ Kūn · Earth · receptive · lower·yin · spread — src/0 math primitives (uuid, prng, seed, round, merkle, spectrum, markov, EM)
-import { toUuid, prng, seedFromText, roundTo, merkleFold, powerSpectrum, markovStep, larmorFrequency, dopplerShift } from '../../0/index.ts'
+import { toUuid, prng, seedFromText, roundTo, merkleFold, powerSpectrum, markovStep, larmorFrequency, dopplerShift } from '../../0'
 
 // ── Trading from the same knowledge, a432-ignited (developed + adversarially verified by a 10-agent wave) ──
 // "When all is quantum, a432 is the engine starter": every strategy is backtested on ONE deterministic

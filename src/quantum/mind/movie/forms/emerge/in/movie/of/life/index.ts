@@ -1,0 +1,1 @@
+export { formsEmergeInMovieOfLife } from '../../../../../../../movie'

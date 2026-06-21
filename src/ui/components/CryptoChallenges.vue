@@ -10,8 +10,8 @@ const ICHING_MASK = { hexagram: 46, name: 'Dǐng', glyph: '☲☴', lower: 'Xùn
 // plain text next to the animation, so any agent reading the page understands the exploit and the fix at once.
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
-import { useTones } from '../lib/useTones'
-import { cryptoChallenges, findContentAddressCollision, addressEntropyBits, toUuid, sha256Sync, toUuidSha256 } from '../lib/quantumMind'
+import { useTones } from '../lib'
+import { cryptoChallenges, findContentAddressCollision, addressEntropyBits, toUuid, sha256Sync, toUuidSha256 } from '../lib'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')

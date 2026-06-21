@@ -1,0 +1,1 @@
+export { siteIsMovieAndLibrary } from '../../../../../../movie'

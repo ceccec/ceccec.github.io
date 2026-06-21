@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☴+☲ · Xùn/Lí · hex 46 — prose converted to audio/visual proof in 3D (a432 tone · particle film · 3D point)
 const ICHING_MASK = { hexagram: 46, lower: 6, upper: 5, glyph: '☲', trigram: 'Lí', name: 'Fire', attribute: 'clinging', innerAxis: 'loopA1', outerAxis: 'breath', color: '#0F000F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { proseToAudioVisual3dProof } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { proseToAudioVisual3dProof } from '../lib'
 
 const d = proseToAudioVisual3dProof()
 const items = [

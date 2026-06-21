@@ -1,0 +1,1 @@
+export { monographAsScientificPaper } from '../../../../../site'

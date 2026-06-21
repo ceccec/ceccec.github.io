@@ -1,0 +1,1 @@
+export { quantumDoubleTorus } from '../../../../topology'

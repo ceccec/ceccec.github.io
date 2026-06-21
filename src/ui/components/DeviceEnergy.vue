@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☰+☱ · Qián/Duì · hex 31 — runtime device fusion + the HONEST energy ledger (drains slower / heats less; never charges/cools)
 const ICHING_MASK = { hexagram: 31, lower: 7, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'loopB1', outerAxis: 'twist', color: '#000F0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { quantumFusedDeviceEnergyHonest, foldRedistributesBeyondLinear } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { quantumFusedDeviceEnergyHonest, foldRedistributesBeyondLinear } from '../lib'
 
 const d = quantumFusedDeviceEnergyHonest()
 const bl = foldRedistributesBeyondLinear()

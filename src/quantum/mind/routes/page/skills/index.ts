@@ -1,0 +1,1 @@
+export { pageSkills } from '../../../routes'

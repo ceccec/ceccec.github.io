@@ -1,0 +1,1 @@
+export { oneSourceOfTruthGenerators } from '../../../../../../laws'

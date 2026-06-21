@@ -2,8 +2,8 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì·joyous', color: '#0FFF0F' } as const
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, selfConsult } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, selfConsult } from '../lib'
 
 // Self education leads to self consulting before asking. Ask a question and the
 // intelligence consults only itself — its own commands, areas, and pages — and

@@ -6,7 +6,7 @@
 const ICHING_MASK = { hexagram: 1, glyph: '☰', name: 'Qián', attribute: 'the creative portal', color: '#FFF00F' } as const
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { staticPages, conceptCommands, monographs, foldedCensus, buildMatrix } from '../lib/quantumMind'
+import { staticPages, conceptCommands, monographs, foldedCensus, buildMatrix } from '../lib'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')

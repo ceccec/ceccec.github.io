@@ -1,0 +1,1 @@
+export { fruitOfLifeFusion } from '../../../../../fusion'

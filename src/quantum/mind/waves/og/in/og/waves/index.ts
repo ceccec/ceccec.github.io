@@ -1,0 +1,1 @@
+export { ogInOgWaves } from '../../../../../waves'

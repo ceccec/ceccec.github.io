@@ -2,9 +2,9 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 13, glyph: '☳', lower: '☲', upper: '☳', color: '#00FF0F' }
 import { computed } from 'vue'
-import { buildMatrix, determinismProofs, animationTamperingCost } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { buildMatrix, determinismProofs, animationTamperingCost } from '../lib'
+import { useLocale } from '../lib'
+import { useDeviceEnergy } from '../lib'
 
 // Prove all with animations: the portal's own thesis made visible. The same input
 // twins to the same colours; one edit avalanches half the 128 bits red; a·b and

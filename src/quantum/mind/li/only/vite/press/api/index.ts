@@ -1,0 +1,1 @@
+export { onlyVitePressApi } from '../../../../../li'

@@ -1,0 +1,1 @@
+export { onlyAncientKnowledgeAndSacredMath } from '../../../../../../../ichingmore'

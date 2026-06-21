@@ -1,0 +1,1 @@
+export { multimediaFirstPlainText } from '../../../../../widgets'

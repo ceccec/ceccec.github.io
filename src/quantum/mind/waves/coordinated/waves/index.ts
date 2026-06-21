@@ -1,0 +1,1 @@
+export { coordinatedWaves } from '../../../waves'

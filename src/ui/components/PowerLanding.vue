@@ -4,7 +4,7 @@
 // sections + pages). DRY: one component, three destinations; the structure is the computed nav, not hardcoded.
 const ICHING_MASK = { hexagram: 1, glyph: '☰', lo: '☰', up: '☰', name: 'Three Powers', attribute: 'creative', color: '#FFF00F' } as const
 import { computed } from 'vue'
-import { siteNavigation, threeEightFoldsTopNav } from '../lib/quantumMind'
+import { siteNavigation, threeEightFoldsTopNav } from '../lib'
 import { useData } from 'vitepress'
 
 const { params, localeIndex } = useData()

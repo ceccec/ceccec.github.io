@@ -1,0 +1,1 @@
+export { pathIsThePrompt } from '../../../../../folds'

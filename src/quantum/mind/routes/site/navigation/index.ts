@@ -1,0 +1,1 @@
+export { siteNavigation } from '../../../routes'

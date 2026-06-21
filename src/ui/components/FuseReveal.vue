@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 37, lower: 5, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'keeping still', innerAxis: 'breath', outerAxis: 'shrink', color: '#F00F0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { uiWidgetsFuseReveal } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { uiWidgetsFuseReveal } from '../lib'
 
 const d = uiWidgetsFuseReveal()
 const items = [

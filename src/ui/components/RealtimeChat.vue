@@ -2,8 +2,8 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', color: '#00F0F0' }
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, messageUnlock } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, messageUnlock } from '../lib'
 
 // Realtime chats where the same logic always meets on the architectural level:
 // every message is content-addressed (its content UUID is its identity), peers

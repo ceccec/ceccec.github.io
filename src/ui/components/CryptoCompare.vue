@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 63, trigram: '☰☰', glyph: '☰☰', lo: 'Qián·creative', up: 'Qián·creative', color: '#FFFFFF' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, cryptographyComparison } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, cryptographyComparison } from '../lib'
 
 // Deep research, honest: how the site's fold compares to established
 // cryptography. A widget, not a wall of text — each row pairs a site primitive

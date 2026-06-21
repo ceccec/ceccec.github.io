@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☵+☴ · Kǎn/Xùn · Cauldron 鼎 (hex 50) — heart=proton's inverse, atom=ring, Tesla fused
 const ICHING_MASK = { hexagram: 50, lower: 2, upper: 6, glyph: '☴', trigram: 'Xùn', name: 'Cauldron', attribute: 'transforming', innerAxis: 'hueShift', outerAxis: 'loopA1', color: '#FF00F0' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { heartProtonAtomDecoded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { heartProtonAtomDecoded } from '../lib'
 
 const d = heartProtonAtomDecoded()
 const items = [

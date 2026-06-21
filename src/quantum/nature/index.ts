@@ -2,7 +2,7 @@
 // Dual: src/nature/quantum (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
-import { toUuid, merkleFold } from '../../0/index.ts'
+import { toUuid, merkleFold } from '../../0'
 
 // ☴ Xùn · Wind · gentle · upper·yang · twist — natural law and lawful society exports
 /** @iching ☴ Xùn · Wind · gentle */

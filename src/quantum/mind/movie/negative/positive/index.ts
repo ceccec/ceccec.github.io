@@ -1,0 +1,1 @@
+export { movieNegativePositive } from '../../../movie'

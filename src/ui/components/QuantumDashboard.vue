@@ -2,10 +2,10 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'QuantumDashboard' }
 import { computed } from 'vue'
-import { buildMatrix, analytics, holographicDashboard } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import Badge from './ui/Badge.vue'
-import Card from './ui/Card.vue'
+import { buildMatrix, analytics, holographicDashboard } from '../lib'
+import { useLocale } from '../lib'
+import Badge from './ui/Badge'
+import Card from './ui/Card'
 
 // The missing quantum dashboards, reading from one DRY analytics source. Three
 // boards — the model, the proof, the reach — each a Card of content-addressed

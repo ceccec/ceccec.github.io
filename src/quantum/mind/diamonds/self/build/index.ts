@@ -1,0 +1,1 @@
+export { selfBuild } from '../../../diamonds'

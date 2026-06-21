@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☴+☱ · Xùn/Duì · hex 30 — Bulgarian history 681→present, six verified eras, state-history ascending
 const ICHING_MASK = { hexagram: 30, lower: 6, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'loopA1', outerAxis: 'twist', color: '#000F0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { bulgarianHistory, bulgarianHistoryDecoded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { bulgarianHistory, bulgarianHistoryDecoded } from '../lib'
 
 const h = bulgarianHistory()
 const d = bulgarianHistoryDecoded()

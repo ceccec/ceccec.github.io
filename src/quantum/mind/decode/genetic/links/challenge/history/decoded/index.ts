@@ -1,0 +1,1 @@
+export { geneticLinksChallengeHistoryDecoded } from '../../../../../../decode'

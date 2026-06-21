@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☶+☶ · Gèn/Gèn · hex 36 — the quantum-algorithm speedups: Grover, Deutsch–Jozsa, Simon
 const ICHING_MASK = { hexagram: 36, lower: 4, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'still', innerAxis: 'shrink', outerAxis: 'shrink', color: '#0F0000' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { quantumImpossibleWaveFour } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { quantumImpossibleWaveFour } from '../lib'
 
 const d = quantumImpossibleWaveFour()
 const items = [

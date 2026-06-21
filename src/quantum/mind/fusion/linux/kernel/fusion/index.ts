@@ -1,0 +1,1 @@
+export { linuxKernelFusion } from '../../../../fusion'

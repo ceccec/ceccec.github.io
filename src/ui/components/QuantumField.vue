@@ -2,11 +2,11 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { deviceSensors, a432, frequencyToLight, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
-import { dims } from '../lib/hero'
-import { useAnimationEngine } from '../lib/useAnimationEngine'
-import { useDeviceField } from '../lib/useDeviceField'
+import { useLocale } from '../lib'
+import { deviceSensors, a432, frequencyToLight, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib'
+import { dims } from '../lib'
+import { useAnimationEngine } from '../lib'
+import { useDeviceField } from '../lib'
 
 // The quantum field, filled by device sensors. A cloud of points drifts, drawn
 // toward where you point and pushed by how you tilt the device — the field

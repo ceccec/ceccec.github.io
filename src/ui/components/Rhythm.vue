@@ -2,11 +2,11 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'Rhythm' }
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432, A432_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
-import { dims } from '../lib/hero'
-import { useLocale } from '../lib/useLocale'
-import { useTones } from '../lib/useTones'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432, A432_HUE, GOLDEN_ANGLE } from '../lib'
+import { dims } from '../lib'
+import { useLocale } from '../lib'
+import { useTones } from '../lib'
+import { useDeviceEnergy } from '../lib'
 
 // Keep the rhythm: the merkaba scales as a self-similar polyrhythm. Four concentric
 // rings, one per voice, counter-rotating by the merkaba sign; a hand sweeps each

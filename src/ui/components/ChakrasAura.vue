@@ -2,8 +2,8 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { chakrasAura } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { chakrasAura } from '../lib'
 
 // Chakras and aura in 3-5-8: the three nadis (channels), the five koshas (sheaths) and the
 // eight limbs of yoga (ashtanga). Computed from the chakrasAura() fold. A correspondence to the

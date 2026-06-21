@@ -14,7 +14,7 @@ import {
   oscillatorBank,
   powerSpectrum,
   type Ring,
-} from '../lib/quantumMind'
+} from '../lib'
 
 // The DYNAMICAL-systems SIMULATOR — the honest classical companion to ProbSim. One config-driven
 // component, three readout modes over the src/0 dynamical primitives:

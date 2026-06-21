@@ -1,0 +1,1 @@
+export { fundamentalPhysicsDecoded } from '../../../../folds'

@@ -1,0 +1,1 @@
+export { quantumSolutions } from '../../../quantumproofs'

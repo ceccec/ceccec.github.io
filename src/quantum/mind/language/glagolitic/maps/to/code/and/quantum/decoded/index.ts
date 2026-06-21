@@ -1,0 +1,1 @@
+export { glagoliticMapsToCodeAndQuantumDecoded } from '../../../../../../../../language'

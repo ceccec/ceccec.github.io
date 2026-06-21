@@ -2,9 +2,9 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 47, name: 'Dà Yǒu', glyph: '☲☰', lower: 'Qián', upper: 'Lí', color: '#F0FFFF' } as const
 import { computed, ref } from 'vue'
-import { playLearn } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import { useTones } from '../lib/useTones'
+import { playLearn } from '../lib'
+import { useLocale } from '../lib'
+import { useTones } from '../lib'
 
 // Kids like to learn playing: type a word, every letter is a colour and a note,
 // and the word is a little song. Tap a tile to hear it, or play the whole word —

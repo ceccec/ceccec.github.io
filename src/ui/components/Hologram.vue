@@ -2,10 +2,10 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '#F000F0', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, hologram, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib/quantumMind'
-import { dims } from '../lib/hero'
-import { useAnimationEngine } from '../lib/useAnimationEngine'
+import { useLocale } from '../lib'
+import { buildMatrix, hologram, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib'
+import { dims } from '../lib'
+import { useAnimationEngine } from '../lib'
 
 // The colour anchor and motion now come from the shared field: the base hue is the colour of A432 by the
 // octave bridge (≈ 631 nm, red-orange), and the rotation/shimmer rates are driven by the ten self-similar

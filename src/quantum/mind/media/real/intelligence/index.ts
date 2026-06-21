@@ -1,0 +1,1 @@
+export { realIntelligence } from '../../../media'

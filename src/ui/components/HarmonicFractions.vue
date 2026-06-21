@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☳ Zhèn · Thunder · arousing · upper·yang · spread — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 13, lower: 5, upper: 1, glyph: '☳', trigram: 'Zhèn', name: 'Thunder', attribute: 'arousing', innerAxis: 'breath', outerAxis: 'spread', color: '#00FF0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { harmonicFractionsInDigitFolders } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { harmonicFractionsInDigitFolders } from '../lib'
 
 const d = harmonicFractionsInDigitFolders()
 const items = [

@@ -5,7 +5,7 @@ const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '
 // the monograph (staticPages) — title, abstract, figures — content-addressed. Path A: the shadcn Card
 // structure rewritten into the repo's own semantic classes (no Tailwind). A seed in, a monograph out.
 import { computed } from 'vue'
-import { staticPages, toUuid } from '../lib/quantumMind'
+import { staticPages, toUuid } from '../lib'
 
 const props = defineProps({
   slug: { type: String, default: '' },

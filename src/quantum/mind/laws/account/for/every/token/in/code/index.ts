@@ -1,0 +1,1 @@
+export { accountForEveryTokenInCode } from '../../../../../../../laws'

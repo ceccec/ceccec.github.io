@@ -1,0 +1,1 @@
+export { anyUuidHeroContentFractal } from '../../../../../../ui'

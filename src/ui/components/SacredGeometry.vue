@@ -7,9 +7,9 @@ const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '
 // shown where it genuinely lives. Reuses the sacredGeometry() fold (the decode) and the shared form SVGs. Built
 // to web standards: semantic headings/lists/figures, labelled controls, aria-expanded toggles, reduced-motion.
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { sacredGeometry, createAnimationEngine } from '../lib/quantumMind'
-import { formSvg, formDims10D, SACRED_FORMS, FORM_LABEL } from '../lib/sacredForms'
-import { blip } from '../lib/useTones'
+import { sacredGeometry, createAnimationEngine } from '../lib'
+import { formSvg, formDims10D, SACRED_FORMS, FORM_LABEL } from '../lib'
+import { blip } from '../lib'
 
 // Sound the form (a432 = colour · sound · form, one frequency). HONEST: a CHOSEN sonification — the five solids as a
 // just-intonation ascent on 432 Hz (1 · 9/8 · 5/4 · 3/2 · 2) — NOT a claim the solid "has" a pitch (that would be the

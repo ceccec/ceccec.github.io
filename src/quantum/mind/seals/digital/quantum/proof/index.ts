@@ -1,0 +1,1 @@
+export { digitalQuantumProof } from '../../../../seals'

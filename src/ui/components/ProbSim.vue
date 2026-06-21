@@ -2,7 +2,7 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 5, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F0F' }
 import { computed, ref, watch } from 'vue'
-import { pflip, admixToward, injectError, sampleCounts, composeHazard, survive, markovEvolve, stationary, aksakRatioWalk, codeRobustness } from '../lib/quantumMind'
+import { pflip, admixToward, injectError, sampleCounts, composeHazard, survive, markovEvolve, stationary, aksakRatioWalk, codeRobustness } from '../lib'
 
 // The probabilistic-process SIMULATOR — the honest classical model a research fleet found under most decoded
 // domains. One config-driven component, four readout modes over the src/0 primitives:

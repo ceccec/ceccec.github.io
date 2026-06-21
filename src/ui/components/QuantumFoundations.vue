@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☶+☶ · Gèn/Gèn · hex 36 — the foundations bend yet hold: GHZ-Mermin, Bell/CHSH, BB84
 const ICHING_MASK = { hexagram: 36, lower: 4, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'still', innerAxis: 'shrink', outerAxis: 'shrink', color: '#0F0000' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { quantumImpossibleWaveThree } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { quantumImpossibleWaveThree } from '../lib'
 
 const d = quantumImpossibleWaveThree()
 const items = [

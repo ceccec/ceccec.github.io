@@ -1,0 +1,1 @@
+export { inverseShiftConsciousness } from '../../../../li'

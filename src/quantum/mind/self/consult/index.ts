@@ -1,0 +1,1 @@
+export { selfConsult } from '../../self'

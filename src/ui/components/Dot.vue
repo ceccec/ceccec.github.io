@@ -9,9 +9,9 @@ const ICHING_MASK = { hexagram: 0, glyph: '☷', trigram: 'Kūn·receptive', col
 // child Dot — a graph of graphs). The hero spins in realtime at its computed period; the dot plays
 // its tone on tap.
 import { computed } from 'vue'
-import { uuidHero, toUuid, glagoliticGlyph } from '../lib/quantumMind'
-import { blip } from '../lib/useTones'
-import Card from './ui/Card.vue'
+import { uuidHero, toUuid, glagoliticGlyph } from '../lib'
+import { blip } from '../lib'
+import Card from './ui/Card'
 
 const props = defineProps<{ seed?: string; uuid?: string; label?: string; tone?: boolean; compact?: boolean }>()
 const id = computed(() => props.uuid ?? toUuid(props.seed ?? 'dot'))

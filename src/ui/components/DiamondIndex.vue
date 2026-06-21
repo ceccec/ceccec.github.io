@@ -6,7 +6,7 @@ const ICHING_MASK = { hexagram: 45, name: 'Lí', glyph: '☲☲', lower: 'Lí', 
 // for bg; the chip links carry the locale prefix.
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { pureDiamonds, diamondRoutes } from '../lib/quantumMind'
+import { pureDiamonds, diamondRoutes } from '../lib'
 
 const { localeIndex } = useData()
 const summary = pureDiamonds()

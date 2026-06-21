@@ -1,0 +1,1 @@
+export { tamperingCostDecoded } from '../../../../crypto'

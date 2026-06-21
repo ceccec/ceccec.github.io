@@ -2,10 +2,10 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', color: '#00F0F0' }
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, merkaba, humanise, createAnimationEngine, frequencyToLight, a432 } from '../lib/quantumMind'
-import { rotateYZ, rotateZX, dims } from '../lib/hero'
-import { useLocale } from '../lib/useLocale'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { buildMatrix, merkaba, humanise, createAnimationEngine, frequencyToLight, a432 } from '../lib'
+import { rotateYZ, rotateZX, dims } from '../lib'
+import { useLocale } from '../lib'
+import { useDeviceEnergy } from '../lib'
 
 // Same as the double torus: opposite rotation at all scales. The star tetrahedron
 // (two interlocked tetrahedra) spins its two halves in opposite directions, at the

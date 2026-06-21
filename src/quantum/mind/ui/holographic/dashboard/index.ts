@@ -1,0 +1,1 @@
+export { holographicDashboard } from '../../../ui'

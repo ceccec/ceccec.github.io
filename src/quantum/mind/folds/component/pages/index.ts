@@ -1,0 +1,1 @@
+export { componentPages } from '../../../folds'

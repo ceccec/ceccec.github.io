@@ -2,7 +2,7 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 24, glyph: '☱', lo: 'Kūn·receptive', up: 'Duì·joyous', color: '#0FF000' } as const
 import { ref, onMounted } from 'vue'
-import { GLAGOLITIC_MAP } from '../lib/quantumMind'
+import { GLAGOLITIC_MAP } from '../lib'
 
 // GlagoliticOCR — the reverse of the encoder, closed-set and deterministic. The system renders from a known
 // glyph set (GLAGOLITIC_MAP), so recognition is classification over that set: render each glyph to a 24×24

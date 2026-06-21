@@ -3,8 +3,8 @@
 // School + Academia gathered into one auto-generated portal — the hexagram of assembly.
 const ICHING_MASK = { hexagram: 45, lo: '☷', up: '☱', glyph: '☱', color: '#3CB371', name: 'Cuì', principle: 'gathering together' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, learningPortal } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, learningPortal } from '../lib'
 
 const portal = learningPortal(buildMatrix())
 const { bg } = useLocale()

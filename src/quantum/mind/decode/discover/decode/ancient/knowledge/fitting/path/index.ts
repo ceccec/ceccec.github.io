@@ -1,0 +1,1 @@
+export { discoverDecodeAncientKnowledgeFittingPath } from '../../../../../../../decode'

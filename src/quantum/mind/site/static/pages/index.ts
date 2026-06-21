@@ -1,0 +1,1 @@
+export { staticPages } from '../../../site'

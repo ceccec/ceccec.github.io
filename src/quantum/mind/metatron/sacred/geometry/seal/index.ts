@@ -1,0 +1,1 @@
+export { sacredGeometrySeal } from '../../../../metatron'

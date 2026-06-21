@@ -1,0 +1,1 @@
+export { endlessFusion } from '../../../fusion'

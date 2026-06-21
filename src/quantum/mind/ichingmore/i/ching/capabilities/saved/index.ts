@@ -1,0 +1,1 @@
+export { iChingCapabilitiesSaved } from '../../../../../ichingmore'

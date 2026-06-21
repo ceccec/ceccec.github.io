@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 38, lo: '☴', up: '☶', glyph: '☶', color: '#F00FF0', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { humanize } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { humanize } from '../lib'
 
 // Humanize. Behind the maths and the 3d+ are a few simple promises to a person.
 // Said plainly, warmly — what it means for you, in your language.

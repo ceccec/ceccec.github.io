@@ -1,0 +1,1 @@
+export { linearNotesFoldToMusic } from '../../../../../../music'

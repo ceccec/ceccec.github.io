@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { usePlayMind } from '../../lib/usePlayMind'
+import { usePlayMind } from '../../lib'
 
 // An unobtrusive, playful badge — not an exam. Students don't know they are assessed;
 // they just play (the background-movie game, the heroes), and this quietly shows their

@@ -1,0 +1,1 @@
+export { digitFoldersAreTheApi } from '../../../../../../architecture'

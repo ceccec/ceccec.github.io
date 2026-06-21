@@ -1,0 +1,1 @@
+export { foldRedistributesBeyondLinear } from '../../../../../method'

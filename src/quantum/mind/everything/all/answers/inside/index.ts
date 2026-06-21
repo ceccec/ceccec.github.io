@@ -1,0 +1,1 @@
+export { allAnswersInside } from '../../../../everything'

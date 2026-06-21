@@ -2,10 +2,10 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 5, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F0F' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, healingFrequencies, frequencyBalance, harmonicApparatus } from '../lib/quantumMind'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
+import { useLocale } from '../lib'
+import { buildMatrix, healingFrequencies, frequencyBalance, harmonicApparatus } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
 
 // Calculate the healing frequencies and dynamically harmonise them through the
 // device — as SOUND through the speaker. The lead tone is derived from the live

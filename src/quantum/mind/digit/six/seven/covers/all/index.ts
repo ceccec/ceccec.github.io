@@ -1,0 +1,1 @@
+export { sixSevenCoversAll } from '../../../../../digit'

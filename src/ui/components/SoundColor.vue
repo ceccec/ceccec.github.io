@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 59, trigram: '☱☰', glyph: '☱☰', lo: 'Duì·joyous', up: 'Qián·creative', color: '#FFF0FF' }
-import { buildMatrix, soundColor } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import { useTones } from '../lib/useTones'
+import { buildMatrix, soundColor } from '../lib'
+import { useLocale } from '../lib'
+import { useTones } from '../lib'
 
 // Colour is computed from sound: each frequency maps to a hue, so one computed
 // frequency drives both a note and a colour. This surfaces it — click a swatch

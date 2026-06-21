@@ -1,0 +1,1 @@
+export { astrology } from '../../world'

@@ -1,0 +1,1 @@
+export { artistMelody } from '../../../life'

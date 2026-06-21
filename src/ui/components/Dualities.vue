@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 61, trigram: '☲☰', glyph: '☲☰', lo: 'Lí·clinging', up: 'Qián·creative', color: '#FFFF0F' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { dualities } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { dualities } from '../lib'
 
 // Compare all dualities, in 3-5-8 (Fibonacci) tiers. Each pair is a real duality
 // because folding left-then-right differs from right-then-left.

@@ -1,0 +1,1 @@
+export { worldFusion } from '../../../fusion'

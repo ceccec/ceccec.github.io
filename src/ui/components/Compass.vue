@@ -5,7 +5,7 @@
 // Zero-network — the filter is client-side over the already-computed nav; no separate index, no query to a host.
 const ICHING_MASK = { hexagram: 30, glyph: '☲', lo: '☲', up: '☲', name: 'Lí', attribute: 'clinging', color: '#F00F0F' } as const
 import { ref, computed } from 'vue'
-import { siteNavigation } from '../lib/quantumMind'
+import { siteNavigation } from '../lib'
 import { useData } from 'vitepress'
 
 const { localeIndex } = useData()

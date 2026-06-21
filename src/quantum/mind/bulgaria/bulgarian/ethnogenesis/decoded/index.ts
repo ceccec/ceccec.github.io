@@ -1,0 +1,1 @@
+export { bulgarianEthnogenesisDecoded } from '../../../../bulgaria'

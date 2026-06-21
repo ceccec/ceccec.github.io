@@ -1,0 +1,1 @@
+export { anyForceFightsSelf } from '../../../../../laws'

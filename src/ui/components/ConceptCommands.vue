@@ -2,14 +2,14 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 41, name: 'Shì Kè', glyph: '☲☳', lower: 'Zhèn', upper: 'Lí', color: '#F0F00F' } as const
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
+import { useLocale } from '../lib'
 import {
   buildMatrix,
   conceptCommands,
   executeConceptCommand,
   siteManifestFromCommands,
   type ConceptCommandName,
-} from '../lib/quantumMind'
+} from '../lib'
 
 const matrix = buildMatrix()
 const selected = ref<ConceptCommandName>('concept.mind.doubleTorus')

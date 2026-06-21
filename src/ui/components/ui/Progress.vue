@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { ProgressRoot, ProgressIndicator } from 'radix-vue'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/utils'
+import { cn } from '../../lib'
 
 const progressVariants = cva('ui-progress', {
   variants: {

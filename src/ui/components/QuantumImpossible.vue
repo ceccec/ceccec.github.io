@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☱+☲ · Duì/Lí · hex 43 — the impossible-seeming, proven possible: teleportation + superdense coding
 const ICHING_MASK = { hexagram: 43, lower: 3, upper: 5, glyph: '☲', trigram: 'Lí', name: 'Fire', attribute: 'clinging', innerAxis: 'twist', outerAxis: 'breath', color: '#0F000F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { quantumImpossibleMadePossible } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { quantumImpossibleMadePossible } from '../lib'
 
 const d = quantumImpossibleMadePossible()
 const items = [

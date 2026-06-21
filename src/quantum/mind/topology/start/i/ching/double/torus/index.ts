@@ -1,0 +1,1 @@
+export { startIChingDoubleTorus } from '../../../../../../topology'

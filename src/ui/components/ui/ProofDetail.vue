@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { useLocale } from '../../lib/useLocale'
+import { useLocale } from '../../lib'
 
 // A SUFFICIENT proof, rendered generically from any holds-true fold. Not a statement and a UUID — the actual
 // verifiable computation: every boolean sub-result that composes `holds` shown as a check (recomputed live in

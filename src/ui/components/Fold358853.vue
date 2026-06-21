@@ -2,8 +2,8 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 26, glyph: '☱', lo: 'Kǎn·abysmal', up: 'Duì·joyous', color: '#0FF0F0' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { fold358853 } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { fold358853 } from '../lib'
 
 // Fold 358 and 853 — the breath of the tiers. 3 → 5 → 8 expands; 8 → 5 → 3
 // contracts; folded together they meet at equilibrium, and because the fold is

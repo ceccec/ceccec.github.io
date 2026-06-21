@@ -1,0 +1,1 @@
+export { mathPaths } from '../../../academia'

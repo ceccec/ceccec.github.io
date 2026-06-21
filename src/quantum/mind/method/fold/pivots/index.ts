@@ -1,0 +1,1 @@
+export { foldPivots } from '../../../method'

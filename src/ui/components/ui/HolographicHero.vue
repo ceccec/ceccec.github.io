@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
-import { useTones } from '../../lib/useTones'
-import { recordPlay } from '../../lib/usePlayMind'
-import { drawHero, buildArchNodes, makeBurst, seedOf, hueOf, armsOf, HEALING_PAIRS, createAnimationEngine, type Burst } from '../../lib/hero'
+import { useDeviceEnergy } from '../../lib'
+import { useTones } from '../../lib'
+import { recordPlay } from '../../lib'
+import { drawHero, buildArchNodes, makeBurst, seedOf, hueOf, armsOf, HEALING_PAIRS, createAnimationEngine, type Burst } from '../../lib'
 
 // Every page has an animated hero that merges all the page's related items — its category and holographic
 // tags — into a holographic fractal seeded from the page's own path, so the hero IS the page in one figure.

@@ -2,10 +2,10 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 22, glyph: '☵', lower: '☴', upper: '☵', color: '#0F0FF0' } as const
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, dna, genes, mutations, a432, frequencyToLight } from '../lib/quantumMind'
-import { dims } from '../lib/hero'
-import { useAnimationEngine } from '../lib/useAnimationEngine'
+import { useLocale } from '../lib'
+import { buildMatrix, dna, genes, mutations, a432, frequencyToLight } from '../lib'
+import { dims } from '../lib'
+import { useAnimationEngine } from '../lib'
 
 // The model as a DNA double helix, to the bit. The 128-bit word is 64 bases; the
 // two strands are the sense and its Watson-Crick antisense complement, drawn as

@@ -2,8 +2,8 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 46, name: 'Dǐng', glyph: '☲☴', lower: 'Xùn', upper: 'Lí', color: '#F0FFF0' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, boundaryAudit } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, boundaryAudit } from '../lib'
 
 // The honesty spine: every limit the model declares, in one place. Collected
 // live from the commands, so it can never drift from what the portal actually

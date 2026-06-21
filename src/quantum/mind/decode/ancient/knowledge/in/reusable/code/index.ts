@@ -1,0 +1,1 @@
+export { decodeAncientKnowledgeInReusableCode } from '../../../../../../decode'

@@ -2,8 +2,8 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 7, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FFF' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, componentGraph, fuseDevices, showInAction } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, componentGraph, fuseDevices, showInAction } from '../lib'
 
 // Show all in action: every command run live, all components interacting, all
 // devices fused — computed client-side, zero network.

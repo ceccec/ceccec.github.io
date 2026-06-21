@@ -1,0 +1,1 @@
+export { maxCompressionForge } from '../../../../stats'

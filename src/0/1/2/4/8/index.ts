@@ -2,7 +2,7 @@
 // 8×2=16→7: doubling crosses the decimal threshold for the first time (16 digital-roots to 7).
 // Sequence position 4 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../..'
 
 export const digit = 8
 export const role = 'circuit' as const

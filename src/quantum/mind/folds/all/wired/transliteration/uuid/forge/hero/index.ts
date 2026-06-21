@@ -1,0 +1,1 @@
+export { allWiredTransliterationUuidForgeHero } from '../../../../../../../folds'

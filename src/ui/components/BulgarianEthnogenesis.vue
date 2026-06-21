@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☶+☱ · Gèn/Duì · hex 28 — Bulgarian ethnogenesis: Bulgars, Slavs, Thracians, fusion
 const ICHING_MASK = { hexagram: 28, lower: 4, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'shrink', outerAxis: 'twist', color: '#000F0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { bulgarianEthnogenesis, bulgarianEthnogenesisDecoded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { bulgarianEthnogenesis, bulgarianEthnogenesisDecoded } from '../lib'
 
 const e = bulgarianEthnogenesis()
 const d = bulgarianEthnogenesisDecoded()

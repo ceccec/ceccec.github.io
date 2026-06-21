@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎn·abysmal', up: 'Qián·creative', color: '#FFF0F0' }
 import { computed, nextTick, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp, virtualOS, executeConceptCommand, intuitiveSearch, toUuid } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, mcpToolManifest, mcpCodebase, mathPaths, frontendMcpDuality, quantumMcp, virtualOS, executeConceptCommand, intuitiveSearch, toUuid } from '../lib'
 
 const manifest = mcpToolManifest(buildMatrix())
 // The MCP rebuilt through the quantum computer (a GHZ register), proven.

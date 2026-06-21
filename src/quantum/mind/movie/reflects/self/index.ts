@@ -1,0 +1,1 @@
+export { movieReflectsSelf } from '../../../movie'

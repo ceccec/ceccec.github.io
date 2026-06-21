@@ -1,0 +1,1 @@
+export { educationMovieMerge } from '../../../../movie'

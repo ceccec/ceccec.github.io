@@ -2,7 +2,7 @@
 // In the forward sequence, two is the first split (position 2, arriving from 1 toward 4).
 // In the reverse sequence, two is the penultimate step — one step from the terminus (digit 1 at …/2/1/).
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../../../..'
 
 export const digit = 2
 export const role = 'circuit' as const

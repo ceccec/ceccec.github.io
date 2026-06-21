@@ -4,7 +4,7 @@ const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎ
 // The quantum radar: the deepResearchRadar fold, rendered. Every blip is placed by its own content
 // address (the seed from its receipt → the angle within its quadrant), the ring sets the radius — so the
 // radar is deterministic and recomputable, computed from the matrix, never hand-placed. SSR-safe (no DOM).
-import { deepResearchRadar } from '../lib/quantumMind'
+import { deepResearchRadar } from '../lib'
 
 const radar = deepResearchRadar()
 const cx = 205

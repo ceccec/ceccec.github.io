@@ -1,0 +1,1 @@
+export { allPossibleDomains } from '../../../../everything'

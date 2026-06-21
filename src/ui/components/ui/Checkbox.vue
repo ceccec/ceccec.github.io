@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CheckboxRoot, CheckboxIndicator, type CheckboxRootEmits } from 'radix-vue'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/utils'
+import { cn } from '../../lib'
 
 const checkboxVariants = cva('ui-checkbox', {
   variants: {

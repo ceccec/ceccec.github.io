@@ -1,0 +1,1 @@
+export { humanDesignDecoded } from '../../../../folds'

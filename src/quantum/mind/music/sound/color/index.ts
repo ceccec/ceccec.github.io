@@ -1,0 +1,1 @@
+export { soundColor } from '../../../music'

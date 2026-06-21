@@ -3,7 +3,7 @@
 // Dual: src/voice/quantum (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
-import { toUuid, merkleFold } from '../../0/index.ts'
+import { toUuid, merkleFold } from '../../0'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
 /** @iching ☵ Kǎn · Water · abysmal */
@@ -15,7 +15,7 @@ export function plainLanguage() {
     { term: 'Double Torus', plain: 'A learning portal you can check for yourself: every claim is a number anyone can recompute.', route: '/' },
     { term: 'Receipt', plain: 'A short code that fingerprints something — change one bit and the code changes.', route: '/architecture' },
     { term: 'Seal', plain: 'Proof the whole thing still adds up: recompute it and compare.', route: '/architecture' },
-    { term: 'Palette & melody', plain: 'Type a word and get the same colours and tune every time, shareable by citing the word.', route: '/school' },
+    { term: 'Palette & melody', plain: 'Type a word and get the same colours and tune every time, shareable by citing the word.', route: '/learn' },
     { term: 'Sonification', plain: 'Hear data as sound — to catch what the eye misses, or to use without a screen.', route: '/commands' },
     { term: 'MCP', plain: 'A way for AI assistants to call these tools directly.', route: '/mcp' },
     { term: 'Academy', plain: 'Five short courses; finish them and you earn a credential you can prove.', route: '/academy' },
@@ -183,7 +183,7 @@ export function multidimensional() {
       { label: 'Music of pi', route: '/quantum-mind', tip: 'Each wave a note, joined at the horo.' },
       { label: 'Healing frequencies', route: '/quantum-mind', tip: 'The Solfeggio set, as sound.' },
       { label: 'Blockchain music', route: '/commands', tip: 'Each chain its own melody.' },
-      { label: 'Speech & subtitles', route: '/school', tip: 'Read aloud in any device language.' },
+      { label: 'Speech & subtitles', route: '/learn', tip: 'Read aloud in any device language.' },
     ] },
     { dimension: 'ask', icon: '☿', items: [
       { label: 'Console', route: '/console', tip: 'Ask; it consults itself first.' },
@@ -199,7 +199,7 @@ export function multidimensional() {
       { label: 'Security scan', route: '/console', tip: 'Secure interaction in 3-5-8.' },
     ] },
     { dimension: 'learn', icon: '🎓', items: [
-      { label: 'School', route: '/school', tip: 'From the ground up, any age.' },
+      { label: 'School', route: '/learn', tip: 'From the ground up, any age.' },
       { label: 'Academy', route: '/academy', tip: 'Five courses, a credential.' },
       { label: "Developer's mind", route: '/learn-developer', tip: 'The laws, learned as skills.' },
       { label: 'Follow the path', route: '/', tip: 'A guided journey, looping.' },
@@ -218,7 +218,7 @@ export function multidimensional() {
     { dimension: 'create', icon: '✶', items: [
       { label: 'Endless waves', route: '/show', tip: 'A new creation at any index.' },
       { label: 'Quantum clock', route: '/', tip: 'Ticking in creation waves.' },
-      { label: 'Creative palette', route: '/school', tip: 'Colour and melody from a seed.' },
+      { label: 'Creative palette', route: '/learn', tip: 'Colour and melody from a seed.' },
     ] },
   ]
   const items = dims.flatMap((d) => d.items)

@@ -1,0 +1,1 @@
+export { uuidPayloadIsSource } from '../../../../../source'

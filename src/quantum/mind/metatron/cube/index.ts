@@ -1,0 +1,1 @@
+export { metatronCube } from '../../metatron'

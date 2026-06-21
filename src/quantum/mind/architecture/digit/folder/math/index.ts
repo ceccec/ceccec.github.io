@@ -1,0 +1,1 @@
+export { digitFolderMath } from '../../../../architecture'

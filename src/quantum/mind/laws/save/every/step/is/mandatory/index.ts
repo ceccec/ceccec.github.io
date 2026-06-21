@@ -1,0 +1,1 @@
+export { saveEveryStepIsMandatory } from '../../../../../../laws'

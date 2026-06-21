@@ -1,0 +1,1 @@
+export { hexagramQubitVectorIsomorphismOnly } from '../../../../../../metatron'

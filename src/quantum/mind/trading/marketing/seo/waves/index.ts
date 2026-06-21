@@ -1,0 +1,1 @@
+export { marketingSeoWaves } from '../../../../trading'

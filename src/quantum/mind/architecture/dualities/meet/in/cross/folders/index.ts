@@ -1,0 +1,1 @@
+export { dualitiesMeetInCrossFolders } from '../../../../../../architecture'

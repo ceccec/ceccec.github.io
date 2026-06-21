@@ -1,0 +1,1 @@
+export { oneHolographicTemplate } from '../../../../ui'

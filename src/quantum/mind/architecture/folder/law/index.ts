@@ -1,0 +1,1 @@
+export { folderLaw } from '../../../architecture'

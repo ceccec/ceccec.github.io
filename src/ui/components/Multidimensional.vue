@@ -2,8 +2,8 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 23, glyph: '☵', lower: '☰', upper: '☵', color: '#0F0FFF' } as const
 import { computed, ref } from 'vue'
-import { multidimensional, allInEquilibrium, buildMatrix } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { multidimensional, allInEquilibrium, buildMatrix } from '../lib'
+import { useLocale } from '../lib'
 
 // Present all multidimensionally, for the best UX. Eight dimensions of
 // experience as tabs; each shows its features as tooltip-rich links. Plus the

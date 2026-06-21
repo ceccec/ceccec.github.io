@@ -1,0 +1,1 @@
+export { harmonicPathRevealsItself } from '../../../../../music'

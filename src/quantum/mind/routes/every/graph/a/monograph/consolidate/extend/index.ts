@@ -1,0 +1,1 @@
+export { everyGraphAMonographConsolidateExtend } from '../../../../../../../routes'

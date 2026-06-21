@@ -3,7 +3,7 @@
 // Reverse sequence departs: 9→6→3→5→7→8→4→2→1→0 (reads the forward sequence backward).
 // Digit folders import only digit folders — this imports only the root kernel.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../../../../..'
 
 export const digit = 9
 export const role = 'axis' as const    // sits on the 3-6-9 pole, outside the doubling circuit 1-2-4-8-7-5

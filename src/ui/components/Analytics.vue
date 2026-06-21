@@ -2,10 +2,10 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 43, name: 'Guài', glyph: '☲☱', lower: 'Duì', upper: 'Lí', color: '#F0F0FF' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { analyticsLedger } from '../lib/quantumMind'
-import Chart from './Chart.vue'
-import DataTable from './DataTable.vue'
+import { useLocale } from '../lib'
+import { analyticsLedger } from '../lib'
+import Chart from './Chart'
+import DataTable from './DataTable'
 
 // Analytics rebuilt as reusable ledger views: one deduplicated source (analyticsLedger) rendered on
 // the shadcn Chart and DataTable primitives. DRY — every metric computed once, in the model.

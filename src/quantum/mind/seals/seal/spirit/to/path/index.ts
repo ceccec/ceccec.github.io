@@ -1,0 +1,1 @@
+export { sealSpiritToPath } from '../../../../../seals'

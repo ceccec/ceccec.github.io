@@ -4,9 +4,9 @@
 // Dual: src/icons/quantum (browse/display primitives). Only src/0 + mind/types imports.
 
 // ☶ Gèn · Mountain · keeping still · lower·yin · spread — type: sealed icon artifact shape
-import type { IconSeal } from '../mind/types.ts'
+import type { IconSeal } from '../mind'
 // ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — uuid + merkle fold primitives
-import { toUuid, merkleFold } from '../../0/index.ts'
+import { toUuid, merkleFold } from '../../0'
 
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
 /** @iching ☶ Gèn · Mountain · keeping still */

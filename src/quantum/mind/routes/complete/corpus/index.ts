@@ -1,0 +1,1 @@
+export { completeCorpus } from '../../../routes'

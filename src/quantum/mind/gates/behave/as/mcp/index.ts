@@ -1,0 +1,1 @@
+export { gatesBehaveAsMcp } from '../../../../gates'

@@ -1,0 +1,1 @@
+export { healingFrequencies } from '../../../ledger'

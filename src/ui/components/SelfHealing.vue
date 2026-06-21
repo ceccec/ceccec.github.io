@@ -2,8 +2,8 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 43, name: 'Guài', glyph: '☲☱', lower: 'Duì', upper: 'Lí', color: '#F0F0FF' } as const
 import { computed } from 'vue'
-import { buildMatrix, selfHealing } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, selfHealing } from '../lib'
+import { useLocale } from '../lib'
 
 // All in self-healing waves: each dimension that can fall out of balance is drawn
 // as a damped wave settling to the centre line — the equilibrium breath, healing.

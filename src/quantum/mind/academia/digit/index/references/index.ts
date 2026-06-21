@@ -1,0 +1,1 @@
+export { digitIndexReferences } from '../../../../academia'

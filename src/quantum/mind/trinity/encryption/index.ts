@@ -1,0 +1,1 @@
+export { trinityEncryption } from '../../trinity'

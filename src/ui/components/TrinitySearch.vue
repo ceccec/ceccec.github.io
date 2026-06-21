@@ -2,8 +2,8 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 48, glyph: '☴', lo: '☷', up: '☴', color: '#FF0000', name: 'TrinitySearch' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, searchTrinity, charUuids, wordUuids } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, searchTrinity, charUuids, wordUuids } from '../lib'
 
 // Each char a UUID, then the words, and a search of three characters reveals the
 // first trinity. Type and watch text become content-addressed at every grain —

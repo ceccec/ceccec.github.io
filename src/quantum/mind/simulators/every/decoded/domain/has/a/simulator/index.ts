@@ -1,0 +1,1 @@
+export { everyDecodedDomainHasASimulator } from '../../../../../../../simulators'

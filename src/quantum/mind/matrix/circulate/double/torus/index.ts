@@ -1,0 +1,1 @@
+export { circulateDoubleTorus } from '../../../../matrix'

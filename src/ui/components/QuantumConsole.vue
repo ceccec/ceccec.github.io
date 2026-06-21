@@ -2,7 +2,7 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 27, glyph: '☱', lo: 'Duì·joyous', up: 'Duì·joyous', color: '#0FF0FF' } as const
 import { computed, ref, onMounted } from 'vue'
-import { useLocale } from '../lib/useLocale'
+import { useLocale } from '../lib'
 import {
   buildMatrix,
   conceptCommands,
@@ -11,8 +11,8 @@ import {
   mcpToolManifest,
   siteManifestFromCommands,
   type ConceptCommandName,
-} from '../lib/quantumMind'
-import { runAiChat } from '../lib/useQuantumChat'
+} from '../lib'
+import { runAiChat } from '../lib'
 
 // ── Security by architecture ────────────────────────────────────────────────
 // 1. No secrets ship in the repo or bundle. The AI key is supplied by the user

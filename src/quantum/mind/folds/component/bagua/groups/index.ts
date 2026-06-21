@@ -1,0 +1,1 @@
+export { componentBaguaGroups } from '../../../../folds'

@@ -1,0 +1,1 @@
+export { planetsGalaxyComputeItself } from '../../../../../nature'

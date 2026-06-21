@@ -1,0 +1,1 @@
+export { doubleTorusWordFolders } from '../../../../../geometry'

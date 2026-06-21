@@ -1,0 +1,1 @@
+export { consciousness } from '../../matrix'

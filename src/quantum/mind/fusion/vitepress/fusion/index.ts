@@ -1,0 +1,1 @@
+export { vitepressFusion } from '../../../fusion'

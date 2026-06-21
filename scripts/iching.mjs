@@ -11,9 +11,19 @@
 //       scripts/iching.mjs dist                  # recompute dist + README (DIST_FILTER=… to narrow)
 //       CF_BINDINGS=kv,r2 scripts/iching.mjs cloudflare
 //       scripts/iching.mjs ☵                      # the Glagolitic home (debug echo)
+//
+// The eight slots live in src/quantum/dist/generators (every step in src). This shell BUNDLES that entry
+// through esbuild rather than importing it raw — src imports are folders only, with NO file extensions
+// (the strict barrel rule), and `node --experimental-strip-types` cannot resolve extensionless specifiers
+// while esbuild can. The shell then does the I/O the plans can't: gather inputs, write files, gate the exit.
+import { createRequire } from 'node:module'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { generators, runGenerator } from '../src/quantum/dist/generators.ts'
+
+const require = createRequire(import.meta.url)
+const esbuild = require('esbuild')
+const built = await esbuild.build({ entryPoints: ['src/quantum/dist/generators.ts'], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
+const { generators, runGenerator } = await import('data:text/javascript;base64,' + Buffer.from(built.outputFiles[0].text).toString('base64'))
 
 const root = process.cwd()
 const selector = process.argv[2]

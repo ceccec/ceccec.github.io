@@ -2,7 +2,7 @@
 // In the forward sequence, five is the circuit junction (position 6, arriving from 7 toward 3).
 // In the reverse sequence, five steps from 3 (cross) toward 7 (circuit descent) — re-entering the circuit.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../..'
 
 export const digit = 5
 export const role = 'circuit' as const

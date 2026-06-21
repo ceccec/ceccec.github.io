@@ -1,0 +1,1 @@
+export { questionAnswerEquilibrium } from '../../../../nature'

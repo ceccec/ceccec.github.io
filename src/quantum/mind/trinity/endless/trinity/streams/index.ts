@@ -1,0 +1,1 @@
+export { endlessTrinityStreams } from '../../../../trinity'

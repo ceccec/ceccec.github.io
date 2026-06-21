@@ -1,0 +1,1 @@
+export { noMirroringOneSourceAndMath } from '../../../../../../../laws'

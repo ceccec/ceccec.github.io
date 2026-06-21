@@ -1,0 +1,1 @@
+export { quantumNoCyclesFusedSequence } from '../../../../../../features'

@@ -1,0 +1,1 @@
+export { schemaOrgDiamonds } from '../../../../diamonds'

@@ -2,8 +2,8 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 42, name: 'Wèi Jì', glyph: '☲☵', lower: 'Kǎn', upper: 'Lí', color: '#F0F0F0' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, securityScan } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, securityScan } from '../lib'
 
 // All connected users interact securely, scanned in 3-5-8. The peers meet over a
 // same-origin channel with content-addressed messages and no server to attack;

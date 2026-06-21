@@ -4,7 +4,7 @@
 // Dual: src/heritage/quantum (browse/display primitives). Pure, zero matrix dependency.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — core content-addressing primitives (toUuid, merkleFold)
-import { toUuid, merkleFold } from '../../0/index.ts'
+import { toUuid, merkleFold } from '../../0'
 
 /** @iching ☷ Kūn · Earth · receptive */
 export function bulgarianHeritage() {

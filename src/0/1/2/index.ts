@@ -2,7 +2,7 @@
 // 2×2=4: doubling continues the orbit.
 // Sequence position 2 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../..'
 
 export const digit = 2
 export const role = 'circuit' as const  // period-6 orbit under ×2 mod 9

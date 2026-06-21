@@ -1,0 +1,1 @@
+export { vortexThePatentsRevealPattern } from '../../../../../../physics'

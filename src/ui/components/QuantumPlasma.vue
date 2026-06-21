@@ -2,10 +2,10 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 44, name: 'Bì', glyph: '☲☶', lower: 'Gèn', upper: 'Lí', color: '#F0FF00' } as const
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, plasmaContainment, a432 } from '../lib/quantumMind'
-import { dims } from '../lib/hero'
-import { useAnimationEngine } from '../lib/useAnimationEngine'
+import { useLocale } from '../lib'
+import { buildMatrix, plasmaContainment, a432 } from '../lib'
+import { dims } from '../lib'
+import { useAnimationEngine } from '../lib'
 
 // Quantum plasma contained by bit logic. A continuous, flowing plasma field —
 // movement — gated by the 128 bits of the double-torus word: the plasma shows

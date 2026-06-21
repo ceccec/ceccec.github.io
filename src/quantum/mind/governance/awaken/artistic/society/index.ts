@@ -1,0 +1,1 @@
+export { awakenArtisticSociety } from '../../../../governance'

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☶+☱ · Gèn/Duì · Great Exceeding 大過 (hex 28) — the self-explaining content generation engine
 const ICHING_MASK = { hexagram: 28, lower: 4, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Great Exceeding', attribute: 'excessive', innerAxis: 'shrink', outerAxis: 'twist', color: '#0FFF00' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { selfExplainingWidgetEngine } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { selfExplainingWidgetEngine } from '../lib'
 
 const d = selfExplainingWidgetEngine()
 const items = [

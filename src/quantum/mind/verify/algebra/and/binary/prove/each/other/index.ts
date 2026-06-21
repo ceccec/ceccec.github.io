@@ -1,0 +1,1 @@
+export { algebraAndBinaryProveEachOther } from '../../../../../../../verify'

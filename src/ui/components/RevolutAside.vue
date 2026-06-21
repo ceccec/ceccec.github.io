@@ -2,7 +2,7 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 48, glyph: '☴', lo: '☷', up: '☴', color: '#FF0000', name: 'RevolutAside' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
+import { useLocale } from '../lib'
 
 const { bg } = useLocale()
 const label = computed(() => (bg.value ? 'монетизация' : 'monetisation'))

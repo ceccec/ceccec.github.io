@@ -1,0 +1,1 @@
+export { thrivingIdeas } from '../../../civilisation'

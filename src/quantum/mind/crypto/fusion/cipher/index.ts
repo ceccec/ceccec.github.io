@@ -1,0 +1,1 @@
+export { fusionCipher } from '../../../crypto'

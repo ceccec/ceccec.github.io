@@ -2,7 +2,7 @@
 // ☶ Gèn · Mountain · keeping still — the layer panel holds all dimensions in stillness until called.
 const ICHING_MASK = { hexagram: 52, lower: 4, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'keeping still', color: '#F0F000' } as const
 import { ref, computed } from 'vue'
-import { LAYER_NAMES, LAYER_GROUP, LAYER_BADGE, useLayers } from '../lib/useLayers'
+import { LAYER_NAMES, LAYER_GROUP, LAYER_BADGE, useLayers } from '../lib'
 
 const props = defineProps<{
   mask: {

@@ -9,8 +9,8 @@
 const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì·joyous', color: '#0FFF0F' }
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
-import { useTones } from '../lib/useTones'
-import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432, GOLDEN_ANGLE } from '../lib/quantumMind'
+import { useTones } from '../lib'
+import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432, GOLDEN_ANGLE } from '../lib'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')

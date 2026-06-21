@@ -1,0 +1,1 @@
+export { sendWavesSealKnowledgeDecodeWorld } from '../../../../../../../waves'

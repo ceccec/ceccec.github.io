@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 37, lo: '☲', up: '☶', glyph: '☶', color: '#F00F0F', name: 'Gèn', principle: 'keeping still' }
 import { computed, onMounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, cryptoFuture, fusionCipher } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, cryptoFuture, fusionCipher } from '../lib'
 
 // Future crypto tools — real cryptography, in the browser. The model fold is
 // non-cryptographic; this computes a genuine SHA-256 digest over the canonical

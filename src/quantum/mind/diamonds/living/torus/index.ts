@@ -1,0 +1,1 @@
+export { livingTorus } from '../../../diamonds'

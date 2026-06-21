@@ -1,0 +1,1 @@
+export { foldingLinearGivesAnalog } from '../../../../../world'

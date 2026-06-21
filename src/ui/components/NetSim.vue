@@ -2,7 +2,7 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 63, trigram: '☰☰', glyph: '☰☰', lo: 'Qián·creative', up: 'Qián·creative', color: '#FFFFFF' }
 import { computed, ref, watch } from 'vue'
-import { pmixEvolve, congruence, hopfieldStore, hopfieldRecall, seedFromText, type Edge } from '../lib/quantumMind'
+import { pmixEvolve, congruence, hopfieldStore, hopfieldRecall, seedFromText, type Edge } from '../lib'
 
 // The NETWORK simulator — three decoded domains driven entirely by the pure src/0 graph primitives
 // (re-exported through ../lib/quantumMind). One config-driven component, three readout modes:

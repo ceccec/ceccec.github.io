@@ -2,10 +2,10 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 57, trigram: '☳☰', glyph: '☳☰', lo: 'Zhèn·arousing', up: 'Qián·creative', color: '#FFF00F' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations, quantumNetworkHashing } from '../lib/quantumMind'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
+import { useLocale } from '../lib'
+import { buildMatrix, quantumSynthesis, proofBundle, entropy, coverage, verifyRoot, universalLanguage, freeAnimations, quantumNetworkHashing } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
 
 // Move entropy to a max-tampering-cost UI feature, with complete multidimensional
 // interaction through the device. The seal is recomputed client-side and shown

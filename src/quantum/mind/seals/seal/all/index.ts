@@ -1,0 +1,1 @@
+export { sealAll } from '../../../seals'

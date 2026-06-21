@@ -1,0 +1,1 @@
+export { oneBeginning } from '../../../essence'

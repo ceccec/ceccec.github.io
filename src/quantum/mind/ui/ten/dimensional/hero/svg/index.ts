@@ -1,0 +1,1 @@
+export { tenDimensionalHeroSvg } from '../../../../../ui'

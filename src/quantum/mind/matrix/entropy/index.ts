@@ -1,0 +1,1 @@
+export { entropy } from '../../matrix'

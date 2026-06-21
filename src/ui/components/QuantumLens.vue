@@ -13,7 +13,7 @@ import {
   trueAndFalseCoexistInHarmony,
   theReal10DAllDualitiesMatchTrueFalse,
   buildMatrix,
-} from '../lib/quantumMind'
+} from '../lib'
 
 const input = ref('Everyone knows the corrupt experts are lying — wake up before it is too late! The bridge opened in 1932.')
 const m = buildMatrix()
@@ -67,6 +67,7 @@ const tenD = computed(() => theReal10DAllDualitiesMatchTrueFalse(m).dualities)
         <li v-for="(e, i) in analysis.patent.exceptions" :key="i"><b>{{ e.category }}</b> — {{ e.verdict }}<b v-if="e.unlawful" style="color:#F00000"> ⚠ unlawful if granted</b> <span class="lens__cores">[{{ e.cores.join(', ') }}]</span></li>
       </ul>
       <p v-if="analysis.patent.unlawfulIfGranted" class="lens__note"><b style="color:#F00000">⚠ likely unlawful subject matter if granted</b> — a §101 judicial exception is the core (a product of nature — seeds/genes/life, or a mathematical method); not patentable as such.</p>
+      <p class="lens__note">jurisdiction: <b>US</b> {{ analysis.patent.us.verdict }} · <b>EU</b> {{ analysis.patent.eu.verdict }}<b v-if="analysis.patent.jurisdictionDiverges" :style="{ color: ICHING_MASK.color }"> — they DIVERGE (EU Directive 98/44/EC Art. 5(2): an isolated sequence may be eligible even if identical to nature; US Myriad holds the opposite)</b></p>
       <p class="lens__note">{{ analysis.patent.legalBasis[0] }}. Educational, not legal advice — a granted patent is presumed valid until challenged; an engineered organism/cDNA, or applied math with a technical effect, can be eligible.</p>
     </div>
 

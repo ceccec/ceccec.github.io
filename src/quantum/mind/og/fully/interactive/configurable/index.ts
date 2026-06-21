@@ -1,0 +1,1 @@
+export { ogFullyInteractiveConfigurable } from '../../../../og'

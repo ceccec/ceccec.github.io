@@ -1,0 +1,1 @@
+export { colorFromSound } from '../../../../li'

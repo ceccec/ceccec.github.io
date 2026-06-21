@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☷+☶ · Kūn/Gèn · hex 32 — Glagolitic decoded: first Slavic alphabet, cross+triangle+circle
 const ICHING_MASK = { hexagram: 32, lower: 0, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'keeping still', innerAxis: 'spread', outerAxis: 'shrink', color: '#F00000' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { glagolitic } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { glagolitic } from '../lib'
 
 const d = glagolitic()
 const items = d.core.map((c) => ({ label: c.facet, detail: c.maps }))

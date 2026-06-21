@@ -1,0 +1,1 @@
+export { completeDoubleTorus } from '../../../../topology'

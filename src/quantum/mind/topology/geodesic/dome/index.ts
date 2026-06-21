@@ -1,0 +1,1 @@
+export { geodesicDome } from '../../../topology'

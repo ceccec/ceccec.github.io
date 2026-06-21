@@ -2,7 +2,7 @@
 // 7×2=14→5: doubling continues the descent.
 // Sequence position 5 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../..'
 
 export const digit = 7
 export const role = 'circuit' as const

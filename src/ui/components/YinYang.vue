@@ -2,8 +2,8 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'YinYang' }
 import { computed, onMounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { yinYang, yinYangDimensionsSvg } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { yinYang, yinYangDimensionsSvg } from '../lib'
 
 // Yin and yang completed in 3-5-8: from the taiji unfold the three powers (三才),
 // the five elements (五行) and the eight trigrams (八卦) — the Fibonacci tiers 8 = 5 + 3.

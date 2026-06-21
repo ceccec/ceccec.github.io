@@ -1,0 +1,1 @@
+export { glagoliticBulgarianReceptionDecoded } from '../../../../../language'

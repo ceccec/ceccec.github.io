@@ -3,7 +3,7 @@
 // Sequence however continues: 5→3 (the cross), NOT back to 1 — the one divergence in the forward path.
 // Sequence position 6 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../..'
 
 export const digit = 5
 export const role = 'circuit' as const  // in the doubling circuit; sequence steps off to the cross here

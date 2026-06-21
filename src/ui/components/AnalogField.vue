@@ -8,8 +8,8 @@
 const ICHING_MASK = { hexagram: 27, glyph: '☱', lo: 'Duì·joyous', up: 'Duì·joyous', color: '#0FF0FF' }
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { foldingLinearGivesAnalog, sincReconstruct, createAnimationEngine } from '../lib/quantumMind'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { foldingLinearGivesAnalog, sincReconstruct, createAnimationEngine } from '../lib'
+import { useDeviceEnergy } from '../lib'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')

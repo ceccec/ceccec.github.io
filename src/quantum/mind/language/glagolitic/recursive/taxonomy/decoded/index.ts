@@ -1,0 +1,1 @@
+export { glagoliticRecursiveTaxonomyDecoded } from '../../../../../language'

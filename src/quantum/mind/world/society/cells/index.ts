@@ -1,0 +1,1 @@
+export { societyCells } from '../../../world'

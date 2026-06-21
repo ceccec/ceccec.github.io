@@ -1,0 +1,1 @@
+export { glagoliticMeaningOfAllDecoded } from '../../../../../../language'

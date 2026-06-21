@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☱+☱ · Duì/Duì · hex 27 — public no-key frequency data: FCC, USGS, Web Audio, Schumann
 const ICHING_MASK = { hexagram: 27, lower: 3, upper: 3, glyph: '☱', trigram: 'Duì', name: 'Lake', attribute: 'joyous', innerAxis: 'twist', outerAxis: 'twist', color: '#0FF0FF' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { publicFrequencyApis } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { publicFrequencyApis } from '../lib'
 
 const d = publicFrequencyApis()
 const items = d.sources.map((s) => ({ label: s.api, detail: `${s.band} · ${s.data} · ${s.auth}` }))

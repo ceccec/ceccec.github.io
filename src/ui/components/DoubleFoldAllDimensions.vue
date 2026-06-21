@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☱+☳ · Duì/Zhèn · hex 11 — import/export double-folded in all 10 dimensions + the generative fold principle
 const ICHING_MASK = { hexagram: 11, lower: 3, upper: 1, glyph: '☳', trigram: 'Zhèn', name: 'Thunder', attribute: 'arousing', innerAxis: 'twist', outerAxis: 'depthFade', color: '#00000F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { importExportDoubleFoldedAllDimensions, theMoreYouFoldTheMoreFoldable } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { importExportDoubleFoldedAllDimensions, theMoreYouFoldTheMoreFoldable } from '../lib'
 
 const io = importExportDoubleFoldedAllDimensions()
 const more = theMoreYouFoldTheMoreFoldable()

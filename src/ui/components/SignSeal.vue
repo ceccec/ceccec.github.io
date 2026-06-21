@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 61, trigram: '☲☰', glyph: '☲☰', lo: 'Lí·clinging', up: 'Qián·creative', color: '#FFFF0F' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, cryptoFuture, attestation } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, cryptoFuture, attestation } from '../lib'
 
 // Toward attestation. The canonical model roots can be signed and verified in
 // your browser with a real ECDSA P-256 key pair (Web Crypto) — moving from

@@ -7,12 +7,12 @@ const ICHING_MASK = { hexagram: 33, lo: '☳', up: '☶', glyph: '☶', color: '
 // No params → the index list (/papers); params with an id → the detail. No ?id= query, no second router.
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import PaperIndex from './PaperIndex.vue'
-import ReferenceIndex from './ReferenceIndex.vue'
-import DiamondIndex from './DiamondIndex.vue'
-import PaperDetail from './PaperDetail.vue'
-import ReferenceDetail from './ReferenceDetail.vue'
-import DiamondDetail from './DiamondDetail.vue'
+import PaperIndex from './PaperIndex'
+import ReferenceIndex from './ReferenceIndex'
+import DiamondIndex from './DiamondIndex'
+import PaperDetail from './PaperDetail'
+import ReferenceDetail from './ReferenceDetail'
+import DiamondDetail from './DiamondDetail'
 
 defineProps({ kind: { type: String, required: true } })
 const { params } = useData()

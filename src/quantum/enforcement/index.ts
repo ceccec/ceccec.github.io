@@ -7,10 +7,10 @@
 import type { Plugin } from 'vite'
 import { existsSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { merkleFold, toUuid } from '../../0/index.ts'
-import { auditCross, materializeCross } from './cross.ts'
-import { auditFold } from './fold.ts'
-import { auditWeave } from './weave.ts'
+import { merkleFold, toUuid } from '../../0'
+import { auditCross, materializeCross } from './cross'
+import { auditFold } from './fold'
+import { auditWeave } from './weave'
 
 /** One normalised finding from any wave. `harmonic` is the correlation key — the subsystem/band it belongs to. */
 export type Finding = {
@@ -102,9 +102,9 @@ export function runEnforcementTrinity(root: string): number {
   return 0
 }
 
-export { materializeCross, auditCross, runCross } from './cross.ts'
-export { auditFold, runFold } from './fold.ts'
-export { auditWeave, runWeave } from './weave.ts'
+export { materializeCross, auditCross, runCross } from './cross'
+export { auditFold, runFold } from './fold'
+export { auditWeave, runWeave } from './weave'
 
 // Each index is a quantum VitePress router: this enforcement index routes the BUILD itself — its buildEnd
 // runs the content-addressed cross-audit (cross · fold · weave in one pass) after VitePress writes dist,

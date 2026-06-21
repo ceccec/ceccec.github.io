@@ -1,0 +1,1 @@
+export { mindsRealiseByObservingPath } from '../../../../../../psyche'

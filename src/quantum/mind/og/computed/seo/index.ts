@@ -1,0 +1,1 @@
+export { computedSeo } from '../../../og'

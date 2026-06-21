@@ -4,7 +4,7 @@
 // shared experiment. They compose the foundational EM constants/conversions from src/0; the FOLDS that RUN them
 // live in src/quantum/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☲ Lí · Fire · clinging · lower·yin · spread — EM primitives (constants, conversions, content-addressing)
-import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, wavelengthOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, prng, merkleFold, toUuid, roundTo } from '../../0/index.ts'
+import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, wavelengthOf, photonEnergyEv, isIonizing, larmorFrequency, radarRange, prng, merkleFold, toUuid, roundTo } from '../../0'
 
 // ── EM simulators: deterministic, content-addressed teaching models of the field and its three modalities ──
 // Developed + adversarially verified in a research wave (every governing equation re-derived, every test vector

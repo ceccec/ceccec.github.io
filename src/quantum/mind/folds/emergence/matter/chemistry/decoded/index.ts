@@ -1,0 +1,1 @@
+export { emergenceMatterChemistryDecoded } from '../../../../../folds'

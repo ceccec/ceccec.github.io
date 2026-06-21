@@ -2,7 +2,7 @@
 // In the forward sequence, seven is the descending mirror of two (position 5, arriving from 8 toward 5).
 // In the reverse sequence, seven steps from 5 toward 8 — ascending back through the circuit.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../..'
 
 export const digit = 7
 export const role = 'circuit' as const

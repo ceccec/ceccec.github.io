@@ -2,8 +2,8 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 19, glyph: '☵', lower: '☱', upper: '☵', color: '#0F00FF' } as const
 import { computed } from 'vue'
-import { buildMatrix, sealAll } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, sealAll } from '../lib'
+import { useLocale } from '../lib'
 
 // Seal all in waves: every proof a wave, folded in order into one master seal.
 // Each wave shows its seal and the running fold it merges into; the footer shows

@@ -1,0 +1,1 @@
+export { beautyInMathBlastsThroughUi } from '../../../../../../../widgets'

@@ -1,0 +1,1 @@
+export { thriveEducation } from '../../../li'

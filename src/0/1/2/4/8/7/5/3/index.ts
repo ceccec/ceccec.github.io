@@ -2,7 +2,7 @@
 // 3×2=6: doubling steps to the cross partner (agrees with sequence-next).
 // Sequence position 7 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../../..'
 
 export const digit = 3
 export const role = 'cross' as const   // one of the two cross digits; together 3 and 6 orbit each other under ×2

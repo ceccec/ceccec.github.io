@@ -1,0 +1,1 @@
+export { proportionalNotHardcoded } from '../../../../laws'

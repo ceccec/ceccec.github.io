@@ -2,8 +2,8 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 18, glyph: '☵', lower: '☵', upper: '☵', color: '#0F00F0' } as const
 import { computed, ref, watch } from 'vue'
-import { fold, asTorus, asMerkaba, asVortex, asMerkle, asTrace, type Fold } from '../lib/quantumMind'
-import { useAnimationEngine } from '../lib/useAnimationEngine'
+import { fold, asTorus, asMerkaba, asVortex, asMerkle, asTrace, type Fold } from '../lib'
+import { useAnimationEngine } from '../lib'
 
 // The atlas is one math shown many ways. Each seed folds once — fold(seed) — into the SAME object; the
 // presentation buttons only change which projection of that one address is drawn (asTrace · asTorus ·

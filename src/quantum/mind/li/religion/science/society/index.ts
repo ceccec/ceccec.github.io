@@ -1,0 +1,1 @@
+export { religionScienceSociety } from '../../../../li'

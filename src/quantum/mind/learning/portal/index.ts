@@ -1,0 +1,1 @@
+export { learningPortal } from '../../learning'

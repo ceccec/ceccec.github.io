@@ -1,0 +1,1 @@
+export { fortyTwoVerdict } from '../../../../digit'

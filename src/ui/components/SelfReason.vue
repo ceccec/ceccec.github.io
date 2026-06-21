@@ -2,8 +2,8 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, selfReason } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, selfReason } from '../lib'
 
 // Self reasoning that shows its work: a grounded chain over the model. Each step
 // states a premise, draws an inference from a command, and shifts to the next —

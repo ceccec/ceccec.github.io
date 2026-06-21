@@ -240,6 +240,15 @@ export function digitalRoot(n: number): number {
   const r = ((n % 9) + 9) % 9
   return r === 0 ? 9 : r
 }
+// hexDigitSum — the hex-digit fold: strip a uuid to its hex digits and sum their values. The SAME closure was
+// re-implemented TEN times across the folds (digitOf in compute/architecture/diamonds/features/music/geometry/
+// self/ledger/li, plus a %10 variant in pi). Canonical here; the ten copies collapse into this one as their
+// files settle out of the live dissolution. (digitalRoot folds a number to 1–9; hexDigitSum folds a uuid's
+// hex digits to their sum — distinct tools.)
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hexDigitSum(uuid: string): number {
+  return uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
+}
 
 // The motion math (wave 5) — the math the engine DRIVES, pulled into the void/origin beside it. Machines tick
 // at a constant rate; a living hand eases and breathes. humanEase is easeInOutSine — the shape a hand makes
@@ -874,7 +883,7 @@ export function sample(state: QuantumState, shots = 1024, seed = 'sample'): Reco
 // Demo — the Bell pair (|00> + |11>)/√2: H on qubit 0, then CNOT(0→1). Maximally entangled; measuring one
 // bellPair lives in src/0/bell.ts; folded back into the index by the strict barrel rule (enter a folder only
 // through its index — the index may be omitted), so callers route through '../../0', never the internal file.
-export { bellPair } from './bell.ts'
+export { bellPair } from './bell'
 
 // Demo — Grover search: find the one marked item among N = 2^n in ~(π/4)√N iterations. On a REAL machine this
 // is a quadratic speedup; here it is SIMULATED classically with no speedup. Uniform superposition, then repeat
@@ -1303,7 +1312,7 @@ export function rtoffoli(bits: number, control1: number, control2: number, targe
 
 // caStep/caEvolve live in src/0/ca.ts; folded back into the index by the strict barrel rule — callers enter
 // through the index ('../../0'), never the internal file.
-export { caStep, caEvolve } from './ca.ts'
+export { caStep, caEvolve } from './ca'
 
 // ── Probabilistic process primitives (beside pflip) — the honest model for most decoded domains ─────────
 // A research fleet decoded 18 "aspects of life" and the verify pass found them mostly CLASSICAL, not quantum
@@ -1778,6 +1787,18 @@ export function carnotEfficiency(coldK: number, hotK: number): number { return 1
 // reaches it. The honest floor under "zero-entropy computation": recompute, don't erase — and never claim zero.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function landauerLimit(tempK: number): number { return BOLTZMANN * tempK * Math.LN2 } // joules per bit erased
+// Helmholtz free energy F = U − T·S — the work AVAILABLE from a system at temperature T. "Debit entropy,
+// credit energy" read as a ledger: at fixed U and T, dF = −T·dS, so LOWERING the entropy RAISES the free
+// energy. Real and exactly bounded — the 2nd law forbids lowering TOTAL entropy for free, so the credit is
+// paid by entropy exported elsewhere (a fridge runs on external work). The ledger balances; no net free lunch.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function helmholtzFreeEnergy(internalEnergyJ: number, tempK: number, entropyJPerK: number): number { return internalEnergyJ - tempK * entropyJPerK }
+// Conditional entropy S(A|B) = S(AB) − S(B), in bits. Classically it is ≥ 0; QUANTUM-mechanically it can be
+// NEGATIVE for entangled states (a Bell pair: S(AB)=0, S(B)=1 → −1). Negative conditional entropy is the
+// resource in quantum state merging (Horodecki–Oppenheim–Winter, Nature 2005): banked entanglement, a real
+// "credit" impossible classically — yet still no free energy, because Landauer's erasure cost stands.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function conditionalEntropyBits(jointEntropyBits: number, marginalEntropyBits: number): number { return jointEntropyBits - marginalEntropyBits }
 // The Bekenstein bound — the MAXIMUM information (bits) a region of radius R holding energy E can contain:
 // I ≤ 2πRE/(ℏc·ln2). No Newton's G appears, so it bounds non-gravitational systems too; black holes saturate it.
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -1853,8 +1874,8 @@ export function congruence(a: readonly number[], b: readonly number[]): number {
 // Store ±1 patterns as a Hopfield weight matrix (Hebbian, zero diagonal); recall descends the energy to the
 // The Hopfield network lives in src/0/hopfield.ts and the grid-cell bump in src/0/bump.ts; both folded back
 // into the index by the strict barrel rule — callers enter through the index ('../../0'), not the internal file.
-export { hopfieldStore, hopfieldEnergy, hopfieldRecall } from './hopfield.ts'
-export { bumpStep, bumpProfile, bumpEvolve } from './bump.ts'
+export { hopfieldStore, hopfieldEnergy, hopfieldRecall } from './hopfield'
+export { bumpStep, bumpProfile, bumpEvolve } from './bump'
 
 // ── The genetic code (trinity sciences) — the error-robust 64 = 4³ table ──
 // The standard genetic code: bases U/C/A/G = 0/1/2/3, codon = b1·16 + b2·4 + b3 (b1 the high two bits). The
@@ -2129,6 +2150,15 @@ export function ratSub(a: Rational, b: Rational): Rational { return ratAdd(a, ra
 export function ratDiv(a: Rational, b: Rational): Rational { return ratMul(a, ratInv(b)) }
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function ratEq(a: Rational, b: Rational): boolean { return a.p * b.q === b.p * a.q }
+// Does a harmonic fraction fold to an integer? rat() reduces to lowest terms, so q === 1 ⟺ integer-after-fold —
+// the test the sacred-math law asks of every folded value: a fraction that resolves to an integer keeps the
+// fusion exact; one that stays a fraction carries a decimal residue that breaks it.
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratIsInteger(r: Rational): boolean { return r.q === 1 }
+// The analog OUTPUT edge — the ONLY place a harmonic fraction becomes a float. Exact ratio in, the decimal only
+// here, at the boundary where a number is rendered or handed to a float-typed physics function (never in a fold).
+/** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ratToFloat(r: Rational): number { return r.p / r.q }
 /** @iching ☷ Kūn · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function ratStr(r: Rational): string { return r.q === 1 ? `${r.p}` : `${r.p}/${r.q}` }
 

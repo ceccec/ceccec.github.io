@@ -1,0 +1,1 @@
+export { configsUseMatrixComputationally } from '../../../../../source'

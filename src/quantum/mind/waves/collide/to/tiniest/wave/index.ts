@@ -1,0 +1,1 @@
+export { collideToTiniestWave } from '../../../../../waves'

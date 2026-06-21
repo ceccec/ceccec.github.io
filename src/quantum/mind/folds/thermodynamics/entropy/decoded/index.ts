@@ -1,0 +1,1 @@
+export { thermodynamicsEntropyDecoded } from '../../../../folds'

@@ -3,8 +3,8 @@
 const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', color: '#00F0F0' }
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { proofRegistry } from '../lib/quantumMind'
-import ProofDetail from './ui/ProofDetail.vue'
+import { proofRegistry } from '../lib'
+import ProofDetail from './ui/ProofDetail'
 
 // One model-driven renderer for every proof (replacing 17 per-proof wrapper components). It reads the
 // proofRegistry (the proofs as data, computed from the model). On a proof's own [page] route it renders that

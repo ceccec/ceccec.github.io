@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 35, lo: '☱', up: '☶', glyph: '☶', color: '#F000FF', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, exhaustQuestions } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, exhaustQuestions } from '../lib'
 
 // Continue until no answers. Ask, follow each answer's new questions, repeat —
 // until the frontier empties. This shows the loop reaching its terminal: the

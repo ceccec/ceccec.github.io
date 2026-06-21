@@ -1,0 +1,1 @@
+export { doubleTorusFold } from '../../../../topology'

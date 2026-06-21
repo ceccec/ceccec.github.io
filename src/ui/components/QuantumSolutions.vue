@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 62, trigram: '☴☰', glyph: '☴☰', lo: 'Xùn·gentle', up: 'Qián·creative', color: '#FFFFF0' }
 import { computed } from 'vue'
-import { buildMatrix, quantumSolutions } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, quantumSolutions } from '../lib'
+import { useLocale } from '../lib'
 
 // Society already needs quantum solutions — each need answered now by a quantum
 // capability the portal already runs, client-side and free.

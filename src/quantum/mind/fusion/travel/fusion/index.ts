@@ -1,0 +1,1 @@
+export { travelFusion } from '../../../fusion'

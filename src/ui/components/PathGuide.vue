@@ -2,8 +2,8 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 30, glyph: '☱', lo: 'Xùn·gentle', up: 'Duì·joyous', color: '#0FFFF0' } as const
 import { computed, ref } from 'vue'
-import { buildMatrix, path } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, path } from '../lib'
+import { useLocale } from '../lib'
 
 // Follow the path. A guided, looping journey through the portal: step along it,
 // or jump to any station. Each step says why you are there.

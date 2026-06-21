@@ -1,0 +1,1 @@
+export { corpusRestPathRouting } from '../../../../../routes'

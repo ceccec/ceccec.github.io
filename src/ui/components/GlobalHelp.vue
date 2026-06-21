@@ -2,9 +2,9 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'GlobalHelp' }
 import { computed, ref, onMounted } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, foldQuestion } from '../lib/quantumMind'
-import { runAiChat } from '../lib/useQuantumChat'
+import { useLocale } from '../lib'
+import { buildMatrix, foldQuestion } from '../lib'
+import { runAiChat } from '../lib'
 
 // Intelligent help folded into every page. Default is free and zero-network —
 // the architecture answers via foldQuestion (AI encoded locally as

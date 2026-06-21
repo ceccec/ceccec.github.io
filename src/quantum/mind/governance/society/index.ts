@@ -1,0 +1,1 @@
+export { society } from '../../governance'

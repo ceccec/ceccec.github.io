@@ -1,0 +1,1 @@
+export { displayHeroCardThumb } from '../../../../../ui'

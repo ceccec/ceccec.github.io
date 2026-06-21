@@ -1,0 +1,1 @@
+export { socialCapital } from '../../../civilisation'

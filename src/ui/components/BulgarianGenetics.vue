@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☵+☵ · Kǎn/Kǎn · hex 18 — genetics challenges history: five aDNA domains, autochthony refuted
 const ICHING_MASK = { hexagram: 18, lower: 2, upper: 2, glyph: '☵', trigram: 'Kǎn', name: 'Water', attribute: 'abysmal', innerAxis: 'hueShift', outerAxis: 'hueShift', color: '#000F00' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { geneticLinksChallengeHistory, geneticLinksChallengeHistoryDecoded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { geneticLinksChallengeHistory, geneticLinksChallengeHistoryDecoded } from '../lib'
 
 const g = geneticLinksChallengeHistory()
 const d = geneticLinksChallengeHistoryDecoded()

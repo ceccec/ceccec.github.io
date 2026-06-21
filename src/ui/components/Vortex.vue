@@ -6,7 +6,7 @@ const ICHING_MASK = { hexagram: 57, trigram: '☳☰', glyph: '☳☰', lo: 'Zh�
 // Each Dot fills itself from its seed (a graph of graphs: a dot's content can be more dots). Same
 // seed → same dot, so equal content snaps to the same place: the dots stick like magnets.
 import { computed } from 'vue'
-import Dot from './Dot.vue'
+import Dot from './Dot'
 
 const props = defineProps<{ seeds?: string[]; count?: number; label?: string; radius?: number }>()
 const SEQ = [1, 2, 4, 8, 7, 5] // the doubling circuit; 3-6-9 is the axis

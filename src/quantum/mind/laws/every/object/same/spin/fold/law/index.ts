@@ -1,0 +1,1 @@
+export { everyObjectSameSpinFoldLaw } from '../../../../../../../laws'

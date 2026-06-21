@@ -2,10 +2,10 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 60, trigram: '☶☰', glyph: '☶☰', lo: 'Gèn·keeping still', up: 'Qián·creative', color: '#FFFF00' }
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, quantumClock, challengeClock } from '../lib/quantumMind'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
+import { useLocale } from '../lib'
+import { buildMatrix, quantumClock, challengeClock } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
 
 // The quantum clock. The portal ticks its own clock in creation waves — each
 // tick a content-addressed instant with a note and a colour, beside the SI

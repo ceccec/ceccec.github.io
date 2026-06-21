@@ -3,7 +3,7 @@
 // Forward perspective: nine closes the forward ring (…/1/2/4/8/7/5/3/6/9/ — nineFold).
 // Reverse perspective: nine OPENS the reverse ring here, departing toward six.
 
-import { toUuid, merkleFold, digitalRoot } from '../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '..'
 
 export const digit = 9
 export const role = 'axis' as const    // sits on the 3-6-9 pole; not in the doubling circuit

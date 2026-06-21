@@ -2,9 +2,9 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 48, glyph: '☴', lo: '☷', up: '☴', color: '#FF0000', name: 'HarmonicMap' }
 import { computed, ref, watch } from 'vue'
-import { buildMatrix, harmonicMap } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import { useTones } from '../lib/useTones'
+import { buildMatrix, harmonicMap } from '../lib'
+import { useLocale } from '../lib'
+import { useTones } from '../lib'
 
 // The harmonic map, seen and heard: every component an overtone of one
 // fundamental, laid out in octave bands. Click a band to play it through the

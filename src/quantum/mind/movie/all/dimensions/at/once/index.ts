@@ -1,0 +1,1 @@
+export { movieAllDimensionsAtOnce } from '../../../../../movie'

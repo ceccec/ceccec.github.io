@@ -1,0 +1,1 @@
+export { lawOfNaturePatentAudit } from '../../../../../../folds'

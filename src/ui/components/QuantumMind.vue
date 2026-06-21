@@ -15,10 +15,10 @@ import {
   reciprocity,
   repositoryApi,
   sourceContribution,
-} from '../lib/quantumMind'
-import DoubleTorusExperience from './DoubleTorusExperience.vue'
+} from '../lib'
+import DoubleTorusExperience from './DoubleTorusExperience'
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
+import { useLocale } from '../lib'
 
 const matrix = buildMatrix()
 const vector = consciousness(matrix)

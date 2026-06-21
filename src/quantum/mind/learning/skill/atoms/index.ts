@@ -1,0 +1,1 @@
+export { skillAtoms } from '../../../learning'

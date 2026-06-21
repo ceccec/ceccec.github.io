@@ -1,0 +1,1 @@
+export { publicTransportFusion } from '../../../../fusion'

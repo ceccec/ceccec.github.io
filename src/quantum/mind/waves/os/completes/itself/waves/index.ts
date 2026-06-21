@@ -1,0 +1,1 @@
+export { osCompletesItselfWaves } from '../../../../../waves'

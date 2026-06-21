@@ -1,0 +1,1 @@
+export { areaPairs } from '../../../geometry'

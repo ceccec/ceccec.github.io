@@ -1,0 +1,1 @@
+export { gapScan } from '../../../folds'

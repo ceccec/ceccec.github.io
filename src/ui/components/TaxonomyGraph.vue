@@ -5,7 +5,7 @@ const ICHING_MASK = { hexagram: 14, glyph: '☳', lower: '☴', upper: '☳', co
 // computed from its name (taxonomyIcons → glagoliticGlyph), spoked to the one hub. The graph is
 // computed from the model: areas, their fold-count status (singleton/pair/trinity), all self-drawn.
 import { computed } from 'vue'
-import { taxonomyIcons } from '../lib/quantumMind'
+import { taxonomyIcons } from '../lib'
 
 const entries = computed(() => taxonomyIcons().entries)
 function pos(i: number, n: number, r = 40) {

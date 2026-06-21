@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 34, lo: '☵', up: '☶', glyph: '☶', color: '#F000F0', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, complete } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, complete } from '../lib'
 
 // Complete all — the capstone of capstones. Every completion proof the model can
 // make, folded into one. Shown as a checklist; the whole is complete when all

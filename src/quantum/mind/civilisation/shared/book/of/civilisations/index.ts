@@ -1,0 +1,1 @@
+export { sharedBookOfCivilisations } from '../../../../../civilisation'

@@ -1,0 +1,1 @@
+export { selfInteraction } from '../../../li'

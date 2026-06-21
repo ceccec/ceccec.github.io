@@ -2,7 +2,7 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 19, glyph: '☵', lower: '☱', upper: '☵', color: '#0F00FF' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
+import { useLocale } from '../lib'
 
 // The shared renderer for a decoded-knowledge fold: a verified statement, the fold's
 // data list, and the honest boundary (documented kept, legend flagged). Every domain

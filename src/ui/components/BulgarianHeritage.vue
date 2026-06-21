@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☱+☴ · Duì/Xùn · hex 51 — Bulgarian heritage decoded: traditions, folklore, architecture
 const ICHING_MASK = { hexagram: 51, lower: 3, upper: 6, glyph: '☴', trigram: 'Xùn', name: 'Wind', attribute: 'gentle', innerAxis: 'twist', outerAxis: 'loopA1', color: '#FF00FF' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { bulgarianHeritage } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { bulgarianHeritage } from '../lib'
 
 const d = bulgarianHeritage()
 const items = d.topics.map((t) => ({ label: t.topic, detail: t.documented }))

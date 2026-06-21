@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎn·abysmal', up: 'Qián·creative', color: '#FFF0F0' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, todoScan } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, todoScan } from '../lib'
 
 // Keep going until nothing to do. Every actionable surface scans to zero; the
 // open question-frontier stays open, but those are wonders, not tasks.

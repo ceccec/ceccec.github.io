@@ -1,0 +1,1 @@
+export { humanityImplications } from '../../humanity'

@@ -1,0 +1,1 @@
+export { noDuplicateAnimationOgHero } from '../../../../../../ui'

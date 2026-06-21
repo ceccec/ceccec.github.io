@@ -1,0 +1,1 @@
+export { bulgarianHistoryDecoded } from '../../../../bulgaria'

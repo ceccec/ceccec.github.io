@@ -3,8 +3,8 @@
 const ICHING_MASK = { hexagram: 1, glyph: '☷', trigram: 'Kūn·receptive', color: '#00000F' }
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
-import { buildMatrix, distributedCompute, selfDevelopment } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, distributedCompute, selfDevelopment } from '../lib'
+import { useLocale } from '../lib'
 
 // Wire the collective mind into self development by just visiting any page, and
 // distribute the computation across all connected contexts. Every visit folds a

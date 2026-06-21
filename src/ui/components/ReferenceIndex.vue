@@ -6,7 +6,7 @@ const ICHING_MASK = { hexagram: 14, glyph: '☳', lower: '☴', upper: '☳', co
 // for bg; the chip links carry the locale prefix.
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { paperReferences, completeCorpus } from '../lib/quantumMind'
+import { paperReferences, completeCorpus } from '../lib'
 
 const { localeIndex } = useData()
 const references = paperReferences()

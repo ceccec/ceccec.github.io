@@ -6,7 +6,7 @@ const ICHING_MASK = { hexagram: 7, glyph: '☷', trigram: 'Kūn·receptive', col
 // crosses the nib, thin where it runs along it. Same seed, same hand. The stroke draws itself in on
 // mount. (An abstract calligraphic flourish from the content-address, not handwritten text.)
 import { computed } from 'vue'
-import { calligraphyStroke } from '../lib/quantumMind'
+import { calligraphyStroke } from '../lib'
 
 const props = defineProps<{ seed?: string; size?: number; ink?: boolean }>()
 const stroke = computed(() => calligraphyStroke(props.seed ?? 'calligraphy'))

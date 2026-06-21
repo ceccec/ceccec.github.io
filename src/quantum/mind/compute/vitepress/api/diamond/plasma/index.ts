@@ -1,0 +1,1 @@
+export { vitepressApiDiamondPlasma } from '../../../../../compute'

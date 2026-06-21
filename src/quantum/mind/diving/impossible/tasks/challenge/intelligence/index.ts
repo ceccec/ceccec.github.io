@@ -1,0 +1,1 @@
+export { impossibleTasksChallengeIntelligence } from '../../../../../diving'

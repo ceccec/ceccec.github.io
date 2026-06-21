@@ -2,10 +2,10 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, A432_HUE, lobeHues } from '../lib/quantumMind'
-import { rot2, dims } from '../lib/hero'
-import { useAnimationEngine } from '../lib/useAnimationEngine'
+import { useLocale } from '../lib'
+import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, A432_HUE, lobeHues } from '../lib'
+import { rot2, dims } from '../lib'
+import { useAnimationEngine } from '../lib'
 
 // Animated folding of all quantum objects in 3d+. Every area-object sits on one
 // of the two lobes of the double torus; every pair is folded in both directions

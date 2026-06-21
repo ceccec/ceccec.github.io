@@ -2,9 +2,9 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 31, glyph: '☱', lo: 'Qián·creative', up: 'Duì·joyous', color: '#0FFFFF' } as const
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
+import { useLocale } from '../lib'
 import { useData } from 'vitepress'
-import { buildMatrix, selfHarmonise, areaLabel } from '../lib/quantumMind'
+import { buildMatrix, selfHarmonise, areaLabel } from '../lib'
 
 // Let intelligence harmonise itself autonomously. With no external input, it
 // consults itself, lets the fold's own digit pick the next area, and walks the

@@ -2,7 +2,7 @@
 // every part is a copy of the whole (holographic, self-similar). The hue, fade and width all follow the
 // current dimensions and the recursion depth; the recursion bottoms out when a branch is too short or the
 // depth runs out.
-import type { Dims } from '../dimensions/index.ts'
+import type { Dims } from '../dimensions'
 
 export function branch(
   ctx: CanvasRenderingContext2D,

@@ -1,0 +1,1 @@
+export { noHardcodedConfigSelfAccounted } from '../../../../../../source'

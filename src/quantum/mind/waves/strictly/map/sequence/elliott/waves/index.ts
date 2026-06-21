@@ -1,0 +1,1 @@
+export { strictlyMapSequenceElliottWaves } from '../../../../../../waves'

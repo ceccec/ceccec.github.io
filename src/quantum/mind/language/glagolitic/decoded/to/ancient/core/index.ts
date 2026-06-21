@@ -1,0 +1,1 @@
+export { glagoliticDecodedToAncientCore } from '../../../../../../language'

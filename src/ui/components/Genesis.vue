@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 57, trigram: '☳☰', glyph: '☳☰', lo: 'Zhèn·arousing', up: 'Qián·creative', color: '#FFF00F' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, genesis } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, genesis } from '../lib'
 
 // The 3-5-8 genesis. From the seed 1, 1 the Fibonacci sequence unfolds; 3, 5, 8
 // are the three consecutive terms that thread through the portal. Shown as the

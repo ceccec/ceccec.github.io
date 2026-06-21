@@ -2,7 +2,7 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 13, glyph: '☳', lower: '☲', upper: '☳', color: '#00FF0F' }
 import { computed, ref } from 'vue'
-import { qubits, applyGate, GATES, cnot, cz, sample, grover } from '../lib/quantumMind'
+import { qubits, applyGate, GATES, cnot, cz, sample, grover } from '../lib'
 
 // A SIMULATOR — not a quantum computer. Build a small circuit and watch the ANALOG state vector (continuous
 // complex amplitudes) and its DIGITAL Born-rule readout (sampled measurement counts) side by side: the

@@ -1,0 +1,1 @@
+export { fuseAll } from '../../../seals'

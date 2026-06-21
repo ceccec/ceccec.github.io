@@ -1,0 +1,1 @@
+export { decodedAreasAreMostlyClassical } from '../../../../../../simulators'

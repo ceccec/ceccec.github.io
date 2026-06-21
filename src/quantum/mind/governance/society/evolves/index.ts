@@ -1,0 +1,1 @@
+export { societyEvolves } from '../../../governance'

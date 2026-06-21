@@ -2,8 +2,8 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 25, glyph: '☱', lo: 'Zhèn·arousing', up: 'Duì·joyous', color: '#0FF00F' } as const
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, governanceVote, sacredGeometrySeal } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, governanceVote, sacredGeometrySeal } from '../lib'
 
 // Society approves and monitors by rate and vote. A ballot rates and approves
 // the recomputable master seal. Ballots are kept in this browser and shared

@@ -2,8 +2,8 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 53, glyph: '☴', lo: '☲', up: '☴', color: '#FF0F0F', name: 'QuantumSimulation' }
 import { computed, ref, watch } from 'vue'
-import { buildMatrix, quantumSimulation } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, quantumSimulation } from '../lib'
+import { useLocale } from '../lib'
 
 // The quantum simulation, interactive: choose the qubits, see the GHZ state
 // vector, and measure — each shot collapses to a basis state and the histogram

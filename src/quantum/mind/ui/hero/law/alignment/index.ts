@@ -1,0 +1,1 @@
+export { heroLawAlignment } from '../../../../ui'

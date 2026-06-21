@@ -1,0 +1,1 @@
+export { ancientKnowledgeComputesDefaultLocale } from '../../../../../../compute'

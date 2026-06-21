@@ -3,7 +3,7 @@
 // Second divergence in the forward path: sequence-next (9) ≠ doubling-next (3).
 // Sequence position 8 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../../../..'
 
 export const digit = 6
 export const role = 'cross' as const   // the second cross digit; orbits with 3 under ×2

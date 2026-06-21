@@ -1,0 +1,1 @@
+export { originConsolidated } from '../../../source'

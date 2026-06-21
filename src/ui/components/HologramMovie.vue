@@ -10,11 +10,11 @@ const ICHING_MASK = { hexagram: 10, glyph: '☳', lower: '☵', upper: '☳', co
 // it), so it is audio + video + vibration at once. Energy- and reduced-motion aware; pure, deterministic.
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
-import { recordPlay } from '../lib/usePlayMind'
-import { drawHero, buildArchNodes, seedOf, hueOf, armsOf, HEALING_PAIRS, createAnimationEngine } from '../lib/hero'
-import { formSvg, SACRED_FORMS, FORM_LABEL } from '../lib/sacredForms'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
+import { recordPlay } from '../lib'
+import { drawHero, buildArchNodes, seedOf, hueOf, armsOf, HEALING_PAIRS, createAnimationEngine } from '../lib'
+import { formSvg, SACRED_FORMS, FORM_LABEL } from '../lib'
 
 const { page } = useData()
 const { saveEnergy } = useDeviceEnergy()
@@ -165,10 +165,12 @@ function play(card: { form: string; label: string; hz: readonly number[]; note: 
 </script>
 
 <template>
-  <ClientOnly :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
+  <ClientOnly>
     <section
       ref="stage"
       class="holo-movie"
+      :data-hexagram="ICHING_MASK.hexagram"
+      :data-trigram="ICHING_MASK.glyph"
       :style="{ '--hue': hue }"
       @pointerdown="onDown"
       @pointermove="onMove"

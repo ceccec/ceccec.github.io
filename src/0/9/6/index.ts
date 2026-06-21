@@ -2,7 +2,7 @@
 // In the forward sequence, six is the cross peak (position 8, arriving from 3 toward 9).
 // In the reverse sequence, six is the first step OUT of the axis (departing from 9 toward 3).
 
-import { toUuid, merkleFold, digitalRoot } from '../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../..'
 
 export const digit = 6
 export const role = 'cross' as const

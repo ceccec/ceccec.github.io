@@ -2,9 +2,9 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 17, glyph: '☵', lower: '☳', upper: '☵', color: '#0F000F' } as const
 import { onMounted, reactive } from 'vue'
-import { backtestRealPrices, spectrumFromSamples, larmorFromMicrotesla, dopplerFromMotion, liveCapture, realtimeExperiments } from '../lib/quantumMind'
-import { sharedAudioContext } from '../lib/useTones'
-import { useLocale } from '../lib/useLocale'
+import { backtestRealPrices, spectrumFromSamples, larmorFromMicrotesla, dopplerFromMotion, liveCapture, realtimeExperiments } from '../lib'
+import { sharedAudioContext } from '../lib'
+import { useLocale } from '../lib'
 
 // Test all on LIVE data: the deterministic sims/strategies (src) consume REAL inputs ingested at the edge —
 // no-key public APIs (auto-fetched) + device sensors (permission-gated, graceful fallback). Each capture is

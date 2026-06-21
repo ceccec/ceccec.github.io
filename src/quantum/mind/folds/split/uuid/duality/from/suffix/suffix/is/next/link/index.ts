@@ -1,0 +1,1 @@
+export { splitUuidDualityFromSuffixSuffixIsNextLink } from '../../../../../../../../../../folds'

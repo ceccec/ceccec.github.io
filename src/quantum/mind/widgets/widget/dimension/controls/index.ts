@@ -1,0 +1,1 @@
+export { widgetDimensionControls } from '../../../../widgets'

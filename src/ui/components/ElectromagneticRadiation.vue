@@ -2,8 +2,8 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 52, glyph: '☴', lo: '☶', up: '☴', color: '#FF0F00', name: 'ElectromagneticRadiation' }
 import { computed } from 'vue'
-import { buildMatrix, electromagneticRadiationDecoded, electromagneticExperiments } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, electromagneticRadiationDecoded, electromagneticExperiments } from '../lib'
+import { useLocale } from '../lib'
 
 // ElectroMagnetic radiation across the spectrum — one Maxwell field, one speed, two relations (c=λf, E=hf),
 // one ionizing line. The three named modalities (X-ray · MRI-RF · microwave radar) are the same field at

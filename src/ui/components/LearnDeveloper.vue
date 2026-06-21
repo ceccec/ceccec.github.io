@@ -2,8 +2,8 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì·joyous', color: '#0FFF0F' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, executeDeveloperCommand, learnDeveloper } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, executeDeveloperCommand, learnDeveloper } from '../lib'
 
 const matrix = buildMatrix()
 const learning = learnDeveloper(matrix)

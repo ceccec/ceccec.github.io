@@ -1,0 +1,1 @@
+export { numberLabel } from '../../../folds'

@@ -4,9 +4,9 @@
 // not hardcoded — the standing stones as horizon clocks; the formula reproduces the documented passages, and the
 // megalithic-yard / eclipse-computer / ley-line overclaims are flagged with the science.
 const ICHING_MASK = { hexagram: 30, lower: 3, upper: 3, glyph: '☲', trigram: 'Lí', name: 'Fire', attribute: 'radiance', color: '#F0780F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { megalithicAstronomyDecoded, lunarStandstillsDecoded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { megalithicAstronomyDecoded, lunarStandstillsDecoded } from '../lib'
 
 const m = megalithicAstronomyDecoded()
 const l = lunarStandstillsDecoded()

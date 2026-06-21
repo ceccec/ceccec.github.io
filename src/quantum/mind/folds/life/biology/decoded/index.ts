@@ -1,0 +1,1 @@
+export { lifeBiologyDecoded } from '../../../../folds'

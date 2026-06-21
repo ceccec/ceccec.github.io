@@ -1,0 +1,1 @@
+export { selfHealing } from '../../self'

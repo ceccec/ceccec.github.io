@@ -1,0 +1,1 @@
+export { nothingImpossibleHonestlyBounded } from '../../../../../laws'

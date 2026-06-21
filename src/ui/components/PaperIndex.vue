@@ -6,7 +6,7 @@ const ICHING_MASK = { hexagram: 47, name: 'Dà Yǒu', glyph: '☲☰', lower: 'Q
 // index.md files become one-line mounts. English text for root + en, Bulgarian for bg; links carry the prefix.
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { papers } from '../lib/quantumMind'
+import { papers } from '../lib'
 
 const { localeIndex } = useData()
 const corpus = papers()

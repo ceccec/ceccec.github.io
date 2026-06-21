@@ -1,0 +1,1 @@
+export { sacredSociety } from '../../../governance'

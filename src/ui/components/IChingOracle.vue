@@ -8,8 +8,8 @@ const ICHING_MASK = { hexagram: 59, trigram: '☱☰', glyph: '☱☰', lo: 'Du�
 // browser Math.random (a game, not a model computation); the resolution from the cast is deterministic.
 import { ref, computed } from 'vue'
 import { useData } from 'vitepress'
-import { useTones } from '../lib/useTones'
-import { iChing } from '../lib/quantumMind'
+import { useTones } from '../lib'
+import { iChing } from '../lib'
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')

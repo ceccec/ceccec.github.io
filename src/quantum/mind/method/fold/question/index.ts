@@ -1,0 +1,1 @@
+export { foldQuestion } from '../../../method'

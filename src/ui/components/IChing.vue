@@ -5,7 +5,7 @@ const ICHING_MASK = { hexagram: 1, glyph: '☷', trigram: 'Kūn·receptive', col
 // by its own content-address (seed → a 6-bit hexagram → upper trigram = its set), reusing the 2⁶=4³ identity.
 // Minimal, render-safe baseline (no reactive style values — the alpha mishandles a ref nested in :style); the
 // richer interactive bāguà wheel builds on this once the render path is confirmed.
-import { iChing, livingTrigramSvg } from '../lib/quantumMind'
+import { iChing, livingTrigramSvg } from '../lib'
 const ic = iChing()
 // The eight trigrams as LIVING symbols — each DRAWN (not a font glyph), moving and folding by its own bits, its
 // three lines coloured by scaleColor at this scale. Glyph → 3-bit value (yang = solid, read bottom-to-top, bit0 =

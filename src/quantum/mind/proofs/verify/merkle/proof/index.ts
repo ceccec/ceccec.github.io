@@ -1,0 +1,1 @@
+export { verifyMerkleProof } from '../../../../proofs'

@@ -1,0 +1,1 @@
+export { heroSvgFromUuid } from '../../../../../ui'

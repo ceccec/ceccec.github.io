@@ -1,0 +1,1 @@
+export { lightEntersDiamond } from '../../../../diamonds'

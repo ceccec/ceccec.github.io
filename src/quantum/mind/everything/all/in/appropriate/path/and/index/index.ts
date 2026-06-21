@@ -1,0 +1,1 @@
+export { allInAppropriatePathAndIndex } from '../../../../../../../everything'

@@ -1,0 +1,1 @@
+export { harmonyProbability } from '../../../life'

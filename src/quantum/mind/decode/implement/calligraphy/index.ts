@@ -1,0 +1,1 @@
+export { decodeImplementCalligraphy } from '../../../decode'

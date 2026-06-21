@@ -2,7 +2,7 @@
 // Doubling departs from one: 1×2=2, and the period-6 orbit 1→2→4→8→7→5 begins.
 // Sequence: 1 opens 1-2-4-8-7-5-3-6-9; reverse terminus at …/9/6/3/5/7/8/4/2/1/ (1→0 closes reverse).
 
-import { toUuid, merkleFold, digitalRoot } from '../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '..'
 
 export const digit = 1
 export const role = 'circuit' as const  // period-6 orbit 1→2→4→8→7→5 under ×2 mod 9

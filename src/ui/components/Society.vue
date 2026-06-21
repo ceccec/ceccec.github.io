@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 37, lo: '☲', up: '☶', glyph: '☶', color: '#F00F0F', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
-import { buildMatrix, society, societyCreatesRequiredPages } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, society, societyCreatesRequiredPages } from '../lib'
+import { useLocale } from '../lib'
 
 // Develop the society with the new knowledge, then pair and fold it: five dualities,
 // each social organ shown beside its opposite and folded bidirectionally (genus 2,

@@ -2,7 +2,7 @@
 // 4×2=8: doubling crosses the midpoint.
 // Sequence position 3 in 1-2-4-8-7-5-3-6-9.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../..'
 
 export const digit = 4
 export const role = 'circuit' as const

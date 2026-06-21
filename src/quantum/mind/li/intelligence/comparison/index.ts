@@ -1,0 +1,1 @@
+export { intelligenceComparison } from '../../../li'

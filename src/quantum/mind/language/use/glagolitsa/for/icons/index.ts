@@ -1,0 +1,1 @@
+export { useGlagolitsaForIcons } from '../../../../../language'

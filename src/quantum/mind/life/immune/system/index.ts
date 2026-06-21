@@ -1,0 +1,1 @@
+export { immuneSystem } from '../../../life'

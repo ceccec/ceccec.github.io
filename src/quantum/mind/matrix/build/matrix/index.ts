@@ -1,0 +1,1 @@
+export { buildMatrix } from '../../../matrix'

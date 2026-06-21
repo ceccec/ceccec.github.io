@@ -1,0 +1,1 @@
+export { thriveByDefault } from '../../../../civilisation'

@@ -1,0 +1,1 @@
+export { noSiteFolderVitepressPages } from '../../../../../../architecture'

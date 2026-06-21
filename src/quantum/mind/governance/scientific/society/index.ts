@@ -1,0 +1,1 @@
+export { scientificSociety } from '../../../governance'

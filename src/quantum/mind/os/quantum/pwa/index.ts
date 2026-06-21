@@ -1,0 +1,1 @@
+export { quantumPwa } from '../../../os'

@@ -1,0 +1,1 @@
+export { expansionContractionIsLife } from '../../../../../nature'

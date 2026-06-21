@@ -1,0 +1,1 @@
+export { quantumConfigurableFoldersDisappear } from '../../../../../architecture'

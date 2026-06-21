@@ -1,0 +1,1 @@
+export { yinYangDimensionsSvg } from '../../../../../ui'

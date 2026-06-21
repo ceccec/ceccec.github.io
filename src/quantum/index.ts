@@ -9,25 +9,25 @@
 // The render subfolders (the hero's dimensions) are: seed (page→identity), dimensions (the continuous phase), geometry
 // (the trinity of rotation + perspective), fractal (the self-similar arms), flower (the fruit of life),
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
-import { dims, dimWalk } from './dimensions/index.ts'
-import { perspective, rotate3 } from './geometry/index.ts'
-import { branch } from './fractal/index.ts'
-import { drawFlower } from './flower/index.ts'
-import { drawCalendars } from './calendars/index.ts'
-import { drawArchitecture, type ArchNode } from './architecture/index.ts'
-import { drawBursts, type Burst } from './bursts/index.ts'
-import { glagoliticGlyph } from './mind/index.ts'
+import { dims, dimWalk } from './dimensions'
+import { perspective, rotate3 } from './geometry'
+import { branch } from './fractal'
+import { drawFlower } from './flower'
+import { drawCalendars } from './calendars'
+import { drawArchitecture, type ArchNode } from './architecture'
+import { drawBursts, type Burst } from './bursts'
+import { glagoliticGlyph } from './mind'
 
-export { createAnimationEngine, type AnimationEngine } from '../0/index.ts' // the rAF driver from the void/origin — the hero's loop folds through it too
-export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0/index.ts' // the one math (the fold) and its presentations — projections of a single address
-export { seedOf, hueOf, armsOf } from './seed/index.ts'
-export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './dimensions/index.ts'
-export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, type Vec3 } from './geometry/index.ts'
-export { branch } from './fractal/index.ts'
-export { drawFlower } from './flower/index.ts'
-export { drawCalendars } from './calendars/index.ts'
-export { buildArchNodes, drawArchitecture, type ArchNode } from './architecture/index.ts'
-export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './bursts/index.ts'
+export { createAnimationEngine, type AnimationEngine } from '../0' // the rAF driver from the void/origin — the hero's loop folds through it too
+export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0' // the one math (the fold) and its presentations — projections of a single address
+export { seedOf, hueOf, armsOf } from './seed'
+export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './dimensions'
+export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, type Vec3 } from './geometry'
+export { branch } from './fractal'
+export { drawFlower } from './flower'
+export { drawCalendars } from './calendars'
+export { buildArchNodes, drawArchitecture, type ArchNode } from './architecture'
+export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './bursts'
 
 // The whole scene for one frame: the resolved time t and phase p, the page's seeded identity (hue, arms), the
 // related tags and the architecture nodes, the responsiveness inputs (reduce, cssWidth) and the live bursts.

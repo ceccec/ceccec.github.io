@@ -1,0 +1,1 @@
+export { forensicReceipt } from '../../../folds'

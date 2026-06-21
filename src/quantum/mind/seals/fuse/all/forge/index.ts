@@ -1,0 +1,1 @@
+export { fuseAllForge } from '../../../../seals'

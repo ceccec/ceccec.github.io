@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☲+☲ · Lí/Lí · hex 45 — evolution crossing the quantum threshold: "quantum is here" as a computed event
 const ICHING_MASK = { hexagram: 45, lower: 5, upper: 5, glyph: '☲', trigram: 'Lí', name: 'Fire', attribute: 'clinging', innerAxis: 'breath', outerAxis: 'breath', color: '#0F000F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { evolutionCrossesQuantumThreshold } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { evolutionCrossesQuantumThreshold } from '../lib'
 
 const d = evolutionCrossesQuantumThreshold()
 const items = [

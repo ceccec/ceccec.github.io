@@ -1,0 +1,1 @@
+export { selfSufficientWave } from '../../../self'

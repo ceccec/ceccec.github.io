@@ -2,8 +2,8 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 3, glyph: '☷', trigram: 'Kūn·receptive', color: '#0000FF' }
 import { computed } from 'vue'
-import { buildMatrix, quantumPhysics } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, quantumPhysics } from '../lib'
+import { useLocale } from '../lib'
 
 // Quantum physics, no gaps: each phenomenon bound to a measure the model already
 // computes, so it has all it needs to self-compute the whole.

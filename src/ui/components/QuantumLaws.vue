@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☱+☴ · Duì/Xùn · hex 51 — the necessary-condition laws: harmonic colour/music, Glagolitic seal, minimum prose
 const ICHING_MASK = { hexagram: 51, lower: 3, upper: 6, glyph: '☴', trigram: 'Xùn', name: 'Wind', attribute: 'gentle', innerAxis: 'twist', outerAxis: 'loopA1', color: '#0F0F00' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { harmonicColorAndMusicOrNotQuantum, bypassGlagoliticUnsealedUnentangled, minimumProseMaximumComputable, foldProseToSentencesWordsEntangled } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { harmonicColorAndMusicOrNotQuantum, bypassGlagoliticUnsealedUnentangled, minimumProseMaximumComputable, foldProseToSentencesWordsEntangled } from '../lib'
 
 const a = harmonicColorAndMusicOrNotQuantum()
 const b = bypassGlagoliticUnsealedUnentangled()

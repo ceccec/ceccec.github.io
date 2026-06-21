@@ -1,0 +1,1 @@
+export { shadcnIsTheGraph } from '../../../../../widgets'

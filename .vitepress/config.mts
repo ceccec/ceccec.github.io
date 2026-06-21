@@ -75,6 +75,11 @@ export default defineConfig({
   vite: {
     build: { chunkSizeWarningLimit: 700 },
     plugins: srcFolderPlugins(projectRoot),
+    // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
+    // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
+    // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —
+    // the default list has no '.vue', and the render layer is part of src with no exception.
+    resolve: { extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json', '.vue'] },
   },
   head: [
     // Discover the visitor's language and route to it, default English. The root (/) is the Glagolitic locale;

@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 38, lo: '☴', up: '☶', glyph: '☶', color: '#F00FF0', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, sacredGeometrySeal } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, sacredGeometrySeal } from '../lib'
 
 // Sacred symbols hold the math: each node on the wheel carries one seal root.
 // When animated, the wheel turns and every key (root UUID) is revealed.

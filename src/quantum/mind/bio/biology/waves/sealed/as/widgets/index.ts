@@ -1,0 +1,1 @@
+export { biologyWavesSealedAsWidgets } from '../../../../../../bio'

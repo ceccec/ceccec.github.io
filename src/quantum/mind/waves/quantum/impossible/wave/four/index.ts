@@ -1,0 +1,1 @@
+export { quantumImpossibleWaveFour } from '../../../../../waves'

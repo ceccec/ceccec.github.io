@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AspectRatio } from 'radix-vue'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/utils'
+import { cn } from '../../lib'
 
 const aspectRatioVariants = cva('ui-aspectratio', {
   variants: {

@@ -1,0 +1,1 @@
+export { legislation } from '../../civilisation'

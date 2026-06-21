@@ -1,0 +1,1 @@
+export { hardwareCmykMerkabaFusion } from '../../../../../peace'

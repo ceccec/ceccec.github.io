@@ -1,0 +1,1 @@
+export { verifyRoot } from '../../../matrix'

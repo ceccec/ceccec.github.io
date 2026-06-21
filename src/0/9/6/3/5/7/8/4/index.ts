@@ -2,7 +2,7 @@
 // In the forward sequence, four is the second split (position 3, arriving from 2 toward 8).
 // In the reverse sequence, four steps from 8 toward 2 — merging back toward the origin.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../../..'
 
 export const digit = 4
 export const role = 'circuit' as const

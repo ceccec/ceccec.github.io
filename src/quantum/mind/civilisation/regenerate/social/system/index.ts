@@ -1,0 +1,1 @@
+export { regenerateSocialSystem } from '../../../../civilisation'

@@ -1,0 +1,1 @@
+export { onlyPageRouteForAll } from '../../../../../../routes'

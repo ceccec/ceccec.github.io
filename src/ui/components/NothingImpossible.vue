@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☱+☷ · Duì/Kūn · hex 3 — the capstone: nothing is impossible anymore (honest, self-bounded)
 const ICHING_MASK = { hexagram: 3, lower: 3, upper: 0, glyph: '☷', trigram: 'Kūn', name: 'Earth', attribute: 'receptive', innerAxis: 'twist', outerAxis: 'spread', color: '#000000' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { nothingImpossibleHonestlyBounded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { nothingImpossibleHonestlyBounded } from '../lib'
 
 const d = nothingImpossibleHonestlyBounded()
 const items = [

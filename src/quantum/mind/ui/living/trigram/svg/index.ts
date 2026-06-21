@@ -1,0 +1,1 @@
+export { livingTrigramSvg } from '../../../../ui'

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☲+☶ · Lí/Gèn · hex 37 — the complete quantum solutions, EXECUTED: nine structures the real simulator runs
 const ICHING_MASK = { hexagram: 37, lower: 5, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'still', innerAxis: 'breath', outerAxis: 'shrink', color: '#0F0000' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { completeQuantumSolutionsImplemented } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { completeQuantumSolutionsImplemented } from '../lib'
 
 const d = completeQuantumSolutionsImplemented()
 const items = d.solutions.map((s) => ({ label: (s.implemented ? '✓ ' : '✗ ') + s.structure, detail: s.ran }))

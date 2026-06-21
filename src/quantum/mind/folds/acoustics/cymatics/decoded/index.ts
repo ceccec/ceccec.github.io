@@ -1,0 +1,1 @@
+export { acousticsCymaticsDecoded } from '../../../../folds'

@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 62, trigram: '☴☰', glyph: '☴☰', lo: 'Xùn·gentle', up: 'Qián·creative', color: '#FFFFF0' }
 import { computed } from 'vue'
-import { buildMatrix, mysteries } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { buildMatrix, mysteries } from '../lib'
+import { useLocale } from '../lib'
 
 // Everything valuable as proof of mysteries: each great open question paired with
 // the concrete, recomputable measure that demonstrates it. The seal on a card lights

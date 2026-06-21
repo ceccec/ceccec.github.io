@@ -1,0 +1,1 @@
+export { fruitsAndVegetables } from '../../../../nature'

@@ -2,8 +2,8 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 1, glyph: '☷', trigram: 'Kūn·receptive', color: '#00000F' }
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { emfApplications } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { emfApplications } from '../lib'
 
 // Extend into EMF applications, honestly. Read the device's magnetometer (the
 // ambient magnetic field in microtesla) where the Generic Sensor API allows it;

@@ -1,0 +1,1 @@
+export { proofRegistry } from '../../../seals'

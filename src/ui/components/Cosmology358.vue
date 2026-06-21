@@ -2,8 +2,8 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 15, glyph: '☳', lower: '☰', upper: '☳', color: '#00FFFF' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358, music358, geometry358, emf358, tiers358 } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358, music358, geometry358, emf358, tiers358 } from '../lib'
 
 // 3-5-8 across domains: the same Fibonacci tiers (3, 5, 8) recur in yin-yang
 // (three powers, five elements, eight trigrams), on the chessboard (minor piece,

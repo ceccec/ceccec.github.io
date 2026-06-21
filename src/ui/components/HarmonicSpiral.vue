@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 39, lo: '☰', up: '☶', glyph: '☶', color: '#F00FFF', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
-import { harmonicBands, goldenRatio } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { harmonicBands, goldenRatio } from '../lib'
+import { useLocale } from '../lib'
 
 // Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps.
 // The golden spiral grows by consecutive Fibonacci quarter-turns — adjacent scales,

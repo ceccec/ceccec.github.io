@@ -1,0 +1,1 @@
+export { scientists } from '../../academia'

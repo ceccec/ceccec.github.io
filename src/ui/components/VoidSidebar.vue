@@ -3,7 +3,7 @@
 const ICHING_MASK = { hexagram: 33, lo: '☳', up: '☶', glyph: '☶', color: '#F0000F', name: 'Gèn', principle: 'keeping still' }
 import { onMounted, onUnmounted, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { createAnimationEngine } from '../lib/quantumMind'
+import { createAnimationEngine } from '../lib'
 
 // Sidebars appear from the void when the content is visualising. The sidebar is not a
 // fixed frame: each time the content changes (a new route renders), the sidebar fades

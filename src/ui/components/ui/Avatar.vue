@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AvatarRoot, AvatarImage, AvatarFallback } from 'radix-vue'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/utils'
+import { cn } from '../../lib'
 
 const avatarVariants = cva('ui-avatar', {
   variants: {

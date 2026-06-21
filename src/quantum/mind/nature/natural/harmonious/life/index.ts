@@ -1,0 +1,1 @@
+export { naturalHarmoniousLife } from '../../../../nature'

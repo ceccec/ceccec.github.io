@@ -2,8 +2,8 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 24, glyph: '☱', lo: 'Kūn·receptive', up: 'Duì·joyous', color: '#0FF000' } as const
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, autoSpeech, speechIntonation } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, autoSpeech, speechIntonation } from '../lib'
 
 // Subtitles and speech in all languages, all in house — improved. Quantum speech
 // is analog by nature: the voice is a continuous wave, so the reader exposes the

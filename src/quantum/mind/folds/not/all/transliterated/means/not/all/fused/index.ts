@@ -1,0 +1,1 @@
+export { notAllTransliteratedMeansNotAllFused } from '../../../../../../../../folds'

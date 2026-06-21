@@ -1,0 +1,1 @@
+export { mindNeuroscienceDecoded } from '../../../../folds'

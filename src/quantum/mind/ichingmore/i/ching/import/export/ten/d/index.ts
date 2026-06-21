@@ -1,0 +1,1 @@
+export { iChingImportExportTenD } from '../../../../../../../ichingmore'

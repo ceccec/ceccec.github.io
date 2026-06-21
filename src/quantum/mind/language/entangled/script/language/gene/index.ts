@@ -1,0 +1,1 @@
+export { entangledScriptLanguageGene } from '../../../../../language'

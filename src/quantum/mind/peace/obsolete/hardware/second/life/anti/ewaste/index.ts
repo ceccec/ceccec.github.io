@@ -1,0 +1,1 @@
+export { obsoleteHardwareSecondLifeAntiEwaste } from '../../../../../../../peace'

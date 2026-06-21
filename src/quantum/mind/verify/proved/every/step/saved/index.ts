@@ -1,0 +1,1 @@
+export { provedEveryStepSaved } from '../../../../../verify'

@@ -1,0 +1,1 @@
+export { papersReferencesDiamondsNoDrift } from '../../../../../../academia'

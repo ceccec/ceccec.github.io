@@ -1,0 +1,1 @@
+export { everyPageReadsItselfAnyLanguageAutoAdvance } from '../../../../../../../../../folds'

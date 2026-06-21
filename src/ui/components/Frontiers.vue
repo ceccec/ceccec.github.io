@@ -62,8 +62,8 @@ import {
   publicFrequencyApisDecoded,
   herbalApisDecoded,
   sessionToolsDecoded,
-} from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+} from '../lib'
+import { useLocale } from '../lib'
 
 const { bg } = useLocale()
 const matrix = buildMatrix()

@@ -1,0 +1,1 @@
+export { folderLawWordDigitIndexSkill } from '../../../../../../../architecture'

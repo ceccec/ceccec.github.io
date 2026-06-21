@@ -1,0 +1,1 @@
+export { onlyMainRemains } from '../../../../essence'

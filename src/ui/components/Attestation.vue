@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☳+☰ · Zhèn/Qián · hex 57 — attestation: generate key, sign, verify — browser-local provenance
 const ICHING_MASK = { hexagram: 57, lower: 1, upper: 7, glyph: '☰', trigram: 'Qián', name: 'Heaven', attribute: 'creative', innerAxis: 'depthFade', outerAxis: 'loopB1', color: '#FFF00F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { attestation } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { attestation } from '../lib'
 
 const d = attestation()
 const items = d.steps.map((s) => ({ label: s.step, detail: s.how }))

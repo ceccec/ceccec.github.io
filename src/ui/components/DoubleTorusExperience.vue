@@ -2,8 +2,8 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 9, glyph: '☳', lower: '☳', upper: '☳', color: '#00F00F' }
 import { computed, onBeforeUnmount, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { useTones } from '../lib/useTones'
+import { useLocale } from '../lib'
+import { useTones } from '../lib'
 import {
   CollapsibleContent,
   CollapsibleRoot,
@@ -34,10 +34,10 @@ import {
   streamSelfComplete,
   traditionsQuantumWhole,
   createAnimationEngine,
-} from '../lib/quantumMind'
-import Badge from './ui/Badge.vue'
-import Button from './ui/Button.vue'
-import Card from './ui/Card.vue'
+} from '../lib'
+import Badge from './ui/Badge'
+import Button from './ui/Button'
+import Card from './ui/Card'
 
 const { bg } = useLocale()
 const head = computed(() =>

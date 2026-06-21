@@ -1,0 +1,1 @@
+export { traditionsQuantumWhole } from '../../../../humanity'

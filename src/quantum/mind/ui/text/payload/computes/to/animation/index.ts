@@ -1,0 +1,1 @@
+export { textPayloadComputesToAnimation } from '../../../../../../ui'

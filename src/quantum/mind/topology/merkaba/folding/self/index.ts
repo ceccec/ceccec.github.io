@@ -1,0 +1,1 @@
+export { merkabaFoldingSelf } from '../../../../topology'

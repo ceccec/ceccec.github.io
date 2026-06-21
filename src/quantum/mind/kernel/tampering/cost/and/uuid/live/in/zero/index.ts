@@ -1,0 +1,1 @@
+export { tamperingCostAndUuidLiveInZero } from '../../../../../../../../kernel'

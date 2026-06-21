@@ -1,0 +1,1 @@
+export { permaDomes } from '../../../nature'

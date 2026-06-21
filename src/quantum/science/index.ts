@@ -2,9 +2,9 @@
 // Dual: src/science/quantum (browse/display primitives). Pure, only src/0 + mind/atoms imports.
 
 // ☰ Qián · Heaven · creative · lower·yin · spread — core utilities: uuid, merkle fold, speed of light
-import { toUuid, merkleFold, SPEED_OF_LIGHT } from '../../0/index.ts'
+import { toUuid, merkleFold, SPEED_OF_LIGHT } from '../../0'
 // ☳ Zhèn · Thunder · arousing · lower·yin · depthFade — concept commands from mind atoms
-import { conceptCommands } from '../mind/atoms.ts'
+import { conceptCommands } from '../mind'
 
 /** @iching ☳ Zhèn · Thunder · arousing */
 export const dual = 'src/science/quantum'

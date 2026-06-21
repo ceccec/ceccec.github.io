@@ -1,0 +1,1 @@
+export { speechIntonation } from '../../../media'

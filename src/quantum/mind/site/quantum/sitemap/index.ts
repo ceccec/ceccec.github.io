@@ -1,0 +1,1 @@
+export { quantumSitemap } from '../../../site'

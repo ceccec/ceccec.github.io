@@ -1,0 +1,1 @@
+export { quantumChessGame } from '../../../../chess'

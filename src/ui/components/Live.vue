@@ -2,10 +2,10 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 15, glyph: '☳', lower: '☰', upper: '☳', color: '#00FFFF' }
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology, features, createAnimationEngine, a432, frequencyToLight } from '../lib/quantumMind'
-import { dimWalk } from '../lib/hero'
-import { useLocale } from '../lib/useLocale'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology, features, createAnimationEngine, a432, frequencyToLight } from '../lib'
+import { dimWalk } from '../lib'
+import { useLocale } from '../lib'
+import { useDeviceEnergy } from '../lib'
 
 // A432 colour anchor + 432-harmonic baseline. HONEST: this is a literal 1D EKG trace — a heartbeat
 // spike plus a slow breathing baseline, scrolling in time. The hero's full TEN dimensions (rotation,

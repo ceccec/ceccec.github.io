@@ -4,9 +4,9 @@
 // (folderLaw). Consumed, not recomputed — zero tokens. The ring tumbles through the same three planes as the
 // fractal (geometry), so the hero is one figure: the page at the core, the architecture turning around it.
 // A word folder importing the model (word) and the geometry (word) — the UI reads the math, never the reverse.
-import { folderLaw, glagoliticGlyph } from '../mind/index.ts'
-import { perspective, rotate3 } from '../geometry/index.ts'
-import type { Dims } from '../dimensions/index.ts'
+import { folderLaw, glagoliticGlyph } from '../mind'
+import { perspective, rotate3 } from '../geometry'
+import type { Dims } from '../dimensions'
 
 export interface ArchNode {
   folder: string

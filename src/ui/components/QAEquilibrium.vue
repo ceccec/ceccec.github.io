@@ -2,8 +2,8 @@
 // ☵ Kǎn · Water · abysmal · upper·yang · breath — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 21, glyph: '☵', lower: '☲', upper: '☵', color: '#0F0F0F' } as const
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, questionAnswerEquilibrium } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, questionAnswerEquilibrium } from '../lib'
 
 // Questions, answers, equilibrium — the three as one. Answers contract to a
 // closed point, questions expand to an open frontier, and the breath settles

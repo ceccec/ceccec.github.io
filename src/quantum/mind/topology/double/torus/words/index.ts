@@ -1,0 +1,1 @@
+export { doubleTorusWords } from '../../../../topology'

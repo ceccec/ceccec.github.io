@@ -1,0 +1,1 @@
+export { animatedTrigramIconSvg } from '../../../../../ui'

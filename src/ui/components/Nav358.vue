@@ -2,8 +2,8 @@
 // ☰ Qián · Heaven · creative · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 62, trigram: '☴☰', glyph: '☴☰', lo: 'Xùn·gentle', up: 'Qián·creative', color: '#FFFFF0' }
 import { computed } from 'vue'
-import { navigation358 } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
+import { navigation358 } from '../lib'
+import { useLocale } from '../lib'
 
 // Navigation in 3-5-8, with a tooltip on every destination. Three to arrive,
 // five to use, eight to go deep — each a link whose tip is both a hover title

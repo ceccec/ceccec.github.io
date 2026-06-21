@@ -1,0 +1,1 @@
+export { dualTorusTrinities } from '../../../../geometry'

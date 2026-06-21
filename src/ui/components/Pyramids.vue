@@ -3,9 +3,9 @@
 // below is read live from the folds (pyramidsDecoded / pyramidGridDebunked / pyramidConstructionMath), not
 // hardcoded here — the research rendered as computed UI; the pseudoscience flagged with the science.
 const ICHING_MASK = { hexagram: 52, lower: 4, upper: 4, glyph: '☶', trigram: 'Gèn', name: 'Mountain', attribute: 'keeping still', innerAxis: 'shrink', outerAxis: 'spread', color: '#F0F000' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { pyramidsDecoded, pyramidGridDebunked, pyramidConstructionMath } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { pyramidsDecoded, pyramidGridDebunked, pyramidConstructionMath } from '../lib'
 
 const d = pyramidsDecoded()
 const g = pyramidGridDebunked()

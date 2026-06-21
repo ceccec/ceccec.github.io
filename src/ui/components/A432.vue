@@ -7,9 +7,9 @@ const ICHING_MASK = { hexagram: 9, glyph: '☳', lower: '☳', upper: '☳', col
 // kinship; sound↔colour is a chosen octave-mapping, not a physical identity — and that honesty is shown, not
 // hidden. The decode (documented kept, legend flagged) comes from the a432() fold. Energy-aware; pure.
 import { computed, ref } from 'vue'
-import { useTones } from '../lib/useTones'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { a432, frequencyToLight } from '../lib/quantumMind'
+import { useTones } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { a432, frequencyToLight } from '../lib'
 
 const { blip, playChord } = useTones()
 const { saveEnergy } = useDeviceEnergy()

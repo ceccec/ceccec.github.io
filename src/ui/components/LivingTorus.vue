@@ -5,10 +5,10 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 // Online or offline, the double torus is identical — it computes with zero network.
 const online = ref(true)
 function syncOnline() { if (typeof navigator !== 'undefined') online.value = navigator.onLine }
-import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, homology, microdata, merge, toUuid, createAnimationEngine } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
+import { buildMatrix, livingTorus, directions, doubleTorusSurface, merkaba, humanise, humanBreath, homology, microdata, merge, toUuid, createAnimationEngine } from '../lib'
+import { useLocale } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
 
 // The living double torus: every pi-digit UUID coordinate alive at once, in
 // realtime. Each pulses at its own vibration, glows by its frequency, rides one

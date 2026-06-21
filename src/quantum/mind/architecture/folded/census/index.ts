@@ -1,0 +1,1 @@
+export { foldedCensus } from '../../../architecture'

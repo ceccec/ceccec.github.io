@@ -1,0 +1,1 @@
+export { quantumFirewallProxyWorker } from '../../../../../features'

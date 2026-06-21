@@ -2,7 +2,7 @@
 // In the forward sequence, three is the cross entry (position 7, arriving from 5 toward 6).
 // In the reverse sequence, three steps from 6 toward 5 — leaving the cross, entering the circuit.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../..'
 
 export const digit = 3
 export const role = 'cross' as const

@@ -2,7 +2,7 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 30, glyph: '☱', lo: 'Xùn·gentle', up: 'Duì·joyous', color: '#0FFFF0' } as const
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { glagoliticGlyph } from '../lib/quantumMind'
+import { glagoliticGlyph } from '../lib'
 
 // Affected-blockchains comparison — LIVE market data bound to its source API (CoinGecko, public, no-auth,
 // client-side fetch), merged with each chain's consensus / energy / e-waste attributes (cited record).

@@ -1,0 +1,1 @@
+export { theOracleIsQuantumAllIsQuantumToTheBit } from '../../../../../../../../../../../folds'

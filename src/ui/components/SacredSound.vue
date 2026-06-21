@@ -3,10 +3,10 @@
 // harmonicSeriesDecoded (cents = 1200·log2(ratio)) — the harmonic series, just intonation, equal temperament,
 // the Pythagorean comma, and the honest 432 history. Computed, minimal prose; the metaphysics flagged.
 const ICHING_MASK = { hexagram: 51, glyph: '☳', lo: '☳', up: '☳', name: 'Zhèn', attribute: 'arousing', color: '#FF0F0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { harmonicSeriesDecoded, soundWiredToOneSharedContext } from '../lib/quantumMind'
-import { useTones } from '../lib/useTones'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { harmonicSeriesDecoded, soundWiredToOneSharedContext } from '../lib'
+import { useTones } from '../lib'
 
 const s = harmonicSeriesDecoded()
 const eng = soundWiredToOneSharedContext()

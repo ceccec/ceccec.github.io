@@ -2,7 +2,7 @@
 // In the forward sequence, eight is the peak before the decimal crossing (position 4, arriving from 4 toward 7).
 // In the reverse sequence, eight steps from 7 toward 4 — descending back through the circuit.
 
-import { toUuid, merkleFold, digitalRoot } from '../../../../../../index.ts'
+import { toUuid, merkleFold, digitalRoot } from '../../../../../..'
 
 export const digit = 8
 export const role = 'circuit' as const

@@ -1,0 +1,1 @@
+export { planetDescribesItself } from '../../../../li'

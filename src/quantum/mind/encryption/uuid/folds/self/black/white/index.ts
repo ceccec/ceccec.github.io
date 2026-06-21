@@ -1,0 +1,1 @@
+export { uuidFoldsSelfBlackWhite } from '../../../../../../encryption'

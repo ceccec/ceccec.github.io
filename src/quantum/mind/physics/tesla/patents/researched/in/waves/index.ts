@@ -1,0 +1,1 @@
+export { teslaPatentsResearchedInWaves } from '../../../../../../physics'

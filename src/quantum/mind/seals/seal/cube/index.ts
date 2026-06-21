@@ -1,0 +1,1 @@
+export { sealCube } from '../../../seals'

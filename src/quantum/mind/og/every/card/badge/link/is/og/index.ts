@@ -1,0 +1,1 @@
+export { everyCardBadgeLinkIsOg } from '../../../../../../../og'

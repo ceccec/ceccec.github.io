@@ -1,0 +1,1 @@
+export { vortexFoldWave } from '../../../../folds'

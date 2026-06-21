@@ -3,9 +3,9 @@
 // weatherForecastQuantumComputedRealtime is referenced by mind's duality matrix, so mind imports it back (an
 // ESM-safe function-binding cycle). (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind matrix and merkaba fold imports
-import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../mind/index.ts'
+import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../mind'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — core uuid and merkle primitives
-import { toUuid, merkleFold, isUuid } from '../../0/index.ts'
+import { toUuid, merkleFold, isUuid } from '../../0'
 
 // ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast feeds
 // Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+

@@ -2,10 +2,10 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 12, glyph: '☳', lower: '☶', upper: '☳', color: '#00FF00' }
 import { computed, ref } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, piMusic } from '../lib/quantumMind'
-import { useDeviceEnergy } from '../lib/useDeviceEnergy'
-import { useTones } from '../lib/useTones'
+import { useLocale } from '../lib'
+import { buildMatrix, piMusic } from '../lib'
+import { useDeviceEnergy } from '../lib'
+import { useTones } from '../lib'
 
 // The music of pi is infinite; the pi-digit frequencies are its notes. Choose
 // where you join (the horo) and hear the phrase. Web Audio runs client-side on

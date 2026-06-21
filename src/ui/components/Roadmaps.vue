@@ -2,10 +2,10 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 8, glyph: '☳', lower: '☷', upper: '☳', color: '#00F000' }
 import { computed } from 'vue'
-import { buildMatrix, roadmaps } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import Card from './ui/Card.vue'
-import Badge from './ui/Badge.vue'
+import { buildMatrix, roadmaps } from '../lib'
+import { useLocale } from '../lib'
+import Card from './ui/Card'
+import Badge from './ui/Badge'
 
 // The roadmaps, complete: three tracks, every milestone marked done, next, or
 // later. One source for where the portal is and where it is going.

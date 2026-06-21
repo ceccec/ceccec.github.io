@@ -1,0 +1,1 @@
+export { trinityRotationalPlanes } from '../../../trinity'

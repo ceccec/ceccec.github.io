@@ -2,11 +2,11 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 25, glyph: '☱', lo: 'Zhèn·arousing', up: 'Duì·joyous', color: '#0FF00F' } as const
 import { computed } from 'vue'
-import { buildMatrix, plainLanguage, graduation } from '../lib/quantumMind'
-import { useLocale } from '../lib/useLocale'
-import Card from './ui/Card.vue'
-import Button from './ui/Button.vue'
-import Badge from './ui/Badge.vue'
+import { buildMatrix, plainLanguage, graduation } from '../lib'
+import { useLocale } from '../lib'
+import Card from './ui/Card'
+import Button from './ui/Button'
+import Badge from './ui/Badge'
 
 // Start here: the simple front door. Four plain steps everyone sees; the full
 // plain-language glossary and the graduation credential appear in rich mode.
@@ -18,13 +18,13 @@ const steps = computed(() =>
   bg.value
     ? [
         { n: '1', title: 'Виж', text: 'Разгледай целия портал в осем измерения.', route: '/explore' },
-        { n: '2', title: 'Учи', text: 'Започни от основата, на всяка възраст.', route: '/school' },
+        { n: '2', title: 'Учи', text: 'Започни от основата, на всяка възраст.', route: '/learn' },
         { n: '3', title: 'Използвай', text: 'Питай конзолата — тя се консултира със себе си.', route: '/console' },
         { n: '4', title: 'Докажи', text: 'Провери печата — всяко твърдение е преизчислимо.', route: '/architecture' },
       ]
     : [
         { n: '1', title: 'See', text: 'Browse the whole portal across eight dimensions.', route: '/explore' },
-        { n: '2', title: 'Learn', text: 'Start from the ground up, at any age.', route: '/school' },
+        { n: '2', title: 'Learn', text: 'Start from the ground up, at any age.', route: '/learn' },
         { n: '3', title: 'Use', text: 'Ask the console — it consults itself first.', route: '/console' },
         { n: '4', title: 'Prove', text: 'Verify the seal — every claim is recomputable.', route: '/architecture' },
       ],

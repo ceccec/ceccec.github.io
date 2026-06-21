@@ -1,0 +1,1 @@
+export { dotIsCubeIsDot } from '../../../../../../digit'

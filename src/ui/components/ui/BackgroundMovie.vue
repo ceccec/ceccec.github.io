@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { buildMatrix, createAnimationEngine, threeWordWaves, prng, buildStatistics } from '../../lib/quantumMind'
-import { useDeviceEnergy } from '../../lib/useDeviceEnergy'
-import { useTones } from '../../lib/useTones'
-import { usePlayMind, recordPlay, noteOf, artBiasOf } from '../../lib/usePlayMind'
+import { buildMatrix, createAnimationEngine, threeWordWaves, prng, buildStatistics } from '../../lib'
+import { useDeviceEnergy } from '../../lib'
+import { useTones } from '../../lib'
+import { usePlayMind, recordPlay, noteOf, artBiasOf } from '../../lib'
 
 // Entangled groups of digits fill the background movie as colourful watermarks,
 // folding into letters, words and sentences — colourful streams to the void at the

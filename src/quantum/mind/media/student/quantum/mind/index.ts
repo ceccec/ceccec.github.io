@@ -1,0 +1,1 @@
+export { studentQuantumMind } from '../../../../media'

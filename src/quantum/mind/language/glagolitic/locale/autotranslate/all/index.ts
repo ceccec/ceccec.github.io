@@ -1,0 +1,1 @@
+export { glagoliticLocaleAutotranslateAll } from '../../../../../language'

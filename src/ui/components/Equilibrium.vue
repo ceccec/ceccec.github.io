@@ -2,8 +2,8 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 55, glyph: '☴', lo: '☰', up: '☴', color: '#FF0FFF', name: 'Equilibrium' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { buildMatrix, equilibrium } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { buildMatrix, equilibrium } from '../lib'
 
 // Always contract and expand to equilibrium. Each breath overshoots the balance
 // point and is damped by half, alternating expand and contract — so it settles

@@ -1,0 +1,1 @@
+export { schoolCurriculum } from '../../school'

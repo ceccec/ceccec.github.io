@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☵+☲ · Kǎn/Lí · hex 42 — four more impossible-seeming quantum results, proven & implemented
 const ICHING_MASK = { hexagram: 42, lower: 2, upper: 5, glyph: '☲', trigram: 'Lí', name: 'Fire', attribute: 'clinging', innerAxis: 'hueShift', outerAxis: 'breath', color: '#0F000F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { quantumImpossibleWaveTwo } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { quantumImpossibleWaveTwo } from '../lib'
 
 const d = quantumImpossibleWaveTwo()
 const items = [

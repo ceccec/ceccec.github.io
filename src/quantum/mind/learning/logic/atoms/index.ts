@@ -1,0 +1,1 @@
+export { logicAtoms } from '../../../learning'

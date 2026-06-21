@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CollapsibleRoot, CollapsibleTrigger, CollapsibleContent } from 'radix-vue'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/utils'
+import { cn } from '../../lib'
 
 const collapsibleVariants = cva('ui-collapsible', {
   variants: {

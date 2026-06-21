@@ -2,9 +2,9 @@
 // The content is computed by src/quantum/dist; this half maps pathname → artifact for dev middleware
 // and post-build writes. Together dist/quantum ⇄ quantum/dist are the dist pair.
 
-import { computedDistRoute } from '../../quantum/dist/index.ts'
+import { computedDistRoute } from '../../quantum/dist'
 
-export { computedDistFiles, computedDistRoute, type DistFile } from '../../quantum/dist/index.ts'
+export { computedDistFiles, computedDistRoute, type DistFile } from '../../quantum/dist'
 
 export const dual = 'src/quantum/dist'
 

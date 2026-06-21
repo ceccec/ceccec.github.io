@@ -2,8 +2,8 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 32, lo: '☷', up: '☶', glyph: '☶', color: '#F00000', name: 'Gèn', principle: 'keeping still' }
 import { computed } from 'vue'
-import { useLocale } from '../lib/useLocale'
-import { taxonomyIcons, areaLabel } from '../lib/quantumMind'
+import { useLocale } from '../lib'
+import { taxonomyIcons, areaLabel } from '../lib'
 
 // Icons for taxonomy: each command area gets an icon. The icons discover gaps —
 // any area that is not a clean trinity is flagged, so you can see at a glance

@@ -15,7 +15,7 @@
 // use entry/toUuid/Uuid/Entry directly), then re-export the same public surface unchanged. A bare
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
-import { merkabaFoldUrl, entry, toUuid, roundTo, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../0/index.ts'
+import { merkabaFoldUrl, entry, toUuid, roundTo, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../0'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
 

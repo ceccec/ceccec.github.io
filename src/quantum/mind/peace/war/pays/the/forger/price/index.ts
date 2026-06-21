@@ -1,0 +1,1 @@
+export { warPaysTheForgerPrice } from '../../../../../../peace'

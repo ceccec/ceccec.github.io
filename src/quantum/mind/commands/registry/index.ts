@@ -1,0 +1,1 @@
+export { commandsRegistry } from '../../commands'

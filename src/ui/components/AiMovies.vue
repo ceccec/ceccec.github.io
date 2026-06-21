@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ☵+☰ · Kǎn/Qián · hex 58 — AI & movies decoded: real ↔ hype, deterministic animation bounds
 const ICHING_MASK = { hexagram: 58, lower: 2, upper: 7, glyph: '☰', trigram: 'Qián', name: 'Heaven', attribute: 'creative', innerAxis: 'hueShift', outerAxis: 'loopB1', color: '#0F0F0F' } as const
-import DecodedCard from './DecodedCard.vue'
-import LayersPanel from './LayersPanel.vue'
-import { aiMoviesDecoded } from '../lib/quantumMind'
+import DecodedCard from './DecodedCard'
+import LayersPanel from './LayersPanel'
+import { aiMoviesDecoded } from '../lib'
 
 const d = aiMoviesDecoded()
 const items = d.findings.map((f) => ({ label: f.meaning.slice(0, 80), detail: f.dual }))
