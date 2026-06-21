@@ -16,7 +16,7 @@ import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims } from '../../dimensions'
 import { yinYang } from '../../spirit'
 import { scaleColor, A432_HUE } from '../../science'
 export { scaleColor, oklchToHex } from '../../science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
-export { githubPermalink, SOURCE_REPO } from '../site' // bridge the proof-link helper (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
+export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
 import { staticPages } from '../site'
 import { sealWholeDiamond } from '../diamonds'
 import { dimensionalMerkabaGraphRealtimeMetric } from '../trading'

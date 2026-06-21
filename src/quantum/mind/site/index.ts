@@ -5,7 +5,7 @@
 import type { MindMatrix, StaticPage } from '../types'
 import { buildMatrix } from '../matrix'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { toUuid, merkleFold, isUuid, memoByRoot } from '../../../0'
+import { toUuid, merkleFold, isUuid, memoByRoot, rat, ratStr } from '../../../0'
 
 /** @iching ☴ Xùn · Wind · gentle */
 export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
@@ -629,6 +629,38 @@ export function staticPages(): StaticPage[] {
 export const SOURCE_REPO = 'https://github.com/ceccec/ceccec.github.io/blob/main'
 export function githubPermalink(path: string, line?: number): string {
   return `${SOURCE_REPO}/${path.replace(/^\/+/, '')}${line ? `#L${line}` : ''}`
+}
+
+// The author's single handle — ONE identity across GitHub and Revolut, derived from the canonical SOURCE_REPO
+// owner, never hand-typed twice. (Same compute-don't-duplicate rule the rest of the model lives by.)
+export const AUTHOR_HANDLE = SOURCE_REPO.replace(/^https:\/\/github\.com\//, '').split('/')[0]
+
+/** @iching ䷯ 48 · Jǐng · The Well — the source that serves all freely; you give back what you can, freely.
+ *  The author's Revolut is the project's ONE monetisation endpoint AND the channel to contact the author.
+ *  Access is free (the price is already paid, AS the architecture — freeBecauseThePriceIsAlreadyPaid), so what
+ *  remains is an INVITATION, not a charge: support with a harmonic PART (1/9, the vortex 3-6-9 share — a proper
+ *  fraction, never the whole), freely given, zero a valid amount; and the same link reaches the author. The URL
+ *  and handle are COMPUTED from the one identity (AUTHOR_HANDLE ← SOURCE_REPO), not hardcoded a second time. */
+export function revolutChannel() {
+  const handle = AUTHOR_HANDLE
+  const url = `https://revolut.me/${handle}`
+  const share = rat(1, 9) // the harmonic part — the same 1/9 the support model (freeBecauseThePriceIsAlreadyPaid) uses
+  const purposes = [
+    { purpose: 'support', en: 'support the project with a harmonic part of what you gained', bg: 'подкрепи проекта с хармонична част от постигнатото' },
+    { purpose: 'contact', en: 'contact the author through the same link', bg: 'свържи се с автора през същата връзка' },
+  ] as const
+  return {
+    handle,
+    url,
+    purposes,
+    share: ratStr(share), // '1/9' — computed from the rational, a proper fraction < 1
+    free: true, // access is ungated; this is an invitation, not a price
+    root: toUuid(`revolut:${handle}:support+contact`),
+    statement:
+      `The author's Revolut (revolut.me/${handle}) is the project's one monetisation endpoint AND the channel to contact the author. Access is free — the price is already paid, as the architecture — so supporting is an INVITATION, not a charge: a harmonic part (${ratStr(share)}, the vortex 3-6-9 share — a proper fraction, never the whole), freely given, with zero a valid amount; and the same link reaches the author. The handle is the author's single identity, computed from the canonical SOURCE_REPO owner (one name across GitHub and Revolut), not hand-typed twice.`,
+    boundary:
+      'DOCUMENTED: a real link to the author\'s Revolut profile; the handle is COMPUTED from SOURCE_REPO (one identity, not duplicated). FLAGGED: Revolut is a payment app — "contact" means reaching the author through it (a transfer with a note, or the profile page), not a dedicated support desk or a guaranteed reply; "support" is a VOLUNTARY gift / patronage (the harmonic 1/n is a suggestion, not a price, an obligation, or a thermodynamic law — see remunerationConvertsTokensToSrc / freeBecauseThePriceIsAlreadyPaid); and access being free to the reader does NOT mean hosting and maintenance are free to produce. HARMONY ≠ TRUTH.',
+  }
 }
 
 // Each Library statement → the decode fold that proves it (file-level; the fold name is searchable within).
