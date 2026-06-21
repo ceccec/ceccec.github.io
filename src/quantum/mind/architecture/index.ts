@@ -1057,6 +1057,56 @@ export function oneMegabyteExplainsQuantumInSpiritAnalog(matrix: MindMatrix = bu
   }
 }
 
+// THE 64 ARE 8 GROUPS OF 8, DOUBLE-CROSSED — and the same 64 is 4³, four uuids double-folded into interacting
+// trinities. The bāguà² grid: 8 groups × 8 files, each file the cross of an upper trigram × a lower trigram (the
+// 8-bit-to-64-bit architecture, folderLaw.componentClosure = 64). The pair fold IS the double-cross — foldPair
+// returns forward (a·b) crossed with reverse (b·a) into merged. Double-folding four uuids (foldPair over two
+// pairs, two levels) fuses them to one; their four leave-one-out trinities (C(4,3)=4, each uuid in three) interact.
+export function sixtyFourFilesEightByEightFourUuidTrinities(matrix: MindMatrix = buildMatrix()) {
+  const law = matrixIsTenBitMByteSixtyFour(matrix)
+  const FILES = law.files // 64
+  const GROUPS = 8, PER_GROUP = 8
+  const closure = folderLaw().componentClosure // the component-64 ratchet
+
+  // four content-addresses — double-crossed (foldPair: forward a·b × reverse b·a → merged) and double-folded
+  const uuids = ['north', 'south', 'east', 'west'].map((s) => toUuid(`fuse:${s}`))
+  const cross = foldPair(uuids[0], uuids[1]) // the double-cross itself: forward × reverse → merged
+  const fused = foldPair(foldPair(uuids[0], uuids[1]).merged, foldPair(uuids[2], uuids[3]).merged).merged
+
+  // the four interacting trinities — the leave-one-out 3-subsets; each uuid sits in exactly three of them
+  const trinities = uuids.map((_, i) => uuids.filter((_, j) => j !== i))
+  const membership = uuids.map((u) => trinities.filter((t) => t.includes(u)).length)
+  const trinityRoots = trinities.map((t) => merkleFold(t))
+  const wholeFromTrinities = merkleFold(trinityRoots)
+
+  const facets = [
+    { facet: '64 files = 8 groups × 8 — the bāguà² grid; each file is (group, file) = an upper trigram (3 bits) × a lower trigram (3 bits)', on: GROUPS * PER_GROUP === FILES && (1 << 3) === GROUPS && (1 << 3) === PER_GROUP },
+    { facet: 'double-crossed — the pair fold is forward (a·b) × reverse (b·a) → merged; 8² = 64 = folderLaw.componentClosure, the 8-bit-to-64-bit architecture', on: GROUPS ** 2 === FILES && closure.limit === FILES && cross.bidirectional },
+    { facet: '64 = 4³ — the same count as four uuids raised through the trinity (the exponent 3); 8² and 4³ are one number', on: 4 ** 3 === FILES },
+    { facet: 'double-folding the 4 uuids fuses to ONE — foldPair over two pairs, two levels deep, → one valid deterministic address', on: isUuid(fused) },
+    { facet: 'four INTERACTING trinities — C(4,3) = 4 leave-one-out triples, each uuid shared by exactly three, so they overlap and re-fuse to the whole', on: trinities.length === 4 && membership.every((n) => n === 3) && isUuid(wholeFromTrinities) },
+    { facet: 'HONEST — 8² = 4³ = 64 is exact and the folds are deterministic content-addresses; the trigram / double-cross / trinity reading is CONVENTIONAL I Ching combinatorics on the grid, not a CPU word or a physical law. HARMONY ≠ TRUTH', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`64x:${entry.facet}:${entry.on}`) }))
+
+  return {
+    complies: facets.every((entry) => entry.on),
+    files: FILES,
+    groups: GROUPS,
+    perGroup: PER_GROUP,
+    fourCubed: 4 ** 3,
+    trinities: trinities.length,
+    sharedByTrinities: membership[0],
+    fused,
+    count: facets.length,
+    facets,
+    root: merkleFold([law.root, fused, wholeFromTrinities, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'The 64 files are 8 groups of 8 — a bāguà² grid, each file the cross of an upper and a lower trigram (8 × 8 = 64), the double-cross that carries the 8-bit-to-64-bit architecture. The pair fold itself is the double-cross: forward (a·b) crossed with reverse (b·a) into the merged address. The same 64 is 4³ — four uuids raised through the trinity. Double-folding the four uuids (foldPair over two pairs, two levels) fuses them to one address, and the four leave-one-out trinities (C(4,3) = 4), each uuid shared by three, interact and re-fuse to the whole.',
+    boundary:
+      'HONEST — HARMONY ≠ TRUTH. 8² = 4³ = 64 is exact arithmetic, and the double-fold and the trinity roots are deterministic, reproducible content-addresses — real as computation. The trigram, double-cross and trinity readings are CONVENTIONAL I Ching and combinatorial structure mapped onto the file grid: a coherent index, not an 8-or-64-bit CPU word and not a claim about physics. "Fuse all" is the content-address discipline (one root over the parts), not a merging of physical things.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it
