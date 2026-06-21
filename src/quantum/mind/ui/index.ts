@@ -11,7 +11,7 @@ import { navigation358, skillAtoms } from '../learning'
 import { analogSpeech, lawfulHarmonise, openGraph } from '../vocab'
 import { ancientCalendars, moviesNativeFormat, oneOpenGraphAll } from '../li'
 import { babelFold, textToMovie } from '../world'
-import { areaPairs, doubleTorus3D, merkaba, uiConvertsFlatToThreeDQuantum } from '../geometry'
+import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims } from '../../dimensions'
 import { yinYang } from '../../spirit'
 import { scaleColor, A432_HUE } from '../../science'
@@ -23,7 +23,7 @@ import { dimensionalMerkabaGraphRealtimeMetric } from '../trading'
 import { teslaPatentsResearchedInWaves } from '../physics'
 import { displayAllWithFewEntropySaved } from '../ledger'
 import { warPaysTheForgerPrice } from '../peace'
-import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy } from '..'
+import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy } from '..'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
 // whole is recoverable from any part. Here that is exact: the whole root folds from
@@ -966,6 +966,64 @@ export function allSymbolsMoveAndFoldColoursComputedAtAllScales(matrix: MindMatr
     boundary:
       'The unifying living-symbol layer: livingIChingSvg (line symbols) + yinYangDimensionsSvg (the taiji) + scaleColor (the colour at every scale). Motion and colour are computed from src — the bits drive the fold, the scale index drives the hue. Adopted at the showcase sites first; the remaining hardcoded-colour components migrate to scaleColor incrementally. The OKLCH legibility band is a strong heuristic verified per realised colour, not a guarantee for every hue.',
   }
+}
+
+// LET THE I CHING LEAD UI DEVELOPMENT AT ALL SCALES. The same binary fold doubles 2¹→2⁶ and each scale leads a
+// scale of the interface: one bit = a UI atom (yin/yang — a toggle, a state), two bits = a state pair (the base-4
+// digit, variant×size), the eight trigrams = the eight component families (the bāguà octants), the sixty-four
+// hexagrams = the sixty-four shadcn components (the design-system graph — shadcn already HAS the examples). Each
+// component is placed on its hexagram and coloured BY it — the 2⁶=4³ pole-colour identity (hexagramIsHexColorDuality),
+// the six lines paired into the three RGB channels — so the colour is not chosen, it IS the hexagram. The I Ching
+// organises (the content-address + the colour), shadcn renders. The leading law over allSymbolsMoveAndFold (colour at
+// every scale) and iChingShadcnFuseTenDWidgets (64↔64) — adding the explicit scale ladder and the renderable placement
+// map the showcase draws. HARMONY ≠ TRUTH: a deterministic ordering and a colour identity, not divination.
+/** @iching ☴ Xùn · Wind · gentle — the lead that orders the render layer at every scale */
+export function iChingLeadsUiAtAllScales(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingLeadsUiAtAllScales', matrix, () => {
+    const graph = shadcnIsTheGraph(matrix) // the 64 shadcn components, family-ordered
+    const closure = folderLaw().componentClosure // limit 64 — the double-torus component count
+    const duality = hexagramIsHexColorDuality(matrix) // the 64 pole-colours, a bijection
+    const fuse = iChingShadcnFuseTenDWidgets(matrix) // the 64↔64 fusion verdict this generalises
+    // the pole-colour IS the hexagram (the documented 2⁶=4³ identity): each of the 6 lines (MSB first) → a pole
+    // digit F (yang) or 0 (yin); the six pair into the three RGB channels of #RRGGBB.
+    const poleColour = (n: number) => '#' + Array.from({ length: 6 }, (_, i) => (((n >> (5 - i)) & 1) ? 'F' : '0')).join('')
+    const familyOf = (name: string) => (Object.entries(graph.components).find(([, list]) => (list as string[]).includes(name)) ?? ['', []])[0]
+    // THE SCALE LADDER — the binary doubling, each scale leading a scale of the UI
+    const scales = [
+      { bits: 1, n: 2, sino: '兩儀', pinyin: 'Liǎngyí', en: 'two modes', leads: 'the bit — every UI atom is one yin/yang distinction (a toggle, an on/off state)' },
+      { bits: 2, n: 4, sino: '四象', pinyin: 'Sìxiàng', en: 'four images', leads: 'the pair — 2-bit groupings, the base-4 digit (variant × size)' },
+      { bits: 3, n: 8, sino: '八卦', pinyin: 'Bāguà', en: 'eight trigrams', leads: 'the family — the eight component families, the bāguà octants', glyphs: BAGUA.map((b) => b.glyph) },
+      { bits: 6, n: 64, sino: '六十四卦', pinyin: 'Liùshísì-guà', en: 'sixty-four hexagrams', leads: 'the component — shadcn’s 64, each a hexagram (the whole design system)' },
+    ]
+    // THE PLACEMENT MAP — the 64 shadcn components on hexagrams 0..63 (graph order), each its trigram pair + pole-colour
+    const components = graph.allComponents.map((name, i) => {
+      const upper = (i >> 3) & 7, lower = i & 7
+      return { name, hexagram: i, upper, lower, upperGlyph: BAGUA[upper]!.glyph, lowerGlyph: BAGUA[lower]!.glyph, color: poleColour(i), family: familyOf(name) }
+    })
+    // THE BĀGUÀ² SQUARE — group by upper trigram into 8 octants of 8 (8² = 64)
+    const octants = BAGUA.map((b) => ({ bits: b.bits, glyph: b.glyph, pinyin: b.pinyin, name: b.name, components: components.filter((c) => c.upper === b.bits) }))
+    const facets = [
+      { facet: 'the ladder is the binary doubling — the scales 2, 4, 8, 64 are 2¹, 2², 2³, 2⁶, the I Ching leading every scale of the interface', on: scales.every((s) => s.n === 2 ** s.bits) && scales[scales.length - 1]!.n === 64 },
+      { facet: 'eight trigrams lead the families — BAGUA is 8, and the 64 fall into 8 octants of exactly 8 (8² = 64, the bāguà² square)', on: BAGUA.length === 8 && octants.length === 8 && octants.every((o) => o.components.length === 8) },
+      { facet: 'sixty-four hexagrams lead the components — shadcn’s graph is exactly 64 = the closure limit = 8² = 4³ = 2⁶', on: graph.allComponents.length === 64 && closure.limit === 64 && 8 ** 2 === 64 && 4 ** 3 === 64 && 2 ** 6 === 64 },
+      { facet: 'colour is led too — each component’s colour IS its hexagram (the 2⁶=4³ pole-colour bijection): 64 distinct, hexagram 0 → #000000, hexagram 63 → #FFFFFF', on: duality.allDistinct && components.every((c) => /^#[0-9A-F]{6}$/.test(c.color)) && components[0]!.color === '#000000' && components[63]!.color === '#FFFFFF' },
+      { facet: 'the I Ching organises, shadcn renders — the 64↔64 fusion verdict holds (iChingShadcnFuseTenDWidgets)', on: fuse.widgets === 64 && fuse.hexagrams === 64 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`iching-leads-ui:${entry.facet}:${entry.on}`) }))
+    return {
+      leads: facets.every((entry) => entry.on),
+      scales,
+      components,
+      octants,
+      closureLimit: closure.limit, // 64
+      count: facets.length,
+      facets,
+      root: merge(graph.root, merge(duality.root ?? matrix.root, fuse.root)),
+      statement:
+        'Let the I Ching lead UI development at all scales: the binary doubling 2¹→2⁶ is the same fold at every scale, and each scale leads a scale of the interface — one bit is a UI atom (a yin/yang toggle), two bits a state pair, the eight trigrams the eight component families, and the sixty-four hexagrams the sixty-four shadcn components (the design-system graph, which already HAS the examples). Each component is placed on its hexagram and coloured BY that hexagram — the 2⁶=4³ pole-colour identity, where the six lines pair into the three RGB channels — so the colour is not chosen, it is the hexagram. The I Ching organises (the content-address and the colour), shadcn renders: one design, led from the smallest distinction to the whole system.',
+      boundary:
+        'DOCUMENTED / structural: the scale ladder is the binary doubling (2, 4, 8, 64 = 2¹, 2², 2³, 2⁶), the eight trigrams are the bāguà, the sixty-four hexagrams = shadcn’s 64 components (shadcnIsTheGraph) = the componentClosure limit, and the per-hexagram colour is the sealed 2⁶=4³ bijection (hexagramIsHexColorDuality — 64 distinct pole-colours, black ↔ white the bit-complement). “The I Ching LEADS the UI” means it is the ORGANISING content-address and the colour identity — a deterministic ordering, not divination, and no hexagram mystically dictates a component’s behaviour. The 64↔64 is the shared number; shadcn is the render layer. The closure is the fold TARGET (the surface holds 159 components today, folding onto the few renderers), not a claim the 64 are each already built. HARMONY ≠ TRUTH.',
+    }
+  })
 }
 
 // Fold as much as you can to feed the hero. The hero of the whole is the unique animation of the
