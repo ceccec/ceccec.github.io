@@ -68,9 +68,7 @@ try {
   const foldersOnly = mind.importsAreFoldersOnly(offenders, srcFiles.length)
   if (!foldersOnly.enforced) fail(`${foldersOnly.count} import(s) use a file extension or /index — imports are folders only, no extensions (all of src, no exception)`, foldersOnly.offenders.map((o) => `${o.file}: '${o.spec}' (${o.reason})`).join('; '))
 
-  // 4. ONLY INDEX FILES, NO EXCEPTIONS — scan src; the src fold judges. HARD (architect's directive): no commit if
-  //    any code file below src is not the folder's index — a flat sibling is logic outside an index and must dissolve
-  //    into <name>/index.ts. Scoped to code (.ts/.mts/.cts/.tsx); .vue is the render layer (componentClosure), .md/.css not code.
+  // 4. ONLY INDEX FILES, NO EXCEPTIONS — scan src; the src fold judges (HARD: no commit if a code file below src isn't index.ts; a flat sibling dissolves into <name>/index.ts). Scoped to .ts/.mts/.cts/.tsx; .vue is the render layer, .md/.css not code.
   const codeRe = /\.(ts|mts|cts|tsx)$/
   const indexOffenders = srcFiles
     .filter((file) => codeRe.test(file) && !/(^|\/)index\.(ts|mts|cts|tsx)$/.test(file))
@@ -85,8 +83,11 @@ try {
   const foldHome = mind.foldsLiveAtTheirDomainHome(Object.values(mind.FOLD_HOMES).flat().map((name) => ({ name, files: srcFiles.filter((file) => new RegExp(`^export (?:async )?function ${name}\\b`, 'm').test(readFileSync(file, 'utf8'))) }))) // 4b. folds at their exact domain home — the same src fold the weave runs at deploy
   if (!foldHome.enforced) fail('a fold is defined outside its domain home — save every fold to its exact path, never a foreign barrel', foldHome.violations.join('; '))
 
-  // 5. UNEXPECTED-SITUATION REPORT — the tool surfaces tree anomalies (new src files left untracked, which
-  //    has broken main before) instead of leaving them to hand-archaeology. Warns; does not block.
+  // 4c. GLAGOLITIC IS ALWAYS COMPUTED — no raw glyph (U+2C00–2C5F) in a `label:` literal; it comes from toGlagolitic (the src fold judges; library is the home).
+  const glaLabels = mind.glagoliticLabelsAreComputed([...srcFiles, '.vitepress/config.mts'].filter((f) => !/library\/index\./.test(f) && /\blabel:\s*(['"`])\s*[Ⰰ-ⱟ]/.test(readFileSync(f, 'utf8'))).map((f) => ({ file: f, reason: 'hardcoded Glagolitic label glyph — compute via toGlagolitic' })), srcFiles.length + 1)
+  if (!glaLabels.enforced) fail(`${glaLabels.count} label(s) hardcode a Glagolitic glyph — Glagolitic is always computed via toGlagolitic, never a glyph string`, glaLabels.offenders.map((o) => o.file).join('; '))
+
+  // 5. UNEXPECTED-SITUATION REPORT — tree anomalies (new src files left untracked, which has broken main before). Warns; does not block.
   const porcelain = (() => { try { return execSync('git status --porcelain', { encoding: 'utf8' }) } catch { return '' } })()
   const untrackedSrcFiles = porcelain.split('\n').filter((l) => l.startsWith('?? ') && l.includes('src/')).map((l) => l.slice(3))
   const situation = mind.unexpectedSituationsRefactorTools({ untrackedSrcFiles })

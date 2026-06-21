@@ -7,7 +7,7 @@
 import { merkleFold, toUuid, foldVortex } from '../../../0'
 import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg } from '../../mind'
 import { glagoliticHomeFromEnglish } from '../../mind'
-import { bibleParallel, toGlagoliticOCS, pesnopoika } from '../../library'
+import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../library'
 import { computedDistFiles, readmeMarkdown } from '..'
 
 // What the runner hands every plan: the environment, the positional args after the selector, a
@@ -77,7 +77,7 @@ export function generators(): Generator[] {
         const verses = bibleParallel()
         const block = verses
           .map((v) =>
-            [`# ${v.ref}`, `ГЛА  ${v.glagoliticBg}`, `BG   ${v.bg}`, `ⰑⰕⰟ  ${v.glagoliticOcs}`, `OCS  ${v.ocs}`, `EN   ${v.en}`].join('\n'),
+            [`# ${v.ref}`, `ГЛА  ${v.glagoliticBg}`, `BG   ${v.bg}`, `${toGlagolitic('отъ')}  ${v.glagoliticOcs}`, `OCS  ${v.ocs}`, `EN   ${v.en}`].join('\n'),
           )
           .join('\n\n')
         return {

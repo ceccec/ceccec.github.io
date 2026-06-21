@@ -120,6 +120,28 @@ export function importsAreFoldersOnly(
   }
 }
 
+/** @iching ☲ Lí · Fire · clarity — Glagolitic is always COMPUTED, never a hardcoded glyph.
+ *  A label string must not carry a raw Glagolitic glyph (Unicode block U+2C00–2C5F) typed by hand; the glyph
+ *  comes only from toGlagolitic (src/quantum/library), the single transcoder. The commit shell scans src for a
+ *  `label:` literal that contains a glyph; this fold judges. It locks the exact door that opened twice — the
+ *  locale label in config.mts and SITE_LOCALES — so no agent re-pastes a glyph string where one is computed. */
+export function glagoliticLabelsAreComputed(
+  offenders: readonly { file: string; reason: string }[] = [],
+  scanned = 0,
+) {
+  return {
+    enforced: offenders.length === 0,
+    scanned,
+    count: offenders.length,
+    offenders: offenders.slice(0, 12),
+    root: toUuid(`glagolitic-labels-computed:${scanned}:${offenders.length}`),
+    statement:
+      'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
+    boundary:
+      'Scoped to LABEL literals (`label:`), the position both real violations took (the config locale + SITE_LOCALES). Out of scope, legitimately: the mapping source in library, regex character-class bounds (/[Ⰰ-ⱟ]/), glyphs passed as arguments to a glagolitic* function (test/verify inputs), and example glyphs in documentation/facet prose. It enforces that UI/data labels are computed — not that every glyph in the tree is.',
+  }
+}
+
 /** @iching ☵ Kǎn · Water · the abyss — the unexpected.
  *  The standing rule: an unexpected situation is a signal to REFACTOR THE TOOL — encode the handling in src
  *  as a fold — not to hand-navigate it with one-off commands. This fold turns the git/fs archaeology one

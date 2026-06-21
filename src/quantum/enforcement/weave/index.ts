@@ -313,6 +313,17 @@ const foldDefiners = Object.values(FOLD_HOMES).flat().map((name) => {
 })
 for (const violation of foldsLiveAtTheirDomainHome(foldDefiners).violations) gaps.push({ harmonic: 'folder', kind: 'fold-misplaced', detail: `${violation} (the enforcement that stops any agent re-bloating a barrel — the same law the commit gate runs)` })
 
+// Glagolitic is always computed (gate.glagoliticLabelsAreComputed — the SAME law the commit gate runs): no raw
+// Glagolitic glyph (U+2C00–2C5F) may sit in a `label:` literal; the glyph comes only from toGlagolitic (library is
+// its home). Scans the config AND every src index — both sites a hardcoded glyph label has lived — failing the deploy.
+const glaLabelRe = /\blabel:\s*(['"`])\s*[Ⰰ-ⱟ]/
+const glaLabelFiles = [
+  ...[...indexBodies].filter(([file, body]) => !/library\/index\./.test(file) && glaLabelRe.test(body)).map(([file]) => relative(root, file)),
+  ...(glaLabelRe.test(configText) ? ['.vitepress/config.mts'] : []),
+]
+for (const file of glaLabelFiles) gaps.push({ harmonic: 'glagolitic', kind: 'label-hardcoded', detail: `${file} hardcodes a Glagolitic glyph in a label literal — why this fails: Glagolitic is always computed via toGlagolitic (src/quantum/library), never a hand-typed glyph string; replace the literal with toGlagolitic(<source>) (the same law the commit gate runs at commit and push)` })
+report.push(`Glagolitic computed: ${glaLabelFiles.length} hardcoded glyph label(s) in config or src indices — every Glagolitic label is produced by toGlagolitic, never typed by hand.`)
+
 // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
 // subfolders must share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
 // folder only digit subfolders (the compute subtree). src/ is the neutral split-root that holds both,
