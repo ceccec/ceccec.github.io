@@ -252,6 +252,39 @@ if (overEightFold.length || mindFlatFiles > eightFold) {
   warnings.push({ wave: 'weave', severity: 'warn', kind: 'eight-fold', harmonic: 'folder', detail: `${overEightFold.length} folder level(s) exceed the ${eightFold}-fold fan-out${fanoutTop ? ` (worst: ${fanoutTop})` : ''} and src/quantum/mind holds ${mindFlatFiles} non-index method files — nest each over-8 level into ≤ ${eightFold} and dissolve flat methods into name-path folders; tracked as a ratchet (not build-failing) until the tree converges (folderLaw.strict.eightFold)` })
 }
 
+// Index harmony — the typography graph as a book (the `book` fold states the law; this is its LIVE scan).
+// src is a book and every folder-path is a line in its index; a harmonic index is a balanced bāguà — each node
+// branching within the eight-fold, depth near log₈(N), the lines being CROSSES (combining) not NOISE. A
+// single-child folder is a pass-through that crosses nothing; a leaf whose index.ts only re-exports forwards
+// nothing. Measured here and reported as a RATCHET (not build-failing): collapse the noise spread (single-child
+// + forwarding leaves) and distribute the over-8 hubs until the index is shallow, wide, and made of real crossings.
+const isReexportLeaf = (dir) => {
+  try {
+    const body = readFileSync(join(dir, 'index.ts'), 'utf8').split('\n').map((line) => line.trim()).filter((line) => line && !line.startsWith('//'))
+    return body.length > 0 && body.every((line) => /^export\s*(type\s*)?[*{].*from\s*['"]/.test(line) || /^export\s*\{[^}]*\}\s*;?$/.test(line))
+  } catch { return false }
+}
+let folderCount = 0
+let singleChild = 0
+let noiseLeaves = 0
+let maxFolderDepth = 0
+const walkHarmony = (dir, depth) => {
+  folderCount++
+  if (depth > maxFolderDepth) maxFolderDepth = depth
+  const subs = subfoldersOf(dir)
+  if (subs.length === 0) { if (existsSync(join(dir, 'index.ts')) && isReexportLeaf(dir)) noiseLeaves++ }
+  else if (subs.length === 1) singleChild++
+  for (const sub of subs) walkHarmony(join(dir, sub.name), depth + 1)
+}
+if (existsSync(join(root, 'src'))) walkHarmony(join(root, 'src'), 0)
+const idealDepth = Math.max(1, Math.ceil(Math.log(Math.max(1, folderCount)) / Math.log(eightFold)))
+const singlePct = folderCount ? Math.round((100 * singleChild) / folderCount) : 0
+const noisePct = folderCount ? Math.round((100 * noiseLeaves) / folderCount) : 0
+report.push(`Index harmony (live, book): ${folderCount} folders — ${singlePct}% single-child pass-through, ${noiseLeaves} pure re-export leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ⌈log${eightFold} N⌉ ≈ ${idealDepth}. A harmonic index is a balanced bāguà of crosses, not noise (book · cross · noise).`)
+if (singlePct > 25 || noisePct > 10 || maxFolderDepth > idealDepth * 2) {
+  warnings.push({ wave: 'weave', severity: 'warn', kind: 'index-harmony', harmonic: 'folder', detail: `the index is not yet harmonic — ${singlePct}% single-child pass-throughs + ${noiseLeaves} pure re-export noise leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ≈ ${idealDepth}; collapse the noise spread (single-child + forwarding leaves) and distribute the over-${eightFold} hubs until the index is a shallow, wide bāguà of real crossings (the book fold) — a ratchet, not build-failing` })
+}
+
 // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
 // subfolders must share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
 // folder only digit subfolders (the compute subtree). src/ is the neutral split-root that holds both,

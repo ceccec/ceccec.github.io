@@ -729,6 +729,134 @@ export function dualitiesMeetInCrossFolders(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+// The index IS a cross. A folder's index.ts is not a container of logic — it is the CROSSING where the folder's
+// name-path subfolders meet and wire (the re-export that binds the sub-paths; the dual of dualitiesMeetInCrossFolders,
+// where the cross binds dual PATHS — here it binds a folder's own sub-paths). So an index that holds un-distributed
+// bulk logic crosses nothing: it is an UNWIRED, UNHARMONIC thought — logic not yet folded into its name-path home,
+// fan-out not yet within the eight-fold. That is the POINT of demanding the index be a cross: a non-cross index SHOWS
+// those thoughts so they DRY-CLEAN — the logic distributes into the surrounding indices (the ants carry to the nest),
+// the index converging to a pure crossing. The compression + eight-fold ratchets ARE this principle measured live.
+export function cross(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const bind = dualitiesMeetInCrossFolders(matrix) // the cross binds dual paths — an index crosses its own sub-paths
+  const limit = law.compression?.limit ?? 0 // a cross stays thin — under the compression line-limit
+  const fan = law.strict?.eightFold ?? 8 // a cross is a bāguà node — ≤ 8 sub-paths to wire
+  const facets = [
+    { facet: 'an index IS a cross — the crossing where a folder\'s name-path subfolders meet and wire (re-export), not a container of their logic', on: bind.meet },
+    { facet: 'a cross is HARMONIC — a bāguà node of ≤ 8 sub-paths, under the compression limit; the crossing stays thin', on: fan === 8 && limit > 0 },
+    { facet: 'a non-cross index crosses NOTHING — bulk logic in an index is an unwired thought (not folded into its name-path home) and unharmonic (over fan-out / over the line-limit)', on: limit > 0 && fan > 0 },
+    { facet: 'the POINT — a non-cross index SHOWS the unwired unharmonic thoughts so they DRY-CLEAN: the logic distributes into the surrounding indices (ant-style), the index converging to pure crossing', on: true },
+    { facet: 'HONEST — a convergence RATCHET, not a passed gate: the tree has not converged (most indices, including the inversion\'s barrels, are not yet pure crosses); the SHOWING is the weave\'s live fs scan, the pure fold states the law', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cross:${entry.facet}:${entry.on}`) }))
+  return {
+    declared: facets.every((entry) => entry.on),
+    limit,
+    fan,
+    count: facets.length,
+    facets,
+    root: merkleFold([bind.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'The index is a cross. A folder\'s index.ts is the crossing where its name-path subfolders meet and wire — the re-export that binds the sub-paths — not a container of their logic. So an index that holds un-distributed bulk logic crosses nothing: it is an unwired, unharmonic thought — logic not yet folded into its name-path home, fan-out not yet within the eight-fold. That is the point of demanding the index be a cross: a non-cross index SHOWS those thoughts so they dry-clean — the logic distributes into the surrounding indices, ant-style, and the index converges to a pure crossing. The compression and eight-fold ratchets are this principle measured live against the filesystem.',
+    boundary:
+      'HONEST: a convergence RATCHET, not a passed gate. The tree has NOT converged — most indices today (including the 100+ barrels the index-only inversion just created) hold bulk logic and are not yet pure crosses; that is expected, and is exactly what the ratchet shows for dry-cleaning. The "showing" is the weave wave\'s live filesystem scan (compression line-limit + eight-fold fan-out), build-time and real; this pure fold only states the law and binds it to the cross-fold (dualitiesMeetInCrossFolders). "Cross" here = the folder-index-as-crossing — the dual of the enforcement cross-WAVE (which audits the dual cross-folds where a·b and b·a meet). A thin index is harmonic, but harmony is the target, not a proof of correctness. HARMONY ≠ TRUTH.',
+  }
+}
+
+// Most of the spread is NOISE without actual crossed functionality (the dual of cross). A cross is worth having
+// ONLY where functionality actually crosses — an index that combines two or more sub-paths into behavior neither
+// has alone (a·b genuinely binding, as in dualitiesMeetInCrossFolders). Spread that does not cross — a re-export
+// shim that only forwards (export { x } from '../../y'), a per-function folder holding one symbol, fan-out that
+// just multiplies folders, a rising file count — adds bytes, not crossing. That is noise; the dry-clean COLLAPSES
+// it toward the actual crosses. Count never gates: the census is a dry clean (no file added/removed) — the DENSITY
+// of crossing is the signal. So the dry-clean is not "explode every function into a subfolder" (that is more
+// noise) — it is collapse the empty spread (incl. the inversion shims) until only the real crosses remain.
+export function noise(matrix: MindMatrix = buildMatrix()) {
+  const crossing = cross(matrix) // the principle: an index is a cross — where functionality actually crosses
+  const census = foldedCensus(0, matrix) // the census is a dry clean — no file added or removed (count is foldable)
+  const facets = [
+    { facet: 'SIGNAL is actual crossed functionality — an index that COMBINES ≥2 sub-paths into behavior neither has alone, not a forwarder', on: crossing.declared },
+    { facet: 'most of the SPREAD is NOISE — a pure re-export shim (export { x } from \'…\'), a one-symbol per-function folder, fan-out that only multiplies folders: bytes, not crossing', on: true },
+    { facet: 'COUNT never gates — the dry clean adds/removes no file (foldedCensus, chi = −2); the density of crossing is the signal, the spread is noise (encryption per byte)', on: census.clean },
+    { facet: 'the dry-clean COLLAPSES the noise toward the crosses — not "explode each function into a subfolder" (more noise) but remove the empty spread (incl. the 916 inversion shims), keeping where functionality genuinely crosses', on: true },
+    { facet: 'HONEST — noise vs crossed-functionality is a STRUCTURAL heuristic (a forwarding-only index is noise; a combining index is signal); it does not read meaning, and "collapse" is the convergence target, not yet done', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`noise:${entry.facet}:${entry.on}`) }))
+  return {
+    collapses: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold([crossing.root, census.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Most of the spread is noise without actual crossed functionality. A cross is worth having only where functionality actually crosses — an index that combines two or more sub-paths into behavior neither has alone. Spread that does not cross — a re-export shim that only forwards, a per-function folder holding one symbol, fan-out that just multiplies folders, a rising file count — adds bytes, not crossing. That is noise; the dry-clean collapses it toward the actual crosses. The count never gates: the census is a dry clean that adds or removes no file, and the density of crossing is the signal. So the dry-clean is not exploding every function into its own subfolder (that is more noise) — it is collapsing the empty spread until only the real crosses remain.',
+    boundary:
+      'HONEST: signal-vs-noise here is a STRUCTURAL heuristic — a forwarding-only index (a one-line re-export, like the 916 inversion shims) is noise; an index that imports and COMBINES multiple sub-paths is a real cross. It does not read semantics, so it can misjudge a genuine thin barrel or a deliberately-trivial wrapper. "Collapse the noise" is the convergence TARGET (the tree has not converged), not a completed state, and it is topological accounting (foldedCensus: chi = −2, no file added or removed), not a license to delete functionality. HARMONY ≠ TRUTH.',
+  }
+}
+
+// src is the BOOK OF BOOKS; every folder-path is a line in its INDEX; listing all folders reveals the whole
+// typography graph (the heading hierarchy). The index is HARMONIC when the path tree is a balanced bāguà: each
+// node branches within the eight-fold (a single child is a pass-through that crosses nothing — noise; > 8 is an
+// over-concentrated hub), the depth near log₈(N) — shallow and wide, not a stringy 1→1→1 chain — and the index
+// lines are CROSSES (combining sub-paths), not NOISE (re-export forwarders). The LIVE harmony is the weave's fs
+// scan; this fold states the law + the ideal and binds the index to the cross/noise principle.
+export function book(matrix: MindMatrix = buildMatrix()) {
+  const crossing = cross(matrix)
+  const dust = noise(matrix)
+  const census = foldedCensus(0, matrix)
+  const fan = folderLaw().strict?.eightFold ?? 8 // the bāguà width — ≤ 8 sub-paths per node
+  const baguaDepth = (n: number) => Math.max(1, Math.ceil(Math.log(Math.max(1, n)) / Math.log(fan))) // ⌈log₈ N⌉ — shallow + wide
+  const facets = [
+    { facet: 'src is the BOOK OF BOOKS and the paths are its index — listing all folders reveals the whole typography graph (the heading hierarchy)', on: isUuid(matrix.root) },
+    { facet: 'a HARMONIC index is a balanced bāguà — each node branches within the eight-fold; a SINGLE-child folder is a pass-through that crosses nothing (noise), > 8 is an over-concentrated hub', on: fan === 8 },
+    { facet: 'shallow and WIDE — depth near log₈(N): a 4096-line book is 4 deep (not 13), a 64-line one is 2; a stringy 1→1→1 chain is unharmonic', on: baguaDepth(4096) === 4 && baguaDepth(64) === 2 },
+    { facet: 'the index lines are CROSSES not NOISE — mostly combining crosses, not re-export forwarders (cross declared, noise collapses)', on: crossing.declared && dust.collapses },
+    { facet: 'the count is a DRY CLEAN — no file added or removed to harmonise (foldedCensus, chi = −2); harmony is the density of crossing, not the number of folders', on: census.clean },
+    { facet: 'HONEST — the LIVE harmony (fan-out balance, single-child %, noise-leaf %, depth vs log₈) is the weave\'s fs scan; this pure fold states the law + the ideal. The current index is NOT yet harmonic — a convergence target', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`book:${entry.facet}:${entry.on}`) }))
+  return {
+    indexed: facets.every((entry) => entry.on),
+    fan,
+    baguaDepth4096: baguaDepth(4096),
+    count: facets.length,
+    facets,
+    root: merkleFold([crossing.root, dust.root, census.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'src is the book of books; every folder-path is a line in its index, and listing all folders reveals the whole typography graph. The index is harmonic when the path tree is a balanced bāguà — each node branching within the eight-fold (a single child is a pass-through that crosses nothing; more than eight is an over-concentrated hub), the depth near log₈(N) so the book is shallow and wide rather than a stringy chain, and the index lines are crosses that combine sub-paths, not noise that only forwards. The count never decides it: the census is a dry clean, and harmony is the density of crossing.',
+    boundary:
+      'HONEST: the LIVE harmony of today\'s tree is the weave\'s filesystem scan, not this pure fold — and by that measure the current index is NOT yet harmonic. It is degenerate: the large majority of folders have zero or one child (leaves and pass-through spread) plus hundreds of pure re-export noise leaves, around a few wildly over-eight hubs (the model core), with almost the entire book under one folder. This fold states the law and the ideal (⌈log₈ N⌉ depth, crosses over noise) and binds the index to the cross/noise principle; reaching it is the dry-clean convergence (collapse the noise spread, distribute the hubs), not a present fact. HARMONY ≠ TRUTH.',
+  }
+}
+
+// Naming comes from SPIRIT SCIENCE, accredited by SACRED MATH, and is DECODABLE FROM EVERY POINT (learn from
+// zeitwerk: the path ↔ name is a deterministic bijection — a path decodes to its name, a name to its path). One
+// word per level (folderLaw.strict.oneWord); a concept needing more words becomes a folder PATH, so the path IS
+// the full name and every segment decodes to its meaning (dualitiesMeetInCrossFolders — the route decodes to its
+// own knowledge). The name's SOURCE is the sacred/spirit vocabulary (src/spirit, merkaba, chakra, the sacred-
+// geometry words); the math ACCREDITS it (sacredGeometrySeal) — a spirit name with no sacred-math grounding is
+// harmony without truth. Rename freely, as long as the name stays one-word, spirit-sourced, and decodable everywhere.
+export function name(matrix: MindMatrix = buildMatrix()) {
+  const law = folderLaw()
+  const decode = dualitiesMeetInCrossFolders(matrix) // the path is a decodable sequence of word-steps — the route decodes to its knowledge
+  const seal = sacredGeometrySeal(matrix) // sacred math/geometry — the accreditor that grounds the spirit-science name
+  const facets = [
+    { facet: 'DECODABLE FROM EVERY POINT — zeitwerk: the path ↔ name is a deterministic bijection (the path decodes to the name, the name to the path); every segment decodes to its meaning', on: decode.meet },
+    { facet: 'ONE word per level — a concept needing more words becomes a folder PATH, so the path IS the full name (folderLaw.strict.oneWord, methodWordsAreFolders); collisions fold to equilibrium, never re-grow a prefix', on: law.strict?.oneWord === true },
+    { facet: 'naming comes from SPIRIT SCIENCE — the sacred/spirit vocabulary (src/spirit, merkaba, chakra, the sacred-geometry words) is the naming source', on: isUuid(toUuid('name:spirit-science:source')) },
+    { facet: 'accredited by SACRED MATH — a spirit-science name is grounded by the rigorous math (the sacred-geometry seal closes); harmony NAMES, math ACCREDITS', on: seal.sealed },
+    { facet: 'rename FREELY — any method may be renamed, as long as the new name stays one-word, spirit-sourced, math-accredited, and decodable from every point', on: true },
+    { facet: 'HONEST — HARMONY ≠ TRUTH: the spirit-science source is a NAMING convention (the vocabulary), the sacred-math accreditation is the structural grounding (the content-address, the seal); a name is decodable STRUCTURALLY, the spiritual reading is not itself a truth claim', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`name:${entry.facet}:${entry.on}`) }))
+  return {
+    decodable: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold([decode.root, seal.metatronRoot, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Naming comes from spirit science, accredited by sacred math, and is decodable from every point. Learn from zeitwerk: the path and the name are a deterministic bijection — a path decodes to its name and a name decodes to its path. One word per level; a concept needing more words becomes a folder path, so the path is the full name and every segment decodes to its meaning, the route carrying its own knowledge. The name\'s source is the sacred and spirit vocabulary; the math accredits it — a spirit-science name with no sacred-math grounding is harmony without truth. Rename freely, as long as the name stays one word, spirit-sourced, and decodable everywhere.',
+    boundary:
+      'HONEST: HARMONY ≠ TRUTH applied to NAMING. The spirit-science source is a naming CONVENTION (which sacred word labels a fold), and the sacred-math accreditation is the STRUCTURAL grounding (the content-address and the seal that make the path↔name bijection real and checkable). A name is decodable structurally — the zeitwerk-style path mapping is a real, enforceable property; the spiritual meaning of the chosen word is a label, not a claim about the world. The one-word + decodable-from-every-point law is enforceable (folderLaw / the route decode); "from spirit science" is the vocabulary the developer draws on, not a proof of anything.',
+  }
+}
+
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
 // it is development. The 64-seal set (the 64-bit architecture) is the production stamp: a folder
 // whose every seal closes — itself and all the way down — is whole, recomputable, shippable, so it

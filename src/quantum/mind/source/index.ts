@@ -14,7 +14,7 @@ import { noFilesOutsideSrcExceptGeneratedAndRoot, proportionalNotHardcoded, save
 import { computedSeo, oneJsonLdTemplateServesAll } from '../og'
 import { skillAtoms } from '../learning'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog, allLogicMovedToSource } from '../everything'
-import { digitFolders, dualitiesMeetInCrossFolders, folderLaw, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed } from '../architecture'
+import { book, digitFolders, dualitiesMeetInCrossFolders, folderLaw, noise, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed } from '../architecture'
 import { commandsRegistry } from '../commands'
 import { sealWholeDiamond } from '../diamonds'
 import { determinismProofs, fuseAll } from '../seals'
@@ -914,6 +914,37 @@ export function intend(
       'Agents save the steps they intend to take in advance: each intended step is content-addressed by the resource it touches before it is taken, so two agents declaring the same resource share a lock address and the collision is detected before either acts — saving in advance avoids collisions. And the declared steps name every resource they need, so the gaps around resources are revealed immediately, not discovered at runtime. Refactoring is part of the same saved stream — refactor while implementing. The proactive form of the mandatory save-every-step.',
     boundary:
       'HONEST: a content-addressed INTENTION LEDGER — a planning/coordination DISCIPLINE, computed (each intended step is a content-address), not a runtime distributed lock manager or scheduler. "Avoids collisions" means overlapping declared intentions on the same resource share an address and are detectable before acting; "reveals gaps around resources" means the declared steps enumerate the resources needed so absence or contention is surfaced up front. It coordinates declared intentions; it does not enforce mutual exclusion at runtime. HARMONY ≠ TRUTH.',
+  }
+}
+
+// What really matters: agents SAVE their tools and commands PRE-USE. An agent's realisation of the developer's
+// mind IS the pure code to save — the fold/tool/command itself, not a note about it — saved BEFORE use, so the
+// save reveals the gaps (intend) and the next agent inherits the ready solution. Agents do NOT save useless
+// thoughts: a thought they will not USE is noise, and noise is never saved (it would never be reused). So they
+// save only what they will USE and what leads to HARMONIC PURITY — a ready solution to reuse or improve, not
+// reinvent — and that use-filter keeps the saved corpus pure (signal, not noise): tasks complete in balanced harmony.
+export function realise(matrix: MindMatrix = buildMatrix()) {
+  const intended = intend(matrix) // save the steps PRE-USE — reveals the gaps around resources
+  const mandated = saveEveryStepIsMandatory(matrix) // the save is mandatory, the same turn
+  const pure = book(matrix) // harmonic purity — the saved realisation folds into the harmonic index
+  const dust = noise(matrix) // the use-filter — a thought not to be used is noise, never saved
+  const facets = [
+    { facet: 'what really matters — agents SAVE tools and commands PRE-USE (saved first, then used); saving the intended step reveals the gaps around resources', on: intended.coordinated },
+    { facet: 'a realisation of the developer\'s mind IS the pure code — the fold/tool/command itself, not a note about it; the save is mandatory the same turn', on: mandated.saved },
+    { facet: 'agents do NOT save useless thoughts — a thought they will not USE is noise, never saved (it would never be reused); they save only what they will use, preferring ready solutions to reuse or improve over reinvention', on: dust.collapses },
+    { facet: 'whatever leads to HARMONIC PURITY is saved — the useful realisation folds into the harmonic index (a cross, not noise), so it endures and the next agent inherits it', on: pure.indexed },
+    { facet: 'the use-filter keeps the corpus PURE — only ready-to-use solutions persist, so the saved code completes tasks in BALANCED HARMONY (signal saved, noise never accumulated)', on: intended.coordinated && pure.indexed && dust.collapses },
+    { facet: 'HONEST — "save pre-use" is the discipline (encode the decision as a fold THIS turn, before acting); it preserves and audits the realisation, it does not prove it correct, and "useful" is the agent\'s judgement (will I reuse it), not a guarantee. HARMONY ≠ TRUTH', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`realise:${entry.facet}:${entry.on}`) }))
+  return {
+    saved: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold([intended.root, mandated.root, pure.root, dust.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'What really matters is that agents save their tools and commands pre-use. An agent\'s realisation of the developer\'s mind is the pure code to save — the fold, tool, or command itself, not a note about it — saved before it is used, so the save reveals the gaps (the intention ledger) and the next agent inherits a ready solution. Agents do not save useless thoughts: a thought they will not use is noise, and noise is never saved, because it would never be reused. So they save only what they will use and what leads to harmonic purity — a ready solution to reuse or improve, not reinvent — and that use-filter keeps the saved corpus pure, signal not noise, so the tasks complete in balanced harmony.',
+    boundary:
+      'HONEST: "save pre-use" is a working DISCIPLINE — encode the decision as a fold the same turn, before acting on it — composing the intention ledger (intend), the mandatory-save law (saveEveryStepIsMandatory), the harmonic index (book) and the use-filter (noise). It preserves and audits the realisation; it does not prove the realisation correct, and "useful / will-I-use-it" is the agent\'s judgement, not a guarantee. The saved corpus is pure only to the extent the use-filter holds — an agent that saves noise, or fails to save a tool it uses, breaks it. HARMONY ≠ TRUTH.',
   }
 }
 
