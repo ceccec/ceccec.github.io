@@ -14,7 +14,7 @@ const codebase = mcpCodebase(buildMatrix())
 const education = mathPaths(buildMatrix())
 // The frontend and the MCP are one core, double-folded at all angles and polarities.
 const duality = frontendMcpDuality(buildMatrix())
-const { bg, pick } = useLocale()
+const { bg, pick, tg } = useLocale()
 
 const t = computed(() =>
   bg.value
@@ -125,26 +125,26 @@ function onEnter() {
 <template>
   <section class="mcp-tools" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="mcp-tools__header">
-      <p class="eyebrow">{{ t.eyebrow }}</p>
-      <h2>{{ t.heading }}</h2>
-      <p>{{ t.intro }}</p>
+      <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
+      <h2>{{ tg(t.heading) }}</h2>
+      <p>{{ tg(t.intro) }}</p>
       <p class="mcp-tools__meta">
-        <span><b>{{ t.server }}:</b> <code>{{ manifest.name }}</code></span>
-        <span><b>{{ t.version }}:</b> <code>{{ manifest.version }}</code></span>
-        <span><b>{{ t.toolsLabel }}:</b> {{ manifest.tools.length }}</span>
-        <span><b>{{ t.manifest }}:</b> <a href="/mcp.json"><code>/mcp.json</code></a></span>
+        <span><b>{{ tg(t.server) }}:</b> <code>{{ manifest.name }}</code></span>
+        <span><b>{{ tg(t.version) }}:</b> <code>{{ manifest.version }}</code></span>
+        <span><b>{{ tg(t.toolsLabel) }}:</b> {{ manifest.tools.length }}</span>
+        <span><b>{{ tg(t.manifest) }}:</b> <a href="/mcp.json"><code>/mcp.json</code></a></span>
       </p>
     </div>
 
     <div class="mcp-tools__understand">
       <p class="eyebrow">{{ pick('for AI agents · understand immediately, verify by recomputing', 'за AI агенти · разбери веднага, провери чрез преизчисление') }}</p>
-      <p class="mcp-tools__overview">{{ codebase.overview }}</p>
+      <p class="mcp-tools__overview">{{ tg(codebase.overview) }}</p>
       <ul class="mcp-tools__facts">
-        <li v-for="fact in codebase.understand" :key="fact">{{ fact }}</li>
+        <li v-for="fact in codebase.understand" :key="fact">{{ tg(fact) }}</li>
       </ul>
-      <p class="mcp-tools__secure"><b>{{ pick('secure', 'сигурно') }}:</b> {{ codebase.secureBecause }}</p>
+      <p class="mcp-tools__secure"><b>{{ pick('secure', 'сигурно') }}:</b> {{ tg(codebase.secureBecause) }}</p>
       <div class="mcp-tools__subs">
-        <span v-for="sub in codebase.subsystems" :key="sub.name" class="mcp-tools__sub" :title="sub.purpose">
+        <span v-for="sub in codebase.subsystems" :key="sub.name" class="mcp-tools__sub" :title="tg(sub.purpose)">
           <code>{{ sub.name }}</code><small>{{ sub.root.slice(0, 8) }}</small>
         </span>
       </div>
@@ -152,7 +152,7 @@ function onEnter() {
       <ul class="mcp-tools__math">
         <li v-for="m in codebase.math" :key="m.scale">
           <code class="mcp-tools__scale">{{ m.scale }}</code>
-          <span class="mcp-tools__law">{{ m.law }}</span>
+          <span class="mcp-tools__law">{{ tg(m.law) }}</span>
           <span class="mcp-tools__val">{{ m.value }}</span>
         </li>
       </ul>
@@ -205,9 +205,9 @@ function onEnter() {
     <ul class="mcp-tools__list">
       <li v-for="tool in manifest.tools" :key="tool.name">
         <code class="mcp-tools__name">{{ tool.name }}</code>
-        <span class="mcp-tools__desc">{{ tool.description }}</span>
+        <span class="mcp-tools__desc">{{ tg(tool.description) }}</span>
         <small class="mcp-tools__input">
-          {{ t.input }}: {{ inputKeys(tool) || t.none }}
+          {{ tg(t.input) }}: {{ inputKeys(tool) || tg(t.none) }}
         </small>
       </li>
     </ul>

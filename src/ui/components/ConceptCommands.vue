@@ -15,7 +15,7 @@ const matrix = buildMatrix()
 const selected = ref<ConceptCommandName>('concept.mind.doubleTorus')
 const atom = ref('self')
 
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {
@@ -50,9 +50,9 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
 <template>
   <section class="concept-commands" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="concept-commands__header">
-      <p class="eyebrow">{{ t.eyebrow }}</p>
-      <h2>{{ t.heading }}</h2>
-      <p>{{ t.intro }}</p>
+      <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
+      <h2>{{ tg(t.heading) }}</h2>
+      <p>{{ tg(t.intro) }}</p>
     </div>
 
     <div class="concept-commands__layout">
@@ -65,7 +65,7 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
           @click="selected = command.name"
         >
           <strong>{{ command.name }}</strong>
-          <span>{{ command.description }}</span>
+          <span>{{ tg(command.description) }}</span>
         </button>
       </aside>
 
@@ -73,26 +73,26 @@ const formattedOutput = computed(() => JSON.stringify(output.value, null, 2))
         <h3>{{ selectedCommand?.name }}</h3>
         <p class="concept-commands__path">{{ selectedCommand?.path }}</p>
         <label v-if="selectedCommand?.input === 'atom'">
-          {{ t.atom }}
+          {{ tg(t.atom) }}
           <input v-model="atom" type="text" aria-label="atom" />
         </label>
         <div class="concept-commands__receipt">
-          <span>{{ output.ok ? t.ok : t.open }}</span>
+          <span>{{ tg(output.ok ? t.ok : t.open) }}</span>
           <code>{{ output.uuid }}</code>
         </div>
-        <p>{{ output.summary }}</p>
+        <p>{{ tg(output.summary) }}</p>
         <pre>{{ formattedOutput }}</pre>
       </article>
     </div>
 
     <div class="concept-commands__manifest">
-      <h3>{{ t.manifest }}</h3>
+      <h3>{{ tg(t.manifest) }}</h3>
       <ul>
         <li v-for="section in manifest" :key="section.title">
-          <strong>{{ section.title }}</strong>
+          <strong>{{ tg(section.title) }}</strong>
           <code>{{ section.command }}</code>
           <a :href="section.route">{{ section.route }}</a>
-          <span>{{ section.summary }}</span>
+          <span>{{ tg(section.summary) }}</span>
         </li>
       </ul>
     </div>

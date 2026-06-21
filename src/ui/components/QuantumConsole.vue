@@ -27,7 +27,7 @@ const matrix = buildMatrix()
 const manifest = mcpToolManifest(matrix)
 const allowlist = new Set(conceptCommands.map((c) => c.name))
 
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {
@@ -221,65 +221,65 @@ async function sendChat() {
 <template>
   <section class="quantum-console" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="quantum-console__header">
-      <p class="eyebrow">{{ t.eyebrow }}</p>
-      <h2>{{ t.heading }}</h2>
+      <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
+      <h2>{{ tg(t.heading) }}</h2>
     </div>
 
     <div class="quantum-console__tabs">
-      <button :class="{ active: tab === 'terminal' }" type="button" @click="tab = 'terminal'">{{ t.tabTerminal }}</button>
-      <button :class="{ active: tab === 'search' }" type="button" @click="tab = 'search'">{{ t.tabSearch }}</button>
-      <button :class="{ active: tab === 'chat' }" type="button" @click="tab = 'chat'">{{ t.tabChat }}</button>
+      <button :class="{ active: tab === 'terminal' }" type="button" @click="tab = 'terminal'">{{ tg(t.tabTerminal) }}</button>
+      <button :class="{ active: tab === 'search' }" type="button" @click="tab = 'search'">{{ tg(t.tabSearch) }}</button>
+      <button :class="{ active: tab === 'chat' }" type="button" @click="tab = 'chat'">{{ tg(t.tabChat) }}</button>
     </div>
 
     <!-- Terminal -->
     <div v-show="tab === 'terminal'" class="quantum-console__panel">
       <pre class="quantum-console__log">{{ termLines.map((l) => l.text).join('\n') }}</pre>
       <form class="quantum-console__row" @submit.prevent="runTerminal">
-        <input v-model="termInput" type="text" :placeholder="t.terminalHint" spellcheck="false" autocomplete="off" :aria-label="t.terminalHint" />
-        <button type="submit">{{ t.run }}</button>
+        <input v-model="termInput" type="text" :placeholder="tg(t.terminalHint)" spellcheck="false" autocomplete="off" :aria-label="tg(t.terminalHint)" />
+        <button type="submit">{{ tg(t.run) }}</button>
       </form>
     </div>
 
     <!-- Search -->
     <div v-show="tab === 'search'" class="quantum-console__panel">
-      <input v-model="searchQuery" class="quantum-console__search" type="search" :placeholder="t.searchHint" :aria-label="t.searchHint" />
+      <input v-model="searchQuery" class="quantum-console__search" type="search" :placeholder="tg(t.searchHint)" :aria-label="tg(t.searchHint)" />
       <ul class="quantum-console__results">
         <li v-for="item in searchResults" :key="item.kind + item.title">
           <a :href="item.link"><code>{{ item.title }}</code></a>
-          <span>{{ item.detail }}</span>
+          <span>{{ tg(item.detail) }}</span>
         </li>
-        <li v-if="searchQuery && !searchResults.length" class="quantum-console__empty">{{ t.empty }}</li>
+        <li v-if="searchQuery && !searchResults.length" class="quantum-console__empty">{{ tg(t.empty) }}</li>
       </ul>
     </div>
 
     <!-- Chat -->
     <div v-show="tab === 'chat'" class="quantum-console__panel">
       <div class="quantum-console__modes">
-        <button :class="{ active: chatMode === 'local' }" type="button" @click="chatMode = 'local'">{{ t.modeLocal }}</button>
-        <button :class="{ active: chatMode === 'ai' }" type="button" @click="chatMode = 'ai'">{{ t.modeAi }}</button>
-        <span class="quantum-console__free">{{ chatMode === 'local' ? t.freeNote : '' }}</span>
+        <button :class="{ active: chatMode === 'local' }" type="button" @click="chatMode = 'local'">{{ tg(t.modeLocal) }}</button>
+        <button :class="{ active: chatMode === 'ai' }" type="button" @click="chatMode = 'ai'">{{ tg(t.modeAi) }}</button>
+        <span class="quantum-console__free">{{ chatMode === 'local' ? tg(t.freeNote) : '' }}</span>
       </div>
 
       <div v-if="chatMode === 'ai' && !apiKey" class="quantum-console__key">
-        <strong>{{ t.keyTitle }}</strong>
-        <p>{{ t.keyNote }}</p>
+        <strong>{{ tg(t.keyTitle) }}</strong>
+        <p>{{ tg(t.keyNote) }}</p>
         <form class="quantum-console__row" @submit.prevent="connectKey">
           <input v-model="keyInput" type="password" :placeholder="t.keyPlaceholder" autocomplete="off" :aria-label="t.keyPlaceholder" />
-          <button type="submit">{{ t.connect }}</button>
+          <button type="submit">{{ tg(t.connect) }}</button>
         </form>
       </div>
 
       <template v-else>
         <p v-if="chatMode === 'ai'" class="quantum-console__connected">
-          {{ t.connected }} <button type="button" @click="clearKey">{{ t.clearKey }}</button>
+          {{ tg(t.connected) }} <button type="button" @click="clearKey">{{ tg(t.clearKey) }}</button>
         </p>
         <div class="quantum-console__chat">
           <p v-for="(line, i) in chatLines" :key="i" :class="['quantum-console__msg', line.role]">{{ line.text }}</p>
-          <p v-if="chatBusy" class="quantum-console__msg note">{{ t.thinking }}</p>
+          <p v-if="chatBusy" class="quantum-console__msg note">{{ tg(t.thinking) }}</p>
         </div>
         <form class="quantum-console__row" @submit.prevent="sendChat">
-          <input v-model="chatInput" type="text" :placeholder="t.chatHint" :disabled="chatBusy" :aria-label="t.chatHint" />
-          <button type="submit" :disabled="chatBusy">{{ t.ask }}</button>
+          <input v-model="chatInput" type="text" :placeholder="tg(t.chatHint)" :disabled="chatBusy" :aria-label="tg(t.chatHint)" />
+          <button type="submit" :disabled="chatBusy">{{ tg(t.ask) }}</button>
         </form>
       </template>
     </div>

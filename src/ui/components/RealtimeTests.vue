@@ -10,7 +10,7 @@ import { useLocale } from '../lib'
 // no-key public APIs (auto-fetched) + device sensors (permission-gated, graceful fallback). Each capture is
 // content-addressed (liveCapture) into a reproducible snapshot. HONEST: mic audio is SOUND not EM; device
 // motion feeds the radar EQUATION not real radar; magnetometer→Larmor is a real field, no actual NMR.
-const { bg, pick } = useLocale()
+const { bg, pick, tg } = useLocale()
 const fold = realtimeExperiments() // the source catalogue + honest notes (deterministic)
 
 const api = reactive({
@@ -164,7 +164,7 @@ onMounted(() => { loadBtc(); loadUsgs() })
 
       <!-- Device sensors -->
       <div v-for="s in sensors" :key="s.id" class="rt__panel">
-        <h4>{{ s.label }} <span class="rt__tag dev">device</span></h4>
+        <h4>{{ tg(s.label) }} <span class="rt__tag dev">device</span></h4>
         <button type="button" v-if="dev[s.id].status === 'idle'" class="rt__btn" @click="s.enable()">{{ pick('enable', 'разреши') }}</button>
         <p v-else-if="dev[s.id].status === 'requesting'" class="rt__muted">{{ pick('requesting…', 'искане на достъп…') }}</p>
         <p v-else-if="dev[s.id].status === 'unavailable'" class="rt__muted">{{ pick('no sensor / permission here', 'няма сензор/разрешение тук') }}</p>

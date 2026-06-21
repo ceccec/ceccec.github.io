@@ -65,7 +65,7 @@ import {
 } from '../lib'
 import { useLocale } from '../lib'
 
-const { bg, pick } = useLocale()
+const { bg, pick, tg } = useLocale()
 const matrix = buildMatrix()
 
 // Each decode is a pure fold returning { statement, boundary, facets:[{facet,on}], count }. Render them uniformly —
@@ -212,17 +212,17 @@ const totals = computed(() => {
       <h2 class="frontiers__group-title">{{ group.title }}</h2>
       <article v-for="item in group.items" :key="item.title" class="frontiers__card">
         <header class="frontiers__card-head">
-          <h3 class="frontiers__card-title">{{ item.title }}</h3>
+          <h3 class="frontiers__card-title">{{ tg(item.title) }}</h3>
           <span v-if="item.total" class="frontiers__chip">{{ item.passed }}/{{ item.total }} ✓</span>
         </header>
-        <p v-if="item.statement" class="frontiers__statement">{{ item.statement }}</p>
+        <p v-if="item.statement" class="frontiers__statement">{{ tg(item.statement) }}</p>
         <ul v-if="item.facets.length" class="frontiers__facets">
           <li v-for="(f, i) in item.facets" :key="i" :data-on="f.on" class="frontiers__facet">
-            <span class="frontiers__mark">{{ f.on ? '✓' : '·' }}</span><span>{{ f.facet }}</span>
+            <span class="frontiers__mark">{{ f.on ? '✓' : '·' }}</span><span>{{ tg(f.facet) }}</span>
           </li>
         </ul>
         <p v-if="item.boundary" class="frontiers__boundary">
-          <strong>{{ pick('boundary', 'граница') }}:</strong> {{ item.boundary }}
+          <strong>{{ pick('boundary', 'граница') }}:</strong> {{ tg(item.boundary) }}
         </p>
       </article>
     </div>

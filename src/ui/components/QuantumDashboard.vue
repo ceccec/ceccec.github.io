@@ -15,7 +15,7 @@ const data = analytics(matrix)
 // The independent, holographic dashboard — ceccec's own approach, zero external
 // toolkit. Each panel is folded with the whole root, so it carries the whole.
 const holo = holographicDashboard(matrix)
-const { bg, pick, pickDeep } = useLocale()
+const { bg, pick, pickDeep, tg } = useLocale()
 
 const bgBoard: Record<string, string> = { model: 'моделът', proof: 'доказателството', reach: 'обхватът' }
 const bgMetric: Record<string, string> = {
@@ -61,12 +61,12 @@ const t = computed(() =>
     <div class="dash__grid">
       <Card v-for="panel in holo.panels" :key="panel.panel" class="dash__board dash__board--holo">
         <header class="dash__head">
-          <strong><span class="dash__icon">{{ panel.icon }}</span> {{ panel.panel }}</strong>
+          <strong><span class="dash__icon">{{ panel.icon }}</span> {{ tg(panel.panel) }}</strong>
           <Badge variant="outline">{{ panel.holographic ? '◆ whole' : '—' }}</Badge>
         </header>
         <dl class="dash__metrics">
           <div v-for="entry in panel.metrics" :key="entry.label" :title="panel.root">
-            <dt>{{ entry.label }}</dt>
+            <dt>{{ tg(entry.label) }}</dt>
             <dd>{{ entry.value }}</dd>
           </div>
         </dl>

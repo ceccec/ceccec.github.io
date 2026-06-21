@@ -7,7 +7,7 @@ import { useLocale } from '../lib'
 import { buildMatrix, learningPortal } from '../lib'
 
 const portal = learningPortal(buildMatrix())
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 
 const t = computed(() =>
   bg.value
@@ -51,32 +51,32 @@ const groups = computed(() =>
 <template>
   <section class="learning-portal" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="learning-portal__header">
-      <p class="eyebrow">{{ t.eyebrow }}</p>
-      <h2>{{ t.heading }}</h2>
-      <p>{{ t.intro }}</p>
+      <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
+      <h2>{{ tg(t.heading) }}</h2>
+      <p>{{ tg(t.intro) }}</p>
       <p class="learning-portal__stats">
-        <span>{{ portal.count }} {{ t.sectionsLabel }}</span>
-        <span>{{ portal.items }} {{ t.itemsLabel }}</span>
+        <span>{{ portal.count }} {{ tg(t.sectionsLabel) }}</span>
+        <span>{{ portal.items }} {{ tg(t.itemsLabel) }}</span>
         <code class="learning-portal__root">{{ portal.root }}</code>
       </p>
     </div>
 
     <div v-for="group in groups" :key="group.axis" class="learning-portal__axis">
-      <h3 class="learning-portal__axis-label">{{ group.label }}</h3>
+      <h3 class="learning-portal__axis-label">{{ tg(group.label) }}</h3>
       <ul class="learning-portal__grid">
         <li v-for="section in group.sections" :key="section.key" class="learning-portal__card">
           <a :href="section.route" class="learning-portal__card-link">
             <div class="learning-portal__card-top">
-              <strong>{{ section.title }}</strong>
+              <strong>{{ tg(section.title) }}</strong>
               <span class="learning-portal__kind">{{ section.kind }}</span>
             </div>
-            <p class="learning-portal__blurb">{{ section.blurb }}</p>
+            <p class="learning-portal__blurb">{{ tg(section.blurb) }}</p>
             <p class="learning-portal__meta">
-              <span class="learning-portal__count">{{ section.items }} {{ t.itemsLabel }}</span>
+              <span class="learning-portal__count">{{ section.items }} {{ tg(t.itemsLabel) }}</span>
               <span :class="['learning-portal__badge', section.complete ? 'is-complete' : 'is-open']">
-                {{ section.complete ? '✓ ' + t.complete : t.open }}
+                {{ section.complete ? '✓ ' + tg(t.complete) : tg(t.open) }}
               </span>
-              <span class="learning-portal__go">{{ t.open_link }} →</span>
+              <span class="learning-portal__go">{{ tg(t.open_link) }} →</span>
             </p>
             <small class="learning-portal__receipt">{{ section.root }}</small>
           </a>

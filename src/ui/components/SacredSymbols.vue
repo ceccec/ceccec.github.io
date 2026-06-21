@@ -8,7 +8,7 @@ import { buildMatrix, sacredGeometrySeal } from '../lib'
 // Sacred symbols hold the math: each node on the wheel carries one seal root.
 // When animated, the wheel turns and every key (root UUID) is revealed.
 const seal = sacredGeometrySeal(buildMatrix())
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const animated = ref(false)
 
 const solidGlyphs = ['△', '◻', '◇', '⬠', '⬡']
@@ -48,13 +48,13 @@ const t = computed(() =>
   <section class="sacred-symbols dt-card" :class="{ animated }" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="sacred-symbols__head">
       <div>
-        <p class="eyebrow">{{ t.title }}</p>
-        <p>{{ t.sub }}</p>
+        <p class="eyebrow">{{ tg(t.title) }}</p>
+        <p>{{ tg(t.sub) }}</p>
       </div>
-      <button class="dt-btn" type="button" :aria-label="animated ? t.stop : t.animate" :aria-pressed="animated" @click="animated = !animated">{{ animated ? t.stop : t.animate }}</button>
+      <button class="dt-btn" type="button" :aria-label="animated ? tg(t.stop) : tg(t.animate)" :aria-pressed="animated" @click="animated = !animated">{{ animated ? tg(t.stop) : tg(t.animate) }}</button>
     </div>
 
-    <svg viewBox="0 0 100 100" class="sacred-symbols__wheel" role="img" :aria-label="t.title">
+    <svg viewBox="0 0 100 100" class="sacred-symbols__wheel" role="img" :aria-label="tg(t.title)">
       <g class="sacred-symbols__rotor" :class="{ 'anim-spin': animated }">
         <line v-for="(node, i) in nodes" :key="'spoke' + i" x1="50" y1="50" :x2="node.x" :y2="node.y" class="spoke" />
         <line
@@ -87,7 +87,7 @@ const t = computed(() =>
         <code>{{ node.name }}</code><small>{{ node.key }}</small>
       </li>
       <li class="master">
-        <code>{{ t.master }}</code><small>{{ seal.masterRoot }}</small>
+        <code>{{ tg(t.master) }}</code><small>{{ seal.masterRoot }}</small>
       </li>
     </ul>
   </section>

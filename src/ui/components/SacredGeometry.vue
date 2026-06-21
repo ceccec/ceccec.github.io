@@ -10,6 +10,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { sacredGeometry, createAnimationEngine } from '../lib'
 import { formSvg, formDims10D, SACRED_FORMS, FORM_LABEL } from '../lib'
 import { blip } from '../lib'
+import { useLocale } from '../lib'
+const { tg } = useLocale()
 
 // Sound the form (a432 = colour · sound · form, one frequency). HONEST: a CHOSEN sonification — the five solids as a
 // just-intonation ascent on 432 Hz (1 · 9/8 · 5/4 · 3/2 · 2) — NOT a claim the solid "has" a pitch (that would be the
@@ -56,7 +58,7 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
         <strong class="sg__solid-name">{{ s.name }}</strong>
         <span class="sg__vef">V {{ s.v }} · E {{ s.e }} · F {{ s.f }}</span>
         <span class="sg__euler">V−E+F = {{ s.v - s.e + s.f }}</span>
-        <span class="sg__meta">{{ s.face }} faces · {{ s.element }} · dual: {{ s.dual }}</span>
+        <span class="sg__meta">{{ tg(s.face) }} faces · {{ tg(s.element) }} · dual: {{ s.dual }}</span>
         <button type="button" class="sg__sound" @click="soundSolid(s.name)" :aria-label="'sound the ' + s.name">♪ sound</button>
       </li>
     </ul>
@@ -75,15 +77,15 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
     <ul class="sg__forms">
       <li v-for="(form, i) in SACRED_FORMS" :key="form" class="sg__form">
         <figure>
-          <svg viewBox="0 0 100 100" role="img" :aria-label="FORM_LABEL[form]" :style="formStyle(form, i)">
+          <svg viewBox="0 0 100 100" role="img" :aria-label="tg(FORM_LABEL[form])" :style="formStyle(form, i)">
             <g v-html="formSvg(form)" />
           </svg>
-          <figcaption>{{ FORM_LABEL[form] }}</figcaption>
+          <figcaption>{{ tg(FORM_LABEL[form]) }}</figcaption>
         </figure>
       </li>
     </ul>
 
-    <p class="sg__boundary">{{ sg.boundary }}</p>
+    <p class="sg__boundary">{{ tg(sg.boundary) }}</p>
 
     <div class="sg__decode">
       <button type="button" class="sg__toggle sg__toggle--doc" :aria-expanded="showDocumented" @click="showDocumented = !showDocumented">
@@ -93,10 +95,10 @@ const SOLID_GLYPH: Record<string, string> = { tetrahedron: '△', cube: '◻', o
         ⚑ flagged ({{ sg.flagged.length }})
       </button>
       <ul v-if="showDocumented" class="sg__list sg__list--doc">
-        <li v-for="(d, i) in sg.documented" :key="'d' + i">{{ d }}</li>
+        <li v-for="(d, i) in sg.documented" :key="'d' + i">{{ tg(d) }}</li>
       </ul>
       <ul v-if="showFlagged" class="sg__list sg__list--flag">
-        <li v-for="(f, i) in sg.flagged" :key="'f' + i">{{ f }}</li>
+        <li v-for="(f, i) in sg.flagged" :key="'f' + i">{{ tg(f) }}</li>
       </ul>
     </div>
   </section>

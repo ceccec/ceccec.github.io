@@ -10,7 +10,7 @@ import { useLocale } from '../lib'
 // like the double torus), all merged into one society root. Opposition is held and
 // folded, not erased. A pair stands only while both its cells' bases hold.
 const data = society(buildMatrix())
-const { bg, localize, pick } = useLocale()
+const { bg, localize, pick, tg } = useLocale()
 
 const bgCell: Record<string, { cell: string; principle: string }> = {
   Sovereignty: { cell: 'Суверенитет', principle: 'Твое по подразбиране — цялото се самоизчислява на устройството ти, нищо не се изпраща.' },
@@ -89,7 +89,7 @@ const tReq = computed(() =>
     </header>
     <div class="soc__list">
       <article v-for="pair in pairs" :key="pair.duality" class="soc__pair" :class="{ folded: pair.paired }">
-        <h3 class="soc__duality">{{ pair.duality }}</h3>
+        <h3 class="soc__duality">{{ tg(pair.duality) }}</h3>
         <div class="soc__fold">
           <a class="soc__cell" :href="localize(pair.left.route)">
             <strong>{{ pair.left.cellText }}</strong>

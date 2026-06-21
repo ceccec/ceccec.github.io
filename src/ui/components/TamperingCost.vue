@@ -10,9 +10,11 @@ const ICHING_MASK = { hexagram: 29, glyph: '☱', lo: 'Lí·clinging', up: 'Duì
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useTones } from '../lib'
+import { useLocale } from '../lib'
 import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432, GOLDEN_ANGLE } from '../lib'
 
 const { localeIndex } = useData()
+const { tg } = useLocale()
 const bg = computed(() => localeIndex.value === 'bg')
 
 const tc = tamperingCostDecoded()
@@ -59,32 +61,32 @@ const tcVerdictBg =
 
 <template>
   <section class="tc" aria-labelledby="tc-title" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="tc__eyebrow">{{ bg ? 'Двоен торусус · цена на подправяне ↔ криптиране ↔ блокчейн ↔ квантово' : 'Double Torus · tampering cost ↔ encryption ↔ blockchains ↔ quantum' }}</p>
-    <h2 id="tc-title">{{ bg ? 'Доказуемо при подправяне — не е защитено от подправяне' : 'Tamper-evident is not tamper-proof' }}</h2>
+    <p class="tc__eyebrow">{{ tg(bg ? 'Двоен торусус · цена на подправяне ↔ криптиране ↔ блокчейн ↔ квантово' : 'Double Torus · tampering cost ↔ encryption ↔ blockchains ↔ quantum') }}</p>
+    <h2 id="tc-title">{{ tg(bg ? 'Доказуемо при подправяне — не е защитено от подправяне' : 'Tamper-evident is not tamper-proof') }}</h2>
     <p class="tc__lede">
-      {{ bg
+      {{ tg(bg
         ? 'Сайтът твърди „максимална цена на подправяне“. Честно: съдържателното адресиране прави всяка промяна откриваема — но FNV хешът не е криптографски, така че това е доказуемост при подправяне, не сигурност. Поправката (SHA-256 адрес, Ed25519 подпис) вече е изградена в src/0.'
-        : 'The site claims “maximum tampering cost”. Honestly: content-addressing makes any change detectable — but the FNV hash is non-cryptographic, so that is tamper-evidence, not security. The fix (a SHA-256 address, Ed25519 signing) is already built in src/0.' }}
+        : 'The site claims “maximum tampering cost”. Honestly: content-addressing makes any change detectable — but the FNV hash is non-cryptographic, so that is tamper-evidence, not security. The fix (a SHA-256 address, Ed25519 signing) is already built in src/0.') }}
     </p>
 
     <!-- Three honestly-different things conflated as one "tampering cost". -->
-    <h3>{{ bg ? 'Три различни неща, наречени една „цена на подправяне“' : 'Three different things called one “tampering cost”' }}</h3>
+    <h3>{{ tg(bg ? 'Три различни неща, наречени една „цена на подправяне“' : 'Three different things called one “tampering cost”') }}</h3>
     <ul class="tc__kinds" role="list">
       <li v-for="k in tc.kinds" :key="k.kind" class="tc__kind" :class="{ 'tc__kind--has': k.site }">
-        <p class="tc__kind-name">{{ k.kind }}</p>
-        <p class="tc__kind-is">{{ k.is }}</p>
-        <p class="tc__kind-mech">{{ k.mechanism }}</p>
+        <p class="tc__kind-name">{{ tg(k.kind) }}</p>
+        <p class="tc__kind-is">{{ tg(k.is) }}</p>
+        <p class="tc__kind-mech">{{ tg(k.mechanism) }}</p>
         <p class="tc__kind-cost"><code>{{ k.cost }}</code></p>
         <p class="tc__kind-flag">
-          <span class="tc__pill" :class="k.site ? 'tc__pill--yes' : 'tc__pill--no'">{{ k.site ? (bg ? 'този сайт ✓' : 'this site ✓') : (bg ? 'не и тук' : 'not here') }}</span>
-          <span class="tc__pill" :class="k.secure ? 'tc__pill--secure' : 'tc__pill--evident'">{{ k.secure ? (bg ? 'сигурност' : 'security') : (bg ? 'доказуемост' : 'evidence') }}</span>
+          <span class="tc__pill" :class="k.site ? 'tc__pill--yes' : 'tc__pill--no'">{{ tg(k.site ? (bg ? 'този сайт ✓' : 'this site ✓') : (bg ? 'не и тук' : 'not here')) }}</span>
+          <span class="tc__pill" :class="k.secure ? 'tc__pill--secure' : 'tc__pill--evident'">{{ tg(k.secure ? (bg ? 'сигурност' : 'security') : (bg ? 'доказуемост' : 'evidence')) }}</span>
         </p>
       </li>
     </ul>
 
     <!-- The cost ladder — from FNV today up to economic consensus. Animated forge-cost meters, A432-hued. -->
-    <h3>{{ bg ? 'Стълбата на цената — от FNV днес до икономически консенсус' : 'The cost ladder — from FNV today to economic consensus' }}</h3>
-    <p class="tc__hint">{{ bg ? 'Докосни стъпало за подробности и хармоничен тон (432·n).' : 'Tap a rung for detail and a 432·n harmonic tone.' }}</p>
+    <h3>{{ tg(bg ? 'Стълбата на цената — от FNV днес до икономически консенсус' : 'The cost ladder — from FNV today to economic consensus') }}</h3>
+    <p class="tc__hint">{{ tg(bg ? 'Докосни стъпало за подробности и хармоничен тон (432·n).' : 'Tap a rung for detail and a 432·n harmonic tone.') }}</p>
     <ol class="tc__ladder" role="list">
       <li v-for="(r, i) in tc.ladder" :key="r.rung" class="tc__rung" :style="{ '--hue': hueFor(i) }">
         <button
@@ -95,81 +97,81 @@ const tcVerdictBg =
           @click="toggleRung(i)"
         >
           <span class="tc__rung-head">
-            <span class="tc__rung-name">{{ r.rung }}</span>
-            <span class="tc__rung-layer">{{ r.layer }}</span>
+            <span class="tc__rung-name">{{ tg(r.rung) }}</span>
+            <span class="tc__rung-layer">{{ tg(r.layer) }}</span>
           </span>
-          <span class="tc__meter" role="img" :aria-label="`${bg ? 'цена за фалшифициране' : 'cost to forge'}: ${r.forge}`">
+          <span class="tc__meter" role="img" :aria-label="`${tg(bg ? 'цена за фалшифициране' : 'cost to forge')}: ${tg(r.forge)}`">
             <span class="tc__meter-fill" :style="{ width: (motion ? (lit ? COST_FILL[i] : 0) : COST_FILL[i]) + '%' }"></span>
           </span>
         </button>
         <div v-show="openRung === i" :id="`tc-rung-${i}`" class="tc__rung-detail">
-          <p><strong>{{ bg ? 'Цена за фалшифициране' : 'Cost to forge' }}:</strong> {{ r.forge }}</p>
-          <p><strong>{{ bg ? 'Открива' : 'Detects' }}:</strong> {{ r.detects }} · <strong>{{ bg ? 'Устоява на' : 'Resists' }}:</strong> {{ r.resists }}</p>
+          <p><strong>{{ tg(bg ? 'Цена за фалшифициране' : 'Cost to forge') }}:</strong> {{ tg(r.forge) }}</p>
+          <p><strong>{{ tg(bg ? 'Открива' : 'Detects') }}:</strong> {{ tg(r.detects) }} · <strong>{{ tg(bg ? 'Устоява на' : 'Resists') }}:</strong> {{ tg(r.resists) }}</p>
         </div>
       </li>
     </ol>
 
     <!-- Quantum: Grover weakens / Shor breaks — the real-machine dimension, with a weaken-vs-break animation. -->
-    <h3>{{ bg ? 'Квантово: Гроувър отслабва · Шор чупи' : 'Quantum: Grover weakens · Shor breaks' }}</h3>
+    <h3>{{ tg(bg ? 'Квантово: Гроувър отслабва · Шор чупи' : 'Quantum: Grover weakens · Shor breaks') }}</h3>
     <div class="tc__quantum">
       <article v-for="a in qt.algorithms" :key="a.algorithm" class="tc__algo" :class="`tc__algo--${a.effect}`">
-        <h4>{{ a.algorithm }} — <span class="tc__effect">{{ a.effect === 'break' ? (bg ? 'ЧУПИ' : 'BREAKS') : (bg ? 'ОТСЛАБВА' : 'WEAKENS') }}</span></h4>
+        <h4>{{ a.algorithm }} — <span class="tc__effect">{{ tg(a.effect === 'break' ? (bg ? 'ЧУПИ' : 'BREAKS') : (bg ? 'ОТСЛАБВА' : 'WEAKENS')) }}</span></h4>
         <!-- The animation: WEAKEN halves a full bar; BREAK shatters it. Reduced-motion → a static state. -->
         <div class="tc__bar" :class="[`tc__bar--${a.effect}`, { 'tc__bar--anim': motion && lit }]" aria-hidden="true">
           <span class="tc__bar-seg"></span><span class="tc__bar-seg"></span>
         </div>
-        <p class="tc__algo-target"><strong>{{ bg ? 'Цел' : 'Targets' }}:</strong> {{ a.targets }}</p>
-        <p class="tc__algo-result">{{ a.result }}</p>
-        <p class="tc__algo-resp"><strong>{{ bg ? 'Отговор' : 'Response' }}:</strong> {{ a.response }}</p>
+        <p class="tc__algo-target"><strong>{{ tg(bg ? 'Цел' : 'Targets') }}:</strong> {{ tg(a.targets) }}</p>
+        <p class="tc__algo-result">{{ tg(a.result) }}</p>
+        <p class="tc__algo-resp"><strong>{{ tg(bg ? 'Отговор' : 'Response') }}:</strong> {{ tg(a.response) }}</p>
       </article>
     </div>
 
     <div class="tc__quantum-grid">
       <section class="tc__exposure" aria-labelledby="tc-exposure">
-        <h4 id="tc-exposure">{{ bg ? 'Изложеност на блокчейна' : 'Blockchain exposure' }}</h4>
+        <h4 id="tc-exposure">{{ tg(bg ? 'Изложеност на блокчейна' : 'Blockchain exposure') }}</h4>
         <ul role="list">
           <li v-for="e in qt.blockchainExposure" :key="e.what">
-            <strong>{{ e.what }}</strong> — <em>{{ e.effect }}</em><br />{{ e.detail }}
+            <strong>{{ tg(e.what) }}</strong> — <em>{{ tg(e.effect) }}</em><br />{{ tg(e.detail) }}
           </li>
         </ul>
       </section>
       <section class="tc__pqc" aria-labelledby="tc-pqc">
-        <h4 id="tc-pqc">{{ bg ? 'Постквантови стандарти (NIST, 2024)' : 'Post-quantum standards (NIST, 2024)' }}</h4>
+        <h4 id="tc-pqc">{{ tg(bg ? 'Постквантови стандарти (NIST, 2024)' : 'Post-quantum standards (NIST, 2024)') }}</h4>
         <ul role="list">
           <li v-for="p in qt.postQuantum" :key="p.fips">
-            <code>{{ p.fips }}</code> <strong>{{ p.name }}</strong> <span class="tc__from">({{ p.from }})</span><br />{{ p.kind }} — {{ bg ? 'заменя' : 'replaces' }} {{ p.replaces }}
+            <code>{{ p.fips }}</code> <strong>{{ p.name }}</strong> <span class="tc__from">({{ p.from }})</span><br />{{ tg(p.kind) }} — {{ tg(bg ? 'заменя' : 'replaces') }} {{ p.replaces }}
           </li>
         </ul>
       </section>
     </div>
     <p class="tc__hardware">
-      <strong>{{ bg ? 'Хардуерът, честно' : 'The hardware, honestly' }}:</strong> {{ qt.hardware.today }}.
-      RSA-2048: {{ qt.hardware.rsa2048_2019 }} → {{ qt.hardware.rsa2048_2025 }}. {{ qt.hardware.verdict }}
+      <strong>{{ tg(bg ? 'Хардуерът, честно' : 'The hardware, honestly') }}:</strong> {{ tg(qt.hardware.today) }}.
+      RSA-2048: {{ qt.hardware.rsa2048_2019 }} → {{ qt.hardware.rsa2048_2025 }}. {{ tg(qt.hardware.verdict) }}
     </p>
 
     <!-- The honest verdict: documented kept, legend flagged. -->
     <div class="tc__honest">
       <section>
         <button type="button" class="tc__toggle" :aria-expanded="showDoc" @click="showDoc = !showDoc">
-          {{ showDoc ? '▾' : '▸' }} {{ bg ? 'Документирано' : 'Documented' }} ({{ tc.documented.length + qt.documented.length }})
+          {{ showDoc ? '▾' : '▸' }} {{ tg(bg ? 'Документирано' : 'Documented') }} ({{ tc.documented.length + qt.documented.length }})
         </button>
         <ul v-show="showDoc" role="list" class="tc__doc">
-          <li v-for="(d, i) in tc.documented" :key="`tcd-${i}`">{{ d }}</li>
-          <li v-for="(d, i) in qt.documented" :key="`qtd-${i}`">{{ d }}</li>
+          <li v-for="(d, i) in tc.documented" :key="`tcd-${i}`">{{ tg(d) }}</li>
+          <li v-for="(d, i) in qt.documented" :key="`qtd-${i}`">{{ tg(d) }}</li>
         </ul>
       </section>
       <section>
         <button type="button" class="tc__toggle tc__toggle--flag" :aria-expanded="showFlag" @click="showFlag = !showFlag">
-          {{ showFlag ? '▾' : '▸' }} {{ bg ? 'Отбелязана легенда' : 'Legend flagged' }} ({{ tc.flagged.length + qt.flagged.length }})
+          {{ showFlag ? '▾' : '▸' }} {{ tg(bg ? 'Отбелязана легенда' : 'Legend flagged') }} ({{ tc.flagged.length + qt.flagged.length }})
         </button>
         <ul v-show="showFlag" role="list" class="tc__flag">
-          <li v-for="(f, i) in tc.flagged" :key="`tcf-${i}`">{{ f }}</li>
-          <li v-for="(f, i) in qt.flagged" :key="`qtf-${i}`">{{ f }}</li>
+          <li v-for="(f, i) in tc.flagged" :key="`tcf-${i}`">{{ tg(f) }}</li>
+          <li v-for="(f, i) in qt.flagged" :key="`qtf-${i}`">{{ tg(f) }}</li>
         </ul>
       </section>
     </div>
 
-    <p class="tc__verdict">{{ bg ? tcVerdictBg : tc.statement }}</p>
+    <p class="tc__verdict">{{ tg(bg ? tcVerdictBg : tc.statement) }}</p>
   </section>
 </template>
 

@@ -5,7 +5,9 @@ const ICHING_MASK = { hexagram: 58, trigram: '☵☰', glyph: '☵☰', lo: 'Kǎ
 // address (the seed from its receipt → the angle within its quadrant), the ring sets the radius — so the
 // radar is deterministic and recomputable, computed from the matrix, never hand-placed. SSR-safe (no DOM).
 import { deepResearchRadar } from '../lib'
+import { useLocale } from '../lib'
 
+const { tg } = useLocale()
 const radar = deepResearchRadar()
 const cx = 205
 const cy = 205
@@ -38,11 +40,11 @@ const quads = [
       <line :x1="cx" y1="18" :x2="cx" y2="392" class="qr-axis" />
       <line x1="18" :y1="cy" x2="392" :y2="cy" class="qr-axis" />
       <line :x1="cx" :y1="cy" :x2="cx" y2="21" class="qr-sweep" :style="{ '--sweep': sweepSecs + 's' }" />
-      <text v-for="[label, y] in ringLabels" :key="label" :x="cx" :y="y" text-anchor="middle" class="qr-ringlabel">{{ label }}</text>
-      <text v-for="q in quads" :key="q.t" :x="q.x" :y="q.y" :text-anchor="q.a" class="qr-quad">{{ q.t }}</text>
+      <text v-for="[label, y] in ringLabels" :key="label" :x="cx" :y="y" text-anchor="middle" class="qr-ringlabel">{{ tg(label) }}</text>
+      <text v-for="q in quads" :key="q.t" :x="q.x" :y="q.y" :text-anchor="q.a" class="qr-quad">{{ tg(q.t) }}</text>
       <g v-for="blip in blips" :key="blip.receipt" :class="['qr-blip', 'qr-' + blip.ring]">
         <circle :cx="blip.x" :cy="blip.y" r="9" />
-        <title>{{ blip.name }} — {{ blip.ring }} · {{ blip.note }}</title>
+        <title>{{ blip.name }} — {{ tg(blip.ring) }} · {{ tg(blip.note) }}</title>
       </g>
     </svg>
     <figcaption>Quantum radar — {{ blips.length }} blips, each placed by its content address. Documented knowledge in adopt, flagged legend in hold.</figcaption>

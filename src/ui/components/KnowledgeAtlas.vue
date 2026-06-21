@@ -4,6 +4,7 @@ const ICHING_MASK = { hexagram: 18, glyph: '☵', lower: '☵', upper: '☵', co
 import { computed, ref, watch } from 'vue'
 import { fold, asTorus, asMerkaba, asVortex, asMerkle, asTrace, type Fold } from '../lib'
 import { useAnimationEngine } from '../lib'
+import { useLocale } from '../lib'
 
 // The atlas is one math shown many ways. Each seed folds once — fold(seed) — into the SAME object; the
 // presentation buttons only change which projection of that one address is drawn (asTrace · asTorus ·
@@ -26,6 +27,7 @@ const MODES: { id: Mode; label: string; note: string }[] = [
 ]
 const mode = ref<Mode>('trace')
 const active = computed(() => MODES.find((m) => m.id === mode.value) ?? MODES[0])
+const { tg } = useLocale()
 
 const TAU = Math.PI * 2
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -215,11 +217,11 @@ watch(mode, () => engine.tick())
     <figcaption class="atlas-bar">
       <span class="atlas-title">one math · {{ folds.length }} folds</span>
       <span class="atlas-modes">
-        <button v-for="mo in MODES" :key="mo.id" type="button" :class="{ on: mode === mo.id }" @click="mode = mo.id">{{ mo.label }}</button>
+        <button v-for="mo in MODES" :key="mo.id" type="button" :class="{ on: mode === mo.id }" @click="mode = mo.id">{{ tg(mo.label) }}</button>
       </span>
     </figcaption>
     <canvas ref="canvas" class="atlas-canvas" aria-label="The knowledge atlas — one fold, presented as a harmonograph, double torus, merkaba, vortex, or merkle seal." />
-    <figcaption class="atlas-note">{{ active.note }}</figcaption>
+    <figcaption class="atlas-note">{{ tg(active.note) }}</figcaption>
   </figure>
 </template>
 

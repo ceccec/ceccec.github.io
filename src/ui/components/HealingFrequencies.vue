@@ -24,7 +24,7 @@ const maxAbs = computed(() => Math.max(...balance.value.tones.map((tone) => Math
 function pos(cents: number) {
   return 50 + (cents / maxAbs.value) * 47
 }
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const { saveEnergy } = useDeviceEnergy()
 const { playing, playChord, stop } = useTones()
 
@@ -67,20 +67,20 @@ const t = computed(() =>
 
 <template>
   <section class="freq dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="eyebrow">{{ t.eyebrow }}</p>
+    <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
     <div class="freq__grid">
       <span v-for="entry in data.frequencies" :key="entry.hz" class="freq__cell" :class="{ lead: entry.lead }">
         <strong>{{ entry.hz }}<small>Hz</small></strong>
         <em>{{ entry.note }}</em>
-        <span v-if="entry.lead" class="freq__leadtag">{{ t.lead }}</span>
+        <span v-if="entry.lead" class="freq__leadtag">{{ tg(t.lead) }}</span>
       </span>
     </div>
     <div class="freq__balance">
       <p class="freq__balance-title">
-        {{ t.balanceTitle }} · {{ t.center }} {{ balance.center }} Hz
-        <span v-if="balance.balanced" class="freq__balanced">⟡ {{ t.balanced }}</span>
+        {{ tg(t.balanceTitle) }} · {{ tg(t.center) }} {{ balance.center }} Hz
+        <span v-if="balance.balanced" class="freq__balanced">⟡ {{ tg(t.balanced) }}</span>
       </p>
-      <div class="freq__axis" role="img" :aria-label="`${t.balanceTitle}, ${t.center} ${balance.center} Hz`">
+      <div class="freq__axis" role="img" :aria-label="`${tg(t.balanceTitle)}, ${tg(t.center)} ${balance.center} Hz`">
         <span class="freq__centerline" />
         <span
           v-for="tone in balance.tones"
@@ -93,13 +93,13 @@ const t = computed(() =>
       </div>
     </div>
     <div class="freq__row">
-      <button class="dt-btn" type="button" :aria-label="playing ? t.stop : t.play" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? t.stop : t.play }}</button>
-      <span v-if="saveEnergy" class="freq__save">🔋 {{ t.save }}</span>
+      <button class="dt-btn" type="button" :aria-label="playing ? tg(t.stop) : tg(t.play)" :aria-pressed="playing" @click="playing ? stop() : harmonise()">{{ playing ? tg(t.stop) : tg(t.play) }}</button>
+      <span v-if="saveEnergy" class="freq__save">🔋 {{ tg(t.save) }}</span>
     </div>
     <div class="freq__apparatus">
-      <p class="eyebrow">{{ bg ? 'апаратура за споделени опити · доказва хармонични решения' : 'apparatus for shared experiments · proving harmonic solutions' }}</p>
+      <p class="eyebrow">{{ tg(bg ? 'апаратура за споделени опити · доказва хармонични решения' : 'apparatus for shared experiments · proving harmonic solutions') }}</p>
       <div class="freq__appgrid">
-        <div class="freq__chladni" :style="{ gridTemplateColumns: `repeat(${apparatus.chladni.N}, 1fr)` }" :aria-label="bg ? 'Хладни фигура, мода 3,2' : 'Chladni figure, mode 3,2'" role="img">
+        <div class="freq__chladni" :style="{ gridTemplateColumns: `repeat(${apparatus.chladni.N}, 1fr)` }" :aria-label="tg(bg ? 'Хладни фигура, мода 3,2' : 'Chladni figure, mode 3,2')" role="img">
           <span
             v-for="(u, i) in chladniCells"
             :key="i"
@@ -110,13 +110,13 @@ const t = computed(() =>
         <ul class="freq__instruments">
           <li v-for="a in apparatus.apparatus" :key="a.instrument">
             <span class="freq__ok">{{ a.verified ? '✓' : '×' }}</span>
-            <strong>{{ a.instrument }}</strong>
-            <small>{{ a.proves }}</small>
+            <strong>{{ tg(a.instrument) }}</strong>
+            <small>{{ tg(a.proves) }}</small>
           </li>
         </ul>
       </div>
     </div>
-    <p class="freq__boundary">⚠ {{ t.boundary }}</p>
+    <p class="freq__boundary">⚠ {{ tg(t.boundary) }}</p>
   </section>
 </template>
 

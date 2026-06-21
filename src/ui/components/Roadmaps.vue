@@ -10,7 +10,7 @@ import Badge from './ui/Badge'
 // The roadmaps, complete: three tracks, every milestone marked done, next, or
 // later. One source for where the portal is and where it is going.
 const data = roadmaps(buildMatrix())
-const { bg, pick, pickDeep } = useLocale()
+const { bg, pick, pickDeep, tg } = useLocale()
 
 const bgTrack: Record<string, string> = { cryptography: 'криптография', learning: 'учене', journey: 'пътуване' }
 const bgStatus: Record<string, string> = { done: 'готово', next: 'следва', later: 'по-късно' }
@@ -52,7 +52,7 @@ const t = computed(() =>
           <strong><span class="roadmaps__icon">{{ track.icon }}</span> {{ track.name }}</strong>
         </header>
         <ol class="roadmaps__list">
-          <li v-for="entry in track.milestones" :key="entry.milestone" :class="entry.status" :title="entry.note">
+          <li v-for="entry in track.milestones" :key="entry.milestone" :class="entry.status" :title="tg(entry.note)">
             <span class="roadmaps__title">{{ entry.title }}</span>
             <Badge :variant="statusVariant[entry.status]">{{ entry.label }}</Badge>
           </li>

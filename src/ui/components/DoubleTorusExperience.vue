@@ -39,7 +39,7 @@ import Badge from './ui/Badge'
 import Button from './ui/Button'
 import Card from './ui/Card'
 
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const head = computed(() =>
   bg.value
     ? { eyebrow: 'изчислено от диаманти', heading: '3D pi влак на двойния тор' }
@@ -149,8 +149,8 @@ onBeforeUnmount(() => {
   <Card id="diamond-lattice" class="double-torus-experience" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="double-torus-experience__header">
       <div>
-        <p class="eyebrow">{{ head.eyebrow }}</p>
-        <h3>{{ head.heading }}</h3>
+        <p class="eyebrow">{{ tg(head.eyebrow) }}</p>
+        <h3>{{ tg(head.heading) }}</h3>
         <p>
           D_pi[i] = (digit, facets[4], receipt, x,y,z, freq, vibration).
           |D| = {{ lattice.length }}. |D_pi| = {{ piTrain.diamonds.length }}.
@@ -158,24 +158,24 @@ onBeforeUnmount(() => {
       </div>
       <div class="double-torus-experience__badges">
         <Badge :variant="build.complete ? 'success' : 'warning'">
-          {{ build.complete ? 'max build' : 'build open' }}
+          {{ tg(build.complete ? 'max build' : 'build open') }}
         </Badge>
         <Badge :variant="selfCompletion.complete ? 'success' : 'warning'">
-          {{ selfCompletion.complete ? 'self complete' : 'self open' }}
+          {{ tg(selfCompletion.complete ? 'self complete' : 'self open') }}
         </Badge>
         <Badge :variant="agentWire.bound ? 'success' : 'warning'">
-          {{ agentWire.bound ? 'agent wired' : 'agent open' }}
+          {{ tg(agentWire.bound ? 'agent wired' : 'agent open') }}
         </Badge>
         <Badge :variant="completeness.complete ? 'success' : 'warning'">
-          {{ completeness.complete ? 'complete' : 'gaps' }}
+          {{ tg(completeness.complete ? 'complete' : 'gaps') }}
         </Badge>
         <Badge :variant="closure.complete ? 'success' : 'warning'">
-          {{ closure.complete ? 'waves sent' : 'gaps open' }}
+          {{ tg(closure.complete ? 'waves sent' : 'gaps open') }}
         </Badge>
         <Badge :variant="evidence.grounded ? 'success' : 'warning'">
-          {{ evidence.grounded ? 'grounded' : 'ungrounded' }}
+          {{ tg(evidence.grounded ? 'grounded' : 'ungrounded') }}
         </Badge>
-        <Badge :variant="running ? 'success' : 'outline'">{{ running ? 'running' : 'ready' }}</Badge>
+        <Badge :variant="running ? 'success' : 'outline'">{{ tg(running ? 'running' : 'ready') }}</Badge>
       </div>
     </div>
 
@@ -222,7 +222,7 @@ onBeforeUnmount(() => {
       <TabsContent value="pulse" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge variant="default">digit {{ activePulse.glyph }}</Badge>
-          <strong>{{ activeDiamond.title }}</strong>
+          <strong>{{ tg(activeDiamond.title) }}</strong>
           <span>
             folder={{ activePulse.folder }} · reverse={{ activePulse.reverseDigit }} ·
             fractions={{ activePulse.fraction }} | {{ activePulse.dualFraction }} ·
@@ -244,8 +244,8 @@ onBeforeUnmount(() => {
         <ul class="diamond-facets">
           <li v-for="facet in activeDiamond.facets" :key="facet.pole">
             <Badge variant="outline">{{ facet.pole }}</Badge>
-            <strong>{{ facet.label }}: {{ facet.value }}</strong>
-            <span>{{ facet.meaning }}</span>
+            <strong>{{ tg(facet.label) }}: {{ facet.value }}</strong>
+            <span>{{ tg(facet.meaning) }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
       <TabsContent value="folders" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge variant="default">digit folders</Badge>
-          <strong>{{ folders.statement }}</strong>
+          <strong>{{ tg(folders.statement) }}</strong>
           <span>{{ folders.folders.length }} folders · {{ folders.collisions.length }} self-collisions</span>
           <code>{{ folders.root }}</code>
         </div>
@@ -269,17 +269,17 @@ onBeforeUnmount(() => {
       <TabsContent value="digitProof" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="digitProof.proven ? 'success' : 'warning'">
-            {{ digitProof.proven ? 'digital proof closed' : 'digital proof open' }}
+            {{ tg(digitProof.proven ? 'digital proof closed' : 'digital proof open') }}
           </Badge>
-          <strong>{{ digitProof.statement }}</strong>
-          <span>{{ digitProof.boundary }}</span>
+          <strong>{{ tg(digitProof.statement) }}</strong>
+          <span>{{ tg(digitProof.boundary) }}</span>
           <code>{{ digitProof.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="gate in digitProof.gates" :key="gate.receipt">
-            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
-            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
-            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ tg(gate.closed ? 'closed' : 'open') }}</Badge>
+            <strong>{{ tg(gate.name) }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ tg(gate.note) }} Receipt: {{ gate.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -287,7 +287,7 @@ onBeforeUnmount(() => {
       <TabsContent value="metatron" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge variant="default">metatron</Badge>
-          <strong>{{ metatron.statement }}</strong>
+          <strong>{{ tg(metatron.statement) }}</strong>
           <span>|N|={{ metatron.nodes.length }} · |E|={{ metatron.edges.length }} · |Vortex|={{ metatron.vortex.length }}</span>
           <code>{{ metatron.root }}</code>
         </div>
@@ -310,9 +310,9 @@ onBeforeUnmount(() => {
       <TabsContent value="build" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="build.complete ? 'success' : 'warning'">
-            {{ build.complete ? 'maxBuild closed' : 'maxBuild open' }}
+            {{ tg(build.complete ? 'maxBuild closed' : 'maxBuild open') }}
           </Badge>
-          <strong>{{ build.statement }}</strong>
+          <strong>{{ tg(build.statement) }}</strong>
           <span>
             T_max = {{ build.maxTamperingCostLog2 === Number.POSITIVE_INFINITY ? 'infinity' : build.maxTamperingCostLog2 }}
             · open = {{ build.openUnits.length ? build.openUnits.join(', ') : 'none' }}
@@ -321,9 +321,9 @@ onBeforeUnmount(() => {
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="unit in build.buildUnits" :key="unit.receipt">
-            <Badge :variant="unit.closed ? 'success' : 'warning'">{{ unit.closed ? 'closed' : 'open' }}</Badge>
-            <strong>{{ unit.name }} · {{ unit.sourceFunction }}</strong>
-            <span>{{ unit.note }} Receipt: {{ unit.receipt }}</span>
+            <Badge :variant="unit.closed ? 'success' : 'warning'">{{ tg(unit.closed ? 'closed' : 'open') }}</Badge>
+            <strong>{{ tg(unit.name) }} · {{ unit.sourceFunction }}</strong>
+            <span>{{ tg(unit.note) }} Receipt: {{ unit.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -331,17 +331,17 @@ onBeforeUnmount(() => {
       <TabsContent value="self" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="selfCompletion.complete ? 'success' : 'warning'">
-            {{ selfCompletion.complete ? 'closed' : 'open' }}
+            {{ tg(selfCompletion.complete ? 'closed' : 'open') }}
           </Badge>
-          <strong>{{ selfCompletion.statement }}</strong>
-          <span>{{ selfCompletion.boundary }}</span>
+          <strong>{{ tg(selfCompletion.statement) }}</strong>
+          <span>{{ tg(selfCompletion.boundary) }}</span>
           <code>{{ selfCompletion.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="gate in selfCompletion.gates" :key="gate.receipt">
-            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
-            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
-            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ tg(gate.closed ? 'closed' : 'open') }}</Badge>
+            <strong>{{ tg(gate.name) }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ tg(gate.note) }} Receipt: {{ gate.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -349,17 +349,17 @@ onBeforeUnmount(() => {
       <TabsContent value="agent" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="agentWire.bound ? 'success' : 'warning'">
-            {{ agentWire.bound ? 'bound' : 'open' }}
+            {{ tg(agentWire.bound ? 'bound' : 'open') }}
           </Badge>
-          <strong>{{ agentWire.statement }}</strong>
-          <span>{{ agentWire.boundary }}</span>
+          <strong>{{ tg(agentWire.statement) }}</strong>
+          <span>{{ tg(agentWire.boundary) }}</span>
           <code>{{ agentWire.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="step in agentWire.steps" :key="step.receipt">
-            <Badge variant="outline">{{ step.name }}</Badge>
+            <Badge variant="outline">{{ tg(step.name) }}</Badge>
             <strong>{{ step.sourceFunction }} · {{ step.diamondKind }}</strong>
-            <span>{{ step.action }} Receipt: {{ step.receipt }}</span>
+            <span>{{ tg(step.action) }} Receipt: {{ step.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -367,9 +367,9 @@ onBeforeUnmount(() => {
       <TabsContent value="lattice" class="diamond-tabs__content">
         <ul class="diamond-lattice-list">
           <li v-for="diamond in lattice" :key="diamond.id">
-            <Badge :variant="diamond.status === 'closed' ? 'success' : 'warning'">{{ diamond.status }}</Badge>
-            <strong>{{ diamond.title }}</strong>
-            <span>{{ diamond.core }}</span>
+            <Badge :variant="diamond.status === 'closed' ? 'success' : 'warning'">{{ tg(diamond.status) }}</Badge>
+            <strong>{{ tg(diamond.title) }}</strong>
+            <span>{{ tg(diamond.core) }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -377,9 +377,9 @@ onBeforeUnmount(() => {
       <TabsContent value="complete" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="completeness.complete ? 'success' : 'warning'">
-            {{ completeness.complete ? 'no analog gaps' : 'analog gaps' }}
+            {{ tg(completeness.complete ? 'no analog gaps' : 'analog gaps') }}
           </Badge>
-          <strong>{{ completeness.statement }}</strong>
+          <strong>{{ tg(completeness.statement) }}</strong>
           <span>
             {{ completeness.presentKinds.length }}/{{ completeness.requiredKinds.length }} kinds ·
             {{ completeness.analogChannels.length }}/{{ completeness.analogChannels.length + completeness.missingAnalogChannels.length }} channels ·
@@ -399,12 +399,12 @@ onBeforeUnmount(() => {
           </li>
           <li>
             <Badge variant="outline">poles</Badge>
-            <strong>{{ completeness.missingPoles.length ? 'open' : 'north/east/south/west closed' }}</strong>
+            <strong>{{ tg(completeness.missingPoles.length ? 'open' : 'north/east/south/west closed') }}</strong>
             <span>Missing poles: {{ completeness.missingPoles.length ? completeness.missingPoles.join(', ') : 'none' }}</span>
           </li>
           <li>
             <Badge variant="outline">receipts</Badge>
-            <strong>{{ completeness.missingReceipts.length ? 'open' : 'all present' }}</strong>
+            <strong>{{ tg(completeness.missingReceipts.length ? 'open' : 'all present') }}</strong>
             <span>Missing receipts: {{ completeness.missingReceipts.length ? completeness.missingReceipts.join(', ') : 'none' }}</span>
           </li>
         </ul>
@@ -413,17 +413,17 @@ onBeforeUnmount(() => {
       <TabsContent value="evidence" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="evidence.grounded ? 'success' : 'warning'">
-            {{ evidence.grounded ? 'grounded' : 'ungrounded' }}
+            {{ tg(evidence.grounded ? 'grounded' : 'ungrounded') }}
           </Badge>
-          <strong>{{ evidence.statement }}</strong>
-          <span>{{ evidence.boundary }}</span>
+          <strong>{{ tg(evidence.statement) }}</strong>
+          <span>{{ tg(evidence.boundary) }}</span>
           <code>{{ evidence.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="item in evidence.useCases" :key="item.receipt">
             <Badge variant="outline">{{ item.diamondKind }}</Badge>
-            <strong>{{ item.name }} · {{ item.sourceFunction }}</strong>
-            <span>{{ item.component }}: {{ item.interaction }} Evidence: {{ item.evidence }}</span>
+            <strong>{{ tg(item.name) }} · {{ item.sourceFunction }}</strong>
+            <span>{{ item.component }}: {{ tg(item.interaction) }} Evidence: {{ tg(item.evidence) }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -431,14 +431,14 @@ onBeforeUnmount(() => {
       <TabsContent value="waves" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge variant="default">{{ waves.symbol }}</Badge>
-          <strong>{{ waves.statement }}</strong>
+          <strong>{{ tg(waves.statement) }}</strong>
           <code>{{ waves.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="wave in waves.waves" :key="wave.receipt">
             <Badge :variant="wave.polarity === 'yin' ? 'outline' : 'success'">{{ wave.polarity }}</Badge>
             <strong>{{ wave.diamondKind }} · phase {{ wave.phase.toFixed(3) }}</strong>
-            <span>{{ wave.statement }} Frequency {{ wave.frequency }}Hz · amplitude {{ wave.amplitude.toFixed(3) }}</span>
+            <span>{{ tg(wave.statement) }} Frequency {{ wave.frequency }}Hz · amplitude {{ wave.amplitude.toFixed(3) }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -446,9 +446,9 @@ onBeforeUnmount(() => {
       <TabsContent value="closure" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="closure.complete ? 'success' : 'warning'">
-            {{ closure.complete ? 'closed' : 'open' }}
+            {{ tg(closure.complete ? 'closed' : 'open') }}
           </Badge>
-          <strong>{{ closure.statement }}</strong>
+          <strong>{{ tg(closure.statement) }}</strong>
           <span>Targets: {{ closure.gaps.length ? closure.gaps.join(', ') : 'none' }}</span>
           <code>{{ closure.root }}</code>
         </div>
@@ -456,7 +456,7 @@ onBeforeUnmount(() => {
           <li v-for="item in closure.waves" :key="item.receipt">
             <Badge :variant="item.closed ? 'success' : 'warning'">{{ item.gapKind }}</Badge>
             <strong>{{ item.target }}</strong>
-            <span>{{ item.action }} · receipt {{ item.receipt }}</span>
+            <span>{{ tg(item.action) }} · receipt {{ item.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -464,7 +464,7 @@ onBeforeUnmount(() => {
       <TabsContent value="chess" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge variant="default">quantum board</Badge>
-          <strong>{{ chess.statement }}</strong>
+          <strong>{{ tg(chess.statement) }}</strong>
           <code>{{ chess.root }}</code>
         </div>
         <div class="quantum-chess-board" aria-label="Quantum chess board">
@@ -484,15 +484,15 @@ onBeforeUnmount(() => {
       <TabsContent value="schema" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge variant="default">schema.org</Badge>
-          <strong>{{ schema.statement }}</strong>
-          <span>{{ schema.nodes.length }} nodes · {{ schema.boundary }}</span>
+          <strong>{{ tg(schema.statement) }}</strong>
+          <span>{{ schema.nodes.length }} nodes · {{ tg(schema.boundary) }}</span>
           <code>{{ schema.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="node in schema.nodes.slice(0, 24)" :key="node['@id']">
             <Badge variant="outline">{{ node['@type'] }}</Badge>
-            <strong>{{ node.name }}</strong>
-            <span>{{ node.description }} Identifier: {{ node.identifier }}</span>
+            <strong>{{ tg(node.name) }}</strong>
+            <span>{{ tg(node.description) }} Identifier: {{ node.identifier }}</span>
           </li>
         </ul>
         <pre class="schema-json">{{ schemaJson }}</pre>
@@ -501,37 +501,37 @@ onBeforeUnmount(() => {
       <TabsContent value="science" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="science.grounded ? 'success' : 'warning'">
-            {{ science.grounded ? 'grounded society' : 'open society' }}
+            {{ tg(science.grounded ? 'grounded society' : 'open society') }}
           </Badge>
-          <strong>{{ science.charter }}</strong>
-          <span>{{ science.boundary }}</span>
+          <strong>{{ tg(science.charter) }}</strong>
+          <span>{{ tg(science.boundary) }}</span>
           <code>{{ science.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="role in science.roles" :key="role.receipt">
-            <Badge variant="outline">{{ role.name }}</Badge>
-            <strong>{{ role.responsibility }}</strong>
-            <span>{{ role.gate }} Receipt: {{ role.receipt }}</span>
+            <Badge variant="outline">{{ tg(role.name) }}</Badge>
+            <strong>{{ tg(role.responsibility) }}</strong>
+            <span>{{ tg(role.gate) }} Receipt: {{ role.receipt }}</span>
           </li>
         </ul>
         <ul class="diamond-lattice-list">
           <li v-for="gate in science.reviewGates" :key="gate.receipt">
-            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ gate.closed ? 'closed' : 'open' }}</Badge>
-            <strong>{{ gate.name }} · {{ gate.sourceFunction }}</strong>
-            <span>{{ gate.note }} Receipt: {{ gate.receipt }}</span>
+            <Badge :variant="gate.closed ? 'success' : 'warning'">{{ tg(gate.closed ? 'closed' : 'open') }}</Badge>
+            <strong>{{ tg(gate.name) }} · {{ gate.sourceFunction }}</strong>
+            <span>{{ tg(gate.note) }} Receipt: {{ gate.receipt }}</span>
           </li>
         </ul>
         <ul class="diamond-lattice-list">
           <li v-for="wave in science.optimizationWaves" :key="wave.receipt">
-            <Badge variant="outline">{{ wave.action }}</Badge>
-            <strong>{{ wave.target }} · {{ wave.metric }}</strong>
+            <Badge variant="outline">{{ tg(wave.action) }}</Badge>
+            <strong>{{ tg(wave.target) }} · {{ tg(wave.metric) }}</strong>
             <span>{{ wave.sourceFunction }} Receipt: {{ wave.receipt }}</span>
           </li>
         </ul>
         <ul class="diamond-lattice-list">
           <li v-for="cohort in science.cohorts" :key="cohort.receipt">
-            <Badge variant="outline">{{ cohort.cohort }}</Badge>
-            <strong>{{ cohort.purpose }}</strong>
+            <Badge variant="outline">{{ tg(cohort.cohort) }}</Badge>
+            <strong>{{ tg(cohort.purpose) }}</strong>
             <span>
               develops={{ cohort.develops.join(', ') }};
               coordinates={{ cohort.coordinatesWith.join(', ') }};
@@ -541,9 +541,9 @@ onBeforeUnmount(() => {
         </ul>
         <ul class="diamond-lattice-list">
           <li v-for="solid in science.solids" :key="solid.receipt">
-            <Badge variant="outline">{{ solid.solid }}</Badge>
-            <strong>{{ solid.builder }} · F{{ solid.faces }} E{{ solid.edges }} V{{ solid.vertices }}</strong>
-            <span>{{ solid.method }} Receipt: {{ solid.receipt }}</span>
+            <Badge variant="outline">{{ tg(solid.solid) }}</Badge>
+            <strong>{{ tg(solid.builder) }} · F{{ solid.faces }} E{{ solid.edges }} V{{ solid.vertices }}</strong>
+            <span>{{ tg(solid.method) }} Receipt: {{ solid.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -551,18 +551,18 @@ onBeforeUnmount(() => {
       <TabsContent value="artists" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="artists.grounded ? 'success' : 'warning'">
-            {{ artists.grounded ? 'grounded surfaces' : 'open surfaces' }}
+            {{ tg(artists.grounded ? 'grounded surfaces' : 'open surfaces') }}
           </Badge>
-          <strong>{{ artists.statement }}</strong>
+          <strong>{{ tg(artists.statement) }}</strong>
           <code>{{ artists.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="surface in artists.surfaces" :key="surface.receipt">
             <Badge variant="outline">{{ surface.surface }}</Badge>
-            <strong>{{ surface.artist }} · {{ surface.medium }} · {{ surface.audience.join(' + ') }}</strong>
+            <strong>{{ tg(surface.artist) }} · {{ surface.medium }} · {{ tg(surface.audience.join(' + ')) }}</strong>
             <span>{{ surface.equation }}</span>
-            <span>seo={{ surface.seoMessage }}</span>
-            <span>use={{ surface.proofByUse }} · receipt={{ surface.receipt }}</span>
+            <span>seo={{ tg(surface.seoMessage) }}</span>
+            <span>use={{ tg(surface.proofByUse) }} · receipt={{ surface.receipt }}</span>
           </li>
         </ul>
       </TabsContent>
@@ -570,7 +570,7 @@ onBeforeUnmount(() => {
       <TabsContent value="methods" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="methods.fused ? 'success' : 'warning'">
-            {{ methods.fused ? 'fused' : 'open' }}
+            {{ tg(methods.fused ? 'fused' : 'open') }}
           </Badge>
           <strong>{{ methods.law }}</strong>
           <span>open={{ methods.open.length ? methods.open.join(', ') : 'none' }}</span>
@@ -588,31 +588,31 @@ onBeforeUnmount(() => {
       <TabsContent value="traditions" class="diamond-tabs__content">
         <div class="diamond-readout">
           <Badge :variant="traditions.grounded ? 'success' : 'warning'">
-            {{ traditions.grounded ? 'grounded lens' : 'open lens' }}
+            {{ tg(traditions.grounded ? 'grounded lens' : 'open lens') }}
           </Badge>
-          <strong>{{ traditions.statement }}</strong>
-          <span>{{ traditions.boundary }}</span>
+          <strong>{{ tg(traditions.statement) }}</strong>
+          <span>{{ tg(traditions.boundary) }}</span>
           <code>{{ traditions.root }}</code>
         </div>
         <ul class="diamond-lattice-list">
           <li v-for="dimension in traditions.dimensions" :key="dimension.name">
             <Badge variant="outline">{{ dimension.diamondPole }}</Badge>
-            <strong>{{ dimension.name }} · {{ dimension.question }}</strong>
-            <span>{{ dimension.caution }}</span>
+            <strong>{{ tg(dimension.name) }} · {{ tg(dimension.question) }}</strong>
+            <span>{{ tg(dimension.caution) }}</span>
           </li>
         </ul>
         <ul class="diamond-lattice-list">
           <li v-for="family in traditions.families" :key="family.receipt">
-            <Badge variant="outline">{{ family.name }}</Badge>
-            <strong>{{ family.examples.join(', ') }}</strong>
-            <span>{{ family.lens }} Boundary: {{ family.boundary }}</span>
+            <Badge variant="outline">{{ tg(family.name) }}</Badge>
+            <strong>{{ tg(family.examples.join(', ')) }}</strong>
+            <span>{{ tg(family.lens) }} Boundary: {{ tg(family.boundary) }}</span>
           </li>
         </ul>
         <ul class="diamond-lattice-list">
           <li v-for="cell in traditions.societyCells" :key="cell.receipt">
-            <Badge variant="outline">{{ cell.dimension }}</Badge>
-            <strong>{{ cell.family }} -> {{ cell.societyFunction }}</strong>
-            <span>{{ cell.interaction }} Boundary: {{ cell.boundary }} Receipt: {{ cell.receipt }}</span>
+            <Badge variant="outline">{{ tg(cell.dimension) }}</Badge>
+            <strong>{{ tg(cell.family) }} -> {{ tg(cell.societyFunction) }}</strong>
+            <span>{{ tg(cell.interaction) }} Boundary: {{ tg(cell.boundary) }} Receipt: {{ cell.receipt }}</span>
           </li>
         </ul>
       </TabsContent>

@@ -11,7 +11,7 @@ import { buildMatrix, messageUnlock } from '../lib'
 // and forging a message means recomputing the model (max cost for the forger).
 // The message unlocks links, but the trinity must be complete to reveal them.
 const matrix = buildMatrix()
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 
 interface ChatMessage {
   content: string
@@ -75,26 +75,26 @@ const t = computed(() =>
 
 <template>
   <section class="chat dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="eyebrow">{{ t.eyebrow }}</p>
+    <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
     <div class="chat__log">
       <article v-for="(m, i) in messages" :key="i" class="chat__msg" :class="{ mine: m.mine }">
-        <p class="chat__content">{{ m.content }}</p>
-        <p class="chat__uuid"><span>{{ t.uuid }}:</span> <code>{{ m.contentUuid }}</code></p>
+        <p class="chat__content">{{ tg(m.content) }}</p>
+        <p class="chat__uuid"><span>{{ tg(t.uuid) }}:</span> <code>{{ m.contentUuid }}</code></p>
         <div v-if="m.unlocked.length" class="chat__unlocked">
-          <p class="chat__unlocked-label">🔓 {{ t.unlocked }}</p>
+          <p class="chat__unlocked-label">🔓 {{ tg(t.unlocked) }}</p>
           <p v-for="area in m.unlocked" :key="area.area" class="chat__area">
             <span class="chat__glyph">{{ area.glyph }}</span>
             <a v-for="link in area.links" :key="link.label" :href="link.href"><code>{{ link.label }}</code></a>
           </p>
         </div>
-        <p v-else class="chat__locked">🔒 {{ t.locked }}</p>
+        <p v-else class="chat__locked">🔒 {{ tg(t.locked) }}</p>
       </article>
     </div>
     <form class="chat__row" @submit.prevent="send">
-      <input v-model="draft" type="text" :placeholder="t.placeholder" :aria-label="t.placeholder" />
-      <button class="dt-btn" type="submit">{{ t.send }}</button>
+      <input v-model="draft" type="text" :placeholder="tg(t.placeholder)" :aria-label="tg(t.placeholder)" />
+      <button class="dt-btn" type="submit">{{ tg(t.send) }}</button>
     </form>
-    <p class="chat__note">{{ t.note }}</p>
+    <p class="chat__note">{{ tg(t.note) }}</p>
   </section>
 </template>
 

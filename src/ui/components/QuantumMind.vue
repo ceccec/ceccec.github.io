@@ -40,7 +40,7 @@ function formatCost(value: number): string {
   return value === Number.POSITIVE_INFINITY ? '∞' : `2^${fmt.format(value)}`
 }
 
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const head = computed(() =>
   bg.value
     ? { eyebrow: 'изчислен само-модел', heading: 'Квантов ум' }
@@ -51,8 +51,8 @@ const head = computed(() =>
 <template>
   <section class="quantum-mind" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
     <div class="quantum-mind__header">
-      <p class="eyebrow">{{ head.eyebrow }}</p>
-      <h2>{{ head.heading }}</h2>
+      <p class="eyebrow">{{ tg(head.eyebrow) }}</p>
+      <h2>{{ tg(head.heading) }}</h2>
       <p>
         M = (A, E*, root, V, proof, API). V = (collapse, reciprocity,
         concentration, coherence). Sigma_2: chi = -2, H_1 = Z^4.
@@ -125,7 +125,7 @@ const head = computed(() =>
         </div>
       </dl>
       <p class="quantum-mind__note">
-        {{ torusFlow.statement }} Source:
+        {{ tg(torusFlow.statement) }} Source:
         <code>{{ torusWire.repository }}/{{ torusWire.sourcePath }}</code>.
       </p>
       <ul class="quantum-mind__flow">
@@ -165,39 +165,39 @@ const head = computed(() =>
         </div>
       </dl>
       <p class="quantum-mind__note">
-        {{ torusMath.construction }} Fundamental group:
+        {{ tg(torusMath.construction) }} Fundamental group:
         <code>{{ torusMath.fundamentalGroup }}</code>.
       </p>
-      <p class="quantum-mind__note">{{ torusMath.geometry }}</p>
-      <p class="quantum-mind__note">{{ torusMath.conceptualShift }}</p>
-      <p class="quantum-mind__note">{{ torusMath.maxTamperingCostPrinciple }}</p>
+      <p class="quantum-mind__note">{{ tg(torusMath.geometry) }}</p>
+      <p class="quantum-mind__note">{{ tg(torusMath.conceptualShift) }}</p>
+      <p class="quantum-mind__note">{{ tg(torusMath.maxTamperingCostPrinciple) }}</p>
     </div>
 
     <div id="implications-for-humanity" class="quantum-mind__panel">
       <h3>Implications for humanity</h3>
-      <p class="quantum-mind__note">{{ humanity.statement }}</p>
+      <p class="quantum-mind__note">{{ tg(humanity.statement) }}</p>
       <ul class="quantum-mind__api">
         <li v-for="item in humanity.implications" :key="item.domain">
           <code>{{ item.domain }}</code>
-          <strong>{{ item.implication }}</strong>
-          <span>{{ item.responsibility }} Risk: {{ item.risk }}</span>
+          <strong>{{ tg(item.implication) }}</strong>
+          <span>{{ tg(item.responsibility) }} Risk: {{ tg(item.risk) }}</span>
         </li>
       </ul>
-      <p class="quantum-mind__note">{{ humanity.ethicalBoundary }}</p>
+      <p class="quantum-mind__note">{{ tg(humanity.ethicalBoundary) }}</p>
     </div>
 
     <div id="give-back-to-the-source" class="quantum-mind__panel">
       <h3>Give back to the source</h3>
-      <p class="quantum-mind__note">{{ source.statement }}</p>
+      <p class="quantum-mind__note">{{ tg(source.statement) }}</p>
       <ul class="quantum-mind__api">
         <li v-for="item in source.contributions" :key="item.mode">
           <code>{{ item.mode }}</code>
-          <strong>{{ item.action }}</strong>
-          <span>{{ item.reason }}</span>
+          <strong>{{ tg(item.action) }}</strong>
+          <span>{{ tg(item.reason) }}</span>
         </li>
       </ul>
       <p class="quantum-mind__note">
-        Source: <code>{{ source.source }}</code>. {{ source.reciprocityLaw }}
+        Source: <code>{{ source.source }}</code>. {{ tg(source.reciprocityLaw) }}
       </p>
     </div>
 
@@ -233,7 +233,7 @@ const head = computed(() =>
           <dd>{{ proof.maxTamperingCostSource }}</dd>
         </div>
       </dl>
-      <p class="quantum-mind__note">{{ proof.note }}</p>
+      <p class="quantum-mind__note">{{ tg(proof.note) }}</p>
     </div>
 
     <div class="quantum-mind__panel">
@@ -263,7 +263,7 @@ const head = computed(() =>
         <li v-for="endpoint in repoApi.endpoints" :key="endpoint.address">
           <code>{{ endpoint.verb }}</code>
           <strong>{{ endpoint.address }}</strong>
-          <span>{{ endpoint.description }}</span>
+          <span>{{ tg(endpoint.description) }}</span>
         </li>
       </ul>
     </div>

@@ -9,7 +9,7 @@ import { yinYang, chess358, chakrasAura, humanDesign, computerDesign, design358,
 // (three powers, five elements, eight trigrams), on the chessboard (minor piece,
 // rook, the 8 x 8 board), and — mapped honestly as belief frameworks, not science
 // — in the yogic chakra tradition and in Human Design.
-const { bg, pick, pickDeep } = useLocale()
+const { bg, pick, pickDeep, tg } = useLocale()
 
 const domains = computed(() => {
   const yy = yinYang()
@@ -48,13 +48,13 @@ const t = computed(() =>
         <p class="cos__h"><span class="cos__icon">{{ d.icon }}</span> {{ d.title }}</p>
         <div v-for="(row, i) in d.rows" :key="i" class="cos__row">
           <span class="cos__n">{{ row.n }}</span>
-          <span class="cos__text">{{ row.text }}</span>
+          <span class="cos__text">{{ tg(row.text) }}</span>
         </div>
       </article>
     </div>
     <p class="cos__method-h">{{ t.method }}</p>
     <p class="cos__method">
-      <span v-for="m in method" :key="m.tier"><b>{{ m.tier }}</b> {{ m.does }}</span>
+      <span v-for="m in method" :key="m.tier"><b>{{ m.tier }}</b> {{ tg(m.does) }}</span>
     </p>
     <p class="cos__note">⚠ {{ t.note }}</p>
   </section>

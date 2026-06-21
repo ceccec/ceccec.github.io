@@ -16,7 +16,7 @@ import { cryptoChallenges, findContentAddressCollision, addressEntropyBits, toUu
 
 const { localeIndex } = useData()
 const bg = computed(() => localeIndex.value === 'bg')
-const { pick } = useLocale()
+const { pick, tg } = useLocale()
 const t = (en, b) => pick(en, b)
 
 const cc = cryptoChallenges()
@@ -140,7 +140,7 @@ const showFlag = ref(true)
         <span class="cx__tag">{{ t('Wave 1 · exploit', 'Вълна 1 · експлойт') }}</span>
         <h3>{{ t('Watch a collision happen', 'Гледай как се случва колизия') }}</h3>
       </header>
-      <p class="cx__challenge">{{ cc.waves[0].challenge }}</p>
+      <p class="cx__challenge">{{ tg(cc.waves[0].challenge) }}</p>
       <div class="cx__live">
         <figure class="cx__canvas-wrap">
           <canvas ref="canvasEl" :width="SIDE" :height="SIDE" class="cx__canvas"
@@ -173,7 +173,7 @@ const showFlag = ref(true)
           </button>
         </div>
       </div>
-      <p class="cx__weak">{{ cc.waves[0].weakness }}</p>
+      <p class="cx__weak">{{ tg(cc.waves[0].weakness) }}</p>
     </article>
 
     <!-- WAVE 2 — the honest bit-budget -->
@@ -182,7 +182,7 @@ const showFlag = ref(true)
         <span class="cx__tag">{{ t('Wave 2 · audit', 'Вълна 2 · одит') }}</span>
         <h3>{{ t('"128 bits" is really 122', '„128 бита“ всъщност са 122') }}</h3>
       </header>
-      <p class="cx__challenge">{{ cc.waves[1].challenge }}</p>
+      <p class="cx__challenge">{{ tg(cc.waves[1].challenge) }}</p>
       <ul class="cx__budget" role="list">
         <li v-for="b in budget" :key="b.label" class="cx__bud" :class="`cx__bud--${b.tone}`">
           <span class="cx__bud-label">{{ b.label }}</span>
@@ -192,7 +192,7 @@ const showFlag = ref(true)
           <span class="cx__bud-num">{{ b.bits }}-bit · {{ t('collision', 'колизия') }} ~2<sup>{{ b.birthday }}</sup></span>
         </li>
       </ul>
-      <p class="cx__weak">{{ cc.waves[1].weakness }} — {{ t('the 6 masked bits are the UUID version nibble + 2 variant bits; bit-WIDTH is not security strength.', '6-те маскирани бита са версията на UUID + 2 варианта; ширината в битове не е сила на сигурност.') }}</p>
+      <p class="cx__weak">{{ tg(cc.waves[1].weakness) }} — {{ t('the 6 masked bits are the UUID version nibble + 2 variant bits; bit-WIDTH is not security strength.', '6-те маскирани бита са версията на UUID + 2 варианта; ширината в битове не е сила на сигурност.') }}</p>
     </article>
 
     <!-- WAVE 3 — integrity is not authenticity -->
@@ -201,14 +201,14 @@ const showFlag = ref(true)
         <span class="cx__tag">{{ t('Wave 3 · forge', 'Вълна 3 · фалшификат') }}</span>
         <h3>{{ t('Mint a valid root for tampered content', 'Изкови валиден корен за подправено съдържание') }}</h3>
       </header>
-      <p class="cx__challenge">{{ cc.waves[2].challenge }}</p>
+      <p class="cx__challenge">{{ tg(cc.waves[2].challenge) }}</p>
       <div class="cx__forge">
         <div class="cx__doc-row"><span>{{ t('authorized', 'оторизирано') }}</span><code>{{ w3.authorizedRoot }}</code><span class="cx__pill cx__pill--yes">{{ t('valid uuid', 'валиден uuid') }}</span></div>
         <div class="cx__doc-row cx__doc-row--bad"><span>{{ t('tampered', 'подправено') }}</span><code>{{ w3.tamperedRoot }}</code><span class="cx__pill cx__pill--yes">{{ t('valid uuid', 'валиден uuid') }}</span></div>
       </div>
-      <p class="cx__weak">{{ cc.waves[2].weakness }}</p>
+      <p class="cx__weak">{{ tg(cc.waves[2].weakness) }}</p>
       <p class="cx__solution cx__solution--ok">
-        <span class="cx__pill cx__pill--fix">{{ t('solution', 'решение') }}</span>{{ cc.waves[2].solution }}
+        <span class="cx__pill cx__pill--fix">{{ t('solution', 'решение') }}</span>{{ tg(cc.waves[2].solution) }}
       </p>
     </article>
 
@@ -219,7 +219,7 @@ const showFlag = ref(true)
           {{ showDoc ? '▾' : '▸' }} {{ t('Documented', 'Документирано') }} ({{ cc.documented.length }})
         </button>
         <ul v-show="showDoc" role="list" class="cx__list">
-          <li v-for="(d, i) in cc.documented" :key="`d${i}`">{{ d }}</li>
+          <li v-for="(d, i) in cc.documented" :key="`d${i}`">{{ tg(d) }}</li>
         </ul>
       </section>
       <section>
@@ -227,14 +227,14 @@ const showFlag = ref(true)
           {{ showFlag ? '▾' : '▸' }} {{ t('Bounds flagged', 'Граници отбелязани') }} ({{ cc.flagged.length }})
         </button>
         <ul v-show="showFlag" role="list" class="cx__list cx__list--flag">
-          <li v-for="(f, i) in cc.flagged" :key="`f${i}`">{{ f }}</li>
+          <li v-for="(f, i) in cc.flagged" :key="`f${i}`">{{ tg(f) }}</li>
         </ul>
       </section>
     </div>
 
     <p class="cx__verdict">
       <span class="cx__pill" :class="cc.redTeamed ? 'cx__pill--yes' : 'cx__pill--no'">{{ cc.redTeamed ? t('red-teamed ✓', 'атакувано ✓') : '—' }}</span>
-      {{ cc.statement }}
+      {{ tg(cc.statement) }}
     </p>
   </section>
 </template>

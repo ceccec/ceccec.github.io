@@ -13,7 +13,7 @@ import { buildMatrix, selfConsult } from '../lib'
 const matrix = buildMatrix()
 const query = ref('')
 const result = computed(() => selfConsult(query.value, matrix))
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 const t = computed(() =>
   bg.value
     ? {
@@ -39,22 +39,22 @@ const t = computed(() =>
 
 <template>
   <section class="consult dt-card" :data-hexagram="ICHING_MASK.hexagram" :data-trigram="ICHING_MASK.glyph">
-    <p class="eyebrow">{{ t.eyebrow }}</p>
-    <p class="consult__flow">{{ t.flow }}</p>
-    <input v-model="query" type="text" :placeholder="t.placeholder" class="consult__input" :aria-label="t.placeholder" />
+    <p class="eyebrow">{{ tg(t.eyebrow) }}</p>
+    <p class="consult__flow">{{ tg(t.flow) }}</p>
+    <input v-model="query" type="text" :placeholder="tg(t.placeholder)" class="consult__input" :aria-label="tg(t.placeholder)" />
     <template v-if="query.trim()">
-      <p class="consult__label">{{ t.answer }}</p>
-      <p class="consult__answer">{{ result.answer }}</p>
+      <p class="consult__label">{{ tg(t.answer) }}</p>
+      <p class="consult__answer">{{ tg(result.answer) }}</p>
       <p v-if="result.sources.length" class="consult__sources">
-        <span>{{ t.sources }}:</span>
+        <span>{{ tg(t.sources) }}:</span>
         <code v-for="s in result.sources" :key="s">{{ s }}</code>
       </p>
       <p class="consult__status" :class="result.resolvedInHouse ? 'ok' : 'esc'">
-        {{ result.resolvedInHouse ? t.resolved : t.escalate }}
+        {{ result.resolvedInHouse ? tg(t.resolved) : tg(t.escalate) }}
       </p>
       <ul v-if="result.links.length" class="consult__links">
         <li v-for="link in result.links" :key="link.route">
-          <a :href="link.route">{{ link.title }}</a> — <small>{{ link.detail }}</small>
+          <a :href="link.route">{{ tg(link.title) }}</a> — <small>{{ tg(link.detail) }}</small>
         </li>
       </ul>
     </template>

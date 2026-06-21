@@ -2,6 +2,7 @@
 // ☷ Kūn · Earth · receptive · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 5, glyph: '☷', trigram: 'Kūn·receptive', color: '#000F0F' }
 import { computed, ref, watch } from 'vue'
+import { useLocale } from '../lib'
 import { pflip, admixToward, injectError, sampleCounts, composeHazard, survive, markovEvolve, stationary, aksakRatioWalk, codeRobustness } from '../lib'
 
 // The probabilistic-process SIMULATOR — the honest classical model a research fleet found under most decoded
@@ -183,6 +184,7 @@ const CONFIGS: Record<string, Config> = {
   },
 }
 
+const { tg } = useLocale()
 const props = defineProps<{ domain?: string }>()
 const domains = Object.keys(CONFIGS)
 const sel = ref(props.domain && CONFIGS[props.domain] ? props.domain : domains[0])
@@ -254,11 +256,11 @@ const codonRows = computed(() => [
       </select>
       <span class="ps-tag">{{ mode }} · classical</span>
     </div>
-    <div class="ps-title">{{ cfg.title }}</div>
+    <div class="ps-title">{{ tg(cfg.title) }}</div>
 
     <div v-if="cfg.levers && cfg.levers.length" class="ps-levers">
       <label v-for="l in cfg.levers" :key="l.key" class="ps-lever" :class="l.kind">
-        {{ l.label }}
+        {{ tg(l.label) }}
         <input v-model.number="lever[l.key]" type="range" :min="l.min" :max="l.max" :step="l.step" aria-label="lever (slider)">
         <code>{{ (lever[l.key] ?? l.def).toFixed(l.step < 0.01 ? 3 : 2) }}</code>
       </label>
@@ -334,7 +336,7 @@ const codonRows = computed(() => [
       </div>
     </template>
 
-    <p class="ps-note">{{ cfg.caption }}</p>
+    <p class="ps-note">{{ tg(cfg.caption) }}</p>
   </div>
 </template>
 

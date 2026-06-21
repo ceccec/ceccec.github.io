@@ -2,6 +2,7 @@
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 39, lo: '☰', up: '☶', glyph: '☶', color: '#F00FFF', name: 'Gèn', principle: 'keeping still' }
 import { computed, ref, watch } from 'vue'
+import { useLocale } from '../lib'
 import {
   cycleAdvance,
   residueVector,
@@ -28,6 +29,8 @@ import {
 //               powerSpectrum its Web-Audio-style 0..255 magnitude bars.
 // Honest throughout: these are deterministic SIMULATORS (seeded where random), not the machines —
 // not a real calendar, not a real motor, not a live spectrum analyser.
+
+const { tg } = useLocale()
 
 type Mode = 'calendars' | 'tesla' | 'frequency-apis'
 type Lever = { key: string; label: string; min: number; max: number; step: number; def: number }
@@ -159,11 +162,11 @@ const wavePath = computed(() => {
       </select>
       <span class="ds-tag">{{ sel }} · simulator</span>
     </div>
-    <div class="ds-title">{{ title }}</div>
+    <div class="ds-title">{{ tg(title) }}</div>
 
     <div v-if="levers.length" class="ds-levers">
       <label v-for="l in levers" :key="l.key" class="ds-lever">
-        {{ l.label }}
+        {{ tg(l.label) }}
         <input v-model.number="lever[l.key]" type="range" :min="l.min" :max="l.max" :step="l.step" aria-label="lever (slider)">
         <code>{{ (lever[l.key] ?? l.def).toFixed(l.step < 0.1 ? 2 : l.step < 1 ? 1 : 0) }}</code>
       </label>
@@ -178,7 +181,7 @@ const wavePath = computed(() => {
       <div class="ds-panel">
         <div class="ds-panel-h">wheels · position in each cycle <span>residue = date-in-wheel</span></div>
         <div v-for="r in calRows" :key="r.name" class="ds-row">
-          <code>{{ r.name }}</code>
+          <code>{{ tg(r.name) }}</code>
           <svg class="ds-dial" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="10" fill="none" stroke="var(--vp-c-divider)" stroke-width="2" />
             <line
@@ -255,11 +258,9 @@ const wavePath = computed(() => {
       </div>
     </template>
 
-    <p class="ds-note">{{ caption }}</p>
+    <p class="ds-note">{{ tg(caption) }}</p>
     <p class="ds-note ds-honest">
-      These are deterministic SIMULATORS — seeded where random (oscillatorBank), pure functions of the
-      sliders elsewhere — not the physical systems: not a real calendar, not a real induction motor, not a
-      live spectrum analyser.
+      {{ tg('These are deterministic SIMULATORS — seeded where random (oscillatorBank), pure functions of the sliders elsewhere — not the physical systems: not a real calendar, not a real induction motor, not a live spectrum analyser.') }}
     </p>
   </div>
 </template>

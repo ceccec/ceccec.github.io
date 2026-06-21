@@ -12,7 +12,7 @@ const matrix = buildMatrix()
 const data = electromagneticRadiationDecoded(matrix)
 // The four simulators, RUN — each a deterministic, content-addressed shared experiment (params → one receipt).
 const lab = electromagneticExperiments(matrix)
-const { bg } = useLocale()
+const { bg, tg } = useLocale()
 
 // The one computed figure per modality (keV / Larmor MHz / radar metres-per-µs), shown as a chip.
 const modalities = computed(() =>
@@ -54,7 +54,7 @@ const t = computed(() =>
     <ul class="emr__grid">
       <li v-for="m in modalities" :key="m.modality" :class="{ ionizing: m.ionizing }" :title="m.mechanism">
         <div class="emr__head">
-          <strong>{{ m.modality }}</strong>
+          <strong>{{ tg(m.modality) }}</strong>
           <span class="emr__badge" :class="m.ionizing ? 'is-ion' : 'is-non'">{{ m.ionizing ? t.ion : t.non }}</span>
         </div>
         <code class="emr__band">{{ m.band }}</code>
@@ -71,7 +71,7 @@ const t = computed(() =>
     <ul class="emr__exps">
       <li v-for="e in lab.experiments" :key="e.modality" :class="{ ionizing: e.ionizing }">
         <span class="emr__badge" :class="e.ionizing ? 'is-ion' : 'is-non'">{{ e.ionizing ? t.ion : t.non }}</span>
-        <strong>{{ e.modality }}</strong>
+        <strong>{{ tg(e.modality) }}</strong>
         <span class="emr__exprun">{{ e.run }}</span>
         <code class="emr__receipt" :title="e.root">{{ e.receipt.slice(0, 8) }}</code>
       </li>
@@ -81,7 +81,7 @@ const t = computed(() =>
       <summary>{{ t.dropped }} · {{ data.flagged.length }}</summary>
       <ul>
         <li v-for="f in data.flagged" :key="f.claim" :title="f.why">
-          <span class="emr__verdict">{{ f.verdict }}</span> {{ f.claim }}
+          <span class="emr__verdict">{{ tg(f.verdict) }}</span> {{ tg(f.claim) }}
         </li>
       </ul>
     </details>

@@ -10,7 +10,7 @@ import { staticPages, conceptCommands, monographs, foldedCensus, buildMatrix } f
 import { useLocale } from '../lib'
 
 const { localeIndex } = useData()
-const { pick } = useLocale()
+const { pick, tg } = useLocale()
 const bg = computed(() => localeIndex.value === 'bg')
 const pfx = computed(() => (localeIndex.value === 'bg' ? '/bg/' : localeIndex.value === 'en' ? '/en/' : '/'))
 
@@ -54,7 +54,7 @@ const stats = computed(() => [
       <a v-for="d in domains" :key="d.slug" class="ov__card" :href="d.link">
         <span class="ov__title">{{ d.title }}</span>
         <span class="ov__abstract">{{ d.abstract }}</span>
-        <span v-if="d.keywords.length" class="ov__kw">{{ d.keywords.join(' · ') }}</span>
+        <span v-if="d.keywords.length" class="ov__kw">{{ tg(d.keywords.join(' · ')) }}</span>
       </a>
     </div>
   </section>
