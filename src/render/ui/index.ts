@@ -90,6 +90,7 @@ import TrinitySearch from './components/TrinitySearch'
 import VitePressPossibilities from './components/VitePressPossibilities'
 import WebCryptoSeal from './components/WebCryptoSeal'
 import HolographicHero from './components/ui/HolographicHero'
+import DocHeroGate from './components/ui/DocHeroGate'
 import BackgroundMovie from './components/ui/BackgroundMovie'
 import PlayMind from './components/ui/PlayMind'
 // The brand-new self-computed components: a Dot fills itself from its seed (uuidHero), a Vortex lays
@@ -206,8 +207,8 @@ export default {
       'layout-top': () => h(BackgroundMovie),
       // Every page opens with an animated holographic-fractal hero that merges all
       // the page's related items (category and tags), seeded from the page itself.
-      'doc-before': () => h(HolographicHero),
-      // Let quantum present itself as fractals on the holographic homepage too.
+      'doc-before': () => h(DocHeroGate),
+      // Home layout: holographic fractal hero above the VPHomeHero copy (doc-before is gated off on home).
       'home-hero-before': () => h(HolographicHero),
       'aside-ads-before': () => h(RevolutAside),
       'aside-outline-before': () => h(VitePressPossibilities),

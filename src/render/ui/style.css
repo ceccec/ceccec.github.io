@@ -92,6 +92,47 @@
 }
 
 /**
+ * Home: fullscreen hero — holographic canvas fills the viewport; VPHomeHero copy overlays it.
+ * The holo-hero block holds height in document flow; VPHomeHero is absolutely positioned over it.
+ */
+.VPHome {
+  position: relative;
+}
+.VPHome > .holo-hero--home {
+  margin: 0;
+  width: 100%;
+  min-height: calc(100dvh - var(--vp-nav-height, 64px));
+  border: none;
+  border-radius: 0;
+}
+.VPHome > .holo-hero--home .holo-hero__canvas {
+  min-height: calc(100dvh - var(--vp-nav-height, 64px));
+}
+.VPHome > .VPHomeHero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: calc(100dvh - var(--vp-nav-height, 64px));
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  background: transparent;
+}
+.VPHome > .VPHomeHero .container,
+.VPHome > .VPHomeHero .actions,
+.VPHome > .VPHomeHero a,
+.VPHome > .VPHomeHero button {
+  pointer-events: auto;
+}
+.VPHome > .VPFeatures,
+.VPHome > .vp-doc {
+  position: relative;
+  z-index: 2;
+}
+
+/**
  * Component: Custom Block
  * -------------------------------------------------------------------------- */
 

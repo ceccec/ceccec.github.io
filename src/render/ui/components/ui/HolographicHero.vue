@@ -14,6 +14,7 @@ import { drawHero, buildArchNodes, makeBurst, seedOf, hueOf, armsOf, HEALING_PAI
 // tap gestures, drives the shared animation engine (src/0, via createAnimationEngine) with its draw, and
 // hands each frame's scene to drawHero. Energy-aware, reduced-motion aware. Lives in components/ui (a shared primitive).
 const { page, frontmatter, title, description } = useData()
+const isHome = computed(() => frontmatter.value.layout === 'home')
 const { saveEnergy } = useDeviceEnergy()
 const { blip } = useTones()
 const { tg } = useLocale() // transcode the healing-mode label in the gla locale
@@ -86,8 +87,12 @@ const engine = createAnimationEngine(draw)
 function animateBursts() {
   engine.runWhile(() => bursts.length > 0)
 }
-// The height follows the width, capped so it stays a banner; native resolution to the device's pixel ratio
-// (guarded by a 64K ceiling).
+// Height: full-screen on home (viewport minus nav); OG-ratio banner (1200×630, capped) on doc pages.
+// Native resolution to device pixel ratio, guarded by a 64K ceiling.
+function navOffset() {
+  if (typeof window === 'undefined') return 64
+  return document.querySelector('.VPNav')?.getBoundingClientRect().height ?? 64
+}
 function size() {
   const el = canvas.value
   if (!el) return
@@ -95,7 +100,9 @@ function size() {
   const w = el.clientWidth
   if (!w) return // not laid out yet (the <ClientOnly> first tick, a hidden tab); the ResizeObserver fires size() again when it is
   cssWidth = w
-  const h = Math.min(Math.round((w * 630) / 1200), 460) // OG 1200x630, capped to a banner
+  const h = isHome.value
+    ? Math.max(320, Math.round(window.innerHeight - navOffset()))
+    : Math.min(Math.round((w * 630) / 1200), 460)
   el.width = Math.min(61440, w * ratio)
   el.height = Math.min(61440, h * ratio)
   el.style.height = `${h}px`
@@ -183,7 +190,7 @@ function tap(event: PointerEvent | MouseEvent) {
 
 <template>
   <ClientOnly>
-    <section class="holo-hero" :style="{ '--hue': hue }">
+    <section class="holo-hero" :class="{ 'holo-hero--home': isHome }" :style="{ '--hue': hue }">
       <canvas ref="canvas" class="holo-hero__canvas" role="img" aria-label="holographic hero — the 3-trinity double-torus architecture in Glagolitic glyphs, fully computed and turning; tap to play harmonic healing music streams" @pointerdown="tap" />
       <div class="holo-hero__controls">
         <button
@@ -196,7 +203,7 @@ function tap(event: PointerEvent | MouseEvent) {
         >♪ {{ musicOn ? 'on' : 'off' }}</button>
         <span class="holo-hero__mode">{{ tg('healing · ' + healingPair) }}</span>
       </div>
-      <div class="holo-hero__og">
+      <div v-if="!isHome" class="holo-hero__og">
         <span class="holo-hero__cat">{{ category }}</span>
         <strong class="holo-hero__title">{{ ogTitle }}</strong>
         <span v-if="ogDescription" class="holo-hero__desc">{{ ogDescription }}</span>

@@ -1,18 +1,16 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
-# All is revealable through frontmatter: these fields enrich the page's schema.org
-# and meta without touching the body (honored by transformPageData in config.mts).
 layout: home
 keywords:
   - quantum learning
-  - language models
-  - MCP
-  - double torus
   - educational portal
+  - double torus
+  - self-verifying
+  - I Ching
 teaches:
   - quantum learning
-  - Model Context Protocol
   - self-verifying architecture
+  - plain-language science
 audience:
   - kids
   - students
@@ -21,10 +19,13 @@ audience:
 
 hero:
   name: "Double Torus"
-  text: "A quantum-learning portal that computes itself"
-  tagline: "Organised by the I Ching Three Powers (三才) — 天 Heaven (mind · science · computation), 人 Human (voice · spirit · heritage) and 地 Earth (form · nature) — the complete triad that covers all. Every page, proof and ten-dimensional animation is computed from one source, content-addressed and verifiable; for language models it is an MCP tool surface over a double-torus UUID stream. χ(Σ₂) = −2, H₁(Σ₂) = ℤ⁴ — four homology loops + six cross-fold axes = the ten dimensions."
+  text: "Learn, explore, and verify — at any age"
+  tagline: "A free portal organised by the I Ching Three Powers (三才) — 天 Heaven (mind · science · computation), 人 Human (voice · spirit · heritage) and 地 Earth (form · nature). Every page is computed from one open source you can check yourself. No account, nothing hidden."
   actions:
     - theme: brand
+      text: Start here
+      link: /start
+    - theme: alt
       text: 天 Heaven — the mind
       link: /heaven
     - theme: alt
@@ -33,96 +34,68 @@ hero:
     - theme: alt
       text: 地 Earth — the world
       link: /earth
-    - theme: alt
-      text: MCP tools
-      link: /mcp
 
 features:
+  - title: Start here
+    details: "Four plain steps — see, learn, use, prove — with the full depth one tap away."
+    link: /start
+    linkText: Begin
   - title: 天 Heaven — the mind
-    details: "The creative & cosmic power: mind, science, computation. The first of the Three Powers."
+    details: "Mind, science and computation — proofs, simulators and the living shape."
     link: /heaven
     linkText: Enter Heaven
   - title: 人 Human — for everyone
-    details: "The communicative & social power: voice, spirit, heritage. Humanity between Heaven and Earth."
+    details: "Voice, spirit and heritage — movies, paths and plain language for every age."
     link: /human
     linkText: Enter Human
   - title: 地 Earth — the world
-    details: "The material & natural power: form and nature. The ground that completes the triad — 64³."
+    details: "Form and nature — geometry, measurement and the world as you experience it."
     link: /earth
     linkText: Enter Earth
+  - title: See it in action
+    details: "Every widget live — simulators, proofs, devices and the full interactive tour."
+    link: /show
+    linkText: Open the showcase
   - title: Ask, and it answers
     details: "Every action gives back a result you can check — nothing hidden."
     link: /console
     linkText: Open the console
-  - title: The double torus
-    details: "A gentle two-holed shape that holds the whole design together."
-    link: /quantum-mind
-    linkText: See the shape
   - title: Diamonds
     details: "Each idea becomes a tiny, tamper-proof point you can verify."
     link: /diamonds/
     linkText: Browse the diamonds
-  - title: Atoms
-    details: "The smallest pieces, each with its own fingerprint."
-    link: /architecture
-    linkText: How it is built
-  - title: Quantum-like
-    details: "States that hold many possibilities until you look."
-    link: /quantum-mind
-    linkText: The quantum mind
-  - title: People in the loop
-    details: "Audit, responsibility and care stay with the humans."
-    link: /governance
-    linkText: Governance
-  - title: Give back
-    details: "Value returns to the people and places it came from."
-    link: /governance
-    linkText: Fair life
-  - title: Unforgeable
-    details: "To fake it you'd have to rebuild everything — so no one can."
-    link: /architecture
-    linkText: The seal
-  - title: Everything is open
-    details: "Pages, source and proofs are all readable and reusable."
-    link: /mcp
-    linkText: The tool surface
   - title: For AI agents
-    details: "A clean tool surface — compute, verify, receipt."
+    details: "A clean MCP tool surface — compute, verify, receipt."
     link: /mcp
     linkText: MCP tools
-  - title: For everyone
-    details: "Use it, inspect it, reproduce it — accept or reject."
-    link: /show
-    linkText: See it in action
-  - title: Proof by use
-    details: "It is true because you can check it yourself."
-    link: /boundaries
-    linkText: Every boundary
 ---
 
 
-<!-- The homepage is the double torus showing itself. Above this body, the holographic hero animates in ten
-     dimensions (four genus-2 homology loops + six cross-fold axes), self-similar at every scale. The Compass
-     fuses search and navigation. Below, the whole portal is organised under the I Ching THREE POWERS (三才:
-     天 Heaven · 人 Human · 地 Earth — the complete triad), each gathering its share of the eight trigram
-     domains: Heaven (☰ mind · ☳ science · ☲ computation), Human (☵ voice · ☱ spirit · ☷ heritage),
-     Earth (☶ form · ☴ nature). Nothing removed; the eight-fold regrouped under the three powers that cover all. -->
+<!-- Human landing above the fold; the homepage is the double torus showing itself below. The holographic
+     hero is full-screen; every section — living torus, hologram, simulators, proofs, movies — is computed
+     from one source and animates live. Organised under the I Ching THREE POWERS (三才). -->
+
+## Start here
+
+Four steps everyone can follow — scroll down for the live animations, or dive straight into any power.
+
+<StartHere />
 
 ## ◆ What's here — the whole portal, computed
 
-This map is computed from the same one source as the README: every domain with its honest one-line abstract and a link into the depth. Read it to know the portal at a glance, then dive in.
+Every domain below is computed from the same one source as the README: a title, one honest line, and a link into the depth.
 
 <SiteOverview />
 
-## 🔍 The quantum polygraph — paste anything, see every step
+## Try it — paste any text
 
-The honest inverse of the discredited polygraph: it reads the **statement**, not the body — no arousal, no heart-rate, no voice-stress, no black box. Paste a URL or any text and watch the whole engine compute it, deterministically and client-side with zero tokens: its I Ching signature, the manipulation thermal field (weaknesses in colour), the algebra (true and false coexist), the ten true/false dualities, a SHA-256 forensic chain of custody anyone can reproduce, and a harmonic alternative. **Harmony ≠ truth** — it flags documented patterns in-domain, it does not detect lies or read minds. (The conventional polygraph measures arousal, not deception, and performs near chance — National Academies 2003.)
+Paste a URL or a sentence and watch the engine analyse it in your browser — no server, no black box. It flags documented rhetorical patterns; **harmony ≠ truth** and it does not read minds.
 
 <QuantumLens />
 
-## ⌖ Find your way — search or navigate
+## Find your way
 
-Navigation and search are one here: type to filter every page by name or domain, or just browse the eight-fold. Client-side, zero-network — it searches the same computed nav the top bar's Three Powers (天 Heaven · 人 Human · 地 Earth) open.
+Type to search every page, or browse by the Three Powers in the nav bar above.
 
 <Compass />
 
