@@ -27,7 +27,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 - 42 monographs (content pages, the harmonic count: 44 surface pages fold through the genus-2 torus −χ to 42 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
 - 108 concept commands, each a single-word method and an MCP tool.
-- 182 entries in the reference index, zero redundancy.
+- 183 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 
 - **天 Heaven — the creative power** — Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/PowerLanding.vue)
@@ -121,11 +121,11 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `919ba324-8f13-8fa6-b9d5-1dc8828530b9`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `6d6483ce-e014-86be-8bda-1fe9740ed29b`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `be69b519-4a21-850d-acb2-c96c4a1985fe`
+- Receipt: `160fdd23-85e1-8f42-9f17-30894b50d2ef`
