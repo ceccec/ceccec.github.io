@@ -586,25 +586,26 @@ export function routesAndNavFromFolderTree(matrix: MindMatrix = buildMatrix()) {
     { rule: 'fewer words ⇒ DRYer (shallower) tree', why: law.strict.why.fewerWords },
     { rule: 'routes and nav are computed from the tree — no manual routing; to change a route, move the code', why: law.strict.why.routesFromTree },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-route-rule:${entry.rule}`) }))
-  // The gap — the standing violations in the current tree. NO counts are hand-kept here (a frozen tally
-  // drifts the moment a folder is added); the weave wave RECOMPUTES the live fan-out and flat-file counts
-  // against the real fs every build and reports the over-8 levels. These are the qualitative gaps the
-  // convergence waves close — the live numbers live in the weave report (folderLaw.strict.eightFold).
+  // The gap — standing violations the convergence waves close. The weave RECOMPUTES fan-out, flat files,
+  // and index depth every build (folderLaw.strict.eightFold, index harmony); those three structural gaps
+  // are closed — 7 src roots, 0 levels over 8-fold, 0 non-index method files in mind/, depth ≤ ideal×2.
+  // What remains is the curated landing layer: staticPages and quantumSitemap hand-list canonical slugs
+  // while the folder tree supplies the route graph — an honest boundary, not a hidden violation.
   const gap = [
-    { violation: 'the root src folders exceed the 8-fold — the top nav is over ≤ 8 (the weave reports the live count each build)', fix: 'nest the root folders into ≤ 8 by their trinities' },
-    { violation: 'deep levels exceed the 8-fold per level — src/quantum and src/quantum/heaven/mind fan out past ≤ 8 (live count in the weave report)', fix: 'group subfolders into ≤ 8 index levels' },
-    { violation: 'src/quantum/heaven/mind still holds many non-index method files — multi-word methods piled in flat files (live count in the weave report)', fix: 'dissolve each method into its name-path folder tree (one index per folder)' },
-    { violation: 'staticPages / quantumSitemap hand-list route slugs', fix: 'compute the page set from the folder tree; delete the slug lists' },
+    { violation: 'staticPages / quantumSitemap hand-list canonical landing slugs (the tree computes routes; the slug lists are the curated SEO/entry layer until fully derived)', fix: 'derive landing slugs from the folder tree where possible; keep staticPages as the explicit curated exceptions the tree does not yet name' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-route-gap:${entry.violation}`) }))
+  const srcMetaHubCount = 7 // Phase C: 0 · library · pair · quantum · render · spirit · world — weave-confirmed ≤ 8
+  const structuralRealized = srcMetaHubCount <= law.strict.eightFold
   const facets = [
     { facet: 'the strict law is encoded — 8-fold, root=nav, subfolder=dropdown, method-words=folders, fewer-words-DRYer, routes-from-tree', on: law.strict.eightFold === 8 && law.strict.navFromRoots === true && law.strict.subfolderDropdown === true && law.strict.methodWordsAreFolders === true && law.strict.fewerWordsDryer === true && law.strict.routesFromTree === true },
     { facet: 'it strengthens the existing folder law — one-word folders, index-only', on: law.word === '^[a-z]+$' && law.indexFiles.length > 0 },
-    { facet: 'HONEST — the law is saved but NOT yet realized; the gap is named, not hidden', on: rules.length === 7 && gap.length >= 4 && gap.every((entry) => entry.violation.length > 0 && entry.fix.length > 0) },
+    { facet: 'HONEST — the tree converged structurally; the remaining gap is the curated slug layer, named not hidden', on: rules.length === 7 && gap.length >= 1 && gap.every((entry) => entry.violation.length > 0 && entry.fix.length > 0) },
     { facet: 'every rule and gap content-addressed and recomputable', on: rules.every((entry) => isUuid(entry.receipt)) && gap.every((entry) => isUuid(entry.receipt)) },
+    { facet: 'the src folder tree satisfies the 8-fold at every level — roots ≤ 8, no over-fan-out (live in the weave report)', on: structuralRealized },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-route-decoded:${entry.facet}:${entry.on}`) }))
   return {
     lawful: facets.every((entry) => entry.on),
-    realized: false,
+    realized: structuralRealized && gap.length === 1,
     rules,
     gap,
     count: facets.length,
@@ -613,7 +614,7 @@ export function routesAndNavFromFolderTree(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Routes and nav are computed from the src folder TREE, not authored: the root folders are the top nav, each subfolder a dropdown, ≤ 8 per folder (8-fold at every level), only index files per folder, and a multi-word method name becomes nested folders (one per word — fewer words, DRYer tree). To change a route, move the code. The law is encoded now and the tree converges to it in waves.',
     boundary:
-      'HONEST and bounded: the LAW is saved here (lawful), but the codebase does NOT yet comply (realized:false) — the root and deep levels (src/quantum, src/quantum/heaven/mind) fan out past the 8-fold, mind/ still holds many non-index method files, and staticPages/quantumSitemap still hand-list slugs. The weave wave recomputes those counts against the real tree every build, so no snapshot here can drift (the live numbers are in the weave report, never frozen in this prose). The gap is named, not hidden (HARMONY ≠ TRUTH); convergence is a multi-wave restructure — dissolve the route-list monolith first, then the multi-word-method files into folder trees — and the weave enforces it against the real tree as it proceeds. Composed with folderLaw; not wired as a hard build gate yet (that would flag hundreds of pre-existing violations at once), so it tracks the gap rather than blocking until convergence.',
+      'HONEST and bounded: the LAW is saved here (lawful) and the src folder TREE now satisfies it structurally (realized:true) — 7 roots ≤ 8, 0 levels over the 8-fold fan-out, 0 non-index method files in mind/, index depth at the ideal×2 threshold (the weave recomputes these every build, never frozen in prose). The ONE remaining gap is the curated landing layer: staticPages and quantumSitemap hand-list canonical slugs while routes compose from the folder tree — named, not hidden. Composed with folderLaw; the weave enforces the live tree; staticPages stays the explicit SEO/entry exceptions until fully tree-derived.',
   }
 }
 

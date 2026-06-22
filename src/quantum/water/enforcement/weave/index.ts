@@ -242,10 +242,10 @@ const walkIndices = (dir) => {
 if (existsSync(join(root, 'src'))) walkIndices(join(root, 'src'))
 
 // The 8-fold fan-out, measured LIVE (folderLaw.strict.eightFold): a folder is a bāguà node, so each level
-// holds ≤ 8 subfolders. The tree has not yet converged (folderLaw / routesAndNavFromFolderTree are
-// realized:false), so this is a RATCHET, not a gate — the weave RECOMPUTES the real fan-out and the flat
-// method-file count against the fs every build and reports them, so the core keeps NO hand-tallied counts
-// (a frozen tally drifts the moment a folder is added). The numbers are computed here, never frozen in src.
+// holds ≤ 8 subfolders. The tree converged structurally (routesAndNavFromFolderTree.realized:true); this
+// ratchet still RECOMPUTES fan-out and flat method-file counts against the fs every build, so the core
+// keeps NO hand-tallied counts (a frozen tally drifts the moment a folder is added). The numbers are
+// computed here, never frozen in src.
 const eightFold = law.strict?.eightFold ?? 8
 const subfoldersOf = (dir) =>
   readdirSync(dir, { withFileTypes: true }).filter((entry) => entry.isDirectory() && !entry.name.startsWith('.') && entry.name !== 'node_modules')
@@ -257,7 +257,7 @@ const walkFanout = (dir) => {
 }
 if (existsSync(join(root, 'src'))) walkFanout(join(root, 'src'))
 overEightFold.sort((a, b) => b.count - a.count)
-const mindDir = join(root, 'src', 'quantum', 'mind')
+const mindDir = join(root, 'src', 'quantum', 'heaven', 'mind')
 const mindFlatFiles = existsSync(mindDir)
   ? readdirSync(mindDir, { withFileTypes: true }).filter((entry) => entry.isFile() && entry.name.endsWith('.ts') && entry.name !== 'index.ts').length
   : 0
