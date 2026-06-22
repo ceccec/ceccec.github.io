@@ -7,15 +7,16 @@ const ICHING_MASK = { hexagram: 45, name: 'Lí', glyph: '☲☲', lower: 'Lí', 
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { pureDiamonds, diamondRoutes } from '../lib'
+import { useLocale } from '../lib'
 
 const { localeIndex } = useData()
+const { localize } = useLocale()
 const summary = pureDiamonds()
 const routes = diamondRoutes()
 const kinds = ['paper', 'reference', 'padding'].map((kind) => ({
   kind,
   items: routes.filter((r) => r.params.kind === kind),
 }))
-const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
 const bg = computed(() => localeIndex.value === 'bg')
 // counts computed from the routes, never written as literals
 const paperCount = computed(() => kinds.find((k) => k.kind === 'paper')?.items.length ?? 0)
@@ -35,7 +36,7 @@ const referenceCount = computed(() => kinds.find((k) => k.kind === 'reference')?
   <section v-for="group in kinds" :key="group.kind" class="paper-group">
     <h2>{{ group.kind }} <span class="paper-count">{{ group.items.length }} {{ bg ? 'диаманта' : 'diamonds' }}</span></h2>
     <div class="paper-grid">
-      <a v-for="d in group.items" :key="d.params.id" class="paper-chip" :href="`${pfx}/diamonds/${d.params.id}`" :style="{ '--hue': d.params.hue }">
+      <a v-for="d in group.items" :key="d.params.id" class="paper-chip" :href="localize(`/diamonds/${d.params.id}`)" :style="{ '--hue': d.params.hue }">
         <span class="paper-chip__n">{{ d.params.number }}</span>
         <span class="paper-chip__glyph">◆</span>
         <span class="paper-chip__meta">{{ d.params.id }}</span>

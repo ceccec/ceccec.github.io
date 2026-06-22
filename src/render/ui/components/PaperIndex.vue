@@ -7,15 +7,16 @@ const ICHING_MASK = { hexagram: 47, name: 'Dà Yǒu', glyph: '☲☰', lower: 'Q
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { papers } from '../lib'
+import { useLocale } from '../lib'
 
 const { localeIndex } = useData()
+const { localize, pick } = useLocale()
 const corpus = papers()
 const groups = ['a1', 'b1', 'a2', 'b2'].map((id) => ({
   id,
   name: corpus.papers.find((p) => p.generator === id).generatorName,
   items: corpus.papers.filter((p) => p.generator === id),
 }))
-const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
 const bg = computed(() => localeIndex.value === 'bg')
 </script>
 
@@ -32,7 +33,7 @@ const bg = computed(() => localeIndex.value === 'bg')
   <section v-for="group in groups" :key="group.id" class="paper-group">
     <h2>{{ bg ? 'Цикъл' : 'Cycle' }} <code>{{ group.id }}</code> — {{ group.name }} <span class="paper-count">{{ group.items.length }} {{ bg ? 'статии' : 'papers' }}</span></h2>
     <div class="paper-grid">
-      <a v-for="p in group.items" :key="p.id" class="paper-chip" :href="`${pfx}/papers/${p.id}`" :style="{ '--hue': p.hue }">
+      <a v-for="p in group.items" :key="p.id" class="paper-chip" :href="localize(`/papers/${p.id}`)" :style="{ '--hue': p.hue }">
         <span class="paper-chip__n">{{ p.number }}</span>
         <span class="paper-chip__glyph">{{ p.glyph }}</span>
         <span class="paper-chip__meta">c{{ p.coordinateIndex }}·{{ p.generator }}</span>

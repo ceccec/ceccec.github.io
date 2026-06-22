@@ -10,9 +10,8 @@ import { staticPages, conceptCommands, monographs, foldedCensus, buildMatrix } f
 import { useLocale } from '../lib'
 
 const { localeIndex } = useData()
-const { pick, tg } = useLocale()
+const { pick, tg, localize } = useLocale()
 const bg = computed(() => localeIndex.value === 'bg')
-const pfx = computed(() => (localeIndex.value === 'bg' ? '/bg/' : localeIndex.value === 'en' ? '/en/' : '/'))
 
 const pages = staticPages()
 const refCount = (() => { try { return monographs(buildMatrix()).count } catch { return 0 } })()
@@ -28,7 +27,7 @@ const domains = computed(() =>
     abstract: pick(p.description.en, p.description.bg || p.description.en),
     keywords: (p.keywords ?? []).slice(0, 4),
     components: p.components.length,
-    link: pfx.value + p.slug,
+    link: localize(p.slug ? `/${p.slug}` : '/'),
   })),
 )
 const stats = computed(() => [

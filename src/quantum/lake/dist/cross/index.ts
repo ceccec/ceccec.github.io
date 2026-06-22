@@ -2,6 +2,7 @@
 import {
   buildMatrix,
   diamondRoutes,
+  localePaths,
   monographPaths,
   paperReferences,
   papers,
@@ -62,10 +63,7 @@ function abs(siteUrl: string, path: string) {
 /** Corpus detail routes — RESTful /kind/<id>: one real page per item, all 3 locales (cu/en/bg). */
 function corpusDetailUrls(kind: 'papers' | 'references' | 'diamonds', ids: readonly string[], priority: number) {
   return ids.map((id) => {
-    const base = `/${kind}/${id}`
-    const gla = base          // Glagolitic at root: /papers/<id>
-    const en = `/en${base}`   // English at /en/papers/<id>
-    const bg = `/bg${base}`   // Bulgarian at /bg/papers/<id>
+    const { gla, en, bg } = localePaths(`/${kind}/${id}`)
     return {
       gla, en, bg, priority,
       alternates: [
@@ -89,9 +87,7 @@ function monographPageUrls(matrix: MindMatrix = buildMatrix()) {
     })
     .map((p) => {
       const slug = p.params.page
-      const gla = slug === '' ? '/' : `/${slug}`
-      const en = slug === '' ? '/en/' : `/en/${slug}`
-      const bg = slug === '' ? '/bg/' : `/bg/${slug}`
+      const { gla, en, bg } = localePaths(slug === '' ? '/' : `/${slug}`)
       return {
         gla, en, bg,
         priority: 0.7,

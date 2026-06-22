@@ -7,9 +7,9 @@ import { useLocale } from '../lib'
 
 // Navigation in 3-5-8, with a tooltip on every destination. Three to arrive,
 // five to use, eight to go deep — each a link whose tip is both a hover title
-// and shown inline. Internal routes get the /bg prefix in Bulgarian.
+// and shown inline. Internal routes localized via useLocale() (VitePress site.locales + withBase).
 const data = navigation358()
-// localize handles the /bg prefix and leaves static artifacts (json/txt/...) as-is.
+// localize handles locale prefix via VitePress site.locales + withBase; static artifacts stay as-is.
 const { bg, localize: href, pick, pickDeep } = useLocale()
 
 // Bulgarian tooltips, keyed by the English label.

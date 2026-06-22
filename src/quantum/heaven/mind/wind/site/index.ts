@@ -7,6 +7,63 @@ import { buildMatrix } from '../../heaven/matrix'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
 import { toUuid, merkleFold, isUuid, memoByRoot, rat, ratStr } from '../../../../../0'
 
+// Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
+// Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
+export type LocaleName = 'gla' | 'en' | 'bg'
+export type VitePressLocaleKey = 'root' | 'en' | 'bg'
+
+const LOCALE_LINK: Record<LocaleName, string> = { gla: '/', en: '/en/', bg: '/bg/' }
+
+export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
+  return localeKey === 'root' ? LOCALE_LINK.gla : LOCALE_LINK[localeKey]
+}
+
+export function localePath(route: string, locale: LocaleName = 'gla'): string {
+  if (/^(https?:|#|mailto:)/.test(route)) return route
+  if (/\.(json|txt|webmanifest)$/.test(route)) return route
+  const localeLink = locale === 'gla' ? LOCALE_LINK.gla : LOCALE_LINK[locale]
+  if (route === '/') return localeLink
+  return `${localeLink.replace(/\/$/, '')}${route}`
+}
+
+export function localePaths(route: string) {
+  return { gla: localePath(route, 'gla'), en: localePath(route, 'en'), bg: localePath(route, 'bg') }
+}
+
+export function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown {
+  if (Array.isArray(node)) return node.map((entry) => localeNavLinks(entry, locale, labelMapper))
+  if (node && typeof node === 'object') {
+    const out: Record<string, unknown> = {}
+    for (const [k, v] of Object.entries(node)) {
+      if (k === 'text' || k === 'label' || k === 'copyright') {
+        out[k] = typeof v === 'string' && labelMapper ? labelMapper(v) : localeNavLinks(v, locale, labelMapper)
+      } else if (k === 'message' && typeof v === 'string') {
+        const mapped = labelMapper ? v.replace(/>([^<]+)</g, (_m, t) => `>${labelMapper(t)}<`) : v
+        out[k] = mapped.replace(/href="([^"]+)"/g, (_m, h) => `href="${localePath(h, locale)}"`)
+      } else if (k === 'link' && typeof v === 'string') {
+        out[k] = localePath(v, locale)
+      } else {
+        out[k] = localeNavLinks(v, locale, labelMapper)
+      }
+    }
+    return out
+  }
+  return node
+}
+
+export function localeSidebarKeys(sidebar: Record<string, unknown>, locale: LocaleName): Record<string, unknown> {
+  const out: Record<string, unknown> = {}
+  for (const [key, sections] of Object.entries(sidebar)) {
+    const localized = localePath(key, locale)
+    out[localized] = sections
+    if (key === '/' && locale !== 'gla') {
+      const prefix = LOCALE_LINK[locale].replace(/\/$/, '')
+      if (prefix) out[prefix] = sections
+    }
+  }
+  return out
+}
+
 /** @iching ☴ Xùn · Wind · gentle */
 export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumSitemap', matrix, () => quantumSitemapRaw(matrix))
@@ -18,10 +75,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
     '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries',
   ]
   const urls = routes.map((route, index) => {
-    // The DEFAULT locale is Glagolitic, served at the root (/); Latin moves to /en/, Cyrillic to /bg/.
-    const gla = route
-    const en = route === '/' ? '/en/' : `/en${route}`
-    const bg = route === '/' ? '/bg/' : `/bg${route}`
+    const { gla, en, bg } = localePaths(route)
     // Place the page on the double torus: two angles fold it, as with pi's digits.
     const theta = (index / routes.length) * Math.PI * 4
     const phi = (index / routes.length) * Math.PI * 2

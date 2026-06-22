@@ -1038,6 +1038,9 @@ export const SITE_LOCALES = [
   { code: 'bg', label: 'Български', lang: 'bg-BG', path: '/bg/', slugPath: 'bg', name: 'bg', type: 'locale' as const, ogLocale: 'bg_BG' },
 ]
 
+export { localeNavLinks, localePath, localePaths, localeSidebarKeys, vitepressLocaleLink } from '../../../wind/site'
+export type { LocaleName, VitePressLocaleKey } from '../../../wind/site'
+
 // One source for the [monograph] route in every locale — no mirroring. The page set, titles and SEO
 // live once in staticPages; the locale is computed by math (toGlagolitic for the default Glagolitic, the
 // Cyrillic projection for bg, the Latin source for en). The per-locale [page].paths.ts files are thin

@@ -1,12 +1,10 @@
 <script setup>
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 8, glyph: '☳', lower: '☷', upper: '☳', color: '#00F000' }
-import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useLocale } from '../lib'
 
 const props = defineProps({ params: { type: Object, required: true } })
-const { localeIndex } = useData()
-const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
+const { localize } = useLocale()
 </script>
 
 <template>
@@ -34,9 +32,9 @@ const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.val
       <li>Corpus root — <span class="paper-mono">{{ params.corpusRoot }}</span></li>
     </ul>
     <p class="paper-nav">
-      <a v-if="params.number > 1" :href="`${pfx}/papers/p${String(params.number - 1).padStart(3, '0')}`">← Paper {{ params.number - 1 }}</a>
-      <a :href="`${pfx}/papers/`">All {{ params.total }} papers</a>
-      <a v-if="params.number < params.total" :href="`${pfx}/papers/p${String(params.number + 1).padStart(3, '0')}`">Paper {{ params.number + 1 }} →</a>
+      <a v-if="params.number > 1" :href="localize(`/papers/p${String(params.number - 1).padStart(3, '0')}`)">← Paper {{ params.number - 1 }}</a>
+      <a :href="localize('/papers/')">All {{ params.total }} papers</a>
+      <a v-if="params.number < params.total" :href="localize(`/papers/p${String(params.number + 1).padStart(3, '0')}`)">Paper {{ params.number + 1 }} →</a>
     </p>
   </div>
 </template>

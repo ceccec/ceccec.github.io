@@ -568,13 +568,13 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     .map(([tag]) => tag)
   const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   const text = (route: string, i: 0 | 1) => { const page = byRoute.get(route); return page ? (i === 1 ? page.title.bg : page.title.en) : route }
-  const link = (route: string, i: 0 | 1) => (i === 1 ? (route === '/' ? '/bg/' : `/bg${route}`) : route)
+  const link = (route: string) => route
   // Each page joins the first cluster it carries; the rest gather under "more" — every page placed once.
   const clusterOf = (route: string) => { const page = byRoute.get(route); return (page && ranked.find((tag) => page.keywords.includes(tag))) || 'more' }
   const routesIn = (tag: string) => pages.map((page) => routeOf(page.slug)).filter((route) => clusterOf(route) === tag)
   const navTags = ranked.slice(0, 8) // the top clusters become the nav dropdowns — bounded so the bar stays usable
   const sidebarTags = [...ranked.slice(0, 12), 'more'] // the sidebar shows every page, by cluster
-  const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
+  const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route) })
   // The eight-fold as ONE door: a single ☯ dropdown whose SECTIONS are the eight trigrams, NAMED by their
   // canonical meanings (the knowledge names the architecture, nothing hand-listed). Each section gathers the
   // curated pages under its trigram: explicitly assigned pages use the semantic domain map (SLUG_TRIGRAM);
@@ -604,7 +604,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // axis of the content-address, navigated by its eight-fold; the three nest to 64³. Earth (axis 0) keeps the
   // semantic domain map; Human and Heaven take the next two 6-bit slices. Heaven-first for prominence.
   const buildNav = (i: 0 | 1) => [
-    { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
+    { text: i === 1 ? 'Начало' : 'Home', link: link('/') },
     { text: i === 1 ? '天 Небе' : '天 Heaven', items: eightFold(i, 2) },
     { text: i === 1 ? '人 Човек' : '人 Human', items: eightFold(i, 1) },
     { text: i === 1 ? '地 Земя' : '地 Earth', items: eightFold(i, 0) },
@@ -653,8 +653,8 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const enCrosslinks = buildCrosslinks(0)
   const bgCrosslinks = buildCrosslinks(1)
   const buildFooter = (i: 0 | 1) => {
-    const parts = navTags.map((tag) => routesIn(tag)[0]).filter(Boolean).map((route) => `<a href="${link(route, i)}">${text(route, i)}</a>`)
-    if (byRoute.has('/governance')) parts.push(`<a href="${link('/governance', i)}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance', i)}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
+    const parts = navTags.map((tag) => routesIn(tag)[0]).filter(Boolean).map((route) => `<a href="${link(route)}">${text(route, i)}</a>`)
+    if (byRoute.has('/governance')) parts.push(`<a href="${link('/governance')}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance')}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
     return {
       message: parts.join(' · '),
       copyright: i === 1 ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.' : 'Open, recomputable, content-addressed — the Double Torus.',

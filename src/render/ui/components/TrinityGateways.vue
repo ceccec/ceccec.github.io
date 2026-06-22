@@ -12,13 +12,12 @@ import { realtimeWiring, useLocale } from '../lib'
 
 const route = useRoute()
 const { localeIndex } = useData()
-const { pick } = useLocale()
+const { pick, localize } = useLocale()
 const bg = computed(() => localeIndex.value === 'bg')
-const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
 
 // REALTIME: the whole wiring for THIS route, recomputed on every navigation.
 const wiring = computed(() => realtimeWiring(route.path))
-const href = (slug) => `${pfx.value}/${slug}`
+const href = (slug) => localize(`/${slug}`)
 const REALM_BG = { proven: 'доказано', animated: 'анимирано', presented: 'представено' }
 const realm = (r) => pick(r, REALM_BG[r] ?? r)
 </script>

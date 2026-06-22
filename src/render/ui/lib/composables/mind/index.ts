@@ -1,7 +1,7 @@
 // src/render/ui/lib/composables/mind — mind/locale/audio hooks (≤8-fold, one index)
 
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { toGlagolitic } from '../../../../../quantum/heaven/library'
 
 // Keys whose VALUES are identity/route/style, never display text — they must NOT be transcoded in the Glagolitic
@@ -19,25 +19,21 @@ function transcodeDeep(value: unknown): unknown {
   return value // numbers, booleans, refs, class instances — pass through untouched
 }
 
-// One locale lens for the whole theme. Every component used to repeat the same
-// three lines — read the lang, derive a `bg` flag, and localize a route by
-// prefixing `/bg` (keeping the root as `/` and leaving asset URLs untouched).
-// That redundancy now lives here once: `bg` for bilingual text, `gla` for the
-// Glagolitic root, `prefix` for the locale path segment, and `localize(route)`
-// for turning an English route into the current locale's route. No network, pure
-// derivation from VitePress data.
+// One locale lens for the whole theme. VitePress useLangs resolves the locale prefix from
+// site.locales[localeIndex].link (configured from SITE_LOCALES in config.mts); withBase adds
+// the site base. No manual /en or /bg string concatenation — the same rule as the theme.
 export function useLocale() {
-  const { lang } = useData()
+  const { site, localeIndex, lang } = useData()
   const bg = computed(() => lang.value.startsWith('bg'))
-  // The Glagolitic ROOT locale (lang 'cu'). Its UI is the English UI rendered in
-  // the Glagolitic SCRIPT — computed by transcoding, never a separate hand-typed set.
   const gla = computed(() => lang.value.startsWith('cu'))
-  const prefix = computed(() => (bg.value ? '/bg' : ''))
-  // Localize an internal route into the current locale. The root stays `/`, and
-  // anything that looks like a static asset (json/txt/webmanifest) is left as-is.
   function localize(route: string) {
-    if (/\.(json|txt|webmanifest)$/.test(route)) return route
-    return prefix.value + (route === '/' ? '/' : route)
+    if (/^(https?:|#|mailto:)/.test(route)) return route
+    if (/\.(json|txt|webmanifest)$/.test(route)) return withBase(route)
+    const localeLink =
+      site.value.locales[localeIndex.value]?.link ||
+      (localeIndex.value === 'root' ? '/' : `/${localeIndex.value}/`)
+    const path = route === '/' ? localeLink : `${localeLink.replace(/\/$/, '')}${route}`
+    return withBase(path)
   }
   // Pick the locale's value: en in English, bg in Bulgarian, and in the Glagolitic
   // root a STRING is transcoded from English via toGlagolitic — NOTHING bypasses
@@ -59,7 +55,7 @@ export function useLocale() {
   function pickDeep<T>(en: T, bgValue: T): T {
     return gla.value ? (transcodeDeep(en) as T) : bg.value ? bgValue : en
   }
-  return { bg, gla, prefix, localize, pick, tg, pickDeep }
+  return { bg, gla, localize, pick, tg, pickDeep }
 }
 
 

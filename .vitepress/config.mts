@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
-import { computedSeo, jsonLdTemplate, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/quantum/heaven/mind'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/quantum/heaven/mind'
 
 // Configs use the matrix computationally: the site config AND the whole navigation are computed and
 // held in the model (siteConfig, siteNavigation), content-addressed; this file only consumes them.
@@ -15,65 +15,22 @@ const config = siteConfig()
 const nav = siteNavigation()
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
 
-// Glagolitic is the DEFAULT locale, served at the root (/): the model-computed English navigation
-// transliterated into the ninth-century script, its links kept at the root. Latin moves to /en/ and
-// Bulgarian stays at /bg/. The root Glagolitic home is computed in realtime from .vitepress/pages/en/index.md
-// by glagoliticHomeFromEnglish (toGlagolitic, local math only); monograph pages use monographPaths('gla').
-// Root locale = Glagolitic: transliterate the labels, keep the / links.
-const glaNode = (node: any): any => {
-  if (Array.isArray(node)) return node.map(glaNode)
-  if (node && typeof node === 'object') {
-    const out: any = {}
-    for (const [k, v] of Object.entries(node)) {
-      if (k === 'text' || k === 'label' || k === 'copyright') out[k] = typeof v === 'string' ? toGlagolitic(v) : glaNode(v)
-      else if (k === 'message' && typeof v === 'string') out[k] = v.replace(/>([^<]+)</g, (_m, t) => `>${toGlagolitic(t)}<`)
-      else if (k === 'link') out[k] = v
-      else out[k] = glaNode(v)
-    }
-    return out
-  }
-  return node
+// Root locale = Glagolitic: transliterate labels via localeNavLinks; bare routes stay at /.
+// /en/ and /bg/ locales: localeNavLinks + localeSidebarKeys prefix from SITE_LOCALES (VitePress useLangs twin).
+const glaNav = {
+  nav: localeNavLinks(nav.en.nav, 'gla', toGlagolitic),
+  sidebar: localeNavLinks(nav.en.relatedSidebar, 'gla', toGlagolitic),
+  footer: localeNavLinks(nav.en.footer, 'gla', toGlagolitic),
 }
-// /en/ locale = Latin (English): keep the labels, prefix the links with /en/.
-const enLink = (href: unknown): unknown =>
-  typeof href !== 'string' || /^(https?:|#|mailto:|\/en\/)/.test(href) ? href : href === '/' ? '/en/' : `/en${href}`
-const enNode = (node: any): any => {
-  if (Array.isArray(node)) return node.map(enNode)
-  if (node && typeof node === 'object') {
-    const out: any = {}
-    for (const [k, v] of Object.entries(node)) {
-      if (k === 'link') out[k] = enLink(v)
-      else if (k === 'message' && typeof v === 'string') out[k] = v.replace(/href="([^"]+)"/g, (_m, h) => `href="${enLink(h)}"`)
-      else out[k] = enNode(v)
-    }
-    return out
-  }
-  return node
-}
-// Per-page sidebar keys must match the locale path VitePress resolves (relatedSidebar is keyed by bare
-// routes in the model; the Glagolitic root keeps them, /en/ and /bg/ need the locale prefix on keys).
-const prefixSidebarKeys = (sidebar: Record<string, unknown>, prefix: string): Record<string, unknown> => {
-  const out: Record<string, unknown> = {}
-  for (const [key, sections] of Object.entries(sidebar)) {
-    if (key === '/') {
-      out[`${prefix}/`] = sections
-      if (prefix) out[prefix] = sections
-    } else {
-      out[`${prefix}${key}`] = sections
-    }
-  }
-  return out
-}
-const glaNav = { nav: glaNode(nav.en.nav), sidebar: glaNode(nav.en.relatedSidebar), footer: glaNode(nav.en.footer) }
 const enNav = {
-  nav: enNode(nav.en.nav),
-  sidebar: enNode(prefixSidebarKeys(nav.en.relatedSidebar, '/en')),
-  footer: enNode(nav.en.footer),
+  nav: localeNavLinks(nav.en.nav, 'en'),
+  sidebar: localeNavLinks(localeSidebarKeys(nav.en.relatedSidebar, 'en'), 'en'),
+  footer: localeNavLinks(nav.en.footer, 'en'),
 }
 const bgNav = {
-  nav: nav.bg.nav,
-  sidebar: prefixSidebarKeys(nav.bg.relatedSidebar, '/bg'),
-  footer: nav.bg.footer,
+  nav: localeNavLinks(nav.bg.nav, 'bg'),
+  sidebar: localeNavLinks(localeSidebarKeys(nav.bg.relatedSidebar, 'bg'), 'bg'),
+  footer: localeNavLinks(nav.bg.footer, 'bg'),
 }
 const siteTitle = config.title
 const siteTitleBg = config.titleBg
@@ -291,6 +248,7 @@ export default defineConfig({
     root: {
       label: toGlagolitic('Glagolica'), // computed, never a hardcoded glyph string — Glagolitic is always toGlagolitic
       lang: 'cu',
+      link: SITE_LOCALES[0].path,
       title: toGlagolitic(siteTitle),
       description: toGlagolitic(siteDescription),
       themeConfig: {
@@ -310,6 +268,7 @@ export default defineConfig({
     en: {
       label: 'English',
       lang: 'en',
+      link: SITE_LOCALES[1].path,
       title: siteTitle,
       description: siteDescription,
       themeConfig: {
@@ -322,6 +281,7 @@ export default defineConfig({
     bg: {
       label: 'Български',
       lang: 'bg-BG',
+      link: SITE_LOCALES[2].path,
       title: siteTitleBg,
       description: siteDescriptionBg,
       themeConfig: {

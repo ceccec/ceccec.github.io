@@ -7,15 +7,16 @@ const ICHING_MASK = { hexagram: 14, glyph: '☳', lower: '☴', upper: '☳', co
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import { paperReferences, completeCorpus } from '../lib'
+import { useLocale } from '../lib'
 
 const { localeIndex } = useData()
+const { localize } = useLocale()
 const references = paperReferences()
 const corpus = completeCorpus()
 const groups = ['a1', 'b1', 'a2', 'b2'].map((id) => ({
   id,
   items: references.filter((r) => r.generator === id),
 }))
-const pfx = computed(() => (localeIndex.value === 'en' ? '/en' : localeIndex.value === 'bg' ? '/bg' : ''))
 const bg = computed(() => localeIndex.value === 'bg')
 </script>
 
@@ -32,7 +33,7 @@ const bg = computed(() => localeIndex.value === 'bg')
   <section v-for="group in groups" :key="group.id" class="paper-group">
     <h2>{{ bg ? 'Цикъл' : 'Cycle' }} <code>{{ group.id }}</code> <span class="paper-count">{{ group.items.length }} {{ bg ? 'референции' : 'references' }}</span></h2>
     <div class="paper-grid">
-      <a v-for="r in group.items" :key="r.id" class="paper-chip" :href="`${pfx}/references/${r.id}`" :style="{ '--hue': r.hue }">
+      <a v-for="r in group.items" :key="r.id" class="paper-chip" :href="localize(`/references/${r.id}`)" :style="{ '--hue': r.hue }">
         <span class="paper-chip__n">{{ r.number }}</span>
         <span class="paper-chip__glyph">{{ r.glyph }}</span>
         <span class="paper-chip__meta">→ {{ r.paperId }}</span>
