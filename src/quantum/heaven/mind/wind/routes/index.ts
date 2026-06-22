@@ -614,10 +614,10 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
       .map((tag) => ({ text: tag === 'more' ? (i === 1 ? 'Още' : 'More') : cap(tag), items: routesIn(tag).map((route) => item(route, i)) }))
       .filter((section) => section.items.length > 0)
   // Per-page related-paths sidebar: each static page's sidebar shows its I Ching domain siblings.
-  // Keys are bare routes (/heritage) — VitePress resolves them relative to each locale root.
+  // Keys are bare routes (/heritage) in the model; config.mts prefixes them for /en/ and /bg/ locales.
   const buildRelatedSidebar = (i: 0 | 1): Record<string, { text: string; items: { text: string; link: string }[] }[]> => {
     const byTrigram = new Map<number, string[]>()
-    for (const page of staticPages()) {
+    for (const page of [...staticPages(), ...componentPages()]) {
       const bits = trigramOf(page.slug)
       if (!byTrigram.has(bits)) byTrigram.set(bits, [])
       byTrigram.get(bits)!.push(routeOf(page.slug))
@@ -668,7 +668,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     clusters: navTags,
     en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
     bg: { nav: buildNav(1), sidebar: buildSidebar(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
-    relatedSidebarComplete: staticPages().every((p) => routeOf(p.slug) in enRelatedSidebar),
+    relatedSidebarComplete: [...staticPages(), ...componentPages()].every((p) => routeOf(p.slug) in enRelatedSidebar),
     crosslinksComplete: staticPages().every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
     searchIndexRoot: index.root,
     searchEntries: index.count,

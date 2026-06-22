@@ -50,8 +50,31 @@ const enNode = (node: any): any => {
   }
   return node
 }
+// Per-page sidebar keys must match the locale path VitePress resolves (relatedSidebar is keyed by bare
+// routes in the model; the Glagolitic root keeps them, /en/ and /bg/ need the locale prefix on keys).
+const prefixSidebarKeys = (sidebar: Record<string, unknown>, prefix: string): Record<string, unknown> => {
+  const out: Record<string, unknown> = {}
+  for (const [key, sections] of Object.entries(sidebar)) {
+    if (key === '/') {
+      out[`${prefix}/`] = sections
+      if (prefix) out[prefix] = sections
+    } else {
+      out[`${prefix}${key}`] = sections
+    }
+  }
+  return out
+}
 const glaNav = { nav: glaNode(nav.en.nav), sidebar: glaNode(nav.en.relatedSidebar), footer: glaNode(nav.en.footer) }
-const enNav = { nav: enNode(nav.en.nav), sidebar: enNode(nav.en.relatedSidebar), footer: enNode(nav.en.footer) }
+const enNav = {
+  nav: enNode(nav.en.nav),
+  sidebar: enNode(prefixSidebarKeys(nav.en.relatedSidebar, '/en')),
+  footer: enNode(nav.en.footer),
+}
+const bgNav = {
+  nav: nav.bg.nav,
+  sidebar: prefixSidebarKeys(nav.bg.relatedSidebar, '/bg'),
+  footer: nav.bg.footer,
+}
 const siteTitle = config.title
 const siteTitleBg = config.titleBg
 const siteDescription = config.description
@@ -303,9 +326,9 @@ export default defineConfig({
       description: siteDescriptionBg,
       themeConfig: {
         // Computed from the model, the Bulgarian projection of the same navigation.
-        nav: nav.bg.nav,
-        sidebar: nav.bg.relatedSidebar,
-        footer: nav.bg.footer,
+        nav: bgNav.nav,
+        sidebar: bgNav.sidebar,
+        footer: bgNav.footer,
         docFooter: { prev: 'Предишна', next: 'Следваща' },
         outline: { label: 'На тази страница' },
         darkModeSwitchLabel: 'Облик',
