@@ -4,7 +4,8 @@
 const ICHING_MASK = { hexagram: 52, glyph: '☶', lo: '☶', up: '☶', color: '#33FF99', name: 'MatrixCube' }
 import { computed, ref } from 'vue'
 import { useLocale, useLayers, useAnimationEngine } from '../lib'
-import { buildMatrix, matrixIsTenBitMByteSixtyFour, dims as dimsAt, rot2, DIMENSIONS, DIMENSION_NAMES, GOLDEN_ANGLE } from '../lib'
+import { buildMatrix, matrixIsTenBitMByteSixtyFour, dims as dimsAt, rot2, DIMENSIONS, DIMENSION_NAMES } from '../lib'
+import { GOLDEN_ANGLE } from '../../../quantum/thunder/science'
 
 // The dial walks 0 → 10 dimensions. Low: the FLOWER OF LIFE — overlapping circles, the inner and outer rings
 // COUNTER-ROTATING so their overlaps ignite the fusion and the merkaba turns. Rising (2D → 3D): each circle

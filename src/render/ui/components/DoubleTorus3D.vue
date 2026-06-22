@@ -3,7 +3,8 @@
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'DoubleTorus3D' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib'
-import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D, lobeHues } from '../lib'
+import { taxonomyIcons, areaPairs, areaLabel, buildMatrix, musicNote, colorFromSound, doubleTorus3D } from '../lib'
+import { lobeHues } from '../../../quantum/thunder/science'
 import { rot2, dims as dimsAt } from '../lib'
 import { useAnimationEngine } from '../lib'
 import { useLayers } from '../lib'

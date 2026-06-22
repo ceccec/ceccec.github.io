@@ -11,7 +11,8 @@ import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { useTones } from '../lib'
 import { useLocale } from '../lib'
-import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432, GOLDEN_ANGLE } from '../lib'
+import { tamperingCostDecoded, quantumThreat, cryptographyComparison, a432 } from '../lib'
+import { GOLDEN_ANGLE } from '../../../quantum/thunder/science'
 
 const { localeIndex } = useData()
 const { tg } = useLocale()

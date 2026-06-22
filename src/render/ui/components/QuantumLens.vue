@@ -18,7 +18,7 @@ import { useLocale } from '../lib'
 
 const { tg } = useLocale()
 
-const input = ref('Everyone knows the corrupt experts are lying — wake up before it is too late! The bridge opened in 1932.')
+const input = ref('The Nile is the longest river in Africa. Cairo is its largest city on that river.')
 const m = buildMatrix()
 const analysis = computed(() => quantumAnalysis(input.value, m))
 const thermal = computed(() => thermalHarmonyField(input.value, m))

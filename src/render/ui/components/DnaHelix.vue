@@ -3,7 +3,8 @@
 const ICHING_MASK = { hexagram: 22, glyph: '☵', lower: '☴', upper: '☵', color: '#0F0FF0' } as const
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib'
-import { buildMatrix, dna, genes, mutations, a432, frequencyToLight } from '../lib'
+import { buildMatrix, dna, genes, mutations, a432 } from '../lib'
+import { frequencyToLight } from '../../../quantum/thunder/science'
 import { dims } from '../lib'
 import { useAnimationEngine } from '../lib'
 

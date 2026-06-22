@@ -8,7 +8,8 @@ const ICHING_MASK = { hexagram: 23, glyph: '☵', lower: '☰', upper: '☵', co
 // field), client-side, zero-cost. Honest: this is rendering, not the model's compute — and it
 // gracefully falls back to a CSS field where WebGL is unavailable or motion is reduced.
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import { uuidHero, toUuid, createAnimationEngine, a432, A432_HUE } from '../lib'
+import { uuidHero, toUuid, createAnimationEngine, a432 } from '../lib'
+import { A432_HUE } from '../../../quantum/thunder/science'
 import { dims } from '../lib'
 
 const props = defineProps<{ seed?: string; size?: number }>()

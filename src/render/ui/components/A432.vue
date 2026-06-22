@@ -9,7 +9,8 @@ const ICHING_MASK = { hexagram: 9, glyph: '☳', lower: '☳', upper: '☳', col
 import { computed, ref } from 'vue'
 import { useTones } from '../lib'
 import { useDeviceEnergy } from '../lib'
-import { a432, frequencyToLight } from '../lib'
+import { a432 } from '../lib'
+import { frequencyToLight } from '../../../quantum/thunder/science'
 
 const { blip, playChord } = useTones()
 const { saveEnergy } = useDeviceEnergy()

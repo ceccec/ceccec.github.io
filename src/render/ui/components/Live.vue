@@ -2,7 +2,8 @@
 // ☳ Zhèn · Thunder · arousing · upper·yang · shrink — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 15, glyph: '☳', lower: '☰', upper: '☳', color: '#00FFFF' }
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology, features, createAnimationEngine, a432, frequencyToLight } from '../lib'
+import { buildMatrix, live, humanise, theWhole, recurrence, holographic, scientists, completeness, skillAtoms, foldThoughts, imagination, quantifyGates, vortexMath, redTeam, quantumSiege, patentAudit, reverseHarmony, quantumSociety, tamperProofFabric, crossAudit, immuneSystem, biology, features, createAnimationEngine, a432 } from '../lib'
+import { frequencyToLight } from '../../../quantum/thunder/science'
 import { dimWalk } from '../lib'
 import { useLocale } from '../lib'
 import { useDeviceEnergy } from '../lib'

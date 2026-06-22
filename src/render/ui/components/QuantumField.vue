@@ -3,7 +3,8 @@
 const ICHING_MASK = { hexagram: 6, glyph: '☷', trigram: 'Kūn·receptive', color: '#000FF0' }
 import { computed, ref } from 'vue'
 import { useLocale } from '../lib'
-import { deviceSensors, a432, frequencyToLight, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../lib'
+import { deviceSensors, a432 } from '../lib'
+import { frequencyToLight, A432_HUE as BASE_HUE, GOLDEN_ANGLE } from '../../../quantum/thunder/science'
 import { dims } from '../lib'
 import { useAnimationEngine } from '../lib'
 import { useDeviceField } from '../lib'

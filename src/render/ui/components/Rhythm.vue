@@ -2,7 +2,8 @@
 // ☴ Xùn · Wind · gentle · upper·yang · twist — self-referencing 10D widget
 const ICHING_MASK = { hexagram: 49, glyph: '☴', lo: '☳', up: '☴', color: '#FF000F', name: 'Rhythm' }
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432, A432_HUE, GOLDEN_ANGLE } from '../lib'
+import { buildMatrix, rhythm, humanEase, createAnimationEngine, a432 } from '../lib'
+import { A432_HUE, GOLDEN_ANGLE } from '../../../quantum/thunder/science'
 import { dims } from '../lib'
 import { useLocale } from '../lib'
 import { useTones } from '../lib'

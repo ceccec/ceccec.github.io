@@ -3,7 +3,8 @@
 const ICHING_MASK = { hexagram: 50, glyph: '☴', lo: '☵', up: '☴', color: '#FF00F0', name: 'NativeMovie' }
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useData } from 'vitepress'
-import { prng, createAnimationEngine, frequencyToLight, a432, A432_HUE, buildMatrix, movie } from '../lib'
+import { prng, createAnimationEngine, a432, buildMatrix, movie } from '../lib'
+import { A432_HUE, frequencyToLight } from '../../../quantum/thunder/science'
 import { dims } from '../lib'
 import { useDeviceEnergy } from '../lib'
 
