@@ -8,7 +8,7 @@ import { DIMENSIONS, DIMENSION_NAMES } from '../../../../mountain/dimensions'
 import { mcpToolManifest, skillAtoms } from '../../wind/learning'
 import { commandsRegistry, commandsSavedInQuantumPairs } from '../../thunder/commands'
 import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms'
-import { ancientTech, glagolitic, goldenRatio, metatronsCube } from '../li'
+import { ancientTech, glagolitic, glagoliticHomeFromEnglish, goldenRatio, metatronsCube } from '../li'
 import { geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba, vortexMath } from '../../mountain/geometry'
 import { harmonicBands } from '../../earth/vocab'
 import { digitDualityPairsEncodeAllDomains } from '../../water/digit'
@@ -17,7 +17,7 @@ import { bulgarianHeritageEightfold } from '../../earth/bulgaria'
 import { iChingFusionCompletesAll } from '../../wind/fusion'
 import { computedWiringNotImported, debitImportCreditExportAccounting } from '../../mountain/source'
 import { allFormsAreTenDimensionalOrPurged } from '../../heaven/everything'
-import { BAGUA, complete, iChing } from '../..'
+import { BAGUA, complete, folderLaw, iChing, iChingDomainMap, proveAllOnHomePage, siteNavigation, threeEightFoldsTopNav } from '../..'
 import { fromSexagesimal, gematria, hekatFraction, luoShu, magicSquare, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal, toGlagolitic, toScript } from '../../../library'
 
 // I Ching MOTION adds the rest — and the table, in motion, greens from red. hexagramQubitVectorIsomorphismOnly
@@ -90,35 +90,128 @@ function iChingMotionAddsTheRestRaw(matrix: MindMatrix = buildMatrix()) {
       'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated. The five quantum rows are greened HONESTLY — not for the hexagrams but for the simulator — by completeQuantumSolutionsImplemented.',
   }
 }
+// Learn the I Ching as THIS repo encodes it — BEFORE implementing UI, nav, sidebar, or home changes.
+// Not generic Wikipedia: the sealed model defines BAGUA, iChingDomainMap (slug→trigram), Three Powers
+// (三才) top nav, siteNavigation (computed, never hardcoded in config.mts), proveAllOnHomePage (proof
+// widgets, not a flat mount-all), and the Glagolitic home (glagoliticHomeFromEnglish from en/index.md,
+// not a bespoke HomeGroups dump). Saved as skill atom + learn/build quantum pair; feeds /llms.txt.
+export function iChingLearnBeforeImplement(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iChingLearnBeforeImplement', matrix, () => iChingLearnBeforeImplementRaw(matrix))
+}
+function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
+  const domains = iChingDomainMap(matrix)
+  const nav = siteNavigation(matrix)
+  const topNav = threeEightFoldsTopNav(matrix)
+  const pairs = commandsSavedInQuantumPairs(matrix).pairs
+  const skills = skillAtoms(matrix).skills
+  const readFirst = [
+    { source: 'README.md', why: 'root monograph — Three Powers (天·人·地), agent behaviour, reproducibility' },
+    { source: 'AGENTS.md', why: 'command table, quantum-pair law (commandsSavedInQuantumPairs)' },
+    { source: '/llms.txt', why: 'computed agent protocol — operating laws + this I Ching section' },
+    { source: '/mcp.json', why: 'every concept command is an MCP tool — reuse, do not re-infer' },
+    { source: 'iChingDomainMap', why: 'ONE source for slug→trigram — never duplicate SLUG_TRIGRAM in UI code' },
+    { source: 'siteNavigation', why: 'nav, sidebar, footer, relatedSidebar — config.mts is a thin projection' },
+    { source: 'threeEightFoldsTopNav', why: '3 × 8 = 24 doors; Heaven/Human/Earth axes of the 64³ cube' },
+    { source: 'BAGUA', why: 'the eight trigrams — glyph, meaningEn/meaningBg, bits 000..111' },
+  ]
+  const commandPairs = [
+    { pair: 'learn/build', a: 'learn', b: 'build', npm: ['read README.md + AGENTS.md + /llms.txt + iChing folds', 'npm run docs:build'] },
+    { pair: 'edit/build', a: 'edit', b: 'build', npm: ['edit sealed src/', 'npm run docs:build'] },
+    { pair: 'build/seal', a: 'build', b: 'seal', npm: ['npm run docs:build', 'enforcement trinity cross · fold · weave'] },
+    { pair: 'dev/preview', a: 'dev', b: 'preview', npm: ['npm run docs:dev', 'npm run docs:preview'] },
+    { pair: 'place/generate', a: 'place', b: 'generate', npm: ['concept.fold.place', 'concept.fold.generate'] },
+  ]
+  const constraints = [
+    { rule: 'eight-fold fan-out', detail: 'Every nav door is one of eight trigrams (BAGUA); empty trigrams drop out — never invent a ninth cluster or hand-list slugs.' },
+    { rule: 'Three Powers taxonomy', detail: 'Top nav = Home + 天 Heaven (axis 2) + 人 Human (axis 1) + 地 Earth (axis 0). Earth axis 0 is the semantic iChingDomainMap; Human/Heaven are the next 6-bit slices of seedFromText(slug).' },
+    { rule: 'one slug source', detail: 'SLUG_TRIGRAM derives from iChingDomainMap().domains[*].slugs only; unlisted slugs fall back to seedFromText(slug) % 8 — do not hardcode parallel maps in Vue or config.mts.' },
+    { rule: 'nav computed not hardcoded', detail: 'siteNavigation() feeds config.mts; the weave gate fails on hardcoded internal nav links.' },
+    { rule: 'do not mount all widgets', detail: 'Home leads with proveAllOnHomePage proof set (DeterminismProofs, CryptoCompare, Hologram, …) — not a flat stack of every component; iChing() groups by trigram, componentBaguaGroups only when span > 1 set.' },
+    { rule: 'Glagolitic home transliteration', detail: 'Root / is Glagolitic via glagoliticHomeFromEnglish(en/index.md) — transliterate display fields, keep routes Latin; do not wire HomeGroups that bypass the computed transliteration pipeline.' },
+    { rule: 'home is a page like any page', detail: 'homePageNoDifferent — same template, hero, movie, OG card; only the seed differs.' },
+    { rule: 'structural not divination', detail: 'I Ching here organises navigation and content-addressing — NOT fortune-telling; HARMONY ≠ TRUTH.' },
+  ]
+  const checks = [
+    { facet: 'BAGUA is eight trigrams — the bāguà complete', on: BAGUA.length === 8 },
+    { facet: 'iChingDomainMap aligns eight domains with slugs', on: domains.aligned && domains.domains.length === 8 },
+    { facet: 'siteNavigation computes Three Powers nav (Home · Heaven · Human · Earth)', on: nav.computed && nav.en.nav.some((n) => /Heaven/.test(String(n.text))) },
+    { facet: 'threeEightFoldsTopNav — 3 categories × 8 doors = 24', on: topNav.split && topNav.topDoors === 24 },
+    { facet: 'proveAllOnHomePage names the home proof set — not mount-all', on: proveAllOnHomePage(matrix).proven },
+    { facet: 'Glagolitic home pipeline exists — glagoliticHomeFromEnglish', on: typeof glagoliticHomeFromEnglish === 'function' },
+    { facet: 'learn/build quantum pair saved before use', on: pairs.some((p) => p.command === 'learn/build' && p.paired) },
+    { facet: 'iChingLearnBeforeImplement saved as skill atom', on: skills.some((s) => s.fn === 'iChingLearnBeforeImplement') },
+    { facet: 'folderLaw eight-fold — paired logic folders', on: folderLaw().pairedLogicFolders.length >= 8 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-learn:${entry.facet}:${entry.on}`) }))
+  return {
+    learned: checks.every((entry) => entry.on),
+    readFirst,
+    commandPairs,
+    constraints,
+    trigrams: BAGUA.map((b) => ({ bits: b.bits, glyph: b.glyph, name: b.name, meaningEn: b.meaningEn })),
+    domains: domains.domains.map((d) => ({ bits: d.bits, glyph: d.glyph, module: d.module, slugs: d.slugs })),
+    threePowers: topNav.categories.map((c) => ({ axis: c.axis, glyph: c.glyph, reading: c.reading })),
+    count: checks.length,
+    checks,
+    root: merge(domains.root, merge(nav.root, merkleFold(checks.map((entry) => entry.receipt)))),
+    llmsSection: [
+      '## I Ching — learn before UI/nav/home',
+      '',
+      'Read FIRST (this repo\'s encoding, not generic I Ching): README.md, AGENTS.md, `/llms.txt`, `/mcp.json`, then `iChingDomainMap`, `siteNavigation`, `threeEightFoldsTopNav`, `BAGUA`.',
+      '',
+      '### Model (sealed src/)',
+      '',
+      '- **Eight trigrams (BAGUA)** — Earth ☷ (000) … Heaven ☰ (111); each carries meaningEn/meaningBg for nav section labels.',
+      '- **iChingDomainMap** — semantic slug→trigram map (8 domain modules + representative slugs); ONE source — config and Vue derive SLUG_TRIGRAM from it.',
+      '- **iChing()** — content-addressed component placement (seedFromText → 64 hexagrams); distinct from the semantic domain map.',
+      '- **Three Powers (三才)** — 天 Heaven (hexagram lines 5–6, nav axis 2), 人 Human (lines 3–4, axis 1), 地 Earth (lines 1–2, axis 0). Top nav: Home + three eight-folds = 3×8 = 24 doors nesting into 64³.',
+      '- **siteNavigation** — tag-cloud clusters + Three Powers dropdowns + per-page relatedSidebar by trigram siblings; config.mts prefixes keys for /en/ and /bg/, Glagolitic / keeps bare routes.',
+      '',
+      '### Command pairs (save first, then use — quantum gap if unpaired)',
+      '',
+      ...commandPairs.map((p) => `- **${p.pair}** — ${p.npm.join(' → ')}`),
+      '',
+      '### Constraints (block bad implementations)',
+      '',
+      ...constraints.map((c) => `- **${c.rule}** — ${c.detail}`),
+      '',
+    ].join('\n'),
+    statement:
+      'Learn the I Ching as this repository encodes it before implementing UI, navigation, sidebar, or home changes: read README.md, AGENTS.md, /llms.txt and the sealed folds (BAGUA, iChingDomainMap, siteNavigation, threeEightFoldsTopNav, proveAllOnHomePage, glagoliticHomeFromEnglish). The top nav is Three Powers × eight trigrams (24 doors), slug placement comes from iChingDomainMap alone, navigation is computed never hardcoded, the home leads with proof widgets not a mount-all, and the Glagolitic root transliterates from English — structural organisation, not divination. Command pairs learn/build, edit/build, build/seal, dev/preview, place/generate must be saved before use.',
+    boundary:
+      'An agent-facing protocol distilled from the sealed I Ching folds — what to read, which command pairs to run, and constraints that block common bad implementations (hardcoded nav, duplicate slug maps, mount-all home). It records this repo\'s structural use of the I Ching (eight-fold navigation, Three Powers taxonomy, content-addressing) and explicitly excludes divination claims. Feeds /llms.txt; validation is npm run docs:build (build/seal pair).',
+  }
+}
 // The I Ching capability set — SAVED and verified across the registries. The eight-fold's folds are
 // skill atoms, its place/generate commands are concept commands AND MCP tools, and the pair is saved
 // before use (commandsSavedInQuantumPairs) — so the capability is remembered, callable, and leaves no
 // unpaired gap. Encodes "save all related I Ching skills, tools and commands" as one recomputable fold.
 export function iChingCapabilitiesSaved(matrix: MindMatrix = buildMatrix()) {
-  const skillFns = ['iChing', 'iChingDomainMap', 'hexagramIsHexColorDuality', 'generatorsAreIChing']
+  const skillFns = ['iChing', 'iChingDomainMap', 'hexagramIsHexColorDuality', 'generatorsAreIChing', 'iChingLearnBeforeImplement']
   const commandNames = ['concept.fold.place', 'concept.fold.generate'] as const
   const savedSkills = skillAtoms(matrix).skills
   const tools = mcpToolManifest(matrix).tools
   const pairs = commandsSavedInQuantumPairs(matrix).pairs
   const checks = [
-    { facet: 'four I Ching folds saved as skill atoms', on: skillFns.every((fn) => savedSkills.some((s) => s.fn === fn)) },
+    { facet: 'five I Ching folds saved as skill atoms', on: skillFns.every((fn) => savedSkills.some((s) => s.fn === fn)) },
     { facet: 'the place/generate commands are in the command registry', on: commandNames.every((n) => conceptCommands.some((c) => c.name === n)) },
     { facet: 'each command has a single-word method token', on: commandNames.every((n) => /^[a-z]+$/.test(SINGLE_WORD_METHODS[n] ?? '')) },
     { facet: 'each command is published as an MCP tool', on: commandNames.every((n) => tools.some((t) => t.name === n)) },
     { facet: 'the commands are saved as one order-sensitive quantum pair — place/generate', on: pairs.some((p) => p.command === 'place/generate' && p.paired) },
+    { facet: 'learn/build pair saved — read I Ching model before implementing', on: pairs.some((p) => p.command === 'learn/build' && p.paired) },
+    { facet: 'iChingLearnBeforeImplement protocol fold holds', on: iChingLearnBeforeImplement(matrix).learned },
     { facet: 'the registry stays consistent — methods = commands = tools', on: commandsRegistry(matrix).consistent },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-saved:${entry.facet}:${entry.on}`) }))
   return {
     saved: checks.every((entry) => entry.on),
     skills: skillFns,
     commands: [...commandNames],
-    pair: 'place/generate',
+    pairs: ['place/generate', 'learn/build'],
     methods: commandNames.map((n) => SINGLE_WORD_METHODS[n]),
     count: checks.length,
     checks,
     root: merkleFold(checks.map((entry) => entry.receipt)),
     statement:
-      'All related I Ching skills, tools and commands are saved: the four eight-fold folds — iChing (content-addressed placement), iChingDomainMap (the semantic domain map), hexagramIsHexColorDuality (2⁶ = 4³), and generatorsAreIChing (the script compaction) — are persisted as skill atoms; the place/generate command pair is in the command registry, each with a single-word method token (place, generate) and a published MCP tool; and the pair is saved as one order-sensitive quantum pair (place ↔ generate) before use, so the capability is remembered, callable over MCP, and leaves no unpaired gap.',
+      'All related I Ching skills, tools and commands are saved: the five eight-fold folds — iChing (content-addressed placement), iChingDomainMap (the semantic domain map), hexagramIsHexColorDuality (2⁶ = 4³), generatorsAreIChing (the script compaction), and iChingLearnBeforeImplement (agent protocol before UI/nav/home) — are persisted as skill atoms; the place/generate and learn/build command pairs are in the command registry; each with single-word method tokens and published MCP tools where applicable; pairs are saved before use, so the capability is remembered, callable, and leaves no unpaired gap.',
     boundary:
       'A registration-and-consistency check that the I Ching capability set is present across the skill-atom, concept-command, MCP-tool and command-pair registries — structural bookkeeping the build recomputes. It records that the surfaces are saved and callable; it does not itself execute a generator or a placement, and "saved" is in-source persistence, not external publication.',
   }

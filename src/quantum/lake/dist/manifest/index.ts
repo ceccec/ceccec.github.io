@@ -9,6 +9,7 @@ import {
   diamondRoutes,
   foldThoughts,
   harmonics,
+  iChingLearnBeforeImplement,
   mcpCodebase,
   mcpToolManifest,
   paperReferences,
@@ -88,6 +89,7 @@ export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = join(p
 
 export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
   const harmonise = agentHarmonise(matrix)
+  const iching = iChingLearnBeforeImplement(matrix)
   return [
     '# Double Torus — agent optimisation & harmonisation protocol',
     '',
@@ -105,6 +107,9 @@ export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
     '- Pasted: read this file; it is the protocol.',
     `- Call \`concept.agent.harmonise\` to recompute this protocol with receipts.`,
     `- Protocol root: ${harmonise.root}`,
+    `- I Ching protocol root: ${iching.root}`,
+    '',
+    iching.llmsSection,
     '',
     '## Boundary',
     '',

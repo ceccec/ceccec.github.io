@@ -339,6 +339,7 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     { skill: 'i ching domains', fn: 'iChingDomainMap', does: 'the eight trigrams as a domain map — each names one dual-pair module and its representative pages' },
     { skill: 'hexagram colour', fn: 'hexagramIsHexColorDuality', does: 'the 64 hexagrams ARE the 64 all-pole hex colours; 2⁶ = 4³ is the codon · Pauli · colour identity' },
     { skill: 'i ching generators', fn: 'generatorsAreIChing', does: 'the build/debug generators compacted into eight bāguà slots — one trigram-indexed runner' },
+    { skill: 'i ching learn first', fn: 'iChingLearnBeforeImplement', does: 'agent protocol — learn BAGUA, iChingDomainMap, Three Powers nav, and constraints before UI/nav/home edits; feeds /llms.txt' },
     // All skills created from this session's waves — each a sealed concept, autosaved and used.
     ...SESSION_SKILLS,
   ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }))

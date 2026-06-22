@@ -670,7 +670,7 @@ export function commandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) 
   return memoByRoot('commandsSavedInQuantumPairs', matrix, () => computeCommandsSavedInQuantumPairs(matrix))
 }
 function computeCommandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) {
-  const pairs = ['commit/push', 'build/seal', 'fold/verify', 'decode/fold', 'edit/build', 'place/generate', 'sweep/verify'].map((command) => {
+  const pairs = ['commit/push', 'build/seal', 'fold/verify', 'decode/fold', 'edit/build', 'learn/build', 'dev/preview', 'place/generate', 'sweep/verify'].map((command) => {
     const [a, b] = command.split('/')
     const fold = foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)) // the command and its dual, one quantum pair
     return { command, a, b, paired: fold.forward !== fold.reverse && fold.bidirectional, address: fold.merged, receipt: toUuid(`command-pair:${command}`) }
