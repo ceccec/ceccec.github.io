@@ -119,7 +119,7 @@ const siteDescriptionBg = config.descriptionBg
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  // ~69 catch-all shells — serial SSR (buildConcurrency>1 races .vitepress/.temp); solo build ~85–95s.
+  // ~69 catch-all shells — serial SSR (buildConcurrency>1 races .vitepress/.temp); target ≤3 min.
   buildConcurrency: 1,
   title: siteTitle,
   description: siteDescription,
@@ -201,16 +201,22 @@ export default defineConfig({
   transformPageData(pageData) {
     const frontmatter = (pageData.frontmatter ||= {})
     const head = (frontmatter.head ||= [])
-    // Computed static pages (the dynamic [page] route) carry their SEO in the route params — the .md
-    // file is purged, the body prose dropped, but the SEO is kept: lift the page-specific title,
-    // description and keywords here so the ratings stay top, not the generic site fallback.
+
+    // Nav left + outline right on every page — outline depth from content headings.
+    frontmatter.aside = true
+    frontmatter.sidebar = frontmatter.sidebar === false ? false : true
+    if (frontmatter.outline !== false) {
+      frontmatter.outline = frontmatter.outline ?? 'deep'
+    }
+
     const params = pageData.params as { title?: string; description?: string; keywords?: string[] } | undefined
     if (params?.title) pageData.title = params.title
     if (params?.description) {
-      pageData.description = params.description // the <meta description> reads pageData.description
+      pageData.description = params.description
       if (!frontmatter.description) frontmatter.description = params.description
     }
     if (params?.keywords && !frontmatter.keywords) frontmatter.keywords = params.keywords
+
     const relative = pageData.relativePath
     const siteLocale = siteLocaleForRelative(relative)
     const isBg = siteLocale.code === 'bg'
@@ -292,8 +298,12 @@ export default defineConfig({
       og.push(['meta', { name: 'twitter:image', content: image }])
     }
     for (const tag of og) head.push(tag)
-    // Home hero: computed from sealed src (homeHero) — rosetta rays + 三才; Glagolitic root transliterates.
-    if (isHome && frontmatter.layout === 'home') {
+    // Home: doc layout (sidebars on) + computed hero in doc-before via Layout.vue.
+    if (isHome) {
+      if (frontmatter.layout === 'home') {
+        delete frontmatter.layout
+      }
+      delete frontmatter.isHome
       const locale = siteLocale.code === 'bg' ? 'bg' : siteLocale.code === 'cu' ? 'gla' : 'en'
       let hero = homeHero(locale)
       if (locale === 'gla') {
@@ -345,6 +355,8 @@ export default defineConfig({
     return html.replace('</head>', `${heroStyle}${scripts}</head>`)
   },
   themeConfig: {
+    aside: true,
+    outline: 'deep',
     // The GitHub repository, shown in the top nav. One source for the repo link across both locales.
     socialLinks: [{ icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }],
     // Nothing bypasses VitePress — not even search. VitePress's built-in local
@@ -429,6 +441,11 @@ export default defineConfig({
         nav: enNav.nav,
         sidebar: enNav.sidebar,
         footer: enNav.footer,
+        outline: { label: 'On this page' },
+        darkModeSwitchLabel: 'Appearance',
+        sidebarMenuLabel: 'Menu',
+        returnToTopLabel: 'Return to top',
+        langMenuLabel: 'Change language',
       },
     },
     bg: {

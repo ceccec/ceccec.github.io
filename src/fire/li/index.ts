@@ -3306,27 +3306,23 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   const navFull = siteNavigation(matrix)
   const nav = navFull.en.nav
-  // the four-door nav, realized as Home + the three eight-folds named by the I Ching THREE POWERS (三才,
-  // Heaven · Human · Earth — the complete triad), each an eight-fold; the three nest to 64³ — threeEightFoldsTopNav
-  const navThreePowers =
-    nav.length === 4 &&
+  // Rosetta top nav (siteNavigation): Home + seven-ray Rosetta fold — replaces legacy Three Powers doors; 三才 remain on home body links.
+  const navRosetta =
+    nav.length === 2 &&
     nav[0]?.text === 'Home' &&
-    nav[1]?.text === '天 Heaven' &&
-    nav[2]?.text === '人 Human' &&
-    nav[3]?.text === '地 Earth' &&
-    [1, 2, 3].every((door) => {
-      const entry = nav[door]
-      return entry !== undefined && 'items' in entry && entry.items.length >= 1
-    })
+    nav[1]?.text === 'Rosetta' &&
+    nav[1] !== undefined &&
+    'items' in nav[1] &&
+    nav[1].items.length === 7
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity
   const domainMap = iChingDomainMap(matrix)
   const waves = [
-    { wave: 'top nav = Home · three eight-folds named by the Three Powers (天 Heaven · 人 Human · 地 Earth) — the three cube axes forming 64³', done: navThreePowers },
+    { wave: 'top nav = Home · Rosetta (seven Glagolitic rays — Pliska coprime decode)', done: navRosetta },
     { wave: '10D animations at every scale (4 homology loops + 6 cross-fold axes)', done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: 'every card is one open-graph object', done: everyCardOg },
-    { wave: 'browser-language routing, default English', done: true }, // config.mts head detector + theme locale memory
+    { wave: 'browser-language routing, default English', done: true },
     { wave: 'research grouped by I Ching 8 trigram domain modules', done: domainMap.aligned },
     { wave: 'left sidebar shows the related paths to the current page', done: navFull.relatedSidebarComplete },
     { wave: 'crosslink all', done: navFull.crosslinksComplete },
@@ -3335,7 +3331,7 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   ]
   const sealed = waves.filter((w) => w.done).length
   return {
-    holds: navThreePowers && tenD.tenDimensional && trinityRoot, // the parts enforceable from src right now
+    holds: navRosetta && tenD.tenDimensional && trinityRoot && everyCardOg && navFull.relatedSidebarComplete && navFull.crosslinksComplete,
     trinityUnitesAll: trinityRoot,
     sealed,
     total: waves.length,
@@ -3343,9 +3339,9 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     pending: waves.filter((w) => !w.done).map((w) => w.wave),
     root: merkleFold(waves.map((w) => toUuid(`redesign:${w.wave}:${w.done}`))),
     statement:
-      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home and three eight-fold doors named by the I Ching Three Powers (天 Heaven · 人 Human · 地 Earth, the complete triad that covers all, forming 64³), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave, dropping nothing yet (reorganize first).',
+      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home and a seven-ray Rosetta top nav (Glagolitic categorical lenses from rosettaRayOf; 三才 Three Powers remain on the home body), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave.',
     boundary:
-      'A directive folded as a tracked plan. `holds` proves only the parts enforceable from src (the eight-fold nav, the ten dimensions, the uniting trinity); the rest (research grouping, sidebar, crosslink, 10D in every component, the eventual cleanup) are declared waves, sealed as they land — not yet all true.',
+      'A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (Rosetta top nav, 10D animation, uniting trinity, every card OG, related sidebar, crosslinks). The deferred wave (reorganize every piece into trinities) stays open by design — not yet all true.',
   }
 }
 

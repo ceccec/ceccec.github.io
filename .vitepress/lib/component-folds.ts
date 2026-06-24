@@ -1,6 +1,7 @@
 // Browser-safe component → sealed fold loaders (dynamic import — no monolith at parse time).
 import type { ComponentCrosslink } from './crosslinks'
 import type { DecodedFacet, DecodedStation } from '../theme/components/DecodedCard.vue'
+import { displayText, localePath, pickLocale, type LocaleName } from '../../src/site/index'
 
 export type DecodedFoldView = {
   title?: string
@@ -12,12 +13,36 @@ export type DecodedFoldView = {
   ok?: boolean
 }
 
-export async function withCrosslinks(name: string, view: DecodedFoldView): Promise<DecodedFoldView> {
+export type FoldLoader = (locale: LocaleName) => Promise<DecodedFoldView>
+
+function localizeDecodedView(view: DecodedFoldView, locale: LocaleName): DecodedFoldView {
+  return {
+    ...view,
+    title: view.title ? displayText(locale, view.title) : view.title,
+    statement: view.statement ? displayText(locale, view.statement) : view.statement,
+    boundary: view.boundary ? displayText(locale, view.boundary) : view.boundary,
+    facets: view.facets?.map((facet) => ({
+      ...facet,
+      facet: displayText(locale, facet.facet) ?? facet.facet,
+    })),
+    stations: view.stations?.map((station) => ({
+      ...station,
+      station: displayText(locale, station.station) ?? station.station,
+    })),
+  }
+}
+
+function wrapFold(fn: () => Promise<DecodedFoldView>): FoldLoader {
+  return async (locale) => localizeDecodedView(await fn(), locale)
+}
+
+export async function withCrosslinks(
+  name: string,
+  view: DecodedFoldView,
+  locale: LocaleName = 'en',
+): Promise<DecodedFoldView> {
   const { componentCrosslinks } = await import('./crosslinks')
-  const { localeFromRoute, localePath } = await import('../../src/site/index')
-  const locale = typeof window !== 'undefined'
-    ? localeFromRoute(window.location.pathname)
-    : 'gla'
+  const localized = localizeDecodedView(view, locale)
   const computed = componentCrosslinks(name, locale)
   const seen = new Set(computed.map((entry) => entry.link))
   const normalizeLink = (link: string) => (
@@ -33,7 +58,7 @@ export async function withCrosslinks(name: string, view: DecodedFoldView): Promi
       return true
     }),
   ]
-  return { ...view, crosslinks: merged.slice(0, 14) }
+  return { ...localized, crosslinks: merged.slice(0, 14) }
 }
 
 type FoldLike = {
@@ -50,12 +75,12 @@ type FoldLike = {
   [key: string]: unknown
 }
 
-async function fromStaticPage(slug: string): Promise<DecodedFoldView> {
+async function fromStaticPage(slug: string, locale: LocaleName): Promise<DecodedFoldView> {
   const { staticPages } = await import('../../src/site/index')
   const page = staticPages().find((entry) => entry.slug === slug)
   return {
-    title: page?.title.en ?? slug,
-    statement: page?.description.en,
+    title: page ? pickLocale(locale, page.title.en, page.title.bg) : slug,
+    statement: page ? pickLocale(locale, page.description.en, page.description.bg) : undefined,
     boundary: page?.category,
     ok: Boolean(page),
   }
@@ -135,30 +160,36 @@ function fromFold(fold: FoldLike, title?: string): DecodedFoldView {
   }
 }
 
-export const COMPONENT_FOLD_LOADERS: Record<string, () => Promise<DecodedFoldView>> = {
-  StartHere: async () => {
+export type LegacyFoldLoader = () => Promise<DecodedFoldView>
+export type AnyFoldLoader = FoldLoader | LegacyFoldLoader
+
+export async function invokeFoldLoader(loader: AnyFoldLoader, locale: LocaleName): Promise<DecodedFoldView> {
+  if (loader.length >= 1) return (loader as FoldLoader)(locale)
+  return localizeDecodedView(await (loader as LegacyFoldLoader)(), locale)
+}
+
+export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
+  StartHere: async (locale) => {
     const { startHereDecodedView } = await import('../../src/thunder/movie')
-    const { localeFromRoute } = await import('../../src/site/index')
-    const locale = typeof window !== 'undefined' ? localeFromRoute(window.location.pathname) : 'en'
     return startHereDecodedView(locale)
   },
-  BulgarianHeritage: async () => {
+  BulgarianHeritage: wrapFold(async () => {
     const { bulgarianHeritageDecoded } = await import('../../src/earth/world/index')
     return fromFold(bulgarianHeritageDecoded(), 'Bulgarian heritage')
-  },
-  BulgarianHistory: async () => {
+  }),
+  BulgarianHistory: wrapFold(async () => {
     const { bulgarianHistoryDecoded } = await import('../../src/earth/world/index')
     return fromFold(bulgarianHistoryDecoded(), 'Bulgarian history')
-  },
-  BulgarianEthnogenesis: async () => {
+  }),
+  BulgarianEthnogenesis: wrapFold(async () => {
     const { bulgarianEthnogenesisDecoded } = await import('../../src/earth/world/index')
     return fromFold(bulgarianEthnogenesisDecoded(), 'Bulgarian ethnogenesis')
-  },
-  SacredGeometry: async () => {
+  }),
+  SacredGeometry: wrapFold(async () => {
     const { sacredGeometrySeal } = await import('../../src/mountain/geometry/index')
     return fromFold(sacredGeometrySeal(), 'Sacred geometry')
-  },
-  Society: async () => {
+  }),
+  Society: wrapFold(async () => {
     const { scientificSociety } = await import('../../src/earth/governance/index')
     const fold = scientificSociety()
     return {
@@ -168,7 +199,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, () => Promise<DecodedFoldVie
       facets: fold.roles.map((role) => ({ facet: `${role.name}: ${role.responsibility}`, on: true })),
       ok: fold.grounded,
     }
-  },
+  }),
   PlayLearn: async () => {
     const { playLearn } = await import('../../src/quantum/lake/voice/index')
     const fold = playLearn()

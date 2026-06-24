@@ -21,7 +21,7 @@ import { everythingFoldsMerkabaInfiniteStreams, knowledgeRevealedByMerkabaFold }
 import { GLAGOLITIC_MAP, toGlagolitic } from '../../quantum/heaven/library'
 import { babelFold } from '../../earth/world'
 import { useGlagolitsaForIcons } from '../../language'
-import { crawlerKnowledge } from '../../site'
+import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge } from '../../site'
 import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputationally, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, papers, path, resonanceCatchGapsViolations, result, speechIntonation, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind'
 
 // Consolidate structured data into reusable, holographic open-graph components based
@@ -409,9 +409,12 @@ export function imagineMicrodataVortexItself(matrix: MindMatrix = buildMatrix())
 // TRANSLITERATION to the ancient script (Cyrillic → Glagolitic), real and deterministic.
 export function saveAllTranslationLogicAutotranslateLocale(matrix: MindMatrix = buildMatrix()) {
   const sample = toGlagolitic('двоен торус')
+  const bgLine = bulgarianFromEnglish('Support · contact')
+  const bgHome = bulgarianHomeFromEnglish('---\ntitle: Home\n---\nSupport · contact\n')
   const facets = [
     { facet: 'all translation logic saved in the matrix — labels, babel, autotranslations', on: autotranslations(matrix).complete && babelFold(matrix).grounded },
     { facet: 'autotranslate on locale change — the labels switch, the script transliterates', on: sample !== 'двоен торус' && /[Ⰰ-ⱟ]/.test(sample) },
+    { facet: 'bg locale computed from en — bulgarianHomeFromEnglish + bulgarianFromEnglish, not mirrored mounts', on: /[\u0400-\u04FF]/.test(bgLine) && /[\u0400-\u04FF]/.test(bgHome) },
     { facet: 'even ancient languages — by transliteration to the ancient script (Glagolitic)', on: useGlagolitsaForIcons(matrix).uses },
     { facet: 'honest: transliteration is script, not meaning — a deterministic map, not a translator', on: Object.keys(GLAGOLITIC_MAP).length >= 28 && toGlagolitic('а') === 'Ⰰ' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`translation-locale:${entry.facet}:${entry.on}`) }))

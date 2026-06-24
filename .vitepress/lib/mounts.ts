@@ -157,4 +157,4 @@ export function useImmersiveMovie() {
   return { immersive, textShadow }
 }
 
-export { prefersReducedMotion, useHeroClock, useVisibleMovieCanvas, viewportSize } from './movie-canvas'
+export { prefersReducedMotion, useHeroClock, useVisibleMovieCanvas, viewportSize, type MovieIntensity } from './movie-canvas'

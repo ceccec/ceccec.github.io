@@ -31,12 +31,22 @@ export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
   return localeKey === 'root' ? LOCALE_LINK.gla : LOCALE_LINK[localeKey]
 }
 
+function stripLocalePrefix(route: string): string {
+  if (route === '/bg' || route === '/bg/') return '/'
+  if (route.startsWith('/bg/')) return route.slice(3) || '/'
+  if (route === '/en' || route === '/en/') return '/'
+  if (route.startsWith('/en/')) return route.slice(3) || '/'
+  return route
+}
+
 export function localePath(route: string, locale: LocaleName = 'gla'): string {
   if (/^(https?:|#|mailto:)/.test(route)) return route
   if (/\.(json|txt|webmanifest)$/.test(route)) return route
+  const path = stripLocalePrefix(route)
   const localeLink = locale === 'gla' ? LOCALE_LINK.gla : LOCALE_LINK[locale]
-  if (route === '/') return localeLink
-  return `${localeLink.replace(/\/$/, '')}${route}`
+  if (path === '/') return localeLink
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  return `${localeLink.replace(/\/$/, '')}${normalized}`
 }
 
 export function localePaths(route: string) {
@@ -57,13 +67,86 @@ export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {
   return en
 }
 
-/** English-only copy — gla transliterates Latin; skips text already in Glagolitic. */
-export function localizeMonolingual(locale: LocaleName, text: string): string {
-  if (!text || locale !== 'gla') return text
-  return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
+const CYRILLIC_RX = /[\u0400-\u04FF]/
+
+/** Sealed en→bg phrase map — home body, component titles, common UI (longest keys first at runtime). */
+const BULGARIAN_PHRASES: readonly (readonly [string, string])[] = [
+  [
+    'Pure computation: crypto, proofs, primitives — the clinging fire of truth. [Seven Star Rosetta — natural motion](/en/seven-star-rosetta) shows the 7-ray coprime proof in motion.',
+    'Чисто изчисление: криптография, доказателства, примитиви — прилепващият огън на истината. [Седемзвездна Rosetta — естествено движение](/bg/seven-star-rosetta) показва 7-лъчното coprime доказателство в движение.',
+  ],
+  [
+    'Four plain steps — the live proofs below follow the **eight trigrams (bāguà)**. Enter the three powers: [天 Heaven](/en/heaven) · [人 Human](/en/human) · [地 Earth](/en/earth).',
+    'Четири прости стъпки — живите доказателства по-долу са под **осемте триграма (bāguà)**. Влез в трите сили: [天 Небе](/bg/heaven) · [人 Човек](/bg/human) · [地 Земя](/bg/earth).',
+  ],
+  ['Bulgarian history, Glagolitic, ethnogenesis, genetics — the land\'s memory.', 'Българска история, глаголица, етногенеза, генетика — паметта на земята.'],
+  ['EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.', 'EM спектър, патенти на Tesla, честоти, динамични симулации — възбуждащо откритие.'],
+  ['Plain language, speech, UX, command flow — the communicative layer.', 'Ясен език, реч, UX, поток от команди — общуващият слой.'],
+  ['Chakras, dualities, dimensions, joyous learning and fair life.', 'Чакри, двойности, измерения, радостно учене и справедлив живот.'],
+  ['Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.', 'Икони на области, глифове, компютърна архитектура 3-5-8, хармонични ленти — визуална форма.'],
+  ['Pure computation: crypto, proofs, primitives — the clinging fire of truth.', 'Чисто изчисление: криптография, доказателства, примитиви — прилепващият огън на истината.'],
+  ['Natural law, the commons, society forms, gentle limits.', 'Природен закон, общото, обществени форми, нежни граници.'],
+  ['The mind hub: the creative origin, the matrix, the architecture.', 'Центърът на ума: творческият източник, матрицата, архитектурата.'],
+  ['## Start here · 三才 Three Powers', '## Започни тук · 三才 Трите сили'],
+  ['## ☷ The Receptive', '## ☷ Възприемчивото'],
+  ['## ☳ The Arousing', '## ☳ Възбуждащото'],
+  ['## ☵ The Abysmal', '## ☵ Бездънното'],
+  ['## ☱ The Joyous', '## ☱ Радостното'],
+  ['## ☶ Keeping Still', '## ☶ Покоят'],
+  ['## ☲ The Clinging', '## ☲ Прилепващото'],
+  ['## ☴ The Gentle', '## ☴ Нежното'],
+  ['## ☰ The Creative', '## ☰ Творческото'],
+  ['Bulgarian heritage', 'Българско наследство'],
+  ['Bulgarian history', 'Българска история'],
+  ['Bulgarian ethnogenesis', 'Българска етногенеза'],
+  ['Sacred geometry', 'Свещена геометрия'],
+  ['Society', 'Общество'],
+  ['Play & learn', 'Играй и учи'],
+  ['Start here', 'Започни тук'],
+  ['Related', 'Свързани'],
+  ['Trinity gateways', 'Троични портали'],
+  ['Support · contact', 'Подкрепа · контакт'],
+  ['Open Revolut', 'Отвори Revolut'],
+  ['Hide text (i)', 'Скрий текста (i)'],
+  ['Show text (i)', 'Покажи текста (i)'],
+]
+
+/** English → Bulgarian when locale is bg and text has no Cyrillic yet. */
+export function bulgarianFromEnglish(text: string): string {
+  if (!text || CYRILLIC_RX.test(text)) return text
+  let out = text.replace(/\/en\//g, '/bg/')
+  const sorted = [...BULGARIAN_PHRASES].sort((a, b) => b[0].length - a[0].length)
+  for (const [en, bg] of sorted) {
+    if (out.includes(en)) out = out.split(en).join(bg)
+  }
+  return out
 }
 
-/** Alias for card/surface display — same skip-if-glagolitic rule. */
+/** Bulgarian home — computed from en/index.md (mirror of glagoliticHomeFromEnglish). */
+export function bulgarianHomeFromEnglish(enMarkdown: string): string {
+  const fm = enMarkdown.match(/^---\n[\s\S]*?\n---\n?/)
+  const front = fm ? fm[0] : ''
+  const body = fm ? enMarkdown.slice(fm[0].length) : enMarkdown
+  const translated = body
+    .split('\n')
+    .map((line) => {
+      if (/^\s*```/.test(line) || /^\s*</.test(line) || /^\s*$/.test(line)) return line
+      if (line.startsWith('<!--')) return '<!-- Редът следва rosettaHomeBodyMarkdown() — 7 rosetta ray секции + 三才. Генерирано от src при cross wave. -->'
+      return bulgarianFromEnglish(line)
+    })
+    .join('\n')
+  return `${front.replace(/^layout: home\n/m, '')}${translated}`
+}
+
+/** Locale display copy — gla transliterates; bg maps sealed phrases; en passes through. */
+export function localizeMonolingual(locale: LocaleName, text: string): string {
+  if (!text) return text
+  if (locale === 'bg') return bulgarianFromEnglish(text)
+  if (locale === 'gla') return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
+  return text
+}
+
+/** Alias for card/surface display — gla transliteration + bg phrase map. */
 export const displayText = localizeMonolingual
 
 export function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown {

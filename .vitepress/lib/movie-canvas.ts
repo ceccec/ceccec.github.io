@@ -2,6 +2,8 @@
 import { nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref } from 'vue'
 import { subscribeHeroClock } from './hero-movie'
 
+export type MovieIntensity = 'full' | 'soft' | 'whisper'
+
 export function prefersReducedMotion(): boolean {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }

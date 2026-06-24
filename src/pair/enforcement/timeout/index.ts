@@ -9,7 +9,7 @@ export const MAX_TRADING_TIMEOUT_MS = 120_000
 
 export function defaultTimeoutMs(kind: TimeoutKind): number {
   switch (kind) {
-    case 'build': return 600_000
+    case 'build': return 180_000
     case 'offline': return 30_000
     case 'live-local':
     case 'live-world':

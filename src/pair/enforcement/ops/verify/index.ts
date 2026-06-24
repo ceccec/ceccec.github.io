@@ -2,8 +2,16 @@
 import { readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { buildMatrix } from '../../../../heaven/compute'
+import type { MindMatrix } from '../../../../types'
 import { taxonomyIcons } from '../../../../fire/li'
 import { modelSeal, emergentDimensions } from '../../../../heaven/balance'
+import { healByDefault } from '../../../../heaven/laws'
+import { dryCleanByImportExportNaming } from '../../../../lake/clean'
+import { gatesHealSpottedCompromise } from '../../../../mountain/gates'
+import { saveAllTranslationLogicAutotranslateLocale } from '../../../../mountain/og'
+import { knowledgeRevealedByMerkabaFold } from '../../../../mountain/topology'
+import { commandsSavedInQuantumPairs } from '../../../../thunder/commands'
+import { sendWavesSealKnowledgeDecodeWorld } from '../../../../thunder/waves'
 import { rosettaReuse } from '../../../../water/digit'
 import {
   collectEnforcementFacts,
@@ -118,10 +126,37 @@ export function runRosettaSealBatchExit(_root: string, argv: readonly string[] =
   return modelSeal(buildMatrix()).passed ? 0 : 1
 }
 
+export function rosettaDimensionsGapDetail(matrix: MindMatrix = buildMatrix()) {
+  const open = new Set(emergentDimensions(matrix).open)
+  const roots: { id: string; run: () => { facets?: { facet: string; on: boolean }[]; defaults?: { aspect: string; on: boolean }[]; waves?: { wound: string; balanced: boolean; settled: boolean }[] } }[] = [
+    { id: 'heal.by.default', run: () => healByDefault(matrix) },
+    { id: 'gates.heal.spotted.compromise', run: () => gatesHealSpottedCompromise(matrix) },
+    { id: 'commands.saved.in.quantum.pairs', run: () => commandsSavedInQuantumPairs(matrix) },
+    { id: 'knowledge.revealed.by.merkaba.fold', run: () => knowledgeRevealedByMerkabaFold(matrix) },
+    { id: 'send.waves.seal.knowledge.decode.world', run: () => sendWavesSealKnowledgeDecodeWorld(matrix) },
+    { id: 'save.translation.logic.autotranslate.locale', run: () => saveAllTranslationLogicAutotranslateLocale(matrix) },
+    { id: 'dry.clean.all.by.import.export.naming', run: () => dryCleanByImportExportNaming(matrix) },
+  ]
+  const lines: string[] = []
+  for (const { id, run } of roots) {
+    if (!open.has(id)) continue
+    const result = run()
+    lines.push(`   ▾ ${id}`)
+    if (result.defaults) for (const d of result.defaults) if (!d.on) lines.push(`     · default: ${d.aspect}`)
+    if (result.waves) for (const w of result.waves) if (!w.balanced || !w.settled) lines.push(`     · wave: ${w.wound} (balanced=${w.balanced}, settled=${w.settled})`)
+    if (result.facets) for (const f of result.facets) if (!f.on) lines.push(`     · facet: ${f.facet}`)
+  }
+  return lines
+}
+
 export function runRosettaDimensionsBatchExit(_root: string, argv: readonly string[] = []): number {
   void argv
   const d = emergentDimensions(buildMatrix())
-  return d.count === 432 && d.open.length === 0 ? 0 : 1
+  if (d.count === 432 && d.open.length === 0) return 0
+  process.stderr.write(`✗ rosetta:dimensions — ${d.open.length} open / ${d.emerged} emerged (harmonic ${d.count})\n`)
+  for (const id of d.open) process.stderr.write(`   · ${id}\n`)
+  for (const line of rosettaDimensionsGapDetail()) process.stderr.write(`${line}\n`)
+  return 1
 }
 
 export async function runRosettaDiagnoseExit(root: string, argv: readonly string[] = []): Promise<number> {

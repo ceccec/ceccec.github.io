@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useCardMovie, useImmersiveMovie } from '../../lib/mounts'
+import { useCardMovie, useImmersiveMovie, type MovieIntensity } from '../../lib/mounts'
 import CardBackgroundMovie from './CardBackgroundMovie.vue'
 
 const props = withDefaults(
@@ -10,8 +10,9 @@ const props = withDefaults(
     ghost?: boolean
     component?: string
     immersiveShadow?: boolean
+    movieIntensity?: MovieIntensity
   }>(),
-  { immersiveShadow: true },
+  { immersiveShadow: true, movieIntensity: 'full' },
 )
 
 const { seed, cardStyle } = useCardMovie(() => props.seedParts)
@@ -25,13 +26,15 @@ const contentStyle = computed(() =>
 <template>
   <article
     class="ui-card"
-    :class="{ 'ui-card--ghost': ghost }"
+    :class="{
+      'ui-card--ghost': ghost,
+    }"
     data-shadcn="card"
     :data-component="component"
     :style="cardStyle"
   >
-    <CardBackgroundMovie :seed="seed" :title="title" />
-    <div class="ui-card__content" :style="contentStyle">
+    <CardBackgroundMovie :seed="seed" :title="title" :intensity="movieIntensity" />
+    <div class="ui-card__content vp-doc" :style="contentStyle">
       <slot />
     </div>
   </article>

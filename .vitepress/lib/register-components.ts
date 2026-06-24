@@ -1,9 +1,11 @@
 // Register componentGraph names globally — DecodedCard folds, LivingTorus canvas, or thin gate fallback.
-import { defineAsyncComponent, defineComponent, h, type App, type Component } from 'vue'
+import { defineAsyncComponent, defineComponent, h, ref, watch, type App, type Component } from 'vue'
+import { useRoute } from 'vitepress'
 import DecodedCard from '../theme/components/DecodedCard.vue'
 import UiCardShell from '../theme/components/UiCardShell.vue'
 import { componentDisplayName, useSiteLocale } from './mounts'
-import { COMPONENT_FOLD_LOADERS, withCrosslinks, type DecodedFoldView } from './component-folds'
+import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'
+import { localeFromRoute } from '../../src/site/index'
 
 /** VitePress default theme + explicit theme mounts — never re-register from componentGraph. */
 const THEME_RESERVED = new Set([
@@ -63,7 +65,6 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   CollectiveMind: () => import('../theme/components/CollectiveMind.vue'),
   RevolutAside: () => import('../theme/components/RevolutAside.vue'),
   VitePressPossibilities: () => import('../theme/components/VitePressPossibilities.vue'),
-  ForgeMaxTamperBar: () => import('../theme/components/ForgeMaxTamperBar.vue'),
 }
 
 function gateComponent(name: string): Component {
@@ -105,18 +106,24 @@ function gateComponent(name: string): Component {
   })
 }
 
-function decodedComponent(name: string, loader: () => Promise<DecodedFoldView>): Component {
+function decodedComponent(name: string, loader: import('./component-folds').AnyFoldLoader): Component {
   return defineAsyncComponent({
-    loader: async () => {
-      const fold = await withCrosslinks(name, await loader())
-      return defineComponent({
+    loader: async () =>
+      defineComponent({
         name,
         inheritAttrs: true,
         setup(_, { attrs }) {
-          return () => h(DecodedCard, { ...fold, ...attrs })
+          const route = useRoute()
+          const view = ref<DecodedFoldView | null>(null)
+          const load = async () => {
+            const locale = localeFromRoute(route.path)
+            const raw = await invokeFoldLoader(loader, locale)
+            view.value = await withCrosslinks(name, raw, locale)
+          }
+          watch(() => route.path, () => void load(), { immediate: true })
+          return () => (view.value ? h(DecodedCard, { ...view.value, ...attrs }) : null)
         },
-      })
-    },
+      }),
   })
 }
 

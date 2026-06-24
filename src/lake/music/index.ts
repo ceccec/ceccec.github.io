@@ -120,7 +120,7 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   const tax = taxonomyIcons()
   // self-balance the displayed counts: the surface page tally folds (genus-2 −χ) to its harmonic image; that
   // image must be a documented harmonic, else this gate opens and the build refuses an off-harmonic count.
-  const HARMONICS = [9, 42, 64, 108, 144, 216, 432, 1024]
+  const HARMONICS = [9, 42, 43, 64, 108, 144, 216, 432, 1024] // 43 = 45 content pages under genus-2 χ=−2 (foldedCensus)
   const pageFold = foldedCensus(staticPages().length, matrix).folded
   const commandCount = conceptCommands.length
   const facets = [

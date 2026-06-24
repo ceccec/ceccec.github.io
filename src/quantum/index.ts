@@ -20,6 +20,7 @@ import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue } from '
 import { quantumScaleHue } from './thunder/science'
 import { plasmaMovieStreams, type PlasmaWiredStream } from '../thunder/trading'
 import { autoSpeech } from '../fire/li'
+import { livingTorus } from '../fire/diamonds'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -540,6 +541,37 @@ export function heroSceneFromShared(shared: SharedHeroState, bursts: Burst[] = [
 /** Holographic hero movie — the quantum plasma ball: fractal merkaba fused with wired UUID streams at one centre void. */
 export function drawHeroMovieFrame(ctx: CanvasRenderingContext2D, w: number, h: number, shared: SharedHeroState): void {
   paintHolographicPlasmaHeroMovie(ctx, w, h, backgroundSceneFromShared(shared), heroSceneFromShared(shared))
+}
+
+export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'][number]
+
+/** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
+export function drawLivingTorusFrame(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  at: number,
+  coordinates: readonly LivingTorusCoordinate[],
+  reduce = false,
+): void {
+  ctx.clearRect(0, 0, w, h)
+  if (coordinates.length === 0) return
+  const cx = w / 2
+  const cy = h / 2
+  const phase = reduce ? 0 : at / 1000
+  const step = Math.max(1, Math.floor(coordinates.length / 220))
+  for (let i = 0; i < coordinates.length; i += step) {
+    const c = coordinates[i]!
+    const spin = phase * (c.lobe > 0 ? 0.55 : -0.55) + c.theta
+    const px = c.x * Math.cos(spin) - c.z * Math.sin(spin)
+    const py = c.y + Math.sin(spin) * 0.08
+    const x = cx + px * w * 0.34 + c.cx * w * 0.08
+    const y = cy + py * h * 0.34
+    ctx.fillStyle = `hsla(${Math.round(c.frequency) % 360}, 72%, 58%, 0.72)`
+    ctx.beginPath()
+    ctx.arc(x, y, 1.5 + c.scale * 2.5, 0, Math.PI * 2)
+    ctx.fill()
+  }
 }
 
 let heroClockRaf = 0

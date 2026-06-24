@@ -363,8 +363,8 @@ export function path(matrix: MindMatrix = buildMatrix()) {
 // the pages they are placed on form a graph, with the global components folded
 // into every page.
 export function componentGraph() {
-  // TrinityGateways folds into every page via the sidebar-nav-after layout slot (like VoidSidebar) — a global.
-  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways', 'ForgeMaxTamperBar']
+  // TrinityGateways + VoidSidebar fold into every page via sidebar-nav-after; RevolutAside via aside-bottom (right doc aside).
+  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways']
   // Corpus index pages mount UniversalPageTemplate in every locale (.vitepress/pages/**/{papers,references,diamonds}/index.md); monograph pages use [page].paths.ts + monographPaths.
   const placements: Record<string, readonly string[]> = {
     '/': ['SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests', 'MatrixCube'],

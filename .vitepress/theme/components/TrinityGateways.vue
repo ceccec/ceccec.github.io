@@ -2,65 +2,70 @@
 import { computed } from 'vue'
 import { useRoute } from 'vitepress'
 import { realtimeWiring } from '../../../src/thunder/trading/index.ts'
-import { useCardMovie, useSiteLocale } from '../../lib/mounts'
+import { useSiteLocale } from '../../lib/mounts'
+import UiCardShell from './UiCardShell.vue'
 
 const route = useRoute()
 const { pick, localize } = useSiteLocale()
 
 const wire = computed(() => realtimeWiring(route.path))
 
-const { cardStyle } = useCardMovie(() => ['trinity-gateways', wire.value.here])
+const seedParts = computed(() => ['trinity-gateways', wire.value.here] as const)
 
 const link = (slug: string) => localize(slug ? `/${slug}` : '/')
 
 const gatewaysLabel = computed(() => pick('Trinity gateways', 'Троични портали'))
 const relatedLabel = computed(() => pick('Related by shared tags', 'Свързани по общи тагове'))
+const navAria = computed(() => pick('Trinity gateways', 'Троични портали'))
 </script>
 
 <template>
-  <nav
+  <UiCardShell
     v-if="wire.gateways.length"
     class="trinity-gateways"
-    :style="cardStyle"
-    aria-label="Trinity gateways"
+    component="TrinityGateways"
+    ghost
+    movie-intensity="soft"
+    :seed-parts="seedParts"
+    :title="gatewaysLabel"
   >
-    <p class="trinity-gateways__heading">{{ gatewaysLabel }}</p>
-    <ul class="trinity-gateways__list">
-      <li v-for="gateway in wire.gateways" :key="gateway.slug">
-        <a
-          class="trinity-gateways__link"
-          :href="link(gateway.slug)"
-          :style="{ '--gateway-hue': gateway.hue }"
-        >
-          <span class="trinity-gateways__glyph">{{ gateway.glyph }}</span>
-          <span class="trinity-gateways__realm">{{ gateway.realm }}</span>
-          <span class="trinity-gateways__title">{{ pick(gateway.titleEn, gateway.titleBg) }}</span>
-        </a>
-      </li>
-    </ul>
-
-    <template v-if="wire.related.length">
-      <p class="trinity-gateways__heading trinity-gateways__heading--related">{{ relatedLabel }}</p>
-      <ul class="trinity-gateways__list trinity-gateways__list--related">
-        <li v-for="related in wire.related" :key="related.slug">
+    <nav :aria-label="navAria">
+      <p class="trinity-gateways__heading">{{ gatewaysLabel }}</p>
+      <ul class="trinity-gateways__list">
+        <li v-for="gateway in wire.gateways" :key="gateway.slug">
           <a
-            class="trinity-gateways__link trinity-gateways__link--related"
-            :href="link(related.slug)"
-            :style="{ '--gateway-hue': related.hue }"
+            class="trinity-gateways__link"
+            :href="link(gateway.slug)"
+            :style="{ '--gateway-hue': gateway.hue }"
           >
-            {{ pick(related.titleEn, related.titleBg) }}
+            <span class="trinity-gateways__glyph">{{ gateway.glyph }}</span>
+            <span class="trinity-gateways__realm">{{ gateway.realm }}</span>
+            <span class="trinity-gateways__title">{{ pick(gateway.titleEn, gateway.titleBg) }}</span>
           </a>
         </li>
       </ul>
-    </template>
-  </nav>
+
+      <template v-if="wire.related.length">
+        <p class="trinity-gateways__heading trinity-gateways__heading--related">{{ relatedLabel }}</p>
+        <ul class="trinity-gateways__list trinity-gateways__list--related">
+          <li v-for="related in wire.related" :key="related.slug">
+            <a
+              class="trinity-gateways__link trinity-gateways__link--related"
+              :href="link(related.slug)"
+              :style="{ '--gateway-hue': related.hue }"
+            >
+              {{ pick(related.titleEn, related.titleBg) }}
+            </a>
+          </li>
+        </ul>
+      </template>
+    </nav>
+  </UiCardShell>
 </template>
 
 <style scoped>
 .trinity-gateways {
-  margin: calc(var(--vp-movie-gap, 0.75rem) * 1.25) 0 calc(var(--vp-movie-gap, 0.75rem) * 0.5);
-  padding-top: calc(var(--vp-movie-gap, 0.75rem) * 0.75);
-  border-top: 1px dashed var(--vp-hero-border);
+  margin: calc(var(--vp-movie-gap, 0.75rem) * 0.5) 0;
 }
 
 .trinity-gateways__heading {
@@ -69,7 +74,6 @@ const relatedLabel = computed(() => pick('Related by shared tags', 'Свърза
   letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: var(--vp-movie-fade, 0.72);
-  text-shadow: var(--vp-hero-text-shadow);
 }
 
 .trinity-gateways__heading--related {
@@ -93,7 +97,6 @@ const relatedLabel = computed(() => pick('Related by shared tags', 'Свърза
   color: var(--vp-c-text-1);
   text-decoration: none;
   font-size: calc(0.86rem + var(--vp-movie-gap, 0.5rem) * 0.04);
-  text-shadow: var(--vp-hero-text-shadow);
 }
 
 .trinity-gateways__link:hover {

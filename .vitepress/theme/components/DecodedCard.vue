@@ -20,14 +20,20 @@ const props = defineProps<{
   stations?: DecodedStation[]
   crosslinks?: ComponentCrosslink[]
   ok?: boolean
+  /** Heading level for card title — use 3 when nested under a page h1. */
+  titleLevel?: 2 | 3
+  /** Omit visible title when parent already shows the same heading. */
+  skipTitle?: boolean
 }>()
 
 const route = useRoute()
-const { t, localize, locale } = useSiteLocale()
+const { t, localize, locale, pick } = useSiteLocale()
 
 const seedParts = computed(() => [props.title, props.statement, route.path] as const)
 
 const displayTitle = computed(() => t(props.title))
+const titleLevel = computed(() => props.titleLevel ?? 2)
+const showTitle = computed(() => Boolean(displayTitle.value) && !props.skipTitle)
 const displayFacets = computed(() =>
   props.facets?.map((facet) => ({ ...facet, facet: t(facet.facet) ?? facet.facet })),
 )
@@ -44,11 +50,27 @@ const displayCrosslinks = computed(() =>
 const crosslinksLabel = computed(() =>
   decodedCardCrosslinksLabel(locale.value, route.path, props.crosslinks?.length ?? 0),
 )
+const relatedAria = computed(() => pick('Related links', 'Свързани връзки'))
+
+const titleId = computed(() => {
+  const title = displayTitle.value
+  if (!title) return undefined
+  return title
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 48)
+})
 </script>
 
 <template>
   <UiCardShell class="decoded-card" :seed-parts="seedParts" :title="displayTitle">
-    <h1 v-if="displayTitle" class="decoded-card__title">{{ displayTitle }}</h1>
+    <component
+      :is="titleLevel === 3 ? 'h3' : 'h2'"
+      v-if="showTitle"
+      :id="titleId"
+      class="decoded-card__title"
+    >{{ displayTitle }}</component>
     <ol v-if="displayStations?.length" class="decoded-card__stations">
       <li v-for="station in displayStations" :key="station.route + station.station">
         <a :href="localize(station.route)">{{ station.station }}</a>
@@ -63,7 +85,7 @@ const crosslinksLabel = computed(() =>
         <template v-else>{{ facet.facet }}</template>
       </li>
     </ul>
-    <nav v-if="displayCrosslinks?.length" class="decoded-card__crosslinks" aria-label="Related">
+    <nav v-if="displayCrosslinks?.length" class="decoded-card__crosslinks" :aria-label="relatedAria">
       <span class="decoded-card__crosslinks-label">{{ crosslinksLabel }}</span>
       <a
         v-for="link in displayCrosslinks"
@@ -85,7 +107,6 @@ const crosslinksLabel = computed(() =>
 .decoded-card__stations,
 .decoded-card__facets {
   margin: 0 0 calc(var(--vp-movie-gap) * 1.5);
-  padding-left: calc(var(--vp-movie-pad-x) * 1.1);
 }
 
 .decoded-card__mark {
@@ -99,7 +120,6 @@ const crosslinksLabel = computed(() =>
   flex-wrap: wrap;
   align-items: baseline;
   margin: 0 0 calc(var(--vp-movie-gap) * 1.5);
-  font-size: calc(0.82rem + var(--vp-movie-gap) * 0.12);
 }
 
 .decoded-card__crosslinks-label {

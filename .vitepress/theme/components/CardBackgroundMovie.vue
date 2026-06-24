@@ -7,13 +7,18 @@ import {
   prefersReducedMotion,
   sharedHeroAt,
   useVisibleMovieCanvas,
+  type MovieIntensity,
 } from '@vp-lib/hero-movie'
 import { useRoute } from 'vitepress'
 
-const props = defineProps<{
-  seed: string
-  title?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    seed: string
+    title?: string
+    intensity?: MovieIntensity
+  }>(),
+  { intensity: 'full' },
+)
 
 const route = useRoute()
 const root = ref<HTMLElement | null>(null)
@@ -46,7 +51,12 @@ watch(moviePath, repaint)
 </script>
 
 <template>
-  <div ref="root" class="ui-card__movie" aria-hidden="true">
+  <div
+    ref="root"
+    class="ui-card__movie"
+    :class="intensity !== 'full' ? `ui-card__movie--${intensity}` : undefined"
+    aria-hidden="true"
+  >
     <canvas ref="canvas" />
   </div>
 </template>
@@ -64,5 +74,13 @@ watch(moviePath, repaint)
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.ui-card__movie--soft {
+  opacity: 0.55;
+}
+
+.ui-card__movie--whisper {
+  opacity: 0.38;
 }
 </style>

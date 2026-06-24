@@ -1,27 +1,31 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref, useSlots, watch } from 'vue'
-import { useRoute } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
+import { useRoute, useData } from 'vitepress'
+import DefaultTheme, { VPHomeHero } from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
 import BackgroundMovie from './components/BackgroundMovie.vue'
 import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
-import RealtimeSubtitles from './components/RealtimeSubtitles.vue'
 import VoidSidebar from './components/VoidSidebar.vue'
 import TrinityGateways from './components/TrinityGateways.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
 import RevolutAside from './components/RevolutAside.vue'
-import SponsorChip from './components/SponsorChip.vue'
-import ForgeMaxTamperBar from './components/ForgeMaxTamperBar.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import { applyHeroChromeVars } from '../lib/hero-chrome'
 
 const { Layout: VPLayout } = DefaultTheme
 const route = useRoute()
+const { frontmatter } = useData()
+const showHomeHero = computed(() => Boolean(frontmatter.value.hero))
 const cssWidth = ref(1024)
 const slots = useSlots()
 const forwardedSlots = computed(() =>
-  Object.keys(slots).filter((name) => name !== 'sidebar-nav-after' && name !== 'sidebar-nav-before'),
+  Object.keys(slots).filter(
+    (name) =>
+      name !== 'sidebar-nav-after' &&
+      name !== 'sidebar-nav-before' &&
+      name !== 'aside-bottom',
+  ),
 )
 
 function syncHeroChrome(): void {
@@ -53,17 +57,22 @@ onUnmounted(() => {
         <BackgroundMovie />
       </div>
       <HeroBackgroundLayer />
-      <RealtimeSubtitles />
-      <ForgeMaxTamperBar />
-      <SponsorChip />
     </ClientOnly>
     <div class="vp-with-hero-movie__content">
       <VPLayout>
+        <template #doc-before>
+          <div v-if="showHomeHero" class="vp-doc vp-home-hero-doc">
+            <VPHomeHero />
+          </div>
+        </template>
         <template #sidebar-nav-after>
           <TrinityGateways />
-          <RevolutAside />
           <VoidSidebar />
           <slot name="sidebar-nav-after" />
+        </template>
+        <template #aside-bottom>
+          <RevolutAside />
+          <slot name="aside-bottom" />
         </template>
         <template #doc-footer-before>
           <CollectiveMind />

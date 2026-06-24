@@ -45,5 +45,5 @@ const view = computed(() => {
 </script>
 
 <template>
-  <DecodedCard v-if="view" v-bind="view" :data-variant="props.variant" />
+  <DecodedCard v-if="view" v-bind="view" skip-title :data-variant="props.variant" />
 </template>

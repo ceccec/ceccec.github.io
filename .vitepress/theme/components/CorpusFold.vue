@@ -20,5 +20,5 @@ const view = computed(() => {
 </script>
 
 <template>
-  <DecodedCard v-if="view" v-bind="view" />
+  <DecodedCard v-if="view" v-bind="view" skip-title />
 </template>

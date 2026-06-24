@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { useCardMovie } from '../../lib/mounts'
+import { useCardMovie, useImmersiveMovie } from '../../lib/mounts'
+import CardBackgroundMovie from './CardBackgroundMovie.vue'
 
 const props = withDefaults(
   defineProps<{
     seedParts: readonly (string | undefined)[]
+    title?: string
     open?: boolean
     variant?: 'boxed' | 'divider'
     summaryLayout?: 'stack' | 'inline'
@@ -13,7 +15,8 @@ const props = withDefaults(
 
 defineEmits<{ toggle: [event: Event] }>()
 
-const { cardStyle } = useCardMovie(() => props.seedParts)
+const { seed, cardStyle } = useCardMovie(() => props.seedParts)
+const { textShadow } = useImmersiveMovie()
 </script>
 
 <template>
@@ -24,22 +27,28 @@ const { cardStyle } = useCardMovie(() => props.seedParts)
     :open="open"
     @toggle="$emit('toggle', $event)"
   >
-    <summary class="ui-aside__summary">
+    <CardBackgroundMovie :seed="seed" :title="title" intensity="soft" />
+    <summary class="ui-aside__summary" :style="{ textShadow }">
       <slot name="summary" />
     </summary>
-    <div class="ui-aside__body">
+    <div class="ui-aside__body" :style="{ textShadow }">
       <slot />
     </div>
   </details>
 </template>
 
 <style scoped>
+.ui-aside {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
 .ui-aside--boxed {
   margin: calc(var(--vp-movie-gap, 0.75rem) * 1.5) 0 calc(var(--vp-movie-gap, 0.75rem) * 0.75);
   padding: calc(var(--vp-movie-gap, 0.75rem) * 0.85) calc(var(--vp-movie-gap, 0.75rem) * 1);
   border: 1px dashed var(--vp-hero-border);
   border-radius: var(--vp-movie-radius, 0.5rem);
-  background: transparent;
 }
 
 .ui-aside--divider {
@@ -49,12 +58,13 @@ const { cardStyle } = useCardMovie(() => props.seedParts)
 }
 
 .ui-aside__summary {
+  position: relative;
+  z-index: 1;
   cursor: pointer;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  text-shadow: var(--vp-hero-text-shadow);
 }
 
 .ui-aside--inline-summary .ui-aside__summary {
@@ -69,11 +79,12 @@ const { cardStyle } = useCardMovie(() => props.seedParts)
 }
 
 .ui-aside__body {
+  position: relative;
+  z-index: 1;
   margin-top: calc(var(--vp-movie-gap, 0.75rem) * 0.9);
   display: flex;
   flex-direction: column;
   gap: calc(var(--vp-movie-gap, 0.5rem) * 0.75);
-  text-shadow: var(--vp-hero-text-shadow);
 }
 
 .ui-aside--divider .ui-aside__body {
@@ -93,5 +104,9 @@ const { cardStyle } = useCardMovie(() => props.seedParts)
 .ui-aside__hint {
   font-size: calc(0.82rem + var(--vp-movie-gap, 0.5rem) * 0.03);
   opacity: var(--vp-movie-fade, 0.68);
+}
+
+.vp-with-hero-movie .ui-aside .ui-card__movie {
+  min-height: 100%;
 }
 </style>

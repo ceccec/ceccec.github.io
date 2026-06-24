@@ -7,6 +7,7 @@ import DigitMotion from '../../src/water/digit/index.vue'
 import { registerVitePressComponents } from '../lib/register-components'
 import './hero-glass.css'
 import './universal-page.css'
+import './computed-typography.css'
 import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
 
 export default {

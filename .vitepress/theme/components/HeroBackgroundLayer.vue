@@ -50,7 +50,7 @@ onUnmounted(() => {
 .vp-hero-immersive-toggle {
   position: fixed;
   left: max(0.75rem, env(safe-area-inset-left, 0px));
-  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
   z-index: 50;
   width: 2rem;
   height: 2rem;

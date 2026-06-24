@@ -5,6 +5,15 @@ import type { UniversalPage } from '../../../src/routes/corpus/index.ts'
 import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 
+function headingId(text: string, suffix: string): string {
+  const base = text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 48)
+  return base ? `${base}-${suffix}` : suffix
+}
+
 const { params } = useData()
 const route = useRoute()
 const { pick } = useSiteLocale()
@@ -20,27 +29,29 @@ const { cardStyle } = useCardMovie(() => {
 </script>
 
 <template>
-  <article v-if="page" class="universal-page" :style="cardStyle" data-shadcn="card">
+  <article v-if="page" class="universal-page vp-doc" :style="cardStyle" data-shadcn="card">
     <header v-if="page.kind === 'monograph'" class="universal-page__hero">
-      <h1>{{ page.title }}</h1>
+      <h1 :id="headingId(page.title, 'title')">{{ page.title }}</h1>
     </header>
 
     <DecodedCard
       v-if="page.decoded"
       v-bind="page.decoded"
+      :title-level="page.kind === 'monograph' ? 3 : 2"
     />
 
     <div v-if="page.kind === 'monograph'" class="page-body">
       <template v-for="group in page.groups.groups" :key="group.glyph">
-        <p
+        <h2
           v-if="group.grouped"
           class="rosetta-ray"
+          :id="headingId(pick(group.labelEn, group.labelBg), group.glyph)"
           :data-ray="group.ray"
           :style="{ '--ray-hue': group.hue }"
         >
           <span class="rosetta-ray__glyph">{{ group.glyph }}</span>
           <span class="rosetta-ray__name">{{ pick(group.labelEn, group.labelBg) }}</span>
-        </p>
+        </h2>
         <ClientOnly>
           <div v-for="name in group.components" :key="name" class="living">
             <component :is="name" />
@@ -76,19 +87,17 @@ export default { name: 'UniversalPageTemplate' }
   gap: calc(var(--vp-movie-gap, 0.5rem) * 1.5);
 }
 
+.rosetta-ray {
+  margin: 0;
+  font-weight: 600;
+}
+
 .living + .living {
   margin-top: calc(var(--vp-movie-gap, 0.5rem) * 0.5);
 }
 
 .page-proof {
   margin: calc(var(--vp-movie-gap, 0.75rem) * 1.5) 0 0;
-  font-size: calc(0.82rem + var(--vp-movie-gap, 0.5rem) * 0.06);
-  opacity: var(--vp-movie-fade, 0.7);
-  line-height: var(--vp-movie-line-height, 1.45);
   text-shadow: var(--vp-hero-text-shadow);
-}
-
-.page-proof code {
-  font-size: 0.92em;
 }
 </style>

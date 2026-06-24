@@ -12,11 +12,12 @@ const seedParts = computed(() => ['revolut-aside', channel.value.handle] as cons
 const labels = computed(() => ({
   summary: pick('Support · contact', 'Подкрепа · контакт'),
   link: pick('Open Revolut', 'Отвори Revolut'),
+  aria: pick('Revolut support and contact', 'Подкрепа и контакт чрез Revolut'),
 }))
 </script>
 
 <template>
-  <aside class="revolut-aside" aria-label="Revolut support and contact">
+  <aside class="revolut-aside" :aria-label="labels.aria">
     <UiAsideShell variant="divider" :seed-parts="seedParts">
       <template #summary>
         <span class="ui-aside__title">{{ labels.summary }}</span>

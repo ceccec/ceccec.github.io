@@ -41,6 +41,7 @@ export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   digit: { en: 'Digit', bg: 'Цифра' },
   wave: { en: 'Wave', bg: 'Вълна' },
   chess: { en: 'Chess', bg: 'Шах' },
+  schema: { en: 'Schema', bg: 'Схема' },
   schemaOrg: { en: 'Schema.org', bg: 'Schema.org' },
   traditions: { en: 'Traditions', bg: 'Традиции' },
   science: { en: 'Science', bg: 'Наука' },
