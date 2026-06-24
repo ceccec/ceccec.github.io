@@ -10,7 +10,7 @@ import { toUuid, merkleFold, foldPair } from '../../../0'
 export const dual = 'src/spirit/quantum'
 
 // Chakras and aura in 3-5-8 — mapped honestly to the yogic tradition.
-/** @iching ☱ Duì · Lake · joyous */
+/** @rosetta ✦₄ · Lake · joyous */
 export function chakrasAura() {
   const tiers = [
     { tier: 3, name: 'three nadis (channels)', members: ['ida', 'pingala', 'sushumna'] },
@@ -27,7 +27,7 @@ export function chakrasAura() {
 }
 
 // Human Design in 3-5-8 — mapped honestly.
-/** @iching ☱ Duì · Lake · joyous */
+/** @rosetta ✦₄ · Lake · joyous */
 export function humanDesign() {
   const tiers = [
     { tier: 3, name: 'three circuit groups', members: ['individual', 'tribal', 'collective'] },
@@ -45,7 +45,7 @@ export function humanDesign() {
 }
 
 // Complete yin and yang in 3-5-8.
-/** @iching ☱ Duì · Lake · joyous */
+/** @rosetta ✦₄ · Lake · joyous */
 export function yinYang() {
   const three = { tier: 3, name: 'three powers (三才)', members: ['heaven', 'earth', 'human'] }
   const five = { tier: 5, name: 'five elements (五行)', members: ['wood', 'fire', 'earth', 'metal', 'water'] }
@@ -63,7 +63,7 @@ export function yinYang() {
 }
 
 // Enrich with 3d, 5d, 8d — the Fibonacci dimensions.
-/** @iching ☱ Duì · Lake · joyous */
+/** @rosetta ✦₄ · Lake · joyous */
 export function dimensions() {
   const levels = [3, 5, 8] as const
   const fibonacci = levels[2] === levels[1] + levels[0] // 8 = 5 + 3
@@ -80,7 +80,7 @@ export function dimensions() {
 }
 
 // Fill the gaps with device-sensor interaction in the quantum field, tiered 3-5-8.
-/** @iching ☱ Duì · Lake · joyous */
+/** @rosetta ✦₄ · Lake · joyous */
 export function deviceSensors() {
   const tiers = [
     { tier: 3, kind: 'core', sensors: ['pointer position', 'viewport & visibility', 'clock'] },
@@ -102,7 +102,7 @@ export function deviceSensors() {
 }
 
 // Compare all dualities, in 3-5-8-13-21 (Fibonacci) tiers.
-/** @iching ☱ Duì · Lake · joyous */
+/** @rosetta ✦₄ · Lake · joyous */
 export function dualities() {
   const tiers = [
     { tier: 3, kind: 'core', pairs: [['inner', 'outer'], ['yin', 'yang'], ['zero', 'one']] },

@@ -9,11 +9,11 @@ import type { IconSeal } from '../../heaven/mind'
 import { toUuid, merkleFold } from '../../../0'
 
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
-/** @iching ☶ Gèn · Mountain · keeping still */
-export const dual = 'src/render/icons/quantum'
+/** @rosetta ✦₀ · Mountain · stillness */
+export const dual = 'src/render/heritage/quantum'
 
 // emoji AREA_ICONS (used by areaLabel + iconGlyphs + iconSeal neighbour)
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export const AREA_ICONS: Record<string, string> = {
   site: '🏛', self: '☯', agent: '🜂', school: '🎓', mcp: '🔌', chain: '⛓', help: '☷',
   fold: '🔀', mind: '☿', compute: '🖧', ui: '🖥', diamond: '◈', digit: '☵', wave: '〰',
@@ -24,7 +24,7 @@ export const AREA_ICONS: Record<string, string> = {
   lawful: '⚖', computer: '🖳', healing: '◎', energy: '🔋',
 }
 
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   site: { en: 'Site', bg: 'Сайт' },
   self: { en: 'Self', bg: 'Себе' },
@@ -74,7 +74,7 @@ export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
 // Computer design in 3-5-8 — grounded in real computer architecture: the three
 // buses (address, data, control), the five units of the von Neumann machine
 // (input, output, memory, ALU, control), and the eight bits of a byte.
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export function computerDesign() {
   const tiers = [
     { tier: 3, name: 'three buses', members: ['address', 'data', 'control'] },
@@ -92,7 +92,7 @@ export function computerDesign() {
 
 // A gapless harmonic distribution is a run of CONSECUTIVE Fibonacci numbers
 // (e.g. 21+34+55) — adjacent scales, nothing skipped.
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export function harmonicBands(total: number) {
   const n = Math.max(0, Math.floor(total))
   const fibonacci = [1, 2]
@@ -135,7 +135,7 @@ export function harmonicBands(total: number) {
 }
 
 // Translate an area key to the reader's language, falling back to the key.
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export function areaLabel(area: string, lang = 'en'): string {
   if (lang.includes('universal') || lang.includes('sacred')) return AREA_ICONS[area] ?? '◇'
   const label = AREA_LABELS[area]
@@ -144,7 +144,7 @@ export function areaLabel(area: string, lang = 'en'): string {
 }
 
 // icon.glyph — the glyph set: every area icon and the five Platonic-solid glyphs.
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export function iconGlyphs() {
   const solids = ['△', '◻', '◇', '⬠', '⬡']
   const areaIcons = Object.entries(AREA_ICONS)
@@ -162,7 +162,7 @@ export function iconGlyphs() {
 
 // Icon usage adds to the tampering cost: the visual and app-shell artifacts
 // (app icon, PWA manifest, service worker) are declared sealed artifacts.
-/** @iching ☶ Gèn · Mountain · keeping still */
+/** @rosetta ✦₀ · Mountain · stillness */
 export function iconSeal(): IconSeal {
   const artifacts = [
     { path: '/icon.svg', role: 'app icon' },
@@ -178,4 +178,17 @@ export function iconSeal(): IconSeal {
     boundary:
       'The lib declares the visual artifacts; the build seal folds their actual file content into the seal root. Structural bookkeeping, not an external claim.',
   }
+}
+
+// ☷ KUN vocabulary cross — dissolved from mind/earth/vocab (six domain barrels, one merkle root)
+export { chakrasAura, humanDesign, yinYang, dimensions, deviceSensors, dualities } from '../spirit'
+export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../earth/nature'
+export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../thunder/science'
+export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice'
+export { bulgarianHeritage, bulgarianHistory, bulgarianAncientCivilisations, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception } from '../../earth/heritage'
+
+/** The vocabulary cross — six domain barrels fused to one content-address (a real crossing, not noise). */
+export function vocabCross() {
+  const domains = ['icons', 'spirit', 'nature', 'science', 'voice', 'heritage'] as const
+  return { domains: domains.length, root: merkleFold(domains.map((d) => toUuid(`vocab:${d}`))) }
 }

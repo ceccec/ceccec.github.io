@@ -15,7 +15,7 @@ import { toUuid, merkleFold, isUuid } from '../../../0'
 // studied quantum-computing application (IBM QNN, TU Delft, a 2023 Bulletin of the American
 // Meteorological Society paper) — not a claim that this repo or today's production forecasts run on
 // quantum hardware.
-/** @iching ☵ Kǎn · Water · abysmal (weather realtime feeds) */
+/** @rosetta ✦₁ · Water · depth (weather realtime feeds) */
 export function weatherForecastApis() {
   const sources = [
     { api: 'Open-Meteo', kind: 'free realtime forecast, no key; fuses 15+ NWP models (ECMWF, NOAA, DWD, JMA…)', auth: 'no key (non-commercial)' },
@@ -32,7 +32,7 @@ export function weatherForecastApis() {
   }
 }
 
-/** @iching ☵ Kǎn · Water · abysmal (weather realtime feeds) */
+/** @rosetta ✦₁ · Water · depth (weather realtime feeds) */
 // Weather forecast may be quantum computed in realtime. Folded: a realtime external stream content-
 // addressed exactly like the computed planets, a sibling of the public frequency-API realtime decode,
 // with the honest line that "quantum" here names a real research frontier, not present-day hardware.

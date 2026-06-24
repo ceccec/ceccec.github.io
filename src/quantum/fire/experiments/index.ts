@@ -6,7 +6,10 @@
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind core: matrix builder, a432, merkaba fold, frequency APIs
 import { buildMatrix, a432, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind'
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — base primitives: uuid, merkle, math constants, EM functions
-import { toUuid, merkleFold, isUuid, roundTo, SPEED_OF_LIGHT, IONIZING_EV, larmorFrequency, radarRange, dopplerShift, photonEnergyEv, isIonizing, wavelengthOf } from '../../../0'
+import { larmorFrequency, wavelengthOf } from '../../../1/9'
+import { toUuid, merkleFold, isUuid, roundTo, SPEED_OF_LIGHT, IONIZING_EV, dopplerShift, photonEnergyEv } from '../../../0'
+import { isIonizing } from '../../../9/1'
+import { radarRange } from '../../../3/7'
 // ☴ Xùn · Wind · gentle · lower·yin · hueShift — EM simulators: plane wave, CT, Bloch MRI, FMCW radar
 import { planeWaveReceipt, planeWaveField, planeWaveIntensity, planeWaveSpeed, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarReceipt, radarVelocity } from '../simulations'
 // ☳ Zhèn · Thunder · arousing · lower·yin · spread — trading + realtime math: strategies, backtests, live captures
@@ -27,7 +30,7 @@ import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionP
 // flagged and dropped (non-ionizing-breaks-DNA, 5G-COVID, EHS, scalar/"Tesla" free-energy waves, 432/528 Hz
 // & Rife "healing frequencies", "microwaved food is irradiated"). The physics computes from the src/0 EM
 // primitives; the woo does not.
-/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
+/** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix()) {
   // The unifying physics, deepest meaning first — one field, one speed, two relations, one ionizing line.
   const laws = [
@@ -98,7 +101,7 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
 // every test vector recomputed; the design pass's fabricated expected-values were caught and corrected, the
 // function bodies confirmed). Each run is a content-addressed SHARED EXPERIMENT: identical params → identical
 // output → one merkleFold receipt anyone recomputes. The same field at three energies — only X-ray ionizes.
-/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
+/** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
   const wave = planeWaveReceipt(SPEED_OF_LIGHT, { samples: 8, cycles: 1 }) // λ = 1 m base field
   const xray = ctReceipt(60, [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) // 60 keV beam, single hot pixel
@@ -139,7 +142,7 @@ export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
 // The no-gaps fold: run all five strategies on the a432-ignited engine, each a content-addressed shared
 // experiment, with a RUNTIME no-look-ahead proof. "implement without gaps being the knowledge" — every
 // strategy is the project's own primitives applied. HONEST: synthetic mechanics, NOT alpha (see boundary).
-/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
+/** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
   const variant = 'demo', n = 256
   const prices = priceFromA432(variant, n)
@@ -187,7 +190,7 @@ export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
 
 // The no-gaps fold: prove every adapter computes on a representative real-ish capture (the component feeds the
 // REAL streams). HONEST about what is real, what is sound-not-EM, and what is unavailable headless (see boundary).
-/** @iching ☳ Zhèn · Thunder · arousing (shared-experiment folds) */
+/** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
   const sources = realtimeSources()
   const larmor = larmorFromMicrotesla(50) // 50 µT geomagnetic → real proton Larmor
@@ -217,5 +220,55 @@ export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
       'Test all on LIVE data: the deterministic EM simulators and trading strategies are MODELS — here they consume REAL inputs. Device sensors (Web Audio FFT, DeviceMotion, Magnetometer, Geolocation) and no-key public APIs (Coinbase prices, USGS seismic, Open-Meteo, FCC spectrum) feed the same primitives — a magnetometer reading becomes the real proton Larmor frequency, device motion the radar Doppler shift, an audio/seismic series a magnitude spectrum, and a real price series a strategy backtest. Each real capture is content-addressed into a reproducible snapshot, so a live run stays a shared experiment.',
     boundary:
       'HONEST about what is and is not real. Ingestion happens at the EDGE (the browser component / a probe): these src functions are PURE and deterministic — they normalize and content-address a captured sample (capturedAt supplied, no wall-clock in src); they do not fetch. Per-source honesty: the Web Audio FFT is a REAL spectrum but of SOUND (a pressure wave), NOT electromagnetic radiation — it exercises the spectral pipeline, not EM; device-motion velocity feeds the radar Doppler EQUATION, it is not real radar; the magnetometer gives a REAL magnetic field and hence a real Larmor frequency, but there is no actual NMR; there is no browser X-ray sensor. Device sensors are permission-gated and device-dependent (often absent on desktop/headless) — the component degrades gracefully and says so. Real prices remove the "synthetic" caveat but the trading caveats stand: backtest ≠ live, limited public history, weak-form EMH, not financial advice. A live capture is reproducible OVER ITS SNAPSHOT (a tamper-evident receipt), not a claim the live world is deterministic. Composed with publicFrequencyApisDecoded and the merkaba-decode model.',
+  }
+}
+
+export interface Burst {
+  x: number
+  y: number
+  born: number
+  hue: number
+  sparks: { angle: number; speed: number }[]
+}
+
+export const HEALING_PAIRS: readonly { hz: [number, number]; note: string }[] = [
+  { hz: [174, 285], note: 'foundation · restoration' },
+  { hz: [396, 528], note: 'release · transformation' },
+  { hz: [417, 639], note: 'change · connection' },
+  { hz: [528, 741], note: 'transformation · expression' },
+  { hz: [639, 852], note: 'connection · intuition' },
+  { hz: [741, 963], note: 'expression · unity' },
+]
+
+export function makeBurst(xRatio: number, yRatio: number, w: number, h: number, hue: number): Burst {
+  return {
+    x: xRatio * w,
+    y: yRatio * h,
+    born: performance.now(),
+    hue,
+    sparks: Array.from({ length: 10 }, (_, i) => ({ angle: (i / 10) * Math.PI * 2, speed: 0.5 + ((i * 7) % 10) / 10 })),
+  }
+}
+
+export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, bursts: Burst[]): void {
+  const now = performance.now()
+  for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= 1100) bursts.splice(i, 1)
+  for (const b of bursts) {
+    const age = (now - b.born) / 1100
+    const ring = age * Math.min(w, h) * 0.42
+    ctx.strokeStyle = `hsla(${b.hue}, 85%, 62%, ${(1 - age) * 0.6})`
+    ctx.lineWidth = 2 * (1 - age)
+    ctx.beginPath()
+    ctx.arc(b.x, b.y, ring, 0, Math.PI * 2)
+    ctx.stroke()
+    for (const s of b.sparks) {
+      const reach = age * s.speed * Math.min(w, h) * 0.4
+      const sx = b.x + Math.cos(s.angle) * reach
+      const sy = b.y + Math.sin(s.angle) * reach
+      ctx.fillStyle = `hsla(${(b.hue + s.angle * 30) % 360}, 90%, 64%, ${(1 - age) * 0.8})`
+      ctx.beginPath()
+      ctx.arc(sx, sy, 2.4 * (1 - age), 0, Math.PI * 2)
+      ctx.fill()
+    }
   }
 }

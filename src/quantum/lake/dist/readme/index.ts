@@ -77,6 +77,8 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     `- ${mono.count} entries in the reference index, zero redundancy.`,
     `- ${sitemap.urls.length} routes × 3 locales in the quantum sitemap.`,
     '',
+    'Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the `@rosetta` annotation layer that routes site navigation. **三才 Three Powers** (天 Heaven · 人 Human · 地 Earth) nest seven-fold coprime structure into the digit distribution.',
+    '',
     // Each result links to the SOURCE CODE that proves it — its primary component (the widget that renders the
     // proof), or the page registry when a section page has none. "The README links to source code."
     ...paperList.map((paper) => `- **${paper.title}** — ${paper.abstract} · [source](${githubPermalink(paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts')})`),

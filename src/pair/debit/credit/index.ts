@@ -1,10 +1,10 @@
 // ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) · upper·yang · spread — double-entry ledger primitives: transact/balance/balanced + cryptoReview maps every security claim to a debit/credit pair so honesty IS the balance
 
-/** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
+/** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export type Entry = { readonly account: string; readonly debit: number; readonly credit: number }
 
 // A transaction: move `amount` from one account to another — a debit and its matching credit.
-/** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
+/** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export function transact(from: string, to: string, amount: number): Entry[] {
   return [
     { account: from, debit: 0, credit: amount },
@@ -13,12 +13,12 @@ export function transact(from: string, to: string, amount: number): Entry[] {
 }
 
 // The ledger balance: total debits minus total credits. A balanced ledger sums to exactly zero.
-/** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
+/** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export function balance(entries: readonly Entry[]): number {
   return entries.reduce((sum, e) => sum + e.debit - e.credit, 0)
 }
 
-/** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
+/** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export function balanced(entries: readonly Entry[]): boolean {
   return balance(entries) === 0
 }
@@ -32,7 +32,7 @@ export function balanced(entries: readonly Entry[]): boolean {
 // Pure: built only from the local double-entry primitives over those facts. The quantum significance: an
 // overclaim is refused by the system's OWN conservation law, and the unforgeability debit is already built
 // (src/0) — the impossible is already possible, one deliberate cutover from funding the claim at full strength.
-/** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
+/** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export function cryptoReview() {
   // account = the security property; debit = delivered capability bits, credit = honestly claimed bits.
   const today: Entry[] = [
@@ -58,5 +58,5 @@ export function cryptoReview() {
   }
 }
 
-/** @iching ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
+/** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export const dual = 'src/pair/credit/debit'

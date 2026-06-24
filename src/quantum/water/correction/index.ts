@@ -1,9 +1,9 @@
 // ☱ correction — the honest decodes and proofs from the session, moved out of the architecture barrel to their
 // own domain (a fold lives at its exact path, never dumped in a foreign monolith). Documented vs flagged; HARMONY ≠ TRUTH.
-import type { MindMatrix } from '../../heaven/mind/wind/types'
-import { buildMatrix } from '../../heaven/mind/heaven/matrix'
-import { dash, folderLaw, payload } from '../../heaven/mind/earth/architecture'
-import { textToMovie } from '../../heaven/mind/earth/world'
+import type { MindMatrix } from '../../../types'
+import { buildMatrix } from '../../../heaven/compute'
+import { dash, folderLaw, payload } from '../../../earth/architecture'
+import { textToMovie } from '../../../earth/world'
 import { foldPair, isUuid, merkleFold, seedFromText, toUuid, uuidPoint } from '../../../0'
 import { DIMENSIONS } from '../../mountain/dimensions'
 

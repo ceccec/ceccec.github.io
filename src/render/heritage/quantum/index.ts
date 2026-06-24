@@ -64,3 +64,68 @@ export function browseIndex<T extends { documented: string; legend: string } & (
     return { label, ...(span ? { span } : {}), documented: item.documented, legend: item.legend }
   })
 }
+
+export const iconsDual = 'src/quantum/lake/icons'
+export const libraryDual = 'src/quantum/heaven/library'
+
+export function iconFor(icons: Readonly<Record<string, string>>, area: string, fallback = '◇'): string {
+  return icons[area] ?? fallback
+}
+
+export function iconList(icons: Readonly<Record<string, string>>): { area: string; icon: string }[] {
+  return Object.entries(icons)
+    .map(([area, icon]) => ({ area, icon }))
+    .sort((a, b) => a.area.localeCompare(b.area))
+}
+
+export function labelList(
+  labels: Readonly<Record<string, { en: string; bg: string }>>,
+  lang: 'en' | 'bg' = 'en',
+): { area: string; label: string }[] {
+  return Object.entries(labels)
+    .map(([area, l]) => ({ area, label: lang === 'bg' ? l.bg : l.en }))
+    .sort((a, b) => a.area.localeCompare(b.area))
+}
+
+export function isFibonacciGapless(bands: readonly number[]): boolean {
+  if (bands.length <= 1) return true
+  const sorted = [...bands].sort((a, b) => a - b)
+  for (let i = 1; i < sorted.length; i++) {
+    if (sorted[i] !== sorted[i - 1] + sorted[Math.max(0, i - 2)]) return false
+  }
+  return true
+}
+
+export type Entry = { url: string; uuid: string; host: string; path: string }
+
+export function shelve(entries: readonly Entry[]): Entry[] {
+  return [...entries].sort((a, b) => (a.uuid < b.uuid ? -1 : a.uuid > b.uuid ? 1 : 0))
+}
+
+export function shelves(entries: readonly Entry[], count: number): Entry[][] {
+  const out: Entry[][] = Array.from({ length: count }, () => [])
+  for (const item of entries) {
+    const bucket = Number.parseInt(item.uuid.slice(0, 2) || '0', 16) % count
+    out[bucket].push(item)
+  }
+  return out.map((shelf) => shelve(shelf))
+}
+
+export function browsable(entries: readonly Entry[]): boolean {
+  return entries.length > 0 && entries.every((entry) => /^[0-9a-f-]{36}$/i.test(entry.uuid))
+}
+
+export type Shelved = { n: number; title: string }
+
+export function shelveSongs<T extends Shelved>(songs: readonly T[], count: number): T[][] {
+  const ordered = [...songs].sort((a, b) => a.n - b.n)
+  const out: T[][] = Array.from({ length: Math.max(1, count) }, () => [])
+  ordered.forEach((song, i) => out[i % out.length].push(song))
+  return out
+}
+
+export function songIndex<T extends Shelved>(songs: readonly T[]): { title: string; n: number }[] {
+  return [...songs]
+    .map((s) => ({ title: s.title, n: s.n }))
+    .sort((a, b) => a.title.localeCompare(b.title, 'bg'))
+}

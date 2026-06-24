@@ -70,3 +70,21 @@ export function drawArchitecture(
     ctx.fillText(node.glyph, node.x, node.y)
   }
 }
+
+// Hero identity hash — seeded deterministically from the page path (plain FNV-1a uint32).
+export function seedOf(text: string): number {
+  let h = 0x811c9dc5
+  for (let i = 0; i < text.length; i += 1) {
+    h ^= text.charCodeAt(i)
+    h = Math.imul(h, 0x01000193) >>> 0
+  }
+  return h >>> 0
+}
+
+export function hueOf(seed: number): number {
+  return ((seed >>> 0) * 137.50776405003785) % 360
+}
+
+export function armsOf(seed: number): number {
+  return 3 * (1 + (seed % 3))
+}

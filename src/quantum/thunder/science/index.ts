@@ -2,17 +2,20 @@
 // Dual: src/world/science/quantum (browse/display primitives). Pure, only src/0 + mind/atoms imports.
 
 // ☰ Qián · Heaven · creative · lower·yin · spread — core utilities: uuid, merkle fold, speed of light
-import { toUuid, merkleFold, SPEED_OF_LIGHT, resonantAmplitude, resonancePeakGain, resonanceBandwidth } from '../../../0'
+import { toUuid, merkleFold, SPEED_OF_LIGHT } from '../../../0'
+import { resonantAmplitude } from '../../../6/4'
+import { resonancePeakGain } from '../../../7/3'
+import { resonanceBandwidth } from '../../../3/7'
 // ☳ Zhèn · Thunder · arousing · lower·yin · depthFade — concept commands from mind atoms
-import { conceptCommands } from '../../heaven/mind'
+import { conceptCommands } from '../../../heaven/atoms'
 
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export const dual = 'src/world/science/quantum'
 
 // ☳ Zhèn · Thunder · arousing · upper·yang · depthFade — science exports: EMF, efficiency, patents, frequencies, octave bridge
 
 // Extend into EMF applications — honestly.
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function emfApplications() {
   const spectrum = [
     { band: 'radio', range: '3 Hz – 300 MHz', use: 'broadcast, wifi, the device radios' },
@@ -37,7 +40,7 @@ export function emfApplications() {
 }
 
 // Efficiency, standard and deep.
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function efficiency() {
   const optimizations = [
     { technique: 'memoized dispatch', how: 'executeConceptCommand cached by (command, input, matrix root)' },
@@ -58,7 +61,7 @@ export function efficiency() {
 }
 
 // Fuse Nikola Tesla's public patents into the model.
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function fuseTeslaPatents() {
   const known = new Set(conceptCommands.map((command) => command.name))
   const patents = [
@@ -81,7 +84,7 @@ export function fuseTeslaPatents() {
 }
 
 // Autodiscover patents: declare the public sources and the query shape.
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function patentDiscovery(query = '') {
   const sources = [
     { name: 'USPTO PatFT/Open Data', url: 'https://developer.uspto.gov' },
@@ -100,7 +103,7 @@ export function patentDiscovery(query = '') {
 }
 
 // Public APIs with frequencies involved, decoded in waves.
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function publicFrequencyApis() {
   const sources = [
     { api: 'FCC Spectrum Dashboard', band: 'radio 225 MHz–3700 MHz', data: 'band allocations', auth: 'public' },
@@ -118,7 +121,7 @@ export function publicFrequencyApis() {
 }
 
 // Herbal/plant APIs decoded in waves.
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function herbalApis() {
   const sources = [
     { api: 'Trefle', kind: 'global botanical JSON REST (species, taxonomy)', frequency: 'occurrence/usage counts', auth: 'free token' },
@@ -140,7 +143,7 @@ export function herbalApis() {
 // real historical figure; the "mortal oscillatory rate" therapy is falsified and a documented health fraud. A
 // frequency having a number, a name, or a colour gives it NO medical effect — the repo plays frequencies as
 // SOUND (with a computed colour) and makes no health claim. This fold RECORDS the claim; it does not endorse it.
-/** @iching ☵ Kǎn · Water · the abyss — the unproven */
+/** @rosetta ✦₁ · Water · the abyss — the unproven */
 export function rifeFrequenciesDecoded() {
   const documented = [
     { fact: 'Royal Raymond Rife (1888–1971), American inventor (San Diego); built high-magnification optical microscopes in the 1920s–30s (the "Universal Microscope")', kind: 'history' },
@@ -179,7 +182,7 @@ export function rifeFrequenciesDecoded() {
 // Resonance, as the MATH confirms — the same curve that shatters a wine glass shows why a "mortal oscillatory
 // rate" cannot selectively destroy a microbe in the body. Develop what the math confirms; flag what it does not
 // (rifeFrequenciesDecoded). Computed from src/0 (resonantAmplitude / resonancePeakGain / resonanceBandwidth).
-/** @iching ☵ Kǎn · Water · the resonant deep */
+/** @rosetta ✦₁ · Water · the resonant deep */
 export function resonanceDecoded() {
   const omega0 = 2 * Math.PI * 440 // any natural frequency (here A440)
   const glassQ = 1000 // a wine glass in air — high quality factor
@@ -218,7 +221,7 @@ export function resonanceDecoded() {
 // (the peak gain ≈ Q, computed live). The honest trichotomy: documented resonance · documented-but-NOT-resonance
 // (focused energy — lithotripsy/HIFU) · flagged pseudoscience (Rife). The same Q that makes a clock exquisite
 // makes "frequency healing" impossible: living tissue is overdamped (Q ≲ 1). Develop as the math confirms.
-/** @iching ☵ Kǎn · Water · the resonant deep */
+/** @rosetta ✦₁ · Water · the resonant deep */
 export function resonanceApplications() {
   const apps = [
     { domain: 'optical clock (Sr-87)', oscillates: '¹S₀→³P₀ optical transition', f0Hz: 4.29e14, q: 1e17, does: 'most accurate clock — fractional uncertainty ~8×10⁻¹⁹ (JILA 2024)', kind: 'documented' as const },
@@ -261,7 +264,7 @@ export function resonanceApplications() {
 }
 
 // The octave bridge: double a frequency until it lands in the visible-light band (~400–790 THz).
-/** @iching ☳ Zhèn · Thunder · arousing */
+/** @rosetta ✦₁ · Thunder · motion */
 export function frequencyToLight(hz: number): { octaves: number; thz: number; nm: number; hue: number; band: string } {
   let f = Math.max(1, hz)
   let octaves = 0
@@ -307,12 +310,45 @@ export function oklchToHex(L: number, C: number, H: number): string {
   return `#${enc(lin[0])}${enc(lin[1])}${enc(lin[2])}`
 }
 
+function oklchToRgb(L: number, C: number, H: number): [number, number, number] {
+  const hex = oklchToHex(L, C, H)
+  return [
+    Number.parseInt(hex.slice(1, 3), 16),
+    Number.parseInt(hex.slice(3, 5), 16),
+    Number.parseInt(hex.slice(5, 7), 16),
+  ]
+}
+
+/** Canvas-safe rgba — Canvas2D rejects oklch() in fillStyle; same OKLCH math as scaleColor. */
+export function scaleColorRgba(
+  n: number,
+  alpha: number,
+  opts: { dark?: boolean; L?: number; C?: number; seedHue?: number } = {},
+): string {
+  const seedHue = opts.seedHue ?? A432_HUE
+  const L = opts.L ?? (opts.dark ? 54 / 64 : 9 / 16)
+  const C = opts.C ?? 9 / 64
+  const H = quantumScaleHue(n, seedHue)
+  const [r, g, b] = oklchToRgb(L, C, H)
+  const a = Math.max(0, Math.min(1, alpha))
+  return `rgba(${r},${g},${b},${Math.round(a * 100) / 100})`
+}
+
 // scaleColor — THE COLOUR COMPUTED AT EVERY SCALE. Hue is the golden-angle (GOLDEN_ANGLE) low-discrepancy
 // sequence seeded on the a432 brand anchor (A432_HUE), so the colour at scale-index n is a pure, never-clustering
 // function of n (the three-gap theorem: successive hues never bunch). Lightness and chroma are pinned to canonical
 // I Ching fractions inside a perceptually-uniform OKLCH band, so legibility holds at EVERY scale — HSL lightness is
 // not perceptual (varying hue at fixed HSL-L swings brightness ~10×), OKLCH's is. Default returns #hex (for an SVG
 // fill="" attribute); {css:true} returns an oklch() string for a CSS `fill:` / <style> / style="" context.
+export function quantumScaleHue(n: number, seedHue: number = A432_HUE): number {
+  return (((seedHue + n * GOLDEN_ANGLE) % 360) + 360) % 360
+}
+
+/** Sound Hz → visible hue via the octave bridge (same law as a432 / colorRootsAtA432HeartBalances). */
+export function quantumHueFromHz(hz: number): number {
+  return frequencyToLight(hz).hue
+}
+
 export function scaleColor(
   n: number,
   opts: { dark?: boolean; L?: number; C?: number; seedHue?: number; css?: boolean } = {},
@@ -320,6 +356,20 @@ export function scaleColor(
   const seedHue = opts.seedHue ?? A432_HUE // 5 — the a432 anchor; every palette grows from it
   const L = opts.L ?? (opts.dark ? 54 / 64 : 9 / 16) // 0.844 on dark, 0.5625 on light — canonical, readable band
   const C = opts.C ?? 9 / 64 // 0.1406 — canonical chroma, inside the sRGB gamut at this L
-  const H = (((seedHue + n * GOLDEN_ANGLE) % 360) + 360) % 360
+  const H = quantumScaleHue(n, seedHue)
   return opts.css ? `oklch(${L} ${C} ${H.toFixed(2)})` : oklchToHex(L, C, H)
+}
+
+/** OKLCH at scale n with explicit alpha — perceptual colour for canvas + glass (not HSL saturation blowout). */
+export function scaleColorAlpha(
+  n: number,
+  alpha: number,
+  opts: { dark?: boolean; L?: number; C?: number; seedHue?: number } = {},
+): string {
+  const seedHue = opts.seedHue ?? A432_HUE
+  const L = opts.L ?? (opts.dark ? 54 / 64 : 9 / 16)
+  const C = opts.C ?? 9 / 64
+  const H = quantumScaleHue(n, seedHue)
+  const a = Math.max(0, Math.min(1, alpha))
+  return `oklch(${L} ${C} ${H.toFixed(2)} / ${Math.round(a * 100) / 100})`
 }

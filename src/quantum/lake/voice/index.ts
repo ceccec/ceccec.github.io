@@ -6,10 +6,10 @@
 import { toUuid, merkleFold } from '../../../0'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
-/** @iching ☵ Kǎn · Water · abysmal */
-export const dual = 'src/spirit/voice/quantum'
+/** @rosetta ✦₁ · Water · depth */
+export const dual = 'src/spirit/quantum'
 
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function plainLanguage() {
   const lines = [
     { term: 'Double Torus', plain: 'A learning portal you can check for yourself: every claim is a number anyone can recompute.', route: '/' },
@@ -33,7 +33,7 @@ export function plainLanguage() {
   }
 }
 
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function playLearn(word = 'play') {
   const SCALE = [261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88, 523.25] // C major, C4..C5
   const NOTE = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
@@ -65,7 +65,7 @@ export function playLearn(word = 'play') {
 }
 
 // Quantum speech is analog by nature. Text is discrete symbols; speech is a continuous wave.
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function analogSpeech() {
   const params = [
     { param: 'pitch', range: [0, 2] as const, note: 'continuous tone — the voice is a wave, not a symbol' },
@@ -81,7 +81,7 @@ export function analogSpeech() {
   }
 }
 
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function typographySeo() {
   const principles = [
     { principle: 'system fonts, no fetch', seo: 'instant text render, zero network, no layout shift' },
@@ -100,7 +100,7 @@ export function typographySeo() {
   }
 }
 
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function openGraph() {
   const fields = [
     'og:type', 'og:title', 'og:description', 'og:url', 'og:locale', 'og:image',
@@ -116,7 +116,7 @@ export function openGraph() {
 }
 
 // Each char a UUID, and next the words. Content-addressing goes all the way down.
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function charUuids(text = '') {
   const chars = [...text].map((char, index) => ({ char, index, uuid: toUuid(`char:${index}:${char}`) }))
   return {
@@ -128,7 +128,7 @@ export function charUuids(text = '') {
   }
 }
 
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function wordUuids(text = '') {
   const words = text
     .split(/\s+/)
@@ -147,7 +147,7 @@ export function wordUuids(text = '') {
 }
 
 // Humanize. Behind the maths and the 3d+ is a simple set of promises to a person.
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function humanize() {
   const translations = [
     { idea: 'everything is computed', human: 'Nothing here is hidden or made up. Anything the site says, you can check for yourself.' },
@@ -168,7 +168,7 @@ export function humanize() {
 }
 
 // Present all multidimensionally, for the best UX.
-/** @iching ☵ Kǎn · Water · abysmal */
+/** @rosetta ✦₁ · Water · depth */
 export function multidimensional() {
   const dims = [
     { dimension: 'see', icon: '◈', items: [

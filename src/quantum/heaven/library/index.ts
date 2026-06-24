@@ -15,7 +15,7 @@
 // use entry/toUuid/Uuid/Entry directly), then re-export the same public surface unchanged. A bare
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
-import { merkabaFoldUrl, entry, toUuid, roundTo, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../../0'
+import { merkabaFoldUrl, entry, toUuid, isUuid, roundTo, addressEntropyBits, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../../0'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
 
@@ -23,7 +23,7 @@ export { merkabaFoldUrl, entry, type Uuid, type Entry }
 // library (the reusable-decoded-fns double torus). Cyrillic/Latin → Glagolitic (the ninth-century
 // script decoded to its core), and the superposed Greek/Runic/Hebrew maps, one toScript call away.
 // Transliteration is script-conversion, not meaning-translation. Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GLAGOLITIC_MAP: Record<string, string> = {
   // Cyrillic → Glagolitic (the round Bulgarian glyphs)
   а: 'Ⰰ', б: 'Ⰱ', в: 'Ⰲ', г: 'Ⰳ', д: 'Ⰴ', е: 'Ⰵ', ж: 'Ⰶ', з: 'Ⰸ', и: 'Ⰻ', й: 'Ⰹ',
@@ -34,7 +34,7 @@ export const GLAGOLITIC_MAP: Record<string, string> = {
   y: 'Ⰹ', k: 'Ⰽ', q: 'Ⰽ', l: 'Ⰾ', m: 'Ⰿ', n: 'Ⱀ', o: 'Ⱁ', p: 'Ⱂ', r: 'Ⱃ', s: 'Ⱄ',
   t: 'Ⱅ', u: 'Ⱆ', f: 'Ⱇ', h: 'Ⱈ', x: 'Ⱈ', c: 'Ⱌ',
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function toGlagolitic(text: string): string {
   return [...text].map((char) => GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
 }
@@ -65,7 +65,7 @@ const SCRIPT_ALPHABETS: Record<string, Record<string, string>> = {
 }
 // Transliterate text into any decoded script. Glagolitic reuses the decoded core (toGlagolitic); the rest
 // map by sound from the shared lineage. Deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function toScript(text: string, script: string): string {
   if (script === 'glagolitic') return toGlagolitic(text)
   if (script === 'latin' || script === 'en') return text
@@ -79,7 +79,7 @@ export function toScript(text: string, script: string): string {
 // (Greek), abjad / ḥisāb al-jummal (Arabic). The same "letters are numbers" fold as toGlagolitic, now over
 // the shared alphabetic-numeral lineage (additive, non-positional, no zero). Pure, deterministic, zero
 // tokens. Hebrew finals fold to their base value (Mispar Hechrachi); unknown characters contribute 0.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GEMATRIA_MAPS: Record<string, Record<string, number>> = {
   // Hebrew (22 letters; finals ך ם ן ף ץ fold to their base 20/40/50/80/90)
   hebrew: { 'א': 1, 'ב': 2, 'ג': 3, 'ד': 4, 'ה': 5, 'ו': 6, 'ז': 7, 'ח': 8, 'ט': 9, 'י': 10, 'כ': 20, 'ך': 20, 'ל': 30, 'מ': 40, 'ם': 40, 'נ': 50, 'ן': 50, 'ס': 60, 'ע': 70, 'פ': 80, 'ף': 80, 'צ': 90, 'ץ': 90, 'ק': 100, 'ר': 200, 'ש': 300, 'ת': 400 },
@@ -91,7 +91,7 @@ export const GEMATRIA_MAPS: Record<string, Record<string, number>> = {
 // Sum a word to its number — the gematria/isopsephy/abjad fold. A word collapsed to a content-address,
 // the same merkleFold pattern over the ancient number=letter systems. Verified fixed points:
 // gematria('χξϛ','greek')=666, gematria('φμε','greek')=545, gematria('الله','arabic')=66.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function gematria(text: string, system: 'hebrew' | 'greek' | 'arabic' = 'hebrew'): number {
   const map = GEMATRIA_MAPS[system] ?? GEMATRIA_MAPS.hebrew
   return [...text].reduce((sum, ch) => sum + (map[ch] ?? 0), 0)
@@ -116,7 +116,7 @@ export function gematria(text: string, system: 'hebrew' | 'greek' | 'arabic' = '
 // Hitchhiker's 42 — Douglas Adams said it was a joke with no hidden meaning, expressly mocking the urge to
 // find significance ("is it significant that 6×9 = 42 in base 13? As if."). So: covers all = NO (that is 7,
 // and 10); 42 = 6×7 = a number of journey/process-to-completion. Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const SIX_BY_SEVEN = Object.freeze({
   product: 42, six: 6, seven: 7,
   completenessNumber: 7,       // the documented totality/holiness number (NOT 42)
@@ -128,7 +128,7 @@ export const SIX_BY_SEVEN = Object.freeze({
 // The 6×7 fold as a function: lay six work-units across seven, yielding the 42-step process grid (rows =
 // the seven stages/sefirot/days, columns = the six work-units). Mirrors Ana BeKoach's 7×6 = 42 shape and
 // the 42-stage journey — process-to-completion made explicit, not a claim that 42 "contains all".
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function sixBySeven(): { rows: number[][]; total: number; coversAll: boolean } {
   const rows = Array.from({ length: 7 }, (_, r) => Array.from({ length: 6 }, (_, c) => r * 6 + c + 1))
   return { rows, total: 42, coversAll: false }
@@ -141,19 +141,19 @@ export function sixBySeven(): { rows: number[][]; total: number; coversAll: bool
 // Maya Long Count ↔ days (vigesimal, with the 360-day tun bend at the 3rd place). Decodes a saved Long
 // Count date such as 13.0.0.0.0 = 1,872,000 days. Bijective.
 const MAYA_RADIX = [144000, 7200, 360, 20, 1] // bʼakʼtun · kʼatun · tun · winal · kʼin
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function mayaLongCount(days: number): number[] {
   let remainder = Math.max(0, Math.floor(days))
   return MAYA_RADIX.map((value) => { const d = Math.floor(remainder / value); remainder %= value; return d })
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function mayaDays(longCount: readonly number[]): number {
   return longCount.reduce((sum, digit, i) => sum + digit * (MAYA_RADIX[i] ?? 0), 0)
 }
 
 // The magic square (Siamese / De la Loubère method for odd n). Decodes/generates the Lo Shu (n=3) and the
 // odd-order planetary kameas; every row, column and main diagonal sums to M = n(n²+1)/2.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function magicSquare(n: number): { grid: number[][]; constant: number } {
   const grid = Array.from({ length: n }, () => Array.from({ length: n }, () => 0))
   let row = 0
@@ -169,7 +169,7 @@ export function magicSquare(n: number): { grid: number[][]; constant: number } {
 
 // The Egyptian hekat / Horus-eye binary fraction: greedy decomposition of 0<x≤1 into the six submultiples
 // 1/2..1/64, the residue closed exactly by ro = 1/320 sub-units. Decodes a hekat grain quantity to 64/64.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function hekatFraction(x: number): { powers: number[]; ro: number } {
   const powers: number[] = []
   let remainder = x
@@ -179,11 +179,11 @@ export function hekatFraction(x: number): { powers: number[]; ro: number } {
 
 // The runic cipher coordinate: a rune's ordinal n (1..24) ↔ (aett, position) in the 3×8 grid. The attested
 // branch/tent-rune encoding — a rune drawn as a pair of integers. Bijective.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function runeCoordinate(n: number): { aett: number; pos: number } {
   return { aett: Math.ceil(n / 8), pos: ((n - 1) % 8) + 1 }
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function runeOrdinal(aett: number, pos: number): number {
   return (aett - 1) * 8 + pos
 }
@@ -193,7 +193,7 @@ export function runeOrdinal(aett: number, pos: number): number {
 // Cyrillic's borrowed Greek values, so a letter's value is COMPUTED from its position (the sacred-math
 // ladder), not stored. The letter NAMES in sequence spell the acrostic: the alphabet is itself a message.
 // Documented round-Bulgarian core; the precise later values are cross-verified by the running research.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GLAGOLITIC_LETTERS: readonly { glyph: string; name: string; sound: string }[] = [
   { glyph: 'Ⰰ', name: 'azъ', sound: 'a' }, { glyph: 'Ⰱ', name: 'buky', sound: 'b' }, { glyph: 'Ⰲ', name: 'vědě', sound: 'v' },
   { glyph: 'Ⰳ', name: 'glagoli', sound: 'g' }, { glyph: 'Ⰴ', name: 'dobro', sound: 'd' }, { glyph: 'Ⰵ', name: 'jestъ', sound: 'e' },
@@ -208,7 +208,7 @@ export const GLAGOLITIC_LETTERS: readonly { glyph: string; name: string; sound: 
 ]
 // The Glagolitic numeral value of the nth letter (1-based): the alphanumeric LADDER — units 1-9, tens
 // 10-90, hundreds 100-900, then 1000 — by alphabetical position. Computed (sacred math), not stored.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticValue(position: number): number {
   if (position < 1) return 0
   return (((position - 1) % 9) + 1) * 10 ** Math.floor((position - 1) / 9)
@@ -222,14 +222,14 @@ GLAGOLITIC_LETTERS.forEach((letter, i) => {
 })
 // Sum a Glagolitic word to its number — the Glagolitic gematria, the same fold as gematria(), each letter
 // valued by the ladder from its position. Unknown glyphs contribute 0. Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function toGlagoliticNumber(text: string): number {
   return [...text].reduce((sum, ch) => sum + (GLAGOLITIC_VALUE_BY_GLYPH[ch] ?? 0), 0)
 }
 // The acrostic: the letter NAMES in sequence spell a sentence — the alphabet is itself a message. The
 // documented opening azъ·buky·vědě = "I know letters". The names are the saved original text; the tool
 // joins them and pairs the certain opening with its gloss (the fuller reconstruction is in the research).
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticAcrostic(): { names: readonly string[]; line: string; opening: string } {
   const names = GLAGOLITIC_LETTERS.map((letter) => letter.name)
   return { names, line: names.join(' '), opening: 'azъ buky vědě — "I know letters"' }
@@ -254,12 +254,12 @@ GLAGOLITIC_LETTERS.forEach((letter, i) => {
 // A letter → its bits, MSB first: the script→bit bridge. Keyed by the letter's POSITION (1..28), which in
 // width≥5 bits is REVERSIBLE (28 < 2⁵) — the bit is exactly where script, code and qubit meet. Unknown glyph
 // → all zeros. The inverse, glagoliticFromBits, reads the bits back to the glyph.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticBits(glyph: string, width = 6): number[] {
   const position = GLAGOLITIC_POSITION_BY_GLYPH[glyph] ?? 0
   return Array.from({ length: width }, (_, i) => (position >> (width - 1 - i)) & 1)
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticFromBits(bits: readonly number[]): string {
   const position = bits.reduce((acc, bit) => acc * 2 + (bit ? 1 : 0), 0)
   return GLAGOLITIC_LETTERS[position - 1]?.glyph ?? ''
@@ -272,14 +272,14 @@ export function glagoliticFromBits(bits: readonly number[]): string {
 // builds meaning up); every other ordinary word distributes across the six MUTATING ops by a stable function
 // of its number. HONEST: a constructed (teaching) ISA — the meaning→op rule is OURS, lossy (words still share
 // ops) — not a discovered one. glagoliticProgram folds a word's ops over the accumulator: a word computes a number.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GLAGOLITIC_OPCODES = ['ADD', 'SUB', 'XOR', 'MUL', 'ROL', 'SET', 'AND', 'OUT'] as const
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type GlagoliticOp = (typeof GLAGOLITIC_OPCODES)[number]
 // The active ops: the six that MUTATE the accumulator, minus ADD (reserved for the secure span) and OUT (the
 // inert emit). Ordinary non-secure words spread across these by number — a stable, deterministic fan-out.
 const GLAGOLITIC_ACTIVE_OPS = ['SUB', 'XOR', 'MUL', 'ROL', 'SET', 'AND'] as const
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticOpcode(glyph: string): { op: GlagoliticOp; operand: number } {
   const value = toGlagoliticNumber(glyph)
   const meaning = glagoliticMeaning(glyph)
@@ -291,7 +291,7 @@ export function glagoliticOpcode(glyph: string): { op: GlagoliticOp; operand: nu
   // Any other ordinary word — distribute across the active mutating ops by a stable function of the number.
   return { op: GLAGOLITIC_ACTIVE_OPS[meaning.number % GLAGOLITIC_ACTIVE_OPS.length], operand: value }
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticProgram(word: string): { ops: { glyph: string; op: GlagoliticOp; operand: number }[]; acc: number; out: number[] } {
   const glyphs = [...word].filter((ch) => (GLAGOLITIC_POSITION_BY_GLYPH[ch] ?? 0) > 0)
   const out: number[] = []
@@ -317,15 +317,15 @@ export function glagoliticProgram(word: string): { ops: { glyph: string; op: Gla
 // constructed encoding over a REAL simulator. The circuit genuinely runs (the Born-rule probabilities sum to 1,
 // the sample is drawn from them), but the letter→gate assignment is ours, lossy, and this is a CLASSICAL
 // simulation, not quantum hardware.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GLAGOLITIC_GATES = ['H', 'X', 'Y', 'Z', 'S', 'T'] as const
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type GlagoliticGate = (typeof GLAGOLITIC_GATES)[number]
 // The active gates: the four that flip basis or rotate phase, minus H (reserved for the secure span, the one
 // gate that CREATES superposition) and Z (the most identity-like member — see below). Ordinary non-secure
 // words spread across these by number, mirroring the opcode fan-out so program and circuit stay in step.
 const GLAGOLITIC_ACTIVE_GATES = ['X', 'Y', 'S', 'T'] as const
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticGate(glyph: string): { gate: GlagoliticGate; value: number } {
   const value = toGlagoliticNumber(glyph)
   const meaning = glagoliticMeaning(glyph)
@@ -339,7 +339,7 @@ export function glagoliticGate(glyph: string): { gate: GlagoliticGate; value: nu
   // Any other ordinary word — distribute across the active flip/rotate gates by the same number function.
   return { gate: GLAGOLITIC_ACTIVE_GATES[meaning.number % GLAGOLITIC_ACTIVE_GATES.length], value }
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticCircuit(word: string, n = 3, shots = 256): {
   n: number
   gates: { glyph: string; gate: GlagoliticGate; target: number }[]
@@ -366,7 +366,7 @@ export function glagoliticCircuit(word: string, n = 3, shots = 256): {
 // reconstructed reading, and five names (ǵervь, frьtъ, xěrъ, ci, ša) are opaque labels for loan-phonemes, NOT
 // words. `word` = is it an ordinary OCS word; `secure` = is it in the cohering first-nine span. The honest core
 // that anchors the letter→number→bits/opcode/gate maps in documented meaning. Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GLAGOLITIC_MEANINGS: Record<string, { gloss: string; word: boolean; secure: boolean }> = {
   azъ: { gloss: '"I" — the 1st-person singular pronoun (азъ); the speaking self the alphabet opens on', word: true, secure: true },
   buky: { gloss: '"letters / writing" — with azъ it gives the alphabet its own name, azъ+buky = azbuka', word: true, secure: true },
@@ -399,7 +399,7 @@ export const GLAGOLITIC_MEANINGS: Record<string, { gloss: string; word: boolean;
 }
 // Look up a letter's MEANING by glyph (upper or lower) or name, joined with its sound (GLAGOLITIC_LETTERS) and
 // number (the ladder, glagoliticValue). Returns undefined for an unknown key.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticMeaning(key: string): { glyph: string; name: string; sound: string; number: number; gloss: string; word: boolean; secure: boolean } | undefined {
   const cp = key.codePointAt(0)
   const upper = cp !== undefined && cp >= 0x2c30 && cp <= 0x2c5e ? String.fromCodePoint(cp - 0x30) : key // lowercase glyph → uppercase
@@ -413,7 +413,7 @@ export function glagoliticMeaning(key: string): { glyph: string; name: string; s
 // The acrostic the letter-NAMES spell — honestly. Only the first nine cohere; the rest is a real but
 // progressively reconstructed reading, and the one genuinely composed 9th-c. acrostic is a SEPARATE work
 // (Constantine of Preslav's Azbučna molitva, c. 893). Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticAcrosticMessage(): { secure: string; secureEnglish: string; reconstructed: string; english: string; honest: string } {
   return {
     secure: "Azъ buky vědě, glagol'ǫ: dobro jestъ živěte dzělo, zemlja",
@@ -428,7 +428,7 @@ export function glagoliticAcrosticMessage(): { secure: string; secureEnglish: st
 // Babylonian sexagesimal (base-60 place-value). Bijective: encode any non-negative integer to base-60
 // digits (0–59), each digit itself floor(d/10) ten-signs (Winkelhaken) + (d mod 10) unit wedges. The
 // first place-value system; 60 is the superior-highly-composite (2·3·4·5·6 all divide). Decodes back.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function sexagesimal(n: number): number[] {
   let r = Math.max(0, Math.floor(n))
   if (r === 0) return [0]
@@ -436,45 +436,45 @@ export function sexagesimal(n: number): number[] {
   while (r > 0) { out.unshift(r % 60); r = Math.floor(r / 60) }
   return out
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function fromSexagesimal(digits: readonly number[]): number {
   return digits.reduce((acc, d) => acc * 60 + d, 0)
 }
 // The Luo Shu in its CANONICAL directional orientation (9 south-up) — the vertical flip of the Siamese
 // magicSquare(3). Every row, column and diagonal sums to 15; the four even numbers at the corners, the
 // five odd as the central cross. The oldest recorded magic square, one of the 8 order-3 D4-equivalents.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function luoShu(): { grid: number[][]; constant: number } {
   return { grid: [[4, 9, 2], [3, 5, 7], [8, 1, 6]], constant: 15 }
 }
 
 // Ogham — the Irish tree-alphabet as ordinal: a letter's position 1–20 (later 25) ↔ (aicme 1–4, position
 // 1–5), cut as 1–5 scores across or beside a stemline. The same coordinate fold as the runic cipher. Bijective.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function oghamCoordinate(n: number): { aicme: number; pos: number } {
   return { aicme: Math.ceil(n / 5), pos: ((n - 1) % 5) + 1 }
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function oghamOrdinal(aicme: number, pos: number): number {
   return (aicme - 1) * 5 + pos
 }
 // Ifá / Fá geomancy — a figure is 4 rows read by parity (one mark = bit 1, two marks = bit 0): a 4-bit
 // number, one of 2⁴ = 16 odu; two stacked name one of 16×16 = 256 (2⁸). Encode rows → value and back.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function ifaOdu(rows: readonly number[]): number {
   return rows.reduce((acc, mark) => acc * 2 + (mark === 1 ? 1 : 0), 0)
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function ifaRows(value: number): number[] {
   return [3, 2, 1, 0].map((i) => (Math.max(0, Math.floor(value)) >> i) & 1) // the 4 rows, top to bottom
 }
 // Polynesian star compass — the horizon as 32 named houses of 11.25° (16 stars, each rising and setting in
 // reciprocal houses joined by a diameter through the canoe). A house index 0..31 ↔ its bearing in degrees.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function starHouseBearing(house: number): number {
   return (((house % 32) + 32) % 32) * 11.25
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function bearingToStarHouse(deg: number): number {
   return Math.round((((deg % 360) + 360) % 360) / 11.25) % 32
 }
@@ -486,7 +486,7 @@ export function bearingToStarHouse(deg: number): number {
 // dzelo, omega, fita, izhitsa, yery — so the actual language of the codices transliterates faithfully.
 // Forward, by sound; a value may be a digraph (yery = jer+i, as round Glagolitic wrote it). Pure,
 // deterministic, zero tokens. The glyph block is U+2C00 (capitals); unmapped marks pass through.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const OCS_GLAGOLITIC_MAP: Record<string, string> = {
   ...GLAGOLITIC_MAP,
   'ѣ': 'Ⱑ',                 // yat (ě)
@@ -505,7 +505,7 @@ export const OCS_GLAGOLITIC_MAP: Record<string, string> = {
 // Transliterate Old Church Slavonic into Glagolitic — the same fold as toGlagolitic, over the extended OCS
 // map. This is the operation Cyril performed by hand: the Slavonic Scripture set in the round script.
 // Script-conversion, not meaning-translation — the translation (Greek → Slavonic) is Cyril & Methodius's.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function toGlagoliticOCS(text: string): string {
   return [...text].map((char) => OCS_GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
 }
@@ -517,7 +517,7 @@ export function toGlagoliticOCS(text: string): string {
 // the SENSE is authoritative while the exact wording is one attested form. John's prologue is FIRST by
 // history (the text Cyril is recorded to have translated first). Psalm numbering follows the Septuagint/OCS
 // Psalter (KJV 23 = OCS 22). Pure, deterministic, zero tokens — no machine translation, no network.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const CHURCH_SLAVONIC_SCRIPTURE: readonly { ref: string; ocs: string; bg: string; en: string }[] = [
   { ref: 'John 1:1', ocs: 'искони бѣ слово · и слово бѣ оу бога · и богъ бѣ слово',
     bg: 'В начало беше Словото, и Словото беше у Бога, и Бог беше Словото.',
@@ -563,13 +563,13 @@ export const CHURCH_SLAVONIC_SCRIPTURE: readonly { ref: string; ocs: string; bg:
 // The LOCAL translation service — the MEANING of a verse in a chosen language, served from the sealed
 // parallel corpus by a pure function. No machine translation, no network, no tokens: the repo itself is the
 // translator, deterministic and offline. translateVerse looks one verse up; scriptureIn lists a language.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type BibleLang = 'ocs' | 'bg' | 'en'
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function translateVerse(ref: string, lang: BibleLang): string | undefined {
   return CHURCH_SLAVONIC_SCRIPTURE.find((v) => v.ref === ref)?.[lang]
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function scriptureIn(lang: BibleLang): readonly { ref: string; text: string }[] {
   return CHURCH_SLAVONIC_SCRIPTURE.map((v) => ({ ref: v.ref, text: v[lang] }))
 }
@@ -577,7 +577,7 @@ export function scriptureIn(lang: BibleLang): readonly { ref: string; text: stri
 // the OCS original AND the modern Bulgarian meaning — so a real translation (the Bulgarian sense) is read in
 // Glagolitic (glagoliticBg), beside Cyril's own Slavonic in Glagolitic (glagoliticOcs). The render is EXACT
 // (toGlagoliticOCS covers modern Bulgarian too); the translations are the authoritative human texts above.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function bibleParallel(): readonly {
   ref: string; ocs: string; bg: string; en: string; glagoliticOcs: string; glagoliticBg: string
 }[] {
@@ -588,7 +588,7 @@ export function bibleParallel(): readonly {
 }
 // Render the founding canon's OCS original into Glagolitic — the historical artifact (Cyril's Slavonic in
 // the round script). The deterministic half is EXACT; the OCS a normalization; the English a meaning-gloss.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function bibleInGlagolitic(): readonly { ref: string; ocs: string; glagolitic: string; en: string }[] {
   return CHURCH_SLAVONIC_SCRIPTURE.map((v) => ({ ref: v.ref, ocs: v.ocs, glagolitic: toGlagoliticOCS(v.ocs), en: v.en }))
 }
@@ -598,9 +598,9 @@ export function bibleInGlagolitic(): readonly { ref: string; ocs: string; glagol
 // fertility (плодородие) from FIVE folk symbols. Decoded to their DOCUMENTED meaning, the esoteric overlay
 // flagged. The page also quotes the creation verses (Genesis 1:1, 1:3) — the seam to the multilingual
 // scripture pivot. Decode, not decoration: the symbols become reusable data beside toGlagolitic.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export interface FolkSymbol { name: string; latin: string; meaning: string; documented: boolean }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const MOLITVA_SYMBOLS: readonly FolkSymbol[] = [
   { name: 'Семето на живота', latin: 'Semeto na zhivota', meaning: 'the Seed of Life — a six-petal rosette (шестлъчна розета), a real compass construction and the kernel of the Flower of Life, attested on the Round Church at Preslav', documented: true },
   { name: 'Ромб', latin: 'Romb', meaning: 'the rhombus/diamond — vertical and horizontal at once, read in folk symbolism as the union of matter and spirit, the down/up triangles joined: balance', documented: true },
@@ -609,7 +609,7 @@ export const MOLITVA_SYMBOLS: readonly FolkSymbol[] = [
   { name: 'Здравец', latin: 'Zdravets', meaning: 'the geranium (Geranium macrorrhizum) — the folk plant of health (здраве), with documented astringent and antimicrobial compounds; the specific folk-medicine claims flagged', documented: true },
 ]
 /** The creation verses the art-prayer quotes verbatim in Bulgarian — the seam to the multilingual pivot. */
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function molitvaCreationRefs(): readonly string[] { return ['Genesis 1:1', 'Genesis 1:3'] }
 
 // ── The multilingual scripture corpus — 28 languages, authoritative public-domain editions ─────────────
@@ -619,7 +619,7 @@ export function molitvaCreationRefs(): readonly string[] { return ['Genesis 1:1'
 // machine-translated. Merged into pivotLexicon so selfTranslate routes any of these tongues through the verse
 // pivot (A → ref → B) with no pairwise dictionary. Honest: authoritative human translations (per
 // bible-glagolitic), bounded to the registered verses; the gap beyond is notAllTransliteratedMeansNotAllFused.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const MULTILINGUAL_SCRIPTURE: Record<string, Record<string, string>> = {
   'John 1:1': { grc: 'Ἐν ἀρχῇ ἦν ὁ λόγος, καὶ ὁ λόγος ἦν πρὸς τὸν Θεόν, καὶ Θεὸς ἦν ὁ λόγος.', la: 'In principio erat Verbum, et Verbum erat apud Deum, et Deus erat Verbum.', hbo: 'בְּרֵאשִׁית הָיָה הַדָּבָר וְהַדָּבָר הָיָה אֵת הָאֱלֹהִים וֵאלֹהִים הָיָה הַדָּבָר', de: 'Im Anfang war das Wort, und das Wort war bei Gott, und Gott war das Wort.', nl: 'In den beginne was het Woord, en het Woord was bij God, en het Woord was God.', sv: 'I begynnelsen var Ordet, och Ordet var hos Gud, och Ordet var Gud.', da: 'I Begyndelsen var Ordet, og Ordet var hos Gud, og Ordet var Gud.', no: 'I begynnelsen var Ordet, og Ordet var hos Gud, og Ordet var Gud.', es: 'En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios.', fr: 'Au commencement était la Parole, et la Parole était avec Dieu, et la Parole était Dieu.', it: 'NEL principio la Parola era, e la Parola era appo Dio, e la Parola era Dio.', pt: 'NO PRINCÍPIO era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.', ro: 'La început era Cuvîntul, şi Cuvîntul era cu Dumnezeu, şi Cuvîntul era Dumnezeu.', ru: 'В начале было Слово, и Слово было у Бога, и Слово было Бог.', uk: 'У починї було Слово, й Слово було в Бога, й Бог було Слово.', pl: 'Na początku było Słowo, a ono Słowo było u Boga, a Bogiem było ono Słowo.', cs: 'Na počátku bylo Slovo, a to Slovo bylo u Boha, a to Slovo byl Bůh.', sr: 'У почетку бјеше ријеч, и ријеч бјеше у Бога, и Бог бјеше ријеч.', zh: '太初有道，道與神同在，道就是神。', ja: '太初に言あり、言は神と偕にあり、言は神なりき。', ko: '태초에 말씀이 계시니라 이 말씀이 하나님과 함께 계셨으니 이 말씀은 곧 하나님이시니라', hi: 'आदि में वचन था, और वचन परमेश्वर के साथ था, और वचन परमेश्वर था।', vi: 'Ban đầu có Ngôi Lời, Ngôi Lời ở cùng Đức Chúa Trời, và Ngôi Lời là Đức Chúa Trời.', ar: 'في البدء كان الكلمة والكلمة كان عند الله وكان الكلمة الله.', tr: 'KELÂM başlangıçta var idi, ve Kelâm Allah nezdinde idi, ve Kelâm Allah idi.', sw: 'Hapo mwanzo kulikuwako Neno, naye Neno alikuwako kwa Mungu, naye Neno alikuwa Mungu.', fi: 'Alussa oli Sana, ja Sana oli Jumalan tykönä, ja Sana oli Jumala.', hu: 'Kezdetben vala az Íge, és az Íge vala az Istennél, és Isten vala az Íge.' },
   'John 3:16': { grc: 'Οὕτω γὰρ ἠγάπησεν ὁ Θεὸς τὸν κόσμον, ὥστε τὸν υἱὸν αὐτοῦ τὸν μονογενῆ ἔδωκεν, ἵνα πᾶς ὁ πιστεύων εἰς αὐτὸν μὴ ἀπόληται, ἀλλ᾿ ἔχῃ ζωὴν αἰώνιον.', la: 'Sic enim Deus dilexit mundum, ut Filium suum unigenitum daret : ut omnis qui credit in eum, non pereat, sed habeat vitam aeternam.', hbo: 'כִּי־אַהֲבָה רַבָּה אָהַב הָאֱלֹהִים אֶת־הָעוֹלָם עַד־אֲשֶׁר נָתַן אֶת־בְּנוֹ אֶת־יְחִידוֹ לְמַעַן אֲשֶׁר לֹא־יֹאבַד כָּל־הַמַּאֲמִין בּוֹ כִּי אִם־יִחְיֶה חַיֵּי עוֹלָם', de: 'Also hat Gott die Welt geliebt, daß er seinen eingeborenen Sohn gab, auf daß alle, die an ihn glauben, nicht verloren werden, sondern das ewige Leben haben.', nl: 'Want alzo lief heeft God de wereld gehad, dat Hij Zijn eniggeboren Zoon gegeven heeft, opdat een iegelijk die in Hem gelooft, niet verderve, maar het eeuwige leven hebbe.', sv: 'Ty så älskade Gud världen, att han utgav sin enfödde Son, på det att var och en som tror på honom skall icke förgås, utan hava evigt liv.', da: 'Thi således elskede Gud Verden, at han gav sin Søn den enbårne, for at hver den, som tror på ham, ikke skal fortabes, men have et evigt Liv.', no: 'For så har Gud elsket verden at han gav sin Sønn, den enbårne, forat hver den som tror på ham, ikke skal fortapes, men ha evig liv;', es: 'Porque de tal manera amó Dios al mundo, que ha dado á su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.', fr: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais qu\'il ait la vie éternelle.', it: 'Perciocchè Iddio ha tanto amato il mondo, ch\'egli ha dato il suo unigenito Figliuolo, acciocchè chiunque crede in lui non perisca, ma abbia vita eterna.', pt: 'Porque Deus amou o mundo, de tal maneira, que deu o seu Filho unigénito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.', ro: 'Fiindcă atît de mult a iubit Dumnezeu lumea, că a dat pe singurul Lui Fiu, pentruca oricine crede în El, să nu piară, ci să aibă viaţa vecinică.', ru: 'Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного, дабы всякий, верующий в Него, не погиб, но имел жизнь вечную.', uk: 'Так бо полюбив Бог сьвіт, що Сина свого єдинородного дав, щоб кожен, віруючий в Него, не погиб, а мав життє вічнє.', pl: 'Albowiem tak Bóg umiłował świat, że Syna swego jednorodzonego dał, aby każdy, kto weń wierzy, nie zginął, ale miał żywot wieczny.', cs: 'Nebo tak Bůh miloval svět, že Syna svého jednorozeného dal, aby každý, kdož věří v něho, nezahynul, ale měl život věčný.', sr: 'Јер Богу тако омиље свијет да је и сина својега јединороднога дао, да ни један који га вјерује не погине, него да има живот вјечни.', zh: '「神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不致滅亡，反得永生。', ja: 'それ神はその獨子を賜ふほどに世を愛し給へり、すべて彼を信ずる者の亡びずして、永遠の生命を得んためなり。', ko: '하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 저를 믿는 자마다 멸망치 않고 영생을 얻게 하려 하심이니라', hi: 'क्योंकि परमेश्वर ने जगत से ऐसा प्रेम रखा कि उस ने अपना एकलौता पुत्र दे दिया, ताकि जो कोई उस पर विश्वास करे, वह नाश न हो, परन्तु अनन्त जीवन पाए।', vi: 'Vì Đức Chúa Trời yêu thương thế gian, đến nỗi đã ban Con một của Ngài, hầu cho hễ ai tin Con ấy không bị hư mất mà được sự sống đời đời.', ar: 'لانه هكذا احب الله العالم حتى بذل ابنه الوحيد لكي لا يهلك كل من يؤمن به بل تكون له الحياة الابدية.', tr: 'Zira Allah dünyayı öyle sevdi ki, biricik Oğlunu verdi; ta ki, ona iman eden her adam helâk olmasın, ancak ebedî hayatı olsun.', sw: 'Kwa maana jinsi hii Mungu aliupenda ulimwengu, hata akamtoa Mwanawe pekee, ili kila mtu amwaminiye asipotee, bali awe na uzima wa milele.', fi: 'Sillä niin on Jumala maailmaa rakastanut, että hän antoi ainokaisen Poikansa, ettei yksikään, joka häneen uskoo, hukkuisi, vaan hänellä olisi iankaikkinen elämä.', hu: 'Mert úgy szerette Isten e világot, hogy az ő egyszülött Fiát adta, hogy valaki hiszen ő benne, el ne vesszen, hanem örök élete legyen.' },
@@ -652,13 +652,13 @@ export const MULTILINGUAL_SCRIPTURE: Record<string, Record<string, string>> = {
 //    music Георги Горанов); #55 Македонско девойче is Йонче Христовски (1960s); #62 Кацнал бръмбър на
 //    трънка was completed/composed by Павел Сираков. Sung as folk, but they have known authors.
 
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type Song = { n: number; title: string; scores: string[]; gloss: [string, string][]; lyrics: string }
 
 // The saved original text — the 103 songs as collected. Lyrics keep their verse structure (numbered
 // verses, a blank line between verses); `gloss` is each song's own dialect footnotes (the decode source).
 // Generated verbatim from the source page; the decode tools below read this, nothing external.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const PESNOPOIKA: readonly Song[] = [
   { n: 1, title: 'Тудоро, Тудоро', scores: ['notirani_pesni/score-001-1.png'],
     gloss: [['Геч', 'късно'], ['Лавнаха', 'заляха'], ['Госкье', 'гости'], ['Меже', 'жени, които ходят на седенки'], ['Къделя', 'валмо, развлачена вълна, която се слага на хурката и се преде с вретено'], ['Ракие', 'ракия'], ['Байно', 'по-стар брат; бате; батко; бай'], ['Слюбнице', 'годежари'], ['Йолдаши', 'спътници'], ['Оглавям, главя се', 'женя се; сгодявам'], ['Менихме', 'разменихме'], ['Пруодих', 'пратих, изпратих'], ['Алтънена', 'златна']],
@@ -970,7 +970,7 @@ export const PESNOPOIKA: readonly Song[] = [
     gloss: [],
     lyrics: '1. Петруно, пиле шарено /х2\nде гиди ягне галено /х2\n\n2. Петрунините очици /х2\nте чинат шапа жълтици /х2\n\n3. Петруно, пиле шарено /x2\nзащо си толкоз убаво /x2\nОт Бога ли си паднало или си в градинка никнало?\n\n3. Лудо ле лудо та младо /х2\nНе съм от Бога паднало, нито съм в градинка никнало\n\n5. И мене майка родила /х2\nи мене като и тебе /х2\n\n6. Кога ме мама родила /х2\nв градина се е сдобила /х2\n\n7. За топола се йе държала /х2\nкъм яболка йе гледала /x2\n\n8. Затуй съм тънка висока, /х2\nзатуй съм бeла, цървена /х2' },
 ]
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const PESNOPOIKA_SOURCE = 'http://gabchik.com/pesnopoika.html'
 
 // THE DIALECT DICTIONARY — the songbook's 437 footnotes (dialect word → standard Bulgarian), folded
@@ -979,7 +979,7 @@ export const PESNOPOIKA_SOURCE = 'http://gabchik.com/pesnopoika.html'
 // Keys are lowercased; values are the standard-Bulgarian sense as the collector glossed it. HONEST: this
 // is dialect→standard normalization WITHIN Bulgarian (and a few Turkisms/Macedonisms), not translation
 // between languages, and the senses are the collector's, kept verbatim. Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const DIALECT_GLOSSARY: Record<string, string> = {
   'абаджия': 'шивач, производител на аба (дебел вълнен плат)', 'ага': 'почетно звание, което българите по време на турското робство дават на високопоставен турчин', 'аджи': 'от хаджия (човек, който е бил на Божи гроб)',
   'алтънена': 'златна', 'аляна': 'червена', 'аризвам': 'подарявам',
@@ -1133,7 +1133,7 @@ export const DIALECT_GLOSSARY: Record<string, string> = {
 // the FIRST sense of its gloss (a concise normalization; the full gloss is available via glossDialect).
 // Word-aware over Cyrillic; punctuation and unglossed words pass through unchanged. Reversible only by the
 // book — decoding loses the dialect colour, which is why the original PESNOPOIKA is saved beside this.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function decodeDialect(text: string): string {
   return text.split(/([^\p{L}\p{M}'’-]+)/u).map((tok) => {
     const gloss = DIALECT_GLOSSARY[tok.toLowerCase()]
@@ -1144,7 +1144,7 @@ export function decodeDialect(text: string): string {
 
 // List the dialect words a text uses, each with the collector's full standard-Bulgarian gloss, in order
 // of first appearance, deduplicated — the song's footnotes recovered for any text. Reuses DIALECT_GLOSSARY.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glossDialect(text: string): { term: string; standard: string }[] {
   const seen = new Set<string>()
   const out: { term: string; standard: string }[] = []
@@ -1168,10 +1168,10 @@ export function glossDialect(text: string): { term: string; standard: string }[]
 // transliterated ⟹ not all is fused). Seeded from the repo's own data — the tri-lingual scripture (verse
 // pivot) and the Balkan dialect glossary (word pivot) — and open to ANY tongue registered against the pivot.
 /** A pivot lexicon: pivot-id → { tongue → surface form }. The pivot is the meaning; the surfaces are tongues. */
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type PivotLexicon = Record<string, Record<string, string>>
 /** Build the seed pivot lexicon from the repo's existing parallel data — verse-level and word-level pivots. */
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function pivotLexicon(): PivotLexicon {
   const lex: PivotLexicon = {}
   for (const v of CHURCH_SLAVONIC_SCRIPTURE) lex[`verse:${v.ref}`] = { ocs: v.ocs, bg: v.bg, en: v.en, ...(MULTILINGUAL_SCRIPTURE[v.ref] ?? {}) }
@@ -1183,7 +1183,7 @@ export function pivotLexicon(): PivotLexicon {
   return lex
 }
 /** The tongues the pivot lexicon currently spans (it generalises to any tongue registered against the pivot). */
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function pivotTongues(lex: PivotLexicon = pivotLexicon()): string[] {
   const tongues = new Set<string>()
   for (const surfaces of Object.values(lex)) for (const tongue of Object.keys(surfaces)) tongues.add(tongue)
@@ -1192,7 +1192,7 @@ export function pivotTongues(lex: PivotLexicon = pivotLexicon()): string[] {
 /** Translate text from one tongue to another by routing each known unit through the pivot — A → pivot → B,
  *  no pairwise dictionary. Whole-text (verse) match first, else unit-by-unit (word). Returns the translated
  *  text with the coverage as exact integers (mapped / total); unmapped units pass through (the honest gap). */
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function selfTranslate(text: string, from: string, to: string, lex: PivotLexicon = pivotLexicon()): { text: string; mapped: number; total: number; derived: boolean } {
   const bySurface: Record<string, Record<string, string>> = {} // tongue → (surface → pivot-id)
   for (const [pivot, surfaces] of Object.entries(lex)) {
@@ -1222,7 +1222,7 @@ const DIALECT_TURKISMS = new Set<string>([
   'йолдаш', 'йолдаши', 'севда', 'севдо', 'севдалино', 'кьошк', 'чешма', 'дюкян', 'хаир', 'хаирлия',
   'демек', 'таман', 'кат', 'бакър', 'сахан', 'тепсия', 'кован', 'делия', 'юзда', 'алтън', 'алтънена',
 ])
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function dialectStratum(term: string): 'turkism' | 'palatal' | 'dialect' {
   const t = term.toLowerCase()
   if (DIALECT_TURKISMS.has(t)) return 'turkism'
@@ -1233,7 +1233,7 @@ export function dialectStratum(term: string): 'turkism' | 'palatal' | 'dialect' 
 // Verse structure: split a song's lyrics into its numbered verses ("1. … 2. …"). If a song has no verse
 // numbers (a through-composed refrain song), the whole lyric is one verse. The verse markers are the
 // collector's; this just reads them. Returns trimmed verse texts.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function verses(lyrics: string): string[] {
   const parts = lyrics.split(/\n(?=\s*\d+\.\s)/).map((v) => v.trim()).filter(Boolean)
   return parts.length ? parts : [lyrics.trim()]
@@ -1242,7 +1242,7 @@ export function verses(lyrics: string): string[] {
 // Refrain detection: the lines a song repeats. Two documented signals — (a) an explicit repeat marker the
 // book writes (/x2, /х2, (2), х2), and (b) a line that recurs verbatim. Returns the repeated lines and the
 // count of explicit markers. Pure text analysis; no audio, no notation.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function refrains(lyrics: string): { repeated: string[]; markers: number } {
   const markers = (lyrics.match(/\/\s*[хx]\s*\d|\(\s*2\s*\)|\b[хx]2\b/giu) || []).length
   const counts = new Map<string, number>()
@@ -1261,7 +1261,7 @@ export function refrains(lyrics: string): { repeated: string[]; markers: number 
 // blood of the nation" (Hristov's nationalist framing, flagged). These are the meter templates, reusable;
 // the songbook's per-song meter lives in the score images, which are not parsed here — no meter is assigned
 // to a song from text alone. Pure, deterministic, zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const AKSAK: Record<string, number[]> = {
   pravo: [2, 2],                          // 4 — the plain (even) horo, for contrast
   paydushko: [2, 3],                      // 5
@@ -1271,18 +1271,18 @@ export const AKSAK: Record<string, number[]> = {
   kopanitsa: [2, 2, 3, 2, 2],            // 11 (gankino)
   bucimis: [2, 2, 2, 2, 3, 2, 2],        // 15
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function aksak(name: string): number[] { return AKSAK[name] ?? [] }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function aksakBeats(name: string): number { return aksak(name).reduce((s, b) => s + b, 0) }
 
 // PROVENANCE — the honest documented-vs-legend layer, per song, from verified research. `kind`:
 // 'authored' (a known poet/composer — sung as folk but NOT anonymous), 'traditional' (documented
 // anonymous folk), or 'uncertain' (not resolved). Only researched songs are listed; the rest default to
 // traditional-unattributed (which is "not individually verified here", NOT a positive claim of anonymity).
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type Provenance = { kind: 'authored' | 'traditional' | 'uncertain'; region?: string; genre?: string; note: string }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const PROVENANCE: Record<number, Provenance> = {
   1: { kind: 'traditional', region: 'Странджа', note: 'нестинарка/странджанка; нестинарството е UNESCO (2009) ОРТОДОКСАЛЕН обред (св. Константин и Елена, с. Българи) — „непрекъсната тракийско-дионисиева приемственост“ е ЛЕГЕНДА (хипотеза на Хурмузиадис, 1873; Danforth я скобира)' },
   44: { kind: 'authored', genre: 'възрожденска', note: 'НЕ е фолклор: текст Любен Каравелов (1875, сп. „Знание“), музика Георги Горанов — често се пее като анонимна народна' },
@@ -1301,7 +1301,7 @@ export const PROVENANCE: Record<number, Provenance> = {
   86: { kind: 'uncertain', genre: 'любовна', note: 'вероятно традиционна любовна; точният текст непотвърден' },
   91: { kind: 'traditional', region: 'Родопи/Тракия', genre: 'сватбарска', note: 'обредна сватбена — сбогуването на невестата' },
 }
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function provenance(n: number): Provenance {
   return PROVENANCE[n] ?? { kind: 'traditional', note: 'анонимна народна, неатрибутирана тук (непроверена индивидуално, не твърдение за анонимност)' }
 }
@@ -1309,9 +1309,9 @@ export function provenance(n: number): Provenance {
 // GENRE — the documented Bulgarian folk-song typology (Стоин, Кацарова, Кауфман school), applied by a
 // keyword heuristic over title+lyrics. The categories are real ethnomusicological functions; the
 // assignment is a HEURISTIC guess, not an authoritative classification (the honest hedge). First match wins.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export const GENRES = ['обредна-дъжд', 'хайдушка', 'сватбарска', 'седянкарска', 'жътварска', 'трапезна', 'хороводна', 'любовна', 'лирическа'] as const
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type Genre = (typeof GENRES)[number]
 // Build a Unicode word-boundary matcher: a marker must match a WHOLE word, not a substring — JS \b is
 // ASCII-only and useless for Cyrillic, so use lookarounds on \p{L}. (Without this, чета matches inside
@@ -1327,7 +1327,7 @@ const GENRE_MARKERS: [Genre, RegExp][] = [
   ['хороводна', W('хоро', 'хорото', 'играй', 'заигра[\\p{L}]*', 'гайда')],
   ['любовна', W('либе', 'либето', 'севд[\\p{L}]*', 'обич[\\p{L}]*', 'целув[\\p{L}]*', 'драг[аио]', 'залюб[\\p{L}]*', 'сърце')],
 ]
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function classifyGenre(title: string, lyrics: string): Genre {
   const hay = `${title}\n${lyrics}`
   for (const [genre, re] of GENRE_MARKERS) if (re.test(hay)) return genre
@@ -1338,7 +1338,7 @@ export function classifyGenre(title: string, lyrics: string): Genre {
 // with a content address, on the same fold as every other entry. The library's normalize() strips #frag-
 // ments (it addresses documents), so the song number is folded as a PATH segment (page/N), giving each song
 // a distinct sub-address of the page. Reuses entry(); deterministic and unique per song.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function songEntry(n: number): Entry {
   return entry(`${PESNOPOIKA_SOURCE}/${n}`)
 }
@@ -1347,7 +1347,7 @@ export function songEntry(n: number): Entry {
 // verses, refrain, the dialect footnotes recovered (glossDialect) and the standard-Bulgarian normalization
 // (decodeDialect), the honest provenance, the heuristic genre, the score images. The whole decode in one
 // pure call. Takes a Song as an argument (so the display dual stays decoupled). Zero tokens.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function decodeSong(song: Song): {
   n: number; title: string; uuid: Uuid; verses: string[]; refrain: { repeated: string[]; markers: number }
   glossed: { term: string; standard: string }[]; standardTitle: string; standardLyrics: string
@@ -1366,7 +1366,7 @@ export function decodeSong(song: Song): {
 // DECODE ALL — the whole songbook decoded, plus a deterministic summary: the genre and provenance
 // histograms, the dictionary size, the catalog entry of the source page. This is the "decode all 108"
 // answer as a pure, recomputable value. Zero runtime tokens — the repo itself is the decoder.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function pesnopoika(): {
   source: Entry; count: number; dictionarySize: number
   songs: ReturnType<typeof decodeSong>[]
@@ -1400,7 +1400,7 @@ export function pesnopoika(): {
 // attestation, documented-not-computed) or that an authored-song claim is historically correct (sourced
 // research). That boundary IS the documented-vs-legend law — math proves the fold; the world's facts stay
 // sourced. The proof is honest by construction: it asserts only what a computation can settle.
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function provePesnopoika(): {
   proven: boolean; gates: Record<string, boolean>; count: number; root: Uuid; statement: string; boundary: string
 } {
@@ -1429,5 +1429,104 @@ export function provePesnopoika(): {
   }
 }
 
-/** @iching ☶ Gèn · Mountain · keeping still (scripture/glyph library) */
-export const dual = 'src/library/quantum'
+// UUID → sealed Glagolitic glyph string — bijective per position; alphabet order is content-addressed (64! permutations).
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export const UUID_GLYPH_WIDTH = 32
+
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export const UUID_GLYPH_ALPHABET = (() => {
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const letter of GLAGOLITIC_LETTERS) {
+    if (!seen.has(letter.glyph)) {
+      seen.add(letter.glyph)
+      out.push(letter.glyph)
+    }
+  }
+  for (const glyph of Object.values(GLAGOLITIC_MAP)) {
+    if (!seen.has(glyph) && out.length < 64) {
+      seen.add(glyph)
+      out.push(glyph)
+    }
+  }
+  for (let cp = 0x2c00; out.length < 64 && cp < 0x2c80; cp += 1) {
+    const glyph = String.fromCodePoint(cp)
+    if (!seen.has(glyph)) {
+      seen.add(glyph)
+      out.push(glyph)
+    }
+  }
+  return out.join('')
+})()
+
+const GLYPH_SHIFT = Array.from({ length: UUID_GLYPH_WIDTH }, (_, i) => (i * 11 + 3) % 49)
+
+function normalizeUuidHex(uuid: string): string {
+  return uuid.toLowerCase().replace(/-/g, '')
+}
+
+function formatUuidHex(hex: string): string {
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20, 32)}`
+}
+
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export function uuidToGlyphs(uuid: string): string {
+  const hex = normalizeUuidHex(uuid)
+  if (hex.length !== 32) return ''
+  let out = ''
+  for (let i = 0; i < UUID_GLYPH_WIDTH; i += 1) {
+    const n = Number.parseInt(hex[i]!, 16)
+    out += UUID_GLYPH_ALPHABET[(n + GLYPH_SHIFT[i]!) % UUID_GLYPH_ALPHABET.length]!
+  }
+  return out
+}
+
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export function glyphsToUuid(glyphs: string): string {
+  if (glyphs.length !== UUID_GLYPH_WIDTH) return ''
+  let hex = ''
+  for (let i = 0; i < UUID_GLYPH_WIDTH; i += 1) {
+    const idx = UUID_GLYPH_ALPHABET.indexOf(glyphs[i]!)
+    if (idx < 0) return ''
+    const n = ((idx - GLYPH_SHIFT[i]!) % UUID_GLYPH_ALPHABET.length + UUID_GLYPH_ALPHABET.length) % UUID_GLYPH_ALPHABET.length
+    if (n > 15) return ''
+    hex += n.toString(16)
+  }
+  return formatUuidHex(hex)
+}
+
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export function parseUuidOrGlyphs(input: string): string {
+  const trimmed = input.trim()
+  if (isUuid(trimmed)) return trimmed.toLowerCase()
+  const fromGlyphs = glyphsToUuid(trimmed)
+  return fromGlyphs || trimmed.toLowerCase()
+}
+
+function log2Factorial(n: number): number {
+  let sum = 0
+  for (let i = 2; i <= n; i += 1) sum += Math.log2(i)
+  return sum
+}
+
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export function glyphUuidEncryptionMagnitude() {
+  const hexExposureLog2 = addressEntropyBits().effectiveBits
+  const alphabetPermutationLog2 = log2Factorial(UUID_GLYPH_ALPHABET.length)
+  const glyphKnownAlphabetLog2 = UUID_GLYPH_WIDTH * Math.log2(UUID_GLYPH_ALPHABET.length)
+  const glyphWithoutFoldLog2 = hexExposureLog2 + alphabetPermutationLog2
+  const obfuscationBonusLog2 = glyphWithoutFoldLog2 - hexExposureLog2
+  const magnitudeOrdersVsHex = obfuscationBonusLog2 / Math.log10(2)
+  return {
+    hexExposureLog2,
+    alphabetPermutationLog2,
+    glyphKnownAlphabetLog2,
+    glyphWithoutFoldLog2,
+    obfuscationBonusLog2,
+    magnitudeOrdersVsHex,
+    label: `~10^${Math.round(magnitudeOrdersVsHex)}× vs hex`,
+  }
+}
+
+/** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+export const dual = 'src/render/heritage/quantum'

@@ -2,6 +2,7 @@
 // with. rotate3 turns a vector through all three planes (xy, yz, zx) so the figure tumbles in space, not just
 // spins in the plane; perspective() turns the rotated z into a foreshortening factor (nearer grows, farther
 // recedes), shared by the fractal arms, the architecture ring and the tag ring so they tumble as one figure.
+import type { Dims } from '../../mountain/dimensions'
 
 export const FOCAL = 2.4 // perspective focal length, shared by every layer
 
@@ -48,4 +49,112 @@ export function rotate3(x: number, y: number, z: number, rxy: number, ryz: numbe
 // Perspective foreshortening for a rotated point's depth: z>0 (nearer) enlarges, z<0 recedes.
 export function perspective(z: number): number {
   return FOCAL / (FOCAL - z)
+}
+
+// Holographic fractal branch — each branch spawns two smaller copies of the same rule.
+export function branch(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  len: number,
+  angle: number,
+  depth: number,
+  d: Dims,
+  hue: number,
+): void {
+  if (depth <= 0 || len < 3) return
+  const x2 = x + Math.cos(angle) * len
+  const y2 = y + Math.sin(angle) * len
+  ctx.strokeStyle = `hsla(${(hue + d.hueShift + depth * 28) % 360}, 72%, 60%, ${d.depthFade + depth * 0.1})`
+  ctx.lineWidth = Math.max(0.5, depth * 0.6)
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x2, y2)
+  ctx.stroke()
+  branch(ctx, x2, y2, len * d.shrink, angle - d.spread, depth - 1, d, hue)
+  branch(ctx, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d, hue)
+}
+
+const FOL_ARMS: readonly { r: number; w: number }[] = [
+  { r: 0.5, w: 0.7 }, { r: 0.28, w: -1.6 }, { r: 0.15, w: 2.6 }, { r: 0.08, w: -3.9 },
+]
+
+export function drawFlower(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  w: number,
+  h: number,
+  t: number,
+  hue: number,
+  reduce: boolean,
+): void {
+  const R = Math.min(w, h) * 0.22
+  const centers: { x: number; y: number }[] = [{ x: 0, y: 0 }]
+  for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3; centers.push({ x: Math.cos(a) * R, y: Math.sin(a) * R }) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3 + Math.PI / 6; const d = R * Math.sqrt(3); centers.push({ x: Math.cos(a) * d, y: Math.sin(a) * d }) }
+  const localR = R * 0.5
+  const trail = reduce ? 1 : 40
+  const td = t * 8
+  const spin = t * 0.4
+  ctx.save()
+  ctx.globalCompositeOperation = 'lighter'
+  for (let ci = 0; ci < centers.length; ci += 1) {
+    const c = centers[ci]
+    const ox = cx + (c.x * Math.cos(spin) - c.y * Math.sin(spin))
+    const oy = cy + (c.x * Math.sin(spin) + c.y * Math.cos(spin))
+    const hueC = (hue + ci * 27) % 360
+    for (let i = trail; i >= 0; i -= 1) {
+      const tt = td - i * 0.05 + ci * 0.3
+      let x = 0
+      let y = 0
+      for (const arm of FOL_ARMS) { x += arm.r * Math.cos(arm.w * tt); y += arm.r * Math.sin(arm.w * tt) }
+      const age = i / trail
+      ctx.globalAlpha = Math.pow(1 - age, 1.6) * 0.42
+      ctx.fillStyle = `hsl(${(hueC + i * 3) % 360}, 85%, ${Math.round(62 - age * 20)}%)`
+      ctx.beginPath()
+      ctx.arc(ox + x * localR, oy + y * localR, Math.max(0.5, (1 - age * 0.7) * 1.7), 0, Math.PI * 2)
+      ctx.fill()
+    }
+  }
+  ctx.restore()
+}
+
+const CAL_CYCLES: readonly { cycle: string; days: number }[] = [
+  { cycle: 'week', days: 7 }, { cycle: 'trecena', days: 13 }, { cycle: 'veintena', days: 20 },
+  { cycle: 'sexagenary', days: 60 }, { cycle: 'tzolkʼin', days: 260 }, { cycle: 'tun', days: 360 },
+  { cycle: 'haabʼ', days: 365 }, { cycle: '819', days: 819 }, { cycle: 'Metonic', days: 6940 },
+  { cycle: 'Calendar Round', days: 18980 },
+]
+
+export function drawCalendars(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  w: number,
+  h: number,
+  t: number,
+  hue: number,
+  reduce: boolean,
+): void {
+  const days = Date.now() / 86400000
+  const base = Math.min(w, h)
+  ctx.save()
+  for (let i = 0; i < CAL_CYCLES.length; i += 1) {
+    const cyc = CAL_CYCLES[i]
+    const phase = ((((days % cyc.days) + cyc.days) % cyc.days) / cyc.days)
+    const radius = base * (0.15 + 0.027 * i)
+    const hueC = (hue + i * 24) % 360
+    ctx.strokeStyle = `hsla(${hueC}, 60%, 58%, 0.1)`
+    ctx.lineWidth = 0.75
+    ctx.beginPath()
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2)
+    ctx.stroke()
+    const ang = phase * Math.PI * 2 - Math.PI / 2 + (reduce ? 0 : t * 0.05 * (i % 2 === 0 ? 1 : -1))
+    ctx.fillStyle = `hsla(${hueC}, 85%, 64%, 0.7)`
+    ctx.beginPath()
+    ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * 0.006), 0, Math.PI * 2)
+    ctx.fill()
+  }
+  ctx.restore()
 }

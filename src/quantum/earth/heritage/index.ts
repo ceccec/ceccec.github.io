@@ -6,7 +6,7 @@
 // ☷ Kūn · Earth · receptive · lower·yin · spread — core content-addressing primitives (toUuid, merkleFold)
 import { toUuid, merkleFold } from '../../../0'
 
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export function bulgarianHeritage() {
   const topics = [
     {
@@ -50,7 +50,7 @@ export function bulgarianHeritage() {
 }
 
 // Bulgarian political/dynastic history 681→present, sealed in six dual-mind eras.
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export function bulgarianHistory() {
   const eras = [
     { era: 'first-empire-pagan', span: '681-864', documented: 'founded by the 680 Battle of Ongal (Asparuh beats Constantine IV); 681 treaty + tribute; Tervel caesar 705; Krum (Varbitsa Pass 26 Jul 811, first written law); Omurtag (peace 815, Tangra)', legend: '"681" a round birth-date (the documented event is 680); "Saviour of Europe" and the "St Trivelius monk-king" (a Paisius-1762 fabrication) are nationalist/invented; Kormesiy, not Tervel, signed the 716 treaty' },
@@ -72,7 +72,7 @@ export function bulgarianHistory() {
 }
 
 // Dive down through the land of Bulgaria into its ancient civilisations — six strata, deepest-first.
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export function bulgarianAncientCivilisations() {
   const strata = [
     { stratum: 'neolithic-first-farmers', span: 'c.6200-4900 BC', documented: 'the land = the gateway of Neolithic farming into Europe (c.6250-6200 cal BC, ~80-90% Anatolian-farmer aDNA); Dzhulyunitsa, Yabalkovo; the Karanovo tell (>12.4 m, seven horizons, master excavations 1946/47-1957); the Stara Zagora dwellings (fire-sealed, 6th mill. BC); Slatina', legend: 'the Gradeshnitsa plaque / Karanovo seal as "oldest writing" is false (Chalcolithic proto-writing, postdating this stratum); "Old Europe" as a peaceful Mother-Goddess civilisation is contested (Gimbutas); "Europe\'s first civilisation/oldest town" are promotional superlatives; unbroken Thracian-to-Bulgarian biological continuity is false (~63% Yamnaya steppe ancestry by the Late Bronze Age)' },
@@ -94,7 +94,7 @@ export function bulgarianAncientCivilisations() {
 }
 
 // Discover the peoples who fused into Bulgaria, traced OUTWARD to their origins.
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export function bulgarianEthnogenesis() {
   const peoples = [
     { people: 'bulgars-steppe-origin', documented: 'Turkic semi-nomads of the Pontic-Caspian/N-Caucasus steppe; Oghur (Lir-)Turkic language, only living descendant Chuvash; post-Hunnic Utigur+Kutrigur+Onogur+Sabir fusion; first mention 480 AD (allies of Zeno); Kubrat (Dulo) welds Old Great Bulgaria (632-668, capital Phanagoria); after 668 the five sons scatter (Batbayan stays; Kotrag→Volga Bulgaria; Kuber→Macedonia; Asparuh→Danube 680/681; Alcek→Molise); Tengrism; the Nominalia (Dulo king-list, 12-year animal calendar)', legend: 'the Iranian "Pamir/Balhara" origin (Dobrev, post-1989 anti-Turkish, per Detrez); the autochthonous Thracian-continuity theory (Rakovski/Tsenov); the Nominalia\'s mythical Avitohol "300 years" / Irnik "150 years" and Irnik=Ernak; all "pure single-origin" framing. (Correction caught: proto-Bulgarian mtDNA = Nesheva et al. 2015, not "Sarno 2025")' },
@@ -114,7 +114,7 @@ export function bulgarianEthnogenesis() {
 }
 
 // Discover the genetic links and challenge history with genetics.
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export function geneticLinksChallengeHistory() {
   const domains = [
     { domain: 'deep-ancestry-neolithic-bronze', studies: 'Mathieson 2018 (Nature, 225 genomes), Haak 2015, Lazaridis 2022', challenge: 'the autochthony / "unbroken continuity from the first farmers" myth → REFUTED: at least two prehistoric turnovers (the Anatolian-farmer wave, then the 3rd-millennium Yamnaya steppe wave)', legend: 'single-haplogroup purity; conflating the Bronze-Age Yamnaya steppe layer with the 7th-c. Bulgars' },
@@ -135,7 +135,7 @@ export function geneticLinksChallengeHistory() {
 }
 
 // WHO used Glagolitic — the Bulgarian reception, the fifth axis.
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export function glagoliticBulgarianReception() {
   const communities = [
     { community: 'disciples-received-by-boris', period: '885-886 (arrival); Boris I r. 852-889', place: 'from Great Moravia via Belgrade (a Bulgarian frontier post) to the capital Pliska', role: 'origin / reception — the founding act that gave Glagolitic a state after Moravia rejected it', documented: 'after Methodius died (6 Apr 885) Pope Stephen V banned the Slavonic liturgy and Wiching had the disciples expelled; Clement, Naum and Angelar reached Belgrade "then in the borders of Bulgaria" in 885/886 and were commissioned by Boris I (baptised c.864 as Michael) to instruct the future clergy — the decisive act that re-homed the Cyrillo-Methodian (Glagolitic) tradition in a Slavic state', legend: 'neat 886-for-everything compresses a multi-year process; the precise fates of Gorazd (Methodius\' designated successor) and Sava in Bulgaria are poorly documented; "Saviour of the Slavic letters" framing is a National-Revival construction' },
@@ -157,5 +157,5 @@ export function glagoliticBulgarianReception() {
 }
 
 // ☷ Kūn · Earth · receptive · upper·yang · spread — dual pointer to the browse/display counterpart
-/** @iching ☷ Kūn · Earth · receptive */
+/** @rosetta ✦₄ · Earth · receptive */
 export const dual = 'src/render/heritage/quantum'

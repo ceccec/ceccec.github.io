@@ -1,1 +1,0 @@
-export { cryptoReview } from './credit'
