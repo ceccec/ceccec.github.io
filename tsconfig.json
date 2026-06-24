@@ -16,9 +16,9 @@
     "types": ["node"]
   },
   "include": ["src", "packages/double-torus/src"],
-  // src/ui is the VitePress render layer (Vue SFCs + DOM-using composables). tsc has no .vue resolver
+  // src/render is the VitePress render layer (Vue SFCs + DOM-using composables). tsc has no .vue resolver
   // and no DOM lib here, so it is type-checked by Vite at build, not by check:types — exactly as it was
   // when this code lived under .vitepress/theme (also outside the type-check). Excluded to keep the model
   // type-check (src/quantum, src/library, src/0, the package) clean and focused.
-  "exclude": ["src/ui"]
+  "exclude": ["src/render", "src/ui"]
 }

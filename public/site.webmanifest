@@ -18,8 +18,8 @@
     { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "Quantum Mind", "short_name": "Mind", "description": "The living double torus, merkaba and rhythm", "url": "/quantum-mind" },
-    { "name": "MCP & Virtual OS", "short_name": "MCP", "description": "The tool surface and terminal for AI agents", "url": "/mcp" },
-    { "name": "School", "short_name": "School", "description": "Learn it by playing, at any age", "url": "/school" }
+    { "name": "Quantum Mind", "short_name": "Mind", "description": "The living double torus, merkaba and rhythm", "url": "/en/quantum-mind" },
+    { "name": "MCP tools", "short_name": "MCP", "description": "The tool surface for AI agents", "url": "/en/mcp" },
+    { "name": "Start here", "short_name": "Start", "description": "Four plain steps — see, learn, use, prove", "url": "/en/start" }
   ]
 }

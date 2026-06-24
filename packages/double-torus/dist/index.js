@@ -3830,8 +3830,8 @@ function repositoryApi(matrix = buildMatrix()) {
     endpoint("/quantum-mind", "read", "page", "Live route that renders the computed self-model."),
     endpoint("/architecture", "read", "page", "Route that explains the repository-as-API architecture."),
     endpoint("repo://src/quantum/heaven/mind/index.ts", "verify", "source", "The executable atom, matrix, proof, and repository API model."),
-    endpoint("repo://src/render/ui/components/QuantumMind.vue", "resolve", "source", "The presentation layer for the computed mind."),
-    endpoint("repo://src/render/ui/components/ConceptCommands.vue", "resolve", "source", "The concept command UI for driving the site."),
+    endpoint("repo://src/render/ui/components/quantum/mind.vue", "resolve", "source", "The presentation layer for the computed mind."),
+    endpoint("repo://src/render/ui/components/concept/commands.vue", "resolve", "source", "The concept command UI for driving the site."),
     endpoint("repo://src/render/ui/index.ts", "resolve", "source", "The VitePress theme registration for concept UI components."),
     endpoint("repo://index.md", "read", "source", "The landing page source as a public API resource."),
     endpoint("repo://quantum-mind.md", "read", "source", "The live mind page source as a public API resource."),
@@ -4113,7 +4113,7 @@ var AREA_LABELS = {
   all: { en: "All", bg: "\u0412\u0441\u0438\u0447\u043A\u043E" },
   state: { en: "State", bg: "\u0421\u044A\u0441\u0442\u043E\u044F\u043D\u0438\u0435" },
   geometry: { en: "Geometry", bg: "\u0413\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u044F" },
-  society: { en: "Society", bg: "\u041E\u0431\u0449\u0435\u0441\u0442\u0432\u043E" },
+  society: { en: "society", bg: "\u041E\u0431\u0449\u0435\u0441\u0442\u0432\u043E" },
   commons: { en: "Commons", bg: "\u041E\u0431\u0449\u0438 \u0431\u043B\u0430\u0433\u0430" },
   ancient: { en: "Ancient", bg: "\u0414\u0440\u0435\u0432\u043D\u0438" },
   reactor: { en: "Reactor", bg: "\u0420\u0435\u0430\u043A\u0442\u043E\u0440" },
@@ -4712,7 +4712,7 @@ function multidimensional() {
       { label: "Double torus 3d 5d 8d", route: "/quantum-mind", tip: "The genus-2 surface, foldable through dimensions." },
       { label: "Quantum fold", route: "/quantum-mind", tip: "All objects folding in 3d+." },
       { label: "Quantum plasma", route: "/quantum-mind", tip: "Plasma contained by bit logic." },
-      { label: "Hologram", route: "/quantum-mind", tip: "The 128-bit boundary, to the bit." },
+      { label: "hologram", route: "/quantum-mind", tip: "The 128-bit boundary, to the bit." },
       { label: "DNA helix", route: "/quantum-mind", tip: "The word as 64 bases." },
       { label: "Fusion wave", route: "/show", tip: "Everything fused into one wave." }
     ] },
@@ -4744,9 +4744,9 @@ function multidimensional() {
     { dimension: "pattern", icon: "\u25B3", items: [
       { label: "Genesis 3-5-8", route: "/quantum-mind", tip: "From the seed, many unfoldings." },
       { label: "3-5-8 across domains", route: "/quantum-mind", tip: "Thirteen domains, one pattern." },
-      { label: "Dualities", route: "/quantum-mind", tip: "Sixteen pairs in three tiers." },
+      { label: "dualities", route: "/quantum-mind", tip: "Sixteen pairs in three tiers." },
       { label: "Fold 358 and 853", route: "/quantum-mind", tip: "Expansion and contraction." },
-      { label: "Equilibrium", route: "/quantum-mind", tip: "The breath settling." }
+      { label: "equilibrium", route: "/quantum-mind", tip: "The breath settling." }
     ] },
     { dimension: "sense", icon: "\u{1F9ED}", items: [
       { label: "Quantum field", route: "/quantum-mind", tip: "Pointer and tilt move the field." },
@@ -5093,7 +5093,7 @@ function staticPages() {
         bg: "\u0417\u0430\u043F\u043E\u0447\u043D\u0438 \u0442\u0443\u043A: \u0443\u0447\u0435\u0431\u0435\u043D \u043F\u043E\u0440\u0442\u0430\u043B, \u043A\u043E\u0439\u0442\u043E \u043C\u043E\u0436\u0435\u0448 \u0441\u0430\u043C \u0434\u0430 \u043F\u0440\u043E\u0432\u0435\u0440\u0438\u0448. \u0427\u0435\u0442\u0438\u0440\u0438 \u043F\u0440\u043E\u0441\u0442\u0438 \u0441\u0442\u044A\u043F\u043A\u0438 \u2014 \u0432\u0438\u0436, \u0443\u0447\u0438, \u0438\u0437\u043F\u043E\u043B\u0437\u0432\u0430\u0439, \u0434\u043E\u043A\u0430\u0436\u0438 \u2014 \u0441 \u043F\u044A\u043B\u043D\u0430\u0442\u0430 \u0434\u044A\u043B\u0431\u043E\u0447\u0438\u043D\u0430 \u043D\u0430 \u0435\u0434\u043D\u043E \u0434\u043E\u043A\u043E\u0441\u0432\u0430\u043D\u0435. \u041F\u0440\u043E\u0441\u0442\u043E \u0437\u0430 \u043F\u043E\u043B\u0437\u0432\u0430\u043D\u0435, \u0431\u043E\u0433\u0430\u0442\u043E \u043D\u0430 \u0444\u0443\u043D\u043A\u0446\u0438\u0438."
       },
       keywords: ["start", "simple", "plain language", "getting started", "double torus"],
-      components: ["StartHere"]
+      components: ["start/here"]
     },
     {
       slug: "explore",
@@ -5103,17 +5103,17 @@ function staticPages() {
         bg: "\u0420\u0430\u0437\u0433\u043B\u0435\u0434\u0430\u0439 \u0446\u0435\u043B\u0438\u044F \u043F\u043E\u0440\u0442\u0430\u043B \u043C\u043D\u043E\u0433\u043E\u0438\u0437\u043C\u0435\u0440\u043D\u043E: \u043E\u0441\u0435\u043C \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F \u043D\u0430 \u043E\u043F\u0438\u0442\u0430 \u2014 \u0432\u0438\u0436, \u0447\u0443\u0439, \u043F\u0438\u0442\u0430\u0439, \u0434\u043E\u043A\u0430\u0436\u0438, \u0443\u0447\u0438, \u0448\u0430\u0440\u043A\u0430, \u0443\u0441\u0435\u0442\u0438, \u0442\u0432\u043E\u0440\u0438."
       },
       keywords: ["multidimensional", "explore", "dimensions", "ux"],
-      components: ["Multidimensional", "Mysteries", "HarmonicSpiral"]
+      components: ["multidimensional", "mysteries", "harmonic/spiral"]
     },
     {
       slug: "a432",
-      title: { en: "A432", bg: "A432" },
+      title: { en: "a432", bg: "a432" },
       description: {
         en: "A432 \u2014 colour, audio, video and vibration as one frequency expressed four ways. The shared thread is frequency itself: a tone you hear, a colour (the sound doubled forty octaves into visible light), a motion rate, and a haptic pulse. Documented kept, legend flagged \u2014 the math and history of 432 are real; the cosmic, healing and conspiracy claims are not.",
         bg: "A432 \u2014 \u0446\u0432\u044F\u0442, \u0437\u0432\u0443\u043A, \u0432\u0438\u0434\u0435\u043E \u0438 \u0432\u0438\u0431\u0440\u0430\u0446\u0438\u044F \u043A\u0430\u0442\u043E \u0435\u0434\u043D\u0430 \u0447\u0435\u0441\u0442\u043E\u0442\u0430, \u0438\u0437\u0440\u0430\u0437\u0435\u043D\u0430 \u043F\u043E \u0447\u0435\u0442\u0438\u0440\u0438 \u043D\u0430\u0447\u0438\u043D\u0430. \u0421\u043F\u043E\u0434\u0435\u043B\u0435\u043D\u0430\u0442\u0430 \u043D\u0438\u0448\u043A\u0430 \u0435 \u0441\u0430\u043C\u0430\u0442\u0430 \u0447\u0435\u0441\u0442\u043E\u0442\u0430: \u0442\u043E\u043D, \u043A\u043E\u0439\u0442\u043E \u0447\u0443\u0432\u0430\u0448, \u0446\u0432\u044F\u0442 (\u0437\u0432\u0443\u043A\u044A\u0442, \u0443\u0434\u0432\u043E\u0435\u043D \u0447\u0435\u0442\u0438\u0440\u0438\u0439\u0441\u0435\u0442 \u043E\u043A\u0442\u0430\u0432\u0438 \u0434\u043E \u0432\u0438\u0434\u0438\u043C\u0430 \u0441\u0432\u0435\u0442\u043B\u0438\u043D\u0430), \u0441\u043A\u043E\u0440\u043E\u0441\u0442 \u043D\u0430 \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u0438 \u0442\u0430\u043A\u0442\u0438\u043B\u0435\u043D \u0438\u043C\u043F\u0443\u043B\u0441. \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u043E\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0430, \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0442\u0430 \u0435 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0430 \u2014 \u043C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u043A\u0430\u0442\u0430 \u0438 \u0438\u0441\u0442\u043E\u0440\u0438\u044F\u0442\u0430 \u043D\u0430 432 \u0441\u0430 \u0440\u0435\u0430\u043B\u043D\u0438; \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u0438\u0442\u0435, \u043B\u0435\u0447\u0435\u0431\u043D\u0438\u0442\u0435 \u0438 \u043A\u043E\u043D\u0441\u043F\u0438\u0440\u0430\u0442\u0438\u0432\u043D\u0438\u0442\u0435 \u0442\u0432\u044A\u0440\u0434\u0435\u043D\u0438\u044F \u2014 \u043D\u0435."
       },
       keywords: ["a432", "432 hz", "frequency", "harmonics", "colour", "audio", "vibration", "tuning"],
-      components: ["A432"]
+      components: ["a432"]
     },
     {
       slug: "sacred-geometry",
@@ -5123,7 +5123,7 @@ function staticPages() {
         bg: "\u0421\u0432\u0435\u0449\u0435\u043D\u0430\u0442\u0430 \u0433\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u044F, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430 \u0447\u0435\u0441\u0442\u043D\u043E: \u043F\u0435\u0442\u0442\u0435 \u041F\u043B\u0430\u0442\u043E\u043D\u043E\u0432\u0438 \u0442\u0435\u043B\u0430 (\u0442\u0435\u043E\u0440\u0435\u043C\u0430 \u2014 \u041E\u0439\u043B\u0435\u0440 V\u2212E+F=2, \u0434\u0432\u043E\u0439\u043A\u0438\u0442\u0435), \u0437\u043B\u0430\u0442\u043D\u043E\u0442\u043E \u0441\u0435\u0447\u0435\u043D\u0438\u0435 \u03C6 \u0442\u0430\u043C, \u043A\u044A\u0434\u0435\u0442\u043E \u043D\u0430\u0438\u0441\u0442\u0438\u043D\u0430 \u0436\u0438\u0432\u0435\u0435 (\u043F\u0435\u0442\u043E\u044A\u0433\u044A\u043B\u043D\u0438\u043A\u044A\u0442, \u0434\u043E\u0434\u0435\u043A\u0430\u0435\u0434\u044A\u0440\u044A\u0442, \u0444\u0438\u043B\u043E\u0442\u0430\u043A\u0441\u0438\u0441\u044A\u0442), \u0426\u0432\u0435\u0442\u0435\u0442\u043E \u043D\u0430 \u0436\u0438\u0432\u043E\u0442\u0430 \u043A\u0430\u0442\u043E \u0440\u0435\u0430\u043B\u043D\u043E \u043F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435 \u0441 \u043F\u0435\u0440\u0433\u0435\u043B, \u0438 \u0444\u043E\u0440\u043C\u0438\u0442\u0435, \u0440\u0430\u0437\u0445\u043E\u0434\u0435\u043D\u0438 \u043F\u0440\u0435\u0437 \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F\u0442\u0430. \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u043E\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0430, \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0442\u0430 \u0435 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0430."
       },
       keywords: ["sacred geometry", "platonic solids", "golden ratio", "phi", "flower of life", "merkaba", "metatron"],
-      components: ["SacredGeometry"]
+      components: ["sacred/geometry"]
     },
     {
       slug: "tampering-cost",
@@ -5133,7 +5133,7 @@ function staticPages() {
         bg: "\u0426\u0435\u043D\u0430 \u043D\u0430 \u043F\u043E\u0434\u043F\u0440\u0430\u0432\u044F\u043D\u0435 \u2194 \u043A\u0440\u0438\u043F\u0442\u0438\u0440\u0430\u043D\u0435 \u2194 \u0431\u043B\u043E\u043A\u0447\u0435\u0439\u043D, \u043E\u0434\u0438\u0442\u0438\u0440\u0430\u043D\u0438 \u0447\u0435\u0441\u0442\u043D\u043E \u0441 \u043A\u0432\u0430\u043D\u0442\u043E\u0432\u0438 \u0441\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u044F. \u0421\u0430\u0439\u0442\u044A\u0442 \u0442\u0432\u044A\u0440\u0434\u0438 \u201E\u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u043D\u0430 \u0446\u0435\u043D\u0430 \u043D\u0430 \u043F\u043E\u0434\u043F\u0440\u0430\u0432\u044F\u043D\u0435\u201C; \u0442\u0443\u043A \u0442\u043E\u0432\u0430 \u0441\u0435 \u043F\u0440\u043E\u0432\u0435\u0440\u044F\u0432\u0430. \u0414\u043E\u043A\u0430\u0437\u0443\u0435\u043C\u043E \u043F\u0440\u0438 \u043F\u043E\u0434\u043F\u0440\u0430\u0432\u044F\u043D\u0435 \u043D\u0435 \u0435 \u0437\u0430\u0449\u0438\u0442\u0435\u043D\u043E \u043E\u0442 \u043F\u043E\u0434\u043F\u0440\u0430\u0432\u044F\u043D\u0435: \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u0442\u0435\u043B\u043D\u043E\u0442\u043E \u0430\u0434\u0440\u0435\u0441\u0438\u0440\u0430\u043D\u0435 \u043E\u0442\u043A\u0440\u0438\u0432\u0430 \u043F\u0440\u043E\u043C\u044F\u043D\u0430, \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0441\u043A\u0430\u0442\u0430 \u0441\u0438\u0433\u0443\u0440\u043D\u043E\u0441\u0442 (SHA-256: 2^128/2^256) \u045D \u0443\u0441\u0442\u043E\u044F\u0432\u0430. FNV toUuid \u043D\u0435 \u0435 \u043A\u0440\u0438\u043F\u0442\u043E\u0433\u0440\u0430\u0444\u0441\u043A\u0438 \u2014 \u043F\u043E\u043F\u0440\u0430\u0432\u043A\u0430\u0442\u0430 (SHA-256 \u0430\u0434\u0440\u0435\u0441, Ed25519 \u043F\u043E\u0434\u043F\u0438\u0441) \u0432\u0435\u0447\u0435 \u0435 \u0438\u0437\u0433\u0440\u0430\u0434\u0435\u043D\u0430. \u041A\u0432\u0430\u043D\u0442\u043E\u0432\u043E: \u0413\u0440\u043E\u0443\u0432\u044A\u0440 \u043E\u0442\u0441\u043B\u0430\u0431\u0432\u0430 \u0445\u0435\u0448\u043E\u0432\u0435\u0442\u0435, \u0428\u043E\u0440 \u0447\u0443\u043F\u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u0438\u0442\u0435; NIST \u043F\u043E\u0441\u0442\u043A\u0432\u0430\u043D\u0442\u043E\u0432\u0438 \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u0438 (ML-KEM, ML-DSA, SLH-DSA). \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u043E\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0430, \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0442\u0430 \u0435 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0430."
       },
       keywords: ["tampering cost", "encryption", "blockchain", "cryptography", "sha-256", "quantum", "grover", "shor", "post-quantum", "tamper-evident", "merkle", "crypto"],
-      components: ["TamperingCost", "CryptoChallenges"]
+      components: ["tampering/cost", "crypto/challenges"]
     },
     {
       slug: "analog-field",
@@ -5143,7 +5143,7 @@ function staticPages() {
         bg: "\u0421\u0433\u044A\u0432\u0430\u043D\u0435\u0442\u043E \u043D\u0430 \u043B\u0438\u043D\u0435\u0439\u043D\u043E\u0442\u043E \u0434\u0430\u0432\u0430 \u0430\u043D\u0430\u043B\u043E\u0433\u043E\u0432\u043E, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u043E \u0447\u0435\u0441\u0442\u043D\u043E \u0441 \u0440\u0435\u0430\u043B\u043D\u0430\u0442\u0430 \u043D\u0430\u0443\u043A\u0430. \u042F\u0434\u0440\u043E\u0442\u043E \u0435 \u0442\u0435\u043E\u0440\u0435\u043C\u0430\u0442\u0430 \u043D\u0430 \u0423\u0438\u0442\u0430\u043A\u044A\u0440\u2013\u0428\u0430\u043D\u044A\u043D \u0437\u0430 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u0438\u0437\u0430\u0446\u0438\u044F\u0442\u0430: \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u043D\u0438 \u043E\u0442\u0447\u0435\u0442\u0438 \u043D\u0430 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D \u043F\u043E \u0447\u0435\u0441\u0442\u043E\u0442\u0430 \u0441\u0438\u0433\u043D\u0430\u043B \u0441\u0435 \u0441\u0433\u044A\u0432\u0430\u0442 \u043E\u0431\u0440\u0430\u0442\u043D\u043E \u0432 \u043D\u0435\u043F\u0440\u0435\u043A\u044A\u0441\u043D\u0430\u0442\u0438\u044F \u0441\u0438\u0433\u043D\u0430\u043B \u0431\u0435\u0437 \u043F\u0440\u043E\u043B\u0443\u043A\u0438, \u0447\u0440\u0435\u0437 sinc \u0438\u043D\u0442\u0435\u0440\u043F\u043E\u043B\u0430\u0446\u0438\u044F (\u0438\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u043E \u043D\u0430 \u0436\u0438\u0432\u043E, \u0442\u043E\u0447\u043D\u043E \u043F\u0440\u0438 \u043E\u0442\u0447\u0435\u0442\u0438\u0442\u0435). \u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u043E\u0442\u043E \u0438 \u0440\u0430\u0434\u0430\u0440\u043D\u043E\u0442\u043E \u0438\u0437\u043E\u0431\u0440\u0430\u0437\u044F\u0432\u0430\u043D\u0435 \u0435 \u0442\u043E\u0447\u043D\u043E \u0442\u043E\u0432\u0430 \u2014 \u0432\u044A\u0437\u0441\u0442\u0430\u043D\u043E\u0432\u044F\u0432\u0430\u043D\u0435 \u043D\u0430 \u043D\u0435\u043F\u0440\u0435\u043A\u044A\u0441\u043D\u0430\u0442 \u043E\u0431\u0440\u0430\u0437 \u043E\u0442 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u0438\u0437\u0438\u0440\u0430\u043D\u043E \u0447\u0435\u0441\u0442\u043E\u0442\u043D\u043E \u043F\u043E\u043B\u0435: \u042F\u041C\u0420 \u043E\u0431\u0440\u044A\u0449\u0430 \u0424\u0443\u0440\u0438\u0435 \u043F\u0440\u0435\u043E\u0431\u0440\u0430\u0437\u0443\u0432\u0430\u043D\u0438\u0435\u0442\u043E \u043D\u0430 k-\u043F\u0440\u043E\u0441\u0442\u0440\u0430\u043D\u0441\u0442\u0432\u043E\u0442\u043E, \u041A\u0422 \u2014 \u043F\u0440\u0435\u043E\u0431\u0440\u0430\u0437\u0443\u0432\u0430\u043D\u0438\u0435\u0442\u043E \u043D\u0430 \u0420\u0430\u0434\u043E\u043D, \u0430 \u0441\u043F\u0438\u0440\u0430\u043B\u043D\u0438\u044F\u0442/\u0440\u0430\u0434\u0438\u0430\u043B\u043D\u0438\u044F\u0442 \u201E\u0432\u0438\u0445\u044A\u0440\u201C \u043F\u0440\u0435\u0437 k-\u043F\u0440\u043E\u0441\u0442\u0440\u0430\u043D\u0441\u0442\u0432\u043E\u0442\u043E \u0435 \u0440\u0435\u0430\u043B\u0435\u043D (NUFFT). \u0420\u0435\u0448\u0435\u0442\u043A\u0430\u0442\u0430 64\xB3 = 4\u2079 \u0435 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u043D\u0430\u0442\u0430 \u043C\u0440\u0435\u0436\u0430, \u043A\u043E\u044F\u0442\u043E \u0442\u043E\u0439 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u0438\u0437\u0438\u0440\u0430. \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u043E\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0430, \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0442\u0430 \u0435 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0430."
       },
       keywords: ["analog", "digital", "sampling theorem", "nyquist", "shannon", "sinc", "interpolation", "fourier", "k-space", "mri", "ct", "radon", "imaging", "reconstruction", "hologram", "emr"],
-      components: ["AnalogField"]
+      components: ["analog/field"]
     },
     {
       slug: "simulations",
@@ -5153,7 +5153,7 @@ function staticPages() {
         bg: "\u041D\u0435 \u043F\u0440\u043E\u0437\u0430 \u0437\u0430 \u043A\u0432\u0430\u043D\u0442\u043E\u0432\u043E\u0442\u043E \u0438 \u0434\u0438\u043D\u0430\u043C\u0438\u043A\u0430\u0442\u0430, \u0430 \u043C\u043E\u0434\u0435\u043B\u0438, \u043A\u043E\u0438\u0442\u043E \u043F\u0443\u0441\u043A\u0430\u0448. \u0412\u0441\u0435\u043A\u0438 \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D \u0430\u0441\u043F\u0435\u043A\u0442 \u043D\u0430 \u0436\u0438\u0432\u043E\u0442\u0430 \u0435 \u0438\u0437\u043F\u044A\u043B\u043D\u0438\u043C \u043C\u043E\u0434\u0435\u043B \u0432\u044A\u0440\u0445\u0443 \u0433\u0440\u044A\u0431\u043D\u0430\u043A\u0430 src/0: \u0434\u0435\u0442\u0435\u0440\u043C\u0438\u043D\u0438\u0441\u0442\u0438\u0447\u0435\u043D \u043A\u043B\u0430\u0441\u0438\u0447\u0435\u0441\u043A\u0438 \u0441\u0438\u043C\u0443\u043B\u0430\u0442\u043E\u0440 \u043D\u0430 \u043A\u0432\u0430\u043D\u0442\u043E\u0432 \u043A\u043E\u043C\u043F\u044E\u0442\u044A\u0440 (\u0432\u0435\u043A\u0442\u043E\u0440 \u043D\u0430 \u0441\u044A\u0441\u0442\u043E\u044F\u043D\u0438\u0435\u0442\u043E, \u043E\u0442\u0447\u0438\u0442\u0430\u043D\u0435 \u043F\u043E \u0411\u043E\u0440\u043D, \u0411\u0435\u043B, \u0413\u0440\u043E\u0443\u0432\u044A\u0440), \u043F\u043E\u0441\u043B\u0435 18 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0432 \u0447\u0435\u0442\u0438\u0440\u0438 \u0441\u0435\u043C\u0435\u0439\u0441\u0442\u0432\u0430 \u2014 10 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u043D\u0438 (\u0433\u0435\u043D\u0435\u0442\u0438\u0447\u0435\u043D \u0434\u0440\u0435\u0439\u0444, \u0435\u0437\u0438\u043A\u043E\u0432 \u043A\u043E\u043D\u0442\u0430\u043A\u0442, \u043F\u043E\u0432\u0442\u043E\u0440\u044F\u0435\u043C\u043E\u0441\u0442 \u043D\u0430 \u0432\u043E\u0439\u043D\u0438\u0442\u0435, \u043D\u0430\u0441\u043B\u0435\u0434\u044F\u0432\u0430\u043D\u0435), 3 \u0434\u0438\u043D\u0430\u043C\u0438\u0447\u043D\u0438 (\u0441\u0432\u044A\u0440\u0437\u0430\u043D\u0438 \u043A\u0430\u043B\u0435\u043D\u0434\u0430\u0440\u043D\u0438 \u0446\u0438\u043A\u043B\u0438, \u0438\u043D\u0434\u0443\u043A\u0446\u0438\u043E\u043D\u043D\u043E\u0442\u043E \u041E\u0414\u0423 \u043D\u0430 \u0422\u0435\u0441\u043B\u0430, \u0440\u0435\u0437\u043E\u043D\u0430\u043D\u0441\u043D\u0438 \u0440\u0435\u0436\u0438\u043C\u0438 + FFT), 2 \u043C\u0440\u0435\u0436\u043E\u0432\u0438 + \u043C\u043E\u0437\u044A\u043A\u044A\u0442 (\u043A\u043E\u043B\u043E\u043D\u0438\u0439\u043D\u0430 \u0434\u0438\u0444\u0443\u0437\u0438\u044F, \u0442\u0440\u043E\u0439\u043D\u0430 \u043A\u043E\u043D\u0433\u0440\u0443\u0435\u043D\u0442\u043D\u043E\u0441\u0442, \u0425\u043E\u043F\u0444\u0438\u0439\u043B\u0434\u043E\u0432\u043E \u0432\u044A\u0437\u0441\u0442\u0430\u043D\u043E\u0432\u044F\u0432\u0430\u043D\u0435) \u0438 1 \u0438\u0441\u0442\u0438\u043D\u0441\u043A\u0438 \u043A\u0432\u0430\u043D\u0442\u043E\u0432\u0430. \u0427\u0435\u0441\u0442\u043D\u043E \u0438 \u0442\u043E\u0432\u0430 \u0435 \u0446\u044F\u043B\u0430\u0442\u0430 \u0438\u0434\u0435\u044F: \u201E\u043A\u0432\u0430\u043D\u0442\u043E\u0432 \u0441\u0438\u043C\u0443\u043B\u0430\u0442\u043E\u0440 \u043D\u0430 \u0432\u0441\u0438\u0447\u043A\u043E\u201C \u0441\u0435 \u0441\u0432\u0435\u0436\u0434\u0430 \u043F\u0440\u0430\u0432\u0434\u0438\u0432\u043E \u0434\u043E \u041F\u0420\u0415\u0414\u0418\u041C\u041D\u041E \u041A\u041B\u0410\u0421\u0418\u0427\u0415\u0421\u041A\u0418 \u0441\u0438\u043C\u0443\u043B\u0430\u0442\u043E\u0440 \u2014 \u043F\u043E\u0432\u0435\u0447\u0435\u0442\u043E \u043E\u0442 \u0442\u0435\u0437\u0438 \u0434\u0438\u043D\u0430\u043C\u0438\u043A\u0438 \u0441\u0430 \u043A\u043B\u0430\u0441\u0438\u0447\u0435\u0441\u043A\u0438 \u0441\u0442\u043E\u0445\u0430\u0441\u0442\u0438\u0447\u043D\u0438/\u0434\u0438\u043D\u0430\u043C\u0438\u0447\u043D\u0438 \u043F\u0440\u043E\u0446\u0435\u0441\u0438, \u043D\u0435 \u0441\u0443\u043F\u0435\u0440\u043F\u043E\u0437\u0438\u0446\u0438\u044F; \u043D\u0430\u0441\u0438\u043B\u0435\u043D\u043E\u0442\u043E \u201E\u043A\u0432\u0430\u043D\u0442\u043E\u0432\u043E\u201C \u0435 \u043E\u0442\u043A\u0430\u0437\u0430\u043D\u043E \u0432\u044A\u0432 \u0432\u0441\u044F\u043A\u0430 \u043E\u0431\u043B\u0430\u0441\u0442. \u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0432\u0438\u0442\u0435 \u0436\u0438\u0432\u0435\u044F\u0442 \u0432 src/0, \u0447\u0438\u0441\u0442\u0438 \u0438 \u0441\u044A\u0445\u0440\u0430\u043D\u044F\u0432\u0430\u0449\u0438 \u043C\u0430\u0441\u0430\u0442\u0430, \u0440\u0430\u0437\u0447\u0435\u0442\u0435\u043D\u0438 \u043F\u0440\u0435\u0437 \u0435\u0434\u0438\u043D \u0430\u043D\u0430\u043B\u043E\u0433\u043E\u0432\u043E\u2192\u0446\u0438\u0444\u0440\u043E\u0432 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u0438\u0437\u0430\u0442\u043E\u0440."
       },
       keywords: ["simulations", "simulator", "probabilistic", "dynamical", "network", "quantum circuit", "markov", "monte carlo", "hopfield", "classical", "stochastic", "runnable model", "src/0"],
-      components: ["QuantumCircuit", "ProbSim", "DynSim", "NetSim"]
+      components: ["quantum/circuit", "prob/sim", "dyn/sim", "net/sim"]
     },
     {
       slug: "quantum-mind",
@@ -5163,7 +5163,7 @@ function staticPages() {
         bg: "\u041C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043C\u043E\u0434\u0435\u043B \u043D\u0430 Sigma_2, UUID \u043F\u043E\u0442\u043E\u0446\u0438, \u0434\u0438\u0430\u043C\u0430\u043D\u0442\u0438, \u0432\u044A\u043B\u043D\u0438, \u043F\u043E\u0440\u0442\u0438 \u0438 maxComputedBuild."
       },
       keywords: ["quantum mind", "model", "double torus", "uuid", "diamonds", "waves", "gates"],
-      components: ["QuantumMind", "Genesis", "DoubleTorus3D", "DoubleTorusExperience", "QuantumField", "SacredSymbols", "QuantumFold3D", "QuantumPlasma", "Hologram", "DnaHelix", "Dualities", "Cosmology358", "Equilibrium", "SelfHarmonise", "PiMusicPlayer", "HealingFrequencies", "HarmonicMap", "SelfHealing", "SoundColor", "QuantumPhysics", "QuantumSimulation", "QuantumProofs", "Merkaba", "Rhythm", "Magnetometer", "Fold358853"]
+      components: ["quantum/mind", "genesis", "double/torus3d", "double/torus/experience", "quantum/field", "sacred/symbols", "quantum/fold3d", "quantum/plasma", "hologram", "dna/helix", "dualities", "cosmology358", "equilibrium", "self/harmonise", "pi/music/player", "healing/frequencies", "harmonic/map", "self/healing", "sound/color", "quantum/physics", "quantum/simulation", "quantum/proofs", "merkaba", "rhythm", "magnetometer", "fold358853"]
     },
     {
       slug: "architecture",
@@ -5173,7 +5173,7 @@ function staticPages() {
         bg: "\u0424\u043E\u0440\u043C\u0430\u043B\u043D\u0430 \u0430\u0440\u0445\u0438\u0442\u0435\u043A\u0442\u0443\u0440\u0430 \u0437\u0430 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440 UUID \u043F\u043E\u0442\u043E\u043A: \u043C\u0430\u0442\u0440\u0438\u0446\u0430, \u0432\u0435\u043A\u0442\u043E\u0440, \u0434\u0438\u0430\u043C\u0430\u043D\u0442\u0438, \u0432\u044A\u043B\u043D\u0438, \u043F\u043E\u0440\u0442\u0438, \u0441\u0445\u0435\u043C\u0430 \u0438 \u0441\u0430\u043C\u043E-\u0438\u0437\u0433\u0440\u0430\u0436\u0434\u0430\u043D\u0435."
       },
       keywords: ["architecture", "matrix", "vector", "diamonds", "waves", "gates", "schema"],
-      components: ["TamperSeal", "DeterminismProofs", "CryptoCompare", "WebCryptoSeal", "SignSeal", "SealAll"]
+      components: ["tamper/seal", "determinism/proofs", "crypto/compare", "web/crypto/seal", "sign/seal", "seal/all"]
     },
     {
       slug: "commands",
@@ -5183,7 +5183,7 @@ function staticPages() {
         bg: "\u0410\u043B\u0433\u0435\u0431\u0440\u0430 \u043D\u0430 \u043A\u043E\u043C\u0430\u043D\u0434\u0438\u0442\u0435 \u0437\u0430 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440 UUID \u043F\u043E\u0442\u043E\u043A: cmd -> result -> receipt."
       },
       keywords: ["commands", "algebra", "cmd", "receipt", "double torus"],
-      components: ["ConceptCommands", "TaxonomyIcons", "TrinitySearch", "BlockchainMusic"]
+      components: ["concept/commands", "taxonomy/icons", "trinity/search", "blockchain/music"]
     },
     {
       slug: "console",
@@ -5193,7 +5193,7 @@ function staticPages() {
         bg: "\u041A\u0432\u0430\u043D\u0442\u043E\u0432\u0430 \u043A\u043E\u043D\u0437\u043E\u043B\u0430: \u0431\u0435\u0437\u043F\u043B\u0430\u0442\u0435\u043D \u0442\u0435\u0440\u043C\u0438\u043D\u0430\u043B \u043E\u0442 \u0441\u0442\u0440\u0430\u043D\u0430 \u043D\u0430 \u043A\u043B\u0438\u0435\u043D\u0442\u0430, \u0442\u044A\u0440\u0441\u0435\u043D\u0435 \u0432 \u0440\u0435\u0430\u043B\u043D\u043E \u0432\u0440\u0435\u043C\u0435 \u0438 \u0447\u0430\u0442 \u043D\u0430\u0434 \u043F\u043E\u0440\u0442\u0430\u043B\u0430 \u0414\u0432\u043E\u0435\u043D \u0442\u043E\u0440\u0443\u0441 \u2014 \u0441 \u043E\u043F\u0446\u0438\u043E\u043D\u0430\u043B\u0435\u043D \u0432\u044A\u043D\u0448\u0435\u043D \u0418\u0418 \u0441\u044A\u0441 \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D \u043A\u043B\u044E\u0447."
       },
       keywords: ["console", "terminal", "search", "chat", "ai"],
-      components: ["QuantumConsole", "SelfConsult", "SelfReason", "RealtimeChat", "SecurityScan"]
+      components: ["quantum/console", "self/consult", "self/reason", "realtime/chat", "security/scan"]
     },
     {
       slug: "mcp",
@@ -5203,7 +5203,7 @@ function staticPages() {
         bg: "\u041F\u043E\u0440\u0442\u0430\u043B\u044A\u0442 \u0414\u0432\u043E\u0435\u043D \u0442\u043E\u0440\u0443\u0441 \u043A\u0430\u0442\u043E MCP \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u0430\u043B\u0435\u043D \u0441\u043B\u043E\u0439: \u0432\u0441\u044F\u043A\u0430 \u043A\u043E\u043D\u0446\u0435\u043F\u0442\u0443\u0430\u043B\u043D\u0430 \u043A\u043E\u043C\u0430\u043D\u0434\u0430 \u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442 \u0437\u0430 \u0435\u0437\u0438\u043A\u043E\u0432\u0438 \u043C\u043E\u0434\u0435\u043B\u0438, \u043F\u0443\u0431\u043B\u0438\u043A\u0443\u0432\u0430\u043D \u043D\u0430 /mcp.json."
       },
       keywords: ["mcp", "tools", "language models", "api", "mcp.json"],
-      components: ["McpTools"]
+      components: ["mcp/tools"]
     },
     {
       slug: "academy",
@@ -5223,7 +5223,7 @@ function staticPages() {
         bg: "\u0423\u0447\u0438\u043B\u0438\u0449\u0435 \u0437\u0430 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440: \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u0442\u0430, \u043F\u0440\u0435\u0432\u044A\u0440\u043D\u0430\u0442\u0430 \u0432 \u0441\u0442\u0435\u043F\u0435\u043D\u0443\u0432\u0430\u043D \u0443\u0447\u0435\u0431\u0435\u043D \u043F\u043B\u0430\u043D \u043E\u0442 \u0434\u0435\u0446\u0430 \u0434\u043E \u0432\u044A\u0437\u0440\u0430\u0441\u0442\u043D\u0438."
       },
       keywords: ["school", "curriculum", "learn", "kids", "education"],
-      components: ["SpeechReader", "SchoolCurriculum", "PlayLearn", "CreativePalette"]
+      components: ["speech/reader", "SchoolCurriculum", "play/learn", "CreativePalette"]
     },
     {
       slug: "governance",
@@ -5233,7 +5233,7 @@ function staticPages() {
         bg: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0447\u0440\u0435\u0437 \u043E\u0446\u0435\u043D\u043A\u0430 \u0438 \u0433\u043B\u0430\u0441 \u0438 \u0441\u0442\u044A\u043B\u0431\u0430 \u0437\u0430 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0432 \u0441\u043F\u0440\u0430\u0432\u0435\u0434\u043B\u0438\u0432\u0430 \u0442\u044A\u0440\u0433\u043E\u0432\u0438\u044F \u0438 \u0443\u0441\u0442\u043E\u0439\u0447\u0438\u0432 \u0436\u0438\u0432\u043E\u0442 \u2014 \u043F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u0438 \u043E\u0442 \u043F\u0440\u0435\u0438\u0437\u0447\u0438\u0441\u043B\u0438\u043C\u0438\u044F \u043F\u0435\u0447\u0430\u0442 \u0438 \u0441\u043F\u043E\u0434\u0435\u043B\u0435\u043D\u0438\u044F git \u0440\u0435\u0433\u0438\u0441\u0442\u044A\u0440."
       },
       keywords: ["governance", "vote", "fair trade", "sustainability", "ledger"],
-      components: ["GovernanceVote", "Society", "QuantumSolutions"]
+      components: ["governance/vote", "society", "quantum/solutions"]
     },
     {
       slug: "boundaries",
@@ -5243,7 +5243,7 @@ function staticPages() {
         bg: "\u0413\u0440\u044A\u0431\u043D\u0430\u043A\u044A\u0442 \u043D\u0430 \u0447\u0435\u0441\u0442\u043D\u043E\u0441\u0442\u0442\u0430: \u0432\u0441\u044F\u043A\u0430 \u0433\u0440\u0430\u043D\u0438\u0446\u0430, \u043A\u043E\u044F\u0442\u043E \u043F\u043E\u0440\u0442\u0430\u043B\u044A\u0442 \u0434\u0435\u043A\u043B\u0430\u0440\u0438\u0440\u0430, \u0441\u044A\u0431\u0440\u0430\u043D\u0430 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u043D\u043E \u043E\u0442 \u0436\u0438\u0432\u0438\u0442\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u0438 \u0432 \u0435\u0434\u0438\u043D \u043E\u0434\u0438\u0442\u0438\u0440\u0430\u043D, \u0437\u0430\u043F\u0435\u0447\u0430\u0442\u0430\u043D \u0441\u043F\u0438\u0441\u044A\u043A."
       },
       keywords: ["boundaries", "honesty", "audit", "limits", "sealed"],
-      components: ["BoundaryAudit", "QuestionClose", "OpenQuestions", "Roadmaps", "QAEquilibrium", "NothingToDo"]
+      components: ["boundary/audit", "question/close", "open/questions", "roadmaps", "qa/equilibrium", "nothing/to/do"]
     },
     {
       slug: "learn-developer",
@@ -5253,7 +5253,7 @@ function staticPages() {
         bg: "\u0423\u043C\u044A\u0442 \u043D\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430: \u043D\u0430\u0443\u0447\u0438 \u0441\u0435 \u0434\u0430 \u0433\u0440\u0430\u0434\u0438\u0448 \u0432\u044A\u0440\u0445\u0443 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440 \u2014 \u043C\u0430\u0442\u0440\u0438\u0446\u0430\u0442\u0430, \u043A\u043E\u043C\u0430\u043D\u0434\u0438\u0442\u0435 \u0438 \u0441\u0430\u043C\u043E-\u0438\u0437\u0447\u0438\u0441\u043B\u044F\u0432\u0430\u0449\u0438\u0442\u0435 \u0441\u0435 \u043A\u043E\u043C\u043F\u043E\u043D\u0435\u043D\u0442\u0438 \u2014 \u0447\u0435\u0442\u0435\u0439\u043A\u0438 \u043A\u043E\u0434\u0430, \u043A\u043E\u0439\u0442\u043E \u0441\u0435 \u0438\u0437\u0447\u0438\u0441\u043B\u044F\u0432\u0430 \u0441\u0430\u043C."
       },
       keywords: ["developer", "learn", "build", "source", "components"],
-      components: ["LearnDeveloper"]
+      components: ["learn/developer"]
     },
     {
       slug: "show",
@@ -5263,7 +5263,7 @@ function staticPages() {
         bg: "\u0412\u0441\u0438\u0447\u043A\u043E \u0432 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435: \u0432\u0441\u044F\u043A\u0430 \u043A\u043E\u043C\u0430\u043D\u0434\u0430 \u0438\u0437\u043F\u044A\u043B\u043D\u0435\u043D\u0430 \u043D\u0430 \u0436\u0438\u0432\u043E, \u0432\u0441\u0438\u0447\u043A\u0438 \u043A\u043E\u043C\u043F\u043E\u043D\u0435\u043D\u0442\u0438 \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u0430\u0442, \u0432\u0441\u0438\u0447\u043A\u0438 \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430 \u0441\u043B\u0435\u0442\u0438 \u2014 \u043E\u0442 \u0441\u0442\u0440\u0430\u043D\u0430 \u043D\u0430 \u043A\u043B\u0438\u0435\u043D\u0442\u0430 \u0438 \u043F\u0440\u043E\u0432\u0435\u0440\u0438\u043C\u043E."
       },
       keywords: ["show", "demo", "live", "components", "devices"],
-      components: ["ShowAll", "Complete", "QuantumDashboard", "NativeMovie", "Vortex", "Dot", "Calligraphy", "TaxonomyGraph", "GpuField"]
+      components: ["show/all", "complete", "quantum/dashboard", "native/movie", "vortex", "dot", "calligraphy", "taxonomy/graph", "gpu/field"]
     },
     // I Ching domain pages — one per dual-pair module, each under its semantic trigram.
     // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
@@ -5275,7 +5275,7 @@ function staticPages() {
         bg: "\u0411\u044A\u043B\u0433\u0430\u0440\u0441\u043A\u043E\u0442\u043E \u043D\u0430\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u043E \u0432 \u0432\u044A\u043B\u043D\u0438: \u0438\u0441\u0442\u043E\u0440\u0438\u044F 681\u2013\u0434\u043E \u0434\u043D\u0435\u0441 \u0432 \u0448\u0435\u0441\u0442 \u0435\u043F\u043E\u0445\u0438, \u0434\u0440\u0435\u0432\u043D\u0438 \u0446\u0438\u0432\u0438\u043B\u0438\u0437\u0430\u0446\u0438\u0438 \u043E\u0442 \u043E\u043A. 6200 \u043F\u0440.\u0425\u0440. (\u0412\u0430\u0440\u043D\u0435\u043D\u0441\u043A\u043E \u0437\u043B\u0430\u0442\u043E), \u0435\u0442\u043D\u043E\u0433\u0435\u043D\u0435\u0437\u0438\u0441 \u2014 \u0431\u044A\u043B\u0433\u0430\u0440\u0438, \u0441\u043B\u0430\u0432\u044F\u043D\u0438, \u0442\u0440\u0430\u043A\u0438 \u2014 \u0438 \u0433\u0435\u043D\u0435\u0442\u0438\u043A\u0430\u0442\u0430, \u043E\u0441\u043F\u043E\u0440\u0432\u0430\u0449\u0430 \u043B\u0435\u0442\u043E\u043F\u0438\u0441\u0430; \u0433\u043B\u0430\u0433\u043E\u043B\u0438\u0446\u0430\u0442\u0430 \u043A\u0430\u0442\u043E \u043F\u044A\u0440\u0432\u0430\u0442\u0430 \u0441\u043B\u0430\u0432\u044F\u043D\u0441\u043A\u0430 \u0430\u0437\u0431\u0443\u043A\u0430, \u0441\u0446\u0435\u043D\u0430\u0440\u0438\u0439\u2013\u0435\u0437\u0438\u043A\u2013\u0433\u0435\u043D \u043A\u0430\u0442\u043E \u0442\u0440\u0438 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u0438 \u0441\u0438\u0441\u0442\u0435\u043C\u0438 \u043D\u0430 \u043D\u0430\u0441\u043B\u0435\u0434\u044F\u0432\u0430\u043D\u0435. \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u043E\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0430, \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0442\u0430 \u0435 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0430."
       },
       keywords: ["bulgarian", "heritage", "history", "glagolitic", "ethnogenesis", "genetics", "ancient", "slavic"],
-      components: ["BulgarianHeritage", "Glagolitic", "ScriptLanguageGene"]
+      components: ["bulgarian/heritage", "glagolitic", "script/language/gene"]
     },
     {
       slug: "science",
@@ -5285,7 +5285,7 @@ function staticPages() {
         bg: "\u041D\u0430\u0443\u043A\u0430\u0442\u0430, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430 \u0447\u0435\u0441\u0442\u043D\u043E: \u0435\u043B\u0435\u043A\u0442\u0440\u043E\u043C\u0430\u0433\u043D\u0438\u0442\u043D\u043E \u043B\u044A\u0447\u0435\u043D\u0438\u0435, \u043F\u0435\u0442\u0442\u0435 \u0432\u0435\u0440\u0438\u0444\u0438\u0446\u0438\u0440\u0430\u043D\u0438 \u043F\u0430\u0442\u0435\u043D\u0442\u0430 \u043D\u0430 \u0422\u0435\u0441\u043B\u0430, \u043F\u0443\u0431\u043B\u0438\u0447\u043D\u0438 API \u0437\u0430 \u0447\u0435\u0441\u0442\u043E\u0442\u0438 (FCC, USGS, \u0428\u0443\u043C\u0430\u043D 7,83 Hz, Web Audio) \u0438 \u043F\u0440\u0430\u0433\u044A\u0442 \u043D\u0430 \u0439\u043E\u043D\u0438\u0437\u0430\u0446\u0438\u044F (~10 eV). \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u0430\u0442\u0430 \u0444\u0438\u0437\u0438\u043A\u0430 \u043D\u0430 \u043F\u044A\u0440\u0432\u043E \u043C\u044F\u0441\u0442\u043E; \u043F\u0440\u0435\u0442\u0435\u043D\u0446\u0438\u0438\u0442\u0435 \u0437\u0430 \u0431\u043B\u0430\u0433\u043E\u043F\u043E\u043B\u0443\u0447\u0438\u0435 \u0441\u0430 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0438. \u0412\u0441\u0435\u043A\u0438 \u0440\u0435\u0437\u0443\u043B\u0442\u0430\u0442 \u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u0441\u043A\u043E \u0438\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435 \u043E\u0442 \u043F\u0440\u0438\u043C\u0438\u0442\u0438\u0432\u0438\u0442\u0435 src/0."
       },
       keywords: ["science", "frequencies", "tesla", "patents", "electromagnetic", "spectrum", "ionizing", "schumann"],
-      components: ["TeslaPatents", "HealingFrequencies", "PublicFrequencyApis"]
+      components: ["tesla/patents", "healing/frequencies", "public/frequency/apis"]
     },
     {
       slug: "voice",
@@ -5295,7 +5295,7 @@ function staticPages() {
         bg: "\u0413\u043B\u0430\u0441\u044A\u0442, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D: \u044F\u0441\u0435\u043D \u0435\u0437\u0438\u043A \u0437\u0430 \u0432\u0441\u044F\u043A\u0430 \u0438\u0434\u0435\u044F, \u0443\u0447\u0435\u0431\u043D\u0438 \u0431\u0443\u043A\u0432\u0438 \u043A\u0430\u0442\u043E \u0446\u0432\u0435\u0442\u043D\u0438 \u043F\u043B\u043E\u0447\u043A\u0438 \u0438 \u043D\u043E\u0442\u0438, \u0440\u0435\u0447\u0442\u0430 \u043A\u0430\u0442\u043E \u043D\u0435\u043F\u0440\u0435\u043A\u044A\u0441\u043D\u0430\u0442\u0430 \u0430\u043D\u0430\u043B\u043E\u0433\u043E\u0432\u0430 \u0432\u044A\u043B\u043D\u0430, \u043F\u0440\u0438\u043D\u0446\u0438\u043F\u0438 \u0437\u0430 \u0442\u0438\u043F\u043E\u0433\u0440\u0430\u0444\u0438\u044F \u0438 Open Graph, \u0430\u0434\u0440\u0435\u0441\u0438\u0440\u0430\u043D\u0435 \u043F\u043E \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u043D\u0438\u0435 \u043D\u0430 \u0437\u043D\u0430\u0446\u0438 \u0438 \u0434\u0443\u043C\u0438, \u043E\u0441\u0435\u043C\u0442\u0435 \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F \u043D\u0430 \u043E\u043F\u0438\u0442\u0430 \u0441 \u043F\u043E\u0440\u0442\u0430\u043B\u0430. \u0415\u0434\u043D\u0430 \u0438 \u0441\u044A\u0449\u0430 \u0434\u0443\u043C\u0430 \u0437\u0432\u0443\u0447\u0438 \u0432\u0438\u043D\u0430\u0433\u0438 \u0435\u0434\u043D\u0430\u043A\u0432\u043E \u2014 \u0434\u0435\u0442\u0435\u0440\u043C\u0438\u043D\u0438\u0441\u0442\u0438\u0447\u043D\u043E \u0438 \u043E\u0444\u043B\u0430\u0439\u043D."
       },
       keywords: ["voice", "language", "plain language", "speech", "typography", "content-addressing", "play", "multidimensional"],
-      components: ["PlayLearn", "SpeechReader", "Multidimensional"]
+      components: ["play/learn", "speech/reader", "multidimensional"]
     },
     {
       slug: "spirit",
@@ -5305,7 +5305,7 @@ function staticPages() {
         bg: "\u0414\u0443\u0445\u044A\u0442, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D \u0447\u0435\u0441\u0442\u043D\u043E: \u0441\u0435\u0434\u0435\u043C\u0442\u0435 \u0447\u0430\u043A\u0440\u0438 \u0438 \u0430\u0443\u0440\u0430\u0442\u0430 \u043A\u0430\u0442\u043E \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D \u0435\u043D\u0435\u0440\u0433\u0438\u0435\u043D \u043C\u043E\u0434\u0435\u043B, \u0445\u044E\u043C\u0430\u043D \u0434\u0438\u0437\u0430\u0439\u043D \u043A\u0430\u0442\u043E \u0441\u0438\u0441\u0442\u0435\u043C\u0430 \u043E\u0442 \u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u043D\u0438 \u0430\u0440\u0445\u0435\u0442\u0438\u043F\u0438, \u0438\u043D-\u044F\u043D \u0438 \u0434\u0443\u0430\u043B\u043D\u043E\u0441\u0442\u0438 \u0432 \u0448\u0435\u0441\u0442\u043D\u0430\u0434\u0435\u0441\u0435\u0442 \u0434\u0432\u043E\u0439\u043A\u0438 \u043D\u0430 \u0442\u0440\u0438 \u043D\u0438\u0432\u0430 \u0438 \u043E\u0441\u0435\u043C\u0442\u0435 \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F \u043D\u0430 \u043E\u043F\u0438\u0442\u0430. \u0412\u0441\u044F\u043A\u043E \u0435 \u0434\u0435\u0442\u0435\u0440\u043C\u0438\u043D\u0438\u0441\u0442\u0438\u0447\u043D\u043E \u0438\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435; \u0434\u0443\u0445\u043E\u0432\u043D\u0438\u0442\u0435 \u0438\u043D\u0442\u0435\u0440\u043F\u0440\u0435\u0442\u0430\u0446\u0438\u0438 \u0441\u0430 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0438."
       },
       keywords: ["spirit", "chakras", "dualities", "dimensions", "human design", "yin yang", "joyous"],
-      components: ["Dualities", "YinYang", "ChakrasAura"]
+      components: ["dualities", "yin/yang", "chakras/aura"]
     },
     {
       slug: "icons",
@@ -5315,7 +5315,7 @@ function staticPages() {
         bg: "\u0418\u043A\u043E\u043D\u0438\u0442\u0435 \u0438 \u0444\u043E\u0440\u043C\u0430\u0442\u0430, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0438: \u043A\u0430\u0440\u0442\u0430\u0442\u0430 \u043D\u0430 44 \u0438\u043A\u043E\u043D\u0438 \u043F\u043E \u043E\u0431\u043B\u0430\u0441\u0442\u0438 (emoji \u0442\u0430\u043A\u0441\u043E\u043D\u043E\u043C\u0438\u044F), \u043D\u0430\u0434\u043F\u0438\u0441\u0438 \u043D\u0430 \u0442\u0440\u0438 \u0435\u0437\u0438\u043A\u0430, \u043A\u043E\u043C\u043F\u044E\u0442\u044A\u0440\u043D\u0430 \u0430\u0440\u0445\u0438\u0442\u0435\u043A\u0442\u0443\u0440\u0430 \u0432 3-5-8 (\u0442\u0440\u0438 \u0448\u0438\u043D\u0438, \u043F\u0435\u0442 \u0435\u0434\u0438\u043D\u0438\u0446\u0438 \u043D\u0430 \u0444\u043E\u043D \u041D\u043E\u0439\u043C\u0430\u043D, \u043E\u0441\u0435\u043C \u0431\u0438\u0442\u0430 \u0432 \u0431\u0430\u0439\u0442), \u0445\u0430\u0440\u043C\u043E\u043D\u0438\u0447\u043D\u043E \u0440\u0430\u0437\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u0435 \u043F\u043E \u043B\u0435\u043D\u0442\u0438 \u043D\u0430 \u0424\u0438\u0431\u043E\u043D\u0430\u0447\u0438 \u0438 \u043F\u0435\u0447\u0430\u0442\u044A\u0442 \u043D\u0430 \u0433\u043B\u0438\u0444\u043E\u0432\u0435 \u0438 \u0430\u0440\u0442\u0435\u0444\u0430\u043A\u0442\u0438. \u0412\u0441\u044F\u043A\u0430 \u0438\u043A\u043E\u043D\u0430 \u0435 \u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u043D\u043E \u043F\u0440\u0438\u0441\u0432\u043E\u044F\u0432\u0430\u043D\u0435."
       },
       keywords: ["icons", "glyphs", "form", "computer design", "harmonic", "fibonacci", "taxonomy", "area"],
-      components: ["TaxonomyIcons", "HarmonicMap", "TaxonomyGraph"]
+      components: ["taxonomy/icons", "harmonic/map", "taxonomy/graph"]
     },
     {
       slug: "nature",
@@ -5325,7 +5325,7 @@ function staticPages() {
         bg: "\u041F\u0440\u0438\u0440\u043E\u0434\u0430\u0442\u0430, \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0430: \u043F\u0440\u0438\u0440\u043E\u0434\u043D\u043E \u043F\u0440\u0430\u0432\u043E \u0438 \u043E\u0431\u0449\u0438\u0442\u0435 \u0431\u043B\u0430\u0433\u0430 \u043A\u0430\u0442\u043E \u043F\u0440\u0435\u0438\u0437\u0447\u0438\u0441\u043B\u0438\u043C\u043E \u043D\u0438\u0432\u043E (\u0432\u0441\u044F\u043A\u043E \u0438\u0437\u0432\u043B\u0438\u0447\u0430\u043D\u0435 \u0441\u044A\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0430\u043D\u043E \u043E\u0442 \u0432\u044A\u0437\u0441\u0442\u0430\u043D\u043E\u0432\u044F\u0432\u0430\u043D\u0435), \u0430\u0442\u0435\u0441\u0442\u0430\u0446\u0438\u043E\u043D\u0435\u043D \u043F\u0435\u0447\u0430\u0442 \u0437\u0430 \u043F\u0440\u0435\u0442\u0435\u043D\u0446\u0438\u0438 \u043E\u0442 \u043D\u0438\u0432\u043E \u043D\u0430 \u043F\u0430\u0440\u0442\u043D\u044C\u043E\u0440\u0441\u043A\u0430 \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430, \u0437\u0430\u043A\u043E\u043D\u043D\u0430\u0442\u0430 \u0441\u0442\u044A\u043B\u0431\u0430 \u0437\u0430 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u2014 \u0445\u0430\u0440\u043C\u043E\u043D\u0438\u0447\u043D\u0430, \u0432\u044A\u043E\u0431\u0440\u0430\u0436\u0430\u0435\u043C\u0430, \u0443\u0441\u043F\u0435\u0448\u043D\u0430 \u2014 \u0438 \u0444\u043E\u0440\u043C\u0438\u0442\u0435 \u043D\u0430 \u043E\u0431\u0449\u0435\u0441\u0442\u0432\u043E\u0442\u043E. \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\u0440\u0430\u043D\u043E\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0430, \u043D\u0430\u0438\u0432\u043D\u043E\u0441\u0442\u0442\u0430 \u0435 \u043E\u0442\u0431\u0435\u043B\u044F\u0437\u0430\u043D\u0430."
       },
       keywords: ["nature", "commons", "natural law", "society", "sustainability", "attestation", "lawful", "ecology"],
-      components: ["Society", "NatureLaw", "Attestation"]
+      components: ["society", "nature/law", "attestation"]
     },
     // The dissolved decode proofs — each a page (proofs are pages; all is a page), each mounting one
     // holds-true fold; the home card leads here. What is not proven is purged.
@@ -5337,7 +5337,7 @@ function staticPages() {
         bg: "\u0422\u0440\u043E\u0439\u043A\u0430\u0442\u0430 \u0432 3.14159 \u0435 \u043F\u044A\u0440\u0432\u0438\u044F\u0442 \u0437\u043D\u0430\u043A \u043D\u0430 \u0442\u0440\u0438\u0435\u0434\u0438\u043D\u0441\u0442\u0432\u043E\u0442\u043E: \u0435\u0434\u043D\u043E \u0442\u0440\u0438\u0435\u0434\u0438\u043D\u0441\u0442\u0432\u043E \u0435 \u0442\u0440\u0438-\u0432-\u0435\u0434\u043D\u043E, \u0442\u0430\u043A\u0430 \u0447\u0435 3 \u0437\u043D\u0430\u0447\u0438 \u0442\u0440\u0438 \u0442\u0440\u0438\u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0430, \u043A\u043E\u0435\u0442\u043E \u0435 \u0434\u0435\u0432\u0435\u0442. \u0423\u0434\u0432\u043E\u044F\u0432\u0430\u0449\u0430\u0442\u0430 \u0432\u0435\u0440\u0438\u0433\u0430 1-2-4-8-7-5 \u043D\u0438\u043A\u043E\u0433\u0430 \u043D\u0435 \u0434\u043E\u043A\u043E\u0441\u0432\u0430 3-6-9."
       },
       keywords: ["pi", "trinity", "3-6-9", "vortex", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "qubit-trinity",
@@ -5347,7 +5347,7 @@ function staticPages() {
         bg: "\u0415\u0434\u0438\u043D \u043A\u0443\u0431\u0438\u0442 \u0438\u043C\u0430 \u0442\u043E\u0447\u043D\u043E 3 \u0431\u0435\u0437\u0441\u043B\u0435\u0434\u043E\u0432\u0438 \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0435\u043C\u0438 \u2014 \u043C\u0430\u0442\u0440\u0438\u0446\u0438\u0442\u0435 \u043D\u0430 \u041F\u0430\u0443\u043B\u0438 X, Y, Z \u2014 \u0433\u0435\u043D\u0435\u0440\u0430\u0442\u043E\u0440\u0438\u0442\u0435 \u043D\u0430 SU(2) \u0438 \u0442\u0440\u0438\u0442\u0435 \u043E\u0441\u0438 \u043D\u0430 \u0411\u043B\u043E\u0445; dim su(2) = 2\xB2\u22121 = 3 \u0435 \u043F\u0440\u0438\u043D\u0443\u0434\u0435\u043D \u0438\u043D\u0432\u0430\u0440\u0438\u0430\u043D\u0442."
       },
       keywords: ["qubit", "pauli", "su(2)", "bloch", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "pauli-basis",
@@ -5357,7 +5357,7 @@ function staticPages() {
         bg: "\u0411\u0435\u0437\u0444\u0430\u0437\u043E\u0432\u0438\u044F\u0442 \u0431\u0430\u0437\u0438\u0441 \u043D\u0430 \u041F\u0430\u0443\u043B\u0438 \u0437\u0430 3 \u043A\u0443\u0431\u0438\u0442\u0430 {I,X,Y,Z}\xB3 \u0438\u043C\u0430 \u0442\u043E\u0447\u043D\u043E 4\xB3 = 64 \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u0430 \u2014 \u0441\u044A\u0449\u043E\u0442\u043E 4\xB3 = 8\xB2 = 2\u2076 = 64 \u043A\u0430\u0442\u043E \u0433\u0435\u043D\u0435\u0442\u0438\u0447\u043D\u0438\u044F \u043A\u043E\u0434 \u0438 \u0440\u0435\u0447\u043D\u0438\u043A\u0430 \u043D\u0430 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440."
       },
       keywords: ["pauli", "64", "4-cubed", "quantum information", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "hamming-address",
@@ -5367,7 +5367,7 @@ function staticPages() {
         bg: "Hamming(7,4) \u0437\u0430\u0449\u0438\u0442\u0430\u0432\u0430 4 \u0431\u0438\u0442\u0430 \u0434\u0430\u043D\u043D\u0438 \u0441 \u0442\u043E\u0447\u043D\u043E 3 \u0431\u0438\u0442\u0430 \u0437\u0430 \u0447\u0435\u0442\u043D\u043E\u0441\u0442; \u0441\u0438\u043D\u0434\u0440\u043E\u043C\u044A\u0442 \u0415 \u0434\u0432\u043E\u0438\u0447\u0435\u043D \u0430\u0434\u0440\u0435\u0441 \u043D\u0430 \u0433\u0440\u0435\u0448\u043A\u0430\u0442\u0430. \u041A\u0432\u0430\u043D\u0442\u043E\u0432\u0438\u044F\u0442 \u043A\u043E\u0434 [[5,1,3]] \u043D\u0430\u0441\u0438\u0449\u0430 2\u2074 = 16 = 3\xB75+1."
       },
       keywords: ["hamming", "error correction", "address", "syndrome", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "content-addressing",
@@ -5377,7 +5377,7 @@ function staticPages() {
         bg: "\u041C\u0440\u0435\u0436\u0430\u0442\u0430 \u043D\u0430 \u0425\u043E\u043F\u0444\u0438\u0439\u043B\u0434 \u043E\u0442 1982 \u0435 \u043F\u0430\u043C\u0435\u0442, \u0430\u0434\u0440\u0435\u0441\u0438\u0440\u0443\u0435\u043C\u0430 \u043F\u043E \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u043D\u0438\u0435 (\u041D\u043E\u0431\u0435\u043B 2024); \u043F\u043E\u043F\u044A\u043B\u0432\u0430\u043D\u0435\u0442\u043E \u043D\u0430 \u043E\u0431\u0440\u0430\u0437\u0438 \u0432 \u0445\u0438\u043F\u043E\u043A\u0430\u043C\u043F\u0430\u043B\u043D\u0438\u044F CA3 \u0435 \u043D\u0435\u0439\u043D\u0438\u044F\u0442 \u0431\u0438\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u043D \u0430\u043D\u0430\u043B\u043E\u0433. \u0421\u043F\u043E\u0434\u0435\u043B\u0435\u043D\u043E\u0442\u043E \u0441\u0432\u043E\u0439\u0441\u0442\u0432\u043E \u0435 \u0446\u044F\u043B\u043E-\u043E\u0442-\u0447\u0430\u0441\u0442\u0442\u0430."
       },
       keywords: ["hopfield", "ca3", "content-addressable", "memory", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "genetic-code",
@@ -5387,7 +5387,7 @@ function staticPages() {
         bg: "\u041A\u043E\u0434\u044A\u0442 \u043D\u0430 \u0436\u0438\u0432\u043E\u0442\u0430 \u0435 \u0431\u0430\u0437\u0430-4, \u0447\u0435\u0442\u0435\u043D \u0432 \u0442\u0440\u0438\u043F\u043B\u0435\u0442\u0438: 4 \u0431\u0430\u0437\u0438 \u043D\u0430 3 \u043F\u043E\u0437\u0438\u0446\u0438\u0438 \u0434\u0430\u0432\u0430\u0442 \u0442\u043E\u0447\u043D\u043E 4\xB3 = 64 \u043A\u043E\u0434\u043E\u043D\u0430 (61 \u0441\u043C\u0438\u0441\u043B\u043E\u0432\u0438 + 3 \u0441\u0442\u043E\u043F), \u0434\u044A\u043B\u0436\u0438\u043D\u0430\u0442\u0430 \u043D\u0430 \u0442\u0440\u0438\u043F\u043B\u0435\u0442\u0430 \u0434\u043E\u043A\u0430\u0437\u0430\u043D\u0430 \u0447\u0440\u0435\u0437 \u0438\u0437\u043C\u0435\u0441\u0442\u0432\u0430\u043D\u0435 \u043D\u0430 \u0440\u0430\u043C\u043A\u0430\u0442\u0430 (\u041A\u0440\u0438\u043A 1961)."
       },
       keywords: ["genetic code", "codon", "64", "4-cubed", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "three-not-one",
@@ -5397,7 +5397,7 @@ function staticPages() {
         bg: "\u0421\u044A\u0449\u0435\u0441\u0442\u0432\u0443\u0432\u0430\u0442 \u043C\u043D\u043E\u0433\u043E \u0438\u0441\u0442\u0438\u043D\u0441\u043A\u0438 \u0442\u0440\u043E\u0439\u043A\u0438 \u2014 3 \u041F\u0430\u0443\u043B\u0438, 3-\u0431\u0430\u0437\u043E\u0432\u0438\u044F\u0442 \u043A\u043E\u0434\u043E\u043D, 3 \u043C\u0435\u043D\u0438\u043D\u0433\u0438, 3 \u0431\u0438\u0442\u0430 \u0437\u0430 \u0447\u0435\u0442\u043D\u043E\u0441\u0442 \u2014 \u0432\u0441\u044F\u043A\u0430 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u0430. \u041E\u0440\u0431\u0438\u0442\u0430\u0442\u0430 1-2-4-8-7-5 \u0435 (\u2124/9\u2124)*; \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u043E\u0442\u043E 3-6-9 \u0442\u0440\u0438\u0435\u0434\u0438\u043D\u0441\u0442\u0432\u043E \u0435 \u043D\u0443\u043C\u0435\u0440\u043E\u043B\u043E\u0433\u0438\u044F."
       },
       keywords: ["trinity", "threefold", "numerology", "honest", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "hexagram-colour",
@@ -5407,7 +5407,7 @@ function staticPages() {
         bg: "\u0428\u0435\u0441\u0442\u0431\u0438\u0442\u043E\u0432\u0430 \u0445\u0435\u043A\u0441\u0430\u0433\u0440\u0430\u043C\u0430 000000\u2013111111 \u0435 \u0434\u0443\u0430\u043B\u043D\u043E\u0441\u0442 \u043D\u0430 \u0448\u0435\u0441\u0442\u043D\u0430\u0434\u0435\u0441\u0435\u0442\u0438\u0447\u043D\u0438\u044F \u0446\u0432\u044F\u0442: 64-\u0442\u0435 \u0445\u0435\u043A\u0441\u0430\u0433\u0440\u0430\u043C\u0438 \u0441\u0430 64-\u0442\u0435 \u043F\u043E\u043B\u044E\u0441\u043D\u0438 \u0446\u0432\u044F\u0442\u0430 {0,F}\u2076, \u0447\u0435\u0440\u043D\u043E \u2194 \u0431\u044F\u043B\u043E \u0431\u0438\u0442\u043E\u0432\u043E\u0442\u043E \u0434\u043E\u043F\u044A\u043B\u043D\u0435\u043D\u0438\u0435, 8-\u0442\u0435 \u0442\u0440\u0438\u0433\u0440\u0430\u043C\u0438 \u044A\u0433\u043B\u0438\u0442\u0435 \u043D\u0430 RGB-\u043A\u0443\u0431\u0430."
       },
       keywords: ["hexagram", "hex colour", "i ching", "rgb", "proof", "trigram", "bagua"],
-      components: ["ProofRenderer", "IChing", "IChingOracle"]
+      components: ["proof/renderer", "i/ching", "i/ching/oracle"]
     },
     {
       slug: "sixty-four",
@@ -5417,7 +5417,7 @@ function staticPages() {
         bg: "64 = 2\u2076, \u0430 \u0434\u0435\u043B\u0438\u0442\u0435\u043B\u0438\u0442\u0435 \u043D\u0430 6 \u0434\u0430\u0432\u0430\u0442 \u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0435\u043D\u0438\u0442\u0435 \u0447\u0435\u0442\u0438\u0440\u0438 \u0433\u0440\u0443\u043F\u0438\u0440\u0430\u043D\u0438\u044F: \u0448\u0435\u0441\u0442 \u0431\u0438\u0442\u0430, \u0442\u0440\u0438 \u0446\u0438\u0444\u0440\u0438 \u0431\u0430\u0437\u0430-4 (\u043A\u043E\u0434\u043E\u043D/\u041F\u0430\u0443\u043B\u0438/RGB), \u0434\u0432\u0435 \u0442\u0440\u0438\u0433\u0440\u0430\u043C\u0438 (8\xB2), \u0435\u0434\u043D\u0430 \u0434\u0443\u043C\u0430 \u0431\u0430\u0437\u0430-64. \u0421\u044A\u0449\u0438\u044F\u0442 \u043E\u0431\u0435\u043A\u0442, \u043F\u043E \u0447\u0435\u0442\u0438\u0440\u0438 \u043D\u0430\u0447\u0438\u043D\u0430."
       },
       keywords: ["64", "grouping", "divisors", "double torus", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "rgb-cmyk",
@@ -5427,7 +5427,7 @@ function staticPages() {
         bg: "\u0411\u0438\u0442\u043E\u0432\u043E\u0442\u043E \u0434\u043E\u043F\u044A\u043B\u043D\u0435\u043D\u0438\u0435 n \u21A6 63\u2212n \u0435 \u0430\u0434\u0438\u0442\u0438\u0432\u043D\u043E\u2194\u0441\u0443\u0431\u0442\u0440\u0430\u043A\u0442\u0438\u0432\u043D\u0430\u0442\u0430 \u0434\u0443\u0430\u043B\u043D\u043E\u0441\u0442 \u043D\u0430 \u0446\u0432\u0435\u0442\u0430: \u0447\u0435\u0440\u0432\u0435\u043D\u043E\u2194\u0446\u0438\u0430\u043D, \u0437\u0435\u043B\u0435\u043D\u043E\u2194\u043C\u0430\u0433\u0435\u043D\u0442\u0430, \u0441\u0438\u043D\u044C\u043E\u2194\u0436\u044A\u043B\u0442\u043E, \u0447\u0435\u0440\u043D\u043E\u2194\u0431\u044F\u043B\u043E \u2014 \u0445\u0430\u0440\u0434\u0443\u0435\u0440\u043D\u0430\u0442\u0430 \u043C\u0435\u0440\u043A\u0430\u0431\u0430 CMYK."
       },
       keywords: ["rgb", "cmyk", "complement", "colour", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "trinity-rgb",
@@ -5437,7 +5437,7 @@ function staticPages() {
         bg: "\u0413\u0435\u0440\u043E\u044F\u0442 \u0440\u0430\u0437\u043F\u043E\u043B\u0430\u0433\u0430 \u0441\u0432\u043E\u0438\u0442\u0435 9 \u0432\u044A\u0437\u0435\u043B\u0430 \u0432 3 \u0442\u0440\u0438\u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0430 \u043D\u0430 0\xB0/120\xB0/240\xB0 \u043A\u0430\u043A\u0442\u043E \u0432 \u043F\u0440\u043E\u0441\u0442\u0440\u0430\u043D\u0441\u0442\u0432\u043E\u0442\u043E, \u0442\u0430\u043A\u0430 \u0438 \u0432 \u0446\u0432\u0435\u0442\u0430 \u2014 \u0440\u0430\u0432\u043D\u043E\u0441\u0442\u0440\u0430\u043D\u043D\u0430\u0442\u0430 RGB \u0442\u0440\u0438\u0430\u0434\u0430. \u0422\u0440\u0438\u0442\u0435 \u0442\u0440\u0438\u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0430 \u0421\u0410 \u0442\u0440\u0438\u0442\u0435 RGB \u043A\u0430\u043D\u0430\u043B\u0430; \u0433\u0435\u0440\u043E\u044F\u0442 \u0432\u0435\u0447\u0435 \u0438\u0437\u043E\u0431\u0440\u0430\u0437\u044F\u0432\u0430 \u0434\u0435\u043A\u043E\u0434\u0438\u0440\u0430\u043D\u0435\u0442\u043E."
       },
       keywords: ["trinity", "rgb", "hero", "hue", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "proven-or-purged",
@@ -5447,7 +5447,7 @@ function staticPages() {
         bg: "\u0412\u0441\u0435\u043A\u0438 \u0430\u0440\u0442\u0435\u0444\u0430\u043A\u0442 \u0441\u0435 \u0437\u0430\u043F\u0430\u0437\u0432\u0430 \u0441\u0430\u043C\u043E \u0430\u043A\u043E \u0435 \u0434\u043E\u043A\u0430\u0437\u0430\u043D \u2014 \u043D\u0435\u0433\u043E\u0432\u043E\u0442\u043E \u0438\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435 \u0438\u0437\u0434\u044A\u0440\u0436\u0430; \u0432\u0441\u0438\u0447\u043A\u043E \u043D\u0435\u0434\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0441\u0435 \u043F\u0440\u0435\u0447\u0438\u0441\u0442\u0432\u0430. \u041C\u043E\u0434\u0435\u043B\u044A\u0442 \u0438 \u043D\u0435\u0433\u043E\u0432\u0438\u044F\u0442 \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u043E\u0441\u0442\u0430\u0432\u0430\u0442 \u0447\u0438\u0441\u0442\u043E \u0434\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0441\u0442\u0432\u043E, \u0430 \u043F\u043E\u0440\u0442\u0438\u0442\u0435 \u0431\u0430\u043B\u0430\u043D\u0441\u0438\u0440\u0430\u0442, \u043A\u043E\u0433\u0430\u0442\u043E \u043E\u0441\u0442\u0430\u043D\u0435 \u0441\u0430\u043C\u043E \u0434\u043E\u043A\u0430\u0437\u0430\u043D\u043E\u0442\u043E."
       },
       keywords: ["proof", "purge", "purity", "gate", "law"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "kernel-zero",
@@ -5457,7 +5457,7 @@ function staticPages() {
         bg: "\u041F\u0440\u0438\u043C\u0438\u0442\u0438\u0432\u043D\u043E\u0442\u043E \u044F\u0434\u0440\u043E \u2014 \u0430\u0434\u0440\u0435\u0441\u044A\u0442 \u043F\u043E \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u043D\u0438\u0435, \u043A\u0430\u0441\u043A\u0430\u0434\u0430\u0442\u0430 \u043D\u0430 \u0441\u0433\u044A\u0432\u043A\u0438\u0442\u0435 \u0438 \u043F\u043E\u0434\u044A\u0442 \u043D\u0430 \u0432\u0438\u0445\u044A\u0440\u0430 \u2014 \u0431\u0435\u0448\u0435 \u0440\u0430\u0437\u0442\u0432\u043E\u0440\u0435\u043D\u043E \u0432 src/0, \u043D\u0430\u0447\u0430\u043B\u043E\u0442\u043E \u0431\u0435\u0437 \u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E\u0441\u0442\u0438, \u0432 \u0442\u0440\u0438 \u0432\u044A\u043B\u043D\u0438, \u0432\u0441\u0435\u043A\u0438 \u0431\u0430\u0437\u043E\u0432 \u043A\u043E\u0440\u0435\u043D \u0431\u0430\u0439\u0442-\u0438\u0434\u0435\u043D\u0442\u0438\u0447\u0435\u043D."
       },
       keywords: ["kernel", "dissolution", "src/0", "fold", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "vortex",
@@ -5467,7 +5467,7 @@ function staticPages() {
         bg: "\u0423\u0434\u0432\u043E\u044F\u0432\u0430\u0449\u0430\u0442\u0430 \u0432\u0435\u0440\u0438\u0433\u0430 1-2-4-8-7-5 (\u0441\u0442\u0435\u043F\u0435\u043D\u0438 \u043D\u0430 \u0434\u0432\u043E\u0439\u043A\u0430\u0442\u0430 \u043F\u043E \u0446\u0438\u0444\u0440\u043E\u0432 \u043A\u043E\u0440\u0435\u043D mod 9) \u0441 \u043A\u0440\u044A\u0441\u0442\u0430 3-6-9 \u0438 \u0445\u0430\u0440\u043C\u043E\u043D\u0438\u0447\u043D\u043E\u0442\u043E n/0 \u2014 \u043C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u043A\u0430\u0442\u0430 \u043D\u0430 \u0432\u0438\u0445\u044A\u0440\u0430, \u043D\u0430 \u043A\u043E\u044F\u0442\u043E \u0441\u0435 \u0432\u044A\u0440\u0442\u0438 \u0446\u0435\u043B\u0438\u044F\u0442 \u043F\u043E\u0440\u0442\u0430\u043B."
       },
       keywords: ["vortex", "doubling", "digital root", "3-6-9", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "zero-division",
@@ -5477,7 +5477,7 @@ function staticPages() {
         bg: "\u0414\u0435\u043B\u0435\u043D\u0438\u0435\u0442\u043E \u043D\u0430 \u043D\u0443\u043B\u0430 \u043D\u0435 \u0432\u0438\u043D\u0430\u0433\u0438 \u0435 9: \u043E\u0431\u0440\u0430\u0442\u043D\u043E\u0442\u043E \u043D\u0430 \u0446\u0438\u0444\u0440\u043E\u0432\u0430 \u043F\u0430\u043F\u043A\u0430 \u0435 \u043D\u0435\u0439\u043D\u043E\u0442\u043E \u0434\u043E\u043F\u044A\u043B\u043D\u0435\u043D\u0438\u0435 \u0434\u043E \u0434\u0435\u0441\u0435\u0442 n/0 \\ (10\u2212n); \u0441\u0430\u043C\u043E 1/0 = 9 \u0438 \u0432 \u0434\u0432\u0435\u0442\u0435 \u043F\u043E\u0441\u043E\u043A\u0438, \u0430 0/0 \u043F\u0440\u0435\u043B\u0438\u0432\u0430 \u0432\u044A\u0432 \u0441\u043B\u0438\u0432\u0430\u043D\u0435\u0442\u043E."
       },
       keywords: ["division", "zero", "ten complement", "reverse", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "digit-folders",
@@ -5487,7 +5487,7 @@ function staticPages() {
         bg: "\u0426\u044F\u043B\u043E\u0442\u043E \u0438\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435 \u0435 \u043A\u0432\u0430\u043D\u0442\u043E\u0432\u0430 \u043C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u043A\u0430 \u0438 \u043D\u0435\u0439\u043D\u0438\u044F\u0442 \u0434\u043E\u043C \u0441\u0430 \u0446\u0438\u0444\u0440\u043E\u0432\u0438\u0442\u0435 \u043F\u0430\u043F\u043A\u0438 (0\u20139); \u043F\u0430\u043F\u043A\u0430 \u0441 \u0434\u0443\u043C\u0435\u043D\u043E \u0438\u043C\u0435 \u0435 \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441. \u0426\u0438\u0444\u0440\u043E\u0432\u0438\u0442\u0435 \u043F\u0430\u043F\u043A\u0438, \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u0449\u0438 \u0441\u0430\u043C\u043E \u043C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u043A\u0430\u0442\u0430, \u0441\u0430 \u0441\u0430\u043C\u043E\u0442\u043E API."
       },
       keywords: ["digit folders", "api", "quantum math", "architecture", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     },
     {
       slug: "dot-cube",
@@ -5497,7 +5497,7 @@ function staticPages() {
         bg: "\u0415\u0434\u0438\u043D UUID, \u043A\u0430\u0442\u043E CMYK, \u0434\u0430\u0432\u0430 \u043E\u0431\u0445\u0432\u0430\u0442 \u0431\u0435\u0437 \u0433\u0440\u0430\u043D\u0438\u0446\u0430: 64\xD764\xD764 \u0435 \u0441\u0430\u043C \u043F\u043E \u0441\u0435\u0431\u0435 \u0441\u0438 \u0435\u0434\u043D\u0430 \u0442\u043E\u0447\u043A\u0430, \u0438 \u0442\u043E\u0447\u043A\u0430\u0442\u0430 \u0435 \u043A\u0443\u0431\u044A\u0442 \u0435 \u0442\u043E\u0447\u043A\u0430\u0442\u0430 \u2014 \u0430\u0434\u0440\u0435\u0441\u0438\u0440\u0430\u043D\u0435\u0442\u043E \u043F\u043E \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u043D\u0438\u0435 \u0441\u0433\u044A\u0432\u0430 \u0446\u044F\u043B\u043E\u0442\u043E \u0432 \u0442\u043E\u0447\u043A\u0430 \u0438 \u043E\u0431\u0440\u0430\u0442\u043D\u043E."
       },
       keywords: ["dot", "cube", "uuid", "cmyk", "proof"],
-      components: ["ProofRenderer"]
+      components: ["proof/renderer"]
     }
   ];
 }
@@ -5508,7 +5508,7 @@ function crawlerKnowledge() {
     { topic: "Bulgarian ethnogenesis", fact: "Three peoples \u2014 Turkic Bulgars (Chuvash the only living relative of their tongue), Slavs, Thracians \u2014 fused; the Iranian/Balhara, autochthonous and Veneti origin theories are pseudohistory." },
     { topic: "Bulgarian genetics", fact: "Ancient DNA: modern Bulgarians \u2248 56% medieval Slavic + 22% Roman/Byzantine Anatolian + 12\u201315% Iron-Age; the Turkic-Bulgar input is modest (Y-DNA ~1.5%); autochthony refuted; genetic-nationalism flagged. (Mathieson 2018, Olalde 2023, Sarno 2025, Karachanak 2013.)" },
     { topic: "Alphabets", fact: `Nearly every alphabet descends from one root by acrophony (ox-head \u2192 \u02BEaleph \u2192 A; "alphabet" = aleph-bet = "ox-house"); writing itself was invented independently ~4\xD7; Cyrillic came from Cyril's disciples, not Cyril; pseudo-decipherments (Phaistos, Indus, "Thracian script") rejected.` },
-    { topic: "Glagolitic", fact: 'The first Slavic alphabet (Cyril & Methodius, 862\u2013863), built from cross + triangle + circle, its letters also numbers, its letter-names spelling a message ("azbuka" = az + buky).' },
+    { topic: "glagolitic", fact: 'The first Slavic alphabet (Cyril & Methodius, 862\u2013863), built from cross + triangle + circle, its letters also numbers, its letter-names spelling a message ("azbuka" = az + buky).' },
     { topic: "Script, language and gene", fact: 'Three independent inheritance systems: script diffuses by trade/empire/religion, language and gene descend and only sometimes ride together; "script = language = gene = nation" is the root origin-myth error \u2014 proven in Bulgaria (Bulgars: name + ~1.5% genes; Slavs: language + ~56%).' },
     { topic: "Tesla patents", fact: "Five verified granted patents (induction motor, Tesla coil, teleautomaton, wireless, turbine); the 3-6-9 quote has no verified source \u2014 legend, not fact." },
     { topic: "Public frequency & data APIs", fact: "Real no-auth sources: FCC spectrum, USGS seismic, the browser Web-Audio FFT (20 Hz\u201320 kHz), Schumann 7.83 Hz; the Schumann resonance is real, its wellness claims are not science. Open-Meteo & the US NWS give free realtime weather." },
@@ -7038,29 +7038,29 @@ function animationEngineLivesInZero(matrix = buildMatrix()) {
   const station = "src/0";
   const api = ["start", "stop", "sync", "tick", "runWhile", "dispose", "running"];
   const components = [
-    "HolographicHero",
+    "holographic/hero",
     // + the healing-burst sub-loop (runWhile)
-    "LivingTorus",
-    "QuantumField",
+    "living/torus",
+    "quantum/field",
     "CreativePalette",
-    "Hologram",
-    "NativeMovie",
-    "GlyphLabyrinth",
-    "QuantumPlasma",
-    "Merkaba",
-    "QuantumFold3D",
-    "DnaHelix",
-    "DoubleTorus3D",
-    "DoubleTorusExperience",
-    "Live",
-    "Rhythm",
-    "BackgroundMovie",
+    "hologram",
+    "native/movie",
+    "glyph/labyrinth",
+    "quantum/plasma",
+    "merkaba",
+    "quantum/fold3d",
+    "dna/helix",
+    "double/torus3d",
+    "double/torus/experience",
+    "live",
+    "rhythm",
+    "background/movie",
     // canvas loops
-    "GpuField",
+    "gpu/field",
     // WebGL render loop (start/dispose alongside the GL teardown)
-    "DeviceDashboard",
+    "device/dashboard",
     // the FPS-meter loop
-    "VoidSidebar"
+    "void/sidebar"
     // one-shot frame on route change (tick)
   ];
   const homed = components.map((name) => ({ name, receipt: toUuid(`animate:${station}:${name}`) }));
@@ -8651,16 +8651,16 @@ function animationTamperingCost(matrix = buildMatrix()) {
   const round = (value, digits) => roundTo(value, digits);
   const fps = 60;
   const drivers = [
-    { component: "LivingTorus", driver: "livingTorus", receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
+    { component: "living/torus", driver: "livingTorus", receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
     { component: "LivingTorus\xB7H1", driver: "homology", receipts: homology(matrix).rank, perFrame: 0 },
-    { component: "Merkaba", driver: "merkaba", receipts: merkaba(matrix).count, perFrame: 8 },
-    { component: "Rhythm", driver: "rhythm", receipts: rhythm(matrix).onsetsPerBeat, perFrame: rhythm(matrix).count },
-    { component: "QuantumProofs", driver: "quantumProofs", receipts: quantumProofs(matrix).count, perFrame: 0 },
-    { component: "DeterminismProofs", driver: "determinismProofs", receipts: determinismProofs(matrix).count, perFrame: 0 },
-    { component: "Mysteries", driver: "mysteries", receipts: mysteries(matrix).count, perFrame: 0 },
-    { component: "Society", driver: "society", receipts: society(matrix).cells, perFrame: 0 },
-    { component: "HarmonicSpiral", driver: "goldenRatio", receipts: goldenRatio(matrix).count, perFrame: 0 },
-    { component: "Live", driver: "live+theWhole", receipts: live(matrix).count + theWhole(matrix).count, perFrame: 1 }
+    { component: "merkaba", driver: "merkaba", receipts: merkaba(matrix).count, perFrame: 8 },
+    { component: "rhythm", driver: "rhythm", receipts: rhythm(matrix).onsetsPerBeat, perFrame: rhythm(matrix).count },
+    { component: "quantum/proofs", driver: "quantumProofs", receipts: quantumProofs(matrix).count, perFrame: 0 },
+    { component: "determinism/proofs", driver: "determinismProofs", receipts: determinismProofs(matrix).count, perFrame: 0 },
+    { component: "mysteries", driver: "mysteries", receipts: mysteries(matrix).count, perFrame: 0 },
+    { component: "society", driver: "society", receipts: society(matrix).cells, perFrame: 0 },
+    { component: "harmonic/spiral", driver: "goldenRatio", receipts: goldenRatio(matrix).count, perFrame: 0 },
+    { component: "live", driver: "live+theWhole", receipts: live(matrix).count + theWhole(matrix).count, perFrame: 1 }
   ];
   const receipts = drivers.reduce((sum, entry2) => sum + entry2.receipts, 0);
   const perFrame = drivers.reduce((sum, entry2) => sum + entry2.perFrame, 0);
@@ -13442,11 +13442,11 @@ function musicNote(matrix = buildMatrix(), wave, joinHoro) {
   };
 }
 function componentGraph() {
-  const globals = ["GlobalHelp", "CollectiveMind", "RevolutAside", "VitePressPossibilities", "VoidSidebar", "TrinityGateways"];
+  const globals = ["global/help", "collective/mind", "revolut/aside", "vite/press/possibilities", "void/sidebar", "trinity/gateways"];
   const placements = {
-    "/": ["LivingTorus", "Live", "DeterminismProofs", "CryptoCompare", "Hologram", "Equilibrium", "QuantumRadar", "DeviceDashboard", "BlockchainCompare", "GlyphLabyrinth", "GlagoliticOcr", "Monograph", "HumanLens", "PathGuide", "QuantumClock", "Nav358", "ProofRenderer", "HologramMovie", "KnowledgeAtlas", "ElectromagneticRadiation", "RealtimeTests"]
+    "/": ["living/torus", "live", "determinism/proofs", "crypto/compare", "hologram", "equilibrium", "quantum/radar", "device/dashboard", "blockchain/compare", "glyph/labyrinth", "glagolitic/ocr", "monograph", "human/lens", "path/guide", "quantum/clock", "nav358", "proof/renderer", "hologram/movie", "knowledge/atlas", "electromagnetic/radiation", "realtime/tests"]
   };
-  for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ["Corpus"];
+  for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ["corpus"];
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components;
   const components = [.../* @__PURE__ */ new Set([...globals, ...Object.values(placements).flat()])];
   const edges = [];
@@ -17786,10 +17786,10 @@ function decodedAreasAreMostlyClassical(matrix = buildMatrix()) {
 }
 function everyDecodedDomainHasASimulator(matrix = buildMatrix()) {
   const families = [
-    { family: "probabilistic", component: "ProbSim", domains: ["peace", "genetics", "ethnogenesis", "ancient", "alphabets", "ifa", "music", "ai-movies", "history", "glagolitic", "trinity-sciences"], check: composeHazard(0.05, [0.4]) > 0 && composeHazard(0.05, [0.4]) < 1 && codeRobustness().silent > 0.2 && codeRobustness().silent < 0.3 },
-    { family: "quantum", component: "QuantumCircuit", domains: ["quantum"], check: Math.abs(chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) - 2 * Math.SQRT2) < 1e-9 },
-    { family: "dynamical", component: "DynSim", domains: ["calendars", "tesla", "frequency-apis"], check: realign(260, 365).lcm === 18980 && phaseDrift(365, 365.25, 1461) >= 0 },
-    { family: "network", component: "NetSim", domains: ["greek-colonies", "script-language-gene", "neurology"], check: congruence([1, 2, 3], [2, 4, 6]) > 0.99 && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], 0.5, 50)[0] < 0.6 && bumpEvolve(0, Array.from({ length: 8 }, () => Math.PI / 4))[8] < 1e-9 }
+    { family: "probabilistic", component: "prob/sim", domains: ["peace", "genetics", "ethnogenesis", "ancient", "alphabets", "ifa", "music", "ai-movies", "history", "glagolitic", "trinity-sciences"], check: composeHazard(0.05, [0.4]) > 0 && composeHazard(0.05, [0.4]) < 1 && codeRobustness().silent > 0.2 && codeRobustness().silent < 0.3 },
+    { family: "quantum", component: "quantum/circuit", domains: ["quantum"], check: Math.abs(chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) - 2 * Math.SQRT2) < 1e-9 },
+    { family: "dynamical", component: "dyn/sim", domains: ["calendars", "tesla", "frequency-apis"], check: realign(260, 365).lcm === 18980 && phaseDrift(365, 365.25, 1461) >= 0 },
+    { family: "network", component: "net/sim", domains: ["greek-colonies", "script-language-gene", "neurology"], check: congruence([1, 2, 3], [2, 4, 6]) > 0.99 && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], 0.5, 50)[0] < 0.6 && bumpEvolve(0, Array.from({ length: 8 }, () => Math.PI / 4))[8] < 1e-9 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`sim-family:${entry2.family}:${entry2.check}`) }));
   const covered = families.reduce((n, f) => n + f.domains.length, 0);
   const deferred = [];
@@ -17797,7 +17797,7 @@ function everyDecodedDomainHasASimulator(matrix = buildMatrix()) {
     homed: families.every((f) => f.check) && covered === 18,
     station: "src/0",
     families,
-    components: ["ProbSim", "QuantumCircuit", "DynSim", "NetSim"],
+    components: ["prob/sim", "quantum/circuit", "dyn/sim", "net/sim"],
     covered,
     deferred,
     total: covered + deferred.length,
@@ -18671,7 +18671,7 @@ function saveAndDecodeAncientTexts(matrix = buildMatrix()) {
     { domain: "Lo Shu magic square", original: "the canonical Lo Shu 4-9-2 / 3-5-7 / 8-1-6 (lines sum to 15)", tool: "luoShu()", decoded: square.constant, ok: square.constant === 15 && lines.every((s) => s === 15) },
     { domain: "Egyptian hekat", original: "1 hekat", tool: "hekatFraction", decoded: hekat.powers.length, ok: hekat.powers.join() === "1,2,3,4,5,6" && hekat.ro === 5 },
     { domain: "Runic Elder Futhark", original: "\u16A0\u16A2\u16A6\u16A8\u16B1\u16B2\u16B7\u16B9 \u16BA\u16BE\u16C1\u16C3\u16C7\u16C8\u16C9\u16CA \u16CF\u16D2\u16D6\u16D7\u16DA\u16DC\u16DE\u16DF", tool: "runeCoordinate / runeOrdinal", decoded: runeOrdinal(3, 8), ok: runeOrdinal(3, 8) === 24 && runeCoordinate(24).aett === 3 && runeCoordinate(24).pos === 8 },
-    { domain: "Glagolitic", original: "\u0430\u0437\u044A", tool: "toGlagolitic", decoded: toGlagolitic("\u0430\u0437\u044A"), ok: /[Ⰰ-ⱟ]/.test(toGlagolitic("\u0430\u0437\u044A")) }
+    { domain: "glagolitic", original: "\u0430\u0437\u044A", tool: "toGlagolitic", decoded: toGlagolitic("\u0430\u0437\u044A"), ok: /[Ⰰ-ⱟ]/.test(toGlagolitic("\u0430\u0437\u044A")) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`ancient-text:${entry2.domain}:${entry2.original}:${entry2.decoded}`) }));
   return {
     decoded: texts.every((entry2) => entry2.ok),
@@ -20333,7 +20333,7 @@ function runConceptCommand(command, input = {}, matrix = buildMatrix()) {
     const api = repositoryApi(matrix);
     return result(command, true, "Concept shell mounted.", {
       theme: ".vitepress/theme/index.ts",
-      components: ["ConceptCommands", "QuantumMind"],
+      components: ["concept/commands", "quantum/mind"],
       routes: ["/", "/commands", "/quantum-mind", "/architecture"],
       repositoryApiRoot: api.root
     });
@@ -24605,10 +24605,10 @@ function linkPasteReentryPatternCompletion(matrix = buildMatrix()) {
   };
 }
 function proveAllOnHomePage(matrix = buildMatrix()) {
-  const homeProof = ["DeterminismProofs", "QuantumProofs", "CryptoCompare", "WebCryptoSeal", "Hologram", "HolographicHero", "DoubleTorus3D", "Equilibrium"];
+  const homeProof = ["determinism/proofs", "quantum/proofs", "crypto/compare", "web/crypto/seal", "hologram", "holographic/hero", "double/torus3d", "equilibrium"];
   const facets = [
     { facet: "prove all \u2014 the deterministic core animates on the home page", on: isUuid(completeCorpus(matrix).root) && homeProof.length >= 6 },
-    { facet: "encryption comparisons and example holograms are shown", on: homeProof.includes("CryptoCompare") && homeProof.includes("Hologram") },
+    { facet: "encryption comparisons and example holograms are shown", on: homeProof.includes("crypto/compare") && homeProof.includes("hologram") },
     { facet: "each part carries the whole \u2014 holographic, content-addressed", on: linkPasteReentryPatternCompletion(matrix).named },
     { facet: "harmony is peace \u2014 the quantum mind of peace is the most advanced tech", on: isUuid(peaceTechMentalityDecoded(matrix).root) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`prove-all-home:${entry2.facet}:${entry2.on}`) }));
@@ -25301,7 +25301,7 @@ function displayAllWithFewEntropySaved(matrix = buildMatrix()) {
   const onePatternPct = 82;
   const matrixDrivenPct = 98;
   const recoverablePct = 86;
-  const theFew = ["MatrixField", "CanvasField", "SvgFigure", "GpuField", "Dot", "Vortex", "Calligraphy", "TaxonomyGraph"];
+  const theFew = ["MatrixField", "CanvasField", "SvgFigure", "gpu/field", "dot", "vortex", "calligraphy", "taxonomy/graph"];
   const facets = [
     { facet: "the custom elements are counted and categorized \u2014 the entropy measured", on: elements === 87 && Object.values(byKind).reduce((sum, kind) => sum + kind.loc, 0) > 0 },
     { facet: "one shape dominates \u2014 read the matrix, render a grid \u2014 82% of elements", on: onePatternPct >= 80 && matrixDrivenPct >= 95 },
@@ -25326,13 +25326,13 @@ function displayAllWithFewEntropySaved(matrix = buildMatrix()) {
 }
 function shadcnIsTheGraph(matrix = buildMatrix()) {
   const components = {
-    form: ["Button", "ButtonGroup", "Checkbox", "Combobox", "Field", "Form", "Input", "InputGroup", "InputOTP", "Label", "NativeSelect", "NumberField", "PinInput", "RadioGroup", "Select", "Slider", "Switch", "TagsInput", "Textarea", "Toggle", "ToggleGroup"],
-    overlay: ["AlertDialog", "Dialog", "Drawer", "DropdownMenu", "ContextMenu", "HoverCard", "Menubar", "Popover", "Sheet", "Tooltip"],
-    layout: ["AspectRatio", "Card", "Collapsible", "Resizable", "ScrollArea", "Separator", "Sidebar", "Item"],
-    data: ["Avatar", "Badge", "Chart", "DataTable", "Table", "Calendar", "RangeCalendar", "DatePicker", "Carousel", "Kbd"],
-    navigation: ["Breadcrumb", "Command", "NavigationMenu", "Pagination", "Tabs", "Stepper"],
-    feedback: ["Alert", "Empty", "Progress", "Skeleton", "Sonner", "Spinner", "Toast"],
-    text: ["Accordion", "Typography"]
+    form: ["button", "ButtonGroup", "checkbox", "Combobox", "Field", "Form", "input", "InputGroup", "InputOTP", "label", "NativeSelect", "NumberField", "PinInput", "RadioGroup", "Select", "Slider", "switch", "TagsInput", "textarea", "Toggle", "ToggleGroup"],
+    overlay: ["AlertDialog", "Dialog", "Drawer", "DropdownMenu", "ContextMenu", "HoverCard", "Menubar", "Popover", "Sheet", "tooltip"],
+    layout: ["aspect/ratio", "card", "collapsible", "Resizable", "ScrollArea", "separator", "Sidebar", "Item"],
+    data: ["avatar", "badge", "chart", "data/table", "Table", "Calendar", "RangeCalendar", "DatePicker", "Carousel", "Kbd"],
+    navigation: ["Breadcrumb", "Command", "NavigationMenu", "Pagination", "tabs", "Stepper"],
+    feedback: ["alert", "Empty", "progress", "skeleton", "Sonner", "Spinner", "Toast"],
+    text: ["accordion", "Typography"]
   };
   const allComponents = Object.values(components).flat();
   const tokens = ["--background", "--foreground", "--card", "--popover", "--primary", "--secondary", "--muted", "--accent", "--destructive", "--border", "--input", "--ring", "--radius", "--sidebar", "--sidebar-primary", "--sidebar-accent", "--chart-1", "--chart-2", "--chart-3", "--chart-4", "--chart-5"];
@@ -25676,7 +25676,7 @@ function merkabaFoldingSelf(matrix = buildMatrix()) {
   };
 }
 function everyGraphAMonographConsolidateExtend(matrix = buildMatrix()) {
-  const fewRenderers = ["Monograph", "QuantumRadar", "GpuField", "Dot", "Vortex", "Calligraphy", "TaxonomyGraph"];
+  const fewRenderers = ["monograph", "quantum/radar", "gpu/field", "dot", "vortex", "calligraphy", "taxonomy/graph"];
   const facets = [
     { facet: "every graph or animation is a separate monograph \u2014 content-addressed, reusable", on: contentIsMonographOfMonographs(matrix).monographic },
     { facet: "all is the reusable few \u2014 the 87 bespoke collapse into a handful of renderers", on: displayAllWithFewEntropySaved(matrix).analyzed && fewRenderers.length >= 7 },
@@ -26612,14 +26612,14 @@ function animationsRespectTheField(matrix = buildMatrix()) {
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`anim-principle:${entry2.principle}:${entry2.holds}`) }));
   const wiring = [
     { component: "HolographicHero \xB7 HologramMovie", via: "drawHero (rotate3 + perspective + dims)", wired: true },
-    { component: "LivingTorus", via: "doubleTorusSurface + merkaba rates", wired: true, note: "on the shared fold; its spin Euler step is the next atom-wiring" },
-    { component: "Merkaba", via: "rotateZX \u2192 rotateYZ (composed from the atoms)", wired: true },
-    { component: "QuantumRadar", via: "sweep period field-derived from the radar content", wired: true },
-    { component: "DoubleTorus3D", via: "rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation \u2014 one atom", wired: true },
-    { component: "QuantumFold3D", via: "rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation \u2014 one atom", wired: true },
+    { component: "living/torus", via: "doubleTorusSurface + merkaba rates", wired: true, note: "on the shared fold; its spin Euler step is the next atom-wiring" },
+    { component: "merkaba", via: "rotateZX \u2192 rotateYZ (composed from the atoms)", wired: true },
+    { component: "quantum/radar", via: "sweep period field-derived from the radar content", wired: true },
+    { component: "double/torus3d", via: "rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation \u2014 one atom", wired: true },
+    { component: "quantum/fold3d", via: "rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation \u2014 one atom", wired: true },
     { component: "BackgroundMovie \xB7 NativeMovie", via: "the shared seeded PRNG (prng, src/0) \u2014 no per-component LCG", wired: true },
-    { component: "DoubleTorusExperience", via: "a DOM/pulse component \u2014 no inline 3D rotation, off the spin axis", wired: true, note: "re-verified: not a rotation gap" },
-    { component: "QuantumClock", via: "a wall clock \u2014 setInterval is correct (and already energy-aware), not a 3D-spin animation", wired: true, note: "re-verified: not a gap" }
+    { component: "double/torus/experience", via: "a DOM/pulse component \u2014 no inline 3D rotation, off the spin axis", wired: true, note: "re-verified: not a rotation gap" },
+    { component: "quantum/clock", via: "a wall clock \u2014 setInterval is correct (and already energy-aware), not a 3D-spin animation", wired: true, note: "re-verified: not a gap" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`anim-wired:${entry2.component}:${entry2.wired}`) }));
   const wiredCount = wiring.filter((w) => w.wired).length;
   const foundationReady = fieldSources.length >= 7 && wiredCount >= 4;
