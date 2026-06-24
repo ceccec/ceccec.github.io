@@ -1,0 +1,204 @@
+/* Computed movie design — transparent surfaces; layout/accent from --vp-movie-* vars. */
+.vp-with-hero-movie {
+  color: var(--vp-c-text-1);
+  background: transparent;
+}
+
+.vp-with-hero-movie .VPHomeHero .container,
+.vp-with-hero-movie .VPHomeHero .main,
+.vp-with-hero-movie .VPHomeHero .image {
+  background: transparent !important;
+}
+
+.vp-with-hero-movie .VPHomeHero .name,
+.vp-with-hero-movie .VPHomeHero .text,
+.vp-with-hero-movie .VPHomeHero .tagline,
+.vp-with-hero-movie .ui-card__content,
+.vp-with-hero-movie .ui-card__content :where(h1, h2, h3, h4, p, li, a, span) {
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+.vp-with-hero-movie .ui-card {
+  position: relative;
+  overflow: hidden;
+  margin: var(--vp-movie-card-margin) 0;
+  background: transparent;
+  border: 1px solid var(--vp-hero-border);
+  border-radius: var(--vp-movie-radius);
+}
+
+.vp-with-hero-movie .ui-card__content {
+  position: relative;
+  z-index: 1;
+  padding: var(--vp-movie-pad-y) var(--vp-movie-pad-x);
+  line-height: var(--vp-movie-line-height);
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.vp-with-hero-movie .ui-card__movie {
+  min-height: var(--vp-movie-min-h);
+}
+
+.vp-with-hero-movie .ui-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--vp-movie-accent-h);
+  z-index: 2;
+  background: linear-gradient(
+    var(--vp-movie-gradient-angle),
+    var(--vp-movie-accent-1),
+    var(--vp-movie-accent-2),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.vp-with-hero-movie .ui-card--ghost {
+  border: 1px dashed var(--vp-hero-border);
+}
+
+.vp-with-hero-movie .ui-card--ghost .ui-card__content {
+  background: transparent !important;
+}
+
+.vp-with-hero-movie .decoded-card__crosslinks {
+  gap: var(--vp-movie-gap) calc(var(--vp-movie-gap) * 1.85);
+}
+
+.vp-with-hero-movie .decoded-card__crosslinks-label {
+  opacity: var(--vp-movie-fade);
+}
+
+.vp-with-hero-movie .decoded-card__crosslink {
+  color: var(--vp-movie-link);
+  border-bottom-color: var(--vp-movie-link);
+}
+
+.vp-with-hero-movie .decoded-card__crosslink:hover {
+  color: var(--vp-movie-accent-1);
+}
+
+.vp-with-hero-movie .decoded-card__mark {
+  color: var(--vp-movie-mark-off);
+}
+
+.vp-with-hero-movie .decoded-card__mark--on {
+  color: var(--vp-movie-mark-on);
+}
+
+.vp-with-hero-movie .decoded-card__boundary {
+  opacity: var(--vp-movie-fade);
+}
+
+.vp-with-hero-movie .VPHome h2 {
+  text-shadow: var(--vp-hero-text-shadow);
+  letter-spacing: calc(var(--vp-movie-gap) * 0.05em);
+}
+
+/* Sidebars and doc asides — transparent so the background movie shows through. */
+.vp-with-hero-movie .VPSidebar,
+.vp-with-hero-movie .VPSidebar .curtain {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+.vp-with-hero-movie .VPDoc .aside-curtain {
+  background: linear-gradient(transparent, transparent) !important;
+}
+
+.vp-with-hero-movie .VPLocalNav {
+  background-color: transparent;
+}
+
+.vp-with-hero-movie .VPNavBar:not(.home),
+.vp-with-hero-movie .VPNavBar.screen-open {
+  background-color: transparent;
+}
+
+.vp-with-hero-movie .VPSidebar :where(.item, .text, .title, .link),
+.vp-with-hero-movie .VPDocAside :where(.outline-link, .outline-title, .content),
+.vp-with-hero-movie .VPLocalNav :where(.menu-text, .outline-link) {
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+.vp-with-hero-movie .VPContent,
+.vp-with-hero-movie .VPDoc,
+.vp-with-hero-movie .VPDoc .content,
+.vp-with-hero-movie .VPDoc .aside-container {
+  background: transparent;
+}
+
+.vp-with-hero-movie .VPFooter {
+  background-color: transparent;
+}
+
+.vp-with-hero-movie .VPFooter :where(.message, .copyright) {
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+.vp-with-hero-movie .universal-page,
+.vp-with-hero-movie .universal-page :where(h1, h2, h3, p, li, a, code),
+.vp-with-hero-movie .vp-doc :where(h1, h2, h3, h4, p, li, a) {
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vp-with-hero-movie .VPSidebar.vp-sidebar-from-void {
+    animation: vp-sidebar-from-void 0.52s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+@keyframes vp-sidebar-from-void {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Code and custom blocks — translucent over the movie, still readable. */
+.vp-with-hero-movie .vp-code-block,
+.vp-with-hero-movie div[class*='language-'] {
+  background-color: var(--vp-code-block-bg) !important;
+}
+
+.vp-with-hero-movie :not(pre) > code {
+  background-color: var(--vp-code-bg);
+}
+
+.vp-with-hero-movie .custom-block {
+  background-color: var(--vp-hero-bg-ghost);
+  border-color: var(--vp-hero-border);
+}
+
+.vp-with-hero-movie .VPNavBar.home,
+.vp-with-hero-movie .VPNavBar:not(.has-sidebar):not(.home.top) {
+  background-color: transparent;
+}
+
+.vp-with-hero-movie .VPHome,
+.vp-with-hero-movie .VPHomeContent,
+.vp-with-hero-movie .VPHome .container {
+  background: transparent;
+}
+
+.vp-with-hero-movie .VPHome h3,
+.vp-with-hero-movie .VPHome h4 {
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+.vp-with-hero-movie .VPNavScreen {
+  background-color: transparent;
+}
+
+.vp-with-hero-movie .VPNavScreen :where(.menu-link, .button, .title) {
+  text-shadow: var(--vp-hero-text-shadow);
+}

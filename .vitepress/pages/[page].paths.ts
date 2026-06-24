@@ -1,5 +1,10 @@
-// The DEFAULT Glagolitic [monograph] route — a thin mount over the one source (monographPaths). No
-// mirroring: the page set, titles and SEO live once in staticPages; the locale is computed by math.
-import { monographPaths } from '../../src/quantum/heaven/mind'
+// Glagolitic monograph catch-all — vitepressAutomountPaths discovers complete indexes (no reconfiguration).
+import { monographSliceFromRoute, vitepressAutomountPaths } from '../../src/routes/automount'
 
-export default { paths: () => monographPaths('gla') }
+export default {
+  paths: () =>
+    vitepressAutomountPaths('gla').map(({ params }) => {
+      const slice = monographSliceFromRoute(`/${params.page}`, 'gla')
+      return { params: slice ?? params }
+    }),
+}

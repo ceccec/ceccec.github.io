@@ -1,4 +1,10 @@
-// The Latin (English) [monograph] route at /en/ — a thin mount over the one source (monographPaths).
-import { monographPaths } from '../../../src/quantum/heaven/mind'
+// English monograph catch-all — vitepressAutomountPaths discovers complete indexes (no reconfiguration).
+import { monographSliceFromRoute, vitepressAutomountPaths } from '../../../src/routes/automount'
 
-export default { paths: () => monographPaths('en') }
+export default {
+  paths: () =>
+    vitepressAutomountPaths('en').map(({ params }) => {
+      const slice = monographSliceFromRoute(`/${params.page}`, 'en')
+      return { params: slice ?? params }
+    }),
+}

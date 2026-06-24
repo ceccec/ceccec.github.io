@@ -1,21 +1,89 @@
+// @mvc controller — VitePress config: transformPageData (route → model → view head/meta), locale wiring, plugin composition.
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES } from '../src/quantum/heaven/mind'
+import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
+import { buildMatrix } from '../src/heaven/compute'
+import { computeUniversalPage } from '../src/routes/corpus'
+import { heroChromeStyleBlock } from './lib/hero-chrome'
+import { universalRoutePath } from './lib/universal-route-path'
 
-// Configs use the matrix computationally: the site config AND the whole navigation are computed and
-// held in the model (siteConfig, siteNavigation), content-addressed; this file only consumes them.
-// The monographs graph is the search index, and from src the nav, sidebar and footer are all
-// computed for every locale — nothing here is hardcoded. To change the site, change the model
-// (the folders/routes); the config renders what the matrix computes.
+// Config consumes computed indices only — siteConfig/siteNavigation from mind/index.ts;
+// siteNavigation derives nav from the 7-star rosetta (coprime to 6/9/10) — not hardcoded BAGUA.
+// srcFolderPlugins from mind + lake/dist indices (folderLaw.indexSurfaces.vitepress.consumes).
 const config = siteConfig()
 const nav = siteNavigation()
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
+const vpLibRoot = join(projectRoot, '.vitepress/lib')
+
+/** Stub fs-walking modules in client bundle — automount/paths.ts are build-time Node only. */
+function nodeOnlyClientStubPlugin(): import('vite').Plugin {
+  const computationalRx = /pair\/enforcement\/gates\/computational/
+  const automountRx = /wind\/fold\/routes\/automount/
+  let ssrBuild = false
+  return {
+    name: 'double-torus:node-only-client-stub',
+    enforce: 'pre',
+    config(_config, env) {
+      ssrBuild = Boolean(env.isSsrBuild)
+    },
+    resolveId(id) {
+      if (ssrBuild) return null
+      const norm = id.replace(/\\/g, '/')
+      if (computationalRx.test(norm)) return '\0node-stub:computational'
+      if (automountRx.test(norm)) return '\0node-stub:automount'
+    },
+    load(id) {
+      if (id === '\0node-stub:computational') {
+        return `export const UNFOLDED_CENSUS = 110;
+export const FOLDED_CENSUS = 108;
+export const DIMENSION_GATES = 432;
+export function discoverSrcIndexes() { return []; }
+export function vitepressAutomountPaths() { return []; }
+`
+      }
+      if (id === '\0node-stub:automount') {
+        return `export function discoverSrcIndexes() { return []; }
+export function vitepressAutomountPaths(_locale) { return []; }
+export function catchAllRoutePaths(_locale) { return []; }
+export function monographSliceFromRoute(_path, _locale) { return null; }
+export function indexOfIndexes() { return []; }
+export function vitepressIndexOfIndexesLaw() { return { automount: 0, incomplete: 0, count: 0 }; }
+export { vitepressAutomountPaths as monographCatchAllPaths };
+`
+      }
+    },
+  }
+}
+
+/** [page].md @vp-lib imports relativize to ../../lib — wrong depth on nested automount virtual paths. */
+function vpLibNestedResolvePlugin(): import('vite').Plugin {
+  return {
+    name: 'double-torus:vp-lib-nested-resolve',
+    enforce: 'pre',
+    resolveId(id) {
+      if (id === '@vp-lib/component-bagua-groups' || id.endsWith('/lib/component-bagua-groups')) {
+        return join(vpLibRoot, 'component-bagua-groups.ts')
+      }
+      if (id.startsWith('@vp-lib/')) {
+        return join(vpLibRoot, `${id.slice('@vp-lib/'.length)}.ts`)
+      }
+      if (id === '@vp-lib/hero-movie' || id.endsWith('/lib/hero-movie')) {
+        return join(vpLibRoot, 'hero-movie.ts')
+      }
+      if (id === '@vp-lib/register-components' || id.endsWith('/lib/register-components')) {
+        return join(vpLibRoot, 'register-components.ts')
+      }
+    },
+  }
+}
 
 // Root locale = Glagolitic: transliterate labels via localeNavLinks; bare routes stay at /.
+// Navigation uses 7 rosetta rays (Ⰰ Alpha…Ⱄ Word) grouped into three doors — computed from rosettaRayOf.
 // /en/ and /bg/ locales: localeNavLinks + localeSidebarKeys prefix from SITE_LOCALES (VitePress useLangs twin).
 const glaNav = {
   nav: localeNavLinks(nav.en.nav, 'gla', toGlagolitic),
@@ -39,6 +107,8 @@ const siteDescriptionBg = config.descriptionBg
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  // ~69 catch-all shells — serial SSR (buildConcurrency>1 races .vitepress/.temp); solo build ~85–95s.
+  buildConcurrency: 1,
   title: siteTitle,
   description: siteDescription,
   // Page tree lives under .vitepress/pages (thin mounts + paths.ts); logic in src/; static assets in public/.
@@ -53,13 +123,32 @@ export default defineConfig({
   // theme chunk is large by design. Raise the warning limit to keep build output
   // clean while still flagging genuine bloat above the headroom.
   vite: {
-    build: { chunkSizeWarningLimit: 700 },
-    plugins: srcFolderPlugins(projectRoot),
+    build: {
+      chunkSizeWarningLimit: 700,
+      sourcemap: false,
+      minify: false,
+      rollupOptions: {
+        maxParallelFileOps: 1,
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router')) {
+              return 'vue-vendor'
+            }
+            if (id.includes('src/ui/')) return 'shadcn-ui'
+            return undefined
+          },
+        },
+      },
+    },
+    plugins: [nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), ...srcFolderPlugins(projectRoot)],
     // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
     // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
     // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —
     // the default list has no '.vue', and the render layer is part of src with no exception.
-    resolve: { extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json', '.vue'] },
+    resolve: {
+      alias: { '@src': join(projectRoot, 'src'), '@vp-lib': join(projectRoot, '.vitepress/lib') },
+      extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+    },
   },
   head: [
     // Discover the visitor's language and route to it, default English. The root (/) is the Glagolitic locale;
@@ -113,12 +202,26 @@ export default defineConfig({
     const relative = pageData.relativePath
     const siteLocale = SITE_LOCALES.find(l => relative.startsWith(l.slugPath + '/')) || SITE_LOCALES.find(l => relative === l.slugPath + '/index.md') || SITE_LOCALES[1]
     const isBg = siteLocale.code === 'bg'
-    const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    const routeParams = (pageData.params ?? {}) as Record<string, unknown>
+    const path = universalRoutePath(relative, siteLocale.code, routeParams)
+    const usesUniversal =
+      frontmatter.layout !== 'home' &&
+      (frontmatter.monograph === true ||
+        Boolean(frontmatter.universal) ||
+        /\[(page|path)\]\.md$/.test(relative) ||
+        /\/(papers|references|diamonds)\/(index\.md|\[id\]\.md)$/.test(relative))
+    if (usesUniversal) {
+      pageData.params = {
+        ...routeParams,
+        universal: computeUniversalPage(path, routeParams),
+      }
+    }
     // SEO fully computed and holographic: title, keywords, description, category and
     // holographic tags are derived from the route, then folded into frontmatter, the
     // head meta and the JSON-LD. Explicit frontmatter always overrides the computed
     // values. The same route feeds the sitemap (src/quantum/lake/dist), so they never drift.
     const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
+    ;(pageData as { __harmonicSeo?: typeof seo }).__harmonicSeo = seo
     const name = pageData.title || (frontmatter.title as string) || seo.title
     const description = pageData.description || frontmatter.description || seo.description
     const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
@@ -168,6 +271,21 @@ export default defineConfig({
       og.push(['meta', { name: 'twitter:image', content: image }])
     }
     for (const tag of og) head.push(tag)
+    // Home hero: computed from sealed src (homeHero) — rosetta rays + 三才; Glagolitic root transliterates.
+    if (isHome && frontmatter.layout === 'home') {
+      const locale = siteLocale.code === 'bg' ? 'bg' : siteLocale.code === 'cu' ? 'gla' : 'en'
+      let hero = homeHero(locale)
+      if (locale === 'gla') {
+        hero = {
+          ...hero,
+          name: toGlagolitic(hero.name),
+          text: toGlagolitic(hero.text),
+          tagline: toGlagolitic(hero.tagline),
+          actions: hero.actions.map((action) => ({ ...action, text: toGlagolitic(action.text) })),
+        }
+      }
+      frontmatter.hero = hero
+    }
   },
   // One JSON-LD template serves all: every page generates its structured data from
   // itself — its route (computed SEO) and its frontmatter (the documented contract
@@ -176,11 +294,15 @@ export default defineConfig({
   // render, exactly once per page — head entries pushed via frontmatter can be
   // applied twice for static pages (metas are deduped by key downstream; script
   // tags are not), so the post-render hook is the one place a script tag lands once.
+  buildEnd() {
+    releaseDirectBuildLock()
+  },
   transformHtml(html, _id, { pageData }) {
     const frontmatter = (pageData.frontmatter || {}) as Record<string, unknown>
     const relative = pageData.relativePath
     const path = '/' + relative.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
-    const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
+    const seo = (pageData as { __harmonicSeo?: ReturnType<typeof computedSeo> }).__harmonicSeo
+      ?? computedSeo(path, pageData.title || (frontmatter.title as string) || '')
     const blocks = jsonLdTemplate({
       path,
       relativePath: relative,
@@ -190,7 +312,8 @@ export default defineConfig({
       site: { en: siteTitle, bg: siteTitleBg, descriptionEn: siteDescription, descriptionBg: siteDescriptionBg },
     })
     const scripts = blocks.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join('')
-    return html.replace('</head>', `${scripts}</head>`)
+    const heroStyle = `<style id="vp-hero-chrome">${heroChromeStyleBlock(path, buildMatrix())}</style>`
+    return html.replace('</head>', `${heroStyle}${scripts}</head>`)
   },
   themeConfig: {
     // The GitHub repository, shown in the top nav. One source for the repo link across both locales.

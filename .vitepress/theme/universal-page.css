@@ -1,0 +1,30 @@
+/* Universal page template — rosetta ray headers + computed spacing. */
+.universal-page {
+  max-width: min(100%, calc(42rem + var(--vp-movie-gap, 0.75rem) * 8));
+  margin-inline: auto;
+  padding: calc(var(--vp-movie-gap, 0.75rem) * 0.5) 0
+    calc(var(--vp-movie-gap, 0.75rem) * 1.25);
+}
+
+.rosetta-ray {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: calc(var(--vp-movie-gap) * 1.25) 0 calc(var(--vp-movie-gap) * 0.65);
+  font-size: calc(0.88rem + var(--vp-movie-gap) * 0.08);
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+.rosetta-ray__glyph {
+  color: oklch(0.72 0.12 calc(var(--ray-hue) * 1deg));
+  font-size: 1.15em;
+}
+
+.rosetta-ray__name {
+  opacity: var(--vp-movie-fade);
+  letter-spacing: 0.04em;
+}
+
+.proof__ok {
+  color: var(--vp-movie-mark-on);
+}

@@ -1,5 +1,31 @@
-// VitePress requires the custom theme entry at .vitepress/theme/index.ts. The UI render layer — every
-// component, composable, the styles and the registration logic — now lives in src/ui, so ALL logic
-// (model AND UI) sits under src/. This file is the thin shell VitePress loads: it re-exports the theme
-// assembled in src/render/ui/index.ts. The path here is the framework handle; the source is in src/.
-export { default } from '../../src/render/ui/index.ts'
+// VitePress requires the custom theme entry at .vitepress/theme/index.ts — thin shell only.
+import type { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+import Layout from './Layout.vue'
+import ClientOnly from './components/ClientOnly.vue'
+import DigitMotion from '../../src/water/digit/index.vue'
+import { registerVitePressComponents } from '../lib/register-components'
+import './hero-glass.css'
+import './universal-page.css'
+import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
+
+export default {
+  extends: DefaultTheme,
+  Layout,
+  enhanceApp(ctx) {
+    DefaultTheme.enhanceApp?.(ctx)
+    void registerVitePressComponents(ctx.app)
+    ctx.app.component('ClientOnly', ClientOnly)
+    ctx.app.component('UniversalPageTemplate', UniversalPageTemplate)
+
+    const { app } = ctx
+    app.component('DigitMotion', DigitMotion)
+    app.component('SevenStarRosetta', DigitMotion)
+
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {})
+      })
+    }
+  },
+} satisfies Theme

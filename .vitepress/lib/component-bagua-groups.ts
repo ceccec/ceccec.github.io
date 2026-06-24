@@ -1,0 +1,34 @@
+// Thin VitePress mount — groups page components by rosetta ray (7-star coprime grouping)
+// without importing the mind barrel (node:fs). The rosettaRayOf function is the same
+// Glagolitic digital-root ladder used in src/water/digit — inlined here for SSR safety.
+
+const ROSETTA_RAYS = [
+  { ray: 0, glyph: 'Ⰰ', nameEn: 'Alpha', nameBg: 'Алфа', domain: 'origin', hue: 0 },
+  { ray: 1, glyph: 'Ⰲ', nameEn: 'Voice', nameBg: 'Глас', domain: 'expression', hue: 51 },
+  { ray: 2, glyph: 'Ⰴ', nameEn: 'Spirit', nameBg: 'Дух', domain: 'knowledge', hue: 102 },
+  { ray: 3, glyph: 'Ⰶ', nameEn: 'Life', nameBg: 'Живот', domain: 'nature', hue: 154 },
+  { ray: 4, glyph: 'Ⰹ', nameEn: 'Thought', nameBg: 'Мисъл', domain: 'computation', hue: 205 },
+  { ray: 5, glyph: 'Ⰿ', nameEn: 'Form', nameBg: 'Форма', domain: 'geometry', hue: 257 },
+  { ray: 6, glyph: 'Ⱄ', nameEn: 'Word', nameBg: 'Слово', domain: 'language', hue: 308 },
+] as const
+
+function rosettaRayOf(name: string): number {
+  const glaText = [...name].map((ch) => ch.toLowerCase().charCodeAt(0) - 96).filter((n) => n > 0 && n <= 26)
+  const positionSum = glaText.reduce((sum, n) => sum + ((n - 1) % 9 + 1), 0)
+  return positionSum % 7
+}
+
+export function componentBaguaGroups(names: readonly string[] = []) {
+  const groups = ROSETTA_RAYS.map((rayMeta) => ({
+    ray: rayMeta.ray,
+    glyph: rayMeta.glyph,
+    name: rayMeta.nameEn,
+    attribute: rayMeta.domain,
+    labelEn: rayMeta.nameEn,
+    labelBg: rayMeta.nameBg,
+    hue: rayMeta.hue,
+    components: names.filter((name) => rosettaRayOf(name) === rayMeta.ray),
+  })).filter((group) => group.components.length > 0)
+  const grouped = groups.length > 1
+  return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
+}

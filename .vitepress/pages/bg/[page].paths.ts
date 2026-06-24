@@ -1,4 +1,10 @@
-// The Cyrillic (Bulgarian) [monograph] route at /bg/ — a thin mount over the one source (monographPaths).
-import { monographPaths } from '../../../src/quantum/heaven/mind'
+// Bulgarian monograph catch-all — vitepressAutomountPaths discovers complete indexes (no reconfiguration).
+import { monographSliceFromRoute, vitepressAutomountPaths } from '../../../src/routes/automount'
 
-export default { paths: () => monographPaths('bg') }
+export default {
+  paths: () =>
+    vitepressAutomountPaths('bg').map(({ params }) => {
+      const slice = monographSliceFromRoute(`/bg/${params.page}`, 'bg')
+      return { params: slice ?? params }
+    }),
+}

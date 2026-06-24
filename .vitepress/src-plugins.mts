@@ -1,11 +1,9 @@
 import type { Plugin } from 'vite'
 import { computedPagesPlugin } from './computed-pages.mts'
-import { vitePlugin as distRouter } from '../src/quantum/lake/dist/index.ts'
+import { vitePlugin as distRouter } from '../src/quantum/lake/dist'
 
-// One index serves all: each src folder's index is a quantum VitePress router — it routes a request to
-// its computed, content-addressed output and wires itself into VitePress (dev middleware and/or buildEnd).
-// This aggregator gathers those routers into the single plugin list the config spreads, so the config
-// never hand-lists plugins. To wire another folder, give its index a `vitePlugin` router and add one entry.
+// Aggregates VitePress plugins from computing indices — mind (computed-pages) and lake/dist (dist router).
+// folderLaw.vitepressIndex: VitePress automounts every complete discovered src index via vitepressAutomountPaths — no per-index reconfiguration.
 //
 //   src/quantum/heaven/mind        → computed-pages router — the Glagolitic root home, transliterated from the
 //                             English home. It STAYS in .vitepress: it reads en/index.md with Node fs, and
