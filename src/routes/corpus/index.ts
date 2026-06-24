@@ -3,7 +3,7 @@
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
-import { localeFromRoute, pickLocale, staticPages, type LocaleName } from '../../site'
+import { localeFromRoute, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, type LocaleName, type PageForgeSeal } from '../../site'
 import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../water/digit'
 import { monographSliceFromRoute } from '../automount'
 import { siteRoutes } from '../../fire/li'
@@ -254,6 +254,7 @@ export type UniversalPage = {
   proofNote: string
   cardSeed: string
   root: string
+  forge: PageForgeSeal
 }
 
 const CORPUS_ROUTE_KINDS: readonly CorpusKind[] = ['papers', 'references', 'diamonds']
@@ -266,7 +267,7 @@ function parseCorpusRoute(route: string): { kind: CorpusKind; id: string | null 
   return { kind, id: parts[1] ?? null }
 }
 
-function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatrix): UniversalPage {
+function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatrix): Omit<UniversalPage, 'forge'> {
   const cc = completeCorpus(matrix)
   const titles: Record<CorpusKind, { en: string; bg: string }> = {
     papers: { en: 'Proof papers', bg: 'Доказателни статии' },
@@ -274,12 +275,13 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
     diamonds: { en: 'Diamonds', bg: 'Диаманти' },
   }
   const title = pickLocale(locale, titles[kind].en, titles[kind].bg)
+  const description = localizeMonolingual(locale, cc.statement)
   return {
     kind: 'corpus-index',
     route: '',
     locale,
     title,
-    description: cc.statement,
+    description,
     components: [],
     groups: componentRosettaGroups([]),
     proof: cc.root,
@@ -289,12 +291,12 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
     corpusId: null,
     decoded: {
       title,
-      statement: cc.statement,
-      boundary: cc.boundary,
+      statement: description,
+      boundary: localizeMonolingual(locale, cc.boundary),
       facets: [
-        { facet: `${cc.papers} papers`, on: cc.papers === 432 },
-        { facet: `${cc.references} references`, on: cc.references === 432 },
-        { facet: `${cc.total} leaves · depth ${cc.depth}`, on: cc.perfect },
+        { facet: localizeMonolingual(locale, `${cc.papers} papers`), on: cc.papers === 432 },
+        { facet: localizeMonolingual(locale, `${cc.references} references`), on: cc.references === 432 },
+        { facet: localizeMonolingual(locale, `${cc.total} leaves · depth ${cc.depth}`), on: cc.perfect },
       ],
       ok: cc.complete,
     },
@@ -311,7 +313,7 @@ function corpusDetailPage(
   locale: LocaleName,
   route: string,
   matrix: MindMatrix,
-): UniversalPage {
+): Omit<UniversalPage, 'forge'> {
   const params = corpusParams(kind, id, matrix)
   const title =
     kind === 'papers'
@@ -326,25 +328,29 @@ function corpusDetailPage(
         ? `${String((params as { glyph?: string }).glyph)} · ${String((params as { kind?: string }).kind ?? kind)}`
         : id
   const facets: UniversalDecodedFacet[] = []
+  const facet = (text: string, on: boolean, link?: string) =>
+    facets.push({ facet: localizeMonolingual(locale, text), on, ...(link ? { link } : {}) })
   if (params && 'proofVerified' in params) {
-    facets.push({ facet: `Merkle proof verified · depth ${String((params as { proofDepth?: number }).proofDepth ?? 0)}`, on: Boolean((params as { proofVerified?: boolean }).proofVerified) })
+    facet(`Merkle proof verified · depth ${String((params as { proofDepth?: number }).proofDepth ?? 0)}`, Boolean((params as { proofVerified?: boolean }).proofVerified))
   }
   if (params && 'corpusRoot' in params) {
-    facets.push({ facet: `corpus root ${String((params as { corpusRoot?: string }).corpusRoot).slice(0, 18)}…`, on: true })
+    facet(`corpus root ${String((params as { corpusRoot?: string }).corpusRoot).slice(0, 18)}…`, true)
   }
   if (params && 'link' in params && kind === 'diamonds') {
-    facets.push({ facet: String((params as { link?: string }).link), on: true, link: String((params as { link?: string }).link) })
+    facet(String((params as { link?: string }).link), true, String((params as { link?: string }).link))
   }
   if (params && 'paperId' in params && kind === 'references') {
-    facets.push({ facet: `→ paper ${String((params as { paperId?: string }).paperId)}`, on: true, link: `/papers/${String((params as { paperId?: string }).paperId)}` })
+    facet(`→ paper ${String((params as { paperId?: string }).paperId)}`, true, `/papers/${String((params as { paperId?: string }).paperId)}`)
   }
   const cc = completeCorpus(matrix)
+  const displayTitle = localizeMonolingual(locale, title)
+  const displayStatement = localizeMonolingual(locale, statement)
   return {
     kind: 'corpus-detail',
     route,
     locale,
-    title,
-    description: statement,
+    title: displayTitle,
+    description: displayStatement,
     components: [],
     groups: componentRosettaGroups([]),
     proof: params && 'root' in params ? String((params as { root?: string }).root ?? (params as { receipt?: string }).receipt) : null,
@@ -353,9 +359,9 @@ function corpusDetailPage(
     corpusKind: kind,
     corpusId: id,
     decoded: {
-      title,
-      statement,
-      boundary: cc.boundary,
+      title: displayTitle,
+      statement: displayStatement,
+      boundary: localizeMonolingual(locale, cc.boundary),
       facets,
       ok: Boolean(params),
     },
@@ -372,6 +378,7 @@ export function computeUniversalPage(
   params: Record<string, unknown> = {},
   matrix: MindMatrix = buildMatrix(),
 ): UniversalPage {
+  const forge = pageForgeMaxTamper(route, matrix)
   const locale = localeFromRoute(route)
   const corpus = parseCorpusRoute(route)
   const paramId = typeof params.id === 'string' ? params.id : typeof params.index === 'string' ? params.index : null
@@ -380,9 +387,9 @@ export function computeUniversalPage(
     const id = paramId ?? corpus.id
     if (!id) {
       const page = corpusIndexPage(corpus.kind, locale, matrix)
-      return { ...page, route }
+      return { ...page, route, forge }
     }
-    return corpusDetailPage(corpus.kind, id, locale, route, matrix)
+    return { ...corpusDetailPage(corpus.kind, id, locale, route, matrix), forge }
   }
 
   const hasSlice =
@@ -417,8 +424,8 @@ export function computeUniversalPage(
           statement: slice?.description,
           boundary: rosetta.boundary,
           facets: [
-            { facet: `${rosetta.rayMeta.glyph} ${rosetta.rayMeta.nameEn}`, on: true },
-            { facet: rosetta.content.pageKind, on: rosetta.computed },
+            { facet: `${rosetta.rayMeta.glyph} ${pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg)}`, on: true },
+            { facet: localizeMonolingual(locale, rosetta.content.pageKind), on: rosetta.computed },
             { facet: rosetta.glaAddress.slice(0, 24), on: isUuid(rosetta.glaAddress) },
           ],
           ok: rosetta.computed,
@@ -447,6 +454,7 @@ export function computeUniversalPage(
     ),
     cardSeed,
     root: merkleFold([proof ?? '', route, cardSeed]),
+    forge,
   }
 }
 
@@ -459,7 +467,9 @@ export {
   ogBuildsNavigation,
   rosettaComputesNavigationAndContent,
   siteNavigation,
+  vitepressSidebar,
 } from '../../learning'
+export { pageForgeMaxTamper, type PageForgeSeal } from '../../site'
 export {
   contentIsMonographOfMonographs,
   eachPageSpeaksContinuesNext,

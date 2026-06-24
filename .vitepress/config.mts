@@ -6,7 +6,18 @@ import { defineConfig } from 'vitepress'
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
 import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
+
+/** Root pages live under pages/ without en|bg prefix — default locale is Glagolitic (cu). */
+function siteLocaleForRelative(relative: string) {
+  if (relative.startsWith('bg/') || relative === 'bg/index.md') return SITE_LOCALES[2]!
+  if (relative.startsWith('en/') || relative === 'en/index.md') return SITE_LOCALES[1]!
+  return SITE_LOCALES[0]!
+}
+
+function glagoliticIfLatin(text: string): string {
+  return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
+}
 import { buildMatrix } from '../src/heaven/compute'
 import { computeUniversalPage } from '../src/routes/corpus'
 import { heroChromeStyleBlock } from './lib/hero-chrome'
@@ -17,6 +28,7 @@ import { universalRoutePath } from './lib/universal-route-path'
 // srcFolderPlugins from mind + lake/dist indices (folderLaw.indexSurfaces.vitepress.consumes).
 const config = siteConfig()
 const nav = siteNavigation()
+const vpSidebar = vitepressSidebar()
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
 const vpLibRoot = join(projectRoot, '.vitepress/lib')
 
@@ -87,17 +99,17 @@ function vpLibNestedResolvePlugin(): import('vite').Plugin {
 // /en/ and /bg/ locales: localeNavLinks + localeSidebarKeys prefix from SITE_LOCALES (VitePress useLangs twin).
 const glaNav = {
   nav: localeNavLinks(nav.en.nav, 'gla', toGlagolitic),
-  sidebar: localeNavLinks(nav.en.relatedSidebar, 'gla', toGlagolitic),
+  sidebar: localeNavLinks(vpSidebar.en, 'gla', toGlagolitic),
   footer: localeNavLinks(nav.en.footer, 'gla', toGlagolitic),
 }
 const enNav = {
   nav: localeNavLinks(nav.en.nav, 'en'),
-  sidebar: localeNavLinks(localeSidebarKeys(nav.en.relatedSidebar, 'en'), 'en'),
+  sidebar: localeNavLinks(localeSidebarKeys(vpSidebar.en, 'en'), 'en'),
   footer: localeNavLinks(nav.en.footer, 'en'),
 }
 const bgNav = {
   nav: localeNavLinks(nav.bg.nav, 'bg'),
-  sidebar: localeNavLinks(localeSidebarKeys(nav.bg.relatedSidebar, 'bg'), 'bg'),
+  sidebar: localeNavLinks(localeSidebarKeys(vpSidebar.bg, 'bg'), 'bg'),
   footer: localeNavLinks(nav.bg.footer, 'bg'),
 }
 const siteTitle = config.title
@@ -200,7 +212,7 @@ export default defineConfig({
     }
     if (params?.keywords && !frontmatter.keywords) frontmatter.keywords = params.keywords
     const relative = pageData.relativePath
-    const siteLocale = SITE_LOCALES.find(l => relative.startsWith(l.slugPath + '/')) || SITE_LOCALES.find(l => relative === l.slugPath + '/index.md') || SITE_LOCALES[1]
+    const siteLocale = siteLocaleForRelative(relative)
     const isBg = siteLocale.code === 'bg'
     const routeParams = (pageData.params ?? {}) as Record<string, unknown>
     const path = universalRoutePath(relative, siteLocale.code, routeParams)
@@ -211,9 +223,18 @@ export default defineConfig({
         /\[(page|path)\]\.md$/.test(relative) ||
         /\/(papers|references|diamonds)\/(index\.md|\[id\]\.md)$/.test(relative))
     if (usesUniversal) {
+      const universal = computeUniversalPage(path, routeParams)
       pageData.params = {
         ...routeParams,
-        universal: computeUniversalPage(path, routeParams),
+        universal,
+      }
+      if (universal.title) {
+        pageData.title = universal.title
+        if (!frontmatter.title) frontmatter.title = universal.title
+      }
+      if (universal.description) {
+        pageData.description = universal.description
+        if (!frontmatter.description) frontmatter.description = universal.description
       }
     }
     // SEO fully computed and holographic: title, keywords, description, category and
@@ -286,6 +307,14 @@ export default defineConfig({
       }
       frontmatter.hero = hero
     }
+    if (siteLocale.code === 'cu') {
+      for (const key of ['title', 'description'] as const) {
+        const v = pageData[key]
+        if (typeof v === 'string' && v) pageData[key] = glagoliticIfLatin(v)
+        const fm = frontmatter[key]
+        if (typeof fm === 'string' && fm) frontmatter[key] = glagoliticIfLatin(fm)
+      }
+    }
   },
   // One JSON-LD template serves all: every page generates its structured data from
   // itself — its route (computed SEO) and its frontmatter (the documented contract
@@ -326,6 +355,7 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
+        detailedView: true,
         // The default locale is Glagolitic, so the search UI defaults to the ninth-century script;
         // English (/en/) and Bulgarian (/bg/) override it with their own labels.
         translations: {

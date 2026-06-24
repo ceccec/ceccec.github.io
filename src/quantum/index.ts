@@ -19,6 +19,7 @@ import { buildMatrix } from '../heaven/compute'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue } from '../thunder/movie'
 import { quantumScaleHue } from './thunder/science'
 import { plasmaMovieStreams, type PlasmaWiredStream } from '../thunder/trading'
+import { autoSpeech } from '../fire/li'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -447,11 +448,9 @@ export function sharedHeroAt(
   const path = route || '/'
   const t = at / 1000
   const p = (at % HERO_CYCLE_MS) / HERO_CYCLE_MS
-  const movieText = [copy.title, copy.tagline, copy.description, ...(copy.keywords ?? [])]
-    .filter(Boolean)
-    .join(' ')
-  const seed = seedOf(movieText || path)
-  const wired = plasmaMovieStreams(path, movieText || path)
+  const movieText = movieTextFromCopy(copy) || path
+  const seed = seedOf(movieText)
+  const wired = plasmaMovieStreams(path, movieText)
   const palette = plasmaMoviePalette(buildMatrix(), path, true)
   return {
     route: path,
@@ -462,11 +461,50 @@ export function sharedHeroAt(
     hue: palette.waveHue,
     arms: armsOf(seed),
     tags: copy.keywords ?? [],
-    movieText: movieText || path,
+    movieText,
     wiredStreams: wired.streams,
     palette,
     reduce,
     cssWidth,
+  }
+}
+
+/** Page copy folded to one movie/subtitle seed string. */
+export function movieTextFromCopy(copy: SharedHeroCopy): string {
+  return [copy.title, copy.tagline, copy.description, ...(copy.keywords ?? [])]
+    .filter(Boolean)
+    .join(' ')
+}
+
+/** One subtitle cue at instant `at` — same phase clock as `sharedHeroAt`. */
+export interface RealtimeSubtitleState {
+  ready: boolean
+  index: number
+  text: string
+  cueCount: number
+  progress: number
+  root: string
+}
+
+export function realtimeSubtitleAt(
+  movieText: string,
+  at: number,
+  cycleMs = HERO_CYCLE_MS,
+): RealtimeSubtitleState {
+  const { cues, ready, root } = autoSpeech(movieText)
+  if (!ready || cues.length === 0) {
+    return { ready: false, index: 0, text: '', cueCount: 0, progress: 0, root }
+  }
+  const p = (at % cycleMs) / cycleMs
+  const slot = p * cues.length
+  const index = Math.min(Math.floor(slot), cues.length - 1)
+  return {
+    ready: true,
+    index,
+    text: cues[index]!.text,
+    cueCount: cues.length,
+    progress: slot - index,
+    root,
   }
 }
 

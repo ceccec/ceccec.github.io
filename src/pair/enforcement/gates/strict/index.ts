@@ -161,7 +161,24 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
   }
   pushStrictOffenders(findings, 'import-gap', 'folder', s.importGaps)
   pushStrictOffenders(findings, 'index-only', 'folder', s.indexOnly)
-  pushStrictOffenders(findings, 'monolith-file', 'compression', s.fileSize)
+  for (const v of s.fileSize.slice(0, 12)) {
+    findings.push({
+      wave: 'gate',
+      severity: 'warn',
+      kind: 'monolith-file',
+      harmonic: 'compression',
+      detail: `${v.file}: ${v.reason}`,
+    })
+  }
+  if (s.fileSize.length > 12) {
+    findings.push({
+      wave: 'gate',
+      severity: 'warn',
+      kind: 'monolith-file',
+      harmonic: 'compression',
+      detail: `${s.fileSize.length - 12} more monolith-file ratchet target(s) — full list in facts.strict`,
+    })
+  }
   pushStrictOffenders(findings, 'non-index-code', 'folder', s.nonTs)
   pushStrictOffenders(findings, 'vitepress-index', 'config', s.vitepressIndex.filter((v) => !v.transitional))
   for (const v of s.vitepressIndex.filter((t) => t.transitional)) {

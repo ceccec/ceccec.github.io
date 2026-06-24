@@ -7,7 +7,7 @@ import { plasmaMoviePalette, type PlasmaMoviePalette } from '../plasma'
 import { endlessBackgroundMovie } from '../canvas'
 import { hologram } from '../projection'
 import { agentEducation } from '../../../learning'
-import { staticPages } from '../../../site'
+import { staticPages, pickLocale, displayText, type LocaleName } from '../../../site'
 import { tamperingCostDecoded } from '../../../water/crypto'
 import { proofRegistry } from '../../../mountain/seals'
 
@@ -98,9 +98,8 @@ export function decodedCardFacetMark(on: boolean, _index: number, _facet: string
 
 export function decodedCardCrosslinksLabel(locale: string, _path: string, count: number): string {
   if (count <= 0) return ''
-  if (locale === 'bg') return `Свързани (${count})`
-  if (locale === 'gla') return `ꙗ광ъ (${count})`
-  return `Related (${count})`
+  const loc = locale as LocaleName
+  return pickLocale(loc, `Related (${count})`, `Свързани (${count})`)
 }
 
 export function decodedCardTextShadow(on: boolean): string {
@@ -108,18 +107,20 @@ export function decodedCardTextShadow(on: boolean): string {
 }
 
 export function immersiveMovieToggleLabel(_path: string, immersive: boolean, locale: string): string {
-  if (immersive) return locale === 'bg' ? 'Покажи текста (i)' : locale === 'gla' ? 'ꙗ광ъ текста (i)' : 'Show text (i)'
-  return locale === 'bg' ? 'Скрий текста (i)' : locale === 'gla' ? 'ꙗ광ъ текста (i)' : 'Hide text (i)'
+  const loc = locale as LocaleName
+  if (immersive) return pickLocale(loc, 'Show text (i)', 'Покажи текста (i)')
+  return pickLocale(loc, 'Hide text (i)', 'Скрий текста (i)')
 }
 
 export function startHereDecodedView(locale: string): DecodedComponentView {
+  const loc = locale as LocaleName
   const page = staticPages().find((entry) => entry.slug === 'start')
   const agents = agentEducation()
   return {
-    title: locale === 'bg' ? page?.title.bg : page?.title.en ?? 'Start here',
-    statement: page?.description.en,
-    boundary: page?.keywords?.[0],
-    facets: agents.lessons.slice(0, 8).map((lesson) => ({ facet: lesson.rule, on: true })),
+    title: page ? pickLocale(loc, page.title.en, page.title.bg) : pickLocale(loc, 'Start here', 'Започни тук'),
+    statement: page ? pickLocale(loc, page.description.en, page.description.bg) : undefined,
+    boundary: page?.keywords?.[0] ? displayText(loc, page.keywords[0]) : undefined,
+    facets: agents.lessons.slice(0, 8).map((lesson) => ({ facet: displayText(loc, lesson.rule), on: true })),
     ok: agents.educated,
   }
 }

@@ -2,27 +2,19 @@
 import { computed } from 'vue'
 import { useRoute } from 'vitepress'
 import { realtimeWiring } from '../../../src/thunder/trading/index.ts'
-import { localeFromRoute, localePath, pickLocale } from '../../../src/site/index'
-import { cardMovieColorVars, cardMovieSeed } from '@vp-lib/hero-movie'
+import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 
 const route = useRoute()
-const locale = computed(() => localeFromRoute(route.path))
+const { pick, localize } = useSiteLocale()
 
 const wire = computed(() => realtimeWiring(route.path))
 
-const cardStyle = computed(() =>
-  cardMovieColorVars(route.path, cardMovieSeed(['trinity-gateways', wire.value.here])),
-)
+const { cardStyle } = useCardMovie(() => ['trinity-gateways', wire.value.here])
 
-const pick = (en: string, bg: string) => pickLocale(locale.value, en, bg)
-const link = (slug: string) => localePath(slug ? `/${slug}` : '/', locale.value)
+const link = (slug: string) => localize(slug ? `/${slug}` : '/')
 
-const gatewaysLabel = computed(() =>
-  pickLocale(locale.value, 'Trinity gateways', 'Троични портали'),
-)
-const relatedLabel = computed(() =>
-  pickLocale(locale.value, 'Related by shared tags', 'Свързани по общи тагове'),
-)
+const gatewaysLabel = computed(() => pick('Trinity gateways', 'Троични портали'))
+const relatedLabel = computed(() => pick('Related by shared tags', 'Свързани по общи тагове'))
 </script>
 
 <template>

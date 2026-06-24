@@ -1,6 +1,6 @@
 // Mission verify — limits · structure · rosetta batches · precommit.
 import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, relative } from 'node:path'
 import { buildMatrix } from '../../../../heaven/compute'
 import { taxonomyIcons } from '../../../../fire/li'
 import { modelSeal, emergentDimensions } from '../../../../heaven/balance'
@@ -51,16 +51,48 @@ export function runVerifyLimitsExit(root: string): number {
 
 export async function runVerifyStructureExit(root: string): Promise<number> {
   const types = runCheckTypesExit(root)
-  if (types !== 0) return types
+  if (types !== 0) {
+    process.stderr.write('✗ verify:structure — check:types failed\n')
+    return types
+  }
   const facts = collectEnforcementFacts(root)
-  if (!strictGatePassed(facts.strict)) return 1
-  if (!computationalGatePassed(facts.computational)) return 1
+  if (!strictGatePassed(facts.strict)) {
+    const s = facts.strict
+    const importSample = s.imports
+      .slice(0, 4)
+      .map((v) => `${relative(root, v.file)}: '${v.spec}' (${v.reason})`)
+      .join('; ')
+    process.stderr.write(
+      `✗ verify:structure — strict gates: imports=${s.imports.length} importGaps=${s.importGaps.length} indexOnly=${s.indexOnly.length} vitepress=${s.vitepressIndex.filter((v) => !v.transitional).length} nonTs=${s.nonTs.length} hyphen=${s.hyphenFolders.length} shell=${s.scriptShellViolations.length} pairs=${s.pairsPaired} merkle=${s.merkleOk} digit=${s.digitPassed}${importSample ? `\n   ${importSample}` : ''}\n`,
+    )
+    return 1
+  }
+  if (!computationalGatePassed(facts.computational)) {
+    process.stderr.write('✗ verify:structure — computational gates failed\n')
+    return 1
+  }
   const tools = toolsSavedInSrcFirst(facts.scriptShells.map((s) => ({ path: s.path, lines: s.lines, routesThroughSrc: s.routesThroughSrc })))
-  if (!tools.enforced) return 1
-  if (!importsAreFoldersOnly(collectImportOffenders(facts), facts.srcCodeFiles.length).enforced) return 1
-  if (!foldersAreOneWordPerLevel(collectHyphenFolderOffenders(facts), facts.srcCodeFiles.length).enforced) return 1
-  if (!srcFilesAreIndexOnly(collectIndexOnlyOffenders(facts), facts.srcCodeFiles.length).enforced) return 1
-  if (!foldsLiveAtTheirDomainHome(collectFoldDefiners(facts, Object.values(FOLD_HOMES).flat() as string[])).enforced) return 1
+  if (!tools.enforced) {
+    process.stderr.write(`✗ verify:structure — script shells: ${tools.violations.join(', ')}\n`)
+    return 1
+  }
+  if (!importsAreFoldersOnly(collectImportOffenders(facts), facts.srcCodeFiles.length).enforced) {
+    process.stderr.write(`✗ verify:structure — import offenders: ${collectImportOffenders(facts).length}\n`)
+    return 1
+  }
+  if (!foldersAreOneWordPerLevel(collectHyphenFolderOffenders(facts), facts.srcCodeFiles.length).enforced) {
+    process.stderr.write(`✗ verify:structure — hyphen folders: ${collectHyphenFolderOffenders(facts).length}\n`)
+    return 1
+  }
+  if (!srcFilesAreIndexOnly(collectIndexOnlyOffenders(facts), facts.srcCodeFiles.length).enforced) {
+    process.stderr.write(`✗ verify:structure — index-only: ${collectIndexOnlyOffenders(facts).length}\n`)
+    return 1
+  }
+  const foldHomes = foldsLiveAtTheirDomainHome(collectFoldDefiners(facts, Object.values(FOLD_HOMES).flat() as string[]))
+  if (!foldHomes.enforced) {
+    process.stderr.write(`✗ verify:structure — fold homes: ${foldHomes.violations.join('; ')}\n`)
+    return 1
+  }
   process.stdout.write(`✓ verify:structure — ${facts.computational.indexCount}/${facts.computational.targetUnfolded} index.ts\n`)
   return 0
 }

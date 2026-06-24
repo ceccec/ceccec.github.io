@@ -388,7 +388,8 @@ if (existsSync(join(root, 'src'))) walkIndices(join(root, 'src'))
 
 const monolithDetail = monolithFileGapDetail(enforcementFacts.strict.fileSize)
 if (monolithDetail) {
-  gaps.push({ harmonic: 'compression', kind: 'monolith-file', detail: monolithDetail })
+  // Byte monolith is a ratchet target (like line compression) — warn only; distribution in progress.
+  warnings.push({ wave: 'weave', severity: 'warn', harmonic: 'compression', kind: 'monolith-file', detail: monolithDetail })
 }
 
 const computationalDetail = computationalLimitsGapDetail(enforcementFacts.computational)

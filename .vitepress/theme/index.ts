@@ -12,15 +12,15 @@ import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
 export default {
   extends: DefaultTheme,
   Layout,
-  enhanceApp(ctx) {
-    DefaultTheme.enhanceApp?.(ctx)
-    void registerVitePressComponents(ctx.app)
-    ctx.app.component('ClientOnly', ClientOnly)
-    ctx.app.component('UniversalPageTemplate', UniversalPageTemplate)
-
-    const { app } = ctx
-    app.component('DigitMotion', DigitMotion)
-    app.component('SevenStarRosetta', DigitMotion)
+  async enhanceApp(ctx) {
+    await DefaultTheme.enhanceApp?.(ctx)
+    await registerVitePressComponents(ctx.app)
+    if (!ctx.app.component('ClientOnly')) ctx.app.component('ClientOnly', ClientOnly)
+    if (!ctx.app.component('UniversalPageTemplate')) {
+      ctx.app.component('UniversalPageTemplate', UniversalPageTemplate)
+    }
+    if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
+    if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)
 
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       window.addEventListener('load', () => {

@@ -3,7 +3,8 @@ import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import type { UniversalPage } from '../../../src/routes/corpus/index.ts'
 import { componentPages } from '../../../src/heaven/balance/index.ts'
-import { localeFromRoute, pickLocale, staticPages } from '../../../src/site/index'
+import { staticPages } from '../../../src/site/index'
+import { useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 
 const props = defineProps<{
@@ -13,16 +14,19 @@ const props = defineProps<{
 
 const route = useRoute()
 const { params } = useData()
+const { pick, componentName } = useSiteLocale()
 
 const view = computed(() => {
   if (props.slug) {
-    const locale = localeFromRoute(route.path)
     const page = [...staticPages(), ...componentPages()].find((entry) => entry.slug === props.slug)
     if (!page) return null
     return {
-      title: pickLocale(locale, page.title.en, page.title.bg),
-      statement: pickLocale(locale, page.description.en, page.description.bg),
-      facets: page.components.slice(0, 4).map((name) => ({ facet: name, on: true })),
+      title: pick(page.title.en, page.title.bg),
+      statement: pick(page.description.en, page.description.bg),
+      facets: page.components.slice(0, 4).map((name) => ({
+        facet: componentName(name),
+        on: true,
+      })),
       ok: true,
     }
   }

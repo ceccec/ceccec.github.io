@@ -15,6 +15,10 @@ import { endlessBackgroundMovie } from '../thunder/movie'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, linkPasteReentryPatternCompletion, live, path, theWhole } from '../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../earth/world'
 import { completeCorpus } from '../routes/corpus'
+import { toGlagolitic } from '../quantum/heaven/library'
+import { proofReport } from '../heaven/compute'
+import { freeForgesMaxCost } from '../heaven/essence'
+import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../water/crypto'
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
@@ -46,10 +50,21 @@ export function localeFromRoute(path: string): LocaleName {
   return 'gla'
 }
 
-/** Bilingual pick — gla and en share the Latin source; bg uses Cyrillic projection. */
+/** Bilingual pick — en uses Latin source; bg uses Cyrillic; gla transliterates Latin to Glagolitic. */
 export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {
-  return locale === 'bg' ? bg : en
+  if (locale === 'bg') return bg
+  if (locale === 'gla' && typeof en === 'string') return toGlagolitic(en) as T
+  return en
 }
+
+/** English-only copy — gla transliterates Latin; skips text already in Glagolitic. */
+export function localizeMonolingual(locale: LocaleName, text: string): string {
+  if (!text || locale !== 'gla') return text
+  return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
+}
+
+/** Alias for card/surface display — same skip-if-glagolitic rule. */
+export const displayText = localizeMonolingual
 
 export function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown {
   if (Array.isArray(node)) return node.map((entry) => localeNavLinks(entry, locale, labelMapper))
@@ -967,6 +982,7 @@ export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
     { facet: 'statistics woven into the movie watermark', on: backgroundMovie(matrix).plays },
     { facet: 'the build’s own self-metrics', on: stats.count >= 9 },
     { facet: 'gaps shown to all eyes (zero)', on: buildStatisticsShowGaps(matrix).shows },
+    { facet: 'every page wired to forge max tampering cost', on: pageForgeMaxTamper('/', matrix).wired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`page-status:${entry.facet}:${entry.on}`) }))
   return {
     shows: facets.every((entry) => entry.on),
@@ -978,6 +994,33 @@ export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
       'Let every page show important statistics as a bottom status and in the movie’s interactive watermarks: the build measures itself — commands, gates, files, papers, diamonds, skill atoms — and those numbers ride along on every page as a quiet bottom status line and woven into the tappable background-movie watermark. The page tells you what it is made of, computed and gapless, in two places at once.',
     boundary:
       'A composition of the build-statistics, background-movie and gaps models describing the real bottom-status and watermark stats. Descriptive self-metrics shown on the page; nothing is collected or sent — they are recomputed locally.',
+  }
+}
+
+/** Per-route forge seal — content-address + max tampering cost wired on every page. */
+export type PageForgeSeal = {
+  pageRoot: string
+  sealRoot: string
+  maxReached: boolean
+  forgeCostLog2: number
+  forgeCostLabel: string
+  statsLine: string
+  wired: boolean
+}
+
+export function pageForgeMaxTamper(route: string, matrix: MindMatrix = buildMatrix()): PageForgeSeal {
+  const proof = proofReport(matrix)
+  const stats = buildStatistics(matrix)
+  const pageRoot = merkleFold([route || '/', matrix.root])
+  const forgeCostLabel = proof.maxTamperingCostReached ? 'T_max = ∞' : `2^${proof.maxTamperingCostLog2}`
+  return {
+    pageRoot,
+    sealRoot: matrix.root,
+    maxReached: proof.maxTamperingCostReached,
+    forgeCostLog2: proof.maxTamperingCostLog2,
+    forgeCostLabel,
+    statsLine: stats.stats.map((entry) => `${entry.stat} ${entry.value}`).join(' · '),
+    wired: freeForgesMaxCost(matrix).holds && pagesWiredAtRuntimeZeroBuildMaxTamper(matrix).wired,
   }
 }
 

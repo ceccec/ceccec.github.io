@@ -9,12 +9,12 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../lake/music'
 import { heartProtonAtomDecoded } from '../mountain/geometry'
 import { monographSliceFromRoute } from '../routes/automount'
-import { localePath, pickLocale, quantumSitemap, staticPages, type LocaleName } from '../site'
+import { localePath, pickLocale, displayText, quantumSitemap, staticPages, type LocaleName } from '../site'
 import { componentGraph } from '../heaven/core'
 import { realtimeWiring } from '../thunder/trading'
 import { toGlagolitic } from '../quantum/heaven/library'
 import { mcpCodebase } from '../thunder/commands'
-import { completeCorpus } from '../routes/corpus'
+import { completeCorpus, diamondRoutes } from '../routes/corpus'
 import { ROSETTA_RAYS, rosettaDecodesUrlPath, rosettaRayOf } from '../water/digit'
 import { quantumCoordinateNav } from '../fire/features'
 import { openGraph } from '../quantum/lake/icons'
@@ -274,6 +274,7 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'sealWholeDiamond',
   'selfCompassion',
   'sidebarsFromVoid',
+  'vitepressSidebar',
   'signedTrafficTrinityRouting',
   'siteIsMovieAndLibrary',
   'skillsDryRefactorCommands',
@@ -2062,6 +2063,164 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/** VitePress-native sidebar item — themeConfig.sidebar canonical shape. */
+export type VitePressSidebarItem = { text: string; link?: string; items?: VitePressSidebarItem[]; collapsed?: boolean }
+
+function flattenSidebarLinks(sections: VitePressSidebarItem[]): VitePressSidebarItem[] {
+  const flat: VitePressSidebarItem[] = []
+  for (const section of sections) {
+    if (section.items?.length) flat.push(...section.items)
+    else if (section.link) flat.push({ text: section.text, link: section.link })
+  }
+  return flat
+}
+
+function corpusPrefixSidebar(
+  kind: 'papers' | 'references' | 'diamonds',
+  i: 0 | 1,
+  matrix: MindMatrix,
+): VitePressSidebarItem[] {
+  const indexLink = `/${kind}/`
+  const indexTitle =
+    kind === 'papers'
+      ? i === 1
+        ? '432 доказателни статии'
+        : '432 proof papers'
+      : kind === 'references'
+        ? i === 1
+          ? '432 референции'
+          : '432 references'
+        : i === 1
+          ? '1024 диаманта'
+          : '1024 diamonds'
+  const portal = i === 1 ? 'Портал' : 'Portal'
+  const sampleEvery = 27
+
+  if (kind === 'papers') {
+    const corpus = papers(matrix)
+    const byGen = new Map<string, typeof corpus.papers>()
+    for (const paper of corpus.papers) {
+      if (!byGen.has(paper.generator)) byGen.set(paper.generator, [])
+      byGen.get(paper.generator)!.push(paper)
+    }
+    return [
+      { text: indexTitle, link: indexLink },
+      ...[...byGen.entries()].map(([gen, list]) => ({
+        text: gen,
+        collapsed: true,
+        items: list
+          .filter((_, idx) => idx % sampleEvery === 0)
+          .map((paper) => ({ text: `${paper.id} · ${paper.glyph}`, link: `/papers/${paper.id}` })),
+      })),
+      { text: portal, collapsed: true, items: [{ text: i === 1 ? 'Учене' : 'Learn', link: '/learn' }] },
+    ]
+  }
+
+  if (kind === 'references') {
+    const refs = paperReferences(matrix)
+    const byGen = new Map<string, typeof refs>()
+    for (const reference of refs) {
+      if (!byGen.has(reference.generator)) byGen.set(reference.generator, [])
+      byGen.get(reference.generator)!.push(reference)
+    }
+    return [
+      { text: indexTitle, link: indexLink },
+      ...[...byGen.entries()].map(([gen, list]) => ({
+        text: gen,
+        collapsed: true,
+        items: list
+          .filter((_, idx) => idx % sampleEvery === 0)
+          .map((reference) => ({ text: reference.id, link: `/references/${reference.id}` })),
+      })),
+      { text: portal, collapsed: true, items: [{ text: i === 1 ? 'Статии' : 'Papers', link: '/papers/' }] },
+    ]
+  }
+
+  const routes = diamondRoutes(matrix)
+  return [
+    { text: indexTitle, link: indexLink },
+    {
+      text: i === 1 ? 'Решетка' : 'Lattice',
+      collapsed: true,
+      items: routes
+        .filter((_, idx) => idx % 128 === 0)
+        .map((entry) => ({
+          text: `${entry.params.id} · ${entry.params.glyph}`,
+          link: `/diamonds/${entry.params.id}`,
+        })),
+    },
+    {
+      text: portal,
+      collapsed: true,
+      items: [
+        { text: i === 1 ? 'Статии' : 'Papers', link: '/papers/' },
+        { text: i === 1 ? 'Референции' : 'References', link: '/references/' },
+      ],
+    },
+  ]
+}
+
+function vitepressSidebarForLocale(
+  bundle: ReturnType<typeof siteNavigation>['en'],
+  i: 0 | 1,
+  matrix: MindMatrix,
+): Record<string, VitePressSidebarItem[]> {
+  const portalLabel = i === 1 ? 'Портал' : 'Portal'
+  const corpusLabel = i === 1 ? 'Корпус' : 'Corpus'
+  const main: VitePressSidebarItem[] = [
+    ...bundle.sidebar,
+    {
+      text: corpusLabel,
+      items: [
+        { text: i === 1 ? '432 статии' : '432 papers', link: '/papers/' },
+        { text: i === 1 ? '432 референции' : '432 references', link: '/references/' },
+        { text: i === 1 ? '1024 диаманта' : '1024 diamonds', link: '/diamonds/' },
+      ],
+    },
+  ]
+  const portalLinks = flattenSidebarLinks(main)
+  const out: Record<string, VitePressSidebarItem[]> = { '/': main }
+  for (const [path, related] of Object.entries(bundle.relatedSidebar)) {
+    out[path] = [...related, { text: portalLabel, collapsed: true, items: portalLinks }]
+  }
+  for (const kind of ['papers', 'references', 'diamonds'] as const) {
+    const sections = corpusPrefixSidebar(kind, i, matrix)
+    out[`/${kind}/`] = sections
+    out[`/${kind}`] = sections
+  }
+  return out
+}
+
+/** Canonical VitePress themeConfig.sidebar — path-prefix map from siteNavigation + corpus REST. */
+export function vitepressSidebar(matrix: MindMatrix = buildMatrix()) {
+  const nav = siteNavigation(matrix)
+  const en = vitepressSidebarForLocale(nav.en, 0, matrix)
+  const bg = vitepressSidebarForLocale(nav.bg, 1, matrix)
+  const root = merkleFold([
+    nav.root,
+    merkleFold(Object.keys(en).sort().map((key) => toUuid(`vp-sidebar:en:${key}`))),
+    merkleFold(Object.keys(bg).sort().map((key) => toUuid(`vp-sidebar:bg:${key}`))),
+  ])
+  return {
+    computed:
+      Object.keys(en).length > bundleMinKeys(nav.en) &&
+      Object.keys(bg).length > bundleMinKeys(nav.bg) &&
+      en['/papers/']!.length >= 3 &&
+      isUuid(root),
+    en,
+    bg,
+    root,
+    statement:
+      'Canonical VitePress sidebar: the tag-cloud portal sidebar and per-path rosetta related sections from siteNavigation, plus path-prefix sidebars for /papers/, /references/ and /diamonds/ (index + grouped samples). config.mts projects this object through localeNavLinks and localeSidebarKeys — one source, native VitePress sidebar shape, aligned with local search routes.',
+    boundary:
+      'A path-prefix sidebar map for VitePress themeConfig.sidebar. Corpus detail routes list representative samples (every 27th paper/reference, every 128th diamond) under collapsed generator groups — not all 864+ leaves in the sidebar; every leaf remains a built route and is indexed by local search. The Glagolitic root locale uses the en key map with bare paths.',
+  }
+}
+
+function bundleMinKeys(bundle: ReturnType<typeof siteNavigation>['en']) {
+  return Object.keys(bundle.relatedSidebar).length + 4
+}
+
 export type ComponentCrosslink = { text: string; link: string; kind: 'topic' | 'detail' | 'peer' | 'related' | 'sibling' | 'gateway' | 'home' }
 
 const componentKebab = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
@@ -2078,7 +2237,7 @@ export function componentCrosslinks(componentName: string, locale: LocaleName = 
     const link = localePath(route, locale)
     if (seen.has(link)) return
     seen.add(link)
-    links.push({ text, link, kind })
+    links.push({ text: displayText(locale, text), link, kind })
   }
 
   const slugs = new Set<string>()
@@ -2122,7 +2281,7 @@ export function componentCrosslinks(componentName: string, locale: LocaleName = 
     add(gateway.titleEn, routeOf(gateway.slug), 'gateway')
   }
 
-  if (primaryRoute !== '/') add(locale === 'bg' ? 'Начало' : 'Home', '/', 'home')
+  if (primaryRoute !== '/') add(pickLocale(locale, 'Home', 'Начало'), '/', 'home')
 
   return links.slice(0, 12)
 }

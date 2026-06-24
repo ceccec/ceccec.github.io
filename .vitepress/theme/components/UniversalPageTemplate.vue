@@ -2,34 +2,27 @@
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import type { UniversalPage } from '../../../src/routes/corpus/index.ts'
-import { cardMovieColorVars, cardMovieSeed } from '@vp-lib/hero-movie'
-import { pickLocale } from '../../../src/site/index'
+import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 
 const { params } = useData()
 const route = useRoute()
+const { pick } = useSiteLocale()
 
 const page = computed(
   () => (params.value as { universal?: UniversalPage })?.universal as UniversalPage,
 )
 
-const cardStyle = computed(() => {
+const { cardStyle } = useCardMovie(() => {
   const p = page.value
-  if (!p) return {}
-  return cardMovieColorVars(route.path, cardMovieSeed([p.title, p.cardSeed, route.path]))
+  return p ? [p.title, p.cardSeed, route.path] : []
 })
-
-const pick = (en: string, bg: string) => {
-  const p = page.value
-  return p ? pickLocale(p.locale, en, bg) : en
-}
 </script>
 
 <template>
   <article v-if="page" class="universal-page" :style="cardStyle" data-shadcn="card">
     <header v-if="page.kind === 'monograph'" class="universal-page__hero">
       <h1>{{ page.title }}</h1>
-      <p class="page-lede">{{ page.description }}</p>
     </header>
 
     <DecodedCard
@@ -58,7 +51,6 @@ const pick = (en: string, bg: string) => {
 
     <p v-if="page.proof" class="page-proof">
       <span class="proof__ok">{{ page.proofOk }}</span>
-      · {{ page.proofNote }}
       <code>{{ page.proof }}</code>
     </p>
   </article>
@@ -75,12 +67,6 @@ export default { name: 'UniversalPageTemplate' }
 
 .universal-page__hero h1 {
   margin: 0 0 calc(var(--vp-movie-gap, 0.5rem) * 0.75);
-  text-shadow: var(--vp-hero-text-shadow);
-}
-
-.page-lede {
-  margin: 0 0 calc(var(--vp-movie-gap, 0.75rem) * 1.25);
-  line-height: var(--vp-movie-line-height, 1.55);
   text-shadow: var(--vp-hero-text-shadow);
 }
 

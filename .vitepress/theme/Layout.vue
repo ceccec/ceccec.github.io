@@ -5,11 +5,14 @@ import DefaultTheme from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
 import BackgroundMovie from './components/BackgroundMovie.vue'
 import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
+import RealtimeSubtitles from './components/RealtimeSubtitles.vue'
 import VoidSidebar from './components/VoidSidebar.vue'
 import TrinityGateways from './components/TrinityGateways.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
 import RevolutAside from './components/RevolutAside.vue'
+import SponsorChip from './components/SponsorChip.vue'
+import ForgeMaxTamperBar from './components/ForgeMaxTamperBar.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import { applyHeroChromeVars } from '../lib/hero-chrome'
 
@@ -50,6 +53,9 @@ onUnmounted(() => {
         <BackgroundMovie />
       </div>
       <HeroBackgroundLayer />
+      <RealtimeSubtitles />
+      <ForgeMaxTamperBar />
+      <SponsorChip />
     </ClientOnly>
     <div class="vp-with-hero-movie__content">
       <VPLayout>

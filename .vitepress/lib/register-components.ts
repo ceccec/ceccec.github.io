@@ -1,10 +1,57 @@
 // Register componentGraph names globally — DecodedCard folds, LivingTorus canvas, or thin gate fallback.
 import { defineAsyncComponent, defineComponent, h, type App, type Component } from 'vue'
-import { useRoute } from 'vitepress'
 import DecodedCard from '../theme/components/DecodedCard.vue'
-import CardBackgroundMovie from '../theme/components/CardBackgroundMovie.vue'
-import { cardMovieColorVars, cardMovieSeed } from './hero-movie'
+import UiCardShell from '../theme/components/UiCardShell.vue'
+import { componentDisplayName, useSiteLocale } from './mounts'
 import { COMPONENT_FOLD_LOADERS, withCrosslinks, type DecodedFoldView } from './component-folds'
+
+/** VitePress default theme + explicit theme mounts — never re-register from componentGraph. */
+const THEME_RESERVED = new Set([
+  'Badge',
+  'ClientOnly',
+  'Content',
+  'ExternalLinkIcon',
+  'HomeLink',
+  'Layout',
+  'Link',
+  'NavLink',
+  'NotFound',
+  'VPBadge',
+  'VPButton',
+  'VPCarbonAds',
+  'VPContent',
+  'VPDocFooter',
+  'VPFlyout',
+  'VPHero',
+  'VPHome',
+  'VPHomeHero',
+  'VPLink',
+  'VPNav',
+  'VPNavBar',
+  'VPNavBarAppearance',
+  'VPNavBarExtra',
+  'VPNavBarHamburger',
+  'VPNavBarMenu',
+  'VPNavBarMenuGroup',
+  'VPNavBarMenuLink',
+  'VPNavBarSearch',
+  'VPNavBarSocialLinks',
+  'VPNavBarTitle',
+  'VPNavBarTranslations',
+  'VPSidebar',
+  'VPSidebarGroup',
+  'VPSidebarItem',
+  'VPSocialLink',
+  'VPSocialLinks',
+  'VPSwitch',
+  'VPTeamMembers',
+  'VPTeamPage',
+  'VPTeamPageSection',
+  'VPTeamPageTitle',
+  'UniversalPageTemplate',
+  'DigitMotion',
+  'SevenStarRosetta',
+])
 
 const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   Monograph: () => import('../theme/components/MonographFold.vue'),
@@ -16,6 +63,7 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   CollectiveMind: () => import('../theme/components/CollectiveMind.vue'),
   RevolutAside: () => import('../theme/components/RevolutAside.vue'),
   VitePressPossibilities: () => import('../theme/components/VitePressPossibilities.vue'),
+  ForgeMaxTamperBar: () => import('../theme/components/ForgeMaxTamperBar.vue'),
 }
 
 function gateComponent(name: string): Component {
@@ -27,29 +75,32 @@ function gateComponent(name: string): Component {
       variant: { type: String, default: undefined },
     },
     setup(props, { attrs }) {
-      const route = useRoute()
-      const seed = cardMovieSeed([name, props.slug, props.variant])
-      const cardStyle = () => cardMovieColorVars(route.path, seed)
+      const { locale } = useSiteLocale()
+      const movieParts = () => [name, props.slug, props.variant] as const
+      const cardTitle = () => componentDisplayName(locale.value, name)
       return () =>
-        h('article', {
-          ...attrs,
-          class: ['ui-card ui-card--ghost mind-component', attrs.class].filter(Boolean),
-          style: cardStyle(),
-          'data-shadcn': 'card',
-          'data-component': name,
-          ...(props.slug ? { 'data-slug': props.slug } : {}),
-          ...(props.variant ? { 'data-variant': props.variant } : {}),
-        }, [
-          h(CardBackgroundMovie, { seed, title: name }),
-          h('div', { class: 'ui-card__content' }, [
-            h('output', {
-              class: 'display-dual-gate',
-              'data-logic': `component:${name}`,
-              'data-target': `component:${name}`,
-              'aria-hidden': 'true',
-            }),
-          ]),
-        ])
+        h(
+          UiCardShell,
+          {
+            ...attrs,
+            class: ['mind-component', attrs.class].filter(Boolean),
+            ghost: true,
+            component: name,
+            seedParts: movieParts(),
+            title: cardTitle(),
+            'data-slug': props.slug,
+            'data-variant': props.variant,
+          },
+          {
+            default: () =>
+              h('output', {
+                class: 'display-dual-gate',
+                'data-logic': `component:${name}`,
+                'data-target': `component:${name}`,
+                'aria-hidden': 'true',
+              }),
+          },
+        )
     },
   })
 }
@@ -72,7 +123,7 @@ function decodedComponent(name: string, loader: () => Promise<DecodedFoldView>):
 export async function registerVitePressComponents(app: App): Promise<void> {
   const { componentGraph } = await import('../../src/heaven/core/index')
   for (const name of componentGraph().components) {
-    if (app.component(name)) continue
+    if (THEME_RESERVED.has(name) || app.component(name)) continue
     const override = OVERRIDES[name]
     if (override) {
       app.component(name, defineAsyncComponent(override))

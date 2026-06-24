@@ -3,14 +3,15 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vitepress'
 import { createAnimationEngine } from '@src/quantum/index'
 import { livingTorus } from '@src/fire/diamonds/index'
-import { cardMovieColorVars, cardMovieSeed } from '@vp-lib/hero-movie'
-import CardBackgroundMovie from './CardBackgroundMovie.vue'
+import { useSiteLocale } from '../../lib/mounts'
+import UiCardShell from './UiCardShell.vue'
 
 const route = useRoute()
+const { t } = useSiteLocale()
 const canvas = ref<HTMLCanvasElement | null>(null)
 const torus = livingTorus()
-const movieSeed = computed(() => cardMovieSeed(['LivingTorus', torus.statement, route.path]))
-const cardStyle = computed(() => cardMovieColorVars(route.path, movieSeed.value))
+const displayTitle = computed(() => t('Living Torus'))
+const seedParts = computed(() => ['LivingTorus', torus.statement, route.path] as const)
 
 let engine: ReturnType<typeof createAnimationEngine> | null = null
 
@@ -65,32 +66,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <article
-    class="living-torus living-torus-card ui-card"
-    data-shadcn="card"
-    data-component="LivingTorus"
-    :style="cardStyle"
+  <UiCardShell
+    class="living-torus living-torus-card"
+    component="LivingTorus"
+    :seed-parts="seedParts"
+    :title="displayTitle"
   >
-    <CardBackgroundMovie :seed="movieSeed" title="LivingTorus" />
-    <div class="ui-card__content">
-      <p class="living-torus__lede">{{ torus.statement }}</p>
-      <canvas ref="canvas" class="living-torus__canvas" aria-label="Living double torus animation" />
-      <p class="living-torus__boundary">{{ torus.boundary }}</p>
-    </div>
-  </article>
+    <canvas ref="canvas" class="living-torus__canvas" :aria-label="displayTitle" />
+  </UiCardShell>
 </template>
 
 <style scoped>
 .living-torus {
   margin: 1rem 0;
-}
-
-.ui-card__content {
-  padding: var(--vp-movie-pad-y) var(--vp-movie-pad-x);
-}
-
-.living-torus__lede {
-  margin: 0 0 var(--vp-movie-gap);
 }
 
 .living-torus__canvas {
@@ -99,11 +87,5 @@ onUnmounted(() => {
   height: min(52vw, var(--vp-movie-min-h));
   border-radius: calc(var(--vp-movie-radius) * 0.75);
   background: transparent;
-}
-
-.living-torus__boundary {
-  margin: var(--vp-movie-gap) 0 0;
-  font-size: calc(0.82rem + var(--vp-movie-gap) * 0.06);
-  line-height: var(--vp-movie-line-height);
 }
 </style>

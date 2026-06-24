@@ -36,18 +36,18 @@ import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAM
 import { cssIsIChingComputed } from '../../earth/architecture'
 import { ICHING_NUMBERS } from '../../earth/architecture'
 export { ICHING_NUMBERS } from '../../earth/architecture'
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded } from '../../earth/architecture/index'
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded } from '../../earth/architecture'
 
 
 
 // ☱ Duì · Lake · joyous · lower·yin · spread — Merkle proof utilities + quantum network verification
 import { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof } from '../../lake/ledger'
-export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/ledger/index'
+export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/ledger'
 
 
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — matrix core: buildMatrix, proofReport, repositoryApi, consciousness
 import { buildMatrix, matrixMemo, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute'
-export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute/index'
+export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute'
 
 
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — all vocab leaf re-exports, consolidated
@@ -56,7 +56,7 @@ export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bu
 
 // ☴ Xùn · Wind · gentle · lower·yin · spread — site meta: config, sitemap, static pages, monograph scaffolding
 import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../site'
-export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../site/index'
+export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../site'
 
 // ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
 import { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li'
@@ -115,7 +115,7 @@ import { buildStatisticsShowGaps, coveragePerPixel } from '../../lake/stats'
 import { harmonyProbability } from '../../water/life'
 import { features } from '../../lake/media'
 import { accessiblePathsForAll, agnosticFitsSpiritPersonality, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../essence'
-export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li/index'
+export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li'
 
 
 
@@ -364,17 +364,17 @@ export function path(matrix: MindMatrix = buildMatrix()) {
 // into every page.
 export function componentGraph() {
   // TrinityGateways folds into every page via the sidebar-nav-after layout slot (like VoidSidebar) — a global.
-  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways']
-  // Corpus index pages mount one component (Corpus) in every locale; monograph pages use [page].paths.ts + monographPaths.
+  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways', 'ForgeMaxTamperBar']
+  // Corpus index pages mount UniversalPageTemplate in every locale (.vitepress/pages/**/{papers,references,diamonds}/index.md); monograph pages use [page].paths.ts + monographPaths.
   const placements: Record<string, readonly string[]> = {
     '/': ['SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests', 'MatrixCube'],
   }
   const composedBase = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex']
-  for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['Corpus']
+  for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['UniversalPageTemplate']
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components
   const allPlaced = [...new Set([...Object.values(placements).flat()])]
   const pagePrimaries = [...new Set(staticPages().map((page) => page.components[0]).filter(Boolean))]
-  const canonicalSeeds = [...new Set([...placements['/'], 'Corpus', 'ProofRenderer', 'PowerLanding', 'StartHere', 'AnalogField', 'ProbSim', 'DynSim', 'NetSim', 'Monograph', ...pagePrimaries])]
+  const canonicalSeeds = [...new Set([...placements['/'], 'UniversalPageTemplate', 'ProofRenderer', 'PowerLanding', 'StartHere', 'AnalogField', 'ProbSim', 'DynSim', 'NetSim', 'Monograph', ...pagePrimaries])]
   const canonical = new Set(canonicalSeeds.slice(0, 64))
   const composed = [...new Set([...composedBase, ...allPlaced.filter((component) => !canonical.has(component))])]
   const components = [...new Set([...globals, ...Object.values(placements).flat(), ...composed])]

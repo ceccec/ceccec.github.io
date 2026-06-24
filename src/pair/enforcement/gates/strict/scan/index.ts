@@ -135,7 +135,7 @@ function scanImports(
         continue
       }
       const last = spec.split('/').pop() ?? ''
-      if (last.includes('.')) {
+      if (last.includes('.') && last !== '..' && last !== '.') {
         offenders.push({ file, spec, reason: 'filename segment in path — folder imports only' })
         continue
       }

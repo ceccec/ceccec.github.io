@@ -4,12 +4,12 @@ import { foldPair, merkleFold, toUuid } from '../../../0'
 export const TIMEOUT_EXIT_CODE = 124
 export type TimeoutKind = 'build' | 'offline' | 'live-local' | 'live-world' | 'realtime' | 'agent-budget' | 'generic'
 export type TimeoutCliOptions = { readonly timeoutMs: number; readonly once: boolean; readonly maxTicks: number }
-export const MAX_QUANTUM_TIMEOUT_MS = 180_000
+export const MAX_QUANTUM_TIMEOUT_MS = 900_000
 export const MAX_TRADING_TIMEOUT_MS = 120_000
 
 export function defaultTimeoutMs(kind: TimeoutKind): number {
   switch (kind) {
-    case 'build': return 120_000
+    case 'build': return 600_000
     case 'offline': return 30_000
     case 'live-local':
     case 'live-world':

@@ -480,10 +480,12 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
     }
   }
   if (entry) {
+    const rawTitle = entry.action
+    const rawDescription = `${entry.science} · ${entry.model} · ${entry.action}`
     return {
       page: entry.route.replace(/^\//, ''),
-      title: entry.action,
-      description: `${entry.science} · ${entry.model} · ${entry.action}`,
+      title: locale === 'gla' ? toGlagolitic(rawTitle) : rawTitle,
+      description: locale === 'gla' ? toGlagolitic(rawDescription) : rawDescription,
       keywords: [entry.science, entry.model, entry.action],
       components: ['Monograph'],
       proof: toUuid(`index:${entry.logic}`),
@@ -496,7 +498,7 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
   return {
     page: bare,
     title: locale === 'gla' ? toGlagolitic(rayMeta.nameEn) : locale === 'bg' ? rayMeta.nameBg : rayMeta.nameEn,
-    description: decoded.statement,
+    description: locale === 'gla' ? toGlagolitic(decoded.statement) : decoded.statement,
     keywords: [rayMeta.domain, `ray-${decoded.ray}`, decoded.computationType],
     components: ['Monograph'],
     proof: decoded.sharedRoot,

@@ -152,7 +152,13 @@ function walkSrcTree(root: string, out: WalkOut): void {
         if (entry.name === INDEX_TS) out.indexTs.push(full)
       } else if (entry.name.endsWith('.json')) {
         out.merkleFiles.push(full)
-      } else if (/\.(vue|mts|cts|tsx|js|mjs|cjs|jsx)$/.test(entry.name)) {
+      } else if (entry.name.endsWith('.vue')) {
+        if (entry.name === 'index.vue') continue // display dual — lawful beside index.ts
+        out.nonTs.push({
+          file: full,
+          reason: 'frontend surface must be folder index — dissolve flat .vue into <name>/index.vue; backend is index.ts only under src',
+        })
+      } else if (/\.(mts|cts|tsx|js|mjs|cjs|jsx)$/.test(entry.name)) {
         out.nonTs.push({
           file: full,
           reason: 'frontend surface must be folder index — dissolve flat .vue into <name>/index.vue; backend is index.ts only under src',
@@ -190,6 +196,16 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
       '.vitepress/src-plugins.mts',
       '.vitepress/build-lock-plugin.mts',
       '.vitepress/build-lock.mjs',
+      '.vitepress/lib/component-bagua-groups.ts',
+      '.vitepress/lib/component-folds.ts',
+      '.vitepress/lib/crosslinks.ts',
+      '.vitepress/lib/hero-chrome.ts',
+      '.vitepress/lib/hero-movie.ts',
+      '.vitepress/lib/register-components.ts',
+      '.vitepress/lib/mounts.ts',
+      '.vitepress/lib/movie-canvas.ts',
+      '.vitepress/lib/universal-route-path.ts',
+      '.vitepress/lib/vitepress-seo.ts',
     ]),
     scriptShells,
     pairs.paired,

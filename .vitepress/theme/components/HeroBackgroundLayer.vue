@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vitepress'
-import { localeFromRoute } from '../../../src/site/index'
 import { immersiveMovieToggleLabel } from '@vp-lib/hero-movie'
+import { useSiteLocale } from '../../lib/mounts'
 
 const route = useRoute()
+const { locale } = useSiteLocale()
 const immersive = ref(false)
 
 const toggleTitle = computed(() =>
-  immersiveMovieToggleLabel(route.path, immersive.value, localeFromRoute(route.path)),
+  immersiveMovieToggleLabel(route.path, immersive.value, locale.value),
 )
 
 function toggleImmersive(): void {
@@ -48,8 +49,8 @@ onUnmounted(() => {
 <style scoped>
 .vp-hero-immersive-toggle {
   position: fixed;
-  right: 0.75rem;
-  bottom: 0.75rem;
+  left: max(0.75rem, env(safe-area-inset-left, 0px));
+  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
   z-index: 50;
   width: 2rem;
   height: 2rem;
@@ -76,5 +77,10 @@ html.vp-hero-immersive .VPHome .container {
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.35s ease;
+}
+
+html.vp-hero-immersive .ui-card__content,
+html.vp-hero-immersive .ui-card__content :where(h1, h2, h3, h4, p, li, a, span) {
+  text-shadow: none !important;
 }
 </style>

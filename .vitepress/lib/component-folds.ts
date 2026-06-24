@@ -17,7 +17,7 @@ export async function withCrosslinks(name: string, view: DecodedFoldView): Promi
   const { localeFromRoute, localePath } = await import('../../src/site/index')
   const locale = typeof window !== 'undefined'
     ? localeFromRoute(window.location.pathname)
-    : 'en'
+    : 'gla'
   const computed = componentCrosslinks(name, locale)
   const seen = new Set(computed.map((entry) => entry.link))
   const normalizeLink = (link: string) => (

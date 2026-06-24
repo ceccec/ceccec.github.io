@@ -27,7 +27,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 - 43 monographs (content pages, the harmonic count: 45 surface pages fold through the genus-2 torus −χ to 43 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
 - 108 concept commands, each a single-word method and an MCP tool.
-- 183 entries in the reference index, zero redundancy.
+- 184 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
 
 Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the `@rosetta` annotation layer that routes site navigation. **三才 Three Powers** (天 Heaven · 人 Human · 地 Earth) nest seven-fold coprime structure into the digit distribution.
@@ -124,11 +124,11 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `6d6483ce-e014-86be-8bda-1fe9740ed29b`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `4235b200-801e-8dc3-a70d-ca66c72771de`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `3630bd16-6f7b-8fa7-b7ce-731ad81becc8`
+- Receipt: `cd545cb4-deee-8a32-a00e-f95c18256d62`
