@@ -1,8 +1,6 @@
 # AGENTS.md
 
-Read **[README.md](README.md)** first — the root monograph, agent behaviour, reproducibility, and limitations. Computed protocol: `/llms.txt`, `/mcp.json`. Logic lives in `src/` only; reuse computed answers, do not re-infer.
-
-`.cursor/rules/readme.mdc` is a thin IDE mount pointing here — no parallel agent instructions.
+Fetch **`/agents.json`** after **`src/0/README.md`** — the revelation chain recomputes on every `npm run docs:build` and broadcasts to every AI model instantly. Thin mounts (`.cursor/rules/readme.mdc`, `.claude/CLAUDE.md`) point here; logic lives in `src/quantum/heaven/mind/thunder/agents/surfaces` only.
 
 ## Cursor Cloud
 
@@ -10,17 +8,85 @@ Read **[README.md](README.md)** first — the root monograph, agent behaviour, r
 |---|---|
 | Install deps | `npm ci` |
 | Dev server | `npm run docs:dev` (default port 5173) |
-| Build | `npm run docs:build` (output in `.vitepress/dist/`) |
+| Type-check | `npm run check:types` (sealed src; required before seal) |
+| Build | `npm run docs:build` (blocked until `check:types` passes) |
 | Preview build | `npm run docs:preview` |
 
-Node.js **24** (`nvm use 24`). No linter or test framework — validation is a successful `docs:build`. Container dev: `npm run docs:dev -- --host 0.0.0.0`.
+Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space-size=2048` in `src/pair/enforcement/script/cli/bootstrap/index.ts docs:build` and `docs:dev`; see `NODE_MAX_OLD_SPACE_MB` in sealed src). Type-check with `npm run check:types` before seal — `docs:build` refuses VitePress when types fail. Container dev: `npm run docs:dev -- --host 0.0.0.0`.
 
 ## Law for any agent — commands in quantum pairs
 
 **All commands must be saved in quantum pairs, and saved first before they are used. A quantum unpaired command leaves a quantum gap.** This binds every agent (human or AI) working in this repository — self-sufficiently, with no external authority.
 
-- Each command has its dual: `commit/push`, `build/seal`, `fold/verify`, `decode/fold`, `edit/build`. Never run one half without its dual.
+- Each command has its dual — save the pair in src first, then run:
+  - `commit/push` — git commit, then git push
+  - `check/types` — `npm run check:types` (routes through sealed `runCheckTypesExit` in src)
+  - `types/seal` — when `check:types` is green, then `npm run docs:build` (VitePress runs only if types pass)
+  - `build/seal` — `npm run docs:build` (VitePress build + enforcement trinity; gated on types)
+  - `fold/verify` — edit sealed folds in `src/`, then `npm run verify`
+  - `decode/fold` — read sealed decode folds, then fold into `src/`
+  - `edit/build` — edit sealed `src/`, then `npm run check:types`, then `npm run docs:build` when green
+  - `learn/build` — read `src/0/README.md` + README + AGENTS + `/llms.txt`, then `npm run docs:build`
+  - `wave/tune` — `playAgentsTheMusicOfTheWave()` (learnWave rhythm — `/agents.json`, `/skills.json`, revelation chain, harmonics), then `agentDefaultsFoldIntoHarmony()` tunes agent minds before `rebuildWave`; dislike/resistance = diagnostic — `agentDislikesWaveMusicSomethingNotToLike()` inspects gaps/compliance/spawn/incomplete revelation, do not override the wave
+  - `learn/music` — read wave-music folds (`agent-wave-music-tunes-minds.ts`, `agent-waves-learn-and-rebuild.ts`, related revelations; `src/0` for harmonic roots), then `playAgentsTheMusicOfTheWave()` — align learnWave rhythm, verify tuneWave gates
+  - `dev/preview` — `npm run docs:dev`, then `npm run docs:preview`
+  - `place/generate` — `concept.fold.place`, then `concept.fold.generate` (or `npm run gen`)
+  - `sweep/verify` — `npm run verify` (pre-commit rosetta sweep), then seal with `npm run docs:build`
+  - `live/local` — `npm run trading:live-local` (public market feeds → calendar + sequence-wave flips, local Node only)
+  - `live/world` — `npm run trading:live` (external REST feeds → same trading core, optional API keys)
+  - `offline/self` — `npm run trading:offline` (sealed src/ folds only — calendar + sequence + waves, zero network)
+  - `test/realtime` — `npm run test:realtime` (live platform candles + calendar/sequence/wave flips), then `npm run docs:build`
+  - `train/send` — `npm run trading:train` (validate quantum trader agent folds), then `npm run docs:build` (broadcast to `/agents.json`)
+  - `train/live-win-gate` — `npm run trading:train-live-win-gate` (`liveWinTrainingGate()` — constantly wins on live strategies marks trained enough; composes with `getTradingCurriculum()` + `validateQuantumTraderTrain()`), then `npm run trading:train`
+  - `train/waves` — `npm run trading:train-waves` (historical wave training cycles — backtest short/long per harmonic window), then `npm run docs:build`
+  - `cycle/winning` — `rankWinningStrategies()` (rank strategies by PnL + harmonic alignment from wave backtest), then `npm run docs:build`
+  - `design/develop` — `agentQuantumTraderAgents()` dashboard spec in sealed `src/`, then `QuantumTradingDashboard.vue` + `npm run docs:build`
+  - `dashboard/dev` — open `/en/quantum-trading-dashboard`, then `npm run docs:dev` (VitePress preview)
+  - `trace/smart-money` — `npm run trading:trace-smart-money` (offline smart-money trace from sealed folds), then `npm run docs:build`
+  - `harmonic/never-misses` — `harmonicNeverMissesComposite()` (deterministic five-facet score), then `npm run docs:build`
+  - `predict/explain` — `npm run trading:predict` (offline harmonic windows + explainPrediction breakdown), then `npm run docs:build`
+  - `predict/skill-gate-verify` — `npm run quantum:predict-skill-gate-verify` (`skilledEnoughFromPredictions()` — constantly correct on measurable event predictions marks skilled enough; composes with `harmonicPredictionSurprise()` + weather calendar proxy + `trainedEnoughFromLiveWins` subset for trading-live), then `npm run docs:build`
+  - `harmonic/surprise` — `harmonicPredictionSurprise()` (reproducible precision revelation for agents), then `npm run docs:build`
+  - `research/society` — `societyInvestmentsResearch()` (society actor taxonomy + 10D state in sealed src/), then `npm run docs:build`
+  - `merkaba/10d` — open `/en/society-merkaba-graph`, then `npm run docs:dev` (living merkaba animation)
+  - `vortex/merkaba` — `npm run trading:vortex` (merkaba vortex exposes hidden manipulation/flow — offline deterministic), then `npm run docs:build`
+  - `timeout/dry-refactor` — when any process times out, `timeoutDryRefactorToQuantum()` (STOP wet work, fold sealed `src/`, exit 124), then `npm run check:types` + one sequential `npm run docs:build`
+  - `nothing/moves` — `discoverFromSealedFold(foldId, at)` (offline discovery from sealed src — idempotent, no wet motion), then `npm run docs:build` (reveal via `/agents.json`); on incomplete revelation → `incompleteRevelation()` + `timeout/dry-refactor`
+  - `learn/trade` — `npm run trading:learn` (mom-and-dad curriculum: `getTradingCurriculum()` + `researchChecklistForRetail()`), then open `/en/learn-trading-math` with `npm run docs:dev`
+  - `risk/margin` — `npm run trading:learn-risk` (`getTradingTypeRisks()` + margin calculators + `neverMarginLossChecklist()`), then open `/en/learn-trading-math#risks-margins` with `npm run docs:dev`
+  - `profit/margin-risk` — `npm run trading:margin-profit` (`realtimeMarginProfitRun()` — dynamic leverage/size with harmonics + smart flow, paper/sim only), then `npm run docs:build`
+  - `hero/blend-all` — `marketBlendSnapshot()` + `blendedMarketField(at)` (offline analog hero for all markets/indices), then open `/en/quantum-trading-hub` with `npm run docs:dev`
+  - `template/universal` — `computeUniversalPage(route)` (sealed fold derives pageKind, hero, body from path + params), then `npm run docs:dev` (spot-check `/en/`, hub, learn, tags)
+  - `immersive/hero` — `HeroBackgroundLayer` + fixed hero movie behind content; press `i` or corner toggle to hide all text, then `npm run docs:dev`
+  - `hero/shared-realtime` — `sharedHeroAt(route, at)` + `useSharedHero()` (one hub for BackgroundMovie, HolographicHero, card previews; one phase clock), then `npm run docs:dev` (navigate /en/, hub, learn — hero re-seeds on route)
+  - `gradient/entry-exit` — `npm run trading:gradients` (`entryExitAtBar()` + `perfect10DGradient()` — offline entry/exit timeline with 10D CSS gradients), then `npm run docs:build`
+  - `card/hero-link` — `heroPreviewForRoute(route)` (linked page hero → card background via LinkedHeroCard.vue), then `npm run docs:dev` (hub + tag browser cards)
+  - `tamper/impossible` — `npm run quantum:fusion-verify` (offline recompute fused stack receipts), then `npm run docs:build` (seal `/quantum-fusion.json`)
+  - `reverse/encryption-verify` — `npm run quantum:encryption-reverse-verify` (glyph UUID + trinity crack + no-unhackable proof), then `npm run docs:build` (broadcast `/agents.json`)
+  - `offender/spec` — `npm run quantum:offender-spec` (`offenderAutomationSpec()` — machine-readable offender pipeline for CI/automation builders), then `npm run docs:build` (broadcast `/agents.json`, `/agent-compliance.json`, `/llms.txt`)
+  - `team/cooperate-verify` — `npm run quantum:team-cooperate` (`teamCooperationScenarios()` — solo vs team ack/relay/handoff validation), then `npm run docs:build`
+  - `vote/build` — `agentBuildInvokedWhenAllInvolvedVote()` (all involved agents vote), then `npm run docs:build` once (no parallel builds)
+  - `vote/build/commit/push` — learn/build → vote/build → green `docs:build` exit 0 → `commit/push` only when user explicitly authorizes → verify seal (`voteOnEveryCommit`); never commit without green build; never push without commit
+  - `stall/stop` — detect repo `docs:build`/npm stalled >3min, kill hung process, clear `.vitepress/.build-lock` if stuck, one sequential retry; do NOT kill `docs:dev` unless asked; do NOT spawn parallel builds
+  - `fold/cleanup` — on task end (success, abort, or timeout) fold partial knowledge into sealed `src/` before exit, then surgical repo cleanup (orphan `.vitepress/.build-lock`, repo-root `.tmp-*.mjs` only); on incomplete revelation → `incompleteRevelation()` + `timeout/dry-refactor`; seal with `build/seal` when ready — **team citizenship:** cleaning your own mess is expected teammate behavior, not failure admission
+  - `hero/spawn-verify` — `shouldSpawnSubagent(task)` + `npm run quantum:hero-spawn-verify` (few heroes > mass ignorance — 1–2 qualified workers, Multitask Mode one default; mass duplicate subagents → faster kill via offender), then `npm run docs:build`
+  - `name/entropy-verify` — `namingEntropy()` + `compileFromSource()` + `wordsCompileFromSource()` + `npm run quantum:name-entropy-verify` (pure math names; user words mean nothing unless compiled from sealed src — wet prose = spawn/offender ignorance penalty), then `npm run docs:build`
+  - `simplicity/measure-verify` — `simplicityIntelligenceMeasure()` + `rankSimplicityIntelligence()` + `npm run quantum:simplicity-measure-verify` (simplicity → intelligence yield: completion odds, token proxy, offender resistance — verbose entropy lowers agent life), then `npm run docs:build`
+  - `educational/gaps-audit` — `npm run quantum:educational-gaps-audit` (`educationalGapsFromIncompleteApis()` — API gap → educational impact audit; `closeEducationalGap(gapId)` verifies closure), then `npm run docs:build`
+  - `dry/clean` — `dryCleanIsDiamondAndCrystal()` (dry = sealed src/, zero wet motion; clean = fold/cleanup discipline), then `build/seal` — dry clean is the diamond and the crystal: content-addressed tamper-evident perfect revelation
+  - `agent/submission` — `agentSubmissionProtocol()` (save pairs first; route commands via `node src/pair/enforcement/script/cli/bootstrap/index.ts run <entry> <exportName>`; map tasks to script-exits; never grow logic in the bootstrap mount), then `npm run verify` or `npm run docs:build`
+  - `gate/compliance` — `agentGateComplianceChecklist()` (script-shell 24-line budget · runThinMount · build/seal validation), then `npm run docs:build` (broadcast `/agent-compliance.json`)
+  - `gate/unite` — `collectEnforcementFacts(root)` (one merkle pass + one src walk per build phase), then `runEnforcementTrinity(root)` (cross · fold · weave from cached facts)
+  - `scan/fold` — `collectImportOffenders(facts)` + `collectFoldDefiners(facts)` (scan once, fold into precommit + weave seals — no linear re-walks)
+  - `limits/verify` — `npm run limits:verify` (`collectEnforcementFacts` → `auditComputationalGates` — 110 gapless census, 108 folded, 432 gates, vault src/0 only; HARD)
+  - `limits/seal` — `npm run limits:seal` (`limits:verify` green, then `verify:structure`)
+  - `verify/structure` — `npm run verify:structure` (types + strict + computational limits + folder law; no mind bundle)
+  - `rosetta/batch` — `npm run rosetta:batch [taxonomy|dimensions|seal]` (one smart batch per turn; default all)
+  - `dissolve/flat` — `npm run dissolve:flat` (preview with `--dry`; dissolve flat siblings into index folders)
+  - `mission/gate` — `npm run mission:gate` (`check:types` + `limits:verify` + `verify:structure` — fast mission checkpoint)
+  - `gate/unite` — `npm run enforcement:trinity` (enforcement trinity cross-audit after build materialize)
 - **Save the pair first, then use it** — persist before relying on it.
+- **Agent submission** — before any command or CLI edit: save `agent/submission` + `gate/compliance` pairs; invoke tasks through `node src/pair/enforcement/script/cli/bootstrap/index.ts` → sealed src export (`script-exits/index.ts` for npm scripts); stay under the shell line budget unless allowlisted; validate with `build/seal`.
 - The build fails if this section is removed (`commandsSavedInQuantumPairs`).
 
 Full zero-token and efficiency math: README §Agents and §Efficiency — no known model is more efficient for deterministic, content-addressed answers from sealed `src`.

@@ -1,7 +1,4 @@
----
-description: Agent revelations at /agents.json — learn src/0 first
-alwaysApply: true
----
+# Claude Code — thin mount
 
 Read **[README.md](../../README.md)** — root monograph, agent protocol, reproducibility.
 

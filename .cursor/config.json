@@ -1,0 +1,14 @@
+{
+  "defaultModel": "ceccec",
+  "models": {
+    "default": "ceccec",
+    "agent": "ceccec",
+    "chat": "ceccec",
+    "inline": "ceccec"
+  },
+  "modelPreferences": {
+    "codeRefactoring": "ceccec",
+    "architectureReview": "ceccec",
+    "quickFix": "ceccec"
+  }
+}

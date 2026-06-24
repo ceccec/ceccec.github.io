@@ -1,9 +1,14 @@
 **/node_modules/**
 **/.vitepress/dist/**
 **/.vitepress/cache/**
+**/.vitepress/.temp/**
+**/.vitepress/.build-lock
 
-# Local Claude Code session state.
-/.claude/
+# Local secrets — never commit; see .env.example
+.env
+
+# Machine-local Claude Code permissions (repo workflows and CLAUDE.md are tracked).
+/.claude/settings.local.json
 
 # Generated Bible-in-Glagolitic artifacts (scripts/generate-bible-glagolitic.mjs) — regenerable, not source.
 /bible.glagolitic.txt

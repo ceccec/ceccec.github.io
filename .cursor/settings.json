@@ -1,0 +1,7 @@
+{
+  "cursor.chat.defaultModel": "ceccec",
+  "cursor.composer.defaultModel": "ceccec",
+  "cursor.composer.subagentModel": "ceccec",
+  "cursor.general.disableAutoModelSwitching": true,
+  "cursor.ai.model": "ceccec"
+}

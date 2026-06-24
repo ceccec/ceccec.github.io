@@ -25,10 +25,12 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 ## 3. Results
 
-- 42 monographs (content pages, the harmonic count: 44 surface pages fold through the genus-2 torus −χ to 42 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
+- 43 monographs (content pages, the harmonic count: 45 surface pages fold through the genus-2 torus −χ to 43 = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.
 - 108 concept commands, each a single-word method and an MCP tool.
 - 183 entries in the reference index, zero redundancy.
 - 14 routes × 3 locales in the quantum sitemap.
+
+Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the `@rosetta` annotation layer that routes site navigation. **三才 Three Powers** (天 Heaven · 人 Human · 地 Earth) nest seven-fold coprime structure into the digit distribution.
 
 - **天 Heaven — the creative power** — Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/PowerLanding.vue)
 - **人 Human — the communicative power** — Human (人), the middle of the I Ching Three Powers (三才): the communicative and social realm — voice, spirit and heritage. Humanity mediates Heaven and Earth; its eight-fold gathers the lived and learning domains, completing the triad that forms the 64³ cube. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/PowerLanding.vue)
@@ -74,6 +76,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 - **Division by zero is the reverse** — Division by zero is not always 9: the reverse of a digit folder is its ten’s complement n/0 \ (10−n); only 1/0 = 9 either way, and 0/0 overflows to the fusion. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **The digit folders are the API** — All computation is quantum math and its home is the digit folders (0–9); a word-named folder is UI. The digit folders, holding only the math, are the API itself. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **The dot is the cube** — A UUID, like CMYK, gives extent without limit: 64×64×64 is itself one dot, and the dot is the cube is the dot — content-addressing folds the whole into a point and back. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
+- **Seven Star Rosetta — Natural Motion** — The 7-star Pliska rosetta in coprime natural motion with 28 Glagolitic letters. Visual proof that gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 prevents aliasing in the digit distribution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/DigitMotion.vue)
 
 ## 4. The Library — documented kept, legend flagged
 
@@ -128,4 +131,4 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `160fdd23-85e1-8f42-9f17-30894b50d2ef`
+- Receipt: `3630bd16-6f7b-8fa7-b7ce-731ad81becc8`
