@@ -1,5 +1,6 @@
 // ☶ Gèn · Mountain — topology: the double torus (genus-2, χ=−2), the merkaba (star tetrahedron), the geodesic dome (the sphere dual), the homology loops. Barrel-routed; folds.ts back-imports the gate folds.
-import { phase } from '../../6/4'
+import { initialBearing, phase } from '../../6/4'
+import { greatCircleKm } from '../../5/5'
 import { computesGate, doubleTorusSurface, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, roundTo, sealFacets, seedFromText, survive, toUuid, VORTEX_DASH_ANGLE_DEG } from '../../0'
 import type { MindMatrix, TorusBreath } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus } from '../../heaven/compute'
@@ -1047,5 +1048,55 @@ export function earthSouthPoleBoundaryCircleDecoded(): {
     proved,
     root: merge(chart.root, toUuid('earth-south-pole:boundary-circle')),
   }
+}
+
+// placesAndPatternsDecoded — famous "mystery places" grounded in real geodesy and honest tiers. Every site is a
+// point on the one earth sphere (the pole decode); great-circle distances and bearings (greatCircleKm/initialBearing)
+// are computed, not asserted. Each place carries its scientific tier: the Bermuda Triangle is REFUTED as an anomaly
+// (no elevated loss rate — Lloyd's/USCG), the Nazca lines are ARCHAEOLOGICAL (real Nazca-culture geoglyphs, surface-
+// stone removal, visible from the nearby hills), and the Racetrack Playa sailing stones are SOLVED (ice-rafting +
+// light wind, directly observed 2014). The "global alignment grid" pattern is REFUTED — any points admit great circles.
+export type PlaceTier = 'SOLVED' | 'ARCHAEOLOGICAL' | 'REFUTED'
+export function placesAndPatternsDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('placesAndPatternsDecoded', matrix, () => {
+    const sphere = earthSouthPoleBoundaryCircleDecoded() // every place is a point on this one sphere
+    const sites = {
+      miami: [25.76, -80.19], bermuda: [32.32, -64.75], sanJuan: [18.47, -66.10],
+      nazca: [-14.74, -75.13], racetrack: [36.68, -117.56],
+    } as const
+    const km = (a: readonly [number, number], b: readonly [number, number]) => roundTo(greatCircleKm(a[0], a[1], b[0], b[1]), 1)
+    const bermudaPerimeter = roundTo(km(sites.miami, sites.bermuda) + km(sites.bermuda, sites.sanJuan) + km(sites.sanJuan, sites.miami), 1)
+    const miamiToBermudaBearing = roundTo(initialBearing(sites.miami[0], sites.miami[1], sites.bermuda[0], sites.bermuda[1]), 1)
+    const places = ([
+      { name: 'Bermuda Triangle', tier: 'REFUTED', verdict: 'No statistically elevated loss rate (Lloyd\'s of London, US Coast Guard) — heavy traffic + ordinary weather, not an anomaly.' },
+      { name: 'Nazca Lines', tier: 'ARCHAEOLOGICAL', verdict: 'Real Nazca-culture geoglyphs (~500 BCE–500 CE) made by removing the dark surface stones; visible from the surrounding foothills — human, not extraterrestrial.' },
+      { name: 'Racetrack Playa sailing stones', tier: 'SOLVED', verdict: 'Ice-rafting under thin floating ice sheets driven by light wind — directly observed and time-lapsed (Norris et al., 2014).' },
+    ] as { name: string; tier: PlaceTier; verdict: string }[]).map((p) => ({ ...p, receipt: toUuid(`place:${p.name}:${p.tier}`) }))
+    const facets = [
+      { facet: `every place is a point on the one earth sphere — distances are real great circles (Miami–Bermuda–San Juan perimeter ≈ ${bermudaPerimeter} km), not occult lines`, on: sphere.proved && bermudaPerimeter > 0 },
+      { facet: `bearings are computed geodesy, not symbolism — Miami→Bermuda initial bearing ≈ ${miamiToBermudaBearing}°`, on: miamiToBermudaBearing >= 0 && miamiToBermudaBearing < 360 },
+      { facet: 'the Bermuda Triangle is REFUTED as an anomaly — no elevated loss rate over comparable busy ocean', on: places[0]!.tier === 'REFUTED' },
+      { facet: 'the Nazca lines are ARCHAEOLOGICAL and the sailing stones are SOLVED — documented, not paranormal', on: places[1]!.tier === 'ARCHAEOLOGICAL' && places[2]!.tier === 'SOLVED' },
+      { facet: 'the "global alignment grid" pattern is REFUTED — any set of points admits great circles through them; alignment alone proves nothing', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`places-facet:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      places,
+      bermudaPerimeterKm: bermudaPerimeter,
+      miamiToBermudaBearingDeg: miamiToBermudaBearing,
+      documented: [
+        'Sites are real coordinates on the one earth sphere; great-circle distance (greatCircleKm) and initial bearing (initialBearing) are computed from those coordinates.',
+        'Each place is tiered: Bermuda Triangle REFUTED-as-anomaly, Nazca lines ARCHAEOLOGICAL, sailing stones SOLVED.',
+      ],
+      flagged: [
+        'The "ancient global grid / ley-line" pattern is REFUTED here, not endorsed — any finite point set admits great circles through it, so alignment is not evidence of design.',
+        'Coordinates are approximate centroids; the geodesy is illustrative of the method, not a survey-grade measurement.',
+      ],
+      facets,
+      root: merge(sphere.root, merkleFold([...places.map((p) => p.receipt), ...facets.map((entry) => entry.receipt)])),
+      statement: `Places and patterns, decoded: famous "mystery places" placed as real points on the one earth sphere with computed geodesy — the Bermuda Triangle perimeter is ≈ ${bermudaPerimeter} km of ordinary ocean (no elevated loss rate, REFUTED as an anomaly), the Nazca lines are ARCHAEOLOGICAL geoglyphs of the Nazca culture made by removing surface stones, and the Racetrack Playa sailing stones are SOLVED (ice-rafting under light wind, observed in 2014). The "global alignment grid" pattern is refuted: any set of points admits great circles, so alignment alone proves nothing.`,
+      boundary: 'HONEST tiers over documented geography and science — REFUTED (Bermuda anomaly, alignment grids), ARCHAEOLOGICAL (Nazca), SOLVED (sailing stones). The great-circle distances and bearings are computed from approximate coordinates to ground the places in real geodesy, not survey-grade data.',
+    }
+  })
 }
 
