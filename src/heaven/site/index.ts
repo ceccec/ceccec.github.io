@@ -33,7 +33,7 @@ import { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomai
 import { schoolCurriculum } from '../../wind/learning'
 import { primitiveKernelLivesInZero, oneMathManyPresentations, tamperingCostAndUuidLiveInZero } from '../compute'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
-import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../../fire/li'
+import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../../thunder/decode'
 import { weatherForecastQuantumComputedRealtime } from '../../quantum/fire/forecasts'
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
 import { cryptoReview } from '../../pair/debit/credit'
