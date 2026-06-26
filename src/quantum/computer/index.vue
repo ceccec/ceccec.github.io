@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, shallowRef } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import { quantumComputerLabComputes, QC_GATE_PALETTE } from '../science/index.ts'
-import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
+import { createAnimationEngine, runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
+import { siliconFabricationPlanFromModel, siliconFabricationStageAt } from '../../heaven/compute/computer/index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
@@ -68,6 +69,18 @@ function loadPreset(kind: 'bell' | 'ghz' | 'grover') {
   else if (kind === 'ghz') { n.value = 3; ops.value = [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }, { gate: 'CNOT', targets: [0, 2] }] }
   else { n.value = 3; ops.value = [{ gate: 'H', targets: [0] }, { gate: 'H', targets: [1] }, { gate: 'H', targets: [2] }, { gate: 'CZ', targets: [0, 2] }, { gate: 'H', targets: [0] }, { gate: 'H', targets: [1] }, { gate: 'H', targets: [2] }] }
 }
+
+// The chip fabricating itself — the RTL→GDSII stage cursor driven by the ONE shared rAF engine (createAnimationEngine).
+const fabPlan = siliconFabricationPlanFromModel()
+const fabAt = ref(0)
+const fabStage = computed(() => siliconFabricationStageAt(fabAt.value))
+let fabEngine: ReturnType<typeof createAnimationEngine> | null = null
+onMounted(() => {
+  const start = performance.now()
+  fabEngine = createAnimationEngine(() => { fabAt.value = performance.now() - start })
+  fabEngine.start()
+})
+onBeforeUnmount(() => fabEngine?.dispose())
 </script>
 
 <template>
@@ -146,7 +159,18 @@ function loadPreset(kind: 'bell' | 'ghz' | 'grover') {
         </div>
       </section>
 
+      <section class="qc-lab__fab" data-logic="src/heaven/compute/computer/index.ts" data-topic="silicon-fabrication">
+        <h3>The chip fabricating itself · {{ fabStage.stage }} ({{ fabStage.index + 1 }}/{{ fabStage.total }})</h3>
+        <ol class="qc-lab__fab-stages">
+          <li v-for="(s, i) in fabPlan.stages" :key="s.stage" :class="{ 'is-done': i <= fabStage.index }">{{ s.stage }}</li>
+        </ol>
+        <p class="qc-lab__fab-blocks">
+          <UiBadge v-for="b in fabPlan.blocks" :key="b.block" variant="outline">{{ b.block }} ← {{ b.fromPrimitive }}</UiBadge>
+        </p>
+      </section>
+
       <UiAlert title="Honest boundary"><p>{{ panel.boundary }}</p></UiAlert>
+      <UiAlert title="Silicon fabrication boundary"><p>{{ fabPlan.boundary }}</p></UiAlert>
     </UiCardContent>
   </UiCard>
 </template>
@@ -174,5 +198,10 @@ function loadPreset(kind: 'bell' | 'ghz' | 'grover') {
 .qc-lab__hist li { display: grid; grid-template-columns: 4rem 1fr auto; align-items: center; gap: 0.5rem; }
 .qc-lab__bar { height: 0.8rem; border-radius: 4px; background: var(--q-primary, var(--vp-c-brand-1)); min-width: 2px; }
 .qc-lab__count { font-variant-numeric: tabular-nums; opacity: 0.8; }
+.qc-lab__fab { display: grid; gap: 0.5rem; padding: 0.6rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, #888) 6%, transparent); }
+.qc-lab__fab-stages { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.3rem; font-size: 0.78rem; font-family: var(--vp-font-family-mono); }
+.qc-lab__fab-stages li { padding: 0.15rem 0.45rem; border-radius: 5px; border: 1px solid var(--vp-c-divider); opacity: 0.45; transition: opacity 0.3s, background 0.3s; }
+.qc-lab__fab-stages li.is-done { opacity: 1; background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 22%, transparent); }
+.qc-lab__fab-blocks { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0; }
 @media (max-width: 720px) { .qc-lab__results { grid-template-columns: 1fr; } }
 </style>

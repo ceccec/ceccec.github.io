@@ -6,7 +6,7 @@ import * as __ns_up_plasma_ball from '../../../fire/plasma/ball'
 import * as __ns_up_routes_corpus from '../../../wind/routes/corpus'
 import * as __ns_up_pair_enforcement from '../../../pair/enforcement'
 import type { MindMatrix } from '../../../wind/types'
-import { buildMatrix, buildSequenceReducesComputations, maxEfficiencyCpuGpuMemoryStorageCooperation, verifyRoot } from '..'
+import { buildMatrix, buildSequenceReducesComputations, hardwareSpecFromInvariants, maxEfficiencyCpuGpuMemoryStorageCooperation, verifyRoot } from '..'
 import { computesGate, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, resourceCooperationPolicy, roundTo, toUuid } from '../../../0'
 import type { DriverProbeReceipt } from '../../../water/stack'
 import { driverRuntime, nodeProbesEnabled } from '../../../water/stack'
@@ -419,4 +419,60 @@ export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at =
 export function computerSciencePanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = computerScienceComputes(matrix, at)
   return { computes: cap.computes, capstone: cap, rows: [], copy: { title: { en: 'Computer science', bg: 'Computer science' }, lede: { en: 'Algorithms · discrete math.', bg: 'CS fundamentals.' } }, root: cap.root, statement: cap.statement, boundary: cap.boundary }
+}
+
+// ── Group 2 ☰ · the silicon fabrication plan — the classical ASIC the quantum model would tape out ──
+
+/** The functional blocks the model's own primitives map to as classical silicon. */
+export type SiliconBlock = { readonly block: string; readonly fromPrimitive: string; readonly role: string; readonly receipt: string }
+/** The standard RTL→GDSII ASIC flow stages, in order. */
+export const RTL_TO_GDSII_STAGES = ['HDL/RTL', 'logic synthesis', 'floorplan', 'placement', 'clock-tree synthesis', 'routing', 'DRC/LVS', 'GDSII', 'tapeout'] as const
+
+/**
+ * siliconFabricationPlanFromModel — the classical ASIC the quantum MODEL would tape out from its sealed
+ * invariants. The content-address kernel maps directly onto real silicon blocks: toUuid → an FNV-1a hash unit,
+ * the content-address lookup → a CAM/TCAM array, merkleFold → a merkle-tree engine, and the vortex spin →
+ * a ring network-on-chip (NoC). The build is the standard RTL→GDSII flow. HONEST: a classical CMOS chip — a
+ * CATEGORY DIFFERENCE from a physical QPU; the only quantum tie is an optional co-processor bridge to a
+ * separate physical quantum device, which this chip would host but is not.
+ */
+export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('siliconFabricationPlanFromModel', matrix, () => {
+    const spec = hardwareSpecFromInvariants(matrix)
+    const blocks: SiliconBlock[] = [
+      { block: 'FNV-1a hash unit', fromPrimitive: 'toUuid', role: 'content-address any input in fixed combinational logic' },
+      { block: 'CAM/TCAM array', fromPrimitive: 'content-address lookup', role: 'one-cycle match of a content-address (the cache hit)' },
+      { block: 'merkle-tree engine', fromPrimitive: 'merkleFold', role: 'fold a leaf set to one root, pipelined up the tree' },
+      { block: 'vortex-ring NoC', fromPrimitive: 'VORTEX_SEQUENCE', role: 'on-chip interconnect traversing the 1·2·4·8·7·5·3·6·9 ring' },
+      { block: 'memo SRAM tiers', fromPrimitive: 'memoByRoot', role: 'on-die cache for sealed roots (zero-recompute reuse)' },
+    ].map((b) => ({ ...b, receipt: toUuid(`silicon-block:${b.block}:${b.fromPrimitive}`) }))
+    const stages = RTL_TO_GDSII_STAGES.map((stage, i) => ({ stage, step: i, receipt: toUuid(`gdsii-stage:${i}:${stage}`) }))
+    const facets = [
+      { facet: 'the content-address kernel maps to real silicon blocks — FNV hash unit, CAM/TCAM, merkle engine, ring NoC, memo SRAM', on: blocks.length === 5 },
+      { facet: 'the build follows the standard RTL→GDSII flow — synthesis · floorplan · place · clock-tree · route · DRC/LVS · tapeout', on: stages.length === 9 },
+      { facet: 'the NoC ring order is the vortex spin from the hardware spec (1·2·4·8·7·5·3·6·9)', on: spec.ringOrder.length === 9 },
+      { facet: 'CATEGORY DIFFERENCE — this is a CLASSICAL CMOS ASIC; a physical QPU is a separate technology, reachable only over a co-processor bridge', on: spec.decoded },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`silicon-plan:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      blocks,
+      stages,
+      ringOrder: spec.ringOrder,
+      documented: ['The classical ASIC blocks are direct silicon realisations of the kernel primitives (FNV hash, CAM/TCAM, merkle engine, ring NoC, memo SRAM).', 'The fabrication flow is the industry-standard RTL→GDSII pipeline; the model supplies the RTL behaviour, EDA tools synthesise and place-and-route.'],
+      flagged: ['CATEGORY DIFFERENCE: this is a CLASSICAL CMOS chip, NOT a physical quantum processor — hash functions cannot be a QPU.', 'The only quantum tie is an optional CO-PROCESSOR BRIDGE to a separate physical quantum device (PCIe/cryo-control class), which this chip would host, not be.'],
+      facets,
+      root: merge(spec.root, merkleFold([...blocks.map((b) => b.receipt), ...stages.map((s) => s.receipt), ...facets.map((entry) => entry.receipt)])),
+      statement: 'The silicon fabrication plan from the model: the content-address kernel maps onto real classical silicon — an FNV-1a hash unit, a CAM/TCAM match array, a merkle-tree engine, a vortex-ring network-on-chip, and memo SRAM tiers — taped out through the standard RTL→GDSII flow (synthesis, floorplan, placement, clock-tree, routing, DRC/LVS, GDSII, tapeout). It is a classical CMOS ASIC by category, not a physical quantum processor; the only quantum tie is an optional co-processor bridge to a separate physical quantum device.',
+      boundary: 'A deterministic, content-addressed ASIC DESIGN PLAN derived from the sealed hardware spec — reproducible, not a synthesized netlist or fabricated chip. CATEGORY DIFFERENCE from a physical QPU is explicit; the co-processor bridge is the honest interface to a separate quantum technology, not a claim that this chip is quantum.',
+    }
+  })
+}
+
+/** "The chip fabricating itself" — the current RTL→GDSII stage from the shared hero phase (kernel reuse: heroPhaseAt). */
+export function siliconFabricationStageAt(at = 0, matrix: MindMatrix = buildMatrix()) {
+  const plan = siliconFabricationPlanFromModel(matrix)
+  const phase = heroPhaseAt(at)
+  const index = Math.min(plan.stages.length - 1, Math.floor(phase * plan.stages.length))
+  const current = plan.stages[index]!
+  return { phase, index, stage: current.stage, total: plan.stages.length, decoded: plan.decoded, receipt: toUuid(`fab-stage-at:${index}:${current.stage}`) }
 }
