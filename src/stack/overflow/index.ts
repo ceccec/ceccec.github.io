@@ -71,10 +71,10 @@ export function nodeProbesEnabled(): boolean {
   )
 }
 /** Power driver capstone — structural probe (NOT grid telemetry). */
-export function powerComputes(matrix?: unknown, at = 0) {
-  void matrix
-  void at
-  return { computes: true, root: 'power-computes:structural', boundary: 'NOT utility grid data.' }
+/** Power draw — delegates to the single canonical estimate in src/computer (cpu+gpu receipts), so the
+ *  widget/dimension surfaces share ONE content-addressed root (no stub duplicate, no non-UUID root). */
+export function powerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return __ns_up_up_computer.powerComputes(matrix, at)
 }
 /** GPU paint phase channel — structural hero-clock facet. */
 export function gpuPaintPhaseChannel(at = 0, matrix?: unknown) {
