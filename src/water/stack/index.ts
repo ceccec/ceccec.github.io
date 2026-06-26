@@ -37,7 +37,7 @@ import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { memoryInSourceAsCrossFolds, presentMomentRemainsInSource } from '../../mountain/source'
-import { knowledgeRevealedByMerkabaFold } from '../../mountain/topology'
+import { earthSouthPoleBoundaryCircleDecoded, knowledgeRevealedByMerkabaFold } from '../../mountain/topology'
 import { commandsSavedInQuantumPairs } from '../../thunder/commands'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
@@ -1307,3 +1307,64 @@ export {
   researchReproducibility,
   researchPanelComputes,
 } from '../../wind/research'
+
+// ── Group 4 ☵ · the scale ladder — the human descends south through the orders of magnitude to the quantum ──
+
+export type ScaleRung = { readonly name: string; readonly metres: number; readonly log10: number; readonly receipt: string }
+/** The descent ladder: human scale (10⁰ m) down through milli/micro/nano/pico/femto to the Planck length. */
+export const SCALE_LADDER: readonly Omit<ScaleRung, 'receipt'>[] = [
+  { name: 'human (metre)', metres: 1e0, log10: 0 },
+  { name: 'millimetre', metres: 1e-3, log10: -3 },
+  { name: 'micrometre (cell)', metres: 1e-6, log10: -6 },
+  { name: 'nanometre (molecule)', metres: 1e-9, log10: -9 },
+  { name: 'picometre (atom)', metres: 1e-12, log10: -12 },
+  { name: 'femtometre (nucleus)', metres: 1e-15, log10: -15 },
+  { name: 'attometre (quark probe)', metres: 1e-18, log10: -18 },
+  { name: 'Planck length (quantum floor)', metres: 1.616255e-35, log10: -34.79 },
+]
+
+/** scaleLadderAt — the active rung of the descent at time `at`, one shared phase clock descending the ladder. */
+export function scaleLadderAt(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`scaleLadderAt:${Math.floor(at / 1000)}`, matrix, () => {
+    const rungs: ScaleRung[] = SCALE_LADDER.map((r) => ({ ...r, receipt: toUuid(`scale-rung:${r.name}:${r.log10}`) }))
+    const p = (((at % 16000) + 16000) % 16000) / 16000 // 16s descent cycle
+    const index = Math.min(rungs.length - 1, Math.floor(p * rungs.length))
+    const monotonic = rungs.every((r, i) => i === 0 || r.metres < rungs[i - 1]!.metres)
+    return {
+      descends: monotonic && rungs.length === 8,
+      at,
+      index,
+      activeRung: rungs[index]!,
+      rungs,
+      root: merkleFold(rungs.map((r) => r.receipt)),
+      statement: 'The scale ladder, animated: from the human metre the descent walks south through millimetre, micrometre (cell), nanometre (molecule), picometre (atom), femtometre (nucleus), attometre, down to the Planck length — one shared phase clock selecting the active rung.',
+      boundary: 'Real SI orders of magnitude. The Planck length (~1.6e-35 m) is a genuine physics scale; sub-Planck structure is UNKNOWN — "and beyond" is flagged as open, not asserted.',
+    }
+  })
+}
+
+/**
+ * humanDescendsSouthToQuantumAndBeyond — the descent from human scale to the quantum, composing the scale ladder
+ * with the south-pole one-point compactification (earthSouthPoleBoundaryCircleDecoded): "south" is the topological
+ * terminus where the boundary circle collapses to a single point — the limit the descent approaches.
+ */
+export function humanDescendsSouthToQuantumAndBeyond(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`humanDescendsSouthToQuantumAndBeyond:${Math.floor(at / 1000)}`, matrix, () => {
+    const ladder = scaleLadderAt(at, matrix)
+    const south = earthSouthPoleBoundaryCircleDecoded()
+    const facets = [
+      { facet: 'the descent walks the scale ladder monotonically downward (human → Planck)', on: ladder.descends },
+      { facet: 'south is the one-point compactification — the boundary circle collapses to a single point (the terminus)', on: south.compactifiedToOnePoint && south.proved },
+      { facet: 'the quantum floor is the Planck length — a real scale, with sub-Planck "beyond" left open', on: ladder.rungs[ladder.rungs.length - 1]!.log10 < -30 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`descend-south:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      ladder,
+      south,
+      facets,
+      root: merge(ladder.root, merge(south.root, merkleFold(facets.map((entry) => entry.receipt)))),
+      statement: 'The human descends south to the quantum and beyond: walking the scale ladder from the metre down through cell, molecule, atom, nucleus to the Planck length, where "south" is the topological terminus — the genus-2 chart\'s boundary circle compactified to one point — the limit the descent approaches.',
+      boundary: 'Composes real SI scales with the south-pole one-point compactification (topology/design). The Planck length is real physics; sub-Planck "beyond" is UNKNOWN and not asserted. "South/descent" is the topological metaphor, HARMONY ≠ TRUTH.',
+    }
+  })
+}

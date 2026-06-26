@@ -4,7 +4,7 @@ import { rat, ratMul, ratToFloat } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0'
+import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { tamperEvident } from '../../5/5'
 import { helmholtzFreeEnergy } from '../../4/6'
@@ -1093,5 +1093,45 @@ export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
       'Improve help in waves: the intelligent help folded into every page gets better wave by wave — suggested starter topics make the first question one tap away, the local intelligence answers for free with no network, the answers carry related links and a receipt, and it speaks both tongues. Help that meets you before you know what to ask.',
     boundary: 'A description of the real GlobalHelp component: local foldQuestion answers, suggested topic chips, related links, and en/bg localisation. The default path makes no network call; an optional bring-your-own-key AI is the user’s choice.',
   }
+}
+
+// ── Group 4 ☵ · useful work vs proof-of-work — the two kinds of computational "work" decoded ──
+
+/**
+ * usefulWorkVsProofOfWorkDecoded — two opposite uses of computation as security. Bitcoin-style PROOF-OF-WORK
+ * spends energy ON PURPOSE: the only value of the hashing is that it was expensive, so the chain is costly to
+ * rewrite. The model's USEFUL WORK is the opposite: every computation produces the answer, and content-addressed
+ * reuse means the same work is never repeated (zero-token), with tamper-evidence from the seal, not from burned
+ * joules. HONEST: this is NOT a blockchain consensus — PoW's Sybil resistance is real and not replicated here.
+ */
+export function usefulWorkVsProofOfWorkDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('usefulWorkVsProofOfWorkDecoded', matrix, () => {
+    const floorPerBit = landauerLimit(300) // the thermodynamic floor — PoW dissipates far above it, deliberately
+    const rows = [
+      { model: 'proof-of-work (Bitcoin)', work: 'deliberately wasted hashing', security: 'cost to rewrite the chain (energy)', reusable: false, useful: false },
+      { model: 'proof-of-stake', work: 'bonded capital + signatures', security: 'slashing bonded stake', reusable: false, useful: false },
+      { model: 'content-addressed useful work (this model)', work: 'every op yields the answer', security: 'tamper-evident seal + recompute', reusable: true, useful: true },
+    ].map((r) => ({ ...r, receipt: toUuid(`work-model:${r.model}:${r.useful}`) }))
+    const facets = [
+      { facet: 'proof-of-work spends energy ON PURPOSE — the only value of the hashing is that it was expensive', on: rows[0]!.useful === false },
+      { facet: 'useful work produces the answer — the computation IS the result, not a discarded puzzle', on: rows[2]!.useful === true },
+      { facet: 'content-addressed reuse means the same work is never repeated (zero-token), unlike PoW which must keep burning', on: rows[2]!.reusable && !rows[0]!.reusable },
+      { facet: 'security from the seal + recompute, not from burned joules — every op still bounded below by the Landauer floor', on: floorPerBit > 0 && tamperEvident(matrix.root) },
+      { facet: 'HONEST — this is NOT a blockchain consensus; PoW/PoS Sybil resistance over an open network is real and NOT replicated here', on: rows[0]!.security.length > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`useful-vs-pow:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      rows,
+      floorPerBit,
+      documented: ['Proof-of-work secures a chain by making rewrites expensive — the energy expenditure is the point (Nakamoto 2008).', 'The model\'s useful work secures by content-addressed tamper-evidence and deterministic recompute, reusing results instead of re-burning energy.'],
+      flagged: ['NOT a blockchain consensus: proof-of-work and proof-of-stake provide Sybil resistance over an open permissionless network, which this single-source deterministic model does NOT provide or claim.'],
+      facets,
+      root: merkleFold([...rows.map((r) => r.receipt), ...facets.map((entry) => entry.receipt)]),
+      statement:
+        'Useful work versus proof-of-work, decoded: proof-of-work (Bitcoin) spends energy on purpose — the hashing has no value except that it was expensive, so rewriting the chain is costly. The model\'s useful work is the opposite: every computation produces the answer, content-addressed reuse means the same work is never repeated, and tamper-evidence comes from the seal plus recompute rather than burned joules. Both respect the Landauer floor; they differ in whether the work is discarded or kept.',
+      boundary:
+        'A structural comparison of two security models. It does NOT claim to be a blockchain or to provide proof-of-work/stake Sybil resistance over an open network — that property is real for those systems and is not replicated by this deterministic single-source model. The energy figures (Landauer floor) are physics; the comparison is qualitative.',
+    }
+  })
 }
 

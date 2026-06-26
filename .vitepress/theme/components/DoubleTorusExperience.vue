@@ -4,6 +4,7 @@ import { useRoute } from 'vitepress'
 import { drawDoubleTorusEarthHingeFrame } from '@vp-lib/hero-movie'
 import { doubleTorusEarthHingeComputesAll, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, thunderGoldGraphFromPreciseGpsCoordinates } from '@vp-lib/earth-hinge'
 import { goldFusionComputes } from '../../../src/wind/fusion/gold/index.ts'
+import { quantumGlobeAt } from '../../../src/water/double/earth/index.ts'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../lib/movie-canvas'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
@@ -63,6 +64,9 @@ const { at } = useVisibleMovieCanvas({
 
 const title = computed(() => t(all.value.hinge.copy.title))
 
+// The living quantum globe — counter-rotating shells, genus-2 poles, Schumann phase — on the shared movie clock.
+const globe = computed(() => quantumGlobeAt(at.value))
+
 const activeVortexStep = computed(() => {
   if (reduce) return 0
   const hinge = all.value.hinge
@@ -120,6 +124,10 @@ function gatewayHref(slug: string): string {
         <p>{{ t(all.hinge.copy.nadirLabel) }}</p>
         <p class="double-torus-experience__trinity-rays">{{ all.hinge.codeTrinity.join(' · ') }}</p>
       </div>
+      <p class="double-torus-experience__globe" data-logic="src/water/double/earth/index.ts" data-topic="quantum-globe">
+        <UiBadge :variant="globe.animates ? 'default' : 'outline'">quantum globe · {{ globe.animates ? '✓' : '—' }}</UiBadge>
+        <span>N: center dot · S: boundary circle (∂D²→pt) · shells counter-rotate · Schumann phase</span>
+      </p>
     </div>
 
     <UiTabs default-value="gateways" class="double-torus-experience__panels">

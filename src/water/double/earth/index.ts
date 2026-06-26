@@ -21,7 +21,9 @@ import {
   digitalRoot,
 } from '../../../0'
 import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions'
-import { quantumDoubleTorus, torusBreathe } from '../../../mountain/topology'
+import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology'
+// Cycle-safe binding for the Schumann resonance paint composed into the quantum globe (referenced at call time).
+import * as __ns_thunder_resonance from '../../../thunder/resonance'
 import {
   doubleTorusEarthWeatherFlowsInMovie,
   doubleTorusSolutionsProvenByMath,
@@ -2400,6 +2402,72 @@ export function doubleTorusEarthComputes(matrix: MindMatrix = buildMatrix()) {
         'Double torus Earth computes: two Earths form from device + code trinities (zenith + nadir pyramids, same timespace); each Earth carries three computable trinity gateways — six total at call time; WGS84 weather streams map onto the genus-2 surface — structural map, not lithosphere claim.',
       boundary:
         'Composition of quantumDoubleTorus, doubleTorusEarthLikeTheApple, weatherForecastFromDoubleTorusEarthPerspective, and doubleTorusEarthWeatherFlowsInMovie. HARMONY ≠ TRUTH on planet shape.',
+    }
+  })
+}
+
+// ── Group 4 ☵ · the quantum globe — the genus-2 Earth animated, its cardinal cross decoded ──
+
+/**
+ * quantumGlobeAt — the living quantum globe at time `at`. The two Earth shells counter-rotate within each other
+ * (bothEarthsRotateWithinEachOther), the poles are the genus-2 chart singularities (north = the centre dot,
+ * south = the boundary circle one-point-compactified, polarDiskChartAt), and the Schumann ELF cavity supplies the
+ * ambient resonance phase (resonanceSimulationAt). One shared phase clock, recomputed from (at).
+ */
+export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`quantumGlobeAt:${Math.floor(at / 1000)}`, matrix, () => {
+    const rotation = bothEarthsRotateWithinEachOther(at, matrix)
+    const north = earthNorthPoleCenterDotDecoded()
+    const south = earthSouthPoleBoundaryCircleDecoded()
+    const equator = polarDiskChartAt(0)
+    const resonance = __ns_thunder_resonance.resonanceSimulationAt(at, matrix)
+    const facets = [
+      { facet: 'two Earth shells counter-rotate within each other (device trinity vs inverted code trinity)', on: rotation.rotates },
+      { facet: 'north pole = the azimuthal-equidistant centre dot (ρ=0, z=+tubeR) — the chart singularity', on: north.proved && north.isCenterDot },
+      { facet: 'south pole = the boundary circle one-point-compactified (ρ=1, z=−tubeR; ∂D² ≡ one point)', on: south.proved && south.compactifiedToOnePoint },
+      { facet: 'the equator sits mid-tube (ρ=0.5) on the genus-2 surface', on: equator.onDisk && Math.abs(equator.diskRadius - 0.5) < 1e-6 },
+      { facet: 'the Schumann ELF cavity supplies the ambient resonance phase (structural ELF model, NOT a magnetometer)', on: isUuid(resonance.root) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-globe:${entry.facet}:${entry.on}`) }))
+    return {
+      animates: facets.every((entry) => entry.on),
+      at,
+      rotation,
+      poles: { north, south, equator },
+      resonanceRoot: resonance.root,
+      facets,
+      root: merkleFold([rotation.root, north.root, south.root, equator.root, resonance.root, ...facets.map((entry) => entry.receipt)]),
+      statement:
+        'The quantum globe, animated: the two Earth shells counter-rotate within each other, the north pole is the azimuthal-equidistant centre dot and the south pole the boundary circle one-point-compactified (the genus-2 chart singularities), the equator sits mid-tube, and the Schumann ELF cavity supplies the ambient resonance phase — all recomputed from one shared clock at time `at`.',
+      boundary:
+        'A content-addressed animation state composing the both-Earths rotation, the pole chart decode, and the structural Schumann ELF phase. HARMONY ≠ TRUTH on planet shape: the genus-2 "double torus Earth" is adopted as topology/design, not a claim about the physical planet; the Schumann phase is a structural ELF model, not a magnetometer reading.',
+    }
+  })
+}
+
+/**
+ * quantumGlobeCardinalCrossDecoded — the globe's cardinal cross across dimensions, composing the universal
+ * navigational cross (2D bearings → 3D zenith/nadir → 4+ phase quadrants) with the live globe state, so the cross
+ * is the same fold at every scale.
+ */
+export function quantumGlobeCardinalCrossDecoded(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`quantumGlobeCardinalCrossDecoded:${Math.floor(at / 1000)}`, matrix, () => {
+    const cross = universalNavigationalCrossInAllDimensions(at, matrix)
+    const globe = quantumGlobeAt(at, matrix)
+    const facets = [
+      { facet: 'the navigational cross holds across dimensions — 2D bearings, 3D zenith/nadir, 4+ phase quadrants', on: isUuid(cross.root) },
+      { facet: 'the cross is anchored on the live globe — poles and counter-rotation recomputed at this call', on: globe.animates },
+      { facet: 'one fold at every scale — the cardinal cross is the genus-2 chart seen 2D / 3D / 4+', on: globe.poles.north.proved && globe.poles.south.proved },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`globe-cross:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      cross,
+      globe,
+      facets,
+      root: merge(cross.root, merge(globe.root, merkleFold(facets.map((entry) => entry.receipt)))),
+      statement:
+        'The quantum globe\'s cardinal cross, decoded: the universal navigational cross (2D compass bearings, 3D zenith/nadir poles, 4+ phase quadrants over the four homology loops) anchored on the live counter-rotating globe — the same cross fold seen at every dimensional scale.',
+      boundary:
+        'A composition of the universal navigational cross and the live quantum-globe state. The cross is exact bearing/geodesy math at 2D and structural at higher dimensions; HARMONY ≠ TRUTH on planet shape.',
     }
   })
 }

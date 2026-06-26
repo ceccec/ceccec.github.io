@@ -7,7 +7,7 @@ import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRES
 import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { toUuid, merge, merkleFold, sealFacets, roundTo } from '../../0'
+import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
@@ -737,4 +737,42 @@ export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
     computed: moons.length === MAJOR_MOONS.length && moons.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
     root: merkleFold(moons.map((entry) => entry.receipt)),
   }
+}
+
+// ── Group 4 ☵ · the cosmic frontiers — the open questions, composed from the sealed cosmology folds ──
+
+/**
+ * cosmosFrontiersDecoded — the open frontiers of physics and cosmology, each held at its honest tier. It COMPOSES
+ * the sealed cosmology folds (darkMatterDecoded, cosmologicalTensionsLcdmDecoded) and lists the remaining open
+ * questions without pretending to solve them. Every entry is OPEN — these are genuinely unresolved frontiers.
+ */
+export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('cosmosFrontiersDecoded', matrix, () => {
+    const darkMatter = darkMatterDecoded(matrix)
+    const tensions = cosmologicalTensionsLcdmDecoded(matrix)
+    const frontiers = [
+      { frontier: 'Dark matter', status: 'OPEN — a real gravitational anomaly; candidates (WIMP, axion) and MOND alternatives all unconfirmed.', composedRoot: darkMatter.root },
+      { frontier: 'The H₀ / S₈ (ΛCDM) tensions', status: 'OPEN — statistically significant early-vs-late-universe discrepancies; new physics or systematics, unresolved.', composedRoot: tensions.root },
+      { frontier: 'Dark energy / cosmological constant', status: 'OPEN — the accelerating expansion is measured; why Λ has its tiny value is unexplained.', composedRoot: toUuid('frontier:dark-energy') },
+      { frontier: 'Matter–antimatter asymmetry (baryogenesis)', status: 'OPEN — the universe is matter-dominated; the CP violation needed to explain it is not fully accounted.', composedRoot: toUuid('frontier:baryogenesis') },
+      { frontier: 'Neutrino mass ordering & nature', status: 'OPEN — masses are nonzero (oscillations) but the ordering and Dirac-vs-Majorana question are undecided.', composedRoot: toUuid('frontier:neutrino') },
+      { frontier: 'Quantum gravity', status: 'OPEN — no experimentally confirmed theory unifying general relativity and quantum mechanics.', composedRoot: toUuid('frontier:quantum-gravity') },
+    ].map((f) => ({ ...f, receipt: toUuid(`cosmos-frontier:${f.frontier}:${f.composedRoot.slice(0, 8)}`) }))
+    const facets = [
+      { facet: 'composes the sealed cosmology folds — dark matter and the ΛCDM tensions bind their own roots', on: frontiers[0]!.composedRoot.length > 0 && frontiers[1]!.composedRoot.length > 0 },
+      { facet: 'every frontier is held OPEN — no unsolved question is claimed solved', on: frontiers.every((f) => f.status.startsWith('OPEN')) },
+      { facet: 'six named frontiers spanning the dark sector, baryogenesis, neutrinos, and quantum gravity', on: frontiers.length === 6 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-frontiers:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      frontiers,
+      count: frontiers.length,
+      facets,
+      root: merge(darkMatter.root, merge(tensions.root, merkleFold(frontiers.map((f) => f.receipt)))),
+      statement:
+        'The cosmic frontiers, decoded: dark matter, the H₀/S₈ tensions, dark energy, the matter–antimatter asymmetry, the neutrino mass ordering, and quantum gravity — the genuinely open questions of physics and cosmology, composed from the sealed cosmology folds and each held OPEN, none claimed solved.',
+      boundary:
+        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter and ΛCDM-tension folds. It asserts no resolution to any of them — these are unresolved by current science, and the fold records that honestly.',
+    }
+  })
 }
