@@ -4,6 +4,12 @@
 **/.vitepress/.temp/**
 **/.vitepress/.build-lock
 
+# OS cruft
+**/.DS_Store
+
+# Repo-root temp codemod scripts (AGENTS.md fold/cleanup orphans — regenerable, never source).
+/.tmp-*
+
 # Local secrets — never commit; see .env.example
 .env
 
