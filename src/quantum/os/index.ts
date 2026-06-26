@@ -6,7 +6,7 @@ import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_fusion from '../../wind/fusion'
 import * as __ns_up_up_fusion_gold from '../../wind/fusion/gold'
 import * as __ns_up_dynamics from '../dynamics'
-import * as __ns_up_up_computer from '../../computer'
+import * as __ns_up_up_computer from '../../heaven/compute/computer'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, runQuantumCircuit, toUuid, VORTEX_SEQUENCE } from '../../0'
@@ -20,7 +20,7 @@ import {
   powerComputes,
   storageDriverProbe,
   terminalDriverProbe,
-} from '../../computer'
+} from '../../heaven/compute/computer'
 import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../fire/plasma/ball'
 import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science'
 import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps'

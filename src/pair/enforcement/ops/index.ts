@@ -393,7 +393,7 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'solve': return runSolveExit(root, rest)
     case 'dissolve-flat': return runSolveExit(root, rest.includes('--dry') ? ['--dry'] : rest)
     case 'timeout-demo':
-      return runThinMount('src/vortex/math/index.ts', 'runTimeoutDemoExit', root, rest)
+      return runThinMount('src/mountain/vortex/index.ts', 'runTimeoutDemoExit', root, rest)
     default:
       process.stderr.write(`unknown: ${cmd}\n`)
       return 1

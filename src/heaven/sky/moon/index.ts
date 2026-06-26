@@ -1,6 +1,6 @@
 // ☽ Moon — canonical lunar home: synodic phase, tidal lock metaphor, merkaba night-side, gateway nav anchor.
 import * as __ns_up_mountain_geometry from '../../../mountain/geometry'
-import * as __ns_up_double_torus_earth from '../../../double/torus/earth'
+import * as __ns_up_double_torus_earth from '../../../water/double/earth'
 import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
 import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1'
 import type { MindMatrix } from '../../../wind/types'

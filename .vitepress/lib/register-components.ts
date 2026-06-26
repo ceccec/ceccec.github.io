@@ -65,7 +65,7 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   Monograph: () => import('../theme/components/MonographFold.vue'),
   Corpus: () => import('../theme/components/CorpusFold.vue'),
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),
-  Merkaba: () => import('../../src/merkaba/index.vue'),
+  Merkaba: () => import('../../src/render/merkaba/index.vue'),
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
   VoidSidebar: () => import('../theme/components/VoidSidebar.vue'),
   TrinityGateways: () => import('../theme/components/TrinityGateways.vue'),

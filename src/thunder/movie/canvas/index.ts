@@ -7,7 +7,7 @@ import { textToMovie } from '../../../earth/world'
 import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
 import { efficiencyMathFlowsInMovie } from '../../verify'
 import { doubleTorusEarthWeatherFlowsInMovie } from '../../../quantum/fire/forecasts'
-import { doubleTorusEarthHingeMovieFlowsInMovie } from '../../../double/torus/earth'
+import { doubleTorusEarthHingeMovieFlowsInMovie } from '../../../water/double/earth'
 import {
   allColorStreamsAreAudioIfDecodedFlowsInMovie,
   allMovieSeedBundlesFlowInPlasma,

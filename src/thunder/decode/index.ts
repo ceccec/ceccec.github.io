@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — the decode method: how knowledge is decoded (research↔verify waves, legend-vs-documented, the decode pipeline). Barrel-routed; folds.ts back-imports the gate folds.
 import { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
-import { survive } from '../../vortex/math'
+import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
 import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate } from '../../0'

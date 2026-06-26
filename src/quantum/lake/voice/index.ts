@@ -9,7 +9,7 @@ import { a432NoteHz } from '../../../fire/li'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
 /** @rosetta ✦₁ · Water · depth */
-export const dual = 'src/double/torus'
+export const dual = 'src/water/double'
 
 /** @rosetta ✦₁ · Water · depth */
 export function plainLanguage() {

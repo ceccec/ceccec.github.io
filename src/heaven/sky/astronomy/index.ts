@@ -1,7 +1,7 @@
 // ☊ Astronomy — canonical celestial home: sixteen-body catalog, VORTEX_SEQUENCE decode, galaxy compute (dissolved src/audio → plasma/ball; census-neutral swap).
 import * as __ns_up_earth_nature from '../../../earth/nature'
 import * as __ns_up_thunder_decode from '../../../thunder/decode'
-import * as __ns_up_vortex_math from '../../../vortex/math'
+import * as __ns_up_vortex_math from '../../../mountain/vortex'
 import * as __ns_up_fire_diamonds from '../../../fire/diamonds'
 import * as __ns_up_lake_music from '../../../lake/music'
 import * as __ns_up_fire_li from '../../../fire/li'

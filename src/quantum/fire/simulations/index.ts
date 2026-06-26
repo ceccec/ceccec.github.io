@@ -6,7 +6,7 @@
 // ☲ Lí · Fire · clinging · lower·yin · spread — EM primitives (constants, conversions, content-addressing)
 import { phase } from '../../../6/4'
 import { ELECTRONVOLT, PLANCK, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7'
-import { inductionStep } from '../../../vortex/math'
+import { inductionStep } from '../../../mountain/vortex'
 import { wavelengthOf, larmorFrequency } from '../../../1/9'
 import {   prng, merkleFold, toUuid, roundTo } from '../../../0'
 import { isIonizing } from '../../../9/1'

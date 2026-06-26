@@ -12,8 +12,8 @@ import * as __ns_up_thunder_waves from '../../thunder/waves'
 import * as __ns_up_6_4 from '../../6/4'
 import * as __ns_up_mountain_seals from '../../mountain/seals'
 import * as __ns_up_earth_world from '../../earth/world'
-import * as __ns_up_double_torus_earth from '../../double/torus/earth'
-import * as __ns_up_stack_overflow from '../../stack/overflow'
+import * as __ns_up_double_torus_earth from '../../water/double/earth'
+import * as __ns_up_stack_overflow from '../../water/stack'
 import * as __ns_up_earth from '../../earth'
 import * as __ns_up_astronomy from '../../heaven/sky/astronomy'
 import * as __ns_up_thunder_decode from '../../thunder/decode'
@@ -22,7 +22,7 @@ import * as __ns_up_moon from '../../heaven/sky/moon'
 import * as __ns_up_heaven_site from '../../heaven/site'
 import * as __ns_self from '.'
 import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
-import * as __ns_up_resonance from '../../resonance'
+import * as __ns_up_resonance from '../../thunder/resonance'
 import * as __ns_up_quantum_dynamics from '../../quantum/dynamics'
 import * as __ns_cur_gold from './gold'
 import * as __ns_up_learning from '../learning'
@@ -58,7 +58,7 @@ import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms'
 import { mcpToolManifest, skillAtoms } from '../learning'
 import { colorRootsAtA432HeartBalances } from '../../lake/music'
 import { hexagramIsHexColorDuality } from '../../mountain/geometry'
-import { vortexPaintTiers } from '../../vortex/math'
+import { vortexPaintTiers } from '../../mountain/vortex'
 import { SHADCN_PRIMITIVE_NAMES } from '../../lake/widgets'
 import { breathe, complete, computedSeo, extendSelfAudits, globalApis, iChing, iChingScalesComplete, imagineTheRest, legislationRequires, paperReferences, shadcnIsTheGraph, siteIsMovieAndLibrary, stateOfTheArtHarmonisedQuantumWidgets, theWhole, uuidPayloadIsSource } from '../../quantum/heaven/mind'
 
@@ -2036,7 +2036,7 @@ export function alchemyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
       { id: 'process', mount: 'src/fusion/gold', leg: 'goldFusionProcess', on: pipeline.process.generator.generates, receipt: pipeline.process.processReceipt },
       { id: 'product', mount: 'src/fusion/gold', leg: 'fusionGoldProduct', on: pipeline.product.computes, receipt: pipeline.product.root },
       { id: 'addressing', mount: 'src/learning · src/iching', leg: 'rosetta + I Ching keys', on: rosetta.computes && iching.computes, receipt: merkleFold([rosetta.root, iching.root]) },
-      { id: 'fiat-gold-metaphor', mount: 'src/double/torus/earth', leg: 'fiat/gold exchange metaphor', on: fiatGold.explains, receipt: fiatGold.root },
+      { id: 'fiat-gold-metaphor', mount: 'src/water/double/earth', leg: 'fiat/gold exchange metaphor', on: fiatGold.explains, receipt: fiatGold.root },
     ]
     return {
       researched: stages.every((s) => s.on),

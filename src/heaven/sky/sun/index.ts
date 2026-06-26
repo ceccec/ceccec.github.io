@@ -1,7 +1,7 @@
 // ☉ Sun — canonical solar home: day phase, obliquity, Schumann day-side ionosphere, sealed solar constants.
 import * as __ns_up_plasma_ball from '../../../fire/plasma/ball'
-import * as __ns_up_resonance from '../../../resonance'
-import * as __ns_up_double_torus_earth from '../../../double/torus/earth'
+import * as __ns_up_resonance from '../../../thunder/resonance'
+import * as __ns_up_double_torus_earth from '../../../water/double/earth'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../compute'
 import { computesGate, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'

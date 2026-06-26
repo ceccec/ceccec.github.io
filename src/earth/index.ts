@@ -5,7 +5,7 @@ import * as __ns_cur_architecture from './architecture'
 import * as __ns_cur_civilisation from './civilisation'
 import * as __ns_cur_governance from './governance'
 import * as __ns_up_heaven_site from '../heaven/site'
-import * as __ns_up_double_torus_earth from '../double/torus/earth'
+import * as __ns_up_double_torus_earth from '../water/double/earth'
 import * as __ns_up_astronomy from '../heaven/sky/astronomy'
 import type { MindMatrix } from '../wind/types'
 import { buildMatrix } from '../heaven/compute'
@@ -50,7 +50,7 @@ export { gravityDecoded } from '../heaven/site'
 export {
   schumannResonanceHarmonisedWithRealtimeApiComputations,
   harmoniseSchumannWithRealtimeApiComputations,
-} from '../resonance'
+} from '../thunder/resonance'
 
 /** One gate — Earth science child barrels + dual-Earth nav/GPS compose at call time. */
 export function earthComputes(matrix: MindMatrix = buildMatrix()) {

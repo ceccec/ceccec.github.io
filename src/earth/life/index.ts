@@ -1,6 +1,6 @@
 // Life — canonical biology/neurology home: genes, immune system, harmony, neurology movie.
 import * as __ns_up_earth_civilisation from '../civilisation'
-import * as __ns_up_stack_overflow from '../../stack/overflow'
+import * as __ns_up_stack_overflow from '../../water/stack'
 import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
 import { phase } from '../../6/4'
 import { eigenErrorThreshold, GENETIC_CODE } from '../../3/7'

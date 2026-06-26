@@ -4,7 +4,7 @@ import * as __ns_up_up_heaven_compute from '../../heaven/compute'
 import * as __ns_up_up_fire_physics from '../../fire/physics'
 import * as __ns_up_up_fire_li from '../../fire/li'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
-import * as __ns_up_up_vortex_math from '../../vortex/math'
+import * as __ns_up_up_vortex_math from '../../mountain/vortex'
 import * as __ns_up_up_pair_enforcement from '../../pair/enforcement'
 import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
 import * as __ns_up_up_lake_music from '../../lake/music'
@@ -22,7 +22,7 @@ import {
   hopfieldRecall,
   hopfieldEnergy,
   phaseDrift,
-} from '../../vortex/math'
+} from '../../mountain/vortex'
 
 /** One amplitude slot in the discrete wavefunction proxy. */
 export type QuantumDynamicsAmplitude = {
@@ -72,7 +72,7 @@ export {
   hopfieldStore,
   hopfieldRecall,
   hopfieldEnergy,
-} from '../../vortex/math'
+} from '../../mountain/vortex'
 
 /** Principle → sealed fold → honest limit (quantum dynamics primer mapping). */
 export type QuantumDynamicsMapping = {

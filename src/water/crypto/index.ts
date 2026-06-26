@@ -22,7 +22,7 @@ import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { cryptoReview } from '../../pair/debit/credit'
 import { cryptoReviewNet } from '../../pair/debit/credit'
 import { agnosticUsefulForAll, allAnswersInside, allComputedQuantumMathAnalog, completeCorpus, componentPages, conceptCommands, corpusParams, corpusRestPathRouting, determinismProofs, diamondParamsById, fairTrade, feesReplaceTaxes, foldQuestion, folderLaw, holographic, homology, imagination, imaginationPrivateKey, live, livingTorus, mcpCodebase, mcpToolManifest, mysteries, path, proofBundle, quantumFoldedBlockchains, quantumSociety, quantumSynthesis, society, theWhole, translationWavesFillGaps } from '../../quantum/heaven/mind'
-import { doubleTorusCorpusRouting } from '../../double/torus'
+import { doubleTorusCorpusRouting } from '../double'
 
 // How much do the animations increase the tampering cost? Computed. Each animation
 // is driven by content-addressed computation — a root folded from receipts — and

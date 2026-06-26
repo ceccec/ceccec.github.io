@@ -3,7 +3,7 @@
 import { CANONICAL_SCIENCE_MASK, EIGHT_CURRICULUM_SCIENCES, FORBIDDEN_FOLDER_NAMES, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, displayPathFromScienceModelAction, folderTailFromMethodName, indexRegistryFromLogicRel, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMethodName, scienceModelActionFromMindTail, scienceModelActionFromWords, scienceModelActionMaskRowsFromMindTails, scienceModelActionTail, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../earth/life'
 import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
-import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../vortex/math'
+import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
@@ -2148,12 +2148,12 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-self-facet:${entry.facet}:${entry.on}`) }))
     const censusTarget = 110
     const censusPendingDissolve = [
-      'src/double/torus/math/index.ts → merged into src/double/torus/index.ts (doubleTorusMathComputes)',
-      'src/double/torus/movie/index.ts → merged into src/double/torus/index.ts (doubleTorusMovieComputes)',
+      'src/water/double/math/index.ts → merged into src/double/torus/index.ts (doubleTorusMathComputes)',
+      'src/water/double/movie/index.ts → merged into src/double/torus/index.ts (doubleTorusMovieComputes)',
       'src/earth/iching/index.ts canonical home; src/rosetta dissolved into src/wind/learning (census-neutral)',
       'src/audio/index.ts → dissolved into src/fire/plasma/ball (audioComputes); src/astronomy canonical home (+1 census-neutral)',
       'src/math/index.ts → dissolved into src/vortex/math; src/resonance canonical home (+1 census-neutral)',
-      'src/double/torus/plasma/index.ts → merged into src/double/torus; src/quantum/dynamics canonical home (+1 census-neutral)',
+      'src/water/double/plasma/index.ts → merged into src/double/torus; src/quantum/dynamics canonical home (+1 census-neutral)',
       'src/fusion/gold/index.ts → src/alchemy + src/fusion/gold/gold.ts (+1 census-neutral swap)',
       'src/fusion/gold/index.ts → dissolved into src/alchemy + src/fusion/gold/gold.ts; src/alchemy canonical compose home (+1 census-neutral swap)',
     ]

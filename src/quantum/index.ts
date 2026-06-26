@@ -23,7 +23,7 @@ import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CY
 import { livingTorus } from '../fire/diamonds'
 import { merkleFold, toUuid, VORTEX_SEQUENCE } from '../0'
 import type { MindMatrix } from '../wind/types'
-import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, type EarthHingePaintLayer } from '../double/torus/earth'
+import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, type EarthHingePaintLayer } from '../water/double/earth'
 import { bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import type { QuantumProjection } from './apps'
 
@@ -1242,7 +1242,7 @@ function drawTorusFieldProjection(ctx: CanvasRenderingContext2D, w: number, h: n
   }
 }
 
-export type { EarthHingePaintLayer } from '../double/torus/earth'
+export type { EarthHingePaintLayer } from '../water/double/earth'
 
 export type EarthHingePaintGateway = {
   readonly earth: 'device' | 'inverted'

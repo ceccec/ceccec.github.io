@@ -92,11 +92,11 @@ export type QuantumAppLaunchReceipt = {
 
 const APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
   { id: 'astronomy', title: 'Astronomy', route: '/en/astronomy', barrel: 'src/astronomy', icon: '☉', computesGate: 'astronomy.computes' },
-  { id: 'resonance', title: 'Resonance', route: '/en/resonance', barrel: 'src/resonance', icon: '〰', computesGate: 'resonance.computes' },
+  { id: 'resonance', title: 'Resonance', route: '/en/resonance', barrel: 'src/thunder/resonance', icon: '〰', computesGate: 'resonance.computes' },
   { id: 'quantum-dynamics', title: 'Quantum dynamics', route: '/en/quantum/dynamics', barrel: 'src/quantum/dynamics', icon: 'Ψ', computesGate: 'quantum.dynamics.computes' },
-  { id: 'research', title: 'Research', route: '/en/research', barrel: 'src/research', icon: '◎', computesGate: 'research.computes' },
+  { id: 'research', title: 'Research', route: '/en/research', barrel: 'src/wind/research', icon: '◎', computesGate: 'research.computes' },
   { id: 'merkaba', title: 'Merkaba', route: '/en/merkaba', barrel: 'src/mountain/geometry', icon: '✡', computesGate: 'merkaba.computes' },
-  { id: 'double-torus-earth', title: 'Double torus Earth', route: '/en/double/torus/earth', barrel: 'src/double/torus/earth', icon: '⊗', computesGate: 'double.torus.earth.computes' },
+  { id: 'double-torus-earth', title: 'Double torus Earth', route: '/en/double/torus/earth', barrel: 'src/water/double/earth', icon: '⊗', computesGate: 'double.torus.earth.computes' },
   { id: 'earth-world', title: 'Earth world · gold panels', route: '/en/earth/world', barrel: 'src/earth/world', icon: '☷', computesGate: 'earth.computes' },
   { id: 'trading-hub', title: 'Trading hub', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', icon: '₿', computesGate: 'trading.simulation.computes' },
   { id: 'quantum-application', title: 'Quantum application', route: '/en/quantum/application', barrel: 'src/quantum/application', icon: '⚛', computesGate: 'quantum.application.computes' },
@@ -118,7 +118,7 @@ const ANIMATION_APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
   { id: 'glyph-labyrinth', title: 'Glyph labyrinth', route: '/en/#glyphlabyrinth', barrel: 'src/mountain/topology', icon: '𐌎', computesGate: 'donut.labyrinth.winds', homeComponent: 'GlyphLabyrinth', projection: 'labyrinth' },
   { id: 'hologram-movie', title: 'The 10D movie', route: '/en/#hologrammovie', barrel: 'src/fire/li', icon: '🜨', computesGate: 'movies.native.format', homeComponent: 'HologramMovie', projection: 'movie-10d' },
   { id: 'living-torus', title: 'Living torus', route: '/en/#livingtorus', barrel: 'src/fire/diamonds', icon: '⧖', computesGate: 'living.torus.alive', homeComponent: 'LivingTorus', projection: 'living-torus' },
-  { id: 'double-torus', title: 'Double torus', route: '/en/#doubletorusexperience', barrel: 'src/double/torus', icon: '⊗', computesGate: 'double.torus.computes', homeComponent: 'DoubleTorusExperience', projection: 'double-torus' },
+  { id: 'double-torus', title: 'Double torus', route: '/en/#doubletorusexperience', barrel: 'src/water/double', icon: '⊗', computesGate: 'double.torus.computes', homeComponent: 'DoubleTorusExperience', projection: 'double-torus' },
   { id: 'merkaba-home', title: 'Merkaba', route: '/en/#merkaba', barrel: 'src/mountain/geometry', icon: '✡', computesGate: 'merkaba.computes', homeComponent: 'Merkaba', projection: 'merkaba' },
 ] as const
 

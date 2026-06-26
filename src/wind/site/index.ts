@@ -7,7 +7,7 @@ import { phase } from '../../6/4'
 import { rat } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { congruence } from '../../vortex/math'
+import { congruence } from '../../mountain/vortex'
 import type { MindMatrix, StaticPage } from '../types'
 import { buildMatrix } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)

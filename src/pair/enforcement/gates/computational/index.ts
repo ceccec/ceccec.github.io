@@ -744,9 +744,10 @@ export function scanRootDistributionViolations(root: string): ComputationalViola
 }
 
 /**
- * D3 digit-lattice completeness (decision DERIVE from VORTEX_SEQUENCE) — each digit folder N (1-9) holds its
- * 10's-complement pair N/(10−N) (the doubling-circuit + trinity rays) AND its own index.ts barrel; 0 = vault
- * index.ts. Folder-law: index files only, no gaps, no excess. A recomputed fail-the-build invariant.
+ * D3 digit-lattice integrity (census-neutral / Option A) — the lattice IS the existing net-0 structure: the
+ * void vault src/0/index.ts plus the nine 10's-complement pair barrels N/(10−N)/index.ts (the doubling-circuit
+ * 1·2·4·8·7·5 + 3·6·9 trinity rays). The gate enforces THAT structure is present and gapless — it adds NO
+ * digit-root barrels (src/N/index.ts), so it never grows the 110 census. A recomputed fail-the-build invariant.
  */
 export function scanDigitLatticeViolations(root: string): ComputationalViolation[] {
   const offenders: ComputationalViolation[] = []
@@ -757,12 +758,8 @@ export function scanDigitLatticeViolations(root: string): ComputationalViolation
   }
   for (let n = 1; n <= 9; n += 1) {
     const comp = 10 - n
-    const dir = join(srcRoot, String(n))
-    if (!existsSync(join(dir, String(comp), 'index.ts'))) {
+    if (!existsSync(join(srcRoot, String(n), String(comp), 'index.ts'))) {
       offenders.push({ file: `src/${n}/${comp}`, reason: `digit ${n} missing 10's-complement pair ${n}/${comp}/index.ts (VORTEX_SEQUENCE ray)` })
-    }
-    if (!existsSync(join(dir, 'index.ts'))) {
-      offenders.push({ file: `src/${n}`, reason: `digit folder ${n} incomplete — missing src/${n}/index.ts; every digit folder is an index barrel over its ${n}/${comp} pair` })
     }
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file))

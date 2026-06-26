@@ -7,7 +7,7 @@ import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForge
 import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../../water/digit'
 import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
-import { allPagesForPlasmaWiring } from '../../../double/torus'
+import { allPagesForPlasmaWiring } from '../../../water/double'
 import { monographSliceFromRoute } from '../automount'
 import { siteRoutes } from '../../../fire/li'
 import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'

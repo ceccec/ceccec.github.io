@@ -1,6 +1,6 @@
 // ☷ Kūn · Earth — society & governance: society cells/relations, fair life & trade, governance votes/ballots, the commons. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_TOTAL_FORGES } from '../../pair/enforcement/gates/computational'
-import { survive } from '../../vortex/math'
+import { survive } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import type { Ballot, GovernanceVote, MindMatrix, PlatonicBuilderSolid, SacredLaw, SacredSociety, ScientificSociety, SelfCompletionGate, SocietyRelation, SocietyRelations, SocietyWaveCohort } from '../../wind/types'

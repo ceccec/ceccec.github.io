@@ -9,7 +9,7 @@ import { phase, slip } from '../../../6/4'
 import { caStep, caEvolve } from '../../../4/6'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../../earth/life'
 import { ELECTRONVOLT, IONIZING_EV, PLANCK, SPEED_OF_LIGHT, dopplerShift, frequencyOf, photonEnergyEv } from '../../../3/7'
-import type { Edge } from '../../../vortex/math'
+import type { Edge } from '../../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../../9/1'
 import { GLAGOLITIC_MAP, toGlagolitic, fromGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library'
 // ☰ Qián · Heaven · creative · lower·yin · depthFade — kernel primitives, fold cascade, crypto, and quantum simulators from src/0
@@ -80,8 +80,8 @@ export { oscillatorBank, resonantAmplitude } from '../../../6/4' // pi-train wav
 export { resonanceBandwidth } from '../../../3/7' // pi-train wave 9 tier-A at station 3/7
 export { resonancePeakGain } from '../../../7/3' // pi-train wave 7 tier-A at station 7/3
 export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../lake/icons' // wave 12 UI bridge: the resonance/Rife decodes (science→icons) re-stated explicitly past the export* stars so the components can import them via lib
-export type { Edge } from '../../../vortex/math'
-export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } from '../../../vortex/math'
+export type { Edge } from '../../../mountain/vortex'
+export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } from '../../../mountain/vortex'
 export { codeRobustness } from '../../../earth/life'
 export { SPEED_OF_LIGHT, dopplerShift } from '../../../3/7'
 export { isIonizing } from '../../../9/1' // wave 18: EM-radiation constants — c, E=hf, the ~10 eV ionizing line; wavelengthOf · larmorFrequency at 1/9
@@ -170,7 +170,7 @@ export * from '../../../heaven/laws'
 export * from '../../../heaven/compute'
 export * from '../../../heaven/essence'
 export * from '../../../lake/media'
-export * from '../../../birth'
+export * from '../../../earth/life/birth'
 export * from '../../../earth/life'
 export * from '../../../earth/death'
 export * from '../../../lake/stats'
@@ -187,7 +187,7 @@ export * from '../../../thunder/movie/movievars'
 export * from '../../../wind/fusion'
 export * from '../../../thunder/verify'
 export * from '../../../wind/routes/corpus'
-export * from '../../../double/torus'
+export * from '../../../water/double'
 export * from '../../../thunder/decode'
 export {
   allAnswersInside,

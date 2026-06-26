@@ -7,7 +7,7 @@
 import { toUuid, merkleFold, foldPair } from '../../../0'
 
 // ☱ Duì · Lake · joyous · upper·yang · twist — module identity and exports
-export const dual = 'src/double/torus'
+export const dual = 'src/water/double'
 
 // Chakras and aura in 3-5-8 — mapped honestly to the yogic tradition.
 /** @rosetta ✦₄ · Lake · joyous */

@@ -31,7 +31,7 @@ import { coverage, entropy } from '../../heaven/compute'
 import { harmonicMusicMayBeEnabled } from '../../lake/music'
 import { aiMoviesDecoded, allAnswersInside, completeCorpus, contentAddressedTranslationImprovesModels, contract, equilibrium, foldQuestion, forgerFoldsIntoHarmony, frequencyBalance, gapScan, healByDefault, honestlyComputed, learnDeveloper, monographs, todoScan, torusBreathe, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 
-export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../vortex/math'
+export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../vortex'
 
 export function dualTorusTrinities(matrix: MindMatrix = buildMatrix()): DualTorusTrinities {
   return memoByRoot('dualTorusTrinities', matrix, () => dualTorusTrinitiesRaw(matrix))

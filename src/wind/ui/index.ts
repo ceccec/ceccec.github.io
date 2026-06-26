@@ -3,7 +3,7 @@
 import * as __ns_up_quantum_widgets from '../../lake/widgets'
 import { phase } from '../../6/4'
 import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computational'
-import { chsh } from '../../vortex/math'
+import { chsh } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
 import {  computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'

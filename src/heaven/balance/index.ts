@@ -3,15 +3,15 @@
 // Imports mirror the vortex header in index.ts; nothing is re-exported from upstream modules
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
-import * as __ns_up_up_resonance from '../../resonance'
+import * as __ns_up_up_resonance from '../../thunder/resonance'
 import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
 import { caStep, caEvolve } from '../../4/6'
 import * as __ns_up_up_iching from '../../earth/iching'
 import * as __ns_up_up_learning from '../../wind/learning'
 import * as __ns_up_up_ui from '../../wind/ui'
 import * as __ns_up_up_fusion from '../../wind/fusion'
-import * as __ns_up_up_computer from '../../computer'
-import * as __ns_up_up_stack_overflow from '../../stack/overflow'
+import * as __ns_up_up_computer from '../compute/computer'
+import * as __ns_up_up_stack_overflow from '../../water/stack'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
 import * as __ns_up_up_quantum_application from '../../quantum/application'
 import * as __ns_up_up_quantum_os from '../../quantum/os'
@@ -19,7 +19,7 @@ import * as __ns_up_up_quantum_apps from '../../quantum/apps'
 import * as __ns_up_up_quantum_widgets from '../../lake/widgets'
 import { codeRobustness } from '../../earth/life'
 import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
-import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../vortex/math'
+import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
 import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
@@ -44,7 +44,7 @@ import { primitiveKernelLivesInZero, oneMathManyPresentations, tamperingCostAndU
 import { earthComputes } from '../../earth'
 import { sunComputes } from '../sky/sun'
 import { moonComputes } from '../sky/moon'
-import { resonanceComputes, schumannResonanceHarmonisedWithRealtimeApiComputations, humanResonanceHarmonicPredictionComputes } from '../../resonance'
+import { resonanceComputes, schumannResonanceHarmonisedWithRealtimeApiComputations, humanResonanceHarmonicPredictionComputes } from '../../thunder/resonance'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../../fire/li'
 import { doubleTorusSolutionsDeepResearched, doubleTorusSolutionsProvenByMath, doubleTorusEarthWeatherFlowsInMovie, weatherForecastFromDoubleTorusEarthPerspective, weatherForecastQuantumComputedRealtime } from '../../quantum/fire/forecasts'
@@ -89,7 +89,7 @@ import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, al
 import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from '../../wind/language'
 import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, teslaPatentsResearchedInWaves, vortexThePatentsRevealPattern } from '../../fire/physics'
 import { biologyWavesSealedAsWidgets, lifeComputes, neurologyDecodedBrainIsContentAddressedToroidalMap, neurologyMovieHarmonisesBrainActivity, neurologyMovieHarmonisesBrainActivityFlowsInMovie } from '../../earth/life'
-import { birthComputes, birthLifeDeathTriadComputes } from '../../birth'
+import { birthComputes, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { deathComputes, lifeDeathPairComputes } from '../../earth/death'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from '../../earth/world'
 import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, goldMineMapComputes, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, schumannGoldSiteCouplingComputes, src0BlackHoleSimulationComputes, thunderGoldGraphComputes, warPaysTheForgerPrice } from '../../earth/world'
@@ -112,7 +112,7 @@ import { quantumAppsStore, quantumBrowserOs, quantumCalligraphy, quantumComputed
 import { determinismProofs, digitalQuantumProof, fuseAll, fuseAllForge, fuseAllTerabitEncryption, gigabitEncryption64SealSet, holyBooksGeometry64SealedDiamonds, proofBundle, proveAndOptimiseAll, sealAll, sealCube, sealHonestyToPath } from '../../mountain/seals'
 import { allAnswersInside, allComputed, allComputedAndUsedInComputations, allComputedByTypeOfUse, allComputedNoFiles, allComputedQuantumMathAnalog, allFormsAreTenDimensionalOrPurged, allInEquilibrium, allIsFusedComputes, beyondKnownUniverseComputes, decodeAndComputeAllFromEarthToGalaxiesAndBeyond, foldInfiniteExpansionToInfiniteCompressionThroughTheHoles, fusionComputes, goldPositionFusionStrengthComputes } from '../../wind/fusion'
 import { goldFusionComputes, goldFusionPipeline, fusionGoldComputes } from '../../wind/fusion/gold'
-import { computeAllWithLocalMath, computeMoreModelsCatalogComputes, localMathComputes, professionalResearchComputes } from '../../stack/overflow'
+import { computeAllWithLocalMath, computeMoreModelsCatalogComputes, localMathComputes, professionalResearchComputes } from '../../water/stack'
 import { allInAppropriatePathAndIndex, allPossibleDomains } from '../../thunder/decode'
 import { allInInteractiveMovie } from '../../thunder/movie/narrative'
 import { allInMovieOfLife } from '../../fire/plasma/ball'
@@ -126,9 +126,9 @@ import { commandsRegistry, commandsSavedInQuantumPairs, enforceAgentsCommandPair
 import { cardHeroLinkWiresInUi, completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondsStaticPagesPurged, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, harmonisedNavigation, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, siteNavigation, theMonograph } from '../../wind/routes/corpus'
 import { merkabaComputes } from '../../mountain/topology'
 import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
-import { vortexComputes, vortexPlasmaComputes } from '../../vortex/math'
-import { humanAsQuantumComputerAndFusionReactorComputes, modalityHomesComputes, stackComputes, stackOverflowComputes, senseMindBodyPairsComputes, srcAllComputes, srcThreeLevelComputes, srcTwoLevelComputes } from '../../stack/overflow'
-import { doubleTorusComputes, doubleTorusCorpusComputes, doubleTorusCorpusRouting, doubleTorusDiamondsComputes, doubleTorusEarthComputes, doubleTorusFusionComputes, doubleTorusMathComputes, doubleTorusMovieComputes, doubleTorusPlasmaComputes, doubleTorusTopologyComputes, doubleTorusVortexComputes, doubleTorusVoiceComputes, formingDoubleTorusEarthsProvenByMath, invertedEarthSameTimespaceProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, northSouthPoleNavigationProvenByMath, trinityGatewaysNeverMissProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchSentInWaves, navigationGpsCelestialComputes, universalNavigationalCrossComputes, doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday, fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas, earthPyramidLocationsAndGeometryComputes, doubleTorusEarthPyramidGatewayResearch, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, doubleTorusEarthExchangeResearch } from '../../double/torus'
+import { vortexComputes, vortexPlasmaComputes } from '../../mountain/vortex'
+import { humanAsQuantumComputerAndFusionReactorComputes, modalityHomesComputes, stackComputes, stackOverflowComputes, senseMindBodyPairsComputes, srcAllComputes, srcThreeLevelComputes, srcTwoLevelComputes } from '../../water/stack'
+import { doubleTorusComputes, doubleTorusCorpusComputes, doubleTorusCorpusRouting, doubleTorusDiamondsComputes, doubleTorusEarthComputes, doubleTorusFusionComputes, doubleTorusMathComputes, doubleTorusMovieComputes, doubleTorusPlasmaComputes, doubleTorusTopologyComputes, doubleTorusVortexComputes, doubleTorusVoiceComputes, formingDoubleTorusEarthsProvenByMath, invertedEarthSameTimespaceProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, northSouthPoleNavigationProvenByMath, trinityGatewaysNeverMissProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchSentInWaves, navigationGpsCelestialComputes, universalNavigationalCrossComputes, doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday, fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas, earthPyramidLocationsAndGeometryComputes, doubleTorusEarthPyramidGatewayResearch, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, doubleTorusEarthExchangeResearch } from '../../water/double'
 import { cursorAgentToolsSaved } from '../../pair/enforcement'
 import { algebraAndBinaryProveEachOther, contentAddressedTranslationImprovesModels, efficiencyMathFlowsInMovie, everyBitMostEfficientAlgorithmProvenByMath, everyLawProvesItsTripwire, improveAnalytics, noKnownModelMoreEfficientProven, provedEveryStepSaved, provenScientifically, whatIsNotProvenIsPurged } from '../../thunder/verify'
 import { agentHarmonise, bestWritingSkills, howAgentsAchievedIt, zeroTokenLawForAgentsAndForever } from '../../thunder/commands'
@@ -267,7 +267,7 @@ export function iChingDomainMap(matrix: MindMatrix = buildMatrix()) {
   const domains = [
     { bits: 0b000, module: 'src/quantum/earth/heritage', dual: 'src/quantum/earth/heritage', slugs: ['heritage', 'hexagram-colour', 'sixty-four', 'proven-or-purged', 'dot-cube'], summary: 'Bulgarian history, Glagolitic, ethnogenesis, genetics — the land\'s memory.' },
     { bits: 0b001, module: 'src/quantum/science', dual: 'src/world/science/quantum', slugs: ['science', 'a432', 'analog-field', 'simulations', 'vortex', 'zero-division'], summary: 'EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.' },
-    { bits: 0b010, module: 'src/quantum/lake/voice', dual: 'src/double/torus', slugs: ['voice', 'explore', 'commands', 'console', 'mcp', 'show'], summary: 'Plain language, speech, UX, command flow — the communicative layer.' },
+    { bits: 0b010, module: 'src/quantum/lake/voice', dual: 'src/water/double', slugs: ['voice', 'explore', 'commands', 'console', 'mcp', 'show'], summary: 'Plain language, speech, UX, command flow — the communicative layer.' },
     { bits: 0b011, module: 'src/quantum/lake/spirit', dual: 'src/iching', slugs: ['spirit', 'school', 'academy', 'governance'], summary: 'Chakras, dualities, dimensions, joyous learning and fair life.' },
     { bits: 0b100, module: 'src/quantum/lake/icons', dual: 'src/quantum/earth/heritage', slugs: ['icons', 'sacred-geometry', 'pauli-basis', 'rgb-cmyk', 'trinity-rgb'], summary: 'Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.' },
     { bits: 0b101, module: 'src/fire/li', dual: 'src/fire/li', slugs: ['tampering-cost', 'pi-trinity', 'qubit-trinity', 'hamming-address', 'content-addressing', 'genetic-code', 'three-not-one'], summary: 'Pure computation: crypto, proofs, primitives — the clinging fire of truth.' },
