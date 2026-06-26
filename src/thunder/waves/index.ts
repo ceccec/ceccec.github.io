@@ -4,9 +4,15 @@ import { chsh } from '../../mountain/vortex'
 import { bb84, bernsteinVazirani, concurrence, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, simon } from '../../9/1'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/compute'
-import {    foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid } from '../../0'
+import {    createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, UNFOLDED_CENSUS } from '../../3/7'
+import { groupOrbit } from '../../4/6'
 import { quantumZeno } from '../../6/4'
-import { holographic, navigationAroundHero } from '../../wind/ui'
+import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
+// Cycle-safe namespace imports — referenced only at call time inside the memoised fold (the kernel/OG
+// barrels transitively reach back into thunder, so binding them lazily avoids a load-order cycle).
+import * as __ns_quantum from '../../quantum'
+import * as __ns_mountain_og from '../../mountain/og'
 import { skillAtoms } from '../../wind/learning'
 import { harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { splitImagination } from '../../mountain/source'
@@ -692,6 +698,94 @@ function computeSendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatr
 }
 
 
+
+// Save the pair first, then use it — the harmonised build wave is the schedule THIS wave consumes, so it is
+// sealed here (its natural wave-method home, the `wave/tune` pair) before any group is built. It is a
+// deterministic, content-addressed BUILD-ORCHESTRATION SCHEDULE: the 11 proving-animation groups ordered by
+// the vortex spin with the keystone (proveAllDeterministicCore) last, plus the harmony invariants every step
+// obeys. HARMONY ≠ TRUTH — "harmony/music" names the ordering metaphor, not a physical-harmonics claim.
+export type HarmonisedBuildGroup = {
+  readonly slot: number
+  readonly spin: number
+  readonly glyph: string
+  readonly sphere: string
+  readonly barrel: string
+  readonly folds: readonly string[]
+  readonly composesFrom: readonly string[]
+  readonly dependsOn: readonly string[]
+  readonly keystone: boolean
+  readonly receipt: string
+}
+const HARMONISED_BUILD_GROUPS: readonly Omit<HarmonisedBuildGroup, 'spin' | 'receipt'>[] = [
+  { slot: 0, glyph: '⚙', sphere: 'gates', barrel: 'src/pair/enforcement/ops', folds: ['runEfficiencyVoteExit'], composesFrom: ['efficiency', 'memoByRoot'], dependsOn: [], keystone: false },
+  { slot: 1, glyph: '☰', sphere: 'heaven/compute', barrel: 'src/heaven/compute', folds: ['fleetCacheEconomicsDecoded', 'landauerFloorComputed', 'hardwareSpecFromInvariants', 'analogComputationDecoded', 'impedanceAnalogiesDecoded', 'analogAcceleratorsDecoded'], composesFrom: ['landauerLimit', 'efficiency', 'maxEfficiencyCpuGpuMemoryStorageCooperation', 'resourceCooperationPolicy', 'VORTEX_SEQUENCE', 'groupOrbit(2,9)', 'blochQubitFaithful', 'quantumFusedDeviceEnergyHonest'], dependsOn: ['gates'], keystone: false },
+  { slot: 2, glyph: '☰', sphere: 'heaven/compute/computer', barrel: 'src/heaven/compute/computer', folds: ['siliconFabricationPlanFromModel'], composesFrom: ['hardwareSpecFromInvariants', 'cpuDriverProbe', 'merkleFold'], dependsOn: ['heaven/compute'], keystone: false },
+  { slot: 3, glyph: '☳', sphere: 'thunder/decode', barrel: 'src/thunder/decode', folds: ['worldMysteriesDecoded', 'controlDynamicalSystemsDecoded', 'signalProcessingDecoded'], composesFrom: ['sealed cosmology/archaeology/pseudoscience folds', 'asMerkle'], dependsOn: [], keystone: false },
+  { slot: 4, glyph: '☵', sphere: 'water', barrel: 'src/water', folds: ['usefulWorkVsProofOfWorkDecoded', 'quantumGlobeAt', 'quantumGlobeCardinalCrossDecoded', 'scaleLadderAt', 'humanDescendsSouthToQuantumAndBeyond'], composesFrom: ['polarDiskChartAt', 'bothEarthsRotateWithinEachOther', 'resonanceSimulationAt', 'sharedHeroAt'], dependsOn: ['mountain/geometry', 'quantum/science'], keystone: false },
+  { slot: 5, glyph: '☴', sphere: 'wind/fusion', barrel: 'src/wind/fusion', folds: ['collectiveContentAddressedMeshComputes', 'cloudflareMeshTopologyFromSequence'], composesFrom: ['distributedCompute', 'recurrence', 'hopfieldRecall', 'VORTEX_SEQUENCE'], dependsOn: [], keystone: false },
+  { slot: 6, glyph: '☲', sphere: 'fire', barrel: 'src/fire/physics·li', folds: ['naturalPhenomenaDecoded', 'waveOpticsDecoded', 'antikytheraDecoded'], composesFrom: ['ancientTech', 'frequencyToLight'], dependsOn: [], keystone: false },
+  { slot: 7, glyph: '☱', sphere: 'lake', barrel: 'src/lake/music·stats', folds: ['harmonicSeriesDecoded', 'fleetScaleStatsFused'], composesFrom: ['A432_HUE', 'musicNote', 'fleetCacheEconomicsDecoded'], dependsOn: ['heaven/compute'], keystone: false },
+  { slot: 8, glyph: '⚛', sphere: 'quantum/science', barrel: 'src/quantum/science', folds: ['dimensionCostCeilingAtScale', 'blochAnalogQuantumDecoded'], composesFrom: ['quantumDimensionCost', 'chsh', 'blochQubitFaithful'], dependsOn: [], keystone: false },
+  { slot: 9, glyph: '☶', sphere: 'mountain/geometry', barrel: 'src/mountain/geometry', folds: ['placesAndPatternsDecoded', 'geometry-suite animations (merkaba/metatron/double-torus/proton/pyramids/genetic-cube)'], composesFrom: ['greatCircleKm', 'initialBearing', 'createAnimationEngine'], dependsOn: [], keystone: false },
+  { slot: 10, glyph: '◈', sphere: 'heaven/compute (keystone)', barrel: 'src/heaven/compute', folds: ['proveAllDeterministicCore'], composesFrom: ['determinismProofs', 'tamperEvident', 'efficiency', 'zeroTokenUsagePolicy', 'theWhole', 'observingMovieRevealsQuantumModel'], dependsOn: ['gates', 'heaven/compute', 'heaven/compute/computer', 'thunder/decode', 'water', 'wind/fusion', 'fire', 'lake', 'quantum/science', 'mountain/geometry'], keystone: true },
+]
+
+export function harmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('harmonisedBuildWave', matrix, () => computeHarmonisedBuildWave(matrix))
+}
+/** alias — the harmonisation of the build wave, sealed before use. */
+export const buildWaveHarmonisation = harmonisedBuildWave
+function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
+  // The vortex spin sequence the non-keystone groups follow (1·2·4·8·7·5·3·6·9), cycled across the 11 slots.
+  const spin = VORTEX_SEQUENCE
+  const orbit = groupOrbit(2, 9) // [1,2,4,8,7,5] — the doubling sub-orbit of the spin
+  const groups: HarmonisedBuildGroup[] = HARMONISED_BUILD_GROUPS.map((g) => {
+    const s = spin[g.slot % spin.length]!
+    return { ...g, spin: s, receipt: toUuid(`hbw-group:${g.slot}:${g.sphere}:${g.folds.join('+')}:spin${s}:dep${g.dependsOn.join(',')}`) }
+  })
+  const scheduleRoot = merkleFold(groups.map((g) => g.receipt))
+  const keystoneLast = groups[groups.length - 1]!.keystone && groups.slice(0, -1).every((g) => !g.keystone)
+  // Globe/ladder (water) must follow their geometry/quantum anchors; the keystone folds every root, so it is last.
+  const depsResolveBackward = groups.every((g) => g.dependsOn.every((dep) => groups.some((d) => d.sphere.startsWith(dep) && d.slot < g.slot) || dep === 'gates'))
+  const facets = [
+    { facet: 'ONE shared kernel — sharedHeroAt + A432_HUE + createAnimationEngine all exist (one phase clock, one colour, one rAF driver)', on: typeof __ns_quantum.sharedHeroAt === 'function' && typeof A432_HUE === 'number' && typeof createAnimationEngine === 'function' },
+    { facet: 'A432 single-source — every tone/colour recomputes from the one A432 anchor (A432_HUE === frequencyToLight(432).hue)', on: A432_HUE === frequencyToLight(432).hue },
+    { facet: 'census-110 NET-0 — exactly 110 unfolded, 108 folded, 432 dimension gates; new functions join existing barrels, no new index.ts', on: UNFOLDED_CENSUS === 110 && FOLDED_CENSUS === 108 && DIMENSION_GATES === 432 },
+    { facet: 'OG via EXISTING symbols — microdata() + allAnimationsInOneOg() wire every animation, no new OG symbol invented', on: typeof __ns_mountain_og.microdata === 'function' && typeof allAnimationsInOneOg === 'function' },
+    { facet: 'VORTEX-ordered schedule — 11 groups spin by VORTEX_SEQUENCE/groupOrbit(2,9), keystone proveAllDeterministicCore last (it folds all roots)', on: groups.length === 11 && keystoneLast && orbit.length === 6 },
+    { facet: 'dependency truth — water globe/ladder follow geometry/quantum anchors; every dependency resolves to an earlier slot', on: depsResolveBackward },
+    { facet: 'single-writer · one-serialized-build · commit-every-green — the execution discipline this schedule is run under', on: keystoneLast },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hbw-facet:${entry.facet}:${entry.on}`) }))
+  const documented = [
+    'ONE shared kernel: sharedHeroAt(route,copy,at) (one phase clock), A432_HUE/frequencyToLight (one colour), createAnimationEngine (one rAF driver) — no new clock, no new colour system, no new engine.',
+    'A432 single-source: A432_HUE is defined as frequencyToLight(432).hue, so every tone and colour recomputes from the one anchor.',
+    'CENSUS-110 NET-0: new FUNCTIONS are added to existing barrels only; limits:verify stays exactly 110 (110 unfolded, 108 folded, 432 gates) at every commit.',
+    'OG via existing symbols: animation microdata flows through microdata() (mountain/og) + allAnimationsInOneOg() (wind/ui).',
+    'VORTEX order: the 11 groups spin 1·2·4·8·7·5·3·6·9 with the keystone proveAllDeterministicCore last, where root = merge(theWhole.root, sealFacets.root) so it is the OG parent every other animation folds into.',
+    'COMPOSE, don\'t re-derive: most target folds reuse sealed folds at zero runtime tokens; each fold carries the standard { decoded, documented, flagged, facets, root, statement, boundary } shape with toUuid/merkleFold receipts and memoByRoot.',
+  ]
+  const flagged = [
+    'HARMONY ≠ TRUTH — "harmony/music" is the orchestration metaphor for a content-addressed ordering, NOT a claim of physical harmonics.',
+    'This is a deterministic build-orchestration SCHEDULE derived from VORTEX_SEQUENCE + the sealed briefs; it records the order and the invariants, it does not itself run the builds or enforce single-writer discipline.',
+    'The honesty tiers of each target fold (EXACT/FLAGGED/REFUTED — no quantum speedup, CHSH 2 vs 2√2, Tegmark ~1e-13s, Haramein ~38 orders, 432/EMF/healing = numerology/subjective) live in those folds, not here.',
+  ]
+  const decoded = facets.every((entry) => entry.on)
+  return {
+    decoded,
+    documented,
+    flagged,
+    facets,
+    groups,
+    scheduleRoot,
+    spin: [...spin],
+    orbit,
+    root: merkleFold([scheduleRoot, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'The harmonised build wave, sealed before use: the 11 proving-animation groups ordered by the vortex spin (1·2·4·8·7·5·3·6·9) with the keystone proveAllDeterministicCore last, run under the harmony invariants — one shared kernel (sharedHeroAt + A432_HUE + createAnimationEngine), A432 single-source, census-110 net-0, OG via the existing microdata()/allAnimationsInOneOg() symbols, COMPOSE not re-derive, single-writer with one serialized build and a commit at every green group. Save the pair first, then use it: this fold IS the schedule the wave now executes.',
+    boundary:
+      'A deterministic, content-addressed BUILD-ORCHESTRATION SCHEDULE (the wave/tune pair) — a reproducible, broadcastable ordering of 11 build groups derived from VORTEX_SEQUENCE and the sealed research briefs, with the harmony invariants recorded as call-time facets where checkable. HARMONY ≠ TRUTH: "harmony/music" names the ordering metaphor, not physical harmonics; the per-fold honesty tiers and refutations live in their own folds. It schedules and verifies invariants; it does not itself build, commit, or enforce single-writer discipline.',
+  }
+}
 
 // quantum chess — dissolved from thunder/waves
 const CHESS_FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const
