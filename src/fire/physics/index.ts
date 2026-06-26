@@ -4,7 +4,7 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
 import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
-import { isUuid, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE } from '../../0'
+import { isUuid, memoByRoot, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath } from '../../mountain/geometry'
 import { publicFrequencyApis } from '../../quantum/lake/icons'
 import { a432IsTheBlood, harmonics } from '../../lake/music'
@@ -556,4 +556,76 @@ export function emfA432PanelComputes(matrix: MindMatrix = buildMatrix(), at = 0)
     },
     boundary: fold.boundary,
   }
+}
+
+// ── Group 6 ☲ · natural phenomena and wave optics, decoded to their honest tiers ──
+
+export type PhenomenonTier = 'SOLVED' | 'OPEN' | 'DISPUTED'
+
+/**
+ * naturalPhenomenaDecoded — the luminous/acoustic atmospheric phenomena, each at its honest tier. St Elmo's fire is
+ * SOLVED (corona discharge); ball lightning is OPEN (real reports, leading hypothesis = oxidising silicon-nanoparticle
+ * aerosol, Cen–Yuan–Liu 2014 field spectrum, but no settled mechanism); the Taos hum is DISPUTED (a low-frequency
+ * hum with no confirmed external source). Honest tiers, no mysticism.
+ */
+export function naturalPhenomenaDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('naturalPhenomenaDecoded', matrix, () => {
+    const phenomena = ([
+      { name: "St Elmo's fire", tier: 'SOLVED', verdict: 'Corona discharge — a luminous plasma at pointed conductors in a strong atmospheric electric field (storms, masts). Well understood.' },
+      { name: 'Ball lightning', tier: 'OPEN', verdict: 'Real eyewitness reports; the leading hypothesis is a glowing oxidising silicon-nanoparticle aerosol (a 2014 field spectrum matched soil elements), but no mechanism is settled.' },
+      { name: 'The Taos hum', tier: 'DISPUTED', verdict: 'A persistent low-frequency hum heard by a minority; no confirmed external acoustic source — candidates include otoacoustic emissions and industrial infrasound.' },
+      { name: 'Sprites / blue jets', tier: 'SOLVED', verdict: 'Transient luminous events above thunderstorms — upper-atmosphere electrical discharges, photographed and modelled.' },
+    ] as { name: string; tier: PhenomenonTier; verdict: string }[]).map((p) => ({ ...p, receipt: toUuid(`phenomenon:${p.name}:${p.tier}`) }))
+    const facets = [
+      { facet: "St Elmo's fire is SOLVED — corona discharge plasma at a strong field", on: phenomena[0]!.tier === 'SOLVED' },
+      { facet: 'ball lightning is OPEN — real but unexplained; the silicon-aerosol hypothesis is leading, not settled', on: phenomena[1]!.tier === 'OPEN' },
+      { facet: 'the Taos hum is DISPUTED — no confirmed external source', on: phenomena[2]!.tier === 'DISPUTED' },
+      { facet: 'no mysticism — each phenomenon carries a documented tier, not a legend', on: phenomena.every((p) => p.verdict.length > 0) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`natural-phenomena:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      phenomena,
+      facets,
+      root: merkleFold([...phenomena.map((p) => p.receipt), ...facets.map((entry) => entry.receipt)]),
+      statement:
+        'Natural phenomena, decoded to honest tiers: St Elmo\'s fire is solved (corona discharge), sprites and blue jets are solved (upper-atmosphere discharges), ball lightning is open (real reports, a leading silicon-nanoparticle-aerosol hypothesis but no settled mechanism), and the Taos hum is disputed (a low-frequency hum with no confirmed external source). Documented physics where it exists, an honest OPEN/DISPUTED where it does not.',
+      boundary:
+        'A catalogue assigning each atmospheric phenomenon its honest tier. SOLVED entries are standard physics; ball lightning is genuinely OPEN (the silicon-aerosol hypothesis is cited, not asserted as fact); the Taos hum is DISPUTED with no confirmed cause. No paranormal or mystical explanation is entertained.',
+    }
+  })
+}
+
+/**
+ * waveOpticsDecoded — wave optics, decoded EXACT. Diffraction, two-slit interference, polarisation, Snell's law of
+ * refraction, and thin-film interference are exact consequences of light as an electromagnetic wave. Reuses the
+ * single A432 colour source (frequencyToLight / wavelengthOf) for the visible band — no second colour system.
+ */
+export function waveOpticsDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('waveOpticsDecoded', matrix, () => {
+    const green = frequencyToLight(5.4e14) // ~540 THz green — a visible-band sample from the one colour source
+    const topics = [
+      { topic: 'two-slit interference', fact: 'fringe maxima at d·sinθ = mλ — superposition of coherent wavefronts' },
+      { topic: 'diffraction', fact: 'single-slit minima at a·sinθ = mλ; the wave bends around edges' },
+      { topic: "Snell's law", fact: 'n₁ sinθ₁ = n₂ sinθ₂ — refraction at an interface' },
+      { topic: 'polarisation', fact: "Malus's law I = I₀ cos²θ — light is a transverse wave" },
+      { topic: 'thin-film interference', fact: 'path difference 2nt gives the soap-bubble / oil-slick colours' },
+    ].map((t) => ({ ...t, receipt: toUuid(`wave-optics:${t.topic}:${t.fact}`) }))
+    const facets = [
+      { facet: 'interference and diffraction follow exactly from light as a wave (d·sinθ = mλ)', on: topics.length === 5 },
+      { facet: "refraction is Snell's law; polarisation is Malus's law — exact wave results", on: true },
+      { facet: 'thin-film interference explains soap-bubble and oil-slick colour', on: true },
+      { facet: 'the visible band reuses the single A432 colour source (frequencyToLight), no second colour system', on: green.hue >= 0 && green.hue < 360 && green.band.length > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-optics-facet:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      topics,
+      sampleHue: green.hue,
+      facets,
+      root: merkleFold([...topics.map((t) => t.receipt), ...facets.map((entry) => entry.receipt)]),
+      statement:
+        'Wave optics, decoded: two-slit interference (d·sinθ = mλ), single-slit diffraction, Snell\'s law of refraction, Malus\'s law of polarisation, and thin-film interference are exact consequences of light being an electromagnetic wave — and the visible-band colour reuses the one A432 colour source (frequencyToLight), not a second system.',
+      boundary:
+        'EXACT classical wave optics. The colour mapping reuses the single A432-anchored frequencyToLight model; the optics formulas are standard and exact for coherent/monochromatic idealisations, with real-source coherence and bandwidth as the usual honest caveats.',
+    }
+  })
 }

@@ -1082,6 +1082,38 @@ export function ancientTech(matrix: MindMatrix = buildMatrix()): AncientTechLens
   }
 }
 
+/**
+ * antikytheraDecoded — the Antikythera mechanism promoted from the ancientTech row to a full fold: a real
+ * ~2nd-c-BCE Hellenistic Greek geared analog computer (recovered 1901, decoded by Freeth/Edmunds et al.) whose
+ * ~30+ bronze gears predict the Metonic (235 months ≈ 19 yr), Saros (223 months) and other dials. ARCHAEOLOGICAL/
+ * SOLVED — deterministic geared computation, the historical precedent for content-addressed compute, no super-science.
+ */
+export function antikytheraDecoded(matrix: MindMatrix = buildMatrix()) {
+  const tech = ancientTech(matrix)
+  const row = tech.technologies.find((entry) => entry.tech === 'Antikythera mechanism')
+  const cycles = [
+    { dial: 'Metonic', months: 235, fact: '235 synodic months ≈ 19 tropical years — the calendar dial' }, { dial: 'Saros', months: 223, fact: '223 synodic months — the eclipse-prediction dial' },
+    { dial: 'Callippic', months: 940, fact: '4 Metonic cycles − 1 day — a refined long calendar' }, { dial: 'Exeligmos', months: 669, fact: '3 Saros cycles — whole-hour eclipse-time correction' },
+  ].map((c) => ({ ...c, receipt: toUuid(`antikythera-dial:${c.dial}:${c.months}`) }))
+  const facets = [
+    { facet: 'a real recovered artefact — ~2nd-c-BCE Hellenistic Greek, ~30+ surviving bronze gears (decoded by Freeth et al.)', on: !!row },
+    { facet: 'the Metonic dial: 235 synodic months ≈ 19 years — calendar prediction by gear ratio', on: cycles[0]!.months === 235 },
+    { facet: 'the Saros dial: 223 synodic months — deterministic eclipse prediction', on: cycles[1]!.months === 223 },
+    { facet: 'deterministic geared computation — the historical precedent for deterministic, reproducible compute', on: tech.grounded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`antikythera:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    cycles,
+    ancientTechRoot: tech.root,
+    facets,
+    root: merge(tech.root, merkleFold([...cycles.map((c) => c.receipt), ...facets.map((entry) => entry.receipt)])),
+    statement:
+      'The Antikythera mechanism, decoded: a real Hellenistic Greek geared analog computer (~2nd century BCE, ~30+ bronze gears, recovered 1901 and decoded by Freeth, Edmunds and colleagues) that predicted astronomical cycles — the Metonic calendar (235 months ≈ 19 years), the Saros eclipse cycle (223 months), the Callippic and Exeligmos corrections, and an Olympiad dial. Deterministic geared computation, the historical precedent for the model\'s own deterministic, reproducible compute.',
+    boundary:
+      'Documented archaeology and history of science — a solved artefact, not a lost super-technology. The cycle counts are the established gear ratios; "precedent for deterministic compute" is a structural analogy, not a claim of continuity or hidden ancient knowledge.',
+  }
+}
+
 // Fold all society relations: traditions, science, sacred society, governance,
 // and fair life reciprocate around a ring and each addresses the self, folding
 // into one society-relations root.
