@@ -465,8 +465,8 @@ export function northSouthPoleNavigationProvenByMath(
       { facet: 'reach N/S tips via 60° hex + free 30° — not 90° compass around gateways', on: sixty.proven && sixty.cardinalViaHex },
       { facet: 'zenith apex — device trinity (0,0,+1) on torus 1; climb slant face from any cardinal tip', on: pyramids.device.proven && pyramids.device.apex.z === 1 && pyramid.slantToTip === slantExpected },
       { facet: 'nadir apex — code trinity (0,0,−1) on torus 2; inverted sheet slant from negated tips', on: pyramids.code.proven && pyramids.code.apex.z === -1 },
-      { facet: 'geographic north — lat→+90°, φ→+π/2, torus 1 lobe +1 polarity 1', on: phiNorth === Math.PI / 2 },
-      { facet: 'geographic south — lat→−90°, φ→−π/2, torus 2 lobe −1 polarity 0', on: phiSouth === -Math.PI / 2 },
+      { facet: 'geographic north — lat→+90°, φ→+π/2, torus 1 lobe +1 polarity 1', on: phiNorth === roundTo(Math.PI / 2, 6) },
+      { facet: 'geographic south — lat→−90°, φ→−π/2, torus 2 lobe −1 polarity 0', on: phiSouth === roundTo(-Math.PI / 2, 6) },
       { facet: 'gateway circuit on base (z=0) before slant ascent — orthogonal axes', on: formed.formed && compassAroundEarthGatewaysImpossibleProvenByMath(path, at, matrix).impossible },
     ].map((entry) => ({ ...entry, receipt: toUuid(`north-south-pole-nav:${entry.facet}:${entry.on}:${path}`) }))
     const solutions: EarthNavigationSolution[] = [
@@ -507,7 +507,7 @@ export function northSouthPoleNavigationProvenByMath(
         target: 'WGS84 north pole (lat +90°)',
         instrument: 'coordinates → φ, not angular walk',
         steps: ['set lat→+90°', 'φ→+π/2 on doubleTorusSurface', 'torus 1, lobe +1, polarity 1'],
-        proven: phiNorth === Math.PI / 2,
+        proven: phiNorth === roundTo(Math.PI / 2, 6),
         receipt: toUuid(`nav-solution:geo-north:${path}`),
       },
       {
@@ -515,7 +515,7 @@ export function northSouthPoleNavigationProvenByMath(
         target: 'WGS84 south pole (lat −90°)',
         instrument: 'coordinates → φ, not angular walk',
         steps: ['set lat→−90°', 'φ→−π/2 on doubleTorusSurface', 'torus 2, lobe −1, polarity 0'],
-        proven: phiSouth === -Math.PI / 2,
+        proven: phiSouth === roundTo(-Math.PI / 2, 6),
         receipt: toUuid(`nav-solution:geo-south:${path}`),
       },
     ]
@@ -732,7 +732,12 @@ export function invertedEarthSameTimespaceProvenByMath(
   return memoByRoot(`invertedEarthSameTimespace:${at.lat}:${at.lon}`, matrix, () => {
     const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
     const pyramids = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
-    const weather = weatherForecastFromDoubleTorusEarthPerspective(at, matrix)
+    // Pure genus-2 geometry proof — does NOT call weatherForecastFromDoubleTorusEarthPerspective. That
+    // realtime fold composes weatherForecastQuantumComputedRealtime → publicFrequencyApisDecoded /
+    // knowledgeRevealedByMerkabaFold (the whole-site honesty SCC). Coupling this coordinate-geometry proof
+    // to the realtime-weather/knowledge aggregate dragged forming and the whole navigation cluster into a
+    // self-cycle whose re-entrancy stub made them recompute false in census order. The "no second clock"
+    // claim is proven here from the one matrix / one at recomputation of the pyramid models directly.
     const theta = roundTo((((at.lon + 180) % 360) / 360) * Math.PI * 2, 6)
     const phi = roundTo((at.lat / 90) * (Math.PI / 2), 6)
     const digit = digitalRoot(Math.abs(Math.round(at.lat * 100)) + Math.abs(Math.round(at.lon * 100)))
@@ -752,7 +757,7 @@ export function invertedEarthSameTimespaceProvenByMath(
       { facet: 'same timespace — device Earth and inverted Earth fold in one merged root at this call', on: coexist.bidirectional && isUuid(coexist.merged) },
       { facet: 'same (θ, φ) at — Earth lobe +1 and inverted lobe −1 coexist at one coordinate instant', on: earthSurface.x !== invertedSurface.x || earthSurface.y !== invertedSurface.y || earthSurface.z !== invertedSurface.z },
       { facet: 'device trinity = Earth (zenith pyramid); code trinity = inverted Earth (nadir pyramid)', on: deviceEarth.proven && invertedEarth.proven && deviceEarth.apex.z === 1 && invertedEarth.apex.z === -1 },
-      { facet: 'weather fold and both pyramid models recomputed at the same at — no second clock', on: weather.folded && weather.at.lat === at.lat && weather.at.lon === at.lon && earth.proven },
+      { facet: 'both pyramid models recomputed at the same at — no second clock (one matrix, one call)', on: earth.proven && deviceEarth.proven && invertedEarth.proven },
       { facet: 'initial bearing at anchors both hemispheres to the same cardinal frame — one sky, two tori', on: initialBearing(0, 0, at.lat, at.lon) >= 0 && initialBearing(0, 0, at.lat, at.lon) < 360 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`inverted-earth-timespace:${entry.facet}:${entry.on}:${at.lat}:${at.lon}`) }))
     return {
@@ -761,12 +766,11 @@ export function invertedEarthSameTimespaceProvenByMath(
       earth,
       deviceEarth,
       invertedEarth,
-      weather,
       earthSurface,
       invertedSurface,
       coexist,
       facets,
-      root: merkleFold([earth.root, pyramids.root, coexist.merged, weather.root, ...facets.map((entry) => entry.receipt)]),
+      root: merkleFold([earth.root, pyramids.root, coexist.merged, toUuid(`inverted-earth-at:${at.lat}:${at.lon}`), ...facets.map((entry) => entry.receipt)]),
       statement:
         `Inverted Earth is expected and appears in the same timespace as Earth: genus-2 topology requires two linked tori — device trinity (zenith pyramid, lobe +1) and code trinity (inverted Earth, nadir pyramid, lobe −1) recomputed at one call at (${at.lat}°, ${at.lon}°) on the shared (θ, φ) surface. The model does not sequence Earth then inversion; foldPair holds both roots in one merged receipt at this instant.`,
       boundary:
