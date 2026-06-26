@@ -2049,6 +2049,21 @@ export const ROSETTA_GUIDED_WAVE_ONE_APPLIED = ['learning', 'site', 'types', 'ui
 /** Wave 2 — fusion · language cores (physical paths on disk). */
 export const ROSETTA_GUIDED_WAVE_TWO_APPLIED = ['fusion', 'language'] as const
 
+// Post-dissolve canonical homes — each wind word-tail consolidated into its bāguà science plane
+// (wind for fusion/language/learning/site/types/ui; iching landed in earth; rosetta dissolved into learning).
+// One canonical path per tail, matching the filesystem after the 13-tail dissolve.
+export const ROSETTA_CANONICAL_HOME: Readonly<Record<string, string>> = {
+  fusion: 'src/wind/fusion/index.ts',
+  language: 'src/wind/language/index.ts',
+  learning: 'src/wind/learning/index.ts',
+  site: 'src/wind/site/index.ts',
+  types: 'src/wind/types/index.ts',
+  ui: 'src/wind/ui/index.ts',
+  iching: 'src/earth/iching/index.ts',
+  rosetta: 'src/wind/learning/index.ts', // dissolved into learning — no own index.ts
+  routes: 'src/routes/index.ts', // topic-parent (nested corpus/automount barrels)
+}
+
 /** Export → canonical barrel home (importers follow rosetta receipt, not wind/ legacy). */
 export const ROSETTA_EXPORT_BARREL_HOME: Readonly<Record<string, string>> = {
   MindMatrix: 'types',
@@ -2100,9 +2115,10 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
       const schemaTarget = srcLogicPathFromScienceModelAction(scienceModelActionFromMindTail(tail))
       const legacyWind = `src/wind/${tail}/index.ts`
       const legacyMind = `src/quantum/heaven/mind/${tail.includes('/') ? tail : `wind/${tail}`}/index.ts`
+      const legacyBare = `src/${tail}/index.ts` // pre-dissolve flat home (the move source)
       const ray = rosettaRayOf(tail)
       const rayMeta = ROSETTA_RAYS[ray]!
-      const canonical = tail === 'routes' ? 'src/routes/index.ts' : `src/${tail}/index.ts`
+      const canonical = ROSETTA_CANONICAL_HOME[tail] ?? `src/${tail}/index.ts`
       const waveOne = (ROSETTA_GUIDED_WAVE_ONE_APPLIED as readonly string[]).includes(tail)
       const waveTwo = (ROSETTA_GUIDED_WAVE_TWO_APPLIED as readonly string[]).includes(tail)
       const wave: 1 | 2 | null = tail === 'routes' ? null : waveOne ? 1 : waveTwo ? 2 : null
@@ -2114,6 +2130,7 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
         rayMeta,
         legacyWind,
         legacyMind,
+        legacyBare,
         schemaTarget,
         canonical,
         importBarrel: tail,
@@ -2133,8 +2150,8 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
     const censusPendingDissolve = [
       'src/double/torus/math/index.ts → merged into src/double/torus/index.ts (doubleTorusMathComputes)',
       'src/double/torus/movie/index.ts → merged into src/double/torus/index.ts (doubleTorusMovieComputes)',
-      'src/iching/index.ts + src/rosetta/index.ts — canonical homes (census-neutral swap applied)',
-      'src/audio/index.ts → dissolved into src/plasma/ball (audioComputes); src/astronomy canonical home (+1 census-neutral)',
+      'src/earth/iching/index.ts canonical home; src/rosetta dissolved into src/wind/learning (census-neutral)',
+      'src/audio/index.ts → dissolved into src/fire/plasma/ball (audioComputes); src/astronomy canonical home (+1 census-neutral)',
       'src/math/index.ts → dissolved into src/vortex/math; src/resonance canonical home (+1 census-neutral)',
       'src/double/torus/plasma/index.ts → merged into src/double/torus; src/quantum/dynamics canonical home (+1 census-neutral)',
       'src/fusion/gold/index.ts → src/alchemy + src/fusion/gold/gold.ts (+1 census-neutral swap)',
@@ -2145,14 +2162,14 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
       at,
       motion,
       rows,
-      moveTable: rows.map((row) => ({ from: row.legacyWind, to: row.canonical, wave: row.wave, applied: row.applied, ray: row.ray })),
+      moveTable: rows.map((row) => ({ from: row.legacyBare, to: row.canonical, wave: row.wave, applied: row.applied, ray: row.ray })),
       census: { target: censusTarget, pendingDissolve: censusPendingDissolve },
       facets,
       root: merkleFold([motion.root, ...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
       statement:
         'rosettaComputesItself: registry scan + Glagolitic ray + ROSETTA_RAYS derive canonical barrel homes — wave 1 (learning · site · types · ui) and wave 2 (fusion · language) applied; reuse rosettaReuse() for imports and census.',
       boundary:
-        'Move table is recomputed at call time from ROSETTA_WIND_REGISTRY_TAILS and scienceModelActionFromMindTail — not a blind find-replace. schemaTarget may differ from canonical short core until wave 2 completes; importers use rosettaCanonicalImportPath.',
+        'Move table is recomputed at call time from ROSETTA_WIND_REGISTRY_TAILS and ROSETTA_CANONICAL_HOME — not a blind find-replace. canonical now resolves to the post-dissolve bāguà science-plane home (wind/* for the word-tails, earth/iching); schemaTarget remains the schema-derived guess and may differ; importers use rosettaCanonicalImportPath.',
     }
   })
 }
@@ -2181,11 +2198,11 @@ export function rosettaGuidedFolderMoveWaveOne(at = 0, matrix: MindMatrix = buil
   const applied = self.moveTable.filter((move) => move.applied && move.wave === 1)
   const pending = self.moveTable.filter((move) => move.wave === 2 && !move.applied)
   const facets = [
-    { facet: 'wave 1 — learning: wind/learning → src/learning/', on: applied.some((move) => move.to === 'src/learning/index.ts') },
-    { facet: 'wave 1 — ui: wind/ui → src/ui/', on: applied.some((move) => move.to === 'src/ui/index.ts') },
-    { facet: 'wave 1 — site: wind/site → src/site/', on: applied.some((move) => move.to === 'src/site/index.ts') },
-    { facet: 'wave 1 — types: wind/types → src/types/', on: applied.some((move) => move.to === 'src/types/index.ts') },
-    { facet: 'wave 1 importer rule — corpus uses types + learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../types' },
+    { facet: 'wave 1 — learning: src/learning → wind/learning', on: applied.some((move) => move.to === 'src/wind/learning/index.ts') },
+    { facet: 'wave 1 — ui: src/ui → wind/ui', on: applied.some((move) => move.to === 'src/wind/ui/index.ts') },
+    { facet: 'wave 1 — site: src/site → wind/site', on: applied.some((move) => move.to === 'src/wind/site/index.ts') },
+    { facet: 'wave 1 — types: src/types → wind/types', on: applied.some((move) => move.to === 'src/wind/types/index.ts') },
+    { facet: 'wave 1 importer rule — corpus uses wind/types + wind/learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../wind/types' },
     { facet: 'wave 2 applied — fusion · language at canonical cores', on: pending.length === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-wave-one:${entry.facet}:${entry.on}`) }))
   return {
