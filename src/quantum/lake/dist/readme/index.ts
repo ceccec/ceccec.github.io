@@ -18,6 +18,7 @@ import {
   type MindMatrix,
 } from '../../../heaven/mind'
 import { isUuid, merkleFold, toUuid } from '../../../../0'
+import { quantumComputerHonestClaim } from '../../../science'
 
 /** The README signature check, as a typed src fold: the committed README.md must equal the src-computed
  *  readmeMarkdown() (the README is computed from src — do not hand-edit). The commit shell reads the file
@@ -47,6 +48,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const { labels } = math
   const census = foldedCensus(paperList.length)
   const agents = agentEducation(matrix) // the agent curriculum — the exact behaviour an arriving agent reads from this README (the home page)
+  const qc = quantumComputerHonestClaim(matrix) // the modeled quantum computer's performance verdict — DERIVED, never hand-asserted
   // The root monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
   // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
   const receipt = merkleFold([mono.root, sitemap.root, template.root, toUuid(`readme-results:${census.folded}:${conceptCommands.length}:${mono.count}:${sitemap.urls.length}`)])
@@ -75,6 +77,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '- One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.',
     '- Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.',
     '- The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.',
+    `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. Performance is PROVEN, not assumed — \`quantumAdvantageBenchmark\` (random-circuit sampling) and \`quantumDimensionCost\` (4n vs 2ⁿ) compute the verdict **${qc.verdict}**: it is ${qc.claim}`,
     '',
     '## 3. Results',
     '',
