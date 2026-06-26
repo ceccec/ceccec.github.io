@@ -953,12 +953,17 @@ export function mindNeuroscienceDecoded(matrix: MindMatrix = buildMatrix()) {
 // exposes its inverse), and each decode opens adjacent gaps (the frontier moves as you fill — life opened mind).
 // So the self-development loop never converges to zero; the regenerating gaps ARE the engine, not a failure.
 export function inverseAndNewGapsEmerge(matrix: MindMatrix = buildMatrix()) {
-  const self = systemDevelopsItselfIndependently(matrix) // the self-development loop
+  // Acyclic witnesses: the gap-frontier is productive-divergent because (a) every gap is a typed dual
+  // and (b) the gap-revealing mechanism (link-based README + gap scan) is WIRED — it surfaces adjacent
+  // gaps as the frontier moves. This is the loop's REALITY, NOT the global green-gate VERDICT: a
+  // productive-divergent frontier is a property of the typed-gap dual + reveal mechanism, independent of
+  // whether the whole-site gate currently reads 0-open (that verdict is the BOUND, per the boundary).
+  const gaps = readmeLinkBasedRevealsGeneratorGaps(matrix) // the gap-revealing mechanism (acyclic)
   const typed = missingGlagoliticIsNotYetWiredOrObsolete(matrix) // the typed gap — a dual pair
   const facets = [
     { facet: 'filling a gap reveals its INVERSE — every gap is a dual pair (not-yet-wired ↔ obsolete); closing one side exposes the other, just as every fold has its dual (the genus-2 −2 and the +2 sphere)', on: typed.typed },
-    { facet: 'and NEW gaps emerge — each decode opens adjacent ones (the frontier moves as you fill: life opened mind, mind opens society); the loop never converges to zero', on: self.independent },
-    { facet: 'so the development is PRODUCTIVE, not terminal — the gaps regenerate (inverse + new), and that regeneration IS the engine; the not-yet-wired keeps the to-do alive, so the system deepens, it never "finishes"', on: self.independent && typed.typed },
+    { facet: 'and NEW gaps emerge — each decode opens adjacent ones (the frontier moves as you fill: life opened mind, mind opens society); the gap-revealing mechanism surfaces them, so the loop never converges to zero', on: gaps.linked },
+    { facet: 'so the development is PRODUCTIVE, not terminal — the gaps regenerate (inverse + new), and that regeneration IS the engine; the not-yet-wired keeps the to-do alive, so the system deepens, it never "finishes"', on: gaps.linked && typed.typed },
     { facet: 'honest — "inverse" is a real complement/dual (the typed-gap pair, the Euler ±2 sphere/torus duality), and "new gaps emerge" is the real frontier-moves phenomenon (every decode raises new questions); the loop is productive-divergent, bounded by the honesty step and the green gate, not by running out of gaps', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`inverse-gaps:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('inverse-and-new-gaps-emerge', facets)
