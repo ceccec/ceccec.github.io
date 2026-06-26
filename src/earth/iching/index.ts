@@ -1,32 +1,32 @@
 // ☷ Kūn · Earth — I Ching: canonical hexagram/trigram/bāguà home (re-exports sealed folds, zero wet duplication).
-import * as __ns_up_heaven_balance from '../heaven/balance'
-import * as __ns_up_fusion from '../fusion'
-import * as __ns_up_ui from '../ui'
-import type { MindMatrix } from '../types'
-import { buildMatrix } from '../heaven/compute'
-import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../0'
-import { BAGUA, iChing } from '../heaven/core'
+import * as __ns_up_heaven_balance from '../../heaven/balance'
+import * as __ns_up_fusion from '../../fusion'
+import * as __ns_up_ui from '../../ui'
+import type { MindMatrix } from '../../types'
+import { buildMatrix } from '../../heaven/compute'
+import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { BAGUA, iChing } from '../../heaven/core'
 import {
   ICHING_NUMBERS,
   cssIsIChingComputed,
   iChingFusionCompletesFolders,
   rosettaIChingTrinityPlacesAllTools,
-} from '../earth/architecture'
+} from '../architecture'
 import {
   iChingImportExportTenD,
   iChingMotionAddsTheRest,
   iChingScalesComplete,
-} from '../fire/li'
-import { startIChingDoubleTorus } from '../mountain/topology'
-import { hexagramReverseInverseDuality, nuclearHexagramFold } from '../mountain/geometry'
+} from '../../fire/li'
+import { startIChingDoubleTorus } from '../../mountain/topology'
+import { hexagramReverseInverseDuality, nuclearHexagramFold } from '../../mountain/geometry'
 
-export { BAGUA, iChing } from '../heaven/core'
-export { iChingDomainMap } from '../heaven/balance'
+export { BAGUA, iChing } from '../../heaven/core'
+export { iChingDomainMap } from '../../heaven/balance'
 export {
   iChingImportExportTenD,
   iChingMotionAddsTheRest,
   iChingScalesComplete,
-} from '../fire/li'
+} from '../../fire/li'
 export {
   ICHING_NUMBERS,
   cssIsIChingComputed,
@@ -34,10 +34,10 @@ export {
   ichingTokensCss,
   iChingFusionCompletesFolders,
   rosettaIChingTrinityPlacesAllTools,
-} from '../earth/architecture'
-export { iChingFusionCompletesAll } from '../fusion'
-export { startIChingDoubleTorus } from '../mountain/topology'
-export { pagesRenderInBaguaSets } from '../ui'
+} from '../architecture'
+export { iChingFusionCompletesAll } from '../../fusion'
+export { startIChingDoubleTorus } from '../../mountain/topology'
+export { pagesRenderInBaguaSets } from '../../ui'
 
 /** One gate — 64 hexagrams, eight trigrams, seven scales, and Rosetta·I Ching trinity at call time. */
 export function ichingComputes(matrix: MindMatrix = buildMatrix()) {

@@ -15,7 +15,7 @@ import {
   clientMoviePaintPathSealed,
   computedMovieThemeColors,
   plasmaClientWorkBoundedByPureMath,
-} from '../../../plasma/ball'
+} from '../../../fire/plasma/ball'
 import { backgroundMovieColorVars } from '../movievars'
 import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui'
 import { computedWebManifest, siteConfig } from '../../../site'

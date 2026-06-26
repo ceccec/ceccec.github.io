@@ -36,4 +36,4 @@ export {
   type RealtimeComputeMovieChannel,
   type MovieScreensaverEfficiencyReceipt,
   type ScreensaverTier,
-} from '../../src/plasma/ball'
+} from '../../src/fire/plasma/ball'

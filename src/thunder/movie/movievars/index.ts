@@ -7,7 +7,7 @@ import {
   computedMovieThemeColors,
   movieRouteKey,
   plasmaMoviePalette,
-} from '../../../plasma/ball'
+} from '../../../fire/plasma/ball'
 
 const TIERS = [3, 5, 8] as const
 const CHROMA = 9 / 64

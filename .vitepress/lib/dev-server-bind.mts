@@ -11,7 +11,7 @@ const HERO_WARMUP_CLIENT_FILES = [
   '.vitepress/lib/movie-canvas.ts',
   '.vitepress/theme/Layout.vue',
   'src/quantum/index.ts',
-  'src/plasma/ball/index.ts',
+  'src/fire/plasma/ball/index.ts',
 ] as const
 
 /** Dev bind — VitePress defaults to IPv6 ::1; tools hitting 127.0.0.1 appear hung. */

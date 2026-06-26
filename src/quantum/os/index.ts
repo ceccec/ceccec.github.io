@@ -21,7 +21,7 @@ import {
   storageDriverProbe,
   terminalDriverProbe,
 } from '../../computer'
-import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../plasma/ball'
+import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../fire/plasma/ball'
 import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science'
 import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps'
 

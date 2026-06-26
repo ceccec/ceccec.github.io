@@ -5,7 +5,7 @@ import * as __ns_up_vortex_math from '../vortex/math'
 import * as __ns_up_mountain_geometry from '../mountain/geometry'
 import * as __ns_up_heaven_essence from '../heaven/essence'
 import * as __ns_up_thunder_waves from '../thunder/waves'
-import * as __ns_up_plasma_ball from '../plasma/ball'
+import * as __ns_up_plasma_ball from '../fire/plasma/ball'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../heaven/compute'
 import { VORTEX_SEQUENCE, computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../0'
@@ -51,7 +51,7 @@ export {
 } from '../lake/music'
 
 /** Re-export plasma movie resonance capstone — bodies live in plasma/ball. */
-export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../plasma/ball'
+export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../fire/plasma/ball'
 
 /** Research exposition — Schumann, harmonic windows, Earth-ionosphere, human/quantum resonance themes. */
 export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {

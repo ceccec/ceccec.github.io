@@ -223,7 +223,7 @@ import {
   type MovieSeedStream,
   type PlasmaWiredStream,
   type PlasmaWiredStreamKind,
-} from '../../plasma/ball'
+} from '../../fire/plasma/ball'
 
 export { diamondLattice, pureDiamonds }
 

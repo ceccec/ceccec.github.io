@@ -306,7 +306,7 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
   }
 }
 
-export { realtimeWiring } from '../../plasma/ball'
+export { realtimeWiring } from '../../fire/plasma/ball'
 
 // ── a432 synthetic price engine + five strategy backtests (canonical trading simulation home) ──
 // A432_OCTAVES is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the

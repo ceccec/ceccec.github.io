@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model+view bridge — render-layer folds: holographic, animatedHeroes, etc. compose model data for view consumption.
-import * as __ns_up_quantum_widgets from '../quantum/widgets'
+import * as __ns_up_quantum_widgets from '../lake/widgets'
 import { phase } from '../6/4'
 import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computational'
 import { chsh } from '../vortex/math'
@@ -21,7 +21,7 @@ import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims, tenDimensionalAnimation a
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../thunder/movie/glass'
 import { yinYang } from '../quantum/lake/spirit'
 import { scaleColor, A432_HUE, movieCanvasHex } from '../quantum/science'
-import { computedMovieThemeColors } from '../plasma/ball'
+import { computedMovieThemeColors } from '../fire/plasma/ball'
 export { scaleColor, oklchToHex } from '../quantum/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
 import { staticPages, homeHero } from '../site'

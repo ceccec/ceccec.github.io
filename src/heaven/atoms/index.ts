@@ -10,7 +10,7 @@ import { piMusic } from '../../lake/music'
 import { executeConceptCommand } from '../../thunder/commands'
 import { siteManifestFromCommands } from '../../learning'
 import { quantumFusedDeviceEnergyHonest } from '../../fire/features'
-import { euPatentAudit, euPatentReviewRequests, extractCheckableClaims, foldExposesInconsistency, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, manipulationCrossAudit, modifiedFoodPatentAudit, productOfNaturePatentAudit, patentSubjectMatterAudit, quantumAnalysis, quantumAnalysisAtAllScales, sacredMathPatentAudit, verificationRequests } from '../../heaven/core'
+import { euPatentAudit, euPatentReviewRequests, extractCheckableClaims, foldExposesInconsistency, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, manipulationCrossAudit, modifiedFoodPatentAudit, productOfNaturePatentAudit, patentSubjectMatterAudit, quantumAnalysis, quantumAnalysisAtAllScales, sacredMathPatentAudit, verificationRequests } from '../core'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — concept commands, skill atoms, SINGLE_WORD_METHODS, the atom array
 // computePiDigits, PI_TRAIN_DIGITS and the REQUIRED_* requirement literals are hosted in the zero-import leaf
 // src/3/7 (imported + re-exported below) so the COMPUTED const initialises before any cyclic consumer barrel

@@ -4,7 +4,7 @@
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
 import { toUuid, merkleFold } from '../../../0'
-import { movieCanvasHex } from '../../../quantum/science'
+import { movieCanvasHex } from '../../science'
 import { a432NoteHz } from '../../../fire/li'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports

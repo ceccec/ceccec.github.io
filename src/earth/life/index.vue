@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue'
 import { humanResonancePanelComputes } from './index.ts'
-import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
-import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
-import UiAlert from '../../.vitepress/theme/components/ui/Alert.vue'
-import UiSeparator from '../../.vitepress/theme/components/ui/Separator.vue'
+import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
+import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
+import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
+import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
+import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
 
 const panel = shallowRef(humanResonancePanelComputes())
 const locale = computed(() => (typeof document !== 'undefined' && document.documentElement.lang === 'bg' ? 'bg' : 'en') as 'en' | 'bg')

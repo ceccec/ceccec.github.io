@@ -6,7 +6,7 @@
 // and re-exported so the ~97 importers, the barrel and the generators resolve unchanged. "Modules it
 // consumes" — the core is no longer zero-import; it is the pivot that consumes its 4 double toruses.
 import { phase, slip } from '../../../6/4'
-import { GENETIC_CODE, codeRobustness, mutationClass } from '../../../life'
+import { GENETIC_CODE, codeRobustness, mutationClass } from '../../../earth/life'
 import { ELECTRONVOLT, IONIZING_EV, PLANCK, SPEED_OF_LIGHT, dopplerShift, frequencyOf, photonEnergyEv } from '../../../3/7'
 import type { Edge } from '../../../vortex/math'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../../9/1'
@@ -81,7 +81,7 @@ export { resonancePeakGain } from '../../../7/3' // pi-train wave 7 tier-A at st
 export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../lake/icons' // wave 12 UI bridge: the resonance/Rife decodes (science→icons) re-stated explicitly past the export* stars so the components can import them via lib
 export type { Edge } from '../../../vortex/math'
 export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } from '../../../vortex/math'
-export { codeRobustness } from '../../../life'
+export { codeRobustness } from '../../../earth/life'
 export { SPEED_OF_LIGHT, dopplerShift } from '../../../3/7'
 export { isIonizing } from '../../../9/1' // wave 18: EM-radiation constants — c, E=hf, the ~10 eV ionizing line; wavelengthOf · larmorFrequency at 1/9
 export { PROTON_GYROMAGNETIC } from '../../../6/4' // pi-train wave 10 physical cut
@@ -170,11 +170,11 @@ export * from '../../../heaven/compute'
 export * from '../../../heaven/essence'
 export * from '../../../lake/media'
 export * from '../../../birth'
-export * from '../../../life'
-export * from '../../../death'
+export * from '../../../earth/life'
+export * from '../../../earth/death'
 export * from '../../../lake/stats'
 export * from '../../../water/digit'
-export * from '../../../quantum/widgets'
+export * from '../../../lake/widgets'
 export * from '../../../water/encryption'
 export * from '../../../mountain/source'
 export * from '../../../lake/clean'
@@ -204,7 +204,7 @@ export {
 } from '../../../fusion'
 export { allPossibleDomains, allInAppropriatePathAndIndex } from '../../../thunder/decode'
 export { allInInteractiveMovie } from '../../../thunder/movie/narrative'
-export { allInMovieOfLife } from '../../../plasma/ball'
+export { allInMovieOfLife } from '../../../fire/plasma/ball'
 export { allMdSignedFromSource } from '../../../mountain/og'
 export { allLogicMovedToSource } from '../../../mountain/source'
 export { allIsMonographScientificPaper } from '../../../routes/corpus'

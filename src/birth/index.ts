@@ -1,6 +1,6 @@
 // Birth — canonical genesis/origin/creation/emergence home (triad entry with src/life and src/death).
-import * as __ns_up_life from '../life'
-import * as __ns_up_death from '../death'
+import * as __ns_up_life from '../earth/life'
+import * as __ns_up_death from '../earth/death'
 import { phase } from '../6/4'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../heaven/compute'
@@ -10,7 +10,7 @@ import { genesis } from '../earth/nature'
 import { creationWave } from '../thunder/waves'
 import { formsEmergeInMovieOfLife } from '../thunder/movie/movielib'
 import { kidsDefineEducation } from '../fire/li'
-import { originOfLifeAbiogenesisDecoded } from '../life'
+import { originOfLifeAbiogenesisDecoded } from '../earth/life'
 
 export { genesis } from '../earth/nature'
 export { createByDefault } from '../heaven/laws'

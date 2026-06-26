@@ -16,7 +16,7 @@ import { deepResearchEncodedInRecursiveWaves, surgicalWaves } from '../../thunde
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { schemaOrgDiamonds, sealWholeDiamond } from '../../fire/diamonds'
 import { siteNavigation, theMonograph, clientWorkBoundedByPureMath } from '../../routes/corpus'
-import { plasmaClientWorkBoundedByPureMath, clientMoviePaintPathSealed } from '../../plasma/ball'
+import { plasmaClientWorkBoundedByPureMath, clientMoviePaintPathSealed } from '../../fire/plasma/ball'
 import { monographPaths, quantumAcademy } from '../../learning'
 import { staticPages } from '../../site'
 import { SITE_LOCALES, buildSequenceReducesComputations, completeness, componentGraph, computedWiringNotImported, continueSameNext, gatesBehaveAsMcp, iChingImportExportTenD, live, minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, onlyIndexFilesNoExceptions, path, refactorLinearToTrinities } from '../../quantum/heaven/mind'

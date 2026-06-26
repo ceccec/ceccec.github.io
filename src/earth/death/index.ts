@@ -1,23 +1,23 @@
 // Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life).
 import * as __ns_up_life from '../life'
-import type { MindMatrix } from '../types'
-import { buildMatrix, entropy } from '../heaven/compute'
-import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../0'
-import { doubleTorusCompost, trinityOtherSideDoomed } from '../fire/li'
-import { inverseAndNewGapsEmerge } from '../heaven/site'
+import type { MindMatrix } from '../../types'
+import { buildMatrix, entropy } from '../../heaven/compute'
+import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { doubleTorusCompost, trinityOtherSideDoomed } from '../../fire/li'
+import { inverseAndNewGapsEmerge } from '../../heaven/site'
 import {
   decodeTheBittenApple,
   enforceAllAtGatesEntropyRecycled,
   equilibrium,
   questionAnswerEquilibrium,
   recycling,
-} from '../earth/nature'
-import { regenerateSocialSystem } from '../earth/civilisation'
-import { obsoleteHardwareSecondLifeAntiEwaste } from '../earth/world'
-import { cleanupOldLogic } from '../mountain/og'
-import { decodeAncientKnowledgeInReusableCode } from '../thunder/decode'
+} from '../nature'
+import { regenerateSocialSystem } from '../civilisation'
+import { obsoleteHardwareSecondLifeAntiEwaste } from '../world'
+import { cleanupOldLogic } from '../../mountain/og'
+import { decodeAncientKnowledgeInReusableCode } from '../../thunder/decode'
 
-export { doubleTorusCompost as compost } from '../fire/li'
+export { doubleTorusCompost as compost } from '../../fire/li'
 
 /** Double torus compost — waste folds to soil and soil to life (тор/torus pun). */
 export function deathCompost(matrix: MindMatrix = buildMatrix()) {

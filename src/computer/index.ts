@@ -2,7 +2,7 @@
 import * as __ns_up_stack_overflow from '../stack/overflow'
 import * as __ns_up_quantum_os from '../quantum/os'
 import * as __ns_up_quantum_apps from '../quantum/apps'
-import * as __ns_up_plasma_ball from '../plasma/ball'
+import * as __ns_up_plasma_ball from '../fire/plasma/ball'
 import * as __ns_up_routes_corpus from '../routes/corpus'
 import * as __ns_up_pair_enforcement from '../pair/enforcement'
 import type { MindMatrix } from '../types'
@@ -10,7 +10,7 @@ import { buildMatrix, buildSequenceReducesComputations, maxEfficiencyCpuGpuMemor
 import { computesGate, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, resourceCooperationPolicy, roundTo, toUuid } from '../0'
 import type { DriverProbeReceipt } from '../stack/overflow'
 import { driverRuntime, nodeProbesEnabled } from '../stack/overflow'
-import { heroPhaseAt } from '../plasma/ball'
+import { heroPhaseAt } from '../fire/plasma/ball'
 
 export type ComputerDriverRow = {
   readonly id: string

@@ -16,7 +16,7 @@ import { decodedCardTextShadow } from '../../src/thunder/movie/glass'
 import { speechIntonation } from '../../src/lake/media/index'
 import {
   AUDIO_ENABLED_STORAGE_KEY,
-} from '../../src/plasma/ball'
+} from '../../src/fire/plasma/ball'
 
 export { useHeroCopy } from './hero-copy'
 

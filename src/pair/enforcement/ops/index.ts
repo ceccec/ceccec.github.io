@@ -473,9 +473,9 @@ export function educationalGapsFromIncompleteApis(root = process.cwd()): readonl
     },
     {
       gapId: 'iching-computes-barrel',
-      api: 'src/iching/index.ts — ichingComputes mount',
+      api: 'src/earth/iching/index.ts — ichingComputes mount (☷ Kūn · Earth plane)',
       impact: 'Hexagram/trigram/scales/trinity gate missing from dimension cascade',
-      closed: existsSync(join(root, 'src/iching/index.ts')) && existsSync(join(root, 'src/iching/index.vue')),
+      closed: existsSync(join(root, 'src/earth/iching/index.ts')) && existsSync(join(root, 'src/earth/iching/index.vue')),
     },
     {
       gapId: 'rosetta-computes-barrel',

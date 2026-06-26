@@ -19,7 +19,7 @@ import { conceptCommands } from '../../heaven/atoms'
 // Static dependencies of the quantum-computer closure: the 64 I Ching hexagrams ARE the 6-qubit
 // computational basis, and Rosetta is the state/result codec. Referenced inside quantumComputerComputes
 // (call time, cycle-safe) so they are genuine static edges of the closure, not dead imports.
-import { iChing } from '../../iching'
+import { iChing } from '../../earth/iching'
 import { rosettaComputes } from '../../learning'
 export function quantumScienceResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumScienceResearch', matrix, () => {

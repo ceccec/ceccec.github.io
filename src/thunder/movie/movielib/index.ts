@@ -1,5 +1,5 @@
 // Site movie library — 64K · library · fullscreen sidebars.
-import * as __ns_up_up_up_plasma_ball from '../../../plasma/ball'
+import * as __ns_up_up_up_plasma_ball from '../../../fire/plasma/ball'
 import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../../heaven/compute'

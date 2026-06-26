@@ -19,7 +19,7 @@ import { glagoliticGlyph, autoSpeech } from '../fire/li'
 import { movieCanvasRgba, quantumScaleHue } from './science'
 import type { Dims } from './mountain/dimensions'
 import { buildMatrix } from '../heaven/compute'
-import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../plasma/ball'
+import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
 import { livingTorus } from '../fire/diamonds'
 import { merkleFold, toUuid, VORTEX_SEQUENCE } from '../0'
 import type { MindMatrix } from '../types'
@@ -516,7 +516,7 @@ export interface SharedHeroState {
   cssWidth: number
 }
 
-export { HERO_CYCLE_MS } from '../plasma/ball'
+export { HERO_CYCLE_MS } from '../fire/plasma/ball'
 
 export function sharedHeroAt(
   route: string,
@@ -1526,7 +1526,7 @@ export {
   allRealtimeComputationsVisibleInMovie,
   type RealtimeComputationsMoviePaint,
   type RealtimeComputeMovieChannel,
-} from '../plasma/ball'
+} from '../fire/plasma/ball'
 
 export function subscribeHeroClock(listener: (at: number) => void): () => void {
   heroClockListeners.add(listener)

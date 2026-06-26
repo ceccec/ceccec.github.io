@@ -33,7 +33,7 @@ export {
 export {
   plasmaMoviePalette,
   type PlasmaMoviePalette,
-} from '../../src/plasma/ball'
+} from '../../src/fire/plasma/ball'
 export {
   decodedCardCrosslinksLabel,
   decodedCardFacetMark,
@@ -47,7 +47,7 @@ export {
   AUDIO_DEFAULT_ENABLED,
   AUDIO_ENABLED_STORAGE_KEY,
   SCREENSAVER_IDLE_MS,
-} from '../../src/plasma/ball'
+} from '../../src/fire/plasma/ball'
 export { speechIntonation } from '../../src/lake/media/index'
 export { livingTorus } from '../../src/fire/diamonds/index'
 export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../../src/thunder/movie/glass'

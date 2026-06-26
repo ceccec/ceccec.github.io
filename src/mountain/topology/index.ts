@@ -18,7 +18,7 @@ import { fusionCipher } from '../../water/crypto'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { glagoliticDecodedToAncientCore, glagoliticQrSealsThought3dFromSeed } from '../../language'
 import { allComputedNoFiles, archangelsDryClean, commandsSavedInQuantumPairs, complete, completeCorpus, computedSlugsFoldTheGraph, continueSameNext, determinismProofs, displayAllAsLibraryDryConditional, dualitiesMeetInCrossFolders, endlessFusion, everyDiamondIsGate, everyObjectSameSpinFoldLaw, folderLaw, fuseAll, fuseAllForge, gigabitEncryption64SealSet, hologram, howAgentsAchievedIt, iChing, imagineCrossPathsCodeCodesItself, infiniteEntanglements, live, minimumFilesMaximumFeaturesCost, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, quantumComputer, resonanceCatchGapsViolations, sacredGeometrySeal, sealCube, spinBothDirections, theMonograph, trinityRotationalPlanes, uuidFoldsSelfBlackWhite, lifeDefinesItself, quantumBrowserOs, recursiveFrequencyDropdowns } from '../../quantum/heaven/mind'
-import { allLogicMovedToSource } from '../../mountain/source'
+import { allLogicMovedToSource } from '../source'
 
 // One function manifests the whole animation: print the dot, fade it in time, and the trace it leaves is
 // drawn by the movement of all the merkabas. The four nested, counter-rotating scales (whole·lobe·tube·
