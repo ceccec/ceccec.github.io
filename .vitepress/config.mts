@@ -66,6 +66,8 @@ export const SRC_SCIENCE_MODEL_ACTION_SCHEMA = 'src/[science]/[action]';
 export const CANONICAL_SCIENCE_MASK = 'src/<science>/<action>';
 export const FORBIDDEN_FOLDER_NAMES = ['index'];
 export const SCHEMA_TWO_LEVEL_MODEL = 'fold';
+export const EIGHT_FOLD_SCIENCES = ['earth', 'fire', 'water', 'wind', 'mountain', 'lake', 'thunder', 'heaven'];
+export const CANONICAL_ROOT_FOLDERS = [...EIGHT_FOLD_SCIENCES, '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'pair', 'quantum', 'render'];
 export function isCurriculumScience(name) { return EIGHT_CURRICULUM_SCIENCES.includes(name); }
 export function isForbiddenFolderName(name) { return FORBIDDEN_FOLDER_NAMES.includes(name); }
 function vaultSplitCamelSegment(segment) {

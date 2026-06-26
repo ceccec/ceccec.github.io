@@ -40,6 +40,7 @@ const { at } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
+  interactive: { seed: () => seedParts.value.join('·') },
   measure: () => ({
     w: canvasHost.value?.clientWidth ?? 0,
     h: canvasHost.value?.clientHeight ?? 0,
@@ -354,6 +355,9 @@ function gatewayHref(slug: string): string {
   height: min(var(--ich-vw-movie-tall), var(--vp-movie-min-h));
   border-radius: calc(var(--vp-movie-radius) * calc(3 / 4));
   background: transparent;
+  /* touch-interactive: drag to scrub the phase clock, tap to sound A432 + vibrate (shared interaction layer) */
+  touch-action: none;
+  cursor: pointer;
 }
 
 .double-torus-experience__movie-caption {

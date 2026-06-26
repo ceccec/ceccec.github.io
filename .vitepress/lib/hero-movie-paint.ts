@@ -11,6 +11,7 @@ export {
   realtimeSubtitleAt,
   sharedHeroAt,
   subscribeHeroClock,
+  HERO_CYCLE_MS,
   type EarthHingePaintGateway,
   type EarthHingePaintLayer,
   type EarthHingePaintVortexStep,
@@ -21,6 +22,13 @@ export {
   type SharedHeroCopy,
   type SharedHeroState,
 } from '../../src/quantum/index'
+// The one multi-sensory interaction mapping — touch→phase scrub, fold→A432 tone, fold→haptic vibration.
+// Imported straight from the void/origin kernel (src/0); the render harness (movie-canvas) wires the Web APIs.
+// The type is DERIVED from the function's return type (ReturnType) rather than a named export, so the kernel's
+// compression pass (dead-export elimination, which only sees src/ consumers) cannot break this render-side import.
+import { pointerInteraction } from '../../src/0/index'
+export { pointerInteraction }
+export type PointerInteraction = ReturnType<typeof pointerInteraction>
 export { quantumAppForComponent, type QuantumProjection } from '../../src/quantum/apps'
 export { quantumModelSnapshot, observingMovieRevealsQuantumModel, type QuantumModelSnapshot } from '../../src/quantum/science'
 export {

@@ -19,6 +19,8 @@ const props = withDefaults(
     intensity?: MovieIntensity
     /** When set, paint this quantum-app PROJECTION of the shared field instead of the plasma field. */
     app?: QuantumProjection
+    /** Make the card movie touch-interactive (A432 sound + haptic). Defaults on for app-projection cards. */
+    interactive?: boolean
   }>(),
   { intensity: 'full' },
 )
@@ -29,11 +31,14 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 const reduce = prefersReducedMotion()
 
 const moviePath = computed(() => cardMoviePath(route.path, props.seed))
+// App-projection cards are the proving animations meant to be played; they opt into touch/sound/haptic.
+const isInteractive = computed(() => props.interactive ?? Boolean(props.app))
 
 const { repaint } = useVisibleMovieCanvas({
   canvas,
   root,
   visibility: 'intersection',
+  ...(isInteractive.value ? { interactive: { seed: () => moviePath.value } } : {}),
   measure: () => ({
     w: root.value?.clientWidth || 320,
     h: root.value?.clientHeight || 120,
@@ -68,7 +73,10 @@ watch([moviePath, () => props.app], repaint)
   <div
     ref="root"
     class="ui-card__movie"
-    :class="intensity !== 'full' ? `ui-card__movie--${intensity}` : undefined"
+    :class="[
+      intensity !== 'full' ? `ui-card__movie--${intensity}` : undefined,
+      isInteractive ? 'ui-card__movie--interactive' : undefined,
+    ]"
     aria-hidden="true"
   >
     <canvas ref="canvas" />
@@ -88,6 +96,13 @@ watch([moviePath, () => props.app], repaint)
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Interactive (app-projection) cards: the movie canvas receives touch to sound A432 + vibrate. It sits behind
+   the card content (z-index 0), so taps on the content still navigate; taps on the exposed movie play sound. */
+.ui-card__movie--interactive canvas {
+  pointer-events: auto;
+  touch-action: none;
 }
 
 .ui-card__movie--soft {
