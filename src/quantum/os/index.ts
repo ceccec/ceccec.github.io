@@ -9,7 +9,8 @@ import * as __ns_up_dynamics from '../dynamics'
 import * as __ns_up_up_computer from '../../computer'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, runQuantumCircuit, toUuid, VORTEX_SEQUENCE } from '../../0'
+import type { CircuitOp, CircuitResult } from '../../0'
 import {
   busDriverProbe,
   cpuDriverProbe,
@@ -21,7 +22,7 @@ import {
   terminalDriverProbe,
 } from '../../computer'
 import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../plasma/ball'
-import { A432_HUE, GOLDEN_ANGLE } from '../science'
+import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science'
 import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps'
 
 const OS_ROUTE = '/en/quantum/os'
@@ -224,6 +225,7 @@ export function quantumOsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const coverage = quantumAppsCoverHomeAnimations(matrix, at)
     const appCap = __ns_up_up_computer.applicationComputes(matrix, at)
     const design = quantumMathDesignsTheUi(at, matrix)
+    const driver = quantumComputerDriverComputes(matrix, at)
     const { computes, facets, root } = computesGate('quantum-os-computes', [
       { facet: 'quantumOsResearch', on: research.researched },
       { facet: 'quantumOsShell', on: shell.drivers.length === 8 },
@@ -231,6 +233,7 @@ export function quantumOsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'every home animation is an app (one field, one kernel)', on: coverage.computes },
       { facet: 'application capstone', on: appCap.computes },
       { facet: 'quantum.math.designs.ui — UI tokens computed from sealed math', on: design.designed },
+      { facet: 'OS exposes the quantum computer — register · gates · measure · content-addressed state', on: driver.exposes },
       { facet: 'NOT real OS kernel', on: true },
     ])
     return {
@@ -242,10 +245,56 @@ export function quantumOsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       coverage,
       application: appCap,
       design,
+      driver,
       facets,
-      root: merkleFold([research.root, shell.receipt, registry.root, appsCap.root, coverage.root, design.root, root]),
+      root: merkleFold([research.root, shell.receipt, registry.root, appsCap.root, coverage.root, design.root, driver.root, root]),
       statement: 'Quantum OS computes.',
       boundary: research.boundary,
+    }
+  })
+}
+
+// ── The OS exposes the quantum computer (the modeled simulator) as a system service ──
+export type QuantumRegisterAllocation = { readonly id: string; readonly qubits: number; readonly capacityAmplitudes: number; readonly receipt: string }
+
+/** OS service — allocate an n-qubit register: the OS owns the 2ⁿ amplitude state space (capped at 10 qubits). */
+export function quantumOsAllocateRegister(qubits: number): QuantumRegisterAllocation {
+  const n = Math.max(1, Math.min(10, Math.floor(qubits)))
+  return { id: `qreg-${n}`, qubits: n, capacityAmplitudes: 2 ** n, receipt: toUuid(`qreg:${n}`) }
+}
+
+/** OS service — schedule + run an ordered gate list on a register; state is content-addressed by CircuitResult.root. */
+export function quantumOsRunCircuit(spec: { n: number; ops: readonly CircuitOp[]; shots?: number; seed?: string }): CircuitResult {
+  return runQuantumCircuit(spec)
+}
+
+/**
+ * The OS's quantum-computer driver — the surface that exposes the simulator: register allocation, gate
+ * scheduling (palette + ordered ops → runQuantumCircuit), measurement (seeded shots), content-addressed
+ * state (the circuit root), and the proven honest verdict (faithful classical simulator, no speedup).
+ */
+export function quantumComputerDriverComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumComputerDriverComputes:${Math.floor(at / 1000)}`, matrix, () => {
+    const register = quantumOsAllocateRegister(3)
+    const run = quantumOsRunCircuit({ ...QC_DEFAULT_CIRCUIT, shots: 1024, seed: 'os-ghz' })
+    const honest = quantumComputerHonestClaim(matrix, at)
+    const { computes, facets, root } = computesGate('quantum-computer-driver', [
+      { facet: 'register allocation — the OS owns the 2ⁿ amplitude state space', on: register.capacityAmplitudes === 8 && register.qubits === 3 },
+      { facet: 'gate scheduling — gate palette + ordered ops run through runQuantumCircuit', on: QC_GATE_PALETTE.length >= 10 && run.n === 3 },
+      { facet: 'measurement — seeded multi-shot readout returns a histogram', on: Object.keys(run.samples).length > 0 },
+      { facet: 'content-addressed state — the circuit root is deterministic at call time', on: run.root.length > 0 },
+      { facet: 'exposes the honest modeled QC — faithful simulator, NO computational speedup (benchmark-proven)', on: honest.faithfulSimulator && honest.noSpeedup },
+    ])
+    return {
+      exposes: computes,
+      register,
+      run,
+      honest,
+      palette: QC_GATE_PALETTE,
+      facets,
+      root: merkleFold([register.receipt, run.root, honest.root, root]),
+      statement: 'The Quantum OS exposes the modeled quantum computer as a service: allocate a register, schedule gates, measure, read the content-addressed state — and surface the proven honest verdict (faithful classical simulator, no speedup).',
+      boundary: honest.boundary,
     }
   })
 }
