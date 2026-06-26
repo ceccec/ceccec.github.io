@@ -6,7 +6,7 @@ import type { MindMatrix, AnalogChannel, DiamondCompletenessReport, DimensionalG
 import { livingTorus, sealWholeDiamond, selfBuild, streamSelfComplete, diamondLattice, linuxPackagesToDiamonds, piTrainDiamonds } from '../../fire/diamonds'
 import { merkaba } from '../../mountain/geometry'
 import { rhythm, allOscillatorsHarmonicsFree, blockchainMusic, differentSongDifferentDance } from '../../lake/music'
-import { imaginationPrivateKey, mysteries, splitImagination, foldThoughts, imaginationIsAll } from '../../fire/li'
+import { imaginationPrivateKey, mysteries, splitImagination, foldThoughts, imaginationIsAll } from '../../mountain/source'
 import { society, fairTrade } from '../../earth/governance'
 import { dimensions, harmonicBands, multidimensional, chakrasAura, computerDesign, deviceSensors, dualities, humanDesign, yinYang } from '../../quantum/lake/icons'
 import { goldenRatio, humanise, chess358, cryptographyComparison, design358, fuseUxSensors, geometry358, inHouse, music358, pairTrinityOpenGraph, securityScan, selfAddressed, taxonomyIcons, universalLanguage } from '../../fire/li'
