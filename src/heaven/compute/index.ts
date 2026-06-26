@@ -1,13 +1,15 @@
 // ☰ Qián · Heaven — computation: honestly computed, the build sequence reduces computations, dimensions per megabyte, the complete quantum computer at all scales, vitepress config computes all. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — buildMatrix, proofReport, typesMakeTheRealGraph: sealed computation engine.
+import { phase } from '../../6/4'
+import { bitFlipCode, commutator, concurrence, gateMul, innerProduct, noCloningWitness } from '../../9/1'
 import type {
   Atom, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow,
 } from '../../types'
 import { atoms } from '../atoms'
-import { GATES, applyGate, bitFlipCode, cnot, commutator, concurrence, foldPair, gateMul, innerProduct, isUuid, measure, memoByRoot, merge, merkleFold, noCloningWitness, probabilities, qubits, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
-import { digitalRoot } from '../../9/1'
+import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
+import { digitalRoot } from '../../0'
 import { tamperEvident } from '../../5/5'
 import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
 import { healingInner, healingOuter, quantumSimulation, siteRoutes, animationEngineLivesInZero, humanise } from '../../fire/li'
@@ -21,12 +23,12 @@ import { commandsRegistry } from '../../thunder/commands'
 import { decodeAncientKnowledgeInReusableCode, imagineCrossPathsCodeCodesItself } from '../../thunder/decode'
 import { vortexMath } from '../../mountain/geometry'
 import { trinityWordingModel } from '../../fire/li'
-import { allComputedNoFiles } from '../everything'
+import { allComputedNoFiles } from '../../fusion'
 import { developmentIsFusionReactor, endlessFusion } from '../../fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
 import { completeCorpus, monographs, siteNavigation, theMonograph } from '../../routes/corpus'
 import { peaceTechMentalityDecoded } from '../../earth/world'
-import { selfHarmonise } from '../../mountain/self'
+import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
 import { glagoliticDecodedToAncientCore } from '../../language'
 import { computedSlugsFoldTheGraph, configsUseMatrixComputationally, noHardcodedConfigSelfAccounted } from '../../mountain/source'
@@ -34,7 +36,7 @@ import { ROSETTA_COMPUTATION_TYPES, rosettaDecodesUrlPath } from '../../water/di
 import type { RosettaComputationType } from '../../water/digit'
 import { complete, continueSameNext, diamondCompleteness, hexagramQubitVectorIsomorphismOnly, imagineTheRest, onlyIndexFilesAndGeneratedRemain, path, resonanceCatchGapsViolations } from '../../quantum/heaven/mind'
 
-import { holographicFractalArchitecture } from '../../thunder/movie/projection'
+import { holographicFractalArchitecture } from '../../thunder/movie/glass'
 
 function lazyHolographicFractalArchitecture(matrix: MindMatrix) {
   return holographicFractalArchitecture(matrix)
@@ -359,6 +361,9 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
 
 
 export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('honestlyComputed', matrix, () => honestlyComputedRaw(matrix))
+}
+function honestlyComputedRaw(matrix: MindMatrix = buildMatrix()) {
   const digitOf = (value: string): number =>
     value.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
   const sources = [
@@ -399,8 +404,8 @@ export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
 // four of them classically and leaves five red. This fold greens ALL nine the honest way — not by claiming
 // the hexagrams are quantum, but by RUNNING a real quantum state-vector simulator that computes each structure
 // exactly. Each row below is EXECUTED (numbers, not prose): the simulator (src/0 — qubits, applyGate, GATES,
-// cnot, measure, probabilities + the completion primitives innerProduct, gateMul, commutator, concurrence,
-// noCloningWitness, bitFlipCode) is the qubit solver. HONEST: it is a CLASSICAL, deterministic, exact-for-
+// cnot, measure, probabilities + the completion primitives    
+//  bitFlipCode) is the qubit solver. HONEST: it is a CLASSICAL, deterministic, exact-for-
 // small-n state-vector simulator — the genuine quantum math, NOT quantum hardware and NOT a speedup (Grover
 // here is simulated, no √N gain); "implemented" means executable in the browser, client-side, zero-token.
 export function completeQuantumSolutionsImplemented(matrix: MindMatrix = buildMatrix()) {
@@ -546,7 +551,7 @@ export function buildQuantumComputerOsApps(matrix: MindMatrix = buildMatrix()) {
 // is detailed all the way down to the quantum (the qubit, the gate, the digit) and all the way up
 // (the register, the bus, the machine, the OS, the whole), the same fold law holding at every
 // scale because the architecture is holographic and fractal. And the parts are not silent: they
-// coordinate by self-communicating waves — each diamond a wave with phase, amplitude and polarity,
+// coordinate by self-communicating waves — each diamond a wave with  amplitude and polarity,
 // folded into one yin-yang root — so the whole computer keeps time with itself at every scale.
 export function completeQuantumComputerAllScales(matrix: MindMatrix = buildMatrix()) {
   const waves = coordinatedWaves(matrix)
@@ -920,3 +925,46 @@ export function typesMakeTheRealGraph(matrix: MindMatrix = buildMatrix()) {
       'The type graph is proven by TypeScript compilation (check:types exit 0), not by runtime assertion. RosettaComputationType and ROSETTA_COMPUTATION_TYPES are the canonical source; all consuming sites import from water/digit. The facet "check:types pass = graph valid" is structurally true — if the types were wrong the build would fail before this fold runs.',
   }
 }
+
+/** Max-efficiency cooperation between CPU, GPU, memory, and storage — composed at call time. */
+export function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('maxEfficiencyCpuGpuMemoryStorageCooperation', matrix, () => {
+    const policy = resourceCooperationPolicy()
+    const sequence = buildSequenceReducesComputations(matrix)
+    const components = computerComponentsMergedDuality(matrix)
+    const kernel = primitiveKernelLivesInZero(matrix)
+    const { computes, facets, root } = computesGate('cpu-gpu-memory-storage-cooperation', [
+      {
+        facet: 'memory tier — sealed heap cap and memo tiers (memoByRoot, matrixMemo, content-address)',
+        on: policy.heapCapMb === NODE_MAX_OLD_SPACE_MB && policy.memoTiers.length === 3,
+      },
+      {
+        facet: 'storage tier — content-address kernel at origin with merkle root',
+        on: kernel.importsNothing && isUuid(matrix.root) && policy.storageModel === 'content-address-merkle',
+      },
+      { facet: 'CPU tier — build sequence reduces redundant recomputation', on: sequence.reduces },
+      {
+        facet: 'GPU tier — animation engine homed at origin; honest browser/SSR boundary',
+        on: kernel.kernel.length >= 11 && (policy.gpuSurface === 'browser-canvas-raf' || policy.gpuSurface === 'none-ssr'),
+      },
+      { facet: 'computer components — CPU/memory/storage/cache as merged dualities', on: components.imagined },
+    ])
+    return {
+      cooperates: computes,
+      policy,
+      sequence,
+      components,
+      kernel,
+      count: facets.length,
+      facets,
+      root: merge(matrix.root, root),
+      statement:
+        'Computations use max-efficiency cooperation between CPU, GPU, memory, and storage: the CPU tier follows the build sequence (memoByRoot/matrixMemo, reuse roots — buildSequenceReducesComputations); memory is capped at the sealed NODE_MAX_OLD_SPACE_MB heap with matrix-root memo tiers; storage is content-addressed src/ + merkle/enforcement seals; GPU is the browser canvas/WebGL path via createAnimationEngine (client only, none under SSR). Composed at call time — structural policy, not datacenter orchestration.',
+      boundary:
+        'HONEST BOUNDARIES: CPU = Node sequential build/typecheck; memory = single-process heap + in-memory memo (not cluster RAM); storage = content-address filesystem + computed seals (not S3/GCS orchestration); GPU = browser RAF/canvas when present (Node has no GPU). The cooperation policy is recomputed at call time from sealed primitives — it does not schedule workloads across physical machines.',
+    }
+  })
+}
+
+/** Alias — computations cooperate across resource tiers (same fold). */
+export const computationsCooperateCpuGpuMemoryStorage = maxEfficiencyCpuGpuMemoryStorageCooperation

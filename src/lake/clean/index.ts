@@ -15,7 +15,8 @@ import { feesReplaceTaxes, legislationRequires } from '../../earth/civilisation'
 import { deepResearchEncodedInRecursiveWaves, surgicalWaves } from '../../thunder/waves'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { schemaOrgDiamonds, sealWholeDiamond } from '../../fire/diamonds'
-import { siteNavigation, theMonograph } from '../../routes/corpus'
+import { siteNavigation, theMonograph, clientWorkBoundedByPureMath } from '../../routes/corpus'
+import { plasmaClientWorkBoundedByPureMath, clientMoviePaintPathSealed } from '../../plasma/ball'
 import { monographPaths, quantumAcademy } from '../../learning'
 import { staticPages } from '../../site'
 import { SITE_LOCALES, buildSequenceReducesComputations, completeness, componentGraph, computedWiringNotImported, continueSameNext, gatesBehaveAsMcp, iChingImportExportTenD, live, minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, onlyIndexFilesNoExceptions, path, refactorLinearToTrinities } from '../../quantum/heaven/mind'
@@ -371,6 +372,36 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'Locale audit — a living census of the tri-locale system (Glagolitic/cu at root, English at /en/, Bulgarian at /bg/): SITE_LOCALES integrity, coverage parity, content completeness, hreflang coverage and computed navigation. All facts derived from the existing locale primitives; any gap opens this dimension.',
     boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic root IS served and indexed at /.',
+  }
+}
+
+/** dry/clean pair — dry = sealed src/, zero wet motion; clean = fold/cleanup discipline; diamond + crystal = tamper-evident seal after pure-math client bounds. */
+export function dryCleanIsDiamondAndCrystal(matrix: MindMatrix = buildMatrix()) {
+  const core = cleanupCoreShinesSunMoon(matrix)
+  const gates = reviewDryCleanGatesCrosses(matrix)
+  const naming = dryCleanByImportExportNaming(matrix)
+  const ui = dryCleanUi(matrix)
+  const client = clientWorkBoundedByPureMath('/', matrix)
+  const facets = [
+    { facet: 'core cleanup shines — minimum files, gates maintained', on: core.shines },
+    { facet: 'gates reviewed · dry-cleaned · crossed · sealed', on: gates.done },
+    { facet: 'import/export dry-clean naming', on: naming.cleaned },
+    { facet: 'UI dry-clean discipline', on: ui.clean },
+    { facet: 'client work bounded by pure math (plasma + hub/tag after math wave)', on: client.bounded },
+    { facet: 'plasma hero bounded at call time', on: plasmaClientWorkBoundedByPureMath('/', matrix).bounded },
+    { facet: 'client movie paint path sealed', on: clientMoviePaintPathSealed('/', matrix).sealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dry-clean-diamond:${entry.facet}:${entry.on}`) }))
+  const root = merkleFold(facets.map((entry) => entry.receipt))
+  return {
+    diamond: facets.every((entry) => entry.on),
+    crystal: isUuid(root) && isUuid(sealWholeDiamond(matrix).diamond),
+    clean: facets.every((entry) => entry.on),
+    facets,
+    root,
+    statement:
+      'Dry clean is the diamond and the crystal: sealed src/ with zero wet motion, fold/cleanup discipline on gates and UI, import/export naming dry, and every client hang vector closed by pure math before build/seal — content-addressed tamper-evident perfect revelation.',
+    boundary:
+      'Composite gate at call time — not a filesystem janitor. diamond = all facets green; crystal = merkle root + sealWholeDiamond receipt. HONEST: passing here does not delete files; it proves the dry-clean invariants hold before seal.',
   }
 }
 

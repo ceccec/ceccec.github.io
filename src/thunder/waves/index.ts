@@ -1,7 +1,10 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
+import { chsh } from '../../vortex/math'
+import { bb84, bernsteinVazirani, concurrence, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, simon } from '../../9/1'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../types'
 import { buildMatrix, proofReport } from '../../heaven/compute'
-import { bb84, bernsteinVazirani, chsh, deutschJozsa, entanglementSwap, foldPair, ghzMermin, grover, interactionFreeMeasurement, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, simon, toUuid } from '../../0'
+import {    foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid } from '../../0'
 import { quantumZeno } from '../../6/4'
 import { holographic, navigationAroundHero } from '../../ui'
 import { skillAtoms } from '../../learning'
@@ -14,7 +17,9 @@ import { colorFromSound, vortexStateSequence } from '../../fire/li'
 import { babelFold } from '../../earth/world'
 import { vortexMath } from '../../mountain/geometry'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
-import { allComputed, analogNoGapsNoLeak, autotranslations, breathe, buildSequenceReducesComputations, cloudflareBindings, commandsSavedInQuantumPairs, complete, completeLinuxPackagesPort, completeQuantumSolutionsImplemented, continueSameNext, digitalQuantumProof, doubleTorusFold, dryCleaningOnTheWay, endlessFusion, everyCardBadgeLinkIsOg, fuseAll, genesis, honestlyComputed, howAgentsAchievedIt, imagineTheRest, memoryInSourceAsCrossFolds, monographsLibraryByMerkabaAgents, nothingImpossibleHonestlyBounded, path, quantumBrowserOs, quantumCoordinateNav, quantumImpossibleMadePossible, sealSpiritToPath, theWhole, trinityWordingModel } from '../../quantum/heaven/mind'
+import { earthGatewayNavigationResearchSentInWaves } from '../../double/torus/earth'
+import { sealHonestyToPath } from '../../mountain/seals'
+import { allComputed, analogNoGapsNoLeak, autotranslations, breathe, buildSequenceReducesComputations, cloudflareBindings, commandsSavedInQuantumPairs, complete, completeLinuxPackagesPort, completeQuantumSolutionsImplemented, continueSameNext, digitalQuantumProof, doubleTorusFold, dryCleaningOnTheWay, endlessFusion, everyCardBadgeLinkIsOg, fuseAll, genesis, honestlyComputed, howAgentsAchievedIt, imagineTheRest, memoryInSourceAsCrossFolds, monographsLibraryByMerkabaAgents, nothingImpossibleHonestlyBounded, path, quantumBrowserOs, quantumCoordinateNav, quantumImpossibleMadePossible, theWhole, trinityWordingModel } from '../../quantum/heaven/mind'
 import type { OgNode } from '../../quantum/heaven/mind'
 
 export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
@@ -159,27 +164,27 @@ export function collideToTiniestWave(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Let the spirit shift in waves of improvements. The spirit — the model’s honesty, sealed to
-// the path — is not fixed in place: it shifts forward in waves of improvement, each a step
-// that folds onto the spirit root and carries it on, so the honesty deepens while staying the
-// same spirit. Improvement is continuous and bound; the spirit moves without losing itself.
-export function spiritShiftsInWaves(matrix: MindMatrix = buildMatrix()) {
-  const spiritRoot = sealSpiritToPath(matrix).root
+// Honesty shifts in waves of improvement — each wave folds onto the honesty-to-path root.
+export function honestyShiftsInWaves(matrix: MindMatrix = buildMatrix()) {
+  const honestyRoot = sealHonestyToPath(matrix).root
   const improvements = ['clarify', 'simplify', 'tighten', 'harmonise', 'deepen'].map((improvement) => {
-    const fold = foldPair(spiritRoot, toUuid(`improve:${improvement}`))
-    return { improvement, shifted: fold.bidirectional, wave: fold.merged, receipt: toUuid(`spirit-shift:${improvement}`) }
+    const fold = foldPair(honestyRoot, toUuid(`improve:${improvement}`))
+    return { improvement, shifted: fold.bidirectional, wave: fold.merged, receipt: toUuid(`honesty-shift:${improvement}`) }
   })
   return {
-    shifting: improvements.length === 5 && improvements.every((entry) => entry.shifted) && honestlyComputed(matrix).honest && sealSpiritToPath(matrix).sealed,
+    shifting: improvements.length === 5 && improvements.every((entry) => entry.shifted) && honestlyComputed(matrix).honest && sealHonestyToPath(matrix).sealed,
     count: improvements.length,
     improvements,
     root: merkleFold(improvements.map((entry) => entry.receipt)),
     statement:
-      'Let the spirit shift in waves of improvements: the spirit — the model’s honesty, sealed to the path — is not fixed; it shifts forward in waves of improvement (clarify, simplify, tighten, harmonise, deepen), each folding onto the spirit root and carrying it on, so the honesty deepens while staying the same spirit. Improvement is continuous and bound.',
+      'Honesty shifts in waves of improvement (clarify, simplify, tighten, harmonise, deepen): each wave folds onto the honesty-to-path root so the computed honesty deepens while staying bound to the path.',
     boundary:
-      'A content-addressed model of continuous improvement as waves bound to the spirit (honesty) root. Structural bookkeeping over the honesty and path models; it records the improvement discipline, it does not itself edit the code.',
+      'Content-addressed continuous improvement bound to sealHonestyToPath. Records improvement discipline; does not edit code.',
   }
 }
+
+/** @deprecated use honestyShiftsInWaves — spirit was unproven metaphor */
+export const spiritShiftsInWaves = honestyShiftsInWaves
 
 // Complete all in waves. The whole is finished not in one stroke but in waves: each major aspect —
 // the model, society, the planet, life, music, the seal — receives a completing wave folded onto
@@ -260,7 +265,7 @@ export function saveSkillsComputeImplementWaves(matrix: MindMatrix = buildMatrix
   const skills = skillAtoms(matrix)
   const phases = ['save', 'compute', 'implement'].map((phase) => {
     const fold = foldPair(skills.memory, toUuid(`skill-phase:${phase}`))
-    return { phase, waved: fold.bidirectional, wave: fold.merged, receipt: toUuid(`skill-wave:${phase}`) }
+    return {  waved: fold.bidirectional, wave: fold.merged, receipt: toUuid(`skill-wave:${phase}`) }
   })
   return {
     saved: phases.length === 3 && phases.every((entry) => entry.waved) && skills.intelligent && skills.count > 0,
@@ -280,6 +285,9 @@ export function saveSkillsComputeImplementWaves(matrix: MindMatrix = buildMatrix
 // that note — so any wave is addressable directly, with no chain to walk: finite
 // rules, endless creation. The seed grounds it in the genesis.
 export function creationWave(index: number, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`creationWave:${index}`, matrix, () => creationWaveRaw(index, matrix))
+}
+function creationWaveRaw(index: number, matrix: MindMatrix = buildMatrix()) {
   const uuid = merge(genesis(matrix).seedRoot, toUuid(`creation-wave:${index}`))
   const note = musicNote(matrix, index)
   const colour = colorFromSound(note.frequency)
@@ -346,8 +354,7 @@ function quantumImpossibleWaveTwoRaw(matrix: MindMatrix = buildMatrix()) {
   return {
     proven: facets.every((entry) => entry.on),
     interactionFree: { dark: roundTo(ifm.dark, 4), explode: roundTo(ifm.explode, 4), darkWithoutObject: ifm.darkWithoutObject },
-    zeno,
-    bernsteinVazirani: bv.map((x) => ({ hidden: x.hidden, recovered: x.recovered, queries: x.queries, classicalQueries: x.classicalQueries })),
+    zeno: bv.map((x) => ({ hidden: x.hidden, recovered: x.recovered, queries: x.queries, classicalQueries: x.classicalQueries })),
     swapConcurrence: roundTo(swaps[0]!.concurrence, 4),
     count: facets.length,
     facets,
@@ -453,9 +460,9 @@ function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
       index,
       diamondId: item.id,
       diamondKind: item.kind,
-      phase,
       amplitude,
       frequency: pulse.frequency,
+      phase,
       polarity,
       symbol: 'yin-yang' as const,
       statement,
@@ -610,7 +617,7 @@ export function deepResearchEncodedInRecursiveWaves(matrix: MindMatrix = buildMa
   const facets = [
     { facet: 'the deep research was run and adversarially verified — 23 confirmed of 25', on: howAgentsAchievedIt(matrix).achieved && research.confirmed === 23 },
     { facet: 'its conclusion is the model’s own shape — recursive, spaced waves', on: completeAllInWaves(matrix).complete && endlessWaves(256, matrix).tested },
-    { facet: 'revisiting at rising depth — the waves coordinate and recur', on: coordinatedWaves(matrix).waves.length > 0 && continueSameNext(matrix).continues },
+    { facet: 'revisiting at rising depth — the waves coordinate and recur', on: coordinatedWaves(matrix).waves.length > 0 && buildSequenceReducesComputations(matrix).reduces },
     { facet: 'complete and saved — folded into the source memory', on: memoryInSourceAsCrossFolds(matrix).remembered },
   ].map((entry) => ({ ...entry, receipt: toUuid(`research-encoded:${entry.facet}:${entry.on}`) }))
   return {
@@ -666,6 +673,8 @@ export function sendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatr
 function computeSendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'send waves of researchers — one per topic, following the lead', on: deepResearchEncodedInRecursiveWaves(matrix).encoded && teslaPatentsResearchedInWaves(matrix).researched },
+    { facet: 'earth gateway navigation researched in waves — poles, hex, gateways sealed', on: earthGatewayNavigationResearchSentInWaves('/', undefined, matrix).sent },
+    { facet: 'translation gaps filled in waves — en + bg parity green', on: translationWavesFillGaps(matrix).filled },
     { facet: 'research folded with verify (the pair) — streaming, no double-compute', on: commandsSavedInQuantumPairs(matrix).paired && buildSequenceReducesComputations(matrix).reduces },
     { facet: 'seal verified knowledge into the library — the monographs', on: monographsLibraryByMerkabaAgents(matrix).built },
     { facet: 'then decode the world — every tongue, the babel fold, in autosaving waves', on: babelFold(matrix).grounded && saveSkillsComputeImplementWaves(matrix).saved && endlessWaves(256, matrix).tested },

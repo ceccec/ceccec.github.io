@@ -1,16 +1,61 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import type { MindMatrix } from '../../types'
+import type { MindMatrix, StaticPage } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
-import { localeFromRoute, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, type LocaleName, type PageForgeSeal } from '../../site'
+import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
 import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../water/digit'
+import { cardMovieColorVars, cardMovieSeed } from '../../thunder/movie/movievars'
+import { plasmaClientWorkBoundedByPureMath } from '../../plasma/ball'
+import { allPagesForPlasmaWiring } from '../../double/torus'
 import { monographSliceFromRoute } from '../automount'
 import { siteRoutes } from '../../fire/li'
-import { folderLaw } from '../../earth/architecture'
+import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../earth/architecture'
+import { diamondLattice, pureDiamonds } from '../../fire/diamonds'
+import { quantumDoubleTorus } from '../../mountain/topology'
 import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../quantum/heaven/mind'
 import type { CorpusKind } from '../../quantum/heaven/mind'
-import { paperParamsById, paperReferences, papers, referenceParamsById } from '../../learning'
+import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, siteNavigation, type ComponentCrosslink } from '../../learning'
+
+/** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
+export const CLIENT_WORK_TIERS = [3, 5, 8] as const
+export const NAV358_TOTAL = CLIENT_WORK_TIERS[0] + CLIENT_WORK_TIERS[1] + CLIENT_WORK_TIERS[2] // 16 = 3+5+8
+export const HUB_CARD_MAX = NAV358_TOTAL * 2 // 32 upper bound (nav358 ∪ harmonised, deduped)
+export const TAG_CLUSTER_CAP = CLIENT_WORK_TIERS[2] // 8 keyword clusters (matches siteNavigation navTags slice)
+export const CORPUS_GRID_PAGE_SIZE = CLIENT_WORK_TIERS[0] * NAV358_TOTAL // 48 = 3×16 pagination cap
+
+const META_TAGS = new Set(['component', 'proof'])
+
+function pagesForTagClusters(): StaticPage[] {
+  if (typeof window !== 'undefined') return [...staticPages()]
+  return allPagesForPlasmaWiring()
+}
+
+function keywordClustersFromPages(pages: readonly StaticPage[], cap = TAG_CLUSTER_CAP): string[] {
+  const cloud = new Map<string, number>()
+  for (const page of pages) {
+    for (const tag of page.keywords) {
+      if (META_TAGS.has(tag)) continue
+      cloud.set(tag, (cloud.get(tag) ?? 0) + 1)
+    }
+  }
+  return [...cloud.entries()]
+    .filter(([tag, count]) => count >= 2 && tag.length >= 3)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, cap)
+    .map(([tag]) => tag)
+}
+
+export function corpusGridWorkBudget() {
+  return {
+    tiers: CLIENT_WORK_TIERS,
+    nav358Total: NAV358_TOTAL,
+    hubCardMax: HUB_CARD_MAX,
+    tagClusterCap: TAG_CLUSTER_CAP,
+    gridPageSize: CORPUS_GRID_PAGE_SIZE,
+    clientTagPages: typeof window === 'undefined' ? null as number | null : staticPages().length,
+  }
+}
 
 export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
   return memoByRoot(`paperRoutes:${count}`, matrix, () => computePaperRoutes(matrix, count))
@@ -143,12 +188,11 @@ export function pageSkills(matrix: MindMatrix = buildMatrix()) {
       })
     }
     for (const reference of references) {
-      const page = `${locale}/references/${reference.id}`
       skills.push({
-        page,
+        page: `${locale}/papers/${reference.paperId}`,
         kind: 'reference',
         statistics: 4,
-        references: [`${locale}/papers/${reference.paperId}`, `${locale}/references/r${id3(reference.number + 1)}`, `${locale}/references/r${id3(reference.number - 1)}`],
+        references: [`${locale}/papers/${reference.paperId}`, `${locale}/references/`],
         skill: reference.root,
       })
     }
@@ -167,33 +211,96 @@ export function pageSkills(matrix: MindMatrix = buildMatrix()) {
     locales: locales.length,
     root: merkleFold(skills.map((skill) => skill.skill)),
     statement:
-      'Each page is a skill itself, with statistics and references. Every route — the static pages, the 432 papers and the 432 references, in both locales — is a content-addressed skill node carrying its own computed statistics and references to related pages.',
+      'Each page is a skill itself, with statistics and references. Paper routes are SSG-enumerated; references and diamonds resolve from the double torus via corpusParams — index grids link to papers or lattice anchors.',
     boundary:
       'A content-addressed reading of every page as a skill node with computed statistics and references. The counts are exact for the enumerated routes across both locales.',
   }
 }
 
+/** One fold — quantum double torus decides SSG vs compute-only per corpus kind. */
+export function doubleTorusCorpusRouting(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('doubleTorusCorpusRouting', matrix, () => doubleTorusCorpusRoutingRaw(matrix))
+}
+function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
+  const torus = quantumDoubleTorus(matrix)
+  const corpus = completeCorpus(matrix)
+  const lattice = diamondLattice(matrix)
+  const leaves = pureDiamonds(matrix)
+  const paperSet = paperRoutes(matrix)
+  const refSet = paperReferenceRoutes(matrix)
+  /** Under the double torus, detail resolves via corpusParams — only papers materialize [id] SSG. */
+  const ssg: Record<CorpusKind, readonly { params: Record<string, unknown> }[]> = {
+    papers: paperSet,
+    references: torus.is ? [] : refSet,
+    diamonds: [],
+  }
+  const facets = [
+    { facet: 'quantum double torus is the machine — corpusParams at call time', on: torus.is },
+    { facet: '1024 Merkle leaves — completeCorpus binary tree from the torus', on: corpus.perfect && corpus.total === 1024 },
+    { facet: 'papers — 432 [id] SSG routes for static SEO', on: ssg.papers.length === 432 },
+    { facet: 'references — compute-only (pointers via corpusParams, index links to papers)', on: torus.is ? ssg.references.length === 0 && refSet.length === 432 : ssg.references.length === 432 },
+    { facet: 'diamonds — lattice kinds on index, zero [id] SSG', on: ssg.diamonds.length === 0 && leaves.count === 1024 && leaves.pure && lattice.length > 0 },
+    { facet: 'papers · references · diamonds anchored — no drift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-corpus:${entry.facet}:${entry.on}`) }))
+  return {
+    torus,
+    corpus,
+    lattice,
+    leaves,
+    ssg,
+    ssgPaths: (kind: CorpusKind) => ssg[kind],
+    computeOnly: (kind: CorpusKind) => ssg[kind].length === 0,
+    ssgPathCount: (kind: CorpusKind) => ssg[kind].length,
+    routed: facets.every((entry) => entry.on),
+    enumerated: ssg.papers.length + ssg.references.length + ssg.diamonds.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Double torus corpus routing: the genus-2 machine computes the 1024-leaf Merkle tree; corpusParams(kind, id) resolves any leaf at call time. Only papers enumerate static [id] pages; references and diamonds are compute-only — index grids and lattice anchors, not thousands of SSG detail routes.',
+    boundary:
+      'One routing fold over quantumDoubleTorus, completeCorpus, paperRoutes, paperReferenceRoutes, diamondLattice and pureDiamonds. References remain in the model (432 pointers); they are not deleted, only not SSG-built. Detail URLs /references/<id> resolve in dev/client via computeUniversalPage when routed; static export serves the index and paper cross-links.',
+  }
+}
+
 export function corpusRestPathRouting(matrix: MindMatrix = buildMatrix()) {
+  const routing = doubleTorusCorpusRouting(matrix)
   const sample = papers(matrix).papers[0]
   const params = sample ? corpusParams('papers', sample.id, matrix) : null
-  const routeSets = [paperRoutes(matrix), paperReferenceRoutes(matrix), diamondRoutes(matrix)]
-  const enumerated = routeSets.reduce((sum, set) => sum + set.length, 0)
   const facets = [
-    { facet: 'every item is a real [id] route — paperRoutes/paperReferenceRoutes/diamondRoutes enumerate { params: { id } }', on: enumerated > 0 && routeSets.every((set) => set.length > 0 && set.every((entry) => typeof entry.params.id === 'string')) },
+    { facet: 'double torus corpus routing — papers SSG, references and diamonds compute-only', on: routing.routed },
     { facet: 'corpusParams(kind, id) resolves one item — local math, one function', on: Boolean(params?.id) },
     { facet: 'computedFolders — papers/references/diamonds index in root·en·bg only', on: folderLaw().computedFolders.every((folder) => ['papers', 'references', 'diamonds'].some((kind) => folder.endsWith(kind))) },
-    { facet: 'papers · references · diamonds anchored — counts cannot drift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
   ].map((entry) => ({ ...entry, receipt: toUuid(`corpus-rest:${entry.facet}:${entry.on}`) }))
   return {
     routed: facets.every((entry) => entry.on),
     count: facets.length,
-    enumerated,
+    enumerated: routing.enumerated,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: routing.statement,
+    boundary: routing.boundary,
+  }
+}
+
+/** Gate: no static diamond [id] pages — lattice stays in computations (pureDiamonds, diamondLattice, pi train). */
+export function diamondsStaticPagesPurged(matrix: MindMatrix = buildMatrix()) {
+  const routing = doubleTorusCorpusRouting(matrix)
+  const facets = [
+    { facet: 'zero diamond [id] paths at build time', on: routing.ssgPathCount('diamonds') === 0 },
+    { facet: '1024 Merkle leaves still computed — pureDiamonds', on: routing.leaves.count === 1024 && routing.leaves.pure },
+    { facet: 'required diamond kinds present — diamondLattice', on: routing.lattice.length > 0 && routing.lattice.every((entry) => entry.receipt.length === 36) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`diamonds-purged:${entry.facet}:${entry.on}`) }))
+  return {
+    purged: facets.every((entry) => entry.on),
+    staticPathCount: routing.ssgPathCount('diamonds'),
+    latticeKinds: routing.lattice.length,
+    merkleLeaves: routing.leaves.count,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Corpus REST path routing: the resource identity lives in the PATH — /papers/<id>, /references/<id>, /diamonds/<id> are real VitePress [id] dynamic routes enumerated from one source.',
+      'No static diamonds needed: thousands of /diamonds/<id> pages are purged from the build; the 1024-leaf lattice and diamondLattice kinds remain in computations only (Merkle, pi train, living torus, completeness gates).',
     boundary:
-      'A composition of the corpus route enumerators, corpusParams, folderLaw.computedFolders and papers-references-diamonds-no-drift.',
+      'Structural purge of SSG enumeration for diamond detail routes — NOT a deletion of pureDiamonds or diamondLattice math. Routed by doubleTorusCorpusRouting.',
   }
 }
 
@@ -203,10 +310,8 @@ export function corpusParams(kind: CorpusKind, id: string, matrix: MindMatrix = 
   return diamondParamsById(id, matrix)
 }
 
-export function corpusCatchAllPaths(kind: 'papers' | 'references' | 'diamonds', matrix: MindMatrix = buildMatrix()) {
-  if (kind === 'papers') return paperRoutes(matrix)
-  if (kind === 'references') return paperReferenceRoutes(matrix)
-  return diamondRoutes(matrix)
+export function corpusCatchAllPaths(kind: CorpusKind, matrix: MindMatrix = buildMatrix()) {
+  return doubleTorusCorpusRouting(matrix).ssgPaths(kind)
 }
 
 // One page template for all — route + params → kind, hero, body, corpus, proof (computed once).
@@ -230,6 +335,33 @@ export type UniversalPageKind = 'corpus-index' | 'corpus-detail' | 'monograph' |
 
 export type UniversalDecodedFacet = { facet: string; on?: boolean; link?: string }
 
+export type UniversalDecodedStation = { step?: number; station: string; route: string; why?: string }
+
+export type CorpusGridItem = {
+  route: string
+  id: string
+  title: string
+  glyph?: string
+  hue: number
+}
+
+export type HeroPreview = {
+  route: string
+  seed: string
+  hue: number
+  title: string
+  cardStyle: Record<string, string>
+}
+
+export type UniversalRosettaRay = {
+  ray: number
+  glyph: string
+  labelEn: string
+  labelBg: string
+  hue: number
+  domain: string
+}
+
 export type UniversalPage = {
   kind: UniversalPageKind
   route: string
@@ -243,11 +375,15 @@ export type UniversalPage = {
   target: string | null
   corpusKind: CorpusKind | null
   corpusId: string | null
+  corpusItems: readonly CorpusGridItem[]
+  rosettaRay: UniversalRosettaRay | null
   decoded: {
     title?: string
     statement?: string
     boundary?: string
     facets?: UniversalDecodedFacet[]
+    stations?: UniversalDecodedStation[]
+    crosslinks?: ComponentCrosslink[]
     ok?: boolean
   } | null
   proofOk: string
@@ -255,6 +391,234 @@ export type UniversalPage = {
   cardSeed: string
   root: string
   forge: PageForgeSeal
+}
+
+/** Linked card hero preview — rosetta hue + card movie vars from one route. */
+export function heroPreviewForRoute(route: string, title?: string, matrix: MindMatrix = buildMatrix()): HeroPreview {
+  const rosetta = rosettaComputesAll(route, 0, matrix)
+  const seed = cardMovieSeed([route, title, rosetta.glaAddress])
+  return {
+    route,
+    seed,
+    hue: rosetta.content.heroHue,
+    title: title ?? rosetta.slug,
+    cardStyle: cardMovieColorVars(route, seed, 320, matrix),
+  }
+}
+
+function gridItemFromRoute(route: string, title: string, id: string, matrix: MindMatrix): CorpusGridItem {
+  const rosetta = rosettaComputesAll(route, 0, matrix)
+  return {
+    route,
+    id,
+    title,
+    glyph: rosetta.rayMeta.glyph,
+    hue: rosetta.content.heroHue,
+  }
+}
+
+/** Hub destinations — navigation358 + harmonised nav, gated by global Rosetta·I Ching·trinity fusion. */
+export function hubCardItems(locale: LocaleName, matrix: MindMatrix = buildMatrix()): CorpusGridItem[] {
+  return memoByRoot(`hubCardItems:${locale}`, matrix, () => {
+    const fusion = rosettaIChingTrinityPlacesAllTools(matrix)
+    if (!fusion.fused) return []
+    const pages = staticPages()
+    const titleFor = (route: string, fallback: string) => {
+      const slug = route.replace(/^\//, '') || 'home'
+      const page = pages.find((entry) => entry.slug === slug)
+      return page ? pickLocale(locale, page.title.en, page.title.bg) : fallback
+    }
+    const seen = new Set<string>()
+    const items: CorpusGridItem[] = []
+    for (const tier of navigation358().tiers) {
+      for (const entry of tier.items) {
+        const route = entry.route.startsWith('/') ? entry.route : `/${entry.route}`
+        if (seen.has(route)) continue
+        seen.add(route)
+        items.push(gridItemFromRoute(route, titleFor(route, entry.label), route.replace(/^\//, '') || 'home', matrix))
+      }
+    }
+    for (const entry of harmonisedNavigation(matrix).items) {
+      const route = entry.path.startsWith('/') ? entry.path : `/${entry.path}`
+      if (seen.has(route)) continue
+      seen.add(route)
+      items.push(gridItemFromRoute(route, titleFor(route, entry.title), route.replace(/^\//, '') || 'home', matrix))
+    }
+    return items.slice(0, HUB_CARD_MAX)
+  })
+}
+
+/** Top keyword tags — staticPages on client (O(static)); full catalog on SSR/build. */
+export function tagBrowserTags(matrix: MindMatrix = buildMatrix()): readonly string[] {
+  return memoByRoot('tagBrowserTags', matrix, () => keywordClustersFromPages(pagesForTagClusters(), TAG_CLUSTER_CAP))
+}
+
+/** Pages sharing a keyword tag — capped at tier[0]×nav358 (=48) per grid page. */
+export function tagBrowserItems(tag: string, locale: LocaleName, matrix: MindMatrix = buildMatrix()): CorpusGridItem[] {
+  return memoByRoot(`tagBrowserItems:${tag}:${locale}`, matrix, () => {
+    if (!rosettaIChingTrinityPlacesAllTools(matrix).fused) return []
+    const pages = pagesForTagClusters()
+    const routeOf = (slug: string) => (slug === '' ? '/' : `/${slug}`)
+    const routes = [...new Set(
+      pages.filter((page) => page.keywords.includes(tag)).map((page) => routeOf(page.slug)),
+    )].slice(0, CORPUS_GRID_PAGE_SIZE)
+    return routes.map((route) => {
+      const slug = route.replace(/^\//, '') || 'home'
+      const page = pages.find((entry) => routeOf(entry.slug) === route)!
+      const title = pickLocale(locale, page.title.en, page.title.bg)
+      return gridItemFromRoute(route, title, slug, matrix)
+    })
+  })
+}
+
+/** Gate: hub · tag · grid pagination bounded by [3,5,8] pure math at call time. */
+export function cardHeroClientWorkBoundedByPureMath(matrix: MindMatrix = buildMatrix()) {
+  const nav358 = navigation358()
+  const harmonised = harmonisedNavigation(matrix)
+  const locale: LocaleName = 'en'
+  const hub = hubCardItems(locale, matrix)
+  const tags = tagBrowserTags(matrix)
+  const tagItems = tags.length ? tagBrowserItems(tags[0]!, locale, matrix) : []
+  const budget = corpusGridWorkBudget()
+  const facets = [
+    { facet: 'navigation358 = 3+5+8 = 16 destinations', on: nav358.count === NAV358_TOTAL && nav358.mapped },
+    { facet: 'harmonised nav = 16 fixed routes', on: harmonised.count === NAV358_TOTAL },
+    { facet: `hub cards ≤ 2×16 = ${HUB_CARD_MAX} (deduped nav358∪harmonised)`, on: hub.length <= HUB_CARD_MAX && hub.length >= NAV358_TOTAL },
+    { facet: `tag clusters ≤ tier[2] = ${TAG_CLUSTER_CAP}`, on: tags.length <= TAG_CLUSTER_CAP && tags.length >= 2 },
+    { facet: `tag grid page ≤ tier[0]×16 = ${CORPUS_GRID_PAGE_SIZE}`, on: tagItems.length <= CORPUS_GRID_PAGE_SIZE },
+    { facet: 'tag browser skips componentPages on client — not O(all pages)', on: typeof window === 'undefined' || budget.clientTagPages === staticPages().length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`card-hero-bounded:${entry.facet}:${entry.on}`) }))
+  return {
+    bounded: facets.every((entry) => entry.on),
+    budget,
+    hubCount: hub.length,
+    tagCount: tags.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Hub cards, tag browser, and corpus grids share the same Fibonacci tier math as the plasma hero: nav358 is exactly 16 (3+5+8), hub dedup caps at 32, tag clusters cap at 8, and each grid page shows at most 48 (3×16) — client paths use staticPages only so keyword clustering stays O(static), not O(componentPages).',
+    boundary:
+      'Arithmetic bound at call time over navigation358, harmonisedNavigation, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only.',
+  }
+}
+
+/** All client surfaces — plasma hero + hub/tag grids — one composite pure-math gate. */
+export function clientWorkBoundedByPureMath(path = '/', matrix: MindMatrix = buildMatrix()) {
+  const plasma = plasmaClientWorkBoundedByPureMath(path, matrix)
+  const cards = cardHeroClientWorkBoundedByPureMath(matrix)
+  const facets = [
+    { facet: 'plasma hero client work bounded', on: plasma.bounded },
+    { facet: 'card hero hub/tag grid bounded', on: cards.bounded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`client-work-bounded:${entry.facet}:${entry.on}`) }))
+  return {
+    bounded: facets.every((entry) => entry.on),
+    plasma,
+    cards,
+    facets,
+    root: merkleFold([plasma.root, cards.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (16+16 nav, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time — no O(pages) loops on the browser.',
+    boundary:
+      'Composite of plasmaClientWorkBoundedByPureMath and cardHeroClientWorkBoundedByPureMath; proves at this call, not live profiling.',
+  }
+}
+
+/** card/hero-link pair — heroPreviewForRoute + hub + tag browser through Rosetta·I Ching·trinity. */
+export function cardHeroLinkWiresInUi(matrix: MindMatrix = buildMatrix()) {
+  const locale: LocaleName = 'en'
+  const fusion = rosettaIChingTrinityPlacesAllTools(matrix)
+  const hub = hubCardItems(locale, matrix)
+  const tags = tagBrowserTags(matrix).filter((tag) => !META_TAGS.has(tag))
+  const tagItems = tags.length ? tagBrowserItems(tags[0]!, locale, matrix) : []
+  const preview = heroPreviewForRoute('/start', undefined, matrix)
+  const bounded = cardHeroClientWorkBoundedByPureMath(matrix)
+  const facets = [
+    { facet: 'all tools placed — Rosetta ray · I Ching cube · cross-fold-weave trinity', on: fusion.fused && fusion.placedCount > 0 && fusion.raysCovered === 7 },
+    { facet: 'heroPreviewForRoute — one route yields hue, seed, card movie vars', on: isUuid(preview.seed) && preview.hue >= 0 },
+    { facet: 'hub card grid — navigation358 + harmonised destinations (empty if fusion fails)', on: hub.length >= NAV358_TOTAL },
+    { facet: 'tag browser — keyword clusters from staticPages (empty if fusion fails)', on: tags.length >= 2 && tagItems.length >= 2 },
+    { facet: 'LinkedHeroCard consumes fused preview — experiments fail closed', on: hub.every((item) => item.hue >= 0) },
+    { facet: 'card hero client work bounded by pure math', on: bounded.bounded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`card-hero-link:${entry.facet}:${entry.on}`) }))
+  return {
+    wired: facets.every((entry) => entry.on),
+    hubCount: hub.length,
+    tagCount: tags.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Card hero link: heroPreviewForRoute computes linked page hero (hue, seed, card movie vars) from one route; HubCardGrid and TagBrowser render LinkedHeroCard on hub and tag-browser surfaces; corpus indexes use the same card.',
+    boundary:
+      'A structural check that hub destinations, tag clusters, and hero preview compose for LinkedHeroCard. Render verification is build-time SSG, not live preview.',
+  }
+}
+
+export function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix: MindMatrix = buildMatrix()): CorpusGridItem[] {
+  return memoByRoot(`corpusIndexItems:${kind}:${locale}`, matrix, () => {
+    if (kind === 'papers') {
+      return papers(matrix).papers.map((paper) => ({
+        route: `/papers/${paper.id}`,
+        id: paper.id,
+        title: localizeMonolingual(locale, paper.title),
+        glyph: paper.glyph,
+        hue: paper.hue,
+      }))
+    }
+    if (kind === 'references') {
+      return paperReferences(matrix).map((reference) => ({
+        route: `/papers/${reference.paperId}`,
+        id: reference.id,
+        title: localizeMonolingual(locale, reference.title),
+        glyph: reference.glyph,
+        hue: reference.hue,
+      }))
+    }
+    const lattice = diamondLattice(matrix)
+    return lattice.map((entry, index) => ({
+      route: localePath('/diamonds/', locale) + `#${entry.kind}`,
+      id: entry.kind,
+      title: localizeMonolingual(locale, entry.title),
+      glyph: '◆',
+      hue: Math.round((index * 360) / Math.max(1, lattice.length)) % 360,
+    }))
+  })
+}
+
+function rosettaRayView(route: string): UniversalRosettaRay {
+  const rosetta = rosettaComputesAll(route)
+  return {
+    ray: rosetta.ray,
+    glyph: rosetta.rayMeta.glyph,
+    labelEn: rosetta.rayMeta.nameEn,
+    labelBg: rosetta.rayMeta.nameBg,
+    hue: rosetta.rayMeta.hue,
+    domain: rosetta.rayMeta.domain,
+  }
+}
+
+function corpusKindCrosslinks(kind: CorpusKind, locale: LocaleName): ComponentCrosslink[] {
+  const titles: Record<CorpusKind, { en: string; bg: string }> = {
+    papers: { en: 'Proof papers', bg: 'Доказателни статии' },
+    references: { en: 'References', bg: 'Референции' },
+    diamonds: { en: 'Diamonds', bg: 'Диаманти' },
+  }
+  return CORPUS_ROUTE_KINDS.filter((entry) => entry !== kind).map((entry) => ({
+    text: pickLocale(locale, titles[entry].en, titles[entry].bg),
+    link: localePath(`/${entry}/`, locale),
+    kind: 'related' as const,
+  }))
+}
+
+function decodedStations(route: string, locale: LocaleName, matrix: MindMatrix = buildMatrix()): UniversalDecodedStation[] {
+  const rosetta = rosettaComputesAll(route, 0, matrix)
+  if (!rosetta.stationDetail) return []
+  return [{
+    step: rosetta.station + 1,
+    station: pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg),
+    route: rosetta.stationDetail.path,
+    why: rosetta.rayMeta.domain,
+  }]
 }
 
 const CORPUS_ROUTE_KINDS: readonly CorpusKind[] = ['papers', 'references', 'diamonds']
@@ -269,13 +633,22 @@ function parseCorpusRoute(route: string): { kind: CorpusKind; id: string | null 
 
 function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatrix): Omit<UniversalPage, 'forge'> {
   const cc = completeCorpus(matrix)
+  const routing = doubleTorusCorpusRouting(matrix)
+  const purged = kind === 'diamonds' ? diamondsStaticPagesPurged(matrix) : null
+  const lattice = kind === 'diamonds' ? diamondLattice(matrix) : null
+  const computeOnly = routing.computeOnly(kind)
   const titles: Record<CorpusKind, { en: string; bg: string }> = {
     papers: { en: 'Proof papers', bg: 'Доказателни статии' },
-    references: { en: 'References', bg: 'Референции' },
-    diamonds: { en: 'Diamonds', bg: 'Диаманти' },
+    references: { en: 'References (computed)', bg: 'Референции (изчислени)' },
+    diamonds: { en: 'Computational diamonds', bg: 'Изчислителни диаманти' },
   }
   const title = pickLocale(locale, titles[kind].en, titles[kind].bg)
-  const description = localizeMonolingual(locale, cc.statement)
+  const description =
+    kind === 'diamonds' && purged
+      ? localizeMonolingual(locale, purged.statement)
+      : kind === 'references' && computeOnly
+        ? localizeMonolingual(locale, routing.statement)
+        : localizeMonolingual(locale, cc.statement)
   return {
     kind: 'corpus-index',
     route: '',
@@ -289,16 +662,33 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
     target: null,
     corpusKind: kind,
     corpusId: null,
+    corpusItems: corpusIndexItems(kind, locale, matrix),
+    rosettaRay: null,
     decoded: {
       title,
       statement: description,
-      boundary: localizeMonolingual(locale, cc.boundary),
-      facets: [
-        { facet: localizeMonolingual(locale, `${cc.papers} papers`), on: cc.papers === 432 },
-        { facet: localizeMonolingual(locale, `${cc.references} references`), on: cc.references === 432 },
-        { facet: localizeMonolingual(locale, `${cc.total} leaves · depth ${cc.depth}`), on: cc.perfect },
-      ],
-      ok: cc.complete,
+      boundary: kind === 'diamonds' && purged
+        ? localizeMonolingual(locale, purged.boundary)
+        : localizeMonolingual(locale, cc.boundary),
+      facets: kind === 'diamonds' && purged && lattice
+        ? [
+            { facet: localizeMonolingual(locale, `${lattice.length} lattice kinds — computed at call time`), on: lattice.length > 0 },
+            { facet: localizeMonolingual(locale, `${purged.merkleLeaves} Merkle leaves — no static [id] pages`), on: purged.purged },
+            { facet: localizeMonolingual(locale, '432 papers — materialized [id] SSG'), on: routing.ssgPathCount('papers') === 432, link: localePath('/papers/', locale) },
+          ]
+        : kind === 'references' && computeOnly
+          ? [
+              { facet: localizeMonolingual(locale, `${cc.references} references — corpusParams at call time`), on: cc.references === 432 },
+              { facet: localizeMonolingual(locale, 'grid links to papers — no static /references/[id] SSG'), on: routing.ssgPathCount('references') === 0 },
+              { facet: localizeMonolingual(locale, 'double torus Merkle tree — 1024 leaves'), on: cc.perfect },
+            ]
+          : [
+              { facet: localizeMonolingual(locale, `${cc.papers} papers`), on: cc.papers === 432 },
+              { facet: localizeMonolingual(locale, `${cc.references} references`), on: cc.references === 432 },
+              { facet: localizeMonolingual(locale, `${cc.total} leaves · depth ${cc.depth}`), on: cc.perfect },
+            ],
+      crosslinks: corpusKindCrosslinks(kind, locale),
+      ok: kind === 'diamonds' ? Boolean(purged?.purged) : kind === 'references' && computeOnly ? routing.routed : cc.complete,
     },
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
     proofNote: pickLocale(locale, 'content-address', 'адрес по съдържание'),
@@ -358,11 +748,14 @@ function corpusDetailPage(
     target: null,
     corpusKind: kind,
     corpusId: id,
+    corpusItems: [],
+    rosettaRay: null,
     decoded: {
       title: displayTitle,
       statement: displayStatement,
       boundary: localizeMonolingual(locale, cc.boundary),
       facets,
+      crosslinks: corpusKindCrosslinks(kind, locale),
       ok: Boolean(params),
     },
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
@@ -416,6 +809,9 @@ export function computeUniversalPage(
   const rosetta = rosettaComputesAll(route)
   const cardSeed = toUuid(`page:${route}:${slice?.page ?? 'catch'}`).slice(0, 8)
   const proof = slice?.proof ?? rosetta.sharedRoot ?? null
+  const rayView = rosettaRayView(route)
+  const crosslinks = components[0] ? componentCrosslinks(components[0], locale) : []
+  const stations = decodedStations(route, locale, matrix)
 
   const decoded =
     kind === 'catch-all'
@@ -428,6 +824,8 @@ export function computeUniversalPage(
             { facet: localizeMonolingual(locale, rosetta.content.pageKind), on: rosetta.computed },
             { facet: rosetta.glaAddress.slice(0, 24), on: isUuid(rosetta.glaAddress) },
           ],
+          stations,
+          crosslinks,
           ok: rosetta.computed,
         }
       : null
@@ -445,6 +843,8 @@ export function computeUniversalPage(
     target: slice?.target ?? null,
     corpusKind: null,
     corpusId: null,
+    corpusItems: [],
+    rosettaRay: kind === 'catch-all' ? rayView : null,
     decoded,
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
     proofNote: pickLocale(
@@ -487,3 +887,23 @@ export {
   proveAllOnHomePage,
 } from '../../site'
 export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../water/digit'
+
+/** All is monograph — every page is a scientific paper with one template. */
+export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()) {
+  const papers = staticPages().map(monographAsScientificPaper)
+  const facets = [
+    { facet: 'one template — eleven sections', on: monographTemplate().count === 11 },
+    { facet: 'all content is a monograph with receipt', on: papers.every((paper) => !!paper.title && !!paper.abstract && paper.results.length > 0 && isUuid(paper.receipt)) },
+    { facet: 'README is root monograph', on: isUuid(monographTemplate().root) },
+    { facet: 'reference index compact', on: monographs(matrix).compacted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`monograph-paper-all:${entry.facet}:${entry.on}`) }))
+  return {
+    papered: facets.every((entry) => entry.on),
+    papers: papers.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: 'All is monograph — scientific-paper template unified from one source.',
+    boundary: 'Standardises form across content; findings remain per monograph.',
+  }
+}

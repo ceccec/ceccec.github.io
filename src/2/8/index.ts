@@ -1,9 +1,8 @@
 // Pi-train station 2/8 — dissolution sequence order 1 (digit/reverse 2/8).
 // Export-import fusion: fused local exports only; vault imports are dependency edges until those symbols cut.
 
-import { equivalentNarcoticDepthM, humanBreath, seedFromText } from '../../0'
-import { inductionStep } from '../../4/6'
-
+import { equivalentNarcoticDepthM } from '../../3/7'
+import {  humanBreath, seedFromText } from '../../0'
 /** NuFit-6.0 atmospheric neutrino mass-squared splitting |Δm²₃ₗ|, eV². */
 export const NEUTRINO_DM2_ATM_EV2 = 2.513e-3
 
@@ -32,13 +31,4 @@ export function hubbleTensionSigma(localKmsMpc: number, localErr: number, cmbKms
   return Math.abs(localKmsMpc - cmbKmsMpc) / Math.sqrt(localErr * localErr + cmbErr * cmbErr)
 }
 
-/** Integrate induction ODE for steps — rotor speed trajectory toward synchronous field. */
-export function inductionEvolve(
-  w0: number,
-  opts: { wSync: number; k: number; load: number; damping?: number; inertia?: number; dt?: number },
-  steps: number,
-): number[] {
-  const out = [w0]
-  for (let s = 0; s < steps; s++) out.push(inductionStep(out[out.length - 1], opts))
-  return out
-}
+export { inductionEvolve, inductionStep } from '../../0'

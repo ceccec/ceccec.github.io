@@ -1,71 +1,22 @@
+import { phase } from '../../6/4'
+import { folderTailFromMethodName } from '../../pair/enforcement/gates/computational'
+import { algorithmicCoolingBias, quantumBatteryAdvantage } from '../../9/1'
 import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../types'
 import { buildMatrix, completeQuantumSolutionsImplemented } from '../compute'
-import { algorithmicCoolingBias, folderTailFromMethodName, isUuid, memoByRoot, merge, merkleFold, quantumBatteryAdvantage, roundTo, seedFromText, toUuid } from '../../0'
+import {   isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../0'
 import { crossFoldTrinity, torusUuid } from '../../fire/li'
 import { areaPairs, dualTorusTrinities } from '../../mountain/geometry'
 import { piMusic } from '../../lake/music'
 import { executeConceptCommand } from '../../thunder/commands'
 import { siteManifestFromCommands } from '../../learning'
 import { quantumFusedDeviceEnergyHonest } from '../../fire/features'
-import { euPatentAudit, euPatentReviewRequests, extractCheckableClaims, foldExposesInconsistency, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, manipulationCrossAudit, modifiedFoodPatentAudit, naturePatentAudit, patentSubjectMatterAudit, quantumAnalysis, quantumAnalysisAtAllScales, sacredMathPatentAudit, verificationRequests } from '../../heaven/core'
+import { euPatentAudit, euPatentReviewRequests, extractCheckableClaims, foldExposesInconsistency, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, manipulationCrossAudit, modifiedFoodPatentAudit, productOfNaturePatentAudit, patentSubjectMatterAudit, quantumAnalysis, quantumAnalysisAtAllScales, sacredMathPatentAudit, verificationRequests } from '../../heaven/core'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — concept commands, skill atoms, SINGLE_WORD_METHODS, the atom array
-/** @rosetta ✦₀ · Heaven · creative */
-export function computePiDigits(count: number): string {
-  let q = 1n
-  let r = 0n
-  let t = 1n
-  let k = 1n
-  let n = 3n
-  let l = 3n
-  let digits = ''
-
-  while (digits.length < count) {
-    if (4n * q + r - t < n * t) {
-      digits += n.toString()
-      const nextR = 10n * (r - n * t)
-      n = (10n * (3n * q + r)) / t - 10n * n
-      q *= 10n
-      r = nextR
-    } else {
-      const nextR = (2n * q + r) * l
-      const nextN = (q * (7n * k) + 2n + r * l) / (t * l)
-      q *= k
-      t *= l
-      l += 2n
-      k += 1n
-      n = nextN
-      r = nextR
-    }
-  }
-
-  return digits
-}
-
-// 108 pi-digit coordinates — the complete count (the sacred 108: chakras x 12,
-// the mala). The train was short of it; this fills the missing coordinates.
-/** @rosetta ✦₀ · Heaven · creative */
-export const PI_TRAIN_DIGITS = computePiDigits(108)
-/** @rosetta ✦₀ · Heaven · creative */
-export const REQUIRED_DIAMOND_KINDS: readonly DiamondKind[] = [
-  'agent',
-  'ui',
-  'math',
-  'dynamics',
-  'proof',
-  'nature',
-  'tradition',
-  'pi',
-  'geometry',
-  'sound',
-  'vibration',
-  'humanity',
-  'source',
-  'repository',
-] as const
-/** @rosetta ✦₀ · Heaven · creative */
-export const REQUIRED_DIAMOND_POLES: readonly DiamondFacet['pole'][] = ['north', 'east', 'south', 'west'] as const
-/** @rosetta ✦₀ · Heaven · creative */
-export const REQUIRED_ANALOG_CHANNELS: readonly AnalogChannel[] = ['3d-position', 'sound', 'vibration', 'timing', 'receipt', 'facets'] as const
+// computePiDigits, PI_TRAIN_DIGITS and the REQUIRED_* requirement literals are hosted in the zero-import leaf
+// src/3/7 (imported + re-exported below) so the COMPUTED const initialises before any cyclic consumer barrel
+// runs — removing the SSR-bundle TDZ. The public path src/heaven/atoms is unchanged.
+import { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7'
+export { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7'
 
 /** @rosetta ✦₀ · Heaven · creative */
 export const atoms: readonly Atom[] = [
@@ -668,116 +619,10 @@ export const conceptCommands: readonly ConceptCommand[] = [
 ] as const
 
 /** @rosetta ✦₀ · Heaven · creative */
-export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
-  'concept.site.shell': 'shell',
-  'concept.self.build': 'build',
-  'concept.self.complete': 'complete',
-  'concept.self.address': 'address',
-  'concept.agent.stream.wire': 'wire',
-  'concept.mind.double.torus': 'torus',
-  'concept.mind.use.cases': 'evidence',
-  'concept.society.lattice': 'lattice',
-  'concept.diamond.pi.train': 'train',
-  'concept.diamond.complete': 'seal',
-  'concept.wave.coordination': 'coordinate',
-  'concept.wave.close.gaps': 'close',
-  'concept.chess.quantum': 'chess',
-  'concept.schema.org.diamonds': 'schema',
-  'concept.traditions.quantum.whole': 'traditions',
-  'concept.science.society': 'science',
-  'concept.method.fusion': 'fusion',
-  'concept.torus.math': 'math',
-  'concept.society.humanity': 'humanity',
-  'concept.commons.contribute': 'source',
-  'concept.torus.matrix': 'matrix',
-  'concept.torus.vector': 'vector',
-  'concept.torus.flow': 'flow',
-  'concept.repository.api': 'api',
-  'concept.repository.resolve': 'resolve',
-  'concept.proof.verify': 'verify',
-  'concept.proof.merkle.path': 'include',
-  'concept.diamond.metatron': 'metatron',
-  'concept.digit.proof': 'prove',
-  'concept.digit.math': 'compute',
-  'concept.artists.surfaces': 'artists',
-  'concept.artists.palette': 'palette',
-  'concept.artists.melody': 'melody',
-  'concept.society.educate': 'educate',
-  'concept.school.curriculum': 'teach',
-  'concept.mcp.tools': 'tools',
-  'concept.chain.quantum': 'chain',
-  'concept.help.fold': 'fold',
-  'concept.fold.cross': 'weave',
-  'concept.mind.develop': 'develop',
-  'concept.compute.distributed': 'distribute',
-  'concept.babel.fold': 'babel',
-  'concept.utf.analog': 'analog',
-  'concept.all.computed': 'computed',
-  'concept.state.quantum': 'state',
-  'concept.music.note': 'note',
-  'concept.music.pi': 'tune',
-  'concept.music.harmony': 'harmony',
-  'concept.computer.word': 'word',
-  'concept.computer.quantum': 'qubit',
-  'concept.computer.run': 'run',
-  'concept.healing.inner': 'mend',
-  'concept.healing.outer': 'extend',
-  'concept.healing.harmonic': 'resonate',
-  'concept.energy.measure': 'measure',
-  'concept.energy.conserve': 'conserve',
-  'concept.energy.fuse': 'power',
-  'concept.geometry.seal': 'sacred',
-  'concept.society.sacred': 'govern',
-  'concept.commons.vote': 'vote',
-  'concept.commons.fair': 'sustain',
-  'concept.ancient.tech': 'ancient',
-  'concept.patent.fuse': 'fuse',
-  'concept.patent.discover': 'discover',
-  'concept.patent.review': 'review',
-  'concept.nature.law': 'natural',
-  'concept.nature.commons': 'public',
-  'concept.nature.review': 'judge',
-  'concept.lawful.harmonise': 'harmonise',
-  'concept.lawful.imagine': 'imagine',
-  'concept.lawful.succeed': 'succeed',
-  'concept.society.relations': 'relate',
-  'concept.torus.breathe': 'breathe',
-  'concept.wave.self': 'rhythm',
-  'concept.commands.live': 'registry',
-  'concept.proof.bundle': 'bundle',
-  'concept.icon.fold': 'icon',
-  'concept.icon.taxonomy': 'taxonomy',
-  'concept.icon.glyph': 'glyph',
-  'concept.reactor.words': 'words',
-  'concept.reactor.letters': 'letters',
-  'concept.reactor.atoms': 'atoms',
-  'concept.show.components': 'components',
-  'concept.show.action': 'action',
-  'concept.show.devices': 'devices',
-  'concept.agent.observe': 'observe',
-  'concept.agent.harmonise': 'optimise',
-  'concept.digit.index': 'index',
-  'concept.repository.ledger': 'ledger',
-  'concept.site.routes': 'routes',
-  'concept.society.cells': 'cells',
-  'concept.ui.evidence': 'evidence',
-  'concept.torus.trinities': 'harmonize',
-  'concept.site.manifest': 'manifest',
-  'concept.fold.place': 'place',
-  'concept.fold.generate': 'generate',
-  'concept.ui.fuse': 'fuse',
-  'concept.ui.reveal': 'reveal',
-  'concept.ancient.pyramids': 'pyramids',
-  'concept.ancient.megalithic': 'megalithic',
-  'concept.traditions.standstill': 'standstill',
-  'concept.school.overtones': 'overtones',
-  'concept.science.quantum': 'hilbert',
-  'concept.traditions.glagolitic': 'glagolitic',
-  'concept.geometry.imperial': 'imperial',
-  'concept.geometry.heart': 'heart',
-  'concept.school.codon': 'codon',
-  'concept.science.proton': 'proton',
-}
+// SINGLE_WORD_METHODS is hosted in the zero-import leaf src/3/7 (imported + re-exported below) so it
+// initialises before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; public path unchanged.
+import { SINGLE_WORD_METHODS } from '../../3/7'
+export { SINGLE_WORD_METHODS } from '../../3/7'
 
 
 /** Professional command graph — dry scientific names decode to folder tails (one word per segment). */
@@ -1004,8 +849,8 @@ export function allAuditsCoveredByProof(matrix: MindMatrix = buildMatrix()) {
   const dated = extractCheckableClaims('The bridge opened in 1932.')
   const mathSuch = sacredMathPatentAudit('I claim a method comprising the golden ratio and the vortex 3-6-9 sacred geometry.', matrix)
   const mathApplied = sacredMathPatentAudit('An apparatus comprising a circuit using the golden ratio to reduce power consumption.', matrix)
-  const natureSuch = naturePatentAudit('I claim a seed and the isolated gene, wherein the germplasm is a naturally occurring cultivar.', matrix, 'US')
-  const natureEng = naturePatentAudit('A transgenic seed comprising a recombinant non-naturally-occurring construct.', matrix, 'US')
+  const natureSuch = productOfNaturePatentAudit('I claim a seed and the isolated gene, wherein the germplasm is a naturally occurring cultivar.', matrix, 'US')
+  const natureEng = productOfNaturePatentAudit('A transgenic seed comprising a recombinant non-naturally-occurring construct.', matrix, 'US')
   const lawSuch = lawOfNaturePatentAudit('I claim a method wherein the genetic code and the nucleotide sequence that encodes the trait define the result.', matrix)
   const trinity = patentSubjectMatterAudit('I claim a seed germplasm selected by the golden ratio, wherein the genetic code defines a naturally occurring variety.', matrix)
   const geneMath = geneticCodeMathematicsDecoded(matrix)

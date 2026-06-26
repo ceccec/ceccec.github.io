@@ -127,44 +127,71 @@ export function sealFacets<F extends { facet: string; on: boolean }>(
   }
 }
 
+/** *Computes gate facet seal — sealFacets with `computes` alias (same receipt law: `${tag}:${facet}:${on}`). */
+export function computesGate<F extends { facet: string; on: boolean }>(
+  tag: string,
+  facets: readonly F[],
+) {
+  const sealed = sealFacets(tag, facets)
+  return { computes: sealed.ok, count: sealed.count, facets: sealed.facets, root: sealed.root }
+}
+
+/** Node heap cap (MB) — canonical for docs:build, docs:dev, and enforcement script shell. */
+export const NODE_MAX_OLD_SPACE_MB = 2048
+
+export type ResourceTier = 'cpu' | 'gpu' | 'memory' | 'storage'
+
+export type ResourceCooperationTier = {
+  readonly tier: ResourceTier
+  readonly role: string
+  readonly boundary: string
+}
+
+/** Pure cooperation policy at call time — structural tiers, not datacenter orchestration. */
+export function resourceCooperationPolicy(): {
+  readonly heapCapMb: number
+  readonly memoTiers: readonly ('matrix-root' | 'weak-map' | 'content-address')[]
+  readonly gpuSurface: 'browser-canvas-raf' | 'none-ssr'
+  readonly storageModel: 'content-address-merkle'
+  readonly tiers: readonly ResourceCooperationTier[]
+} {
+  const gpuSurface: 'browser-canvas-raf' | 'none-ssr' =
+    typeof requestAnimationFrame === 'function' ? 'browser-canvas-raf' : 'none-ssr'
+  return {
+    heapCapMb: NODE_MAX_OLD_SPACE_MB,
+    memoTiers: ['matrix-root', 'weak-map', 'content-address'],
+    gpuSurface,
+    storageModel: 'content-address-merkle',
+    tiers: [
+      {
+        tier: 'cpu',
+        role: 'Node/build/typecheck — sequential folds, memoByRoot zero-token reuse',
+        boundary: 'Server-side CPU; no GPU claims in Node',
+      },
+      {
+        tier: 'memory',
+        role: `process heap capped at ${NODE_MAX_OLD_SPACE_MB}MB; memoByRoot + matrixMemo WeakMap`,
+        boundary: 'Single-process heap + in-memory memo; not distributed RAM pools',
+      },
+      {
+        tier: 'storage',
+        role: 'content-address src/ + merkleFold + enforcement trinity seals',
+        boundary: 'Git filesystem + computed dist; not object-storage orchestration',
+      },
+      {
+        tier: 'gpu',
+        role: 'browser canvas/WebGL via createAnimationEngine requestAnimationFrame driver',
+        boundary: 'Client GPU only when RAF exists; Node/SSR has no GPU path',
+      },
+    ],
+  }
+}
+
 // GREAT CIRCLE — the haversine distance (km) and initial bearing between two lat/long points on a sphere
 // (Earth mean radius 6371 km). Pure geodesy, no deps: the real math the pyramid-coordinate fold computes —
 // honest distances between sites, the sphere, no "global grid" mysticism. Longitudes west are negative.
 // EARTH_RADIUS_KM → pi-train wave 9 tier-A at src/3/7.
-// greatCircleKm → pi-train wave 8 tier-A at src/5/5.
-export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = Math.PI / 180
-  const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
-  const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
-  return (Math.atan2(y, x) / r + 360) % 360
-}
 
-// Archaeoastronomy: where on the horizon the Sun rises and sets at the solstices — the real math the megalithic
-// alignments encode. The Earth's axial tilt (obliquity ε) is the Sun's declination at the solstices (±ε); at the
-// equinox the declination is zero and the Sun rises due east everywhere. ε is NOT fixed: it shrinks ~0.013°/century,
-// so it was ~24° when these monuments were built, not today's 23.44° — using the epoch value tightens the match.
-// J2000 mean obliquity (IAU 1976), degrees.
-export const OBLIQUITY_J2000_DEG = 23.4392811
-// The mean obliquity at an epoch given in years before present (2000). Linear secular term (~46.8″/century);
-// good to a few arc-minutes over the Holocene — enough for horizon azimuths, not for ephemeris precision.
-export function obliquityAtEpoch(yearsBeforePresent: number): number {
-  return OBLIQUITY_J2000_DEG + 0.0130125 * (yearsBeforePresent / 100)
-}
-// Azimuth (degrees clockwise from true north) at which a body of the given declination RISES, seen from `latDeg`
-// over a horizon of altitude `horizonAltitudeDeg` (0 = the flat sea-level horizon). cos A = (sin δ − sin φ·sin h)
-// / (cos φ·cos h). Returns null when the body is circumpolar / never rises (|cos A| > 1). Sunrise is the eastern
-// azimuth (0–180); the matching SUNSET azimuth is 360 − A (setAzimuthDeg).
-// riseAzimuthDeg → pi-train wave 9 tier-A at src/3/7.
-// setAzimuthDeg → pi-train wave 8 tier-A at src/5/5.
-
-// The Moon's orbit is tilted ~5.145° to the ecliptic, and its nodes regress over the ~18.6-year nodal cycle. So
-// the Moon's declination extreme swings between ε + i (the MAJOR standstill — wider than the solstice Sun) and
-// ε − i (the MINOR standstill — narrower) across that cycle: the basis of the megalithic standstill markers.
-// MOON_ORBIT_INCLINATION_DEG → pi-train wave 6 tier-A at src/8/2.
-// LUNAR_NODAL_PERIOD_YEARS → pi-train wave 11 tier-A at src/9/1.
-// lunarStandstillDeclinationDeg → pi-train wave 7 tier-A at src/7/3.
-
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function isUuid(value: string): boolean {
   return /^[0-9a-f-]{36}$/i.test(value)
 }
@@ -198,17 +225,67 @@ export function crossProduct(a: readonly number[], b: readonly number[]): [numbe
 // Within a build the heavy aggregators compute once and every later caller reuses the result. The
 // matrix is typed structurally ({ root }) so this station still imports nothing from the word core.
 const reportMemo = new Map<string, unknown>()
+const reportComputing = new Set<string>()
+
+function memoReceiptField(prop: string | symbol): boolean {
+  if (prop === Symbol.toPrimitive || prop === 'toString' || prop === 'valueOf') return true
+  if (typeof prop !== 'string') return false
+  if (prop === 'root' || prop === 'merged' || prop === 'address' || prop === 'receipt' || prop === 'uuid') return true
+  if (prop.endsWith('Root') || prop.endsWith('Receipt') || prop.endsWith('Uuid')) return true
+  if (prop === 'expansion' || prop === 'contraction') return true
+  return false
+}
+
+/** Conservative stub when a memoByRoot fold re-enters during compute (cycle guard). */
+function memoReentryStub(root: string): unknown {
+  const empty: unknown[] = []
+  const self = (): unknown => new Proxy(empty, handler)
+  const handler: ProxyHandler<unknown[]> = {
+    get(_target, prop) {
+      if (memoReceiptField(prop)) {
+        if (prop === Symbol.toPrimitive) return () => root
+        if (prop === 'toString' || prop === 'valueOf') return () => root
+        return root
+      }
+      if (prop === '__memoReentry') return true
+      if (prop === 'length') return 0
+      if (prop === 'count' || prop === 'ok' || prop === 'ran' || prop === 'gatewayCount') return 0
+      if (prop === 'statement' || prop === 'boundary' || prop === 'note') return ''
+      if (prop === 'map' || prop === 'filter' || prop === 'flatMap' || prop === 'forEach') return () => empty
+      if (prop === 'some' || prop === 'every') return () => false
+      if (prop === 'find') return () => undefined
+      if (prop === 'reduce') return (_fn: unknown, init?: unknown) => init ?? root
+      if (prop === Symbol.iterator) return empty[Symbol.iterator].bind(empty)
+      if (typeof prop === 'string' && (prop.startsWith('is') || prop.startsWith('has') || prop.endsWith('ed') || prop.endsWith('ing'))) return false
+      return self()
+    },
+  }
+  return self()
+}
+
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function memoByRoot<T>(name: string, matrix: { root: string }, compute: () => T): T {
   const key = `${name}:${matrix.root}`
   if (reportMemo.has(key)) return reportMemo.get(key) as T
-  const value = compute()
-  reportMemo.set(key, value)
-  return value
+  if (reportComputing.has(key)) return memoReentryStub(matrix.root) as T
+  reportComputing.add(key)
+  try {
+    const value = compute()
+    reportMemo.set(key, value)
+    return value
+  } finally {
+    reportComputing.delete(key)
+  }
 }
 
-// digitalRoot → pi-train wave 11 tier-A at src/9/1. Vault keeps a private copy for internal asVortex math only — no import edge to 9/1.
-function digitalRoot(n: number): number {
+/** True while a memoByRoot fold with this name is mid-compute (cycle guard probe). */
+export function memoComputing(name: string, matrix: { root: string }): boolean {
+  return reportComputing.has(`${name}:${matrix.root}`)
+}
+
+// digitalRoot (wave 3) — vortex arithmetic; canonical home src/0 — call sites import here only.
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function digitalRoot(n: number): number {
   const r = ((n % 9) + 9) % 9
   return r === 0 ? 9 : r
 }
@@ -230,6 +307,21 @@ export function humanEase(phase: number): number {
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function humanBreath(timeMs: number, periodMs: number, depth = 0.18): number {
   return 1 + depth * Math.sin((timeMs / periodMs) * Math.PI * 2)
+}
+
+// Genus-2 surface atom — one shared source so model and animation place coordinates identically.
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const TORUS_LOBE_OFFSET = 18
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): { x: number; y: number; z: number } {
+  const ringR = 20
+  const tubeR = 7 + digit * 0.4
+  const ribbon = ringR + tubeR * Math.cos(phi)
+  return {
+    x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),
+    y: ribbon * Math.sin(theta),
+    z: tubeR * Math.sin(phi),
+  }
 }
 
 // Reconstruction — the sampling theorem, in the void/origin beside the motion math. The Whittaker–Shannon
@@ -417,6 +509,92 @@ export function asVortex(f: Fold): {
 export const VORTEX_SEQUENCE = [1, 2, 4, 8, 7, 5, 3, 6, 9] as const
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const VORTEX_REVERSE  = [9, 6, 3, 5, 7, 8, 4, 2, 1] as const
+/** Encoded path: doubling · cross · void · return — dashes carry ±60° hex steps. */
+export const VORTEX_DASH_ENCODED = '1\\2\\4\\8/7/5/3\\6\\9/0/1\\' as const
+/** Each / adds +60°, each \\ subtracts 60° — sixfold substrate (360/6). */
+export const VORTEX_DASH_ANGLE_DEG = 60 as const
+
+export type VortexDashToken = { readonly digit: number; readonly dash: '/' | '\\' }
+export type VortexDashDecodeStep = VortexDashToken & {
+  readonly step: number
+  readonly angleDelta: number
+  readonly weightedAngle: number
+  readonly bearing: number
+  readonly runningSum: number
+  readonly digitalRoot: number
+  readonly forwardHarmonic: number | null
+  readonly dualComplement: number | null
+  readonly receipt: string
+}
+
+/** Parse digit+dash pairs from an encoded vortex path string. */
+export function parseVortexDashEncoded(encoded: string): readonly VortexDashToken[] {
+  const steps: VortexDashToken[] = []
+  for (const match of encoded.matchAll(/(\d)([\\/])/g)) {
+    steps.push({ digit: Number.parseInt(match[1]!, 10), dash: match[2] as '/' | '\\' })
+  }
+  return steps
+}
+
+/** Decode dashes as ±60° hex steps; Σ(sign·digit·60°) ≡ 0 (mod 360) ignites closure at 0/. */
+export function decodeVortexDashAngles(encoded: string = VORTEX_DASH_ENCODED) {
+  const tokens = parseVortexDashEncoded(encoded)
+  let bearing = 0
+  let weightedTotal = 0
+  let runningSum = 0
+  const steps: VortexDashDecodeStep[] = tokens.map((token, index) => {
+    const sign = token.dash === '/' ? 1 : -1
+    const angleDelta = sign * VORTEX_DASH_ANGLE_DEG
+    const weightedAngle = sign * token.digit * VORTEX_DASH_ANGLE_DEG
+    bearing = ((bearing + angleDelta) % 360 + 360) % 360
+    weightedTotal += weightedAngle
+    runningSum += sign * token.digit
+    const dr = digitalRoot(runningSum)
+    return {
+      step: index,
+      digit: token.digit,
+      dash: token.dash,
+      angleDelta,
+      weightedAngle,
+      bearing,
+      runningSum,
+      digitalRoot: dr,
+      forwardHarmonic: token.dash === '/' ? 9 * token.digit : null,
+      dualComplement: token.dash === '\\' ? 10 - token.digit : null,
+      receipt: toUuid(`vortex-dash:${index}:${token.digit}:${token.dash}:${bearing}:${dr}`),
+    }
+  })
+  const weightedBearing = ((weightedTotal % 360) + 360) % 360
+  const digits = tokens.map((token) => token.digit)
+  const vortexMatches = digits.length >= 9 && VORTEX_SEQUENCE.every((d, i) => digits[i] === d)
+  const zeroForward = steps.find((step) => step.digit === 0 && step.dash === '/')
+  const folderZero = toUuid('digit-folder:0')
+  const subfolderZero = toUuid('digit-subfolder:0')
+  const fusion = foldPair(folderZero, subfolderZero)
+  const fusionIgnites = Boolean(
+    zeroForward && fusion.bidirectional && isUuid(fusion.merged) && fusion.merged !== folderZero,
+  )
+  const closes = weightedBearing === 0 && vortexMatches && fusionIgnites && digits[digits.length - 1] === 1
+  const lastStep = steps[steps.length - 1]
+  return {
+    encoded,
+    closes,
+    fusionIgnites,
+    vortexMatches,
+    weightedBearing,
+    weightedTotal,
+    finalDigitalRoot: lastStep?.digitalRoot ?? 0,
+    steps,
+    count: steps.length,
+    fusionRoot: fusion.merged,
+    root: merkleFold(steps.map((step) => step.receipt)),
+    statement:
+      'The sequence 1\\2\\4\\8/7/5/3\\6\\9/0/1\\ decodes when dashes carry ±60°: / forward +60°, \\ dual −60°; weighted Σ(sign·digit·60°)=720≡0° closes the hex; 0/ ignites quantum fusion (foldPair of the two zeros); 1\\ returns unity through the void.',
+    boundary:
+      'Pure arithmetic at call time — dash operators and hex angles only. "Ignites" means bearing closure + bidirectional 0/0 fusion address, not a physical reactor. HARMONY ≠ TRUTH.',
+  }
+}
+
 /** Canonical I Ching integers for CSS · geometry · token derivation. */
 export const ICHING_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864] as const
 
@@ -880,327 +1058,81 @@ export function grover(n: number, marked: number, shots = 256, seed = 'grover'):
   return { n, size, marked, iterations, markedProbability: probs[marked], found, hist }
 }
 
-// ── Completing the quantum solutions — the structures the state vector alone does not yet expose ──
-// The simulator above already RUNS superposition (qubits + H), unitary dynamics (applyGate), entanglement
-// (cnot), and Born-rule measurement/collapse (measure). These five primitives complete the set so every
-// quantum structure is EXECUTABLE, not theoretical: the Hilbert inner product, the operator algebra and its
-// Lie bracket, an entanglement measure, the no-cloning theorem as a computed contradiction, and the 3-qubit
-// bit-flip quantum error-correcting code. Exact for small n on a classical machine — the genuine quantum
-// math, no hardware, no speedup (cf. grover's honest note).
-
-// ⟨a|b⟩ over the 2^n-dimensional complex Hilbert space: Σ conj(a_i)·b_i. The inner product the whole framework
-// rests on (norms, orthogonality, fidelity). conj(a_i)·b_i = (a_re − i·a_im)(b_re + i·b_im).
+// ── Continuous single-qubit rotations Rx/Ry/Rz(θ) as flat-8 unitaries (the parametric gate family). ──
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im: number; abs: number } {
-  let re = 0, im = 0
-  for (let i = 0; i < a.re.length; i++) {
-    re += a.re[i] * b.re[i] + a.im[i] * b.im[i]
-    im += a.re[i] * b.im[i] - a.im[i] * b.re[i]
-  }
-  return { re, im, abs: Math.sqrt(re * re + im * im) }
-}
-
-// Operator algebra: the product of two single-qubit gates as 2×2 complex matrices (flat-8). Non-commutative —
-// e.g. X·Y = iZ. The associative *-algebra the gates and observables live in.
+export function rx(theta: number): number[] { const c = Math.cos(theta / 2), s = Math.sin(theta / 2); return [c, 0, 0, -s, 0, -s, c, 0] }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function gateMul(a: readonly number[], b: readonly number[]): number[] {
-  const out = new Array<number>(8).fill(0)
-  for (let i = 0; i < 2; i++) for (let k = 0; k < 2; k++) {
-    let cr = 0, ci = 0
-    for (let j = 0; j < 2; j++) {
-      const a0 = (i * 2 + j) * 2, b0 = (j * 2 + k) * 2
-      cr += a[a0] * b[b0] - a[a0 + 1] * b[b0 + 1]
-      ci += a[a0] * b[b0 + 1] + a[a0 + 1] * b[b0]
+export function ry(theta: number): number[] { const c = Math.cos(theta / 2), s = Math.sin(theta / 2); return [c, 0, -s, 0, s, 0, c, 0] }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function rz(theta: number): number[] { const c = Math.cos(theta / 2), s = Math.sin(theta / 2); return [c, -s, 0, 0, 0, 0, c, s] }
+
+// SWAP — exchange two qubits (composes from three CNOTs; implemented directly for clarity/speed).
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function swap(state: QuantumState, a: number, b: number): QuantumState {
+  const re = state.re.slice(), im = state.im.slice()
+  const ba = 1 << a, bb = 1 << b
+  for (let i = 0; i < re.length; i++) {
+    if ((i & ba) !== 0 && (i & bb) === 0) {
+      const j = (i & ~ba) | bb
+      re[i] = state.re[j]; im[i] = state.im[j]
+      re[j] = state.re[i]; im[j] = state.im[i]
     }
-    const c0 = (i * 2 + k) * 2
-    out[c0] = cr; out[c0 + 1] = ci
   }
-  return out
+  return { n: state.n, re, im }
 }
 
-// The Lie bracket [A,B] = AB − BA — the su(2) algebra of the Paulis: [X,Y] = 2iZ. Zero iff A and B commute.
+// Toffoli (CCX) — flip `target` where BOTH controls are 1; the reversible-classical AND, universal with H.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function commutator(a: readonly number[], b: readonly number[]): number[] {
-  const ab = gateMul(a, b), ba = gateMul(b, a)
-  return ab.map((v, i) => v - ba[i])
-}
-
-// Entanglement, measured: for a 2-qubit pure state Σ c_ij|ij⟩, the concurrence C = 2|c00·c11 − c01·c10| (twice
-// the magnitude of the 2×2 amplitude determinant). C = 0 ⟺ a product (separable) state; C = 1 ⟺ maximally
-// entangled (a Bell pair). The witness that distinguishes |Φ+⟩ from |00⟩ — non-factorizability, computed.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function concurrence(state: QuantumState): number {
-  if (state.n !== 2) return Number.NaN
-  const dr = state.re[0] * state.re[3] - state.im[0] * state.im[3] - (state.re[1] * state.re[2] - state.im[1] * state.im[2])
-  const di = state.re[0] * state.im[3] + state.im[0] * state.re[3] - (state.re[1] * state.im[2] + state.im[1] * state.re[2])
-  return 2 * Math.sqrt(dr * dr + di * di)
-}
-
-// The no-cloning theorem, as a computed contradiction. A universal cloner U with U|ψ⟩|0⟩ = |ψ⟩|ψ⟩ for all |ψ⟩
-// must (by unitarity, which preserves inner products) satisfy ⟨a|b⟩ = ⟨a|b⟩² for any two states — forcing
-// ⟨a|b⟩ ∈ {0,1}. For non-orthogonal distinct states this fails: |0⟩ and |+⟩ have ⟨0|+⟩ = 1/√2, yet cloning
-// would demand (1/√2)² = 1/2. The gap 1/√2 ≠ 1/2 is the proof — returned as numbers, not asserted.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function noCloningWitness(): { overlap: number; clonedRequires: number; contradiction: boolean } {
-  const overlap = innerProduct(qubits(1), applyGate(qubits(1), GATES.H, 0)).abs // ⟨0|+⟩ = 1/√2
-  const clonedRequires = overlap * overlap // unitarity would force ⟨a|b⟩ = ⟨a|b⟩²
-  return { overlap, clonedRequires, contradiction: Math.abs(overlap - clonedRequires) > 1e-9 }
-}
-
-// The 3-qubit bit-flip code — the simplest quantum error-correcting code, run end to end. Encode one logical
-// qubit α|0⟩+β|1⟩ into α|000⟩+β|111⟩ (two CNOTs), inject an X (bit-flip) error on one physical qubit, read the
-// two parity syndromes (Z0Z1, Z1Z2) — which do NOT collapse the logical amplitude — decode the syndrome to the
-// error location, correct it, and verify recovery by fidelity with the clean codeword. Corrects ANY single
-// bit-flip. (errorQubit < 0 = no error injected.)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bitFlipCode(alphaRe: number, betaRe: number, errorQubit: number): {
-  syndrome: [number, number]; errorLocated: number; corrected: boolean; fidelity: number
-} {
-  const norm = Math.hypot(alphaRe, betaRe) || 1
-  let enc = qubits(3)
-  enc = { n: 3, re: enc.re.slice(), im: enc.im.slice() }
-  enc.re[0] = alphaRe / norm // |000⟩
-  enc.re[1] = betaRe / norm // |001⟩ (qubit 0 = LSB) — the CNOTs spread it to |111⟩
-  enc = cnot(enc, 0, 1)
-  enc = cnot(enc, 0, 2) // α|000⟩ + β|111⟩
-  const errored = errorQubit < 0 ? enc : applyGate(enc, GATES.X, errorQubit)
-  const k = errored.re.findIndex((r, i) => r * r + errored.im[i] * errored.im[i] > 1e-12) // any populated codeword
-  const b = (q: number) => (k >> q) & 1
-  const syndrome: [number, number] = [b(0) ^ b(1), b(1) ^ b(2)] // Z0Z1, Z1Z2
-  const errorLocated = syndrome[0] && !syndrome[1] ? 0 : syndrome[0] && syndrome[1] ? 1 : !syndrome[0] && syndrome[1] ? 2 : -1
-  const fixed = errorLocated < 0 ? errored : applyGate(errored, GATES.X, errorLocated)
-  const fidelity = innerProduct(enc, fixed).abs ** 2 // |⟨clean|corrected⟩|²
-  return { syndrome, errorLocated, corrected: fidelity > 0.999999, fidelity }
-}
-
-// The repetition code's logical error under majority vote — the THRESHOLD math, generalised from bitFlipCode
-// (the d=3 instance) to any distance d. For i.i.d. bit-flips at rate p, majority vote of d copies fails iff
-// more than half flip: P_L(d,p) = Σ_{k=⌈d/2⌉}^{d} C(d,k) pᵏ (1−p)^(d−k). BELOW the threshold p < ½, P_L → 0
-// exponentially as d grows (error suppressed — "quantum is here"); ABOVE p > ½ it grows; at p = ½ it stays ½.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function repetitionLogicalError(d: number, p: number): number {
-  const dd = d % 2 === 0 ? d + 1 : Math.max(1, Math.floor(d)) // odd distance
-  const half = Math.ceil(dd / 2)
-  let total = 0
-  for (let k = half; k <= dd; k++) {
-    let c = 1
-    for (let i = 1; i <= k; i++) c = (c * (dd - k + i)) / i // C(dd,k) by running product
-    total += c * p ** k * (1 - p) ** (dd - k)
+export function toffoli(state: QuantumState, c1: number, c2: number, target: number): QuantumState {
+  const re = state.re.slice(), im = state.im.slice()
+  const ctrl = (1 << c1) | (1 << c2), t = 1 << target
+  for (let i = 0; i < re.length; i++) {
+    if ((i & ctrl) === ctrl && (i & t) === 0) {
+      const j = i | t
+      re[i] = state.re[j]; im[i] = state.im[j]
+      re[j] = state.re[i]; im[j] = state.im[i]
+    }
   }
-  return total
+  return { n: state.n, re, im }
 }
 
-// One Han–Kim quantum-inspired evolutionary rotation: turn a qubit [α,β] toward the target bit's pole (|0⟩ at
-// angle 0, |1⟩ at π/2) by at most `angle`, never overshooting. Applied repeatedly, P(target) = (target
-// amplitude)² rises monotonically to 1 — the amplitude drifting toward the answer, the QIEA search step.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// qieaRotate → pi-train wave 7 tier-A at src/7/3.
-
-// BEYOND LINEAR, within conservation — two real quantum effects the fold (collective, conservative) unlocks.
-// Quantum battery: charging N cells COLLECTIVELY (one global entangling drive) beats charging them
-// independently; under a fixed driving-norm constraint the charging-POWER advantage scales as √N (Alicki–
-// Fannes 2013; Binder et al. 2015; Campaioli et al. PRL 2017). The energy is external and conserved — what is
-// beyond-linear is the speed/power (collective power ∝ N·√N = N^{3/2}, superlinear in N), via the fold.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function quantumBatteryAdvantage(n: number): { cells: number; independentPower: number; collectivePower: number; advantage: number } {
-  const cells = Math.max(1, Math.floor(n))
-  const independentPower = cells // N cells, unit power each, charged in parallel — linear in N
-  const advantage = Math.sqrt(cells) // the √N collective speed/power advantage (grows with N — beyond linear)
-  return { cells, independentPower, collectivePower: independentPower * advantage, advantage } // N·√N = N^{3/2}
+/** One operation in a circuit: a named gate on target/control indices, with an optional rotation angle. */
+export interface CircuitOp { readonly gate: string; readonly targets: readonly number[]; readonly theta?: number }
+/** Full circuit result — the single path both the UI and code consume. */
+export interface CircuitResult {
+  readonly n: number
+  readonly amplitudes: readonly { readonly basis: string; readonly re: number; readonly im: number; readonly probability: number }[]
+  readonly probabilities: readonly number[]
+  readonly samples: Record<string, number>
+  readonly root: string
 }
 
-// Algorithmic cooling — cool a target qubit BY COMPUTING. The basic 3-qubit reversible compression takes three
-// qubits of equal polarization (bias) ε and concentrates it into one: ε' = (3ε − ε³)/2 (≈ 1.5ε for small ε),
-// pumping the entropy into the other two (Boykin–Mor–Roychowdhury–Vatan–Vrijen, PNAS 2002; used in NMR). The
-// target is COOLED; total entropy does not decrease (the Sørensen/Shannon bound) — heat moves, never vanishes.
+// The circuit engine — apply an ordered op list to an n-qubit register and read out amplitudes, Born
+// probabilities, and (optionally) a seeded multi-shot histogram. Deterministic and content-addressed.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function algorithmicCoolingBias(epsilon: number): { initial: number; cooled: number; factor: number; physical: boolean } {
-  const e = Math.max(0, Math.min(1, epsilon))
-  const cooled = (3 * e - e ** 3) / 2 // the cooled qubit's new bias after one 3-qubit compression
-  return { initial: e, cooled, factor: e > 0 ? cooled / e : 0, physical: cooled <= 1 } // ≤1 physical; entropy pumped to the rest
-}
-
-// Impossible-seeming, genuinely real (1): QUANTUM TELEPORTATION (Bennett et al. 1993). Move an unknown qubit
-// |ψ⟩ = cos(θ/2)|0⟩ + e^{iφ}sin(θ/2)|1⟩ from Alice to Bob using one shared Bell pair and TWO classical bits.
-// Alice Bell-measures her payload + her Bell half; Bob applies X^{b2} Z^{b1} to his half and recovers |ψ⟩
-// EXACTLY (fidelity 1, for any measurement outcome). No-cloning holds (Alice's qubit is destroyed by the
-// measurement); no FTL (Bob is useless without the two classical bits). Exact on the state-vector simulator.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function teleportQubit(theta: number, phi: number, seed = 'teleport'): { fidelity: number; b1: 0 | 1; b2: 0 | 1 } {
-  const c0r = Math.cos(theta / 2)
-  const c1r = Math.sin(theta / 2) * Math.cos(phi)
-  const c1i = Math.sin(theta / 2) * Math.sin(phi)
-  let st = qubits(3) // qubit 0 = |ψ⟩ payload, 1 = Alice's Bell half, 2 = Bob's Bell half
-  st = { n: 3, re: st.re.slice(), im: st.im.slice() }
-  st.re[0] = c0r; st.re[1] = c1r; st.im[1] = c1i // prepare |ψ⟩ on qubit 0 (|000⟩=c0, |001⟩=c1)
-  st = cnot(applyGate(st, GATES.H, 1), 1, 2) // Bell pair on qubits 1,2
-  st = applyGate(cnot(st, 0, 1), GATES.H, 0) // Bell measurement basis on qubits 0,1
-  const m0 = measure(st, 0, `${seed}:0`); st = m0.state
-  const m1 = measure(st, 1, `${seed}:1`); st = m1.state
-  const b1 = m0.outcome, b2 = m1.outcome
-  if (b2 === 1) st = applyGate(st, GATES.X, 2) // Bob's correction: X^{b2} then Z^{b1}
-  if (b1 === 1) st = applyGate(st, GATES.Z, 2)
-  const i0 = b1 | (b2 << 1) | (0 << 2), i1 = b1 | (b2 << 1) | (1 << 2) // qubit 2 = 0 / 1, qubits 0,1 fixed to b1,b2
-  // fidelity = |⟨ψ|recovered⟩|² = |c̄0·a0 + c̄1·a1|²
-  const fr = c0r * st.re[i0] + c1r * st.re[i1] + c1i * st.im[i1]
-  const fi = c0r * st.im[i0] + c1r * st.im[i1] - c1i * st.re[i1]
-  return { fidelity: fr * fr + fi * fi, b1, b2 }
-}
-
-// superdense → pi-train wave 11 tier-A at src/9/1.
-
-// Impossible-seeming (3): INTERACTION-FREE MEASUREMENT (Elitzur–Vaidman 1993). A Mach–Zehnder interferometer
-// (each beam-splitter = H) sends a photon always to the BRIGHT port when both arms are open (H·H = I). Put an
-// absorbing object (a "bomb") in one arm and it becomes a which-path measurement: half the time the photon is
-// absorbed (explodes), but a quarter of the time the DARK port fires — which is impossible without the object —
-// revealing it WITHOUT the photon having taken its arm. Detect a thing by the light that did NOT touch it.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function interactionFreeMeasurement(): { explode: number; bright: number; dark: number; darkWithoutObject: number } {
-  const noObject = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // H·H = I ⇒ back to |0⟩
-  const darkWithoutObject = probabilities(noObject)[1] // P(dark port) with both arms open = 0
-  const afterBS1 = applyGate(qubits(1), GATES.H, 0) // (|0⟩+|1⟩)/√2 — the object measures the path
-  const explode = probabilities(afterBS1)[1] // photon in the object's arm ⇒ absorbed = 1/2
-  const survive = probabilities(afterBS1)[0] // photon in the safe arm ⇒ collapses to |0⟩ = 1/2
-  const afterBS2 = applyGate(qubits(1), GATES.H, 0) // the survivor hits the second beam-splitter
-  const dark = survive * probabilities(afterBS2)[1] // P(survive)·P(dark|survive) = 1/2·1/2 = 1/4 — interaction-free
-  return { explode, bright: survive * probabilities(afterBS2)[0], dark, darkWithoutObject }
-}
-
-// quantumZeno → pi-train wave 10 tier-A physical cut at src/6/4.
-
-// Impossible-seeming (5): BERNSTEIN–VAZIRANI — learn a hidden n-bit string s with ONE query (classically n).
-// n qubits in |+⟩^n; the oracle phase-marks each basis state by (−1)^{s·x}; a second layer of H rotates the
-// register to EXACTLY |s⟩. One oracle call reveals the whole string — a global property in a single question.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bernsteinVazirani(s: number, n: number): { hidden: number; recovered: number; queries: number; classicalQueries: number; ok: boolean } {
-  const popcount = (x: number) => { let c = 0; while (x) { c += x & 1; x >>>= 1 } return c }
+export function runQuantumCircuit(spec: { n: number; ops: readonly CircuitOp[]; shots?: number; seed?: string }): CircuitResult {
+  const n = Math.max(1, Math.min(10, Math.floor(spec.n)))
   let st = qubits(n)
-  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // |+⟩^n
-  st = { n, re: st.re.map((r, x) => (popcount(x & s) & 1 ? -r : r)), im: st.im.slice() } // oracle (−1)^{s·x}, one query
-  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // H^n ⇒ the register is now |s⟩
+  for (const op of spec.ops) {
+    const g = op.gate.toUpperCase(), t = op.targets, theta = op.theta ?? 0
+    if (g === 'CNOT' || g === 'CX') st = cnot(st, t[0]!, t[1]!)
+    else if (g === 'CZ') st = cz(st, t[0]!, t[1]!)
+    else if (g === 'SWAP') st = swap(st, t[0]!, t[1]!)
+    else if (g === 'TOFFOLI' || g === 'CCX') st = toffoli(st, t[0]!, t[1]!, t[2]!)
+    else if (g === 'RX') st = applyGate(st, rx(theta), t[0]!)
+    else if (g === 'RY') st = applyGate(st, ry(theta), t[0]!)
+    else if (g === 'RZ') st = applyGate(st, rz(theta), t[0]!)
+    else if (g === 'I' || g === 'X' || g === 'Y' || g === 'Z' || g === 'H' || g === 'S' || g === 'T') st = applyGate(st, GATES[g], t[0]!)
+  }
   const probs = probabilities(st)
-  const recovered = probs.indexOf(Math.max(...probs))
-  return { hidden: s, recovered, queries: 1, classicalQueries: n, ok: recovered === s }
+  const shots = Math.max(0, Math.floor(spec.shots ?? 0))
+  const samples = shots > 0 ? sample(st, shots, spec.seed ?? 'circuit') : {}
+  const amplitudes = st.re.map((re, i) => ({ basis: i.toString(2).padStart(n, '0'), re: roundTo(re, 6), im: roundTo(st.im[i]!, 6), probability: roundTo(probs[i]!, 6) }))
+  const root = toUuid(`circuit:${n}:${spec.ops.map((o) => `${o.gate}:${o.targets.join('-')}:${o.theta ?? ''}`).join('|')}:${shots}`)
+  return { n, amplitudes, probabilities: probs, samples, root }
 }
 
-// Impossible-seeming (6): ENTANGLEMENT SWAPPING — entangle two particles that NEVER interacted (the quantum-
-// repeater primitive). Two independent Bell pairs (0,1) and (2,3); a Bell measurement on the inner pair (1,2)
-// PROJECTS the outer qubits 0 and 3 — which share no past — into a Bell state. Entanglement teleported onto
-// strangers.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function entanglementSwap(seed = 'swap'): { concurrence: number; swapped: boolean } {
-  let st = cnot(applyGate(qubits(4), GATES.H, 0), 0, 1) // Bell pair (0,1)
-  st = cnot(applyGate(st, GATES.H, 2), 2, 3) // Bell pair (2,3); 0 and 3 never interact
-  st = applyGate(cnot(st, 1, 2), GATES.H, 1) // Bell-measurement basis on the inner pair (1,2)
-  const m1 = measure(st, 1, `${seed}:1`); st = m1.state
-  const m2 = measure(st, 2, `${seed}:2`); st = m2.state
-  const re2 = new Array<number>(4).fill(0), im2 = new Array<number>(4).fill(0)
-  for (const q0 of [0, 1]) for (const q3 of [0, 1]) { // extract the (0,3) substate: bit0=q0, bit1=q3
-    const full = q0 | (m1.outcome << 1) | (m2.outcome << 2) | (q3 << 3)
-    const j = q0 | (q3 << 1)
-    re2[j] = st.re[full]; im2[j] = st.im[full]
-  }
-  const norm = Math.sqrt(re2.reduce((acc, r, i) => acc + r * r + im2[i] * im2[i], 0)) || 1
-  const sub: QuantumState = { n: 2, re: re2.map((r) => r / norm), im: im2.map((v) => v / norm) }
-  const c = concurrence(sub)
-  return { concurrence: c, swapped: c > 0.999999 } // qubits 0,3 maximally entangled despite never meeting
-}
 
-// Impossible-seeming (7): the GHZ–MERMIN theorem — local realism refuted with CERTAINTY, not just statistics.
-// For the GHZ state (|000⟩+|111⟩)/√2 the Pauli-product observables XXX, XYY, YXY, YYX each have a definite QM
-// value (±1), and their product is −1. But any local hidden-variable assignment (a fixed ±1 to each X_i, Y_i)
-// forces the product to +1, because every factor appears squared. −1 ≠ +1 — a single run contradicts local
-// realism, no inequality or averaging needed (Greenberger–Horne–Zeilinger 1989; Mermin 1990).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function ghzMermin(): { xxx: number; xyy: number; yxy: number; yyx: number; qmProduct: number; lhvProduct: number; refuted: boolean } {
-  const ghz = cnot(cnot(applyGate(qubits(3), GATES.H, 0), 0, 1), 0, 2) // (|000⟩+|111⟩)/√2
-  const expect = (p0: readonly number[], p1: readonly number[], p2: readonly number[]) =>
-    Math.round(innerProduct(ghz, applyGate(applyGate(applyGate(ghz, p0, 0), p1, 1), p2, 2)).re) // ⟨ψ|P|ψ⟩, real
-  const { X, Y } = GATES
-  const xxx = expect(X, X, X), xyy = expect(X, Y, Y), yxy = expect(Y, X, Y), yyx = expect(Y, Y, X)
-  const qmProduct = xxx * xyy * yxy * yyx // quantum mechanics: −1
-  const lhvProduct = 1 // local hidden variables: each X_i, Y_i appears squared ⇒ +1
-  return { xxx, xyy, yxy, yyx, qmProduct, lhvProduct, refuted: qmProduct !== lhvProduct }
-}
-
-// Impossible-seeming (8): BB84 quantum key distribution (Bennett–Brassard 1984) — turn the NO-CLONING WALL into
-// unbreakable security. Alice sends qubits in random bases (Z or X); Bob measures in random bases; they keep
-// the bits where bases matched (the sifted key). With no eavesdropper the sifted key is error-free. An
-// eavesdropper cannot copy an unknown qubit (no-cloning), so intercept-resend in a guessed basis disturbs ~25%
-// of the sifted bits — eavesdropping announces itself. The wall is the lock.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bb84(rounds = 200, seed = 'bb84'): { sifted: number; errorNoEve: number; errorWithEve: number } {
-  const r = prng(seed)
-  const bit = () => (r() < 0.5 ? 0 : 1)
-  const prep = (aBit: number, aBasis: number) => { let s = qubits(1); if (aBit === 1) s = applyGate(s, GATES.X, 0); if (aBasis === 1) s = applyGate(s, GATES.H, 0); return s }
-  const meas = (s: QuantumState, basis: number, mseed: string) => measure(basis === 1 ? applyGate(s, GATES.H, 0) : s, 0, mseed).outcome
-  let sifted = 0, errNoEve = 0, errEve = 0
-  for (let i = 0; i < rounds; i++) {
-    const aBit = bit(), aBasis = bit(), bBasis = bit()
-    if (aBasis !== bBasis) continue // discarded in sifting
-    sifted++
-    if (meas(prep(aBit, aBasis), bBasis, `b:${i}`) !== aBit) errNoEve++ // no eavesdropper: matching basis ⇒ exact
-    const eBasis = bit(), eOut = meas(prep(aBit, aBasis), eBasis, `e:${i}`) // Eve intercepts (cannot clone)
-    const resent = prep(eOut, eBasis) // Eve resends her (possibly wrong-basis) result
-    if (meas(resent, bBasis, `be:${i}`) !== aBit) errEve++ // Bob's error — the eavesdropper's signature
-  }
-  return { sifted, errorNoEve: sifted ? errNoEve / sifted : 0, errorWithEve: sifted ? errEve / sifted : 0 }
-}
-
-// Impossible-seeming (9): the DEUTSCH–JOZSA algorithm (1992) — decide in ONE query whether an n-bit function is
-// CONSTANT or BALANCED, where a classical deterministic algorithm may need 2^(n−1)+1 queries. n qubits in
-// |+⟩^n; a phase oracle marks (−1)^{f(x)}; H^n. If f is constant the register returns to |0…0⟩ with certainty;
-// if balanced, |0…0⟩ has probability zero. One look settles a global property.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function deutschJozsa(n: number, balanced: boolean): { balanced: boolean; zeroProbability: number; verdict: string; ok: boolean } {
-  const popcount = (x: number) => { let c = 0; while (x) { c += x & 1; x >>>= 1 } return c }
-  let st = qubits(n)
-  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // |+⟩^n
-  if (balanced) st = { n, re: st.re.map((r, x) => (popcount(x) & 1 ? -r : r)), im: st.im.slice() } // balanced: (−1)^{parity(x)}; constant: identity
-  for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // H^n
-  const zeroProbability = probabilities(st)[0]
-  const verdict = zeroProbability > 0.5 ? 'constant' : 'balanced'
-  return { balanced, zeroProbability, verdict, ok: (verdict === 'balanced') === balanced }
-}
-
-// Impossible-seeming (10): SIMON'S ALGORITHM (1994) — the first EXPONENTIAL quantum-classical separation, and
-// the direct precursor to Shor. A 2-to-1 function hides a period s with f(x)=f(x⊕s); each quantum run yields a
-// random y with y·s = 0 (mod 2), so O(n) runs pin s by linear algebra — while any classical algorithm needs
-// Ω(2^{n/2}) queries (birthday bound). Here n=2 with the parity oracle (s = 0b11): every measured y is
-// orthogonal to s, and the nonzero one recovers s exactly.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function simon(seed = 'simon'): { hiddenS: number; ys: number[]; allOrthogonal: boolean; recoveredS: number; ok: boolean } {
-  const popcount = (x: number) => { let c = 0; while (x) { c += x & 1; x >>>= 1 } return c }
-  const hiddenS = 0b11 // n=2, parity oracle f(x)=x0⊕x1 is 2-to-1 with f(x)=f(x⊕11)
-  const run = (s: string) => {
-    let st = applyGate(applyGate(qubits(3), GATES.H, 0), GATES.H, 1) // inputs 0,1 to |+⟩; qubit 2 = output
-    st = cnot(cnot(st, 0, 2), 1, 2) // out ⊕= in0 ⊕ in1  (the 2-to-1 oracle)
-    st = applyGate(applyGate(st, GATES.H, 0), GATES.H, 1) // H^n on the inputs
-    const m0 = measure(st, 0, `${s}:0`); const m1 = measure(m0.state, 1, `${s}:1`)
-    return m0.outcome | (m1.outcome << 1)
-  }
-  const ys = Array.from({ length: 8 }, (_, i) => run(`${seed}:${i}`))
-  const allOrthogonal = ys.every((y) => (popcount(y & hiddenS) & 1) === 0) // every y satisfies y·s = 0
-  const recoveredS = 0b11 // the unique nonzero vector orthogonal to all measured y's (n=2)
-  return { hiddenS, ys, allOrthogonal, recoveredS, ok: recoveredS === hiddenS && allOrthogonal }
-}
-
-// Prose → AUDIO: an a432-tempered pitch derived from a string's content-address. The first hex word of the
-// UUID picks a semitone over two octaves above a432, hz = 432·2^(semitone/12). Deterministic — same prose, same
-// tone — the audible half of "prose to audio/visual proof". Pairs with uuidPoint (the 3D point) for the visual.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function proseToTone(prose: string): { hz: number; semitone: number; octave: number } {
-  const hex = toUuid(prose).replace(/[^0-9a-f]/gi, '')
-  const semitone = Number.parseInt(hex.slice(0, 4) || '0', 16) % 24 // 0..23 — two octaves
-  return { hz: 432 * 2 ** (semitone / 12), semitone, octave: Math.floor(semitone / 12) }
-}
-
-// ── Classical shadows & a different model ──
-
-// Probabilistic bits — the classical shadow of the qubit register: a probability distribution over 2^n
-// bitstrings (nonnegative, sums to 1). Unlike amplitudes, probabilities never interfere or cancel — which is
-// exactly what the quantum simulator adds. pbits(n) starts certain at 0…0.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export interface ProbState {
   readonly n: number
   readonly p: number[]
@@ -1252,521 +1184,11 @@ export function caEvolve(rule: number, initial: readonly number[], steps: number
   return history
 }
 
-// ── Probabilistic process primitives (beside pflip) — the honest model for most decoded domains ─────────
-// A research fleet decoded 18 "aspects of life" and the verify pass found them mostly CLASSICAL, not quantum
-// (12 probabilistic · 3 dynamical · 2 network · 1 quantum): drift, contact, inheritance, recurrence — not
-// superposition. These pure operations evolve a probability distribution (a ProbState's p), each mass-
-// conserving and free of interference (the honest difference from amplitudes). ProbSim composes them as
-// declarative stages over the analog→digital readout (sampleCounts). (decodedAreasAreMostlyClassical.)
-
-// Survival under a composed hazard (peace): fold independent levers into one bounded yearly hazard — each a
-// multiplicative factor on the hazard (reductions <1 help, >1 spiral) — clamped to (0,1) so it can never reach
-// 0 ("tech ends war" stays falsified) nor 1 (total relapse never certain). The evolver is the recursion below.
-// composeHazard → pi-train wave 3 tier-B at src/1/9.
-// One step of the survival recursion s_{t+1} = s_t·(1−h): an at-peace fraction decaying out at the hazard.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function survive(s: number, hazard: number): number {
-  return s * (1 - hazard)
-}
-
-// Admixture (ethnogenesis, ancient civilisations): pour mass f onto one pure source, scale the rest by (1−f)
-// — the qpAdm convex blend. Mass-conserving (sum stays 1); the coupled bit-pairs of pflip cannot express it.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function admixToward(p: readonly number[], source: number, f: number): number[] {
-  const g = p.map((v) => v * (1 - f))
-  g[source] += f
-  return g
-}
-
-// Error injection (AI dubbing/translation cascade): a one-directional clean(0)→corrupted(1) mass move per
-// token-bit, so the clean fraction decays as ∏(1−q). oneWay=false reuses the symmetric channel (a review pass).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function injectError(p: readonly number[], bit: number, q: number, oneWay = true): number[] {
-  const out = p.slice()
-  const mask = 1 << bit
-  for (let i = 0; i < p.length; i++) {
-    if ((i & mask) === 0) {
-      const j = i | mask
-      out[i] -= p[i] * q
-      out[j] += p[i] * q
-      if (!oneWay) { out[j] -= p[j] * q; out[i] += p[j] * q }
-    }
-  }
-  return out
-}
-
-// A k-state Markov chain (Bulgarian sovereignty regimes): P is row-stochastic (P[i][j] = prob i→j); one step
-// pushes the distribution forward, mass-conserving. The general case of pflip's single 2×2 map.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function markovStep(P: readonly (readonly number[])[], dist: readonly number[]): number[] {
-  return dist.map((_, j) => dist.reduce((acc, di, i) => acc + di * P[i][j], 0))
-}
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function markovEvolve(P: readonly (readonly number[])[], dist: readonly number[], steps: number): number[] {
-  let d = dist.slice()
-  for (let s = 0; s < steps; s++) d = markovStep(P, d)
-  return d
-}
-// The stationary distribution by power iteration from uniform — where the regimes settle.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function stationary(P: readonly (readonly number[])[], iters = 200): number[] {
-  let d = P.map(() => 1 / P.length)
-  for (let i = 0; i < iters; i++) d = markovStep(P, d)
-  return d
-}
-
-// aksakRatioWalk → pi-train wave 4 tier-A at src/2/8.
-
-// ── Quantum interferometer (the one genuinely-quantum domain) ──
-// A sweepable phase gate diag(1, e^{iθ}) in applyGate's flat format — GATES hard-codes only S(π/2), T(π/4);
-// the interferometer (H · phase(φ) · H) needs a continuous φ, giving the fringe P(0)=cos²(φ/2).
-// phase → pi-train wave 12 tier-A at src/6/4.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function phase(theta: number): number[] {
-  return [1, 0, 0, 0, 0, 0, Math.cos(theta), Math.sin(theta)]
-}
-// CHSH: the quantum correlation of a Bell pair at four analyzer angles. E(x,y)=cos(x−y) (the Φ⁺ prediction);
-// S climbs past the classical bound 2 to Tsirelson's 2√2≈2.828 at the optimal set (0, π/2, π/4, 3π/4).
-// chsh → pi-train wave 12 void-leaf at src/0 (station 0/10 — vault, rosetta annotation only).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function chsh(a: number, aPrime: number, b: number, bPrime: number): number {
-  const E = (x: number, y: number) => Math.cos(x - y)
-  return E(a, b) - E(a, bPrime) + E(aPrime, b) + E(aPrime, bPrime)
-}
-
-// ── Dynamical primitives (coupled cycles · the induction ODE · resonant modes) ──
-// The 3 dynamical domains: ancient calendars (meshing gears), Tesla's rotating field, the frequency APIs.
-
-// cycleAdvance · Ring → pi-train wave 5 tier-A at src/4/6.
-// The place-value / Calendar-Round readout: the residue of a day count in each ring (mixed-radix; CRT).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function residueVector(n: number, periods: readonly number[]): number[] {
-  return periods.map((p) => ((n % p) + p) % p)
-}
-// Two integer rings realign every LCM days (the Calendar Round 18,980 = 260·365/5); the beat of the gears.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function realign(periodA: number, periodB: number): { gcd: number; lcm: number } {
-  const g = (x: number, y: number): number => (y === 0 ? x : g(y, x % y))
-  const gcd = g(periodA, periodB)
-  return { gcd, lcm: (periodA / gcd) * periodB }
-}
-// Incommensurable rings drift: the fractional phase difference after t (the Sothic 1461-yr slip).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function phaseDrift(periodA: number, periodB: number, t: number): number {
-  return (((t / periodA - t / periodB) % 1) + 1) % 1
-}
-
-// Tesla's rotating field → pi-train wave 3 tier-B at src/1/9.
-// syncSpeedRpm → pi-train wave 11 tier-A at src/9/1.
-// Slip: the fractional lag of the rotor behind the synchronous field (an induction motor never quite catches up).
-// slip → pi-train wave 12 tier-A at src/6/4.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function slip(wSync: number, wRotor: number): number {
-  return wSync === 0 ? 0 : (wSync - wRotor) / wSync
-}
-// One step of the induction ODE: torque drags the rotor toward the field (T∝slip up to breakdown), minus load.
-// inductionStep → pi-train wave 12 tier-A at src/4/6.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function inductionStep(
-  wRotor: number,
-  opts: { wSync: number; k: number; load: number; damping?: number; inertia?: number; dt?: number },
-): number {
-  const { wSync, k, load, damping = 0.02, inertia = 1, dt = 0.05 } = opts
-  const torque = k * slip(wSync, wRotor) // drag toward the driver
-  return wRotor + (dt * (torque - load - damping * wRotor)) / inertia
-}
-// inductionEvolve → pi-train wave 12 tier-A at src/2/8.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function inductionEvolve(w0: number, opts: { wSync: number; k: number; load: number; damping?: number; inertia?: number; dt?: number }, steps: number): number[] {
-  const out = [w0]
-  for (let s = 0; s < steps; s++) out.push(inductionStep(out[out.length - 1], opts))
-  return out
-}
-
-// oscillatorBank → pi-train wave 10 tier-A physical cut at src/6/4.
-
-// resonantAmplitude → pi-train wave 10 tier-A physical cut at src/6/4.
-/** The resonance gain (peak amplification ≈ q) — how much a driven oscillator amplifies at its natural frequency. */
-// resonancePeakGain → pi-train wave 7 tier-A at src/7/3.
-/** The half-power (−3 dB) bandwidth Δω = omega0 / q — narrow (selective) only for high q. */
-// resonanceBandwidth → pi-train wave 9 tier-A at src/3/7.
-// powerSpectrum → pi-train wave 3 tier-B at src/1/9.
-
-// ── Electromagnetic-radiation primitives (one field, one speed, two relations, one ionizing line) ──
-// Maxwell's one field across the whole spectrum: every band is the SAME phenomenon at a different
-// frequency, joined by c = λf (the wave) and E = hf (the photon). The bands differ only in energy
-// per photon — which is the one line that decides harm. Reusable, exact-constant, zero-token physics
-// the decoded EM domain (X-ray · MRI-RF · microwave radar) composes; siblings of the spectrum/oscillator
-// math above. Constants are the SI-2019 exact definitions (no rounding in the kernel).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const SPEED_OF_LIGHT = 299792458 // c, m/s — exact; it DEFINES the metre (1983)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const PLANCK = 6.62607015e-34 // h, J·s — exact (SI-2019)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const ELECTRONVOLT = 1.602176634e-19 // J per eV — exact (SI-2019; = the elementary charge in C)
-// PROTON_GYROMAGNETIC → pi-train wave 10 tier-A physical cut at src/6/4.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const IONIZING_EV = 10 // eV — the conventional non-ionizing↔ionizing line (bond/ionization energies ~10–13.6 eV)
-
-// c = λf, both directions. wavelengthOf → pi-train wave 3 tier-B at src/1/9.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function frequencyOf(wavelengthM: number): number { return SPEED_OF_LIGHT / wavelengthM } // f = c/λ, Hz
-// E = hf, reported in eV — the quantum that sorts the spectrum from radio (µeV) to gamma (MeV).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function photonEnergyEv(frequencyHz: number): number { return (PLANCK * frequencyHz) / ELECTRONVOLT }
-// isIonizing → pi-train wave 11 tier-A at src/9/1.
-// MRI resonance: larmorFrequency → pi-train wave 3 tier-B at src/1/9.
-// Radar ranging: round-trip time-of-flight, R = c·Δt/2 (~150 m per µs there-and-back).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// radarRange → pi-train wave 9 tier-A at src/3/7.
-// Radar velocity: round-trip Doppler shift, Δf = 2·v·f/c (v radial, f the carrier).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function dopplerShift(radialVelocityMs: number, carrierHz: number): number { return (2 * radialVelocityMs * carrierHz) / SPEED_OF_LIGHT }
-
-// ── Acoustics — sound as a pressure wave (a DIFFERENT speed from light: ~343 m/s in air, temperature-dependent) ──
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const SPEED_OF_SOUND_AIR = 343 // m/s, dry air at 20 °C — adiabatic (Laplace's c = √(γRT/M), not Newton's isothermal)
-// speedOfSoundAir → pi-train wave 6 tier-A at src/8/2.
-// Sound wavelength λ = c/f at temperature θ — the same c = fλ as light, but at the (much slower) speed of sound.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function soundWavelength(frequencyHz: number, tempC = 20): number {
-  return (331.3 * Math.sqrt(1 + tempC / 273.15)) / frequencyHz
-} // metres
-// Sound pressure level in decibels: L_p = 20·log₁₀(p/p₀), p₀ = 20 µPa (≈ the threshold of hearing at 1 kHz).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// soundPressureLevelDb → pi-train wave 5 tier-A at src/4/6.
-
-// ── Decompression — inert-gas tissue loading (Haldane/Bühlmann), the basis of dive tables, computers, chambers ──
-// Haldane/Schreiner exponential gas loading of a tissue compartment: P(t) = P0 + (P_inspired − P0)·(1 − 2^(−t/t½)).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function haldaneLoad(initialBar: number, inspiredBar: number, halfTimeMin: number, timeMin: number): number {
-  return initialBar + (inspiredBar - initialBar) * (1 - Math.pow(2, -timeMin / halfTimeMin)) // partial pressure, bar
-}
-// Bühlmann ZHL-16 coefficients from a compartment half-time: a = 2/∛t½ (bar), b = 1.005 − 1/√t½ (dimensionless).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function buhlmannA(halfTimeMin: number): number { return 2 / Math.cbrt(halfTimeMin) } // bar
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function buhlmannB(halfTimeMin: number): number { return 1.005 - 1 / Math.sqrt(halfTimeMin) }
-// The tolerated ambient pressure (the ascent ceiling) for a compartment at inert-gas pressure P: P_amb,tol = (P − a)·b.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function buhlmannCeilingBar(compartmentBar: number, halfTimeMin: number): number {
-  return (compartmentBar - buhlmannA(halfTimeMin)) * buhlmannB(halfTimeMin) // bar — below this ambient pressure, DCS risk rises
-}
-
-// Gradient-factor (GF) adjusted ascent ceiling — the modern conservatism on ZHL-16. The GF is passed as a
-// HARMONIC FRACTION of integers (gfNum/gfDen, e.g. 30/100), so an arbitrary unharmonic decimal cannot be set:
-// P_amb,tol = (P − gf·a) / (1 − gf + gf/b). GF = 1/1 recovers the raw Bühlmann ceiling; GF < 1 is more conservative.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function buhlmannGfCeilingBar(compartmentBar: number, halfTimeMin: number, gfNum: number, gfDen: number): number {
-  const gf = gfNum / gfDen // an exact ratio of integers in; the float lives only in the analog ceiling output
-  const a = buhlmannA(halfTimeMin), b = buhlmannB(halfTimeMin)
-  return (compartmentBar - gf * a) / (1 - gf + gf / b)
-}
-
-// The 16 Bühlmann ZHL-16 nitrogen half-times (minutes) — the deterministic dive computer's tissue compartments.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const ZHL16_N2_HALFTIMES: readonly number[] = [4, 8, 12.5, 18.5, 27, 38.3, 54.3, 77, 109, 146, 187, 239, 305, 390, 498, 635]
-// The 16 ZHL-16 HELIUM compartment half-times (min), paired with the N2 set above. Helium is the FAST gas —
-// every compartment quicker than its nitrogen partner — which is exactly what drives isobaric counterdiffusion.
-// ZHL16_HE_HALFTIMES → pi-train wave 10 tier-A physical cut at src/6/4.
-// isobaricCounterdiffusion → pi-train wave 6 tier-A at src/8/2.
-// A deterministic dive computer: load the 16 compartments over a constant-depth bottom segment, then report the
-// controlling ascent ceiling and whether a direct (no-decompression) ascent is allowed. Same dive → same plan.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function buhlmannDivePlan(depthM: number, bottomTimeMin: number, surfaceN2Bar = 0.79): {
-  ambientBar: number; controllingCeilingBar: number; noDecoOk: boolean;
-  compartments: { halfTimeMin: number; loadBar: number; ceilingBar: number }[]
-} {
-  const ambientBar = 1 + depthM / 10 // ~1 bar per 10 m of seawater above the 1 bar surface
-  const inspiredN2Bar = (ambientBar - 0.0627) * 0.79 // alveolar N2: subtract water-vapour pressure, then the N2 fraction
-  const compartments = ZHL16_N2_HALFTIMES.map((t) => {
-    const loadBar = haldaneLoad(surfaceN2Bar, inspiredN2Bar, t, bottomTimeMin)
-    return { halfTimeMin: t, loadBar, ceilingBar: buhlmannCeilingBar(loadBar, t) }
-  })
-  const controllingCeilingBar = Math.max(...compartments.map((c) => c.ceilingBar))
-  return { ambientBar, controllingCeilingBar, noDecoOk: controllingCeilingBar <= 1, compartments } // ≤1 bar ⇒ direct ascent ok
-}
-
-// A gradient-factor dive plan with 3-METRE deco-stop steps. Loads the 16 compartments, finds the controlling
-// GF ceiling, converts it to a depth, and rounds UP to the next 3 m step (deco stops sit at 3/6/9/… m). The
-// final ascent from the 3 m stop to the surface is the steepest relative pressure change — take it slowly.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number, gfNum: number, gfDen: number, surfaceN2Bar = 0.79): {
-  ambientBar: number; controllingCeilingBar: number; ceilingM: number; firstStopM: number; noDecoOk: boolean
-} {
-  const ambientBar = 1 + depthM / 10
-  const inspiredN2Bar = (ambientBar - 0.0627) * 0.79
-  const ceilings = ZHL16_N2_HALFTIMES.map((t) => buhlmannGfCeilingBar(haldaneLoad(surfaceN2Bar, inspiredN2Bar, t, bottomTimeMin), t, gfNum, gfDen))
-  const controllingCeilingBar = Math.max(...ceilings)
-  const ceilingM = Math.max(0, (controllingCeilingBar - 1) * 10)
-  const firstStopM = Math.ceil(ceilingM / 3) * 3 // round UP to the next 3 m step (deco stops at 3/6/9/… m)
-  return { ambientBar, controllingCeilingBar, ceilingM, firstStopM, noDecoOk: firstStopM <= 0 }
-}
-
-// THE HYDROSTATIC MASK — the salt/fresh "metres per bar" are NOT two magic constants but one formula: a water
-// column adds ρ·g pressure per metre (÷ 1e5 Pa/bar). Salt 9.949 and fresh 10.197 m/bar fall out of the two water
-// densities through P = ρ·g·h — find the mask, and the magic numbers vanish. (Standard gravity ≠ NEWTON_G.)
-export const STANDARD_GRAVITY = 9.80665 // m/s² (the defined standard gravity)
-export const WATER_DENSITY_FRESH = 1000 // kg/m³
-export const WATER_DENSITY_SALT = 1025 // kg/m³ (seawater — the diving-standard basis, s.g. ≈ 1.025)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function barPerMetre(densityKgM3: number): number { return (densityKgM3 * STANDARD_GRAVITY) / 1e5 } // bar per metre of column
-const waterDensity = (freshWater: boolean) => (freshWater ? WATER_DENSITY_FRESH : WATER_DENSITY_SALT)
-
-// Ambient absolute pressure at depth, accounting for WATER DENSITY (salt vs fresh) and ALTITUDE surface pressure.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function ambientPressureBar(depthM: number, freshWater = false, surfaceBar = 1.013): number {
-  return surfaceBar + depthM * barPerMetre(waterDensity(freshWater)) // P = surface + ρ·g·h
-}
-// Maximum operating depth of a breathing gas — the depth where its O₂ fraction reaches the PPO₂ ceiling (toxicity).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function maxOperatingDepthM(fO2: number, ppo2MaxBar = 1.4, freshWater = false, surfaceBar = 1.013): number {
-  return (ppo2MaxBar / fO2 - surfaceBar) / barPerMetre(waterDensity(freshWater)) // metres
-}
-// Best (richest safe) breathing-gas O₂ fraction for a target PPO₂ at a depth — gas blending by partial pressure.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bestMixFO2(depthM: number, ppo2Bar = 1.4, freshWater = false, surfaceBar = 1.013): number {
-  return ppo2Bar / ambientPressureBar(depthM, freshWater, surfaceBar) // the O₂ fraction (0..1)
-}
-// rebreatherInertBar → pi-train wave 3 tier-B at src/1/9.
-// Gas reserve as a FRACTION — the rule of thirds (reserve = 1/3 of the total) and the 1/2-on-top rule (×3/2).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function gasReserveThirds(totalLitres: number): number { return totalLitres / 3 } // 1/3 of the total held in reserve
-// gasReserveHalfOnTop · equivalentAirDepthM → pi-train wave 4 tier-A at src/2/8.
-
-// Equivalent narcotic depth — the air-equivalent depth with the same inert-gas narcotic load. Narcosis tracks the
-// narcotic partial pressure; END is the depth at which AIR (narcotic fraction ≈ 0.79) gives the same. Helium is
-// non-narcotic, so trimix LOWERS the END. (Whether oxygen is narcotic is unsettled — pass the fraction you count.)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function equivalentNarcoticDepthM(depthM: number, fNarcotic: number, freshWater = false, surfaceBar = 1.013): number {
-  const pEnd = (ambientPressureBar(depthM, freshWater, surfaceBar) * fNarcotic) / 0.79 // air's narcotic (N₂) fraction
-  return (pEnd - surfaceBar) / barPerMetre(waterDensity(freshWater))
-}
-// equivalentAirDepthM → pi-train wave 4 tier-A at src/2/8.
-// Pulmonary oxygen-toxicity dose rate — OTU (oxygen tolerance units / UPTD) per minute, the REPEX power law; zero
-// below a 0.5 bar PPO₂ threshold. (Acute CNS toxicity is a SEPARATE, table-based, probabilistic accounting.)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// otuPerMin → pi-train wave 9 tier-A at src/3/7.
-
-// ── Zero-point energy — the real quantum-vacuum physics (the lowest state, NOT extractable free energy) ──
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const REDUCED_PLANCK = PLANCK / (2 * Math.PI) // ħ = h/2π, J·s ≈ 1.054571817e-34
-// zeroPointEnergy · casimirPressure → pi-train wave 3 tier-B at src/1/9.
-// casimirEnergyPerArea → pi-train wave 10 tier-A physical cut at src/6/4.
-// hawkingTemperature → pi-train wave 5 tier-A at src/4/6.
-// Unruh temperature — a uniformly accelerated observer sees the vacuum as a thermal bath, T_U = ħa/(2πck_B);
-// ~1 K needs a ≈ 2.5×10²⁰ m/s². THEORETICAL, not experimentally observed.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// unruhTemperature → pi-train wave 8 tier-A at src/5/5.
-export const SCHWINGER_FIELD_VM = 1.32e18 // V/m — the critical field for vacuum e⁺e⁻ pair production (Schwinger 1951); beyond any laser, not yet observed
-// SCALAR_SPECTRAL_INDEX_NS → pi-train wave 7 tier-A at src/7/3.
-// CRITICAL_MAGNETIC_FIELD_T → pi-train wave 11 tier-A at src/9/1.
-export const PROTON_MASS_MEV = 938.272 // MeV/c² (CODATA)
-// HIGGS_VEV_GEV → pi-train wave 9 tier-A at src/3/7.
-// "Mass without mass" — the QCD fraction of the proton mass: the valence (current) quark masses sum to only ~9.4 MeV
-// against ~938 MeV, so ~99% of the proton's mass is QCD field/binding energy, NOT the Higgs. (The total is an
-// observable; the finer σ/quark/gluon/anomaly split is renormalization-scheme dependent — a convention.)
-// qcdMassFractionOfProton → pi-train wave 11 tier-A at src/9/1.
-// BARYON_TO_PHOTON_RATIO → pi-train wave 5 tier-A at src/4/6.
-// JARLSKOG_INVARIANT → pi-train wave 9 tier-A at src/3/7.
-// NEUTRINO_DM2_SOLAR_EV2 → pi-train wave 7 tier-A at src/7/3.
-// NEUTRINO_DM2_ATM_EV2 → pi-train wave 4 tier-A at src/2/8.
-// Type-I seesaw (schematic) — a heavy Majorana scale M_R suppresses the light neutrino mass: m_ν ~ m_D²/M_R, so a
-// Dirac mass m_D ~ 100 GeV with M_R ~ 10¹⁵ GeV gives m_ν ~ 0.01 eV. (The real relation is the matrix −m_D^T·M_R⁻¹·m_D.)
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function seesawLightMassEv(diracMassEv: number, majoranaMassEv: number): number { return (diracMassEv * diracMassEv) / majoranaMassEv }
-// The ΛCDM cosmic energy budget (Planck 2018) — the inventory of the universe: ordinary matter is ~1/20 of the total.
-// OMEGA_BARYON → pi-train wave 11 tier-A at src/9/1.
-// OMEGA_DARK_MATTER → pi-train wave 8 tier-A at src/5/5.
-// OMEGA_DARK_ENERGY → pi-train wave 7 tier-A at src/7/3.
-// MOND_ACCELERATION_A0 → pi-train wave 11 tier-A at src/9/1.
-// DARK_ENERGY_EOS_W → pi-train wave 9 tier-A at src/3/7.
-// HUBBLE_CONSTANT_LOCAL → pi-train wave 10 tier-A physical cut at src/6/4.
-// HUBBLE_CONSTANT_CMB → pi-train wave 7 tier-A at src/7/3.
-// hubbleTensionSigma → pi-train wave 4 tier-A at src/2/8.
-
-// ── Gravity — General Relativity's exact kernel (classical, superbly tested; quantum gravity is UNSOLVED) ──
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const NEWTON_G = 6.67430e-11 // G, m³·kg⁻¹·s⁻² (CODATA 2018)
-// Schwarzschild radius r_s = 2GM/c² — the event-horizon radius of a non-rotating mass (the Sun → ~2.95 km).
-// The EHT images the black-hole shadow at ~2.6 r_s. GR (1915) is CLASSICAL — there is no confirmed quantum
-// theory of gravity (the Planck scale ~1.22e19 GeV is ~10¹⁵× beyond the LHC).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function schwarzschildRadius(massKg: number): number { return (2 * NEWTON_G * massKg) / (SPEED_OF_LIGHT ** 2) } // metres
-
-// ── Thermodynamics — entropy, the Carnot limit, and the Landauer cost of erasing a bit ──
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const BOLTZMANN = 1.380649e-23 // k_B, J/K — EXACT (SI-2019; it defines the kelvin)
-// Carnot efficiency η = 1 − T_c/T_h (kelvin) — the max for ANY heat engine; η = 1 needs T_c = 0 K (forbidden, 3rd law).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// carnotEfficiency → pi-train wave 8 tier-A at src/5/5.
-// Landauer's principle: erasing ONE bit dissipates at least k_B·T·ln2 (~2.9e-21 J at 300 K) — measured (Bérut
-// 2012). Reversible computation (Bennett 1973) erases nothing and so APPROACHES zero dissipation, but never
-// reaches it. The honest floor under "zero-entropy computation": recompute, don't erase — and never claim zero.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function landauerLimit(tempK: number): number { return BOLTZMANN * tempK * Math.LN2 } // joules per bit erased
-// Helmholtz free energy F = U − T·S — the work AVAILABLE from a system at temperature T. "Debit entropy,
-// credit energy" read as a ledger: at fixed U and T, dF = −T·dS, so LOWERING the entropy RAISES the free
-// energy. Real and exactly bounded — the 2nd law forbids lowering TOTAL entropy for free, so the credit is
-// paid by entropy exported elsewhere (a fridge runs on external work). The ledger balances; no net free lunch.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// helmholtzFreeEnergy → pi-train wave 5 tier-A at src/4/6.
-// Conditional entropy S(A|B) = S(AB) − S(B), in bits. Classically it is ≥ 0; QUANTUM-mechanically it can be
-// NEGATIVE for entangled states (a Bell pair: S(AB)=0, S(B)=1 → −1). Negative conditional entropy is the
-// resource in quantum state merging (Horodecki–Oppenheim–Winter, Nature 2005): banked entanglement, a real
-// "credit" impossible classically — yet still no free energy, because Landauer's erasure cost stands.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function conditionalEntropyBits(jointEntropyBits: number, marginalEntropyBits: number): number { return jointEntropyBits - marginalEntropyBits }
-// The Bekenstein bound — the MAXIMUM information (bits) a region of radius R holding energy E can contain:
-// I ≤ 2πRE/(ℏc·ln2). No Newton's G appears, so it bounds non-gravitational systems too; black holes saturate it.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bekensteinBoundBits(radiusM: number, energyJ: number): number { return (2 * Math.PI * radiusM * energyJ) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
-// Bekenstein–Hawking black-hole entropy in BITS — proportional to the horizon AREA, not the volume: for a
-// Schwarzschild black hole S/k_B = 4πGM²/(ℏc), so a solar mass holds ~10⁷⁷ bits. The basis of the holographic principle.
-// blackHoleEntropyBits → pi-train wave 10 tier-A physical cut at src/6/4.
-// cantorDiagonal → pi-train wave 10 tier-A physical cut at src/6/4.
-// Eigen's error threshold — the maximum genome length a replicator can maintain against copy errors: L_max ≈ 1/μ
-// (μ = per-base error rate). The origin-of-life paradox: enzyme-free RNA copies at μ ≈ 0.05 → L_max ≈ 20 bases, far
-// short of the ~200+ a replicase ribozyme needs — accurate replication needs enzymes, enzymes need accurate replication.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function eigenErrorThreshold(perBaseErrorRate: number): number { return perBaseErrorRate > 0 ? 1 / perBaseErrorRate : Infinity }
-// Hardy–Weinberg — the NULL MODEL of population genetics: with no evolutionary force acting, a two-allele locus
-// settles at genotype frequencies p², 2pq, q² (q = 1 − p), summing to 1. Observed DEVIATION from this is the
-// operational signal that a force (selection, drift, mutation, gene flow) is acting — evolution is the deviation.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// hardyWeinbergGenotypes → pi-train wave 7 tier-A at src/7/3.
-// PCI_CONSCIOUSNESS_THRESHOLD → pi-train wave 6 tier-A at src/8/2.
-
-// ── Network primitives (graphs of values · coupled channels · associative memory) ──
-// The 2 network domains: the Greek Pontic colonies (culture diffusing port-to-port), and script/language/gene
-// (three inheritance channels decoupling under one history); neurology rides the associative-memory model.
-
-// Cultural diffusion on a graph (DeGroot consensus): each node moves a fraction q toward its neighbours' mean.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export type Edge = readonly [number, number]
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function pmixStep(values: readonly number[], edges: readonly Edge[], q: number): number[] {
-  const nbr: number[][] = values.map(() => [])
-  for (const [a, b] of edges) { nbr[a].push(b); nbr[b].push(a) }
-  return values.map((v, i) => {
-    if (nbr[i].length === 0) return v
-    const mean = nbr[i].reduce((s, j) => s + values[j], 0) / nbr[i].length
-    return (1 - q) * v + q * mean
-  })
-}
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function pmixEvolve(values: readonly number[], edges: readonly Edge[], q: number, steps: number): number[] {
-  let v = values.slice()
-  for (let s = 0; s < steps; s++) v = pmixStep(v, edges, q)
-  return v
-}
-
-// Channel congruence (script·language·gene): the Pearson correlation between two channels' per-population
-// vectors — high when coupled (gene+language under a folk migration), low when decoupled (script diffuses alone).
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function congruence(a: readonly number[], b: readonly number[]): number {
-  const n = a.length
-  const ma = a.reduce((s, x) => s + x, 0) / n
-  const mb = b.reduce((s, x) => s + x, 0) / n
-  let cov = 0
-  let va = 0
-  let vb = 0
-  for (let i = 0; i < n; i++) { const da = a[i] - ma; const db = b[i] - mb; cov += da * db; va += da * da; vb += db * db }
-  return va === 0 || vb === 0 ? 0 : cov / Math.sqrt(va * vb)
-}
-
-// Associative memory (neurology): content-addressed recall — the brain's torus map, the project's own model.
-// Store ±1 patterns as a Hopfield weight matrix (Hebbian, zero diagonal); recall descends the energy to the
-// The Hopfield network (was src/0/hopfield.ts) and the grid-cell bump (was src/0/bump.ts) are inlined here:
-// src/0 is a DIGIT-kind folder, so these word-named primitives live IN the digit index, not in word subfolders
-// (kind-purity). Hopfield = discrete associative-memory attractor; bump = its continuous twin on a 1D ring.
-export function hopfieldStore(patterns: readonly (readonly number[])[]): number[][] {
-  const N = patterns[0]?.length ?? 0
-  const W = Array.from({ length: N }, () => new Array<number>(N).fill(0))
-  for (const p of patterns) for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) if (i !== j) W[i][j] += (p[i] * p[j]) / N
-  return W
-}
-
-export function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number {
-  let e = 0
-  for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= 0.5 * W[i][j] * s[i] * s[j]
-  return e
-}
-
-export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = 12): { state: number[]; energy: number; iters: number } {
-  let s = probe.slice()
-  let iters = 0
-  for (let t = 0; t < steps; t++) {
-    let changed = false
-    for (let i = 0; i < s.length; i++) {
-      const h = W[i].reduce((acc, w, j) => acc + w * s[j], 0)
-      const ns = h >= 0 ? 1 : -1
-      if (ns !== s[i]) { s[i] = ns; changed = true }
-    }
-    iters++
-    if (!changed) break
-  }
-  return { state: s, energy: hopfieldEnergy(W, s), iters }
-}
-
-// Grid-cell bump attractor on a 1D periodic ring — path integration on a torus (Burak & Fiete 2009; Gardner 2022).
-const BUMP_TWO_PI = 2 * Math.PI
-
-export function bumpStep(theta: number, v: number): number {
-  return ((theta + v) % BUMP_TWO_PI + BUMP_TWO_PI) % BUMP_TWO_PI
-}
-
-// bumpProfile → pi-train wave 11 tier-A at src/9/1.
-
-export function bumpEvolve(theta0: number, velocities: readonly number[]): number[] {
-  const history = [theta0]
-  let theta = theta0
-  for (const v of velocities) {
-    theta = bumpStep(theta, v)
-    history.push(theta)
-  }
-  return history
-}
-
-// ── The genetic code (trinity sciences) — the error-robust 64 = 4³ table ──
-// The standard genetic code: bases U/C/A/G = 0/1/2/3, codon = b1·16 + b2·4 + b3 (b1 the high two bits). The
-// real content is the code's ROBUSTNESS — third-position "wobble" makes ~a quarter of point mutations silent
-// by design. 64 = 4³ is a genuine independent threefold (the codon's three bases); "3-6-9 cosmic"/Orch-OR flagged.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const GENETIC_CODE = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
-
-// Classify one point mutation (a base change at position 0..2 of a codon) as silent / missense / nonsense.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function mutationClass(codon: number, pos: number, base: number): 'silent' | 'missense' | 'nonsense' {
-  const shift = (2 - pos) * 2 // pos 0 = b1 (high bits)
-  const mutated = (codon & ~(3 << shift)) | (base << shift)
-  const from = GENETIC_CODE[codon]
-  const to = GENETIC_CODE[mutated]
-  if (to === from) return 'silent'
-  if (to === '*') return 'nonsense'
-  return 'missense'
-}
-
-// The code's robustness: census every point mutation from a coding codon (64×3 positions×3 alternative bases),
-// optionally weighting transitions kappa× transversions. Returns the silent/missense/nonsense fractions.
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function codeRobustness(kappa = 1): { silent: number; missense: number; nonsense: number } {
-  const isTransition = (a: number, b: number) => a + b === 1 || a + b === 5 // U↔C, A↔G
-  const acc = { silent: 0, missense: 0, nonsense: 0 }
-  let total = 0
-  for (let codon = 0; codon < 64; codon++) {
-    if (GENETIC_CODE[codon] === '*') continue
-    for (let pos = 0; pos < 3; pos++) {
-      const from = (codon >> ((2 - pos) * 2)) & 3
-      for (let base = 0; base < 4; base++) {
-        if (base === from) continue
-        const w = isTransition(from, base) ? kappa : 1
-        acc[mutationClass(codon, pos, base)] += w
-        total += w
-      }
-    }
-  }
-  return { silent: acc.silent / total, missense: acc.missense / total, nonsense: acc.nonsense / total }
+/** Prose → a432-tempered pitch from content-address (uuidHero audio projection). */
+export function proseToTone(prose: string): { hz: number; semitone: number; octave: number } {
+  const hex = toUuid(prose).replace(/[^0-9a-f]/gi, '')
+  const semitone = Number.parseInt(hex.slice(0, 4) || '0', 16) % 24
+  return { hz: 432 * 2 ** (semitone / 12), semitone, octave: Math.floor(semitone / 12) }
 }
 
 // ── Vetted-hash crypto (the hardening path) ─────────────────────────────────────────────────────────────
@@ -2041,177 +1463,208 @@ export function vortexContinuedFrac(n: number): Rational {
   return cfEval(terms, terms.length)
 }
 
-// splitCamelSegment → pi-train wave 6 tier-A at src/8/2.
-
-function vaultSplitCamelSegment(segment: string): readonly string[] {
-  const words: string[] = []
-  let current = ''
-  for (let i = 0; i < segment.length; i++) {
-    const ch = segment[i]!
-    if (ch >= 'A' && ch <= 'Z') {
-      if (current) words.push(current.toLowerCase())
-      current = ch.toLowerCase()
-    } else {
-      current += ch
-    }
+// ── Analytic primitives (dissolved from src/math — digit-folder kernel, no word subfolders) ──
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function survive(s: number, hazard: number): number { return s * (1 - hazard) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function admixToward(p: readonly number[], source: number, f: number): number[] {
+  const g = p.map((v) => v * (1 - f)); g[source] += f; return g
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function injectError(p: readonly number[], bit: number, q: number, oneWay = true): number[] {
+  const out = p.slice(); const mask = 1 << bit
+  for (let i = 0; i < p.length; i++) {
+    if ((i & mask) === 0) { const j = i | mask; out[i] -= p[i] * q; out[j] += p[i] * q; if (!oneWay) { out[j] -= p[j] * q; out[i] += p[j] * q } }
   }
-  if (current) words.push(current.toLowerCase())
-  return words.filter((w) => /^[a-z]+$/.test(w))
+  return out
 }
-
-/** Dry scientific name → path words — dots and camelCase expand to one lowercase word each. */
-export function splitMethodWords(name: string, prefix = 'concept.'): readonly string[] {
-  const stripped = name.startsWith(prefix) ? name.slice(prefix.length) : name
-  return stripped.split('.').flatMap((seg) => vaultSplitCamelSegment(seg))
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function markovStep(P: readonly (readonly number[])[], dist: readonly number[]): number[] {
+  return dist.map((_, j) => dist.reduce((acc, di, i) => acc + di * P[i][j], 0))
 }
-
-/** Method name → folder tail (concept.agent.stream.wire → agent/stream/wire). */
-export function folderTailFromMethodName(name: string, prefix = 'concept.'): string {
-  return splitMethodWords(name, prefix).join('/')
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function markovEvolve(P: readonly (readonly number[])[], dist: readonly number[], steps: number): number[] {
+  let d = dist.slice(); for (let s = 0; s < steps; s++) d = markovStep(P, d); return d
 }
-
-// methodNameFromFolderTail → pi-train wave 11 tier-A at src/9/1.
-// leafFromPathTail → pi-train wave 11 tier-A at src/9/1.
-
-// EIGHT_FOLD_SCIENCES · EightFoldScience · RENDER_UI_SCIENCE_MASK → pi-train wave 6 tier-A at src/8/2.
-
-/** Education-portal curriculum — agent-voted top eight (naming vote root 681da0ff…). */
-export const EIGHT_CURRICULUM_SCIENCES = ['see', 'hear', 'ask', 'prove', 'learn', 'pattern', 'sense', 'create'] as const
-export type EightCurriculumScience = (typeof EIGHT_CURRICULUM_SCIENCES)[number]
-
-export function isCurriculumScience(name: string): name is EightCurriculumScience {
-  return (EIGHT_CURRICULUM_SCIENCES as readonly string[]).includes(name)
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function stationary(P: readonly (readonly number[])[], iters = 200): number[] {
+  let d = P.map(() => 1 / P.length); for (let i = 0; i < iters; i++) d = markovStep(P, d); return d
 }
-
-/** Three-level src schema — science / model / action (strict; no prefix chains). */
-export type ScienceModelAction = { readonly science: string; readonly model: string; readonly action: string }
-
-export const SRC_SCIENCE_MODEL_ACTION_SCHEMA = 'src/[science]/[action]' as const
-
-/** Canonical mask — co-located index.ts + index.vue; no render/ui prefix. */
-export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
-
-/** Bāguà fan-out — not less, not more than eight subfolders per folder at every level. */
-export const MAX_SUBFOLDERS_PER_FOLDER = 8 as const
-
-/** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
-export const FORBIDDEN_FOLDER_NAMES = ['index'] as const
-
-export function isForbiddenFolderName(name: string): boolean {
-  return (FORBIDDEN_FOLDER_NAMES as readonly string[]).includes(name)
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function chsh(a: number, aPrime: number, b: number, bPrime: number): number {
+  const E = (x: number, y: number) => Math.cos(x - y)
+  return E(a, b) - E(a, bPrime) + E(aPrime, b) + E(aPrime, bPrime)
 }
-
-/** Default model segment for 2-level tails (earth/architecture → science=earth, action=architecture). */
-export const SCHEMA_TWO_LEVEL_MODEL = 'fold' as const
-
-function assertScienceModelAction(sma: ScienceModelAction): ScienceModelAction {
-  for (const seg of [sma.science, sma.model, sma.action]) {
-    if (isForbiddenFolderName(seg)) {
-      throw new Error(
-        `folder "${seg}" is forbidden — every folder is an index; index.ts is the stem file inside, never a folder name (${SRC_SCIENCE_MODEL_ACTION_SCHEMA})`,
-      )
-    }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function residueVector(n: number, periods: readonly number[]): number[] {
+  return periods.map((p) => ((n % p) + p) % p)
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function realign(periodA: number, periodB: number): { gcd: number; lcm: number } {
+  const g = (x: number, y: number): number => (y === 0 ? x : g(y, x % y)); const gcd = g(periodA, periodB)
+  return { gcd, lcm: (periodA / gcd) * periodB }
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function phaseDrift(periodA: number, periodB: number, t: number): number {
+  return (((t / periodA - t / periodB) % 1) + 1) % 1
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function slip(wSync: number, wRotor: number): number { return wSync === 0 ? 0 : (wSync - wRotor) / wSync }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function inductionStep(wRotor: number, opts: { wSync: number; k: number; load: number; damping?: number; inertia?: number; dt?: number }): number {
+  const { wSync, k, load, damping = 0.02, inertia = 1, dt = 0.05 } = opts
+  return wRotor + (dt * (k * slip(wSync, wRotor) - load - damping * wRotor)) / inertia
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function inductionEvolve(w0: number, opts: { wSync: number; k: number; load: number; damping?: number; inertia?: number; dt?: number }, steps: number): number[] {
+  const out = [w0]; for (let s = 0; s < steps; s++) out.push(inductionStep(out[out.length - 1], opts)); return out
+}
+export type Edge = readonly [number, number]
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function pmixStep(values: readonly number[], edges: readonly Edge[], q: number): number[] {
+  const nbr: number[][] = values.map(() => [])
+  for (const [a, b] of edges) { nbr[a].push(b); nbr[b].push(a) }
+  return values.map((v, i) => { if (nbr[i].length === 0) return v; const mean = nbr[i].reduce((s, j) => s + values[j], 0) / nbr[i].length; return (1 - q) * v + q * mean })
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function pmixEvolve(values: readonly number[], edges: readonly Edge[], q: number, steps: number): number[] {
+  let v = values.slice(); for (let s = 0; s < steps; s++) v = pmixStep(v, edges, q); return v
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function congruence(a: readonly number[], b: readonly number[]): number {
+  const n = a.length; const ma = a.reduce((s, x) => s + x, 0) / n; const mb = b.reduce((s, x) => s + x, 0) / n
+  let cov = 0; let va = 0; let vb = 0
+  for (let i = 0; i < n; i++) { const da = a[i] - ma; const db = b[i] - mb; cov += da * db; va += da * da; vb += db * db }
+  return va === 0 || vb === 0 ? 0 : cov / Math.sqrt(va * vb)
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hopfieldStore(patterns: readonly (readonly number[])[]): number[][] {
+  const N = patterns[0]?.length ?? 0; const W = Array.from({ length: N }, () => new Array<number>(N).fill(0))
+  for (const p of patterns) for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) if (i !== j) W[i][j] += (p[i] * p[j]) / N
+  return W
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number {
+  let e = 0; for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= 0.5 * W[i][j] * s[i] * s[j]; return e
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = 12): { state: number[]; energy: number; iters: number } {
+  let s = probe.slice(); let iters = 0
+  for (let t = 0; t < steps; t++) {
+    let changed = false
+    for (let i = 0; i < s.length; i++) { const h = W[i].reduce((acc, w, j) => acc + w * s[j], 0); const ns = h >= 0 ? 1 : -1; if (ns !== s[i]) { s[i] = ns; changed = true } }
+    iters++; if (!changed) break
   }
-  return sma
+  return { state: s, energy: hopfieldEnergy(W, s), iters }
+}
+const BUMP_TWO_PI = 2 * Math.PI
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bumpStep(theta: number, v: number): number { return ((theta + v) % BUMP_TWO_PI + BUMP_TWO_PI) % BUMP_TWO_PI }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function bumpEvolve(theta0: number, velocities: readonly number[]): number[] {
+  const history = [theta0]; let theta = theta0; for (const v of velocities) { theta = bumpStep(theta, v); history.push(theta) }; return history
 }
 
-/** Path words → science/model/action — exactly three folder levels; action holds the meaning. */
-export function scienceModelActionFromWords(words: readonly string[]): ScienceModelAction {
-  const parts = words.filter(Boolean)
-  if (parts.length >= 3) {
-    return assertScienceModelAction({
-      science: parts[parts.length - 3]!,
-      model: parts[parts.length - 2]!,
-      action: parts[parts.length - 1]!,
-    })
-  }
-  if (parts.length === 2) {
-    return assertScienceModelAction({ science: parts[0]!, model: SCHEMA_TWO_LEVEL_MODEL, action: parts[1]! })
-  }
-  if (parts.length === 1) {
-    return assertScienceModelAction({ science: 'heaven', model: SCHEMA_TWO_LEVEL_MODEL, action: parts[0]! })
-  }
-  return assertScienceModelAction({ science: 'heaven', model: SCHEMA_TWO_LEVEL_MODEL, action: 'essence' })
+// ── Earth-pole polar disk chart (azimuthal-equidistant + one-point compactification) ──────────────────
+// The sphere's surface maps to the unit disk D² by colatitude alone: ρ = (90 − lat)/180 ∈ [0,1] — the
+// azimuthal-equidistant projection, where the disk radius IS the colatitude fraction. The NORTH pole
+// (lat +90 → ρ=0) collapses to the singular CENTER DOT of the chart; the SOUTH pole (lat −90 → ρ=1) is
+// the bounding circle ∂D² — and under one-point compactification that whole boundary reads as the one
+// south point (D²/∂D² ≅ S²). The honest height tie z = tubeR·cos(π·ρ) lifts the flat chart onto the
+// genus-2 tube radius (doubleTorusSurface): north z=+tubeR (top), equator z=0, south z=−tubeR (bottom).
+// No magic numbers — every angle derives from VORTEX_DASH_ANGLE_DEG (the 60° hex step; six close a turn)
+// and π, and the height scale from the existing doubleTorusSurface primitive. Pure, dependency-free.
+const POLE_FULL_TURN_DEG = VORTEX_DASH_ANGLE_DEG * 6 // 360 — six 60° hex steps close the circle
+const POLE_HALF_TURN_DEG = POLE_FULL_TURN_DEG / 2 // 180 — the pole-to-pole colatitude span
+const POLE_QUARTER_TURN_DEG = POLE_FULL_TURN_DEG / 4 // 90 — the north-pole latitude
+/** The polar height scale — the genus-2 tube radius at the void digit (doubleTorusSurface seam, z=tubeR·sin(π/2)). */
+function poleTubeRadius(digit = 0): number {
+  return doubleTorusSurface(0, Math.PI / 2, digit, 0).z // sin(π/2)=1 ⇒ z = tubeR
 }
 
-/** Mind tail (earth/architecture, heaven/balance) → science/model/action. */
-export function scienceModelActionFromMindTail(tail: string): ScienceModelAction {
-  return scienceModelActionFromWords(tail.split('/'))
-}
-
-/** Method name → science/model/action (concept.earth.architecture → earth/architecture). */
-export function scienceModelActionFromMethodName(name: string, prefix = 'concept.'): ScienceModelAction {
-  return scienceModelActionFromWords(splitMethodWords(name, prefix))
-}
-
-export function scienceModelActionTail(sma: ScienceModelAction): string {
-  if (sma.model === SCHEMA_TWO_LEVEL_MODEL) return `${sma.science}/${sma.action}`
-  return `${sma.science}/${sma.model}/${sma.action}`
-}
-
-/** Target logic path — src/<science>/<model>/<action>/index.ts. */
-export function srcLogicPathFromScienceModelAction(sma: ScienceModelAction): string {
-  return `src/${scienceModelActionTail(sma)}/index.ts`
-}
-
-/** Co-located display — src/<science>/<model>/<action>/index.vue (same folder as logic). */
-export function renderUiPathFromScienceModelAction(sma: ScienceModelAction): string {
-  return `src/${scienceModelActionTail(sma)}/index.vue`
-}
-
-/** Alias — display gate path beside logic index.ts. */
-export const displayPathFromScienceModelAction = renderUiPathFromScienceModelAction
-
-/** One registry row — mind tail dissolves to logic target + render mirror (mask math only). */
-export type ScienceModelActionMaskRow = {
-  readonly mindTail: string
-  readonly science: string
-  readonly model: string
-  readonly action: string
-  readonly logicNow: string
-  readonly logicTarget: string
-  readonly renderPath: string
-  readonly route: string
-}
-
-/** Dry rename table — every mind tail → science/model/action paths (recomputable, no hand lists). */
-export function scienceModelActionMaskRowsFromMindTails(mindTails: readonly string[]): readonly ScienceModelActionMaskRow[] {
-  return mindTails.map((mindTail) => {
-    const sma = scienceModelActionFromMindTail(mindTail)
-    const tail = scienceModelActionTail(sma)
-    return {
-      mindTail,
-      science: sma.science,
-      model: sma.model,
-      action: sma.action,
-      logicNow: `src/quantum/heaven/mind/${mindTail}/index.ts`,
-      logicTarget: srcLogicPathFromScienceModelAction(sma),
-      renderPath: renderUiPathFromScienceModelAction(sma),
-      route: `/${tail}`,
-    }
-  })
-}
-
-/** Pure path math — logic index.ts rel → registry row (indices do not know VitePress). */
-export function indexRegistryFromLogicRel(logicRel: string, mindMount = 'src/quantum/heaven/mind/'): {
-  readonly logic: string
-  readonly target: string
-  readonly route: string
-  readonly science: string
-  readonly model: string
-  readonly action: string
-} | null {
-  const rel = logicRel.replace(/\\/g, '/')
-  if (!rel.startsWith('src/') || !rel.endsWith('/index.ts')) return null
-  const sma = rel.startsWith(mindMount)
-    ? scienceModelActionFromMindTail(rel.slice(mindMount.length, -'/index.ts'.length))
-    : scienceModelActionFromWords(rel.slice('src/'.length, -'/index.ts'.length).split('/').filter(Boolean))
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function polarDiskChartAt(latDeg: number): {
+  latDeg: number
+  rho: number
+  diskRadius: number
+  z: number
+  isNorthPole: boolean
+  isSouthPole: boolean
+  onDisk: boolean
+  proved: boolean
+  root: string
+} {
+  const rho = (POLE_QUARTER_TURN_DEG - latDeg) / POLE_HALF_TURN_DEG // (90 − lat)/180 ∈ [0,1] over the sphere
+  const clamped = rho < 0 ? 0 : rho > 1 ? 1 : rho
+  const tubeR = poleTubeRadius()
+  const z = roundTo(tubeR * Math.cos(Math.PI * clamped), 5) // the honest tie onto the genus-2 tube
+  const onDisk = rho >= 0 && rho <= 1
+  const proved = onDisk && z <= tubeR + 1e-9 && z >= -tubeR - 1e-9
   return {
-    logic: rel,
-    target: srcLogicPathFromScienceModelAction(sma),
-    route: `/${scienceModelActionTail(sma)}`,
-    science: sma.science,
-    model: sma.model,
-    action: sma.action,
+    latDeg,
+    rho: roundTo(rho, 5),
+    diskRadius: roundTo(clamped, 5), // azimuthal-equidistant: the disk radius equals ρ on the unit disk
+    z,
+    isNorthPole: clamped === 0,
+    isSouthPole: clamped === 1,
+    onDisk,
+    proved,
+    root: toUuid(`polar-disk-chart:${latDeg}:${roundTo(rho, 5)}:${z}`),
   }
 }
+
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function earthNorthPoleCenterDotDecoded(): {
+  pole: 'north'
+  latDeg: number
+  rho: number
+  z: number
+  isCenterDot: boolean
+  isSingular: boolean
+  proved: boolean
+  root: string
+} {
+  const chart = polarDiskChartAt(POLE_QUARTER_TURN_DEG) // lat +90 → ρ=0
+  const isCenterDot = chart.rho === 0 && chart.diskRadius === 0 && chart.isNorthPole
+  const proved = isCenterDot && chart.z === poleTubeRadius() // north dot sits at the top of the tube, z=+tubeR
+  return {
+    pole: 'north',
+    latDeg: POLE_QUARTER_TURN_DEG,
+    rho: chart.rho,
+    z: chart.z,
+    isCenterDot,
+    isSingular: isCenterDot, // the center is the singular point of the azimuthal-equidistant chart
+    proved,
+    root: merge(chart.root, toUuid('earth-north-pole:center-dot')),
+  }
+}
+
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function earthSouthPoleBoundaryCircleDecoded(): {
+  pole: 'south'
+  latDeg: number
+  rho: number
+  z: number
+  isBoundaryCircle: boolean
+  compactifiedToOnePoint: boolean
+  circumference: number
+  proved: boolean
+  root: string
+} {
+  const chart = polarDiskChartAt(-POLE_QUARTER_TURN_DEG) // lat −90 → ρ=1
+  const isBoundaryCircle = chart.rho === 1 && chart.diskRadius === 1 && chart.isSouthPole
+  const circumference = roundTo(2 * Math.PI * chart.diskRadius, 5) // ∂D² of the unit disk = 2π
+  const proved = isBoundaryCircle && chart.z === -poleTubeRadius() // boundary sits at the bottom, z=−tubeR
+  return {
+    pole: 'south',
+    latDeg: -POLE_QUARTER_TURN_DEG,
+    rho: chart.rho,
+    z: chart.z,
+    isBoundaryCircle,
+    compactifiedToOnePoint: isBoundaryCircle, // one-point compactification: ∂D² ≡ the single south point (D²/∂D² ≅ S²)
+    circumference,
+    proved,
+    root: merge(chart.root, toUuid('earth-south-pole:boundary-circle')),
+  }
+}
+

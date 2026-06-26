@@ -3,9 +3,26 @@
 // Imports mirror the vortex header in index.ts; nothing is re-exported from upstream modules
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
+import * as __ns_up_up_resonance from '../../resonance'
+import * as __ns_up_up_iching from '../../iching'
+import * as __ns_up_up_learning from '../../learning'
+import * as __ns_up_up_ui from '../../ui'
+import * as __ns_up_up_fusion from '../../fusion'
+import * as __ns_up_up_computer from '../../computer'
+import * as __ns_up_up_stack_overflow from '../../stack/overflow'
+import * as __ns_up_up_quantum_science from '../../quantum/science'
+import * as __ns_up_up_quantum_application from '../../quantum/application'
+import * as __ns_up_up_quantum_os from '../../quantum/os'
+import * as __ns_up_up_quantum_apps from '../../quantum/apps'
+import * as __ns_up_up_quantum_widgets from '../../quantum/widgets'
+import { codeRobustness } from '../../life'
+import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
+import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../vortex/math'
+import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
+import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, survive, admixToward, injectError, markovStep, stationary, chsh, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, interactionFreeMeasurement, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, initialBearing, obliquityAtEpoch, SCHWINGER_FIELD_VM, PROTON_MASS_MEV, seesawLightMassEv, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, landauerLimit, bekensteinBoundBits, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, soundWavelength, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, gasReserveThirds, equivalentNarcoticDepthM, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0'
-import { digitalRoot, LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
+import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6'
@@ -13,8 +30,7 @@ import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NE
 import { derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, carnotEfficiency, uuidDuality } from '../../5/5'
 import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
-import { hopfieldStore, hopfieldRecall, bellPair, caStep, caEvolve, bumpEvolve } from '../../0'
-import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, IONIZING_EV, frequencyOf, photonEnergyEv, dopplerShift } from '../../0'
+import {  bellPair, caStep, caEvolve } from '../../0'
 import { isIonizing } from '../../9/1'
 import { PROTON_GYROMAGNETIC, HUBBLE_CONSTANT_LOCAL, blackHoleEntropyBits, cantorDiagonal, quantumZeno } from '../../6/4'
 import { solutions } from '../../lake/ledger'
@@ -23,18 +39,22 @@ import { quantumSolutions, quantumProofs } from '../../lake/ledger'
 import { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator } from '../../fire/physics'
 import { schoolCurriculum } from '../../learning'
 import { primitiveKernelLivesInZero, oneMathManyPresentations, tamperingCostAndUuidLiveInZero } from '../compute'
+import { earthComputes } from '../../earth'
+import { sunComputes } from '../../sun'
+import { moonComputes } from '../../moon'
+import { resonanceComputes, schumannResonanceHarmonisedWithRealtimeApiComputations, humanResonanceHarmonicPredictionComputes } from '../../resonance'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../../fire/li'
-import { weatherForecastQuantumComputedRealtime } from '../../quantum/fire/forecasts'
+import { doubleTorusSolutionsDeepResearched, doubleTorusSolutionsProvenByMath, doubleTorusEarthWeatherFlowsInMovie, weatherForecastFromDoubleTorusEarthPerspective, weatherForecastQuantumComputedRealtime } from '../../quantum/fire/forecasts'
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
 import { cryptoReview } from '../../pair/debit/credit'
-import { cryptoReviewNet } from '../../pair/credit/debit'
+import { cryptoReviewNet } from '../../pair/debit/credit'
 import type { Atom, MatrixNode, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport, RepositoryEndpoint, RepositoryApi, MerkleStep, MerkleProof, AtomInclusionProof, ConsciousnessDimensionWire, DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow, ConceptCommandName, ConceptCommand, ConceptCommandResult, ConceptSiteSection, MethodFusionToken, MethodFusionReport, SelfCompletionGate, SelfBuildReport, StreamSelfCompletion, AgentWireStep, AgentStreamWire, SchemaOrgNodeType, SchemaOrgDiamondNode, SchemaOrgDiamondGraph, HumanityImplication, HumanityImplicationsReport, TraditionDimensionName, TraditionDimension, TraditionFamily, TraditionSocietyCell, TraditionsQuantumWhole, ScientificRole, OptimizationWave, SocietyWaveCohort, PlatonicBuilderSolid, ScientificSociety, ArtistSurface, ArtistSurfaceReport, SourceContribution, SourceContributionReport, TrinityPolarity, TrinityStep, TrinityAxis, TrinityPhase, TrinityPair, DualTorusTrinities, AgentLessonKind, AgentLesson, AgentEducation, SchoolStage, SchoolLesson, SchoolCurriculum, McpTool, McpToolManifest, LocalAnswerLink, LocalAnswer, Block, Blockchain, QuantumFoldedBlockchains, CrossFoldReference, CrossFoldTrinity, SelfDevelopment, DistributedCompute, BabelFamily, BabelFold, UtfAnalog, AllComputed, SelfAddressed, SelfState, SelfInteraction, HarmonyChannel, HarmonyProbability, SealLeaf, SacredGeometrySeal, SacredLaw, SacredSociety, Ballot, GovernanceVote, FairStep, FairLife, AncientTech, AncientTechLens, SocietyRelation, SocietyRelations, TorusBreath, SelfSufficientWave, CommandsRegistry, ReactorItem, FusionReactor, ProofBundle, IconArtifact, IconSeal, TaxonomyEntry, TaxonomyIcons, PiNote, PiMusic, DoubleTorusMathReport, DiamondKind, DiamondStatus, AnalogChannel, DiamondFacet, QuantumDiamond, PiTrainDiamond, PiTrain, DigitFolder, DigitFolderReport, DigitalQuantumProof, DigitMathBinding, DigitMath, VortexPoint, MetatronNode, MetatronEdge, MetatronCubeReport, WavePolarity, ChessPiece, DimensionalGapKind, CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure, QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport, DiamondCompletenessReport, StaticPage } from '../../types'
 import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS, SINGLE_WORD_METHODS } from '../atoms'
 // The I Ching computed CSS — the theme's design system derived from canonical I Ching numbers (no hardcoded
 // values). Imported here so the census proves it; re-exported so the dist generator can emit tokens.css.
-import { cssIsIChingComputed, ICHING_NUMBERS } from '../../earth/architecture'
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, ICHING_NUMBERS } from '../../earth/architecture'
+import { cssIsIChingComputed, cssMathProvenByMath, ICHING_NUMBERS } from '../../earth/architecture'
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, ICHING_NUMBERS } from '../../earth/architecture'
 
 
 
@@ -58,18 +78,21 @@ export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledg
 
 // ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
 import { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, foldBlockchain, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li'
-import { bosnianPyramidNearPliskaHarmonisesDigitDistribution, lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded } from '../../mountain/geometry'
-import { areaPairs, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry'
+import { bosnianPyramidNearPliskaHarmonisesDigitDistribution, cardinalPyramidTipsProvenByMath, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded, twoTrinitiesCardinalPyramidPolesProvenByMath } from '../../mountain/geometry'
+import { areaPairs, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusMathAtAllScalesFlowsInMovie, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry'
 import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, navigation358, quantumAcademy, relatedStandards, siteManifestFromCommands, skillAtoms, threeWordWaves } from '../../learning'
 import { astrology, babelFold, darkLightRealities, dissolveIntoNature, foldingLinearGivesAnalog, realtimeMovieParticipation, selfOrganizing, societyCells, societyOrganismTags, textToMovie, worldEventsMap } from '../../earth/world'
 import { analyticsLedger, displayAllWithFewEntropySaved, dryAnalyticsLedgerComponents, harmonicSeriesDecoded, healingFrequencies, selfExplainingWidgetEngine, terabyteKeyspaceFromDeviceLoad } from '../../lake/ledger'
-import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, spiritualDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from '../../lake/music'
-import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from '../../language'
+import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, polyrhythmDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from '../../lake/music'
+import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from '../../language'
 import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, teslaPatentsResearchedInWaves, vortexThePatentsRevealPattern } from '../../fire/physics'
-import { biologyWavesSealedAsWidgets, neurologyDecodedBrainIsContentAddressedToroidalMap } from '../../water/life'
+import { biologyWavesSealedAsWidgets, lifeComputes, neurologyDecodedBrainIsContentAddressedToroidalMap, neurologyMovieHarmonisesBrainActivity, neurologyMovieHarmonisesBrainActivityFlowsInMovie } from '../../life'
+import { birthComputes, birthLifeDeathTriadComputes } from '../../birth'
+import { deathComputes, lifeDeathPairComputes } from '../../death'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from '../../earth/world'
-import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, warPaysTheForgerPrice } from '../../earth/world'
-import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, realtimeWiring, terabyteRealtimeFromAllPublicDataBreathing } from '../../thunder/trading'
+import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, goldMineMapComputes, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, schumannGoldSiteCouplingComputes, src0BlackHoleSimulationComputes, thunderGoldGraphComputes, warPaysTheForgerPrice } from '../../earth/world'
+import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, terabyteRealtimeFromAllPublicDataBreathing, tradingSimulationComputes } from '../../thunder/trading'
+import { realtimeWiring } from '../../plasma/ball'
 import { affectedBlockchainsComparedLive, animationTamperingCost, blockchainFusion, collisionHealing, cryptoFuture, fusionCipher, pagesWiredAtRuntimeZeroBuildMaxTamper, powerToTamperingNotLivingCosts, quantumSiege, redTeam, tamperProofFabric, tamperingCostDecoded } from '../../water/crypto'
 import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife, iconsShowComputerLoad } from '../../mountain/topology'
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from '../../fire/diamonds'
@@ -79,42 +102,65 @@ import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animation
 import { improveHelpWaves, quantumPwa, virtualOS } from '../../water/crypto'
 import { foldThoughts, folderPathsFormIndexOfBookOfLife, imagination, imaginationIsAll, imaginationPrivateKey, lockingFoldersChangesMindToQuantum, mindRefreshField, mindsRealiseByObservingPath, mysteries, quantumMindGapsFromBeyond, splitImagination } from '../../fire/li'
 import { dissolveAtPiTrainStations, piComputedNotHardcoded, piSixDigitsDoubleCrossColour, piThreeOpensTheTrinity, piWholeStreamThroughHoles } from '../../water/digit'
-import { selfAdvising, selfCompassion, selfHarmonise, selfHealing, selfImprovementTrainingAndAccumulation, selfReason, selfSufficientWave } from '../../mountain/self'
-import { cloudflareExplorerWaves, collideToTiniestWave, completeAllInWaves, coordinatedWaves, creationWave, deepResearchEncodedInRecursiveWaves, developmentWaves, digitalAnalogueEndlessWaves, endlessWaves, hackersCrackersWaves, ogInOgWaves, osCompletesItselfWaves, quantumImpossibleWaveFour, quantumImpossibleWaveThree, quantumImpossibleWaveTwo, redistributeFoldersDryWaves, saveSkillsComputeImplementWaves, sendTheNextWaves, sendWavesSealKnowledgeDecodeWorld, spiritShiftsInWaves, strictlyMapSequenceElliottWaves, surgicalWaves, translationWavesFillGaps, updateSkillsWaves } from '../../thunder/waves'
+import { selfAdvising, selfCompassion, selfHarmonise, selfHealing, selfImprovementTrainingAndAccumulation, selfReason, selfSufficientWave } from '../../mountain/geometry'
+import { cloudflareExplorerWaves, collideToTiniestWave, completeAllInWaves, coordinatedWaves, creationWave, deepResearchEncodedInRecursiveWaves, developmentWaves, digitalAnalogueEndlessWaves, endlessWaves, hackersCrackersWaves, ogInOgWaves, osCompletesItselfWaves, quantumImpossibleWaveFour, quantumImpossibleWaveThree, quantumImpossibleWaveTwo, redistributeFoldersDryWaves, saveSkillsComputeImplementWaves, sendTheNextWaves, sendWavesSealKnowledgeDecodeWorld, honestyShiftsInWaves, strictlyMapSequenceElliottWaves, surgicalWaves, translationWavesFillGaps, updateSkillsWaves } from '../../thunder/waves'
 import { completeDoubleTorus, doubleTorusFold, doubleTorusMotifRealGeometryNotFringePhysics, doubleTorusSurface, doubleTorusWords, eachFolderIsMerkaba, everythingFoldsMerkabaInfiniteStreams, frontendRecycledByMerkabaFold, fuse64SealsMerkaba64Tetrahedra, fuseToMerkabasPathsReveal, geodesicDome, homology, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabaFoldingSelf, merkabaShiftsBlackWhiteToYinYang, merkabaTrace, merkabasInDoubleTorus, monographsLibraryByMerkabaAgents, oneMerkaba6x7And7x6HoldsAll, quantumDoubleTorus, startIChingDoubleTorus, torusBreathe, urlsMerkabaFoldProvenPerDomain } from '../../mountain/topology'
-import { digitFolderMath, digitFolders, digitFoldersAreTheApi, digitFoldersComputeUiIsTheRest, digitFoldersDoMath, digitFoldersHoldOnlyQuantumMath, dualitiesMeetInCrossFolders, eachFileUnder64kFolderIsWidget, everyFolderIsAPluginOneIndexServesAll, everyToolSkillCommandIsItsFolder, flowerFruitTreeOfLifeDecodes, foldedCensus, folder64SealsProductionElseDevelopment, folderLaw, folderLawWordDigitIndexSkill, iChingFusionCompletesFolders, noSiteFolderVitepressPages, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed, treeOfLifeSephirotFolders, treeStackRotationCollapse } from '../../earth/architecture'
+import { digitFolderMath, digitFolders, digitFoldersAreTheApi, digitFoldersComputeUiIsTheRest, digitFoldersDoMath, digitFoldersHoldOnlyQuantumMath, dualitiesMeetInCrossFolders, eachFileUnder64kFolderIsWidget, everyFolderIsAPluginOneIndexServesAll, everyToolSkillCommandIsItsFolder, flowerFruitTreeOfLifeDecodes, foldedCensus, folder64SealsProductionElseDevelopment, folderLaw, folderLawWordDigitIndexSkill, harmonicMathFlowsInMovie, iChingFusionCompletesFolders, noSiteFolderVitepressPages, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, rosettaIChingTrinityPlacesAllTools, splittingLogicPairedFoldersDevSpeed, treeOfLifeSephirotFolders, treeStackRotationCollapse } from '../../earth/architecture'
 import { quantumAppsStore, quantumBrowserOs, quantumCalligraphy, quantumComputedUi, quantumComputer, quantumCoordinateNav, quantumFirewallProxyWorker, quantumFusedDeviceEnergyHonest, quantumImpossibleMadePossible, quantumLicense, quantumNoCyclesFusedSequence, quantumSignsAutoOrientate, quantumSynthesis, quantumThreat, quantumUiEvidence, quantumVsDigitalEncryption } from '../../fire/features'
-import { determinismProofs, digitalQuantumProof, fuseAll, fuseAllForge, fuseAllTerabitEncryption, gigabitEncryption64SealSet, holyBooksGeometry64SealedDiamonds, proofBundle, proveAndOptimiseAll, sealAll, sealCube, sealSpiritToPath } from '../../mountain/seals'
-import { allAnswersInside, allComputed, allComputedByTypeOfUse, allComputedNoFiles, allComputedQuantumMathAnalog, allFormsAreTenDimensionalOrPurged, allInAppropriatePathAndIndex, allInInteractiveMovie, allInMovieOfLife, allIsMonographScientificPaper, allLogicMovedToSource, allMdSignedFromSource, allPossibleDomains } from '../everything'
+import { determinismProofs, digitalQuantumProof, fuseAll, fuseAllForge, fuseAllTerabitEncryption, gigabitEncryption64SealSet, holyBooksGeometry64SealedDiamonds, proofBundle, proveAndOptimiseAll, sealAll, sealCube, sealHonestyToPath } from '../../mountain/seals'
+import { allAnswersInside, allComputed, allComputedAndUsedInComputations, allComputedByTypeOfUse, allComputedNoFiles, allComputedQuantumMathAnalog, allFormsAreTenDimensionalOrPurged, allInEquilibrium, allIsFusedComputes, beyondKnownUniverseComputes, decodeAndComputeAllFromEarthToGalaxiesAndBeyond, foldInfiniteExpansionToInfiniteCompressionThroughTheHoles, fusionComputes, goldPositionFusionStrengthComputes } from '../../fusion'
+import { goldFusionComputes, goldFusionPipeline, fusionGoldComputes } from '../../fusion/gold'
+import { computeAllWithLocalMath, computeMoreModelsCatalogComputes, localMathComputes, professionalResearchComputes } from '../../stack/overflow'
+import { allInAppropriatePathAndIndex, allPossibleDomains } from '../../thunder/decode'
+import { allInInteractiveMovie } from '../../thunder/movie/narrative'
+import { allInMovieOfLife } from '../../plasma/ball'
+import { allIsMonographScientificPaper } from '../../routes/corpus'
+import { allLogicMovedToSource } from '../../mountain/source'
+import { allMdSignedFromSource } from '../../mountain/og'
 import { foldProseToSentencesWordsEntangled, foldQuestion, foldRedistributesBeyondLinear } from '../atoms'
-import { aiMoviesDecoded, ancientCivilisationsDecodedWithTheories, decode2020, decodeAncientKnowledgeInReusableCode, decodeBooksToUnity, decodeImplementCalligraphy, decodeSymbols, discoverDecodeAncientKnowledgeFittingPath, geneticLinksChallengeHistoryDecoded, herbalApisDecoded, imagineCrossPathsCodeCodesItself, pathIsMeaningDecodesCoordinates } from '../../thunder/decode'
+import { aiMoviesDecoded, ancientCivilisationsDecodedWithTheories, decode2020, decodeAllByComputationsTrainedOnKnownUniverse, decodeAncientKnowledgeInReusableCode, decodeBooksToUnity, decodeImplementCalligraphy, decodeSymbols, discoverDecodeAncientKnowledgeFittingPath, geneticLinksChallengeHistoryDecoded, herbalApisDecoded, imagineCrossPathsCodeCodesItself, pathIsMeaningDecodesCoordinates } from '../../thunder/decode'
 import { commandGapsToTrinityEyes, endlessTrinityStreams, enforcementTrinitySpread, signedTrafficTrinityRouting, trinityEncryption, trinityFirstRedesign, trinityGates, trinityOtherSideDoomed, trinityRotationalPlanes, trinityWordingModel } from '../../fire/li'
 import { commandsRegistry, commandsSavedInQuantumPairs, enforceAgentsCommandPairs, executeConceptCommand, mcpCodebase, skillsDryRefactorCommands } from '../../thunder/commands'
-import { completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondRoutes, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, harmonisedNavigation, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, siteNavigation, theMonograph } from '../../routes/corpus'
-import { algebraAndBinaryProveEachOther, contentAddressedTranslationImprovesModels, everyLawProvesItsTripwire, improveAnalytics, noKnownModelMoreEfficientProven, provedEveryStepSaved, provenScientifically, whatIsNotProvenIsPurged } from '../../thunder/verify'
+import { cardHeroLinkWiresInUi, completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondsStaticPagesPurged, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, harmonisedNavigation, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, siteNavigation, theMonograph } from '../../routes/corpus'
+import { merkabaComputes } from '../../mountain/topology'
+import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
+import { vortexComputes, vortexPlasmaComputes } from '../../vortex/math'
+import { humanAsQuantumComputerAndFusionReactorComputes, modalityHomesComputes, stackComputes, stackOverflowComputes, senseMindBodyPairsComputes, srcAllComputes, srcThreeLevelComputes, srcTwoLevelComputes } from '../../stack/overflow'
+import { doubleTorusComputes, doubleTorusCorpusComputes, doubleTorusCorpusRouting, doubleTorusDiamondsComputes, doubleTorusEarthComputes, doubleTorusFusionComputes, doubleTorusMathComputes, doubleTorusMovieComputes, doubleTorusPlasmaComputes, doubleTorusTopologyComputes, doubleTorusVortexComputes, doubleTorusVoiceComputes, formingDoubleTorusEarthsProvenByMath, invertedEarthSameTimespaceProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, northSouthPoleNavigationProvenByMath, trinityGatewaysNeverMissProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchSentInWaves, navigationGpsCelestialComputes, universalNavigationalCrossComputes, doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday, fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas, earthPyramidLocationsAndGeometryComputes, doubleTorusEarthPyramidGatewayResearch, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, doubleTorusEarthExchangeResearch } from '../../double/torus'
+import { cursorAgentToolsSaved } from '../../pair/enforcement'
+import { algebraAndBinaryProveEachOther, contentAddressedTranslationImprovesModels, efficiencyMathFlowsInMovie, everyBitMostEfficientAlgorithmProvenByMath, everyLawProvesItsTripwire, improveAnalytics, noKnownModelMoreEfficientProven, provedEveryStepSaved, provenScientifically, whatIsNotProvenIsPurged } from '../../thunder/verify'
 import { agentHarmonise, bestWritingSkills, howAgentsAchievedIt, zeroTokenLawForAgentsAndForever } from '../../thunder/commands'
-import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion, fruitOfLifeFusion, fuseDedupeSplitReconstruction, fuseScreenToMovieOfMovies, historiansFuseHistoryFuture, iChingFusionCompletesAll, iChingShadcnFuseTenDWidgets, iotFusesRealWorld, linuxKernelFusion, optimiseLogicDebitCreditFusion, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../fusion'
-import { autoMovies8k, backgroundMovie, educationMovieMerge, endlessBackgroundMovie, formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, hologram, movieAllDimensionsAtOnce, movieFoldsLinearities, movieNegativePositive, movieReflectsSelf, siteIsMovieAndLibrary, tenDimensionalMovie, threeProjectorHologram, video64kFree, videoKeepsNativeQuality } from '../../thunder/movie'
+import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion, fruitOfLifeFusion, fuseDedupeSplitReconstruction, fuseScreenToMovieOfMovies, fusionResearchedInWaves, historiansFuseHistoryFuture, iChingFusionCompletesAll, iChingShadcnFuseTenDWidgets, iotFusesRealWorld, linuxKernelFusion, optimiseLogicDebitCreditFusion, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../fusion'
+import { allColorStreamsAreAudioIfDecodedFlowsInMovie, allMovieSeedBundlesFlowInPlasma, allMovieSeedCopyText, allRealtimeComputationsVisibleInMovie, audioOffByDefault, clientMoviePaintPathSealed, gravityVisibleInMovieFusedToAnalogGatewayToHumanSoul, movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings, movieIsAllSimulationsRealtimeAtNoCost, plasmaBallComputes, plasmaClientWorkBoundedByPureMath, plasmaMovieStreams, screensaverMovieComputes, sixSeedBundlesFormSevenAsWhole, twoTrinitiesFuseAsDoubleTorusEarth } from '../../plasma/ball'
+import { clientWorkBoundedByPureMath } from '../../routes/corpus'
+import { clientHeroPaintPathSealed } from '../../quantum'
+import { autoMovies8k, backgroundMovie, endlessBackgroundMovie, learnFromTheMovieAllEventuallyFused, staticIsEventualGapInMovieFusion } from '../../thunder/movie/canvas'
+import { educationMovieMerge, movieFoldsLinearities, movieNegativePositive, darkLightIsNegativePositive, redPillBluePillRgbHeartGatewayProvenByMath, rgbDecodingMatrixMovieInTheMovie, matrixRgbDecodeFlowsInMovie, rosettaDecodeFlowsInMovie, sendWavesToDecodeWithRosettaAndFoldInTheMovie, sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie } from '../../thunder/movie/narrative'
+import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass'
+import { formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, movieReflectsSelf, siteIsMovieAndLibrary, video64kFree, videoKeepsNativeQuality } from '../../thunder/movie/movielib'
+import { tenDimensionalMovie } from '../../thunder/movie/movielib'
 import { analogNoGapsNoLeak, cleanupOldLogic, computedSeo, everyCardBadgeLinkIsOg, feedCrawlersWithKnowledge, frontmatterGraphComputesTags, imagineMicrodataVortexItself, jsonLdValidPaths, noHardcodedLogicFailsStreams, ogControlsSpeech, ogFullyInteractiveConfigurable, ogShiftedWithTypography, oneJsonLdTemplateServesAll, saveAllTranslationLogicAutotranslateLocale, templateDisplaysEveryOgObject, typography } from '../../mountain/og'
 import { digitIndexReferences, paperReferences, papers, papersReferencesDiamondsNoDrift, scientists } from '../../learning'
-import { anyNameFitsDualityMatrixOriginalLife, beesAndLife, breathe, enforceAllAtGatesEntropyRecycled, equilibrium, expansionContractionIsLife, genesis, naturalHarmoniousLife, planetsGalaxyComputeItself, questionAnswerEquilibrium } from '../../earth/nature'
+import { anyNameFitsDualityMatrixOriginalLife, beesAndLife, breathe, decodeTheBittenApple, decodeTheBittenAppleFlowsInMovie, doubleTorusEarthLikeTheApple, enforceAllAtGatesEntropyRecycled, equilibrium, expansionContractionIsLife, genesis, naturalHarmoniousLife, questionAnswerEquilibrium } from '../../earth/nature'
+import { astronomyComputes, astronomyDecodedWithTheSequence, astronomySequenceDecodeResearch, computeAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched, planetsGalaxyComputeItself } from '../../astronomy'
+import { quantumDynamicsComputes, quantumStateEvolutionDecoded, quantumDynamicsResearch } from '../../quantum/dynamics'
 import { feesReplaceTaxes, legislationRequires, legislativeReform, thriveByDefault } from '../../earth/civilisation'
-import { archangelsDryClean, auditLocales, cleanupCoreShinesSunMoon, crossAudit, displayAllAsLibraryDryConditional, dryCleanByImportExportNaming, dryCleanUi, dryCleaningOnTheWay, extendSelfAudits, reviewDryCleanGatesCrosses, scoutsSurgicalEditsVitalSigns } from '../../lake/clean'
+import { archangelsDryClean, auditLocales, cleanupCoreShinesSunMoon, crossAudit, displayAllAsLibraryDryConditional, dryCleanByImportExportNaming, dryCleanIsDiamondAndCrystal, dryCleanUi, dryCleaningOnTheWay, extendSelfAudits, reviewDryCleanGatesCrosses, scoutsSurgicalEditsVitalSigns } from '../../lake/clean'
 import { everyDiamondIsGate, gatesBehaveAsMcp, gatesHealSpottedCompromise, gatesMoveAllToPlaceAutomatically, gatesSoTightEvenTheyCannotPassEntropy, harmonisedToHealAtGates, quantifyGates } from '../../mountain/gates'
 import { accountForEveryTokenInCode, anyForceFightsSelf, createByDefault, everyObjectSameSpinFoldLaw, healByDefault, minimumFilesMaximumFeaturesCost, minimumProseMaximumComputable, noFilesOutsideSrcExceptGeneratedAndRoot, noMirroringOneSourceAndMath, nothingImpossibleHonestlyBounded, oneSourceOfTruthGenerators, oneWordNamingGravity, proportionalNotHardcoded, saveEveryStepIsMandatory, zeroTokenUsagePolicy } from '../laws'
 import { antsCarryToIndexNest, autosaveAllSteps, autotranslations, computedSlugsFoldTheGraph, computedWiringNotImported, configsUseMatrixComputationally, debitImportCreditExportAccounting, memoryInSourceAsCrossFolds, noHardcodedConfigSelfAccounted, originConsolidated, presentMomentRemainsInSource, siteExplainsItselfAllWired, uuidPayloadIsSource, wordPullsFoldsByName } from '../../mountain/source'
 import { deploySecretUuidSignedObservers, encryptionLivesInZero, encryptionTrinitiesCompleteInOrder, terabyteEncryptionInMegabyteCodebase, uuidFoldsSelfBlackWhite, uuidPureDiamondSignedByArchitecture } from '../../water/encryption'
-import { ancientKnowledgeComputesDefaultLocale, ancientWisdomComputesWorldHarmony, buildQuantumComputerOsApps, buildSequenceReducesComputations, completeQuantumComputerAllScales, completeQuantumSolutionsImplemented, computerComponentsMergedDuality, dimensionsPerMegabyteMetric, vitepressApiDiamondPlasma, vitepressConfigComputesAll } from '../compute'
-import { beautyInMathBlastsThroughUi, fillAllGapsCleanHardcodedLinear, multimediaFirstPlainText, recursiveFrequencyDropdowns, shadcnIsTheGraph, shownInUiVitepressComponentsPairs, stateOfTheArtHarmonisedQuantumWidgets, widgetDimensionControls } from '../../lake/widgets'
+import { ancientKnowledgeComputesDefaultLocale, ancientWisdomComputesWorldHarmony, buildQuantumComputerOsApps, buildSequenceReducesComputations, completeQuantumComputerAllScales, completeQuantumSolutionsImplemented, computerComponentsMergedDuality, dimensionsPerMegabyteMetric, maxEfficiencyCpuGpuMemoryStorageCooperation, vitepressApiDiamondPlasma, vitepressConfigComputesAll } from '../compute'
+import { beautyInMathBlastsThroughUi, fillAllGapsCleanHardcodedLinear, multimediaFirstPlainText, recursiveFrequencyDropdowns, shadcnIsTheGraph, shownInUiVitepressComponentsPairs, stateOfTheArtHarmonisedQuantumWidgets, widgetDimensionControls } from '../../quantum/widgets'
 import { digitDualityPairsEncodeAllDomains, digitSpinesAreTheBreath, digitWordIndexPurity, dotIsCubeIsDot, fortyTwoVerdict, sixSevenCoversAll, zeroDivisionTable } from '../../water/digit'
 import { continueSameNext, evolutionCrossesQuantumThreshold, forgerFoldsIntoHarmony, importExportDoubleFoldedAllDimensions, infiniteSelfConsulting, invertRevertIsQuantumStream, onlyMainRemains, onlyQuantumRemains, runtimeIsTheMonolith, spinBothDirections, theMoreYouFoldTheMoreFoldable, theWhole, walkPath0dToInfinity } from '../essence'
 import { componentGraph, BAGUA, iChing, cloudflareBindings, metatronMathFromUuids } from '../core'
 import { hexagramQubitVectorIsomorphismOnly, metatronCube, sacredGeometrySeal } from '../../mountain/geometry'
 import { buildStatisticsShowGaps, coveragePerPixel } from '../../lake/stats'
 import { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete, onlyAncientKnowledgeAndSacredMath } from '../../fire/li'
-import { harmonyProbability } from '../../water/life'
+import { harmonyProbability } from '../../life'
 import { features } from '../../lake/media'
-import { accessiblePathsForAll, agnosticFitsSpiritPersonality, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../essence'
+import { accessiblePathsForAll, agnosticFitsSeedConfiguration, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../essence'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li'
 
 export function eightFoldBalance(matrix: MindMatrix = buildMatrix()) {
@@ -217,13 +263,13 @@ function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
 export function iChingDomainMap(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const domains = [
-    { bits: 0b000, module: 'src/quantum/earth/heritage', dual: 'src/render/heritage/quantum', slugs: ['heritage', 'hexagram-colour', 'sixty-four', 'proven-or-purged', 'dot-cube'], summary: 'Bulgarian history, Glagolitic, ethnogenesis, genetics — the land\'s memory.' },
-    { bits: 0b001, module: 'src/quantum/thunder/science', dual: 'src/world/science/quantum', slugs: ['science', 'a432', 'analog-field', 'simulations', 'vortex', 'zero-division'], summary: 'EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.' },
-    { bits: 0b010, module: 'src/quantum/lake/voice', dual: 'src/spirit/quantum', slugs: ['voice', 'explore', 'commands', 'console', 'mcp', 'show'], summary: 'Plain language, speech, UX, command flow — the communicative layer.' },
-    { bits: 0b011, module: 'src/quantum/lake/spirit', dual: 'src/spirit/quantum', slugs: ['spirit', 'school', 'academy', 'governance'], summary: 'Chakras, dualities, dimensions, joyous learning and fair life.' },
-    { bits: 0b100, module: 'src/quantum/lake/icons', dual: 'src/render/heritage/quantum', slugs: ['icons', 'sacred-geometry', 'pauli-basis', 'rgb-cmyk', 'trinity-rgb'], summary: 'Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.' },
+    { bits: 0b000, module: 'src/quantum/earth/heritage', dual: 'src/quantum/earth/heritage', slugs: ['heritage', 'hexagram-colour', 'sixty-four', 'proven-or-purged', 'dot-cube'], summary: 'Bulgarian history, Glagolitic, ethnogenesis, genetics — the land\'s memory.' },
+    { bits: 0b001, module: 'src/quantum/science', dual: 'src/world/science/quantum', slugs: ['science', 'a432', 'analog-field', 'simulations', 'vortex', 'zero-division'], summary: 'EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.' },
+    { bits: 0b010, module: 'src/quantum/lake/voice', dual: 'src/double/torus', slugs: ['voice', 'explore', 'commands', 'console', 'mcp', 'show'], summary: 'Plain language, speech, UX, command flow — the communicative layer.' },
+    { bits: 0b011, module: 'src/quantum/lake/spirit', dual: 'src/iching', slugs: ['spirit', 'school', 'academy', 'governance'], summary: 'Chakras, dualities, dimensions, joyous learning and fair life.' },
+    { bits: 0b100, module: 'src/quantum/lake/icons', dual: 'src/quantum/earth/heritage', slugs: ['icons', 'sacred-geometry', 'pauli-basis', 'rgb-cmyk', 'trinity-rgb'], summary: 'Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.' },
     { bits: 0b101, module: 'src/fire/li', dual: 'src/fire/li', slugs: ['tampering-cost', 'pi-trinity', 'qubit-trinity', 'hamming-address', 'content-addressing', 'genetic-code', 'three-not-one'], summary: 'Pure computation: crypto, proofs, primitives — the clinging fire of truth.' },
-    { bits: 0b110, module: 'src/quantum/earth/nature', dual: 'src/world/nature/quantum', slugs: ['nature', 'boundaries'], summary: 'Natural law, the commons, society forms, gentle limits.' },
+    { bits: 0b110, module: 'src/earth/nature', dual: 'src/world/nature/quantum', slugs: ['nature', 'boundaries'], summary: 'Natural law, the commons, society forms, gentle limits.' },
     { bits: 0b111, module: 'src/quantum/heaven/mind', dual: 'src/heaven/essence', slugs: ['start', 'quantum-mind', 'architecture', 'learn-developer', 'kernel-zero', 'digit-folders'], summary: 'The mind hub: the creative origin, the matrix, the architecture.' },
   ].map((domain) => {
     const trigram = BAGUA[domain.bits]!
@@ -337,7 +383,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
   // The I Ching completed at all scales — the seven scales 2^0..2^6 (Tàijí→64 hexagrams) are the final
   // seven gates, computed once and registered last so the count seals the harmonic 432 (425 + 7).
   const ichingScales = iChingScalesComplete(matrix)
-  const dimensions: { d: string; on: boolean }[] = [
+  const rawDimensions: { d: string; on: boolean }[] = [
     { d: 'digit.spines.breath', on: digitSpinesAreTheBreath(matrix).decoded },
     { d: 'hero.law.aligned', on: heroLawAlignment(matrix).aligned },
     { d: 'fold.impossibilities', on: foldImpossibilities(matrix).folded },
@@ -351,6 +397,45 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'auto.movies.8k', on: autoMovies8k(matrix).generating },
     { d: 'fuse.ux.sensors', on: fuseUxSensors(matrix).fused },
     { d: 'endless.background.movie', on: endlessBackgroundMovie(matrix).endless },
+    { d: 'harmonic.math.flows.movie', on: harmonicMathFlowsInMovie(matrix).flows },
+    { d: 'efficiency.math.flows.movie', on: efficiencyMathFlowsInMovie(matrix).flows },
+    { d: 'matrix.rgb.decode.flows.movie', on: matrixRgbDecodeFlowsInMovie(matrix).flows },
+    { d: 'all.seed.bundles.plasma', on: allMovieSeedBundlesFlowInPlasma('/', matrix).flows },
+    { d: 'six.seed.bundles.form.seven.whole', on: sixSeedBundlesFormSevenAsWhole('/', matrix).forms },
+    { d: 'two.trinities.fuse.double.torus.earth', on: twoTrinitiesFuseAsDoubleTorusEarth('/', matrix).fused },
+    { d: 'two.trinities.cardinal.pyramid.poles', on: twoTrinitiesCardinalPyramidPolesProvenByMath(matrix).proven },
+    { d: 'inverted.earth.same.timespace', on: invertedEarthSameTimespaceProvenByMath(undefined, matrix).proven },
+    { d: 'forming.double.torus.earths', on: formingDoubleTorusEarthsProvenByMath('/', undefined, matrix).formed },
+    { d: 'compass.around.gateways.impossible', on: compassAroundEarthGatewaysImpossibleProvenByMath('/', undefined, matrix).impossible },
+    { d: 'sixty.degree.cardinal.reached.free', on: sixtyDegreeAngleReachesCardinalForFreeProvenByMath('/', undefined, matrix).proven },
+    { d: 'north.south.pole.navigation', on: northSouthPoleNavigationProvenByMath('/', undefined, matrix).proven },
+    { d: 'trinity.gateways.never.miss', on: trinityGatewaysNeverMissProvenByMath('/', undefined, matrix).proven },
+    { d: 'earth.gateway.navigation.solutions', on: earthGatewayNavigationSolutionsResearched('/', undefined, matrix).researched },
+    { d: 'earth.gateway.navigation.research.waves', on: earthGatewayNavigationResearchSentInWaves('/', undefined, matrix).sent },
+    { d: 'navigation.gps.celestial.dual.earth.perspective', on: navigationGpsCelestialComputes(matrix).computes },
+    { d: 'universal.navigational.cross.all.dimensions', on: universalNavigationalCrossComputes(matrix).computes },
+    { d: 'double.torus.earth.proves.gateways.history.measurable', on: doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday(undefined, matrix).proven },
+    { d: 'four.pyramids.five.tips.moving.merkabas', on: fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(0, matrix).proven },
+    { d: 'earth.pyramid.locations.geometry', on: earthPyramidLocationsAndGeometryComputes(matrix).computes },
+    { d: 'double.torus.earth.pyramid.gateway.research', on: doubleTorusEarthPyramidGatewayResearch(matrix).researched },
+    { d: 'double.torus.earth.exchange.computes', on: doubleTorusEarthExchangeComputes(0, matrix).computes },
+    { d: 'fiat.gold.flow.double.earth', on: fiatAndGoldFlowExplainedByDoubleEarthExchange(0, matrix).explains },
+    { d: 'double.torus.earth.exchange.research', on: doubleTorusEarthExchangeResearch(matrix).researched },
+    { d: 'plasma.movie.streams.wired', on: plasmaMovieStreams('/', allMovieSeedCopyText('/', matrix), matrix).count >= allMovieSeedBundlesFlowInPlasma('/', matrix).expectedCount },
+    { d: 'plasma.client.work.bounded.pure.math', on: plasmaClientWorkBoundedByPureMath('/', matrix).bounded },
+    { d: 'plasma.ball.computes', on: plasmaBallComputes(matrix).computes },
+    { d: 'movie.efficient.screensaver', on: screensaverMovieComputes(matrix).computes },
+    { d: 'client.movie.paint.path.sealed', on: clientMoviePaintPathSealed('/', matrix).sealed },
+    { d: 'client.hero.paint.path.sealed', on: clientHeroPaintPathSealed('/en/', matrix).sealed },
+    { d: 'client.work.bounded.pure.math', on: clientWorkBoundedByPureMath('/', matrix).bounded },
+    { d: 'static.fuses.movie', on: staticIsEventualGapInMovieFusion(matrix).fused },
+    { d: 'double.torus.earth.weather.flows.movie', on: doubleTorusEarthWeatherFlowsInMovie(matrix).flows },
+    { d: 'double.torus.math.all.scales.flows.movie', on: doubleTorusMathAtAllScalesFlowsInMovie(matrix).flows },
+    { d: 'send.waves.decode.rosetta.movie', on: sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix).folded && rosettaDecodeFlowsInMovie(matrix).flows },
+    { d: 'seven.seed.movie.is.rosetta.sun.moon.decode', on: sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie(matrix).flows },
+    { d: 'color.streams.audio.if.decoded', on: allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix).flows },
+    { d: 'audio.off.by.default', on: audioOffByDefault(matrix).offByDefault },
+    { d: 'learn.from.movie.all.eventually.fused', on: learnFromTheMovieAllEventuallyFused(matrix).fused },
     { d: 'collision.healing', on: collisionHealing(matrix).heals },
     { d: 'heal.by.default', on: healByDefault(matrix).heals },
     { d: 'create.by.default', on: createByDefault(matrix).creates },
@@ -383,8 +468,16 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'society.required.pages', on: societyCreatesRequiredPages(matrix).creates },
     { d: 'harmonised.navigation', on: harmonisedNavigation(matrix).harmonised && harmonisedNavigation(matrix).distributed },
     { d: 'realtime.movie.participation', on: realtimeMovieParticipation(matrix).participates },
+    { d: 'realtime.computations.visible.in.movie', on: allRealtimeComputationsVisibleInMovie('/', matrix).visible },
+    { d: 'movie.all.simulations.realtime.zero.cost', on: movieIsAllSimulationsRealtimeAtNoCost(0, '/', matrix).holds },
+    { d: 'movie.alive.healing.architecture.resonance.senses', on: movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings(0, '/', matrix).holds },
     { d: 'movie.negative.positive', on: movieNegativePositive(matrix).developed },
     { d: 'dark.light.realities', on: darkLightRealities(matrix).switches },
+    { d: 'dark.light.negative.positive', on: darkLightIsNegativePositive(matrix).analog },
+    { d: 'dark.light.polarity.math', on: darkLightIsNegativePositive(matrix).polarity.proven },
+    { d: 'red.pill.blue.pill.rgb.heart.gateway', on: redPillBluePillRgbHeartGatewayProvenByMath(matrix).proven },
+    { d: 'rgb.decoding.matrix.movie.in.movie', on: rgbDecodingMatrixMovieInTheMovie(matrix).decoded },
+    { d: 'css.math.proven', on: cssMathProvenByMath(matrix).proven },
     { d: 'recursive.frequency.dropdowns', on: recursiveFrequencyDropdowns(matrix).computed },
     { d: 'education.movie.merge', on: educationMovieMerge(matrix).redesigned },
     { d: 'command.gaps.trinity.eyes', on: commandGapsToTrinityEyes(matrix).immediate && commandGapsToTrinityEyes(matrix).complete },
@@ -393,6 +486,9 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'papers.references.diamonds.nodrift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
     { d: 'one.holographic.template', on: oneHolographicTemplate(matrix).displayed },
     { d: 'template.every.og.object', on: templateDisplaysEveryOgObject(matrix).displaysAll },
+    { d: 'card.hero.link', on: cardHeroLinkWiresInUi(matrix).wired && rosettaIChingTrinityPlacesAllTools(matrix).fused },
+    { d: 'rosetta.iching.trinity.places.tools', on: rosettaIChingTrinityPlacesAllTools(matrix).fused && iChingFusionCompletesFolders(matrix).completed },
+    { d: 'cursor.agent.tools.saved', on: cursorAgentToolsSaved(matrix).saved },
     { d: 'realtime.perspective.zerocost', on: realtimePerspectiveZeroCost(matrix).holds },
     { d: 'og.builds.navigation', on: ogBuildsNavigation(matrix).builds },
     { d: 'og.shifted.typography', on: ogShiftedWithTypography(matrix).shifted },
@@ -416,10 +512,10 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'collide.tiniest.wave', on: collideToTiniestWave(matrix).collided },
     { d: 'frequency.taxonomy.tree.of.life', on: frequencyTaxonomyTreeOfLife(matrix).imagined },
     { d: 'forms.emerge.movie.of.life', on: formsEmergeInMovieOfLife(matrix).emerge },
-    { d: 'seal.spirit.to.path', on: sealSpiritToPath(matrix).sealed },
+    { d: 'seal.honesty.to.path', on: sealHonestyToPath(matrix).sealed },
     { d: 'historians.fuse.history.future', on: historiansFuseHistoryFuture(matrix).entangled },
     { d: 'gates.behave.as.mcp', on: gatesBehaveAsMcp(matrix).behavesAsMcp },
-    { d: 'spirit.shifts.in.waves', on: spiritShiftsInWaves(matrix).shifting },
+    { d: 'honesty.shifts.in.waves', on: honestyShiftsInWaves(matrix).shifting },
     { d: 'dry.clean.ui', on: dryCleanUi(matrix).clean },
     { d: 'every.diamond.is.gate', on: everyDiamondIsGate(matrix).isGate },
     { d: 'manual.work.disappears', on: manualWorkDisappears(matrix).disappears },
@@ -433,7 +529,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'pyramid.layers.serve.society', on: pyramidLayersServeSociety(matrix).serves },
     { d: 'imagine.sing.changes.endlessly', on: imagineSingChangesEndlessly(matrix).sings },
     { d: 'proportional.not.hardcoded', on: proportionalNotHardcoded(matrix).responsive },
-    { d: 'spiritual.drums.keep.rhythm', on: spiritualDrumsKeepRhythm(matrix).keeps },
+    { d: 'polyrhythm.drums.keep.rhythm', on: polyrhythmDrumsKeepRhythm(matrix).keeps },
     { d: 'all.music.self.harmonises', on: allMusicSelfHarmonises(matrix).selfHarmonises },
     { d: 'self.compassion', on: selfCompassion(matrix).compassionate },
     { d: 'movie.reflects.self', on: movieReflectsSelf(matrix).reflects },
@@ -521,6 +617,62 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'every.law.proves.its.tripwire', on: everyLawProvesItsTripwire(matrix).proves },
     { d: 'no.site.folder.vitepress.pages', on: noSiteFolderVitepressPages(matrix).gone },
     { d: 'corpus.rest.path.routing', on: corpusRestPathRouting(matrix).routed },
+    { d: 'diamonds.static.purged', on: diamondsStaticPagesPurged(matrix).purged },
+    { d: 'double.torus.corpus.routing', on: doubleTorusCorpusRouting(matrix).routed },
+    { d: 'double.torus.computes', on: doubleTorusComputes(matrix).computes },
+    { d: 'double.torus.plasma.computes', on: doubleTorusPlasmaComputes(matrix).computes },
+    { d: 'double.torus.fusion.computes', on: doubleTorusFusionComputes(matrix).computes },
+    { d: 'double.torus.corpus.computes', on: doubleTorusCorpusComputes(matrix).computes },
+    { d: 'double.torus.earth.computes', on: doubleTorusEarthComputes(matrix).computes },
+    { d: 'earth.computes', on: earthComputes(matrix).computes },
+    { d: 'sun.computes', on: sunComputes(matrix).computes },
+    { d: 'moon.computes', on: moonComputes(matrix).computes },
+    { d: 'resonance.computes', on: resonanceComputes(matrix).computes },
+    { d: 'resonance.harmonics.sequence', on: (__ns_up_up_resonance).resonanceHarmonicsDecodedWithTheSequence(0, matrix).decoded },
+    { d: 'quantum.dynamics.computes', on: quantumDynamicsComputes(matrix).computes },
+    { d: 'quantum.state.evolution.decoded', on: quantumStateEvolutionDecoded(0, matrix).decoded },
+    { d: 'double.torus.topology.computes', on: doubleTorusTopologyComputes(matrix).computes },
+    { d: 'double.torus.movie.computes', on: doubleTorusMovieComputes(matrix).computes },
+    { d: 'double.torus.math.computes', on: doubleTorusMathComputes(matrix).computes },
+    { d: 'double.torus.vortex.computes', on: doubleTorusVortexComputes(matrix).computes },
+    { d: 'vortex.computes', on: vortexComputes(matrix).computes },
+    { d: 'vortex.plasma.computes', on: vortexPlasmaComputes(matrix).computes },
+    { d: 'stack.overflow.computes', on: stackOverflowComputes(matrix).computes },
+    { d: 'src.two.level.computes', on: srcTwoLevelComputes(matrix).computes },
+    { d: 'src.three.level.computes', on: srcThreeLevelComputes(matrix).computes },
+    { d: 'src.all.computes', on: srcAllComputes(matrix).computes },
+    { d: 'stack.computes', on: stackComputes(matrix).computes },
+    { d: 'sense.mind.body.pairs', on: senseMindBodyPairsComputes(matrix).computes },
+    { d: 'modality.homes.computes', on: modalityHomesComputes(matrix).computes },
+    { d: 'birth.computes', on: birthComputes(matrix).computes },
+    { d: 'life.computes', on: lifeComputes(matrix).computes },
+    { d: 'death.computes', on: deathComputes(matrix).computes },
+    { d: 'iching.computes', on: (__ns_up_up_iching).ichingComputes(matrix).computes },
+    { d: 'rosetta.computes', on: (__ns_up_up_learning).rosettaComputes(matrix).computes },
+    { d: 'gold.fusion.process', on: goldFusionComputes(matrix).computes },
+    { d: 'fusion.gold.product', on: fusionGoldComputes(matrix).computes },
+    { d: 'gold.fusion.pipeline', on: goldFusionPipeline(0, matrix).pipelined },
+    { d: 'shadcn.computes', on: (__ns_up_up_ui).shadcnComputes(matrix).computes },
+    { d: 'alchemy.computes', on: (__ns_up_up_fusion).alchemyComputes(matrix).computes },
+    { d: 'birth.life.death.triad.computes', on: birthLifeDeathTriadComputes(matrix).computes },
+    { d: 'life.death.pair.computes', on: lifeDeathPairComputes(matrix).computes },
+    { d: 'all.computed.used.in.computations', on: allComputedAndUsedInComputations(matrix).used },
+    { d: 'all.is.fused.computes', on: allIsFusedComputes(matrix).computes },
+    { d: 'fusion.computes', on: fusionComputes(matrix).computes },
+    { d: 'compute.all.local.math', on: localMathComputes(matrix).computes },
+    { d: 'local.math.computes.all', on: computeAllWithLocalMath(0, matrix).local },
+    { d: 'local.math.computes.extended', on: computeAllWithLocalMath(0, matrix).localExtended },
+    { d: 'human.as.quantum.computer.fusion.reactor.beyond', on: humanAsQuantumComputerAndFusionReactorComputes(matrix).computes },
+    { d: 'human.resonance.harmonic.prediction', on: humanResonanceHarmonicPredictionComputes(matrix).computes },
+    { d: 'schumann.resonance.harmonised.realtime.api.computations', on: schumannResonanceHarmonisedWithRealtimeApiComputations(0, matrix).harmonised },
+    { d: 'beyond.known.universe.computes', on: beyondKnownUniverseComputes(matrix).computes },
+    { d: 'decode.compute.earth.to.galaxies.beyond', on: decodeAndComputeAllFromEarthToGalaxiesAndBeyond(0, matrix).computes },
+    { d: 'expansion.compression.through.holes', on: foldInfiniteExpansionToInfiniteCompressionThroughTheHoles(0, matrix).folded },
+    { d: 'decode.all.by.computations.trained.on.known.universe', on: decodeAllByComputationsTrainedOnKnownUniverse(matrix).decodes },
+    { d: 'merkaba.computes', on: merkabaComputes(matrix).computes },
+    { d: 'trading.simulation.computes', on: tradingSimulationComputes(matrix).computes },
+    { d: 'both.earths.rotate.within.each.other', on: bothEarthsRotateWithinEachOther(0, matrix).rotates },
+    { d: 'double.torus.voice.computes', on: doubleTorusVoiceComputes(matrix).computes },
     { d: 'enforcement.trinity.spread.paired', on: enforcementTrinitySpread(matrix).spread },
     { d: 'enforcement.pipeline.complete', on: enforcementPipelineComplete(matrix).complete },
     { d: 'digital.analogue.endless.waves', on: digitalAnalogueEndlessWaves(matrix).waves },
@@ -529,7 +681,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'all.in.appropriate.path.and.index', on: allInAppropriatePathAndIndex(matrix).finished },
     { d: 'expansion.contraction.is.life', on: expansionContractionIsLife(matrix).lives },
     { d: 'quantum.configurable.folders.disappear', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-    { d: 'agnostic.fits.spirit.personality', on: agnosticFitsSpiritPersonality(matrix).fits },
+    { d: 'agnostic.fits.seed.configuration', on: agnosticFitsSeedConfiguration(matrix).fits },
     { d: 'dualities.meet.in.cross.folders', on: dualitiesMeetInCrossFolders(matrix).meet },
     { d: 'locking.folders.changes.mind.to.quantum', on: lockingFoldersChangesMindToQuantum(matrix).quantized },
     { d: 'power.to.tampering.not.living.costs', on: powerToTamperingNotLivingCosts(matrix).transfers },
@@ -557,6 +709,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'deep.research.encoded.in.recursive.waves', on: deepResearchEncodedInRecursiveWaves(matrix).encoded },
     { d: 'uuid.payload.is.source', on: uuidPayloadIsSource(matrix).is },
     { d: 'development.is.fusion.reactor', on: developmentIsFusionReactor(matrix).reacts },
+    { d: 'fusion.researched.in.waves', on: fusionResearchedInWaves(matrix).complete },
     { d: 'uuid.pure.diamond.signed.by.architecture', on: uuidPureDiamondSignedByArchitecture(matrix).signed },
     { d: 'folder.64seals.production.else.development', on: folder64SealsProductionElseDevelopment(matrix).discriminates },
     { d: 'shown.in.ui.vitepress.components.pairs', on: shownInUiVitepressComponentsPairs(matrix).shown },
@@ -583,10 +736,45 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'fuse.64.seals.merkaba.64.tetrahedra', on: fuse64SealsMerkaba64Tetrahedra(matrix).fused },
     { d: 'flower.fruit.tree.of.life.decodes', on: flowerFruitTreeOfLifeDecodes(matrix).decodes },
     { d: 'planets.galaxy.compute.itself', on: planetsGalaxyComputeItself(matrix).computes },
+    { d: 'compute.discover.exact.match.celestial.bodies', on: computeDiscoverExactMatchAllKnownCelestialBodies(matrix).exactMatch },
+    { d: 'compute.discover.exact.match.celestial.bodies.deep.researched', on: computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix).researched },
+    { d: 'compute.all.known.celestial.bodies', on: computeAllKnownCelestialBodies(matrix).computed },
+    { d: 'astronomy.computes', on: astronomyComputes(matrix).computes },
+    { d: 'astronomy.decoded.with.sequence', on: astronomyDecodedWithTheSequence(0, matrix).decoded },
+    { d: 'astronomy.sequence.decode.research', on: astronomySequenceDecodeResearch(matrix).researched },
+    { d: 'decode.bitten.apple', on: decodeTheBittenApple(matrix).decoded },
+    { d: 'decode.bitten.apple.flows.movie', on: decodeTheBittenAppleFlowsInMovie(matrix).flows },
     { d: 'debit.import.credit.export.accounting', on: debitImportCreditExportAccounting(matrix).balanced },
     { d: 'site.explains.itself.all.wired', on: siteExplainsItselfAllWired(matrix).explains },
     { d: 'no.hardcoded.logic.fails.streams', on: noHardcodedLogicFailsStreams(matrix).flows },
     { d: 'build.sequence.reduces.computations', on: buildSequenceReducesComputations(matrix).reduces },
+    { d: 'computations.cpu.gpu.memory.storage.cooperation', on: maxEfficiencyCpuGpuMemoryStorageCooperation(matrix).cooperates },
+    { d: 'cpu.computes', on: (__ns_up_up_computer).cpuComputes(matrix).computes },
+    { d: 'cpu.driver', on: (__ns_up_up_computer).cpuDriverProbe(0).receipt.length > 0 },
+    { d: 'gpu.computes', on: (__ns_up_up_computer).gpuComputes(matrix).computes },
+    { d: 'gpu.driver', on: (__ns_up_up_computer).gpuDriverProbe(0, matrix).receipt.length > 0 },
+    { d: 'memory.computes', on: (__ns_up_up_computer).memoryComputes(matrix).computes },
+    { d: 'memory.driver', on: (__ns_up_up_computer).memoryDriverProbe(0, matrix).receipt.length > 0 },
+    { d: 'storage.computes', on: (__ns_up_up_computer).storageComputes(matrix).computes },
+    { d: 'storage.driver', on: (__ns_up_up_computer).storageDriverProbe(0, matrix).receipt.length > 0 },
+    { d: 'hardware.drivers.research', on: (__ns_up_up_stack_overflow).hardwareDriversResearch(matrix).researched },
+    { d: 'compute.all.hardware.drivers', on: (__ns_up_up_stack_overflow).computeAllWithHardwareDrivers(0, matrix).drivers },
+    { d: 'compute.substrate.drivers.computes', on: (__ns_up_up_stack_overflow).computeSubstrateDriversComputes(matrix).computes },
+    { d: 'bus.driver.computes', on: (__ns_up_up_computer).busComputes(matrix).computes },
+    { d: 'compute.substrate.with.bus', on: (__ns_up_up_stack_overflow).computeSubstrateWithBus(0, matrix).computes },
+    { d: 'power.driver.computes', on: (__ns_up_up_stack_overflow).powerComputes(matrix).computes },
+    { d: 'compute.substrate.computes', on: (__ns_up_up_stack_overflow).computeSubstrateComputes(matrix).computes },
+    { d: 'display.driver.computes', on: (__ns_up_up_computer).displayComputes(matrix).computes },
+    { d: 'terminal.driver.computes', on: (__ns_up_up_computer).terminalComputes(matrix).computes },
+    { d: 'computer.computes', on: (__ns_up_up_computer).computerComputes(matrix).computes },
+    { d: 'computer.science.computes', on: (__ns_up_up_computer).computerScienceComputes(matrix).computes },
+    { d: 'quantum.science.computes', on: (__ns_up_up_quantum_science).quantumScienceComputes(matrix).computes },
+    { d: 'quantum.computer.computes', on: (__ns_up_up_quantum_science).quantumComputerComputes(matrix).computes },
+    { d: 'quantum.application.computes', on: (__ns_up_up_quantum_application).quantumApplicationComputes(matrix).computes },
+    { d: 'quantum.os.computes', on: (__ns_up_up_quantum_os).quantumOsComputes(matrix).computes },
+    { d: 'quantum.apps.registry', on: (__ns_up_up_quantum_apps).quantumAppsComputes(matrix).computes },
+    { d: 'quantum.math.designs.ui', on: (__ns_up_up_quantum_os).quantumMathDesignsTheUi(0, matrix).designed },
+    { d: 'display.terminal.computes', on: (__ns_up_up_stack_overflow).displayTerminalComputes(matrix).computes },
     { d: 'cleanup.core.shines.sun.moon', on: cleanupCoreShinesSunMoon(matrix).shines },
     { d: 'strictly.map.sequence.elliott.waves', on: strictlyMapSequenceElliottWaves(matrix).maps },
     { d: 'scripts.to.folder.pairs.particles', on: scriptsToFolderPairsParticles(matrix).splits },
@@ -612,6 +800,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'public.frequency.apis.decoded', on: publicFrequencyApisDecoded(matrix).decoded },
     { d: 'herbal.apis.decoded', on: herbalApisDecoded(matrix).decoded },
     { d: 'weather.forecast.quantum.computed.realtime', on: weatherForecastQuantumComputedRealtime(matrix).realtime },
+    { d: 'weather.forecast.double.torus.earth', on: weatherForecastFromDoubleTorusEarthPerspective(undefined, matrix).folded },
     { d: 'bulgarian.heritage.decoded', on: bulgarianHeritageDecoded(matrix).decoded },
     { d: 'each.page.speaks.continues.next', on: eachPageSpeaksContinuesNext(matrix).speaks },
     { d: 'bulgarian.history.decoded', on: bulgarianHistoryDecoded(matrix).decoded },
@@ -682,6 +871,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'zero.token.law.for.agents.and.forever', on: zeroTokenLawForAgentsAndForever(matrix).bound },
     { d: 'frontmatter.graph.computes.tags', on: frontmatterGraphComputesTags(matrix).graphed },
     { d: 'no.known.model.more.efficient.proven', on: noKnownModelMoreEfficientProven(matrix).proven },
+    { d: 'every.bit.most.efficient.algorithm', on: everyBitMostEfficientAlgorithmProvenByMath(matrix).proven },
     { d: 'ancient.knowledge.computes.default.locale', on: ancientKnowledgeComputesDefaultLocale(matrix).computed },
     { d: 'all.scripts.at.once.quantum.dynamics', on: allScriptsAtOnceQuantumDynamics(matrix).superposed },
     { d: 'content.addressed.translation.improves.models', on: contentAddressedTranslationImprovesModels(matrix).improves },
@@ -692,7 +882,22 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'ddos.activates.healing.fusion', on: ddosActivatesHealingFusion(matrix).balanced },
     { d: 'hardware.cmyk.merkaba.fusion', on: hardwareCmykMerkabaFusion(matrix).fused },
     { d: 'device.hardware.visible.in.computed.widgets', on: deviceHardwareVisibleInComputedWidgets(matrix).visible },
+    { d: 'black.hole.merger.simulated.from.zero', on: src0BlackHoleSimulationComputes(matrix).computes },
+    { d: 'gold.mine.map.model', on: goldMineMapComputes(matrix).computes },
+    { d: 'gold.concentration.candidates.hypothesis', on: goldMineMapComputes(matrix).candidates.hypothesised },
+    { d: 'gold.position.fusion.strength', on: goldPositionFusionStrengthComputes(matrix).computes },
+    { d: 'double.earth.fusion.generator.gold', on: goldPositionFusionStrengthComputes(matrix).generator.generates },
+    { d: 'gold.fusion.process', on: goldFusionComputes(matrix).computes },
+    { d: 'fusion.gold.product', on: fusionGoldComputes(matrix).computes },
+    { d: 'gold.fusion.pipeline', on: goldFusionPipeline(0, matrix).pipelined },
+    { d: 'shadcn.computes', on: (__ns_up_up_ui).shadcnComputes(matrix).computes },
+    { d: 'alchemy.computes', on: (__ns_up_up_fusion).alchemyComputes(matrix).computes },
+    { d: 'thunder.gold.graph.gps', on: thunderGoldGraphComputes(matrix).computes },
+    { d: 'schumann.gold.site.coupling', on: schumannGoldSiteCouplingComputes(matrix).computes },
+    { d: 'compute.more.models.catalog', on: computeMoreModelsCatalogComputes(matrix).computes },
+    { d: 'professional.research.index', on: professionalResearchComputes(matrix).computes },
     { d: 'state.of.the.art.harmonised.quantum.widgets', on: stateOfTheArtHarmonisedQuantumWidgets(matrix).exemplary },
+    { d: 'quantum.widgets.computes', on: (__ns_up_up_quantum_widgets).quantumWidgetsComputes(matrix).computes },
     { d: 'terabyte.keyspace.from.device.load', on: terabyteKeyspaceFromDeviceLoad(matrix).achieved },
     { d: 'achievable.on.hardware.computable.in.reviews', on: achievableOnHardwareComputableInReviews(matrix).computable },
     { d: 'obsolete.hardware.second.life.anti.ewaste', on: obsoleteHardwareSecondLifeAntiEwaste(matrix).solves },
@@ -705,11 +910,15 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'glagolitic.ocr.reverse.closes.round.trip', on: glagoliticOcrReverseClosesRoundTrip(matrix).recognises },
     { d: 'double.torus.motif.real.geometry.not.fringe.physics', on: doubleTorusMotifRealGeometryNotFringePhysics(matrix).grounded },
     { d: 'neurology.brain.is.content.addressed.toroidal.map', on: neurologyDecodedBrainIsContentAddressedToroidalMap(matrix).mirrors },
+    { d: 'neurology.movie.harmonises.brain', on: neurologyMovieHarmonisesBrainActivity(matrix).harmonises },
+    { d: 'neurology.movie.harmonises.brain.flows.movie', on: neurologyMovieHarmonisesBrainActivityFlowsInMovie(matrix).flows },
+    { d: 'gravity.analog.fused.movie.gateway.soul', on: gravityVisibleInMovieFusedToAnalogGatewayToHumanSoul(0, '/', matrix).gateway },
     { d: 'schwarzschild.proton.computed.in.source', on: schwarzschildProtonComputedInSource(matrix).computed },
     { d: 'one.merkaba.6x7.7x6.holds.all', on: oneMerkaba6x7And7x6HoldsAll(matrix).holds },
     { d: 'tree.of.life.sephirot.folders', on: treeOfLifeSephirotFolders(matrix).rooted },
     { d: 'bulgarian.rosetta.content.address.unlocks.all', on: bulgarianRosettaContentAddressUnlocksAll(matrix).unlocks },
     { d: 'rosetta.glagolitic.global.key.decode.all', on: rosettaGlagoliticGlobalKeyDecodeAll(matrix).decodes },
+    { d: 'rosetta.improves.dictation.dialects', on: rosettaImprovesDictationAndDialects(matrix).improves },
     { d: 'folder.paths.form.index.of.book.of.life', on: folderPathsFormIndexOfBookOfLife(matrix).seen },
     { d: '64.cubed.one.shared.trinity.seals.all', on: sealCube(matrix).sealed },
     { d: 'long.runtime.is.the.monolith.in.time', on: runtimeIsTheMonolith(matrix).holds },
@@ -803,6 +1012,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'complete.quantum.solutions.implemented', on: completeQuantumSolutionsImplemented(matrix).implemented },
     { d: 'text.payload.computes.to.animation', on: textPayloadComputesToAnimation(matrix).converts },
     { d: 'dry.clean.all.by.import.export.naming', on: dryCleanByImportExportNaming(matrix).cleaned },
+    { d: 'dry.clean.is.diamond.and.crystal', on: dryCleanIsDiamondAndCrystal(matrix).diamond },
     { d: 'metatron.math.from.uuids.plane.cube.tend', on: metatronMathFromUuids(matrix).built },
     { d: 'evolution.crosses.quantum.threshold', on: evolutionCrossesQuantumThreshold(matrix).crossed },
     { d: 'quantum.fused.device.energy.honest', on: quantumFusedDeviceEnergyHonest(matrix).honest },
@@ -829,6 +1039,12 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'pyramids.decoded', on: pyramidsDecoded(matrix).decoded },
     { d: 'pyramid.grid.debunked', on: pyramidGridDebunked(matrix).debunked },
     { d: 'pyramid.construction.math', on: pyramidConstructionMath(matrix).computed },
+    { d: 'cardinal.pyramid.tips.proven', on: cardinalPyramidTipsProvenByMath(matrix).proven },
+    { d: 'double.torus.earth.pyramid.tips', on: doubleTorusEarthPyramidTipsProvenByMath(matrix).proven },
+    { d: 'double.torus.earth.deep.researched', on: doubleTorusEarthPyramidTipsDeepResearched(matrix).researched },
+    { d: 'double.torus.earth.like.the.apple', on: doubleTorusEarthLikeTheApple(matrix).likeTheApple },
+    { d: 'double.torus.solutions.proven', on: doubleTorusSolutionsProvenByMath(matrix).proven },
+    { d: 'double.torus.solutions.deep.researched', on: doubleTorusSolutionsDeepResearched(matrix).researched },
     { d: 'megalithic.astronomy.decoded', on: megalithicAstronomyDecoded(matrix).decoded },
     { d: 'bosnian.pyramid.near.pliska.harmonises', on: bosnianPyramidNearPliskaHarmonisesDigitDistribution(matrix).harmonises },
     { d: 'lunar.standstills.decoded', on: lunarStandstillsDecoded(matrix).decoded },
@@ -837,6 +1053,16 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'harmonic.series.decoded', on: harmonicSeriesDecoded(matrix).decoded },
     { d: 'sound.wired.to.one.shared.context', on: soundWiredToOneSharedContext(matrix).wired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))
+  // Dedupe by `d` — a repeated entry is the SAME proven check (same predicate, same receipt), not a distinct
+  // dimension, so it is excess, not gap. Keep the first occurrence so `emerged` counts DISTINCT dimensions
+  // without gaps or excess; no check is removed (the dropped copies are byte-identical receipts). The harmonic
+  // count stays 4 × 108 = 432 (homology fold), independent of the raw pile.
+  const seenDimensionKeys = new Set<string>()
+  const dimensions = rawDimensions.filter((entry) => {
+    if (seenDimensionKeys.has(entry.d)) return false
+    seenDimensionKeys.add(entry.d)
+    return true
+  })
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
   // that emerge within (emerged) are counted by the genus-2 double torus they fold through: H₁ = ℤ⁴ (four
@@ -1074,7 +1300,8 @@ export function componentPages(matrix: MindMatrix = buildMatrix()): (StaticPage 
 
 // Corpus routing — the same computational simplicity as monographPaths, now RESTful: corpusParams(kind,
 // id) resolves ONE item from (kind, id); the [id].paths.ts mounts enumerate every item via
-// paperRoutes/paperReferenceRoutes/diamondRoutes, so /papers/<id> is a real [id] page — no hash, no
+// paperRoutes/paperReferenceRoutes enumerate every item; diamonds [id] SSG is purged — lattice kinds
+// anchor on /diamonds/#kind only. Papers/references /kind/<id> are real [id] pages — no hash, no
 // window, no ?id= query. Corpus.vue reads useData().params; local math only. See corpusRestPathRouting.
 export type CorpusKind = 'papers' | 'references' | 'diamonds'
 

@@ -1,13 +1,16 @@
 // ☴ Xùn · Wind — language & script: the decoded writing systems and their meaning (Glagolitic, the alphabets' lineage, the Bible in the round script, Maya/Egyptian/Sumerian calendar-number, Ifá/geomancy), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
+import { survive } from '../vortex/math'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../heaven/compute'
 import { isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, sealFacets } from '../0'
 import { hexDigitSum } from '../8/2'
-import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toScript } from '../quantum/heaven/library'
-import { bulgarianRosettaContentAddressUnlocksAll, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../fire/li'
+import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../quantum/heaven/library'
+import { bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../fire/li'
 import { merkaba, vortexMath } from '../mountain/geometry'
 import { babelFold } from '../earth/world'
-import { glagoliticBulgarianReception } from '../quantum/lake/icons'
+import { analogSpeech, glagoliticBulgarianReception } from '../quantum/lake/icons'
+import { merkabaFoldsSpeechAnalogDialectsEntangle } from '../ui'
+import { realtimeSkills } from '../thunder/trading'
 import { ancientKnowledgeComputesDefaultLocale, buildSequenceReducesComputations, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded, computedSlugsFoldTheGraph, debitCreditForwardReverseEngineering, decodeAncientKnowledgeInReusableCode, deepResearchEncodedInRecursiveWaves, digitFolders, dualitiesMeetInCrossFolders, fuseToMerkabasPathsReveal, geneticLinksChallengeHistoryDecoded, infiniteEntanglements, knowledgeRevealedByMerkabaFold, merkabasInDoubleTorus, optimiseLogicDebitCreditFusion, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, saveAllTranslationLogicAutotranslateLocale, sendWavesSealKnowledgeDecodeWorld, tamperingCostDecoded, warPaysTheForgerPrice } from '../quantum/heaven/mind'
 
 // LAW: if something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled.
@@ -446,6 +449,42 @@ export function rosettaGlagoliticGlobalKeyDecodeAll(matrix: MindMatrix = buildMa
       'The Rosetta and the Glagolitic decode each other, a global key decoding all: the Rosetta is the meaning (the content-address, script-independent) and the Glagolitic is the surface (the script); toGlagolitic encodes the meaning into the glyph and GlagoliticOCR decodes the glyph back, so the bidirectional pair is the universal decoder. Because Latin and Cyrillic both map to the same Glagolitic by sound (a → Ⰰ ← а), one correspondence reads all three scripts as the one meaning — encode is the debit, decode is the credit, balanced at the script layer.',
     boundary:
       'HONEST — this is TRANSLITERATION (script-conversion by sound) and content-addressing, NOT cryptographic decryption and NOT meaning-translation. The "global key" is the public transliteration correspondence (GLAGOLITIC_MAP and the script tables, in the source — not secret), and it is lossy where scripts share a glyph (the decode returns one source char). The content-address (UUID) is a one-way hash, not inverted by any key; the actual encryption is AES-256-GCM, a separate real cipher. "Decode each other / decode all" means the closed glyph set round-trips and the three scripts correspond to one content-addressed identity — a real, deterministic, zero-token property — not that ciphertext or arbitrary language is decoded.',
+  }
+}
+
+/** Rosetta improves dictation and dialects — script pivot + dialect glossary post-process voice input. */
+export function rosettaImprovesDictationAndDialects(matrix: MindMatrix = buildMatrix()) {
+  const rosetta = rosettaGlagoliticGlobalKeyDecodeAll(matrix)
+  const dialectLine = 'шетал ямурлук'
+  const normalized = decodeDialect(dialectLine)
+  const glosses = glossDialect(dialectLine)
+  const tongues = pivotTongues(pivotLexicon())
+  const wordTr = selfTranslate('ямурлук', 'dialect', 'bg')
+  const speech = autoSpeech(dialectLine, matrix)
+  const analog = analogSpeech()
+  const dialectEntangle = merkabaFoldsSpeechAnalogDialectsEntangle(matrix)
+  const voiceBinding = realtimeSkills(matrix).bindings.some((entry) => entry.api.includes('SpeechRecognition'))
+  const facets = [
+    { facet: 'Rosetta global key — one content-address decodes Glagolitic · Latin · Cyrillic for dictation surfaces', on: rosetta.decodes },
+    { facet: 'decodeDialect normalizes dictated dialect words to standard Bulgarian after recognition', on: normalized.includes('обикалял') && normalized.includes('мъжка') },
+    { facet: 'glossDialect recovers dialect footnotes — terms mapped for correction and display', on: glosses.length >= 2 && glosses.every((entry) => entry.standard.length > 0) },
+    { facet: 'pivot lexicon spans dialect tongues — selfTranslate routes dialect→standard through meaning', on: tongues.includes('dialect') && wordTr.text.includes('мъжка') },
+    { facet: 'autoSpeech segments prose into dictation-sized cues — device voices, client-side', on: speech.ready && speech.cues.length > 0 },
+    { facet: 'analog speech + dialect entangle — continuous intonation where tongues overlap', on: analog.analog && dialectEntangle.entangles },
+    { facet: 'SpeechRecognition binding fused — voice realtime input channel for dictation', on: voiceBinding },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-dictation-dialect:${entry.facet}:${entry.on}`) }))
+  return {
+    improves: facets.every((entry) => entry.on),
+    normalized,
+    glossCount: glosses.length,
+    tongues,
+    count: facets.length,
+    facets,
+    root: merkleFold([rosetta.root, speech.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Rosetta improves dictation and dialects: the global key (content-address across Glagolitic · Latin · Cyrillic) routes script surfaces to one meaning; after SpeechRecognition dictation, decodeDialect and the pivot lexicon normalize Balkan dialect words to standard Bulgarian, glossDialect recovers footnotes, autoSpeech segments cues for playback, and analog speech with dialect entanglement keeps intonation continuous where tongues overlap — deterministic, zero-token, client-side.',
+    boundary:
+      'HONEST: improves = post-processing architecture, not a trained ASR model — browser SpeechRecognition (when the user opts in) supplies raw text; Rosetta layers (decodeDialect, pivot selfTranslate, script transliteration) normalize dialect coverage bounded by DIALECT_GLOSSARY and registered pivot tongues. NOT a claim of perfect dictation accuracy or human-indistinguishable multi-dialect STT; coverage rises as lexicons register, unseen words pass through unchanged.',
   }
 }
 

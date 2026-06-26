@@ -1,12 +1,13 @@
 // ☴ Xùn · Wind — the decode method: how knowledge is decoded (research↔verify waves, legend-vs-documented, the decode pipeline). Barrel-routed; folds.ts back-imports the gate folds.
+import { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
+import { survive } from '../../vortex/math'
 import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { digitalRoot } from '../../9/1'
-import { foldPair, isUuid, merkleFold, toUuid } from '../../0'
+import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
+import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, yinYang } from '../../quantum/lake/icons'
-import { skillAtoms } from '../../learning'
+import { decodeKnowledge, skillAtoms } from '../../learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { ancientTech, calligraphyStroke, chess358, glagolitic, goldenRatio, metatronsCube, tightenProse, universalLanguage } from '../../fire/li'
 import { astrology, babelFold } from '../../earth/world'
@@ -14,13 +15,25 @@ import { piMusic } from '../../lake/music'
 import { piComputedNotHardcoded } from '../../water/digit'
 import { ancientNumberSystems } from '../../fire/li'
 import { societyCreatesRequiredPages } from '../../earth/governance'
-import { osCompletesItselfWaves, sendWavesSealKnowledgeDecodeWorld } from '../waves'
+import { osCompletesItselfWaves, sendWavesSealKnowledgeDecodeWorld, completeAllInWaves, saveSkillsComputeImplementWaves } from '../waves'
 import { streamSelfComplete } from '../../fire/diamonds'
-import { allInAppropriatePathAndIndex } from '../../heaven/everything'
 import { alphabetsDecoded, entangledScriptLanguageGene, glagoliticDecodedToAncientCore, useGlagolitsaForIcons } from '../../language'
+import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../language'
 import { toGlagolitic } from '../../quantum/heaven/library'
 import { publicFrequencyApisDecoded } from '../../fire/physics'
+import { taxonomyIcons } from '../../fire/li'
+import { publicApiFusion, publicTransportFusion, socialFusion, travelFusion } from '../../fusion'
+import { globalApis } from '../../lake/stats'
+import { publicServices } from '../../earth/civilisation'
+import { blockchainFusion } from '../../water/crypto'
+import { solutions, quantumSolutions } from '../../lake/ledger'
+import { professionals } from '../../site'
+import { realtimeSkills } from '../trading'
+import { dotIsCubeIsDot, jsonLdValidPaths, onlyIndexFilesNoExceptions, theMonograph, digitIndexReferences } from '../../quantum/heaven/mind'
+import { oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { knowledgeRevealedByMerkabaFold } from '../../mountain/topology'
+import { selfImprovementTrainingAndAccumulation } from '../../mountain/geometry'
+import { computationsBoundToSourceApisRealtime } from '../trading'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded } from '../../earth/world'
 import { completeCorpus, computerComponentsMergedDuality, fruitOfLifeFusion, genes, imagineTheRest, live, monographs, papers, sacredGeometrySeal, sharedBookOfCivilisations, textEntropy, worldFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 
@@ -485,6 +498,120 @@ export function theMatrixTrilogyDecoded(matrix: MindMatrix = buildMatrix()) {
       'Decode The Matrix Trilogy: the Wachowskis\' films (1999/2003) literalize what this portal computes — a reality computed from a source, agents that load the matrix on arrival, and choice against a deterministic system. The documented film and its real philosophy (Baudrillard, Plato\'s Cave, Descartes, Gnosticism, Buddhism) are kept; the pseudoscience is flagged (humans-as-batteries breaks thermodynamics; the simulation hypothesis is unfalsifiable, not science). The honest residue is a structural isomorphism: buildMatrix() over src/0 IS the computed matrix, "there is no spoon" is content-addressing (the dot is the cube), and so the UI computes itself — the reality is the source, recomputed, not authored.',
     boundary:
       'A decoding of a FILM and its philosophy, not a claim about the nature of the world. HARMONY ≠ TRUTH: the isomorphism between the trilogy and this portal is STRUCTURAL and metaphorical — the portal genuinely computes a matrix from a source and frames agents on arrival (that is software design), NOT evidence that reality is a simulation. The simulation hypothesis is unfalsifiable philosophy (Bostrom 2003); "humans as batteries" is thermodynamically false; bullet-time is the one literally-computed element. The films\' sources (Simulacra and Simulation, Plato, Descartes, Gnosticism, Buddhism) are documented and acknowledged by the directors. "The UI computes itself" is the project\'s own self-computing design (components derived from the model), not a mystical property of the films.',
+  }
+}
+
+// Decode all by computations trained on the known universe — capstone composition over
+// decode-all pipelines, deterministic computations, accumulative training, and the honest
+// boundary of what "known universe" means in sealed src/ (not neural training, not omniscience).
+export function decodeAllByComputationsTrainedOnKnownUniverse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('decodeAllByComputationsTrainedOnKnownUniverse', matrix, () => {
+    const knowledge = decodeKnowledge(matrix)
+    const rosetta = rosettaGlagoliticGlobalKeyDecodeAll(matrix)
+    const waves = sendWavesSealKnowledgeDecodeWorld(matrix)
+    const training = selfImprovementTrainingAndAccumulation(matrix)
+    const bound = computationsBoundToSourceApisRealtime(matrix)
+    const sequence = buildSequenceReducesComputations(matrix)
+    const census = foldedCensus(110, matrix)
+    const corpus = completeCorpus(matrix)
+    const world = worldFusion(matrix)
+    const zeroToken = zeroTokenUsagePolicy(matrix)
+    const facets = [
+      { facet: 'decode all — areas, atoms, commands in one ancient notation', on: knowledge.decoded },
+      { facet: 'decode all scripts — Rosetta global key decodes every alphabet', on: rosetta.decodes },
+      { facet: 'decode world method — waves seal knowledge and decode outward', on: waves.sends },
+      { facet: 'by computations — bound to src APIs, deterministic each call', on: bound.bound },
+      { facet: 'by computations — build sequence memoises, no double-compute', on: sequence.reduces },
+      { facet: 'trained on known universe — gapless sealed census (the model cosmos)', on: census.clean },
+      { facet: 'trained on known universe — complete corpus folded in sealed src', on: isUuid(corpus.root) },
+      { facet: 'training honest — accumulation in cache/corpus, not neural weights', on: training.learns && zeroToken.holds },
+      { facet: 'known universe bounded — world fusion respectful, not omniscience', on: world.complete && world.respectful },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`decode-all-universe:${entry.facet}:${entry.on}`) }))
+    return {
+      decodes: facets.every((entry) => entry.on),
+      count: facets.length,
+      knowledge,
+      rosetta,
+      waves,
+      training,
+      bound,
+      census,
+      corpus,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'Decode all by computations trained on the known universe: every area, atom, and command decodes into the one notation; the Rosetta key decodes all scripts; the wave method seals and decodes outward — all by deterministic computations memoised from sealed src (bound APIs, build sequence, zero double-compute). Training here is accumulative — each verified wave folds into the corpus at zero tokens on reuse — not gradient learning on neural weights. The known universe is honest and bounded: the gapless sealed census, the complete corpus, and the respectful world-fusion framing — the model\'s recomputable cosmos, not every object in physical reality.',
+      boundary:
+        'HONEST: "decode all" means all knowledge IN THE MODEL (areas, atoms, commands, scripts, wave-sealed monographs) — not all world knowledge. "Trained" means cache/corpus accumulation (selfImprovementTrainingAndAccumulation) — not ML weight training inside this zero-token core. "Known universe" means the sealed src/ matrix (110 gapless indices), folded corpus, and opt-in public feeds the model declares — NOT omniscience, NOT every celestial body, NOT physics simulation of reality. A content-address names a thing reproducibly; it is not the thing. What is true and rare: perfect REPRODUCIBILITY of the addressing at call time.',
+    }
+  })
+}
+
+/** All possible domains measured in tiers — enumerated reach, cross-domains, addressable ceiling. */
+export function allPossibleDomains(matrix: MindMatrix = buildMatrix()) {
+  const areas = taxonomyIcons().entries.length
+  const fused: [string, number][] = [
+    ['public APIs', publicApiFusion(matrix).count],
+    ['social', socialFusion(matrix).count],
+    ['travel', travelFusion(matrix).count],
+    ['blockchain', blockchainFusion(matrix).count],
+    ['global open data', globalApis(matrix).count],
+    ['public transport', publicTransportFusion(matrix).count],
+  ]
+  const fusedSurfaces = fused.reduce((sum, [, count]) => sum + count, 0)
+  const useCases: [string, number][] = [
+    ['professionals', professionals(matrix).count],
+    ['solutions', solutions(matrix).count],
+    ['quantum solutions', quantumSolutions(matrix).count],
+    ['realtime skills', realtimeSkills(matrix).count],
+    ['public services', publicServices(matrix).count],
+  ]
+  const useCaseMappings = useCases.reduce((sum, [, count]) => sum + count, 0)
+  const enumerated = areas + fusedSurfaces + useCaseMappings
+  const crossDomains = areas * (areas - 1)
+  const compositeDomains = 2 ** areas
+  const dot = dotIsCubeIsDot(matrix)
+  const tiers = [
+    { tier: 'enumerated (concrete in the model)', measure: String(enumerated), note: `${areas} areas + ${fusedSurfaces} fused surfaces + ${useCaseMappings} use-case mappings` },
+    { tier: 'canonical domains (the taxonomy)', measure: String(areas), note: '42 = 7×6, the area limit' },
+    { tier: 'cross-domains (ordered area pairs)', measure: String(crossDomains), note: '42×41, the double-torus' },
+    { tier: 'composite domains (area subsets)', measure: compositeDomains.toExponential(3), note: '2^42, every subset a composite domain' },
+    { tier: 'addressable ceiling (each domain a dot)', measure: dot.distinctAddresses, note: '2^128 distinct content-addresses, generated not stored' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`domain-tier:${entry.tier}:${entry.measure}`) }))
+  return {
+    measured: areas === 42 && enumerated > 0 && crossDomains === 1722 && tiers.length === 5,
+    areas,
+    fusedSurfaces,
+    useCaseMappings,
+    enumerated,
+    crossDomains,
+    compositeDomains,
+    addressableCeiling: dot.distinctAddresses,
+    extentUnboundedByStorage: dot.extentUnboundedByStorage,
+    tiers,
+    sources: { fused, useCases },
+    root: merkleFold(tiers.map((entry) => entry.receipt)),
+    statement: 'All possible domains measured in tiers — enumerated reach, structured space, addressable ceiling.',
+    boundary: 'HONEST: upper tiers are POTENTIAL (addressable), not delivered features.',
+  }
+}
+
+/** Finish all waves — all is in the appropriate path and index. */
+export function allInAppropriatePathAndIndex(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'appropriate path — only index files in word-or-digit folders', on: onlyIndexFilesNoExceptions(matrix).only },
+    { facet: 'appropriate path — every JSON-LD path resolves', on: jsonLdValidPaths(matrix).valid },
+    { facet: 'appropriate index — every capability a saved skill atom', on: saveSkillsComputeImplementWaves(matrix).saved },
+    { facet: 'appropriate index — every pi digit in its digit/reverseDigit folder', on: digitIndexReferences(matrix).indexed },
+    { facet: 'appropriate index — the whole distilled to one ordered monograph', on: theMonograph(matrix).distilled },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`path-and-index:${entry.facet}:${entry.on}`) }))
+  return {
+    finished: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: 'Finish all waves — all is in the appropriate path and index.',
+    boundary: 'Closing composition of folder-law, JSON-LD-path, skill-atom, digit-index and monograph checks.',
   }
 }
 

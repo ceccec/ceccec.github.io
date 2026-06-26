@@ -4,9 +4,9 @@
 // PROTON_GYROMAGNETIC → pi-train wave 10 physical cut at src/6/4.
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
-import { REDUCED_PLANCK, SPEED_OF_LIGHT, toUuid, merkleFold } from '../../0'
+import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import {   toUuid, merkleFold, digitalRoot } from '../../0'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
-import { digitalRoot } from '../../9/1'
 
 export const digit = 1
 export const role = 'circuit' as const

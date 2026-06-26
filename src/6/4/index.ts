@@ -1,7 +1,21 @@
 // Pi-train station 6/4 — dissolution sequence order 7 (digit/reverse 6/4).
-// Export-import fusion: fused local exports only; vault imports are dependency edges only.
+// Domain cuts only — vault primitives import from src/0 at call sites.
 
-import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, seedFromText } from '../../0'
+import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { seedFromText } from '../../0'
+
+export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const r = Math.PI / 180
+  const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
+  const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
+  return (Math.atan2(y, x) / r + 360) % 360
+}
+
+export const OBLIQUITY_J2000_DEG = 23.4392811
+
+export function obliquityAtEpoch(yearsBeforePresent: number): number {
+  return OBLIQUITY_J2000_DEG + 0.0130125 * (yearsBeforePresent / 100)
+}
 
 /** ¹H gyromagnetic ratio γ/2π (Hz/T, CODATA) — the MRI Larmor constant. */
 export const PROTON_GYROMAGNETIC = 42.577478461e6
@@ -56,34 +70,8 @@ export function quantumZeno(n: number): number {
   return Math.cos(Math.PI / (2 * nn)) ** (2 * nn)
 }
 
-/** Pearson correlation between two population vectors. */
-export function congruence(a: readonly number[], b: readonly number[]): number {
-  const n = a.length
-  const ma = a.reduce((s, x) => s + x, 0) / n
-  const mb = b.reduce((s, x) => s + x, 0) / n
-  let cov = 0
-  let va = 0
-  let vb = 0
-  for (let i = 0; i < n; i++) { const da = a[i] - ma; const db = b[i] - mb; cov += da * db; va += da * da; vb += db * db }
-  return va === 0 || vb === 0 ? 0 : cov / Math.sqrt(va * vb)
-}
-
-/** easeInOutSine — the shape a hand makes accelerating then settling. */
-export function humanEase(phase: number): number {
-  const clamped = phase <= 0 ? 0 : phase >= 1 ? 1 : phase
-  return -(Math.cos(Math.PI * clamped) - 1) / 2
-}
-
-/** Honest bit-budget of the 128-bit content-address (6 bits masked by UUID version/variant). */
-export function addressEntropyBits(): { nominalBits: number; discardedBits: number; effectiveBits: number; birthdayLog2: number } {
-  const nominalBits = 128
-  const discardedBits = 6
-  const effectiveBits = nominalBits - discardedBits
-  return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) }
-}
-
-/** Frequency from wavelength f = c/λ (Hz). */
-export function frequencyOf(wavelengthM: number): number { return SPEED_OF_LIGHT / wavelengthM }
+/** Frequency from wavelength f = c/λ (Hz) — re-export from SI hub. */
+export { frequencyOf } from '../../3/7'
 
 /** Sweepable phase gate diag(1, e^{iθ}) in applyGate flat format — interferometer fringe P(0)=cos²(φ/2). */
 export function phase(theta: number): number[] {

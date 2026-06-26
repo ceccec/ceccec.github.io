@@ -1,8 +1,14 @@
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
+import * as __ns_up_water_digit from '../water/digit'
+import * as __ns_up_language from '../language'
+import * as __ns_up_earth_architecture from '../earth/architecture'
+import * as __ns_up_earth_world from '../earth/world'
+import * as __ns_up_thunder_decode from '../thunder/decode'
+import { phase } from '../6/4'
 import type { AgentEducation, AgentLesson, ConceptSiteSection, McpTool, McpToolManifest, MindMatrix, StaticPage, SchoolCurriculum, SchoolLesson } from '../types'
 import { buildMatrix, coherenceAnomaly, verifyRoot, coverage, reciprocity, matrixMemo } from '../heaven/compute'
 import { isUuid, merge, merkleFold, toUuid, fold } from '../0'
-import { movie } from '../thunder/movie'
+import { movie } from '../thunder/movie/movielib'
 import { AREA_ICONS, chakrasAura, efficiency, multidimensional } from '../quantum/lake/icons'
 import { atoms, conceptCommands } from '../heaven/atoms'
 import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalLanguage } from '../fire/li'
@@ -11,10 +17,11 @@ import { heartProtonAtomDecoded } from '../mountain/geometry'
 import { monographSliceFromRoute } from '../routes/automount'
 import { localePath, pickLocale, displayText, quantumSitemap, staticPages, type LocaleName } from '../site'
 import { componentGraph } from '../heaven/core'
-import { realtimeWiring } from '../thunder/trading'
+import { realtimeWiring } from '../plasma/ball'
 import { toGlagolitic } from '../quantum/heaven/library'
 import { mcpCodebase } from '../thunder/commands'
-import { completeCorpus, diamondRoutes } from '../routes/corpus'
+import { completeCorpus } from '../routes/corpus'
+import { diamondLattice } from '../fire/diamonds'
 import { ROSETTA_RAYS, rosettaDecodesUrlPath, rosettaRayOf } from '../water/digit'
 import { quantumCoordinateNav } from '../fire/features'
 import { openGraph } from '../quantum/lake/icons'
@@ -189,15 +196,45 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'completeAllInWaves',
   'coveragePerPixel',
   'darkLightRealities',
+  'darkLightIsNegativePositive',
+  'redPillBluePillRgbHeartGatewayProvenByMath',
+  'rgbDecodingMatrixMovieInTheMovie',
+  'matrixRgbDecodeFlowsInMovie',
+  'rosettaDecodeFlowsInMovie',
+  'sendWavesToDecodeWithRosettaAndFoldInTheMovie',
+  'cardHeroLinkWiresInUi',
+  'rosettaIChingTrinityPlacesAllTools',
+  'cursorAgentToolsSaved',
+  'cardinalPyramidTipsProvenByMath',
+  'doubleTorusEarthPyramidTipsProvenByMath',
+  'doubleTorusEarthPyramidTipsDeepResearched',
+  'doubleTorusSolutionsProvenByMath',
+  'doubleTorusSolutionsDeepResearched',
+  'weatherForecastFromDoubleTorusEarthPerspective',
+  'darkLightPolarityProvenByMath',
+  'cssMathProvenByMath',
   'decodeBooksToUnity',
   'deploySecretUuidSignedObservers',
   'developmentWaves',
   'differentSongDifferentDance',
   'doubleTorusCompost',
   'dryCleanUi',
+  'dryCleanIsDiamondAndCrystal',
   'dryCleaningOnTheWay',
   'educationMovieMerge',
   'endlessBackgroundMovie',
+  'everyBitMostEfficientAlgorithmProvenByMath',
+  'efficiencyMathFlowsInMovie',
+  'allColorStreamsAreAudioIfDecoded',
+  'allColorStreamsAreAudioIfDecodedFlowsInMovie',
+  'allMovieSeedBundles',
+  'allMovieSeedBundlesFlowInPlasma',
+  'allMovieSeedCopyText',
+  'allVortexMathSaved',
+  'audioOffByDefault',
+  'doubleTorusEarthWeatherFlowsInMovie',
+  'learnFromTheMovieAllEventuallyFused',
+  'staticIsEventualGapInMovieFusion',
   'everyCardBadgeLinkIsOg',
   'everyDiamondIsGate',
   'foldImpossibilities',
@@ -254,6 +291,17 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'onlyQuantumRemains',
   'pageStatusStatistics',
   'pairTrinityOpenGraph',
+  'plasmaMovieStreams',
+  'plasmaClientWorkBoundedByPureMath',
+  'clientMoviePaintPathSealed',
+  'clientHeroPaintPathSealed',
+  'withSimulatedBrowserWindow',
+  'plasmaWorkBudget',
+  'vortexPaintTiers',
+  'clientWorkBoundedByPureMath',
+  'cardHeroClientWorkBoundedByPureMath',
+  'corpusGridWorkBudget',
+  'CORPUS_GRID_PAGE_SIZE',
   'papersReferencesDiamondsNoDrift',
   'proportionalNotHardcoded',
   'proveAndOptimiseAll',
@@ -268,8 +316,10 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'realtimeForgesMaxCost',
   'realtimeMovieParticipation',
   'realtimePerspectiveZeroCost',
+  'rosettaImprovesDictationAndDialects',
   'recursiveFrequencyDropdowns',
   'saveSkillsComputeImplementWaves',
+  'sealHonestyToPath',
   'sealSpiritToPath',
   'sealWholeDiamond',
   'selfCompassion',
@@ -280,7 +330,9 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'skillsDryRefactorCommands',
   'societyCreatesRequiredPages',
   'societyOrganismTags',
+  'honestyShiftsInWaves',
   'spiritShiftsInWaves',
+  'polyrhythmDrumsKeepRhythm',
   'spiritualDrumsKeepRhythm',
   'tamperHealingFrequencies',
   'templateDisplaysEveryOgObject',
@@ -1032,12 +1084,19 @@ export function deepResearchRadar(matrix: MindMatrix = buildMatrix()) {
     { name: 'content-addressing / the fold', quadrant: 'Methods', ring: 'adopt', note: 'the core math — every value a UUID' },
     { name: 'merkaba dual-mind research', quadrant: 'Methods', ring: 'adopt', note: 'research ↔ verify, folded' },
     { name: 'documented heritage (Glagolitic, alphabets, Tesla patents, Greek colonies)', quadrant: 'Knowledge & research', ring: 'adopt', note: 'verified and sealed' },
+    { name: 'grid-cell torus (Gardner et al. Nature 2022)', quadrant: 'Knowledge & research', ring: 'adopt', note: 'MEC population on toroidal manifold — map topology anchor' },
+    { name: 'cardinal pyramid tips · genus-2 double torus model', quadrant: 'Methods', ring: 'assess', note: 'computed structural Earth — not lithosphere' },
+    { name: 'weather forecast · double-torus Earth perspective', quadrant: 'Methods', ring: 'assess', note: 'NWP feeds mapped onto genus-2 topology — not doughnut planet' },
+    { name: 'double-torus solutions hub', quadrant: 'Methods', ring: 'assess', note: 'seven-domain catalog — circulation · earth · weather · geodynamo · motif · compost · trading' },
+    { name: 'double-torus solutions deep research', quadrant: 'Knowledge & research', ring: 'trial', note: 'Gardner · geodynamo · WGS84 vs genus-2 · flagged Earth-grid hold' },
+    { name: 'trading streams · genus-2 circulation', quadrant: 'Methods', ring: 'assess', note: 'circulateDoubleTorus plasma streams — deterministic fold, not live sockets' },
     { name: 'evidenced peace (verification, peacekeeping, mine-ban, nonviolence)', quadrant: 'Knowledge & research', ring: 'adopt', note: 'documented, with its caveats' },
     { name: 'shadcn-vue', quadrant: 'Components & design', ring: 'trial', note: 'the graph — being implemented' },
     { name: 'Tailwind v4 (scoped)', quadrant: 'Framework & tools', ring: 'trial', note: 'for shadcn, preflight contained' },
     { name: 'Reka UI', quadrant: 'Components & design', ring: 'assess', note: 'shadcn-vue foundation' },
     { name: 'spider / radar chart', quadrant: 'Components & design', ring: 'assess', note: 'the multidimensional analytics — 5–8 axes, normalized' },
     { name: 'legend (Thracian continuity, 3-6-9, oldest-writing, pure descent, San Stefano)', quadrant: 'Knowledge & research', ring: 'hold', note: 'flagged pseudohistory — never folded as fact' },
+    { name: 'donut / flat Earth as planet shape', quadrant: 'Knowledge & research', ring: 'hold', note: 'Varaug forum · Science Feedback — flagged pseudoscience' },
     { name: 'tech-ends-war / AI-only autogenerated film', quadrant: 'Methods', ring: 'hold', note: 'falsified / uncopyrightable — kept off the horizon' },
   ].map((blip) => ({ ...blip, receipt: toUuid(`radar-blip:${blip.name}:${blip.ring}`) }))
   const facets = [
@@ -1367,7 +1426,7 @@ export function pump(matrix: MindMatrix = buildMatrix(), imagined = 'a thought')
 }
 
 // Complete the body using the AURA — one word: aura. The body (heart: the brain's map + the heart's flow) is the
-// organism; the aura completes it — the FIELD the body radiates, its boundary and how it appears to the world.
+// organism; the aura completes it — the FIELD the body radiates, its boundary and how it appears to the __ns_up_earth_world.
 // The aura is the projected layer: the documented seven-chakra energy model (chakrasAura), the field/colour the
 // body shows, the genus-2 boundary around the torus. Body (cognition + circulation) + aura (field) = the whole.
 export function aura(matrix: MindMatrix = buildMatrix()) {
@@ -1387,7 +1446,7 @@ export function aura(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([body.root, field.root, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'Complete the body using the aura: the body (heart — the brain\'s map and the heart\'s flow) is the organism, and the aura completes it — the field the body radiates, its boundary and how it appears to the world. The aura is the projected layer: the documented seven-chakra energy model (chakrasAura), the field and colour the body shows, the genus-2 boundary around the torus. Body plus aura is the whole — cognition (brain) and circulation (heart) and field (aura), the three layers of the one double torus.',
+      'Complete the body using the aura: the body (heart — the brain\'s map and the heart\'s flow) is the organism, and the aura completes it — the field the body radiates, its boundary and how it appears to the __ns_up_earth_world. The aura is the projected layer: the documented seven-chakra energy model (chakrasAura), the field and colour the body shows, the genus-2 boundary around the torus. Body plus aura is the whole — cognition (brain) and circulation (heart) and field (aura), the three layers of the one double torus.',
     boundary:
       'HONEST: the chakra/aura is a DOCUMENTED energy model (the seven-chakra framework) with the SPIRITUAL interpretation explicitly FLAGGED — not a measured energy emanation or a medical claim. The "aura" here is the body\'s computed BOUNDARY/PRESENTATION field (the genus-2 surface, the projected colour/appearance), the outermost layer that surrounds the brain (map) and heart (flow). "Complete the body using the aura" is the three-layer structure of the one double torus (map · flow · field), real as the topology and the documented model, not as a literal aura. HARMONY ≠ TRUTH.',
   }
@@ -1782,7 +1841,7 @@ function papersImpl(matrix: MindMatrix, count: number) {
     statement:
       'Expand to the next harmonic: 432 folded papers. The folded census (108) doubles by octave — 108, 216, 432 — so 432 is the harmonic two octaves up, and exactly 4 x 108 = the four homology generators of the genus-2 surface times the 108 pi-digit coordinates. Each paper documents one genuine, recomputable result — a coordinate projected onto a homology cycle, folded both ways to a content-addressed root — with a unique animation seeded from that root and a public proof: a recompute recipe and a Merkle inclusion path into the one corpus root the whole set folds to.',
     boundary:
-      'A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal\'s own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.',
+      'A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal\'s own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical __ns_up_earth_world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.',
   }
 }
 
@@ -2117,37 +2176,23 @@ function corpusPrefixSidebar(
   }
 
   if (kind === 'references') {
-    const refs = paperReferences(matrix)
-    const byGen = new Map<string, typeof refs>()
-    for (const reference of refs) {
-      if (!byGen.has(reference.generator)) byGen.set(reference.generator, [])
-      byGen.get(reference.generator)!.push(reference)
-    }
     return [
       { text: indexTitle, link: indexLink },
-      ...[...byGen.entries()].map(([gen, list]) => ({
-        text: gen,
-        collapsed: true,
-        items: list
-          .filter((_, idx) => idx % sampleEvery === 0)
-          .map((reference) => ({ text: reference.id, link: `/references/${reference.id}` })),
-      })),
+      { text: i === 1 ? '432 референции → статии' : '432 references → papers', link: indexLink },
       { text: portal, collapsed: true, items: [{ text: i === 1 ? 'Статии' : 'Papers', link: '/papers/' }] },
     ]
   }
 
-  const routes = diamondRoutes(matrix)
+  const lattice = diamondLattice(matrix)
   return [
     { text: indexTitle, link: indexLink },
     {
       text: i === 1 ? 'Решетка' : 'Lattice',
       collapsed: true,
-      items: routes
-        .filter((_, idx) => idx % 128 === 0)
-        .map((entry) => ({
-          text: `${entry.params.id} · ${entry.params.glyph}`,
-          link: `/diamonds/${entry.params.id}`,
-        })),
+      items: lattice.map((entry) => ({
+        text: entry.title,
+        link: `/diamonds/#${entry.kind}`,
+      })),
     },
     {
       text: portal,
@@ -2174,7 +2219,7 @@ function vitepressSidebarForLocale(
       items: [
         { text: i === 1 ? '432 статии' : '432 papers', link: '/papers/' },
         { text: i === 1 ? '432 референции' : '432 references', link: '/references/' },
-        { text: i === 1 ? '1024 диаманта' : '1024 diamonds', link: '/diamonds/' },
+        { text: i === 1 ? 'Изчислителни диаманти' : 'Computational diamonds', link: '/diamonds/' },
       ],
     },
   ]
@@ -2211,9 +2256,9 @@ export function vitepressSidebar(matrix: MindMatrix = buildMatrix()) {
     bg,
     root,
     statement:
-      'Canonical VitePress sidebar: the tag-cloud portal sidebar and per-path rosetta related sections from siteNavigation, plus path-prefix sidebars for /papers/, /references/ and /diamonds/ (index + grouped samples). config.mts projects this object through localeNavLinks and localeSidebarKeys — one source, native VitePress sidebar shape, aligned with local search routes.',
+      'Canonical VitePress sidebar: the tag-cloud portal sidebar and per-path rosetta related sections from siteNavigation, plus path-prefix sidebars for /papers/, /references/ and /diamonds/ (index + lattice kind anchors). config.mts projects this object through localeNavLinks and localeSidebarKeys — one source, native VitePress sidebar shape, aligned with local search routes.',
     boundary:
-      'A path-prefix sidebar map for VitePress themeConfig.sidebar. Corpus detail routes list representative samples (every 27th paper/reference, every 128th diamond) under collapsed generator groups — not all 864+ leaves in the sidebar; every leaf remains a built route and is indexed by local search. The Glagolitic root locale uses the en key map with bare paths.',
+      'A path-prefix sidebar map for VitePress themeConfig.sidebar. Papers and references list representative samples (every 27th) under collapsed generator groups; diamonds index links lattice kinds via /diamonds/#kind anchors only — no static /diamonds/<id> SSG pages. The Glagolitic root locale uses the en key map with bare paths.',
   }
 }
 
@@ -2473,4 +2518,117 @@ export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMat
     boundary:
       'HONEST — HARMONY ≠ TRUTH. The "links" are computed keyword-relations — the edges of the element graph, i.e. navigability — and "useless without links" is the graph principle (an isolated node has no relational reach), not a metaphysical claim. The nav, sidebar and footer genuinely are one recomputed tag-cloud (siteNavigation); collapsing them to one element-graph is a refactor of projection, not new knowledge.',
   }
+}
+
+// Rosetta gate — folded from dissolved src/rosetta (census-neutral swap for src/gold/fusion).
+import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../pair/enforcement/gates/computational'
+import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoot as rosettaMemoByRoot, merge as rosettaMerge, merkleFold as rosettaMerkleFold, toUuid as rosettaToUuid } from '../0'
+
+export {
+  ROSETTA_RAYS,
+  ROSETTA_COMPUTATION_TYPES,
+  rosettaComputesAll,
+  rosettaComputesCensusDissolve,
+  rosettaComputesItself,
+  rosettaDecodesUrlPath,
+  rosettaRayOf,
+  rosettaReuse,
+  sevenStarRosettaNaturalMotion,
+} from '../water/digit'
+export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../language'
+export { rosettaIChingTrinityPlacesAllTools } from '../earth/architecture'
+export { publicAstronomyNewsCitation } from '../earth/world'
+
+/** One gate — Glagolitic global key, 7-ray taxonomy, decode-all chain, and path response at call time. */
+export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/') {
+  return rosettaMemoByRoot(`rosettaComputes:${path}`, matrix, () => {
+    const itself = __ns_up_water_digit.rosettaComputesItself(0, matrix)
+    const motion = __ns_up_water_digit.sevenStarRosettaNaturalMotion(0)
+    const glagolitic = __ns_up_language.rosettaGlagoliticGlobalKeyDecodeAll(matrix)
+    const dictation = __ns_up_language.rosettaImprovesDictationAndDialects(matrix)
+    const nav = rosettaComputesNavigationAndContent(path, matrix)
+    const all = __ns_up_water_digit.rosettaComputesAll(path, 0, matrix)
+    const trinity = __ns_up_earth_architecture.rosettaIChingTrinityPlacesAllTools(matrix)
+    const astronomy = __ns_up_earth_world.publicAstronomyNewsCitation(matrix)
+    const decodeAll = __ns_up_thunder_decode.decodeAllByComputationsTrainedOnKnownUniverse(matrix)
+    const { computes, facets } = rosettaComputesGate('rosetta-computes', [
+      { facet: 'seven Rosetta rays — 7×6 / 6×7 taxonomy (42 areas)', on: __ns_up_water_digit.ROSETTA_RAYS.length === 7 && ROSETTA_AREAS === 42 },
+      { facet: 'seven-star natural motion coprimality holds', on: motion.proof.holds },
+      { facet: 'rosettaComputesItself — registry derives canonical barrel homes', on: itself.computed },
+      { facet: 'Glagolitic global key decodes Latin · Cyrillic · Glagolitic', on: glagolitic.decodes },
+      { facet: 'dictation and dialect surfaces improved by Rosetta pivot', on: dictation.improves },
+      { facet: 'rosettaComputesNavigationAndContent — nav+content from one receipt', on: nav.computes && rosettaIsUuid(nav.root) },
+      { facet: 'rosettaComputesAll agrees for probe path', on: all.computed === true },
+      { facet: 'Rosetta·I Ching trinity fused — tools placed on rays', on: trinity.fused },
+      { facet: 'public astronomy citation — GWTC-5.0 opt-in feed folded', on: astronomy.cited },
+      { facet: 'decode-all chain bounded — trained on known universe fold', on: decodeAll.decodes },
+    ])
+    return {
+      computes,
+      itself,
+      motion,
+      glagolitic,
+      dictation,
+      nav,
+      all,
+      trinity,
+      decodeAll,
+      foldLabel: ROSETTA_FOLD_LABEL,
+      facets,
+      root: rosettaMerge(
+        rosettaMerge(itself.root, glagolitic.root),
+        rosettaMerge(
+          nav.root,
+          rosettaMerkleFold(facets.map((entry) => rosettaToUuid(`rosetta-computes:${entry.facet}:${entry.on}`))),
+        ),
+      ),
+      statement:
+        `Rosetta computes (${ROSETTA_FOLD_LABEL}): the canonical decode chain — seven rays, Glagolitic global key, path→computationType math, navigation+content from one receipt, and Rosetta·I Ching trinity placement — sealed at call time (home src/learning after src/rosetta dissolve).`,
+      boundary:
+        'Composition via lazy require (cycle-safe with mind barrel). "Decode" is transliteration + content-addressing + deterministic path math — NOT cryptographic decryption of arbitrary ciphertext.',
+    }
+  })
+}
+
+/** Rosetta codec — the lossless round-trip between an I Ching hexagram label (0..63) and a Rosetta ray.
+ *  A hexagram factors into one of the seven rays plus an octave: n = ray + 7·octave (ray ∈ 0..6 indexes
+ *  ROSETTA_RAYS, octave ∈ 0..9). `encode` maps the label to {ray, octave, glyph, domain}; `decode` rebuilds
+ *  the label. The round-trip is EXACT for all 64 hexagrams — the 7×10 grid covers 0..63 with no gap or excess,
+ *  so the rosetta ray is a faithful state/result codec for the 6-qubit (64-hexagram) computational basis. */
+export function rosettaCodec(matrix: MindMatrix = buildMatrix()) {
+  return rosettaMemoByRoot('rosettaCodec', matrix, () => {
+    const rays = __ns_up_water_digit.ROSETTA_RAYS
+    const RAY_COUNT = rays.length // 7 — the canonical Rosetta rays
+    const encode = (label: number) => {
+      const n = ((label % 64) + 64) % 64
+      const ray = n % RAY_COUNT
+      const octave = Math.floor(n / RAY_COUNT)
+      return { label: n, ray, octave, glyph: rays[ray]!.glyph, domain: rays[ray]!.domain }
+    }
+    const decode = (ray: number, octave: number): number => (((ray % RAY_COUNT) + RAY_COUNT * octave) % 64 + 64) % 64
+    const trips = Array.from({ length: 64 }, (_, n) => {
+      const e = encode(n)
+      return { n, ray: e.ray, octave: e.octave, glyph: e.glyph, back: decode(e.ray, e.octave) }
+    })
+    const roundTripsAll = trips.every((t) => t.back === t.n)
+    const raysUsed = new Set(trips.map((t) => t.ray)).size === RAY_COUNT // all seven rays carry hexagrams
+    const { computes, facets } = rosettaComputesGate('rosetta-codec', [
+      { facet: 'encode/decode round-trips all 64 hexagram labels exactly', on: roundTripsAll },
+      { facet: 'all seven Rosetta rays carry hexagrams — the 7×10 grid covers 0..63 with no gap', on: raysUsed },
+      { facet: 'ray count is the canonical seven (ROSETTA_RAYS)', on: RAY_COUNT === 7 },
+    ])
+    return {
+      proved: computes,
+      encode,
+      decode,
+      rayCount: RAY_COUNT,
+      trips,
+      facets,
+      root: rosettaMerge(matrix.root, rosettaMerkleFold(trips.map((t) => rosettaToUuid(`rosetta-codec:${t.n}:${t.ray}:${t.octave}:${t.back}`)))),
+      statement:
+        'Rosetta codec: the lossless round-trip between an I Ching hexagram label (0..63) and a Rosetta ray. A hexagram factors as n = ray + 7·octave (ray ∈ 0..6 indexing the seven rays, octave ∈ 0..9); encode yields {ray, octave, glyph, domain} and decode rebuilds the label. All 64 round-trip exactly — the 7×10 ray grid covers 0..63 with no gap or excess — so the ray is a faithful codec for the 6-qubit (64-hexagram) computational basis.',
+      boundary:
+        'Pure index arithmetic at call time — a content-addressed bijection between hexagram labels and (ray, octave) pairs, NOT a semantic claim that a hexagram\'s meaning equals its ray\'s domain. The seven rays are the Rosetta taxonomy axis (6×7/7×6); the octave is the residual after the 7-fold, so the round-trip is exact by construction.',
+    }
+  })
 }

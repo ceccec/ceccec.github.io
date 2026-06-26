@@ -1,25 +1,34 @@
 // ☵ Kǎn · Water — the digit: the digit-word index purity, digit duality pairs encode all domains, the digit spines are the breath, dot-is-cube-is-dot, the zero-division table, 6×7 and the 42-verdict. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — pure domain math: rosetta decoder, digital root, zero-division — no UI, no routing.
+import { CANONICAL_SCIENCE_MASK, EIGHT_CURRICULUM_SCIENCES, FORBIDDEN_FOLDER_NAMES, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, displayPathFromScienceModelAction, folderTailFromMethodName, indexRegistryFromLogicRel, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMethodName, scienceModelActionFromMindTail, scienceModelActionFromWords, scienceModelActionMaskRowsFromMindTails, scienceModelActionTail, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
+import { GENETIC_CODE, codeRobustness, mutationClass } from '../../life'
+import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
+import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../vortex/math'
+import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
+import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
-import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, scienceModelActionFromMindTail, srcLogicPathFromScienceModelAction, toUuid, chsh } from '../../0'
+import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot } from '../../0'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
-import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM, inductionEvolve } from '../../2/8'
-import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb, inductionStep } from '../../4/6'
+import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
+import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6'
 import { EIGHT_FOLD_SCIENCES, hexDigitSum, isobaricCounterdiffusion, MOON_ORBIT_INCLINATION_DEG, PCI_CONSCIOUSNESS_THRESHOLD, RENDER_UI_SCIENCE_MASK, speedOfSoundAir, splitCamelSegment } from '../../8/2'
 import { hardyWeinbergGenotypes, HUBBLE_CONSTANT_CMB, lunarStandstillDeclinationDeg, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, qieaRotate, resonancePeakGain, SCALAR_SPECTRAL_INDEX_NS } from '../../7/3'
 import { carnotEfficiency, derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, uuidDuality } from '../../5/5'
 import { DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg } from '../../3/7'
-import { PROTON_GYROMAGNETIC, ZHL16_HE_HALFTIMES, HUBBLE_CONSTANT_LOCAL, resonantAmplitude, oscillatorBank, casimirEnergyPerArea, blackHoleEntropyBits, cantorDiagonal, quantumZeno, congruence, humanEase, addressEntropyBits, frequencyOf, phase, slip } from '../../6/4'
-import { CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, digitalRoot, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
+import { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7'
+export { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { PROTON_GYROMAGNETIC, ZHL16_HE_HALFTIMES, HUBBLE_CONSTANT_LOCAL, resonantAmplitude, oscillatorBank, casimirEnergyPerArea, blackHoleEntropyBits, cantorDiagonal, quantumZeno } from '../../6/4'
+import { CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { digitFolderMath, digitFolders, digitFoldersComputeUiIsTheRest, folderLaw } from '../../earth/architecture'
 import { sealCube } from '../../mountain/seals'
 import { mvcOrganisationReceipt } from '../../mountain/source'
-import { allPossibleDomains } from '../../heaven/everything'
+import { allPossibleDomains } from '../../thunder/decode'
 import { crossAudit } from '../../lake/clean'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
-import { PI_TRAIN_DIGITS, analogNoGapsNoLeak, computePiDigits, conceptCommands, doubleTorusFold, homology, movieAllDimensionsAtOnce, path, piNotHarmonic, theWhole } from '../../quantum/heaven/mind'
+import { PI_TRAIN_DIGITS, analogNoGapsNoLeak, computePiDigits, conceptCommands, doubleTorusFold, homology, path, piNotHarmonic, theWhole } from '../../quantum/heaven/mind'
+import { movieAllDimensionsAtOnce } from '../../thunder/movie/glass'
 import { MISSION_COMMANDS, agentSubmissionProtocol, foldQuantumCommandPairs, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 
 // Division by zero is not always 9 — only 1/0 is. The reverse of a digit folder (its backslash
@@ -1148,7 +1157,7 @@ export function piTrainPhysicalCutWaveTen(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Pi-train wave 10 tier-A physically cuts HUBBLE_CONSTANT_LOCAL, cantorDiagonal, resonantAmplitude, congruence, humanEase, addressEntropyBits, blackHoleEntropyBits, and frequencyOf into src/6/4 — fused logic, import mirrors export.',
+      'Pi-train wave 10 tier-A physically cuts HUBBLE_CONSTANT_LOCAL, cantorDiagonal, resonantAmplitude,  humanEase, addressEntropyBits, blackHoleEntropyBits, and frequencyOf into src/6/4 — fused logic, import mirrors export.',
     boundary: 'Continue order 8 at 9/1; quantum cluster (qubits · GATES · applyGate) and fold cascade (fold · merge · foldPair) blocked until dependency closure.',
   }
 }
@@ -1222,7 +1231,7 @@ export function piTrainPhysicalCutWaveEleven(matrix: MindMatrix = buildMatrix())
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 11 tier-A physically cuts 14 symbols into src/9/1: the original 10 (CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, digitalRoot, syncSpeedRpm, methodNameFromFolderTail, leafFromPathTail, bumpProfile, qcdMassFractionOfProton) plus isIonizing, ratIsInteger, ratStr, superdense — fused logic with dependency imports, no passthrough.',
-    boundary: 'Blocked at 9/1 (remain vault-only): applyGate (eachPair dep), bellPair (quantum cluster), asTorus (reading/Fold), sealFacets (toUuid/merkleFold), sha256MerkleProof/logInclusion (sha256), splitMethodWords (vaultSplitCamelSegment), findContentAddressCollision (hash32), renderUi/srcLogicPath (ScienceModelAction).',
+    boundary: 'Blocked at 9/1 (remain vault-only): applyGate (eachPair dep), bellPair (quantum cluster), asTorus (reading/Fold), sealFacets (toUuid/merkleFold), sha256MerkleProof/logInclusion (sha256) (vaultSplitCamelSegment), findContentAddressCollision (hash32), renderUi/srcLogicPath (ScienceModelAction).',
   }
 }
 
@@ -1897,17 +1906,8 @@ export function sevenStarRosettaNaturalMotion(at: number) {
 // the names are the 7 Glagolitic letter families (4 letters per ray = 28 total, a perfect number).
 // Each ray is a categorical lens: a slug → ray assignment (via Glagolitic digital-root ladder)
 // groups pages for nav, sidebar, footer, and content kind — one system, not two.
-export const ROSETTA_RAYS = [
-  { ray: 0, glyph: 'Ⰰ', nameEn: 'Alpha', nameBg: 'Алфа', domain: 'origin', hue: 0 },
-  { ray: 1, glyph: 'Ⰲ', nameEn: 'Voice', nameBg: 'Глас', domain: 'expression', hue: 51 },
-  { ray: 2, glyph: 'Ⰴ', nameEn: 'Spirit', nameBg: 'Дух', domain: 'knowledge', hue: 102 },
-  { ray: 3, glyph: 'Ⰶ', nameEn: 'Life', nameBg: 'Живот', domain: 'nature', hue: 154 },
-  { ray: 4, glyph: 'Ⰹ', nameEn: 'Thought', nameBg: 'Мисъл', domain: 'computation', hue: 205 },
-  { ray: 5, glyph: 'Ⰿ', nameEn: 'Form', nameBg: 'Форма', domain: 'geometry', hue: 257 },
-  { ray: 6, glyph: 'Ⱄ', nameEn: 'Word', nameBg: 'Слово', domain: 'language', hue: 308 },
-] as const
-
-export type RosettaRay = (typeof ROSETTA_RAYS)[number]
+// ROSETTA_RAYS + RosettaRay are hosted in the zero-import leaf src/3/7 (imported + re-exported below) to break
+// the SSR TDZ — public path unchanged.
 
 // Assign a slug to its rosetta ray — the same Glagolitic-ladder digital-root router used by
 // sevenStarPliskaRosettaHarmonisesDigitDistribution, extracted as a reusable primitive.
@@ -1987,8 +1987,8 @@ export function rosettaComputesAll(route: string, at = 0, matrix: MindMatrix = b
   }
 }
 
-export type RosettaComputationType = 'monograph' | 'proof' | 'explore' | 'learn' | 'hub' | 'frontier' | 'reference'
-export const ROSETTA_COMPUTATION_TYPES: readonly RosettaComputationType[] = ['monograph', 'proof', 'explore', 'learn', 'hub', 'frontier', 'reference']
+// ROSETTA_COMPUTATION_TYPES + RosettaComputationType are hosted in the zero-import leaf src/3/7 (imported +
+// re-exported below) so they initialise before any cyclic consumer barrel runs — public path unchanged.
 
 export function rosettaDecodesUrlPath(path: string, matrix: MindMatrix = buildMatrix()) {
   const RAY_COUNT = 7
@@ -2041,7 +2041,7 @@ export function rosettaDecodesUrlPath(path: string, matrix: MindMatrix = buildMa
 }
 
 /** Wind-plane registry tails — rosetta dissolves wind/ prefix to src/<action>/ when ray + coprimality hold. */
-export const ROSETTA_WIND_REGISTRY_TAILS = ['fusion', 'language', 'learning', 'routes', 'site', 'types', 'ui'] as const
+export const ROSETTA_WIND_REGISTRY_TAILS = ['fusion', 'language', 'learning', 'routes', 'site', 'types', 'ui', 'iching', 'rosetta'] as const
 
 /** Wave 1 — physical moves already applied on disk (do not undo blindly). */
 export const ROSETTA_GUIDED_WAVE_ONE_APPLIED = ['learning', 'site', 'types', 'ui'] as const
@@ -2065,6 +2065,17 @@ export const ROSETTA_EXPORT_BARREL_HOME: Readonly<Record<string, string>> = {
   vitepressSidebar: 'learning',
   monographs: 'learning',
   harmonisedNavigation: 'learning',
+  astronomyDecodedWithTheSequence: 'astronomy',
+  astronomySequenceDecodeResearch: 'astronomy',
+  computeAllKnownCelestialBodies: 'astronomy',
+  astronomyComputes: 'astronomy',
+  quantumDynamicsComputes: 'quantum/dynamics',
+  quantumStateEvolutionDecoded: 'quantum/dynamics',
+  quantumDynamicsResearch: 'quantum/dynamics',
+  quantumResearchComputes: 'quantum/research',
+  quantumResearchIndex: 'quantum/research',
+  completeQuantumSolutionsImplemented: 'quantum/dynamics',
+  audioComputes: 'plasma/ball',
   paperRoutes: 'routes',
   pageSkills: 'routes',
 }
@@ -2120,9 +2131,14 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-self-facet:${entry.facet}:${entry.on}`) }))
     const censusTarget = 110
     const censusPendingDissolve = [
-      'src/fusion/index.ts → merge into fire/fusion or schemaTarget after wave 2 receipt',
-      'src/language/index.ts → merge into wind/language schemaTarget after wave 2 receipt',
-      'dissolve 2 route pass-through shells into parent barrels (rosetta band 55+34+21)',
+      'src/double/torus/math/index.ts → merged into src/double/torus/index.ts (doubleTorusMathComputes)',
+      'src/double/torus/movie/index.ts → merged into src/double/torus/index.ts (doubleTorusMovieComputes)',
+      'src/iching/index.ts + src/rosetta/index.ts — canonical homes (census-neutral swap applied)',
+      'src/audio/index.ts → dissolved into src/plasma/ball (audioComputes); src/astronomy canonical home (+1 census-neutral)',
+      'src/math/index.ts → dissolved into src/vortex/math; src/resonance canonical home (+1 census-neutral)',
+      'src/double/torus/plasma/index.ts → merged into src/double/torus; src/quantum/dynamics canonical home (+1 census-neutral)',
+      'src/fusion/gold/index.ts → src/alchemy + src/fusion/gold/gold.ts (+1 census-neutral swap)',
+      'src/fusion/gold/index.ts → dissolved into src/alchemy + src/fusion/gold/gold.ts; src/alchemy canonical compose home (+1 census-neutral swap)',
     ]
     return {
       computed: facets.every((entry) => entry.on),

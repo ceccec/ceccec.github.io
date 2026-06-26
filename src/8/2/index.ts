@@ -1,7 +1,6 @@
+import { haldaneLoad } from '../../3/7'
 // Pi-train station 8/2 — dissolution sequence order 3 (digit/reverse 8/2).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
-
-import { haldaneLoad } from '../../0'
 
 /** Moon orbit inclination to the ecliptic (degrees). */
 export const MOON_ORBIT_INCLINATION_DEG = 5.145

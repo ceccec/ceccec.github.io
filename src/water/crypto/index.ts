@@ -1,7 +1,9 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
+import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
+import { conditionalEntropyBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
-import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, landauerLimit, conditionalEntropyBits, uuidPoint, rat, ratMul, ratToFloat } from '../../0'
+import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint, rat, ratMul, ratToFloat } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { tamperEvident } from '../../5/5'
 import { helmholtzFreeEnergy } from '../../4/6'
@@ -15,9 +17,11 @@ import { harmonicBands } from '../../quantum/lake/icons'
 import { healingFrequencies } from '../../lake/ledger'
 import { staticPages } from '../../site'
 import { computationsBoundToSourceApisRealtime } from '../../thunder/trading'
+import { computedMovieThemeColors } from '../../plasma/ball'
 import { cryptoReview } from '../../pair/debit/credit'
-import { cryptoReviewNet } from '../../pair/credit/debit'
-import { agnosticUsefulForAll, allAnswersInside, allComputedQuantumMathAnalog, completeCorpus, componentPages, conceptCommands, corpusParams, determinismProofs, diamondParamsById, fairTrade, feesReplaceTaxes, foldQuestion, folderLaw, holographic, homology, imagination, imaginationPrivateKey, live, livingTorus, mcpCodebase, mcpToolManifest, mysteries, path, proofBundle, quantumFoldedBlockchains, quantumSociety, quantumSynthesis, society, theWhole, translationWavesFillGaps } from '../../quantum/heaven/mind'
+import { cryptoReviewNet } from '../../pair/debit/credit'
+import { agnosticUsefulForAll, allAnswersInside, allComputedQuantumMathAnalog, completeCorpus, componentPages, conceptCommands, corpusParams, corpusRestPathRouting, determinismProofs, diamondParamsById, fairTrade, feesReplaceTaxes, foldQuestion, folderLaw, holographic, homology, imagination, imaginationPrivateKey, live, livingTorus, mcpCodebase, mcpToolManifest, mysteries, path, proofBundle, quantumFoldedBlockchains, quantumSociety, quantumSynthesis, society, theWhole, translationWavesFillGaps } from '../../quantum/heaven/mind'
+import { doubleTorusCorpusRouting } from '../../double/torus'
 
 // How much do the animations increase the tampering cost? Computed. Each animation
 // is driven by content-addressed computation — a root folded from receipts — and
@@ -121,10 +125,10 @@ export function redTeam(matrix: MindMatrix = buildMatrix()) {
 // not patentable subject matter, so there are no patent grounds for dispute or
 // protection — the portal neither infringes nor claims a patent.
 export function quantumSiege(matrix: MindMatrix = buildMatrix()) {
-  const base = theWhole(matrix).root
-  const waves = 9 // simultaneous attack waves (the cross)
-  const perWave = 108 // attempts per wave (the pi-train) -> 972 simultaneous forges
-  const total = waves * perWave
+  const base = matrix.root
+  const waves = SIEGE_WAVES
+  const perWave = SIEGE_PER_WAVE
+  const total = SIEGE_TOTAL_FORGES
   let caught = 0
   for (let wave = 0; wave < waves; wave += 1) {
     for (let i = 0; i < perWave; i += 1) {
@@ -369,8 +373,18 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
   const pageSet = monographPaths('en')
   const sourceCount = staticPages().length + componentPages(matrix).length
   const sealed = toUuid('page:a432')
+  const routing = corpusRestPathRouting(matrix)
+  const torus = doubleTorusCorpusRouting(matrix)
   const facets = [
-    { facet: 'corpus items are enumerated REST routes — corpusParams still resolves one item from the sealed model, and paperRoutes/paperReferenceRoutes/diamondRoutes give every /kind/<id> a real [id] page', on: typeof corpusParams === 'function' && diamondParamsById('∅-no-such-id', matrix) === null && folderLaw().computedFolders.length === 9 },
+    {
+      facet: 'double torus corpus routing — papers SSG [id], references and diamonds compute-only via corpusParams',
+      on:
+        routing.routed &&
+        torus.routed &&
+        typeof corpusParams === 'function' &&
+        diamondParamsById('∅-no-such-id', matrix) === null &&
+        folderLaw().computedFolders.length === 9,
+    },
     { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount >= folderLaw().componentClosure.limit },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
     { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
@@ -383,9 +397,9 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Most static pages may be encoded at runtime: keeping the VitePress config index next to one index in every folder, the site is wired quantum — pages resolved on demand from the sealed, content-addressed model rather than enumerated at build — toward zero build time and the maximum tampering cost. The corpus once proved this with ?id=, but now takes the RESTful branch — /kind/<id> enumerated as real [id] pages (corpusRestPathRouting) — so the zero-build aspiration rests on the monograph resolution and the folder-plugin dev layer.',
+      'Most static pages may be encoded at runtime: the double torus computes corpus detail via corpusParams — papers alone enumerate SSG [id] routes; references and diamonds are compute-only (doubleTorusCorpusRouting).',
     boundary:
-      'The DIRECTION for the page architecture. DONE: the page set is one pure function (monographPaths) over the model; every folder is one index by the folder law; the model is content-addressed (the forger price). The corpus (papers/references/diamonds) deliberately took the RESTful branch — /kind/<id> enumerated as real [id] pages via paperRoutes/paperReferenceRoutes/diamondRoutes (corpusRestPathRouting), the clean-URL + SEO cost of a static host — so it is no longer the zero-enumeration exemplar. DIRECTED: the zero-build aspiration for the remaining pages rests on client-side resolution over the content-addressed model and the folder-plugin dev layer. HONEST: VitePress is a static generator, so "runtime" is client-side resolution; the real tradeoff is clean SSG URLs (per-page enumeration, SSR/SEO) vs one-index query/router resolution (near-zero build); the content address is what makes any tamper cost a full rebuild.',
+      'Page architecture under quantumDoubleTorus: monographPaths + corpusParams + doubleTorusCorpusRouting. Papers keep static [id] for SEO; references (432 pointers) and diamonds (1024 Merkle leaves) resolve at call time — not SSG-enumerated.',
   }
 }
 
@@ -967,13 +981,14 @@ export function virtualOS(matrix: MindMatrix = buildMatrix()) {
 // page work with no network. Offline-first is the strict default; the others
 // reference it. Only the optional AI chat is left to the network.
 export function quantumPwa(matrix: MindMatrix = buildMatrix()) {
+  const colors = computedMovieThemeColors(matrix)
   const features = [
     { feature: 'installable', detail: 'web app manifest (/site.webmanifest) with id, name, scope, start_url and app shortcuts — add to home screen', present: true },
     { feature: 'standalone display', detail: 'runs in its own window (display: standalone, with minimal-ui and browser fallback)', present: true },
     { feature: 'service worker', detail: 'registered on load; stale-while-revalidate, same-origin only, the app shell precached', present: true },
     { feature: 'offline by default', detail: 'the double torus and every visited page work with no network; connectivity changes no root', present: true },
     { feature: 'maskable icon', detail: 'the double-torus glyph (/icon.svg), purpose any and maskable, themed', present: true },
-    { feature: 'theme + background colour', detail: 'brand blue (#3b82f6) on the deep field (#0f172a)', present: true },
+    { feature: 'theme + background colour', detail: `computed movie palette (${colors.themeColor} on ${colors.backgroundColor}) — not legacy Tailwind hex`, present: colors.themeColor.length > 0 && colors.backgroundColor.length > 0 },
     { feature: 'app shortcuts', detail: 'jump straight to Quantum Mind, MCP & Virtual OS, or School', present: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pwa:${entry.feature}:${entry.present}`) }))
   return {

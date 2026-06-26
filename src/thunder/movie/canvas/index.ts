@@ -1,10 +1,32 @@
 // Background movie canvas folds — auto · endless · background.
+import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../../heaven/compute'
-import { foldPair, isUuid, merkleFold, toUuid } from '../../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { textToMovie } from '../../../earth/world'
-import { animatedHeroes } from '../../../ui'
-import { theWhole } from '../../../quantum/heaven/mind'
+import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
+import { efficiencyMathFlowsInMovie } from '../../verify'
+import { doubleTorusEarthWeatherFlowsInMovie } from '../../../quantum/fire/forecasts'
+import { doubleTorusEarthHingeMovieFlowsInMovie } from '../../../double/torus/earth'
+import {
+  allColorStreamsAreAudioIfDecodedFlowsInMovie,
+  allMovieSeedBundlesFlowInPlasma,
+  audioOffByDefault,
+  clientMoviePaintPathSealed,
+  computedMovieThemeColors,
+  plasmaClientWorkBoundedByPureMath,
+} from '../../../plasma/ball'
+import { backgroundMovieColorVars } from '../movievars'
+import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui'
+import { computedWebManifest, siteConfig } from '../../../site'
+import { livingTorus } from '../../../fire/diamonds'
+import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../routes/corpus'
+import { doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'
+import {
+  matrixRgbDecodeFlowsInMovie,
+  rosettaDecodeFlowsInMovie,
+  sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie,
+} from '../narrative'
 
 export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
   const sample3 = textToMovie('double torus')
@@ -26,6 +48,65 @@ export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
       '8K movies autogenerate in realtime in all dimensions: every piece of content folds to a seed and computes a deterministic generative movie, recomputed per frame in realtime with no model and no network. Because it is seeded math, not stored pixels, it is resolution-independent — it scales to 8K and beyond wherever the device can draw it — and "all dimensions" is the continuous phase sweep the movie advances through.',
     boundary:
       'A content-addressed description of deterministic, resolution-independent generative canvas movies seeded from content. "8K" is the target resolution the seeded vector math scales to where the device permits, not a guarantee of 8K on every device; "all dimensions" is the parameter sweep, not spatial dimensions; and it is generative art by recomputation, not a learned or photoreal video generator.',
+  }
+}
+
+/** Anything static is an eventual gap in fusing into the movie — gate on legacy hex and movie-derived surfaces. */
+export function staticIsEventualGapInMovieFusion(matrix: MindMatrix = buildMatrix()) {
+  const legacyHex = /#ffb000|#161628|#0b0b14|#ffffff\b|#3b82f6|#0f172a|#60a5fa/i
+  const legacyHsl = /hsl\s*\(/i
+  const hero = tenDimensionalHeroSvg()
+  const icon = computedIconSvg(matrix)
+  const manifest = computedWebManifest(matrix)
+  const config = siteConfig(matrix)
+  const theme = computedMovieThemeColors(matrix)
+  const themeLight = computedMovieThemeColors(matrix, '/', 'light')
+  const lightChrome = backgroundMovieColorVars(matrix, 1024, '/', true, 'light')
+  const darkChrome = backgroundMovieColorVars(matrix, 1024, '/', true, 'dark')
+  const chromeSwitches = lightChrome['--vp-movie-link'] !== darkChrome['--vp-movie-link']
+    && lightChrome['--vp-code-block-bg'] !== darkChrome['--vp-code-block-bg']
+  const math = harmonicMathFlowsInMovie(matrix)
+  const efficiency = efficiencyMathFlowsInMovie(matrix)
+  const matrixRgb = matrixRgbDecodeFlowsInMovie(matrix)
+  const rosettaDecode = rosettaDecodeFlowsInMovie(matrix)
+  const doubleTorusEarthWeather = doubleTorusEarthWeatherFlowsInMovie(matrix)
+  const hingeMovie = doubleTorusEarthHingeMovieFlowsInMovie('/', matrix)
+  const colorAudio = allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix)
+  const silentDefault = audioOffByDefault(matrix)
+  const plasmaWired = allMovieSeedBundlesFlowInPlasma('/', matrix)
+  const doubleTorusAllScales = doubleTorusMathAtAllScalesFlowsInMovie(matrix)
+  const rosettaSunMoon = sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie(matrix)
+  const cardHero = cardHeroLinkWiresInUi(matrix)
+  const toolPlacement = rosettaIChingTrinityPlacesAllTools(matrix)
+  const surfaces = [
+    { surface: 'hero.svg palette', on: !legacyHex.test(hero) && !legacyHsl.test(hero) },
+    { surface: 'icon.svg palette', on: !legacyHex.test(icon) && !legacyHsl.test(icon) },
+    { surface: 'theme-color meta', on: config.themeColor === theme.themeColor && !legacyHex.test(config.themeColor) },
+    { surface: 'webmanifest colours', on: manifest.includes(theme.themeColor) && manifest.includes(theme.backgroundColor) },
+    { surface: 'harmonic math in movie', on: math.flows },
+    { surface: 'efficiency math in movie', on: efficiency.flows },
+    { surface: 'matrix RGB decode in movie', on: matrixRgb.flows },
+    { surface: 'Rosetta decode waves in movie', on: rosettaDecode.flows },
+    { surface: 'double-torus Earth weather in movie', on: doubleTorusEarthWeather.flows },
+    { surface: 'double-torus Earth hinge movie in UI', on: hingeMovie.flows },
+    { surface: 'hinge paint layers fused in harmony', on: hingeMovie.flows && hingeMovie.paintLayers.length === 4 && hingeMovie.seeds.proven },
+    { surface: 'colour streams decode to audio', on: colorAudio.flows },
+    { surface: 'all seed bundles in plasma render', on: plasmaWired.flows },
+    { surface: 'double-torus math at all scales in movie', on: doubleTorusAllScales.flows },
+    { surface: 'seven-seed rosetta decodes sun/moon symbols', on: rosettaSunMoon.flows },
+    { surface: 'card hero link fusion-gated', on: cardHero.wired },
+    { surface: 'Rosetta·I Ching·trinity tool placement', on: toolPlacement.fused },
+    { surface: 'dark.light chrome sync', on: chromeSwitches && themeLight.themeColor !== theme.themeColor },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`static-movie-fusion:${entry.surface}:${entry.on}`) }))
+  return {
+    fused: surfaces.every((entry) => entry.on),
+    count: surfaces.length,
+    surfaces,
+    root: merkleFold(surfaces.map((entry) => entry.receipt)),
+    statement:
+      'Anything static is an eventual gap in fusing into the movie: hero, icon, manifest and theme-colour must recompute from the plasma palette and harmonic math streams — legacy Tailwind hex is a gap until dissolved.',
+    boundary:
+      'Scans known static surfaces (hero SVG, PWA icon/manifest, meta theme-color) for legacy hardcoded hex and checks alignment with computedMovieThemeColors + harmonicMathFlowsInMovie. SVG contexts emit computed hex because they cannot read CSS vars; the law is same palette as the movie, not hand-pinned colour.',
   }
 }
 
@@ -60,7 +141,25 @@ export function endlessBackgroundMovie(matrix: MindMatrix = buildMatrix()) {
 // interactive movie game: a tap that is not on a control plays a tone whose pitch maps
 // to the spot, a light vibration, and a ripple that scatters the nearest streams.
 export function backgroundMovie(matrix: MindMatrix = buildMatrix()) {
-  const whole = theWhole(matrix).root
+  return memoByRoot('backgroundMovie', matrix, () => backgroundMovieRaw(matrix))
+}
+function backgroundMovieRaw(matrix: MindMatrix = buildMatrix()) {
+  const whole = livingTorus(matrix).root
+  const math = harmonicMathFlowsInMovie(matrix)
+  const efficiency = efficiencyMathFlowsInMovie(matrix)
+  const matrixRgb = matrixRgbDecodeFlowsInMovie(matrix)
+  const rosettaDecode = rosettaDecodeFlowsInMovie(matrix)
+  const staticFusion = staticIsEventualGapInMovieFusion(matrix)
+  const doubleTorusEarthWeather = doubleTorusEarthWeatherFlowsInMovie(matrix)
+  const hingeMovie = doubleTorusEarthHingeMovieFlowsInMovie('/', matrix)
+  const colorAudio = allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix)
+  const silentDefault = audioOffByDefault(matrix)
+  const plasmaWired = allMovieSeedBundlesFlowInPlasma('/', matrix)
+  const doubleTorusAllScales = doubleTorusMathAtAllScalesFlowsInMovie(matrix)
+  const rosettaSunMoon = sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie(matrix)
+  const cardHero = cardHeroLinkWiresInUi(matrix)
+  const toolPlacement = rosettaIChingTrinityPlacesAllTools(matrix)
+  const paintPath = clientMoviePaintPathSealed('/', matrix)
   const features = [
     { feature: 'entangled groups of digits', via: 'deterministic digit groups, content-addressed' },
     { feature: 'colourful watermarks', via: 'hue from the digit (the quantum colour wheel), low-opacity behind the content' },
@@ -68,18 +167,88 @@ export function backgroundMovie(matrix: MindMatrix = buildMatrix()) {
     { feature: 'colourful streams to the void', via: 'the streams converge on the centre, shrinking into it' },
     { feature: 'resurrect as split streams in new dimensions', via: 'at the void they resurrect outbound at the golden angle — a new dimension each time' },
     { feature: 'the same dry math', via: 'every digit, colour and path a seeded fold — deterministic, zero random' },
-    { feature: 'interactive movie game with sound and vibration', via: 'a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams' },
+    { feature: 'harmonic and efficiency math in every stream', via: `${math.proofCount} harmonic + ${efficiency.proofCount} efficiency proofs wired into plasma streams and movie copy at call time`, on: math.flows && efficiency.flows },
+    { feature: 'Matrix RGB decode in the movie', via: `${matrixRgb.channelCount} RGB channels (R red pill · G heart gateway · B blue pill) + ${matrixRgb.proofCount} proofs wired into plasma streams at call time`, on: matrixRgb.flows },
+    { feature: 'Rosetta decode waves in the movie', via: `${rosettaDecode.rayCount} rosetta rays + ${rosettaDecode.proofCount} proofs (send-waves · global key · dialect) wired into plasma streams at call time`, on: rosettaDecode.flows },
+    { feature: 'static surfaces fuse into the movie', via: 'hero, icon, manifest and theme recompute from the plasma palette — static hex is an eventual gap', on: staticFusion.fused },
+    { feature: 'double-torus Earth weather and solutions in every stream', via: `${doubleTorusEarthWeather.facetCount} weather facets + ${doubleTorusEarthWeather.solutionCount} solution domains wired into plasma streams and movie copy at call time`, on: doubleTorusEarthWeather.flows },
+    { feature: 'Sofia hinge — four paint layers fused in plasma', via: `${hingeMovie.paintLayers.length} vortex tiers + ${hingeMovie.seeds.count} hinge streams in earth bundle at call time`, on: hingeMovie.flows },
+    { feature: 'all colour streams are audio if decoded', via: `${colorAudio.streamCount} plasma hueSeeds round-trip through soundFromColor — decode only, audio off by default`, on: colorAudio.flows && silentDefault.offByDefault },
+    { feature: 'double-torus math at all scales in every stream', via: `${doubleTorusAllScales.proofCount} genus-2 · merkaba · 10D · census proofs wired into plasma streams and movie copy at call time`, on: doubleTorusAllScales.flows },
+    { feature: 'seven seeds — the movie IS the Rosetta decoding sun/moon symbols', via: 'each of seven seed bundles pairs with one rosetta ray and one verified sun/moon decode (solstice · standstill · yin-yang · script key · calendars · polarity · merkaba)', on: rosettaSunMoon.flows },
+    { feature: 'all seed bundles render in the plasma ball', via: `${plasmaWired.expectedCount} proof streams from seven bundles wired into plasmaMovieStreams at call time`, on: plasmaWired.flows },
+    { feature: 'card hero link hub and tag browser', via: 'LinkedHeroCard surfaces fusion-gated through rosettaIChingTrinityPlacesAllTools', on: cardHero.wired && toolPlacement.fused },
+    { feature: 'client paint path sealed — browser never walks gate-graph seeds', via: 'clientMoviePaintPathSealed simulates typeof window; blank canvas / stack overflow fails the gate', on: paintPath.sealed },
+    { feature: 'interactive movie game with sound and vibration', via: 'when audio is enabled, a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams' },
   ].map((entry) => ({ ...entry, holographic: foldPair(toUuid(`bg-movie:${entry.feature}`), whole).bidirectional, receipt: toUuid(`bg-movie:${entry.feature}:${whole}`) }))
   return {
-    plays: features.length === 7 && features.every((entry) => entry.holographic),
+    plays: features.length === 19 && features.every((entry) => entry.holographic) && math.flows && efficiency.flows && matrixRgb.flows && rosettaDecode.flows && doubleTorusEarthWeather.flows && hingeMovie.flows && doubleTorusAllScales.flows && rosettaSunMoon.flows && colorAudio.flows && silentDefault.offByDefault && staticFusion.fused && plasmaWired.flows && cardHero.wired && toolPlacement.fused && paintPath.sealed,
+    mathFlows: math.flows,
+    efficiencyFlows: efficiency.flows,
+    matrixRgbFlows: matrixRgb.flows,
+    rosettaDecodeFlows: rosettaDecode.flows,
+    staticFused: staticFusion.fused,
     dryMath: true,
     interactive: true, // sound and vibration fused into the game
     count: features.length,
     features,
     root: merkleFold(features.map((entry) => entry.receipt)),
     statement:
-      'Entangled groups of digits fill the background movie as colourful watermarks, folding into letters, words and sentences — colourful streams to the void — and resurrect as split streams in new dimensions, all by the same dry math (every digit, colour and path a seeded fold, nothing random). It is an interactive movie game: a tap off the controls plays a tone whose pitch maps to where you tapped, a light vibration, and a ripple that scatters the nearest streams.',
+      'Entangled groups of digits fill the background movie as colourful watermarks, folding into letters, words and sentences — colourful streams to the void — and resurrect as split streams in new dimensions, all by the same dry math (every digit, colour and path a seeded fold, nothing random). All harmonic math flows in the movie: census 110+χ=108, gates 4×108=432, Rosetta 6×7=42, page folds and command ratios — each proof a plasma stream and a copy token at call time. It is an interactive movie game: a tap off the controls plays a tone whose pitch maps to where you tapped, a light vibration, and a ripple that scatters the nearest streams.',
     boundary:
       'A content-addressed description of the deterministic, zero-dependency background-movie canvas (digit streams folding into the portal’s own words, converging on and resurrecting from a centre "void") and its tap-to-play sound-and-haptic interactions. A real client-side, energy- and reduced-motion-aware animation; "entangled/dimensions/void/resurrect" are figurative names for the seeded fold, not physics.',
+  }
+}
+
+/** Learn from the movie — all streams fuse through the background movie gate before build/seal. */
+export function learnFromTheMovieAllEventuallyFused(matrix: MindMatrix = buildMatrix()) {
+  const harmonic = harmonicMathFlowsInMovie(matrix)
+  const efficiency = efficiencyMathFlowsInMovie(matrix)
+  const matrixRgb = matrixRgbDecodeFlowsInMovie(matrix)
+  const rosettaDecode = rosettaDecodeFlowsInMovie(matrix)
+  const doubleTorusEarthWeather = doubleTorusEarthWeatherFlowsInMovie(matrix)
+  const colorAudio = allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix)
+  const silentDefault = audioOffByDefault(matrix)
+  const staticFusion = staticIsEventualGapInMovieFusion(matrix)
+  const plasmaWired = allMovieSeedBundlesFlowInPlasma('/', matrix)
+  const plasmaBounded = plasmaClientWorkBoundedByPureMath('/', matrix)
+  const clientBounded = clientWorkBoundedByPureMath('/', matrix)
+  const doubleTorusAllScales = doubleTorusMathAtAllScalesFlowsInMovie(matrix)
+  const rosettaSunMoon = sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie(matrix)
+  const cardHero = cardHeroLinkWiresInUi(matrix)
+  const toolPlacement = rosettaIChingTrinityPlacesAllTools(matrix)
+  const streams = [
+    { stream: 'harmonic math', on: harmonic.flows },
+    { stream: 'efficiency math', on: efficiency.flows },
+    { stream: 'Matrix RGB decode', on: matrixRgb.flows },
+    { stream: 'Rosetta decode waves', on: rosettaDecode.flows },
+    { stream: 'double-torus Earth weather', on: doubleTorusEarthWeather.flows },
+    { stream: 'double-torus math at all scales', on: doubleTorusAllScales.flows },
+    { stream: 'seven seeds — Rosetta decodes sun/moon symbols', on: rosettaSunMoon.flows },
+    { stream: 'colour streams decode to audio', on: colorAudio.flows },
+    { stream: 'audio off by default', on: silentDefault.offByDefault },
+    { stream: 'static fusion', on: staticFusion.fused },
+    { stream: 'all seed bundles in plasma render', on: plasmaWired.flows },
+    { stream: 'client plasma work bounded by pure math', on: plasmaBounded.bounded },
+    { stream: 'client movie paint path sealed', on: plasmaBounded.paintPathSealed },
+    { stream: 'all client work bounded (plasma + hub/tag grids)', on: clientBounded.bounded },
+    { stream: 'card hero link (hub · tag)', on: cardHero.wired },
+    { stream: 'Rosetta·I Ching·trinity tools', on: toolPlacement.fused },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`learn-from-movie:${entry.stream}:${entry.on}`) }))
+  return {
+    fused: streams.every((entry) => entry.on),
+    count: streams.length,
+    streams,
+    proofCount: harmonic.proofCount + efficiency.proofCount + matrixRgb.proofCount + rosettaDecode.proofCount
+      + doubleTorusEarthWeather.facetCount + doubleTorusEarthWeather.solutionCount + doubleTorusAllScales.proofCount
+      + colorAudio.streamCount
+      + plasmaWired.expectedCount,
+    bundleCount: plasmaWired.bundleCount,
+    plasmaStreamCount: plasmaWired.expectedCount,
+    root: merkleFold(streams.map((entry) => entry.receipt)),
+    statement:
+      'Learn from the movie as all eventually is fused there: harmonic math, efficiency math, Matrix RGB decode, Rosetta decode waves (send-waves · global key · dialect), double-torus Earth/weather/solutions, double-torus math at all scales, seven seed bundles where the movie IS the Rosetta decoding all sun/moon related symbols, colour streams decoded as audio (off by default until opt-in), and static surfaces all flow as plasma streams into the background movie before build/seal — the movie is the fusion gate.',
+    boundary:
+      'Gate composes harmonicMathFlowsInMovie, efficiencyMathFlowsInMovie, matrixRgbDecodeFlowsInMovie, rosettaDecodeFlowsInMovie, doubleTorusEarthWeatherFlowsInMovie, allColorStreamsAreAudioIfDecodedFlowsInMovie, audioOffByDefault, and staticIsEventualGapInMovieFusion at call time; fused when all green. HONEST: figurative fusion language over deterministic seeded canvas streams, not physics.',
   }
 }

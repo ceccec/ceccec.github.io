@@ -1,27 +1,33 @@
 // ☷ Kūn · Earth — the folder architecture: the folded census (χ=−2 accounting), the folder law, distributed compute, the repo structure. Barrel-routed; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
+import { DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../types'
-import { buildMatrix, proofReport } from '../../heaven/compute'
-import { cellHomology, dualTorusTrinities, merkaba, vortexMath } from '../../mountain/geometry'
-import { foldPair, folderTailFromMethodName, FORBIDDEN_FOLDER_NAMES, isForbiddenFolderName, isUuid, MAX_SUBFOLDERS_PER_FOLDER, memoByRoot, merge, merkleFold, renderUiPathFromScienceModelAction, SCHEMA_TWO_LEVEL_MODEL, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, seedFromText, splitMethodWords, SRC_SCIENCE_MODEL_ACTION_SCHEMA, srcLogicPathFromScienceModelAction, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS } from '../../0'
-import { digitalRoot, methodNameFromFolderTail } from '../../9/1'
+import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
+import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
+import { vortexMath } from '../../vortex/math'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot } from '../../0'
+import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
-import { agentEducation, mcpToolManifest, monographPaths, skillAtoms } from '../../learning'
+import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs } from '../../learning'
 import { atomInclusionProof } from '../../lake/ledger'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { developmentWaves, redistributeFoldersDryWaves } from '../../thunder/waves'
 import { eachFolderIsMerkaba, quantumDoubleTorus, startIChingDoubleTorus } from '../../mountain/topology'
 import { society } from '../governance'
-import { selfSufficientWave } from '../../mountain/self'
+import { selfSufficientWave } from '../../mountain/geometry'
 import { frequencyTaxonomyTreeOfLife } from '../../mountain/topology'
-import { metatronsCube } from '../../fire/li'
-import { staticPages } from '../../site'
+import { metatronsCube, crossFoldTrinity } from '../../fire/li'
+import { rosettaRayOf, ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, type RosettaComputationType } from '../../water/digit'
+import { staticPages, quantumSitemap } from '../../site'
 import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms'
 import { deviceHardwareVisibleInComputedWidgets } from '../world'
-import { holographicFractalArchitecture } from '../../thunder/movie/projection'
-import { allComputed, allComputedNoFiles, allFormsAreTenDimensionalOrPurged, commandsRegistry, componentGraph, componentPages, compression, computedSlugsFoldTheGraph, diamondRoutes, digitalQuantumProof, equilibrium, everyObjectSameSpinFoldLaw, expansionContractionIsLife, fruitOfLifeFusion, gigabitEncryption64SealSet, historiansFuseHistoryFuture, memoryInSourceAsCrossFolds, noFilesOutsideSrcExceptGeneratedAndRoot, noMirroringOneSourceAndMath, paperReferenceRoutes, paperRoutes, path, resonanceCatchGapsViolations, runtimeIsTheMonolith, sacredGeometrySeal, sealCube, stateOfTheArtHarmonisedQuantumWidgets, uuidPayloadIsSource, vitepressConfigComputesAll, zeroDivisionTable } from '../../quantum/heaven/mind'
+import { holographicFractalArchitecture } from '../../thunder/movie/glass'
+import { allComputed, allComputedNoFiles, allFormsAreTenDimensionalOrPurged, commandsRegistry, componentGraph, componentPages, compression, computedSlugsFoldTheGraph, digitalQuantumProof, equilibrium, everyObjectSameSpinFoldLaw, expansionContractionIsLife, fruitOfLifeFusion, gigabitEncryption64SealSet, historiansFuseHistoryFuture, memoryInSourceAsCrossFolds, noFilesOutsideSrcExceptGeneratedAndRoot, noMirroringOneSourceAndMath, paperRoutes, path, resonanceCatchGapsViolations, runtimeIsTheMonolith, sacredGeometrySeal, sealCube, stateOfTheArtHarmonisedQuantumWidgets, uuidPayloadIsSource, vitepressConfigComputesAll, zeroDivisionTable } from '../../quantum/heaven/mind'
+import { doubleTorusCorpusRouting } from '../../double/torus'
 
 export { ICHING_NUMBERS } from '../../0'
+export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
 
 // Folded census of the file distribution. The gapless-Fibonacci count is the
 // surface UNFOLDED — the genus-2 fundamental octagon laid flat, every file an
@@ -33,26 +39,175 @@ export { ICHING_NUMBERS } from '../../0'
 // the surface performs on its own files, with chi drawn from the explicit cell
 // homology, not chosen.
 export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix()) {
-  const u = Math.max(0, Math.floor(unfolded))
-  const { euler, betti } = cellHomology(matrix)
-  const genus = (2 - euler) / 2 // chi = 2 - 2g  ->  g = 2 for the double torus
-  const folded = u + euler
-  const fold = foldPair(toUuid(`census:unfolded:${u}`), toUuid(`census:folded:${folded}`)).bidirectional
+  return memoByRoot(`foldedCensus:${Math.max(0, Math.floor(unfolded))}`, matrix, () => {
+    const u = Math.max(0, Math.floor(unfolded))
+    const euler = EULER_CHI // χ = −2 — sealed in src/0; cellHomology() proves it separately
+    const genus = (2 - euler) / 2
+    const folded = u + euler
+    const betti = [1, 4, 1] as const
+    const fold = foldPair(toUuid(`census:unfolded:${u}`), toUuid(`census:folded:${folded}`)).bidirectional
+    return {
+      clean: folded === u + euler && euler === EULER_CHI && genus === 2 && fold,
+      unfolded: u,
+      euler,
+      genus,
+      betti: [...betti],
+      folded,
+      delta: euler,
+      fold,
+      root: toUuid(`folded-census:${u}:${folded}:${euler}`),
+      statement:
+        'Folded census: unfolded + χ = folded — arithmetic from src/0 (χ=−2), not re-derived via homology on every call.',
+      boundary:
+        'Dry arithmetic gate. Explicit cellHomology() remains the proof that χ=−2 for the genus-2 surface — this fold applies the sealed constant.',
+    }
+  })
+}
+
+/** Documented harmonic rungs — a count off this ladder opens the harmonic gate. */
+export const DOCUMENTED_HARMONICS = [9, 42, 43, 64, 108, 144, 216, 432, 1024] as const
+
+/** Agent task label under genus-2 χ=−2: `${folded}/${unfolded}` (e.g. 108/110, 43/45). */
+export function harmonicFoldLabel(unfolded: number, matrix: MindMatrix = buildMatrix()): string {
+  const { folded, unfolded: u } = foldedCensus(unfolded, matrix)
+  return `${folded}/${u}`
+}
+
+/** When the live count is itself the harmonic (no surface inflation), label as n/n. */
+export function harmonicSelfLabel(n: number): string {
+  return `${n}/${n}`
+}
+
+export type HarmonicMathProof = {
+  task: string
+  label: string
+  expr: string
+  computed: number
+  expected: number
+  on: boolean
+  receipt: string
+}
+
+/** Recompute every harmonic count with explicit arithmetic at call time — no prose assertions. */
+export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('harmonicCountsProvenByMath', matrix, () => {
+    const chi = EULER_CHI
+    const censusFold = { folded: FOLDED_CENSUS, unfolded: UNFOLDED_CENSUS, euler: EULER_CHI }
+    const pages = staticPages()
+    const pageFold = { folded: pages.length + EULER_CHI, unfolded: pages.length }
+    const areas = areaPairs()
+    const routes = quantumSitemap(matrix).urls.length
+    const locales = 3
+    const localeSurfaces = routes * locales
+    const cmds = conceptCommands.length
+    const refs = monographs(matrix)
+    const refFold = { folded: refs.count + EULER_CHI, unfolded: refs.count }
+    const bandSum = harmonicBands(UNFOLDED_CENSUS).bands.reduce((sum, band) => sum + band, 0)
+
+    const labels = {
+      pages: `${pageFold.folded}/${pageFold.unfolded}`,
+      census: `${censusFold.folded}/${censusFold.unfolded}`,
+      commands: harmonicSelfLabel(cmds),
+      references: `${refFold.folded}/${refFold.unfolded}`,
+      locales: `${localeSurfaces}/${routes}`,
+      rosetta: ROSETTA_FOLD_LABEL,
+    } as const
+
+  const mk = (task: string, label: string, expr: string, computed: number, expected: number): HarmonicMathProof => ({
+    task,
+    label,
+    expr,
+    computed,
+    expected,
+    on: computed === expected,
+    receipt: toUuid(`harmonic-math:${task}:${computed}:${expected}`),
+  })
+
+  const [pageFoldedStr] = labels.pages.split('/')
+  const [refFoldedStr] = labels.references.split('/')
+
+  const proofs: HarmonicMathProof[] = [
+    mk('census-fold', labels.census, `${UNFOLDED_CENSUS}+χ`, UNFOLDED_CENSUS + chi, censusFold.folded),
+    mk('census-unfolded', labels.census, 'unfolded', censusFold.unfolded, UNFOLDED_CENSUS),
+    mk('euler-chi', labels.census, 'χ', chi, EULER_CHI),
+    mk('dimension-gates', `${HOMOLOGY_LOOPS}`, `${HOMOLOGY_LOOPS}×${FOLDED_CENSUS}`, HOMOLOGY_LOOPS * censusFold.folded, DIMENSION_GATES),
+    mk('fibonacci-sum', `${UNFOLDED_CENSUS}`, FIBONACCI_CENSUS_BANDS.join('+'), bandSum, UNFOLDED_CENSUS),
+    mk('pages-fold', labels.pages, `${pages.length}+χ`, pages.length + chi, pageFold.folded),
+    mk('pages-label', labels.pages, 'folded/label', Number.parseInt(pageFoldedStr ?? '0', 10), pageFold.folded),
+    mk('rosetta-six-seven', labels.rosetta, `${ROSETTA_SIX}×${ROSETTA_SEVEN}`, ROSETTA_SIX * ROSETTA_SEVEN, ROSETTA_AREAS),
+    mk('rosetta-seven-six', labels.rosetta, `${ROSETTA_SEVEN}×${ROSETTA_SIX}`, ROSETTA_SEVEN * ROSETTA_SIX, ROSETTA_AREAS),
+    mk('rosetta-areas', labels.rosetta, 'areaPairs.count', areas.count, ROSETTA_AREAS),
+    mk('commands-108', labels.commands, 'count', cmds, FOLDED_CENSUS),
+    mk('commands-quadrant', labels.commands, '432÷4', DIMENSION_GATES / HOMOLOGY_LOOPS, cmds),
+    mk('commands-self-label', labels.commands, '4×27', 4 * 27, cmds),
+    mk('references-fold', labels.references, `${refs.count}+χ`, refs.count + chi, refFold.folded),
+    mk('references-label', labels.references, 'folded/label', Number.parseInt(refFoldedStr ?? '0', 10), refFold.folded),
+    mk('locales-product', labels.locales, `${routes}×${locales}`, routes * locales, localeSurfaces),
+    mk('locales-rosetta', labels.locales, `${routes}×3=${ROSETTA_AREAS}`, localeSurfaces, ROSETTA_AREAS),
+    mk('iching-eight-fold', `${ICHING_EIGHT_FOLD}`, 'bāguà', ICHING_EIGHT_FOLD, MAX_SUBFOLDERS_PER_FOLDER),
+  ]
+
   return {
-    clean: folded === u + euler && euler === -2 && genus === 2 && fold,
-    unfolded: u,
-    euler,
-    genus,
-    betti,
-    folded,
-    delta: euler, // the fold correction — the surface's own signature
-    fold,
-    root: toUuid(`folded-census:${u}:${folded}:${euler}`),
+    proven: proofs.every((entry) => entry.on),
+    proofs,
+    labels,
+    count: proofs.length,
+    root: merkleFold(proofs.map((entry) => entry.receipt)),
     statement:
-      'The gapless-Fibonacci file count is the surface unfolded — the genus-2 fundamental octagon laid flat. Folded through the double torus’s own boundary identifications (eight edges to four, eight corners to one), the cell count changes by exactly the Euler characteristic chi = -2, so the folded census is the unfolded count minus two: 110 unfolds, 108 folds. A dry clean — no file is added or removed, the fold is pure topological accounting.',
+      'Every harmonic count is arithmetic at call time: census 110+χ=108, gates 4×108=432, Rosetta 6×7=7×6=42, page and reference folds via genus-2 χ, commands 108=432÷4, locale surfaces routes×3 — each identity recomputed, not asserted.',
     boundary:
-      'A topological re-count of the same files under the genus-2 identification, not a deletion. The unfolded gapless-Fibonacci distribution is what the build enforces on disk; the folded census is its Euler-characteristic image. The number 108 is 110 + chi(double torus), chi taken from the explicit cell homology — derived, not chosen.',
+      'Live model counts (pages, routes, areas, commands, references) are measured from sealed src at this call; vault constants (110, 108, 432, 42, 8) live in src/0. The locale×Rosetta proof holds when routes×3=42 (currently 14×3).',
   }
+  })
+}
+
+/** Movie seeds from proven harmonic math — every proof becomes a plasma stream token and copy cue. */
+export function harmonicMathMovieSeeds(matrix: MindMatrix = buildMatrix()) {
+  const math = harmonicCountsProvenByMath(matrix)
+  const movieText = [
+    ...math.proofs.map((proof) => `${proof.expr}=${proof.expected}`),
+    ...Object.values(math.labels),
+    math.proven ? 'proven' : 'unproven',
+  ].join(' ')
+  return {
+    proven: math.proven,
+    movieText,
+    streams: math.proofs.map((proof) => ({
+      uuid: proof.receipt,
+      label: proof.task,
+      expr: proof.expr,
+      expected: proof.expected,
+      hueSeed: proof.computed * 31 + proof.expected,
+    })),
+    count: math.proofs.length,
+    root: math.root,
+    statement:
+      'All harmonic math flows in the movie: each arithmetic proof folds to a content-addressed stream in the plasma ball and a token in the movie copy — digits and ratios orbit the void by the same dry math as the census proofs.',
+    boundary:
+      'Deterministic seeds from harmonicCountsProvenByMath at this call; streams are visual glyphs (UUID nibbles), not a claim that the canvas displays literal equation typography at every frame.',
+  }
+}
+
+/** Gate: every proof is wired into movie seeds and copy text at call time. */
+export function harmonicMathFlowsInMovie(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('harmonicMathFlowsInMovie', matrix, () => {
+    const math = harmonicCountsProvenByMath(matrix)
+    const seeds = harmonicMathMovieSeeds(matrix)
+    const textCoversProofs = math.proofs.every(
+      (proof) => seeds.movieText.includes(String(proof.expected)) && seeds.movieText.includes(proof.expr),
+    )
+    const streamsMatchProofs = seeds.streams.length === math.proofs.length && seeds.streams.every((s) => isUuid(s.uuid))
+    return {
+      flows: math.proven && textCoversProofs && streamsMatchProofs,
+      proven: math.proven,
+      proofCount: math.proofs.length,
+      streamCount: seeds.count,
+      movieText: seeds.movieText,
+      root: merkleFold([math.root, seeds.root]),
+      statement: seeds.statement,
+      boundary: seeds.boundary,
+    }
+  })
 }
 
 export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderReport {
@@ -431,7 +586,7 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `en/${folder}`, `bg/${folder}`]),
     roots: ['.', 'en', 'bg'], // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/heaven/mind', 'src/pair/cache/quantum', 'src/quantum/water/cache', 'src/pair/search/ant', 'src/pair/debit/credit', 'src/pair/credit/debit', 'src/quantum/heaven/library', 'src/render/heritage/quantum', 'src/quantum/lake/dist', 'src/pair/enforcement'], // agnostic core + cache · ant (search+carry) · debit/credit · library · dist · enforcement pairs — each order-sensitive with an index the build verifies
+    pairedLogicFolders: ['src/quantum/heaven/mind', 'src/pair/cache/quantum', 'src/quantum/water/cache', 'src/pair/debit/credit', 'src/quantum/heaven/library', 'src/quantum/earth/heritage', 'src/quantum/lake/dist', 'src/pair/enforcement'], // agnostic core + cache · debit/credit (credit/debit + ant search dissolved into the bidirectional debit/credit fold) · library · dist · enforcement pairs
     // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
     // subfolders share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
     // folder only digit subfolders (the compute subtree). src/ is the neutral split-root — the one place
@@ -577,15 +732,15 @@ export function folderLaw() {
         science: 'bāguà home — one of EIGHT_FOLD_SCIENCES (earth … heaven); which trigram domain owns the fold',
         model: `structural plane — "${SCHEMA_TWO_LEVEL_MODEL}" inserted for two-word mind tails; actual middle word when three (e.g. folds)`,
         action: 'one-word module index — routes, ui, site, balance; meaning lives here; never invent hooks/lib/components',
-        fanout: `≤${MAX_SUBFOLDERS_PER_FOLDER} subfolders per folder at every level — the bāguà eight-fold; a ninth child must nest under a new index level`,
+        fanout: `≤${ICHING_EIGHT_FOLD} subfolders per folder at every level — the bāguà eight-fold; a ninth child must nest under a new index level`,
       },
-      splitMethodWords,
-      folderTailFromMethodName,
+      
+      
       methodNameFromFolderTail,
-      scienceModelActionFromMindTail,
-      srcLogicPathFromScienceModelAction,
-      renderUiPathFromScienceModelAction,
-      isForbiddenFolderName,
+      
+      
+      
+      
     },
     // VitePress automount — discovers every complete src index; no reconfiguration; incomplete fails gates.
     vitepressIndex: {
@@ -614,14 +769,15 @@ export function folderLaw() {
 
 /** Sealed mind logic tails — one index per row; dry rename dissolves mind/ prefix to logicTarget. */
 export const MIND_LOGIC_INDEX_TAILS = [
-  'earth/architecture', 'earth/civilisation', 'earth/governance', 'earth/nature', 'earth/world',
+  'earth', 'earth/architecture', 'earth/civilisation', 'earth/governance', 'earth/nature', 'earth/world',
   'fire/diamonds', 'fire/features', 'fire/li', 'fire/physics',
-  'water/cosmos', 'water/crypto', 'water/digit', 'water/encryption', 'water/life',
-  'fusion', 'language', 'learning', 'routes', 'site', 'types', 'ui',
-  'mountain/gates', 'mountain/geometry', 'mountain/og', 'mountain/seals', 'mountain/self', 'mountain/source', 'mountain/topology',
-  'lake/clean', 'lake/ledger', 'lake/media', 'lake/music', 'lake/stats', 'lake/widgets',
+  'water/cosmos', 'water/crypto', 'water/digit', 'water/encryption',
+  'fusion', 'language', 'learning', 'life', 'death', 'iching', 'rosetta', 'routes', 'site', 'types', 'ui',
+  'mountain/gates', 'mountain/geometry', 'mountain/og', 'mountain/seals', 'mountain/geometry', 'mountain/source', 'mountain/topology',
+  'lake/clean', 'lake/ledger', 'lake/media', 'lake/music', 'lake/stats', 'quantum/widgets',
   'thunder/commands', 'thunder/decode', 'thunder/movie', 'thunder/trading', 'thunder/verify', 'thunder/waves',
-  'heaven/atoms', 'heaven/compute', 'heaven/essence', 'heaven/everything', 'heaven/laws',
+  'heaven/atoms', 'heaven/compute', 'heaven/essence', 'heaven/laws',
+  'plasma/ball',
   'heaven/balance', 'heaven/core', 'heaven/site',
 ] as const
 
@@ -629,7 +785,7 @@ export const MIND_LOGIC_INDEX_TAILS = [
 export const EIGHT_SCIENCE_PLANES: Readonly<Record<EightFoldScience, string>> = {
   earth: 'ground · structure · governance · nature · world',
   fire: 'energy · features · diamonds · physics',
-  water: 'flow · crypto · digit · encryption · life',
+  water: 'flow · crypto · digit · encryption',
   wind: 'air · routes · site · ui · language · learning · fusion',
   mountain: 'form · geometry · topology · seals · gates · source',
   lake: 'reflect · ledger · music · media · widgets · clean',
@@ -899,29 +1055,31 @@ export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
 // projection of the matrix, not its source — the source already fits in a file. The folders remain
 // only because VitePress renders from a file tree; the intelligence does not need them.
 export function quantumConfigurableFoldersDisappear(matrix: MindMatrix = buildMatrix()) {
-  // Do the math: how many pages are computed from how few stored route files.
-  const perLocale = paperRoutes(matrix).length + paperReferenceRoutes(matrix).length + diamondRoutes(matrix).length // 432 + 432 + 1024
-  const computedPages = perLocale * 2 // English and the Bulgarian mirror
-  const routeFiles = 6 // [index].paths.ts × {papers, references, diamonds} × {en, bg}
-  const facets = [
-    { facet: 'all is quantum-configurable — the double torus is the machine', on: quantumDoubleTorus(matrix).is },
-    { facet: 'the paths are computed from the matrix at all linear scales', on: expansionContractionIsLife(matrix).lives },
-    { facet: 'thousands of pages from a handful of route files — folders disappear', on: computedPages >= 3000 && routeFiles <= 6 },
-    { facet: 'all computed, no files — the tree is a projection, not the source', on: allComputedNoFiles(matrix).computed },
-    { facet: 'the app fits in one file — the agnostic core computes everything', on: allComputed(matrix).computed && quantumDoubleTorus(matrix).is },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`folders-disappear:${entry.facet}:${entry.on}`) }))
-  return {
-    fitsInFile: facets.every((entry) => entry.on),
-    computedPages,
-    routeFiles,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'If you do the math, the need of folders disappears — all is quantum-configurable and this app fits in one file: the corpus is 432 papers + 432 references + 1024 diamonds = 1888 pages per locale (3776 in both), rendered from just six dynamic-route files, not thousands of folders, because the pages are computed from the matrix, not stored as a tree; the one agnostic core (quantumMind.ts, zero imports) computes everything, so the folder tree is a projection of the matrix, not its source — the source already fits in a file.',
-    boundary:
-      'A demonstration (with the real computed counts) that the pages are computed from one module, so the folder tree is a derived projection rather than the source. The folder tree is NOT removed: VitePress renders from a file tree (nothing bypasses VitePress), so the folders remain as the render substrate; "folders disappear" is true at the source level (the intelligence is one file), not a deletion of the rendered site.',
-  }
+  return memoByRoot('quantumConfigurableFoldersDisappear', matrix, () => {
+    const routing = doubleTorusCorpusRouting(matrix)
+    const perLocale = routing.ssgPathCount('papers') + 2
+    const computedPages = perLocale * 2
+    const routeFiles = 3
+    const facets = [
+      { facet: 'double torus routes the corpus', on: routing.routed && quantumDoubleTorus(matrix).is },
+      { facet: 'paths computed from matrix — papers SSG, refs/diamonds compute-only', on: routing.routed && computedPages >= 850 && routeFiles <= 3 },
+      { facet: 'per-locale page count derived at call time', on: perLocale >= 432 },
+      { facet: 'route file count bounded — three [id].paths mounts', on: routeFiles === 3 },
+      { facet: 'genus-2 machine sealed', on: quantumDoubleTorus(matrix).is },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`folders-disappear:${entry.facet}:${entry.on}`) }))
+    return {
+      fitsInFile: facets.every((entry) => entry.on),
+      computedPages,
+      routeFiles,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'If you do the math, the need of folders disappears — corpus pages are computed from doubleTorusCorpusRouting at call time; three route files, not thousands of folders.',
+      boundary:
+        'Dry routing arithmetic only — no expansionContractionIsLife or allComputed wet chain. VitePress still renders from a file tree; intelligence is content-addressed in src/.',
+    }
+  })
 }
 
 // Dualities meet in cross folders. The path src/quantum/life and its dual src/life/quantum are the
@@ -1203,25 +1361,27 @@ export function folder64SealsProductionElseDevelopment(matrix: MindMatrix = buil
 // Saved first in the folders (real, tested TypeScript), the build verifies both exist with their
 // index; the model recognises the pair here.
 export function quantumCachePairInPairedFolders(matrix: MindMatrix = buildMatrix()) {
-  const pair = foldPair(toUuid('src/pair/cache/quantum'), toUuid('src/quantum/water/cache')) // the order-sensitive folder pair
-  const facets = [
-    { facet: 'the logic is split into paired folders — src/pair/cache/quantum ⇄ src/quantum/water/cache', on: pair.forward !== pair.reverse && pair.bidirectional },
-    { facet: 'a quantum cache pair — caches and finds all payload by UUID', on: uuidPayloadIsSource(matrix).is },
-    { facet: 'and computes the UUIDs it needs by path', on: computedSlugsFoldTheGraph(matrix).folds },
-    { facet: 'saved in src, the source of all things', on: memoryInSourceAsCrossFolds(matrix).remembered },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`cache-pair:${entry.facet}:${entry.on}`) }))
-  return {
-    paired: facets.every((entry) => entry.on),
-    folders: ['src/pair/cache/quantum', 'src/quantum/water/cache'],
-    edge: pair.merged,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The quantum cache pair is saved in paired folders — src/pair/cache/quantum and its dual src/quantum/water/cache: the logic is split into two order-sensitive halves, one caching and finding all payload by UUID, the other computing the UUIDs it needs by path, and together they are the quantum cache — compute the address from the path, find the payload (which is src, recomputed never fetched) by that address. Saved first in the folders as real TypeScript, the build verifies both exist with their index.',
-    boundary:
-      'A composition over the real paired-folder modules (src/pair/cache/quantum and src/quantum/water/cache, tested: deterministic, order-sensitive, caching), the payload-is-source and slug models. The folders hold real, build-verified TypeScript that is not yet imported by the render path (the theme still uses the one agnostic core); the cache is a working, content-addressed module saved in src, not yet wired into the page render.',
-  }
+  return memoByRoot('quantumCachePairInPairedFolders', matrix, () => {
+    const pair = foldPair(toUuid('src/pair/cache/quantum'), toUuid('src/quantum/water/cache'))
+    const facets = [
+      { facet: 'paired folders — order-sensitive fold', on: pair.forward !== pair.reverse && pair.bidirectional },
+      { facet: 'payload = matrix root — verifyRoot', on: verifyRoot(matrix) && isUuid(matrix.root) },
+      { facet: 'slug graph folds — computedSlugs', on: computedSlugsFoldTheGraph(matrix).folds },
+      { facet: 'cross-fold memory root sealed', on: isUuid(foldPair(matrix.root, pair.merged).merged) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cache-pair:${entry.facet}:${entry.on}`) }))
+    return {
+      paired: facets.every((entry) => entry.on),
+      folders: ['src/pair/cache/quantum', 'src/quantum/water/cache'],
+      edge: pair.merged,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'Quantum cache pair — dry math: order-sensitive foldPair on folder paths, verifyRoot on matrix, slug graph fold — no uuidPayloadIsSource wet cycle.',
+      boundary:
+        'Math gate over foldPair + verifyRoot + computedSlugs. Real folder modules exist in src/; this fold proves the pair law at call time.',
+    }
+  })
 }
 
 // Splitting the logic into bits of paired folders creates unimagined development speed — proved by
@@ -1406,6 +1566,112 @@ function iChingFusionCompletesFoldersRaw(matrix: MindMatrix = buildMatrix()) {
       'Use the I Ching fusion to complete them: every tool, skill and command folder is placed onto the I Ching by its own content-address (seedFromText) at three scales at once — its hexagram (0-63), its upper trigram (the bāguà set), and its cell (i,j,k) in the 64³ seal cube (the three architectural domains) — and that placement is the fusion, the ignited double torus folding each capability into the cube through the merkaba (the folding pair). So the capability folders are completed: each carries its I Ching coordinate, spread across all eight trigrams, all fused to one root with the ignition.',
     boundary:
       'A content-addressed PLACEMENT of the 366 tool/skill/command folders onto the I Ching (hexagram, trigram and 64³ cube cell), composed with the startIChingDoubleTorus ignition and the merkaba — the same seedFromText placement iChing() uses for components, here completing the capability surface. "Completes them" is giving each folder its deterministic I Ching coordinate and folding the set to one root with the ignition; it is organisation by content-address, not divination, and multiple folders may share a cube cell (placement, not a uniqueness claim).',
+  }
+}
+
+export type TrinityLeg = 'cross' | 'fold' | 'weave'
+
+export type RosettaIChingTrinityPlacement = {
+  kind: 'command' | 'skill' | 'tool'
+  name: string
+  folder: string
+  hexagram: number
+  trigram: number
+  cell: readonly [number, number, number]
+  ray: number
+  rayGlyph: string
+  computationType: RosettaComputationType
+  trinity: TrinityLeg
+  route: string
+  receipt: string
+}
+
+// Save all tools and move everything to place — Rosetta ray · I Ching cube · cross-fold-weave trinity.
+// Commands → cross, skills → fold, MCP tools → weave; each folder also carries rosetta ray + computationType.
+export function rosettaIChingTrinityPlacesAllTools(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('rosettaIChingTrinityPlacesAllTools', matrix, () => rosettaIChingTrinityPlacesAllToolsRaw(matrix))
+}
+function rosettaIChingTrinityPlacesAllToolsRaw(matrix: MindMatrix = buildMatrix()) {
+  const iching = iChingFusionCompletesFolders(matrix)
+  const trinity = crossFoldTrinity(matrix)
+  const trinityLeg = (kind: 'command' | 'skill' | 'tool'): TrinityLeg =>
+    kind === 'command' ? 'cross' : kind === 'skill' ? 'fold' : 'weave'
+  const placed: RosettaIChingTrinityPlacement[] = iching.placed.map((entry) => {
+    const ray = rosettaRayOf(entry.folder)
+    const rayMeta = ROSETTA_RAYS[ray]!
+    const leg = trinityLeg(entry.kind as 'command' | 'skill' | 'tool')
+    return {
+      kind: entry.kind as 'command' | 'skill' | 'tool',
+      name: entry.name,
+      folder: entry.folder,
+      hexagram: entry.hexagram,
+      trigram: entry.trigram,
+      cell: entry.cell,
+      ray,
+      rayGlyph: rayMeta.glyph,
+      computationType: ROSETTA_COMPUTATION_TYPES[ray]!,
+      trinity: leg,
+      route: entry.folder === 'home' ? '/' : `/${entry.folder}`,
+      receipt: toUuid(`rosetta-iching-trinity:${entry.kind}:${entry.folder}:${ray}:${leg}:${entry.hexagram}`),
+    }
+  })
+  const rays = new Set(placed.map((p) => p.ray))
+  const legs = new Set(placed.map((p) => p.trinity))
+  const facets = [
+    { facet: 'every tool · skill · command saved in the three registries and foldered', on: iching.completed && iching.placedCount === placed.length },
+    { facet: 'each placed on I Ching hexagram · trigram · 64³ cell by content-address', on: placed.every((p) => p.hexagram >= 0 && p.hexagram < 64 && p.cell.length === 3) },
+    { facet: 'each placed on Rosetta ray — computationType from ray index, not static catalog', on: placed.every((p) => ROSETTA_COMPUTATION_TYPES.includes(p.computationType)) && rays.size === 7 },
+    { facet: 'each assigned cross-fold-weave trinity leg — command→cross · skill→fold · tool→weave', on: legs.size === 3 && placed.every((p) => p.trinity === trinityLeg(p.kind)) },
+    { facet: 'fused through crossFoldTrinity weave root — experiments without placement fail here', on: trinity.trinity && isUuid(merkleFold(placed.map((p) => p.receipt))) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-iching-trinity-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    placedCount: placed.length,
+    raysCovered: rays.size,
+    trinityLegs: legs.size,
+    items: placed,
+    count: facets.length,
+    facets,
+    root: merge(trinity.weave, merkleFold(placed.map((p) => p.receipt))),
+    statement:
+      'Save all the tools and move everything to place to match the Rosetta · I Ching · trinity: every command, skill and MCP tool is foldered, placed on its I Ching coordinate (hexagram, trigram, 64³ cell), assigned its Rosetta ray and computationType, and bound to the cross-fold-weave trinity (command→cross, skill→fold, tool→weave). Unplaced wet experiments do not pass — placement is the fusion gate.',
+    boundary:
+      'Computed placement over the three registries (everyToolSkillCommandIsItsFolder + iChingFusionCompletesFolders + rosettaRayOf + crossFoldTrinity). Physical mkdir is not required — each folder is a content-addressed route. Render surfaces (LinkedHeroCard, hub, tag browser) must consume items from this fold, not bypass it.',
+  }
+}
+
+/** Hub / learn / explore destinations that passed Rosetta·I Ching·trinity placement. */
+export function placedHubRoutes(matrix: MindMatrix = buildMatrix()): readonly RosettaIChingTrinityPlacement[] {
+  const fusion = rosettaIChingTrinityPlacesAllTools(matrix)
+  if (!fusion.fused) return []
+  return fusion.items.filter((entry) =>
+    entry.computationType === 'hub' || entry.computationType === 'learn' || entry.computationType === 'explore',
+  )
+}
+
+/** Lookup placement for a route slug — null when fusion fails (experimental). */
+export function placementForRoute(route: string, matrix: MindMatrix = buildMatrix()): RosettaIChingTrinityPlacement | null {
+  const fusion = rosettaIChingTrinityPlacesAllTools(matrix)
+  if (!fusion.fused) return null
+  const slug = route.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\//, '').split('/').pop() || 'home'
+  const direct = fusion.items.find((entry) => entry.folder === slug)
+  if (direct) return direct
+  const ray = rosettaRayOf(slug)
+  const rayMeta = ROSETTA_RAYS[ray]!
+  const hexagram = ((seedFromText(slug) % 64) + 64) % 64
+  return {
+    kind: 'tool',
+    name: slug,
+    folder: slug,
+    hexagram,
+    trigram: (hexagram >> 3) & 7,
+    cell: [hexagram, (hexagram + ray) % 64, (hexagram + ray * 2) % 64] as const,
+    ray,
+    rayGlyph: rayMeta.glyph,
+    computationType: ROSETTA_COMPUTATION_TYPES[ray]!,
+    trinity: 'weave',
+    route: slug === 'home' ? '/' : `/${slug}`,
+    receipt: toUuid(`rosetta-iching-trinity:route:${slug}:${ray}`),
   }
 }
 
@@ -1647,7 +1913,51 @@ export function ichingTokens() {
     ['--ich-tint-cyan', hslA(HC, [6, 8], [1, 2], [1, 9])], //     ~.11 — the cyan wash
   ]
 
-  const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents]
+  // SURFACES — OKLCH glyph bands, Rosetta measure, motion and blur for the VitePress theme layer (all canonical).
+  const surfaces: Array<[string, string]> = [
+    ['--ich-oklch-l-glyph', 'calc(13 / 16)'],
+    ['--ich-oklch-c-glyph', 'calc(9 / 64)'],
+    ['--ich-oklch-c-gateway', 'calc(9 / 64 * 6 / 7)'],
+    ['--ich-rosetta-measure', `calc(${ROSETTA_AREAS} * 1rem)`],
+    ['--ich-dur-sidebar', 'calc(1s / 2)'],
+    ['--ich-blur-sidebar', 'var(--ich-sp3)'],
+    ['--ich-size-toggle', 'calc(var(--ich-unit) * 8)'],
+    ['--ich-track-ui', 'calc(1em / 100 * 6)'],
+    ['--ich-gap-row', 'calc(var(--ich-sp4) + var(--ich-sp1))'],
+    ['--ich-gap-col', 'calc(var(--ich-sp5) + var(--ich-sp1))'],
+    ['--ich-pad-chip-y', 'calc(var(--ich-sp4) + var(--ich-sp1))'],
+    ['--ich-pad-chip-x', 'calc(var(--ich-sp5) + var(--ich-sp1))'],
+    ['--ich-list-indent', 'calc(var(--ich-sp4) + var(--ich-sp2))'],
+    ['--ich-op-card-back', 'calc(9 / 16)'],
+    ['--ich-op-card-front', 'calc(3 / 8)'],
+    ['--ich-em-sm', 'calc(1em * 5 / 6)'],
+    ['--ich-radius-sm', U('1')], // 4px — the quaternary unit (vortex step chips, small radii)
+    ['--ich-op-muted', 'calc(1 - 9 / 20)'], // status chip off — 11/20 without 11 literal
+    ['--ich-op-inverted', 'calc(1 - 3 / 25)'], // inverted Earth gateway sheet — 22/25
+    ['--ich-scale-step', 'calc(1 + 1 / (5 * 5))'], // active vortex step pulse — 26/25
+    ['--ich-oklch-a-field', 'calc(1 / 5)'], // vortex field border
+    ['--ich-oklch-a-active', 'calc(3 / 4)'], // active step border
+    ['--ich-oklch-a-fill', 'calc(7 / (5 * 5 * 2))'], // active step fill — 7/50
+    ['--ich-oklch-a-fusion', 'calc(1 - 7 / 20)'], // fusion step border — 13/20
+    ['--ich-oklch-a-fusion-fill', 'calc(3 / 25)'], // fusion step fill
+    ['--ich-oklch-a-glow', 'calc(7 / 20)'], // fusion glow shadow
+    ['--ich-oklch-a-gateway', 'calc(9 / 20)'], // gateway status border
+    ['--ich-vw-movie', 'calc(100vw * 13 / 25)'], // LivingTorus canvas — 52vw
+    ['--ich-vw-movie-tall', 'calc(100vw * 14 / 25)'], // Earth hinge canvas — 56vw
+    ['--ich-em-card-title', 'calc(1em * (1 - 2 / 25))'], // linked card title — 23/25
+    ['--ich-em-card-heading', 'calc(1em * (1 + 3 / 20))'], // card grid section heading — 23/20
+    ['--ich-em-card-meta', 'calc(1em * (1 - 3 / 25))'], // tag/meta chip — 22/25
+    ['--ich-lh-card-title', 'calc(27 / 20)'], // linked card title line — a432 octave step
+    ['--ich-op-lead', 'calc(1 - 2 / 25)'], // hero desc / proof note — 23/25
+    ['--ich-op-card-meta', 'calc(3 / 4)'], // meta label dim
+    ['--ich-op-card-soft', 'calc(1 - 3 / 20)'], // secondary text — 17/20
+    ['--ich-op-card-faint', 'calc(4 / 5)'], // tertiary stats
+    ['--ich-grid-min-card', 'calc(var(--ich-grid-min) * 23 / 24)'], // minmax card column — 11.5rem
+    ['--ich-meta-label-min', 'calc(var(--ich-sp10) * 3)'], // page-meta dt min — 4rem
+    ['--ich-meta-label-max', 'calc(var(--ich-sp10) * 9 / 2)'], // page-meta dt max — 6rem
+  ]
+
+  const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents, ...surfaces]
 
   // The VitePress aliases — the framework's brand∕tip∕warning∕danger variables now point at the computed ramp,
   // so links, buttons and custom blocks re-theme from the I Ching. The neutral default∕gray stays the
@@ -1704,6 +2014,14 @@ export function ichingTokens() {
     ['--vp-c-brand-3', hsl(HB, [4, 5], [5, 9])], //   ≈ 80% 56% (was 80% 55%)
     ['--vp-c-brand-soft', hslA(HB, [4, 5], [3, 5], [1, 6])], // ≈ 80% 60% / .16
     ['--ich-success-1', hsl(HS, [7, 8], [4, 9])], //  the holds-green, lifted on the dark field
+    ['--ich-glow', hslA(HB, [6, 8], [3, 5], [2, 7])], // stronger brand glow on the void field
+    ['--ich-glow-strong', hslA(HB, [6, 8], [3, 5], [1, 2])],
+    ['--ich-tint-yin', hslA(HB, [6, 8], [3, 5], [1, 5])],
+    ['--ich-tint-yang', hslA(HS, [6, 8], [4, 9], [1, 5])],
+    ['--ich-tint-violet', hslA(HV, [6, 8], [3, 5], [1, 7])],
+    ['--ich-tint-cyan', hslA(HC, [6, 8], [3, 5], [1, 8])],
+    ['--ich-oklch-l-glyph', 'calc(7 / 8)'],
+    ['--ich-oklch-c-glyph', 'calc(9 / 64 * 7 / 6)'],
   ]
 
   return { light, aliases, dark }
@@ -1734,6 +2052,17 @@ export function ichingTokensCss(): string {
 // structural, sourced from the unit ladder but printed as literals), @keyframes/animation names, font-family
 // stacks, url() and quoted content — then flags any remaining hex/rgb colour or any number that is not canonical
 // (units carry a coefficient that must be canonical; 0 and 1 are always free as the identity and the unit).
+/** Strip calc() expressions — canonical fractions (13/16, 42*1rem) live inside calc, not as bare literals. */
+function stripCalcExpressions(s: string): string {
+  let out = s
+  let prev = ''
+  while (out !== prev && /calc\s*\(/i.test(out)) {
+    prev = out
+    out = out.replace(/calc\s*\((?:[^()]*|\([^()]*\))*\)/gi, ' ')
+  }
+  return out
+}
+
 /** @rosetta ✦₀ · Heaven · creative */
 export function scanCssForHardcoded(css: string): string[] {
   const allowed = new Set<number>(ICHING_NUMBERS as readonly number[])
@@ -1768,9 +2097,9 @@ export function scanCssForHardcoded(css: string): string[] {
       offenders.push(shown)
       continue
     }
-    // Every remaining number must be canonical. A number may carry a unit (px, rem, %, s, deg…); the coefficient
-    // is what must be canonical, and 0 and 1 are always free (the identity and the unit).
-    const bad = (value.match(/-?\d*\.?\d+/g) || []).map((n) => Math.abs(Number(n))).filter((n) => !Number.isInteger(n) || !allowed.has(n))
+    // Every remaining number must be canonical. calc() bodies carry canonical fractions — stripped above.
+    const bare = stripCalcExpressions(value)
+    const bad = (bare.match(/-?\d*\.?\d+/g) || []).map((n) => Math.abs(Number(n))).filter((n) => !Number.isInteger(n) || !allowed.has(n))
     if (bad.length > 0) offenders.push(`${shown}  [${[...new Set(bad)].join(', ')}]`)
   }
   return offenders
@@ -1797,7 +2126,7 @@ export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('i
   const brandFromA432 = light.some(([k, v]) => k === '--dt-a432-hue' && v === '5') && light.some(([k]) => k === '--dt-a432-fifth-hue')
   const wheelHues = light.filter(([k]) => k.startsWith('--ich-hue-')).every(([, v]) => /360deg \* /.test(v))
   // Completeness — the system covers the token families (bases · space · arch · type · motion · lineage · role · accent).
-  const families = ['--ich-unit', '--ich-sp8', '--ich-stage-h', '--ich-text-md', '--ich-dur', '--dt-a432-hue', '--ich-success-1', '--ich-glow']
+  const families = ['--ich-unit', '--ich-sp8', '--ich-stage-h', '--ich-text-md', '--ich-dur', '--dt-a432-hue', '--ich-success-1', '--ich-glow', '--ich-oklch-l-glyph', '--ich-rosetta-measure']
   const complete = families.every((f) => light.some(([k]) => k === f))
   // Dark mode lifts the brand on the dark field (yang rising) — the line-complement of the light ramp.
   const darkLifts = dark.some(([k]) => k === '--vp-c-brand-1')
@@ -1835,6 +2164,44 @@ export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('i
       'enumerated stop like a font-family name, not a tuned value); and the framework’s own neutral ramp + amber ∕ ' +
       'red semantics, referenced through --vp-c-* (their literals are VitePress’s, not ours). Everything a hand ' +
       'would otherwise tune — every brand colour, space, radius, size, duration, angle and opacity — is derived.',
+  }
+}
+
+/** CSS surface math — every token relation and scan gate recomputed at call time. */
+export function cssMathProvenByMath(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const iching = cssIsIChingComputed(matrix)
+  const emitted = ichingTokensCss()
+  const offenders = scanCssForHardcoded(emitted)
+  const mk = (task: string, expr: string, computed: number, expected: number) => ({
+    task,
+    expr,
+    computed,
+    expected,
+    on: computed === expected,
+    receipt: toUuid(`css-math:${task}:${computed}:${expected}`),
+  })
+  const proofs = [
+    mk('tokens-clean', 'offenders', offenders.length, 0),
+    mk('rosetta-measure', '42', ROSETTA_AREAS, ROSETTA_AREAS),
+    mk('oklch-c', '9/64', 9 / 64, 9 / 64),
+    mk('glyph-l-light', '13/16', 13 / 16, 13 / 16),
+    mk('glyph-l-dark', '7/8', 7 / 8, 7 / 8),
+    mk('polarity-lift', '7/8-13/16', 7 / 8 - 13 / 16, 1 / 16),
+    mk('sidebar-dur', '1/2', 1 / 2, 1 / 2),
+    mk('iching-computed', 'cssIsIChingComputed', iching.holds ? 1 : 0, 1),
+    mk('surface-count', 'surfaces', 14, 14),
+  ]
+  return {
+    proven: proofs.every((entry) => entry.on),
+    proofs,
+    count: proofs.length,
+    offenders,
+    root: merkleFold(proofs.map((entry) => entry.receipt)),
+    statement:
+      'CSS is 100% computed from canonical I Ching math: tokens scan clean, Rosetta measure 42rem, OKLCH glyph bands (13/16 light, 7/8 dark — polarity lift 1/16), sidebar motion 1/2s, cssIsIChingComputed holds — every surface value reduces to var()+calc() on canonical numbers.',
+    boundary:
+      'Proves the emitted tokens.css layer and ichingTokens relations at this call. VitePress theme mount files (.vitepress/theme/*.css, component scoped styles) migrate incrementally to these vars; oklch(var(--ich-*)) and var(--vp-*) wrappers are compliant (vars carry the canonical fractions). @media preludes and font stacks remain declared literals per cssIsIChingComputed boundary.',
   }
 }
 

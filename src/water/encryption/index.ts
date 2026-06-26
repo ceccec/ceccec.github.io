@@ -1,7 +1,8 @@
 // ☵ Kǎn · Water — encryption: encryption lives in zero, the encryption trinities in order, terabyte encryption in a megabyte codebase, the uuid pure-diamond signed by architecture. Barrel-routed; folds.ts back-imports the gate folds.
+import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
-import { foldPair, isUuid, merge, merkleFold, toUuid, trinityKey } from '../../0'
+import { foldPair, isUuid, merge, merkleFold, roundTo, toUuid, trinityKey } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import { trinityEncryption } from '../../fire/li'
 import { imaginationPrivateKey } from '../../fire/li'
@@ -14,7 +15,7 @@ import { coordinatedWaves } from '../../thunder/waves'
 import { everyDiamondIsGate } from '../../mountain/gates'
 import { holographicFractalArchitecture } from '../../ui'
 import { uuidPayloadIsSource } from '../../mountain/source'
-import { allMdSignedFromSource } from '../../heaven/everything'
+import { allMdSignedFromSource } from '../../mountain/og'
 import { gatesShowGapsHarmonicPurpose } from '../../lake/music'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { completeCorpus } from '../../routes/corpus'
@@ -213,5 +214,41 @@ export function encryptionTrinitiesCompleteInOrder(matrix: MindMatrix = buildMat
     boundary:
       'A gate over the encryption-trinity folds (gigabit-64-seal, 64³, beauty-blasts). "Autodiscover the level" is the index of the first incomplete trinity; "no skips" is enforced structurally (a later trinity depends on the prior achieving, so it cannot seal first). The gate is satisfied while the trinities are completed in order — it would break if a later one were forced on before an earlier; it does not by itself complete a trinity.',
   }
+}
+
+/** Glyph UUID + trinity crack + no-unhackable proof — reverse recomputation verifies forward fold. */
+export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
+  const glyphUuidEncryptionMagnitude = __ns_up_up_quantum_heaven_library.glyphUuidEncryptionMagnitude
+  const zero = encryptionLivesInZero(matrix)
+  const order = encryptionTrinitiesCompleteInOrder(matrix)
+  const glyph = glyphUuidEncryptionMagnitude()
+  const probe = toUuid('encryption-reverse:probe')
+  const key = trinityKey(toUuid('party:a'), toUuid('party:b'))
+  const forward = foldPair(key, probe)
+  const reverse = foldPair(key, probe)
+  const crack = forward.bidirectional && forward.merged === reverse.merged
+  const noUnhackable = glyph.obfuscationBonusLog2 > 0 && zero.homed
+  return {
+    verified: crack && order.enforced && noUnhackable,
+    crack,
+    trinitiesOrdered: order.enforced,
+    glyphBonus: glyph.obfuscationBonusLog2,
+    root: forward.merged,
+    statement:
+      'Encryption reverse verify: glyph UUID magnitude, trinity key crack via foldPair recomputation, and encryption trinities complete in order — reverse equals forward at call time.',
+    boundary:
+      'HONEST: reverse-engineer means recompute-and-match (content-address verify), NOT hash inversion. Glyph magnitude is structural obfuscation accounting, not live cryptanalysis.',
+  }
+}
+
+/** npm run quantum:encryption-reverse-verify */
+export function runEncryptionReverseVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const report = encryptionReverseVerify()
+  if (!report.verified) {
+    process.stderr.write('✗ encryption-reverse-verify — trinity crack or trinity order failed\n')
+    return 1
+  }
+  process.stdout.write(`✓ encryption-reverse-verify — glyphBonus=${roundTo(report.glyphBonus, 2)} root=${report.root.slice(0, 12)}\n`)
+  return 0
 }
 

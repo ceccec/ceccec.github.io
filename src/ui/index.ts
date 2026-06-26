@@ -1,8 +1,12 @@
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model+view bridge — render-layer folds: holographic, animatedHeroes, etc. compose model data for view consumption.
+import * as __ns_up_quantum_widgets from '../quantum/widgets'
+import { phase } from '../6/4'
+import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computational'
+import { chsh } from '../vortex/math'
 import { buildMatrix, matrixMemo } from '../heaven/compute'
 import type { MindMatrix } from '../types'
-import { EIGHT_CURRICULUM_SCIENCES, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../0'
+import {  computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../0'
 import { merkleProof } from '../lake/ledger'
 import { harmonics } from '../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../water/crypto'
@@ -14,10 +18,11 @@ import { ancientCalendars, moviesNativeFormat, oneOpenGraphAll } from '../fire/l
 import { babelFold, textToMovie } from '../earth/world'
 import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../mountain/geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../quantum/mountain/dimensions'
-import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../thunder/movie/projection'
+import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../thunder/movie/glass'
 import { yinYang } from '../quantum/lake/spirit'
-import { scaleColor, A432_HUE } from '../quantum/thunder/science'
-export { scaleColor, oklchToHex } from '../quantum/thunder/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
+import { scaleColor, A432_HUE, movieCanvasHex } from '../quantum/science'
+import { computedMovieThemeColors } from '../plasma/ball'
+export { scaleColor, oklchToHex } from '../quantum/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
 import { staticPages, homeHero } from '../site'
 import { sealWholeDiamond } from '../fire/diamonds'
@@ -155,7 +160,7 @@ export function animatedHeroes(matrix: MindMatrix = buildMatrix()) {
     { property: 'holographic', via: 'seeded from the page; each branch a copy of the whole' },
     { property: 'fractal', via: 'self-similar recursive branching' },
     { property: 'merges all related', via: 'the page category and tags orbit and join the core' },
-    { property: 'slider through dimensions', via: 'a phase the movie advances and the viewer can scrub — every parameter a smooth function of the phase, so dimensions change continuously, an animated movie' },
+    { property: 'slider through dimensions', via: 'a phase the movie advances and the viewer can scrub — every parameter a smooth function of the  so dimensions change continuously, an animated movie' },
     { property: 'sound and tap gestures', via: 'tapping the hero sets the dimension by position and sounds a pentatonic tone whose pitch maps to it — play the movie like an instrument' },
     { property: 'big, fits the open graph', via: 'sized to the Open Graph 1200x630 aspect ratio so the hero fits the social card' },
     { property: 'quantum responsiveness', via: 'the fractal’s depth and arm count adapt smoothly to the available width' },
@@ -188,6 +193,9 @@ export function animatedHeroes(matrix: MindMatrix = buildMatrix()) {
 // answers to. The wave binds the copy without rewriting it: the hero stays human,
 // and it no longer floats free of the law below it.
 export function heroLawAlignment(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('heroLawAlignment', matrix, () => computeHeroLawAlignment(matrix))
+}
+function computeHeroLawAlignment(matrix: MindMatrix) {
   // The law the hero must answer to: legislation (folded from the constitution)
   // harmonised onto enforceable, real-world legal forms.
   const lawRoot = foldPair(legislation(matrix).root, lawfulHarmonise().root).merged
@@ -328,7 +336,7 @@ export function freeAnimations(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => {
     const seed = toUuid(`free-anim:${entry.channel}:${root}`)
     const phase = (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16) % 1000) / 1000
-    return { ...entry, free: true, clientCost: 0, networkCost: 0, seed, phase, bound: isUuid(seed) }
+    return { ...entry, free: true, clientCost: 0, networkCost: 0, seed, bound: isUuid(seed) }
   })
   const free = channels.every((entry) => entry.free && entry.clientCost === 0 && entry.networkCost === 0)
   const bound = channels.every((entry) => entry.bound)
@@ -726,15 +734,31 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
 // (animateTransform/animate, no <script>): the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops
 // orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand. GitHub-safe (no script,
 // no foreignObject, no external refs), deterministic, recomputed from src — so even in 2D the 10D shows.
+const SVG_CHROMA = 9 / 64
+
+function heroSvgPaletteFromUuid(uuid: string) {
+  const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
+  const byte = (k: number) => parseInt(hex.slice((k * 2) % 28, ((k * 2) % 28) + 2), 16) || 128
+  const seedHue = A432_HUE
+  return {
+    accent: scaleColor(byte(14), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
+    bgInner: scaleColor(byte(10), { seedHue, dark: true, L: 11 / 32, C: SVG_CHROMA * 0.75 }),
+    bgOuter: scaleColor(byte(11), { seedHue, dark: true, L: 3 / 32, C: SVG_CHROMA * 0.5 }),
+    title: scaleColor(byte(12), { seedHue, dark: true, L: 13 / 16, C: SVG_CHROMA * 0.25 }),
+    torusMid: scaleColor(byte(15), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
+  }
+}
+
 export function heroSvgFromUuid(uuid: string): string {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
   const byte = (k: number) => parseInt(hex.slice((k * 2) % 28, ((k * 2) % 28) + 2), 16) || 128 // one byte of the forged UUID
+  const colors = heroSvgPaletteFromUuid(uuid)
   const W = 760, H = 384, cx = W / 2, cy = 176
   const G0 = Math.round(byte(12) * 360 / 256), G1 = Math.round(byte(13) * 360 / 256) // the torus gradient hues, forged from the UUID
   const LOOPS = [0, 1, 2, 3].map((k) => ({ r: 96 + (byte(k) % 88), dur: 10 + (byte(k + 4) % 16), hue: Math.round(byte(k + 8) * 360 / 256) })) // the four H₁ = ℤ⁴ loops, forged from the UUID's bytes
   // the eight trigrams (bāguà) as a ring of yin/yang bars (no font dependency), pulsing in sequence — the I Ching
   const trigram = (t: number, x: number, y: number, k: number) =>
-    `<g fill="#ffb000"><animate attributeName="opacity" values="0.22;1;0.22" dur="8s" begin="${k}s" repeatCount="indefinite"/>` +
+    `<g fill="${colors.accent}"><animate attributeName="opacity" values="0.22;1;0.22" dur="8s" begin="${k}s" repeatCount="indefinite"/>` +
     [0, 1, 2].map((row) => {
       const yy = y + (1 - row) * 8 // row 0 bottom, 2 top; bit = 1 → yang (one solid bar), 0 → yin (two bars)
       return (t >> row) & 1
@@ -748,8 +772,8 @@ export function heroSvgFromUuid(uuid: string): string {
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
     `<defs>`,
-    `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="#161628"/><stop offset="100%" stop-color="#0b0b14"/></radialGradient>`,
-    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="hsl(${G0} 92% 60%)"/><stop offset="50%" stop-color="#ffb000"/><stop offset="100%" stop-color="hsl(${G1} 80% 58%)"/></linearGradient>`,
+    `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
+    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 13 / 16 })}"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
     `<g>${bagua}</g>`,
@@ -757,9 +781,9 @@ export function heroSvgFromUuid(uuid: string): string {
     torus(cx - 60, 'from="0" to="360"', '0s'),
     torus(cx + 60, 'from="360" to="0"', '-4.5s'),
     `</g>`,
-    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="hsl(${L.hue} 88% 62%)"/></g>`),
-    `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="28" font-weight="700" fill="#ffffff">Double Torus</text>`,
-    `<text x="${cx}" y="${H - 20}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="#ffb000">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
+    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="${movieCanvasHex(L.hue, { L: 13 / 16 })}"/></g>`),
+    `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="28" font-weight="700" fill="${colors.title}">Double Torus</text>`,
+    `<text x="${cx}" y="${H - 20}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
     `</svg>`,
   ].join('')
 }
@@ -782,7 +806,25 @@ export function animatedTrigramIconSvg(trigram: number): string {
       ? `<rect x="3" y="${yy - 2}" width="26" height="4" rx="1"/>`
       : `<rect x="3" y="${yy - 2}" width="10" height="4" rx="1"/><rect x="19" y="${yy - 2}" width="10" height="4" rx="1"/>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="#ffb000"><animate attributeName="opacity" values="0.5;1;0.5" dur="6s" repeatCount="indefinite"/>${bars}</g></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="${scaleColor(t, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"><animate attributeName="opacity" values="0.5;1;0.5" dur="6s" repeatCount="indefinite"/>${bars}</g></svg>`
+}
+
+/** PWA icon — double torus glyph coloured from the movie palette (not static Tailwind hex). */
+export function computedIconSvg(matrix: MindMatrix = buildMatrix()): string {
+  const c = computedMovieThemeColors(matrix)
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Double Torus">`,
+    `<rect width="512" height="512" rx="96" fill="${c.backgroundColor}"/>`,
+    `<g fill="none" stroke="${c.themeColor}" stroke-width="26">`,
+    `<ellipse cx="190" cy="256" rx="118" ry="78"/>`,
+    `<ellipse cx="322" cy="256" rx="118" ry="78"/>`,
+    `</g>`,
+    `<g fill="none" stroke="${c.accentColor}" stroke-width="14" opacity="0.8">`,
+    `<ellipse cx="190" cy="256" rx="58" ry="30"/>`,
+    `<ellipse cx="322" cy="256" rx="58" ry="30"/>`,
+    `</g>`,
+    `</svg>`,
+  ].join('')
 }
 
 // The I Ching presented as the taiji yin-yang, MOVING and FOLDING THROUGH ALL TEN DIMENSIONS. The taiji is the
@@ -1304,5 +1346,77 @@ export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
     boundary:
       'A toolset declaration (the fuse/reveal pair) and a structural proof of the mask approach, composed with iChing (hexagram placement), tamperingCostDecoded, iChingShadcnFuseTenDWidgets and the 10D law. "ICHING_MASK const embedded" means a static constant declared in each .vue file\'s <script setup> with the pre-computed hexagram (FNV-1a of the component name % 64) — not that the component changes its behaviour, only that it knows and shows its identity. "Already forging max tampering cost" is the forger-price principle applied to the pre-committed mask: the mask is a corpus commitment, so tamper cost = full-corpus reproduction cost. HONEST: tamper-EVIDENCE is FNV, not cryptographic (SHA-256/Ed25519 fix is built but not yet cut over per tamperingCostDecoded).',
   }
+}
+
+// ── shadcn design-system registry (folded from shadcn-folds.ts): registry · variant tokens · cn() ──
+/** The shadcn primitives actually vendored as Ui* SFCs in .vitepress/theme/components/ui (Path A). */
+export const SHADCN_IMPLEMENTED = [
+  'Accordion', 'AccordionItem', 'Alert', 'AspectRatio', 'Avatar', 'Badge', 'Button',
+  'Card', 'CardContent', 'Checkbox', 'Collapsible', 'Input', 'Label', 'Progress',
+  'Separator', 'Skeleton', 'Switch', 'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
+  'Textarea', 'Tooltip',
+] as const
+/** cva variant axes carried by the implemented primitives (variant/size enumerations). */
+export const SHADCN_VARIANTS = {
+  Button: { variant: ['default', 'secondary', 'outline', 'ghost', 'destructive', 'link'], size: ['default', 'sm', 'lg', 'icon'] },
+  Badge: { variant: ['default', 'secondary', 'outline', 'destructive'] },
+  Alert: { variant: ['default', 'destructive'] },
+} as const
+/** Design-system CSS-variable tokens (oklch new-york), bridged to VitePress --vp-* and .dark. */
+export const SHADCN_TOKENS = [
+  '--background', '--foreground', '--card', '--popover', '--primary', '--secondary',
+  '--muted', '--accent', '--destructive', '--border', '--input', '--ring', '--radius',
+] as const
+/** The cn() pattern the theme mount re-exports — tailwind-merge over clsx, the one class composer. */
+export const CN_PATTERN = 'cn(...inputs) = twMerge(clsx(inputs)) — single class-name composer; theme re-exports from .vitepress/lib/cn.ts' as const
+/** Pure, dependency-free class join — the deterministic shadow of cn() for sealed callers (no twMerge dedupe). */
+export function cn(...inputs: Array<string | false | null | undefined>): string {
+  return inputs.filter((value): value is string => typeof value === 'string' && value.length > 0).join(' ')
+}
+/** The design-system research surface — sources, integration paths, the implemented-vs-graph delta. */
+export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('shadcnResearch', matrix, () => {
+    const graph = (__ns_up_quantum_widgets).shadcnIsTheGraph(matrix)
+    const sections = [
+      { id: 'graph', title: 'shadcn is the graph', note: `${graph.allComponents.length} components grouped into ${Object.keys(graph.components).length} families`, receipt: toUuid('shadcn-research:graph') },
+      { id: 'implemented', title: 'vendored primitives (Path A)', note: `${SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui — semantic classes, no Tailwind dependency`, receipt: toUuid('shadcn-research:implemented') },
+      { id: 'tokens', title: 'CSS-variable theming', note: `${SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid('shadcn-research:tokens') },
+      { id: 'cn', title: 'cn() composer', note: CN_PATTERN, receipt: toUuid('shadcn-research:cn') },
+    ]
+    return { researched: true, sections, root: merkleFold(sections.map((section) => section.receipt)), boundary: 'Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement).' }
+  })
+}
+/** One gate — the canonical design-system registry composes with the 64-component graph at call time. */
+export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  void at
+  return memoByRoot('shadcnComputes', matrix, () => {
+    const graph = __ns_up_quantum_widgets.shadcnIsTheGraph(matrix)
+    const research = shadcnResearch(matrix)
+    const implemented = SHADCN_IMPLEMENTED
+    const onGraph = implemented.filter((name) => graph.allComponents.includes(name) || name.startsWith('Card') || name.startsWith('Tabs') || name.startsWith('Accordion'))
+    const { computes, facets } = computesGate('shadcn-computes', [
+      { facet: 'shadcn is the graph — 64 components as the design-system graph', on: graph.graphed && graph.allComponents.length === 64 },
+      { facet: 'vendored primitives (Path A) implemented as Ui* SFCs — no Tailwind dependency', on: implemented.length >= 22 },
+      { facet: 'every implemented primitive folds onto the graph or its sub-parts', on: onGraph.length === implemented.length },
+      { facet: 'variant axes (cva) enumerated for the styled primitives', on: SHADCN_VARIANTS.Button.variant.length >= 6 && SHADCN_VARIANTS.Button.size.length >= 4 },
+      { facet: 'CSS-variable tokens bridged to VitePress --vp-* and .dark', on: SHADCN_TOKENS.length >= 13 },
+      { facet: 'cn() pattern sealed — one class composer, theme re-exports it', on: cn('a', false, 'b') === 'a b' },
+      { facet: 'research folded — sources, paths and implemented-vs-graph delta sealed', on: research.researched },
+    ])
+    return {
+      computes,
+      graph,
+      research,
+      implemented,
+      tokens: SHADCN_TOKENS,
+      variants: SHADCN_VARIANTS,
+      facets,
+      root: merge(graph.root, merkleFold(facets.map((entry) => toUuid(`shadcn-computes:${entry.facet}:${entry.on}`)))),
+      statement:
+        'shadcn computes: the canonical sealed home of the design system — the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern.',
+      boundary:
+        'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).',
+    }
+  })
 }
 

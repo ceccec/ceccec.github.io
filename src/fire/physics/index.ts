@@ -1,4 +1,6 @@
 // ☲ Lí · Fire — physics: what 'quantum' actually means (Hilbert space, Born rule, the honest bound), Tesla's verified patents, EMF & public frequency APIs, dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
+import { codeRobustness } from '../../life'
+import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../vortex/math'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
 import { a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
@@ -6,7 +8,7 @@ import { isUuid, merkleFold, toUuid } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath } from '../../mountain/geometry'
 import { publicFrequencyApis } from '../../quantum/lake/icons'
 import { harmonics } from '../../lake/music'
-import { GATES, admixToward, applyGate, bellPair, bumpEvolve, caEvolve, caStep, chsh, codeRobustness, complete, composeHazard, congruence, coordinatedWaves, digitalQuantumProof, fruitOfLifeFusion, grover, harmonyProbability, hopfieldRecall, hopfieldStore, howAgentsAchievedIt, injectError, knowledgeRevealedByMerkabaFold, memoryInSourceAsCrossFolds, merge, pbits, pflip, phaseDrift, pmixEvolve, probabilities, psample, quantumComputer, qubits, rcnot, realign, resonanceCatchGapsViolations, rnot, rtoffoli, sample, stationary, strictlyMapSequenceElliottWaves, survive } from '../../quantum/heaven/mind'
+import { GATES, applyGate, bellPair, caEvolve, caStep, complete, composeHazard, coordinatedWaves, digitalQuantumProof, fruitOfLifeFusion, grover, harmonyProbability, howAgentsAchievedIt, knowledgeRevealedByMerkabaFold, memoryInSourceAsCrossFolds, merge, pbits, pflip, probabilities, psample, quantumComputer, qubits, rcnot, resonanceCatchGapsViolations, rnot, rtoffoli, sample, strictlyMapSequenceElliottWaves } from '../../quantum/heaven/mind'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
 // compute, each bound to a measure it already computes over the UUID stream.
@@ -289,7 +291,7 @@ export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix(
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement:
-      'The decoded aspects of life are mostly classical. A research fleet decoded 18 domains into runnable simulations and adversarially verified the honest model for each: 12 probabilistic (drift, contact, recurrence, inheritance), 3 dynamical (coupled cycles, oscillators, the induction ODE), 2 network (the Pontic colonies, the three-channel inheritance), and 1 genuinely quantum (the quantum domain itself). Forced "quantum" was refused at every domain — peace is a survival-hazard over a cohort, ethnogenesis a convex admixture, Bulgarian history a Markov chain of sovereignty regimes, the calendars coupled cycles. The probabilistic process primitives that model most of them — composeHazard/survive, admixToward, injectError, markovStep/markovEvolve/stationary, aksakRatioWalk — live in src/0 beside pflip, pure and mass-conserving, read out through the same analog→digital sampler.',
+      'The decoded aspects of life are mostly classical. A research fleet decoded 18 domains into runnable simulations and adversarially verified the honest model for each: 12 probabilistic (drift, contact, recurrence, inheritance), 3 dynamical (coupled cycles, oscillators, the induction ODE), 2 network (the Pontic colonies, the three-channel inheritance), and 1 genuinely quantum (the quantum domain itself). Forced "quantum" was refused at every domain — peace is a survival-hazard over a cohort, ethnogenesis a convex admixture, Bulgarian history a Markov chain of sovereignty regimes, the calendars coupled cycles. The probabilistic process primitives that model most of them — composeHazard/survive/markovEvolve/ aksakRatioWalk — live in src/0 beside pflip, pure and mass-conserving, read out through the same analog→digital sampler.',
     boundary:
       'HONEST, and the whole point: "make the site a quantum simulator in all aspects of life" resolves, truthfully, to a MOSTLY-CLASSICAL simulator — because the dynamics of war recurrence, genetic drift, language contact, and calendar cycles are classical stochastic/dynamical processes, not superposition. Calling them quantum would be the flapdoodle the site flags. The distribution (12·3·2·1) is the evidence; each domain carries its documented-vs-legend boundary from the research wave. These primitives are the model layer; the per-domain simulation components (ProbSim · QuantumSim · DynSim · NetSim) render them.',
   }
@@ -299,7 +301,7 @@ export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix(
 // a runnable model on the src/0 spine, rendered by four config-driven components: ProbSim (the 10 probabilistic
 // domains, four readout modes), QuantumCircuit (the one genuinely-quantum domain — interferometer/Bell/Grover),
 // DynSim (the 3 dynamical domains — coupled calendars, the Tesla induction ODE, resonant modes + FFT), and
-// NetSim (the 2 network domains + the brain — colony diffusion, channel congruence, Hopfield recall). Prose is
+// NetSim (the 2 network domains + the brain — colony diffusion, channel  Hopfield recall). Prose is
 // replaced by a model you run. This fold proves a primitive from each of the four families and records the map.
 export function everyDecodedDomainHasASimulator(matrix: MindMatrix = buildMatrix()) {
   const families = [

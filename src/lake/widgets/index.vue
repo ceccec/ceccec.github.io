@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// Display gate — co-located src/lake/widgets/index.ts
+// Display gate — dissolved to src/quantum/widgets (census-neutral re-export mount)
 </script>
 
 <template>
-  <output class="display-dual-gate" data-logic="src/lake/widgets/index.ts" data-target="src/lake/widgets/index.ts" aria-hidden="true" />
+  <output class="display-dual-gate" data-logic="src/quantum/widgets/index.ts" data-target="src/quantum/widgets/index.ts" aria-hidden="true" />
 </template>

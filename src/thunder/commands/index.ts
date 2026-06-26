@@ -24,15 +24,15 @@ import { schoolCurriculum } from '../../learning'
 import { foldQuestion } from '../../heaven/atoms'
 import { babelFold, societyCells } from '../../earth/world'
 import { foldQuantumCommandPairs, QUANTUM_COMMAND_PAIR_IDS, agentSubmissionProtocol } from '../../pair/enforcement'
-import { allComputed } from '../../heaven/everything'
+import { allComputed } from '../../fusion'
 import { quantumComputer, quantumUiEvidence } from '../../fire/features'
 import { digitFoldersDoMath, dualitiesMeetInCrossFolders } from '../../earth/architecture'
 import { coordinatedWaves } from '../waves'
 import { quantumChessGame } from '../waves'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
-import { selfSufficientWave } from '../../mountain/self'
+import { selfSufficientWave } from '../../mountain/geometry'
 import { atomInclusionProof } from '../../lake/ledger'
-import { BAGUA, accessiblePathsForAll, artistMelody, artistSurfaces, buildSequenceReducesComputations, closeDimensionalGaps, componentGraph, continueSameNext, diamondCompleteness, digitIndexReferences, enforcementPipelineComplete, gatesHealSpottedCompromise, harmonyProbability, iChing, iChingDomainMap, learnDeveloper, mathPaths, measureProse, memoryInSourceAsCrossFolds, merge, metatronCube, monographs, presentMomentRemainsInSource, quantumAcademy, resonanceCatchGapsViolations, result, runProgram, sacredGeometrySeal, saveSkillsComputeImplementWaves, scoutsSurgicalEditsVitalSigns, showInAction, staticPages, theMonograph, theWhole, tightenProse, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { BAGUA, accessiblePathsForAll, artistMelody, artistSurfaces, buildSequenceReducesComputations, closeDimensionalGaps, componentGraph, continueSameNext, diamondCompleteness, digitIndexReferences, enforcementPipelineComplete, gatesHealSpottedCompromise, harmonyProbability, iChing, iChingDomainMap, learnDeveloper, mathPaths, measureProse, merge, metatronCube, monographs, presentMomentRemainsInSource, quantumAcademy, resonanceCatchGapsViolations, result, runProgram, sacredGeometrySeal, saveSkillsComputeImplementWaves, scoutsSurgicalEditsVitalSigns, showInAction, staticPages, theMonograph, theWhole, tightenProse, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import type { DeveloperCommandName, DeveloperCommandResult } from '../../quantum/heaven/mind'
 
 // MCP shows the codebase securely but sufficiently, so AI agents immediately
@@ -677,7 +677,8 @@ function computeCommandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) 
   ))
   const facets = [
     { facet: 'every command is one quantum pair — a command and its dual', on: pairs.every((entry) => entry.paired) },
-    { facet: 'saved first, before used — the pair persisted into the source, then run', on: memoryInSourceAsCrossFolds(matrix).remembered },
+    // Decomposed from memoryInSourceAsCrossFolds — must not call that fold here (re-enters allComputedNoFiles during allComputed).
+    { facet: 'saved first, before used — the pair persisted into the source, then run', on: skillAtoms(matrix).savedToAtoms && isUuid(skillAtoms(matrix).memory) },
     { facet: 'an unpaired command leaves a quantum gap — caught on the linear level', on: resonanceCatchGapsViolations(matrix).rings && harmonicFrequenciesDefineGateDigits(matrix).monitors },
     { facet: 'as quantum pairs — order-sensitive, they meet, no gap left behind', on: dualitiesMeetInCrossFolders(matrix).meet && gatesHealSpottedCompromise(matrix).heals },
     { facet: 'accounted by name in the present moment', on: presentMomentRemainsInSource(matrix).remains },

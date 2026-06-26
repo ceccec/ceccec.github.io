@@ -1,7 +1,9 @@
 // ☲ Lí · Fire — quantum features: the quantum society/siege/access/clock, the quantum UI use-cases, quantum PWA evidence. Barrel-routed; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
+import { noCloningWitness, teleportQubit } from '../../9/1'
 import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../../types'
 import { buildMatrix, coverage, entropy, proofReport } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, noCloningWitness, roundTo, teleportQubit, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0'
 import { superdense } from '../../9/1'
 import { navigation358 } from '../../learning'
 import { doubleTorusSurface, quantumDoubleTorus } from '../../mountain/topology'
@@ -16,8 +18,9 @@ import { terabyteKeyspaceFromDeviceLoad } from '../../lake/ledger'
 import { diamondLattice, piTrainDiamonds, sealWholeDiamond } from '../diamonds'
 import { quantumChessGame } from '../../thunder/waves'
 import { traditionsQuantumWhole } from '../../earth/civilisation'
+import { doubleTorusEarthHingeComputesAll } from '../../double/torus/earth'
 import { foldThoughts, mindsRealiseByObservingPath } from '../li'
-import { selfSufficientWave } from '../../mountain/self'
+import { selfSufficientWave } from '../../mountain/geometry'
 import { cryptoFuture } from '../../water/crypto'
 import { backgroundMovie, cloudflareBindings, complete, completeQuantumSolutionsImplemented, computedSlugsFoldTheGraph, diamondCompleteness, everyDiamondIsGate, everyObjectSameSpinFoldLaw, evolutionCrossesQuantumThreshold, fuseAll, gatesBehaveAsMcp, numberLabel, proofBundle, result, trinityEncryption, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 
@@ -406,10 +409,20 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
   const chess = quantumChessGame(matrix)
   const proof = proofReport(matrix)
   const traditions = traditionsQuantumWhole()
+  const hinge = doubleTorusEarthHingeComputesAll('/', undefined, matrix)
   const useCases: readonly QuantumUiUseCase[] = [
     {
-      name: 'diamond lattice tabs',
+      name: 'Sofia Earth hinge',
       component: 'DoubleTorusExperience.vue',
+      interaction: 'Canvas movie fuses four vortex paint layers; six trinity gateways and vortex dash steps from sealed fold.',
+      diamondKind: 'nature',
+      sourceFunction: 'doubleTorusEarthHingeComputesAll()',
+      evidence: `${hinge.hinge.gatewayCount} gateways, ${hinge.paintLayers.length} paint layers, ${hinge.hinge.vortex.steps.length} vortex steps — root ${hinge.root}.`,
+      receipt: hinge.root,
+    },
+    {
+      name: 'diamond lattice tabs',
+      component: 'MonographFold.vue',
       interaction: 'Radix Tabs switch between pulse, lattice, completeness, waves, chess, and controls.',
       diamondKind: 'ui',
       sourceFunction: 'diamondLattice()',
@@ -418,7 +431,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
     },
     {
       name: '3D pi train',
-      component: 'DoubleTorusExperience.vue',
+      component: 'MonographFold.vue',
       interaction: 'User starts the pi train; each pulse updates a visible 3D diamond.',
       diamondKind: 'pi',
       sourceFunction: 'piTrainDiamonds()',
@@ -427,7 +440,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
     },
     {
       name: 'no analog gaps',
-      component: 'DoubleTorusExperience.vue',
+      component: 'MonographFold.vue',
       interaction: 'Completeness tab reports missing kinds, poles, receipts, channels, and pi coverage.',
       diamondKind: 'proof',
       sourceFunction: 'diamondCompleteness()',
@@ -436,8 +449,8 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
     },
     {
       name: 'coordinated waves',
-      component: 'DoubleTorusExperience.vue',
-      interaction: 'Waves tab lists yin-yang phase, amplitude, frequency, statement, and receipt per diamond.',
+      component: 'MonographFold.vue',
+      interaction: 'Waves tab lists yin-yang  amplitude, frequency, statement, and receipt per diamond.',
       diamondKind: 'dynamics',
       sourceFunction: 'coordinatedWaves()',
       evidence: `${waves.waves.length} coordinated waves with root ${waves.root}.`,
@@ -445,7 +458,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
     },
     {
       name: 'quantum chess board',
-      component: 'DoubleTorusExperience.vue',
+      component: 'MonographFold.vue',
       interaction: 'Chess tab renders 64 squares from wave-driven piece superpositions.',
       diamondKind: 'humanity',
       sourceFunction: 'quantumChessGame()',
@@ -463,7 +476,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
     },
     {
       name: 'traditions quantum whole',
-      component: 'DoubleTorusExperience.vue',
+      component: 'MonographFold.vue',
       interaction: 'Traditions tab lists dimensions, families, society cells, and non-reductive boundaries.',
       diamondKind: 'tradition',
       sourceFunction: 'traditionsQuantumWhole()',

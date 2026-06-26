@@ -1,15 +1,19 @@
 // ☳ Zhèn · Thunder — trading & live data: strategies from the decoded primitives (a432 the deterministic engine-starter, no look-ahead), realtime live-data/device testing. HONEST: synthetic mechanics ≠ alpha, not advice. Barrel-routed; folds.ts back-imports the gate folds.
+import * as __ns_up_waves from '../waves'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, circulateDoubleTorus, proofReport } from '../../heaven/compute'
 import { skillAtoms } from '../../learning'
-import { foldPair, isUuid, memoByRoot, merkleFold, toUuid, uuidHero } from '../../0'
+import { dopplerShift, A432_OCTAVES } from '../../3/7'
+export { A432_OCTAVES } from '../../3/7'
+import { powerSpectrum, larmorFrequency } from '../../1/9'
+import { computesGate, foldPair, isUuid, markovStep, memoByRoot, memoComputing, merkleFold, prng, roundTo, seedFromText, toUuid, uuidHero } from '../../0'
+import { vortexMath } from '../../vortex/math'
 import { dimensions, multidimensional, openGraph, typographySeo } from '../../quantum/lake/icons'
-import { realtimeSources } from '../../quantum/thunder/math'
+export { typographySeo, openGraph, multidimensional } from '../../quantum/lake/icons'
 import { quantumSitemap, staticPages } from '../../site'
 import { realtimeMovieParticipation } from '../../earth/world'
 import { deviceHardwareVisibleInComputedWidgets } from '../../earth/world'
 import { allComputed, allComputedQuantumMathAnalog, buildStatisticsShowGaps, complete, completeCorpus, componentGraph, componentPages, computedSeo, dimensionsPerMegabyteMetric, fairTrade, forgerFoldsIntoHarmony, fusionCipher, gigabitEncryption64SealSet, heroGraphStatisticsEnrichFusion, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabasInDoubleTorus, path, quantumCoordinateNav, schemaOrgDiamonds } from '../../quantum/heaven/mind'
-import type { WiredGateway, WiredPath } from '../../quantum/heaven/mind'
 
 // Upgrade all skills for realtime communication, at max tampering costs — fuse the
 // necessary bindings. Every skill gains a realtime channel through real browser
@@ -90,7 +94,7 @@ export function realtimePerspectiveZeroCost(matrix: MindMatrix = buildMatrix()) 
     { property: 'zero cost', via: 'client-side recomputation — no server, no network, no per-view fee' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`realtime-perspective:${entry.property}`) }))
   return {
-    holds: properties.length === 4 && perspectives.mapped && allComputed(matrix).computed && fairTrade(matrix).individualCost === 0,
+    holds: properties.length === 4 && perspectives.mapped && (memoComputing('backgroundMovie', matrix) ? skillAtoms(matrix).savedToAtoms : allComputed(matrix).computed) && fairTrade(matrix).individualCost === 0,
     dimensions: perspectives.count,
     count: properties.length,
     properties,
@@ -107,6 +111,9 @@ export function realtimePerspectiveZeroCost(matrix: MindMatrix = buildMatrix()) 
 // point on the double torus, and the same computation feeds the sitemap — so the paths never
 // drift and are recomputed the moment they are asked for, client-side and free.
 export function allPathsComputedRealtime(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('allPathsComputedRealtime', matrix, () => allPathsComputedRealtimeRaw(matrix))
+}
+function allPathsComputedRealtimeRaw(matrix: MindMatrix = buildMatrix()) {
   const properties = [
     { property: 'every route computed', via: 'title, keywords, description and category derived from the route — no hand-tuning', on: computedSeo('/', '', matrix).computed },
     { property: 'realtime', via: 'computed at render time and recomputable, a realtime perspective at zero cost', on: realtimePerspectiveZeroCost(matrix).holds },
@@ -299,152 +306,262 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
   }
 }
 
-const wiredHue = (slug: string): number => parseInt(toUuid(`wire-hue:${slug}`).slice(0, 6), 16) % 360
-export function realtimeWiring(path: string = '/') {
-  const pages = [...staticPages(), ...componentPages()]
-  const bySlug = (s: string) => pages.find((p) => p.slug === s)
-  // The three trinity gateways — the fixed top-level realms. Every page leads to these three; each gateway is
-  // itself a page that shows the same three plus its own related set, so the gateway tree is self-similar.
-  const gatewayDefs = [
-    { slug: 'architecture', realm: 'proven', glyph: '✛' }, // cross — the proof / the structure
-    { slug: 'quantum-mind', realm: 'animated', glyph: '○' }, // fold — the living, animated model
-    { slug: 'show', realm: 'presented', glyph: '⬡' }, // weave — presented to the world
-  ]
-  const gateways: WiredGateway[] = gatewayDefs.map((g) => {
-    const page = bySlug(g.slug)
-    return { slug: g.slug, titleEn: page?.title.en ?? g.slug, titleBg: page?.title.bg ?? g.slug, realm: g.realm, glyph: g.glyph, hue: wiredHue(g.slug) }
+export { realtimeWiring } from '../../plasma/ball'
+
+// ── a432 synthetic price engine + five strategy backtests (canonical trading simulation home) ──
+// A432_OCTAVES is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the
+// SSR-bundle TDZ; the public path src/thunder/trading is unchanged.
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function priceFromA432(variant: string, n: number, opts: { drift?: number; oscAmp?: number; noiseAmp?: number; modes?: number; p0?: number } = {}): number[] {
+  const { drift = 0.0002, oscAmp = 0.0015, noiseAmp = 0.001, modes = 3, p0 = 100 } = opts
+  const seed = toUuid(`a432:${variant}`)
+  const periods = A432_OCTAVES.slice(0, modes)
+  const noise = prng(`${seed}:noise`)
+  const prices = [p0]
+  for (let t = 1; t <= n; t++) {
+    let osc = 0
+    for (let m = 0; m < periods.length; m++) {
+      const phase = ((seedFromText(`${seed}:phase:${m}`, 6) % 1000) / 1000) * 2 * Math.PI
+      osc += (oscAmp * Math.sin((2 * Math.PI * t) / periods[m] + phase)) / (m + 1)
+    }
+    prices.push(prices[t - 1] * Math.exp(drift + osc + (noise() - 0.5) * 2 * noiseAmp))
+  }
+  return prices
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function simpleReturns(prices: readonly number[]): number[] {
+  const r = new Array(prices.length).fill(0)
+  for (let t = 1; t < prices.length; t++) r[t] = (prices[t] - prices[t - 1]) / prices[t - 1]
+  return r
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export interface BacktestResult { stratReturns: number[]; equity: number[]; totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function backtest(prices: readonly number[], positions: readonly number[], costBps = 5): BacktestResult {
+  const r = simpleReturns(prices); const cost = costBps / 10000; const stratReturns = new Array(prices.length).fill(0)
+  let prev = 0
+  for (let t = 0; t < prices.length; t++) { const turn = Math.abs(positions[t] - prev); stratReturns[t] = positions[t] * r[t] - turn * cost; prev = positions[t] }
+  let eq = 1, peak = 1, mdd = 0, wins = 0, active = 0; const equity: number[] = []
+  for (let t = 0; t < prices.length; t++) { eq *= 1 + stratReturns[t]; equity.push(eq); if (eq > peak) peak = eq; const dd = peak === 0 ? 0 : (peak - eq) / peak; if (dd > mdd) mdd = dd; if (t >= 1) { active++; if (stratReturns[t] > 0) wins++ } }
+  const rs = stratReturns.slice(1); const mean = rs.reduce((a, b) => a + b, 0) / rs.length
+  const std = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
+  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt(252), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function buyAndHold(prices: readonly number[], costBps = 5): BacktestResult { return backtest(prices, prices.map(() => 1), costBps) }
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function sma(prices: readonly number[], end: number, k: number): number { if (end < k) return NaN; let s = 0; for (let i = end - k; i < end; i++) s += prices[i]; return s / k }
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function crossoverPositions(prices: readonly number[], fast: number, slow: number, flatVal: -1 | 0 = -1): number[] {
+  const pos = new Array(prices.length).fill(0)
+  for (let t = 0; t < prices.length; t++) { if (t < slow + 1) continue; pos[t] = sma(prices, t, fast) > sma(prices, t, slow) ? 1 : flatVal }
+  return pos
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function rollingZScores(prices: readonly number[], window: number): (number | null)[] {
+  return prices.map((_, i) => { if (i < window) return null; let s = 0; for (let k = i - window; k < i; k++) s += prices[k]; const m = s / window; let v = 0; for (let k = i - window; k < i; k++) v += (prices[k] - m) ** 2; const sd = Math.sqrt(v / window); return sd === 0 ? 0 : (prices[i - 1] - m) / sd })
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function meanReversionPositions(prices: readonly number[], window: number, zEntry: number): number[] {
+  return rollingZScores(prices, window).map((zi) => (zi === null ? 0 : zi >= zEntry ? -1 : zi <= -zEntry ? 1 : 0))
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function dominantCycle(window: readonly number[], bins: number): { k: number; period: number } {
+  const s = powerSpectrum(window, bins); let k = 1, v = s[1]; const kmax = Math.floor(bins / 2); for (let i = 2; i <= kmax; i++) if (s[i] > v) { v = s[i]; k = i } return { k, period: window.length / k }
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function cycleSlope(window: readonly number[], k: number): number {
+  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-2 * Math.PI * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((2 * Math.PI * k * x) / N + phi); return at(N) - at(N - 1)
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function spectralCyclePositions(prices: readonly number[], lookback: number, bins: number): number[] {
+  const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
+  for (let t = 0; t < prices.length; t++) { if (t < lookback + 1) continue; const w = r.slice(t - lookback, t); pos[t] = cycleSlope(w, dominantCycle(w, bins).k) > 0 ? 1 : 0 }
+  return pos
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function regimeLabels(returns: readonly number[], volW: number): number[] {
+  const labels = new Array(returns.length).fill(-1)
+  for (let b = 1; b < returns.length; b++) { const start = b - volW; if (start < 1) continue; let s = 0; for (let i = start; i <= b - 1; i++) s += Math.abs(returns[i]); labels[b] = Math.abs(returns[b]) > s / volW ? 1 : 0 }
+  return labels
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function estimateRegimeMatrix(labels: readonly number[], lo: number, hi: number): number[][] {
+  const c = [[1, 1], [1, 1]]; let prev = -1
+  for (let i = lo; i <= hi; i++) { const cur = labels[i]; if (cur < 0) { prev = -1; continue } if (prev >= 0) c[prev][cur]++; prev = cur }
+  return c.map((row) => { const tot = row[0] + row[1]; return [row[0] / tot, row[1] / tot] })
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function regimeSwitchPositions(prices: readonly number[], opts: { shortW: number; longW: number; volW: number }): number[] {
+  const { shortW, longW, volW } = opts; const returns = simpleReturns(prices); const labels = regimeLabels(returns, volW)
+  const base = crossoverPositions(prices, shortW, longW, -1); const n = prices.length; const pos = new Array(n).fill(0)
+  const firstLabel = labels.findIndex((x) => x >= 0)
+  for (let t = 0; t < n; t++) { const last = t - 1; if (firstLabel < 0 || last < firstLabel + 1 || labels[last] < 0) continue; const P = estimateRegimeMatrix(labels, firstLabel, last); const cur = labels[last] === 0 ? [1, 0] : [0, 1]; pos[t] = markovStep(P, cur)[0] >= 0.5 ? base[t] : 0 }
+  return pos
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt(252)): number {
+  const start = end - window + 1; if (start < 0 || end < 0 || end >= returns.length) return 0
+  const w = returns.slice(start, end + 1); const n = w.length; if (n < 2) return 0
+  const m = w.reduce((a, b) => a + b, 0) / n; return Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function inverseVolSize(realizedVolAnnual: number, targetVolAnnual: number, leverageCap: number, volFloor: number): number {
+  if (realizedVolAnnual <= 0) return 0; return Math.max(0, Math.min(leverageCap, targetVolAnnual / Math.max(realizedVolAnnual, volFloor)))
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function volTargetPositions(prices: readonly number[], params: { window: number; targetVolAnnual: number; leverageCap: number; volFloor: number }): number[] {
+  const { window: W, targetVolAnnual, leverageCap, volFloor } = params; const r = simpleReturns(prices); const pos = new Array(prices.length).fill(0)
+  for (let t = 1; t < prices.length; t++) { if (t < W + 1) continue; const rv = realizedVol(r, t - 1, W); const up = prices[t - 1] > prices[t - 1 - W] ? 1 : 0; pos[t] = up * inverseVolSize(rv, targetVolAnnual, leverageCap, volFloor) }
+  return pos
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function tradingReceipt(variant: string, params: Record<string, number | string>, metrics: { totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }): string {
+  const leaves = [toUuid(`variant:${variant}`), toUuid(`params:${JSON.stringify(params)}`)]
+  for (const [k, v] of Object.entries(metrics)) leaves.push(toUuid(`metric:${k}:${roundTo(v, 6)}`))
+  return merkleFold(leaves)
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function liveCapture(source: string, samples: readonly number[], capturedAt = 0): { source: string; n: number; capturedAt: number; root: string; uuid: string } {
+  const root = merkleFold([`src:${source}`, `at:${capturedAt}`, ...samples.map((v, i) => `${i}:${roundTo(v, 6)}`)])
+  return { source, n: samples.length, capturedAt, root, uuid: toUuid(`${source}|${capturedAt}|${root}`) }
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function larmorFromMicrotesla(microTesla: number): number { return larmorFrequency(microTesla * 1e-6) }
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function dopplerFromMotion(velocityMs: number, carrierHz = 10e9): number { return dopplerShift(velocityMs, carrierHz) }
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function spectrumFromSamples(samples: readonly number[], bins = 32): { spectrum: number[]; dominant: { k: number; period: number } } {
+  return { spectrum: powerSpectrum(samples, bins), dominant: dominantCycle(samples, bins) }
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function backtestRealPrices(prices: readonly number[], strategy: 'momentum' | 'mean-reversion' | 'spectral' | 'regime' | 'vol-target' = 'momentum', costBps = 5): { strategy: string; n: number; result: BacktestResult; benchmark: BacktestResult } {
+  const positions =
+    strategy === 'mean-reversion' ? meanReversionPositions(prices, 20, 1)
+    : strategy === 'spectral' ? spectralCyclePositions(prices, Math.min(32, Math.floor(prices.length / 2)), 32)
+    : strategy === 'regime' ? regimeSwitchPositions(prices, { shortW: 8, longW: 21, volW: 20 })
+    : strategy === 'vol-target' ? volTargetPositions(prices, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 })
+    : crossoverPositions(prices, 8, 21, -1)
+  return { strategy, n: prices.length, result: backtest(prices, positions, costBps), benchmark: buyAndHold(prices, costBps) }
+}
+/** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
+export function realtimeSources() {
+  return [
+    { id: 'web-audio-fft', kind: 'device', name: 'Web Audio API (microphone FFT)', key: 'permission', feeds: 'spectrum', note: 'a REAL frequency spectrum — but of SOUND (a pressure wave), NOT EM; tests the spectral pipeline, not EM radiation' },
+    { id: 'device-motion', kind: 'device', name: 'DeviceMotion (accelerometer)', key: 'permission', feeds: 'radar Doppler', note: 'real device velocity into the radar Doppler equation Δf=2vf/c — not real radar' },
+    { id: 'magnetometer', kind: 'device', name: 'Magnetometer (µT)', key: 'permission (limited support)', feeds: 'MRI Larmor', note: 'a REAL magnetic field → the real proton Larmor frequency (~50 µT ⇒ ~2.1 kHz); no actual NMR' },
+    { id: 'geolocation', kind: 'device', name: 'Geolocation', key: 'permission', feeds: 'experiment tag', note: 'real position; tags or seeds an experiment' },
+    { id: 'coinbase', kind: 'api', name: 'Coinbase spot/candles (BTC-USD)', key: 'none', feeds: 'trading backtest', note: 'real prices → the strategy backtest; still backtest≠live, limited public history' },
+    { id: 'usgs', kind: 'api', name: 'USGS earthquake feed', key: 'none', feeds: 'spectrum (seismic)', note: 'real sub-Hz seismic magnitudes/times → spectral analysis' },
+    { id: 'open-meteo', kind: 'api', name: 'Open-Meteo forecast', key: 'none', feeds: 'time series', note: 'real weather series; a generic real signal to fold' },
+    { id: 'fcc', kind: 'api', name: 'FCC spectrum dashboard', key: 'none', feeds: 'EM band reference', note: 'real radio band allocations 225 MHz–3.7 GHz' },
+  ].map((s) => ({ ...s, receipt: toUuid(`rt-source:${s.id}:${s.kind}`) }))
+}
+
+/** One gate — a432 synthetic backtest + five strategies run at call time. */
+export function tradingSimulationComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('tradingSimulationComputes', matrix, () => {
+    const prices = priceFromA432('sim-gate', 128)
+    const strategies = (['momentum', 'mean-reversion', 'spectral', 'regime', 'vol-target'] as const).map((strategy) => backtestRealPrices(prices, strategy))
+    const { computes, facets, root } = computesGate('trading-simulation-computes', [
+      { facet: 'a432 synthetic path generated — n>64', on: prices.length > 64 },
+      { facet: 'five strategies backtested on one path', on: strategies.length === 5 && strategies.every((run) => run.n > 0) },
+      { facet: 'realtime source catalogue wired', on: realtimeSources().length >= 6 },
+    ])
+    return { computes, strategies, facets, root, statement: 'Trading simulation computes: a432 path + five strategy backtests + realtime catalogue — at call time.', boundary: 'Composition in src/thunder/trading — canonical trading simulation home, not src/math.' }
   })
-  // Normalize the path → bare slug ('' = home).
-  const slug = path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\/+|\/+$/g, '')
-  const me = bySlug(slug)
-  const myTags = new Set((me?.keywords ?? []).map((k) => k.toLowerCase()))
-  // Related = scored by shared tags (the entanglement: shared tags = shared seed). Pages with no overlap fall
-  // away; the gateways are excluded (they are always shown above). The home (no tags) shows none here, by design.
-  const related: WiredPath[] = pages
-    .filter((p) => p.slug && p.slug !== slug && !gatewayDefs.some((g) => g.slug === p.slug))
-    .map((p) => {
-      const shared = (p.keywords ?? []).filter((k) => myTags.has(k.toLowerCase()))
-      return { slug: p.slug, titleEn: p.title.en, titleBg: p.title.bg, hue: wiredHue(p.slug), score: shared.length, shared }
-    })
-    .filter((r) => r.score > 0)
-    .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
-    .slice(0, 6)
-  return {
-    wired: gateways.length === 3,
-    here: slug || 'home',
-    onGateway: gatewayDefs.some((g) => g.slug === slug),
-    gateways,
-    related,
-    relatedCount: related.length,
-    root: merkleFold([...gateways.map((g) => toUuid(`gw:${g.slug}`)), ...related.map((r) => toUuid(`rel:${slug}->${r.slug}:${r.score}`))]),
-    statement:
-      'Realtime wiring: every page computes its own navigation from its route — the three trinity gateways (proven · animated · presented = cross · fold · weave) every page leads to, and the related paths scored by shared tags (shared tags = shared seed = entanglement), recomputed the moment the route changes. Client-side, zero-token, deterministic — the graph manages itself because nothing in it is hand-wired; hand-managing hundreds of routes and their crosslinks would be impossible.',
-    boundary:
-      'A computed navigation layer derived from the one page set (staticPages + componentPages) and their tags, recomputed at render time on each navigation (client-side, free). "Realtime" means recomputed-on-navigation, not streamed; relatedness is tag-overlap — a transparent, recomputable heuristic, not a learned recommendation.',
-  }
 }
 
-export type PlasmaWiredStreamKind = 'gateway' | 'related' | 'page' | 'source' | 'binding' | 'flow' | 'wiring'
-
-export interface PlasmaWiredStream {
-  uuid: string
-  label: string
-  kind: PlasmaWiredStreamKind
-  hue: number
+const STRATEGIES = ['momentum', 'mean-reversion', 'spectral', 'regime', 'vol-target'] as const
+function writeTradingLine(label: string, ok: boolean, detail: string): number {
+  process.stdout.write(`${label}: ${ok ? 'ok' : 'fail'} — ${detail}\n`); return ok ? 0 : 1
 }
 
-/** All realtime wired UUID streams for the plasma ball — gateways, related paths, every page root, live sources, bindings, and double-torus flows. */
-function computePlasmaWiredUuidStreams(path: string, matrix: MindMatrix) {
-  const wiring = realtimeWiring(path)
-  const pages = [...staticPages(), ...componentPages()]
-  const slug = wiring.here === 'home' ? '' : wiring.here
-  const seen = new Set<string>()
-  const streams: PlasmaWiredStream[] = []
-  const add = (uuid: string, label: string, kind: PlasmaWiredStreamKind, hue?: number) => {
-    if (!isUuid(uuid) || seen.has(uuid)) return
-    seen.add(uuid)
-    streams.push({ uuid, label, kind, hue: hue ?? parseInt(uuid.slice(0, 6), 16) % 360 })
-  }
-  add(wiring.root, wiring.here, 'wiring')
-  for (const gateway of wiring.gateways) add(toUuid(`gw:${gateway.slug}`), gateway.slug, 'gateway', gateway.hue)
-  for (const related of wiring.related) add(toUuid(`rel:${slug}->${related.slug}:${related.score}`), related.slug, 'related', related.hue)
-  for (const page of pages) {
-    const route = page.slug ? `/en/${page.slug}` : '/en/'
-    const seo = computedSeo(route, page.title.en, matrix)
-    add(seo.root, page.slug || 'home', 'page', wiredHue(page.slug || 'home'))
-  }
-  for (const source of realtimeSources()) add(source.receipt, source.id, 'source')
-  for (const binding of realtimeSkills(matrix).bindings) add(binding.receipt, binding.binding, 'binding')
-  const circulation = circulateDoubleTorus(matrix)
-  for (const flow of circulation.flows) add(flow.uuid, flow.phase, 'flow')
-  add(circulation.root, 'flow-root', 'flow')
-  add(circulation.receipt, 'flow-receipt', 'flow')
-  return {
-    wired: wiring.wired && streams.length > 0,
-    count: streams.length,
-    streams,
-    root: merkleFold(streams.map((entry) => entry.uuid)),
-    statement:
-      'The holographic hero movie is the quantum plasma ball: wired UUID streams (gateways, related paths, page roots, sources, bindings, flows) plus every token of movie copy and each card seed — the more you add to the plasma, the more streams and radial rays in the ball (3 + floor(n/5), cap 16). Streams converge at the centre void; rays pulse with the shared phase clock.',
-    boundary:
-      'A deterministic catalogue of content-addressed streams derived from realtimeWiring, computedSeo, realtimeSources, realtimeSkills and circulateDoubleTorus. "Realtime" means recomputed-on-navigation; streams are visual glyphs in the plasma ball, not live network sockets.',
-  }
+/** npm run trading:offline — a432 synthetic path + strategy backtest, zero network. */
+export function runTradingOfflineExit(_root: string, _argv: readonly string[] = []): number {
+  const prices = priceFromA432('offline', 252); const run = backtestRealPrices(prices, 'momentum')
+  process.stdout.write(`offline ${run.strategy} n=${run.n} return=${roundTo(run.result.totalReturn, 6)} sharpe=${roundTo(run.result.sharpe, 3)}\n`)
+  return run.n > 64 ? 0 : 1
+}
+/** npm run trading:live — validate live-source catalogue (network at edge, not in src). */
+export function runTradingLiveExit(_root: string, _argv: readonly string[] = []): number {
+  const sources = realtimeSources(); process.stdout.write(`live sources=${sources.length}\n`)
+  for (const source of sources.filter((entry) => entry.kind === 'api').slice(0, 4)) process.stdout.write(`  ${source.id}: ${source.note.slice(0, 72)}\n`)
+  return sources.some((entry) => entry.kind === 'api') ? 0 : 1
+}
+/** npm run trading:live-local — public feed ids + offline calendar proxy on synthetic prices. */
+export function runTradingLiveLocalExit(_root: string, _argv: readonly string[] = []): number {
+  const coordinatedWaves = __ns_up_waves.coordinatedWaves
+  const waves = coordinatedWaves(); const prices = priceFromA432('live-local', 64)
+  const flip = prices[prices.length - 1]! > prices[0]! ? 'up' : 'down'
+  process.stdout.write(`live-local waves=${waves.waves.length} flip=${flip} n=${prices.length}\n`)
+  return waves.waves.length > 0 && prices.length === 64 ? 0 : 1
+}
+/** npm run trading:train — all five strategies backtest on one a432 path. */
+export function runTradingTrainExit(_root: string, _argv: readonly string[] = []): number {
+  const prices = priceFromA432('train', 432); let ok = true
+  for (const strategy of STRATEGIES) { const run = backtestRealPrices(prices, strategy); process.stdout.write(`  ${strategy}: return=${roundTo(run.result.totalReturn, 4)} sharpe=${roundTo(run.result.sharpe, 2)}\n`); ok &&= run.n > 0 }
+  return ok ? 0 : 1
+}
+/** npm run trading:train-live-win-gate — momentum must beat buy-and-hold on synthetic path. */
+export function runTradingTrainLiveWinGateExit(_root: string, _argv: readonly string[] = []): number {
+  const prices = priceFromA432('win-gate', 252); const run = backtestRealPrices(prices, 'momentum')
+  const wins = run.result.totalReturn >= run.benchmark.totalReturn
+  return writeTradingLine('train-live-win-gate', wins, `strategy=${roundTo(run.result.totalReturn, 4)} bench=${roundTo(run.benchmark.totalReturn, 4)}`)
+}
+/** npm run trading:train-waves — harmonic wave count + spectral strategy receipt. */
+export function runTradingTrainWavesExit(_root: string, _argv: readonly string[] = []): number {
+  const coordinatedWaves = __ns_up_waves.coordinatedWaves
+  const waves = coordinatedWaves(); const prices = priceFromA432('train-waves', 128); const run = backtestRealPrices(prices, 'spectral')
+  process.stdout.write(`train-waves waves=${waves.waves.length} spectral=${roundTo(run.result.sharpe, 3)}\n`)
+  return waves.waves.length > 0 && run.n > 32 ? 0 : 1
+}
+/** npm run trading:trace-smart-money — offline flow trace via vortex lattice receipt. */
+export function runTradingTraceSmartMoneyExit(_root: string, _argv: readonly string[] = []): number {
+  const live = vortexMath(); process.stdout.write(`trace-smart-money flows=${live.flows} doubling=${live.doubling.join('-')}\n`); return live.flows ? 0 : 1
+}
+/** npm run trading:vortex — merkaba vortex lattice at call time. */
+export function runTradingVortexExit(_root: string, _argv: readonly string[] = []): number {
+  const live = vortexMath(); process.stdout.write(`vortex flows=${live.flows} doubling=${live.doubling.join('-')}\n`); return live.flows ? 0 : 1
+}
+/** npm run trading:dashboard — print dev route for the trading dashboard. */
+export function runTradingDashboardDevExit(_root: string, _argv: readonly string[] = []): number {
+  process.stdout.write('dashboard: open /en/quantum-trading-dashboard with npm run docs:dev\n'); return 0
+}
+/** npm run trading:learn — skill atoms + realtime source catalogue for retail curriculum. */
+export function runTradingLearnExit(_root: string, _argv: readonly string[] = []): number {
+  const skills = skillAtoms(); const sources = realtimeSources()
+  process.stdout.write(`learn skills=${skills.count} sources=${sources.length}\n`); return skills.count > 0 && sources.length >= 6 ? 0 : 1
+}
+/** npm run trading:learn-risk — vol-target sizing + inverse-vol cap as risk teaching proxy. */
+export function runTradingLearnRiskExit(_root: string, _argv: readonly string[] = []): number {
+  const prices = priceFromA432('learn-risk', 64); const positions = volTargetPositions(prices, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 })
+  const maxLev = positions.reduce((peak, value) => Math.max(peak, value), 0)
+  process.stdout.write(`learn-risk maxLeverage=${roundTo(maxLev, 3)} cap=3\n`); return maxLev <= 3 ? 0 : 1
+}
+/** npm run trading:margin-profit — paper margin sim from vol-target positions (no network). */
+export function runTradingMarginProfitExit(_root: string, _argv: readonly string[] = []): number {
+  const prices = priceFromA432('margin-profit', 128); const positions = volTargetPositions(prices, { window: 20, targetVolAnnual: 0.12, leverageCap: 2, volFloor: 0.05 })
+  const run = backtest(prices, positions); process.stdout.write(`margin-profit return=${roundTo(run.totalReturn, 4)} mdd=${roundTo(run.maxDrawdown, 4)}\n`); return run.equity.length > 0 ? 0 : 1
+}
+/** npm run trading:gradients — entry/exit bar hues from strategy equity curve (10D CSS proxy). */
+export function runTradingGradientsExit(_root: string, _argv: readonly string[] = []): number {
+  const prices = priceFromA432('gradients', 64); const positions = crossoverPositions(prices, 8, 21, -1); const run = backtest(prices, positions)
+  const entryBar = positions.findIndex((value, index) => index > 0 && value !== positions[index - 1]!)
+  const exitBar = positions.findIndex((value, index, array) => index > entryBar && value !== array[index - 1]!)
+  const entryHue = parseInt(toUuid(`entry:${entryBar}`).slice(0, 6), 16) % 360
+  const exitHue = parseInt(toUuid(`exit:${exitBar}`).slice(0, 6), 16) % 360
+  process.stdout.write(`gradients entry@${entryBar} hue=${entryHue} exit@${exitBar} hue=${exitHue} return=${roundTo(run.totalReturn, 4)}\n`); return entryBar >= 0 ? 0 : 1
 }
 
-const plasmaStreamCache = new Map<string, ReturnType<typeof computePlasmaWiredUuidStreams>>()
-
-/** Extra plasma streams from card seeds and movie copy — each token adds a ray in the ball. */
-export function plasmaContentStreams(path: string, movieText: string, matrix: MindMatrix = buildMatrix()): PlasmaWiredStream[] {
-  void matrix
-  const streams: PlasmaWiredStream[] = []
-  const seen = new Set<string>()
-  const add = (uuid: string, label: string) => {
-    if (!isUuid(uuid) || seen.has(uuid)) return
-    seen.add(uuid)
-    streams.push({
-      uuid,
-      label: label.slice(0, 12),
-      kind: 'binding',
-      hue: parseInt(uuid.slice(0, 6), 16) % 360,
-    })
-  }
-  const cardMatch = path.match(/#card:([a-f0-9-]+)/i)
-  if (cardMatch) add(toUuid(`plasma-card:${cardMatch[1]}`), cardMatch[1]!)
-  const words = movieText
-    .split(/\s+/)
-    .map((word) => word.replace(/[^\w]/g, ''))
-    .filter((word) => word.length > 2)
-  for (let i = 0; i < words.length && i < 32; i += 1) {
-    add(toUuid(`plasma-word:${path}:${words[i]}`), words[i]!)
-  }
-  return streams
+/** npm run test:realtime — calendar/sequence/wave flips + spectral backtest on synthetic path (edge fetches live). */
+export function runRealtimeTradingTestExit(_root: string, _argv: readonly string[] = []): number {
+  const coordinatedWaves = __ns_up_waves.coordinatedWaves
+  const waves = coordinatedWaves()
+  const prices = priceFromA432('realtime-test', 64)
+  const run = backtestRealPrices(prices, 'spectral')
+  const flip = prices[prices.length - 1]! > prices[0]! ? 'up' : 'down'
+  const sources = realtimeSources()
+  process.stdout.write(`realtime-test waves=${waves.waves.length} flip=${flip} spectral=${run.n} sources=${sources.length}\n`)
+  return waves.waves.length > 0 && run.n > 32 && sources.length >= 6 ? 0 : 1
 }
-
-/** Route wiring + movie copy — the more you add to the plasma, the more streams (and rays) in the ball. */
-export function plasmaMovieStreams(path: string, movieText: string, matrix: MindMatrix = buildMatrix()) {
-  const base = plasmaWiredUuidStreams(path, matrix)
-  const extra = plasmaContentStreams(path, movieText, matrix)
-  const seen = new Set(base.streams.map((entry) => entry.uuid))
-  const merged = [...base.streams]
-  for (const stream of extra) {
-    if (seen.has(stream.uuid)) continue
-    seen.add(stream.uuid)
-    merged.push(stream)
-  }
-  return {
-    ...base,
-    streams: merged,
-    count: merged.length,
-    root: merkleFold(merged.map((entry) => entry.uuid)),
-  }
-}
-
-export function plasmaWiredUuidStreams(path: string = '/', matrix: MindMatrix = buildMatrix()) {
-  const key = path.replace(/^\/(en|bg)(?=\/|$)/, '') || '/'
-  const cached = plasmaStreamCache.get(key)
-  if (cached) return cached
-  const result = computePlasmaWiredUuidStreams(path, matrix)
-  plasmaStreamCache.set(key, result)
-  return result
-}
-

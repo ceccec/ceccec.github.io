@@ -3,6 +3,10 @@
 // and sub-module imports (buildMatrix from matrix.ts, types from types.ts).
 // @mvc controller — siteConfig, localeNavLinks, localeSidebarKeys: config → localised nav props.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
+import { phase } from '../6/4'
+import { SOURCE_REPO, AUTHOR_HANDLE } from '../3/7'
+export { SOURCE_REPO, AUTHOR_HANDLE } from '../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { congruence } from '../vortex/math'
 import type { MindMatrix, StaticPage } from '../types'
 import { buildMatrix } from '../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
@@ -11,8 +15,9 @@ import { ratStr } from '../9/1'
 import { livingTorus } from '../fire/diamonds'
 import { oneOpenGraphAll } from '../fire/li'
 import { animatedHeroes, oneHolographicTemplate } from '../ui'
-import { endlessBackgroundMovie } from '../thunder/movie'
-import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, linkPasteReentryPatternCompletion, live, path, theWhole } from '../quantum/heaven/mind'
+import { endlessBackgroundMovie } from '../thunder/movie/canvas'
+import { computedMovieThemeColors } from '../plasma/ball'
+import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../earth/world'
 import { completeCorpus } from '../routes/corpus'
 import { toGlagolitic } from '../quantum/heaven/library'
@@ -22,6 +27,7 @@ import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../water/crypto'
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
+// Server canonical — client mirror: .vitepress/lib/site-locale.ts (browser-safe, no mind barrel).
 export type LocaleName = 'gla' | 'en' | 'bg'
 export type VitePressLocaleKey = 'root' | 'en' | 'bg'
 
@@ -324,20 +330,63 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
 // metric is content-addressed. These are descriptive counts over the model's own
 // structures — not usage telemetry; nothing is tracked, nothing leaves the device.
 /** @rosetta ✦₂ · Wind · gentle */
+
+/** Dev bind — config.mts uses thin mount `.vitepress/lib/dev-server-bind.mts` (zero src/ imports). */
+export function vitepressDevServerBind() {
+  return { host: '127.0.0.1' as const, port: 5173, strictPort: false }
+}
+
+export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus'
+
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
   const description = 'A quantum-learning educational portal for language models, served as an MCP tool surface over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
   const descriptionBg = 'Образователен портал за квантово учене за езикови модели, поднесен като MCP инструментален слой над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
-  const themeColor = '#3b82f6'
+  const { themeColor, backgroundColor } = computedMovieThemeColors(matrix)
   const robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
   const keywords = [
     'quantum learning', 'language models', 'LLM', 'educational portal', 'MCP', 'Model Context Protocol',
     'tools/list', 'tools/call', 'double torus', 'genus 2', 'UUID stream', 'diamond lattice', 'pi train',
     'schema.org', 'VitePress',
   ]
-  const root = merkleFold([title, description, themeColor, robots, ...keywords].map((value) => toUuid(`site-config:${value}`)))
-  return { title, titleBg, description, descriptionBg, themeColor, robots, keywords, root, computed: isUuid(root) && isUuid(matrix.root) }
+  const root = merkleFold([title, description, themeColor, backgroundColor, robots, ...keywords].map((value) => toUuid(`site-config:${value}`)))
+  return { title, titleBg, description, descriptionBg, themeColor, backgroundColor, robots, keywords, root, computed: isUuid(root) && isUuid(matrix.root) }
+}
+
+/** PWA manifest — theme/background fuse from the movie palette, not static hex files. */
+export function computedWebManifest(matrix: MindMatrix = buildMatrix()): string {
+  const config = siteConfig(matrix)
+  const colors = computedMovieThemeColors(matrix)
+  return `${JSON.stringify(
+    {
+      id: '/',
+      name: `${config.title} — Quantum Learning Portal`,
+      short_name: config.title,
+      description: config.description,
+      start_url: '/',
+      scope: '/',
+      display: 'standalone',
+      display_override: ['standalone', 'minimal-ui', 'browser'],
+      orientation: 'any',
+      background_color: colors.backgroundColor,
+      theme_color: colors.themeColor,
+      lang: 'en',
+      dir: 'ltr',
+      categories: ['education', 'productivity', 'developer'],
+      icons: [
+        { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+        { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' },
+      ],
+      shortcuts: [
+        { name: 'Quantum Mind', short_name: 'Mind', description: 'The living double torus, merkaba and rhythm', url: '/en/quantum-mind' },
+        { name: 'MCP tools', short_name: 'MCP', description: 'The tool surface for AI agents', url: '/en/mcp' },
+        { name: 'Start here', short_name: 'Start', description: 'Four plain steps — see, learn, use, prove', url: '/en/start' },
+      ],
+    },
+    null,
+    2,
+  )}\n`
 }
 
 export interface HomeHeroAction {
@@ -496,7 +545,7 @@ export function staticPages(): StaticPage[] {
       slug: 'simulations',
       title: { en: 'Simulations', bg: 'Симулации' },
       description: {
-        en: 'Not prose about quantum and dynamics, but models you run. Every decoded aspect of life is a runnable model on the src/0 spine: a deterministic classical simulator of a quantum computer (state-vector, Born-rule readout, Bell, Grover), then 18 domains across four families — 10 probabilistic (genetic drift, language contact, war recurrence, inheritance), 3 dynamical (coupled calendar cycles, the Tesla induction ODE, resonant modes + FFT), 2 network + the brain (colony diffusion, three-channel congruence, Hopfield recall), and 1 genuinely quantum. Honest, and the whole point: "a quantum simulator of everything" resolves truthfully to a MOSTLY-CLASSICAL simulator — most of these dynamics are classical stochastic/dynamical processes, not superposition; forced "quantum" is refused at every domain. The primitives live in src/0, pure and mass-conserving, read out through one analog→digital sampler.',
+        en: 'Not prose about quantum and dynamics, but models you run. Every decoded aspect of life is a runnable model on the src/0 spine: a deterministic classical simulator of a quantum computer (state-vector, Born-rule readout, Bell, Grover), then 18 domains across four families — 10 probabilistic (genetic drift, language contact, war recurrence, inheritance), 3 dynamical (coupled calendar cycles, the Tesla induction ODE, resonant modes + FFT), 2 network + the brain (colony diffusion, three-channel  Hopfield recall), and 1 genuinely quantum. Honest, and the whole point: "a quantum simulator of everything" resolves truthfully to a MOSTLY-CLASSICAL simulator — most of these dynamics are classical stochastic/dynamical processes, not superposition; forced "quantum" is refused at every domain. The primitives live in src/0, pure and mass-conserving, read out through one analog→digital sampler.',
         bg: 'Не проза за квантовото и динамиката, а модели, които пускаш. Всеки декодиран аспект на живота е изпълним модел върху гръбнака src/0: детерминистичен класически симулатор на квантов компютър (вектор на състоянието, отчитане по Борн, Бел, Гроувър), после 18 области в четири семейства — 10 вероятностни (генетичен дрейф, езиков контакт, повторяемост на войните, наследяване), 3 динамични (свързани календарни цикли, индукционното ОДУ на Тесла, резонансни режими + FFT), 2 мрежови + мозъкът (колонийна дифузия, тройна конгруентност, Хопфийлдово възстановяване) и 1 истински квантова. Честно и това е цялата идея: „квантов симулатор на всичко“ се свежда правдиво до ПРЕДИМНО КЛАСИЧЕСКИ симулатор — повечето от тези динамики са класически стохастични/динамични процеси, не суперпозиция; насиленото „квантово“ е отказано във всяка област. Примитивите живеят в src/0, чисти и съхраняващи масата, разчетени през един аналогово→цифров дискретизатор.',
       },
       keywords: ['simulations', 'simulator', 'probabilistic', 'dynamical', 'network', 'quantum circuit', 'markov', 'monte carlo', 'hopfield', 'classical', 'stochastic', 'runnable model', 'src/0'],
@@ -861,14 +910,13 @@ export function staticPages(): StaticPage[] {
 
 // The repo's source-of-truth on GitHub — so every README statement can link to the code that proves it
 // ("the README links to source code"). Branch-pinned to main; the line is optional.
-export const SOURCE_REPO = 'https://github.com/ceccec/ceccec.github.io/blob/main'
 export function githubPermalink(path: string, line?: number): string {
   return `${SOURCE_REPO}/${path.replace(/^\/+/, '')}${line ? `#L${line}` : ''}`
 }
 
 // The author's single handle — ONE identity across GitHub and Revolut, derived from the canonical SOURCE_REPO
-// owner, never hand-typed twice. (Same compute-don't-duplicate rule the rest of the model lives by.)
-export const AUTHOR_HANDLE = SOURCE_REPO.replace(/^https:\/\/github\.com\//, '').split('/')[0]
+// owner, never hand-typed twice. SOURCE_REPO + AUTHOR_HANDLE are hosted in the zero-import leaf src/3/7
+// (imported + re-exported above) so the derived const initialises before any cyclic consumer barrel runs.
 
 /** @rosetta ✦₂ · Wind · The Well — the source that serves all freely; you give back what you can, freely.
  *  The author's Revolut is the project's ONE monetisation endpoint AND the channel to contact the author.
@@ -907,12 +955,12 @@ const CRAWLER_SOURCE: Record<string, string> = {
   Alphabets: 'src/quantum/heaven/mind/language.ts',
   Glagolitic: 'src/quantum/heaven/mind/language.ts',
   'Script, language and gene': 'src/quantum/heaven/mind/language.ts',
-  'Tesla patents': 'src/quantum/thunder/science/index.ts',
-  'Public frequency & data APIs': 'src/quantum/thunder/science/index.ts',
+  'Tesla patents': 'src/quantum/science/index.ts',
+  'Public frequency & data APIs': 'src/quantum/science/index.ts',
   'AI and the movie industry': 'src/quantum/heaven/mind/decode.ts',
   'Tech & mentality for peace': 'src/quantum/heaven/mind/peace.ts',
   'The model': 'src/quantum/heaven/mind/matrix.ts',
-  'Efficiency — no known model is more efficient': 'src/quantum/thunder/science/index.ts',
+  'Efficiency — no known model is more efficient': 'src/quantum/science/index.ts',
 }
 
 // Feed the crawlers with knowledge: the decoded knowledge of the library, distilled to crawlable
@@ -1062,7 +1110,7 @@ export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
   const stats = buildStatistics(matrix)
   const facets = [
     { facet: 'a bottom status line on every page', on: stats.fused },
-    { facet: 'statistics woven into the movie watermark', on: backgroundMovie(matrix).plays },
+    { facet: 'statistics woven into the movie watermark', on: backgroundMovie(matrix).plays && harmonicMathFlowsInMovie(matrix).flows },
     { facet: 'the build’s own self-metrics', on: stats.count >= 9 },
     { facet: 'gaps shown to all eyes (zero)', on: buildStatisticsShowGaps(matrix).shows },
     { facet: 'every page wired to forge max tampering cost', on: pageForgeMaxTamper('/', matrix).wired },

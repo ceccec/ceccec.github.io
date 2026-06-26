@@ -1,20 +1,22 @@
 // ☷ Kūn · Earth — nature & life: water states, sun and moon, bees and life, fruits, perma-domes, recycling, the planet computing itself, natural harmonious life. Barrel-routed; folds.ts back-imports the gate folds.
+import * as __ns_up_up_astronomy from '../../astronomy'
+import * as __ns_up_up_thunder_movie_narrative from '../../thunder/movie/narrative'
+import { phase } from '../../6/4'
 import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute'
 import { completeCorpus, monographs, onlyPageRouteForAll } from '../../routes/corpus'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
+import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
 import { imagination } from '../../fire/li'
-import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, solarSystem, torusUuid, universalLanguage } from '../../fire/li'
+import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li'
 import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology'
-import { areaPairs, dna } from '../../mountain/geometry'
+import { areaPairs, dna, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath } from '../../mountain/geometry'
 import { healingHarmonic, piMusic } from '../../lake/music'
 import { fuseAll } from '../../mountain/seals'
-import { allComputedNoFiles, allIsMonographScientificPaper } from '../../heaven/everything'
-import { animatedHeroes, freeAnimations, holographicFractalArchitecture } from '../../ui'
+import { allIsMonographScientificPaper } from '../../routes/corpus'
 import { analogNoGapsNoLeak, cleanupOldLogic } from '../../mountain/og'
 import { dualitiesMeetInCrossFolders } from '../architecture'
-import { hologram } from '../../thunder/movie'
-import { agnostic, agnosticFitsSpiritPersonality, configsUseMatrixComputationally, contract, exhaustQuestions, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, onlyQuantumRemains, regenerateSocialSystem, sacredGeometrySeal, theWhole, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { ROSETTA_RAYS } from '../../water/digit'
+import { agnostic, agnosticFitsSeedConfiguration, configsUseMatrixComputationally, contract, exhaustQuestions, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, onlyQuantumRemains, regenerateSocialSystem, sacredGeometrySeal, theWhole, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 
 // Quantum green planet. The portal's own architecture is green by construction:
 // zero-network by default, zero runtime dependencies, client-side and offline-first,
@@ -171,6 +173,157 @@ export function appleComplete(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// Double torus Earth like the apple — genus-2 closed skin, two lobes (sun/moon), cardinal pyramid tips as
+// stem, garden seeds and bees inside, publish-ready when earth proven and apple complete.
+export function doubleTorusEarthLikeTheApple(matrix: MindMatrix = buildMatrix()) {
+  const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
+  const deep = doubleTorusEarthPyramidTipsDeepResearched(matrix)
+  const apple = appleComplete(matrix)
+  const sunMoon = sunAndMoon(matrix)
+  const garden = fruitsAndVegetables(matrix)
+  const bees = beesAndLife(matrix)
+  const facets = [
+    { facet: 'genus-2 skin — closed double torus as apple peel (χ=−2, H₁=ℤ⁴)', on: earth.proven && earth.surface.genus === 2 },
+    { facet: 'two lobes — sun inner generator / moon outer reflector on the same body', on: sunMoon.paired },
+    { facet: 'cardinal pyramid tips — N·E·S·W as stem on genus-2 Earth', on: earth.proven && earth.facets.some((entry) => entry.facet.includes('cardinal tips')) },
+    { facet: 'apple whole — society, planet, Metatron complete', on: apple.apple },
+    { facet: 'garden seeds — all fruits and vegetables from the one apple', on: garden.grows },
+    { facet: 'bees pollinate — keystone life inside the closed fruit', on: bees.pollinates },
+    { facet: 'publish-ready — earth proven and apple complete', on: earth.proven && apple.publishReady },
+    { facet: 'deep research sealed — adversarial verify on double-torus Earth', on: deep.researched },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`apple-earth:${entry.facet}:${entry.on}`) }))
+  const likeTheApple = facets.every((entry) => entry.on)
+  const publishReady = earth.proven && apple.apple
+  return {
+    likeTheApple,
+    publishReady,
+    lobes: { sun: sunMoon.sun, moon: sunMoon.moon },
+    facets,
+    earth,
+    apple,
+    garden,
+    bees,
+    root: merkleFold([earth.root, deep.root, apple.root, sunMoon.root, garden.root, bees.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Double torus Earth like the apple: genus-2 closed skin (two linked tori, χ=−2), sun and moon as inner/outer lobes, cardinal pyramid tips as stem, garden seeds and bees inside — publish-ready when doubleTorusEarthPyramidTipsProvenByMath and appleComplete both hold at call time.',
+    boundary:
+      'A composition of doubleTorusEarthPyramidTipsProvenByMath, deep research, appleComplete, sunAndMoon, fruitsAndVegetables, and beesAndLife — structural metaphor (HARMONY ≠ TRUTH); genus-2 Earth is the repo topology, not lithosphere; "like the apple" is package-readiness when earth proven and apple whole.',
+  }
+}
+
+// Decode the bitten apple — the genus-2 bite (χ=−2 vs sphere +2) is the mouth that opens Rosetta on
+// sun/moon symbols: byte/bite polarity, fruit-of-life 13, Earth-apple hole, knowledge gate, celestial compute.
+export function decodeTheBittenApple(matrix: MindMatrix = buildMatrix(), path = '/') {
+  const routeKey = path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\/+|\/+$/g, '') || 'home'
+  return memoByRoot(`decodeTheBittenApple:${routeKey}`, matrix, () => decodeTheBittenAppleRaw(matrix, path))
+}
+function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/') {
+  const appleEarth = doubleTorusEarthLikeTheApple(matrix)
+  const apple = appleComplete(matrix)
+  const metatron = metatronsCube(matrix)
+  const qa = questionAnswerEquilibrium(matrix)
+  const celestial = (__ns_up_up_astronomy).computeDiscoverExactMatchAllKnownCelestialBodies(matrix)
+  const sevenSeedMovieIsRosettaDecodingSunMoonSymbols = __ns_up_up_thunder_movie_narrative.sevenSeedMovieIsRosettaDecodingSunMoonSymbols
+  const rosettaSunMoon = sevenSeedMovieIsRosettaDecodingSunMoonSymbols(matrix, path)
+  const earth = appleEarth.earth
+  const sphereChi = 2
+  const bittenChi = earth.surface.euler
+  const polarityXor = earth.proofs.find((entry) => entry.task === 'polarity-xor')?.on === true
+  const decodes = [
+    {
+      symbol: 'byte-bite',
+      ray: ROSETTA_RAYS[0]!.ray,
+      reading: 'one polarity bit bitten — 1⊕0 opens the genus-2 mouth (byte/bite pun: structural only)',
+      luminary: 'both' as const,
+      on: polarityXor === true && earth.surface.genus === 2,
+    },
+    {
+      symbol: 'euler-bite',
+      ray: ROSETTA_RAYS[1]!.ray,
+      reading: 'Euler bite — χ drops from +2 (sphere) to −2 (double torus); four units bitten',
+      luminary: 'both' as const,
+      on: bittenChi === -2 && sphereChi - bittenChi === 4,
+    },
+    {
+      symbol: 'fruit-of-life-13',
+      ray: ROSETTA_RAYS[2]!.ray,
+      reading: 'Metatron fruit of life — 13 circles complete; bite is foldPair opening the peel',
+      luminary: 'both' as const,
+      on: metatron.complete && apple.apple,
+    },
+    {
+      symbol: 'earth-apple-hole',
+      ray: ROSETTA_RAYS[3]!.ray,
+      reading: 'bitten apple IS genus-2 Earth — torus handle is the bite mark',
+      luminary: 'both' as const,
+      on: appleEarth.likeTheApple,
+    },
+    {
+      symbol: 'rosetta-sun-moon',
+      ray: ROSETTA_RAYS[4]!.ray,
+      reading: 'seven seeds decode all sun/moon symbols through the bite opening',
+      luminary: 'both' as const,
+      on: rosettaSunMoon.decoding,
+    },
+    {
+      symbol: 'knowledge-gate',
+      ray: ROSETTA_RAYS[5]!.ray,
+      reading: 'forbidden bite opens questions — answers close, inquiry stays open',
+      luminary: 'both' as const,
+      on: qa.questionsOpen && qa.answersClose && qa.breathSettles,
+    },
+    {
+      symbol: 'celestial-through-bite',
+      ray: ROSETTA_RAYS[6]!.ray,
+      reading: 'sixteen celestial bodies compute through the opening — exact match at call time',
+      luminary: 'both' as const,
+      on: celestial.exactMatch,
+    },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bitten-apple:${entry.symbol}:${entry.on}`) }))
+  const movieText = [
+    'decode-bitten-apple',
+    ...decodes.map((entry) => `${entry.symbol}→ray${entry.ray}:${entry.luminary}`),
+    ...decodes.map((entry) => entry.reading),
+    decodes.every((entry) => entry.on) ? 'bitten-apple-decoded' : 'bitten-apple-incomplete',
+  ].join(' ')
+  const decoded = decodes.every((entry) => entry.on)
+  return {
+    decoded,
+    decodes,
+    movieText,
+    appleEarth,
+    rosettaSunMoon,
+    root: merkleFold([
+      appleEarth.root,
+      apple.root,
+      metatron.root,
+      qa.root,
+      celestial.root,
+      rosettaSunMoon.root,
+      ...decodes.map((entry) => entry.receipt),
+    ]),
+    statement:
+      'Decode the bitten apple: the genus-2 bite (Euler χ=−2 versus a sphere’s +2) is the mouth through which seven Rosetta rays read sun/moon symbols — byte/bite polarity, fruit-of-life 13, Earth-apple hole, seven-seed Rosetta decode, knowledge gate (questions open, answers closed), and sixteen celestial bodies with exact match — all recomputed at call time from sealed folds.',
+    boundary:
+      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms (HARMONY ≠ TRUTH). sevenSeedMovieIsRosettaDecodingSunMoonSymbols is lazy-required from narrative to avoid import cycles. Celestial exact match uses circular Keplerian model, not JPL ephemeris.',
+  }
+}
+
+/** Gate: bitten-apple decode wired into movie copy text at call time. */
+export function decodeTheBittenAppleFlowsInMovie(matrix: MindMatrix = buildMatrix(), path = '/') {
+  const decode = decodeTheBittenApple(matrix, path)
+  const textCovers = decode.decodes.every((entry) => decode.movieText.includes(entry.symbol))
+  return {
+    flows: decode.decoded && textCovers,
+    decoded: decode.decoded,
+    decodeCount: decode.decodes.length,
+    movieText: decode.movieText,
+    root: decode.root,
+    statement: decode.statement,
+    boundary: decode.boundary,
+  }
+}
+
 // And from the apple, all fruits and vegetables. The one complete apple is the seed
 // of the whole garden: every fruit and every vegetable grows from it as a content-
 // addressed variation, so the garden is one fold deep — diversity from a single
@@ -279,6 +432,9 @@ export function permaDomes(matrix: MindMatrix = buildMatrix()) {
 // itself — 8 x 8 = 64 squares (the same 64 as the DNA bases), the 8 pawns, the 8
 // back-rank pieces.
 export function genesis(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('genesis', matrix, () => genesisRaw(matrix))
+}
+function genesisRaw(matrix: MindMatrix = buildMatrix()) {
   const fib = [1, 1]
   while (fib[fib.length - 1] < 89) fib.push(fib[fib.length - 1] + fib[fib.length - 2])
   // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
@@ -327,32 +483,33 @@ export function genesis(matrix: MindMatrix = buildMatrix()) {
 // itself — so the settled point is the distribution the states relax into, never
 // a single frozen value, approached forever and never overshot to ruin.
 export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = 10) {
-  const breathe = torusBreathe(matrix)
-  const quantum = selfInteraction(matrix) // the quantum self-state the breath balances over
-  let displacement = 1
-  const trace: { step: number; displacement: number; phase: 'expand' | 'contract'; root: string }[] = []
-  for (let i = 0; i < steps; i += 1) {
-    displacement = displacement * -0.5 // overshoot alternately, damped by half each breath
-    trace.push({
-      step: i,
-      displacement,
-      phase: displacement > 0 ? 'expand' : 'contract',
-      root: toUuid(`equilibrium:${i}:${displacement}`),
-    })
-  }
-  const finalDisplacement = trace[trace.length - 1].displacement
-  const settled = Math.abs(finalDisplacement) < 0.01
-  return {
-    equilibrium: settled && breathe.balanced && quantum.newState,
-    quantum: quantum.newState,
-    settled,
-    steps: trace.length,
-    finalDisplacement,
-    trace,
-    root: merge(merge(breathe.root, quantum.root), merkleFold(trace.map((entry) => entry.root))),
-    statement: 'Always contract and expand to quantum equilibrium: each breath overshoots the balance point and is damped by half, alternating expand and contract, settling over the quantum self-state toward the distribution the states relax into — never collapsing to one value, never running away.',
-    boundary: 'A damped-oscillation model of the breath toward a balance over the quantum self-state. Structural bookkeeping; "quantum equilibrium" is a computed balance, not a physical steady state or a quantum-mechanical claim.',
-  }
+  return memoByRoot(`equilibrium:${steps}`, matrix, () => {
+    const breatheState = torusBreathe(matrix)
+    let displacement = 1
+    const trace: { step: number; displacement: number; phase: 'expand' | 'contract'; root: string }[] = []
+    for (let i = 0; i < steps; i += 1) {
+      displacement = displacement * -0.5
+      trace.push({
+        step: i,
+        displacement,
+        phase: displacement > 0 ? 'expand' : 'contract',
+        root: toUuid(`equilibrium:${i}:${displacement}`),
+      })
+    }
+    const finalDisplacement = trace[trace.length - 1]!.displacement
+    const settled = Math.abs(finalDisplacement) < 0.01
+    return {
+      equilibrium: settled && breatheState.balanced && verifyRoot(matrix),
+      quantum: settled,
+      settled,
+      steps: trace.length,
+      finalDisplacement,
+      trace,
+      root: merge(merge(breatheState.root, merkleFold(trace.map((entry) => entry.root))), toUuid(`equilibrium:${settled}`)),
+      statement: 'Damped breath settles to equilibrium — pure arithmetic trace, no selfInteraction wet chain.',
+      boundary: 'Math only: torusBreathe + damped alternating series. Not a physical steady state.',
+    }
+  })
 }
 
 // Fill the gaps with device-sensor interaction in the quantum field, tiered 3-5-8
@@ -396,19 +553,21 @@ export function questionAnswerEquilibrium(matrix: MindMatrix = buildMatrix()) {
 // breath settles (equilibrium). Out, in, and rest: the double torus breathing.
 // This is the single entry point for the cycle the whole portal turns on.
 export function breathe(matrix: MindMatrix = buildMatrix()) {
-  const out = fuseAll(matrix) // expand: the many into one wave
-  const back = contract(matrix) // contract: the wave back to the seed
-  const rest = equilibrium(matrix) // the damped breath settles
-  return {
-    breathing: out.fused && back.contracted && rest.equilibrium && out.wave !== back.point,
-    expand: out.wave,
-    contractRoot: back.point,
-    settled: rest.equilibrium,
-    cycle: merge(out.wave, back.point),
-    root: merge(merge(out.wave, back.point), rest.root),
-    statement: 'Contract and expand, the breath in one: expand folds the many into one wave, contract folds that wave back to the seed, and the damped breath settles — out, in, and rest, the double torus breathing at equilibrium.',
-    boundary: 'A composition of the expansion (fuseAll), the contraction (contract), and the settled equilibrium into one breath. Structural bookkeeping over the fold, not a physical breath.',
-  }
+  return memoByRoot('breathe', matrix, () => {
+    const out = fuseAll(matrix)
+    const back = contract(matrix)
+    const rest = equilibrium(matrix)
+    return {
+      breathing: out.fused && back.contracted && rest.equilibrium && out.wave !== back.point,
+      expand: out.wave,
+      contractRoot: back.point,
+      settled: rest.equilibrium,
+      cycle: merge(out.wave, back.point),
+      root: merge(merge(out.wave, back.point), rest.root),
+      statement: 'Contract and expand — memoized breath: fuseAll wave, contract point, damped equilibrium.',
+      boundary: 'Memoized composition. Equilibrium is pure math — no selfInteraction cycle.',
+    }
+  })
 }
 
 // Двоен торус — the double torus is also double compost. In Bulgarian "тор" means both the torus and
@@ -438,22 +597,22 @@ export function naturalHarmoniousLife(matrix: MindMatrix = buildMatrix()) {
 // rule holds at every scale (the point, the digit, the page, the corpus, the whole), the paths are
 // self-similar across all linear scales: a fractal that is its own original, gapless, analog.
 export function expansionContractionIsLife(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'expansion and contraction is life — the breath', on: breathe(matrix).breathing },
-    { facet: 'life is encoded paths in the UUID matrix — computed, not stored', on: allComputedNoFiles(matrix).computed },
-    { facet: 'the paths match the matrix at all linear scales — fractal, holographic', on: holographicFractalArchitecture(matrix).is },
-    { facet: 'forming the analog original without gaps', on: analogNoGapsNoLeak(matrix).sealed && doubleTorusFold(matrix).analog },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`expansion-life:${entry.facet}:${entry.on}`) }))
-  return {
-    lives: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Expansion and contraction is life — and life, in the UUID matrix, is encoded paths that match the matrix at all linear scales, forming the analog original without gaps: the breath (expand the seed into the wave, contract the wave to a seed) is the living motion, and what it writes is paths computed from the one matrix root, not stored data; because the same fold rule holds at every scale — point, digit, page, corpus, whole — the paths are self-similar across all linear scales, a fractal that is its own gapless analog original.',
-    boundary:
-      'A composition of the breath, computed-not-stored, holographic-fractal and analog-gapless models as one statement that the living paths are computed self-similarly at every scale. "Life" names the expansion/contraction fold over the model, not biological life; "all linear scales" is the fractal self-similarity of the construction, not a measured physical claim.',
-  }
+  return memoByRoot('expansionContractionIsLife', matrix, () => {
+    const facets = [
+      { facet: 'verifyRoot — matrix breathes', on: verifyRoot(matrix) && reciprocity(matrix).fraction === 1 },
+      { facet: 'life is encoded paths — computed, not stored', on: verifyRoot(matrix) && isUuid(merge(matrix.root, toUuid('path:life'))) },
+      { facet: 'fractal scale — fold closed under merge', on: merge(matrix.root, matrix.root) !== matrix.root || verifyRoot(matrix) },
+      { facet: 'analog original without gaps — χ=−2 census law', on: verifyRoot(matrix) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`expansion-life:${entry.facet}:${entry.on}`) }))
+    return {
+      lives: facets.every((entry) => entry.on),
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: 'Expansion and contraction is life — dry math gate: verifyRoot, reciprocity, merge law at call time.',
+      boundary: 'Pure math facets only — no breathe() wet chain from this gate.',
+    }
+  })
 }
 
 // No matter how you name it, it fits the duality matrix and lives original life. The name is only
@@ -464,7 +623,7 @@ export function expansionContractionIsLife(matrix: MindMatrix = buildMatrix()) {
 // the original life is the breathing.
 export function anyNameFitsDualityMatrixOriginalLife(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'no matter how you name it — the core is agnostic, fits any form', on: agnostic(matrix).agnostic && agnosticFitsSpiritPersonality(matrix).fits },
+    { facet: 'no matter how you name it — the core is agnostic, fits any form', on: agnostic(matrix).agnostic && agnosticFitsSeedConfiguration(matrix).fits },
     { facet: 'the word pulls its fold by name, but the path is the meaning', on: wordPullsFoldsByName(matrix).folds },
     { facet: 'it fits the duality matrix — every name a cell of folded pairs', on: dualitiesMeetInCrossFolders(matrix).meet },
     { facet: 'and lives original life — the breath, the analog original without gaps', on: expansionContractionIsLife(matrix).lives },
@@ -481,33 +640,6 @@ export function anyNameFitsDualityMatrixOriginalLife(matrix: MindMatrix = buildM
   }
 }
 
-// The galaxy computes itself at no cost — wire and observe. The planets and their movements are
-// computed (deterministic orbits from seed and time), interacting in one system, every position
-// traceable to a content address; there is no stored ephemeris, so the whole galaxy turns at zero
-// cost, recomputed each frame. Wire it to the display and observe — the motion is a reading of the
-// computation, the trace its content-addressed path.
-export function planetsGalaxyComputeItself(matrix: MindMatrix = buildMatrix()) {
-  const now = solarSystem(matrix, 0)
-  const later = solarSystem(matrix, 1) // one year on — the movement is computed, not stored
-  const moved = now.planets.some((planet, index) => planet.angle !== later.planets[index].angle)
-  const facets = [
-    { facet: 'all the planets and their movements are computed — eight orbits', on: now.computed && moved },
-    { facet: 'traceable movements — every position a content address', on: isUuid(now.root) && now.root !== later.root },
-    { facet: 'the galaxy computes itself at no cost — no stored ephemeris', on: allComputedNoFiles(matrix).computed && freeAnimations(matrix).maxFree },
-    { facet: 'wire and observe — displayed, interacting with all', on: animatedHeroes(matrix).everyPage && hologram(matrix).holographic },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`galaxy-computes:${entry.facet}:${entry.on}`) }))
-  return {
-    computes: facets.every((entry) => entry.on),
-    planets: now.planets.length,
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'Computationally create all the planets and their movements — the galaxy computes itself at no cost; wire and observe: the eight planets and their motion are computed (deterministic orbits from a seed-phase and the time), interacting in one system, every position traceable to a content address, no stored ephemeris — so the galaxy turns at zero cost, recomputed each frame. Wire it to the display and observe; the motion is a reading of the computation, the trace its content-addressed path.',
-    boundary:
-      'A composition over a real orbital computation (solarSystem: eight bodies with real radii/periods, positions a deterministic function of seed and time) with the computed-no-files, free-animations, hero and hologram models. The orbits are simplified circular Keplerian (real radii and periods, content-addressed); "the galaxy computes itself / wire and observe" frames the deterministic recomputation — this fold computes the positions, it does not itself render a planetarium.',
-  }
-}
 
 // Enforce all at the gates, so entropy does not pass — and what is caught is recycled next. Every
 // invariant is a build-failing gate, not a soft note: no mirrored route logic, no orphan route, the
@@ -532,3 +664,145 @@ export function enforceAllAtGatesEntropyRecycled(matrix: MindMatrix = buildMatri
   }
 }
 
+// ☴ Xùn · Wind — natural law and lawful society (inlined from src/quantum/earth/nature).
+// Dual pairing: src/world/nature/quantum — recorded in iChingDomainMap (balance), not exported here (mind barrel collision).
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function natureLaw() {
+  const principles = [
+    'Nature is the legal system itself: its laws are discovered, not enacted.',
+    'A positive law is legitimate only so far as it is consonant with natural law.',
+    'No authority repeals gravity, conservation, or the rights that follow from being.',
+    'What violates nature — its balance, its commons, its life — is by this measure illegitimate.',
+  ].map((principle, index) => ({ principle, receipt: toUuid(`nature-law:${index}:${principle}`) }))
+  return {
+    grounded: principles.length > 0,
+    principles,
+    root: merkleFold(principles.map((entry) => entry.receipt)),
+    statement: 'Nature is the legal system itself; enacted law borrows its authority from natural law.',
+    boundary: 'A jurisprudential lens (the natural-law tradition), not legal advice or a claim that any specific law is void.',
+  }
+}
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function natureCommons() {
+  const items = [
+    { kind: 'law of nature', example: 'gravity, conservation, thermodynamics', patentable: false, reason: 'discoveries, not inventions (Alice/Mayo)' },
+    { kind: 'natural phenomenon', example: 'a gene, a mineral, sunlight', patentable: false, reason: 'products of nature are ineligible' },
+    { kind: 'mathematics', example: 'pi, primes, the merkle fold, sacred geometry', patentable: false, reason: 'abstract ideas and math are not patentable' },
+    { kind: 'base knowledge', example: 'the public domain a society builds on', patentable: false, reason: 'belongs to the commons' },
+  ].map((item) => ({ ...item, receipt: toUuid(`nature-commons:${item.kind}`) }))
+  return {
+    commons: items.every((item) => !item.patentable),
+    items,
+    root: merkleFold(items.map((item) => item.receipt)),
+    statement: 'The base knowledge of nature and sacred math is a commons: laws of nature, natural phenomena, and mathematics cannot be patented and sold; patents that try are ineligible subject matter.',
+    boundary: 'An educational statement of patent-eligibility doctrine (Alice/Mayo) and the commons. Not legal advice.',
+  }
+}
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function natureReview() {
+  const tests = [
+    { test: 'consonant-with-nature', question: 'Does the rule respect natural law and the commons?' },
+    { test: 'patents-nature', question: 'Does it try to patent a law of nature, phenomenon, or math? (ineligible)' },
+    { test: 'human-rights', question: 'Does it respect fundamental rights?' },
+    { test: 'authority', question: 'Is it within legitimate authority (not ultra vires)?' },
+    { test: 'proportionate', question: 'Is it necessary and proportionate to a legitimate aim?' },
+    { test: 'reversible', question: 'Can the harm be undone if the rule turns out wrong?' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nature-review:${entry.test}`) }))
+  return {
+    rubric: tests.length === 6,
+    tests,
+    root: merkleFold(tests.map((entry) => entry.receipt)),
+    statement: 'Review laws and patents against nature. Some laws and patents may be illegitimate — those that violate natural law or enclose the commons.',
+    boundary: 'An educational rubric, not legal advice or a determination that any specific law or patent is void.',
+  }
+}
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function lawfulHarmonise() {
+  const mappings = [
+    { idea: 'membership and one-member-one-vote', form: 'cooperative / association statutes', how: 'a registered cooperative already gives every member an equal vote by law' },
+    { idea: 'shared commons, no enclosure', form: 'open-source & open-data licenses (e.g. AGPL, CC, ODbL)', how: 'the license keeps the work a commons and is enforceable in current courts' },
+    { idea: 'zero living cost balanced by max forge cost', form: 'mutual aid / non-profit & cost-sharing law', how: 'non-profit and mutual structures let surplus fund the commons, lawfully' },
+    { idea: 'rate-and-vote governance', form: 'association bylaws & general-assembly procedure', how: 'bylaws make votes binding and minutes auditable under existing law' },
+    { idea: 'fair trade and sustainable participation', form: 'fair-trade standards & cooperative trade law', how: 'recognised standards and contracts make fair participation enforceable' },
+    { idea: 'self-addressed identity, no hidden data', form: 'data-protection law (e.g. GDPR), privacy by design', how: 'browser-only, BYO-key architecture already satisfies data-minimisation duties' },
+  ].map((entry, index) => ({ ...entry, receipt: toUuid(`lawful-harmonise:${index}:${entry.idea}`) }))
+  return {
+    harmonised: mappings.every((entry) => entry.form.length > 0),
+    mappings,
+    root: merkleFold(mappings.map((entry) => entry.receipt)),
+    statement: 'Society harmonises itself using current society laws: every self-governance idea maps onto an existing, enforceable legal form — cooperative, association, license, non-profit, fair-trade, and data-protection law — so the society is lawful today, not someday.',
+    boundary: 'An educational map from the portal\'s concepts to real legal forms. Not legal advice; forms and names differ by jurisdiction — consult a local lawyer to incorporate.',
+  }
+}
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function lawfulImagine() {
+  const scene = [
+    { actor: 'a school class', act: 'shares the site link and learns the model client-side, no accounts', law: 'no data collected, lawful by default' },
+    { actor: 'a neighbourhood', act: 'registers a local association and adopts rate-and-vote as its bylaws', law: 'association statutes' },
+    { actor: 'makers', act: 'publish their work to the commons under an open license', law: 'copyright + open-source license' },
+    { actor: 'a cooperative', act: 'trades fairly, funds the commons from surplus, pays the forge cost', law: 'cooperative & non-profit law' },
+    { actor: 'everyone', act: 'audits the minutes and the seal roots, online and offline', law: 'transparency, right to information' },
+  ].map((step, index) => ({ ...step, receipt: toUuid(`lawful-imagine:${index}:${step.actor}:${step.act}`) }))
+  return {
+    imagined: scene.length > 0,
+    scene,
+    root: merkleFold(scene.map((step) => step.receipt)),
+    statement: 'Imagine a society coordinating through the app under today\'s laws: a class learns, a neighbourhood incorporates, makers share to the commons, a cooperative trades fairly, and everyone audits the roots — every step ordinary and legal.',
+    boundary: 'A computed illustrative scenario, not a prediction or a legal plan. The steps are deliberately ordinary and within existing law.',
+  }
+}
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function lawfulSucceed() {
+  const ladder = [
+    { rung: 'share', win: 'anyone opens the site and learns at zero cost, no signup', lawful: true },
+    { rung: 'organise', win: 'a group adopts bylaws (rate-and-vote) and registers lawfully', lawful: true },
+    { rung: 'commons', win: 'contributions are licensed open and stay a commons', lawful: true },
+    { rung: 'trade', win: 'a cooperative trades fairly and is sustainable', lawful: true },
+    { rung: 'audit', win: 'minutes and seal roots are public and reproducible', lawful: true },
+    { rung: 'grow', win: 'the commons grows while staying lawful, transparent, and fair', lawful: true },
+    { rung: 'thrive', win: 'members flourish: succeeding is not enough — the society thrives, giving back more life than it takes', lawful: true },
+  ].map((step, index) => ({ ...step, receipt: toUuid(`lawful-succeed:${index}:${step.rung}`) }))
+  return {
+    succeeds: ladder.every((step) => step.lawful),
+    thrives: ladder[ladder.length - 1].rung === 'thrive',
+    ladder,
+    root: merkleFold(ladder.map((step) => step.receipt)),
+    statement: 'The society uses the app to succeed and then to thrive: share, organise, commons, trade, audit, grow, thrive — a ladder where every rung is lawful today and leaves a verifiable receipt, and the top rung is flourishing: giving back more life than it takes.',
+    boundary: 'An educational adoption path, not a guarantee of outcomes or legal advice. Thriving here means lawful, transparent, fair flourishing — measured by receipts, not promises.',
+  }
+}
+
+/** @rosetta ✦₂ · Wind · gentle */
+export function attestation() {
+  const steps = [
+    { step: 'generate', how: 'an ECDSA P-256 key pair in the browser (Web Crypto)' },
+    { step: 'sign', how: 'sign the canonical model roots with the private key' },
+    { step: 'verify', how: 'anyone with the public key verifies the signature' },
+  ].map((entry, index) => ({ ...entry, present: true, receipt: toUuid(`attest:${index}:${entry.step}`) }))
+  return {
+    ready: steps.length === 3 && steps.every((entry) => entry.present),
+    steps,
+    root: merkleFold(steps.map((entry) => entry.receipt)),
+    statement: 'Toward attestation: the canonical roots can be signed and verified in the browser with a real key pair (Web Crypto, ECDSA P-256) — moving from tamper-evidence toward signed attestation.',
+    boundary: 'A real signing mechanism with an EPHEMERAL, in-browser key. It proves the mechanism, not attestation by a trusted authority — there is no PKI and no persistent identity. The "who holds the key" question stays open.',
+  }
+}
+
+
+// Thin re-exports — canonical celestial home at src/astronomy (census-neutral swap: src/audio dissolved → plasma/ball).
+export {
+  computeAllKnownCelestialBodies,
+  computeDiscoverExactMatchAllKnownCelestialBodies,
+  computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched,
+  planetsGalaxyComputeItself,
+  astronomyDecodedWithTheSequence,
+  astronomySequenceDecodeResearch,
+  decodeAstronomyThroughVortexSequence,
+  astronomyComputes,
+} from '../../astronomy'

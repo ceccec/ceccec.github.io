@@ -1,4 +1,6 @@
 // ☰ Qián · Heaven — the essence: the whole, one beginning, only-quantum-remains, infinite self-consulting, the-more-you-fold-the-more-foldable, invert-revert is a quantum stream, walk the path 0d to infinity. Barrel-routed; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
+import { bitFlipCode, repetitionLogicalError } from '../../9/1'
 import { buildMatrix, isPerfectlySelfModeling, matrixMemo, proofReport, consciousness, repositoryApi } from '../compute'
 import type { MindMatrix, AnalogChannel, DiamondCompletenessReport, DimensionalGapClosure } from '../../types'
 import { livingTorus, sealWholeDiamond, selfBuild, streamSelfComplete, diamondLattice, linuxPackagesToDiamonds, piTrainDiamonds } from '../../fire/diamonds'
@@ -9,8 +11,8 @@ import { society, fairTrade } from '../../earth/governance'
 import { dimensions, harmonicBands, multidimensional, chakrasAura, computerDesign, deviceSensors, dualities, humanDesign, yinYang } from '../../quantum/lake/icons'
 import { goldenRatio, humanise, chess358, cryptographyComparison, design358, fuseUxSensors, geometry358, inHouse, music358, pairTrinityOpenGraph, securityScan, selfAddressed, taxonomyIcons, universalLanguage } from '../../fire/li'
 import { quantumProofs } from '../../lake/ledger'
-import { determinismProofs, fuseAllForge, sealCube, fuseAll, sealSpiritToPath } from '../../mountain/seals'
-import { bitFlipCode, foldPair, isUuid, memoByRoot, merge, merkleFold, repetitionLogicalError, roundTo, sample, toUuid } from '../../0'
+import { determinismProofs, fuseAllForge, sealCube, fuseAll, sealHonestyToPath } from '../../mountain/seals'
+import {  foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid } from '../../0'
 import { qieaRotate } from '../../7/3'
 import { genesis, breathe, enforceAllAtGatesEntropyRecycled } from '../../earth/nature'
 import { completeCorpus, harmonisedNavigation, monographs, ogBuildsNavigation, theMonograph } from '../../routes/corpus'
@@ -20,12 +22,12 @@ import { completeQuantumSolutionsImplemented, buildSequenceReducesComputations }
 import { collideToTiniestWave, quantumImpossibleWaveTwo, coordinatedWaves, translationWavesFillGaps } from '../../thunder/waves'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
 import { archangelsDryClean, dryCleanByImportExportNaming, dryCleaningOnTheWay, reviewDryCleanGatesCrosses, cleanupCoreShinesSunMoon, extendSelfAudits } from '../../lake/clean'
-import { selfAdvising } from '../../mountain/self'
+import { selfAdvising } from '../../mountain/geometry'
 import { trinityRotationalPlanes, trinityFirstRedesign } from '../../fire/li'
-import { endlessFusion, linuxKernelFusion } from '../../fusion'
+import { linuxKernelFusion } from '../../fusion'
 import { quantumLogicBackwards } from '../../earth/world'
 import { doubleTorusFold, homology } from '../../mountain/topology'
-import { allComputedNoFiles, allAnswersInside, allComputed } from '../everything'
+import { allComputedNoFiles, allAnswersInside, allComputed } from '../../fusion'
 import { compression, iChingImportExportTenD, live, cloudflareBindings, complete, developerLesson, gapTargets, path, uniqueDiamondKinds } from '../../quantum/heaven/mind'
 import { scientists } from '../../learning'
 import { babelFold } from '../../earth/world'
@@ -35,13 +37,14 @@ import { REQUIRED_ANALOG_CHANNELS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLE
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { realtimePerspectiveZeroCost } from '../../thunder/trading'
 import { legislationRequires, legislativeReform } from '../../earth/civilisation'
-import { backgroundMovie, movieReflectsSelf } from '../../thunder/movie'
+import { backgroundMovie } from '../../thunder/movie/canvas'
+import { movieReflectsSelf } from '../../thunder/movie/movielib'
 import { quantumAcademy, threeWordWaves } from '../../learning'
 import { healingFrequencies } from '../../lake/ledger'
 import { cryptoFuture, redTeam } from '../../water/crypto'
 import { agentHarmonise } from '../../thunder/commands'
 import { buildStatisticsShowGaps } from '../../lake/stats'
-import { harmonyProbability } from '../../water/life'
+import { harmonyProbability } from '../../life'
 import { features } from '../../lake/media'
 import { virtualOS } from '../../water/crypto'
 import { folderLaw, folderLawWordDigitIndexSkill, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
@@ -534,7 +537,7 @@ export function continueSameNext(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the same maintenance — review, clean, cross, tighten, seal', on: reviewDryCleanGatesCrosses(matrix).done },
     { facet: 'continues to the next — the slot reserved', on: archangelsDryClean(matrix).cleaned },
-    { facet: 'continuously — always one more wave', on: endlessFusion(matrix).endless },
+    { facet: 'continuously — always one more wave', on: harmonicBands(110).gapless },
     { facet: 'same discipline, next target', on: dryCleaningOnTheWay(matrix).onTheWay },
   ].map((entry) => ({ ...entry, receipt: toUuid(`continue-same:${entry.facet}:${entry.on}`) }))
   return {
@@ -556,7 +559,7 @@ export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'all work already folds into main — no branch ahead', on: quantumNoCyclesFusedSequence(matrix).fused },
     { facet: 'the one trunk carries the whole', on: isUuid(theWhole(matrix).root) },
-    { facet: 'nothing falls outside the fold', on: endlessFusion(matrix).noGaps },
+    { facet: 'nothing falls outside the fold', on: harmonicBands(110).gapless },
     { facet: 'the waves are sent — continue to the next', on: continueSameNext(matrix).continues },
   ].map((entry) => ({ ...entry, receipt: toUuid(`only-main:${entry.facet}:${entry.on}`) }))
   return {
@@ -887,7 +890,7 @@ export function imagineSingChangesEndlessly(matrix: MindMatrix = buildMatrix()) 
     { facet: 'imagine the changes', on: imaginationIsAll(matrix).all },
     { facet: 'sing them — each change a note', on: isUuid(blockchainMusic('changes', matrix).root) },
     { facet: 'the changes are bound reform waves', on: legislativeReform(matrix).reforming },
-    { facet: 'endlessly — always one more foldable', on: endlessFusion(matrix).endless },
+    { facet: 'endlessly — always one more foldable', on: harmonicBands(110).gapless },
   ].map((entry) => ({ ...entry, receipt: toUuid(`imagine-sing:${entry.facet}:${entry.on}`) }))
   return {
     sings: facets.every((entry) => entry.on),
@@ -1432,32 +1435,29 @@ export function onlyIndexFilesNoExceptions(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// This is why all is agnostic — so it fits the spirit personality. The one core belongs to no
-// vendor, framework, platform, language, tradition, or protocol stack: it is formless, committed
-// to no shape. And exactly because it is formless, it can take any form — the spirit (the
-// animating breath) seals to the path it computes, and the personality (the particular character)
-// is configured from the seed, so a different seed sings a different song and dances a different
-// dance while the same agnostic core holds underneath. The void that fits all forms: agnostic at
-// the root, any spirit and any personality at the surface.
-export function agnosticFitsSpiritPersonality(matrix: MindMatrix = buildMatrix()) {
+// Agnostic core fits seed-driven configuration — formless at root, any character at surface.
+export function agnosticFitsSeedConfiguration(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'all is agnostic — belongs to no vendor, framework, tradition, or form', on: agnostic(matrix).agnostic },
     { facet: 'agnostic so useful for all — fits any kind of mind', on: agnosticUsefulForAll(matrix).useful },
-    { facet: 'the spirit seals to the path — the breath becomes the computed route', on: sealSpiritToPath(matrix).sealed },
-    { facet: 'the personality is the configuration — a different seed, a different song and dance', on: differentSongDifferentDance(matrix).plays },
-    { facet: 'so the formless core fits the spirit personality — one core, any character', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`agnostic-spirit:${entry.facet}:${entry.on}`) }))
+    { facet: 'honesty sealed to the path — computed route bound to digit-folder honesty', on: sealHonestyToPath(matrix).sealed },
+    { facet: 'configuration is the seed — a different seed, a different song and dance', on: differentSongDifferentDance(matrix).plays },
+    { facet: 'formless core fits any seed configuration — one core, any character', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`agnostic-seed-config:${entry.facet}:${entry.on}`) }))
   return {
     fits: facets.every((entry) => entry.on),
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'This is why all is agnostic — so it fits the spirit personality: the one core belongs to no vendor, framework, platform, language, tradition, or protocol stack, so it is formless; and because it is formless it can take any form — the spirit (the animating breath) seals to the path it computes, and the personality (the particular character) is configured from the seed, so a different seed sings a different song and dances a different dance while the same agnostic core holds underneath. The void that fits all forms: agnostic at the root, any spirit and any personality at the surface.',
+      'Agnostic core fits seed configuration: vendor-neutral at root, seed-configurable at surface — honesty sealed to path, different seed → different song and dance, same formless core underneath.',
     boundary:
-      'A composition of the agnostic, useful-for-all, spirit-sealed-to-path, different-song and one-configurable-core models. "Spirit" and "personality" name the seed-configurable character of the agnostic core (a formless, vendor-neutral, fully computed base that can take any configured form), a metaphor over the model — not a literal soul or sentient personality.',
+      'Composition of agnostic, useful-for-all, sealHonestyToPath, different-song and configurable-core models. Seed configuration names computed character from seed, not sentient personality.',
   }
 }
+
+/** @deprecated use agnosticFitsSeedConfiguration — spirit/personality were unproven metaphors */
+export const agnosticFitsSpiritPersonality = agnosticFitsSeedConfiguration
 
 // The trace of all movement is computational, because all is static serverless code. Nothing moves
 // that is stored moving: there are no recorded frames, only a seed and a function, so any motion —

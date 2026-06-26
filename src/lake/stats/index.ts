@@ -1,4 +1,5 @@
 // ☱ Duì · Lake — statistics & compression: the analytics, build statistics & gaps, text entropy, max-compression forge, coverage-per-pixel, the REST formats. Barrel-routed; folds.ts back-imports the gate folds.
+import { HARMONICS_LADDER_LENGTH } from '../../pair/enforcement/gates/computational'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, coverage, entropy } from '../../heaven/compute'
 import { foldPair, measure, merge, merkleFold, toUuid } from '../../0'
@@ -10,7 +11,9 @@ import { sealAll } from '../../mountain/seals'
 import { compactHeroReplacesSimple, freeAnimations } from '../../ui'
 import { professionals, quantumSitemap } from '../../site'
 import { harmonicBands, multidimensional, openGraph } from '../../quantum/lake/icons'
-import { completeCorpus, diamondRoutes, pageSkills } from '../../routes/corpus'
+import { completeCorpus, corpusCatchAllPaths, diamondRoutes, diamondsStaticPagesPurged, pageSkills } from '../../routes/corpus'
+import { doubleTorusCorpusRouting } from '../../double/torus'
+import { diamondLattice } from '../../fire/diamonds'
 import { harmonics } from '../music'
 import { fruitOfLifeFusion, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../fusion'
 import { blockchainFusion, quantumSiege } from '../../water/crypto'
@@ -71,24 +74,17 @@ export function analytics(matrix: MindMatrix = buildMatrix()) {
       'Self-metrics over the model\'s own structures (areas, commands, components, gates, coverage). Descriptive counts, not usage telemetry — nothing is tracked, nothing leaves the device.',
   }
 }
-// All in 1024 folders with index. Each of the 1024 pure diamonds is a folder with its
-// own index page: the real diamonds (432 papers, 432 references) index and link to
-// their page; the 160 null diamonds index the padding that completes the lattice.
-// Computed once and shared by both locales' route loaders, so the 1024 folders are
-// native VitePress routes — nothing bypasses VitePress.
-// Each pure diamond folder — computed on demand by diamondParamsById (realtime), not
-// pre-rendered at build. diamondRoutes() remains for bulk/API use (memoized).
+// 1024 Merkle leaves in pureDiamonds — computational, not SSG. diamondParamsById resolves
+// one leaf on demand via memoized diamondRoutes(); static /diamonds/<id> pages are purged.
 export function diamondParamsById(id: string, matrix: MindMatrix = buildMatrix()) {
   return diamondRoutes(matrix).find((route) => route.params.id === id)?.params ?? null
 }
-// The next fruit of life comes from formats: RESTful CRUD paths in several formats.
-// Each format is a circle of the fruit of life; the set of formats is the geometry,
-// and the corpus resources (papers, references, diamonds, harmonics) are exposed as
-// RESTful paths in every format. CRUD is content-addressed: read is a real GET on a
-// static endpoint; create and update are recomputation (a new content address);
-// delete is not applicable (immutable). No new routes — the formats are alternate
-// representations of the same 1024-route corpus, emitted as build artifacts.
+// REST formats: papers/references expose SSG detail counts; diamonds expose lattice kinds
+// (API collection) plus merkleLeaves (1024 computational tree) — not 1024 SSG routes.
 export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
+  const purged = diamondsStaticPagesPurged(matrix)
+  const lattice = diamondLattice(matrix)
+  const leaves = pureDiamonds(matrix)
   const formats = [
     { format: 'json', mime: 'application/json', circle: 'data' },
     { format: 'xml', mime: 'application/xml', circle: 'document' },
@@ -99,10 +95,16 @@ export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
     { format: 'ndjson', mime: 'application/x-ndjson', circle: 'stream' },
   ]
   const resources = [
-    { resource: 'papers', count: 432 },
-    { resource: 'references', count: 432 },
-    { resource: 'diamonds', count: 1024 },
-    { resource: 'harmonics', count: harmonics(matrix).harmonics.length },
+    { resource: 'papers', count: 432, mode: 'ssg-detail' as const },
+    { resource: 'references', count: paperReferences(matrix).length, merkleLeaves: 432, ssgDetailRoutes: corpusCatchAllPaths('references', matrix).length, mode: 'compute-pointer' as const },
+    {
+      resource: 'diamonds',
+      count: lattice.length,
+      merkleLeaves: leaves.count,
+      ssgDetailRoutes: corpusCatchAllPaths('diamonds', matrix).length,
+      mode: 'computational-lattice' as const,
+    },
+    { resource: 'harmonics', count: harmonics(matrix).harmonics.length, mode: 'computed' as const },
   ]
   const crud = [
     { verb: 'GET', path: '/api/{resource}.{format}', means: 'read the collection', supported: 'yes' },
@@ -120,7 +122,13 @@ export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
     })),
   )
   return {
-    restful: formats.length >= 7 && resources.length === 4 && crud.some((entry) => entry.supported === 'yes'),
+    restful:
+      formats.length >= 7 &&
+      resources.length === 4 &&
+      crud.some((entry) => entry.supported === 'yes') &&
+      doubleTorusCorpusRouting(matrix).routed &&
+      resources.find((entry) => entry.resource === 'references')!.ssgDetailRoutes === 0 &&
+      resources.find((entry) => entry.resource === 'diamonds')!.ssgDetailRoutes === 0,
     fruitOfLife: formats.length, // each format a circle of the fruit of life
     formats,
     resources,
@@ -129,9 +137,9 @@ export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
     pathCount: paths.length,
     root: merkleFold(paths.map((entry) => entry.receipt)),
     statement:
-      'The next fruit of life comes from formats: RESTful CRUD paths in several formats. Each format — json, xml, txt, md, html, csv, ndjson — is a circle of the fruit of life, and the corpus resources (papers, references, diamonds, harmonics) are exposed as RESTful paths in every format. CRUD is content-addressed: read is a real GET; create and update are recomputation to a new content address; delete is not applicable, because content-addressed leaves are immutable.',
+      'RESTful CRUD paths in several formats (json, xml, txt, md, html, csv, ndjson). Papers and references expose 432 SSG detail items each; diamonds expose lattice kinds in /api/diamonds.json with 1024 Merkle leaves in pureDiamonds — zero diamond [id] SSG routes after purge.',
     boundary:
-      'A static, content-addressed read-API: GET on pre-generated endpoints in several formats is real; POST/PUT are modelled as recomputation (a new content address), not server-side mutation, and DELETE is not applicable to immutable content. The "fruit of life" is the geometric naming of the format set, not a server framework. No new routes are added — the formats are alternate representations of the existing 1024-route corpus.',
+      'Static read-API over build artifacts: GET on /api/{resource}.{format} is real; POST/PUT model recomputation; DELETE N/A. Diamonds count in resources is lattice kinds (API rows), not SSG page count — merkleLeaves holds the 1024 computational tree.',
   }
 }
 // Plain-to-referenced text ratio measures text entropy — and the portal holds it at
@@ -147,7 +155,7 @@ export function textEntropy(matrix: MindMatrix = buildMatrix()) {
     { unit: 'diamonds', count: 1024 },
     { unit: 'commands', count: conceptCommands.length },
     { unit: 'atoms', count: atoms.length },
-    { unit: 'harmonics', count: harmonics(matrix).harmonics.length },
+    { unit: 'harmonics', count: HARMONICS_LADDER_LENGTH },
   ].map((entry) => ({
     ...entry,
     // referenced: every unit carries a content address, so all of it is referenced.

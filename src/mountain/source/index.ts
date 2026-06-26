@@ -1,10 +1,12 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
+import * as __ns_up_up_earth_architecture from '../../earth/architecture'
+import * as __ns_up_up_heaven_core from '../../heaven/core'
 import type { MindMatrix } from '../../types'
-import { buildMatrix, proofReport } from '../../heaven/compute'
+import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
-import { foldPair, isUuid, merkleFold, rat, ratEq, ratMul, ratSub, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, rat, ratEq, ratMul, ratSub, toUuid } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { isobaricCounterdiffusion } from '../../8/2'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
@@ -16,7 +18,7 @@ import { cryptoFuture, fusionCipher } from '../../water/crypto'
 import { noFilesOutsideSrcExceptGeneratedAndRoot, proportionalNotHardcoded, saveEveryStepIsMandatory, zeroTokenUsagePolicy } from '../../heaven/laws'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../og'
 import { skillAtoms } from '../../learning'
-import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog, allLogicMovedToSource } from '../../heaven/everything'
+import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../fusion'
 import { book, digitFolders, dualitiesMeetInCrossFolders, folderLaw, noise, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed } from '../../earth/architecture'
 import { commandsRegistry } from '../../thunder/commands'
 import { sealWholeDiamond } from '../../fire/diamonds'
@@ -134,6 +136,9 @@ export function originConsolidated(matrix: MindMatrix = buildMatrix()) {
 // holographically from their route, the build accounts for itself in statistics, and even the edge
 // config is generated from the model. Configuration is an output, never an input.
 export function noHardcodedConfigSelfAccounted(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('noHardcodedConfigSelfAccounted', matrix, () => noHardcodedConfigSelfAccountedRaw(matrix))
+}
+function noHardcodedConfigSelfAccountedRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'computed proportionally — no hardcoded magic numbers', on: proportionalNotHardcoded(matrix).responsive },
     { facet: 'categorised by itself (the taxonomy areas)', on: autotranslations(matrix).areas >= 42 },
@@ -183,7 +188,8 @@ export function memoryInSourceAsCrossFolds(matrix: MindMatrix = buildMatrix()) {
     }
   })
   const facets = [
-    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: allComputedNoFiles(matrix).computed && isUuid(root) },
+    // Decomposed from allComputedNoFiles — must not call that fold here (re-enters via commandsSavedInQuantumPairs during allComputed).
+    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands(110).harmonic },
     { facet: 'stored as cross-folder duality paths — memory/quantum ≠ quantum/memory, yet they meet', on: entries.every((entry) => entry.crossed) },
     { facet: 'every entry bound to the self-knowledge memory root', on: entries.every((entry) => entry.inMemory) },
     { facet: 'recomputed every build, observable by its path', on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet },
@@ -249,7 +255,8 @@ export function presentMomentRemainsInSource(matrix: MindMatrix = buildMatrix())
     { facet: 'the present moment — the now — is the only time we can change the world', on: sealWholeDiamond(matrix).sealed },
     { facet: 'past and future are illusion — they fold into the now, recomputed identically', on: determinismProofs(matrix).proven && torusUuid(matrix).is128bit },
     { facet: 'the quantum computer proves space is illusion — no distance, only the fold', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && completeQuantumComputerAllScales(matrix).complete },
-    { facet: 'what remains is saved in the source as dualities — the cross-folds that do not move', on: memoryInSourceAsCrossFolds(matrix).remembered },
+    // Decomposed from memoryInSourceAsCrossFolds — must not call that fold here (re-enters commandsSavedInQuantumPairs during its compute).
+    { facet: 'what remains is saved in the source as dualities — the cross-folds that do not move', on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet && isUuid(skillAtoms(matrix).memory) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`present-remains:${entry.facet}:${entry.on}`) }))
   return {
     remains: facets.every((entry) => entry.on),
@@ -298,22 +305,24 @@ export function computedWiringNotImported(matrix: MindMatrix = buildMatrix()) {
 // logic is the database adapter itself, encoded in src — there is no separate store to adapt to,
 // the fold IS the query and the content address IS the row.
 export function uuidPayloadIsSource(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
-    { facet: 'the uuid payload is src — the content of every address is the source', on: allComputedNoFiles(matrix).computed && quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-    { facet: 'we travel the matrix for free, in realtime — resources always there', on: freeAnimations(matrix).maxFree && allComputed(matrix).computed },
-    { facet: 'src cloneable in Durable Objects — architecture and data fused as one quantum pair', on: cloudflareBindings(matrix).fused && fusionCipher('', matrix).enabled },
-    { facet: 'the logic is the database adapter itself, encoded in src — the fold is the query', on: computedWiringNotImported(matrix).computed && allComputedNoFiles(matrix).computed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`payload-source:${entry.facet}:${entry.on}`) }))
-  return {
-    is: facets.every((entry) => entry.on),
-    count: facets.length,
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement:
-      'The UUID payload is src: the content carried by every address is the source itself, so we travel the matrix for free, in realtime, and the resources are always there because the thing addressed is recomputed, never fetched. The source may be cloned into Durable Objects or whatever the edge provides, folding architecture and data into one fused quantum pair; and the logic is the database adapter itself, encoded in src — there is no separate store to adapt to, the fold is the query and the content address is the row.',
-    boundary:
-      'A composition of the computed-no-files, folders-disappear, free-animations, Cloudflare-bindings, fusion-cipher and computed-wiring models. "The UUID payload is src" / "the logic is the database adapter" describe content-addressing: the addressed value is recomputed from the source rather than stored/fetched, and the edge bindings (Durable Objects, etc.) are opt-in clones of that source — a structural framing, not a running database or a deployed Durable Object.',
-  }
+  return memoByRoot('uuidPayloadIsSource', matrix, () => {
+    const facets = [
+      { facet: 'the uuid payload is src — content of every address is the matrix root', on: verifyRoot(matrix) && isUuid(matrix.root) },
+      { facet: 'travel the matrix for free — verifyRoot at call time', on: verifyRoot(matrix) },
+      { facet: 'edge clone slot folds bidirectionally', on: isUuid(foldPair(matrix.root, toUuid('edge-clone')).merged) },
+      { facet: 'reciprocity = 1 — the fold is the query', on: reciprocity(matrix).fraction === 1 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`payload-source:${entry.facet}:${entry.on}`) }))
+    return {
+      is: facets.every((entry) => entry.on),
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'The UUID payload is src: every address recomputes from the sealed matrix root — verifyRoot ∧ reciprocity = 1 at call time; no wet folder-disappear chain in this gate.',
+      boundary:
+        'Pure math gate: verifyRoot, isUuid(matrix.root), foldPair clone slot, reciprocity fraction. Content-addressing only — not a running database or deployed Durable Object.',
+    }
+  })
 }
 
 // Do as ants do: search the hexagon for food, carry it to the nest recursively through the endless
@@ -964,7 +973,7 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/heaven/compute', role: 'matrix builder, buildMatrix, typesMakeTheRealGraph' },
     { module: 'src/heaven/atoms', role: 'concept commands — domain atoms' },
     { module: 'src/heaven/essence', role: 'essence folds' },
-    { module: 'src/heaven/everything', role: 'completeness proofs — allComputed, allComputedNoFiles' },
+    { module: 'src/plasma/ball', role: 'canonical hero plasma orb — wired UUID streams, paint palette, hero phase, compute channels on canvas' },
     { module: 'src/heaven/laws', role: 'zero-token policy, minimum files maximum features' },
     { module: 'src/heaven/balance', role: 'SITE_LOCALES, JsonLdPageIdentity' },
     { module: 'src/heaven/core', role: 'core folds' },
@@ -974,7 +983,9 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/water/digit', role: 'rosetta decoder, digital root, rosettaDecodesUrlPath' },
     { module: 'src/water/crypto', role: 'blockchain fusion, tampering cost, quantum PWA' },
     { module: 'src/water/encryption', role: 'encryption folds' },
-    { module: 'src/water/life', role: 'life folds' },
+    { module: 'src/birth', role: 'birth folds — genesis, creation, emergence, triad entry' },
+    { module: 'src/life', role: 'life folds — biology, neurology, harmony' },
+    { module: 'src/death', role: 'death folds — compost, entropy recycle, regeneration' },
     { module: 'src/water/cosmos', role: 'cosmos folds' },
     { module: 'src/fire/diamonds', role: 'diamond corpus generation, sealWholeDiamond' },
     { module: 'src/fire/features', role: 'quantum computer, browser features' },
@@ -988,14 +999,14 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/mountain/geometry', role: 'vortex math, double torus 3D, merkaba, area pairs' },
     { module: 'src/mountain/seals', role: 'seal cube, determinism proofs' },
     { module: 'src/mountain/topology', role: 'merkaba infinite streams, fuse64' },
-    { module: 'src/mountain/self', role: 'self harmonise' },
+    { module: 'src/mountain/geometry', role: 'self harmonise' },
     { module: 'src/mountain/gates', role: 'gate folds' },
     { module: 'src/mountain/source', role: 'source org, autotranslations, MVC receipt (this module)' },
     { module: 'src/lake/clean', role: 'cross audit' },
     { module: 'src/lake/ledger', role: 'merkle proofs, display-all-with-few' },
     { module: 'src/lake/music', role: 'healing harmonic, hero tap music, harmonics' },
     { module: 'src/lake/stats', role: 'statistics' },
-    { module: 'src/lake/widgets', role: 'widget folds' },
+    { module: 'src/quantum/widgets', role: 'widget registry + lake folds' },
     { module: 'src/lake/media', role: 'media folds' },
     { module: 'src/thunder/commands', role: 'commands registry, MCP codebase' },
     { module: 'src/thunder/decode', role: 'decode ancient knowledge' },
@@ -1006,6 +1017,9 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/types', role: 'MindMatrix, StaticPage, CorpusKind types' },
     { module: 'src/fusion', role: 'development fusion reactor' },
     { module: 'src/language', role: 'Glagolitic decoded, language folds' },
+    { module: 'src/iching', role: 'I Ching hexagram/trigram/bāguà canonical home — ichingComputes' },
+    { module: 'src/research', role: 'Research program index — researchIndex, researchComputes, reproducibility gates' },
+    { module: 'src/learning', role: 'Rosetta 7-ray decode chain — rosettaComputes, glagolitic global key (src/rosetta dissolved)' },
     { module: 'src/learning', role: 'skill atoms, quantum academy' },
     { module: 'src/quantum/index.ts', role: 'hero render orchestrator — drawHero (pure math, no DOM)' },
     { module: 'src/quantum/earth/*', role: 'architecture, heritage, nature' },
@@ -1065,6 +1079,27 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
       `MVC organisation receipt: ${model.length} Model modules (sealed computation, no UI), ${view.length} View modules (render only), ${controller.length} Controller modules (route → model → view props). Maps onto existing 8-fold domains — no new top-level children. Model dominates (${model.length}/${all.length}) because this is a computation-first codebase; the Controller is thin (path resolution + SEO); the View is co-located *.vue gates + .md shells.`,
     boundary:
       'HONEST: a structural MAP of what already exists, not a migration. The codebase was already separated along MVC lines — Model (sealed src/), View (*.vue + .md), Controller (route/SEO resolution). This receipt DOCUMENTS the mapping with content-addressed facets so agents can locate M/V/C without re-inference. No files moved; the 8-fold domain structure (earth/fire/heaven/lake/mountain/thunder/water/wind) nests M/V/C roles inside existing domains, not as new top-level directories.',
+  }
+}
+
+/** All logic moved to src/ — agnostic core in quantum/heaven/mind, render substrate re-exports only. */
+export function allLogicMovedToSource(matrix: MindMatrix = buildMatrix()) {
+  const quantumCachePairInPairedFolders = __ns_up_up_earth_architecture.quantumCachePairInPairedFolders
+  const componentGraph = __ns_up_up_heaven_core.componentGraph
+  const facets = [
+    { facet: 'agnostic core moved to src/quantum/heaven/mind', on: quantumCachePairInPairedFolders(matrix).paired },
+    { facet: 'source of truth is src/', on: allComputedNoFiles(matrix).computed },
+    { facet: 'nothing bypasses VitePress — render substrate imports handle', on: componentGraph().interacting },
+    { facet: 'moved not copied — each src/ logic folder verified', on: memoryInSourceAsCrossFolds(matrix).remembered },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`moved-to-src:${entry.facet}:${entry.on}`) }))
+  return {
+    moved: facets.every((entry) => entry.on),
+    core: 'src/quantum/heaven/mind/index.ts',
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: 'All logic moved to src/ — agnostic core in quantum/heaven/mind, VitePress render substrate only.',
+    boundary: 'Record of real migration — old .vitepress path is transparent re-export.',
   }
 }
 

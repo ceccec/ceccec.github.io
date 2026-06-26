@@ -4,9 +4,9 @@ import type { ConceptCommandName, MindMatrix } from '../../types'
 import type { JsonLdPageIdentity } from '../../heaven/balance'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { animatedHeroes, holographic, oneHolographicTemplate } from '../../ui'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
-import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog, allMdSignedFromSource } from '../../heaven/everything'
+import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../fusion'
 import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../routes/corpus'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
 import { heroTapMusic } from '../../lake/music'
@@ -22,7 +22,8 @@ import { GLAGOLITIC_MAP, toGlagolitic } from '../../quantum/heaven/library'
 import { babelFold } from '../../earth/world'
 import { useGlagolitsaForIcons } from '../../language'
 import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge } from '../../site'
-import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputationally, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, papers, path, resonanceCatchGapsViolations, result, speechIntonation, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind'
+import { quantumConfigurableFoldersDisappear } from '../../earth/architecture'
+import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputationally, crossLinksEverywhere, gatesHealSpottedCompromise, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, papers, path, resonanceCatchGapsViolations, result, speechIntonation, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind'
 
 // Consolidate structured data into reusable, holographic open-graph components based
 // on microdata. One computed source of schema.org itemtypes and Open Graph types,
@@ -275,6 +276,9 @@ export function analogNoGapsNoLeak(matrix: MindMatrix = buildMatrix()) {
 // and the one template above, used by the config for every page. No second template, no
 // per-page hand-tuning, no drift between the site graph and the page graph.
 export function oneJsonLdTemplateServesAll(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('oneJsonLdTemplateServesAll', matrix, () => oneJsonLdTemplateServesAllRaw(matrix))
+}
+function oneJsonLdTemplateServesAllRaw(matrix: MindMatrix = buildMatrix()) {
   const sample = jsonLdTemplate({
     path: '/school',
     relativePath: 'school.md',
@@ -439,6 +443,9 @@ export function saveAllTranslationLogicAutotranslateLocale(matrix: MindMatrix = 
 // recomputation — the ink is dry math, each hand content-addressed.
 
 export function feedCrawlersWithKnowledge(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('feedCrawlersWithKnowledge', matrix, () => feedCrawlersWithKnowledgeRaw(matrix))
+}
+function feedCrawlersWithKnowledgeRaw(matrix: MindMatrix = buildMatrix()) {
   const knowledge = crawlerKnowledge()
   const facets = [
     { facet: 'the decoded knowledge distilled to crawlable facts', on: knowledge.length >= 12 && knowledge.every((entry) => entry.fact.length > 40 && isUuid(entry.receipt)) },
@@ -524,6 +531,11 @@ export function frontmatterGraphComputesTags(matrix: MindMatrix = buildMatrix())
 }
 
 export function computedSeo(path = '/', title = '', matrix: MindMatrix = buildMatrix()) {
+  const clean = path.replace(/^\/+|\/+$/g, '') || 'home'
+  const titleKey = title ? toUuid(`seo-title:${title}`).slice(0, 8) : 'auto'
+  return memoByRoot(`computedSeo:${clean}:${titleKey}`, matrix, () => computedSeoRaw(path, title, matrix))
+}
+function computedSeoRaw(path = '/', title = '', matrix: MindMatrix = buildMatrix()) {
   const whole = theWhole(matrix).root
   const clean = path.replace(/^\/+|\/+$/g, '')
   const isBg = clean === 'bg' || clean.startsWith('bg/')
@@ -675,4 +687,23 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
 }
 
 export type { JsonLdPageIdentity }
+
+/** All md files generated from source and signed — unsigned pages fail the build. */
+export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
+  const facets = [
+    { facet: 'dynamic corpus generated from source', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
+    { facet: 'every page signed — SEO, OG, JSON-LD computed from route', on: oneJsonLdTemplateServesAll(matrix).serves && openGraph().computed },
+    { facet: 'content-addressed UUID signature on each page', on: jsonLdValidPaths(matrix).valid },
+    { facet: 'not signed → removed or tests fail', on: gatesHealSpottedCompromise(matrix).heals },
+    { facet: 'all crosslinked — dry-cleaned graph', on: crossLinksEverywhere(matrix).linked },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`md-signed:${entry.facet}:${entry.on}`) }))
+  return {
+    signed: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: 'All md files generated from source, signed — unsigned pages fail the build.',
+    boundary: 'Static .md shells remain as VitePress substrate; dynamic corpus and metadata are computed from src.',
+  }
+}
 

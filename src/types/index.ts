@@ -1,3 +1,4 @@
+import { phase } from '../6/4'
 export interface Atom {
   readonly name: string
   readonly body: string

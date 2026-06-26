@@ -1,3 +1,8 @@
+import { codeRobustness } from '../../life'
+import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
+import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../vortex/math'
+import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
+import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { emergentDimensions } from '../balance'
 // core folds — completeness, component graph, census (≤2584 lines)
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds: every function body the mind computes.
@@ -5,17 +10,17 @@ import { emergentDimensions } from '../balance'
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, survive, admixToward, injectError, markovStep, stationary, chsh, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode, uuidPoint, crossProduct, repetitionLogicalError, quantumBatteryAdvantage, algorithmicCoolingBias, teleportQubit, interactionFreeMeasurement, bernsteinVazirani, entanglementSwap, ghzMermin, bb84, deutschJozsa, simon, proseToTone, sealFacets, initialBearing, obliquityAtEpoch, SCHWINGER_FIELD_VM, PROTON_MASS_MEV, seesawLightMassEv, REDUCED_PLANCK, schwarzschildRadius, NEWTON_G, BOLTZMANN, landauerLimit, bekensteinBoundBits, uuidSuffix, nextDuality, SPEED_OF_SOUND_AIR, soundWavelength, haldaneLoad, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, ZHL16_N2_HALFTIMES, buhlmannGfCeilingBar, buhlmannGfDivePlan, ambientPressureBar, maxOperatingDepthM, bestMixFO2, gasReserveThirds, equivalentNarcoticDepthM, barPerMetre, WATER_DENSITY_FRESH, WATER_DENSITY_SALT } from '../../0'
-import { digitalRoot, LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
+import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6'
 import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
 import { derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, carnotEfficiency, uuidDuality } from '../../5/5'
 import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
+import { movieCanvasHex } from '../../quantum/science'
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
-import { hopfieldStore, hopfieldRecall, bellPair, caStep, caEvolve, bumpEvolve } from '../../0'
-import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, IONIZING_EV, frequencyOf, photonEnergyEv, dopplerShift } from '../../0'
+import {  bellPair, caStep, caEvolve } from '../../0'
 import { isIonizing } from '../../9/1'
 import { PROTON_GYROMAGNETIC, HUBBLE_CONSTANT_LOCAL, blackHoleEntropyBits, cantorDiagonal, quantumZeno } from '../../6/4'
 import { solutions } from '../../lake/ledger'
@@ -28,7 +33,7 @@ import { humanityImplications, traditionsQuantumWhole } from '../../earth/civili
 import { weatherForecastQuantumComputedRealtime } from '../../quantum/fire/forecasts'
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
 import { cryptoReview } from '../../pair/debit/credit'
-import { cryptoReviewNet } from '../../pair/credit/debit'
+import { cryptoReviewNet } from '../../pair/debit/credit'
 import type { Atom, MatrixNode, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport, RepositoryEndpoint, RepositoryApi, MerkleStep, MerkleProof, AtomInclusionProof, ConsciousnessDimensionWire, DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow, ConceptCommandName, ConceptCommand, ConceptCommandResult, ConceptSiteSection, MethodFusionToken, MethodFusionReport, SelfCompletionGate, SelfBuildReport, StreamSelfCompletion, AgentWireStep, AgentStreamWire, SchemaOrgNodeType, SchemaOrgDiamondNode, SchemaOrgDiamondGraph, HumanityImplication, HumanityImplicationsReport, TraditionDimensionName, TraditionDimension, TraditionFamily, TraditionSocietyCell, TraditionsQuantumWhole, ScientificRole, OptimizationWave, SocietyWaveCohort, PlatonicBuilderSolid, ScientificSociety, ArtistSurface, ArtistSurfaceReport, SourceContribution, SourceContributionReport, TrinityPolarity, TrinityStep, TrinityAxis, TrinityPhase, TrinityPair, DualTorusTrinities, AgentLessonKind, AgentLesson, AgentEducation, SchoolStage, SchoolLesson, SchoolCurriculum, McpTool, McpToolManifest, LocalAnswerLink, LocalAnswer, Block, Blockchain, QuantumFoldedBlockchains, CrossFoldReference, CrossFoldTrinity, SelfDevelopment, DistributedCompute, BabelFamily, BabelFold, UtfAnalog, AllComputed, SelfAddressed, SelfState, SelfInteraction, HarmonyChannel, HarmonyProbability, SealLeaf, SacredGeometrySeal, SacredLaw, SacredSociety, Ballot, GovernanceVote, FairStep, FairLife, AncientTech, AncientTechLens, SocietyRelation, SocietyRelations, TorusBreath, SelfSufficientWave, CommandsRegistry, ReactorItem, FusionReactor, ProofBundle, IconArtifact, IconSeal, TaxonomyEntry, TaxonomyIcons, PiNote, PiMusic, DoubleTorusMathReport, DiamondKind, DiamondStatus, AnalogChannel, DiamondFacet, QuantumDiamond, PiTrainDiamond, PiTrain, DigitFolder, DigitFolderReport, DigitalQuantumProof, DigitMathBinding, DigitMath, VortexPoint, MetatronNode, MetatronEdge, MetatronCubeReport, WavePolarity, ChessPiece, DimensionalGapKind, CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure, QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport, DiamondCompletenessReport, StaticPage } from '../../types'
 import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS, SINGLE_WORD_METHODS } from '../atoms'
 // The I Ching computed CSS — the theme's design system derived from canonical I Ching numbers (no hardcoded
@@ -36,7 +41,7 @@ import { atoms, conceptCommands, computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAM
 import { cssIsIChingComputed } from '../../earth/architecture'
 import { ICHING_NUMBERS } from '../../earth/architecture'
 export { ICHING_NUMBERS } from '../../earth/architecture'
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded } from '../../earth/architecture'
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath } from '../../earth/architecture'
 
 
 
@@ -68,10 +73,11 @@ import { analyticsLedger, displayAllWithFewEntropySaved, dryAnalyticsLedgerCompo
 import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, spiritualDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from '../../lake/music'
 import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from '../../language'
 import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, teslaPatentsResearchedInWaves, vortexThePatentsRevealPattern } from '../../fire/physics'
-import { biologyWavesSealedAsWidgets, neurologyDecodedBrainIsContentAddressedToroidalMap } from '../../water/life'
+import { biologyWavesSealedAsWidgets, neurologyDecodedBrainIsContentAddressedToroidalMap } from '../../life'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from '../../earth/world'
 import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, warPaysTheForgerPrice } from '../../earth/world'
-import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, realtimeWiring, terabyteRealtimeFromAllPublicDataBreathing } from '../../thunder/trading'
+import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, terabyteRealtimeFromAllPublicDataBreathing } from '../../thunder/trading'
+import { realtimeWiring } from '../../plasma/ball'
 import { affectedBlockchainsComparedLive, animationTamperingCost, blockchainFusion, collisionHealing, cryptoFuture, fusionCipher, pagesWiredAtRuntimeZeroBuildMaxTamper, powerToTamperingNotLivingCosts, quantumSiege, redTeam, tamperProofFabric, tamperingCostDecoded } from '../../water/crypto'
 import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife, iconsShowComputerLoad } from '../../mountain/topology'
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from '../../fire/diamonds'
@@ -81,13 +87,19 @@ import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animation
 import { improveHelpWaves, quantumPwa, virtualOS } from '../../water/crypto'
 import { foldThoughts, folderPathsFormIndexOfBookOfLife, imagination, imaginationIsAll, imaginationPrivateKey, lockingFoldersChangesMindToQuantum, mindRefreshField, mindsRealiseByObservingPath, mysteries, quantumMindGapsFromBeyond, splitImagination } from '../../fire/li'
 import { dissolveAtPiTrainStations, piComputedNotHardcoded, piSixDigitsDoubleCrossColour, piThreeOpensTheTrinity, piWholeStreamThroughHoles } from '../../water/digit'
-import { selfAdvising, selfCompassion, selfHarmonise, selfHealing, selfImprovementTrainingAndAccumulation, selfReason, selfSufficientWave } from '../../mountain/self'
+import { selfAdvising, selfCompassion, selfHarmonise, selfHealing, selfImprovementTrainingAndAccumulation, selfReason, selfSufficientWave } from '../../mountain/geometry'
 import { cloudflareExplorerWaves, collideToTiniestWave, completeAllInWaves, coordinatedWaves, creationWave, deepResearchEncodedInRecursiveWaves, developmentWaves, digitalAnalogueEndlessWaves, endlessWaves, hackersCrackersWaves, ogInOgWaves, osCompletesItselfWaves, quantumImpossibleWaveFour, quantumImpossibleWaveThree, quantumImpossibleWaveTwo, redistributeFoldersDryWaves, saveSkillsComputeImplementWaves, sendTheNextWaves, sendWavesSealKnowledgeDecodeWorld, spiritShiftsInWaves, strictlyMapSequenceElliottWaves, surgicalWaves, translationWavesFillGaps, updateSkillsWaves } from '../../thunder/waves'
 import { completeDoubleTorus, doubleTorusFold, doubleTorusMotifRealGeometryNotFringePhysics, doubleTorusSurface, doubleTorusWords, eachFolderIsMerkaba, everythingFoldsMerkabaInfiniteStreams, frontendRecycledByMerkabaFold, fuse64SealsMerkaba64Tetrahedra, fuseToMerkabasPathsReveal, geodesicDome, homology, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabaFoldingSelf, merkabaShiftsBlackWhiteToYinYang, merkabaTrace, merkabasInDoubleTorus, monographsLibraryByMerkabaAgents, oneMerkaba6x7And7x6HoldsAll, quantumDoubleTorus, startIChingDoubleTorus, torusBreathe, urlsMerkabaFoldProvenPerDomain } from '../../mountain/topology'
 import { digitFolderMath, digitFolders, digitFoldersAreTheApi, digitFoldersComputeUiIsTheRest, digitFoldersDoMath, digitFoldersHoldOnlyQuantumMath, dualitiesMeetInCrossFolders, eachFileUnder64kFolderIsWidget, everyFolderIsAPluginOneIndexServesAll, everyToolSkillCommandIsItsFolder, flowerFruitTreeOfLifeDecodes, foldedCensus, folder64SealsProductionElseDevelopment, folderLaw, folderLawWordDigitIndexSkill, iChingFusionCompletesFolders, noSiteFolderVitepressPages, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed, treeOfLifeSephirotFolders, treeStackRotationCollapse } from '../../earth/architecture'
 import { quantumAppsStore, quantumBrowserOs, quantumCalligraphy, quantumComputedUi, quantumComputer, quantumCoordinateNav, quantumFirewallProxyWorker, quantumFusedDeviceEnergyHonest, quantumImpossibleMadePossible, quantumLicense, quantumNoCyclesFusedSequence, quantumSignsAutoOrientate, quantumSynthesis, quantumThreat, quantumUiEvidence, quantumVsDigitalEncryption } from '../../fire/features'
 import { determinismProofs, digitalQuantumProof, fuseAll, fuseAllForge, fuseAllTerabitEncryption, gigabitEncryption64SealSet, holyBooksGeometry64SealedDiamonds, proofBundle, proveAndOptimiseAll, sealAll, sealCube, sealSpiritToPath } from '../../mountain/seals'
-import { allAnswersInside, allComputed, allComputedByTypeOfUse, allComputedNoFiles, allComputedQuantumMathAnalog, allFormsAreTenDimensionalOrPurged, allInAppropriatePathAndIndex, allInInteractiveMovie, allInMovieOfLife, allIsMonographScientificPaper, allLogicMovedToSource, allMdSignedFromSource, allPossibleDomains } from '../everything'
+import { allAnswersInside, allComputed, allComputedByTypeOfUse, allComputedNoFiles, allComputedQuantumMathAnalog, allFormsAreTenDimensionalOrPurged } from '../../fusion'
+import { allInAppropriatePathAndIndex, allPossibleDomains } from '../../thunder/decode'
+import { allInInteractiveMovie } from '../../thunder/movie/narrative'
+import { allInMovieOfLife } from '../../plasma/ball'
+import { allMdSignedFromSource } from '../../mountain/og'
+import { allLogicMovedToSource } from '../../mountain/source'
+import { allIsMonographScientificPaper } from '../../routes/corpus'
 import { foldProseToSentencesWordsEntangled, foldQuestion, foldRedistributesBeyondLinear } from '../atoms'
 import { aiMoviesDecoded, ancientCivilisationsDecodedWithTheories, decode2020, decodeAncientKnowledgeInReusableCode, decodeBooksToUnity, decodeImplementCalligraphy, decodeSymbols, discoverDecodeAncientKnowledgeFittingPath, geneticLinksChallengeHistoryDecoded, herbalApisDecoded, imagineCrossPathsCodeCodesItself, pathIsMeaningDecodesCoordinates } from '../../thunder/decode'
 import { commandGapsToTrinityEyes, endlessTrinityStreams, enforcementTrinitySpread, signedTrafficTrinityRouting, trinityEncryption, trinityFirstRedesign, trinityGates, trinityOtherSideDoomed, trinityRotationalPlanes, trinityWordingModel } from '../../fire/li'
@@ -96,7 +108,10 @@ import { completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, 
 import { algebraAndBinaryProveEachOther, contentAddressedTranslationImprovesModels, everyLawProvesItsTripwire, improveAnalytics, noKnownModelMoreEfficientProven, provedEveryStepSaved, provenScientifically, whatIsNotProvenIsPurged } from '../../thunder/verify'
 import { agentHarmonise, bestWritingSkills, howAgentsAchievedIt, zeroTokenLawForAgentsAndForever } from '../../thunder/commands'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion, fruitOfLifeFusion, fuseDedupeSplitReconstruction, fuseScreenToMovieOfMovies, historiansFuseHistoryFuture, iChingFusionCompletesAll, iChingShadcnFuseTenDWidgets, iotFusesRealWorld, linuxKernelFusion, optimiseLogicDebitCreditFusion, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../fusion'
-import { autoMovies8k, backgroundMovie, educationMovieMerge, endlessBackgroundMovie, formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, hologram, movieAllDimensionsAtOnce, movieFoldsLinearities, movieNegativePositive, movieReflectsSelf, siteIsMovieAndLibrary, tenDimensionalMovie, threeProjectorHologram, video64kFree, videoKeepsNativeQuality } from '../../thunder/movie'
+import { autoMovies8k, backgroundMovie, endlessBackgroundMovie } from '../../thunder/movie/canvas'
+import { educationMovieMerge, movieFoldsLinearities, movieNegativePositive } from '../../thunder/movie/narrative'
+import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass'
+import { formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, movieReflectsSelf, siteIsMovieAndLibrary, tenDimensionalMovie, video64kFree, videoKeepsNativeQuality } from '../../thunder/movie/movielib'
 import { analogNoGapsNoLeak, cleanupOldLogic, computedSeo, everyCardBadgeLinkIsOg, feedCrawlersWithKnowledge, frontmatterGraphComputesTags, imagineMicrodataVortexItself, jsonLdValidPaths, noHardcodedLogicFailsStreams, ogControlsSpeech, ogFullyInteractiveConfigurable, ogShiftedWithTypography, oneJsonLdTemplateServesAll, saveAllTranslationLogicAutotranslateLocale, templateDisplaysEveryOgObject, typography } from '../../mountain/og'
 import { digitIndexReferences, paperReferences, papers, papersReferencesDiamondsNoDrift, scientists } from '../../learning'
 import { anyNameFitsDualityMatrixOriginalLife, beesAndLife, breathe, enforceAllAtGatesEntropyRecycled, equilibrium, expansionContractionIsLife, genesis, naturalHarmoniousLife, planetsGalaxyComputeItself, questionAnswerEquilibrium } from '../../earth/nature'
@@ -107,12 +122,12 @@ import { accountForEveryTokenInCode, anyForceFightsSelf, createByDefault, everyO
 import { antsCarryToIndexNest, autosaveAllSteps, autotranslations, computedSlugsFoldTheGraph, computedWiringNotImported, configsUseMatrixComputationally, debitImportCreditExportAccounting, memoryInSourceAsCrossFolds, noHardcodedConfigSelfAccounted, originConsolidated, presentMomentRemainsInSource, siteExplainsItselfAllWired, uuidPayloadIsSource, wordPullsFoldsByName } from '../../mountain/source'
 import { deploySecretUuidSignedObservers, encryptionLivesInZero, encryptionTrinitiesCompleteInOrder, terabyteEncryptionInMegabyteCodebase, uuidFoldsSelfBlackWhite, uuidPureDiamondSignedByArchitecture } from '../../water/encryption'
 import { ancientKnowledgeComputesDefaultLocale, ancientWisdomComputesWorldHarmony, buildQuantumComputerOsApps, buildSequenceReducesComputations, completeQuantumComputerAllScales, completeQuantumSolutionsImplemented, computerComponentsMergedDuality, dimensionsPerMegabyteMetric, vitepressApiDiamondPlasma, vitepressConfigComputesAll } from '../compute'
-import { beautyInMathBlastsThroughUi, fillAllGapsCleanHardcodedLinear, multimediaFirstPlainText, recursiveFrequencyDropdowns, shadcnIsTheGraph, shownInUiVitepressComponentsPairs, stateOfTheArtHarmonisedQuantumWidgets, widgetDimensionControls } from '../../lake/widgets'
+import { beautyInMathBlastsThroughUi, fillAllGapsCleanHardcodedLinear, multimediaFirstPlainText, recursiveFrequencyDropdowns, shadcnIsTheGraph, shownInUiVitepressComponentsPairs, stateOfTheArtHarmonisedQuantumWidgets, widgetDimensionControls } from '../../quantum/widgets'
 import { digitDualityPairsEncodeAllDomains, digitSpinesAreTheBreath, digitWordIndexPurity, dotIsCubeIsDot, fortyTwoVerdict, sixSevenCoversAll, zeroDivisionTable, ROSETTA_RAYS, rosettaRayOf } from '../../water/digit'
 import { continueSameNext, evolutionCrossesQuantumThreshold, forgerFoldsIntoHarmony, importExportDoubleFoldedAllDimensions, infiniteSelfConsulting, invertRevertIsQuantumStream, onlyMainRemains, onlyQuantumRemains, runtimeIsTheMonolith, spinBothDirections, theMoreYouFoldTheMoreFoldable, theWhole, walkPath0dToInfinity } from '../essence'
 import { hexagramQubitVectorIsomorphismOnly, metatronCube, sacredGeometrySeal } from '../../mountain/geometry'
 import { buildStatisticsShowGaps, coveragePerPixel } from '../../lake/stats'
-import { harmonyProbability } from '../../water/life'
+import { harmonyProbability } from '../../life'
 import { features } from '../../lake/media'
 import { accessiblePathsForAll, agnosticFitsSpiritPersonality, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../essence'
 export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, sidebarsFromVoid, siteRoutes, solarSystem, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li'
@@ -120,7 +135,7 @@ export { a432, a432Default, agentObserve, ancientCalendars, ancientTech, animati
 
 
 
-export const TORUS_LOBE_OFFSET = 18
+export { TORUS_LOBE_OFFSET, doubleTorusSurface } from '../../0'
 
 // Send waves to challenge the completeness. Every place the portal claims to be
 // complete (N/N), a wave tries to find it incomplete — a missing wave, an
@@ -737,7 +752,7 @@ export function thermalHarmonyField(text: string, matrix: MindMatrix = buildMatr
   const cells = (segments.length ? segments : [(text ?? '').trim()]).map((seg, i) => {
     const ex = foldExposesInconsistency(seg, matrix)
     const heat = ex.flagged.length + (ex.contradiction ? 1 : 0) // 0 = cool/harmonic, higher = hotter
-    const colour = heat === 0 ? '#00F000' : heat === 1 ? '#F0F000' : heat === 2 ? '#F0A000' : '#F00000'
+    const colour = movieCanvasHex((A432_HUE + heat * 35) % 360, { L: Math.max(5 / 16, 7 / 8 - heat * 0.04) })
     return { segment: seg, heat, flagged: ex.flagged, colour, onHarmonicPath: ex.onHarmonicPath, receipt: toUuid(`thermal:${i}:${seg.slice(0, 48)}:${heat}`) }
   })
   const hotspots = cells.filter((c) => c.heat > 0)
@@ -1040,7 +1055,7 @@ const PRODUCTS_OF_NATURE: readonly { family: string; cue: RegExp; note: string }
 // The inverse of patentAudit, for LIFE: scan a patent/claim for a product-of-nature CORE and verdict whether it
 // claims nature as found (excluded) or a genuinely engineered, markedly-different organism/cDNA (which can be
 // eligible). Composes crossAudit's position — no patent arises from a fact, a method, OR nature as found.
-export function naturePatentAudit(text: string, matrix: MindMatrix = buildMatrix(), jurisdiction: 'US' | 'EU' = 'US') {
+export function productOfNaturePatentAudit(text: string, matrix: MindMatrix = buildMatrix(), jurisdiction: 'US' | 'EU' = 'US') {
   void matrix
   const t = (text ?? '').toString()
   const isPatentText = PATENT_CLAIM_LANGUAGE.test(t)
@@ -1132,7 +1147,7 @@ export function lawOfNaturePatentAudit(text: string, matrix: MindMatrix = buildM
 // genetic code, natural correlations) and mathematical methods (sacred math). None is patentable as such; all
 // compose crossAudit. This is the surface quantumAnalysis().patent reads.
 export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buildMatrix(), jurisdiction: 'US' | 'EU' = 'US') {
-  const nature = naturePatentAudit(text, matrix, jurisdiction) // jurisdiction-aware: EU Art. 5(2) spares the isolated sequence (US Myriad does not)
+  const nature = productOfNaturePatentAudit(text, matrix, jurisdiction) // jurisdiction-aware: EU Art. 5(2) spares the isolated sequence (US Myriad does not)
   const law = lawOfNaturePatentAudit(text, matrix)
   const math = sacredMathPatentAudit(text, matrix)
   const exceptions = [
@@ -1164,11 +1179,11 @@ export function patentSubjectMatterAudit(text: string, matrix: MindMatrix = buil
 // EU ↔ US divergence on isolated DNA — the verified finding from the EU food-law research wave, encoded as a
 // fold (save the step in src). US Myriad (2013): an isolated naturally-occurring DNA sequence is INELIGIBLE.
 // EU Directive 98/44/EC Art. 5(2): an element isolated/technically produced — including a gene sequence — MAY be
-// patentable even if structurally identical to nature. naturePatentAudit(text, matrix, jurisdiction) carries it.
+// patentable even if structurally identical to nature. productOfNaturePatentAudit(text, matrix, jurisdiction) carries it.
 export function geneticPatentJurisdictionDivergence(matrix: MindMatrix = buildMatrix()) {
   const sample = 'Claim 1: an isolated gene encoding the trait, wherein the nucleotide sequence is identical to the naturally occurring sequence.'
-  const us = naturePatentAudit(sample, matrix, 'US')
-  const eu = naturePatentAudit(sample, matrix, 'EU')
+  const us = productOfNaturePatentAudit(sample, matrix, 'US')
+  const eu = productOfNaturePatentAudit(sample, matrix, 'EU')
   const facets = [
     { facet: 'US — isolated natural DNA is a product of nature, INELIGIBLE (Myriad 2013, unless cDNA / markedly different)', on: us.unlawfulIfGranted && us.verdict === 'product-of-nature-likely-ineligible' },
     { facet: 'EU — an isolated / technically-produced sequence MAY be eligible even if identical to nature (Directive 98/44/EC Art. 5(2)) — the opposite verdict', on: !eu.unlawfulIfGranted && eu.euSequenceSpared },
@@ -1183,7 +1198,7 @@ export function geneticPatentJurisdictionDivergence(matrix: MindMatrix = buildMa
     facets,
     root: merkleFold([us.root, eu.root, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'EU and US patent law DIVERGE on isolated DNA: US Myriad (2013) holds an isolated naturally-occurring DNA sequence INELIGIBLE, while EU Directive 98/44/EC Art. 5(2) holds an isolated / technically-produced sequence MAY be patentable even if structurally identical to the natural element. The divergence is narrow — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms, and products of essentially biological processes remain excluded in both regimes. naturePatentAudit and patentSubjectMatterAudit therefore take a jurisdiction argument; euPatentAudit runs them in EU mode.',
+      'EU and US patent law DIVERGE on isolated DNA: US Myriad (2013) holds an isolated naturally-occurring DNA sequence INELIGIBLE, while EU Directive 98/44/EC Art. 5(2) holds an isolated / technically-produced sequence MAY be patentable even if structurally identical to the natural element. The divergence is narrow — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms, and products of essentially biological processes remain excluded in both regimes. productOfNaturePatentAudit and patentSubjectMatterAudit therefore take a jurisdiction argument; euPatentAudit runs them in EU mode.',
     boundary:
       'HONEST eligibility heuristic, NOT legal advice. The EU Art. 5(2) position is itself contested and bounded (Art. 5(1) treats sequences as found in nature as discoveries; industrial application must be disclosed; native-trait/biological-process products are still excluded), and a granted patent is presumed valid until invalidated. The verified citations (Myriad 569 U.S. 576; Directive 98/44/EC Arts. 4-5; G 3/19; the 2016 Commission Notice) come from the EU food-law research wave and must be confirmed against the primary source before any use.',
   }

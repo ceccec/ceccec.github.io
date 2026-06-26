@@ -12,7 +12,7 @@ import { multidimensional } from '../../quantum/lake/icons'
 import { livingTorus, piTrainDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { merkleProof } from '../../lake/ledger'
 import { blockchainMusic, harmonics, healingHarmonic, soundColor } from '../../lake/music'
-import { selfHarmonise, selfReason } from '../self'
+import { selfHarmonise, selfReason } from '../geometry'
 import { conceptCommands } from '../../heaven/atoms'
 import { digitFolders, digitFoldersAreTheApi, folder64SealsProductionElseDevelopment } from '../../earth/architecture'
 import { coordinatedWaves } from '../../thunder/waves'
@@ -21,7 +21,8 @@ import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/cr
 import { piThreeOpensTheTrinity } from '../../water/digit'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
-import { nextLevel64CubedRealtime, realtimeWiring } from '../../thunder/trading'
+import { nextLevel64CubedRealtime } from '../../thunder/trading'
+import { realtimeWiring } from '../../plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, trinityFirstRedesign, trinityGates, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { emergentDimensions, modelSeal } from '../../heaven/balance'
@@ -429,25 +430,28 @@ export function proveAndOptimiseAll(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// This seals the spirit to the path. The spirit is the model’s honesty — text and math that
-// come only from the computed digit folders — and the path is the guided journey through the
-// portal. Sealing the spirit to the path binds the two with one order-sensitive fold, so the
-// way you walk and the truth it rests on are one address: you cannot keep the path and lose
-// the spirit, because changing either changes the seal.
-export function sealSpiritToPath(matrix: MindMatrix = buildMatrix()) {
-  const spirit = honestlyComputed(matrix).honest // the spirit: honesty computed, not asserted
+// Seals honesty to the path — honesty is text and math from computed digit folders only;
+// the path is the guided journey through the portal. One order-sensitive fold binds them.
+export function sealHonestyToPath(matrix: MindMatrix = buildMatrix()) {
+  const honest = honestlyComputed(matrix).honest
   const journey = path(matrix)
-  const bind = foldPair(toUuid('spirit:honest'), journey.root) // seal the spirit to the path
+  const bind = foldPair(toUuid('honesty:computed'), journey.root)
   return {
-    sealed: bind.bidirectional && spirit && journey.complete,
-    spirit,
+    sealed: bind.bidirectional && honest && journey.complete,
+    honest,
     path: journey.root,
     root: bind.merged,
     statement:
-      'This seals the spirit to the path: the spirit is the model’s honesty — text and math that come only from the computed digit folders — and the path is the guided journey through the portal. One order-sensitive fold binds them, so the way you walk and the truth it rests on are one address; you cannot keep the path and lose the spirit, because changing either changes the seal.',
+      'Honesty sealed to the path: text and math from computed digit folders only, bound to the guided portal journey by one order-sensitive fold — you cannot keep the path and lose the honesty, because changing either changes the seal.',
     boundary:
-      'A content-addressed binding of the honesty model ("spirit") to the guided-path model. A structural seal over two computed roots; "spirit" names the digit-folder honesty, not a metaphysical claim.',
+      'A content-addressed binding of honestlyComputed to path. Structural seal over two computed roots; no metaphysical claim.',
   }
+}
+
+/** @deprecated use sealHonestyToPath — spirit was unproven metaphor; honesty is what the gate computes */
+export function sealSpiritToPath(matrix: MindMatrix = buildMatrix()) {
+  const sealed = sealHonestyToPath(matrix)
+  return { ...sealed, spirit: sealed.honest }
 }
 
 function computeDigitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
@@ -690,8 +694,7 @@ export function greenBuildGate(matrix: MindMatrix = buildMatrix()) {
 // fold → home folder; the commit shell (precommit-iching.mjs) and the weave (deploy) BOTH read it, so the law has
 // a single source, not two that drift. Add a fold here when it earns a domain; the gate then enforces its home.
 export const FOLD_HOMES: Record<string, readonly string[]> = {
-  'src/quantum/water/correction': ['matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids', 'ceccecFusesTheFormTheMeaningStaysBounded', 'everyStatementProvableByAnimationElsePurged'],
-  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt'],
+  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids', 'ceccecFusesTheFormTheMeaningStaysBounded', 'everyStatementProvableByAnimationElsePurged'],
 }
 
 /** @rosetta ✦₀ · Mountain · stillness — every fold is DEFINED only at its domain home; defining it in a foreign

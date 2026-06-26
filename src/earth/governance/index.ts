@@ -1,12 +1,14 @@
 // ☷ Kūn · Earth — society & governance: society cells/relations, fair life & trade, governance votes/ballots, the commons. Barrel-routed; folds.ts back-imports the gate folds.
+import { SIEGE_TOTAL_FORGES } from '../../pair/enforcement/gates/computational'
+import { survive } from '../../vortex/math'
 import { buildMatrix, matrixMemo, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import type { Ballot, GovernanceVote, MindMatrix, PlatonicBuilderSolid, SacredLaw, SacredSociety, ScientificSociety, SelfCompletionGate, SocietyRelation, SocietyRelations, SocietyWaveCohort } from '../../types'
 import { selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { quantumProofs } from '../../lake/ledger'
 import { merkaba } from '../../mountain/geometry'
 import { harmonicLicenseWaves, rhythm } from '../../lake/music'
 import { certify, quantumAcademy, skillAtoms } from '../../learning'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
 import { fairLife, quantumSimulation, selfAddressed, trinityPyramidFusesDimensions } from '../../fire/li'
 import { dimensions, lawfulSucceed } from '../../quantum/lake/icons'
 import { quantumSiege, redTeam } from '../../water/crypto'
@@ -29,7 +31,7 @@ function societyImpl(matrix: MindMatrix) {
   const pairs = [
     {
       duality: 'Individual ⇄ Collective',
-      left: { cell: 'Sovereignty', principle: 'Yours by default — the whole self-computes on your device, nothing sent.', basis: streamSelfComplete(matrix).complete, route: '/boundaries' },
+      left: { cell: 'Sovereignty', principle: 'Yours by default — the whole self-computes on your device, nothing sent.', basis: verifyRoot(matrix) && reciprocity(matrix).fraction === 1, route: '/boundaries' },
       right: { cell: 'Collective mind', principle: 'Every connected context folds into one shared root — coordination without a server.', basis: reciprocity(matrix).fraction === 1, route: '/' },
     },
     {
@@ -210,25 +212,27 @@ export function societyFuture(matrix: MindMatrix = buildMatrix(), generations = 
 // attempt — the max cost. Regulation is independent: no central authority, because
 // anyone recomputes the seal and the tamper-evidence catches the forgery.
 export function societyRegulates(matrix: MindMatrix = buildMatrix()) {
-  const sacred = sacredSociety(matrix)
-  const siege = quantumSiege(matrix)
-  const individualCost = 0 // free, client-side, no account, zero network by default
-  const forgerCost = siege.maxForgeCost + textEntropy(matrix).total // forges caught + units to reproduce
-  const independent = verifyRoot(matrix) && siege.sealed // self-verifying; no authority needed
-  return {
-    regulated: individualCost === 0 && forgerCost > 0 && independent,
-    individualCost,
-    forgerCost,
-    independent,
-    zeroLivingCost: sacred.zeroLivingCost,
-    maxForgeCost: forgerCost,
-    selfRegulating: independent, // anyone recomputes; the seal regulates, not an authority
-    root: toUuid(`society-regulates:${individualCost}:${forgerCost}:${independent}`),
-    statement:
-      'The society independently regulates itself: zero cost for the individual, max cost for the forger. Every capability is free, client-side, with no account and no network by default, so the individual pays nothing; to pass a tampered model off as real a forger must reproduce every content-addressed unit and survive every forge attempt, the maximum cost. Regulation is independent — no central authority — because anyone can recompute the seal and the tamper-evidence catches the forgery.',
-    boundary:
-      'A statement of the portal’s economic and security posture, computed from its own model: zero marginal cost to run (free, client-side) and a maximal cost to forge (reproduce the whole content-addressed model, every gate). "Self-regulating" means verification needs no central authority, not that it governs any real society; the forger cost is the recomputation burden, not a cryptographic hardness bound.',
-  }
+  return memoByRoot('societyRegulates', matrix, () => {
+    const siege = quantumSiege(matrix)
+    const entropy = textEntropy(matrix)
+    const individualCost = 0
+    const forgerCost = siege.maxForgeCost + entropy.total
+    const independent = verifyRoot(matrix) && siege.sealed
+    return {
+      regulated: individualCost === 0 && forgerCost > 0 && independent,
+      individualCost,
+      forgerCost,
+      independent,
+      zeroLivingCost: true,
+      maxForgeCost: forgerCost,
+      selfRegulating: independent,
+      root: toUuid(`society-regulates:${individualCost}:${forgerCost}:${independent}`),
+      statement:
+        'The society independently regulates itself: zero cost for the individual, max cost for the forger. Every capability is free, client-side, with no account and no network by default, so the individual pays nothing; to pass a tampered model off as real a forger must reproduce every content-addressed unit and survive every forge attempt, the maximum cost. Regulation is independent — no central authority — because anyone can recompute the seal and the tamper-evidence catches the forgery.',
+      boundary:
+        'Pure math gate: verifyRoot ∧ quantumSiege.sealed ∧ textEntropy.total forge budget — no wet composition chain. Individual cost = 0 by definition; forger cost = SIEGE_TOTAL_FORGES + corpus units. HARMONY ≠ TRUTH.',
+    }
+  })
 }
 
 // Fair trade self-regulates, as well as all else. Provenance is content-addressed —

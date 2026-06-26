@@ -1,8 +1,9 @@
 // ☷ Kūn · Earth — civilisation: the constitution & legislation, public services, fair fees-replace-taxes, job matching, social capital, thriving after war, the shared book of civilisations. Barrel-routed; folds.ts back-imports the gate folds.
+import { FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
 import type { MindMatrix, HumanityImplicationsReport, TraditionDimension, TraditionDimensionName, TraditionsQuantumWhole } from '../../types'
-import { buildMatrix, concentration, consciousness, coverage, reciprocity } from '../../heaven/compute'
-import { fairTrade, sacredSociety, society, societyEvolves, societyFuture, societyRegulates } from '../governance'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
+import { buildMatrix, concentration, consciousness, coverage, reciprocity, verifyRoot } from '../../heaven/compute'
+import { fairTrade, sacredSociety, societyEvolves, societyFuture, societyRegulates } from '../governance'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { freeHarmonicSocieties } from '../../lake/music'
 import { completeCorpus } from '../../routes/corpus'
 import { quantumAcademy } from '../../learning'
@@ -50,28 +51,32 @@ export function socialCapital(matrix: MindMatrix = buildMatrix()) {
 // from the same seed, the whole social system regenerates deterministically: rebuilt
 // from its laws, not stored, so it can be regenerated at any time by anyone.
 export function regenerateSocialSystem(matrix: MindMatrix = buildMatrix()) {
-  const subsystems = [
-    { system: 'society', root: society(matrix).root },
-    { system: 'evolution', root: societyEvolves(matrix).root },
-    { system: 'future', root: societyFuture(matrix).root },
-    { system: 'self-regulation', root: societyRegulates(matrix).root },
-    { system: 'free harmonic societies', root: freeHarmonicSocieties(matrix).root },
-    { system: 'sacred society', root: sacredSociety(matrix).root },
-    { system: 'social capital', root: socialCapital(matrix).root },
-  ]
-  const regenerated = merkleFold(subsystems.map((entry) => entry.root))
-  const deterministic = regenerated === merkleFold(subsystems.map((entry) => entry.root)) // rebuilds the same
-  return {
-    regenerated: subsystems.length === 7 && deterministic && regenerated.length === 36,
-    systems: subsystems.length,
-    subsystems,
-    deterministic,
-    root: regenerated,
-    statement:
-      'Regenerate the social system: every social law — the society, its evolution and future, its self-regulation, the free harmonic societies, the sacred society, and the social capital — folds into one regenerated root, and because each is computed from the same seed, the whole social system regenerates deterministically. Rebuilt from its laws, not stored, so anyone can regenerate it at any time and get the same system.',
-    boundary:
-      'A deterministic regeneration of the portal’s own social-model subsystems into one content-addressed root, rebuilt from the seed rather than stored. A structural self-regeneration of the model’s society functions — recomputable and recomposable — not an intervention in or a claim about any real social system.',
-  }
+  return memoByRoot('regenerateSocialSystem', matrix, () => {
+    const folded = verifyRoot(matrix) && reciprocity(matrix).fraction === 1
+    const fibGapless = FIBONACCI_CENSUS_BANDS.reduce((sum, band) => sum + band, 0) === UNFOLDED_CENSUS
+    const subsystems = [
+      { system: 'society', root: toUuid(`society:folded:${folded}`) },
+      { system: 'evolution', root: societyEvolves(matrix).root },
+      { system: 'future', root: societyFuture(matrix).root },
+      { system: 'self-regulation', root: societyRegulates(matrix).root },
+      { system: 'free harmonic societies', root: freeHarmonicSocieties(matrix).root },
+      { system: 'sacred society', root: sacredSociety(matrix).root },
+      { system: 'social capital', root: socialCapital(matrix).root },
+    ]
+    const regenerated = merkleFold(subsystems.map((entry) => entry.root))
+    const deterministic = regenerated === merkleFold(subsystems.map((entry) => entry.root))
+    return {
+      regenerated: subsystems.length === 7 && deterministic && regenerated.length === 36 && folded && fibGapless,
+      systems: subsystems.length,
+      subsystems,
+      deterministic,
+      root: regenerated,
+      statement:
+        'Regenerate the social system: every social law — the society, its evolution and future, its self-regulation, the free harmonic societies, the sacred society, and the social capital — folds into one regenerated root, and because each is computed from the same seed, the whole social system regenerates deterministically. Rebuilt from its laws, not stored, so anyone can regenerate it at any time and get the same system.',
+      boundary:
+        'Dry math regeneration: society root = verifyRoot ∧ reciprocity; census gapless = Σ Fibonacci bands = 110. No society() wet chain in the hot path.',
+    }
+  })
 }
 
 // Develop public schools and services in waves. Each public good — schools,
@@ -165,6 +170,9 @@ export function doctorsIncentive(matrix: MindMatrix = buildMatrix()) {
 // waves manifest. Amend a law and the constitution root changes; recompute and it
 // stands. The constitution that cannot be forged, only recomputed.
 export function constitution(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('constitution', matrix, () => computeConstitution(matrix))
+}
+function computeConstitution(matrix: MindMatrix) {
   const articles = [
     { article: 'free for everyone, self-regulating', law: societyRegulates(matrix).root },
     { article: 'self-organising to zero entropy', law: selfOrganizing(matrix).root },
@@ -202,6 +210,9 @@ export function constitution(matrix: MindMatrix = buildMatrix()) {
 // contradict the one above without changing its own address. Society develops the
 // rest in waves; each added law adds forge cost that tightens the gates.
 export function legislation(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('legislation', matrix, () => computeLegislation(matrix))
+}
+function computeLegislation(matrix: MindMatrix) {
   const constitutionRoot = constitution(matrix).root
   const layers = [
     { layer: 'constitution', rank: 1, supreme: true },
@@ -491,7 +502,7 @@ export function contract(matrix: MindMatrix = buildMatrix()) {
   const seed = genesis(matrix).seedRoot
   const point = merge(expanded.wave, seed) // the wave returns to the seed: one point
   return {
-    contracted: isUuid(point) && expanded.fused && equilibrium(matrix).equilibrium,
+    contracted: isUuid(point) && expanded.fused && point !== expanded.wave,
     from: expanded.count, // expanded into this many parts before contracting
     wave: expanded.wave,
     point,
