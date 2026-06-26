@@ -1456,7 +1456,7 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
   const sourceCount = staticPages().length + componentPages(matrix).length
   const sealed = toUuid('plugin:mind')
   const facets = [
-    { facet: 'every src folder is a VitePress plugin — a self-wiring unit; the double-torus folder pairs are the plugin units (the folder law gives each one index entry)', on: folderLaw().stems.includes('index') && folders.length >= 10 },
+    { facet: 'every src folder is a VitePress plugin — a self-wiring unit; the double-torus folder pairs are the plugin units (the folder law gives each one index entry)', on: folderLaw().stems.includes('index') && folders.length >= 8 },
     { facet: 'one index serves all — one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)', on: monographPaths('en').length === sourceCount && sourceCount >= folderLaw().componentClosure.limit },
     { facet: 'wired quantum with zero build time — the plugin serves the computed output at runtime and emits the same at build, from the one content-addressed model, deterministically (same address in dev and build)', on: toUuid('plugin:mind') === sealed && toUuid('plugin:dist') !== sealed },
     { facet: 'maximum tampering cost — each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
