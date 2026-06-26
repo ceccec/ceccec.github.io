@@ -8,7 +8,7 @@ import { rat } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
-import type { MindMatrix, StaticPage } from '../types'
+import type { ConceptSiteSection, MindMatrix, StaticPage } from '../types'
 import { buildMatrix } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
 import { toUuid, merkleFold, isUuid, memoByRoot } from '../../0'
@@ -1175,4 +1175,346 @@ export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
     boundary:
       'A directive fold paired with the home page: it names the proof components the home leads with (DeterminismProofs, CryptoCompare, Hologram and the rest, all already built and registered) and the framing (harmony is peace). "Most advanced tech" and "harmony is peace" are the project\'s stance, not a benchmark; the proof is that the components are real and computed, shown on the home.',
   }
+}
+
+// ── relocated from src/wind/learning (census-neutral line-compression) ──
+export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
+  return [
+    {
+      title: 'Concept Shell',
+      command: 'concept.site.shell',
+      route: '/',
+      summary: 'The VitePress theme mounts the concept UI components and navigation.',
+    },
+    {
+      title: 'Self Build',
+      command: 'concept.self.build',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'maxBuild aggregates computed roots and supplies maximum tampering cost.',
+    },
+    {
+      title: 'Stream Self Completion',
+      command: 'concept.self.complete',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'serverless quantum UUID stream inspects its own gates and emits a self-completion root.',
+    },
+    {
+      title: 'Agent Education',
+      command: 'concept.society.educate',
+      route: '/quantum-mind#agent-education',
+      summary: 'The agent learns efficiency and security rules before it runs the costly genus-2 math.',
+    },
+    {
+      title: 'School Curriculum',
+      command: 'concept.school.curriculum',
+      route: '/learn',
+      summary: 'The complexity is converted into a seven-stage school from kids to elders.',
+    },
+    {
+      title: 'MCP Tools',
+      command: 'concept.mcp.tools',
+      route: '/mcp',
+      summary: 'Every concept command is published as an MCP tool for language models at /mcp.json.',
+    },
+    {
+      title: 'Quantum Folded Blockchains',
+      command: 'concept.chain.quantum',
+      route: '/quantum-mind#quantum-folded-blockchains',
+      summary: 'The model sequences are folded into hash-linked blockchains bound into one multichain root.',
+    },
+    {
+      title: 'Local Intelligence',
+      command: 'concept.help.fold',
+      route: '/console',
+      summary: 'AI is encoded locally as intelligence: questions fold into answers from atoms, commands, and pages with no external API.',
+    },
+    {
+      title: 'Cross Fold References',
+      command: 'concept.fold.cross',
+      route: '/quantum-mind#cross-fold-references',
+      summary: 'Cross/fold and fold/cross are reciprocal references whose weave completes a trinity.',
+    },
+    {
+      title: 'Collective Mind Self-Development',
+      command: 'concept.mind.develop',
+      route: '/',
+      summary: 'Visiting any page folds a development block into the collective mind, advancing the self locally.',
+    },
+    {
+      title: 'Self-Distributed Computing',
+      command: 'concept.compute.distributed',
+      route: '/',
+      summary: 'Every connected context recomputes the model and folds peer roots into one collective root.',
+    },
+    {
+      title: 'Babel Fold',
+      command: 'concept.babel.fold',
+      route: '/quantum-mind#traditions-lens',
+      summary: 'The intelligence communicates across all language families, traditions, and religions without reducing them to one.',
+    },
+    {
+      title: 'UTF as ASCII Analog',
+      command: 'concept.utf.analog',
+      route: '/quantum-mind#collective-mind',
+      summary: 'Every UTF string folds to a reversible pure-ASCII analog in the UUID space.',
+    },
+    {
+      title: 'All Computed',
+      command: 'concept.all.computed',
+      route: '/quantum-mind#self-completion',
+      summary: 'All learning is computed: every command folds from the self into one computed root.',
+    },
+    {
+      title: 'Self Addressed',
+      command: 'concept.self.address',
+      route: '/quantum-mind#ui-evidence',
+      summary: 'What is not self-addressed is hallucination: every atom is reachable from the self.',
+    },
+    {
+      title: 'Quantum Self State',
+      command: 'concept.state.quantum',
+      route: '/quantum-mind#self-completion',
+      summary: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs, making text and numbers obsolete.',
+    },
+    {
+      title: 'Harmony Probability',
+      command: 'concept.music.harmony',
+      route: '/quantum-mind#waves',
+      summary: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is computed and folded.',
+    },
+    {
+      title: 'Sacred Geometry Seal',
+      command: 'concept.geometry.seal',
+      route: '/quantum-mind#self-completion',
+      summary: 'Sacred geometry seals all seals: every seal root folds through the Metatron cube and the five Platonic solids.',
+    },
+    {
+      title: 'Sacred Society',
+      command: 'concept.society.sacred',
+      route: '/quantum-mind#self-build',
+      summary: 'A self-governing sacred society: zero living cost balanced by maximum forge cost.',
+    },
+    {
+      title: 'Rate and Vote Governance',
+      command: 'concept.commons.vote',
+      route: '/governance',
+      summary: 'Society approves and monitors the recomputable master seal by rate and vote; sharing the site shares the ledger.',
+    },
+    {
+      title: 'Fair Trade & Sustainable Life',
+      command: 'concept.commons.fair',
+      route: '/governance',
+      summary: 'A five-step participation ladder anyone can learn: learn the value, exchange transparently, reciprocate, steward, regenerate.',
+    },
+    {
+      title: 'Ancient Tech',
+      command: 'concept.ancient.tech',
+      route: '/quantum-mind#traditions-lens',
+      summary: 'Ancient technologies prefigure the model: hexagrams to digits, gears to computation, solids to the seal.',
+    },
+    {
+      title: 'Society Relations',
+      command: 'concept.society.relations',
+      route: '/governance',
+      summary: 'All society relations fold into one: traditions, science, sacred society, governance, and fair life.',
+    },
+    {
+      title: 'Torus Breath',
+      command: 'concept.torus.breathe',
+      route: '/quantum-mind#double-torus',
+      summary: 'Extend and contract: the system breathes outward into all forms and inward into one seal.',
+    },
+    {
+      title: 'Self-Sufficient Wave',
+      command: 'concept.wave.self',
+      route: '/quantum-mind#coordinated-waves',
+      summary: 'Each wave extends, contracts, and seals — computed from the repository alone.',
+    },
+    {
+      title: 'Agent Stream Wire',
+      command: 'concept.agent.stream.wire',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'The coding-agent observe-bind-verify-project-return loop is wired into stream receipts.',
+    },
+    {
+      title: 'Concept UI Components',
+      command: 'concept.mind.double.torus',
+      route: '/commands',
+      summary: 'The command console drives the double-torus dashboard as a UI component.',
+    },
+    {
+      title: 'Quantum UI Evidence',
+      command: 'concept.mind.use.cases',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'Repository-grounded UI use cases list their source functions, components, interactions, and receipts.',
+    },
+    {
+      title: 'Diamond Lattice',
+      command: 'concept.society.lattice',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'Every displayed dimension and dynamic is computed from four-facet diamonds.',
+    },
+    {
+      title: 'Pi Train',
+      command: 'concept.diamond.pi.train',
+      route: '/quantum-mind#pi-train',
+      summary: 'The 3D double-torus sequence, sound tones, and vibration pulses are computed from pi diamonds.',
+    },
+    {
+      title: 'Diamond Completeness',
+      command: 'concept.diamond.complete',
+      route: '/quantum-mind#diamond-lattice',
+      summary: 'The stream diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
+    },
+    {
+      title: 'Metatron Cube',
+      command: 'concept.diamond.metatron',
+      route: '/quantum-mind#metatron-cube',
+      summary: 'Double-vortex Metatron cube math maps digit folders into nodes, edges, and interference.',
+    },
+    {
+      title: 'Digital Quantum Proof',
+      command: 'concept.digit.proof',
+      route: '/quantum-mind#digit-proof',
+      summary: 'Digits verify the digital quantum-inspired model through folders, waves, superpositions, receipts, and roots.',
+    },
+    {
+      title: 'Ceccec Digit Math',
+      command: 'concept.digit.math',
+      route: '/quantum-mind#ceccec-digit-math',
+      summary: 'Every computed root is routed into a ceccec digit folder, so the digit folders do the math always.',
+    },
+    {
+      title: 'Coordinated Waves',
+      command: 'concept.wave.coordination',
+      route: '/quantum-mind#coordinated-waves',
+      summary: 'Diamonds emit phase-aligned yin-yang waves across the double torus.',
+    },
+    {
+      title: 'Gap-Closing Waves',
+      command: 'concept.wave.close.gaps',
+      route: '/quantum-mind#coordinated-waves',
+      summary: 'Realtime waves close or sustain dimensional and analog channels.',
+    },
+    {
+      title: 'Quantum Chess',
+      command: 'concept.chess.quantum',
+      route: '/quantum-mind#quantum-chess',
+      summary: 'The chess board is realised as square superpositions driven by coordinated waves.',
+    },
+    {
+      title: 'Schema.org Diamonds',
+      command: 'concept.schema.org.diamonds',
+      route: '/quantum-mind#schema-org-diamonds',
+      summary: 'Schema.org-shaped nodes are folded from diamond receipts, UI use cases, datasets, and actions.',
+    },
+    {
+      title: 'Traditions Quantum Whole',
+      command: 'concept.traditions.quantum.whole',
+      route: '/quantum-mind#traditions-quantum-whole',
+      summary: 'Religions and traditions are compared through distinct experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions.',
+    },
+    {
+      title: 'Scientific Society',
+      command: 'concept.science.society',
+      route: '/quantum-mind#scientific-society',
+      summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.',
+    },
+    {
+      title: 'Artist Surfaces',
+      command: 'concept.artists.surfaces',
+      route: '/',
+      summary: 'Home and README surfaces are computed as artist-built equations with receipts.',
+    },
+    {
+      title: 'Method Fusion',
+      command: 'concept.method.fusion',
+      route: '/quantum-mind#method-fusion',
+      summary: 'Gravity maps every command surface to a single-word method token.',
+    },
+    {
+      title: 'Double-Torus Math',
+      command: 'concept.torus.math',
+      route: '/architecture#6-double-torus-math',
+      summary: 'The math page states the genus-2 invariants behind the concept.',
+    },
+    {
+      title: 'Implications for Humanity',
+      command: 'concept.society.humanity',
+      route: '/quantum-mind#implications-for-humanity',
+      summary: 'The concept is interpreted as a model for knowledge, institutions, AI, and culture.',
+    },
+    {
+      title: 'Give Back to the Source',
+      command: 'concept.commons.contribute',
+      route: '/quantum-mind#give-back-to-the-source',
+      summary: 'The concept asks beneficiaries to return citation, improvement, support, and stewardship.',
+    },
+    {
+      title: 'Quantum Mind',
+      command: 'concept.torus.matrix',
+      route: '/quantum-mind',
+      summary: 'The page begins by executing the matrix command over the local atom corpus.',
+    },
+    {
+      title: 'Double-Torus Flow',
+      command: 'concept.torus.flow',
+      route: '/quantum-mind#double-torus-flow',
+      summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.',
+    },
+    {
+      title: 'Dual-Torus Trinities',
+      command: 'concept.torus.trinities',
+      route: '/quantum-mind#dual-torus-trinities',
+      summary: 'Types pair into two trinities across three axes and reach analog form without gaps for maximum tampering cost.',
+    },
+    {
+      title: 'Repository API',
+      command: 'concept.repository.api',
+      route: '/quantum-mind#repository-api',
+      summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
+    },
+    {
+      title: 'Live Command Registry',
+      command: 'concept.commands.live',
+      route: '/commands',
+      summary: 'The command registry is the single source of truth; commands, method tokens, and MCP tools agree.',
+    },
+    {
+      title: 'Proof Bundle',
+      command: 'concept.proof.bundle',
+      route: '/quantum-mind#merkle-inclusion',
+      summary: 'The core computed roots fold into one verifiable proof bundle anyone can recompute.',
+    },
+    {
+      title: 'Music of Pi',
+      command: 'concept.music.pi',
+      route: '/quantum-mind#waves',
+      summary: 'The music of pi is infinite: pi-digit frequencies are its notes; the horo is where you join.',
+    },
+    {
+      title: 'Icon Seal',
+      command: 'concept.icon.fold',
+      route: '/quantum-mind#self-build',
+      summary: 'Icon usage adds to the tampering cost: the app icon, manifest, and service worker are folded into the seal.',
+    },
+    {
+      title: 'Icon Taxonomy',
+      command: 'concept.icon.taxonomy',
+      route: '/commands',
+      summary: 'Icons taxonomize the command areas and discover gaps: any area that is not a clean trinity.',
+    },
+    {
+      title: 'Merkle Inclusion Proof',
+      command: 'concept.proof.merkle.path',
+      route: '/quantum-mind#merkle-inclusion',
+      summary: 'Any atom binding is proven inside the mind root by a recomputable Merkle audit path.',
+    },
+    {
+      title: 'Architecture',
+      command: 'concept.site.manifest',
+      route: '/architecture',
+      summary: 'The architecture page is the command manifest explained as a contract.',
+    },
+  ] as const
 }
