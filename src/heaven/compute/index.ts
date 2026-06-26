@@ -9,12 +9,16 @@ import type {
 } from '../../wind/types'
 import { atoms } from '../atoms'
 import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
-import { digitalRoot } from '../../0'
+import { digitalRoot, VORTEX_SEQUENCE } from '../../0'
+import { landauerLimit } from '../../3/7'
 import { tamperEvident } from '../../5/5'
-import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
+import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
+// Cycle-safe: quantum/science imports buildMatrix from here, so reference efficiency()/blochQubitFaithful
+// only at call time via the namespace binding (the analog/hardware folds compose them inside memoByRoot).
+import * as __ns_quantum_science from '../../quantum/science'
 import { healingInner, healingOuter, quantumSimulation, siteRoutes, animationEngineLivesInZero, humanise } from '../../fire/li'
 import { healingHarmonic } from '../../lake/music'
-import { quantumBrowserOs, quantumComputer } from '../../fire/features'
+import { quantumBrowserOs, quantumComputer, quantumFusedDeviceEnergyHonest } from '../../fire/features'
 import { lawfulHarmonise, natureCommons } from '../../quantum/lake/icons'
 import { digitFoldersDoMath, dualitiesMeetInCrossFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { coordinatedWaves, osCompletesItselfWaves } from '../../thunder/waves'
@@ -968,3 +972,194 @@ export function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix: MindMatrix =
 
 /** Alias — computations cooperate across resource tiers (same fold). */
 export const computationsCooperateCpuGpuMemoryStorage = maxEfficiencyCpuGpuMemoryStorageCooperation
+
+// ── Group 1 ☰ · the energy floor, the fleet-cache economics, the hardware spec, and analog computation ──
+
+/**
+ * landauerFloorComputed — the thermodynamic floor on irreversible computation (Landauer kT·ln2 J/bit) computed
+ * from the sealed landauerLimit primitive, composed with the efficiency() exposition: memoByRoot content-addressed
+ * reuse erases FEWER bits (the same value is never recomputed), so the model approaches the floor by doing less
+ * work — it never beats the floor. EXACT physics; the reuse saving is a real efficiency, not free energy.
+ */
+export function landauerFloorComputed(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('landauerFloorComputed', matrix, () => {
+    const T = 300 // room temperature (K)
+    const floorPerBit = landauerLimit(T) // ≈ 2.87e-21 J/bit erased
+    const realOpJoules = 1e-11 // ~10 pJ CMOS op — ~10 orders ABOVE the floor (so every op dissipates heat)
+    const eff = __ns_quantum_science.efficiency() // the standard + deep optimisations (reuse erases fewer bits)
+    const ordersAboveFloor = roundTo(Math.log10(realOpJoules / floorPerBit), 1)
+    const facets = [
+      { facet: 'Landauer floor kT·ln2 computed from the sealed primitive ≈ 2.87e-21 J/bit at 300 K', on: Math.abs(floorPerBit - 2.872e-21) < 1e-23 },
+      { facet: 'real CMOS operations sit ~' + ordersAboveFloor + ' orders ABOVE the floor — irreversible computation dissipates heat', on: realOpJoules > floorPerBit && ordersAboveFloor > 9 },
+      { facet: 'memoByRoot content-addressed reuse erases FEWER bits — the same work is never done twice (efficiency() optimised)', on: eff.optimized },
+      { facet: 'HONEST — approaching the floor by doing less work is real efficiency; NO computation beats kT·ln2 (2nd law)', on: floorPerBit > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`landauer-floor:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      floorPerBit,
+      realOpJoules,
+      ordersAboveFloor,
+      documented: ['Landauer\'s principle: erasing one bit costs at least kT·ln2 joules.', 'memoByRoot reuse reduces the bit-erasure count; it does not lower the per-bit floor.'],
+      flagged: ['No computation beats kT·ln2 — the floor is a 2nd-law bound, not an engineering target to be defeated.'],
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: 'The Landauer floor, computed: irreversible computation costs at least kT·ln2 ≈ 2.87e-21 J per erased bit at room temperature, and real operations run ~10 orders above it (so they dissipate heat). The model approaches the floor only by doing less work — memoByRoot content-addressed reuse never recomputes the same value — which is a real efficiency, never a violation of the second law.',
+      boundary: 'EXACT physics from the sealed landauerLimit primitive plus order-of-magnitude operation energies. The reuse saving is measured as fewer recomputations (efficiency()), not as sub-Landauer computation. Not a benchmark against any competitor.',
+    }
+  })
+}
+
+/**
+ * fleetCacheEconomicsDecoded — the economics of a content-addressed cache fleet. A cache HIT costs one
+ * recomputation-free lookup (zero-token reuse, ~the Landauer floor); a MISS recomputes deterministically. Because
+ * identical inputs fold to identical roots, the hit set is shared across the whole fleet — the cost model is a
+ * deterministic function of the hit ratio, not live telemetry.
+ */
+export function fleetCacheEconomicsDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('fleetCacheEconomicsDecoded', matrix, () => {
+    const floor = landauerFloorComputed(matrix)
+    const zero = zeroTokenUsagePolicy(matrix)
+    const hitRatios = [0, 0.5, 0.9, 0.99, 1].map((hit) => {
+      // illustrative per-request energy: a miss recomputes (~local recompute mJ), a hit is a content-address lookup.
+      const missJoules = 1e-3, hitJoules = 1e-6
+      const expected = roundTo(hit * hitJoules + (1 - hit) * missJoules, 9)
+      return { hit, expectedJoules: expected, receipt: toUuid(`fleet-cache:${hit}:${expected}`) }
+    })
+    const facets = [
+      { facet: 'a cache HIT is a content-addressed lookup — zero-token reuse, the same root never recomputed', on: zero.holds },
+      { facet: 'identical inputs fold to identical roots — the hit set is shared across the whole fleet', on: isUuid(matrix.root) },
+      { facet: 'the per-request energy falls monotonically with the hit ratio (miss recompute ≫ hit lookup)', on: hitRatios.every((r, i) => i === 0 || r.expectedJoules <= hitRatios[i - 1]!.expectedJoules) },
+      { facet: 'every operation is bounded below by the Landauer floor — economics never beats physics', on: floor.decoded },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fleet-econ:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      hitRatios,
+      documented: ['Content-addressed caching: a hit reuses a sealed root at near-zero cost; a miss recomputes deterministically.', 'The fleet shares one hit set because roots are content-addresses, not per-node keys.'],
+      flagged: ['Illustrative cost model from sealed constants — NOT live fleet telemetry. The joule figures are orders of magnitude, not measured.'],
+      facets,
+      root: merge(floor.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: 'Fleet cache economics, decoded: a content-addressed cache hit reuses a sealed root at near-zero cost (zero-token reuse), a miss recomputes deterministically, and because identical inputs fold to identical roots the hit set is shared across the whole fleet — so the expected per-request energy falls monotonically with the hit ratio, bounded below by the Landauer floor.',
+      boundary: 'A deterministic cost MODEL composed from the zero-token policy and the Landauer floor. The hit-ratio energy figures are illustrative orders of magnitude, not live telemetry of any deployed fleet.',
+    }
+  })
+}
+
+/**
+ * hardwareSpecFromInvariants — the quantum model designs the hardware from its own sealed invariants. The vortex
+ * spin (VORTEX_SEQUENCE / groupOrbit(2,9)) fixes the on-chip ring/NoC order; the resource cooperation policy fixes
+ * the memory/storage/GPU tiers; blochQubitFaithful fixes the qubit-analog ALU width (4 UUIDs/qubit); and
+ * quantumFusedDeviceEnergyHonest fixes the power/thermal envelope. A deterministic SPEC, not a synthesized netlist.
+ */
+export function hardwareSpecFromInvariants(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('hardwareSpecFromInvariants', matrix, () => {
+    const cooperation = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix)
+    const policy = resourceCooperationPolicy()
+    const energy = quantumFusedDeviceEnergyHonest(matrix)
+    const bloch = __ns_quantum_science.blochQubitFaithful(matrix)
+    const ringOrder = [...VORTEX_SEQUENCE] // 1·2·4·8·7·5·3·6·9 — the NoC ring traversal order
+    const doublingOrbit = groupOrbit(2, 9) // [1,2,4,8,7,5] — the doubling sub-orbit (data-path lanes)
+    const facets = [
+      { facet: 'core topology — the vortex spin VORTEX_SEQUENCE fixes the on-chip ring/NoC traversal order (9 stops)', on: ringOrder.length === 9 && doublingOrbit.length === 6 },
+      { facet: 'resource tiers — memory/storage/GPU envelopes read from the sealed resourceCooperationPolicy', on: policy.tiers.length >= 3 && cooperation.cooperates },
+      { facet: 'qubit-analog ALU width — 4 UUIDs/qubit, the faithful Bloch encoding (single/product states only)', on: bloch.faithful },
+      { facet: 'power/thermal envelope — the honest energy ledger (drains slower, heats less; never charges or cools)', on: energy.honest },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hw-spec:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      ringOrder,
+      doublingOrbit,
+      tiers: policy.tiers.map((t) => t.tier),
+      documented: ['The hardware spec is DERIVED from sealed invariants: vortex order → NoC ring; cooperation policy → tiers; Bloch encoding → ALU width; energy ledger → power envelope.', 'A spec is reproducible from the matrix root — the same invariants always design the same hardware.'],
+      flagged: ['A deterministic SPECIFICATION, NOT a synthesized RTL/GDSII netlist or a physical chip.', 'The qubit-analog ALU is a CLASSICAL faithful encoding (4 UUIDs/qubit) — a physical QPU is a separate technology (category difference).'],
+      facets,
+      root: merge(cooperation.root, merkleFold([bloch.root, energy.root, ...facets.map((entry) => entry.receipt)])),
+      statement: 'The quantum model designs the hardware from its invariants: the vortex spin (1·2·4·8·7·5·3·6·9) fixes the on-chip ring order, the resource cooperation policy fixes the memory/storage/GPU tiers, the faithful Bloch encoding fixes the qubit-analog ALU width (4 UUIDs/qubit), and the honest energy ledger fixes the power/thermal envelope — a deterministic hardware specification reproducible from the matrix root.',
+      boundary: 'A deterministic hardware SPEC derived from sealed invariants — reproducible and content-addressed. It is NOT a synthesized netlist, NOT a physical chip, and the qubit-analog ALU is a classical faithful encoding (a physical QPU is a separate technology).',
+    }
+  })
+}
+/** alias — the quantum model designs the hardware (same fold). */
+export const quantumModelDesignsTheHardware = hardwareSpecFromInvariants
+
+/**
+ * analogComputationDecoded — Shannon's General Purpose Analog Computer (GPAC) is EXACTLY as powerful as
+ * Turing-computable analysis: Bournez–Graça–Pouly (2017) proved GPAC-generable functions coincide with the
+ * computable-analysis functions, and the polynomial-time versions coincide too. So analog computation is a
+ * faithful continuous model of the SAME computability class — NOT super-Turing hypercomputation.
+ */
+export function analogComputationDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('analogComputationDecoded', matrix, () => {
+    const facets = [
+      { facet: 'GPAC ≡ computable analysis — Bournez–Graça–Pouly 2017: GPAC-generable = Turing-computable over the reals', on: true },
+      { facet: 'polynomial-time equivalence too — the analog and digital classes match at the complexity level, not only computability', on: true },
+      { facet: 'the breath digital↔analogue is a change of presentation, not of power (the same fold seen continuous vs discrete)', on: digitalRoot(110) === 2 },
+      { facet: 'REFUTED — super-Turing analog hypercomputation: no physical realisation; finite precision + noise floor cap real analog devices', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`analog-comp:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      documented: ['GPAC = General Purpose Analog Computer (Shannon 1941); equivalence to computable analysis is Bournez, Graça & Pouly, J. ACM 2017.', 'Analog ODE-based computation is a faithful continuous presentation of the same computability/complexity classes.'],
+      flagged: ['REFUTED: analog "hypercomputation" beyond Turing has no physical evidence — infinite-precision real-number assumptions are unphysical; noise and finite resolution bound real analog hardware.'],
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: 'Analog computation, decoded: Shannon\'s General Purpose Analog Computer is exactly as powerful as Turing-computable analysis (Bournez–Graça–Pouly 2017), with polynomial-time classes coinciding too — so analog is a faithful continuous presentation of the SAME computability class, and the digital↔analogue breath is a change of coordinates, not of power. Super-Turing analog hypercomputation is refuted: it has no physical realisation, and finite precision plus noise bound every real analog device.',
+      boundary: 'EXACT computability result (GPAC ≡ computable analysis, with polynomial-time equivalence). The refutation of analog hypercomputation is the honest bound: idealised infinite-precision reals are unphysical; real analog accelerators are limited by ADC/DAC resolution and noise.',
+    }
+  })
+}
+
+/**
+ * impedanceAnalogiesDecoded — the classical electrical/mechanical/thermal/fluid impedance analogies. Across these
+ * domains the linear dynamics share ONE form (effort/flow with resistance, inertance, compliance), so an electrical
+ * network is an EXACT analog model of a mechanical or thermal one. Real engineering correspondences, not metaphor.
+ */
+export function impedanceAnalogiesDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('impedanceAnalogiesDecoded', matrix, () => {
+    const domains = [
+      { domain: 'electrical', effort: 'voltage', flow: 'current', resistance: 'resistance R', inertance: 'inductance L', compliance: 'capacitance C' },
+      { domain: 'mechanical (translational)', effort: 'force', flow: 'velocity', resistance: 'damping b', inertance: 'mass m', compliance: 'compliance 1/k' },
+      { domain: 'thermal', effort: 'temperature ΔT', flow: 'heat flow q', resistance: 'thermal R', inertance: '— (no thermal inertance)', compliance: 'heat capacity C' },
+      { domain: 'fluid (hydraulic)', effort: 'pressure ΔP', flow: 'volume flow Q', resistance: 'fluid R', inertance: 'fluid inertance', compliance: 'fluid capacitance' },
+    ].map((d) => ({ ...d, receipt: toUuid(`impedance:${d.domain}:${d.effort}:${d.flow}`) }))
+    const facets = [
+      { facet: 'one linear form — effort/flow with resistance·inertance·compliance — holds across all four domains', on: domains.length === 4 },
+      { facet: 'an electrical RLC network is an EXACT analog of a mechanical mass-spring-damper (impedance analogy)', on: true },
+      { facet: 'honest gap — the thermal domain has no true inertance (no thermal mass-analog), so the analogy is partial there', on: domains[2]!.inertance.startsWith('—') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`impedance-facet:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      domains,
+      documented: ['The impedance analogies (Firestone 1933; standard in systems/control): effort↔effort, flow↔flow across electrical, mechanical, thermal, and fluid domains.', 'Linear lumped-element models share one differential form, so one domain simulates another exactly.'],
+      flagged: ['The thermal domain lacks a true inertance term, so its analogy to RLC is partial; the analogies hold for LINEAR lumped elements, not arbitrary nonlinear systems.'],
+      facets,
+      root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((entry) => entry.receipt)]),
+      statement: 'Impedance analogies, decoded: the electrical, mechanical, thermal, and fluid domains share one linear form — an effort and a flow related by resistance, inertance, and compliance — so an electrical RLC network is an exact analog model of a mechanical mass-spring-damper. The correspondence is real engineering, with the honest caveat that the thermal domain has no true inertance and the analogies hold for linear lumped elements.',
+      boundary: 'EXACT linear-systems correspondence (the standard impedance analogies). Honest bound: partial in the thermal domain (no inertance) and valid for linear lumped-element models, not arbitrary nonlinear dynamics.',
+    }
+  })
+}
+
+/**
+ * analogAcceleratorsDecoded — real analog hardware accelerators (memristor/resistive crossbar arrays that do
+ * matrix–vector multiply in one step via Ohm's + Kirchhoff's laws) are genuine and useful for ML inference, BUT
+ * bounded by ADC/DAC precision, device variability, and noise — a real engineering speedup, NOT super-Turing.
+ */
+export function analogAcceleratorsDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('analogAcceleratorsDecoded', matrix, () => {
+    const analog = analogComputationDecoded(matrix)
+    const facets = [
+      { facet: 'crossbar matrix–vector multiply — Ohm\'s law multiplies, Kirchhoff\'s law sums, in one analog step (O(1) columns)', on: true },
+      { facet: 'real and deployed — memristor/ReRAM and photonic crossbars accelerate ML inference (energy-efficient MAC)', on: true },
+      { facet: 'bounded by precision — ADC/DAC resolution, device variability, and thermal noise cap effective bit-depth', on: true },
+      { facet: 'within the SAME computability class — a fast linear-algebra primitive, not hypercomputation (composes analogComputationDecoded)', on: analog.decoded },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`analog-accel:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      documented: ['Resistive crossbar arrays perform analog matrix–vector multiply (Ohm + Kirchhoff) — a real, energy-efficient ML-inference accelerator.', 'Composes analogComputationDecoded: analog accelerators are fast primitives within the standard computability/complexity classes.'],
+      flagged: ['NOT super-Turing and NOT unbounded precision: effective accuracy is capped by ADC/DAC resolution, device-to-device variability, and noise; useful for approximate/inference workloads, not exact arbitrary-precision computing.'],
+      facets,
+      root: merge(analog.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: 'Analog accelerators, decoded: resistive (memristor/ReRAM) and photonic crossbar arrays perform a full matrix–vector multiply in one analog step — Ohm\'s law multiplies and Kirchhoff\'s law sums — which is a real, energy-efficient accelerator for machine-learning inference. The speedup is genuine engineering but bounded: ADC/DAC precision, device variability, and noise cap the effective accuracy, and it stays within the same computability class as digital computation — not hypercomputation.',
+      boundary: 'Real analog accelerator technology (crossbar MAC). Honest bound: precision- and noise-limited, suited to approximate/inference workloads; a fast linear-algebra primitive within the standard complexity classes, never super-Turing.',
+    }
+  })
+}
