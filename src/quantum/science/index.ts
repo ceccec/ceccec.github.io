@@ -96,6 +96,22 @@ export function efficiency() {
   }
 }
 
+/**
+ * npm run quantum:efficiency-vote — recompute and report the sealed efficiency() comparison (the standard +
+ * deep optimisations content-keyed by the matrix root; README §Efficiency: answers ÷ tokens, 0 on
+ * content-addressed reuse via memoByRoot). HONEST: this is the efficiency() exposition, NOT an adversarial
+ * "vote" against any competitor — it does not benchmark another model and makes no win claim. Lives beside
+ * efficiency() so it adds a function to an existing barrel (census-110 net-0), no new index.ts, no new import.
+ */
+export function runEfficiencyVoteExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = efficiency()
+  for (const opt of report.optimizations) process.stdout.write(`  · ${opt.technique} — ${opt.how}\n`)
+  process.stdout.write(`${report.optimized ? '✓' : '✗'} efficiency-vote — ${report.optimizations.length} optimisations · root ${report.root.slice(0, 8)} (answers ÷ tokens, 0 on reuse — README §Efficiency; not a competitor benchmark)\n`)
+  return report.optimized ? 0 : 1
+}
+
 export function fuseTeslaPatents() {
   const known = new Set(conceptCommands.map((command) => command.name))
   const patents = [
