@@ -1,4 +1,5 @@
 // ☱ Duì · Lake — analytics, ledger & widget folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, seedFromText, toUuid } from '../../0'
@@ -104,9 +105,11 @@ export function healingFrequencies(matrix: MindMatrix = buildMatrix()) {
     calculated: frequencies.length === 9,
     lead,
     frequencies,
-    root: merkleFold(frequencies.map((entry) => entry.receipt)),
-    statement: 'The healing frequencies (the Solfeggio set) are calculated with their traditional associations and harmonised through the device as sound; the lead tone is derived dynamically from the live model root.',
-    boundary: 'Audio only. These are culturally-named frequencies played through the speaker. A web page does NOT alter electromagnetic or any physical fields around the device, and this is not medical, therapeutic, or health advice.',
+    // The culturally-named Solfeggio numbers are kept verbatim (they ARE defined as these Hz), but the root folds
+    // through the a432 source so the set carries A432 lineage — the documented anchor, not a re-tuning of the set.
+    root: merge(a432(matrix).root, merkleFold(frequencies.map((entry) => entry.receipt))),
+    statement: 'The healing frequencies (the Solfeggio set) are calculated with their traditional associations and harmonised through the device as sound; the lead tone is derived dynamically from the live model root, and the set carries A432 lineage in its root.',
+    boundary: 'Audio only. These are culturally-named frequencies played through the speaker (kept verbatim, carrying A432 lineage in the root — not re-tuned). A web page does NOT alter electromagnetic or any physical fields around the device, and this is not medical, therapeutic, or health advice.',
   }
 }
 
@@ -455,6 +458,9 @@ export function quantumNetworkHashing(nodeCount = 6, itemCount = 21, matrix: Min
 
 /** @rosetta ✦₄ · Lake · joyous */
 export function atomInclusionProof(atomName = 'self', matrix: MindMatrix = buildMatrix()): AtomInclusionProof {
+  return memoByRoot(`atomInclusionProof:${atomName}`, matrix, () => atomInclusionProofRaw(atomName, matrix))
+}
+function atomInclusionProofRaw(atomName = 'self', matrix: MindMatrix = buildMatrix()): AtomInclusionProof {
   const node = matrix.nodes.find((candidate) => candidate.atom === atomName)
   const leaves = [...matrix.nodes.map((candidate) => candidate.bind), ...matrix.edges.map((edge) => edge.binding)]
   const leaf = node ? node.bind : ''

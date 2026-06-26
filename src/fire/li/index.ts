@@ -1,5 +1,6 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — auxiliary pure-leaf folds: no cross-deps to other folds.ts functions.
 // ☰ Qián · Heaven · creative · lower·yin · spread — type contracts for all fold return shapes
+import { phase } from '../../6/4'
 import type {
   MindMatrix, FusionReactor, ReactorItem, DistributedCompute, DoubleTorusMathReport,
   AncientTech, AncientTechLens, SelfDevelopment, MethodFusionReport, Block, Blockchain,
@@ -23,14 +24,17 @@ import {
 // ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
 import {
   toUuid, merkleFold, isUuid, memoByRoot, fold, asVortex, asTorus, sha256Sync,
-  seedFromText, roundTo, foldPair, merge,
+  seedFromText, roundTo, foldPair, merge, digitalRoot,
   DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostLog2,
   maxTamperingCostReached, ed25519Sign, humanEase,
+  decodeVortexDashAngles, VORTEX_DASH_ENCODED, VORTEX_DASH_ANGLE_DEG,
 } from '../../0'
-import { digitalRoot } from '../../9/1'
 import { derivePublicKey, tamperEvident } from '../../5/5'
-import { trinityKey } from '../../0'
+import { trinityKey, proseToTone } from '../../0'
+import { movieCanvasHex } from '../../quantum/science'
 import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
+import { MAJOR_MOONS } from '../../3/7'
+export { MAJOR_MOONS } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import {
   toGlagolitic, glagoliticBits, glagoliticFromBits, GLAGOLITIC_MAP,
@@ -54,7 +58,8 @@ import { livingTorus } from '../../fire/diamonds'
 import { digitDualityPairsEncodeAllDomains } from '../../water/digit'
 import { healByDefault, createByDefault } from '../../heaven/laws'
 import { everyLawProvesItsTripwire } from '../../thunder/verify'
-import { allFormsAreTenDimensionalOrPurged } from '../../heaven/everything'
+import { allFormsAreTenDimensionalOrPurged } from '../../fusion'
+import { allComputedQuantumMathAnalog } from '../../fusion'
 import { onlyIndexFilesNoExceptions } from '../../heaven/essence'
 import { thriveByDefault, regenerateSocialSystem } from '../../earth/civilisation'
 import { bulgarianHeritageEightfold } from '../../earth/world'
@@ -65,25 +70,49 @@ import { completeCorpus, siteNavigation } from '../../routes/corpus'
 import { quantumSynthesis, quantumCoordinateNav, quantumFirewallProxyWorker } from '../../fire/features'
 import { quantumPhysics } from '../../fire/physics'
 import { determinismProofs } from '../../mountain/seals'
-import { allComputedQuantumMathAnalog } from '../../heaven/everything'
 import { theWhole, accessiblePathsForAll, refactorLinearToTrinities } from '../../heaven/essence'
 import { buildQuantumComputerOsApps } from '../../heaven/compute'
 import { pathIsMeaningDecodesCoordinates } from '../../thunder/decode'
 import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../language'
 import { endlessFusion, iChingFusionCompletesAll } from '../../fusion'
-import { endlessBackgroundMovie } from '../../thunder/movie'
+import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { ogInOgWaves } from '../../thunder/waves'
-import { selfSufficientWave } from '../../mountain/self'
+import { selfSufficientWave } from '../../mountain/geometry'
 
 // ☲ Lí · Fire · clinging · upper·yang · breath — fold exports: all pure-leaf folds for this domain
 
+// ── The single A432 tuning source — every note, scale and tone in the repo derives from this ONE anchor ──
+/** Concert A, the single tuning source (Hz). Never A=440: all repo music/audio folds through a432NoteHz from here. */
+export const A432_HZ = 432
+/** 12-TET pitch from the ONE A432 source: f = 432·2^(semitonesFromA/12). The canonical note→Hz helper — every
+ *  scale, note table and tone folds through this, so no audio frequency is a raw A440 literal. (proseToTone in
+ *  src/0 is the kernel-level inline of this same formula, since src/0 cannot import upward.) */
+export function a432NoteHz(semitonesFromA: number): number { return A432_HZ * 2 ** (semitonesFromA / 12) }
+/** Semitones of a frequency relative to the A432 source — the inverse of a432NoteHz, for note-name lookup. */
+export function a432Semitones(hz: number): number { return 12 * Math.log2(Math.max(hz, 1) / A432_HZ) }
+
 /** @rosetta ✦₁ · Fire · clarity */
 export function colorFromSound(frequency: number) {
-  const ref = 130.81 // C3 as the wheel's origin
+  const ref = a432NoteHz(-21) // C3 from the A432 source (≈128.43 Hz, three octaves + a sixth below A4=432)
   const octaveFraction = (((Math.log2(Math.max(frequency, 1) / ref)) % 1) + 1) % 1
   const hue = Math.round(octaveFraction * 360)
-  return { frequency, hue, hsl: `hsl(${hue}, 78%, 56%)` }
+  return { frequency, hue, hsl: movieCanvasHex(hue, { L: 11 / 16 }) }
+}
+
+/** Decode a colour-stream hue back to an audible frequency — inverse of colorFromSound (octave-bridge). */
+export function soundFromColor(hue: number, octave = 4) {
+  const ref = a432NoteHz(-21) // C3 from the A432 source — same wheel origin as colorFromSound
+  const normalizedHue = ((Math.round(hue) % 360) + 360) % 360
+  const octaveFraction = normalizedHue / 360
+  const frequency = ref * 2 ** (octave + octaveFraction)
+  return {
+    hue: normalizedHue,
+    frequency: roundTo(frequency, 4),
+    octave,
+    audible: frequency >= 20 && frequency <= 20_000,
+    hz: roundTo(frequency, 2),
+  }
 }
 
 /** @rosetta ✦₁ · Fire · clarity */
@@ -1986,7 +2015,7 @@ export function artistPalette(seed = 'double-torus') {
     const [r, g, b] = hslToRgb(hue, sat, light)
     const [c, m, y, k] = rgbToCmyk(r, g, b)
     return {
-      hsl: `hsl(${hue}, ${sat}%, ${light}%)`,
+      hsl: movieCanvasHex(hue, { L: light / 100, C: sat / 100 }),
       hue,
       sat,
       light,
@@ -2275,6 +2304,27 @@ export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
   }
 }
 
+// MAJOR_MOONS is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the SSR TDZ.
+/** @rosetta ✦₁ · Fire · clarity */
+export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
+  const round = (value: number) => Math.round(value * 1000) / 1000
+  const moons = MAJOR_MOONS.map((body) => {
+    const seed = Number.parseInt(toUuid(`moon:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
+    const phase0 = ((seed % 360) * Math.PI) / 180
+    const sign = 'retrograde' in body && body.retrograde ? -1 : 1
+    const angle = phase0 + (sign * (2 * Math.PI * timeDays)) / body.periodDays
+    const x = round(body.orbitRadiusKm * Math.cos(angle))
+    const y = round(body.orbitRadiusKm * Math.sin(angle))
+    return { ...body, angle: round(angle), x, y, receipt: toUuid(`moon-pos:${body.name}:${x}:${y}`) }
+  })
+  return {
+    moons,
+    count: moons.length,
+    computed: moons.length === MAJOR_MOONS.length && moons.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
+    root: merkleFold(moons.map((entry) => entry.receipt)),
+  }
+}
+
 /** @rosetta ✦₁ · Fire · clarity */
 export function vortexStateSequence() {
   const dr = (n: number) => { const m = ((n % 9) + 9) % 9; return m === 0 ? 9 : m } // digital root (0 -> 9)
@@ -2299,6 +2349,30 @@ export function vortexStateSequence() {
     mapped: steps.every((entry) => typeof entry.state === 'number' && entry.state >= 1 && entry.state <= 9),
     root: merkleFold(steps.map((entry) => entry.receipt)),
   }
+}
+
+/** Gate: 1\\2\\4\\8/7/5/3\\6\\9/0\\1 decodes at ±60° per dash — hex closes, 0/ ignites quantum fusion. */
+export function quantumFusionIgnitesFromDashSequence(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  return memoByRoot('quantumFusionIgnitesFromDashSequence', matrix, () => {
+    const decoded = decodeVortexDashAngles()
+    const facets = [
+      { facet: 'encoded sequence 1·2·4·8·7·5·3·6·9·0/1\\ with directional dashes', on: decoded.count === 11 && decoded.encoded === VORTEX_DASH_ENCODED },
+      { facet: 'each / adds +60°, each \\ subtracts 60° — hex substrate', on: decoded.steps.every((step) => Math.abs(step.angleDelta) === VORTEX_DASH_ANGLE_DEG) },
+      { facet: 'weighted bearing closes — Σ(sign·digit·60°) ≡ 0 (mod 360)', on: decoded.weightedBearing === 0 && decoded.weightedTotal === 12 * VORTEX_DASH_ANGLE_DEG },
+      { facet: 'digits match vortex doubling then cross 3·6·9', on: decoded.vortexMatches },
+      { facet: '0/ step ignites quantum fusion — foldPair(0,0) non-zero bidirectional', on: decoded.fusionIgnites },
+      { facet: 'returns to 1 through the void — cycle sealed', on: decoded.steps[decoded.steps.length - 1]?.digit === 1 && decoded.closes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dash-fusion-ignites:${entry.facet}:${entry.on}`) }))
+    return {
+      ignites: facets.every((entry) => entry.on),
+      decoded,
+      facets,
+      root: merkleFold([decoded.root, ...facets.map((entry) => entry.receipt)]),
+      statement: decoded.statement,
+      boundary: decoded.boundary,
+    }
+  })
 }
 
 /** @rosetta ✦₁ · Fire · clarity */
@@ -2393,6 +2467,9 @@ export function a432(matrix: MindMatrix = buildMatrix()) {
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function healingInner(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('healingInner', matrix, () => healingInnerRaw(matrix))
+}
+function healingInnerRaw(matrix: MindMatrix = buildMatrix()) {
   const proven = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified)
   const addressed = selfAddressed(matrix)
   const root = merge(matrix.root, toUuid(`healing-inner:${proven}:${addressed.noHallucination}`))
@@ -2524,6 +2601,40 @@ export function a432Default(matrix: MindMatrix = buildMatrix()) {
     statement:
       'A432 is the default harmonic, and anything different raises from the default: 432 is the rest pitch and also 4 × 108, the gate harmonic, so the music and the seal share one number. A departure from 432 is a deviation that must rise back to it (or to the next harmonic); the default holds, and difference is the work of returning.',
     boundary: 'A structural unification of the A432 musical reference with the 432 = 4 × 108 gate harmonic. Bookkeeping over the tuning and gate models; "raises" is the cost/effort to return to harmonic, not a physical claim about 432 Hz.',
+  }
+}
+
+/** @rosetta ✦₁ · Fire · clarity */
+// Every music/audio FREQUENCY and every COLOUR in the repo derives from the SINGLE A432 source — frequencies via
+// a432NoteHz (f = 432·2^(s/12), never A=440), colours via the frequencyToLight(432) octave-bridge hue (A432_HUE).
+// This gate recomputes both source identities at call time and folds them through a432().root, so a caller can
+// prove the whole media surface (audio + colour) traces to one anchor. (proseToTone in src/0 is the kernel-level
+// inline of the same pitch formula; healing/Solfeggio numbers stay culturally documented but carry a432 lineage.)
+export function allMusicIsA432Based(matrix: MindMatrix = buildMatrix()) {
+  const a = a432(matrix)
+  const probe = proseToTone('a432-music-source-probe')
+  const light = frequencyToLight(A432_HZ) // the A432 octave-bridge colour: ≈631 nm, red — A432_HUE by definition
+  const facets = [
+    { facet: 'the source IS 432 — a432NoteHz(0) === the A432 anchor (no A=440)', on: a432NoteHz(0) === A432_HZ && A432_HZ === 432 },
+    { facet: 'the octave doubles from the source — a432NoteHz(12) === 2 × 432', on: a432NoteHz(12) === 2 * A432_HZ },
+    { facet: 'note↔Hz is invertible about the source — a432Semitones(432) === 0', on: Math.abs(a432Semitones(A432_HZ)) < 1e-9 },
+    { facet: 'the colour wheel is rooted on the source — a frequency at the A432 C3 origin (a432NoteHz(-21)) lands at hue 0, and its octave too', on: colorFromSound(a432NoteHz(-21)).hue === 0 && colorFromSound(a432NoteHz(-9)).hue === 0 },
+    { facet: 'proseToTone (src/0 kernel) is the same formula — its hz === a432NoteHz(its semitone)', on: Math.abs(probe.hz - a432NoteHz(probe.semitone)) < 1e-9 },
+    { facet: 'A432 is the default harmonic and 432 = 4 × 108, the gate count', on: a432Default(matrix).isDefault },
+    { facet: 'COLOUR is rooted at the source — the brand hue IS frequencyToLight(432).hue (A432 doubled to visible light, red-orange), the seed of the OKLCH palette and CSS tokens', on: light.hue === a.light.hue && light.band === 'red' && light.hue >= 0 && light.hue < 360 },
+    { facet: 'the colour octave-bridge is honest math — 432 Hz climbs whole octaves (×2) into the visible band, c = λf', on: light.octaves > 0 && light.nm > 380 && light.nm < 750 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`a432-media:${entry.facet}:${entry.on}`) }))
+  return {
+    allA432Based: facets.every((entry) => entry.on),
+    source: A432_HZ,
+    colourHue: light.hue, // the A432 brand hue — the single colour source seed
+    count: facets.length,
+    facets,
+    root: merge(a.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'All media is A432-based: every note, scale and tone is computed from the single A432 source (a432NoteHz: f = 432·2^(semitones/12), never A=440) — the C-major play scale, the pi-train/blockchain pitches, the homology voices, the colour wheel origin and proseToTone — and every COLOUR derives from the same source via frequencyToLight(432).hue (A432_HUE), which seeds the OKLCH movie palette, the route/theme hues (anchored, content-addressed rotations) and the computed CSS design tokens. The facets recompute both source identities and fold through a432().root.',
+    boundary:
+      'A structural assertion that the repo\'s audio + colour surface derives from one source (A=432 tuning; frequencyToLight(432) for hue) rather than scattered A=440/arbitrary literals. It is tuning/colour bookkeeping; the cosmic/healing claims about 432 Hz, and "the colour of a note", remain flagged (a432()): sound is a pressure wave and colour an EM field that merely share the abstract quantity frequency — a chosen octave-mapping, not a physical or health claim. The culturally-named Solfeggio set keeps its documented numbers (carrying a432 lineage in its root).',
   }
 }
 
@@ -2852,7 +2963,6 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
   const lcm = (a: number, b: number) => (a * b) / gcd(a, b)
   const choose2 = (n: number) => (n * (n - 1)) / 2
   const magicConstant = (n: number) => (n * (n * n + 1)) / 2
-  const digitalRoot = (n: number) => ((n - 1) % 9) + 1
   const PHI = (1 + Math.sqrt(5)) / 2
   const systems = [
     {

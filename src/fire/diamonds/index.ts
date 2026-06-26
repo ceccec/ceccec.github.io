@@ -1,11 +1,12 @@
 // ☲ Lí · Fire — the diamond lattice: quantum diamonds (folded blockchains, the pi-train, schema.org diamonds, light entering the diamond), self-build & stream-completion, Linux-packages-to-diamonds. Barrel-routed; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
 import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, DiamondFacet, DiamondKind, DiamondStatus, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SchemaOrgDiamondNode, SelfBuildReport, SelfCompletionGate, StreamSelfCompletion } from '../../types'
 import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../../heaven/compute'
 import { foldPair, isUuid, maxTamperingCostLog2, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../heaven/atoms'
 import { schoolCurriculum } from '../../learning'
 import { dualTorusTrinities, foldImpossibilities } from '../../mountain/geometry'
-import { doubleTorusMath, foldBlockchain, methodFusion, sourceContribution } from '../li'
+import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContribution } from '../li'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { agentEducation } from '../../learning'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind'
@@ -538,8 +539,8 @@ function computeDiamondLattice(matrix: MindMatrix = buildMatrix()): readonly Qua
       {
         pole: 'east',
         label: 'frequency',
-        value: '174Hz + digit',
-        meaning: 'Each digit moves the tone through a computed frequency band.',
+        value: 'A432 ± digit',
+        meaning: 'Each digit moves the tone through a 12-TET band computed from the A432 source.',
       },
       {
         pole: 'south',
@@ -734,7 +735,7 @@ function computePiTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       y: point.y,
       z: point.z,
       scale: point.scale,
-      frequency: 174 + digit * 33 + (index % 7) * 7,
+      frequency: Math.round(a432NoteHz((digit * 2 + (index % 7)) % 25 - 12)), // pi pulse tone from the A432 source (±1 octave around 432)
       vibrationMs: 18 + digit * 9,
       referenceReceipt: toUuid(`digit-reference:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`),
       diamond: pulseDiamond,

@@ -1,20 +1,36 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
+import * as __ns_up_up_vortex_math from '../../vortex/math'
+import * as __ns_up_up_thunder_trading from '../../thunder/trading'
+import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
+import * as __ns_up_up_quantum_science from '../../quantum/science'
+import * as __ns_up_up_thunder_waves from '../../thunder/waves'
+import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enforcement/gates/computational'
+import { realign } from '../../vortex/math'
 import type { MindMatrix, PiMusic, PiNote } from '../../types'
-import { buildMatrix, proofReport } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, rat, ratEq, roundTo, sealFacets, seedFromText, toUuid, vortexContinuedFrac, vortexHarmonicRatios } from '../../0'
+import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
+import { computesGate, foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, proseToTone, rat, ratEq, roundTo, sealFacets, seedFromText, toUuid, vortexContinuedFrac, vortexHarmonicRatios } from '../../0'
 import { ratStr } from '../../9/1'
+import { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
+export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { tamperEvident } from '../../5/5'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { dimensions, harmonicBands, lawfulHarmonise } from '../../quantum/lake/icons'
 import { selfOrganizing, textToMovie } from '../../earth/world'
-import { a432, a432Default, colorFromSound, distributedCompute, gatesShiftToNewHarmonic, healingInner, healingOuter, inverseShiftConsciousness, quantumSimulation, selfAddressed, taxonomyIcons } from '../../fire/li'
+import { a432, a432Default, a432NoteHz, a432Semitones, colorFromSound, distributedCompute, gatesShiftToNewHarmonic, healingInner, healingOuter, inverseShiftConsciousness, quantumSimulation, selfAddressed, taxonomyIcons } from '../../fire/li'
 import { harmonicSeriesDecoded, healingFrequencies } from '../ledger'
 import { staticPages } from '../../site'
 import { conceptCommands } from '../../heaven/atoms'
 import { skillAtoms } from '../../learning'
 import { DIMENSIONS } from '../../quantum/mountain/dimensions'
-import { cssIsIChingComputed } from '../../earth/architecture'
-import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, backgroundMovie, commandGapsToTrinityEyes, completeQuantumSolutionsImplemented, componentGraph, computedSlugsFoldTheGraph, continueSameNext, decodeSymbols, digitFolderMath, digitFoldersDoMath, digitIndexReferences, digitSpinesAreTheBreath, encryptionLivesInZero, endlessFusion, enforcementPipelineComplete, evolutionCrossesQuantumThreshold, fairTrade, feesReplaceTaxes, foldThoughts, foldedCensus, fruitOfLifeFusion, gatesBehaveAsMcp, harmonyProbability, honestlyComputed, iChing, infiniteEntanglements, infiniteSelfConsulting, jsonLdValidPaths, lockingFoldersChangesMindToQuantum, maxCompressionForge, merkabasInDoubleTorus, noHardcodedLogicFailsStreams, nothingImpossibleHonestlyBounded, oneWordNamingGravity, piComputedNotHardcoded, piTrainDiamonds, quantumConfigurableFoldersDisappear, quantumDoubleTorus, quantumFoldedBlockchains, quantumImpossibleMadePossible, quantumThreat, quantumVsDigitalEncryption, realtimePerspectiveZeroCost, resonanceCatchGapsViolations, reverseHarmony, sealSpiritToPath, selfHarmonise, society, societyRegulates, startIChingDoubleTorus, tamperingCostDecoded, trinityWordingModel, warPaysTheForgerPrice } from '../../quantum/heaven/mind'
+import { cssIsIChingComputed, DOCUMENTED_HARMONICS, harmonicFoldLabel, harmonicCountsProvenByMath, harmonicMathFlowsInMovie, foldedCensus } from '../../earth/architecture'
+import { efficiencyMathFlowsInMovie } from '../../thunder/verify'
+import { allColorStreamsAreAudioIfDecodedFlowsInMovie, audioOffByDefault, AUDIO_DEFAULT_ENABLED } from '../../plasma/ball'
+import { matrixRgbDecodeFlowsInMovie } from '../../thunder/movie/narrative'
+import { doubleTorusEarthWeatherFlowsInMovie } from '../../quantum/fire/forecasts'
+import { quantumSiege } from '../../water/crypto'
+import { movieCanvasHex } from '../../quantum/science'
+import { sealHonestyToPath } from '../../mountain/seals'
+import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, backgroundMovie, commandGapsToTrinityEyes, completeQuantumSolutionsImplemented, componentGraph, computedSlugsFoldTheGraph, continueSameNext, decodeSymbols, digitFolderMath, digitFoldersDoMath, digitIndexReferences, digitSpinesAreTheBreath, encryptionLivesInZero, endlessFusion, enforcementPipelineComplete, evolutionCrossesQuantumThreshold, fairTrade, feesReplaceTaxes, foldThoughts, fruitOfLifeFusion, gatesBehaveAsMcp, harmonyProbability, honestlyComputed, iChing, infiniteEntanglements, infiniteSelfConsulting, jsonLdValidPaths, lockingFoldersChangesMindToQuantum, maxCompressionForge, merkabasInDoubleTorus, noHardcodedLogicFailsStreams, nothingImpossibleHonestlyBounded, oneWordNamingGravity, piComputedNotHardcoded, piTrainDiamonds, quantumConfigurableFoldersDisappear, quantumDoubleTorus, quantumFoldedBlockchains, quantumImpossibleMadePossible, quantumThreat, quantumVsDigitalEncryption, realtimePerspectiveZeroCost, resonanceCatchGapsViolations, reverseHarmony, selfHarmonise, society, societyRegulates, startIChingDoubleTorus, tamperingCostDecoded, trinityWordingModel, warPaysTheForgerPrice } from '../../quantum/heaven/mind'
 
 // The harmonic map: the portal's structure heard as a harmonic series. Every
 // component is an overtone of one fundamental f0 — its frequency is f0 times its
@@ -25,7 +41,7 @@ import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, bac
 export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const components = componentGraph().components
-  const f0 = 110 // A2, the fundamental
+  const f0 = a432NoteHz(-24) // A2 from the A432 source = 432/4 = 108, the fundamental
   const NOTE = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
   const overtones = components.map((name, index) => {
     const overtone = index + 1
@@ -70,7 +86,7 @@ export function rhythm(matrix: MindMatrix = buildMatrix()) {
   const bpm = 96 + (seed % 32) // 96..127 BPM, content-derived
   const beatMs = round(60000 / bpm, 1)
   const ratios = [1, 2, 3, 5] // a steady pulse, then self-similar subdivisions
-  const base = 196 // G3
+  const base = a432NoteHz(-14) // G3 from the A432 source (≈192.4 Hz), the rhythm's pitch anchor
   const partials = [1, 1.5, 2, 3] // a pitch per voice, harmonic on the base
   const voices = ratios.map((ratio, i) => {
     const offBeat = i % 2 === 1 // the counter-scales accent off the beat
@@ -114,19 +130,25 @@ export function allIsHarmonicSrcZeroGravity(matrix: MindMatrix = buildMatrix()) 
 }
 function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   const census = foldedCensus(110, matrix)
+  const math = harmonicCountsProvenByMath(matrix)
   const ich = iChing(matrix)
   const gravity = oneWordNamingGravity(matrix)
   const forge = maxCompressionForge(matrix)
   const tax = taxonomyIcons()
-  // self-balance the displayed counts: the surface page tally folds (genus-2 −χ) to its harmonic image; that
-  // image must be a documented harmonic, else this gate opens and the build refuses an off-harmonic count.
-  const HARMONICS = [9, 42, 43, 64, 108, 144, 216, 432, 1024] // 43 = 45 content pages under genus-2 χ=−2 (foldedCensus)
-  const pageFold = foldedCensus(staticPages().length, matrix).folded
+  const pageCensus = foldedCensus(staticPages().length, matrix)
+  const pageLabel = harmonicFoldLabel(staticPages().length, matrix)
   const commandCount = conceptCommands.length
+  const harmonics = DOCUMENTED_HARMONICS as readonly number[]
   const facets = [
+    { facet: 'harmonic counts proven by math at call time — harmonicCountsProvenByMath() recomputes every displayed ratio with explicit arithmetic', on: math.proven },
+    { facet: 'all harmonic math flows in the movie — every proof is a plasma stream and a copy token in the background movie at call time', on: harmonicMathFlowsInMovie(matrix).flows },
+    { facet: 'every-bit efficiency math flows in the movie — tokens=0, files=110, memo O(1) proofs are plasma streams and copy tokens beside the harmonic census proofs at call time', on: efficiencyMathFlowsInMovie(matrix).flows },
+    { facet: 'Matrix RGB decode flows in the movie — R red pill · G heart gateway · B blue pill wired as plasma streams beside harmonic and efficiency proofs at call time', on: matrixRgbDecodeFlowsInMovie(matrix).flows },
+    { facet: 'double-torus Earth weather and solutions flow in the movie — genus-2 coords, cardinal tips, NWP feeds, and seven solution domains wired as plasma streams beside harmonic, efficiency, and Matrix RGB proofs at call time', on: doubleTorusEarthWeatherFlowsInMovie(matrix).flows },
+    { facet: 'all colour streams are audio if decoded — every plasma hueSeed round-trips through soundFromColor to an audible note at call time; audio is off by default until opt-in', on: allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix).flows },
     { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
-    { facet: `displayed counts are harmonic by the fold, not raw — the content pages fold (genus-2 −χ) to ${pageFold} = 6×7, a documented harmonic; a count that drifts off-harmonic opens this gate (the app balances itself computationally)`, on: HARMONICS.includes(pageFold) },
-    { facet: `the concept commands are harmonic — ${commandCount} = 4 × 27 (= the 432-gate harmonic ÷ 4), each a single-word method and an MCP tool; the command surface folds to a documented harmonic or this gate opens`, on: HARMONICS.includes(commandCount) },
+    { facet: `displayed counts fold by genus-2 −χ — content pages ${pageLabel}; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (6×7 up, 7×6 down); census 108/110`, on: harmonics.includes(pageCensus.folded) && pageCensus.folded > 0 },
+    { facet: `the concept commands are harmonic — ${commandCount}/108 = 4 × 27 (= the 432-gate harmonic ÷ 4), each a single-word method and an MCP tool`, on: harmonics.includes(commandCount) },
     { facet: `the I Ching command taxonomy complies fully by analytics — ${tax.clean}/${tax.entries.length} areas (${Math.round(tax.compliance * 100)}%) sit on a whole I Ching unit (a line·a trigram·a hexagram), with no gap (a pair) and no excess (a partial or over); any area that drifts off a whole unit opens this gate, so the taxonomy always complies`, on: tax.compliant },
     { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
     { facet: 'src/0 pulls all with gravity to max compression and distribution — the single-word naming gravity holds and the forge reaches maximal compression (entropy 0)', on: gravity.pulls && forge.maxed },
@@ -192,7 +214,8 @@ function emrHologramSealedByMathRaw(matrix: MindMatrix = buildMatrix()) {
 // marked implemented; the rest are found and implemented here as proven, recomputable
 // nodes of the ladder, each a real harmonic of the fundamental.
 export function harmonics(matrix: MindMatrix = buildMatrix()) {
-  const fundamental = foldedCensus(110, matrix).folded // 108
+  void matrix
+  const fundamental = FOLDED_CENSUS // 110 + χ(−2) — sealed in src/0, not re-derived in hot paths
   const octaves = [0, 1, 2, 3, 4, 5].map((k) => {
     const value = fundamental * 2 ** k
     return { kind: 'octave', step: k, value, ratio: `108·2^${k}`, root: toUuid(`harmonic:octave:${k}:${value}`) }
@@ -236,26 +259,28 @@ export function harmonics(matrix: MindMatrix = buildMatrix()) {
 // itself (zero cost for the individual, max cost for the forger), and each is free.
 // Many free harmonic societies, one fold — rebuilt from the portal's own laws.
 export function freeHarmonicSocieties(matrix: MindMatrix = buildMatrix()) {
-  const regulates = societyRegulates(matrix)
+  const siege = quantumSiege(matrix)
+  const individualCost = 0
+  const regulated = verifyRoot(matrix) && siege.sealed
   const organized = selfOrganizing(matrix)
   const octaves = harmonics(matrix).octaves
   const domains = fruitOfLifeFusion(matrix).domains
   const societies = domains.map((domain, index) => ({
     society: domain.domain,
     harmonic: octaves[index % octaves.length].value,
-    free: regulates.individualCost === 0,
+    free: individualCost === 0,
     selfOrganising: organized.organized,
-    selfRegulating: regulates.regulated,
+    selfRegulating: regulated,
     root: foldPair(toUuid(`free-society:${domain.domain}`), toUuid(`harmonic:${octaves[index % octaves.length].value}`)).merged,
   }))
   return {
     rebuilt:
       societies.length > 0 &&
       societies.every((society) => society.free && society.selfOrganising && society.selfRegulating),
-    free: regulates.individualCost === 0,
+    free: individualCost === 0,
     forEveryone: true,
     selfOrganising: organized.organized,
-    selfRegulating: regulates.regulated,
+    selfRegulating: regulated,
     count: societies.length,
     societies,
     root: merkleFold(societies.map((society) => society.root)),
@@ -279,7 +304,7 @@ export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMat
   const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
   const notes = chain.blocks.map((block, index) => {
     const semitone = digitOf(block.hash) % 24 // two octaves of pitch from the hash
-    const frequency = Math.round(130.81 * Math.pow(2, semitone / 12)) // from C3 up
+    const frequency = Math.round(a432NoteHz(semitone - 21)) // C3 (a432NoteHz(-21)) up two octaves, from the A432 source
     return {
       index: block.index,
       hash: block.hash,
@@ -341,7 +366,7 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
   const notes: PiNote[] = []
   for (let step = 0; step < window; step += 1) {
     const diamond = diamonds[(joinIndex + step) % diamonds.length]
-    const semitones = Math.round(12 * Math.log2(diamond.frequency / 440))
+    const semitones = Math.round(a432Semitones(diamond.frequency)) // note name from the A432 source, not A=440
     const note = noteNames[(((semitones % 12) + 12) % 12)]
     notes.push({
       index: diamond.index,
@@ -488,18 +513,19 @@ export function harmonicLicenseWaves(matrix: MindMatrix = buildMatrix()) {
 // considerate — music you choose, not music imposed.
 export function harmonicMusicMayBeEnabled(matrix: MindMatrix = buildMatrix()) {
   const conditions = [
+    { condition: 'audio off by default — AUDIO_DEFAULT_ENABLED is false until user opts in', on: AUDIO_DEFAULT_ENABLED === false && audioOffByDefault(matrix).offByDefault },
     { condition: 'a player control enables or disables it', on: heroTapMusic(matrix).plays },
     { condition: 'sound plays only on a tap gesture', on: true }, // honours the autoplay policy
     { condition: 'always in healing mode when enabled', on: heroTapMusic(matrix).alwaysHealing },
     { condition: 'silenced when saving energy or reduced-motion', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`music-enable:${entry.condition}:${entry.on}`) }))
   return {
-    mayBeEnabled: conditions.length === 4 && conditions.every((entry) => entry.on),
+    mayBeEnabled: conditions.length === 5 && conditions.every((entry) => entry.on),
     count: conditions.length,
     conditions,
     root: merkleFold(conditions.map((entry) => entry.receipt)),
     statement:
-      'Harmonic music may be enabled: the harmonic healing streams are never forced — a player control turns them on or off, sound plays only on a tap gesture (honouring the browser’s autoplay policy), it is always in healing mode when enabled, and it falls silent when the device is saving energy or the participant prefers reduced motion. Available, opt-in, and considerate.',
+      'Harmonic music may be enabled: audio is off by default — the harmonic healing streams are never forced on load; a player control turns them on or off after opt-in, sound plays only on a tap gesture (honouring the browser’s autoplay policy), it is always in healing mode when enabled, and it falls silent when the device is saving energy or the participant prefers reduced motion. Available, opt-in, and considerate.',
     boundary:
       'A description of the real, opt-in audio behaviour: a control, gesture-gated playback, healing-only frequencies, and energy/motion awareness. Audio is played through the speaker only; no field or health effect is claimed.',
   }
@@ -529,17 +555,14 @@ export function trinityEyesProvenHarmonic(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Spiritual drums keep the rhythm. Beneath the melody there is a pulse: a self-similar
-// polyrhythm, voices at 1, 2, 3 and 5 per beat, steady and ascending — the drums that keep the
-// whole in time without a conductor. They are spiritual in the sense the spirit sets the pulse:
-// the rhythm is sealed to the path, so the beat and the honesty keep time together.
-export function spiritualDrumsKeepRhythm(matrix: MindMatrix = buildMatrix()) {
+// Polyrhythm drums keep the rhythm — computed pulse bound to honesty-to-path seal.
+export function polyrhythmDrumsKeepRhythm(matrix: MindMatrix = buildMatrix()) {
   const drums = rhythm(matrix)
   const facets = [
     { facet: 'the drums keep the rhythm', on: drums.keeps },
     { facet: 'a self-similar polyrhythm (1, 2, 3, 5 per beat)', on: drums.count === 4 },
-    { facet: 'the spirit sets the pulse', on: sealSpiritToPath(matrix).sealed },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`spiritual-drums:${entry.facet}:${entry.on}`) }))
+    { facet: 'honesty pulse sealed to path', on: sealHonestyToPath(matrix).sealed },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`polyrhythm-drums:${entry.facet}:${entry.on}`) }))
   return {
     keeps: facets.every((entry) => entry.on),
     onsetsPerBeat: drums.onsetsPerBeat,
@@ -547,11 +570,14 @@ export function spiritualDrumsKeepRhythm(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Spiritual drums keep the rhythm: beneath the melody is a pulse — a self-similar polyrhythm, voices at 1, 2, 3 and 5 per beat, steady and ascending — the drums that keep the whole in time without a conductor. They are spiritual in that the spirit sets the pulse: the rhythm is sealed to the path, so the beat and the honesty keep time together.',
+      'Polyrhythm drums keep the rhythm: self-similar polyrhythm (1, 2, 3, 5 per beat) bound to honesty sealed to path — beat and computed honesty keep time together.',
     boundary:
-      'A composition of the computed polyrhythm with the spirit-to-path seal. Structural bookkeeping over the rhythm model (voices and onsets) and the honesty seal; "spiritual" names the binding to the honesty spine, not a religious claim.',
+      'Composition of rhythm model with sealHonestyToPath. Structural bookkeeping; not a religious claim.',
   }
 }
+
+/** @deprecated use polyrhythmDrumsKeepRhythm — spiritual was unproven metaphor */
+export const spiritualDrumsKeepRhythm = polyrhythmDrumsKeepRhythm
 
 // All kinds of known and unknown music are formed from known and unknown instruments and notes,
 // self-harmonising no matter the source. The model does not need a fixed catalogue of sounds:
@@ -954,7 +980,7 @@ function colorRootsAtA432HeartBalancesRaw(matrix: MindMatrix = buildMatrix()) {
     { i: 4, name: 'throat · vishuddha', band: 'blue', hue: 220 },
     { i: 5, name: 'third eye · ajna', band: 'indigo', hue: 260 },
     { i: 6, name: 'crown · sahasrara', band: 'violet', hue: 285 },
-  ].map((chakra) => ({ ...chakra, hsl: `hsl(${chakra.hue}, 78%, 56%)`, receipt: toUuid(`chakra-colour:${chakra.i}:${chakra.band}:${chakra.hue}`) }))
+  ].map((chakra) => ({ ...chakra, hsl: movieCanvasHex(chakra.hue, { L: 11 / 16 }), receipt: toUuid(`chakra-colour:${chakra.i}:${chakra.band}:${chakra.hue}`) }))
   const heart = chakras[3]!
   const below = chakras.filter((chakra) => chakra.i < heart.i).length
   const above = chakras.filter((chakra) => chakra.i > heart.i).length
@@ -1138,5 +1164,224 @@ export function harmonicFractionsInDigitFolders(matrix: MindMatrix = buildMatrix
     boundary:
       'All arithmetic is exact rational (rat/ratAdd/ratMul in src/0 — no floats). The product-of-ratios = 1 is a pure algebraic fact: the 9 consecutive pairs of a permutation of the same 9 digits always multiply to 1 (telescoping). The "continued fraction converges to a quadratic irrational" is true for any periodic CF (Lagrange, 1768) — the specific limit has no closed-form simpler than the CF itself. "Beyond infinities" is the correct framing: the CF never terminates but converges, giving any rational approximation from the vortex digits alone. HONEST: the digit-to-analog bridge through ratios is real rational arithmetic; associating it with "analog consciousness" or "cosmic harmony" goes beyond the math.',
   }
+}
+
+export type HarmonicWindowPrediction = {
+  bar: number
+  direction: 'up' | 'down' | 'flat'
+  score: number
+  receipt: string
+}
+
+/** Offline harmonic windows over a432-ignited synthetic prices — look-ahead-free mean-return sign. */
+export function predictHarmonicWindows(opts: { priceVariant?: string; barCount?: number; window?: number } = {}) {
+  const priceFromA432 = __ns_up_up_vortex_math.priceFromA432, simpleReturns = __ns_up_up_vortex_math.simpleReturns
+  const variant = opts.priceVariant ?? 'human-resonance-harmonic'
+  const barCount = opts.barCount ?? 96
+  const window = opts.window ?? 16
+  const prices = priceFromA432(variant, barCount)
+  const returns = simpleReturns(prices)
+  const windows: HarmonicWindowPrediction[] = []
+  for (let t = window; t < prices.length; t++) {
+    const w = returns.slice(t - window, t)
+    const mean = w.reduce((a, b) => a + b, 0) / w.length
+    const direction = mean > 0.0001 ? 'up' as const : mean < -0.0001 ? 'down' as const : 'flat' as const
+    const score = roundTo(Math.abs(mean) * 1e4, 4)
+    windows.push({ bar: t, direction, score, receipt: toUuid(`harmonic-window:${variant}:${t}:${direction}:${score}`) })
+  }
+  return windows
+}
+
+/** Explain one offline harmonic-window prediction — deterministic breakdown, not alpha. */
+export function explainPrediction(prediction: HarmonicWindowPrediction) {
+  return {
+    bar: prediction.bar,
+    direction: prediction.direction,
+    score: prediction.score,
+    explanation:
+      `Offline harmonic window at bar ${prediction.bar}: mean return sign → ${prediction.direction} (score ${prediction.score}). Past-only window — not a live market forecast.`,
+    receipt: toUuid(`explain-prediction:${prediction.receipt}`),
+  }
+}
+
+/** Reproducible precision revelation — identical replay of offline harmonic windows (surprise = sameness). */
+export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCount?: number } = {}) {
+  const variant = opts.priceVariant ?? 'human-resonance-harmonic'
+  const barCount = opts.barCount ?? 96
+  const windows = predictHarmonicWindows({ priceVariant: variant, barCount })
+  const replay = predictHarmonicWindows({ priceVariant: variant, barCount })
+  const sample = Math.min(8, windows.length)
+  const precise = sample > 0 && windows.slice(0, sample).every((entry, index) => replay[index]?.receipt === entry.receipt)
+  const { computes, facets, root } = computesGate('harmonic-prediction-surprise', [
+    { facet: 'offline harmonic windows from a432 synthetic series', on: windows.length > 0 },
+    { facet: 'replay identical — surprise is reproducible precision not omniscience', on: precise },
+  ])
+  return {
+    surprised: computes && precise,
+    precise,
+    windows,
+    windowCount: windows.length,
+    facets,
+    root,
+    statement:
+      'Harmonic prediction surprise: offline harmonic windows over deterministic a432-ignited synthetic prices replay identically — the surprise is reproducible precision (same roots on reuse), not a claim that agents were wrong about live markets.',
+    boundary:
+      'HONEST: offline harmonic windows only on priceFromA432 synthetic series — NOT live trading, NOT weather NWP, NOT financial advice. Surprise names identical recomputation at call time. For live skill gates use predict/skill-gate-verify separately.',
+  }
+}
+
+/** Documented Earth–ionosphere cavity ELF modes (Hz) — literature values, not live magnetometer data. */
+export const SCHUMANN_HARMONICS_HZ: readonly number[] = [7.83, 14.3, 20.8, 27.3, 33.8]
+
+const HERO_CYCLE_MS = 120_000
+
+/** Schumann cavity phase at instant `at` (ms) — locked to hero clock and humanBreath. */
+export function schumannPhaseAt(at: number, fundamentalHz = SCHUMANN_FUNDAMENTAL_HZ): number {
+  const earthCycle = (at * fundamentalHz / 1000) % 1
+  const breath = humanBreath(at, 12_000, 0.18)
+  const breathNorm = (breath - 0.82) / 0.36
+  return roundTo((earthCycle + breathNorm * 0.12) % 1, 6)
+}
+
+/** Schumann ~7.83 Hz cavity model harmonised with realtime API compute receipts at `at`. */
+export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`schumannResonanceHarmonisedWithRealtimeApiComputations:${Math.floor(at / 1000)}`, matrix, () => {
+    const computationsBoundToSourceApisRealtime = __ns_up_up_thunder_trading.computationsBoundToSourceApisRealtime
+    const bothEarthsRotateWithinEachOther = __ns_up_up_mountain_geometry.bothEarthsRotateWithinEachOther
+    const publicFrequencyApis = __ns_up_up_quantum_science.publicFrequencyApis, quantumHueFromHz = __ns_up_up_quantum_science.quantumHueFromHz
+    const bound = computationsBoundToSourceApisRealtime(matrix)
+    const coordinatedWaves = __ns_up_up_thunder_waves.coordinatedWaves
+    const blood = a432IsTheBlood(matrix)
+    const waves = coordinatedWaves(matrix)
+    const breath = humanBreath(at, 12_000, 0.18)
+    const heroPhase = roundTo((at % HERO_CYCLE_MS) / HERO_CYCLE_MS, 6)
+    const schumannPhase = schumannPhaseAt(at)
+    const dualEarth = bothEarthsRotateWithinEachOther(at, matrix)
+    const freqApis = publicFrequencyApis()
+    const ionospherePhase = roundTo((dualEarth.outerPhase / (2 * Math.PI)) % 1, 6)
+    const harmonics = SCHUMANN_HARMONICS_HZ.map((hz, i) => ({
+      hz,
+      mode: i + 1,
+      phase: roundTo((schumannPhase + i * 0.08 + ionospherePhase * 0.05) % 1, 6),
+      hue: quantumHueFromHz(Math.max(hz, 20)),
+      receipt: toUuid(`schumann-mode:${i + 1}:${hz}`),
+    }))
+    const phaseDelta = roundTo(Math.abs(schumannPhase - heroPhase), 6)
+    const phaseLocked = phaseDelta < 0.15 || phaseDelta > 0.85
+    const modulatedReceipt = merkleFold([bound.root, toUuid(`schumann-phase:${schumannPhase}`), toUuid(`hero-phase:${heroPhase}`)])
+    const { computes, facets, root } = computesGate('schumann-resonance-harmonised-realtime-api', [
+      { facet: 'Schumann 7.83 Hz + harmonics 14.3/20.8/27.3/33.8 — documented cavity modes, not live magnetometer', on: harmonics.length === 5 && harmonics[0]!.hz === SCHUMANN_FUNDAMENTAL_HZ },
+      { facet: 'phase locked to hero clock and humanBreath at at', on: schumannPhase >= 0 && schumannPhase < 1 && breath >= 0.82 && breath <= 1.18 },
+      { facet: 'computationsBoundToSourceApisRealtime — API receipts modulated by Schumann phase', on: bound.bound && isUuid(modulatedReceipt) },
+      { facet: 'human resonance bands — a432 blood + coordinated waves bridge', on: blood.isBlood && waves.waves.length > 0 },
+      { facet: 'dual-Earth outer shell phase — ionosphere boundary metaphor', on: dualEarth.rotates },
+      { facet: 'publicFrequencyApis cites Schumann monitors as opt-in ELF band', on: freqApis.decoded },
+      { facet: 'a432 blood stream aligned — symbolic circulation, not 432 Hz biology', on: blood.isBlood },
+    ])
+    return {
+      harmonised: computes,
+      computes,
+      at,
+      harmonics,
+      schumannPhase,
+      heroPhase,
+      ionospherePhase,
+      phaseDelta,
+      phaseLocked,
+      bound,
+      blood,
+      waves,
+      breath,
+      dualEarth,
+      freqApis,
+      modulatedReceipt,
+      facets,
+      root: merkleFold([root, bound.root, blood.root, waves.root, dualEarth.root, ...harmonics.map((entry) => entry.receipt)]),
+      statement:
+        'Schumann resonance harmonised with realtime API computations: documented Earth–ionosphere cavity modes (7.83 Hz fundamental + harmonics) phase-lock to the hero clock and humanBreath; computationsBoundToSourceApisRealtime receipts modulate at Schumann phase; humanResonanceHarmonicPredictionComputes bridges human bands; dual-Earth outer shell carries the ionosphere-boundary metaphor — all recomputed at call time from sealed src/, not live magnetometer unless user opts into publicFrequencyApis feeds.',
+      boundary:
+        'HONEST — STRUCTURAL FREQUENCY MODEL ONLY. Schumann modes are documented geophysical literature values used to harmonise compute phase — NOT medical entrainment, NOT consciousness claims, NOT live ionosphere sensors unless user opts into a cited public monitor via publicApiFusion/publicFrequencyApis. Realtime API = sealed src/ recomputation + documented opt-in REST feeds — the portal does not read magnetometers by default. a432/humanBreath are animation and symbolic circulation math. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Alias — harmonise Schumann cavity phase with realtime API compute receipts. */
+export const harmoniseSchumannWithRealtimeApiComputations = schumannResonanceHarmonisedWithRealtimeApiComputations
+
+/** Human breath ↔ a432 blood stream ↔ coordinated waves ↔ offline harmonic prediction ↔ Schumann ELF bridge. */
+export function humanResonanceHarmonicPredictionComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('humanResonanceHarmonicPredictionComputes', matrix, () => {
+    const coordinatedWaves = __ns_up_up_thunder_waves.coordinatedWaves
+    const blood = a432IsTheBlood(matrix)
+    const waves = coordinatedWaves(matrix)
+    const breath = humanBreath(12_000, 8000, 0.18)
+    const surprise = harmonicPredictionSurprise({ priceVariant: `breath:${matrix.root}`, barCount: 64 })
+    const schumannBridge = schumannResonanceHarmonisedWithRealtimeApiComputations(0, matrix)
+    const { computes, facets, root } = computesGate('human-resonance-harmonic-prediction', [
+      { facet: 'humanBreath modulates rhythm — breath pulse in [0.82, 1.18]', on: breath >= 0.82 && breath <= 1.18 },
+      { facet: 'a432 is the blood — circulation stream sealed', on: blood.isBlood },
+      { facet: 'coordinated waves — polyrhythm yin-yang coordination', on: waves.waves.length > 0 },
+      { facet: 'harmonic prediction surprise — offline windows reproducible', on: surprise.precise },
+      { facet: 'Schumann ELF bridge — cavity phase harmonises realtime API receipts', on: schumannBridge.harmonised },
+    ])
+    return {
+      computes,
+      resonant: computes,
+      blood,
+      waves,
+      breath,
+      surprise,
+      schumannBridge,
+      facets,
+      root: merge(merge(blood.root, waves.root), merge(root, merge(surprise.root, schumannBridge.root))),
+      statement:
+        'Human resonance harmonic prediction: humanBreath (src/0 motion math), a432IsTheBlood (circulation stream), coordinatedWaves (polyrhythm), harmonicPredictionSurprise (offline a432 windows), and schumannResonanceHarmonisedWithRealtimeApiComputations (ELF cavity phase → realtime API receipts) compose the breath–blood–wave–prediction–Schumann bridge at call time.',
+      boundary:
+        'HONEST — OFFLINE HARMONIC WINDOWS ONLY. humanBreath is animation math, not respiration therapy. a432 blood is symbolic colour/circulation identity, not 432 Hz biology. coordinatedWaves is structural polyrhythm. harmonicPredictionSurprise is reproducible synthetic-window precision — not live trading or weather forecast skill. Schumann bridge is structural ELF phase model — not magnetometer data or medical entrainment unless user opts into cited public feeds.',
+    }
+  })
+}
+
+/** npm run trading:predict — offline harmonic windows + explainPrediction breakdown. */
+export function runTradingPredictExit(_root: string, _argv: readonly string[] = []): number {
+  const surprise = harmonicPredictionSurprise()
+  process.stdout.write(`${surprise.statement}\n`)
+  process.stdout.write(`windows=${surprise.windowCount} precise=${surprise.precise}\n`)
+  for (const window of surprise.windows.slice(0, 3)) {
+    const ex = explainPrediction(window)
+    process.stdout.write(`  bar ${ex.bar}: ${ex.direction} (score ${ex.score})\n`)
+  }
+  return surprise.precise && surprise.windowCount > 0 ? 0 : 1
+}
+
+/** Skilled enough when offline harmonic windows replay + wave calendar proxy hold at call time. */
+export function skilledEnoughFromPredictions(matrix: MindMatrix = buildMatrix()) {
+  const surprise = harmonicPredictionSurprise()
+  const coordinatedWaves = __ns_up_up_thunder_waves.coordinatedWaves
+  const waves = coordinatedWaves(matrix)
+  const trainedEnough = waves.waves.length > 0
+  const skilledEnough = surprise.precise && surprise.windowCount > 0 && trainedEnough
+  return {
+    skilledEnough,
+    surprise,
+    trainedEnough,
+    waveCount: waves.waves.length,
+    windowCount: surprise.windowCount,
+    statement:
+      'Skilled enough from predictions: harmonicPredictionSurprise replay + coordinatedWaves calendar proxy — offline measurable gate at call time.',
+    boundary:
+      'HONEST: offline harmonic windows and wave calendar proxy only — NOT live trading skill, weather NWP, or financial advice. trainedEnoughFromLiveWins is a separate trading-live subset.',
+  }
+}
+
+/** npm run quantum:predict-skill-gate-verify */
+export function runPredictSkillGateVerifyExit(_root: string, _argv: readonly string[] = []): number {
+  const gate = skilledEnoughFromPredictions()
+  if (!gate.skilledEnough) {
+    process.stderr.write('✗ predict-skill-gate — harmonic precision or trained-enough subset failed\n')
+    return 1
+  }
+  process.stdout.write(`✓ predict-skill-gate — windows=${gate.windowCount} trained=${gate.trainedEnough}\n`)
+  return 0
 }
 

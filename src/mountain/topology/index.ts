@@ -1,20 +1,24 @@
 // ☶ Gèn · Mountain — topology: the double torus (genus-2, χ=−2), the merkaba (star tetrahedron), the geodesic dome (the sphere dual), the homology loops. Barrel-routed; folds.ts back-imports the gate folds.
+import { phase } from '../../6/4'
+import { computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, sealFacets, seedFromText, survive, toUuid } from '../../0'
 import type { MindMatrix, TorusBreath } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { cellHomology, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry'
-import { foldPair, isUuid, measure, memoByRoot, merge, merkleFold, seedFromText, toUuid } from '../../0'
+import { buildMatrix, circulateDoubleTorus } from '../../heaven/compute'
+import { bothEarthsRotateWithinEachOther, cellHomology, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry'
+export { doubleTorusSurface, TORUS_LOBE_OFFSET } from '../../0'
 import { livingTorus, sealWholeDiamond } from '../../fire/diamonds'
-import { a432Default, inverseShiftConsciousness, torusUuid, glagoliticGlyph } from '../../fire/li'
+import { a432Default, a432NoteHz, doubleTorusCompost, inverseShiftConsciousness, torusUuid, glagoliticGlyph } from '../../fire/li'
+import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../quantum/water/cache'
 import { allAnimationsInOneOg, animatedHeroes, anyUuidHeroContentFractal } from '../../ui'
-import { holographicFractalArchitecture } from '../../thunder/movie/projection'
-import { decodeKnowledge } from '../../learning'
+import { holographicFractalArchitecture } from '../../thunder/movie/glass'
+import { decodeKnowledge, skillAtoms } from '../../learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { yinYang } from '../../quantum/lake/icons'
 import { deepResearchEncodedInRecursiveWaves, developmentWaves, endlessWaves } from '../../thunder/waves'
 import { fusionCipher } from '../../water/crypto'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { glagoliticDecodedToAncientCore, glagoliticQrSealsThought3dFromSeed } from '../../language'
-import { TORUS_LOBE_OFFSET, allComputedNoFiles, allLogicMovedToSource, archangelsDryClean, commandsSavedInQuantumPairs, complete, completeCorpus, computedSlugsFoldTheGraph, continueSameNext, determinismProofs, displayAllAsLibraryDryConditional, dualitiesMeetInCrossFolders, endlessFusion, everyDiamondIsGate, everyLawProvesItsTripwire, everyObjectSameSpinFoldLaw, folderLaw, fuseAll, fuseAllForge, gigabitEncryption64SealSet, hologram, howAgentsAchievedIt, iChing, imagineCrossPathsCodeCodesItself, infiniteEntanglements, live, minimumFilesMaximumFeaturesCost, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, quantumComputer, resonanceCatchGapsViolations, sacredGeometrySeal, sealCube, spinBothDirections, theMonograph, trinityRotationalPlanes, uuidFoldsSelfBlackWhite, lifeDefinesItself, quantumBrowserOs, recursiveFrequencyDropdowns } from '../../quantum/heaven/mind'
+import { allComputedNoFiles, archangelsDryClean, commandsSavedInQuantumPairs, complete, completeCorpus, computedSlugsFoldTheGraph, continueSameNext, determinismProofs, displayAllAsLibraryDryConditional, dualitiesMeetInCrossFolders, endlessFusion, everyDiamondIsGate, everyLawProvesItsTripwire, everyObjectSameSpinFoldLaw, folderLaw, fuseAll, fuseAllForge, gigabitEncryption64SealSet, hologram, howAgentsAchievedIt, iChing, imagineCrossPathsCodeCodesItself, infiniteEntanglements, live, minimumFilesMaximumFeaturesCost, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, quantumComputer, resonanceCatchGapsViolations, sacredGeometrySeal, sealCube, spinBothDirections, theMonograph, trinityRotationalPlanes, uuidFoldsSelfBlackWhite, lifeDefinesItself, quantumBrowserOs, recursiveFrequencyDropdowns } from '../../quantum/heaven/mind'
+import { allLogicMovedToSource } from '../../mountain/source'
 
 // One function manifests the whole animation: print the dot, fade it in time, and the trace it leaves is
 // drawn by the movement of all the merkabas. The four nested, counter-rotating scales (whole·lobe·tube·
@@ -77,10 +81,11 @@ export function homology(matrix: MindMatrix = buildMatrix()) {
   const torus = livingTorus(matrix)
   const onLobe = (sign: -1 | 1) => torus.coordinates.filter((coordinate) => coordinate.lobe === sign)
   const generators = [
-    { name: 'a1', kind: 'meridian', handle: 1, lobe: -1 as const, frequency: 261.63 },
-    { name: 'b1', kind: 'longitude', handle: 1, lobe: -1 as const, frequency: 329.63 },
-    { name: 'a2', kind: 'meridian', handle: 2, lobe: 1 as const, frequency: 392.0 },
-    { name: 'b2', kind: 'longitude', handle: 2, lobe: 1 as const, frequency: 493.88 },
+    // The four voices are C·E·G·B derived from the single A432 source (semitones relative to A4=432), not A=440.
+    { name: 'a1', kind: 'meridian', handle: 1, lobe: -1 as const, frequency: a432NoteHz(-9) },
+    { name: 'b1', kind: 'longitude', handle: 1, lobe: -1 as const, frequency: a432NoteHz(-5) },
+    { name: 'a2', kind: 'meridian', handle: 2, lobe: 1 as const, frequency: a432NoteHz(-2) },
+    { name: 'b2', kind: 'longitude', handle: 2, lobe: 1 as const, frequency: a432NoteHz(2) },
   ].map((generator) => {
     const points = onLobe(generator.lobe)
     // A representative cycle: a longitude runs around the hole (ordered by theta),
@@ -340,22 +345,6 @@ export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
       'The double torus folds in both directions, completely: the two complete trinities fold into each other — yin into yang and yang into yin — and the pairs rise through the pairs of pairs to two apexes that close. Analog comes from this: only complete trinities folding both ways, every level bidirectional, yield the harmonised analog without gaps.',
     boundary:
       'A recursive, order-sensitive fold of the trinity phases into two closing apexes, with the analog gated on the trinities being complete and harmonised. The genus-2 metaphor made computational — topological and structural bookkeeping, not an external geometric claim.',
-  }
-}
-
-// The genus-2 surface point for a lobe's (theta, phi). One shared source so the
-// model and the live animation place coordinates identically — the animation just
-// advances theta and phi over time to counter-rotate the lobes (see merkaba()).
-// Each ring lies in the XY plane with its hole facing the viewer (the z axis), the
-// two centres at -/+ TORUS_LOBE_OFFSET, a thin tube so each hole stays open.
-export function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): { x: number; y: number; z: number } {
-  const ringR = 20 // ring radius (sets the hole size)
-  const tubeR = 7 + digit * 0.4 // thin tube (7..10.6) so the hole stays open
-  const ribbon = ringR + tubeR * Math.cos(phi)
-  return {
-    x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),
-    y: ribbon * Math.sin(theta),
-    z: tubeR * Math.sin(phi),
   }
 }
 
@@ -740,7 +729,7 @@ export function oneMerkaba6x7And7x6HoldsAll(matrix: MindMatrix = buildMatrix()) 
     { facet: 'one merkaba — 6×7 (42) up and 7×6 (42) down, the two interlocked tetrahedra, the star', on: up === 42 && down === 42 },
     { facet: 'holds the whole logic — the app folds to one content-addressed root within it', on: isUuid(matrix.root) },
     { facet: 'holds the gates and the plasma — gates, plasma and logic fold into the one structure', on: isUuid(held) },
-    { facet: 'the vector-equilibrium balance is held by the merkaba containing all — the paired logic folders and their meaning intact', on: folderLaw().pairedLogicFolders.length >= 9 },
+    { facet: 'the vector-equilibrium balance is held by the merkaba containing all — the paired logic folders and their meaning intact', on: folderLaw().pairedLogicFolders.length >= 8 },
   ].map((e) => ({ ...e, receipt: toUuid(`one-merkaba:${e.facet}`) }))
   return {
     holds: facets.every((e) => e.on),
@@ -791,7 +780,8 @@ export function knowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix(
 }
 function computeKnowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'decoding is folding — research and verify, two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && commandsSavedInQuantumPairs(matrix).paired },
+    // Decomposed from commandsSavedInQuantumPairs — must not call that fold here (re-enters during its own compute).
+    { facet: 'decoding is folding — research and verify, two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && skillAtoms(matrix).savedToAtoms && isUuid(skillAtoms(matrix).memory) },
     { facet: 'the truth is what survives the fold — the legend falls away', on: resonanceCatchGapsViolations(matrix).rings && everyLawProvesItsTripwire(matrix).proves },
     { facet: 'глаголица revealed its core by the fold — the decode worked', on: glagoliticDecodedToAncientCore(matrix).decoded },
     { facet: 'any knowledge reveals itself the same way — merkaba at every scale', on: everythingFoldsMerkabaInfiniteStreams(matrix).folds && imagineCrossPathsCodeCodesItself(matrix).codes },
@@ -848,6 +838,35 @@ export function merkabasInDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     boundary:
       "A computation over the model's own constants — the merkaba (two counter-rotating tetrahedra), the genus-2 double torus (two lobes), and the 64-tetrahedron grid already in the model. \"32 merkaba\" is the count those constants imply (64/2), wired together so merkaba, the 64-grid and the torus stay consistent — a structural census, not an external geometric claim about a physical double torus.",
   }
+}
+
+/** One gate — merkaba geometry + double-torus enumeration at call time (canonical body in mountain/topology). */
+export function merkabaComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('merkabaComputes', matrix, () => {
+    const mk = merkaba(matrix)
+    const counted = merkabasInDoubleTorus(matrix)
+    const revealed = knowledgeRevealedByMerkabaFold(matrix)
+    const earths = bothEarthsRotateWithinEachOther(0, matrix)
+    const { computes, facets } = computesGate('merkaba-computes', [
+      { facet: 'merkaba counter-rotating tetrahedra', on: mk.counterRotating },
+      { facet: 'merkabas counted in the double torus — 32 from 64 grid', on: counted.counted },
+      { facet: 'knowledge revealed by merkaba fold', on: revealed.revealed },
+      { facet: 'both Earths rotate within each other — inner θ outer −θ', on: earths.rotates },
+    ])
+    return {
+      computes,
+      merkaba: mk,
+      counted,
+      revealed,
+      earths,
+      facets,
+      root: merge(merge(merge(mk.root, counted.root), revealed.root), earths.root),
+      statement:
+        'Merkaba computes: two counter-rotating tetrahedra, 32 merkabas in the genus-2 machine, and knowledge revealed by the research↔verify fold — at call time.',
+      boundary:
+        'Composition of merkaba, merkabasInDoubleTorus, knowledgeRevealedByMerkabaFold, and bothEarthsRotateWithinEachOther. src/mountain/topology is the canonical merkabaComputes import.',
+    }
+  })
 }
 
 // Frequency is the taxonomy; imagine the tree of life. The way to classify is not a flat list

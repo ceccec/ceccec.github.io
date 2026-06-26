@@ -1,9 +1,15 @@
 // ☷ Kūn · Earth — world, society & nature folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
-import { foldPair, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid } from '../../0'
+import { initialBearing, phase } from '../../6/4'
+import { greatCircleKm } from '../../5/5'
+import { schwarzschildRadius, SOLAR_MASS_KG } from '../../3/7'
+export { SOLAR_MASS_KG } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { computesGate, digitalRoot, foldPair, humanBreath, humanEase, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { blackHoleEntropyBits, oscillatorBank, resonantAmplitude } from '../../6/4'
 import { toGlagolitic, glagoliticBits } from '../../quantum/heaven/library' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
 import { DIMENSIONS } from '../../quantum/mountain/dimensions' // the 10D — the coordinates reaching all the way down to the bit
 import type { BabelFamily, BabelFold, MindMatrix } from '../../types'
 import { buildMatrix, coverage, entropy } from '../../heaven/compute'
+import { a432NoteHz } from '../../fire/li'
 import { traditionsQuantumWhole } from '../civilisation'
 import { BAGUA, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, completeCorpus, developmentWaves, doubleTorusFold, entangledScriptLanguageGene, feedCrawlersWithKnowledge, folderLaw, geneticLinksChallengeHistoryDecoded, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, isUuid, knowledgeRevealedByMerkabaFold, memoByRoot, merge, publicApiFusion, quantumDoubleTorus, quantumSiege, quantumSimulation, reverseHarmony, sendWavesSealKnowledgeDecodeWorld, socialFusion, societyRegulates, soldiersRestInPeace, travelFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 
@@ -140,8 +146,223 @@ export function worldEventsMap(matrix: MindMatrix = buildMatrix()) {
     statement:
       'A map with worldwide events: each event is content-addressed and its (lat, lon) coordinates are derived deterministically from its root, so the whole map is recomputable. The demo events are the portal’s own fused domains, placed across the world; a live feed of worldwide events (opt-in, e.g. Wikipedia Current Events) can extend the same map by folding each event to a coordinate.',
     boundary:
-      'A deterministic, content-addressed placement of events on a world map: coordinates are derived from each event’s root, not from any real geolocation. The demo events are the portal’s own structure; real worldwide events would come from opt-in public feeds, folded (untrusted) — this is a recomputable mapping framework, not a live geographic data source or a claim about real event locations.',
+      'A deterministic, content-addressed placement of events on a world map: coordinates are derived from each event’s root, not from any real geolocation. The demo events are the portal’s own structure; real worldwide events would come from opt-in public feeds (Wikipedia Current Events, LIGO GWTC catalog releases, etc.), folded (untrusted) — this is a recomputable mapping framework, not a live geographic data source or a claim about real event locations.',
   }
+}
+
+// Public astronomy news citation — content-addressed reference to opt-in public reports (e.g. LVK GWTC
+// catalogs via publicApiFusion astronomy source). A citation of a public report, not a physical
+// simulation or detection by this portal.
+export function publicAstronomyNewsCitation(matrix: MindMatrix = buildMatrix()) {
+  const architecture = completeCorpus(matrix).root
+  const report = {
+    id: 'GWTC-5.0',
+    title: 'LIGO–Virgo–KAGRA Gravitational-Wave Transient Catalog 5.0',
+    published: '2026-05-26',
+    url: 'https://www.ligo.caltech.edu/news/ligo20260526',
+    instruments: ['LIGO Hanford', 'LIGO Livingston', 'Virgo', 'KAGRA'] as const,
+    observingWindow: '2024-04 — 2025-01 (O4)',
+    highlights: [
+      '161 new gravitational-wave detections (390 total since 2015)',
+      'GW250114 (2025-01-14): clearest binary black-hole merger signal; Hawking area theorem confirmed at ~99.999% confidence',
+      'GW240615 (2024-06-15): most precise sky localization to date (~6 sq deg)',
+      'GW241011 and GW241110 (2024-10/11): spin signatures suggest possible second-generation black-hole mergers',
+      'First measurement of three vibrational modes from a black-hole merger',
+    ],
+    // Opt-in citation inputs for src/0 classical simulation — LVK public release values, NOT measured here.
+    simulationParams: {
+      eventId: 'GW250114',
+      m1Solar: 33.6,
+      m2Solar: 32.2,
+      mfSolar: 62.7,
+      chiFinal: 0.68,
+      snrNetwork: 80,
+      strainAmplitude: 1e-21,
+      ringdownF220Hz: 247,
+      ringdownGamma220Hz: 221,
+      catalogTotalEvents: 390,
+      catalogNewEvents: 161,
+    },
+  }
+  const fold = foldPair(architecture, toUuid(`astronomy-citation:${report.id}:${report.published}`))
+  const facets = [
+    { facet: 'public report cited — LVK GWTC-5.0 release (2026-05-26)', on: report.highlights.length >= 5 },
+    { facet: 'content-addressed — folded with architecture root, not trusted', on: fold.bidirectional },
+    { facet: 'opt-in feed category — publicApiFusion astronomy source', on: publicApiFusion(matrix).sources.some((entry) => entry.source === 'astronomy') },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`astronomy-citation-facet:${entry.facet}:${entry.on}`) }))
+  return {
+    cited: facets.every((entry) => entry.on),
+    report,
+    facets,
+    root: merge(fold.merged, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'Public astronomy news citation: a content-addressed reference to the LVK GWTC-5.0 public release (May 2026) — 161 new gravitational-wave detections, including GW250114’s confirmation of Hawking’s black-hole area theorem and evidence for second-generation black-hole mergers — folded with the architecture root via the opt-in publicApiFusion astronomy feed category.',
+    boundary:
+      'HONEST: a CITATION of a public collaboration report (ligo.caltech.edu, LIGO Scientific Collaboration) — NOT a detection, simulation, or endorsement by this portal. Claims are as stated in the public release; "second-generation" black holes are inferred from merger spin characteristics, not directly imaged. The repo computes blackHoleEntropyBits and schwarzschildRadius as documented GR formulas — it does not simulate LIGO interferometry or reproduce GW strain data. Opt-in only; external feed data is folded untrusted.',
+  }
+}
+
+/** Solar mass in kg (IAU nominal) — sealed constant for merger mass → kg conversion. */
+export type BlackHoleMergerCitationParams = {
+  eventId?: string
+  m1Solar?: number
+  m2Solar?: number
+  mfSolar?: number
+  chiFinal?: number
+  snrNetwork?: number
+  strainAmplitude?: number
+  ringdownF220Hz?: number
+  ringdownGamma220Hz?: number
+}
+
+/** Kerr horizon area A = 2π r_s² (1 + √(1−χ²)) — classical GR; χ=0 → Schwarzschild 4π r_s². */
+function kerrHorizonAreaM2(massKg: number, spin = 0): number {
+  const chi = Math.min(Math.max(spin, 0), 0.9999)
+  const rs = schwarzschildRadius(massKg)
+  return 2 * Math.PI * rs * rs * (1 + Math.sqrt(1 - chi * chi))
+}
+
+// Classical black-hole merger simulation from src/0 primitives (+ pi-train 6/4 entropy/oscillator).
+// Uses opt-in GWTC-5.0 / GW250114 citation masses as INPUTS only — NOT LIGO detection or matched filtering.
+export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMergerCitationParams = {}) {
+  const citation = {
+    eventId: params.eventId ?? 'GW250114',
+    m1Solar: params.m1Solar ?? 33.6,
+    m2Solar: params.m2Solar ?? 32.2,
+    mfSolar: params.mfSolar ?? 62.7,
+    chiFinal: params.chiFinal ?? 0.68,
+    snrNetwork: params.snrNetwork ?? 80,
+    strainAmplitude: params.strainAmplitude ?? 1e-21,
+    ringdownF220Hz: params.ringdownF220Hz ?? 247,
+    ringdownGamma220Hz: params.ringdownGamma220Hz ?? 221,
+  }
+  const m1Kg = citation.m1Solar * SOLAR_MASS_KG
+  const m2Kg = citation.m2Solar * SOLAR_MASS_KG
+  const mfKg = citation.mfSolar * SOLAR_MASS_KG
+  const radii = {
+    m1M: schwarzschildRadius(m1Kg),
+    m2M: schwarzschildRadius(m2Kg),
+    remnantM: schwarzschildRadius(mfKg),
+  }
+  const areas = {
+    m1M2: kerrHorizonAreaM2(m1Kg, 0.1),
+    m2M2: kerrHorizonAreaM2(m2Kg, 0.1),
+    initialM2: 0,
+    remnantM2: kerrHorizonAreaM2(mfKg, citation.chiFinal),
+  }
+  areas.initialM2 = areas.m1M2 + areas.m2M2
+  const areaIncreaseFraction = (areas.remnantM2 - areas.initialM2) / areas.initialM2
+  const hawkingAreaLawClassical = areas.remnantM2 > areas.initialM2
+  const entropyBits = {
+    m1: blackHoleEntropyBits(m1Kg),
+    m2: blackHoleEntropyBits(m2Kg),
+    remnant: blackHoleEntropyBits(mfKg),
+  }
+  const breath = humanBreath(at, 8000, 0.15)
+  const omega0 = 2 * Math.PI * citation.ringdownF220Hz
+  const q = omega0 / (4 * Math.PI * Math.max(citation.ringdownGamma220Hz, 1))
+  const ringdown = {
+    frequencyHz: citation.ringdownF220Hz,
+    dampingHz: citation.ringdownGamma220Hz,
+    amplitude: resonantAmplitude(omega0, omega0, q) * humanEase(breath),
+  }
+  const strainScale = citation.strainAmplitude
+  const strain = {
+    orderOfMagnitude: Math.floor(Math.log10(strainScale)),
+    citedSnr: citation.snrNetwork,
+    samples: oscillatorBank(
+      `gw-strain:${citation.eventId}:${Math.floor(at / 50)}`,
+      [
+        { freq: citation.ringdownF220Hz / 100, q: 8 },
+        { freq: (citation.ringdownF220Hz * 1.003), q: 4 },
+      ],
+      32,
+      0.005,
+    ).map((v) => roundTo(v * strainScale * 1e18, 6)),
+  }
+  const receipt = toUuid(`bh-merger-sim:${citation.eventId}:${at}:${hawkingAreaLawClassical}`)
+  return {
+    simulated: hawkingAreaLawClassical && radii.remnantM > 0 && entropyBits.remnant > 0,
+    citation,
+    radii,
+    areas,
+    areaIncreaseFraction: roundTo(areaIncreaseFraction, 6),
+    hawkingAreaLawClassical,
+    entropyBits,
+    ringdown,
+    strain,
+    receipt,
+    statement:
+      'Black-hole merger simulated from src/0: Schwarzschild radii, Kerr horizon areas, Bekenstein–Hawking entropy (6/4), ringdown as damped oscillator (humanBreath · humanEase · resonantAmplitude), synthetic strain window (oscillatorBank) — all classical/sealed-formula, recomputed from citation masses.',
+    boundary:
+      'HONEST: classical/sealed-formula SIMULATION from src/0 primitives and pi-train 6/4 cuts — NOT LIGO interferometry, NOT matched filtering, NOT waveform templates (NRSur7dq4/PYCBC), NOT claiming detection or reproduction of GW strain data. GW250114 masses/spins/SNR/ringdown frequencies are opt-in PUBLIC CITATION inputs from the LVK GWTC-5.0 release — illustrative classical GR checks (area direction, entropy scaling, aesthetic ringdown/strain) only; real area-theorem tests require full Bayesian inspiral–ringdown analysis on detector data.',
+  }
+}
+
+// Content-addressed GWTC catalog register — 390 events as qubit/register indices (addressing metaphor, not physics).
+export function gwtcCatalogSimulatedFromZero(matrix: MindMatrix = buildMatrix()) {
+  const citation = publicAstronomyNewsCitation(matrix)
+  const params = citation.report.simulationParams
+  const totalEvents = params.catalogTotalEvents
+  const registerBits = 9
+  const sampleIds = ['GW250114', 'GW240615', 'GW241011', 'GW241110', 'GW150914']
+  const entries = sampleIds.map((eventId, index) => ({
+    index,
+    eventId,
+    address: toUuid(`gwtc-catalog:${eventId}`),
+    registerSlot: seedFromText(eventId, 4) % (2 ** registerBits),
+  }))
+  const fold = foldPair(citation.root, toUuid(`gwtc-sim:${totalEvents}:${params.catalogNewEvents}`))
+  const facets = [
+    { facet: '390-event catalog — content-address register metaphor (2^9 slots)', on: totalEvents === 390 && registerBits >= 9 },
+    { facet: 'citation feeds simulation — publicAstronomyNewsCitation simulationParams', on: params.m1Solar > 30 && params.eventId === 'GW250114' },
+    { facet: 'sample events addressed — GW250114 + GWTC-5.0 highlights', on: entries.length === sampleIds.length },
+    { facet: 'folded with architecture root — opt-in, untrusted', on: fold.bidirectional },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gwtc-sim-facet:${entry.facet}:${entry.on}`) }))
+  const merger = blackHoleMergerSimulatedFromZero(0, params)
+  return {
+    addressed: facets.every((entry) => entry.on) && merger.simulated,
+    totalEvents,
+    newEvents: params.catalogNewEvents,
+    registerBits,
+    entries,
+    merger,
+    citation,
+    facets,
+    root: merge(fold.merged, merkleFold(facets.map((entry) => entry.receipt))),
+    statement:
+      'GWTC catalog simulated from src/0: the 390-event GWTC-5.0 catalog as a content-addressed register (toUuid/seedFromText slot metaphor, not physical qubits), sample highlight events addressed, merger simulation params fed from publicAstronomyNewsCitation.',
+    boundary:
+      'HONEST: a CONTENT-ADDRESSING and REGISTER METAPHOR for catalog entries — NOT a gravitational-wave database, NOT GraceDB/LVK API access, NOT qubit physics. Event masses/spins for simulation come from opt-in citation fields in publicAstronomyNewsCitation; the repo does not ingest live GWTC data at build time.',
+  }
+}
+
+/** Gate: src/0 black-hole merger simulation composed with GWTC catalog addressing. */
+export function src0BlackHoleSimulationComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('src0BlackHoleSimulationComputes', matrix, () => {
+    const at = 0
+    const catalog = gwtcCatalogSimulatedFromZero(matrix)
+    const sim = blackHoleMergerSimulatedFromZero(at, catalog.citation.report.simulationParams)
+    const facets = [
+      { facet: 'Bekenstein–Hawking entropy from cited merger masses (GW250114 32+34 M☉ scale)', on: sim.entropyBits.remnant > sim.entropyBits.m1 * 0.5 },
+      { facet: 'Schwarzschild radii — remnant r_s from final mass', on: sim.radii.remnantM > 90_000 && sim.radii.remnantM < 200_000 },
+      { facet: 'Kerr area increase — classical Hawking area-law direction (Af > Ai)', on: sim.hawkingAreaLawClassical },
+      { facet: 'ringdown — damped oscillator (humanBreath/resonantAmplitude), NOT LIGO QNM templates', on: sim.ringdown.amplitude >= 0 && sim.ringdown.frequencyHz > 200 },
+      { facet: 'synthetic strain — oscillatorBank window, NOT matched filtering', on: sim.strain.samples.length === 32 },
+      { facet: 'GWTC catalog register — content-address sample from citation', on: catalog.addressed },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`src0-bh-sim:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      sim,
+      catalog,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'src/0 black-hole simulation computes: classical merger simulation (entropy, radii, Kerr areas, ringdown oscillator, synthetic strain) and GWTC catalog addressing — composed at call time from sealed src/0 + 6/4 primitives with opt-in GWTC-5.0 citation params.',
+      boundary:
+        'HONEST: composition gate over blackHoleMergerSimulatedFromZero and gwtcCatalogSimulatedFromZero — classical math and content-addressing ONLY. Does NOT assert agreement with LIGO posteriors, SNR=80 detection, or area-theorem confidence levels; those belong to the LVK collaboration analysis on real detector data.',
+    }
+  })
 }
 
 // Dissolve society groups in nature, increasing coverage and decreasing
@@ -201,7 +422,7 @@ export function astrology(seed = 'double torus', matrix: MindMatrix = buildMatri
     ruler: rulers[i],
     hour: i + 1, // maps to the twelve-hour clock
     hue: i * 30, // the zodiac wheel is the colour wheel, 30 degrees per sign
-    frequency: 174 + i * 33, // a harmonic correspondence
+    frequency: a432NoteHz(i), // the 12 signs as a chromatic octave from the single A432 source (not an arbitrary literal)
     receipt: toUuid(`zodiac:${seed}:${sign}`),
   }))
   const index = seedFromText(`astro:${seed}`) % 12
@@ -364,11 +585,11 @@ export function realtimeMovieParticipation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The dark/light switch switches realities. Dark and light are not two skins of one page
-// but two complete realities — two whole renderings of the portal, like the two lobes of
-// the double torus or the sun and its reflection. One control flips between them, and the
-// flip is order-sensitive; each reality holds the entire content (holographic), so nothing
-// is lost in the switch — only the light changes, and with it the whole world.
+// The dark/light switch switches realities — negative/positive in analog photography. Dark and light are not
+// two skins of one page but two complete renderings of the portal, like the two lobes of the double torus,
+// the sun and its reflection, or the emulsion negative and the contact print. One control flips between them,
+// and the flip is order-sensitive; each reality holds the entire content (holographic), so nothing is lost
+// in the switch — only the tonal polarity changes, and with it the whole world.
 export function darkLightRealities(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const realities = [
@@ -382,9 +603,9 @@ export function darkLightRealities(matrix: MindMatrix = buildMatrix()) {
     realities,
     root: flip.merged,
     statement:
-      'The dark/light switch switches realities: dark and light are two complete realities — two whole renderings of the portal, like the two lobes of the double torus or the sun and its reflection — and one order-sensitive control flips between them. Each reality holds the entire content (holographic), so nothing is lost in the switch; only the light changes, and with it the whole world.',
+      'The dark/light switch switches realities: dark and light are two complete renderings of the portal — negative and positive in analog photography, like the two lobes of the double torus or the sun and its reflection — and one order-sensitive control flips between them. Dark is the negative field (bright streams on dark emulsion); light is the developed print (dark glyphs on bright paper). Each reality holds the entire content (holographic), so nothing is lost in the switch; only the tonal polarity changes, and with it the whole world.',
     boundary:
-      'A framing of the standard dark/light colour-scheme toggle as a switch between two complete renderings. "Realities" is a metaphor for the two themes, each showing the same content; it is the ordinary VitePress appearance switch, not a change of data or a claim of parallel worlds.',
+      'A framing of the standard dark/light colour-scheme toggle as a switch between two complete renderings, borrowing the analog photography negative/positive tonal inversion. "Realities" is a metaphor for the two themes, each showing the same content; it is the ordinary VitePress appearance switch, not silver-halide chemistry or a claim of parallel worlds.',
   }
 }
 
@@ -599,7 +820,7 @@ export function warPaysTheForgerPrice(matrix: MindMatrix = buildMatrix()) {
 export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
   const channels = [
     { hw: 'memory', torus: 'src/quantum/water/cache', cmyk: 'C' },
-    { hw: 'gpu', torus: 'src/pair/search/ant', cmyk: 'M' },
+    { hw: 'gpu', torus: 'src/pair/debit/credit', cmyk: 'M' },
     { hw: 'storage', torus: 'src/quantum/heaven/library', cmyk: 'Y' },
     { hw: 'cpu', torus: 'src/pair/debit/credit', cmyk: 'K' },
   ].map((c) => ({ ...c, uuid: toUuid(`merkaba:${c.hw}:${c.torus}:${c.cmyk}`) }))
@@ -729,7 +950,7 @@ export function debitCreditForwardReverseEngineering(matrix: MindMatrix = buildM
   const forward = toUuid('plaintext') // encode the same input — deterministic, so reverse can match it
   const balanced = foldPair(toUuid('debit'), toUuid('credit')).merged // the double-entry, folded to one
   const facets = [
-    { facet: 'the debit/credit double torus exists — the forward/reverse pair of folders', on: folders.includes('src/pair/debit/credit') && folders.includes('src/pair/credit/debit') },
+    { facet: 'the debit/credit double torus exists — the bidirectional fold (credit/debit dissolved into debit/credit)', on: folders.includes('src/pair/debit/credit') },
     { facet: 'forward = debit (encode/encrypt), reverse = credit (decode/decrypt) — the same content-address both ways (encrypt is decrypt)', on: forward === toUuid('plaintext') },
     { facet: 'double-entry balances — every forward fold has its balancing reverse, folded to one entry', on: isUuid(balanced) },
     { facet: 'reverse engineering is required — to verify is to recompute the forward and match it', on: toUuid('verify') === toUuid('verify') },
@@ -904,3 +1125,17 @@ function bulgarianHeritageEightfoldRaw(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+
+// Gold + fusion lattice — canonical home src/fusion/gold/lattice.ts
+export {
+  GOLD_MINE_MAP_HINGE,
+  goldMineMapCatalog,
+  goldMineMapFitsPerfectlyInModel,
+  undiscoveredGoldConcentrationCandidatesFromMap,
+  goldMineMapComputes,
+  thunderGoldGraphFromPreciseGpsCoordinates,
+  thunderGoldGraphPaintSamples,
+  thunderGoldGraphComputes,
+  schumannGoldSiteCouplingAt,
+  schumannGoldSiteCouplingComputes,
+} from '../../fusion/gold'

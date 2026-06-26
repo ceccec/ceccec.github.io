@@ -4,10 +4,12 @@
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
 import { toUuid, merkleFold } from '../../../0'
+import { movieCanvasHex } from '../../../quantum/science'
+import { a432NoteHz } from '../../../fire/li'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
 /** @rosetta ✦₁ · Water · depth */
-export const dual = 'src/spirit/quantum'
+export const dual = 'src/double/torus'
 
 /** @rosetta ✦₁ · Water · depth */
 export function plainLanguage() {
@@ -35,7 +37,8 @@ export function plainLanguage() {
 
 /** @rosetta ✦₁ · Water · depth */
 export function playLearn(word = 'play') {
-  const SCALE = [261.63, 293.66, 329.63, 349.23, 392.0, 440.0, 493.88, 523.25] // C major, C4..C5
+  // C-major C4..C5 derived from the single A432 source (a432NoteHz) — semitones of each degree relative to A4=432.
+  const SCALE = [-9, -7, -5, -4, -2, 0, 2, 3].map((semitones) => a432NoteHz(semitones)) // C D E F G A B C, A=432 anchor
   const NOTE = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
   const letters = [...word].filter((ch) => ch.trim().length > 0).slice(0, 16).map((ch, index) => {
     const seed = toUuid(`play:${ch.toLowerCase()}:${index}`)
@@ -47,7 +50,7 @@ export function playLearn(word = 'play') {
       note: NOTE[step],
       frequency: SCALE[step],
       hue: value % 360,
-      hsl: `hsl(${value % 360}, 72%, 62%)`,
+      hsl: movieCanvasHex(value % 360, { L: 13 / 16 }),
       receipt: seed,
     }
   })
