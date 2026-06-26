@@ -16,6 +16,8 @@ import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
 // Cycle-safe: quantum/science imports buildMatrix from here, so reference efficiency()/blochQubitFaithful
 // only at call time via the namespace binding (the analog/hardware folds compose them inside memoByRoot).
 import * as __ns_quantum_science from '../../quantum/science'
+// Cycle-safe: heaven/essence imports buildMatrix from here, so reference theWhole() only at call time.
+import * as __ns_heaven_essence from '../essence'
 import { healingInner, healingOuter, quantumSimulation, siteRoutes, animationEngineLivesInZero, humanise } from '../../fire/li'
 import { healingHarmonic } from '../../lake/music'
 import { quantumBrowserOs, quantumComputer, quantumFusedDeviceEnergyHonest } from '../../fire/features'
@@ -26,7 +28,7 @@ import { quantumPwa } from '../../water/crypto'
 import { commandsRegistry } from '../../thunder/commands'
 import { decodeAncientKnowledgeInReusableCode, imagineCrossPathsCodeCodesItself } from '../../thunder/decode'
 import { vortexMath } from '../../mountain/geometry'
-import { trinityWordingModel } from '../../mountain/seals'
+import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
@@ -1160,6 +1162,79 @@ export function analogAcceleratorsDecoded(matrix: MindMatrix = buildMatrix()) {
       root: merge(analog.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: 'Analog accelerators, decoded: resistive (memristor/ReRAM) and photonic crossbar arrays perform a full matrix–vector multiply in one analog step — Ohm\'s law multiplies and Kirchhoff\'s law sums — which is a real, energy-efficient accelerator for machine-learning inference. The speedup is genuine engineering but bounded: ADC/DAC precision, device variability, and noise cap the effective accuracy, and it stays within the same computability class as digital computation — not hypercomputation.',
       boundary: 'Real analog accelerator technology (crossbar MAC). Honest bound: precision- and noise-limited, suited to approximate/inference workloads; a fast linear-algebra primitive within the standard complexity classes, never super-Turing.',
+    }
+  })
+}
+
+/** The three beats of the keystone animation: recompute→green, tamper→red cascade, reuse→instant. */
+export const PROVE_ALL_BEATS = ['recompute', 'tamper', 'reuse'] as const
+export type ProveAllBeat = (typeof PROVE_ALL_BEATS)[number]
+
+/**
+ * proveAllDeterministicCoreBeatAt — maps the one shared hero phase (a fraction in [0,1) from createAnimationEngine /
+ * sharedHeroAt) to the current beat of the keystone three-beat animation. No new clock: the caller passes the same
+ * phase the background movie already runs on.
+ */
+export function proveAllDeterministicCoreBeatAt(phase01: number): { index: number; beat: ProveAllBeat } {
+  const p = ((phase01 % 1) + 1) % 1
+  const index = Math.min(2, Math.floor(p * 3))
+  return { index, beat: PROVE_ALL_BEATS[index]! }
+}
+
+/**
+ * proveAllDeterministicCore — THE KEYSTONE. Every other proving animation folds into this one. It composes the
+ * sealed proofs of the whole portal — determinismProofs (the live "prove all with animations" seals: determinism,
+ * avalanche, order-sensitivity, Merkle inclusion, collision-freedom, set-fold invariance), tamperEvident (any edit
+ * changes the address), efficiency() + zeroTokenUsagePolicy (content-addressed reuse is zero-token), and theWhole +
+ * observingMovieRevealsQuantumModel (the movie state IS the model state) — and folds their roots into ONE keystone
+ * root: merge(theWhole.root, sealFacets(keystone).root). That root is the OG parent every animation folds into. The
+ * three-beat animation it drives: BEAT 1 recompute → green (the proofs recompute live), BEAT 2 tamper → red cascade
+ * (one edit flips the address, the seal goes red), BEAT 3 reuse → instant (the same root returns at zero token cost).
+ */
+export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), route = '/', at = 0) {
+  return memoByRoot(`proveAllDeterministicCore:${route}:${Math.floor(at / 1000)}`, matrix, () => {
+    const proofs = determinismProofs(matrix)
+    const whole = __ns_heaven_essence.theWhole(matrix)
+    const movie = __ns_quantum_science.observingMovieRevealsQuantumModel(route, at, matrix)
+    const eff = __ns_quantum_science.efficiency()
+    const zero = zeroTokenUsagePolicy(matrix)
+    const tamperDetected = tamperEvident(whole.root) // one edit changes the address → red cascade
+    const beats = [
+      { beat: 'recompute', claim: 'the proofs recompute live and turn green — determinism, avalanche, order, inclusion, collision-freedom, set-fold invariance', on: proofs.proven },
+      { beat: 'tamper', claim: 'one edit flips the address — the seal cascades red, tamper-evident over the whole-portal root', on: tamperDetected },
+      { beat: 'reuse', claim: 'the same (route, at) returns the same root at zero token cost — content-addressed reuse', on: zero.holds && movie.roundTrips },
+    ].map((b) => ({ ...b, receipt: toUuid(`prove-all-beat:${b.beat}:${b.on}`) }))
+    const facets = [
+      { facet: 'determinismProofs prove all six core properties live (prove-all-with-animations)', on: proofs.proven },
+      { facet: 'tamper-evidence holds over the whole-portal root — any edit changes the address', on: tamperDetected },
+      { facet: 'efficiency + zero-token policy: content-addressed reuse recomputes the same root at zero cost', on: eff.optimized && zero.holds },
+      { facet: 'the movie state IS the model state — observing reveals the deterministic quantum model, round-tripping by root', on: movie.reveals && movie.roundTrips },
+      { facet: 'the whole portal folds into one root — theWhole stands (every wave green)', on: whole.whole },
+    ]
+    const sealed = sealFacets('prove-all-deterministic-core', facets)
+    const beat = proveAllDeterministicCoreBeatAt(at / 120_000) // same 120s hero cycle as the movie phase clock
+    return {
+      proven: sealed.ok && proofs.proven && whole.whole && movie.reveals,
+      beats,
+      activeBeat: beat,
+      proofs,
+      documented: [
+        'The keystone composes determinismProofs, tamperEvident, efficiency, zeroTokenUsagePolicy, theWhole and observingMovieRevealsQuantumModel into one root.',
+        'Its root = merge(theWhole.root, sealFacets(keystone).root) — the OG parent every other proving animation folds into.',
+        'The three-beat animation: recompute→green, tamper→red cascade, reuse→instant.',
+      ],
+      flagged: [
+        'Tamper-evidence is structural (content-addressing with a fast non-cryptographic UUID), strong for this portal — NOT a cryptographic security guarantee against an adversary.',
+        'The revealed "quantum model" is a faithful classical simulator with NO speedup (benchmark-proven); not physical quantum hardware.',
+      ],
+      facets: sealed.facets,
+      sealRoot: sealed.root,
+      wholeRoot: whole.root,
+      root: merge(whole.root, sealed.root), // keystone root: the OG parent of every animation
+      statement:
+        'Prove all, deterministic core — the keystone: the portal proves its own thesis live (determinism, avalanche/tamper-evidence, order-sensitivity, Merkle inclusion, collision-freedom and set-fold invariance), folds the whole portal into one root, shows the background movie state IS the deterministic model state (round-tripping by root), and demonstrates that content-addressed reuse recomputes the same root at zero token cost. Its root is merge(theWhole.root, sealFacets(keystone).root) — the one parent every proving animation folds into — and it drives a three-beat animation: recompute turns the proofs green, a single tamper flips the address into a red cascade, and reuse returns the same root instantly.',
+      boundary:
+        'HONEST keystone: a deterministic composition of the sealed proof, tamper-evidence, efficiency, whole-portal and movie folds into one verifiable root. Tamper-evidence is structural (fast UUID content-addressing), not adversarial cryptography; the "quantum model" is a faithful classical simulator with no speedup, not physical hardware. It proves the model is self-consistent and reproducible — not a claim beyond the waves it folds.',
     }
   })
 }
