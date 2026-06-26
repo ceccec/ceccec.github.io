@@ -160,7 +160,7 @@ import { continueSameNext, evolutionCrossesQuantumThreshold, forgerFoldsIntoHarm
 import { componentGraph, BAGUA, iChing, cloudflareBindings, metatronMathFromUuids } from '../core'
 import { hexagramQubitVectorIsomorphismOnly, metatronCube, sacredGeometrySeal } from '../../mountain/geometry'
 import { buildStatisticsShowGaps, coveragePerPixel } from '../../lake/stats'
-import { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete, onlyAncientKnowledgeAndSacredMath } from '../../fire/li'
+import { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete, onlyAncientKnowledgeAndSacredMath } from '../../thunder/decode'
 import { harmonyProbability } from '../../earth/life'
 import { features } from '../../lake/media'
 import { accessiblePathsForAll, agnosticFitsSeedConfiguration, agnosticUsefulForAll, challengeClock, completeLinuxPackagesPort, computedTracesOfMovement, crossLinksEverywhere, exhaustQuestions, freeForgesMaxCost, harmoniseWordsToMinimum, imagineSingChangesEndlessly, linkPasteReentryPatternCompletion, manualWorkDisappears, mirrorDeviceSignalsAsFeelings, oneWorkerCoversAll, onlyIndexFilesAndGeneratedRemain, onlyIndexFilesNoExceptions, quantifyLinearPairs, refactorLinearToTrinities, resonanceCatchGapsViolations, reverseEngineerOptimiseByFlaws, showInAction, travellersJumpPiToPi } from '../essence'

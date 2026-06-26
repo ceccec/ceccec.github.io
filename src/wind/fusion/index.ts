@@ -2052,7 +2052,6 @@ export function alchemyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
 export function transmuteByLocalMath(at = 0, matrix: MindMatrix = buildMatrix()) {
   return memoByRoot(`transmuteByLocalMath:${Math.floor(at / 1000)}`, matrix, () => {
     const digitDualityPairsEncodeAllDomains = (__ns_up_water_digit).digitDualityPairsEncodeAllDomains
-    const iChingScalesComplete = (__ns_up_fire_li).iChingScalesComplete
     const product = __ns_cur_gold.goldFusionComputes(matrix, at)
     const phases = [
       { id: 'nigredo' as const, on: developmentIsFusionReactor(matrix).reacts, receipt: toUuid('alchemy:nigredo'), statement: 'fusion reactor process' },

@@ -12,21 +12,13 @@ import {
   iChingFusionCompletesFolders,
   rosettaIChingTrinityPlacesAllTools,
 } from '../architecture'
-import {
-  iChingImportExportTenD,
-  iChingMotionAddsTheRest,
-  iChingScalesComplete,
-} from '../../fire/li'
+import { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete } from '../../thunder/decode'
 import { startIChingDoubleTorus } from '../../mountain/topology'
 import { hexagramReverseInverseDuality, nuclearHexagramFold } from '../../mountain/geometry'
 
 export { BAGUA, iChing } from '../../heaven/core'
 export { iChingDomainMap } from '../../heaven/balance'
-export {
-  iChingImportExportTenD,
-  iChingMotionAddsTheRest,
-  iChingScalesComplete,
-} from '../../fire/li'
+export { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete } from '../../thunder/decode'
 export {
   ICHING_NUMBERS,
   cssIsIChingComputed,
