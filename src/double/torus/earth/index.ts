@@ -304,7 +304,24 @@ export function compassAroundEarthGatewaysImpossibleProvenByMath(
   matrix: MindMatrix = buildMatrix(),
 ) {
   return memoByRoot(`compassAroundEarthGatewaysImpossible:${path}:${at.lat}:${at.lon}`, matrix, () => {
-    const formed = formingDoubleTorusEarthsProvenByMath(path, at, matrix)
+    // Gateway geometry is derived from the same low-level sources forming uses (computableEarthGateways +
+    // twoTrinitiesCardinalPyramidPoles), NOT from the formingDoubleTorusEarths aggregate. forming pulls the
+    // realtime-weather → knowledge SCC (forming → invertedEarth → weather → knowledgeRevealedByMerkabaFold →
+    // … → compass), so reading forming here closes a dependency cycle whose re-entrancy stub made this fold's
+    // gateway facets recompute false depending on census call order. Reading the pure-geometry sources keeps
+    // compass acyclic, so impossible recomputes its true value at every call regardless of order.
+    const pyramids = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
+    const deviceGateways = computableEarthGateways(path, 'device', matrix)
+    const invertedGateways = computableEarthGateways(path, 'inverted', matrix)
+    const gateways = [...deviceGateways, ...invertedGateways]
+    const formed = {
+      deviceGateways,
+      invertedGateways,
+      gateways,
+      deviceEarth: pyramids.device,
+      invertedEarth: pyramids.code,
+      root: merkleFold(gateways.map((gateway) => gateway.receipt)),
+    }
     const pyramid = cardinalPyramidTipsProvenByMath(matrix)
     const caps = vortexPaintTiers(matrix)
     const cardinals = pyramid.cardinals
