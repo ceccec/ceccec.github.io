@@ -1,37 +1,37 @@
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
-import * as __ns_up_water_digit from '../water/digit'
+import * as __ns_up_water_digit from '../../water/digit'
 import * as __ns_up_language from '../language'
-import * as __ns_up_earth_architecture from '../earth/architecture'
-import * as __ns_up_earth_world from '../earth/world'
-import * as __ns_up_thunder_decode from '../thunder/decode'
-import { phase } from '../6/4'
-import type { AgentEducation, AgentLesson, ConceptSiteSection, McpTool, McpToolManifest, MindMatrix, StaticPage, SchoolCurriculum, SchoolLesson } from '../types'
-import { buildMatrix, coherenceAnomaly, verifyRoot, coverage, reciprocity, matrixMemo } from '../heaven/compute'
-import { isUuid, merge, merkleFold, toUuid, fold } from '../0'
-import { movie } from '../thunder/movie/movielib'
-import { AREA_ICONS, chakrasAura, efficiency, multidimensional } from '../quantum/lake/icons'
-import { atoms, conceptCommands } from '../heaven/atoms'
-import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalLanguage } from '../fire/li'
-import { rhythm } from '../lake/music'
-import { heartProtonAtomDecoded } from '../mountain/geometry'
-import { monographSliceFromRoute } from '../routes/automount'
+import * as __ns_up_earth_architecture from '../../earth/architecture'
+import * as __ns_up_earth_world from '../../earth/world'
+import * as __ns_up_thunder_decode from '../../thunder/decode'
+import { phase } from '../../6/4'
+import type { AgentEducation, AgentLesson, ConceptSiteSection, McpTool, McpToolManifest, MindMatrix, StaticPage, SchoolCurriculum, SchoolLesson } from '../../types'
+import { buildMatrix, coherenceAnomaly, verifyRoot, coverage, reciprocity, matrixMemo } from '../../heaven/compute'
+import { isUuid, merge, merkleFold, toUuid, fold } from '../../0'
+import { movie } from '../../thunder/movie/movielib'
+import { AREA_ICONS, chakrasAura, efficiency, multidimensional } from '../../quantum/lake/icons'
+import { atoms, conceptCommands } from '../../heaven/atoms'
+import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalLanguage } from '../../fire/li'
+import { rhythm } from '../../lake/music'
+import { heartProtonAtomDecoded } from '../../mountain/geometry'
+import { monographSliceFromRoute } from '../../routes/automount'
 import { localePath, pickLocale, displayText, quantumSitemap, staticPages, type LocaleName } from '../site'
-import { componentGraph } from '../heaven/core'
-import { realtimeWiring } from '../fire/plasma/ball'
-import { toGlagolitic } from '../quantum/heaven/library'
-import { mcpCodebase } from '../thunder/commands'
-import { completeCorpus } from '../routes/corpus'
-import { diamondLattice } from '../fire/diamonds'
-import { ROSETTA_RAYS, rosettaDecodesUrlPath, rosettaRayOf } from '../water/digit'
-import { quantumCoordinateNav } from '../fire/features'
-import { openGraph } from '../quantum/lake/icons'
+import { componentGraph } from '../../heaven/core'
+import { realtimeWiring } from '../../fire/plasma/ball'
+import { toGlagolitic } from '../../quantum/heaven/library'
+import { mcpCodebase } from '../../thunder/commands'
+import { completeCorpus } from '../../routes/corpus'
+import { diamondLattice } from '../../fire/diamonds'
+import { ROSETTA_RAYS, rosettaDecodesUrlPath, rosettaRayOf } from '../../water/digit'
+import { quantumCoordinateNav } from '../../fire/features'
+import { openGraph } from '../../quantum/lake/icons'
 import { navigationAroundHero } from '../ui'
-import { BAGUA, backgroundMovie, componentPages, computedSlugsFoldTheGraph, digitFolders, foldPair, foldedCensus, goldenRatio, harmonicBands, holographic, homology, iChingDomainMap, livingTorus, memoByRoot, merkaba, merkleProof, noMirroringOneSourceAndMath, pureDiamonds, quantumProofs, recurrence, roundTo, seedFromText, selfBuild, shadcnIsTheGraph, templateDisplaysEveryOgObject, theWhole, vitepressConfigComputesAll } from '../quantum/heaven/mind'
-import { analogSpeech } from '../quantum/lake/icons'
-import { displayAllWithFewEntropySaved } from '../lake/ledger'
-import { everythingFoldsMerkabaInfiniteStreams, merkabasInDoubleTorus } from '../mountain/topology'
+import { BAGUA, backgroundMovie, componentPages, computedSlugsFoldTheGraph, digitFolders, foldPair, foldedCensus, goldenRatio, harmonicBands, holographic, homology, iChingDomainMap, livingTorus, memoByRoot, merkaba, merkleProof, noMirroringOneSourceAndMath, pureDiamonds, quantumProofs, recurrence, roundTo, seedFromText, selfBuild, shadcnIsTheGraph, templateDisplaysEveryOgObject, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind'
+import { analogSpeech } from '../../quantum/lake/icons'
+import { displayAllWithFewEntropySaved } from '../../lake/ledger'
+import { everythingFoldsMerkabaInfiniteStreams, merkabasInDoubleTorus } from '../../mountain/topology'
 import { anyUuidHeroContentFractal, displayHeroCardThumb, heroGraphStatisticsEnrichFusion, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle } from '../ui'
-import { ogControlsSpeech } from '../mountain/og'
+import { ogControlsSpeech } from '../../mountain/og'
 
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
@@ -2521,8 +2521,8 @@ export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMat
 }
 
 // Rosetta gate — folded from dissolved src/rosetta (census-neutral swap for src/gold/fusion).
-import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../pair/enforcement/gates/computational'
-import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoot as rosettaMemoByRoot, merge as rosettaMerge, merkleFold as rosettaMerkleFold, toUuid as rosettaToUuid } from '../0'
+import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enforcement/gates/computational'
+import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoot as rosettaMemoByRoot, merge as rosettaMerge, merkleFold as rosettaMerkleFold, toUuid as rosettaToUuid } from '../../0'
 
 export {
   ROSETTA_RAYS,
@@ -2534,10 +2534,10 @@ export {
   rosettaRayOf,
   rosettaReuse,
   sevenStarRosettaNaturalMotion,
-} from '../water/digit'
+} from '../../water/digit'
 export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../language'
-export { rosettaIChingTrinityPlacesAllTools } from '../earth/architecture'
-export { publicAstronomyNewsCitation } from '../earth/world'
+export { rosettaIChingTrinityPlacesAllTools } from '../../earth/architecture'
+export { publicAstronomyNewsCitation } from '../../earth/world'
 
 /** One gate — Glagolitic global key, 7-ray taxonomy, decode-all chain, and path response at call time. */
 export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/') {

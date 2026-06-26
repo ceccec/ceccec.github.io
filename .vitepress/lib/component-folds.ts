@@ -79,7 +79,7 @@ type FoldLike = {
 }
 
 async function fromStaticPage(slug: string, locale: LocaleName): Promise<DecodedFoldView> {
-  const { staticPages } = await import('../../src/site/index')
+  const { staticPages } = await import('../../src/wind/site/index')
   const page = staticPages().find((entry) => entry.slug === slug)
   return {
     title: page ? pickLocale(locale, page.title.en, page.title.bg) : slug,
@@ -286,7 +286,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   McpTools: async () => {
-    const { mcpToolManifest } = await import('../../src/learning/index')
+    const { mcpToolManifest } = await import('../../src/wind/learning/index')
     const fold = mcpToolManifest()
     return {
       title: 'MCP tools',
@@ -352,7 +352,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     return { ...fromFacets(donutLabyrinthOfGlyphsHeroEnteringExiting(), 'Glyph labyrinth'), movieApp: 'labyrinth' }
   },
   GlagoliticOcr: async () => {
-    const { glagoliticOcrReverseClosesRoundTrip } = await import('../../src/language/index')
+    const { glagoliticOcrReverseClosesRoundTrip } = await import('../../src/wind/language/index')
     return fromFacets(glagoliticOcrReverseClosesRoundTrip(), 'Glagolitic OCR')
   },
   TaxonomyIcons: async () => {
@@ -385,7 +385,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     return proofRendererDecodedView()
   },
   KnowledgeAtlas: async () => {
-    const { decodeKnowledge } = await import('../../src/learning/index')
+    const { decodeKnowledge } = await import('../../src/wind/learning/index')
     const fold = decodeKnowledge()
     return {
       title: 'Knowledge atlas',
@@ -400,7 +400,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   QuantumRadar: async () => {
-    const { deepResearchRadar } = await import('../../src/learning/index')
+    const { deepResearchRadar } = await import('../../src/wind/learning/index')
     const fold = deepResearchRadar()
     return {
       title: 'Quantum radar',

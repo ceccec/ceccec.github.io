@@ -8,7 +8,7 @@ import { crossFoldTrinity, torusUuid } from '../../fire/li'
 import { areaPairs, dualTorusTrinities } from '../../mountain/geometry'
 import { piMusic } from '../../lake/music'
 import { executeConceptCommand } from '../../thunder/commands'
-import { siteManifestFromCommands } from '../../learning'
+import { siteManifestFromCommands } from '../../wind/learning'
 import { quantumFusedDeviceEnergyHonest } from '../../fire/features'
 import { euPatentAudit, euPatentReviewRequests, extractCheckableClaims, foldExposesInconsistency, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, manipulationCrossAudit, modifiedFoodPatentAudit, productOfNaturePatentAudit, patentSubjectMatterAudit, quantumAnalysis, quantumAnalysisAtAllScales, sacredMathPatentAudit, verificationRequests } from '../core'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — concept commands, skill atoms, SINGLE_WORD_METHODS, the atom array

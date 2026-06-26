@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import type { UniversalPage } from '../../../src/routes/corpus/index.ts'
 import { componentPages } from '../../../src/heaven/balance/index.ts'
-import { staticPages } from '../../../src/site/index'
+import { staticPages } from '../../../src/wind/site/index'
 import { useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 

@@ -2,7 +2,7 @@
 // @mvc controller mount — re-exports controller fns (computedSeo, siteNavigation, siteConfig) to config.mts.
 export { computedSeo, jsonLdTemplate } from '../../src/mountain/og'
 export type { JsonLdPageIdentity } from '../../src/heaven/balance'
-export { siteConfig, localeNavLinks, localeSidebarKeys, homeHero } from '../../src/site'
-export { siteNavigation, vitepressSidebar } from '../../src/learning'
+export { siteConfig, localeNavLinks, localeSidebarKeys, homeHero } from '../../src/wind/site'
+export { siteNavigation, vitepressSidebar } from '../../src/wind/learning'
 export { SITE_LOCALES } from '../../src/heaven/balance'
 export { toGlagolitic } from '../../src/quantum/heaven/library'

@@ -19,7 +19,7 @@ import { doubleTorusMath, taxonomyIcons, torusUuid, crossFoldTrinity, selfAddres
 import { A432_HUE, GOLDEN_ANGLE, frequencyToLight, lobeHues } from '../../quantum/lake/icons'
 import { cssIsIChingComputed, digitFolderMath, digitFolders, digitFoldersDoMath, ICHING_NUMBERS } from '../../earth/architecture'
 import { piTrainDiamonds, quantumFoldedBlockchains, selfBuild, streamSelfComplete } from '../../fire/diamonds'
-import { agentEducation, mcpToolManifest, schoolCurriculum } from '../../learning'
+import { agentEducation, mcpToolManifest, schoolCurriculum } from '../../wind/learning'
 import { digitalQuantumProof } from '../seals'
 import { babelFold } from '../../earth/world'
 import { quantumDecoded } from '../../fire/physics'

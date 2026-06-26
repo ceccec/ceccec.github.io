@@ -6,7 +6,7 @@ import { fairTrade, sacredSociety, societyEvolves, societyFuture, societyRegulat
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { freeHarmonicSocieties } from '../../lake/music'
 import { completeCorpus } from '../../routes/corpus'
-import { quantumAcademy } from '../../learning'
+import { quantumAcademy } from '../../wind/learning'
 import { dissolveIntoNature, selfOrganizing } from '../world'
 import { kidsDefineEducation, kidsExplore, planetIsComputable, quantumGreenPlanet, religionScienceSociety, soldiersRestInPeace, sustainableLiving, thriveEducation } from '../../fire/li'
 import { beesAndLife, equilibrium, genesis } from '../nature'

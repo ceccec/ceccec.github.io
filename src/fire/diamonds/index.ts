@@ -4,11 +4,11 @@ import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, Di
 import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../../heaven/compute'
 import { foldPair, isUuid, maxTamperingCostLog2, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../heaven/atoms'
-import { schoolCurriculum } from '../../learning'
+import { schoolCurriculum } from '../../wind/learning'
 import { dualTorusTrinities, foldImpossibilities } from '../../mountain/geometry'
 import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContribution } from '../li'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
-import { agentEducation } from '../../learning'
+import { agentEducation } from '../../wind/learning'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind'
 
 export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {

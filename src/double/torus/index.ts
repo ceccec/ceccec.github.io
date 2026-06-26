@@ -30,7 +30,7 @@ import {
   socialFusion,
   travelFusion,
   vitepressFusion,
-} from '../../fusion'
+} from '../../wind/fusion'
 import { quantumFusionIgnitesFromDashSequence } from '../../fire/li'
 import {
   autoMovies8k,
@@ -255,7 +255,7 @@ export {
   fusionReactorParts,
   type FusionReactorPart,
   type FusionReactorPartBand,
-} from '../../fusion'
+} from '../../wind/fusion'
 
 export {
   developmentIsFusionReactor,

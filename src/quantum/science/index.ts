@@ -20,7 +20,7 @@ import { conceptCommands } from '../../heaven/atoms'
 // computational basis, and Rosetta is the state/result codec. Referenced inside quantumComputerComputes
 // (call time, cycle-safe) so they are genuine static edges of the closure, not dead imports.
 import { iChing } from '../../earth/iching'
-import { rosettaComputes } from '../../learning'
+import { rosettaComputes } from '../../wind/learning'
 export function quantumScienceResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumScienceResearch', matrix, () => {
     const qdyn = __ns_up_dynamics.quantumDynamicsResearch(matrix)

@@ -2,8 +2,8 @@
 // Display gate — co-located src/earth/world/index.ts
 import { computed } from 'vue'
 import { src0BlackHoleSimulationComputes, goldMineMapComputes } from './index'
-import { decodeAndComputeAllFromEarthToGalaxiesAndBeyond } from '../../fusion'
-import { goldFusionComputes } from '../../fusion/gold'
+import { decodeAndComputeAllFromEarthToGalaxiesAndBeyond } from '../../wind/fusion'
+import { goldFusionComputes } from '../../wind/fusion/gold'
 
 const gate = computed(() => src0BlackHoleSimulationComputes())
 const sim = computed(() => gate.value.sim)

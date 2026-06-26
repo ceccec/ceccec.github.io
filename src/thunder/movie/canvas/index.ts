@@ -17,8 +17,8 @@ import {
   plasmaClientWorkBoundedByPureMath,
 } from '../../../fire/plasma/ball'
 import { backgroundMovieColorVars } from '../movievars'
-import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui'
-import { computedWebManifest, siteConfig } from '../../../site'
+import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../wind/ui'
+import { computedWebManifest, siteConfig } from '../../../wind/site'
 import { livingTorus } from '../../../fire/diamonds'
 import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../routes/corpus'
 import { doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'

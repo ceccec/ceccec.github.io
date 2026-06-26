@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join, normalize } from 'node:path'
 import type { Connect } from 'vite'
 import { glagoliticHomeFromEnglish } from '../src/fire/li'
-import { bulgarianHomeFromEnglish } from '../src/site/index'
+import { bulgarianHomeFromEnglish } from '../src/wind/site/index'
 
 // Glagolitic root + Bulgarian home have no authoritative body on disk — computed from en at build/dev time.
 export function computedPagesPlugin(projectRoot: string) {

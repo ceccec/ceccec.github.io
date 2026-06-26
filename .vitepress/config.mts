@@ -239,7 +239,7 @@ export default defineConfig({
             if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router')) {
               return 'vue-vendor'
             }
-            if (id.includes('src/ui/')) return 'shadcn-ui'
+            if (id.includes('src/wind/ui/')) return 'shadcn-ui'
             return undefined
           },
         },

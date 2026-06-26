@@ -42,8 +42,8 @@ export {
   schumannGoldSiteCouplingAt,
   schumannGoldSiteCouplingComputes,
 } from './world'
-export { goldMineMapResearch, thunderGoldGraphResearch } from '../fusion/gold'
-export { goldFusionComputes } from '../fusion/gold'
+export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/gold'
+export { goldFusionComputes } from '../wind/fusion/gold'
 
 /** Re-export documented gravity decode — cosmology index, not live planet telemetry. */
 export { gravityDecoded } from '../heaven/site'

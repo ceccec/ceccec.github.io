@@ -1,10 +1,10 @@
 // Gold — WGS84 catalog, thunder graph, Schumann coupling, fusion generator + product pipeline (MODEL · NOT USGS/bullion authority). Folded from lattice/generator/product.
-import { initialBearing } from '../../6/4'
-import { greatCircleKm } from '../../5/5'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
-import { schumannPhaseAt } from '../../lake/music'
+import { initialBearing } from '../../../6/4'
+import { greatCircleKm } from '../../../5/5'
+import type { MindMatrix } from '../../../types'
+import { buildMatrix } from '../../../heaven/compute'
+import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../../0'
+import { schumannPhaseAt } from '../../../lake/music'
 
 export const GOLD_MINE_MAP_HINGE = { lat: 42.6977, lon: 23.3219 } as const
 export type GoldMineEvidenceTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS'

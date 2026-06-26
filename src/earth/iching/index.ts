@@ -1,7 +1,7 @@
 // ☷ Kūn · Earth — I Ching: canonical hexagram/trigram/bāguà home (re-exports sealed folds, zero wet duplication).
 import * as __ns_up_heaven_balance from '../../heaven/balance'
-import * as __ns_up_fusion from '../../fusion'
-import * as __ns_up_ui from '../../ui'
+import * as __ns_up_fusion from '../../wind/fusion'
+import * as __ns_up_ui from '../../wind/ui'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../../0'
@@ -35,9 +35,9 @@ export {
   iChingFusionCompletesFolders,
   rosettaIChingTrinityPlacesAllTools,
 } from '../architecture'
-export { iChingFusionCompletesAll } from '../../fusion'
+export { iChingFusionCompletesAll } from '../../wind/fusion'
 export { startIChingDoubleTorus } from '../../mountain/topology'
-export { pagesRenderInBaguaSets } from '../../ui'
+export { pagesRenderInBaguaSets } from '../../wind/ui'
 
 /** One gate — 64 hexagrams, eight trigrams, seven scales, and Rosetta·I Ching trinity at call time. */
 export function ichingComputes(matrix: MindMatrix = buildMatrix()) {

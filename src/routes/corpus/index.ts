@@ -3,7 +3,7 @@
 import type { MindMatrix, StaticPage } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
-import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
+import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../wind/site'
 import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../water/digit'
 import { cardMovieColorVars, cardMovieSeed } from '../../thunder/movie/movievars'
 import { plasmaClientWorkBoundedByPureMath } from '../../fire/plasma/ball'
@@ -15,7 +15,7 @@ import { diamondLattice, pureDiamonds } from '../../fire/diamonds'
 import { quantumDoubleTorus } from '../../mountain/topology'
 import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../quantum/heaven/mind'
 import type { CorpusKind } from '../../quantum/heaven/mind'
-import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, siteNavigation, type ComponentCrosslink } from '../../learning'
+import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, siteNavigation, type ComponentCrosslink } from '../../wind/learning'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -868,8 +868,8 @@ export {
   rosettaComputesNavigationAndContent,
   siteNavigation,
   vitepressSidebar,
-} from '../../learning'
-export { pageForgeMaxTamper, type PageForgeSeal } from '../../site'
+} from '../../wind/learning'
+export { pageForgeMaxTamper, type PageForgeSeal } from '../../wind/site'
 export {
   contentIsMonographOfMonographs,
   eachPageSpeaksContinuesNext,
@@ -879,13 +879,13 @@ export {
   monographs,
   onlyPageRouteForAll,
   theMonograph,
-} from '../../learning'
+} from '../../wind/learning'
 export {
   homePageNoDifferent,
   homepage,
   pageStatusStatistics,
   proveAllOnHomePage,
-} from '../../site'
+} from '../../wind/site'
 export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../water/digit'
 
 /** All is monograph — every page is a scientific paper with one template. */

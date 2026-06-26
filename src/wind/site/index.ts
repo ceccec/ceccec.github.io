@@ -3,27 +3,27 @@
 // and sub-module imports (buildMatrix from matrix.ts, types from types.ts).
 // @mvc controller — siteConfig, localeNavLinks, localeSidebarKeys: config → localised nav props.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
-import { phase } from '../6/4'
-import { SOURCE_REPO, AUTHOR_HANDLE } from '../3/7'
-export { SOURCE_REPO, AUTHOR_HANDLE } from '../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { congruence } from '../vortex/math'
-import type { MindMatrix, StaticPage } from '../types'
-import { buildMatrix } from '../heaven/compute'
+import { phase } from '../../6/4'
+import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
+export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { congruence } from '../../vortex/math'
+import type { MindMatrix, StaticPage } from '../../types'
+import { buildMatrix } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { toUuid, merkleFold, isUuid, memoByRoot, rat } from '../0'
-import { ratStr } from '../9/1'
-import { livingTorus } from '../fire/diamonds'
-import { oneOpenGraphAll } from '../fire/li'
+import { toUuid, merkleFold, isUuid, memoByRoot, rat } from '../../0'
+import { ratStr } from '../../9/1'
+import { livingTorus } from '../../fire/diamonds'
+import { oneOpenGraphAll } from '../../fire/li'
 import { animatedHeroes, oneHolographicTemplate } from '../ui'
-import { endlessBackgroundMovie } from '../thunder/movie/canvas'
-import { computedMovieThemeColors } from '../fire/plasma/ball'
-import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../quantum/heaven/mind'
-import { peaceTechMentalityDecoded } from '../earth/world'
-import { completeCorpus } from '../routes/corpus'
-import { toGlagolitic } from '../quantum/heaven/library'
-import { proofReport } from '../heaven/compute'
-import { freeForgesMaxCost } from '../heaven/essence'
-import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../water/crypto'
+import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
+import { computedMovieThemeColors } from '../../fire/plasma/ball'
+import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
+import { peaceTechMentalityDecoded } from '../../earth/world'
+import { completeCorpus } from '../../routes/corpus'
+import { toGlagolitic } from '../../quantum/heaven/library'
+import { proofReport } from '../../heaven/compute'
+import { freeForgesMaxCost } from '../../heaven/essence'
+import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
@@ -336,7 +336,7 @@ export function vitepressDevServerBind() {
   return { host: '127.0.0.1' as const, port: 5173, strictPort: false }
 }
 
-export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus'
+export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../../routes/corpus'
 
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'

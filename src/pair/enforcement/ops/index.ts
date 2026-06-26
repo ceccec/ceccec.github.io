@@ -243,7 +243,7 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
     process.stderr.write('✗ commit blocked — the rosetta is NOT complete in all quantum dimensions\n')
     return 1
   }
-  const learning = (await importQuantumBundle('src/learning/index.ts', root)) as {
+  const learning = (await importQuantumBundle('src/wind/learning/index.ts', root)) as {
     certify: () => { editingAllowed: boolean; levels: { certified: boolean; level: string }[] }
   }
   if (!learning.certify().editingAllowed) return 1
@@ -479,9 +479,9 @@ export function educationalGapsFromIncompleteApis(root = process.cwd()): readonl
     },
     {
       gapId: 'rosetta-computes-barrel',
-      api: 'src/learning/index.ts — rosettaComputes mount (src/rosetta dissolved → learning)',
+      api: 'src/wind/learning/index.ts — rosettaComputes mount (☴ Xùn · Wind; src/rosetta dissolved → learning)',
       impact: 'Seven-ray Glagolitic decode chain missing from dimension cascade',
-      closed: existsSync(join(root, 'src/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === 42,
+      closed: existsSync(join(root, 'src/wind/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === 42,
     },
     {
       gapId: 'fold-place-generate-commands',

@@ -8,7 +8,7 @@ import * as __ns_up_up_stack_overflow from '../../../stack/overflow'
 import * as __ns_up_up_life from '../../../earth/life'
 import * as __ns_up_up_thunder_movie_movielib from '../../../thunder/movie/movielib'
 import * as __ns_up_up_earth_world from '../../../earth/world'
-import * as __ns_up_up_learning from '../../../learning'
+import * as __ns_up_up_learning from '../../../wind/learning'
 import * as __ns_up_up_lake_music from '../../../lake/music'
 import * as __ns_up_up_thunder_movie_canvas from '../../../thunder/movie/canvas'
 import * as __ns_up_up_fire_li from '../../li'
@@ -33,9 +33,9 @@ import { invertedEarthSameTimespaceProvenByMath, formingDoubleTorusEarthsProvenB
 import { doubleTorusMathAtAllScalesMovieSeeds, twoTrinitiesCardinalPyramidPolesProvenByMath } from '../../../mountain/geometry'
 import { vortexPaintTiers } from '../../../vortex/math'
 import { realtimeSources } from '../../../vortex/math'
-import { staticPages } from '../../../site'
+import { staticPages } from '../../../wind/site'
 import { componentGraph } from '../../../heaven/core'
-import { fusionReactorPartsDryPlasmaStreams } from '../../../fusion'
+import { fusionReactorPartsDryPlasmaStreams } from '../../../wind/fusion'
 
 
 const kebab = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()

@@ -6,7 +6,7 @@ import {  isUuid, merge, merkleFold, toUuid } from '../../0'
 import { discoverSrcIndexes, vitepressAutomountPaths } from '../../pair/enforcement/gates/computational'
 import { toGlagolitic } from '../../quantum/heaven/library'
 import { rosettaDecodesUrlPath, ROSETTA_RAYS, rosettaRayOf } from '../../water/digit'
-import { staticPages } from '../../site'
+import { staticPages } from '../../wind/site'
 import { componentPages } from '../../quantum/heaven/mind'
 
 export { vitepressAutomountPaths } from '../../pair/enforcement/gates/computational'

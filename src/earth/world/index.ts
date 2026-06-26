@@ -1138,4 +1138,4 @@ export {
   thunderGoldGraphComputes,
   schumannGoldSiteCouplingAt,
   schumannGoldSiteCouplingComputes,
-} from '../../fusion/gold'
+} from '../../wind/fusion/gold'

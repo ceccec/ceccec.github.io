@@ -20,7 +20,7 @@ import { ancientCalendars } from '../../../fire/li'
 import { yinYang } from '../../../quantum/lake/icons'
 import { realtimeWiring, allMovieSeedBundles, sixSeedBundlesFormSevenAsWhole, memoByMovieRoute } from '../../../fire/plasma/ball'
 import { sendWavesSealKnowledgeDecodeWorld } from '../../waves'
-import { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../../../language'
+import { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../../../wind/language'
 import { ROSETTA_RAYS, rosettaRayOf } from '../../../water/digit'
 import { backgroundMovieColorVars, darkLightPolarityProvenByMath } from '../movievars'
 

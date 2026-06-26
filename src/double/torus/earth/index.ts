@@ -46,7 +46,7 @@ import {
   type BothEarthsMerkabaRotation,
 } from '../../../mountain/geometry'
 import { vortexPaintTiers } from '../../../vortex/math'
-import { staticPages } from '../../../site'
+import { staticPages } from '../../../wind/site'
 import { balanced, cryptoReview, transact } from '../../../pair/debit/credit'
 
 export {
