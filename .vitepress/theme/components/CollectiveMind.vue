@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import { selfDevelopment } from '../../../src/fire/li/index.ts'
+import { collectiveContentAddressedMeshComputes } from '../../../src/wind/fusion/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
 
@@ -16,6 +17,8 @@ const open = ref(false)
 
 const seedParts = computed(() => ['collective-mind', String(visits.value.length)] as const)
 const development = computed(() => selfDevelopment(visits.value))
+// The content-addressed mesh — peers fold to one collective root, recalled like an associative memory.
+const mesh = computed(() => collectiveContentAddressedMeshComputes())
 
 const labels = computed(() => ({
   summary: pick('Collective mind', 'Колективен ум'),
@@ -24,6 +27,7 @@ const labels = computed(() => ({
   level: pick('Development level', 'Ниво на развитие'),
   chainHead: pick('Chain head', 'Глава на верига'),
   developmentRoot: pick('Development root', 'Корен на развитие'),
+  mesh: pick('Mesh peers', 'Мрежови възли'),
 }))
 
 function loadVisits(): string[] {
@@ -101,6 +105,10 @@ watch(() => route.path, (path) => {
       <div class="collective-mind__meta-row">
         <dt>{{ labels.developmentRoot }}</dt>
         <dd><code>{{ truncateHash(development.developmentRoot) }}</code></dd>
+      </div>
+      <div class="collective-mind__meta-row" data-logic="src/wind/fusion/index.ts" data-topic="content-addressed-mesh">
+        <dt>{{ labels.mesh }}</dt>
+        <dd>{{ mesh.peers }} · {{ mesh.computes ? '✓' : '—' }} · <code>{{ truncateHash(mesh.collectiveRoot) }}</code></dd>
       </div>
     </dl>
   </UiAsideShell>

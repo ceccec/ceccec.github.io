@@ -34,6 +34,7 @@ import type { MovieSeedBundle, PlasmaWiredStream } from '../../fire/plasma/ball'
 import { buildMatrix, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
 import { completeCorpus } from '../routes/corpus'
 import { computesGate, foldPair, humanBreath, humanEase, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
 import { fusionCipher, animationTamperingCost, virtualOS } from '../../water/crypto'
 import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { provenScientifically } from '../../thunder/verify'
@@ -2094,6 +2095,79 @@ export function alchemyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       root: merkleFold([pipeline.root, research.root, transmute.root]),
       statement: 'alchemy capstone',
       boundary: research.boundary,
+    }
+  })
+}
+
+// ── Group 5 ☴ · the collective content-addressed mesh — distributed compute as associative memory ──
+
+/**
+ * collectiveContentAddressedMeshComputes — the collective mind as a content-addressed mesh. Every node recomputes
+ * the SAME matrix root (holographic), distributedCompute folds peer roots into one collective root with no central
+ * server, the mesh recalls a whole pattern from a partial probe (hopfieldRecall — associative memory settling to a
+ * stored attractor), and recurrence proves the whole is identical on every rebuild. HONEST: a structural model of
+ * distributed content-addressed compute, not a live cluster or a real neural network.
+ */
+export function collectiveContentAddressedMeshComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('collectiveContentAddressedMeshComputes', matrix, () => {
+    const peerRoots = VORTEX_SEQUENCE.map((d) => toUuid(`mesh-peer:${d}:${matrix.root.slice(0, 6)}`))
+    const dist = __ns_up_fire_li.distributedCompute(peerRoots, matrix)
+    const recur = __ns_up_heaven_essence.recurrence(3)
+    // associative recall: store two ±1 patterns, probe a corrupted copy, settle to the nearest stored attractor.
+    const patterns = [[1, 1, -1, 1, -1, -1], [-1, 1, 1, -1, 1, -1]]
+    const W = hopfieldStore(patterns)
+    const probe = [1, -1, -1, 1, -1, -1] // a corrupted copy of pattern 0 (one bit flipped)
+    const recall = hopfieldRecall(W, probe)
+    const recovered = recall.state.every((v, i) => v === patterns[0]![i])
+    const facets = [
+      { facet: 'every node recomputes the SAME matrix root — the whole is recoverable from any part (holographic)', on: dist.mindRoot === matrix.root },
+      { facet: 'distributedCompute folds peer roots into one collective root — the fold is the consensus, no central server', on: isUuid(dist.collectiveRoot) && dist.peers === VORTEX_SEQUENCE.length },
+      { facet: 'the mesh recalls a whole pattern from a partial/corrupted probe (Hopfield associative memory settles to the attractor)', on: recovered && recall.energy <= hopfieldEnergy(W, probe) },
+      { facet: 'recurrence proves the rebuild is identical every time — deterministic collective memory', on: recur.returns },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`collective-mesh:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      peers: dist.peers,
+      collectiveRoot: dist.collectiveRoot,
+      recall: { recovered, energy: recall.energy, iters: recall.iters },
+      facets,
+      root: merge(dist.collectiveRoot, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'The collective content-addressed mesh computes: every node recomputes the same matrix root (the whole recoverable from any part), distributedCompute folds peer roots into one collective root with no central server, the mesh recalls a whole stored pattern from a partial probe like a Hopfield associative memory settling to its attractor, and recurrence proves the rebuild is identical every time.',
+      boundary:
+        'A structural model of distributed content-addressed computation composed from distributedCompute, the Hopfield associative-memory primitive, and the determinism recurrence. It is NOT a live cluster, NOT a real neural network, and the "consensus" is fold agreement under shared determinism, not Byzantine fault tolerance over an open network.',
+    }
+  })
+}
+
+/**
+ * cloudflareMeshTopologyFromSequence — the edge mesh topology derived from the vortex sequence. The VORTEX_SEQUENCE
+ * (1·2·4·8·7·5·3·6·9) fixes a deterministic ring of edge nodes and their neighbour links; distributedCompute folds
+ * their roots into one collective root. HONEST: a topology SPEC reproducible from the matrix, not a deployed network.
+ */
+export function cloudflareMeshTopologyFromSequence(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('cloudflareMeshTopologyFromSequence', matrix, () => {
+    const ring = [...VORTEX_SEQUENCE]
+    const nodes = ring.map((digit, i) => {
+      const next = ring[(i + 1) % ring.length]!
+      return { digit, slot: i, neighbour: next, link: merge(toUuid(`edge-node:${digit}`), toUuid(`edge-node:${next}`)), receipt: toUuid(`cf-mesh:${i}:${digit}->${next}`) }
+    })
+    const collective = collectiveContentAddressedMeshComputes(matrix)
+    const facets = [
+      { facet: 'the edge ring is the vortex sequence — 9 nodes traversing 1·2·4·8·7·5·3·6·9', on: nodes.length === 9 },
+      { facet: 'each node links to its vortex neighbour — a closed ring (last folds back to first)', on: nodes[nodes.length - 1]!.neighbour === ring[0] },
+      { facet: 'the mesh nodes fold into one collective content-addressed root', on: collective.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cf-mesh-topo:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      nodes,
+      ring,
+      facets,
+      root: merge(collective.root, merkleFold(nodes.map((n) => n.receipt))),
+      statement:
+        'The Cloudflare mesh topology from the sequence: the vortex spin (1·2·4·8·7·5·3·6·9) fixes a deterministic ring of nine edge nodes, each linked to its vortex neighbour and closing back on the first, all folding into one collective content-addressed root.',
+      boundary:
+        'A deterministic topology SPECIFICATION derived from VORTEX_SEQUENCE — reproducible from the matrix root. It describes the edge-mesh design; it does NOT deploy to or call Cloudflare, and the ring order is a structural convention, not a routing-performance claim.',
     }
   })
 }
