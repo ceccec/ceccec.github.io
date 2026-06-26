@@ -1,9 +1,9 @@
 // Pi-train station 9/1 — dissolution sequence order 8 (digit/reverse 9/1).
 // Domain cuts only — vault primitives import from src/0 at call sites.
-
 import { IONIZING_EV, PROTON_MASS_MEV, photonEnergyEv } from '../../3/7'
+import type { Rational } from '../../3/7'
 import { applyGate, cnot, GATES, measure, prng, probabilities, qubits } from '../../0'
-import type { QuantumState, Rational } from '../../0'
+import type { QuantumState } from '../../0'
 
 export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im: number; abs: number } {
   let re = 0, im = 0

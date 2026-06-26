@@ -1,9 +1,10 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
+import { rat, ratMul, ratToFloat } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint, rat, ratMul, ratToFloat } from '../../0'
+import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { tamperEvident } from '../../5/5'
 import { helmholtzFreeEnergy } from '../../4/6'

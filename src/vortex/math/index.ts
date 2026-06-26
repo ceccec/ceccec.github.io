@@ -1,31 +1,12 @@
 // ☶ Gèn · Mountain — vortex / math: 1-2-4-8-7-5 lattice, paint tiers (dissolved src/math compose mount).
 import type { MindMatrix } from '../../wind/types'
+import { rat, ratEq, vortexHarmonicRatios } from '../../3/7'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
-import {
-  VORTEX_SEQUENCE,
-  computesGate,
-  foldPair,
-  isUuid,
-  memoByRoot,
-  merge,
-  merkleFold,
-  rat,
-  ratEq,
-  toUuid,
-  vortexHarmonicRatios,
-  vortexNext,
-  vortexPrev,
-  digitalRoot,
-} from '../../0'
+import { VORTEX_SEQUENCE, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, vortexNext, vortexPrev, digitalRoot } from '../../0'
 import { merkaba } from '../../mountain/geometry'
 import { merkabaComputes } from '../../mountain/topology'
-
-export {
-  survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh,
-  residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve,
-  pmixStep, pmixEvolve, congruence, hopfieldStore, hopfieldEnergy, hopfieldRecall,
-  bumpStep, bumpEvolve, type Edge,
-} from '../../0'
+export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0'
+export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2'
 export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../../mountain/geometry'
 export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, merkabaComputes } from '../../mountain/topology'
 export { phase } from '../../6/4'

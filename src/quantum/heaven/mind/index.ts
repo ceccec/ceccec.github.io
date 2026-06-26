@@ -6,6 +6,7 @@
 // and re-exported so the ~97 importers, the barrel and the generators resolve unchanged. "Modules it
 // consumes" — the core is no longer zero-import; it is the pivot that consumes its 4 double toruses.
 import { phase, slip } from '../../../6/4'
+import { caStep, caEvolve } from '../../../4/6'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../../earth/life'
 import { ELECTRONVOLT, IONIZING_EV, PLANCK, SPEED_OF_LIGHT, dopplerShift, frequencyOf, photonEnergyEv } from '../../../3/7'
 import type { Edge } from '../../../vortex/math'
@@ -23,7 +24,7 @@ import { derivePublicKey, tamperEvident } from '../../../5/5'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb, type Ring } from '../../../4/6'
 // ☰ Qián · Heaven · creative · lower·yin · hueShift — proof primitives (hopfield, bell, CA), folded into the 0 index
 // Strict barrel rule: enter src/0 through its index, never an internal file (these now live in the 0 barrel).
-import {  bellPair, caStep, caEvolve } from '../../../0'
+import { bellPair } from '../../../0'
 // ☰ Qián · Heaven · creative · lower·yin · spread — EM-radiation constants and spectrum primitives from src/0
 // EM-radiation primitives (src/0): Maxwell's one field at one speed (c), the two relations (c=λf, E=hf)
 // and the ionizing line — the spectrum physics the electromagneticRadiationDecoded fold below composes.
@@ -42,6 +43,7 @@ import { cryptoReview } from '../../../pair/debit/credit'
 import { cryptoReviewNet } from '../../../pair/debit/credit' // debit/credit pair: ledger review and fused net per security property
 // ☰ Qián · Heaven · creative · upper·yang · shrink — re-exports: all primitives, folds, types, and domain re-exports
 export { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng } // humanEase/humanBreath: the motion math; sinc/sincReconstruct: the sampling-theorem reconstruction; prng: the one seeded LCG the animated components share, all in src/0
+export { caStep, caEvolve } from '../../../4/6'
 export { createAnimationEngine } from '../../../0' // wave 4: the rAF driver lives in the void/origin too; every animated component folds through it
 export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace } from '../../../0' // wave 6: the one math (the fold) and its presentations — torus·merkaba·vortex·merkle·trace, all projections of one address
 export { DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, uuidHero } from '../../../0'
@@ -64,7 +66,6 @@ export {} from '../../../0' // local realism refuted with CERTAINTY (GHZ-Mermin,
 export {} from '../../../0' // the quantum-algorithm speedups: Deutsch-Jozsa (constant/balanced in 1 query) + Simon (the first exponential separation, O(n) quantum vs Ω(2^(n/2)) classical — Shor's precursor); pairs with the existing grover (quadratic search)
 export { proseToTone } from '../../../0' // prose → audio: an a432-tempered pitch from a content-address (deterministic) — the audible half of prose→audio/visual/3D proof (uuidPoint gives the 3D point, textToMovie the visual)
 export { bellPair } from '../../../0' // bellPair — folded into the 0 index by the strict barrel rule
-export { caStep, caEvolve } from '../../../0' // CA + bump — folded into the 0 index by the strict barrel rule
 export {} from '../../../0' // wave 10: probabilistic process primitives
 export { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../../2/8' // pi-train wave 4 tier-A — export-import fusion at station 2/8
 export { BARYON_TO_PHOTON_RATIO, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb, type Ring } from '../../../4/6' // pi-train wave 5 tier-A at station 4/6

@@ -47,3 +47,29 @@ export function helmholtzFreeEnergy(internalEnergyJ: number, tempK: number, entr
 }
 
 export { inductionStep } from '../../0'
+
+// ── Elementary cellular automata (relocated from src/0 — reversible-computation station) ──
+// caStep/caEvolve inlined here (was src/0/ca.ts): src/0 is a DIGIT-kind folder, so the primitive lives IN the
+// digit index, not in a word subfolder (kind-purity). Rule 110 / Rule 30 elementary CA, used in mind's proofs.
+export function caStep(rule: number, state: readonly number[]): number[] {
+  const n = state.length
+  const result = new Array<number>(n)
+  for (let i = 0; i < n; i++) {
+    const left = state[(i - 1 + n) % n]
+    const center = state[i]
+    const right = state[(i + 1) % n]
+    const index = (left << 2) | (center << 1) | right
+    result[i] = (rule >> index) & 1
+  }
+  return result
+}
+
+export function caEvolve(rule: number, initial: readonly number[], steps: number): number[][] {
+  const history = [initial.slice()]
+  let state = initial.slice()
+  for (let t = 0; t < steps; t++) {
+    state = caStep(rule, state)
+    history.push(state.slice())
+  }
+  return history
+}

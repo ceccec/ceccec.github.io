@@ -4,13 +4,14 @@
 // @mvc controller — siteConfig, localeNavLinks, localeSidebarKeys: config → localised nav props.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
 import { phase } from '../../6/4'
+import { rat } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../vortex/math'
 import type { MindMatrix, StaticPage } from '../types'
 import { buildMatrix } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { toUuid, merkleFold, isUuid, memoByRoot, rat } from '../../0'
+import { toUuid, merkleFold, isUuid, memoByRoot } from '../../0'
 import { ratStr } from '../../9/1'
 import { livingTorus } from '../../fire/diamonds'
 import { oneOpenGraphAll } from '../../fire/li'

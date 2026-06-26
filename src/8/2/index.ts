@@ -65,3 +65,31 @@ export function splitCamelSegment(segment: string): readonly string[] {
   return words.filter((w) => /^[a-z]+$/.test(w))
 }
 
+// ── Hopfield associative memory + ring-attractor bump (relocated from src/0 — neural/consciousness station) ──
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function hopfieldStore(patterns: readonly (readonly number[])[]): number[][] {
+  const N = patterns[0]?.length ?? 0; const W = Array.from({ length: N }, () => new Array<number>(N).fill(0))
+  for (const p of patterns) for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) if (i !== j) W[i][j] += (p[i] * p[j]) / N
+  return W
+}
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number {
+  let e = 0; for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= 0.5 * W[i][j] * s[i] * s[j]; return e
+}
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = 12): { state: number[]; energy: number; iters: number } {
+  let s = probe.slice(); let iters = 0
+  for (let t = 0; t < steps; t++) {
+    let changed = false
+    for (let i = 0; i < s.length; i++) { const h = W[i].reduce((acc, w, j) => acc + w * s[j], 0); const ns = h >= 0 ? 1 : -1; if (ns !== s[i]) { s[i] = ns; changed = true } }
+    iters++; if (!changed) break
+  }
+  return { state: s, energy: hopfieldEnergy(W, s), iters }
+}
+const BUMP_TWO_PI = 2 * Math.PI
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function bumpStep(theta: number, v: number): number { return ((theta + v) % BUMP_TWO_PI + BUMP_TWO_PI) % BUMP_TWO_PI }
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function bumpEvolve(theta0: number, velocities: readonly number[]): number[] {
+  const history = [theta0]; let theta = theta0; for (const v of velocities) { theta = bumpStep(theta, v); history.push(theta) }; return history
+}

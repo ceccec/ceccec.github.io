@@ -480,7 +480,8 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
     const ae = addressEntropyBits()
     const { computes, facets, root } = computesGate('src0-shared-computes', [
       { facet: 'digitalRoot — canonical src/0', on: digitalRoot(18) === 9 },
-      { facet: 'humanEase — canonical src/0', on: humanEase(0.5) === 0.5 },
+      // easeInOutSine midpoint is 0.5 mathematically; cos(π/2) carries float dust, so compare within ULP tolerance
+      { facet: 'humanEase — canonical src/0', on: Math.abs(humanEase(0.5) - 0.5) < 1e-9 },
       { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === 122 },
       { facet: 'NODE_MAX_OLD_SPACE_MB sealed in src/0 — resource cooperation policy at origin', on: resourceCooperationPolicy().heapCapMb === NODE_MAX_OLD_SPACE_MB && resourceCooperationPolicy().tiers.length === 4 },
     ])

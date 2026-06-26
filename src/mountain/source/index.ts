@@ -1,12 +1,13 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture'
+import { rat, ratEq, ratMul, ratSub } from '../../3/7'
 import * as __ns_up_up_heaven_core from '../../heaven/core'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
-import { foldPair, isUuid, memoByRoot, merkleFold, rat, ratEq, ratMul, ratSub, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { isobaricCounterdiffusion } from '../../8/2'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'

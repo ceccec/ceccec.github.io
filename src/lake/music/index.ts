@@ -1,5 +1,6 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import * as __ns_up_up_vortex_math from '../../vortex/math'
+import { rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../../3/7'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
@@ -8,7 +9,7 @@ import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enf
 import { realign } from '../../vortex/math'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
-import { computesGate, foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, proseToTone, rat, ratEq, roundTo, sealFacets, seedFromText, toUuid, vortexContinuedFrac, vortexHarmonicRatios } from '../../0'
+import { computesGate, foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, seedFromText, toUuid } from '../../0'
 import { ratStr } from '../../9/1'
 import { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged

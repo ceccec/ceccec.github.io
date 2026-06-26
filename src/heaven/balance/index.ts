@@ -4,6 +4,8 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import * as __ns_up_up_resonance from '../../resonance'
+import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
+import { caStep, caEvolve } from '../../4/6'
 import * as __ns_up_up_iching from '../../earth/iching'
 import * as __ns_up_up_learning from '../../wind/learning'
 import * as __ns_up_up_ui from '../../wind/ui'
@@ -21,7 +23,7 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
 import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
 import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
@@ -30,7 +32,7 @@ import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NE
 import { derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, carnotEfficiency, uuidDuality } from '../../5/5'
 import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
-import {  bellPair, caStep, caEvolve } from '../../0'
+import { bellPair } from '../../0'
 import { isIonizing } from '../../9/1'
 import { PROTON_GYROMAGNETIC, HUBBLE_CONSTANT_LOCAL, blackHoleEntropyBits, cantorDiagonal, quantumZeno } from '../../6/4'
 import { solutions } from '../../lake/ledger'

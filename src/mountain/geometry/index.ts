@@ -1,12 +1,14 @@
 // ☶ Gèn · Mountain — geometry, topology & colour folds (merkaba, double-torus, sacred geometry, the RGB/CMY/CMYK & hex-colour dualities, the 64=4³ cube, heart/proton, the genetic code, imperial fractions), dissolved out of the monolith. Independent; folds.ts back-imports the gate folds. Re-exported through the mind barrel.
 import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
+import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
+import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios } from '../../3/7'
 import { dopplerShift, frequencyOf, photonEnergyEv, schwarzschildRadius, seesawLightMassEv } from '../../3/7'
-import { bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, markovEvolve, markovStep, pmixEvolve, pmixStep, stationary, survive } from '../../0'
+import { chsh, congruence, inductionEvolve, inductionStep, markovEvolve, markovStep, pmixEvolve, pmixStep, stationary, survive } from '../../0'
 import { bb84, bernsteinVazirani, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, simon, teleportQubit } from '../../9/1'
 import { initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { AnalogChannel, DualTorusTrinities, MindMatrix, TrinityAxis, TrinityPair, TrinityPhase, TrinityStep, MetatronCubeReport, MetatronEdge, MetatronNode, SacredGeometrySeal, SealLeaf } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, oneMathManyPresentations } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, rat, ratAdd, ratEq, ratMul, sealFacets, seedFromText, toUuid, vortexHarmonicRatios, vortexNext, vortexPrev, roundTo, digitalRoot } from '../../0'
+import { doubleTorusSurface, VORTEX_DASH_ANGLE_DEG, VORTEX_SEQUENCE, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, seedFromText, toUuid, vortexNext, vortexPrev, roundTo, digitalRoot } from '../../0'
 import { dims, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import { LUNAR_NODAL_PERIOD_YEARS, ratStr } from '../../9/1'
 import { riseAzimuthDeg } from '../../3/7'
@@ -2575,3 +2577,106 @@ export function selfImprovementTrainingAndAccumulation(matrix: MindMatrix = buil
   }
 }
 
+// ── Earth-pole polar disk chart (relocated from src/0 — geometry station owns the projection) ──
+// ── Earth-pole polar disk chart (azimuthal-equidistant + one-point compactification) ──────────────────
+// The sphere's surface maps to the unit disk D² by colatitude alone: ρ = (90 − lat)/180 ∈ [0,1] — the
+// azimuthal-equidistant projection, where the disk radius IS the colatitude fraction. The NORTH pole
+// (lat +90 → ρ=0) collapses to the singular CENTER DOT of the chart; the SOUTH pole (lat −90 → ρ=1) is
+// the bounding circle ∂D² — and under one-point compactification that whole boundary reads as the one
+// south point (D²/∂D² ≅ S²). The honest height tie z = tubeR·cos(π·ρ) lifts the flat chart onto the
+// genus-2 tube radius (doubleTorusSurface): north z=+tubeR (top), equator z=0, south z=−tubeR (bottom).
+// No magic numbers — every angle derives from VORTEX_DASH_ANGLE_DEG (the 60° hex step; six close a turn)
+// and π, and the height scale from the existing doubleTorusSurface primitive. Pure, dependency-free.
+const POLE_FULL_TURN_DEG = VORTEX_DASH_ANGLE_DEG * 6 // 360 — six 60° hex steps close the circle
+const POLE_HALF_TURN_DEG = POLE_FULL_TURN_DEG / 2 // 180 — the pole-to-pole colatitude span
+const POLE_QUARTER_TURN_DEG = POLE_FULL_TURN_DEG / 4 // 90 — the north-pole latitude
+/** The polar height scale — the genus-2 tube radius at the void digit (doubleTorusSurface seam, z=tubeR·sin(π/2)). */
+function poleTubeRadius(digit = 0): number {
+  return doubleTorusSurface(0, Math.PI / 2, digit, 0).z // sin(π/2)=1 ⇒ z = tubeR
+}
+
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function polarDiskChartAt(latDeg: number): {
+  latDeg: number
+  rho: number
+  diskRadius: number
+  z: number
+  isNorthPole: boolean
+  isSouthPole: boolean
+  onDisk: boolean
+  proved: boolean
+  root: string
+} {
+  const rho = (POLE_QUARTER_TURN_DEG - latDeg) / POLE_HALF_TURN_DEG // (90 − lat)/180 ∈ [0,1] over the sphere
+  const clamped = rho < 0 ? 0 : rho > 1 ? 1 : rho
+  const tubeR = poleTubeRadius()
+  const z = roundTo(tubeR * Math.cos(Math.PI * clamped), 5) // the honest tie onto the genus-2 tube
+  const onDisk = rho >= 0 && rho <= 1
+  const proved = onDisk && z <= tubeR + 1e-9 && z >= -tubeR - 1e-9
+  return {
+    latDeg,
+    rho: roundTo(rho, 5),
+    diskRadius: roundTo(clamped, 5), // azimuthal-equidistant: the disk radius equals ρ on the unit disk
+    z,
+    isNorthPole: clamped === 0,
+    isSouthPole: clamped === 1,
+    onDisk,
+    proved,
+    root: toUuid(`polar-disk-chart:${latDeg}:${roundTo(rho, 5)}:${z}`),
+  }
+}
+
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function earthNorthPoleCenterDotDecoded(): {
+  pole: 'north'
+  latDeg: number
+  rho: number
+  z: number
+  isCenterDot: boolean
+  isSingular: boolean
+  proved: boolean
+  root: string
+} {
+  const chart = polarDiskChartAt(POLE_QUARTER_TURN_DEG) // lat +90 → ρ=0
+  const isCenterDot = chart.rho === 0 && chart.diskRadius === 0 && chart.isNorthPole
+  const proved = isCenterDot && chart.z === poleTubeRadius() // north dot sits at the top of the tube, z=+tubeR
+  return {
+    pole: 'north',
+    latDeg: POLE_QUARTER_TURN_DEG,
+    rho: chart.rho,
+    z: chart.z,
+    isCenterDot,
+    isSingular: isCenterDot, // the center is the singular point of the azimuthal-equidistant chart
+    proved,
+    root: merge(chart.root, toUuid('earth-north-pole:center-dot')),
+  }
+}
+
+/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
+export function earthSouthPoleBoundaryCircleDecoded(): {
+  pole: 'south'
+  latDeg: number
+  rho: number
+  z: number
+  isBoundaryCircle: boolean
+  compactifiedToOnePoint: boolean
+  circumference: number
+  proved: boolean
+  root: string
+} {
+  const chart = polarDiskChartAt(-POLE_QUARTER_TURN_DEG) // lat −90 → ρ=1
+  const isBoundaryCircle = chart.rho === 1 && chart.diskRadius === 1 && chart.isSouthPole
+  const circumference = roundTo(2 * Math.PI * chart.diskRadius, 5) // ∂D² of the unit disk = 2π
+  const proved = isBoundaryCircle && chart.z === -poleTubeRadius() // boundary sits at the bottom, z=−tubeR
+  return {
+    pole: 'south',
+    latDeg: -POLE_QUARTER_TURN_DEG,
+    rho: chart.rho,
+    z: chart.z,
+    isBoundaryCircle,
+    compactifiedToOnePoint: isBoundaryCircle, // one-point compactification: ∂D² ≡ the single south point (D²/∂D² ≅ S²)
+    circumference,
+    proved,
+    root: merge(chart.root, toUuid('earth-south-pole:boundary-circle')),
+  }
+}
