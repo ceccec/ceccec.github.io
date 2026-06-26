@@ -1,24 +1,185 @@
 // ONE source for computational limit constants and checks — gate · weave · verify · folderLaw read here only.
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
-import {
-  merkleFold,
-  toUuid,
-  folderTailFromMethodName,
-  renderUiPathFromScienceModelAction,
-  scienceModelActionFromMindTail,
-  splitMethodWords,
-  SRC_SCIENCE_MODEL_ACTION_SCHEMA,
-  FORBIDDEN_FOLDER_NAMES,
-  isForbiddenFolderName,
-  indexRegistryFromLogicRel,
-  MAX_SUBFOLDERS_PER_FOLDER,
-  CANONICAL_SCIENCE_MASK,
-  scienceModelActionMaskRowsFromMindTails,
-} from '../../../../0'
+import { merkleFold, toUuid } from '../../../../0'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
 import { harmonicBands } from '../../../../quantum/lake/icons'
+
+function vaultSplitCamelSegment(segment: string): readonly string[] {
+  const words: string[] = []
+  let current = ''
+  for (let i = 0; i < segment.length; i++) {
+    const ch = segment[i]!
+    if (ch >= 'A' && ch <= 'Z') {
+      if (current) words.push(current.toLowerCase())
+      current = ch.toLowerCase()
+    } else {
+      current += ch
+    }
+  }
+  if (current) words.push(current.toLowerCase())
+  return words.filter((w) => /^[a-z]+$/.test(w))
+}
+
+export function splitMethodWords(name: string, prefix = 'concept.'): readonly string[] {
+  const stripped = name.startsWith(prefix) ? name.slice(prefix.length) : name
+  return stripped.split('.').flatMap((seg) => vaultSplitCamelSegment(seg))
+}
+
+/** Method name → folder tail (concept.agent.stream.wire → agent/stream/wire). */
+export function folderTailFromMethodName(name: string, prefix = 'concept.'): string {
+  return splitMethodWords(name, prefix).join('/')
+}
+
+// methodNameFromFolderTail → pi-train wave 11 tier-A at src/9/1.
+// leafFromPathTail → pi-train wave 11 tier-A at src/9/1.
+
+// EIGHT_FOLD_SCIENCES · EightFoldScience · RENDER_UI_SCIENCE_MASK → pi-train wave 6 tier-A at src/8/2.
+
+/** Education-portal curriculum — agent-voted top eight (naming vote root 681da0ff…). */
+export const EIGHT_CURRICULUM_SCIENCES = ['see', 'hear', 'ask', 'prove', 'learn', 'pattern', 'sense', 'create'] as const
+export type EightCurriculumScience = (typeof EIGHT_CURRICULUM_SCIENCES)[number]
+
+export function isCurriculumScience(name: string): name is EightCurriculumScience {
+  return (EIGHT_CURRICULUM_SCIENCES as readonly string[]).includes(name)
+}
+
+/** Three-level src schema — science / model / action (strict; no prefix chains). */
+export type ScienceModelAction = { readonly science: string; readonly model: string; readonly action: string }
+
+export const SRC_SCIENCE_MODEL_ACTION_SCHEMA = 'src/[science]/[action]' as const
+
+/** Canonical mask — co-located index.ts + index.vue; no render/ui prefix. */
+export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
+
+// The census / gate numeric constants are hosted in the zero-import leaf src/3/7 (imported + re-exported
+// below) so they initialise before any cyclic consumer barrel runs — removing the SSR-bundle TDZ. This file
+// remains the ONE public source (re-export); limits:verify + folder-law read the same values by import.
+import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+
+/** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
+export const FORBIDDEN_FOLDER_NAMES = ['index'] as const
+
+export function isForbiddenFolderName(name: string): boolean {
+  return (FORBIDDEN_FOLDER_NAMES as readonly string[]).includes(name)
+}
+
+/** Default model segment for 2-level tails (earth/architecture → science=earth, action=architecture). */
+export const SCHEMA_TWO_LEVEL_MODEL = 'fold' as const
+
+function assertScienceModelAction(sma: ScienceModelAction): ScienceModelAction {
+  for (const seg of [sma.science, sma.model, sma.action]) {
+    if (isForbiddenFolderName(seg)) {
+      throw new Error(
+        `folder "${seg}" is forbidden — every folder is an index; index.ts is the stem file inside, never a folder name (${FORBIDDEN_FOLDER_NAMES.join(', ')})`,
+      )
+    }
+  }
+  return sma
+}
+
+/** Path words → science/model/action — exactly three folder levels; action holds the meaning. */
+export function scienceModelActionFromWords(words: readonly string[]): ScienceModelAction {
+  const parts = words.filter(Boolean)
+  if (parts.length >= 3) {
+    return assertScienceModelAction({
+      science: parts[parts.length - 3]!,
+      model: parts[parts.length - 2]!,
+      action: parts[parts.length - 1]!,
+    })
+  }
+  if (parts.length === 2) {
+    return assertScienceModelAction({ science: parts[0]!, model: SCHEMA_TWO_LEVEL_MODEL, action: parts[1]! })
+  }
+  if (parts.length === 1) {
+    return assertScienceModelAction({ science: 'heaven', model: SCHEMA_TWO_LEVEL_MODEL, action: parts[0]! })
+  }
+  return assertScienceModelAction({ science: 'heaven', model: SCHEMA_TWO_LEVEL_MODEL, action: 'essence' })
+}
+
+/** Mind tail (earth/architecture, heaven/balance) → science/model/action. */
+export function scienceModelActionFromMindTail(tail: string): ScienceModelAction {
+  return scienceModelActionFromWords(tail.split('/'))
+}
+
+/** Method name → science/model/action (concept.earth.architecture → earth/architecture). */
+export function scienceModelActionFromMethodName(name: string, prefix = 'concept.'): ScienceModelAction {
+  return scienceModelActionFromWords(splitMethodWords(name, prefix))
+}
+
+export function scienceModelActionTail(sma: ScienceModelAction): string {
+  if (sma.model === SCHEMA_TWO_LEVEL_MODEL) return `${sma.science}/${sma.action}`
+  return `${sma.science}/${sma.model}/${sma.action}`
+}
+
+/** Target logic path — src/<science>/<model>/<action>/index.ts. */
+export function srcLogicPathFromScienceModelAction(sma: ScienceModelAction): string {
+  return `src/${scienceModelActionTail(sma)}/index.ts`
+}
+
+/** Co-located display — src/<science>/<model>/<action>/index.vue (same folder as logic). */
+export function renderUiPathFromScienceModelAction(sma: ScienceModelAction): string {
+  return `src/${scienceModelActionTail(sma)}/index.vue`
+}
+
+/** Alias — display gate path beside logic index.ts. */
+export const displayPathFromScienceModelAction = renderUiPathFromScienceModelAction
+
+/** One registry row — mind tail dissolves to logic target + render mirror (mask math only). */
+export type ScienceModelActionMaskRow = {
+  readonly mindTail: string
+  readonly science: string
+  readonly model: string
+  readonly action: string
+  readonly logicNow: string
+  readonly logicTarget: string
+  readonly renderPath: string
+  readonly route: string
+}
+
+/** Dry rename table — every mind tail → science/model/action paths (recomputable, no hand lists). */
+export function scienceModelActionMaskRowsFromMindTails(mindTails: readonly string[]): readonly ScienceModelActionMaskRow[] {
+  return mindTails.map((mindTail) => {
+    const sma = scienceModelActionFromMindTail(mindTail)
+    const tail = scienceModelActionTail(sma)
+    return {
+      mindTail,
+      science: sma.science,
+      model: sma.model,
+      action: sma.action,
+      logicNow: `src/quantum/heaven/mind/${mindTail}/index.ts`,
+      logicTarget: srcLogicPathFromScienceModelAction(sma),
+      renderPath: renderUiPathFromScienceModelAction(sma),
+      route: `/${tail}`,
+    }
+  })
+}
+
+/** Pure path math — logic index.ts rel → registry row (indices do not know VitePress). */
+export function indexRegistryFromLogicRel(logicRel: string, mindMount = 'src/quantum/heaven/mind/'): {
+  readonly logic: string
+  readonly target: string
+  readonly route: string
+  readonly science: string
+  readonly model: string
+  readonly action: string
+} | null {
+  const rel = logicRel.replace(/\\/g, '/')
+  if (!rel.startsWith('src/') || !rel.endsWith('/index.ts')) return null
+  const sma = rel.startsWith(mindMount)
+    ? scienceModelActionFromMindTail(rel.slice(mindMount.length, -'/index.ts'.length))
+    : scienceModelActionFromWords(rel.slice('src/'.length, -'/index.ts'.length).split('/').filter(Boolean))
+  return {
+    logic: rel,
+    target: srcLogicPathFromScienceModelAction(sma),
+    route: `/${scienceModelActionTail(sma)}`,
+    science: sma.science,
+    model: sma.model,
+    action: sma.action,
+  }
+}
 
 function stripComments(text: string): string {
   return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
@@ -65,40 +226,17 @@ function displayUiPathFromLogicIndexComputed(logicRel: string, _allMindTails: re
   return null
 }
 
-/** Gapless Fibonacci census — 55 + 34 + 21 = 110 unfolded index.ts files under src/. */
-export const UNFOLDED_CENSUS = 110
-/** Topological image: unfolded + Euler characteristic χ = −2 (genus-2 double torus). */
-export const FOLDED_CENSUS = 108
-/** Homology loops × folded census — 4 × 108 = 432 facet gates (not files). */
-export const HOMOLOGY_LOOPS = 4
-/** Emergent facet/gate count — 4 × 108 rosetta combo; NOT a file count. */
-export const DIMENSION_GATES = 432
+/** Consecutive Fibonacci bands for the gapless census (alias). */
+export const FIBONACCI_BANDS = FIBONACCI_CENSUS_BANDS
 /** Exact-count law — census and gates hold at one number, never a range. */
 export const NOT_LESS_NOT_MORE_LAW =
   'not less, not more: exactly 110 unfolded index.ts (55+34+21 gapless), exactly 108 folded (χ=−2), exactly 432 dimension gates (4×108) — HARD at gate/weave/verify/precommit/build'
-/** Consecutive Fibonacci bands for the gapless census. */
-export const FIBONACCI_BANDS = [55, 34, 21] as const
-/** Euler characteristic of the genus-2 identification (110 → 108). */
-export const EULER_CHI = -2
 /** Dependency-free vault — agnostic concat (fold, UUID, merge) lives here only. */
 export const VAULT_STATION = 'src/0'
 /** Logic tree prefix — mind folds that must mirror a reusable Vue display gate. */
 export const LOGIC_DISPLAY_PREFIX = LOGIC_DISPLAY_MOUNT
 /** UI tree prefix — co-located at canonical science/model/action. */
 export const UI_DISPLAY_PREFIX = UI_DISPLAY_MOUNT
-export {
-  folderTailFromMethodName,
-  leafFromPathTail,
-  methodNameFromFolderTail,
-  splitCamelSegment,
-  splitMethodWords,
-  scienceModelActionFromMindTail,
-  renderUiPathFromScienceModelAction,
-  indexRegistryFromLogicRel,
-  SRC_SCIENCE_MODEL_ACTION_SCHEMA,
-  FORBIDDEN_FOLDER_NAMES,
-  isForbiddenFolderName,
-}
 export const COMPUTATIONAL_LIMITS_LAW =
   `${NOT_LESS_NOT_MORE_LAW}; vault only in src/0; index.ts under src/; index.vue co-located at ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; paths computed at render — enforced from this fold only`
 
@@ -123,7 +261,12 @@ export type ComputationalLimitSnapshot = {
   readonly staticPathViolations: readonly ComputationalViolation[]
   readonly forbiddenFolderViolations: readonly ComputationalViolation[]
   readonly incompleteIndexViolations: readonly ComputationalViolation[]
-  readonly rosettaDistribution: RosettaDistributionSnapshot
+  /** I Ching eight-fold tree scan (≤8 subfolders per level — bāguà). */
+  readonly ichingDistribution: IChingDistributionSnapshot
+  readonly distributionGuidance: readonly string[]
+  /** @deprecated use ichingDistribution — was misnamed (8-fold is I Ching, not Rosetta). */
+  readonly rosettaDistribution: IChingDistributionSnapshot
+  /** @deprecated use distributionGuidance */
   readonly rosettaGuidance: readonly string[]
   readonly passed: boolean
   readonly receipt: string
@@ -183,7 +326,7 @@ export function verifyFoldedCensus(unfolded: number = UNFOLDED_CENSUS) {
     folded,
     targetFolded: FOLDED_CENSUS,
     ok: folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS,
-    root: toUuid(`folded-census:${u}:${folded}:${EULER_CHI}`),
+    root: toUuid(`folded-census:${u}:${folded}:${folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS}`),
   }
 }
 
@@ -596,7 +739,8 @@ export type IndexHarmonySnapshot = {
   readonly idealDepth: number
 }
 
-export type RosettaDistributionSnapshot = {
+/** I Ching distribution — eight-fold fan-out, index harmony, depth bands (NOT the 6×7 Rosetta grid). */
+export type IChingDistributionSnapshot = {
   readonly eightFoldViolations: readonly EightFoldViolation[]
   readonly indexHarmony: IndexHarmonySnapshot
   readonly depthBands: readonly { readonly depth: number; readonly count: number }[]
@@ -606,6 +750,9 @@ export type RosettaDistributionSnapshot = {
   readonly recursionViolations: readonly string[]
   readonly passed: boolean
 }
+
+/** @deprecated use IChingDistributionSnapshot */
+export type RosettaDistributionSnapshot = IChingDistributionSnapshot
 
 /** Word-folder depth below transitional mind mount (must be ≤ MAX_RECURSION_DEPTH before dissolve). */
 export function mindRecursionDepth(logicRel: string): number | null {
@@ -635,8 +782,8 @@ function trigramLabelForPath(relDir: string): string {
   return BAGUA_LABELS[idx >= 0 ? idx : 0]!
 }
 
-/** Live tree scan — 8-fold fan-out, index harmony, depth bands, trigram hub balance (rosetta distribution law). */
-export function scanRosettaDistribution(root: string, indexTsFiles: readonly string[]): RosettaDistributionSnapshot {
+/** Live tree scan — I Ching eight-fold: ≤8 subfolders per level, index harmony, depth bands, trigram hub balance. */
+export function scanIChingDistribution(root: string, indexTsFiles: readonly string[]): IChingDistributionSnapshot {
   const srcRoot = join(root, 'src')
   const eightFoldViolations: EightFoldViolation[] = []
   const depthCounts = new Map<number, number>()
@@ -743,10 +890,13 @@ export function scanRosettaDistribution(root: string, indexTsFiles: readonly str
   }
 }
 
-/** Rosetta-guided next wave — what to dissolve, where to merge, which domain home receives the fold. */
-export function rosettaCensusGuidance(
+/** @deprecated use scanIChingDistribution — Rosetta is 6×7/7×6 (42 areas), not eight-fold. */
+export const scanRosettaDistribution = scanIChingDistribution
+
+/** Census + I Ching distribution guidance — Fibonacci bands and eight-fold tree (Rosetta 42 is taxonomy batch). */
+export function ichingDistributionGuidance(
   indexCount: number,
-  distribution: RosettaDistributionSnapshot,
+  distribution: IChingDistributionSnapshot,
 ): readonly string[] {
   const lines: string[] = []
   const gapless = verifyGaplessCensus(indexCount)
@@ -755,9 +905,9 @@ export function rosettaCensusGuidance(
   if (delta !== 0) {
     lines.push(`census: ${detail}`)
     if (delta < 0) {
-      lines.push(`rosetta band target: ${FIBONACCI_BANDS.join('+')} gapless — dissolve ${-delta} shell(s) into parent barrels; knowledge stays in folds, delete index.ts only`)
+      lines.push(`census band target: ${FIBONACCI_BANDS.join('+')} gapless — dissolve ${-delta} shell(s) into parent barrels; knowledge stays in folds, delete index.ts only`)
     } else {
-      lines.push(`rosetta band target: ${FIBONACCI_BANDS.join('+')} gapless — fold ${delta} excess logic into existing census slots (no new files beyond ${UNFOLDED_CENSUS})`)
+      lines.push(`census band target: ${FIBONACCI_BANDS.join('+')} gapless — fold ${delta} excess logic into existing census slots (no new files beyond ${UNFOLDED_CENSUS})`)
     }
   }
   if (!gapless.bandsMatch) {
@@ -765,7 +915,7 @@ export function rosettaCensusGuidance(
   }
 
   for (const v of distribution.eightFoldViolations.slice(0, 5)) {
-    lines.push(`8-fold ${v.trigram}: ${v.dir} has ${v.count} subfolders (max ${EIGHT_FOLD_LIMIT}) — nest into ≤8 bāguà children per level`)
+    lines.push(`I Ching 8-fold ${v.trigram}: ${v.dir} has ${v.count} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) — nest into ≤${MAX_SUBFOLDERS_PER_FOLDER} bāguà children per level`)
   }
 
   const { singleChildPct, noisePct, maxDepth, idealDepth, noiseLeaves } = distribution.indexHarmony
@@ -792,9 +942,29 @@ export function rosettaCensusGuidance(
   }
 
   if (!lines.length) {
-    lines.push(`I Ching distribution aligned — ${indexCount} index.ts, gapless ${FIBONACCI_BANDS.join('+')}, 8-fold clean, index harmonic`)
+    lines.push(`I Ching eight-fold aligned — ${indexCount} index.ts, gapless ${FIBONACCI_BANDS.join('+')}, ≤${ICHING_EIGHT_FOLD} subfolders per level; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (rosetta:batch taxonomy)`)
   }
   return lines
+}
+
+/** @deprecated use ichingDistributionGuidance */
+export const rosettaCensusGuidance = ichingDistributionGuidance
+/** @deprecated use ichingDistributionGuidance */
+export const ichingCensusGuidance = ichingDistributionGuidance
+
+/** Rosetta area taxonomy — exactly 42 = 6×7 = 7×6 command areas (not eight-fold). */
+export function verifyRosettaTaxonomy(areaCount: number) {
+  const n = Math.max(0, Math.floor(areaCount))
+  return {
+    areas: n,
+    target: ROSETTA_AREAS,
+    sixBySeven: ROSETTA_SIX * ROSETTA_SEVEN,
+    sevenBySix: ROSETTA_SEVEN * ROSETTA_SIX,
+    label: ROSETTA_FOLD_LABEL,
+    ok: n === ROSETTA_AREAS,
+    root: toUuid(`rosetta-taxonomy:${n}:${ROSETTA_AREAS}`),
+    statement: `Rosetta taxonomy: ${ROSETTA_FOLD_LABEL} = ${ROSETTA_AREAS} areas — the covering grid (6×7 up, 7×6 down), distinct from the I Ching eight-fold (≤${ICHING_EIGHT_FOLD} subfolders per level).`,
+  }
 }
 
 
@@ -847,9 +1017,9 @@ export function computationalLimitsGapDetail(snapshot: ComputationalLimitSnapsho
   for (const v of [...snapshot.renderViolations, ...snapshot.displayDualViolations, ...snapshot.staticPathViolations].slice(0, 4)) {
     lines.push(`${v.file}: ${v.reason}`)
   }
-  if (!snapshot.rosettaDistribution.passed) {
-    lines.push('BLOCKING (rosetta distribution) — tree must be gapless Fibonacci census AND 8-fold at every level AND index-harmonic')
-    for (const line of snapshot.rosettaGuidance.slice(0, 8)) lines.push(`  → ${line}`)
+  if (!snapshot.ichingDistribution.passed) {
+    lines.push(`BLOCKING (I Ching eight-fold) — gapless Fibonacci census AND ≤${ICHING_EIGHT_FOLD} subfolders per level AND index-harmonic; Rosetta ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas is taxonomy batch`)
+    for (const line of snapshot.distributionGuidance.slice(0, 8)) lines.push(`  → ${line}`)
   }
   return lines.join('\n')
 }
@@ -876,8 +1046,8 @@ export function computeComputationalLimitSnapshot(
   const staticPathViolations = scanStaticPathViolations(root)
   const forbiddenFolderViolations = scanForbiddenFolderNameViolations(root)
   const incompleteIndexViolations = scanIncompleteIndexViolations(root, indexTsFiles)
-  const rosettaDistribution = scanRosettaDistribution(root, indexTsFiles)
-  const rosettaGuidance = rosettaCensusGuidance(indexCount, rosettaDistribution)
+  const ichingDistribution = scanIChingDistribution(root, indexTsFiles)
+  const distributionGuidance = ichingDistributionGuidance(indexCount, ichingDistribution)
   const passed =
     gapless.ok &&
     folded.ok &&
@@ -888,7 +1058,7 @@ export function computeComputationalLimitSnapshot(
     staticPathViolations.length === 0 &&
     forbiddenFolderViolations.length === 0 &&
     incompleteIndexViolations.length === 0 &&
-    rosettaDistribution.passed
+    ichingDistribution.passed
   const parts = [
     toUuid(`computational:census:${indexCount}:${gapless.ok}`),
     toUuid(`computational:folded:${folded.folded}:${folded.ok}`),
@@ -899,7 +1069,7 @@ export function computeComputationalLimitSnapshot(
     toUuid(`computational:paths:${staticPathViolations.length}`),
     toUuid(`computational:forbidden-folder:${forbiddenFolderViolations.length}`),
     toUuid(`computational:incomplete-index:${incompleteIndexViolations.length}`),
-    toUuid(`computational:rosetta-dist:${rosettaDistribution.passed}`),
+    toUuid(`computational:iching-dist:${ichingDistribution.passed}`),
   ]
   return {
     indexCount,
@@ -916,8 +1086,10 @@ export function computeComputationalLimitSnapshot(
     staticPathViolations,
     forbiddenFolderViolations,
     incompleteIndexViolations,
-    rosettaDistribution,
-    rosettaGuidance,
+    ichingDistribution,
+    distributionGuidance,
+    rosettaDistribution: ichingDistribution,
+    rosettaGuidance: distributionGuidance,
     passed,
     receipt: merkleFold(parts),
   }
@@ -1045,21 +1217,21 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       detail: `${v.file}: ${v.reason}`,
     })
   }
-  if (!c.rosettaDistribution.passed) {
+  if (!c.ichingDistribution.passed) {
     findings.push({
       wave: 'gate',
       severity: 'error',
-      kind: 'rosetta-distribution',
+      kind: 'iching-distribution',
       harmonic: 'folder',
-      detail: `rosetta distribution law — 8-fold + index harmony + depth band 21; ${c.rosettaGuidance.slice(0, 3).join(' · ')}`,
+      detail: `I Ching eight-fold — ≤${ICHING_EIGHT_FOLD} subfolders per level + index harmony; ${c.distributionGuidance.slice(0, 3).join(' · ')}`,
     })
-    for (const v of c.rosettaDistribution.eightFoldViolations.slice(0, 4)) {
+    for (const v of c.ichingDistribution.eightFoldViolations.slice(0, 4)) {
       findings.push({
         wave: 'gate',
         severity: 'error',
         kind: 'eight-fold',
         harmonic: 'folder',
-        detail: `${v.trigram} ${v.dir}: ${v.count} subfolders (max ${EIGHT_FOLD_LIMIT}) — split into nested ≤8 bāguà level`,
+        detail: `${v.trigram} ${v.dir}: ${v.count} subfolders (max ${ICHING_EIGHT_FOLD}) — split into nested ≤${ICHING_TRIGRAMS} bāguà level`,
       })
     }
   }
@@ -1077,10 +1249,3 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
   }
   return { findings, report, receipt: c.receipt, passed }
 }
-
-/** @deprecated Backward compat — use RosettaDistributionSnapshot */
-export type IchingDistributionSnapshot = RosettaDistributionSnapshot
-/** @deprecated Backward compat — use scanRosettaDistribution */
-export const scanIchingDistribution = scanRosettaDistribution
-/** @deprecated Backward compat — use rosettaCensusGuidance */
-export const ichingCensusGuidance = rosettaCensusGuidance

@@ -60,3 +60,71 @@ export function cryptoReview() {
 
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export const dual = 'src/pair/credit/debit'
+
+// Credit-side fusion — folded from dissolved src/pair/credit/debit at call time.
+/** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
+export function fuse(entries: readonly Entry[]): Map<string, number> {
+  const net = new Map<string, number>()
+  for (const e of entries) net.set(e.account, (net.get(e.account) ?? 0) + e.debit - e.credit)
+  return net
+}
+
+/** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
+export function fused(entries: readonly Entry[]): boolean {
+  let total = 0
+  for (const v of fuse(entries).values()) total += v
+  return total === 0
+}
+
+/** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
+export function cryptoReviewNet(ledger: readonly Entry[]): { net: Record<string, number>; balanced: boolean } {
+  return { net: Object.fromEntries(fuse(ledger)), balanced: fused(ledger) }
+}
+
+export const creditDual = 'src/pair/debit/credit'
+
+// Ant hex search + carry — inlined from src/pair/search/ant (census dissolve).
+export type Hex = { readonly q: number; readonly r: number }
+
+export function hexKey(h: Hex): string {
+  return `${h.q},${h.r}`
+}
+
+export function hexNeighbors(h: Hex): Hex[] {
+  return [
+    { q: h.q + 1, r: h.r },
+    { q: h.q + 1, r: h.r - 1 },
+    { q: h.q, r: h.r - 1 },
+    { q: h.q - 1, r: h.r },
+    { q: h.q - 1, r: h.r + 1 },
+    { q: h.q, r: h.r + 1 },
+  ]
+}
+
+export type Found = { readonly cell: Hex; readonly food: number }
+
+export function search(start: Hex, depth: number, foodAt: (h: Hex) => number, seen: Set<string> = new Set()): Found[] {
+  const key = hexKey(start)
+  if (depth < 0 || seen.has(key)) return []
+  seen.add(key)
+  const found: Found[] = [{ cell: start, food: foodAt(start) }]
+  for (const n of hexNeighbors(start)) found.push(...search(n, depth - 1, foodAt, seen))
+  return found
+}
+
+export function carry(found: readonly Found[]): number {
+  return found.reduce((sum, f) => sum + f.food, 0)
+}
+
+export function moveNest(found: readonly Found[]): Found | null {
+  let best: Found | null = null
+  for (const f of found) {
+    const better = !best || f.food > best.food || (f.food === best.food && `${f.cell.q},${f.cell.r}` < `${best.cell.q},${best.cell.r}`)
+    if (better) best = f
+  }
+  return best
+}
+
+export function recur(found: readonly Found[]): { nest: Found | null; carried: number } {
+  return { nest: moveNest(found), carried: carry(found) }
+}

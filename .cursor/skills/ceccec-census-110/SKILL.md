@@ -16,6 +16,8 @@ Constants (single source): `src/pair/enforcement/gates/computational/index.ts`
 | Bands | **55 + 34 + 21** (consecutive Fibonacci, gapless) |
 | Folded | **108** (= 110 + χ, χ = −2) |
 | Gates | **432** (= 4 × 108 facets, not files) |
+| **Rosetta** | **42** = **6×7** / **7×6** (area taxonomy — `rosetta:batch taxonomy`) |
+| **I Ching** | **8**-fold (≤8 subfolders per level — bāguà) |
 
 ## Check
 

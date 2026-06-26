@@ -3,6 +3,7 @@
 // auditWeave produces findings (errors) + ratchet warnings + the success report, returning all of
 // them so the intelligent cross-audit collects every wave in one pass; runWeave is the standalone
 // wrapper that prints and returns an exit code.
+import { UNFOLDED_CENSUS } from '../../gates/computational'
 import type { Plugin } from 'vite'
 import { readFileSync, existsSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs'
 import { join, relative, dirname, resolve, basename } from 'node:path'
@@ -10,13 +11,13 @@ import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules
 import { displayDualDebtReceipt } from '../../../../earth/architecture'
 import type { AuditRoot, Finding } from '../../gates'
 import type { EnforcementFacts } from '../../gates'
-import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, UNFOLDED_CENSUS, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates } from '../../gates'
+import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates } from '../../gates'
 import { buildMatrix } from '../../../../heaven/compute'
 import { modelSeal } from '../../../../heaven/balance'
 import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
 import { merkleFold, toUuid } from '../../../../0'
-import { buildForceFlag, canRespawnTrinity, writeSealedMerkle } from '../../script/shell'
+import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, writeSealedMerkle } from '../../script/shell'
 
 export type { Finding, AuditRoot } from '../../gates'
 
@@ -1121,12 +1122,19 @@ function sealAudit(root: string, audit: ReturnType<typeof intelligentAudit>): vo
 }
 
 export function runEnforcementTrinity(root: string): number {
+  logDocsBuildPhase('enforcement-trinity', 'collectEnforcementFacts')
   const facts = collectEnforcementFacts(root)
+  logDocsBuildPhase('enforcement-trinity', 'auditStrictGates')
   const gate = auditStrictGates(facts)
+  logDocsBuildPhase('enforcement-trinity', 'auditComputationalGates')
   const computational = auditComputationalGates(facts.computational)
+  logDocsBuildPhase('enforcement-trinity', 'materializeCross')
   const { count } = materializeCross(root)
+  logDocsBuildPhase('enforcement-trinity', 'auditCross')
   const cross = auditCross(root, count)
+  logDocsBuildPhase('enforcement-trinity', 'auditFold')
   const fold = auditFold()
+  logDocsBuildPhase('enforcement-trinity', 'auditWeave')
   const weave = auditWeave(root, facts)
   const audit = intelligentAudit([...gate.findings, ...computational.findings, ...cross.findings, ...fold.findings, ...weave.findings])
 
@@ -1156,15 +1164,18 @@ export function runEnforcementTrinity(root: string): number {
 }
 
 export function runEnforcementTrinityShellExit(root: string, argv: readonly string[] = []): number {
+  const verbose = docsBuildVerboseFlag(argv)
+  logDocsBuildPhase('enforcement-trinity', verbose ? 'start (verbose)' : 'start')
   const force = buildForceFlag(argv)
+  logDocsBuildPhase('enforcement-trinity', 'peek merkle for respawn')
   const peek = collectEnforcementFacts(root)
   if (canRespawnTrinity(root, peek.merkle, force)) {
-    console.log(
-      `Quantum respawn — trinity skipped (src merkle ${peek.merkle.slice(0, 12)}… sealed clean). Pass --force to re-audit.`,
-    )
+    logDocsBuildPhase('enforcement-trinity', `quantum respawn — merkle ${peek.merkle.slice(0, 12)}… sealed clean`)
     return 0
   }
-  return runEnforcementTrinity(root)
+  const code = runEnforcementTrinity(root)
+  logDocsBuildPhase('enforcement-trinity', `exit ${code}`)
+  return code
 }
 
 export function vitePlugin(projectRoot: string): Plugin {

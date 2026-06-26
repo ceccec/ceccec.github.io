@@ -1,4 +1,6 @@
 // United gate runner facts — ONE merkle pass + ONE src walk + ONE strict snapshot per build phase (gate/unite · scan/fold pairs).
+import { phase } from '../../../6/4'
+import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail } from './computational'
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
@@ -52,12 +54,8 @@ export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mi
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly } from './strict'
 export {
-  UNFOLDED_CENSUS,
-  FOLDED_CENSUS,
-  HOMOLOGY_LOOPS,
-  DIMENSION_GATES,
+  
   FIBONACCI_BANDS,
-  EULER_CHI,
   VAULT_STATION,
   NOT_LESS_NOT_MORE_LAW,
   COMPUTATIONAL_LIMITS_LAW,
@@ -73,14 +71,9 @@ export {
   LOGIC_DISPLAY_PREFIX,
   UI_DISPLAY_PREFIX,
   MAX_RECURSION_DEPTH,
-  SRC_SCIENCE_MODEL_ACTION_SCHEMA,
-  scienceModelActionFromMindTail,
-  renderUiPathFromScienceModelAction,
   displaySubpathFromLogicTail,
   mindRecursionDepth,
   RENDER_BARREL_ALLOWLIST,
-  FORBIDDEN_FOLDER_NAMES,
-  isForbiddenFolderName,
   scanForbiddenFolderNameViolations,
   discoverSrcIndexes,
   scanIncompleteIndexViolations,
@@ -89,10 +82,14 @@ export {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
   computationalLimitsGapDetail,
+  scanIChingDistribution,
   scanRosettaDistribution,
+  ichingDistributionGuidance,
   rosettaCensusGuidance,
+  verifyRosettaTaxonomy,
   auditComputationalGates,
   type ComputationalLimitSnapshot,
+  type IChingDistributionSnapshot,
   type RosettaDistributionSnapshot,
 } from './computational'
 export {
@@ -195,6 +192,7 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
       '.vitepress/computed-pages.mts',
       '.vitepress/src-plugins.mts',
       '.vitepress/build-lock-plugin.mts',
+      '.vitepress/build-verbose-plugin.mts',
       '.vitepress/build-lock.mjs',
       '.vitepress/lib/component-bagua-groups.ts',
       '.vitepress/lib/component-folds.ts',
@@ -206,6 +204,15 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
       '.vitepress/lib/movie-canvas.ts',
       '.vitepress/lib/universal-route-path.ts',
       '.vitepress/lib/vitepress-seo.ts',
+      '.vitepress/lib/site-locale.ts',
+      '.vitepress/lib/hero-copy.ts',
+      '.vitepress/lib/hero-movie-paint.ts',
+      '.vitepress/lib/life-resonance.ts',
+      '.vitepress/lib/earth-hinge.ts',
+      '.vitepress/lib/shadcn-ui.ts',
+      '.vitepress/lib/cn.ts',
+      '.vitepress/lib/dev-memory-budget.mts',
+      '.vitepress/lib/dev-server-bind.mts',
     ]),
     scriptShells,
     pairs.paired,

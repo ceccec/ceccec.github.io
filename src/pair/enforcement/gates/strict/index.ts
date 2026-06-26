@@ -6,14 +6,13 @@ import {
   scanFileSizeOffenders,
   monolithFileGapDetail,
   stripComments,
+  computeStrictGateSnapshot,
+  strictGatePassed,
+  scanVitepressIndex,
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender,
 } from './scan'
-import {
-  computeStrictGateSnapshot,
-  strictGatePassed,
-} from './snapshot'
 
 export {
   MONOLITH_FILE_BYTES,
@@ -30,11 +29,10 @@ export {
   type StrictGateSnapshot,
 } from './scan'
 
-export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex } from './snapshot'
+export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex } from './scan'
 
 export const FOLD_HOMES: Record<string, readonly string[]> = {
-  'src/quantum/water/correction': ['matrixIsTenBitMByteSixtyFour'],
-  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt'],
+  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour'],
 }
 
 export function foldsLiveAtTheirDomainHome(definers: readonly { name: string; files: readonly string[] }[] = []) {

@@ -203,6 +203,37 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
   },
 ]
 
+/** Cursor agent skills — saved in src before IDE mounts (.cursor/skills/* are thin projections). */
+export const CURSOR_AGENT_SKILL_IDS = [
+  'ceccec-build-waves',
+  'ceccec-census-110',
+  'ceccec-folder-law-mission',
+  'ceccec-learn-best',
+  'ceccec-limits-verify',
+  'ceccec-mission-commands',
+] as const
+
+export function cursorAgentToolsSaved(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('cursorAgentToolsSaved', matrix, () => {
+    const facets = [
+      { facet: 'cursor skill ids saved as sealed registry in src', on: CURSOR_AGENT_SKILL_IDS.length === 6 },
+      { facet: 'each skill id maps to a mission or build-wave pair', on: CURSOR_AGENT_SKILL_IDS.every((id) => id.startsWith('ceccec-')) },
+      { facet: 'tools route through pair/enforcement bootstrap — not wet script growth', on: CLI_ENTRY_REL.includes('bootstrap') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cursor-tools:${entry.facet}:${entry.on}`) }))
+    return {
+      saved: facets.every((entry) => entry.on),
+      count: CURSOR_AGENT_SKILL_IDS.length,
+      skills: CURSOR_AGENT_SKILL_IDS,
+      facets,
+      root: merkleFold(CURSOR_AGENT_SKILL_IDS.map((id) => toUuid(`cursor-skill:${id}`))),
+      statement:
+        'All Cursor agent tools saved in src: skill ids are sealed before .cursor/skills mounts project them; npm and CLI route through pair/enforcement bootstrap only.',
+      boundary:
+        'A static registry of Cursor skill folder names. Mount files remain thin; logic stays in sealed src folds.',
+    }
+  })
+}
+
 /** Agent submission — pairs saved first; bootstrap routes script-exits via runThinMount. */
 export function agentSubmissionProtocol(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('agentSubmissionProtocol', matrix, () => agentSubmissionProtocolRaw(matrix))

@@ -19,7 +19,8 @@ Pair: `limits/verify` (saved in `src/quantum/heaven/mind/thunder/commands/quantu
 ## What it checks (HARD)
 
 - Exactly **110** `src/**/index.ts` with gapless bands **55+34+21**
-- **I Ching distribution** — ≤8 subfolders per level (bāguà), index harmony, depth-6 band ≤21
+- **I Ching eight-fold** — ≤8 subfolders per level (bāguà), index harmony, depth-6 band ≤21
+- **Rosetta taxonomy** — **42** areas = **6×7** / **7×6** (`rosetta:batch taxonomy`)
 - Folded image **108** and dimension gates **432**
 - Vault primitives only in **`src/0`**
 - `src/<science>/<model>/<action>/index.vue` co-located with `index.ts` (no `render/ui/`)
