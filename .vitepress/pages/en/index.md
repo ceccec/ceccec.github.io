@@ -28,6 +28,10 @@ Four plain steps — the live proofs below follow the **eight trigrams (bāguà)
 
 <StartHere />
 
+<HubCardGrid />
+
+<TagBrowser />
+
 ## ☷ The Receptive
 
 Bulgarian history, Glagolitic, ethnogenesis, genetics — the land's memory.
@@ -123,6 +127,8 @@ Natural law, the commons, society forms, gentle limits.
 The mind hub: the creative origin, the matrix, the architecture.
 
 <LivingTorus />
+
+<DoubleTorusExperience />
 
 <Hologram />
 

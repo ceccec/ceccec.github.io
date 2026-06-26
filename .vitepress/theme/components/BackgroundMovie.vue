@@ -2,12 +2,14 @@
 import { nextTick, ref, watch } from 'vue'
 import {
   drawHeroMovieFrame,
-  prefersReducedMotion,
   sharedHeroAt,
+} from '@vp-lib/hero-movie-paint'
+import {
+  prefersReducedMotion,
   useVisibleMovieCanvas,
   viewportSize,
-} from '@vp-lib/hero-movie'
-import { useHeroCopy } from '../../lib/mounts'
+} from '@vp-lib/movie-canvas'
+import { useHeroCopy } from '../../lib/hero-copy'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { route, copy } = useHeroCopy()

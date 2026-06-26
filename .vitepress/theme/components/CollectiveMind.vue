@@ -110,22 +110,22 @@ watch(() => route.path, (path) => {
 .collective-mind__meta {
   margin: 0;
   display: grid;
-  gap: 0.25rem 0.65rem;
-  font-size: 0.84rem;
+  gap: var(--ich-sp2) var(--ich-gap-col);
+  font-size: var(--ich-text-sm);
 }
 
 .collective-mind__meta-row {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.45rem;
+  gap: var(--ich-gap-row);
   align-items: baseline;
 }
 
 .collective-mind__meta dt {
-  opacity: var(--vp-movie-fade, 0.72);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 0.78rem;
+  letter-spacing: var(--ich-track-wide);
+  font-size: var(--ich-text-ms);
 }
 
 .collective-mind__meta dd {

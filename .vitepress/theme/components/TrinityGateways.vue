@@ -4,6 +4,7 @@ import { useRoute } from 'vitepress'
 import { realtimeWiring } from '../../../src/thunder/trading/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
+import LinkedHeroCard from './LinkedHeroCard.vue'
 
 const route = useRoute()
 const { pick, localize } = useSiteLocale()
@@ -47,17 +48,16 @@ const navAria = computed(() => pick('Trinity gateways', 'Троични порт
 
       <template v-if="wire.related.length">
         <p class="trinity-gateways__heading trinity-gateways__heading--related">{{ relatedLabel }}</p>
-        <ul class="trinity-gateways__list trinity-gateways__list--related">
-          <li v-for="related in wire.related" :key="related.slug">
-            <a
-              class="trinity-gateways__link trinity-gateways__link--related"
-              :href="link(related.slug)"
-              :style="{ '--gateway-hue': related.hue }"
-            >
-              {{ pick(related.titleEn, related.titleBg) }}
-            </a>
-          </li>
-        </ul>
+        <div class="trinity-gateways__related-cards">
+          <LinkedHeroCard
+            v-for="related in wire.related"
+            :key="related.slug"
+            :route="related.slug ? `/${related.slug}` : '/'"
+            :title="pick(related.titleEn, related.titleBg)"
+            :glyph="related.glyph"
+            :hue="related.hue"
+          />
+        </div>
       </template>
     </nav>
   </UiCardShell>
@@ -65,19 +65,19 @@ const navAria = computed(() => pick('Trinity gateways', 'Троични порт
 
 <style scoped>
 .trinity-gateways {
-  margin: calc(var(--vp-movie-gap, 0.75rem) * 0.5) 0;
+  margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(1 / 2)) 0;
 }
 
 .trinity-gateways__heading {
-  margin: 0 0 calc(var(--vp-movie-gap, 0.5rem) * 0.85);
-  font-size: calc(0.78rem + var(--vp-movie-gap, 0.5rem) * 0.05);
-  letter-spacing: 0.06em;
+  margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(5 / 6));
+  font-size: var(--ich-text-ms);
+  letter-spacing: var(--ich-track-ui);
   text-transform: uppercase;
-  opacity: var(--vp-movie-fade, 0.72);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
 }
 
 .trinity-gateways__heading--related {
-  margin-top: calc(var(--vp-movie-gap, 0.75rem) * 1.1);
+  margin-top: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(9 / 8));
 }
 
 .trinity-gateways__list {
@@ -86,17 +86,17 @@ const navAria = computed(() => pick('Trinity gateways', 'Троични порт
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--vp-movie-gap, 0.5rem) * 0.55);
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 5));
 }
 
 .trinity-gateways__link {
   display: grid;
   grid-template-columns: auto auto 1fr;
   align-items: baseline;
-  gap: 0.35rem 0.45rem;
+  gap: var(--ich-gap-row) var(--ich-gap-col);
   color: var(--vp-c-text-1);
   text-decoration: none;
-  font-size: calc(0.86rem + var(--vp-movie-gap, 0.5rem) * 0.04);
+  font-size: var(--ich-text-ml);
 }
 
 .trinity-gateways__link:hover {
@@ -104,15 +104,21 @@ const navAria = computed(() => pick('Trinity gateways', 'Троични порт
 }
 
 .trinity-gateways__glyph {
-  color: oklch(0.72 0.11 calc(var(--gateway-hue) * 1deg));
+  color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(var(--gateway-hue) * 1deg));
 }
 
 .trinity-gateways__realm {
-  font-size: 0.82em;
-  opacity: var(--vp-movie-fade, 0.7);
+  font-size: var(--ich-em-sm);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
 }
 
 .trinity-gateways__link--related {
   display: block;
+}
+
+.trinity-gateways__related-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(2 / 3));
 }
 </style>

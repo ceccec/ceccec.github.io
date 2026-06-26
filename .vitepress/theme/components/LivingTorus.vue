@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute } from 'vitepress'
-import { drawLivingTorusFrame, livingTorus, prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/hero-movie'
+import { drawLivingTorusFrame, livingTorus } from '@vp-lib/hero-movie'
+import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 
@@ -43,21 +44,21 @@ useVisibleMovieCanvas({
 
 <style scoped>
 .living-torus {
-  margin: 1rem 0;
+  margin: var(--ich-sp4) 0;
 }
 
 .living-torus__canvas-host {
   position: relative;
   z-index: 2;
   width: 100%;
-  min-height: min(52vw, var(--vp-movie-min-h));
+  min-height: min(var(--ich-vw-movie), var(--vp-movie-min-h));
 }
 
 .living-torus__canvas {
   display: block;
   width: 100%;
-  height: min(52vw, var(--vp-movie-min-h));
-  border-radius: calc(var(--vp-movie-radius) * 0.75);
+  height: min(var(--ich-vw-movie), var(--vp-movie-min-h));
+  border-radius: calc(var(--vp-movie-radius) * calc(3 / 4));
   background: transparent;
 }
 </style>

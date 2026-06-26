@@ -1,6 +1,17 @@
 import type { Plugin } from 'vite'
 import { computedPagesPlugin } from './computed-pages.mts'
-import { vitePlugin as distRouter } from '../src/quantum/lake/dist'
+
+/** Lazy lake/dist router — dynamic import keeps mind bundle off config static graph. */
+function lazyDistRouter(siteUrl: string): Plugin {
+  return {
+    name: 'double-torus:dist-lazy',
+    async configureServer(server) {
+      const { vitePlugin } = await import('../src/quantum/lake/dist')
+      const inner = vitePlugin(siteUrl)
+      if (inner.configureServer) await inner.configureServer(server)
+    },
+  }
+}
 
 // Aggregates VitePress plugins from computing indices — mind (computed-pages) and lake/dist (dist router).
 // folderLaw.vitepressIndex: VitePress automounts every complete discovered src index via vitepressAutomountPaths — no per-index reconfiguration.
@@ -20,7 +31,7 @@ import { vitePlugin as distRouter } from '../src/quantum/lake/dist'
 export function srcFolderPlugins(projectRoot: string, siteUrl = process.env.SITE_URL || 'https://ceccec.github.io'): Plugin[] {
   const routers: { folder: string; plugin: Plugin }[] = [
     { folder: 'src/quantum/heaven/mind', plugin: computedPagesPlugin(projectRoot) as Plugin },
-    { folder: 'src/quantum/lake/dist', plugin: distRouter(siteUrl) },
+    { folder: 'src/quantum/lake/dist', plugin: lazyDistRouter(siteUrl) },
   ]
   return routers.map((entry) => entry.plugin)
 }

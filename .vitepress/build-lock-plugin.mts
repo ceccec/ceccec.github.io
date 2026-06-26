@@ -14,6 +14,9 @@ export function buildLockPlugin(): Plugin {
     name: 'double-torus:build-lock',
     apply: 'build',
     async buildStart() {
+      if (process.env.DOCS_BUILD_VERBOSE === '1') {
+        console.log(`[vitepress] ${new Date().toISOString()} ▶ build-lock — buildStart`)
+      }
       if (process.env.VITEPRESS_BUILD_LOCK_HELD === '1') return
       await acquireBuildLock(projectRoot, lockWaitMs)
       pluginHeldLock = true

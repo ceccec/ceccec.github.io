@@ -54,17 +54,17 @@ const labels = computed(() => ({
 
 <style scoped>
 .vitepress-possibilities__heading {
-  margin: 0 0 calc(var(--vp-movie-gap, 0.5rem) * 0.45);
-  font-size: 0.82em;
-  letter-spacing: 0.05em;
+  margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(4 / 9));
+  font-size: var(--ich-em-sm);
+  letter-spacing: var(--ich-track-wide);
   text-transform: uppercase;
-  opacity: var(--vp-movie-fade, 0.72);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
 }
 
 .vitepress-possibilities__list,
 .vitepress-possibilities__facets {
   margin: 0;
-  padding-left: 1.1rem;
+  padding-left: var(--ich-list-indent);
 }
 
 .vitepress-possibilities__facets .is-on {
@@ -72,13 +72,13 @@ const labels = computed(() => ({
 }
 
 .vitepress-possibilities__facets li:not(.is-on) {
-  opacity: var(--vp-movie-fade, 0.62);
+  opacity: var(--vp-movie-fade, var(--ich-op-dim));
 }
 
 .vitepress-possibilities__mark {
   display: inline-block;
-  min-width: 1.6rem;
-  font-size: 0.82em;
-  opacity: var(--vp-movie-fade, 0.75);
+  min-width: calc(var(--ich-sp6) + var(--ich-sp2));
+  font-size: var(--ich-em-sm);
+  opacity: var(--vp-movie-fade, var(--ich-op-half));
 }
 </style>

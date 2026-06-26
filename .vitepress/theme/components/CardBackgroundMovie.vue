@@ -4,11 +4,12 @@ import {
   backgroundSceneFromShared,
   cardMoviePath,
   drawBackgroundMovie,
-  prefersReducedMotion,
+  drawQuantumAppFrame,
   sharedHeroAt,
-  useVisibleMovieCanvas,
   type MovieIntensity,
+  type QuantumProjection,
 } from '@vp-lib/hero-movie'
+import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
 import { useRoute } from 'vitepress'
 
 const props = withDefaults(
@@ -16,6 +17,8 @@ const props = withDefaults(
     seed: string
     title?: string
     intensity?: MovieIntensity
+    /** When set, paint this quantum-app PROJECTION of the shared field instead of the plasma field. */
+    app?: QuantumProjection
   }>(),
   { intensity: 'full' },
 )
@@ -43,11 +46,22 @@ const { repaint } = useVisibleMovieCanvas({
       w,
       reduce,
     )
+    if (props.app) {
+      drawQuantumAppFrame(ctx, w, h, props.app, {
+        hue: shared.hue,
+        p: shared.p,
+        t: shared.t,
+        reduce: shared.reduce,
+        cssWidth: shared.cssWidth,
+        palette: shared.palette,
+      })
+      return
+    }
     drawBackgroundMovie(ctx, w, h, backgroundSceneFromShared(shared))
   },
 })
 
-watch(moviePath, repaint)
+watch([moviePath, () => props.app], repaint)
 </script>
 
 <template>
@@ -77,10 +91,10 @@ watch(moviePath, repaint)
 }
 
 .ui-card__movie--soft {
-  opacity: 0.55;
+  opacity: var(--ich-op-card-back);
 }
 
 .ui-card__movie--whisper {
-  opacity: 0.38;
+  opacity: var(--ich-op-card-front);
 }
 </style>

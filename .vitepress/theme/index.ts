@@ -5,6 +5,9 @@ import Layout from './Layout.vue'
 import ClientOnly from './components/ClientOnly.vue'
 import DigitMotion from '../../src/water/digit/index.vue'
 import { registerVitePressComponents } from '../lib/register-components'
+import '../../src/render/ui/tokens.css'
+import '../../src/render/ui/style.css'
+import { registerShadcnUi } from '../lib/shadcn-ui.ts'
 import './hero-glass.css'
 import './universal-page.css'
 import './computed-typography.css'
@@ -15,7 +18,9 @@ export default {
   Layout,
   async enhanceApp(ctx) {
     await DefaultTheme.enhanceApp?.(ctx)
-    await registerVitePressComponents(ctx.app)
+    registerShadcnUi(ctx.app)
+    // Defer bulk registry — hero movie must mount before 80+ gate components register.
+    void registerVitePressComponents(ctx.app)
     if (!ctx.app.component('ClientOnly')) ctx.app.component('ClientOnly', ClientOnly)
     if (!ctx.app.component('UniversalPageTemplate')) {
       ctx.app.component('UniversalPageTemplate', UniversalPageTemplate)

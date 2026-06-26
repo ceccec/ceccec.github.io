@@ -1,6 +1,6 @@
 // One hero clock + canvas resize/paint — background movie, card movies, subtitles (DRY mount).
 import { nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref } from 'vue'
-import { subscribeHeroClock } from './hero-movie'
+import { subscribeHeroClock } from './hero-movie-paint'
 
 export type MovieIntensity = 'full' | 'soft' | 'whisper'
 
@@ -57,6 +57,9 @@ export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
   let visible = options.visibility === 'document'
   let observer: IntersectionObserver | null = null
   let onVisibility: (() => void) | null = null
+  let lastW = 0
+  let lastH = 0
+  let ctx: CanvasRenderingContext2D | null = null
 
   function paintFrame(time: number): void {
     if (!visible) return
@@ -64,9 +67,19 @@ export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
     if (!el) return
     const { w, h } = options.measure()
     if (w < 1 || h < 1) return
-    const ctx = resizeCanvas2d(el, w, h)
+    if (w !== lastW || h !== lastH) {
+      ctx = resizeCanvas2d(el, w, h)
+      lastW = w
+      lastH = h
+      cssWidth.value = w
+    } else if (!ctx) {
+      ctx = el.getContext('2d')
+      if (ctx && typeof window !== 'undefined') {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      }
+    }
     if (!ctx) return
-    cssWidth.value = w
     options.paint(ctx, w, h, time)
   }
 
@@ -105,6 +118,9 @@ export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
     observer?.disconnect()
     observer = null
     window.removeEventListener('resize', repaint)
+    ctx = null
+    lastW = 0
+    lastH = 0
   })
 
   return { at, cssWidth, repaint }

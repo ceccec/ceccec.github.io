@@ -3,9 +3,12 @@ import { defineAsyncComponent, defineComponent, h, ref, watch, type App, type Co
 import { useRoute } from 'vitepress'
 import DecodedCard from '../theme/components/DecodedCard.vue'
 import UiCardShell from '../theme/components/UiCardShell.vue'
+import LinkedHeroCard from '../theme/components/LinkedHeroCard.vue'
+import HubCardGrid from '../theme/components/HubCardGrid.vue'
+import TagBrowser from '../theme/components/TagBrowser.vue'
 import { componentDisplayName, useSiteLocale } from './mounts'
 import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'
-import { localeFromRoute } from '../../src/site/index'
+import { localeFromRoute } from './site-locale'
 
 /** VitePress default theme + explicit theme mounts — never re-register from componentGraph. */
 const THEME_RESERVED = new Set([
@@ -51,6 +54,9 @@ const THEME_RESERVED = new Set([
   'VPTeamPageSection',
   'VPTeamPageTitle',
   'UniversalPageTemplate',
+  'LinkedHeroCard',
+  'HubCardGrid',
+  'TagBrowser',
   'DigitMotion',
   'SevenStarRosetta',
 ])
@@ -59,12 +65,46 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   Monograph: () => import('../theme/components/MonographFold.vue'),
   Corpus: () => import('../theme/components/CorpusFold.vue'),
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),
+  Merkaba: () => import('../../src/merkaba/index.vue'),
+  DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
   VoidSidebar: () => import('../theme/components/VoidSidebar.vue'),
   TrinityGateways: () => import('../theme/components/TrinityGateways.vue'),
   GlobalHelp: () => import('../theme/components/GlobalHelp.vue'),
   CollectiveMind: () => import('../theme/components/CollectiveMind.vue'),
   RevolutAside: () => import('../theme/components/RevolutAside.vue'),
   VitePressPossibilities: () => import('../theme/components/VitePressPossibilities.vue'),
+}
+
+/** Browser-safe registry — mirrors heaven/core componentGraph without loading the mind barrel at enhanceApp. */
+function browserComponentNames(): readonly string[] {
+  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways'] as const
+  const home = [
+    'SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Merkaba', 'DoubleTorusExperience', 'Live', 'DeterminismProofs', 'CryptoCompare',
+    'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth',
+    'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer',
+    'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests', 'MatrixCube',
+  ] as const
+  const composed = [
+    'Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'PaperDetail',
+    'PaperIndex', 'ReferenceDetail', 'ReferenceIndex', 'UniversalPageTemplate', 'PowerLanding', 'StartHere',
+    'AnalogField', 'ProbSim', 'DynSim', 'NetSim', 'HubCardGrid', 'TagBrowser', 'BulgarianHeritage',
+    'BulgarianHistory', 'BulgarianEthnogenesis', 'SacredGeometry', 'Society', 'PlayLearn', 'Multidimensional',
+    'QuantumConsole', 'McpTools', 'YinYang', 'ChakrasAura', 'TaxonomyIcons', 'HarmonicMap', 'TamperingCost',
+    'BoundaryAudit', 'A432', 'QuantumCircuit', 'CryptoChallenges', 'BlockchainCompare', 'ElectromagneticRadiation',
+  ] as const
+  return [...new Set([
+    ...globals,
+    ...home,
+    ...composed,
+    ...Object.keys(OVERRIDES),
+    ...Object.keys(COMPONENT_FOLD_LOADERS),
+  ])]
+}
+
+async function componentNamesForRegistration(): Promise<readonly string[]> {
+  if (typeof window !== 'undefined') return browserComponentNames()
+  const { componentGraph } = await import('../../src/heaven/core/index')
+  return componentGraph().components
 }
 
 function gateComponent(name: string): Component {
@@ -128,8 +168,10 @@ function decodedComponent(name: string, loader: import('./component-folds').AnyF
 }
 
 export async function registerVitePressComponents(app: App): Promise<void> {
-  const { componentGraph } = await import('../../src/heaven/core/index')
-  for (const name of componentGraph().components) {
+  if (!app.component('LinkedHeroCard')) app.component('LinkedHeroCard', LinkedHeroCard)
+  if (!app.component('HubCardGrid')) app.component('HubCardGrid', HubCardGrid)
+  if (!app.component('TagBrowser')) app.component('TagBrowser', TagBrowser)
+  for (const name of await componentNamesForRegistration()) {
     if (THEME_RESERVED.has(name) || app.component(name)) continue
     const override = OVERRIDES[name]
     if (override) {

@@ -45,15 +45,15 @@ const { textShadow } = useImmersiveMovie()
 }
 
 .ui-aside--boxed {
-  margin: calc(var(--vp-movie-gap, 0.75rem) * 1.5) 0 calc(var(--vp-movie-gap, 0.75rem) * 0.75);
-  padding: calc(var(--vp-movie-gap, 0.75rem) * 0.85) calc(var(--vp-movie-gap, 0.75rem) * 1);
+  margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 2)) 0 calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 4));
+  padding: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 6)) var(--vp-movie-gap, var(--ich-sp6));
   border: 1px dashed var(--vp-hero-border);
-  border-radius: var(--vp-movie-radius, 0.5rem);
+  border-radius: var(--vp-movie-radius, var(--ich-sp4));
 }
 
 .ui-aside--divider {
-  margin: calc(var(--vp-movie-gap, 0.75rem) * 0.85) 0;
-  padding: calc(var(--vp-movie-gap, 0.5rem) * 0.65) 0;
+  margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 6)) 0;
+  padding: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(2 / 3)) 0;
   border-top: 1px dashed var(--vp-hero-border);
 }
 
@@ -64,14 +64,14 @@ const { textShadow } = useImmersiveMovie()
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: var(--ich-sp1);
 }
 
 .ui-aside--inline-summary .ui-aside__summary {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.35rem 0.65rem;
+  gap: var(--ich-gap-row) var(--ich-gap-col);
 }
 
 .ui-aside__summary::-webkit-details-marker {
@@ -81,29 +81,29 @@ const { textShadow } = useImmersiveMovie()
 .ui-aside__body {
   position: relative;
   z-index: 1;
-  margin-top: calc(var(--vp-movie-gap, 0.75rem) * 0.9);
+  margin-top: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(9 / 10));
   display: flex;
   flex-direction: column;
-  gap: calc(var(--vp-movie-gap, 0.5rem) * 0.75);
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 4));
 }
 
 .ui-aside--divider .ui-aside__body {
-  margin-top: calc(var(--vp-movie-gap, 0.5rem) * 0.85);
-  font-size: calc(0.86rem + var(--vp-movie-gap, 0.5rem) * 0.03);
+  margin-top: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(5 / 6));
+  font-size: var(--ich-text-ml);
 }
 </style>
 
 <style>
 .ui-aside__title {
-  font-size: calc(0.78rem + var(--vp-movie-gap, 0.5rem) * 0.05);
-  letter-spacing: 0.06em;
+  font-size: var(--ich-text-ms);
+  letter-spacing: var(--ich-track-ui);
   text-transform: uppercase;
-  opacity: var(--vp-movie-fade, 0.82);
+  opacity: var(--vp-movie-fade, var(--ich-op-strong));
 }
 
 .ui-aside__hint {
-  font-size: calc(0.82rem + var(--vp-movie-gap, 0.5rem) * 0.03);
-  opacity: var(--vp-movie-fade, 0.68);
+  font-size: var(--ich-text-sm);
+  opacity: var(--vp-movie-fade, var(--ich-op-dim));
 }
 
 .vp-with-hero-movie .ui-aside .ui-card__movie {

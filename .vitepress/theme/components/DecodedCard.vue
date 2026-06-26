@@ -6,8 +6,10 @@ import {
   decodedCardFacetMark,
 } from '@vp-lib/hero-movie'
 import type { ComponentCrosslink } from '../../lib/crosslinks'
+import type { QuantumProjection } from '@vp-lib/hero-movie'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
+import { UiBadge } from '../../lib/shadcn-ui.ts'
 
 export type DecodedFacet = { facet: string; on?: boolean; receipt?: string; link?: string }
 export type DecodedStation = { step?: number; station: string; route: string; why?: string }
@@ -24,6 +26,8 @@ const props = defineProps<{
   titleLevel?: 2 | 3
   /** Omit visible title when parent already shows the same heading. */
   skipTitle?: boolean
+  /** Quantum-app projection painted as this card's movie (the card's animation = a view of the field). */
+  movieApp?: QuantumProjection
 }>()
 
 const route = useRoute()
@@ -64,13 +68,15 @@ const titleId = computed(() => {
 </script>
 
 <template>
-  <UiCardShell class="decoded-card" :seed-parts="seedParts" :title="displayTitle">
+  <UiCardShell class="decoded-card" :seed-parts="seedParts" :title="displayTitle" :movie-app="movieApp">
     <component
       :is="titleLevel === 3 ? 'h3' : 'h2'"
       v-if="showTitle"
       :id="titleId"
       class="decoded-card__title"
     >{{ displayTitle }}</component>
+    <p v-if="statement" class="decoded-card__statement">{{ t(statement) }}</p>
+    <p v-if="boundary" class="decoded-card__boundary">{{ t(boundary) }}</p>
     <ol v-if="displayStations?.length" class="decoded-card__stations">
       <li v-for="station in displayStations" :key="station.route + station.station">
         <a :href="localize(station.route)">{{ station.station }}</a>
@@ -78,9 +84,12 @@ const titleId = computed(() => {
     </ol>
     <ul v-else-if="displayFacets?.length" class="decoded-card__facets">
       <li v-for="(facet, index) in displayFacets" :key="facet.facet">
-        <span class="decoded-card__mark" :class="{ 'decoded-card__mark--on': facet.on }">{{
+        <UiBadge
+          variant="outline"
+          :class="facet.on ? 'ui-badge--on decoded-card__facet-badge' : 'ui-badge--off decoded-card__facet-badge'"
+        >{{
           decodedCardFacetMark(facet.on ?? false, index, facet.facet)
-        }}</span>
+        }}</UiBadge>
         <a v-if="facet.link" :href="localize(facet.link)">{{ facet.facet }}</a>
         <template v-else>{{ facet.facet }}</template>
       </li>
@@ -93,7 +102,9 @@ const titleId = computed(() => {
         :href="link.link"
         class="decoded-card__crosslink"
         :data-kind="link.kind"
-      >{{ link.text }}</a>
+      >
+        <UiBadge variant="outline">{{ link.text }}</UiBadge>
+      </a>
     </nav>
   </UiCardShell>
 </template>
@@ -104,22 +115,39 @@ const titleId = computed(() => {
   margin: 0 0 var(--vp-movie-gap);
 }
 
-.decoded-card__stations,
-.decoded-card__facets {
-  margin: 0 0 calc(var(--vp-movie-gap) * 1.5);
+.decoded-card__statement {
+  margin: 0 0 var(--vp-movie-gap);
+  line-height: var(--ich-lh-relaxed);
+  text-shadow: var(--vp-hero-text-shadow);
 }
 
-.decoded-card__mark {
-  display: inline-block;
-  width: calc(var(--vp-movie-gap) * 3.1);
+.decoded-card__boundary {
+  margin: 0 0 calc(var(--vp-movie-gap) * calc(3 / 2));
+  padding-left: calc(var(--vp-movie-gap) * calc(5 / 4));
+  border-left: calc(var(--ich-line) * 2) solid var(--vp-movie-link);
+  font-size: var(--ich-em-card-title);
+  line-height: var(--ich-lh-normal);
+  opacity: var(--ich-op-card-soft);
+  text-shadow: var(--vp-hero-text-shadow);
+}
+
+.decoded-card__stations,
+.decoded-card__facets {
+  margin: 0 0 calc(var(--vp-movie-gap) * calc(3 / 2));
+}
+
+.decoded-card__facet-badge {
+  margin-right: calc(var(--vp-movie-gap) * calc(1 / 2));
   font-family: var(--vp-font-family-mono);
+  font-size: var(--ich-em-card-meta);
 }
 
 .decoded-card__crosslinks {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  margin: 0 0 calc(var(--vp-movie-gap) * 1.5);
+  gap: calc(var(--vp-movie-gap) * calc(1 / 2));
+  margin: 0 0 calc(var(--vp-movie-gap) * calc(3 / 2));
 }
 
 .decoded-card__crosslinks-label {
@@ -128,6 +156,5 @@ const titleId = computed(() => {
 
 .decoded-card__crosslink {
   text-decoration: none;
-  border-bottom: 1px dotted var(--vp-movie-link);
 }
 </style>

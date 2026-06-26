@@ -5,36 +5,49 @@ export {
   drawBackgroundMovie,
   drawHeroMovieFrame,
   drawLivingTorusFrame,
+  drawDoubleTorusEarthHingeFrame,
+  drawBothEarthsMerkabaFrame,
+  drawQuantumAppFrame,
   movieTextFromCopy,
   realtimeSubtitleAt,
   sharedHeroAt,
   subscribeHeroClock,
+  quantumAppForComponent,
+  type EarthHingePaintGateway,
+  type EarthHingePaintLayer,
+  type EarthHingePaintVortexStep,
   type LivingTorusCoordinate,
+  type BothEarthsMerkabaRotation,
+  type QuantumAppFrame,
+  type QuantumProjection,
   type RealtimeSubtitleState,
   type SharedHeroCopy,
-} from '../../src/quantum/index'
+  type SharedHeroState,
+} from './hero-movie-paint'
 export {
   backgroundMovieColorVars,
   cardMovieColorVars,
   cardMoviePath,
   cardMovieSeed,
+} from '../../src/thunder/movie/movievars'
+export {
+  plasmaMoviePalette,
+  type PlasmaMoviePalette,
+} from '../../src/plasma/ball'
+export {
   decodedCardCrosslinksLabel,
   decodedCardFacetMark,
   decodedCardTextShadow,
-  heroMovieChromeVars,
   immersiveMovieToggleLabel,
-  plasmaMoviePalette,
-  type PlasmaMoviePalette,
-} from '../../src/thunder/movie'
-export { plasmaMovieStreams, plasmaWiredUuidStreams, type PlasmaWiredStream } from '../../src/thunder/trading/index'
+} from '../../src/thunder/movie/glass'
+export {
+  plasmaMovieStreams,
+  plasmaWiredUuidStreams,
+  type PlasmaWiredStream,
+  AUDIO_DEFAULT_ENABLED,
+  AUDIO_ENABLED_STORAGE_KEY,
+  SCREENSAVER_IDLE_MS,
+} from '../../src/plasma/ball'
 export { speechIntonation } from '../../src/lake/media/index'
 export { livingTorus } from '../../src/fire/diamonds/index'
-export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../../src/thunder/movie/index'
-export {
-  cardMovieFromParts,
-  componentDisplayName,
-  useCardMovie,
-  useImmersiveMovie,
-  useSiteLocale,
-} from './mounts'
-export { prefersReducedMotion, useHeroClock, useVisibleMovieCanvas, viewportSize, type MovieIntensity } from './movie-canvas'
+export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../../src/thunder/movie/glass'

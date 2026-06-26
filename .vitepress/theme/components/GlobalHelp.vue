@@ -123,18 +123,18 @@ function confidenceLabel(value: number) {
 .global-help__form {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--vp-movie-gap, 0.5rem) * 0.55);
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 5));
 }
 
 .global-help__input {
-  flex: 1 1 12rem;
+  flex: 1 1 calc(var(--ich-sp6) * 16);
   min-width: 0;
-  padding: 0.35rem 0.55rem;
+  padding: var(--ich-pad-chip-y) var(--ich-pad-chip-x);
   font: inherit;
   color: var(--vp-c-text-1);
   background: transparent;
   border: 1px dashed var(--vp-hero-border);
-  border-radius: calc(var(--vp-movie-radius, 0.5rem) * 0.65);
+  border-radius: calc(var(--vp-movie-radius, var(--ich-sp4)) * calc(2 / 3));
   text-shadow: var(--vp-hero-text-shadow);
 }
 
@@ -145,13 +145,13 @@ function confidenceLabel(value: number) {
 
 .global-help__submit,
 .global-help__chip {
-  padding: 0.35rem 0.65rem;
+  padding: var(--ich-pad-chip-y) var(--ich-gap-col);
   font: inherit;
-  font-size: 0.86rem;
+  font-size: var(--ich-text-ml);
   color: var(--vp-c-text-1);
   background: transparent;
   border: 1px dashed var(--vp-hero-border);
-  border-radius: calc(var(--vp-movie-radius, 0.5rem) * 0.65);
+  border-radius: calc(var(--vp-movie-radius, var(--ich-sp4)) * calc(2 / 3));
   cursor: pointer;
   text-shadow: var(--vp-hero-text-shadow);
 }
@@ -165,38 +165,38 @@ function confidenceLabel(value: number) {
 .global-help__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--vp-movie-gap, 0.5rem) * 0.45);
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(4 / 9));
 }
 
 .global-help__chip {
-  font-size: 0.82rem;
+  font-size: var(--ich-text-sm);
   text-transform: lowercase;
 }
 
 .global-help__answer {
-  padding-top: calc(var(--vp-movie-gap, 0.5rem) * 0.35);
+  padding-top: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 3));
   border-top: 1px dashed var(--vp-hero-border);
 }
 
 .global-help__meta {
-  margin: 0 0 calc(var(--vp-movie-gap, 0.5rem) * 0.65);
+  margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(2 / 3));
   display: grid;
-  gap: 0.25rem 0.65rem;
-  font-size: 0.84rem;
+  gap: var(--ich-sp2) var(--ich-gap-col);
+  font-size: var(--ich-text-sm);
 }
 
 .global-help__meta-row {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.45rem;
+  gap: var(--ich-gap-row);
   align-items: baseline;
 }
 
 .global-help__meta dt {
-  opacity: var(--vp-movie-fade, 0.72);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 0.78rem;
+  letter-spacing: var(--ich-track-wide);
+  font-size: var(--ich-text-ms);
 }
 
 .global-help__meta dd {
@@ -205,11 +205,11 @@ function confidenceLabel(value: number) {
 }
 
 .global-help__related-heading {
-  margin: 0 0 calc(var(--vp-movie-gap, 0.5rem) * 0.45);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(4 / 9));
+  font-size: var(--ich-text-ms);
+  letter-spacing: var(--ich-track-ui);
   text-transform: uppercase;
-  opacity: var(--vp-movie-fade, 0.72);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
   text-shadow: var(--vp-hero-text-shadow);
 }
 
@@ -219,13 +219,13 @@ function confidenceLabel(value: number) {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--vp-movie-gap, 0.5rem) * 0.35);
+  gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 3));
 }
 
 .global-help__related-link {
   color: var(--vp-c-text-1);
   text-decoration: none;
-  font-size: 0.86rem;
+  font-size: var(--ich-text-ml);
   text-shadow: var(--vp-hero-text-shadow);
 }
 
@@ -234,16 +234,16 @@ function confidenceLabel(value: number) {
 }
 
 .global-help__receipt {
-  margin: calc(var(--vp-movie-gap, 0.5rem) * 0.65) 0 0;
-  font-size: 0.78rem;
-  opacity: var(--vp-movie-fade, 0.78);
+  margin: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(2 / 3)) 0 0;
+  font-size: var(--ich-text-ms);
+  opacity: var(--vp-movie-fade, var(--ich-op-strong));
   text-shadow: var(--vp-hero-text-shadow);
   word-break: break-all;
 }
 
 .global-help__receipt-label {
-  margin-right: 0.35rem;
+  margin-right: var(--ich-gap-row);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--ich-track-wide);
 }
 </style>

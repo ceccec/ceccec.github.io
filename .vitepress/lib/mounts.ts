@@ -1,23 +1,47 @@
 // VitePress mount composables — locale · card movie · immersive · hero copy · speech (one DRY surface).
 import { computed, onMounted, onUnmounted, ref, toValue, watch, type MaybeRefOrGetter, type Ref } from 'vue'
-import { useRoute, useData } from 'vitepress'
+import { useRoute } from 'vitepress'
 import {
   displayText,
   localeFromRoute,
   localePath,
   pickLocale,
   type LocaleName,
-} from '../../src/site/index'
+} from './site-locale'
 import {
   cardMovieColorVars,
   cardMovieSeed,
-  decodedCardTextShadow,
-  movieTextFromCopy,
-  speechIntonation,
-  type SharedHeroCopy,
-} from './hero-movie'
+} from '../../src/thunder/movie/movievars'
+import { decodedCardTextShadow } from '../../src/thunder/movie/glass'
+import { speechIntonation } from '../../src/lake/media/index'
+import {
+  AUDIO_ENABLED_STORAGE_KEY,
+} from '../../src/plasma/ball'
+
+export { useHeroCopy } from './hero-copy'
 
 const SPEECH_STORAGE_KEY = 'ceccec:subtitle-speech'
+
+/** Opt-in Web Audio — off by default (storage absent ⇒ silent). */
+export function useAudioEnabled() {
+  const enabled = ref(false)
+
+  function loadEnabled(): void {
+    if (typeof localStorage === 'undefined') return
+    enabled.value = localStorage.getItem(AUDIO_ENABLED_STORAGE_KEY) === '1'
+  }
+
+  function toggleAudio(): void {
+    enabled.value = !enabled.value
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(AUDIO_ENABLED_STORAGE_KEY, enabled.value ? '1' : '0')
+    }
+  }
+
+  onMounted(() => loadEnabled())
+
+  return { enabled, toggleAudio }
+}
 
 export function componentDisplayName(locale: LocaleName, name: string): string {
   return displayText(locale, name.replace(/([a-z0-9])([A-Z])/g, '$1 $2'))
@@ -31,28 +55,6 @@ export function useSiteLocale() {
   const localize = (path: string) => localePath(path, locale.value)
   const componentName = (name: string) => componentDisplayName(locale.value, name)
   return { route, locale, pick, t, localize, componentName }
-}
-
-/** Localized VitePress page copy — same seed for background movie and realtime subtitles. */
-export function useHeroCopy() {
-  const route = useRoute()
-  const { frontmatter, title, description } = useData()
-  const { t } = useSiteLocale()
-
-  const copy = computed((): SharedHeroCopy => {
-    const hero = frontmatter.value.hero as { tagline?: string } | undefined
-    return {
-      title: t((frontmatter.value.title as string | undefined) || title.value),
-      description: t(description.value),
-      tagline: t(hero?.tagline),
-      keywords: (frontmatter.value.keywords as string[] | undefined)?.map(
-        (keyword) => t(keyword) ?? keyword,
-      ),
-    }
-  })
-
-  const movieText = computed(() => movieTextFromCopy(copy.value) || route.path)
-  return { route, copy, movieText }
 }
 
 function speechLang(locale: LocaleName): string {
@@ -158,3 +160,27 @@ export function useImmersiveMovie() {
 }
 
 export { prefersReducedMotion, useHeroClock, useVisibleMovieCanvas, viewportSize, type MovieIntensity } from './movie-canvas'
+
+export type CorpusGridItem = {
+  route: string
+  id: string
+  title: string
+  glyph: string
+  hue: number
+}
+
+/** Defer sealed corpus graph until after first paint — work is math-bounded in src/routes/corpus. */
+export async function hubCardItemsAsync(locale: LocaleName): Promise<CorpusGridItem[]> {
+  const { hubCardItems } = await import('../../src/routes/corpus/index')
+  return hubCardItems(locale)
+}
+
+export async function tagBrowserTagsAsync(): Promise<readonly string[]> {
+  const { tagBrowserTags } = await import('../../src/routes/corpus/index')
+  return tagBrowserTags()
+}
+
+export async function tagBrowserItemsAsync(tag: string, locale: LocaleName): Promise<CorpusGridItem[]> {
+  const { tagBrowserItems } = await import('../../src/routes/corpus/index')
+  return tagBrowserItems(tag, locale)
+}

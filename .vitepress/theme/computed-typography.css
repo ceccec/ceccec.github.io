@@ -1,48 +1,45 @@
-/* Computed surfaces — inherit VitePress .vp-doc scale; spacing from --vp-movie-* vars. */
+/* Computed surfaces — inherit VitePress .vp-doc scale; spacing from --vp-movie-* + --ich-* vars. */
 
 .vp-doc,
 .vp-with-hero-movie .vp-doc {
-  line-height: var(--vp-movie-line-height, 1.45);
+  line-height: var(--vp-movie-line-height, var(--ich-lh-snug));
 }
 
 .vp-with-hero-movie .vp-doc :where(p, ul, ol, dl, blockquote) {
-  margin-block: var(--vp-movie-gap, 0.75rem);
+  margin-block: var(--vp-movie-gap, var(--ich-sp6));
 }
 
 .vp-with-hero-movie .vp-doc :where(h1, h2, h3, h4) {
-  margin-block-end: calc(var(--vp-movie-gap, 0.75rem) * 0.85);
+  margin-block-end: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 6));
 }
 
 .vp-with-hero-movie .vp-doc h2 + *,
 .vp-with-hero-movie .vp-doc h3 + * {
-  margin-block-start: calc(var(--vp-movie-gap, 0.75rem) * 0.65);
+  margin-block-start: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(2 / 3));
 }
 
-/* Card content — doc typography inside movie chrome. */
 .vp-with-hero-movie .ui-card__content.vp-doc {
   font-size: inherit;
 }
 
 .vp-with-hero-movie .ui-card__content.vp-doc :where(ul, ol) {
-  padding-inline-start: calc(var(--vp-movie-pad-x, 1rem) * 1.1);
+  padding-inline-start: calc(var(--vp-movie-pad-x, var(--ich-sp8)) * calc(9 / 8));
 }
 
-/* Universal page — rosetta rays sit at h3 scale inside doc flow. */
 .vp-with-hero-movie .universal-page.vp-doc .rosetta-ray {
-  margin-block: calc(var(--vp-movie-gap, 0.75rem) * 1.25)
-    calc(var(--vp-movie-gap, 0.75rem) * 0.65);
+  margin-block: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 4))
+    calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(2 / 3));
 }
 
 .vp-with-hero-movie .universal-page.vp-doc .page-proof {
-  opacity: var(--vp-movie-fade, 0.7);
+  opacity: var(--vp-movie-fade, var(--ich-op-soft));
 }
 
-/* Home hero in doc-before — tagline matches doc body rhythm. */
 .vp-with-hero-movie .vp-home-hero-doc .VPHomeHero .tagline {
-  line-height: var(--vp-movie-line-height, 1.45);
-  margin-block: var(--vp-movie-gap, 0.75rem);
+  line-height: var(--vp-movie-line-height, var(--ich-lh-snug));
+  margin-block: var(--vp-movie-gap, var(--ich-sp6));
 }
 
 .vp-with-hero-movie .VPDoc .vp-home-hero-doc {
-  margin-block-end: calc(var(--vp-movie-gap, 0.75rem) * 1.5);
+  margin-block-end: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 2));
 }

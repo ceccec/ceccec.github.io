@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { UiCard, UiCardContent } from '../../lib/shadcn-ui.ts'
 import { useCardMovie, useImmersiveMovie, type MovieIntensity } from '../../lib/mounts'
+import type { QuantumProjection } from '@vp-lib/hero-movie'
 import CardBackgroundMovie from './CardBackgroundMovie.vue'
 
 const props = withDefaults(
@@ -11,6 +13,8 @@ const props = withDefaults(
     component?: string
     immersiveShadow?: boolean
     movieIntensity?: MovieIntensity
+    /** Paint a quantum-app projection of the shared field as the card movie. */
+    movieApp?: QuantumProjection
   }>(),
   { immersiveShadow: true, movieIntensity: 'full' },
 )
@@ -24,18 +28,19 @@ const contentStyle = computed(() =>
 </script>
 
 <template>
-  <article
-    class="ui-card"
-    :class="{
-      'ui-card--ghost': ghost,
-    }"
-    data-shadcn="card"
-    :data-component="component"
+  <UiCard
+    :ghost="ghost"
+    :class="$attrs.class"
     :style="cardStyle"
+    :data-component="component"
   >
-    <CardBackgroundMovie :seed="seed" :title="title" :intensity="movieIntensity" />
-    <div class="ui-card__content vp-doc" :style="contentStyle">
+    <CardBackgroundMovie :seed="seed" :title="title" :intensity="movieIntensity" :app="movieApp" />
+    <UiCardContent class="vp-doc" :style="contentStyle">
       <slot />
-    </div>
-  </article>
+    </UiCardContent>
+  </UiCard>
 </template>
+
+<script lang="ts">
+export default { inheritAttrs: false }
+</script>

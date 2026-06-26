@@ -6,6 +6,7 @@ import { defineConfig } from 'vitepress'
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
 import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts'
+import { buildVerbosePlugin } from './build-verbose-plugin.mts'
 import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without en|bg prefix — default locale is Glagolitic (cu). */
@@ -20,8 +21,9 @@ function glagoliticIfLatin(text: string): string {
 }
 import { buildMatrix } from '../src/heaven/compute'
 import { computeUniversalPage } from '../src/routes/corpus'
-import { heroChromeStyleBlock } from './lib/hero-chrome'
+import { heroChromeStyleBlocks } from './lib/hero-chrome'
 import { universalRoutePath } from './lib/universal-route-path'
+import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-server-bind.mts'
 
 // Config consumes computed indices only — siteConfig/siteNavigation from mind/index.ts;
 // siteNavigation derives nav from the 7-star rosetta (coprime to 6/9/10) — not hardcoded BAGUA.
@@ -31,10 +33,103 @@ const nav = siteNavigation()
 const vpSidebar = vitepressSidebar()
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
 const vpLibRoot = join(projectRoot, '.vitepress/lib')
+console.log(`[vitepress-config] ${new Date().toISOString()} ▶ imports done — defining config`)
+
+/**
+ * Client-bundle source for the computational barrel — a faithful JS port of its PURE exports
+ * (no node:fs/node:path). Every census/harmonic quantity is recomputed from the same sealed math
+ * (Fibonacci recurrence, genus-2 Euler χ, homology loops, Rosetta grid, harmonics ladder), so the
+ * client values are byte-identical to the Node module's. fs-walking scanners are stubbed to [].
+ */
+function computationalClientStubSource(): string {
+  return `
+const FIB = (() => { const f = [1, 1]; while (f[f.length - 1] + f[f.length - 2] <= 55) f.push(f[f.length - 1] + f[f.length - 2]); return f; })();
+export const FIBONACCI_CENSUS_BANDS = [FIB[FIB.length - 1], FIB[FIB.length - 2], FIB[FIB.length - 3]];
+export const UNFOLDED_CENSUS = FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0);
+export const EULER_CHI = -2;
+export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI;
+export const HOMOLOGY_LOOPS = 4;
+export const DIMENSION_GATES = HOMOLOGY_LOOPS * FOLDED_CENSUS;
+export const HARMONICS_LADDER_LENGTH = 6 + 9 + 5;
+export const SIEGE_WAVES = 9;
+export const SIEGE_PER_WAVE = FOLDED_CENSUS;
+export const SIEGE_TOTAL_FORGES = SIEGE_WAVES * SIEGE_PER_WAVE;
+export const MAX_SUBFOLDERS_PER_FOLDER = 8;
+export const ICHING_TRIGRAMS = 8;
+export const ICHING_EIGHT_FOLD = MAX_SUBFOLDERS_PER_FOLDER;
+export const ROSETTA_SIX = 6;
+export const ROSETTA_SEVEN = 7;
+export const ROSETTA_AREAS = ROSETTA_SIX * ROSETTA_SEVEN;
+export const ROSETTA_FOLD_LABEL = ROSETTA_SIX + '×' + ROSETTA_SEVEN + '/' + ROSETTA_SEVEN + '×' + ROSETTA_SIX;
+export const EIGHT_CURRICULUM_SCIENCES = ['see', 'hear', 'ask', 'prove', 'learn', 'pattern', 'sense', 'create'];
+export const SRC_SCIENCE_MODEL_ACTION_SCHEMA = 'src/[science]/[action]';
+export const CANONICAL_SCIENCE_MASK = 'src/<science>/<action>';
+export const FORBIDDEN_FOLDER_NAMES = ['index'];
+export const SCHEMA_TWO_LEVEL_MODEL = 'fold';
+export function isCurriculumScience(name) { return EIGHT_CURRICULUM_SCIENCES.includes(name); }
+export function isForbiddenFolderName(name) { return FORBIDDEN_FOLDER_NAMES.includes(name); }
+function vaultSplitCamelSegment(segment) {
+  const words = []; let current = '';
+  for (let i = 0; i < segment.length; i++) {
+    const ch = segment[i];
+    if (ch >= 'A' && ch <= 'Z') { if (current) words.push(current.toLowerCase()); current = ch.toLowerCase(); }
+    else { current += ch; }
+  }
+  if (current) words.push(current.toLowerCase());
+  return words.filter((w) => /^[a-z]+$/.test(w));
+}
+export function splitMethodWords(name, prefix = 'concept.') {
+  const stripped = name.startsWith(prefix) ? name.slice(prefix.length) : name;
+  return stripped.split('.').flatMap((seg) => vaultSplitCamelSegment(seg));
+}
+export function folderTailFromMethodName(name, prefix = 'concept.') { return splitMethodWords(name, prefix).join('/'); }
+function assertScienceModelAction(sma) {
+  for (const seg of [sma.science, sma.model, sma.action]) {
+    if (isForbiddenFolderName(seg)) throw new Error('folder "' + seg + '" is forbidden — every folder is an index');
+  }
+  return sma;
+}
+export function scienceModelActionFromWords(words) {
+  const parts = words.filter(Boolean);
+  if (parts.length >= 3) return assertScienceModelAction({ science: parts[parts.length - 3], model: parts[parts.length - 2], action: parts[parts.length - 1] });
+  if (parts.length === 2) return assertScienceModelAction({ science: parts[0], model: SCHEMA_TWO_LEVEL_MODEL, action: parts[1] });
+  if (parts.length === 1) return assertScienceModelAction({ science: 'heaven', model: SCHEMA_TWO_LEVEL_MODEL, action: parts[0] });
+  return assertScienceModelAction({ science: 'heaven', model: SCHEMA_TWO_LEVEL_MODEL, action: 'essence' });
+}
+export function scienceModelActionFromMindTail(tail) { return scienceModelActionFromWords(tail.split('/')); }
+export function scienceModelActionFromMethodName(name, prefix = 'concept.') { return scienceModelActionFromWords(splitMethodWords(name, prefix)); }
+export function scienceModelActionTail(sma) {
+  if (sma.model === SCHEMA_TWO_LEVEL_MODEL) return sma.science + '/' + sma.action;
+  return sma.science + '/' + sma.model + '/' + sma.action;
+}
+export function srcLogicPathFromScienceModelAction(sma) { return 'src/' + scienceModelActionTail(sma) + '/index.ts'; }
+export function renderUiPathFromScienceModelAction(sma) { return 'src/' + scienceModelActionTail(sma) + '/index.vue'; }
+export const displayPathFromScienceModelAction = renderUiPathFromScienceModelAction;
+export function scienceModelActionMaskRowsFromMindTails(mindTails) {
+  return mindTails.map((mindTail) => {
+    const sma = scienceModelActionFromMindTail(mindTail);
+    const tail = scienceModelActionTail(sma);
+    return { mindTail, science: sma.science, model: sma.model, action: sma.action, logicNow: 'src/quantum/heaven/mind/' + mindTail + '/index.ts', logicTarget: srcLogicPathFromScienceModelAction(sma), renderPath: renderUiPathFromScienceModelAction(sma), route: '/' + tail };
+  });
+}
+export function indexRegistryFromLogicRel(logicRel, mindMount = 'src/quantum/heaven/mind/') {
+  const rel = logicRel.replace(/\\\\/g, '/');
+  if (!rel.startsWith('src/') || !rel.endsWith('/index.ts')) return null;
+  const sma = rel.startsWith(mindMount) ? scienceModelActionFromMindTail(rel.slice(mindMount.length, -'/index.ts'.length)) : scienceModelActionFromWords(rel.slice('src/'.length, -'/index.ts'.length).split('/').filter(Boolean));
+  return { logic: rel, target: srcLogicPathFromScienceModelAction(sma), route: '/' + scienceModelActionTail(sma), science: sma.science, model: sma.model, action: sma.action };
+}
+export function discoverSrcIndexes() { return []; }
+export function vitepressAutomountPaths() { return []; }
+`
+}
 
 /** Stub fs-walking modules in client bundle — automount/paths.ts are build-time Node only. */
 function nodeOnlyClientStubPlugin(): import('vite').Plugin {
-  const computationalRx = /pair\/enforcement\/gates\/computational/
+  // The computational barrel statically imports node:fs/node:path (build-time gate scanners). In the
+  // client bundle those eager-bind and throw, so we replace the whole module with a self-contained
+  // JS port of its PURE exports (constants + path/word math, recomputed from the same sealed math),
+  // and stub the fs-walking scanners to no-ops. Node/SSG keep the real module (ssrBuild → null).
+  const computationalRx = /pair\/enforcement\/gates\/computational(\/index(\.ts)?)?(\?|$)/
   const automountRx = /wind\/fold\/routes\/automount/
   let ssrBuild = false
   return {
@@ -50,14 +145,7 @@ function nodeOnlyClientStubPlugin(): import('vite').Plugin {
       if (automountRx.test(norm)) return '\0node-stub:automount'
     },
     load(id) {
-      if (id === '\0node-stub:computational') {
-        return `export const UNFOLDED_CENSUS = 110;
-export const FOLDED_CENSUS = 108;
-export const DIMENSION_GATES = 432;
-export function discoverSrcIndexes() { return []; }
-export function vitepressAutomountPaths() { return []; }
-`
-      }
+      if (id === '\0node-stub:computational') return computationalClientStubSource()
       if (id === '\0node-stub:automount') {
         return `export function discoverSrcIndexes() { return []; }
 export function vitepressAutomountPaths(_locale) { return []; }
@@ -86,6 +174,9 @@ function vpLibNestedResolvePlugin(): import('vite').Plugin {
       }
       if (id === '@vp-lib/hero-movie' || id.endsWith('/lib/hero-movie')) {
         return join(vpLibRoot, 'hero-movie.ts')
+      }
+      if (id === '@vp-lib/hero-movie-paint' || id.endsWith('/lib/hero-movie-paint')) {
+        return join(vpLibRoot, 'hero-movie-paint.ts')
       }
       if (id === '@vp-lib/register-components' || id.endsWith('/lib/register-components')) {
         return join(vpLibRoot, 'register-components.ts')
@@ -135,6 +226,8 @@ export default defineConfig({
   // theme chunk is large by design. Raise the warning limit to keep build output
   // clean while still flagging genuine bloat above the headroom.
   vite: {
+    server: vitepressDevServerBind(),
+    optimizeDeps: vitepressDevOptimizeDeps(),
     build: {
       chunkSizeWarningLimit: 700,
       sourcemap: false,
@@ -152,7 +245,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), ...srcFolderPlugins(projectRoot)],
+    plugins: [nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), ...srcFolderPlugins(projectRoot)],
     // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
     // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
     // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —
@@ -227,7 +320,8 @@ export default defineConfig({
       (frontmatter.monograph === true ||
         Boolean(frontmatter.universal) ||
         /\[(page|path)\]\.md$/.test(relative) ||
-        /\/(papers|references|diamonds)\/(index\.md|\[id\]\.md)$/.test(relative))
+        /\/(papers)\/(index\.md|\[id\]\.md)$/.test(relative) ||
+        /\/(references|diamonds)\/index\.md$/.test(relative))
     if (usesUniversal) {
       const universal = computeUniversalPage(path, routeParams)
       pageData.params = {
@@ -351,7 +445,7 @@ export default defineConfig({
       site: { en: siteTitle, bg: siteTitleBg, descriptionEn: siteDescription, descriptionBg: siteDescriptionBg },
     })
     const scripts = blocks.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join('')
-    const heroStyle = `<style id="vp-hero-chrome">${heroChromeStyleBlock(path, buildMatrix())}</style>`
+    const heroStyle = `<style id="vp-hero-chrome">${heroChromeStyleBlocks(path, buildMatrix())}</style>`
     return html.replace('</head>', `${heroStyle}${scripts}</head>`)
   },
   themeConfig: {

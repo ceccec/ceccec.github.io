@@ -38,7 +38,7 @@ const labels = computed(() => ({
 
 <style scoped>
 .revolut-aside {
-  margin: calc(var(--vp-movie-gap, 0.75rem) * 0.25) 0;
+  margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(1 / 4)) 0;
 }
 
 .revolut-aside__link {
@@ -52,8 +52,8 @@ const labels = computed(() => ({
 }
 
 .revolut-aside__receipt {
-  font-size: 0.78em;
-  opacity: var(--vp-movie-fade, 0.65);
+  font-size: var(--ich-em-sm);
+  opacity: var(--vp-movie-fade, var(--ich-op-dim));
   word-break: break-all;
 }
 </style>

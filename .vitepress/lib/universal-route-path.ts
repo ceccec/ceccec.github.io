@@ -23,11 +23,17 @@ export function universalRoutePath(
     return slug ? join(prefix, slug) : join(prefix) || '/'
   }
 
-  for (const kind of ['papers', 'references', 'diamonds'] as const) {
+  for (const kind of ['papers'] as const) {
     if (norm.includes(`${kind}/[id].md`)) {
       const id = typeof params.id === 'string' ? params.id : typeof params.index === 'string' ? params.index : ''
       return id ? join(prefix, kind, id) : join(prefix, kind)
     }
+    if (norm.endsWith(`${kind}/index.md`) || norm.endsWith(`${kind}/index.md/`)) {
+      return join(prefix, kind)
+    }
+  }
+
+  for (const kind of ['references', 'diamonds'] as const) {
     if (norm.endsWith(`${kind}/index.md`) || norm.endsWith(`${kind}/index.md/`)) {
       return join(prefix, kind)
     }

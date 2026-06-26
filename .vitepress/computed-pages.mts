@@ -39,12 +39,11 @@ export function computedPagesPlugin(projectRoot: string) {
     },
     load(id: string) {
       const clean = normalize(id.replace(/\?.*$/, ''))
-      const enHome = readFileSync(enHomePath, 'utf8')
       if (clean === glaHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'index.md')}`)) {
-        return glagoliticHomeFromEnglish(enHome)
+        return glagoliticHomeFromEnglish(readFileSync(enHomePath, 'utf8'))
       }
       if (clean === bgHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'bg', 'index.md')}`)) {
-        return bulgarianHomeFromEnglish(enHome)
+        return bulgarianHomeFromEnglish(readFileSync(enHomePath, 'utf8'))
       }
     },
   }

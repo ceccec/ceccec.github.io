@@ -1,0 +1,38 @@
+// Browser-safe hero paint mount — quantum paint path only; plasma ball from canonical src/plasma/ball.
+export {
+  backgroundSceneFromShared,
+  drawBackgroundMovie,
+  drawHeroMovieFrame,
+  drawLivingTorusFrame,
+  drawDoubleTorusEarthHingeFrame,
+  drawBothEarthsMerkabaFrame,
+  drawQuantumAppFrame,
+  movieTextFromCopy,
+  realtimeSubtitleAt,
+  sharedHeroAt,
+  subscribeHeroClock,
+  type EarthHingePaintGateway,
+  type EarthHingePaintLayer,
+  type EarthHingePaintVortexStep,
+  type LivingTorusCoordinate,
+  type BothEarthsMerkabaRotation,
+  type QuantumAppFrame,
+  type RealtimeSubtitleState,
+  type SharedHeroCopy,
+  type SharedHeroState,
+} from '../../src/quantum/index'
+export { quantumAppForComponent, type QuantumProjection } from '../../src/quantum/apps'
+export {
+  plasmaBallComputes,
+  realtimeComputationsMoviePaint,
+  allRealtimeComputationsVisibleInMovie,
+  movieAsMostEfficientScreensaver,
+  screensaverMovieComputes,
+  screensaverMovieResearch,
+  SCREENSAVER_IDLE_MS,
+  SCREENSAVER_MOVIE_CHANNEL_IDS,
+  type RealtimeComputationsMoviePaint,
+  type RealtimeComputeMovieChannel,
+  type MovieScreensaverEfficiencyReceipt,
+  type ScreensaverTier,
+} from '../../src/plasma/ball'

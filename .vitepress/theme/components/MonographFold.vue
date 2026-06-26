@@ -23,6 +23,7 @@ const view = computed(() => {
     return {
       title: pick(page.title.en, page.title.bg),
       statement: pick(page.description.en, page.description.bg),
+      boundary: undefined,
       facets: page.components.slice(0, 4).map((name) => ({
         facet: componentName(name),
         on: true,
@@ -33,14 +34,13 @@ const view = computed(() => {
 
   const page = (params.value as { universal?: UniversalPage })?.universal
   if (!page) return null
-  return (
-    page.decoded ?? {
-      title: page.title,
-      statement: page.description,
-      facets: page.proof ? [{ facet: page.proof.slice(0, 24), on: true }] : [],
-      ok: Boolean(page.proof),
-    }
-  )
+  if (page.decoded) return page.decoded
+  return {
+    title: page.title,
+    statement: page.description,
+    facets: page.proof ? [{ facet: page.proof.slice(0, 24), on: true }] : [],
+    ok: Boolean(page.proof),
+  }
 })
 </script>
 

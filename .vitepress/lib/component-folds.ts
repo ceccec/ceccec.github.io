@@ -1,7 +1,8 @@
 // Browser-safe component → sealed fold loaders (dynamic import — no monolith at parse time).
 import type { ComponentCrosslink } from './crosslinks'
 import type { DecodedFacet, DecodedStation } from '../theme/components/DecodedCard.vue'
-import { displayText, localePath, pickLocale, type LocaleName } from '../../src/site/index'
+import type { QuantumProjection } from './hero-movie'
+import { displayText, localePath, pickLocale, type LocaleName } from './site-locale'
 
 export type DecodedFoldView = {
   title?: string
@@ -11,6 +12,8 @@ export type DecodedFoldView = {
   stations?: DecodedStation[]
   crosslinks?: ComponentCrosslink[]
   ok?: boolean
+  /** Quantum-app projection painted as the card movie (the animation that proves the statement). */
+  movieApp?: QuantumProjection
 }
 
 export type FoldLoader = (locale: LocaleName) => Promise<DecodedFoldView>
@@ -170,7 +173,7 @@ export async function invokeFoldLoader(loader: AnyFoldLoader, locale: LocaleName
 
 export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   StartHere: async (locale) => {
-    const { startHereDecodedView } = await import('../../src/thunder/movie')
+    const { startHereDecodedView } = await import('../../src/thunder/movie/glass')
     return startHereDecodedView(locale)
   },
   BulgarianHeritage: wrapFold(async () => {
@@ -187,7 +190,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   }),
   SacredGeometry: wrapFold(async () => {
     const { sacredGeometrySeal } = await import('../../src/mountain/geometry/index')
-    return fromFold(sacredGeometrySeal(), 'Sacred geometry')
+    return { ...fromFold(sacredGeometrySeal(), 'Sacred geometry'), movieApp: 'sacred-morph' }
   }),
   Society: wrapFold(async () => {
     const { scientificSociety } = await import('../../src/earth/governance/index')
@@ -219,7 +222,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     return fromFold(dualities(), 'Dualities')
   },
   TamperingCost: async () => {
-    const { tamperingCostDecodedView } = await import('../../src/thunder/movie')
+    const { tamperingCostDecodedView } = await import('../../src/thunder/movie/glass')
     return tamperingCostDecodedView()
   },
   PathGuide: async () => {
@@ -268,7 +271,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   QuantumConsole: async () => {
-    const { selfConsult } = await import('../../src/mountain/self/index')
+    const { selfConsult } = await import('../../src/mountain/geometry/index')
     const fold = selfConsult('proof')
     return {
       title: 'Quantum console',
@@ -328,6 +331,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
         tier.members.map((member) => ({ facet: `${tier.name}: ${member}`, on: true })),
       ),
       ok: fold.complete,
+      movieApp: 'taiji',
     }
   },
   ChakrasAura: async () => {
@@ -345,7 +349,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   },
   GlyphLabyrinth: async () => {
     const { donutLabyrinthOfGlyphsHeroEnteringExiting } = await import('../../src/mountain/topology/index')
-    return fromFacets(donutLabyrinthOfGlyphsHeroEnteringExiting(), 'Glyph labyrinth')
+    return { ...fromFacets(donutLabyrinthOfGlyphsHeroEnteringExiting(), 'Glyph labyrinth'), movieApp: 'labyrinth' }
   },
   GlagoliticOcr: async () => {
     const { glagoliticOcrReverseClosesRoundTrip } = await import('../../src/language/index')
@@ -377,7 +381,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   ProofRenderer: async () => {
-    const { proofRendererDecodedView } = await import('../../src/thunder/movie')
+    const { proofRendererDecodedView } = await import('../../src/thunder/movie/glass')
     return proofRendererDecodedView()
   },
   KnowledgeAtlas: async () => {
@@ -457,8 +461,8 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   Hologram: async () => {
-    const { hologramDecodedView } = await import('../../src/thunder/movie')
-    return hologramDecodedView()
+    const { hologramDecodedView } = await import('../../src/thunder/movie/glass')
+    return { ...hologramDecodedView(), movieApp: 'hologram' }
   },
   HologramMovie: async () => {
     const { moviesNativeFormat } = await import('../../src/fire/li/index')
@@ -472,6 +476,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
         on: true,
       })),
       ok: fold.nativelyDisplayed,
+      movieApp: 'movie-10d',
     }
   },
   Live: async () => {

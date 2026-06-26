@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref, useSlots, watch } from 'vue'
+import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, ref, useSlots, watch } from 'vue'
 import { useRoute, useData } from 'vitepress'
 import DefaultTheme, { VPHomeHero } from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
-import BackgroundMovie from './components/BackgroundMovie.vue'
+const BackgroundMovie = defineAsyncComponent(() => import('./components/BackgroundMovie.vue'))
 import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
 import VoidSidebar from './components/VoidSidebar.vue'
 import TrinityGateways from './components/TrinityGateways.vue'
@@ -28,6 +28,8 @@ const forwardedSlots = computed(() =>
   ),
 )
 
+let themeObserver: MutationObserver | null = null
+
 function syncHeroChrome(): void {
   applyHeroChromeVars(route.path, cssWidth.value)
 }
@@ -43,10 +45,14 @@ onMounted(() => {
   onResize()
   nextTick(() => syncHeroChrome())
   window.addEventListener('resize', onResize)
+  themeObserver = new MutationObserver(() => syncHeroChrome())
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', onResize)
+  themeObserver?.disconnect()
+  themeObserver = null
 })
 </script>
 
