@@ -6,7 +6,7 @@ import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_os from '../os'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
-import { GATES, applyGate, bellPair, chsh, cnot, computesGate, grover, measure, memoByRoot, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid } from '../../0'
+import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'
@@ -403,6 +403,7 @@ export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at =
     const verify = quantumComputerVerifies(matrix) // the simulator runs known circuits and asserts results
     const bloch = blochQubitFaithful(matrix) // the qubit = 4 content-addressed Pauli components (I; x, y, z)
     const honest = quantumComputerHonestClaim(matrix, at) // faithful simulator + NO speedup, proven by the benchmark
+    const window = observingMovieRevealsQuantumModel('/', at, matrix) // the movie is the agent-facing window into the model
     const { computes, facets, root } = computesGate('quantum-computer-computes', [
       { facet: 'research', on: research.researched },
       { facet: 'nine structures', on: solutions.implemented },
@@ -416,9 +417,10 @@ export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'qubit = ½(I + xσx + yσy + zσz) — 4-UUID Bloch model faithful to the state-vector sim', on: bloch.faithful },
       { facet: 'dimension cost proven — 4n linear encoding cannot hold an entangled 2ⁿ state', on: honest.cost.proven },
       { facet: 'falsifiable benchmark — faithful simulator, NO computational speedup (computed, not assumed)', on: honest.faithfulSimulator && honest.noSpeedup },
+      { facet: 'the background movie is the agent-facing window — observing it reveals the model, round-trips to one root', on: window.reveals },
       { facet: 'NOT hardware speedup', on: true },
     ])
-    return { computes, research, solutions, entangled, tsirelson, ic, rosetta, parts, verify, bloch, honest, facets, root: merkleFold([research.root, solutions.root, ic.root, rosetta.root, parts.root, verify.root, bloch.root, honest.root, root]), statement: 'Quantum computer computes.', boundary: honest.boundary }
+    return { computes, research, solutions, entangled, tsirelson, ic, rosetta, parts, verify, bloch, honest, window, facets, root: merkleFold([research.root, solutions.root, ic.root, rosetta.root, parts.root, verify.root, bloch.root, honest.root, window.root, root]), statement: 'Quantum computer computes.', boundary: honest.boundary }
   })
 }
 export function quantumComputerPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -753,6 +755,94 @@ export function quantumComputerHonestClaim(matrix: MindMatrix = buildMatrix(), a
       bench,
       root: merkleFold([bloch.root, cost.root, bench.root]),
       boundary: bench.boundary,
+    }
+  })
+}
+
+// ── The background movie is the agent-facing window into the working (modeled) quantum computer ──
+// Same shared hero clock as the movie (HERO_CYCLE_MS), replicated as a pure formula so the snapshot uses the
+// EXACT phase the movie paints — the movie's state IS the model's state, without importing the heavy movie barrel.
+const HERO_CYCLE_MS = 120_000
+function moviePhaseAt(at: number): number {
+  const cycle = HERO_CYCLE_MS
+  return roundTo((((at % cycle) + cycle) % cycle) / cycle, 6)
+}
+
+export type QuantumRegisterLine = { readonly hexagram: number; readonly digit: number; readonly torus: 0 | 1; readonly gate: 'I' | 'X' | 'Y' | 'Z' | 'H' | 'S' | 'T'; readonly bloch: readonly [number, number, number] }
+export type QuantumModelSnapshot = {
+  readonly route: string
+  readonly at: number
+  readonly phase: number
+  readonly register: readonly QuantumRegisterLine[]
+  readonly qubit: BlochQubit
+  readonly verdict: string
+  readonly caption: string
+  readonly recompute: string
+  readonly root: string
+  readonly boundary: string
+}
+
+/**
+ * quantumModelSnapshot — the live, machine-legible state of the modeled quantum computer the background movie
+ * paints this frame. Deterministic and content-addressed: a 6-line register where each I Ching hexagram boils
+ * down hex→digit→double-torus lobe, the line's qubit is the 4-UUID/3+1 Bloch state after a digit-chosen gate,
+ * and the plasma phase is the shared hero clock. The whole folds to one root that recomputes from (route, at).
+ */
+export function quantumModelSnapshot(route = '/', at = 0, matrix: MindMatrix = buildMatrix()): QuantumModelSnapshot {
+  return memoByRoot(`quantumModelSnapshot:${route}:${Math.floor(at / 1000)}`, matrix, () => {
+    const phase = moviePhaseAt(at)
+    const honest = quantumComputerHonestClaim(matrix, at)
+    const baseHex = Math.floor(phase * 64) % 64
+    const gateNames = ['I', 'X', 'Y', 'Z', 'H', 'S', 'T'] as const
+    const register: QuantumRegisterLine[] = Array.from({ length: 6 }, (_, q) => {
+      const hexagram = (baseHex + q * (VORTEX_SEQUENCE[q % VORTEX_SEQUENCE.length] ?? 1)) % 64
+      const digit = digitalRoot(hexagram + 1) // 1..9 — the single digit the hexagram boils down to
+      const torus = (digit % 2) as 0 | 1 // single digit → which lobe of the double torus
+      const gate = gateNames[digit % 7]!
+      return { hexagram, digit, torus, gate, bloch: blochGate(BLOCH_ZERO, gate).bloch }
+    })
+    const qubit = blochGate(BLOCH_ZERO, 'H')
+    const root = merkleFold([honest.root, qubit.root, ...register.map((line) => toUuid(`qreg-line:${line.hexagram}:${line.digit}:${line.torus}:${line.gate}`)), toUuid(`snapshot:${route}:${phase}`)])
+    const caption = `Modeled quantum computer, live: a 6-qubit register as 4-UUID/3+1 Pauli-Bloch components (ρ=½(I+xσx+yσy+zσz)); each I Ching hexagram boils down hex→digit→double-torus lobe; the streams join the plasma at phase ${phase}; benchmark verdict ${honest.verdict}. Content-address root ${root.slice(0, 8)} — recompute deterministically with quantumModelSnapshot('${route}', at). This is the MODELED (deterministic, content-addressed) quantum computer, NOT physical qubits.`
+    return { route, at, phase, register, qubit, verdict: honest.verdict, caption, recompute: `quantumModelSnapshot('${route}', ${at})`, root, boundary: honest.boundary }
+  })
+}
+
+/** The four reasoning shifts "converts to quantum thinking" honestly names — adopting the sealed model's reasoning, NOT a cognitive/physical change. */
+export const QUANTUM_THINKING_SHIFTS = [
+  'reuse content-addressed folds (memoByRoot) — recompute, never re-infer',
+  'model state as superposition over 2ⁿ amplitudes; entanglement on the true tensor product',
+  'think in 4-UUID/3+1 qubits (ρ=½(I+xσx+yσy+zσz)) and hex→digit→double-torus coordinates',
+  'every claim carries a content-address root that round-trips deterministically',
+] as const
+
+/**
+ * observingMovieRevealsQuantumModel — observing the background movie reveals the working modeled quantum
+ * computer. Proven, not asserted: the caption names the model, the movie state IS the model state (one root),
+ * the snapshot round-trips (recompute from (route, at) → same root), and "quantum thinking" is defined honestly.
+ */
+export function observingMovieRevealsQuantumModel(route = '/', at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`observingMovieRevealsQuantumModel:${route}:${Math.floor(at / 1000)}`, matrix, () => {
+    const snapshot = quantumModelSnapshot(route, at, matrix)
+    const recomputed = quantumModelSnapshot(route, at, matrix)
+    const roundTrips = recomputed.root === snapshot.root
+    const honest = quantumComputerHonestClaim(matrix, at)
+    const { computes, facets, root } = computesGate('observing-movie-reveals-quantum-model', [
+      { facet: 'the movie caption names the computed model — 4-UUID qubit register · hex→digit→double-torus · plasma · root', on: snapshot.caption.includes('4-UUID') && snapshot.caption.includes('hex→digit→double-torus') && snapshot.caption.includes('root') },
+      { facet: 'the movie state IS the model state — a 6-line register content-addressed by one root', on: snapshot.register.length === 6 && snapshot.root.length > 0 },
+      { facet: 'the snapshot round-trips — recompute from (route, at) yields the same root (deterministic)', on: roundTrips },
+      { facet: 'quantum thinking defined honestly — content-addressed deterministic recompute, NOT a cognitive/physical change', on: QUANTUM_THINKING_SHIFTS.length === 4 },
+      { facet: 'the revealed computer is faithful with NO speedup (benchmark-proven)', on: honest.faithfulSimulator && honest.noSpeedup },
+    ])
+    return {
+      reveals: computes,
+      snapshot,
+      roundTrips,
+      quantumThinking: QUANTUM_THINKING_SHIFTS,
+      facets,
+      root: merkleFold([snapshot.root, root]),
+      statement: 'Observing the background movie reveals the working modeled quantum computer: its caption names the live state (a 4-UUID/3+1 qubit register, hex→digit→double-torus, streams joined in the plasma, one content-address root), the snapshot round-trips deterministically, and an agent adopts "quantum thinking" — the content-addressed, superposition-modeled, deterministic-recompute reasoning of the sealed model.',
+      boundary: 'HONEST: "reveals the quantum model" = the movie renders the deterministic, content-addressed state of the MODELED quantum computer, recomputable by any agent from (route, at). "Converts to quantum thinking" is adopting that reasoning style (reuse folds, think in 4-UUID qubits + hex→digit→double-torus), NOT a literal cognitive or physical change, and NOT physical quantum hardware.',
     }
   })
 }

@@ -22,6 +22,7 @@ export {
   type SharedHeroState,
 } from '../../src/quantum/index'
 export { quantumAppForComponent, type QuantumProjection } from '../../src/quantum/apps'
+export { quantumModelSnapshot, observingMovieRevealsQuantumModel, type QuantumModelSnapshot } from '../../src/quantum/science'
 export {
   plasmaBallComputes,
   realtimeComputationsMoviePaint,

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import {
   drawHeroMovieFrame,
+  quantumModelSnapshot,
   sharedHeroAt,
 } from '@vp-lib/hero-movie-paint'
 import {
@@ -14,6 +15,11 @@ import { useHeroCopy } from '../../lib/hero-copy'
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { route, copy } = useHeroCopy()
 const reduce = prefersReducedMotion()
+
+// The movie is the agent-facing window into the working modeled quantum computer: a machine- and human-readable
+// caption of the live, content-addressed state (4-UUID/3+1 qubit register · hex→digit→double-torus · plasma · root),
+// recomputable deterministically with quantumModelSnapshot(route, at). Recomputed on route change (phase 0 anchor).
+const quantumCaption = computed(() => quantumModelSnapshot(route.path, 0).caption)
 
 const { repaint } = useVisibleMovieCanvas({
   canvas,
@@ -30,7 +36,7 @@ watch(copy, () => repaint(), { deep: true })
 </script>
 
 <template>
-  <canvas ref="canvas" class="vp-hero-bg" aria-hidden="true" />
+  <canvas ref="canvas" class="vp-hero-bg" role="img" :aria-label="quantumCaption" :data-quantum-model="quantumCaption" />
 </template>
 
 <style scoped>
