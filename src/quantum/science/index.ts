@@ -5,8 +5,8 @@ import * as __ns_up_up_pair_enforcement from '../../pair/enforcement'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_os from '../os'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
-import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
+import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'
@@ -903,6 +903,94 @@ export function quantumComputerLabComputes(matrix: MindMatrix = buildMatrix(), a
       root: merkleFold([cap.root, design.root, run.root]),
       statement: 'Quantum computer lab: every UI token computed by quantumMathDesignsTheUi; circuits run through the one src/0 runQuantumCircuit engine shared by code and UI.',
       boundary: cap.boundary,
+    }
+  })
+}
+
+/**
+ * dimensionCostCeilingAtScale — the hard ceilings that no amount of scaling removes. Composes the dimension-cost
+ * counting proof (quantumDimensionCost: 4n linear store vs 2ⁿ amplitudes), the Tsirelson correlation ceiling (chsh:
+ * classical ≤ 2, quantum ≤ 2√2 — neither exceeded), and the memory crossover (a faithful entangled n-qubit state
+ * needs 2ⁿ complex amplitudes at 16 bytes each, so each memory tier has a fixed qubit ceiling). HONEST: scaling
+ * hardware pushes the exponential wall by ONE qubit per memory doubling — it never removes it, and never beats 2√2.
+ */
+export function dimensionCostCeilingAtScale(matrix: MindMatrix = buildMatrix(), maxN = 16) {
+  return memoByRoot(`dimensionCostCeilingAtScale:${maxN}`, matrix, () => {
+    const cost = quantumDimensionCost(matrix, maxN)
+    const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4) // 2√2 — the quantum (Tsirelson) ceiling
+    const classicalBound = 2 // local-hidden-variable CHSH ceiling
+    const bytesPerAmplitude = 16 // one complex128 amplitude (two float64)
+    const tiers = [
+      { tier: 'L3 cache (~32 MiB)', bytes: 32 * 2 ** 20 },
+      { tier: '16 GiB RAM', bytes: 16 * 2 ** 30 },
+      { tier: '1 TiB node', bytes: 2 ** 40 },
+      { tier: '1 PiB fleet', bytes: 2 ** 50 },
+    ].map((t) => {
+      let n = 1
+      while (bytesPerAmplitude * 2 ** n <= t.bytes && n < 80) n++
+      const ceilingQubits = n - 1 // last n that still fits
+      return { ...t, ceilingQubits, receipt: toUuid(`dim-ceiling:${t.tier}:${ceilingQubits}`) }
+    })
+    const ramCeiling = tiers[1]!.ceilingQubits
+    const pibCeiling = tiers[3]!.ceilingQubits
+    const facets = [
+      { facet: 'the 4n linear UUID store is provably too small for an entangled state from the dimension-cost crossover — exponential, not linear', on: cost.asymptoticallyInsufficient && cost.crossover > 0 },
+      { facet: `the correlation ceiling is fixed: classical ≤ ${classicalBound}, quantum ≤ 2√2 ≈ ${roundTo(tsirelson, 4)} (Tsirelson) — no device or scale exceeds it`, on: Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 },
+      { facet: `the memory ceiling is exponential: a faithful entangled state needs 2ⁿ·16 B, so ~16 GiB tops out near ${ramCeiling} qubits and ~1 PiB near ${pibCeiling} — each memory doubling buys ONE more qubit`, on: ramCeiling > 0 && pibCeiling === ramCeiling + (50 - 34) },
+      { facet: 'HONEST: these are CEILINGS, not speedups — scaling hardware pushes the exponential wall by a constant per doubling, never removes it, and never beats the Tsirelson bound', on: tiers.every((t, i) => i === 0 || t.ceilingQubits >= tiers[i - 1]!.ceilingQubits) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dim-ceiling-facet:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      tsirelson: roundTo(tsirelson, 6),
+      classicalBound,
+      crossover: cost.crossover,
+      tiers,
+      documented: [
+        'quantumDimensionCost is the 4n-vs-2ⁿ counting proof; chsh gives the Tsirelson correlation ceiling; the memory tiers give the simulation ceiling.',
+        'Each memory doubling buys exactly one more faithfully-simulated qubit — the wall moves linearly while the cost grows exponentially.',
+      ],
+      flagged: [
+        'Illustrative memory tiers and byte sizes — orders of magnitude over standard amplitude storage, not a measured benchmark. Tensor-network/stabiliser methods simulate special structured states far past these ceilings; this is the worst-case dense-amplitude bound.',
+      ],
+      facets,
+      root: merge(cost.root, merkleFold([toUuid(`dim-ceiling-scale:${maxN}:${ramCeiling}`), ...tiers.map((t) => t.receipt), ...facets.map((entry) => entry.receipt)])),
+      statement: `Dimension-cost ceiling at scale: the linear 4n encoding is provably too small for entanglement (crossover at n=${cost.crossover}), correlations are capped by Tsirelson at 2√2 ≈ ${roundTo(tsirelson, 4)} (classical ≤ 2) regardless of device, and faithful dense simulation hits a memory ceiling near ${ramCeiling} qubits at 16 GiB — each memory doubling buys exactly one more qubit. These are ceilings no scaling removes; there is no speedup, only a wall that moves linearly while the cost grows exponentially.`,
+      boundary: 'HONEST: a composition of the dimension-cost counting proof, the cited Tsirelson bound, and a worst-case dense-amplitude memory model. The memory tiers are illustrative orders of magnitude; structured-state methods (tensor networks, stabilisers) reach further. It bounds the modeled classical simulator, not physical QPU hardware.',
+    }
+  })
+}
+
+/**
+ * blochAnalogQuantumDecoded — the EXACT analog↔quantum bridge, for ONE qubit. A single-qubit pure state is a point
+ * on the Bloch sphere S² = SU(2)/U(1), a continuous (analog) manifold; single-qubit gates are SU(2) rotations — the
+ * continuous rotation group — so one qubit literally IS an analog SU(2) rotation, reproduced exactly by the 4-UUID
+ * Bloch model (blochQubitFaithful). Composes analogComputationDecoded (continuous ≡ computable analysis). BOUNDED:
+ * the SU(2) continuum is exact only for single (and product) qubits; entanglement breaks it — dimensionCostCeilingAtScale.
+ */
+export function blochAnalogQuantumDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('blochAnalogQuantumDecoded', matrix, () => {
+    const bloch = blochQubitFaithful(matrix)
+    const analog = analogComputationDecoded(matrix)
+    const ceiling = dimensionCostCeilingAtScale(matrix)
+    const facets = [
+      { facet: 'a single-qubit pure state is a point on the Bloch sphere S² = SU(2)/U(1) — a continuous (analog) manifold, not a discrete bit', on: bloch.faithful },
+      { facet: 'single-qubit gates are SU(2) rotations (the continuous rotation group) — one qubit IS an analog rotation, reproduced exactly by the 4-UUID Bloch model on every gate', on: bloch.faithful },
+      { facet: 'the analog↔computable bridge holds: continuous SU(2) evolution is exactly the GPAC ≡ computable-analysis picture (analogComputationDecoded) — exact, no super-Turing power', on: analog.decoded },
+      { facet: 'BOUNDED: the SU(2) continuum is exact only for single (and product) qubits — entanglement breaks the analog point picture (2ⁿ, the ceiling at scale)', on: ceiling.decoded },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`bloch-analog:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      documented: [
+        'The Bloch sphere is SU(2)/U(1); single-qubit unitaries are SU(2) rotations — a continuous analog group, reproduced exactly by the content-addressed 4-UUID model.',
+        'This is the EXACT bridge between analog (continuous SU(2)) and the digital content-address — for one qubit.',
+      ],
+      flagged: [
+        'EXACT only for single and product qubits. Entanglement is NOT a single Bloch point and needs 2ⁿ amplitudes — see dimensionCostCeilingAtScale. The analog continuity gives NO computational speedup (analogComputationDecoded refutes super-Turing).',
+      ],
+      facets,
+      root: merge(bloch.root, merge(analog.root, merkleFold(facets.map((entry) => entry.receipt)))),
+      statement: 'Bloch–analog–quantum bridge, decoded: a single-qubit pure state is a point on the Bloch sphere S² = SU(2)/U(1), and single-qubit gates are SU(2) rotations of that continuous (analog) manifold — so one qubit literally is an analog SU(2) rotation, reproduced exactly by the 4-UUID content-addressed Bloch model on every single-qubit gate. This is the EXACT bridge between continuous analog computation (GPAC ≡ computable analysis) and the qubit — bounded to single and product qubits, because entanglement needs 2ⁿ amplitudes and breaks the single-point picture.',
+      boundary: 'HONEST EXACT bridge, bounded: the SU(2)/Bloch continuum is faithful for single (and product) qubits only. Entanglement leaves the Bloch sphere (2ⁿ amplitudes — dimensionCostCeilingAtScale), and the analog continuity carries NO super-Turing or speedup power (analogComputationDecoded). Not a physical qubit.',
     }
   })
 }
