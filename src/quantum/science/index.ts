@@ -385,8 +385,10 @@ export function quantumComputerResearch(matrix: MindMatrix = buildMatrix()) {
     const pair = bellPair()
     const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4)
     const state = applyGate(qubits(1), GATES.H, 0)
-    const measured = sample(state, 0, 'qc')
-    return { researched: solutions.implemented && pair.n === 2 && Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 && (measured.outcome === 0 || measured.outcome === 1), rows: [], root: toUuid('qc-research'), boundary: 'HONEST: toy simulator — NOT NISQ hardware.' }
+    const counts = sample(state, 128, 'qc') // H|0⟩ → measure: definite 0/1 outcomes, ~50/50
+    const outcomes = Object.keys(counts)
+    const measuresZeroOrOne = outcomes.length > 0 && outcomes.every((bit) => bit === '0' || bit === '1') && outcomes.reduce((sum, bit) => sum + counts[bit], 0) === 128
+    return { researched: solutions.implemented && pair.n === 2 && Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 && measuresZeroOrOne, rows: [], root: toUuid('qc-research'), boundary: 'HONEST: toy simulator — NOT NISQ hardware.' }
   })
 }
 export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {

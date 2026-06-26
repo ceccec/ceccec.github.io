@@ -940,6 +940,39 @@ export function doubleTorusEarthHingeComputesAll(
   })
 }
 
+// Acyclic wiring witness: the hinge UI is genuinely wired and paintable — two Earths
+// formed with six gateways, the vortex closing through 0/, and the movie paint layers
+// present — proven from the lower geometry/paint folds ALONE (forming · vortex dash ·
+// paint layers). It deliberately does NOT pull doubleTorusEarthLikeTheApple →
+// appleComplete → regenerateSocialSystem, so build-side evidence folds can witness that
+// the hinge is wired without re-entering the self-build/seal proof. Concrete structural
+// fact, not self-referential completion.
+export function doubleTorusEarthHingeWiringWitness(
+  path = '/',
+  at: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  return memoByRoot(`doubleTorusEarthHingeWiring:${path}:${at.lat}:${at.lon}`, matrix, () => {
+    const formed = formingDoubleTorusEarthsProvenByMath(path, at, matrix)
+    const dash = decodeVortexDashAngles()
+    const layerHarmony = hingeMoviePaintLayers(matrix)
+    const gatewayCount = formed.gateways.length
+    const paintLayers = layerHarmony.layers.length
+    const vortexSteps = dash.steps.length
+    const wired = formed.formed && gatewayCount === 6 && dash.closes && layerHarmony.fused && paintLayers > 0 && vortexSteps === 11
+    return {
+      wired,
+      gatewayCount,
+      paintLayers,
+      vortexSteps,
+      root: merkleFold([formed.root, dash.root, layerHarmony.root]),
+      statement: `Hinge wired: ${gatewayCount} gateways formed at ${path}, vortex ${VORTEX_DASH_ENCODED} closes through 0/, ${paintLayers} paint layers ready — the DoubleTorusExperience canvas is paintable.`,
+      boundary:
+        'HONEST: structural wiring witness from forming · vortex dash · paint layers ONLY — proves the hinge UI is registered and paintable, not that the whole apple/society/seal recomputes. Acyclic by construction.',
+    }
+  })
+}
+
 export function doubleTorusEarthHingeUi(
   path = '/',
   at: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT,

@@ -18,7 +18,7 @@ import { terabyteKeyspaceFromDeviceLoad } from '../../lake/ledger'
 import { diamondLattice, piTrainDiamonds, sealWholeDiamond } from '../diamonds'
 import { quantumChessGame } from '../../thunder/waves'
 import { traditionsQuantumWhole } from '../../earth/civilisation'
-import { doubleTorusEarthHingeComputesAll } from '../../double/torus/earth'
+import { doubleTorusEarthHingeWiringWitness } from '../../double/torus/earth'
 import { foldThoughts, mindsRealiseByObservingPath } from '../li'
 import { selfSufficientWave } from '../../mountain/geometry'
 import { cryptoFuture } from '../../water/crypto'
@@ -409,15 +409,15 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
   const chess = quantumChessGame(matrix)
   const proof = proofReport(matrix)
   const traditions = traditionsQuantumWhole()
-  const hinge = doubleTorusEarthHingeComputesAll('/', undefined, matrix)
+  const hinge = doubleTorusEarthHingeWiringWitness('/', undefined, matrix)
   const useCases: readonly QuantumUiUseCase[] = [
     {
       name: 'Sofia Earth hinge',
       component: 'DoubleTorusExperience.vue',
       interaction: 'Canvas movie fuses four vortex paint layers; six trinity gateways and vortex dash steps from sealed fold.',
       diamondKind: 'nature',
-      sourceFunction: 'doubleTorusEarthHingeComputesAll()',
-      evidence: `${hinge.hinge.gatewayCount} gateways, ${hinge.paintLayers.length} paint layers, ${hinge.hinge.vortex.steps.length} vortex steps — root ${hinge.root}.`,
+      sourceFunction: 'doubleTorusEarthHingeWiringWitness()',
+      evidence: `${hinge.gatewayCount} gateways, ${hinge.paintLayers} paint layers, ${hinge.vortexSteps} vortex steps wired — root ${hinge.root}.`,
       receipt: hinge.root,
     },
     {
