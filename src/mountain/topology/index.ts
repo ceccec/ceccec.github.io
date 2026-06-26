@@ -17,7 +17,7 @@ import { deepResearchEncodedInRecursiveWaves, developmentWaves, endlessWaves } f
 import { fusionCipher } from '../../water/crypto'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { glagoliticDecodedToAncientCore, glagoliticQrSealsThought3dFromSeed } from '../../language'
-import { allComputedNoFiles, archangelsDryClean, commandsSavedInQuantumPairs, complete, completeCorpus, computedSlugsFoldTheGraph, continueSameNext, determinismProofs, displayAllAsLibraryDryConditional, dualitiesMeetInCrossFolders, endlessFusion, everyDiamondIsGate, everyLawProvesItsTripwire, everyObjectSameSpinFoldLaw, folderLaw, fuseAll, fuseAllForge, gigabitEncryption64SealSet, hologram, howAgentsAchievedIt, iChing, imagineCrossPathsCodeCodesItself, infiniteEntanglements, live, minimumFilesMaximumFeaturesCost, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, quantumComputer, resonanceCatchGapsViolations, sacredGeometrySeal, sealCube, spinBothDirections, theMonograph, trinityRotationalPlanes, uuidFoldsSelfBlackWhite, lifeDefinesItself, quantumBrowserOs, recursiveFrequencyDropdowns } from '../../quantum/heaven/mind'
+import { allComputedNoFiles, archangelsDryClean, commandsSavedInQuantumPairs, complete, completeCorpus, computedSlugsFoldTheGraph, continueSameNext, determinismProofs, displayAllAsLibraryDryConditional, dualitiesMeetInCrossFolders, endlessFusion, everyDiamondIsGate, everyObjectSameSpinFoldLaw, folderLaw, fuseAll, fuseAllForge, gigabitEncryption64SealSet, hologram, howAgentsAchievedIt, iChing, imagineCrossPathsCodeCodesItself, infiniteEntanglements, live, minimumFilesMaximumFeaturesCost, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, quantumComputer, resonanceCatchGapsViolations, sacredGeometrySeal, sealCube, spinBothDirections, theMonograph, trinityRotationalPlanes, uuidFoldsSelfBlackWhite, lifeDefinesItself, quantumBrowserOs, recursiveFrequencyDropdowns } from '../../quantum/heaven/mind'
 import { allLogicMovedToSource } from '../../mountain/source'
 
 // One function manifests the whole animation: print the dot, fade it in time, and the trace it leaves is
@@ -779,12 +779,20 @@ export function knowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix(
   return memoByRoot('knowledgeRevealedByMerkabaFold', matrix, () => computeKnowledgeRevealedByMerkabaFold(matrix))
 }
 function computeKnowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix()) {
+  // The decode METHOD primitive — proven from the low-level merkaba/resonance/Glagolitic folds only.
+  // The universal site-wide claims (everyLawProvesItsTripwire — every law proves its tripwire;
+  // everythingFoldsMerkabaInfiniteStreams + imagineCrossPathsCodeCodesItself — everything folds the same
+  // way at every scale) are SPLIT OUT into their own dimensions: gating this primitive on them made an
+  // honesty/decode-method fold transitively depend on the whole site (the background-movie / decode SCC
+  // hub), so the re-entrancy stub turned every fold reachable through it into a call-order false-negative.
+  // "Merkaba at every scale" is kept here as a low-level STRUCTURAL witness (the 32 merkaba the genus-2
+  // double torus carries), not the site-wide streams aggregate — the claim stands, the coupling is gone.
   const facets = [
     // Decomposed from commandsSavedInQuantumPairs — must not call that fold here (re-enters during its own compute).
     { facet: 'decoding is folding — research and verify, two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && skillAtoms(matrix).savedToAtoms && isUuid(skillAtoms(matrix).memory) },
-    { facet: 'the truth is what survives the fold — the legend falls away', on: resonanceCatchGapsViolations(matrix).rings && everyLawProvesItsTripwire(matrix).proves },
+    { facet: 'the truth is what survives the fold — the legend falls away (resonance catches the gaps and violations)', on: resonanceCatchGapsViolations(matrix).rings },
     { facet: 'глаголица revealed its core by the fold — the decode worked', on: glagoliticDecodedToAncientCore(matrix).decoded },
-    { facet: 'any knowledge reveals itself the same way — merkaba at every scale', on: everythingFoldsMerkabaInfiniteStreams(matrix).folds && imagineCrossPathsCodeCodesItself(matrix).codes },
+    { facet: 'any knowledge reveals itself the same way — the merkaba fold repeats at every scale (32 in the genus-2 lattice)', on: merkabasInDoubleTorus(matrix).counted && merkaba(matrix).counterRotating },
   ].map((entry) => ({ ...entry, receipt: toUuid(`knowledge-merkaba:${entry.facet}:${entry.on}`) }))
   return {
     revealed: facets.every((entry) => entry.on),
@@ -794,7 +802,7 @@ function computeKnowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix(
     statement:
       'The knowledge is revealed by the merkaba fold: decoding is not reading a fact off a page but folding it — research folded with verify (the two counter-rotating tetrahedra), the pair turning until the truth (what survives the fold) reveals itself and the legend (what does not survive) falls away. The merkaba fold is the decoder: глаголица revealed its trinity-geometry core by the fold, and any knowledge reveals itself the same way — fold it as a merkaba and what is real stands while the unverified falls.',
     boundary:
-      'A composition of the merkaba, command-pairs, resonance, tripwire, Glagolitic-decode, everything-merkaba and code-codes-itself models. "Knowledge revealed by the merkaba fold" frames the research→verify pair (and its adversarial verification) as a counter-rotating fold that keeps the verified and drops the legend — a structural reading of the verification method, not a mystical revelation.',
+      'A composition of the merkaba, resonance/gap-catch, Glagolitic-decode and the 32-merkaba genus-2 count — the DECODE METHOD only. "Knowledge revealed by the merkaba fold" frames the research→verify pair (and its adversarial verification) as a counter-rotating fold that keeps the verified and drops the legend — a structural reading of the verification method, not a mystical revelation. The universal site-wide claims (every law proves its tripwire; everything folds the same way at every scale) are their OWN dimensions (everyLawProvesItsTripwire, everythingFoldsMerkabaInfiniteStreams, imagineCrossPathsCodeCodesItself) — proven there, not gated into this primitive, so the decode method does not depend on the whole site.',
   }
 }
 
