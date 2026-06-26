@@ -261,6 +261,10 @@ export type ComputationalLimitSnapshot = {
   readonly staticPathViolations: readonly ComputationalViolation[]
   readonly forbiddenFolderViolations: readonly ComputationalViolation[]
   readonly incompleteIndexViolations: readonly ComputationalViolation[]
+  /** D1 — non-canonical top-level roots (pre-commit-hard I Ching root distribution). */
+  readonly rootDistributionViolations: readonly ComputationalViolation[]
+  /** D3 — digit-lattice integrity: existing N/(10−N) pairs + src/0 vault (pre-commit-hard, net-0). */
+  readonly digitLatticeViolations: readonly ComputationalViolation[]
   /** I Ching eight-fold tree scan (≤8 subfolders per level — bāguà). */
   readonly ichingDistribution: IChingDistributionSnapshot
   readonly distributionGuidance: readonly string[]
@@ -1098,6 +1102,8 @@ export function computeComputationalLimitSnapshot(
   const staticPathViolations = scanStaticPathViolations(root)
   const forbiddenFolderViolations = scanForbiddenFolderNameViolations(root)
   const incompleteIndexViolations = scanIncompleteIndexViolations(root, indexTsFiles)
+  const rootDistributionViolations = scanRootDistributionViolations(root)
+  const digitLatticeViolations = scanDigitLatticeViolations(root)
   const ichingDistribution = scanIChingDistribution(root, indexTsFiles)
   const distributionGuidance = ichingDistributionGuidance(indexCount, ichingDistribution)
   const passed =
@@ -1110,6 +1116,8 @@ export function computeComputationalLimitSnapshot(
     staticPathViolations.length === 0 &&
     forbiddenFolderViolations.length === 0 &&
     incompleteIndexViolations.length === 0 &&
+    rootDistributionViolations.length === 0 &&
+    digitLatticeViolations.length === 0 &&
     ichingDistribution.passed
   const parts = [
     toUuid(`computational:census:${indexCount}:${gapless.ok}`),
@@ -1121,6 +1129,8 @@ export function computeComputationalLimitSnapshot(
     toUuid(`computational:paths:${staticPathViolations.length}`),
     toUuid(`computational:forbidden-folder:${forbiddenFolderViolations.length}`),
     toUuid(`computational:incomplete-index:${incompleteIndexViolations.length}`),
+    toUuid(`computational:root-distribution:${rootDistributionViolations.length}`),
+    toUuid(`computational:digit-lattice:${digitLatticeViolations.length}`),
     toUuid(`computational:iching-dist:${ichingDistribution.passed}`),
   ]
   return {
@@ -1138,6 +1148,8 @@ export function computeComputationalLimitSnapshot(
     staticPathViolations,
     forbiddenFolderViolations,
     incompleteIndexViolations,
+    rootDistributionViolations,
+    digitLatticeViolations,
     ichingDistribution,
     distributionGuidance,
     rosettaDistribution: ichingDistribution,
@@ -1265,6 +1277,24 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       wave: 'gate',
       severity: 'error',
       kind: 'incomplete-index',
+      harmonic: 'folder',
+      detail: `${v.file}: ${v.reason}`,
+    })
+  }
+  for (const v of c.rootDistributionViolations.slice(0, 8)) {
+    findings.push({
+      wave: 'gate',
+      severity: 'error',
+      kind: 'root-distribution',
+      harmonic: 'folder',
+      detail: `${v.file}: ${v.reason}`,
+    })
+  }
+  for (const v of c.digitLatticeViolations.slice(0, 8)) {
+    findings.push({
+      wave: 'gate',
+      severity: 'error',
+      kind: 'digit-lattice',
       harmonic: 'folder',
       detail: `${v.file}: ${v.reason}`,
     })
