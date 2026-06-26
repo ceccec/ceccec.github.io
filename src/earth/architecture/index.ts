@@ -770,14 +770,14 @@ export function folderLaw() {
 /** Sealed mind logic tails — one index per row; dry rename dissolves mind/ prefix to logicTarget. */
 export const MIND_LOGIC_INDEX_TAILS = [
   'earth', 'earth/architecture', 'earth/civilisation', 'earth/governance', 'earth/nature', 'earth/world',
-  'fire/diamonds', 'fire/features', 'fire/li', 'fire/physics',
+  'earth/iching', 'earth/life', 'earth/death',
+  'fire/diamonds', 'fire/features', 'fire/li', 'fire/physics', 'fire/plasma/ball',
   'water/cosmos', 'water/crypto', 'water/digit', 'water/encryption',
-  'fusion', 'language', 'learning', 'life', 'death', 'iching', 'rosetta', 'routes', 'site', 'types', 'ui',
-  'mountain/gates', 'mountain/geometry', 'mountain/og', 'mountain/seals', 'mountain/geometry', 'mountain/source', 'mountain/topology',
-  'lake/clean', 'lake/ledger', 'lake/media', 'lake/music', 'lake/stats', 'quantum/widgets',
+  'wind/fusion', 'wind/language', 'wind/learning', 'wind/site', 'wind/types', 'wind/ui',
+  'mountain/gates', 'mountain/geometry', 'mountain/og', 'mountain/seals', 'mountain/source', 'mountain/topology',
+  'lake/clean', 'lake/ledger', 'lake/media', 'lake/music', 'lake/stats', 'lake/widgets',
   'thunder/commands', 'thunder/decode', 'thunder/movie', 'thunder/trading', 'thunder/verify', 'thunder/waves',
   'heaven/atoms', 'heaven/compute', 'heaven/essence', 'heaven/laws',
-  'plasma/ball',
   'heaven/balance', 'heaven/core', 'heaven/site',
 ] as const
 
