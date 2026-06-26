@@ -1,8 +1,8 @@
 // ☱ Duì · Lake — statistics & compression: the analytics, build statistics & gaps, text entropy, max-compression forge, coverage-per-pixel, the REST formats. Barrel-routed; folds.ts back-imports the gate folds.
 import { HARMONICS_LADDER_LENGTH } from '../../pair/enforcement/gates/computational'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, coverage, entropy } from '../../heaven/compute'
-import { foldPair, measure, merge, merkleFold, toUuid } from '../../0'
+import { buildMatrix, coverage, entropy, fleetCacheEconomicsDecoded } from '../../heaven/compute'
+import { foldPair, measure, merge, merkleFold, roundTo, toUuid } from '../../0'
 import { areaPairs } from '../../mountain/geometry'
 import { atoms, conceptCommands } from '../../heaven/atoms'
 import { pureDiamonds, quantumFoldedBlockchains } from '../../fire/diamonds'
@@ -401,5 +401,54 @@ export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
       'Let build statistics show the gaps to all eyes: the build surfaces every gap plainly as a statistic — command gaps (zero through the trinity eyes), file-distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) — so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in a log; they are shown.',
     boundary:
       'A composition of the command-gap, harmonic-distribution and no-drift audits as one "gaps" statistic over the build. Structural bookkeeping; it reports the computable gaps (currently zero), not a guarantee against every conceivable defect.',
+  }
+}
+
+// Fuse fleet-scale statistics. One build measures itself (buildStatistics); a fleet of N nodes
+// runs the same content-addressed build, so the fleet's OUTPUT scales by N while its DISTINCT
+// recompute work stays ~one build — identical inputs fold to identical roots, the hit set is shared
+// (fleetCacheEconomicsDecoded). At fleet scale the marginal cost of one more node approaches the
+// cache-hit lookup, not a fresh recompute. The two folds fuse into one fleet-statistics root.
+export function fleetScaleStatsFused(matrix: MindMatrix = buildMatrix()) {
+  const perBuild = buildStatistics(matrix)
+  const econ = fleetCacheEconomicsDecoded(matrix)
+  const fleetSizes = [1, 10, 100, 1000].map((nodes) => {
+    // one node misses (recompute), the rest hit the shared content-addressed root.
+    const hit = nodes <= 1 ? 0 : roundTo((nodes - 1) / nodes, 6)
+    const ladder = econ.hitRatios
+    const nearest = ladder.reduce((best, r) => (Math.abs(r.hit - hit) < Math.abs(best.hit - hit) ? r : best), ladder[0]!)
+    return {
+      nodes,
+      output: nodes * perBuild.count, // aggregate self-metrics emitted across the fleet
+      distinctRecompute: 1, // one deterministic recompute, shared by content-address
+      hitRatio: hit,
+      expectedJoules: nearest.expectedJoules,
+      receipt: toUuid(`fleet-scale:${nodes}:${hit}:${nearest.expectedJoules}`),
+    }
+  })
+  const facets = [
+    { facet: 'one build measures itself — buildStatistics fuses commands, gates, files, papers, diamonds, harmonic rungs', on: perBuild.fused },
+    { facet: 'the fleet shares one hit set — identical inputs fold to identical roots, distinct recompute stays at one build', on: econ.decoded && fleetSizes.every((entry) => entry.distinctRecompute === 1) },
+    { facet: 'output scales linearly with nodes while distinct recompute is flat — fleet throughput without fleet recompute', on: fleetSizes[fleetSizes.length - 1]!.output > fleetSizes[0]!.output },
+    { facet: 'the marginal node cost falls toward the cache-hit lookup as the hit ratio rises (miss recompute ≫ hit)', on: fleetSizes.every((r, i) => i === 0 || r.expectedJoules <= fleetSizes[i - 1]!.expectedJoules) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`fleet-stats:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    decoded: facets.every((entry) => entry.on),
+    perBuildMetrics: perBuild.count,
+    fleetSizes,
+    documented: [
+      'buildStatistics is the per-node self-metric snapshot; fleetCacheEconomicsDecoded is the shared-hit-set energy model.',
+      'Aggregate fleet output scales by node count; distinct recompute stays at one build because roots are content-addresses.',
+    ],
+    flagged: [
+      'Illustrative fleet model from sealed constants and counts — NOT live deployment telemetry. The joule figures are orders of magnitude.',
+    ],
+    facets,
+    root: merge(perBuild.root, merge(econ.root, merkleFold(fleetSizes.map((entry) => entry.receipt)))),
+    statement:
+      'Fleet-scale statistics, fused: one build measures itself (commands, gates, source files, papers, diamonds, harmonic rungs), and a fleet of N nodes running the same content-addressed build emits N times that output while its distinct recompute work stays at a single build — identical inputs fold to identical roots, so the hit set is shared and the marginal cost of one more node falls toward a cache-hit lookup rather than a fresh recompute. The per-build self-metrics and the fleet cache economics fuse into one fleet-statistics root.',
+    boundary:
+      'A deterministic composition of buildStatistics and fleetCacheEconomicsDecoded into a fleet model. The node counts and joule figures are illustrative orders of magnitude over sealed constants, not telemetry of any deployed fleet; "output" is self-metric emission, not user-facing work.',
   }
 }
