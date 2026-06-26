@@ -15,7 +15,7 @@ import { geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, rgbCmyComplem
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
 import { displayHeroCardThumb, tenDimensionalAnimation } from '../../wind/ui'
-import { trinityFirstRedesign } from '../../fire/li'
+import { trinityFirstRedesign } from '../../mountain/seals'
 import { allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
 import { allIsMonographScientificPaper } from '../../wind/routes/corpus'
 import { cssIsIChingComputed } from '../../earth/architecture'

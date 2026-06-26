@@ -20,7 +20,7 @@ import { quantumImpossibleWaveTwo, saveSkillsComputeImplementWaves } from '../..
 import { glagoliticLocaleAutotranslateAll } from '../../wind/language'
 import { decodeAncientKnowledgeInReusableCode } from '../../thunder/decode'
 import { commandsRegistry } from '../../thunder/commands'
-import { enforcementTrinitySpread, trinityRotationalPlanes } from '../../fire/li'
+import { enforcementTrinitySpread, trinityRotationalPlanes } from '../../mountain/seals'
 import { folderLaw, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { allAnswersInside, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { allLogicMovedToSource } from '../../mountain/source'

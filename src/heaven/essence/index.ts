@@ -23,7 +23,7 @@ import { collideToTiniestWave, quantumImpossibleWaveTwo, coordinatedWaves, trans
 import { DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
 import { archangelsDryClean, dryCleanByImportExportNaming, dryCleaningOnTheWay, reviewDryCleanGatesCrosses, cleanupCoreShinesSunMoon, extendSelfAudits } from '../../lake/clean'
 import { selfAdvising } from '../../mountain/geometry'
-import { trinityRotationalPlanes, trinityFirstRedesign } from '../../fire/li'
+import { trinityRotationalPlanes, trinityFirstRedesign } from '../../mountain/seals'
 import { linuxKernelFusion } from '../../wind/fusion'
 import { quantumLogicBackwards } from '../../earth/world'
 import { doubleTorusFold, homology } from '../../mountain/topology'

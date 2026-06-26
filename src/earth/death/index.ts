@@ -3,7 +3,8 @@ import * as __ns_up_life from '../life'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
-import { doubleTorusCompost, trinityOtherSideDoomed } from '../../fire/li'
+import { doubleTorusCompost } from '../../fire/li'
+import { trinityOtherSideDoomed } from '../../mountain/seals'
 import { inverseAndNewGapsEmerge } from '../../heaven/site'
 import {
   decodeTheBittenApple,
