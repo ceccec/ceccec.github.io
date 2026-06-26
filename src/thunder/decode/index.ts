@@ -4,7 +4,9 @@ import { survive } from '../../mountain/vortex'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry'
 import { a432IsTheBlood } from '../../lake/music'
-import { DIMENSIONS, DIMENSION_NAMES, SINGLE_WORD_METHODS } from '../../3/7'
+import { A432_HUE, DIMENSIONS, DIMENSION_NAMES, SINGLE_WORD_METHODS } from '../../3/7'
+// Cycle-safe namespace binding for the cosmology folds composed into the mystery atlas (referenced at call time).
+import * as __ns_water_cosmos from '../../water/cosmos'
 import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance'
 import { commandsSavedInQuantumPairs, commandsRegistry } from '../commands'
 import { BAGUA, iChing } from '../../heaven/core'
@@ -21,7 +23,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
 import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
-import { cellHomology, dna, merkaba, vortexMath } from '../../mountain/geometry'
+import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, yinYang } from '../../quantum/lake/icons'
 import { decodeKnowledge, skillAtoms } from '../../wind/learning'
 import { conceptCommands } from '../../heaven/atoms'
@@ -1166,4 +1168,77 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
     boundary:
       'Verified integer cycle-math (the LCM meshings computed) from the documented calendars; the legend is excluded (the 2012 apocalypse, the galactic alignment, the Dreamspell, φ-mysticism; the true origin of the 260-day count is unknown and not asserted). The cycles render on the hero as rotating wheels driven by the device date — a coupled-torus clock, not an ephemeris or a date prediction.',
   }
+}
+
+// ── Group 3 ☳ · the mystery atlas — every world mystery decoded to its honest tier, composed from sealed folds ──
+
+export type MysteryTier = 'OPEN' | 'SOLVED-FLAGGED' | 'ARCHAEOLOGICAL' | 'REFUTED'
+export type WorldMystery = {
+  readonly mystery: string
+  readonly tier: MysteryTier
+  readonly verdict: string
+  readonly composedRoot: string
+  readonly hue: number
+  readonly receipt: string
+}
+const MYSTERY_TIER_INDEX: Record<MysteryTier, number> = { OPEN: 0, 'SOLVED-FLAGGED': 1, ARCHAEOLOGICAL: 2, REFUTED: 3 }
+/** tier → colour, anchored on the single A432 hue (one colour source) so the atlas paints tier as hue. */
+export function mysteryTierHue(tier: MysteryTier): number {
+  return Math.round((A432_HUE + MYSTERY_TIER_INDEX[tier] * 90) % 360)
+}
+
+/**
+ * worldMysteriesDecoded — the mystery atlas. Each entry is decoded to one honest tier (OPEN / SOLVED-FLAGGED /
+ * ARCHAEOLOGICAL / REFUTED) and bound to a sealed fold's root where one exists, so the atlas COMPOSES the existing
+ * cosmology, archaeology, and pseudoscience folds rather than re-deriving them. The animation is the asMerkle
+ * "atlas": each entry a leaf, tier painted as hue (mysteryTierHue, one A432 colour source), folding to one root.
+ */
+export function worldMysteriesDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('worldMysteriesDecoded', matrix, () => {
+    const darkMatter = __ns_water_cosmos.darkMatterDecoded(matrix)
+    const tensions = __ns_water_cosmos.cosmologicalTensionsLcdmDecoded(matrix)
+    const proton = schwarzschildProtonComputedInSource(matrix)
+    const pyramids = pyramidsDecoded(matrix)
+    const grid = pyramidGridDebunked(matrix)
+    const tech = ancientTech(matrix)
+    const entries: { mystery: string; tier: MysteryTier; verdict: string; composedRoot: string }[] = [
+      { mystery: 'Dark matter', tier: 'OPEN', verdict: 'A real gravitational anomaly with multiple live hypotheses (WIMPs, axions, MOND) — unresolved, not mystical.', composedRoot: darkMatter.root },
+      { mystery: 'The Hubble / cosmological tensions (ΛCDM)', tier: 'OPEN', verdict: 'Genuine statistical tension between early- and late-universe measurements of H₀ and S₈ — an open frontier in cosmology.', composedRoot: tensions.root },
+      { mystery: 'The Antikythera mechanism', tier: 'ARCHAEOLOGICAL', verdict: 'A real ~2nd-century-BCE Greek geared analog computer for astronomical cycles — solved by archaeology, no lost super-science.', composedRoot: tech.root },
+      { mystery: 'Great Pyramid construction', tier: 'ARCHAEOLOGICAL', verdict: 'Achievable with documented Bronze-Age methods (ramps, levers, copper tools, organised labour) — the math closes.', composedRoot: pyramids.root },
+      { mystery: 'The global "pyramid power grid" / ley-line alignment', tier: 'REFUTED', verdict: 'Refuted — the alleged worldwide geometric grid is selection bias over a dense site set; no energy network exists.', composedRoot: grid.root },
+      { mystery: 'The Schwarzschild proton (Haramein)', tier: 'REFUTED', verdict: 'Refuted by ~38 orders of magnitude — the holographic-proton mass is wildly off the measured proton mass.', composedRoot: proton.root },
+      { mystery: 'The hard problem of consciousness', tier: 'OPEN', verdict: 'Genuinely open — why subjective experience accompanies information processing is unsolved; no decode claimed.', composedRoot: toUuid('mystery:consciousness:open') },
+      { mystery: 'Abiogenesis (origin of life)', tier: 'OPEN', verdict: 'Open science — plausible prebiotic chemistry routes exist but the full path from chemistry to life is unsolved.', composedRoot: toUuid('mystery:abiogenesis:open') },
+      { mystery: '432 Hz as a "cosmic / healing" frequency', tier: 'REFUTED', verdict: 'Refuted — 432 Hz is an arbitrary tuning choice; the cosmic/healing claims are numerology and subjective preference, not measurable physics.', composedRoot: toUuid('mystery:432hz:refuted') },
+    ]
+    const mysteries: WorldMystery[] = entries.map((e) => ({
+      ...e,
+      hue: mysteryTierHue(e.tier),
+      receipt: toUuid(`world-mystery:${e.mystery}:${e.tier}:${e.composedRoot.slice(0, 8)}`),
+    }))
+    const tierCounts = { OPEN: 0, 'SOLVED-FLAGGED': 0, ARCHAEOLOGICAL: 0, REFUTED: 0 } as Record<MysteryTier, number>
+    for (const m of mysteries) tierCounts[m.tier] += 1
+    const facets = [
+      { facet: 'every entry carries an honest tier — OPEN / SOLVED-FLAGGED / ARCHAEOLOGICAL / REFUTED — no entry is left ambiguous', on: mysteries.every((m) => m.tier in MYSTERY_TIER_INDEX) },
+      { facet: 'cosmology composed from sealed folds — dark matter and the ΛCDM tensions bind their own roots', on: isUuid(darkMatter.root) && isUuid(tensions.root) },
+      { facet: 'archaeology composed — the Antikythera mechanism and pyramid construction bind their sealed folds', on: isUuid(tech.root) && isUuid(pyramids.root) },
+      { facet: 'pseudoscience REFUTED with numbers — the pyramid grid debunked and the Schwarzschild proton off by ~38 orders', on: isUuid(grid.root) && isUuid(proton.root) && tierCounts.REFUTED >= 3 },
+      { facet: 'the atlas paints tier as hue from the single A432 colour source (mysteryTierHue)', on: mysteries.every((m) => m.hue >= 0 && m.hue < 360) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`mystery-atlas:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      mysteries,
+      tierCounts,
+      count: mysteries.length,
+      documented: ['Each mystery is decoded to one honest tier and bound to a sealed fold root where one exists (cosmology, archaeology, pseudoscience).', 'The atlas is the asMerkle projection: each mystery a leaf, folding to one root, tier painted as hue from the single A432 colour anchor.'],
+      flagged: ['OPEN means genuinely unsolved (dark matter, the H₀ tension, consciousness, abiogenesis) — no decode is claimed for them.', 'REFUTED entries carry their numbers (Schwarzschild proton ~38 orders off; pyramid grid = selection bias; 432 Hz = numerology/subjective).'],
+      facets,
+      root: merkleFold(mysteries.map((m) => m.receipt)),
+      statement:
+        'The mystery atlas: every world mystery decoded to one honest tier — OPEN (dark matter, the cosmological tensions, consciousness, abiogenesis), ARCHAEOLOGICAL (the Antikythera mechanism, Great Pyramid construction), or REFUTED with numbers (the global pyramid "power grid" = selection bias, the Schwarzschild proton ~38 orders off, 432 Hz "cosmic healing" = numerology/subjective). It composes the sealed cosmology, archaeology, and pseudoscience folds rather than re-deriving them, and renders as the asMerkle atlas with tier painted as hue from the one A432 colour source.',
+      boundary:
+        'A content-addressed CATALOGUE that composes existing sealed folds and assigns each mystery an honest tier. It does not solve any OPEN mystery (those remain genuinely unresolved) and it does not soften any REFUTED claim — the refutations keep their order-of-magnitude numbers. "Atlas/animation" is the asMerkle presentation; the tiers and roots are the substance.',
+    }
+  })
 }
