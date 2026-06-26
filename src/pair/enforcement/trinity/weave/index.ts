@@ -11,7 +11,7 @@ import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules
 import { displayDualDebtReceipt } from '../../../../earth/architecture'
 import type { AuditRoot, Finding } from '../../gates'
 import type { EnforcementFacts } from '../../gates'
-import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates } from '../../gates'
+import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates, scanRootDistributionViolations, scanDigitLatticeViolations, CANONICAL_ROOT_FOLDERS } from '../../gates'
 import { buildMatrix } from '../../../../heaven/compute'
 import { modelSeal } from '../../../../heaven/balance'
 import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist'
@@ -310,6 +310,18 @@ for (const outside of law.outsidePageTree) {
   if (!configText.includes(`'${outside}/**'`)) {
     gaps.push({ harmonic: 'folder', kind: 'law-drift', detail: `folderLaw places ${outside} outside the page tree but config srcExclude does not exclude ${outside}/** — why this fails: the law and the site must draw the same boundary from one source, or the tree governed and the tree rendered drift apart` })
   }
+}
+// --- I Ching root distribution (D1, sealed taxonomy) + digit-lattice completeness (D3, VORTEX_SEQUENCE) ---
+// The canonical root set is COMPUTED (CANONICAL_ROOT_FOLDERS = 8 trigrams + digits 0-9 + pair + quantum +
+// render); every other top-level folder is a blocking distribution gap until it dissolves under its trigram.
+// Each digit folder must be a complete index barrel over its 10's-complement pair. BLOCKING in the weave
+// (docs:build / enforcement-trinity) — a real fail-the-build invariant, distinct from the pre-commit census so
+// green batches still commit while the remaining homes are placed and the digit census decision is taken.
+for (const v of scanRootDistributionViolations(root)) {
+  gaps.push({ harmonic: 'distribution', kind: 'root-distribution', detail: `${v.file}: ${v.reason} (canonical roots: ${CANONICAL_ROOT_FOLDERS.join(' ')})` })
+}
+for (const v of scanDigitLatticeViolations(root)) {
+  gaps.push({ harmonic: 'distribution', kind: 'digit-lattice', detail: `${v.file}: ${v.reason}` })
 }
 // Gates tighten — the VitePress navigation is computed from the model (siteNavigation), not hand-kept.
 // config.mts must hold NO hardcoded internal nav (no `link: '/…'` item literals) and must read the

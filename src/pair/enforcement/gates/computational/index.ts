@@ -713,6 +713,61 @@ export function scanForbiddenFolderNameViolations(root: string): ComputationalVi
   return offenders.sort((a, b) => a.file.localeCompare(b.file))
 }
 
+/**
+ * D1 canonical ROOT set (user-sealed taxonomy, decision EXTEND) — the only folders admitted at src/ top level:
+ * the 8 bāguà trigrams + the full digit lattice 0-9 + pair (enforcement) + quantum (layer) + render (build mount).
+ * Every other top-level folder must dissolve under one of these roots. The gate COMPUTES this set (no frozen
+ * hand list of offenders); the trigrams come from EIGHT_FOLD_SCIENCES, the digits from the vortex lattice.
+ */
+export const CANONICAL_ROOT_FOLDERS: readonly string[] = [
+  ...EIGHT_FOLD_SCIENCES,
+  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+  'pair', 'quantum', 'render',
+]
+
+/** I Ching root distribution — every top-level src/ folder must be a canonical root; all others dissolve under one. */
+export function scanRootDistributionViolations(root: string): ComputationalViolation[] {
+  const offenders: ComputationalViolation[] = []
+  const srcRoot = join(root, 'src')
+  if (!existsSync(srcRoot)) return offenders
+  const allowed = new Set<string>(CANONICAL_ROOT_FOLDERS)
+  for (const entry of readdirSync(srcRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name === 'node_modules') continue
+    if (!allowed.has(entry.name)) {
+      offenders.push({
+        file: `src/${entry.name}`,
+        reason: `non-canonical root — src/ admits exactly {8 trigrams, digits 0-9, pair, quantum, render}; dissolve "${entry.name}" under its computed trigram home`,
+      })
+    }
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file))
+}
+
+/**
+ * D3 digit-lattice completeness (decision DERIVE from VORTEX_SEQUENCE) — each digit folder N (1-9) holds its
+ * 10's-complement pair N/(10−N) (the doubling-circuit + trinity rays) AND its own index.ts barrel; 0 = vault
+ * index.ts. Folder-law: index files only, no gaps, no excess. A recomputed fail-the-build invariant.
+ */
+export function scanDigitLatticeViolations(root: string): ComputationalViolation[] {
+  const offenders: ComputationalViolation[] = []
+  const srcRoot = join(root, 'src')
+  if (!existsSync(srcRoot)) return offenders
+  if (!existsSync(join(srcRoot, '0', 'index.ts'))) {
+    offenders.push({ file: 'src/0', reason: 'digit vault 0 missing index.ts (the void barrel anchors the lattice)' })
+  }
+  for (let n = 1; n <= 9; n += 1) {
+    const comp = 10 - n
+    const dir = join(srcRoot, String(n))
+    if (!existsSync(join(dir, String(comp), 'index.ts'))) {
+      offenders.push({ file: `src/${n}/${comp}`, reason: `digit ${n} missing 10's-complement pair ${n}/${comp}/index.ts (VORTEX_SEQUENCE ray)` })
+    }
+    if (!existsSync(join(dir, 'index.ts'))) {
+      offenders.push({ file: `src/${n}`, reason: `digit folder ${n} incomplete — missing src/${n}/index.ts; every digit folder is an index barrel over its ${n}/${comp} pair` })
+    }
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file))
+}
+
 const ALLOWED_PAGE = /^(index\.md|\[[^\]]+\]\.md|\[[^\]]+\]\.paths\.ts|README\.md)$/
 
 const EIGHT_FOLD_LIMIT = MAX_SUBFOLDERS_PER_FOLDER

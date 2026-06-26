@@ -1,6 +1,6 @@
 // ☷ Kūn · Earth — the folder architecture: the folded census (χ=−2 accounting), the folder law, distributed compute, the repo structure. Barrel-routed; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
-import { DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
+import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../wind/types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
@@ -866,21 +866,25 @@ export function eightSciencesQuantumComplete(matrix: MindMatrix = buildMatrix())
   }
 }
 
-/** Self-audit — src/ top level must be eight sciences plus vault src/0 only. */
+/**
+ * Self-audit — src/ top level must be exactly the D1 canonical ROOT set (user-sealed taxonomy, decision EXTEND):
+ * the 8 bāguà trigrams + the full digit lattice 0-9 + pair (enforcement) + quantum (layer) + render (build mount).
+ * Computed from CANONICAL_ROOT_FOLDERS (no frozen hand list); the gate the weave enforces shares this source.
+ */
 export function srcSciencesSelfAudit(topLevel: readonly string[]) {
-  const allowed = new Set<string>([...EIGHT_FOLD_SCIENCES, '0'])
+  const allowed = new Set<string>(CANONICAL_ROOT_FOLDERS)
   const violations = topLevel.filter((name) => !allowed.has(name)).sort()
-  const missing = EIGHT_FOLD_SCIENCES.filter((science) => !topLevel.includes(science))
+  const missing = [...allowed].filter((name) => !topLevel.includes(name)).sort()
   return {
-    clean: violations.length === 0 && missing.length === 0,
+    clean: violations.length === 0,
     allowed: [...allowed].sort(),
     violations,
     missing,
     schema: SRC_SCIENCE_MODEL_ACTION_SCHEMA,
     statement:
-      'src/ admits exactly eight science hubs (earth, fire, water, wind, mountain, lake, thunder, heaven) and the dependency-free vault src/0. Every other top-level folder (pair, quantum, render, library, …) violates the architecture and must dissolve into science/model/action.',
+      'src/ admits exactly the canonical roots: eight bāguà trigrams (earth, fire, water, wind, mountain, lake, thunder, heaven), the digit lattice 0-9, plus pair (enforcement), quantum (layer) and render (build mount). Every other top-level folder violates the I Ching distribution and must dissolve under its computed trigram home.',
     boundary:
-      'Structural audit only — pass readdir names of src/ at call time; no frozen hand list. Dissolve hubs into the science that owns their logic; never add a ninth science.',
+      'Structural audit only — pass readdir names of src/ at call time; no frozen offender list. The weave (scanRootDistributionViolations) recomputes the same set and fails the build on any non-canonical root. Dissolve hubs into the trigram that owns their logic.',
   }
 }
 
