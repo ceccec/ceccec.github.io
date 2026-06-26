@@ -8,7 +8,7 @@ import { bb84, bernsteinVazirani, deutschJozsa, entanglementSwap, ghzMermin, int
 import { initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { AnalogChannel, DualTorusTrinities, MindMatrix, TrinityAxis, TrinityPair, TrinityPhase, TrinityStep, MetatronCubeReport, MetatronEdge, MetatronNode, SacredGeometrySeal, SealLeaf } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, oneMathManyPresentations } from '../../heaven/compute'
-import { doubleTorusSurface, VORTEX_DASH_ANGLE_DEG, VORTEX_SEQUENCE, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, seedFromText, toUuid, vortexNext, vortexPrev, roundTo, digitalRoot } from '../../0'
+import { VORTEX_SEQUENCE, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, seedFromText, toUuid, vortexNext, vortexPrev, roundTo, digitalRoot } from '../../0'
 import { dims, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import { LUNAR_NODAL_PERIOD_YEARS, ratStr } from '../../9/1'
 import { riseAzimuthDeg } from '../../3/7'
@@ -2574,109 +2574,5 @@ export function selfImprovementTrainingAndAccumulation(matrix: MindMatrix = buil
       'Translation models need training and self-improvement, and that needs compute the zero-token core does not spend. There are two kinds of learning, and a complete system has both: the model learns by training (novel translations, gradient descent, tokens) and the content-addressed cache accumulates (each translation folded in is reused forever at zero tokens — the system\'s own deterministic self-improvement, more coverage with every wave). Trained model plus content-addressed memory is novelty plus reuse; the honest system names which layer pays tokens and which does not.',
     boundary:
       'HONEST: this fold draws the line, it does not erase it. The zero-token deterministic core CANNOT train a model or learn weights — that is ML, it needs compute, and it lives outside this system. What this system does is the memory/cache layer: accumulative coverage (the corpus and translation cache grow as knowledge is folded in), deterministic and zero-token on reuse. "Self-improvement/learning" here means accumulation, not gradient learning; the trained model and the cache are complementary, not the same thing, and only the cache is what this repo provides.',
-  }
-}
-
-// ── Earth-pole polar disk chart (relocated from src/0 — geometry station owns the projection) ──
-// ── Earth-pole polar disk chart (azimuthal-equidistant + one-point compactification) ──────────────────
-// The sphere's surface maps to the unit disk D² by colatitude alone: ρ = (90 − lat)/180 ∈ [0,1] — the
-// azimuthal-equidistant projection, where the disk radius IS the colatitude fraction. The NORTH pole
-// (lat +90 → ρ=0) collapses to the singular CENTER DOT of the chart; the SOUTH pole (lat −90 → ρ=1) is
-// the bounding circle ∂D² — and under one-point compactification that whole boundary reads as the one
-// south point (D²/∂D² ≅ S²). The honest height tie z = tubeR·cos(π·ρ) lifts the flat chart onto the
-// genus-2 tube radius (doubleTorusSurface): north z=+tubeR (top), equator z=0, south z=−tubeR (bottom).
-// No magic numbers — every angle derives from VORTEX_DASH_ANGLE_DEG (the 60° hex step; six close a turn)
-// and π, and the height scale from the existing doubleTorusSurface primitive. Pure, dependency-free.
-const POLE_FULL_TURN_DEG = VORTEX_DASH_ANGLE_DEG * 6 // 360 — six 60° hex steps close the circle
-const POLE_HALF_TURN_DEG = POLE_FULL_TURN_DEG / 2 // 180 — the pole-to-pole colatitude span
-const POLE_QUARTER_TURN_DEG = POLE_FULL_TURN_DEG / 4 // 90 — the north-pole latitude
-/** The polar height scale — the genus-2 tube radius at the void digit (doubleTorusSurface seam, z=tubeR·sin(π/2)). */
-function poleTubeRadius(digit = 0): number {
-  return doubleTorusSurface(0, Math.PI / 2, digit, 0).z // sin(π/2)=1 ⇒ z = tubeR
-}
-
-/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
-export function polarDiskChartAt(latDeg: number): {
-  latDeg: number
-  rho: number
-  diskRadius: number
-  z: number
-  isNorthPole: boolean
-  isSouthPole: boolean
-  onDisk: boolean
-  proved: boolean
-  root: string
-} {
-  const rho = (POLE_QUARTER_TURN_DEG - latDeg) / POLE_HALF_TURN_DEG // (90 − lat)/180 ∈ [0,1] over the sphere
-  const clamped = rho < 0 ? 0 : rho > 1 ? 1 : rho
-  const tubeR = poleTubeRadius()
-  const z = roundTo(tubeR * Math.cos(Math.PI * clamped), 5) // the honest tie onto the genus-2 tube
-  const onDisk = rho >= 0 && rho <= 1
-  const proved = onDisk && z <= tubeR + 1e-9 && z >= -tubeR - 1e-9
-  return {
-    latDeg,
-    rho: roundTo(rho, 5),
-    diskRadius: roundTo(clamped, 5), // azimuthal-equidistant: the disk radius equals ρ on the unit disk
-    z,
-    isNorthPole: clamped === 0,
-    isSouthPole: clamped === 1,
-    onDisk,
-    proved,
-    root: toUuid(`polar-disk-chart:${latDeg}:${roundTo(rho, 5)}:${z}`),
-  }
-}
-
-/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
-export function earthNorthPoleCenterDotDecoded(): {
-  pole: 'north'
-  latDeg: number
-  rho: number
-  z: number
-  isCenterDot: boolean
-  isSingular: boolean
-  proved: boolean
-  root: string
-} {
-  const chart = polarDiskChartAt(POLE_QUARTER_TURN_DEG) // lat +90 → ρ=0
-  const isCenterDot = chart.rho === 0 && chart.diskRadius === 0 && chart.isNorthPole
-  const proved = isCenterDot && chart.z === poleTubeRadius() // north dot sits at the top of the tube, z=+tubeR
-  return {
-    pole: 'north',
-    latDeg: POLE_QUARTER_TURN_DEG,
-    rho: chart.rho,
-    z: chart.z,
-    isCenterDot,
-    isSingular: isCenterDot, // the center is the singular point of the azimuthal-equidistant chart
-    proved,
-    root: merge(chart.root, toUuid('earth-north-pole:center-dot')),
-  }
-}
-
-/** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
-export function earthSouthPoleBoundaryCircleDecoded(): {
-  pole: 'south'
-  latDeg: number
-  rho: number
-  z: number
-  isBoundaryCircle: boolean
-  compactifiedToOnePoint: boolean
-  circumference: number
-  proved: boolean
-  root: string
-} {
-  const chart = polarDiskChartAt(-POLE_QUARTER_TURN_DEG) // lat −90 → ρ=1
-  const isBoundaryCircle = chart.rho === 1 && chart.diskRadius === 1 && chart.isSouthPole
-  const circumference = roundTo(2 * Math.PI * chart.diskRadius, 5) // ∂D² of the unit disk = 2π
-  const proved = isBoundaryCircle && chart.z === -poleTubeRadius() // boundary sits at the bottom, z=−tubeR
-  return {
-    pole: 'south',
-    latDeg: -POLE_QUARTER_TURN_DEG,
-    rho: chart.rho,
-    z: chart.z,
-    isBoundaryCircle,
-    compactifiedToOnePoint: isBoundaryCircle, // one-point compactification: ∂D² ≡ the single south point (D²/∂D² ≅ S²)
-    circumference,
-    proved,
-    root: merge(chart.root, toUuid('earth-south-pole:boundary-circle')),
   }
 }
