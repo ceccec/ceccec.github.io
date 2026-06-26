@@ -5,8 +5,8 @@
 <template>
   <output
     class="display-dual-gate"
-    data-logic="src/death/index.ts"
-    data-target="src/death/index.ts"
+    data-logic="src/earth/death/index.ts"
+    data-target="src/earth/death/index.ts"
     data-topic="death"
     aria-hidden="true"
   />

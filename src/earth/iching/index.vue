@@ -5,8 +5,8 @@
 <template>
   <output
     class="display-dual-gate"
-    data-logic="src/iching/index.ts"
-    data-target="src/iching/index.ts"
+    data-logic="src/earth/iching/index.ts"
+    data-target="src/earth/iching/index.ts"
     data-topic="iching"
     aria-hidden="true"
   />

@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <output class="display-dual-gate" data-logic="src/language/index.ts" data-target="src/language/index.ts" aria-hidden="true" />
+  <output class="display-dual-gate" data-logic="src/wind/language/index.ts" data-target="src/wind/language/index.ts" aria-hidden="true" />
 </template>

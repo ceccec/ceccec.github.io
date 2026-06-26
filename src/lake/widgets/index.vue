@@ -27,7 +27,7 @@ watch(() => props.at, (at) => { panel.value = quantumWidgetsPanelComputes(undefi
 </script>
 
 <template>
-  <UiCard id="quantum-widgets-gallery" class="quantum-widgets" data-logic="src/quantum/widgets/index.ts" data-target="src/quantum/widgets/index.ts#quantumWidgetsComputes" data-topic="quantum-widgets">
+  <UiCard id="quantum-widgets-gallery" class="quantum-widgets" data-logic="src/lake/widgets/index.ts" data-target="src/lake/widgets/index.ts#quantumWidgetsComputes" data-topic="quantum-widgets">
     <UiCardContent class="vp-doc quantum-widgets__content">
       <header class="quantum-widgets__header">
         <h2>{{ t(title) }}</h2>

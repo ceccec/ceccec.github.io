@@ -96,7 +96,7 @@ const goldFusion = computed(() => goldFusionComputes())
   <section
     v-if="goldFusion.computes"
     class="display-dual-gate gold-fusion-generator-panel"
-    data-logic="src/fusion/gold/index.ts"
+    data-logic="src/wind/fusion/gold/index.ts"
     aria-label="Double Earth fusion generator from gold positions — MODEL score capstone"
   >
     <header>
@@ -150,7 +150,7 @@ const goldFusion = computed(() => goldFusionComputes())
   <section
     v-if="cosmos.computes"
     class="display-dual-gate cosmos-capstone-panel"
-    data-logic="src/fusion/index.ts"
+    data-logic="src/wind/fusion/index.ts"
     aria-label="Earth to galaxies and beyond — cosmological capstone"
   >
     <header>

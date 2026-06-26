@@ -6,8 +6,8 @@
   <article class="ui-card ui-card--ghost" data-shadcn="card" data-topic="homepage">
     <output
       class="display-dual-gate"
-      data-logic="src/site/index.ts#homepage"
-      data-target="src/site/index.ts"
+      data-logic="src/wind/site/index.ts#homepage"
+      data-target="src/wind/site/index.ts"
       data-topic="homepage"
       aria-hidden="true"
     />

@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <output class="display-dual-gate" data-logic="src/plasma/ball/index.ts" data-target="src/plasma/ball/index.ts" aria-hidden="true" />
+  <output class="display-dual-gate" data-logic="src/fire/plasma/ball/index.ts" data-target="src/fire/plasma/ball/index.ts" aria-hidden="true" />
 </template>

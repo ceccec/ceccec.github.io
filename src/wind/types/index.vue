@@ -5,8 +5,8 @@
 <template>
   <output
     class="display-dual-gate"
-    data-logic="src/types/index.ts"
-    data-target="src/types/index.ts"
+    data-logic="src/wind/types/index.ts"
+    data-target="src/wind/types/index.ts"
     data-topic="types"
     aria-hidden="true"
   />

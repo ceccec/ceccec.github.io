@@ -19,8 +19,8 @@ const implications = computed(() => panel.value.human.implications)
   <UiCard
     id="human-resonance-panel"
     class="human-resonance-panel"
-    data-logic="src/life/index.ts"
-    data-target="src/life/index.ts#humanResonancePanelComputes"
+    data-logic="src/earth/life/index.ts"
+    data-target="src/earth/life/index.ts#humanResonancePanelComputes"
     data-topic="human-resonance"
   >
     <UiCardContent class="vp-doc human-resonance-panel__content">
