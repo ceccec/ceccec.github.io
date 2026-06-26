@@ -2,7 +2,9 @@
 // with. rotate3 turns a vector through all three planes (xy, yz, zx) so the figure tumbles in space, not just
 // spins in the plane; perspective() turns the rotated z into a foreshortening factor (nearer grows, farther
 // recedes), shared by the fractal arms, the architecture ring and the tag ring so they tumble as one figure.
+import { phase } from '../../../6/4'
 import type { Dims } from '../../mountain/dimensions'
+import { movieCanvasRgba } from '../../science'
 
 export const FOCAL = 2.4 // perspective focal length, shared by every layer
 
@@ -65,7 +67,7 @@ export function branch(
   if (depth <= 0 || len < 3) return
   const x2 = x + Math.cos(angle) * len
   const y2 = y + Math.sin(angle) * len
-  ctx.strokeStyle = `hsla(${(hue + d.hueShift + depth * 28) % 360}, 72%, 60%, ${d.depthFade + depth * 0.1})`
+  ctx.strokeStyle = movieCanvasRgba((hue + d.hueShift + depth * 28) % 360, d.depthFade + depth * 0.1, { L: 7 / 8 })
   ctx.lineWidth = Math.max(0.5, depth * 0.6)
   ctx.beginPath()
   ctx.moveTo(x, y)
@@ -111,7 +113,7 @@ export function drawFlower(
       for (const arm of FOL_ARMS) { x += arm.r * Math.cos(arm.w * tt); y += arm.r * Math.sin(arm.w * tt) }
       const age = i / trail
       ctx.globalAlpha = Math.pow(1 - age, 1.6) * 0.42
-      ctx.fillStyle = `hsl(${(hueC + i * 3) % 360}, 85%, ${Math.round(62 - age * 20)}%)`
+      ctx.fillStyle = movieCanvasRgba((hueC + i * 3) % 360, Math.pow(1 - age, 1.6) * 0.42, { L: 13 / 16 - age * (5 / 32) })
       ctx.beginPath()
       ctx.arc(ox + x * localR, oy + y * localR, Math.max(0.5, (1 - age * 0.7) * 1.7), 0, Math.PI * 2)
       ctx.fill()
@@ -145,13 +147,13 @@ export function drawCalendars(
     const phase = ((((days % cyc.days) + cyc.days) % cyc.days) / cyc.days)
     const radius = base * (0.15 + 0.027 * i)
     const hueC = (hue + i * 24) % 360
-    ctx.strokeStyle = `hsla(${hueC}, 60%, 58%, 0.1)`
+    ctx.strokeStyle = movieCanvasRgba(hueC, 0.1, { L: 11 / 16 })
     ctx.lineWidth = 0.75
     ctx.beginPath()
     ctx.arc(cx, cy, radius, 0, Math.PI * 2)
     ctx.stroke()
     const ang = phase * Math.PI * 2 - Math.PI / 2 + (reduce ? 0 : t * 0.05 * (i % 2 === 0 ? 1 : -1))
-    ctx.fillStyle = `hsla(${hueC}, 85%, 64%, 0.7)`
+    ctx.fillStyle = movieCanvasRgba(hueC, 0.7, { L: 13 / 16 })
     ctx.beginPath()
     ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * 0.006), 0, Math.PI * 2)
     ctx.fill()

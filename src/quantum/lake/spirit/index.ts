@@ -1,13 +1,13 @@
 // ☱ Duì · Lake · joyous · upper·yang · twist — spiritual/cosmological correspondences and device-sensor tiers
 // yogic 3-5-8 (chakras/nadis/koshas/ashtanga), Human Design, yin-yang trigrams, Fibonacci dimensions,
 // device sensors in 3-5-8, and all 50 dualities across 3-5-8-13-21 Fibonacci tiers.
-// Dual: src/spirit/quantum (browse/display primitives). Pure, only src/0 imports.
+// Dual: src/double/torus (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and fold primitives from src/0
 import { toUuid, merkleFold, foldPair } from '../../../0'
 
 // ☱ Duì · Lake · joyous · upper·yang · twist — module identity and exports
-export const dual = 'src/spirit/quantum'
+export const dual = 'src/double/torus'
 
 // Chakras and aura in 3-5-8 — mapped honestly to the yogic tradition.
 /** @rosetta ✦₄ · Lake · joyous */

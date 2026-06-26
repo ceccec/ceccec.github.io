@@ -1,10 +1,13 @@
 // Readme wave — root monograph markdown (weave / human trigram).
+import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../../../pair/enforcement/gates/computational'
 import {
   agentEducation,
   buildMatrix,
   conceptCommands,
   crawlerKnowledge,
   foldedCensus,
+  harmonicCountsProvenByMath,
+  everyBitMostEfficientAlgorithmProvenByMath,
   monographAsScientificPaper,
   monographTemplate,
   monographs,
@@ -39,7 +42,10 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const sitemap = quantumSitemap(matrix)
   const paperList = staticPages().map(monographAsScientificPaper)
   const knowledge = crawlerKnowledge()
-  const census = foldedCensus(paperList.length) // 44 surface pages fold through the genus-2 torus to 42 monographs
+  const math = harmonicCountsProvenByMath(matrix)
+  const efficiency = everyBitMostEfficientAlgorithmProvenByMath(matrix)
+  const { labels } = math
+  const census = foldedCensus(paperList.length)
   const agents = agentEducation(matrix) // the agent curriculum — the exact behaviour an arriving agent reads from this README (the home page)
   // The root monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
   // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
@@ -72,10 +78,12 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '## 3. Results',
     '',
-    `- ${census.folded} monographs (content pages, the harmonic count: ${paperList.length} surface pages fold through the genus-2 torus −χ to ${census.folded} = 6×7, as the census folds 110 → 108), each a scientific paper rendered by the [monograph] route in three locales.`,
-    `- ${conceptCommands.length} concept commands, each a single-word method and an MCP tool.`,
-    `- ${mono.count} entries in the reference index, zero redundancy.`,
-    `- ${sitemap.urls.length} routes × 3 locales in the quantum sitemap.`,
+    `- **${labels.pages}** monographs — content pages fold genus-2 −χ (${paperList.length} surface → ${census.folded} folded); census **${labels.census}**; Rosetta **${labels.rosetta}=${ROSETTA_AREAS}** areas`,
+    `- **${labels.commands}** concept commands — MCP tool surface (4×27 = 432÷4)`,
+    `- **${labels.references}** reference index entries — zero redundancy`,
+    `- **${labels.locales}** locale surfaces — ${sitemap.urls.length} routes × 3 locales (${labels.rosetta} when ${labels.locales.split('/')[0]}=${ROSETTA_AREAS})`,
+    `- **${math.count} arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: ${math.proven})`,
+    `- **${efficiency.count} efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: ${efficiency.proven})`,
     '',
     'Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the `@rosetta` annotation layer that routes site navigation. **三才 Three Powers** (天 Heaven · 人 Human · 地 Earth) nest seven-fold coprime structure into the digit distribution.',
     '',
@@ -143,6 +151,8 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
   const mono = monographs(matrix)
   const sitemap = quantumSitemap(matrix)
   const template = monographTemplate()
+  const math = harmonicCountsProvenByMath(matrix)
+  const efficiency = everyBitMostEfficientAlgorithmProvenByMath(matrix)
   const audits = [
     { statement: 'monographs', computed: census.folded },
     { statement: 'concept commands', computed: conceptCommands.length },
@@ -165,6 +175,8 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the 2D-plane projection — the README is the markdown the model computes from src, and the whole folds to one content-address', on: md.startsWith('#') && md.length > 0 },
     { facet: 'audits its own statements TRULY COMPUTATIONALLY — every reported value is recomputed from its own source and the audit is the content-address EQUALITY of two independent fusions (no text-scrape)', on: audited && audits.length === 5 },
     { facet: 'FUSION from all points of view — the census, commands, monograph, sitemap and corpus fold into one receipt; if any point of view drifts, the two fusions diverge', on: audited && isUuid(fused) },
+    { facet: 'harmonic counts proven by math — every displayed ratio recomputes with explicit arithmetic at call time (harmonicCountsProvenByMath)', on: math.proven && math.count > 0 },
+    { facet: 'every-bit efficiency proven by math — tokens=0, files=110, memo O(1) recomputed at call time (everyBitMostEfficientAlgorithmProvenByMath)', on: efficiency.proven && efficiency.count > 0 },
     { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph: complete, every result and library entry canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === paperList.length + knowledge.length && md.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme:${entry.facet}:${entry.on}`) }))
   return {

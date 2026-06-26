@@ -4,8 +4,11 @@
 // shared experiment. They compose the foundational EM constants/conversions from src/0; the FOLDS that RUN them
 // live in src/quantum/fire/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☲ Lí · Fire · clinging · lower·yin · spread — EM primitives (constants, conversions, content-addressing)
+import { phase } from '../../../6/4'
+import { ELECTRONVOLT, PLANCK, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7'
+import { inductionStep } from '../../../vortex/math'
 import { wavelengthOf, larmorFrequency } from '../../../1/9'
-import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, photonEnergyEv, prng, merkleFold, toUuid, roundTo } from '../../../0'
+import {   prng, merkleFold, toUuid, roundTo } from '../../../0'
 import { isIonizing } from '../../../9/1'
 import { radarRange } from '../../../3/7'
 
@@ -25,7 +28,7 @@ export function waveNumber(wavelengthM: number): number { return (2 * Math.PI) /
 export function angularFrequency(frequencyHz: number): number { return 2 * Math.PI * frequencyHz } // ω = 2πf
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function planeWaveSpeed(frequencyHz: number): number { return wavelengthOf(frequencyHz) * frequencyHz } // (c/f)·f = c — proves c=λf
-// Sample the 1-D linearly-polarized plane wave at fixed time t: E(x)=E₀cos(kx−ωt+φ), B=E/c (in phase, ⊥). Closed-form, no ODE.
+// Sample the 1-D linearly-polarized plane wave at fixed time t: E(x)=E₀cos(kx−ωt+φ), B=E/c (in  ⊥). Closed-form, no ODE.
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function planeWaveField(frequencyHz: number, opts: { e0?: number; samples?: number; cycles?: number; t?: number; phase?: number; seed?: string } = {}): { x: number[]; E: number[]; B: number[] } {
   const { e0 = 1, samples = 48, cycles = 1, t = 0, seed } = opts
@@ -78,7 +81,7 @@ export function kevToFrequency(keV: number): number { return (keV * 1000 * ELECT
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function beamProfile(keV: number): { keV: number; frequencyHz: number; photonEnergyEv: number; ionizing: boolean } {
   const frequencyHz = kevToFrequency(keV)
-  return { keV, frequencyHz, photonEnergyEv: photonEnergyEv(frequencyHz), ionizing: isIonizing(frequencyHz) } // reuse the EM kernel verbatim
+  return { keV, frequencyHz, photonEnergyEv: photonEnergyEv(frequencyHz), ionizing: isIonizing(frequencyHz) }
 }
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function opticalDepth(layers: readonly { mu: number; x: number }[]): number { return layers.reduce((acc, l) => acc + l.mu * l.x, 0) } // τ = Σ μᵢxᵢ

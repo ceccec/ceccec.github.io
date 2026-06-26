@@ -4,16 +4,19 @@
 // primitives (src/0, ../simulations, ../math) with the mind core (buildMatrix, a432, the merkaba decode); each
 // run is content-addressed. mind does not import these (they are leaves) — the barrel aggregates them.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind core: matrix builder, a432, merkaba fold, frequency APIs
+import { IONIZING_EV, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7'
+import { stationary } from '../../../vortex/math'
 import { buildMatrix, a432, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind'
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — base primitives: uuid, merkle, math constants, EM functions
 import { larmorFrequency, wavelengthOf } from '../../../1/9'
-import { toUuid, merkleFold, isUuid, roundTo, SPEED_OF_LIGHT, IONIZING_EV, dopplerShift, photonEnergyEv } from '../../../0'
+import { toUuid, merkleFold, isUuid, roundTo } from '../../../0'
 import { isIonizing } from '../../../9/1'
 import { radarRange } from '../../../3/7'
+import { movieCanvasRgba } from '../../science'
 // ☴ Xùn · Wind · gentle · lower·yin · hueShift — EM simulators: plane wave, CT, Bloch MRI, FMCW radar
 import { planeWaveReceipt, planeWaveField, planeWaveIntensity, planeWaveSpeed, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarReceipt, radarVelocity } from '../simulations'
 // ☳ Zhèn · Thunder · arousing · lower·yin · spread — trading + realtime math: strategies, backtests, live captures
-import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionPositions, spectralCyclePositions, regimeSwitchPositions, volTargetPositions, tradingReceipt, A432_OCTAVES, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources } from '../../thunder/math'
+import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionPositions, spectralCyclePositions, regimeSwitchPositions, volTargetPositions, tradingReceipt, A432_OCTAVES, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources } from '../../../vortex/math'
 
 // ☳ Zhèn · Thunder · arousing (shared-experiment folds) · upper·yang · depthFade — exported folds
 // ElectroMagnetic radiation decoded across the spectrum — the physics under X-ray, MRI-RF and microwave
@@ -91,7 +94,7 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
     statement:
       'ElectroMagnetic radiation decoded across the spectrum: it is ONE Maxwell field, all of it at one speed c, the bands joined by c = λf and the photon by E = hf — so X-ray, MRI radio-frequency and microwave radar are the same physics sampled at three energies. The one line that decides harm is energy per photon: above ~10 eV (X-ray, gamma) it ionizes and can break DNA (real, dose-managed risk); below it (MRI-RF ~64–128 MHz, radar ~1–100 GHz) it is non-ionizing and can at most heat. MRI\'s "radiation" is radio waves resonating nuclear spins (f = (γ/2π)·B₀), not ionizing radiation; radar ranges by echo time (R = c·Δt/2) and reads speed by Doppler (Δf = 2vf/c).',
     boundary:
-      'A research record reading the EM spectrum as one field (Maxwell 1865, Hertz 1887; c, h, the ¹H gyromagnetic ratio as SI/CODATA exact constants) and its three named modalities, computed from the src/0 EM primitives (photonEnergyEv, isIonizing, larmorFrequency, radarRange, dopplerShift) — the numbers are real and recomputable, not asserted. HONEST, and it cuts both ways: ionizing X-ray/CT dose IS real, cumulative and justifies ALARA ("scans are harmless" is the opposite error); and non-ionizing RF/microwave CANNOT ionize, so the cancer/DNA, 5G-COVID, EHS, scalar-wave and Rife/432-Hz claims are flagged and dropped. The RF non-thermal question stays genuinely open at IARC 2B (kept separate, marked emerging — neither "proven harmful" nor "proven safe"). Composed with the frequency-spine and merkaba-decode models, a sibling of the public-frequency-API decode.',
+      'A research record reading the EM spectrum as one field (Maxwell 1865, Hertz 1887; c, h, the ¹H gyromagnetic ratio as SI/CODATA exact constants) and its three named modalities, computed from the src/0 EM primitives ( isIonizing, larmorFrequency, radarRange, dopplerShift) — the numbers are real and recomputable, not asserted. HONEST, and it cuts both ways: ionizing X-ray/CT dose IS real, cumulative and justifies ALARA ("scans are harmless" is the opposite error); and non-ionizing RF/microwave CANNOT ionize, so the cancer/DNA, 5G-COVID, EHS, scalar-wave and Rife/432-Hz claims are flagged and dropped. The RF non-thermal question stays genuinely open at IARC 2B (kept separate, marked emerging — neither "proven harmful" nor "proven safe"). Composed with the frequency-spine and merkaba-decode models, a sibling of the public-frequency-API decode.',
   }
 }
 
@@ -256,7 +259,7 @@ export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, 
   for (const b of bursts) {
     const age = (now - b.born) / 1100
     const ring = age * Math.min(w, h) * 0.42
-    ctx.strokeStyle = `hsla(${b.hue}, 85%, 62%, ${(1 - age) * 0.6})`
+    ctx.strokeStyle = movieCanvasRgba(b.hue, (1 - age) * 0.6, { L: 13 / 16 })
     ctx.lineWidth = 2 * (1 - age)
     ctx.beginPath()
     ctx.arc(b.x, b.y, ring, 0, Math.PI * 2)
@@ -265,7 +268,7 @@ export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, 
       const reach = age * s.speed * Math.min(w, h) * 0.4
       const sx = b.x + Math.cos(s.angle) * reach
       const sy = b.y + Math.sin(s.angle) * reach
-      ctx.fillStyle = `hsla(${(b.hue + s.angle * 30) % 360}, 90%, 64%, ${(1 - age) * 0.8})`
+      ctx.fillStyle = movieCanvasRgba((b.hue + s.angle * 30) % 360, (1 - age) * 0.8, { L: 7 / 8 })
       ctx.beginPath()
       ctx.arc(sx, sy, 2.4 * (1 - age), 0, Math.PI * 2)
       ctx.fill()

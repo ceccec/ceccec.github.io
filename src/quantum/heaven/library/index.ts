@@ -15,6 +15,7 @@
 // use entry/toUuid/Uuid/Entry directly), then re-export the same public surface unchanged. A bare
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
+import { phase } from '../../../6/4'
 import { merkabaFoldUrl, entry, toUuid, isUuid, roundTo, addressEntropyBits, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../../0'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
@@ -321,7 +322,7 @@ export function glagoliticProgram(word: string): { ops: { glyph: string; op: Gla
 export const GLAGOLITIC_GATES = ['H', 'X', 'Y', 'Z', 'S', 'T'] as const
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export type GlagoliticGate = (typeof GLAGOLITIC_GATES)[number]
-// The active gates: the four that flip basis or rotate phase, minus H (reserved for the secure span, the one
+// The active gates: the four that flip basis or rotate  minus H (reserved for the secure span, the one
 // gate that CREATES superposition) and Z (the most identity-like member — see below). Ordinary non-secure
 // words spread across these by number, mirroring the opcode fan-out so program and circuit stay in step.
 const GLAGOLITIC_ACTIVE_GATES = ['X', 'Y', 'S', 'T'] as const
@@ -1529,4 +1530,4 @@ export function glyphUuidEncryptionMagnitude() {
 }
 
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
-export const dual = 'src/render/heritage/quantum'
+export const dual = 'src/quantum/earth/heritage'

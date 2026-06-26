@@ -10,7 +10,7 @@ import { toUuid, merkleFold } from '../../../0'
 
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
 /** @rosetta ✦₀ · Mountain · stillness */
-export const dual = 'src/render/heritage/quantum'
+export const dual = 'src/quantum/earth/heritage'
 
 // emoji AREA_ICONS (used by areaLabel + iconGlyphs + iconSeal neighbour)
 /** @rosetta ✦₀ · Mountain · stillness */
@@ -183,8 +183,8 @@ export function iconSeal(): IconSeal {
 
 // ☷ KUN vocabulary cross — dissolved from mind/earth/vocab (six domain barrels, one merkle root)
 export { chakrasAura, humanDesign, yinYang, dimensions, deviceSensors, dualities } from '../spirit'
-export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../earth/nature'
-export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../thunder/science'
+export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../../earth/nature'
+export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../science'
 export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice'
 export { bulgarianHeritage, bulgarianHistory, bulgarianAncientCivilisations, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception } from '../../earth/heritage'
 

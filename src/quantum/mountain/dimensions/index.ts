@@ -1,6 +1,9 @@
 // ☰ Qián · Heaven · creative (the 10 dimensions are the model) · upper·yang · shrink — continuous 10D hero axes: 6 cross-fold appearance + 4 genus-2 homology loops, self-similar at every scale
+import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../types'
 import { merkleFold, toUuid } from '../../../0'
+import { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7'
+export { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { homology } from '../../../mountain/topology'
 // src/quantum/mountain/dimensions — the continuous TEN dimensions of the hero, at every scale. Every parameter of the
 // figure is a smooth function of one phase p (0..1), so the movie slides from one dimension to the next with no
@@ -11,16 +14,11 @@ import { homology } from '../../../mountain/topology'
 // the middle — the walk from 0d to infinity and back. Evaluated at a nested SCALE, the ten repeat self-similarly
 // (a golden-angle phase shift per scale), so the animation is ten-dimensional at every scale.
 
-// ☰ Qián · Heaven · creative · upper·yang · shrink — dimension count and names
-/** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
-export const DIMENSIONS = 10 // the tetrahedron / K4: 4 vertices (genus-2 homology loops, H1 = Z^4 — the 3D frame) + 6 edges (cross-fold appearance axes — their pairwise interactions); interacting 3Ds, not 10 overlapping axes (tenDimensionsAreInteractingThreeDs)
-
-// The names of the ten dimensions, in order — the six cross-fold axes then the four homology loops.
-/** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
-export const DIMENSION_NAMES = [
-  'spread', 'depthFade', 'hueShift', 'twist', 'shrink', 'breath', // the 6 cross-fold appearance axes
-  'loopA1', 'loopB1', 'loopA2', 'loopB2', // the 4 homology loops: handle1 meridian/longitude, handle2 meridian/longitude
-] as const
+// ☰ Qián · Heaven · creative · upper·yang · shrink — dimension count and names.
+// DIMENSIONS (10 = the tetrahedron / K4: 4 vertices = genus-2 homology loops H1 = Z^4, the 3D frame; + 6 edges
+// = cross-fold appearance axes, their pairwise interactions; interacting 3Ds, not 10 overlapping axes) and
+// DIMENSION_NAMES are hosted in the zero-import leaf src/3/7 (imported + re-exported above) so they initialise
+// before any cyclic consumer barrel runs — the public path src/quantum/mountain/dimensions is unchanged.
 
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export interface Dims {

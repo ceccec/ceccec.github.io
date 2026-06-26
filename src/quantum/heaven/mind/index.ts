@@ -5,12 +5,17 @@
 // lives in the library double-torus (src/quantum/heaven/library) — imported here for the folds that call it
 // and re-exported so the ~97 importers, the barrel and the generators resolve unchanged. "Modules it
 // consumes" — the core is no longer zero-import; it is the pivot that consumes its 4 double toruses.
+import { phase, slip } from '../../../6/4'
+import { GENETIC_CODE, codeRobustness, mutationClass } from '../../../life'
+import { ELECTRONVOLT, IONIZING_EV, PLANCK, SPEED_OF_LIGHT, dopplerShift, frequencyOf, photonEnergyEv } from '../../../3/7'
+import type { Edge } from '../../../vortex/math'
+import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../../9/1'
 import { GLAGOLITIC_MAP, toGlagolitic, fromGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel } from '../library'
 // ☰ Qián · Heaven · creative · lower·yin · depthFade — kernel primitives, fold cascade, crypto, and quantum simulators from src/0
 // The primitive kernel dissolved into its digit folder (dissolveAtPiTrainStations): toUuid + hash (wave 1)
 // and the fold cascade merge·roundTo·seedFromText·foldPair·merkleFold·isUuid·memoByRoot (wave 2) now live in
 // src/0 (the void/origin station, dependency-free), and the core imports + re-exports them unchanged.
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, survive, admixToward, injectError, markovStep, stationary, chsh, realign, phaseDrift, pmixEvolve, congruence, codeRobustness, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits } from '../../../0'
+import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits } from '../../../0'
 import { rnot, rtoffoli, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../../2/8'
 import { hardyWeinbergGenotypes, HUBBLE_CONSTANT_CMB, lunarStandstillDeclinationDeg, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, qieaRotate, resonancePeakGain, SCALAR_SPECTRAL_INDEX_NS } from '../../../7/3'
@@ -18,11 +23,10 @@ import { derivePublicKey, tamperEvident } from '../../../5/5'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb, type Ring } from '../../../4/6'
 // ☰ Qián · Heaven · creative · lower·yin · hueShift — proof primitives (hopfield, bell, CA), folded into the 0 index
 // Strict barrel rule: enter src/0 through its index, never an internal file (these now live in the 0 barrel).
-import { hopfieldStore, hopfieldRecall, bellPair, caStep, caEvolve } from '../../../0'
+import {  bellPair, caStep, caEvolve } from '../../../0'
 // ☰ Qián · Heaven · creative · lower·yin · spread — EM-radiation constants and spectrum primitives from src/0
 // EM-radiation primitives (src/0): Maxwell's one field at one speed (c), the two relations (c=λf, E=hf)
 // and the ionizing line — the spectrum physics the electromagneticRadiationDecoded fold below composes.
-import { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, IONIZING_EV, frequencyOf, photonEnergyEv, dopplerShift } from '../../../0'
 import { isIonizing } from '../../../9/1'
 import { radarRange } from '../../../3/7'
 // ☰ Qián · Heaven · creative · lower·yin · depthFade — weather forecast from the forecasts double-torus
@@ -35,7 +39,7 @@ import { weatherForecastQuantumComputedRealtime } from '../../fire/forecasts'
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../../mountain/dimensions'
 // ☰ Qián · Heaven · creative · lower·yin · spread — crypto ledger review from debit/credit double-torus
 import { cryptoReview } from '../../../pair/debit/credit'
-import { cryptoReviewNet } from '../../../pair/credit/debit' // debit/credit pair: ledger review and fused net per security property
+import { cryptoReviewNet } from '../../../pair/debit/credit' // debit/credit pair: ledger review and fused net per security property
 // ☰ Qián · Heaven · creative · upper·yang · shrink — re-exports: all primitives, folds, types, and domain re-exports
 export { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng } // humanEase/humanBreath: the motion math; sinc/sincReconstruct: the sampling-theorem reconstruction; prng: the one seeded LCG the animated components share, all in src/0
 export { createAnimationEngine } from '../../../0' // wave 4: the rAF driver lives in the void/origin too; every animated component folds through it
@@ -47,39 +51,38 @@ export { trinityKey } from '../../../0'
 export { derivePublicKey } from '../../../5/5' // pi-train wave 8 tier-A
 export { qubits, applyGate, GATES, cnot, cz, probabilities, measure, sample, sampleCounts, grover, pbits, pflip, psample } from '../../../0' // wave 9 simulators — vault leaf until cross-station clusters move
 export { rnot, rtoffoli, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../../1/9' // pi-train wave 3 tier-A+B at station 1/9
-export { innerProduct, gateMul, commutator, concurrence, noCloningWitness, bitFlipCode } from '../../../0' // the rest of the quantum solutions made EXECUTABLE — Hilbert inner product, operator algebra (X·Y=iZ), Lie bracket ([X,Y]=2iZ), entanglement measure (concurrence), no-cloning contradiction, 3-qubit bit-flip QEC; exact small-n, no hardware
+export {} from '../../../0' // the rest of the quantum solutions made EXECUTABLE — Hilbert inner product, operator algebra (X·Y=iZ), Lie bracket ([X,Y]=2iZ), entanglement measure (concurrence), no-cloning contradiction, 3-qubit bit-flip QEC; exact small-n, no hardware
 export { uuidPoint, crossProduct } from '../../../0' // geometry: a content address IS a point; 3 points span a plane (cross-product normal), three orthogonal planes a cube — the metatron math
-export { repetitionLogicalError } from '../../../0' // the threshold: repetition-code logical error P_L(d,p) (below p=½ suppressed exponentially with d — "quantum is here")
+export {} from '../../../0' // the threshold: repetition-code logical error P_L(d,p) (below p=½ suppressed exponentially with d — "quantum is here")
 export { qieaRotate } from '../../../7/3' // the Han-Kim QIEA amplitude rotation
-export { quantumBatteryAdvantage, algorithmicCoolingBias } from '../../../0' // beyond linear within conservation: quantum-battery superextensive charging power (√N), algorithmic cooling of a subsystem (3-qubit compression ~1.5×) — the fold redistributes, never creates
-export { teleportQubit } from '../../../0' // impossible-seeming, genuinely real: quantum teleportation (state via Bell pair + 2 classical bits, fidelity 1, no-cloning/no-FTL intact)
+export {} from '../../../0' // beyond linear within conservation: quantum-battery superextensive charging power (√N), algorithmic cooling of a subsystem (3-qubit compression ~1.5×) — the fold redistributes, never creates
+export {} from '../../../0' // impossible-seeming, genuinely real: quantum teleportation (state via Bell pair + 2 classical bits, fidelity 1, no-cloning/no-FTL intact)
 export { superdense } from '../../../9/1' // superdense coding (2 bits on 1 qubit) — exact on the simulator
-export { interactionFreeMeasurement, bernsteinVazirani, entanglementSwap } from '../../../0' // more impossible-seeming, genuinely real: Elitzur-Vaidman interaction-free measurement, Bernstein-Vazirani (hidden string in 1 query), entanglement swapping (entangle two particles that never met) — all exact on the simulator
+export {} from '../../../0' // more impossible-seeming, genuinely real: Elitzur-Vaidman interaction-free measurement, Bernstein-Vazirani (hidden string in 1 query), entanglement swapping (entangle two particles that never met) — all exact on the simulator
 export { quantumZeno } from '../../../6/4' // pi-train wave 10 physical cut
-export { ghzMermin, bb84 } from '../../../0' // local realism refuted with CERTAINTY (GHZ-Mermin, QM product −1 ≠ LHV +1) + BB84 QKD (no-cloning turned into eavesdrop-detectable security, sifted error 0 → 0.25 with an eavesdropper)
-export { deutschJozsa, simon } from '../../../0' // the quantum-algorithm speedups: Deutsch-Jozsa (constant/balanced in 1 query) + Simon (the first exponential separation, O(n) quantum vs Ω(2^(n/2)) classical — Shor's precursor); pairs with the existing grover (quadratic search)
+export {} from '../../../0' // local realism refuted with CERTAINTY (GHZ-Mermin, QM product −1 ≠ LHV +1) + BB84 QKD (no-cloning turned into eavesdrop-detectable security, sifted error 0 → 0.25 with an eavesdropper)
+export {} from '../../../0' // the quantum-algorithm speedups: Deutsch-Jozsa (constant/balanced in 1 query) + Simon (the first exponential separation, O(n) quantum vs Ω(2^(n/2)) classical — Shor's precursor); pairs with the existing grover (quadratic search)
 export { proseToTone } from '../../../0' // prose → audio: an a432-tempered pitch from a content-address (deterministic) — the audible half of prose→audio/visual/3D proof (uuidPoint gives the 3D point, textToMovie the visual)
 export { bellPair } from '../../../0' // bellPair — folded into the 0 index by the strict barrel rule
-export { caStep, caEvolve, bumpEvolve } from '../../../0' // CA + bump — folded into the 0 index by the strict barrel rule
-export { survive, admixToward, injectError, markovStep, markovEvolve, stationary } from '../../../0' // wave 10: probabilistic process primitives
+export { caStep, caEvolve } from '../../../0' // CA + bump — folded into the 0 index by the strict barrel rule
+export {} from '../../../0' // wave 10: probabilistic process primitives
 export { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../../2/8' // pi-train wave 4 tier-A — export-import fusion at station 2/8
 export { BARYON_TO_PHOTON_RATIO, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb, type Ring } from '../../../4/6' // pi-train wave 5 tier-A at station 4/6
-export { phase, slip } from '../../../6/4' // pi-train wave 12 tier-A at station 6/4
-export { inductionStep } from '../../../4/6' // pi-train wave 12 tier-A at station 4/6
-export { inductionEvolve } from '../../../2/8' // pi-train wave 12 tier-A at station 2/8
-export { chsh } from '../../../0' // pi-train wave 12 void-leaf — station 0/10, rosetta only
-export { residueVector, realign, phaseDrift } from '../../../0' // dynamical calendar primitives — vault until station cut
-export { syncSpeedRpm, digitalRoot, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, methodNameFromFolderTail, leafFromPathTail, bumpProfile, qcdMassFractionOfProton } from '../../../9/1' // pi-train wave 11 tier-A at station 9/1
+export {} from '../../../6/4' // pi-train wave 12 tier-A at station 6/4
+export {} from '../../../4/6' // pi-train wave 12 tier-A at station 4/6
+export {} from '../../../2/8' // pi-train wave 12 tier-A at station 2/8
+export {} from '../../../0' // pi-train wave 12 void-leaf — station 0/10, rosetta only
+export {} from '../../../0' // dynamical calendar primitives — vault until station cut
+export { syncSpeedRpm, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, methodNameFromFolderTail, leafFromPathTail, bumpProfile, qcdMassFractionOfProton } from '../../../9/1' // pi-train wave 11 tier-A at station 9/1
+export { digitalRoot } from '../../../0' // wave 3 vortex arithmetic — canonical vault only
 export { oscillatorBank, resonantAmplitude } from '../../../6/4' // pi-train wave 10 physical cut — resonant modes
 export { resonanceBandwidth } from '../../../3/7' // pi-train wave 9 tier-A at station 3/7
 export { resonancePeakGain } from '../../../7/3' // pi-train wave 7 tier-A at station 7/3
 export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../lake/icons' // wave 12 UI bridge: the resonance/Rife decodes (science→icons) re-stated explicitly past the export* stars so the components can import them via lib
-export { pmixStep, pmixEvolve, congruence, type Edge } from '../../../0' // wave 13: network primitives — cultural diffusion (Pontic colonies), channel congruence (script·language·gene), associative memory (neurology)
-export { hopfieldStore, hopfieldEnergy, hopfieldRecall } from '../../../0' // network primitives — hopfield, folded into the 0 index by the strict barrel rule
-export { GENETIC_CODE, mutationClass, codeRobustness } from '../../../0' // wave 14: the genetic code (trinity sciences) — the error-robust 64=4³ table; the 18th domain
-export { sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof } from '../../../0' // wave 15: vetted-hash crypto (available now) — Web Crypto SHA-256 + a SHA-256 Merkle tree with inclusion proofs over the canonical roots; the honest hardening of FNV toUuid that cryptoFuture's roadmap names (verifySha256Proof is distinct from the core FNV verifyMerkleProof)
-export { ed25519Keypair, ed25519Sign, ed25519Verify, transparencyLogRoot, logInclusion, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits } from '../../../0' // wave 16: the rest of the roadmap, built (+ wave 17: the red-team primitives — a found collision and the honest bit-budget, for cryptoChallenges and the live CryptoChallenges component) — Ed25519 signing (attestation), the append-only transparency-log structure, and a pure SYNC SHA-256 content-address (toUuidSha256, the migration target). Residuals are deployment/external, not code (see cryptoFuture)
-export { SPEED_OF_LIGHT, PLANCK, ELECTRONVOLT, IONIZING_EV, frequencyOf, photonEnergyEv, dopplerShift } from '../../../0'
+export type { Edge } from '../../../vortex/math'
+export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } from '../../../vortex/math'
+export { codeRobustness } from '../../../life'
+export { SPEED_OF_LIGHT, dopplerShift } from '../../../3/7'
 export { isIonizing } from '../../../9/1' // wave 18: EM-radiation constants — c, E=hf, the ~10 eV ionizing line; wavelengthOf · larmorFrequency at 1/9
 export { PROTON_GYROMAGNETIC } from '../../../6/4' // pi-train wave 10 physical cut
 export { radarRange } from '../../../3/7' // pi-train wave 9 tier-A at station 3/7
@@ -155,7 +158,7 @@ export * from '../../../lake/ledger'
 export * from '../../../lake/music'
 export * from '../../../language'
 export * from '../../../fire/physics'
-export * from '../../../mountain/self'
+export * from '../../../mountain/geometry'
 export * from '../../../thunder/waves'
 export * from '../../../earth/architecture'
 export * from '../../../mountain/seals'
@@ -166,20 +169,45 @@ export * from '../../../heaven/laws'
 export * from '../../../heaven/compute'
 export * from '../../../heaven/essence'
 export * from '../../../lake/media'
-export * from '../../../water/life'
+export * from '../../../birth'
+export * from '../../../life'
+export * from '../../../death'
 export * from '../../../lake/stats'
 export * from '../../../water/digit'
-export * from '../../../lake/widgets'
+export * from '../../../quantum/widgets'
 export * from '../../../water/encryption'
 export * from '../../../mountain/source'
 export * from '../../../lake/clean'
 export * from '../../../earth/nature'
-export * from '../../../thunder/movie'
+export * from '../../../thunder/movie/canvas'
+export * from '../../../thunder/movie/narrative'
+export * from '../../../thunder/movie/movielib'
+export * from '../../../thunder/movie/movievars'
 export * from '../../../fusion'
 export * from '../../../thunder/verify'
 export * from '../../../routes/corpus'
+export * from '../../../double/torus'
 export * from '../../../thunder/decode'
-export * from '../../../heaven/everything'
+export {
+  allAnswersInside,
+  allComputed,
+  allComputedAndUsedInComputations,
+  allComputedByTypeOfUse,
+  allComputedNoFiles,
+  allComputedQuantumMathAnalog,
+  allInEquilibrium,
+  allIsFusedComputes,
+  beyondKnownUniverseComputes,
+  fusionComputes,
+  fusionMovieComputes,
+  allFormsAreTenDimensionalOrPurged,
+} from '../../../fusion'
+export { allPossibleDomains, allInAppropriatePathAndIndex } from '../../../thunder/decode'
+export { allInInteractiveMovie } from '../../../thunder/movie/narrative'
+export { allInMovieOfLife } from '../../../plasma/ball'
+export { allMdSignedFromSource } from '../../../mountain/og'
+export { allLogicMovedToSource } from '../../../mountain/source'
+export { allIsMonographScientificPaper } from '../../../routes/corpus'
 export * from '../../../fire/features'
 export * from '../../../mountain/topology'
 export * from '../../../ui'
@@ -190,5 +218,4 @@ export * from '../../../thunder/trading'
 export * from '../../../earth/world'
 export * from '../../../learning'
 export * from '../../../mountain/geometry'
-export * from '../../water/correction' // session decodes & proofs at their own domain home (moved out of the architecture barrel — a fold lives at its exact path)
-export * from '../../water/cache'       // cache + SHA-256 / quantum (Grover·Shor·PQC) correction at cache home
+export * from '../../water/cache'       // cache + SHA-256/quantum correction + session decodes & proofs (correction folded here, water domain)

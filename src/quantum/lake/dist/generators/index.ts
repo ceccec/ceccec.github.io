@@ -5,7 +5,7 @@
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
 import { merkleFold, toUuid, foldVortex } from '../../../../0'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg } from '../../../heaven/mind'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../../heaven/mind'
 import { glagoliticHomeFromEnglish } from '../../../heaven/mind'
 import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../../heaven/library'
 import { computedDistFiles, readmeMarkdown } from '..'
@@ -200,6 +200,8 @@ export function generators(): Generator[] {
         // The README's ten-dimensional hero — emitted as a self-contained animated SVG so GitHub (which runs
         // no JavaScript) displays the same double torus the live site animates. Computed from src, no script.
         if (!filter.length || filter.includes('hero.svg')) out.push({ path: 'hero.svg', content: tenDimensionalHeroSvg() })
+        if (!filter.length || filter.includes('public/icon.svg')) out.push({ path: 'public/icon.svg', content: computedIconSvg() })
+        if (!filter.length || filter.includes('public/site.webmanifest')) out.push({ path: 'public/site.webmanifest', content: computedWebManifest() })
         // The computed I Ching design system — re-emit src/render/ui/tokens.css (the only place real numbers live, all
         // canonical) as part of the manifest. The body (src/render/ui/style.css) references only these tokens.
         if (!filter.length || filter.includes('src/render/ui/tokens.css')) out.push({ path: 'src/render/ui/tokens.css', content: ichingTokensCss() })
