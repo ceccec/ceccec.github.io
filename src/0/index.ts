@@ -828,7 +828,7 @@ export function uuidHero(uuid: string) {
     theta, // the rotation of the first handle
     phi, // the rotation of the second handle
     spinMs: 900 + (at(12, 4) % 9000), // the realtime rotation period
-    frequency: 110 + (at(16, 4) % 800), // the tone of the state
+    frequency: round(432 * 2 ** (((at(16, 4) % 48) - 24) / 12)), // A432-sourced tone of the state — 12-TET about the 432 anchor (±2 octaves), never a raw A440/arbitrary literal
     ax: round(46 * Math.cos(theta)),
     ay: round(46 * Math.sin(theta)),
     bx: round(28 * Math.cos(phi)),
@@ -1166,6 +1166,68 @@ export function proseToTone(prose: string): { hz: number; semitone: number; octa
   const hex = toUuid(prose).replace(/[^0-9a-f]/gi, '')
   const semitone = Number.parseInt(hex.slice(0, 4) || '0', 16) % 24
   return { hz: 432 * 2 ** (semitone / 12), semitone, octave: Math.floor(semitone / 12) }
+}
+
+// ── Multi-sensory interaction (touch → phase · A432 sound · haptic vibration) ──────────────────────────
+// Every proving animation becomes TOUCH-responsive, A432-SOUNDING and HAPTIC from ONE pure mapping computed
+// here: a pointer position scrubs the single phase clock, the fold's content-address sounds an A432-sourced
+// tone (proseToTone — the kernel inline of f = 432·2^(s/12)), and the SAME vortex arithmetic is re-expressed
+// as a navigator.vibrate() pattern. Pure and SSR-safe (only Math + src/0 primitives) — the browser wiring
+// (PointerEvent, AudioContext, navigator.vibrate) lives in the render harness and CALLS these; here is only
+// the deterministic math, so the build (Node/SSR) never touches a Web API. (touchSoundVibrationLiveInZero.)
+
+/** Pointer position on an animation surface → a deterministic scrub of the one clock. x scrubs the cycle
+ *  fraction [0,1); y selects the 10-D depth dial (0..9); angle (from the centre) rotates the merkaba / tilts
+ *  the torus. No DOM, no clamping surprises — the same input always yields the same scrub. */
+export function touchPhase(px: number, py: number, width: number, height: number): { phase: number; dim: number; angle: number } {
+  const w = width > 0 ? width : 1
+  const h = height > 0 ? height : 1
+  const nx = px <= 0 ? 0 : px >= w ? 1 : px / w
+  const ny = py <= 0 ? 0 : py >= h ? 1 : py / h
+  return { phase: nx, dim: Math.round(ny * 9), angle: Math.atan2(ny - 0.5, nx - 0.5) }
+}
+
+/** A fold's haptic pattern — the SAME vortex sequence re-expressed as a navigator.vibrate() pattern. The
+ *  seed's digital root rotates VORTEX_SEQUENCE to a start; each digit d → an [on, off] millisecond pair, with
+ *  on = 18 + d·2 (the "18ms + digit" rhythm documented in the vibration diamond) and off = d. Deterministic. */
+export function foldHaptics(seed: string): number[] {
+  const digit = digitalRoot(seedFromText(seed))
+  const seq = VORTEX_SEQUENCE as readonly number[]
+  const start = seq.indexOf(digit)
+  const order = start >= 0 ? [...seq.slice(start), ...seq.slice(0, start)] : [...seq]
+  return order.flatMap((d) => [18 + d * 2, d])
+}
+
+/** One pointer event on any animation → the full multi-sensory response, content-addressed and pure: the clock
+ *  scrub (scrubMs), the A432-sourced tone (proseToTone), and the vortex haptic pattern. The render harness
+ *  applies scrubMs to the hero clock, plays hz through the one A432 audio engine, and vibrates the pattern. */
+export interface PointerInteraction {
+  readonly phase: number
+  readonly dim: number
+  readonly angle: number
+  readonly scrubMs: number
+  readonly hz: number
+  readonly semitone: number
+  readonly octave: number
+  readonly vibrate: readonly number[]
+  readonly root: string
+}
+export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = 120_000): PointerInteraction {
+  const tp = touchPhase(px, py, width, height)
+  const tone = proseToTone(seed)
+  const vibrate = foldHaptics(seed)
+  const cycle = cycleMs > 0 ? cycleMs : 120_000
+  return {
+    phase: tp.phase,
+    dim: tp.dim,
+    angle: tp.angle,
+    scrubMs: tp.phase * cycle,
+    hz: tone.hz,
+    semitone: tone.semitone,
+    octave: tone.octave,
+    vibrate,
+    root: toUuid(`pointer-interaction:${seed}:${roundTo(tp.phase, 5)}:${tone.hz}:${vibrate.join('-')}`),
+  }
 }
 
 // ── Vetted-hash crypto (the hardening path) ─────────────────────────────────────────────────────────────
