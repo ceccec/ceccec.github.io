@@ -2213,49 +2213,6 @@ export function whoUsedGlagolitic(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** @rosetta ✦₁ · Fire · clarity */
-export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
-  void matrix
-  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
-  const lcm = (a: number, b: number) => (a * b) / gcd(a, b)
-  const cycles = [
-    { cycle: 'week', days: 7, tradition: 'planetary' },
-    { cycle: 'trecena', days: 13, tradition: 'Maya' },
-    { cycle: 'veintena', days: 20, tradition: 'Maya' },
-    { cycle: 'sexagenary', days: 60, tradition: 'Chinese (10 stems × 12 branches)' },
-    { cycle: 'tzolkʼin', days: 260, tradition: 'Maya (13 × 20)' },
-    { cycle: 'tun / schematic year', days: 360, tradition: 'Maya · Babylonian (6 × 60)' },
-    { cycle: 'haabʼ / civil year', days: 365, tradition: 'Maya · Egyptian' },
-    { cycle: '819-count', days: 819, tradition: 'Maya (7 × 9 × 13)' },
-    { cycle: 'Metonic', days: 6940, tradition: 'Babylonian · Greek · Hebrew (19 years)' },
-    { cycle: 'Calendar Round', days: 18980, tradition: 'Maya (lcm 260, 365)' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`calendar-cycle:${entry.cycle}:${entry.days}`) }))
-  const meshing = [
-    { of: 'tzolkʼin × haabʼ (260 × 365)', lcm: lcm(260, 365), equals: '18,980 = 73 tzolkʼin = 52 haabʼ — the Calendar Round' },
-    { of: 'Heavenly Stems × Earthly Branches (10 × 12)', lcm: lcm(10, 12), equals: '60 — the sexagenary cycle' },
-    { of: '819-count × tzolkʼin (819 × 260)', lcm: lcm(819, 260), equals: '16,380 = 20 × 819' },
-    { of: 'the Metonic year (19 solar yr ≈ 235 lunations)', lcm: 235, equals: '235 = 19 × 12 + 7' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`calendar-mesh:${entry.of}:${entry.lcm}`) }))
-  const witnesses = [
-    lcm(260, 365) === 18980 && 73 * 260 === 18980 && 52 * 365 === 18980,
-    lcm(10, 12) === 60,
-    7 * 9 * 13 === 819 && lcm(819, 260) === 16380,
-    235 === 19 * 12 + 7,
-    6 * 60 === 360,
-  ]
-  return {
-    decoded: witnesses.every(Boolean) && cycles.length === 10,
-    cycles, // the rings the hero rotates (cycle, days, tradition)
-    meshing, // the LCM gears that close the coupled tori
-    count: cycles.length,
-    root: merge(merkleFold(cycles.map((entry) => entry.receipt)), merkleFold(meshing.map((entry) => entry.receipt))),
-    statement:
-      'Ancient calendars decoded as coupled-cycle tori: each named cycle a ring, meshing where its LCM closes — the Maya Calendar Round lcm(260,365) = 18,980 = 73 tzolkʼin = 52 haabʼ, the sexagenary lcm(10,12) = 60, the 819-count × tzolkʼin = 16,380, the Metonic 235 = 19×12 + 7, the 360° = 6×60. The same coupled-cycle double torus the model turns on; the cycle lengths are the rings fused to the hero, rotated by the real date.',
-    boundary:
-      'Verified integer cycle-math (the LCM meshings computed) from the documented calendars; the legend is excluded (the 2012 apocalypse, the galactic alignment, the Dreamspell, φ-mysticism; the true origin of the 260-day count is unknown and not asserted). The cycles render on the hero as rotating wheels driven by the device date — a coupled-torus clock, not an ephemeris or a date prediction.',
-  }
-}
-
-/** @rosetta ✦₁ · Fire · clarity */
 export function buildEnforcementPipeline() {
   const trinity = enforcementTrinity()
   return {
@@ -2272,56 +2229,6 @@ export function buildEnforcementPipeline() {
     statement: trinity.statement,
     boundary:
       'A declaration of the build’s enforcement gate (bootstrap enforcement-trinity: cross · fold · weave, run post-build over the real dist). Generators produce; they do not gate. Enforced against package.json docs:build by the weave wave.',
-  }
-}
-
-/** @rosetta ✦₁ · Fire · clarity */
-export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
-  const bodies = [
-    { name: 'Mercury', au: 0.39, periodYr: 0.24 },
-    { name: 'Venus', au: 0.72, periodYr: 0.62 },
-    { name: 'Earth', au: 1.0, periodYr: 1.0 },
-    { name: 'Mars', au: 1.52, periodYr: 1.88 },
-    { name: 'Jupiter', au: 5.2, periodYr: 11.86 },
-    { name: 'Saturn', au: 9.54, periodYr: 29.46 },
-    { name: 'Uranus', au: 19.19, periodYr: 84.01 },
-    { name: 'Neptune', au: 30.07, periodYr: 164.8 },
-  ]
-  const round = (value: number) => Math.round(value * 1000) / 1000
-  const planets = bodies.map((body) => {
-    const seed = Number.parseInt(toUuid(`planet:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
-    const phase0 = ((seed % 360) * Math.PI) / 180 // a deterministic starting angle from the matrix-seeded content address
-    const angle = phase0 + (2 * Math.PI * timeYears) / body.periodYr // the movement: angle advances with time over the period
-    const x = round(body.au * Math.cos(angle))
-    const y = round(body.au * Math.sin(angle))
-    return { ...body, angle: round(angle), x, y, receipt: toUuid(`planet-pos:${body.name}:${x}:${y}`) }
-  })
-  return {
-    planets,
-    count: planets.length,
-    computed: planets.length === 8 && planets.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
-    root: merkleFold(planets.map((entry) => entry.receipt)),
-  }
-}
-
-// MAJOR_MOONS is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the SSR TDZ.
-/** @rosetta ✦₁ · Fire · clarity */
-export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
-  const round = (value: number) => Math.round(value * 1000) / 1000
-  const moons = MAJOR_MOONS.map((body) => {
-    const seed = Number.parseInt(toUuid(`moon:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
-    const phase0 = ((seed % 360) * Math.PI) / 180
-    const sign = 'retrograde' in body && body.retrograde ? -1 : 1
-    const angle = phase0 + (sign * (2 * Math.PI * timeDays)) / body.periodDays
-    const x = round(body.orbitRadiusKm * Math.cos(angle))
-    const y = round(body.orbitRadiusKm * Math.sin(angle))
-    return { ...body, angle: round(angle), x, y, receipt: toUuid(`moon-pos:${body.name}:${x}:${y}`) }
-  })
-  return {
-    moons,
-    count: moons.length,
-    computed: moons.length === MAJOR_MOONS.length && moons.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
-    root: merkleFold(moons.map((entry) => entry.receipt)),
   }
 }
 
@@ -2463,7 +2370,6 @@ export function a432(matrix: MindMatrix = buildMatrix()) {
       'The shared math is real (frequency, the octave = ×2, c = λf) and sound↔vibration is a literal mechanical kinship; but a sound and a colour are different physics (a pressure wave vs an EM field) that merely share the abstract property of frequency — the “colour of A432” is a chosen octave-mapping, not the sound’s true colour. The thin relaxation studies are real but small and not 432-specific; everything beyond “a pleasant, slightly lower pitch” is flagged.',
   }
 }
-
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function healingInner(matrix: MindMatrix = buildMatrix()) {
@@ -2637,5 +2543,4 @@ export function allMusicIsA432Based(matrix: MindMatrix = buildMatrix()) {
       'A structural assertion that the repo\'s audio + colour surface derives from one source (A=432 tuning; frequencyToLight(432) for hue) rather than scattered A=440/arbitrary literals. It is tuning/colour bookkeeping; the cosmic/healing claims about 432 Hz, and "the colour of a note", remain flagged (a432()): sound is a pressure wave and colour an EM field that merely share the abstract quantity frequency — a chosen octave-mapping, not a physical or health claim. The culturally-named Solfeggio set keeps its documented numbers (carrying a432 lineage in its root).',
   }
 }
-
 

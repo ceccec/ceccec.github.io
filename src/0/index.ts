@@ -1201,7 +1201,7 @@ export function foldHaptics(seed: string): number[] {
 /** One pointer event on any animation → the full multi-sensory response, content-addressed and pure: the clock
  *  scrub (scrubMs), the A432-sourced tone (proseToTone), and the vortex haptic pattern. The render harness
  *  applies scrubMs to the hero clock, plays hz through the one A432 audio engine, and vibrates the pattern. */
-export interface PointerInteraction {
+interface PointerInteraction {
   readonly phase: number
   readonly dim: number
   readonly angle: number

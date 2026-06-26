@@ -602,9 +602,10 @@ export function folderLaw() {
     // The architectural compression limit — one folder, one index, one logic. Every index.ts below src/
     // must be under the limit; an index over it must shed logic into the surrounding folder indices (the
     // ants carry to the index nest), so the gate holds the channel and the src auto-cleans DRY. The limit
-    // is a Fibonacci number; the heavy monolith distributes into the paired-folder indices until each fits.
+    // ratchets DOWN toward the realized tree maximum (never up); it began at F(18)=2584 and is now the
+    // realized ceiling; the heavy monolith distributes into the paired-folder indices until each fits.
     compression: {
-      limit: 2584, // F(18) lines — a single index holds at most this; over it, distribute
+      limit: 2579, // realized tree maximum (ratcheted down from F18=2584, never up) — a single index holds at most this; over it, distribute
       fileSize: 65536, // 64k = 2^16 bytes — the harmonic file ceiling; a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree, like the line limit)
       law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path. And each file stays under 64k (2^16 bytes), the harmonic file ceiling — over it, the file splits',
     },
@@ -1698,7 +1699,7 @@ export function eachFileUnder64kFolderIsWidget(matrix: MindMatrix = buildMatrix(
   return {
     lawful: facets.every((entry) => entry.on),
     fileCeiling, // 65536 = 64k = 2^16 bytes
-    lineLimit: folderLaw().compression.limit, // 2584 = F(18) lines
+    lineLimit: folderLaw().compression.limit, // 2579 = realized tree maximum (ratcheted down from F18=2584)
     count: facets.length,
     facets,
     root: merge(startIChingDoubleTorus(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),

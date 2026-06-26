@@ -7,7 +7,8 @@ import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRES
 import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { toUuid, merge, sealFacets, roundTo } from '../../0'
+import { toUuid, merge, merkleFold, sealFacets, roundTo } from '../../0'
+import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
 import { OMEGA_DARK_MATTER, unruhTemperature } from '../../5/5'
@@ -684,5 +685,56 @@ export function shadcnGraphCompletionInRepoIdiom(matrix: MindMatrix = buildMatri
       'The shadcn graph, completed in the repo’s own idiom. The project adopted shadcn’s architecture — a radix-vue primitive, cva variants, the cn merge — but not its Tailwind: it styles with ui-* BEM classes computed from the I Ching / VitePress tokens, zero hardcoded colors. The canonical primitive set is now complete: all eighteen — input, label, textarea, checkbox, switch, separator, avatar, alert, progress, skeleton, aspect-ratio, tabs, accordion, tooltip, collapsible, beside the original button, badge and card — exist in exactly that idiom, each with its computed-token CSS in style.css and a barrel export, because a styled-less class would be a hidden gap. A wave wrote the fifteen; the integration was audited by hand (files present, CSS brace-balanced, every token confirmed to exist). And the claim is bounded honestly: tsc does not even type-check .vue here, so the file/CSS/barrel layer is what is verified, and the type and render confirmation belong to the build.',
     boundary:
       'HONEST: the repo genuinely uses shadcn’s architecture (radix-vue Primitive + cva + cn) WITHOUT Tailwind, styling via ui-* classes in src/render/ui/style.css computed from the I Ching / VitePress tokens — verified by reading Button.vue, Input.vue, Tabs.vue and style.css. Completion is real at the file layer: 18/18 canonical primitives present, CSS appended and brace-balanced, every referenced --ich-* token confirmed to exist (zero missing), barrel written. VERIFICATION BOUND (corrected this round): src/ui is EXCLUDED from tsconfig, so check:types does NOT cover the .vue files — only vue-tsc at the VitePress build does. So the honest verification here was file-presence + CSS-token-existence + brace-balance; the TYPE layer (vue-tsc) and the RENDERED/interactive appearance both require the build/dev-server, which is not runnable in this environment. "Complete without gaps" therefore means the file/CSS/barrel layer; type-correctness and visual/interaction correctness are deferred to the build, NOT faked or claimed here.',
+  }
+}
+
+// ── relocated from src/fire/li (census-neutral line-compression) ──
+/** @rosetta ✦₁ · Fire · clarity */
+export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
+  const bodies = [
+    { name: 'Mercury', au: 0.39, periodYr: 0.24 },
+    { name: 'Venus', au: 0.72, periodYr: 0.62 },
+    { name: 'Earth', au: 1.0, periodYr: 1.0 },
+    { name: 'Mars', au: 1.52, periodYr: 1.88 },
+    { name: 'Jupiter', au: 5.2, periodYr: 11.86 },
+    { name: 'Saturn', au: 9.54, periodYr: 29.46 },
+    { name: 'Uranus', au: 19.19, periodYr: 84.01 },
+    { name: 'Neptune', au: 30.07, periodYr: 164.8 },
+  ]
+  const round = (value: number) => Math.round(value * 1000) / 1000
+  const planets = bodies.map((body) => {
+    const seed = Number.parseInt(toUuid(`planet:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
+    const phase0 = ((seed % 360) * Math.PI) / 180 // a deterministic starting angle from the matrix-seeded content address
+    const angle = phase0 + (2 * Math.PI * timeYears) / body.periodYr // the movement: angle advances with time over the period
+    const x = round(body.au * Math.cos(angle))
+    const y = round(body.au * Math.sin(angle))
+    return { ...body, angle: round(angle), x, y, receipt: toUuid(`planet-pos:${body.name}:${x}:${y}`) }
+  })
+  return {
+    planets,
+    count: planets.length,
+    computed: planets.length === 8 && planets.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
+    root: merkleFold(planets.map((entry) => entry.receipt)),
+  }
+}
+
+// MAJOR_MOONS is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the SSR TDZ.
+/** @rosetta ✦₁ · Fire · clarity */
+export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
+  const round = (value: number) => Math.round(value * 1000) / 1000
+  const moons = MAJOR_MOONS.map((body) => {
+    const seed = Number.parseInt(toUuid(`moon:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
+    const phase0 = ((seed % 360) * Math.PI) / 180
+    const sign = 'retrograde' in body && body.retrograde ? -1 : 1
+    const angle = phase0 + (sign * (2 * Math.PI * timeDays)) / body.periodDays
+    const x = round(body.orbitRadiusKm * Math.cos(angle))
+    const y = round(body.orbitRadiusKm * Math.sin(angle))
+    return { ...body, angle: round(angle), x, y, receipt: toUuid(`moon-pos:${body.name}:${x}:${y}`) }
+  })
+  return {
+    moons,
+    count: moons.length,
+    computed: moons.length === MAJOR_MOONS.length && moons.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
+    root: merkleFold(moons.map((entry) => entry.receipt)),
   }
 }

@@ -1123,3 +1123,47 @@ export function saveAndDecodeAncientTexts(matrix: MindMatrix = buildMatrix()) {
       'A standing rule with a computed witness: each saved original text is decoded by a local, deterministic tool and verified against its documented value (666, 1,872,000 days, the magic constant 15, the hekat 64/64, the 3×8 grid). HONEST: the saved tokens are short public-domain primary sources; the tools are exact local decoders (no external service, no LLM), reversible where the system is bijective. It encodes the METHOD — save the source, decode locally, build the missing tool — not a claim of a complete corpus.',
   }
 }
+
+// ── relocated from src/fire/li (census-neutral line-compression) ──
+/** @rosetta ✦₁ · Fire · clarity */
+export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
+  const lcm = (a: number, b: number) => (a * b) / gcd(a, b)
+  const cycles = [
+    { cycle: 'week', days: 7, tradition: 'planetary' },
+    { cycle: 'trecena', days: 13, tradition: 'Maya' },
+    { cycle: 'veintena', days: 20, tradition: 'Maya' },
+    { cycle: 'sexagenary', days: 60, tradition: 'Chinese (10 stems × 12 branches)' },
+    { cycle: 'tzolkʼin', days: 260, tradition: 'Maya (13 × 20)' },
+    { cycle: 'tun / schematic year', days: 360, tradition: 'Maya · Babylonian (6 × 60)' },
+    { cycle: 'haabʼ / civil year', days: 365, tradition: 'Maya · Egyptian' },
+    { cycle: '819-count', days: 819, tradition: 'Maya (7 × 9 × 13)' },
+    { cycle: 'Metonic', days: 6940, tradition: 'Babylonian · Greek · Hebrew (19 years)' },
+    { cycle: 'Calendar Round', days: 18980, tradition: 'Maya (lcm 260, 365)' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`calendar-cycle:${entry.cycle}:${entry.days}`) }))
+  const meshing = [
+    { of: 'tzolkʼin × haabʼ (260 × 365)', lcm: lcm(260, 365), equals: '18,980 = 73 tzolkʼin = 52 haabʼ — the Calendar Round' },
+    { of: 'Heavenly Stems × Earthly Branches (10 × 12)', lcm: lcm(10, 12), equals: '60 — the sexagenary cycle' },
+    { of: '819-count × tzolkʼin (819 × 260)', lcm: lcm(819, 260), equals: '16,380 = 20 × 819' },
+    { of: 'the Metonic year (19 solar yr ≈ 235 lunations)', lcm: 235, equals: '235 = 19 × 12 + 7' },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`calendar-mesh:${entry.of}:${entry.lcm}`) }))
+  const witnesses = [
+    lcm(260, 365) === 18980 && 73 * 260 === 18980 && 52 * 365 === 18980,
+    lcm(10, 12) === 60,
+    7 * 9 * 13 === 819 && lcm(819, 260) === 16380,
+    235 === 19 * 12 + 7,
+    6 * 60 === 360,
+  ]
+  return {
+    decoded: witnesses.every(Boolean) && cycles.length === 10,
+    cycles, // the rings the hero rotates (cycle, days, tradition)
+    meshing, // the LCM gears that close the coupled tori
+    count: cycles.length,
+    root: merge(merkleFold(cycles.map((entry) => entry.receipt)), merkleFold(meshing.map((entry) => entry.receipt))),
+    statement:
+      'Ancient calendars decoded as coupled-cycle tori: each named cycle a ring, meshing where its LCM closes — the Maya Calendar Round lcm(260,365) = 18,980 = 73 tzolkʼin = 52 haabʼ, the sexagenary lcm(10,12) = 60, the 819-count × tzolkʼin = 16,380, the Metonic 235 = 19×12 + 7, the 360° = 6×60. The same coupled-cycle double torus the model turns on; the cycle lengths are the rings fused to the hero, rotated by the real date.',
+    boundary:
+      'Verified integer cycle-math (the LCM meshings computed) from the documented calendars; the legend is excluded (the 2012 apocalypse, the galactic alignment, the Dreamspell, φ-mysticism; the true origin of the 260-day count is unknown and not asserted). The cycles render on the hero as rotating wheels driven by the device date — a coupled-torus clock, not an ephemeris or a date prediction.',
+  }
+}
