@@ -534,7 +534,7 @@ export function cardHeroLinkWiresInUi(matrix: MindMatrix = buildMatrix()) {
   const bounded = cardHeroClientWorkBoundedByPureMath(matrix)
   const facets = [
     { facet: 'all tools placed — Rosetta ray · I Ching cube · cross-fold-weave trinity', on: fusion.fused && fusion.placedCount > 0 && fusion.raysCovered === 7 },
-    { facet: 'heroPreviewForRoute — one route yields hue, seed, card movie vars', on: isUuid(preview.seed) && preview.hue >= 0 },
+    { facet: 'heroPreviewForRoute — one route yields hue, seed, card movie vars', on: /^[0-9a-f]{8}$/.test(preview.seed) && preview.hue >= 0 && Object.keys(preview.cardStyle).length > 0 },
     { facet: 'hub card grid — navigation358 + harmonised destinations (empty if fusion fails)', on: hub.length >= NAV358_TOTAL },
     { facet: 'tag browser — keyword clusters from staticPages (empty if fusion fails)', on: tags.length >= 2 && tagItems.length >= 2 },
     { facet: 'LinkedHeroCard consumes fused preview — experiments fail closed', on: hub.every((item) => item.hue >= 0) },

@@ -282,7 +282,6 @@ function drawPlasmaField(
   hueShift: number,
   p: number,
   t: number,
-  voidR: number,
   palette: PlasmaMoviePalette,
   streamCount: number,
 ): void {
@@ -301,12 +300,8 @@ function drawPlasmaField(
     ctx.fillStyle = g
     ctx.fillRect(0, 0, w, h)
   }
-  const vignette = ctx.createRadialGradient(cx, cy, voidR * 0.5, cx, cy, span * 0.78)
-  vignette.addColorStop(0, palette.canvas.vignetteInner(hueShift))
-  vignette.addColorStop(0.35, palette.canvas.vignetteMid(hueShift))
-  vignette.addColorStop(1, 'transparent')
-  ctx.fillStyle = vignette
-  ctx.fillRect(0, 0, w, h)
+  // No circular vignette frame: the plasma is one continuous computed field filling the canvas.
+  // Its only boundary is where the blob confluence fades to transparent — not a drawn circle.
 }
 
 /** Radial plasma rays — count scales with wired + content streams (3 + floor(n/5), cap 16). */
@@ -366,12 +361,8 @@ function drawPlasmaBall(
   ctx.beginPath()
   ctx.arc(cx, cy, voidR * 2.8, 0, Math.PI * 2)
   ctx.fill()
-  const ringPulse = 0.55 + 0.45 * Math.sin(p * Math.PI * 2)
-  ctx.strokeStyle = palette.canvas.ring(hueShift, ringPulse)
-  ctx.lineWidth = 1.5
-  ctx.beginPath()
-  ctx.arc(cx, cy, voidR * (1.6 + 0.25 * ringPulse), 0, Math.PI * 2)
-  ctx.stroke()
+  // No drawn ring/border: the void core is a computed radial confluence that fades to transparent,
+  // not a hardcoded circle frame. Its edge is where the field math reaches zero.
   drawPlasmaRays(ctx, cx, cy, voidR, hueShift, p, t, streams, palette)
   if (!streams.length) return
   ctx.textAlign = 'center'
@@ -483,7 +474,7 @@ function paintHolographicPlasmaHeroMovie(
     ctx.fillRect(0, 0, w, h)
     return
   }
-  drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, voidR, scene.palette, scene.wiredStreams.length)
+  drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   if (hero) {
     ctx.save()
     ctx.globalCompositeOperation = 'lighter'
