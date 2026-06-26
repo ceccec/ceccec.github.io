@@ -703,7 +703,7 @@ export function threeIsRealButNotOneTrinity(matrix: MindMatrix = buildMatrix()) 
 // ≈ 16.7M). They share the six-position written form, and the 64 hexagrams ARE exactly the 64 colours whose
 // every digit is a pole — the set {0,F}⁶, each line yin = 0 / yang = F. The duality is black 000000 (all yin)
 // ↔ white FFFFFF (all yang), the bitwise complement n ↦ 63−n (the F-complement 15−d per digit) — the colour
-// analogue of the digit-folder reverse (the ten's complement, see zeroDivisionTable). The 8 trigrams (3 bits)
+// analogue of the digit-folder additive complement (on-disk lattice; the n/0 reverse is n⁻¹ mod 9). The 8 trigrams (3 bits)
 // are the 8 corners of the RGB cube (each channel a pole) = the 8 primary colours. Joins the existing 64
 // theme (sealCube, the I Ching 64) and the hardware-CMYK colour merkaba.
 export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {

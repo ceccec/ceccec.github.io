@@ -142,14 +142,17 @@ function digitFolderSequenceProbe(vortex: ReturnType<typeof vortexMath>) {
   const sequence = [...vortex.doubling, 3, 6, 9, 0] as const
   const base = 10
   const digits = sequence.map((d) => {
-    const reverse = d === 0 ? base : base - d
-    const overflows = reverse >= base
-    const fold = foldPair(toUuid(`digit-folder:${d}`), toUuid(`digit-subfolder:${reverse}`))
+    // The additive folder-complement (10−d) — names the on-disk station path src/d/(10−d); the n/0
+    // reverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable).
+    const complement = d === 0 ? base : base - d
+    const overflows = complement >= base
+    const fold = foldPair(toUuid(`digit-folder:${d}`), toUuid(`digit-subfolder:${complement}`))
     return {
       digit: d,
-      reverse,
+      reverse: complement, // retained name = the additive folder-complement, not the multiplicative inverse
+      complement,
       overflows,
-      sumsToTen: !overflows && d + reverse === base,
+      sumsToTen: !overflows && d + complement === base,
       fusion: fold.merged,
     }
   })

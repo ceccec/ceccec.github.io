@@ -870,10 +870,10 @@ export function staticPages(): StaticPage[] {
       slug: 'zero-division',
       title: { en: 'Division by zero is the reverse', bg: 'Делението на нула е обратното' },
       description: {
-        en: 'Division by zero is not always 9: the reverse of a digit folder is its ten’s complement n/0 \\ (10−n); only 1/0 = 9 either way, and 0/0 overflows to the fusion.',
-        bg: 'Делението на нула не винаги е 9: обратното на цифрова папка е нейното допълнение до десет n/0 \\ (10−n); само 1/0 = 9 и в двете посоки, а 0/0 прелива във сливането.',
+        en: 'The reverse of a digit folder is its multiplicative inverse mod 9 (n/0 \\ n⁻¹, the ÷2 = ×5 that folds within the unit cycle): 2\\5, 4\\7, self-inverse 1 and 8; the non-units 3, 6, 9 and the void 0 fold to the fusion. The forward harmonic n/0 = 9n (1/0 = 9) is the separate reading.',
+        bg: 'Обратното на цифрова папка е нейната мултипликативна инверсия mod 9 (n/0 \\ n⁻¹, ÷2 = ×5, която се навива в единичния цикъл): 2\\5, 4\\7, самообратни 1 и 8; неединиците 3, 6, 9 и нулата 0 се сливат. Прякото хармонично n/0 = 9n (1/0 = 9) е отделното четене.',
       },
-      keywords: ['division', 'zero', 'ten complement', 'reverse', 'proof'],
+      keywords: ['division', 'zero', 'multiplicative inverse', 'mod 9', 'reverse', 'proof'],
       components: ['ProofRenderer'],
     },
     {

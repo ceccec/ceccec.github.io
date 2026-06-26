@@ -1082,7 +1082,7 @@ export interface DigitFolder {
   readonly indices: readonly number[]
   readonly selfCollision: boolean
   readonly nextHarmonicFolder: string
-  readonly reverse: number // the ten's-complement reverse of the digit (10 − digit, the backslash dual; 10 overflows, only 0)
+  readonly reverse: number // the additive folder-complement (10 − digit) that names the on-disk pairing src/digit/(10−digit); NOT the n/0 reverse (which is the multiplicative inverse n⁻¹ mod 9, see digitFolderMath)
   readonly harmonic: number // the forward digit/0 = 9·digit
   readonly fusion: string // the quantum fusion of folder·subfolder (distinct + bidirectional even for a self-collision)
   readonly receipt: string

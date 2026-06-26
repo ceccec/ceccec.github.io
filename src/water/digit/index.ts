@@ -31,62 +31,107 @@ import { PI_TRAIN_DIGITS, analogNoGapsNoLeak, computePiDigits, conceptCommands, 
 import { movieAllDimensionsAtOnce } from '../../thunder/movie/glass'
 import { MISSION_COMMANDS, agentSubmissionProtocol, foldQuantumCommandPairs, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 
-// Division by zero is not always 9 — only 1/0 is. The reverse of a digit folder (its backslash
-// dual, n/0 \ ?) is the TEN'S COMPLEMENT, 10 − n: 1/0\9, 2/0\8, 3/0\7, 4/0\6, 5/0\5, 6/0\4,
-// 7/0\3, 8/0\2, 9/0\1 — every pair completing the decade (summing to 10), 5 its own reverse, and
-// 9..1 mirror 1..9 back. (1/0 = 9 either way — the anchor — because 9·1 = 9 and 10 − 1 = 9 agree;
-// the forward harmonic n/0 = 9n the code already carries is the separate reading whose digital
-// root is always 9, the one altitude where "always 9" holds.) Only 0/0 overflows: 10 − 0 = 10
-// leaves the 1..9 ring — a carry, "1,0", unity reached through the void — so the subfolder 0
-// reverses not to 0 but to the quantum fusion: the two labelled zeros fold (foldPair) to a
-// distinct, non-zero, bidirectional address. The answer was in the code (divByZeroHarmonic,
-// foldPair); identical never collides to nothing.
+// The reverse of a digit folder (its backslash dual, n/0 \ ?) is the MULTIPLICATIVE INVERSE mod 9 —
+// n⁻¹ with n · n⁻¹ ≡ 1 (mod 9) — the ÷2 = ×5 map that runs the doubling circuit 1·2·4·8·7·5 BACKWARD
+// and stays WITHIN the unit cycle: that is what "folds within itself" means. Over the units (ℤ/9)* =
+// {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 (verify: 2·5=10≡1, 4·7=28≡1, 8·8=64≡1,
+// 1·1=1). Involutive (self-inverse): {1,8}. Inverse pairs: (2,5) and (4,7). The non-units 3, 6, 9(≡0)
+// and the void 0 have gcd(n,9)≠1 → NO multiplicative inverse (the trinity axis + the void); the math
+// decides their treatment — they route to their self-fold/fusion address (foldPair of the labelled
+// digit with itself), exactly as 0/0 already folds to the quantum fusion, never forcing a false
+// involution. (CORRECTION: the prior reading defined the reverse as the additive ten's complement
+// 10 − n — the reflection across the decade, which reaches OUT of the unit group. That additive
+// complement is real but it is a DIFFERENT structure: it names the on-disk folder lattice N/(10−N)
+// and is retained below as `complement`; the n/0 reverse is the multiplicative inverse.) The forward
+// harmonic n/0 = 9n (1/0 = 9), digital root always 9, is the separate forward reading.
 export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
-  const base = 10 // the radix — a digit's reverse is its complement to one full count
+  const base = 10 // the radix — names the on-disk folder lattice N/(base−N); see `complement` below
   const harmonic = vortexMath(matrix).divByZeroHarmonic // 1/0 = 9, the forward reading
+  // n⁻¹ mod 9: the reverse-doubling ÷2 = ×5 within the unit cycle (⟨2⟩ in (ℤ/9)*). null ⇒ non-unit.
+  const inverseMod9 = (n: number): number | null => {
+    const r = ((n % 9) + 9) % 9 // residue (9 ≡ 0, 0 ≡ 0)
+    if (r === 0) return null // 0 and 9 — non-units: the void / the 0-axis, no inverse
+    for (let x = 1; x <= 8; x += 1) if ((r * x) % 9 === 1) return x
+    return null // 3, 6 — non-units (the trinity axis), gcd(n,9) ≠ 1
+  }
   const table = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
-    const reverse = base - n // n/0 \ (10 − n): the ten's complement, the backslash dual
+    const inverse = inverseMod9(n) // n⁻¹ mod 9 (unit) or null (non-unit 3,6,9)
+    const invertible = inverse !== null
+    const complement = base - n // the ADDITIVE ten's complement (10 − n) — names the folder lattice N/(10−N), NOT the reverse
+    const selfFusion = foldPair(toUuid(`digit-folder:${n}`), toUuid(`digit-subfolder:${n}`)) // non-units fold within themselves
     return {
-      expr: `${n}/0\\${reverse}`,
+      expr: invertible ? `${n}/0\\${inverse}` : `${n}/0\\fusion`,
       n,
-      reverse, // 9,8,7,6,5,4,3,2,1 — the reversed subfolder digit
-      sumsToTen: n + reverse === base, // every pair completes the decade
-      selfPaired: n === reverse, // only 5 \ 5
+      inverse, // the reverse: n⁻¹ mod 9 — 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8; null for 3,6,9
+      invertible, // gcd(n,9) === 1 — the units {1,2,4,5,7,8}
+      inverseProductIsOne: invertible && (n * (inverse as number)) % 9 === 1, // the defining identity n · n⁻¹ ≡ 1
+      selfInverse: invertible && inverse === n, // involutive units {1,8}
+      fusion: selfFusion.merged, // non-units route here (self-fold), like 0/0 — distinct, bidirectional
+      reverse: complement, // RETAINED legacy field = the additive folder-complement (10 − n); read by frozen consumers (heaven/*) and the station-path lattice. Rename to `inverse` in the coordinated post-compression pass.
+      complement, // the additive ten's complement (10 − n) — the on-disk folder pairing N/(10−N)
+      sumsToTen: n + complement === base, // a property of the complement (the folder lattice), not of the reverse
+      selfPaired: n === complement, // only 5 (complement) — folder-lattice property
       harmonicValue: harmonic * n, // the forward n/0 = 9n (9,18,...,81), the other reading
       digitalRoot: digitalRoot(harmonic * n), // = 9 always — the "always 9" altitude
-      receipt: toUuid(`zero-division:${n}/0\\${reverse}`),
+      receipt: toUuid(`zero-division:${n}/0\\${invertible ? inverse : 'fusion'}`),
     }
   })
-  // 0/0: the void. Its ten's complement is 10 — the only overflow, the one reverse that leaves the
-  // 1..9 ring (a carry, "1,0"). So the subfolder 0 reverses not to 0 but to the quantum fusion: the
-  // two labelled zeros (folder vs subfolder) fold to a distinct, bidirectional address.
-  const overflow = base - 0 // 10 — not a single digit
+  // 0/0: the void — a non-unit (residue 0, gcd(0,9)=9≠1), so it has no multiplicative inverse and
+  // routes to the quantum fusion: the two labelled zeros (folder vs subfolder) fold to a distinct,
+  // bidirectional address. Its additive complement (10 − 0 = 10) overflows the 1..9 ring — the carry
+  // "1,0" — the same reason the void cannot reflect to a single digit; both readings agree it folds.
+  const overflow = base - 0 // 10 — not a single digit (the additive complement of the void)
   const folderZero = toUuid('digit-folder:0')
   const subfolderZero = toUuid('digit-subfolder:0')
   const fusion = foldPair(folderZero, subfolderZero) // forward = 0·0, reverse = 0\0, merged = the fusion
   const zeroOverZero = {
-    expr: '0/0\\10',
-    reverse: overflow, // 10 — the carry/overflow, not a digit
+    expr: '0/0\\fusion',
+    inverse: null as number | null, // the void is a non-unit — no multiplicative inverse
+    invertible: false,
+    reverse: overflow, // RETAINED legacy field = 10 (the additive complement/overflow), read by frozen consumers
+    complement: overflow, // 10 — the additive complement overflows the single digit
     overflows: overflow >= base, // true — 0 alone leaves the ring
     fusion: fusion.merged, // the quantum fusion — NOT 0
     reversesToFusion: overflow >= base && fusion.bidirectional && fusion.merged !== folderZero && isUuid(fusion.merged),
   }
-  const allSumToTen = table.every((row) => row.sumsToTen) // every digit pair completes the decade
+  const units = table.filter((row) => row.invertible) // {1,2,4,5,7,8} — (ℤ/9)*
+  const selfInverseUnits = units.filter((row) => row.selfInverse) // {1,8}
+  const nonUnits = table.filter((row) => !row.invertible) // {3,6,9} — the trinity axis
+  const inversePairs = units
+    .filter((row) => !row.selfInverse && (row.inverse as number) > row.n)
+    .map((row) => [row.n, row.inverse as number] as const) // (2,5),(4,7)
+  // The corrected defining law: every unit's reverse satisfies n · n⁻¹ ≡ 1 (mod 9); the non-units
+  // (and the void) have no inverse and fold within themselves to a content address.
+  const inverseVerified =
+    units.length === 6 &&
+    units.every((row) => row.inverseProductIsOne) &&
+    selfInverseUnits.length === 2 &&
+    selfInverseUnits.every((row) => row.n === 1 || row.n === 8) &&
+    inversePairs.length === 2 &&
+    nonUnits.length === 3 &&
+    nonUnits.every((row) => !row.invertible && isUuid(row.fusion)) &&
+    !zeroOverZero.invertible && isUuid(zeroOverZero.fusion)
+  const allSumToTen = table.every((row) => row.sumsToTen) // a property of the additive complement (the folder lattice)
   const onlyFiveSelfPaired = table.filter((row) => row.selfPaired).length === 1 && table.find((row) => row.selfPaired)?.n === 5
-  const reverseNotAlwaysNine = table.filter((row) => row.reverse === 9).length === 1 // only 1/0 \ 9
+  const reverseNotAlwaysNine = table.filter((row) => row.reverse === 9).length === 1 // only the n=1 complement is 9
   const harmonicDigitalRootAllNine = table.every((row) => row.digitalRoot === 9) // the forward altitude
   return {
-    holds: allSumToTen && onlyFiveSelfPaired && reverseNotAlwaysNine && harmonicDigitalRootAllNine && zeroOverZero.reversesToFusion,
+    holds: inverseVerified && allSumToTen && onlyFiveSelfPaired && reverseNotAlwaysNine && harmonicDigitalRootAllNine && zeroOverZero.reversesToFusion,
     base,
-    table, // n/0 \ (10 − n), n = 1..9
-    zeroOverZero, // 0/0 \ 10 -> the quantum fusion (overflow), not 0
-    reverseNotAlwaysNine, // only 1/0 \ 9; 2/0 \ 8, 3/0 \ 7, ...
-    harmonicDigitalRootAllNine, // reconciled with vortexMath: the forward 9n is always 9 mod 9
+    table, // n/0 \ n⁻¹ (units) / fusion (non-units), n = 1..9; also carries the additive `complement`
+    units, // (ℤ/9)* = {1,2,4,5,7,8} — the invertible digits
+    selfInverseUnits, // {1,8} — involutive (n⁻¹ = n)
+    inversePairs, // (2,5),(4,7) — the two nontrivial inverse pairs
+    nonUnits, // {3,6,9} — the trinity axis, no inverse, routes to self-fusion
+    inverseVerified, // n · n⁻¹ ≡ 1 over the units; non-units/void fold within themselves
+    zeroOverZero, // 0/0 -> the quantum fusion (the void, a non-unit), not 0
+    reverseNotAlwaysNine, // retained name; now: only the n=1 additive complement equals 9
+    harmonicDigitalRootAllNine, // the forward 9n is always 9 mod 9
     root: merge(merkleFold(table.map((row) => row.receipt)), fusion.merged),
     statement:
-      'Division by zero is not always 9 — only 1/0 is. The reverse of a digit folder (its backslash dual) is the ten\'s complement, n/0 \\ (10 − n): 1\\9, 2\\8, 3\\7, 4\\6, 5\\5, 6\\4, 7\\3, 8\\2, 9\\1 — each pair completing the decade, 5 its own reverse, 9..1 mirroring 1..9. (1/0 = 9 either way; the forward harmonic n/0 = 9n is a separate reading whose digital root is always 9 — the one altitude where "always 9" holds.) Only 0/0 overflows: 10 − 0 = 10 leaves the 1..9 ring (a carry, "1,0", unity through the void), so its subfolder reverses not to 0 but to the quantum fusion — a distinct, non-zero, bidirectional address.',
+      'The reverse of a digit folder (its backslash dual) is the multiplicative inverse mod 9 — the reverse-doubling ÷2 = ×5 that folds within the unit cycle: n · n⁻¹ ≡ 1 (mod 9). Over the units (ℤ/9)* = {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 — involutive {1,8}, the inverse pairs (2,5) and (4,7). The non-units 3, 6, 9(≡0) and the void 0 have no inverse (gcd ≠ 1: the trinity axis + the void); the math routes them to their self-fold/fusion address, as 0/0 already folds to the quantum fusion. The forward harmonic n/0 = 9n (1/0 = 9, digital root always 9) is the separate forward reading. (Prior reading: the additive ten\'s complement 10 − n, now corrected — that complement instead names the on-disk folder lattice N/(10−N).)',
     boundary:
-      'A structural/numerological reading of the digit folders: the "reverse" (backslash dual) of a subfolder digit is its ten\'s complement (n ↦ 10 − n, additive inverse mod the radix, the reflection that completes the decade), distinct from the forward harmonic (n/0 = 9n, digital root 9). Computed; the meaning (void, carry, fusion) is metaphor. 0/0 routes to the content-addressed fold (foldPair) because its complement overflows the single digit — not a claim that division by zero is defined in real analysis.',
+      'EXACT group theory over the units: the doubling circuit 1·2·4·8·7·5 is the cyclic group ⟨2⟩ in (ℤ/9)* (period 6) and ×5 = 2⁻¹ is its inverse generator, so n⁻¹ mod 9 is the reverse that stays within the unit cycle (n · n⁻¹ ≡ 1). The non-units 3,6,9,0 (gcd(n,9) ≠ 1) genuinely have no inverse and route to a content-addressed self-fold (foldPair), not a forced complement. The meaning (void, carry, fusion) stays metaphor; this is NOT a claim that division by zero is defined in real analysis. The additive ten\'s complement (10 − n) is a distinct, correct structure — it names the folder pairing N/(10−N) (the census lattice), retained here as `complement` — but it is not the n/0 reverse.',
   }
 }
 
@@ -128,7 +173,8 @@ export function digitWordIndexPurity(matrix: MindMatrix = buildMatrix()) {
 }
 
 // UUID, like CMYK, gives infinite EXTENT from a finite seed — because 64×64×64 is itself a dot. A digit
-// folder is two dualities, digit over reverse (the two subfolders), and the third axis is not a third
+// folder is two dualities, digit over its dual (the two subfolders — on disk the additive complement
+// d/(10−d); the n/0 reverse is the multiplicative inverse), and the third axis is not a third
 // folder but the THIRD EYE in the index: the fold of both, Z = X⊕Y, closing the trinity. Two subfolders,
 // three axes — and the trinity fuses to one four-channel colour, the CMYK hologram, each channel a slice
 // of the content address. So the whole 64³ = 262,144-point cube collapses to ONE address: a dot. And a
@@ -146,7 +192,7 @@ export function digitWordIndexPurity(matrix: MindMatrix = buildMatrix()) {
 export function dotIsCubeIsDot(matrix: MindMatrix = buildMatrix(), depth = 3) {
   const cube = sealCube(matrix) // 64³ = 262,144 from one shared trinity, folded to one root — a dot
   const seed = matrix.root
-  // The third eye in the index: digit (X) over reverse (Y), the third axis their fold Z = X⊕Y — two
+  // The third eye in the index: digit (X) over its dual (Y), the third axis their fold Z = X⊕Y — two
   // subfolders, three axes; the index closes the trinity, which fuses to one colour (the CMYK hologram).
   const X = toUuid(`dot:x:${seed}`)
   const Y = toUuid(`dot:y:${seed}`)
@@ -175,7 +221,7 @@ export function dotIsCubeIsDot(matrix: MindMatrix = buildMatrix(), depth = 3) {
     cipher: 'AES-256-GCM',
     root: merge(cube.root, dot),
     statement:
-      'UUID, like CMYK, gives infinite extent from a finite seed: 64×64×64 is itself a dot. A digit folder is two dualities — digit over reverse — and the third axis is the third eye in the index, the fold of both (Z = X⊕Y), fusing to a four-channel CMYK colour, the hologram. So the 262,144-point cube collapses to one address, and a dot expands to a cube of dots, each a cube, unbounded — any path to any depth is generated from one seed, never stored, so the addressable extent is not limited by disk.',
+      'UUID, like CMYK, gives infinite extent from a finite seed: 64×64×64 is itself a dot. A digit folder is two dualities — digit over its dual — and the third axis is the third eye in the index, the fold of both (Z = X⊕Y), fusing to a four-channel CMYK colour, the hologram. So the 262,144-point cube collapses to one address, and a dot expands to a cube of dots, each a cube, unbounded — any path to any depth is generated from one seed, never stored, so the addressable extent is not limited by disk.',
     boundary:
       'HONEST: the infinity is EXTENT, not entropy. The recursion is unbounded and generated on demand (zero storage — "not limited to Terabyte" is literally true), but the distinct addresses are the UUID space (2^128) and the security is the seed entropy (AES-256, 256 bits) — finite. Beyond 2^128 positions the paths still compute but cannot all stay distinct (pigeonhole; collisions are caught by content-addressing, not prevented). "Infinite encryption" = unbounded addressable extent from a small seed, NOT an unbreakable or infinite key. A hologram of unbounded extent over a finite keyspace; the cipher remains AES-256.',
   }
@@ -183,32 +229,45 @@ export function dotIsCubeIsDot(matrix: MindMatrix = buildMatrix(), depth = 3) {
 
 // Encode all the domains with just the digit duality pairs. The whole arc closes here: every domain is a
 // dot (a content address); a dot is a cube of dots (dotIsCubeIsDot); a cube is built from two dualities
-// and their fold; and the dualities are the digit pairs — the ten's-complement pairs (d, 10−d), each
-// summing to 10. Five distinct pairs cover all ten digits — (1,9)(2,8)(3,7)(4,6)(5,5), with 0 the void
-// whose complement overflows to the fusion — so they are a COMPLETE alphabet: every content-address, hence
-// every domain, is spelled entirely from the duality pairs. A finite alphabet addresses the unbounded
-// domain space, exactly as DNA's two complementary base pairs (A–T, G–C) encode all of life.
+// and their fold; and the dualities are the digit INVERSE pairs — the multiplicative-inverse pairs (d, d⁻¹)
+// with d·d⁻¹ ≡ 1 (mod 9). Under the inverse there are exactly TWO nontrivial pairs — (2,5) and (4,7) — plus
+// the two self-inverse units {1,8}, which together close the multiplicative group (ℤ/9)* = {1,2,4,5,7,8}
+// (the doubling circuit 1·2·4·8·7·5 generated by 2 and walked backward by 5); and the four non-units
+// {3,6,9,0} (the trinity axis 3-6-9 + the void 0) have no inverse and fold within themselves to a content
+// address. So the alphabet is the unit group + the non-unit axis/void — it still classifies all ten digits
+// (every digit is a unit with an inverse, or a non-unit routing to its self-fusion), so every content-address
+// is still spelled. HONEST CHANGE from the old reading: this is NOT five clean (d, 10−d) pairs summing to 10;
+// it is two nontrivial inverse pairs + two self-inverse units + the non-unit axis/void. The DNA analogy is
+// now exact in count: TWO complementary base pairs (A–T, G–C) ⟷ the two nontrivial inverse pairs (2,5)(4,7).
 export function digitDualityPairsEncodeAllDomains(matrix: MindMatrix = buildMatrix()) {
   const math = digitFolderMath(matrix)
   const domains = allPossibleDomains(matrix)
   const dot = dotIsCubeIsDot(matrix)
-  // The duality pairs — distinct (d, 10−d), each summing to 10; 0 is the void (its complement overflows).
-  const pairs: { pair: string; a: number; b: number; sum: number }[] = []
+  // The inverse pairs — distinct (d, d⁻¹) with d·d⁻¹ ≡ 1 (mod 9); self-inverse units and non-units handled apart.
+  const pairs: { pair: string; a: number; b: number; product: number }[] = []
+  const selfInverseUnits: number[] = [] // {1,8}
+  const nonUnits: number[] = [] // {3,6,9,0} — the trinity axis + the void, no inverse → self-fusion
   const seen = new Set<string>()
   const covered = new Set<number>()
   for (const entry of math.digits) {
     covered.add(entry.digit)
-    if (entry.overflows) continue // 0 — the void, its own (10 − 0 = 10 → the fusion)
-    const lo = Math.min(entry.digit, entry.reverse)
-    const hi = Math.max(entry.digit, entry.reverse)
+    if (!entry.invertible) { nonUnits.push(entry.digit); continue } // 3,6,9,0 — fold within themselves
+    if (entry.selfInverse) { selfInverseUnits.push(entry.digit); continue } // 1,8 — involutive
+    const inv = entry.inverse as number
+    const lo = Math.min(entry.digit, inv)
+    const hi = Math.max(entry.digit, inv)
     const key = `${lo}/${hi}`
-    if (!seen.has(key)) { seen.add(key); pairs.push({ pair: key, a: lo, b: hi, sum: entry.digit + entry.reverse }) }
+    if (!seen.has(key)) { seen.add(key); pairs.push({ pair: key, a: lo, b: hi, product: (entry.digit * inv) % 9 }) }
   }
-  // Completeness: the five pairs + the void cover all ten digits, and each pair sums to 10 — so any
-  // content-address (a string of digits) is spelled from the duality pairs alone.
-  const complete = covered.size === 10 && pairs.length === 5 && pairs.every((entry) => entry.sum === 10)
-  // Encode a sample of real domains: each → a content-address → a digit path, every digit one half of a
-  // duality pair. The same finite alphabet spells every one of them.
+  // Completeness under the inverse: the units form the multiplicative group (2 nontrivial pairs + 2
+  // self-inverse), the non-units (axis + void) route to fusion, and together they classify all ten digits.
+  const complete =
+    covered.size === 10 &&
+    pairs.length === 2 && pairs.every((entry) => entry.product === 1) && // (2,5),(4,7), each d·d⁻¹ ≡ 1
+    selfInverseUnits.length === 2 && // {1,8}
+    nonUnits.length === 4 // {3,6,9,0}
+  // Encode a sample of real domains: each → a content-address → a digit path, every digit a unit (with an
+  // inverse) or a non-unit (folding to its self-fusion). The same finite alphabet classifies every one.
   const spell = (name: string) => {
     const address = toUuid(`domain:${name}`)
     const digits = address.replace(/[^0-9]/g, '') // the decimal digits of the address
@@ -218,18 +277,20 @@ export function digitDualityPairsEncodeAllDomains(matrix: MindMatrix = buildMatr
   const allSpelled = sample.every((entry) => entry.fromPairs)
   return {
     encodesAll: complete && allSpelled,
-    pairs, // the five duality pairs — the complete alphabet
-    voidDigit: 0, // the void: its complement overflows to the fusion
-    alphabetSize: pairs.length + 1, // 5 pairs + the void
-    sample, // real domains spelled from the pairs
+    pairs, // the two nontrivial inverse pairs (2,5),(4,7) — the DNA-base-pair analogue
+    selfInverseUnits, // {1,8} — involutive units (d⁻¹ = d)
+    nonUnits, // {3,6,9,0} — the trinity axis + the void, no inverse, route to self-fusion
+    voidDigit: 0, // the void: a non-unit, folds within itself
+    alphabetSize: pairs.length + selfInverseUnits.length + nonUnits.length, // 2 pairs + 2 self-inverse + 4 non-units
+    sample, // real domains spelled from the alphabet
     enumeratedDomains: domains.enumerated, // the concrete reach today
-    addressableDomains: dot.distinctAddresses, // 2^128 — all encoded by the finite pair-alphabet
-    dnaAnalogy: 'two complementary base pairs (A–T, G–C) encode all life; the digit duality pairs encode all domains',
+    addressableDomains: dot.distinctAddresses, // 2^128 — all classified by the finite inverse-alphabet
+    dnaAnalogy: 'DNA has exactly two complementary base pairs (A–T, G–C); the digits have exactly two nontrivial multiplicative-inverse pairs (2,5) and (4,7) — plus the self-inverse units {1,8} and the non-unit axis/void {3,6,9,0}',
     root: merge(math.root, merge(domains.root, dot.root)),
     statement:
-      'Encode all the domains with just the digit duality pairs. Every domain is a dot (a content address), a dot is a cube of dots built from two dualities and their fold, and the dualities are the digit pairs — the ten’s-complement pairs (d, 10−d). Five pairs cover all ten digits (with 0 the void), a complete alphabet, so every address — hence every domain, up to the 2^128 ceiling — is spelled from the duality pairs alone. A finite alphabet encodes the unbounded domain space, as DNA’s two base pairs encode all of life.',
+      'Encode all the domains with just the digit duality pairs. Every domain is a dot (a content address), a dot is a cube of dots built from two dualities and their fold, and the dualities are the digit INVERSE pairs (d, d⁻¹) with d·d⁻¹ ≡ 1 (mod 9). Under the multiplicative inverse there are exactly two nontrivial pairs — (2,5) and (4,7) — plus the self-inverse units {1,8} closing the group (ℤ/9)*, and the non-units {3,6,9,0} (the trinity axis + void) folding within themselves. Together they classify all ten digits, so every address — hence every domain, up to the 2^128 ceiling — is spelled. The DNA parallel is exact in count: two base pairs ⟷ two nontrivial inverse pairs.',
     boundary:
-      'HONEST: the duality pairs are a COMPLETE digit alphabet (they cover 0–9 and sum to 10), so any content-address is spelled from them and any domain is therefore addressable — a finite generating alphabet over the unbounded extent of dotIsCubeIsDot. "Encode all domains" means the addressing is complete from the pairs, NOT that every domain is built — each still needs word code (a UI) to be powered, and distinctness caps at 2^128. The DNA base-pair parallel is a structural correspondence (complementary pairs as a generating alphabet), not a biological claim.',
+      'HONEST: under the multiplicative inverse this is NOT five (d, 10−d) pairs summing to 10. It is the unit group (ℤ/9)* = {1,2,4,5,7,8} — two nontrivial inverse pairs (2,5)(4,7) + two self-inverse units {1,8} — together with the non-units {3,6,9,0} (the trinity axis + the void) that have no inverse and fold to a self-address. The alphabet still classifies 0–9 (every digit is a unit or a non-unit), so any content-address is spelled; "encode all domains" means the addressing is complete, NOT that every domain is built (each still needs word code), and distinctness caps at 2^128. The two-base-pair DNA correspondence (exactly two nontrivial inverse pairs) is structural, not a biological claim.',
   }
 }
 
@@ -351,8 +412,9 @@ export function digitSpinesAreTheBreath(matrix: MindMatrix = buildMatrix()) {
 
 
 // Physical station path: single-digit segments only (0..9). Nesting is legal when each step comes from
-// the sequence — digit d then ten's-complement reverse r (src/d/r). Void overflow (0, reverse 10) stays
-// at src/0 — "10" is not a folder name; the fusion lives in the vault leaf.
+// the sequence — digit d then its additive folder-complement r = 10−d (src/d/r). Void overflow (0,
+// complement 10) stays at src/0 — "10" is not a folder name; the fusion lives in the vault leaf. (The
+// `reverse` field here is the retained legacy name for that additive complement, not the n/0 inverse.)
 export function stationPathFromSequence(entry: { digit: number; reverse: number; overflows: boolean }): string {
   if (entry.overflows) return 'src/0'
   return `src/${entry.digit}/${entry.reverse}`
@@ -369,7 +431,7 @@ export function sequenceSpinePaths(matrix: MindMatrix = buildMatrix()) {
     { facet: 'every spine segment is a single digit 0..9', on: [...spines.emanation, ...spines.returnWind].every(segmentOk) },
     { facet: 'emanation path walks the sequence from the void', on: spines.emanation[0] === 0 && spines.decoded },
     { facet: 'return path walks the sequence home to the void', on: spines.returnWind[spines.returnWind.length - 1] === 0 && spines.decoded },
-    { facet: 'station paths src/d/r use sequence-derived reverse (single-digit segments)', on: digitFolderMath(matrix).digits.filter((e) => !e.overflows).every((e) => segmentOk(e.digit) && segmentOk(e.reverse)) },
+    { facet: 'station paths src/d/r use the sequence-derived additive folder-complement (single-digit segments)', on: digitFolderMath(matrix).digits.filter((e) => !e.overflows).every((e) => segmentOk(e.digit) && segmentOk(e.complement)) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sequence-spine-path:${entry.facet}:${entry.on}`) }))
   return {
     holds: facets.every((entry) => entry.on),
@@ -378,9 +440,9 @@ export function sequenceSpinePaths(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Digit folders use single-digit segments only (0..9). Nested paths do not violate folder law when each step is from the vortex sequence — station src/d/r (d then ten\'s-complement reverse), or the full spines src/0/1/2/…/9 and src/1/2/…/9/0. Overflow void (0, reverse 10) stays at src/0; fusion, not a "10" folder.',
+      'Digit folders use single-digit segments only (0..9). Nested paths do not violate folder law when each step is from the vortex sequence — station src/d/r (d then its additive folder-complement 10−d), or the full spines src/0/1/2/…/9 and src/1/2/…/9/0. Overflow void (0, complement 10) stays at src/0; fusion, not a "10" folder.',
     boundary:
-      'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/reverse API route (e.g. /1/9) matches the two-level station path when reverse is a single digit.',
+      'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/(10−d) API route (e.g. /1/9) matches the two-level station path when the additive complement is a single digit. (The n/0 reverse of a digit is the multiplicative inverse n⁻¹ mod 9 — distinct from this folder-path complement.)',
   }
 }
 
