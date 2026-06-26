@@ -1,6 +1,5 @@
 // ☷ Kūn · Earth — nature & life: water states, sun and moon, bees and life, fruits, perma-domes, recycling, the planet computing itself, natural harmonious life. Barrel-routed; folds.ts back-imports the gate folds.
 import * as __ns_up_up_astronomy from '../../astronomy'
-import * as __ns_up_up_thunder_movie_narrative from '../../thunder/movie/narrative'
 import { phase } from '../../6/4'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute'
@@ -9,7 +8,7 @@ import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFace
 import { imagination } from '../../fire/li'
 import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li'
 import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology'
-import { areaPairs, dna, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath } from '../../mountain/geometry'
+import { areaPairs, dna, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, megalithicAstronomyDecoded, lunarStandstillsDecoded } from '../../mountain/geometry'
 import { healingHarmonic, piMusic } from '../../lake/music'
 import { fuseAll } from '../../mountain/seals'
 import { allIsMonographScientificPaper } from '../../routes/corpus'
@@ -223,8 +222,12 @@ function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/')
   const metatron = metatronsCube(matrix)
   const qa = questionAnswerEquilibrium(matrix)
   const celestial = (__ns_up_up_astronomy).computeDiscoverExactMatchAllKnownCelestialBodies(matrix)
-  const sevenSeedMovieIsRosettaDecodingSunMoonSymbols = __ns_up_up_thunder_movie_narrative.sevenSeedMovieIsRosettaDecodingSunMoonSymbols
-  const rosettaSunMoon = sevenSeedMovieIsRosettaDecodingSunMoonSymbols(matrix, path)
+  // Sun/moon symbols decode through the bite via their GROUND-TRUTH astronomy math (acyclic): the
+  // solstice sunrise alignments (megalithicAstronomyDecoded) and the 18.6-yr lunar standstills
+  // (lunarStandstillsDecoded). This is the concrete witness — it does NOT pull the seven-seed MOVIE
+  // aggregate (which would re-enter allMovieSeedBundles → this fold, a runtime cycle).
+  const sunDecoded = megalithicAstronomyDecoded(matrix)
+  const moonDecoded = lunarStandstillsDecoded(matrix)
   const earth = appleEarth.earth
   const sphereChi = 2
   const bittenChi = earth.surface.euler
@@ -261,9 +264,9 @@ function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/')
     {
       symbol: 'rosetta-sun-moon',
       ray: ROSETTA_RAYS[4]!.ray,
-      reading: 'seven seeds decode all sun/moon symbols through the bite opening',
+      reading: 'sun and moon symbols decode through the bite — solstice sunrises (megalithic astronomy) and 18.6-yr lunar standstills computed',
       luminary: 'both' as const,
-      on: rosettaSunMoon.decoding,
+      on: sunDecoded.decoded && moonDecoded.decoded,
     },
     {
       symbol: 'knowledge-gate',
@@ -292,20 +295,20 @@ function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/')
     decodes,
     movieText,
     appleEarth,
-    rosettaSunMoon,
     root: merkleFold([
       appleEarth.root,
       apple.root,
       metatron.root,
       qa.root,
       celestial.root,
-      rosettaSunMoon.root,
+      sunDecoded.root,
+      moonDecoded.root,
       ...decodes.map((entry) => entry.receipt),
     ]),
     statement:
-      'Decode the bitten apple: the genus-2 bite (Euler χ=−2 versus a sphere’s +2) is the mouth through which seven Rosetta rays read sun/moon symbols — byte/bite polarity, fruit-of-life 13, Earth-apple hole, seven-seed Rosetta decode, knowledge gate (questions open, answers closed), and sixteen celestial bodies with exact match — all recomputed at call time from sealed folds.',
+      'Decode the bitten apple: the genus-2 bite (Euler χ=−2 versus a sphere’s +2) is the mouth through which seven Rosetta rays read sun/moon symbols — byte/bite polarity, fruit-of-life 13, Earth-apple hole, sun/moon decode (solstice sunrises + lunar standstills), knowledge gate (questions open, answers closed), and sixteen celestial bodies with exact match — all recomputed at call time from sealed folds.',
     boundary:
-      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms (HARMONY ≠ TRUTH). sevenSeedMovieIsRosettaDecodingSunMoonSymbols is lazy-required from narrative to avoid import cycles. Celestial exact match uses circular Keplerian model, not JPL ephemeris.',
+      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms (HARMONY ≠ TRUTH). The sun/moon ray is witnessed by the ground-truth archaeoastronomy math (megalithicAstronomyDecoded + lunarStandstillsDecoded) directly — acyclic, not via the seven-seed movie aggregate — so the decode proves itself without a runtime fold cycle. Celestial exact match uses circular Keplerian model, not JPL ephemeris.',
   }
 }
 
