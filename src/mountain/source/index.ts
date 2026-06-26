@@ -30,7 +30,7 @@ import { optimiseLogicDebitCreditFusion } from '../../wind/fusion'
 import { extendSelfAudits } from '../../lake/clean'
 import { provenScientifically } from '../../thunder/verify'
 import { fuse64SealsMerkaba64Tetrahedra } from '../topology'
-import { completeCorpus, monographs, theMonograph } from '../../routes/corpus'
+import { completeCorpus, monographs, theMonograph } from '../../wind/routes/corpus'
 import { buildStatistics, cloudflareBindings, complete, completeQuantumComputerAllScales, componentGraph, encryptionLivesInZero, path, shadcnIsTheGraph } from '../../quantum/heaven/mind'
 
 // Ensure complete autotranslations: every taxonomy area must carry a non-empty

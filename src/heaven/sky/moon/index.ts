@@ -1,13 +1,13 @@
 // ☽ Moon — canonical lunar home: synodic phase, tidal lock metaphor, merkaba night-side, gateway nav anchor.
-import * as __ns_up_mountain_geometry from '../mountain/geometry'
-import * as __ns_up_double_torus_earth from '../double/torus/earth'
-import { MOON_ORBIT_INCLINATION_DEG } from '../8/2'
-import { LUNAR_NODAL_PERIOD_YEARS } from '../9/1'
-import type { MindMatrix } from '../wind/types'
-import { buildMatrix } from '../heaven/compute'
-import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../0'
+import * as __ns_up_mountain_geometry from '../../../mountain/geometry'
+import * as __ns_up_double_torus_earth from '../../../double/torus/earth'
+import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
+import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1'
+import type { MindMatrix } from '../../../wind/types'
+import { buildMatrix } from '../../compute'
+import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'
 import { computeAllKnownCelestialBodies } from '../astronomy'
-import { sunAndMoon } from '../earth/nature'
+import { sunAndMoon } from '../../../earth/nature'
 
 /** Synodic month phase (display) — ~29.53059 d; hero-clock mapped, not JPL lunar ephemeris. */
 export const SYNODIC_MONTH_DAYS = 29.53059

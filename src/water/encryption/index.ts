@@ -18,7 +18,7 @@ import { uuidPayloadIsSource } from '../../mountain/source'
 import { allMdSignedFromSource } from '../../mountain/og'
 import { gatesShowGapsHarmonicPurpose } from '../../lake/music'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
-import { completeCorpus } from '../../routes/corpus'
+import { completeCorpus } from '../../wind/routes/corpus'
 import { beautyInMathBlastsThroughUi, cloudflareBindings, complete, completeQuantumComputerAllScales, dotIsCubeIsDot, imagineTheRest } from '../../quantum/heaven/mind'
 
 // Deploy the secret UUID, signed by the bindings' trinities and the cross-referenced observers

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { zeitwerkPort, resolveZeitwerkRegistryEntry } from '.'
+import { zeitwerkPort, resolveZeitwerkRegistryEntry } from './'
 
 const model = computed(() => ({
   port: zeitwerkPort(),

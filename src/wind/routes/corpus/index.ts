@@ -1,21 +1,21 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import type { MindMatrix, StaticPage } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
-import { isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
-import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../wind/site'
-import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../water/digit'
-import { cardMovieColorVars, cardMovieSeed } from '../../thunder/movie/movievars'
-import { plasmaClientWorkBoundedByPureMath } from '../../fire/plasma/ball'
-import { allPagesForPlasmaWiring } from '../../double/torus'
+import type { MindMatrix, StaticPage } from '../../types'
+import { buildMatrix } from '../../../heaven/compute'
+import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
+import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
+import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../../water/digit'
+import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
+import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
+import { allPagesForPlasmaWiring } from '../../../double/torus'
 import { monographSliceFromRoute } from '../automount'
-import { siteRoutes } from '../../fire/li'
-import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../earth/architecture'
-import { diamondLattice, pureDiamonds } from '../../fire/diamonds'
-import { quantumDoubleTorus } from '../../mountain/topology'
-import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../quantum/heaven/mind'
-import type { CorpusKind } from '../../quantum/heaven/mind'
-import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, siteNavigation, type ComponentCrosslink } from '../../wind/learning'
+import { siteRoutes } from '../../../fire/li'
+import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
+import { diamondLattice, pureDiamonds } from '../../../fire/diamonds'
+import { quantumDoubleTorus } from '../../../mountain/topology'
+import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../quantum/heaven/mind'
+import type { CorpusKind } from '../../../quantum/heaven/mind'
+import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, siteNavigation, type ComponentCrosslink } from '../../learning'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -868,8 +868,8 @@ export {
   rosettaComputesNavigationAndContent,
   siteNavigation,
   vitepressSidebar,
-} from '../../wind/learning'
-export { pageForgeMaxTamper, type PageForgeSeal } from '../../wind/site'
+} from '../../learning'
+export { pageForgeMaxTamper, type PageForgeSeal } from '../../site'
 export {
   contentIsMonographOfMonographs,
   eachPageSpeaksContinuesNext,
@@ -879,14 +879,14 @@ export {
   monographs,
   onlyPageRouteForAll,
   theMonograph,
-} from '../../wind/learning'
+} from '../../learning'
 export {
   homePageNoDifferent,
   homepage,
   pageStatusStatistics,
   proveAllOnHomePage,
-} from '../../wind/site'
-export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../water/digit'
+} from '../../site'
+export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit'
 
 /** All is monograph — every page is a scientific paper with one template. */
 export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()) {

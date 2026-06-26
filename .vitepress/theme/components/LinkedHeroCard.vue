@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { heroPreviewForRoute } from '../../../src/routes/corpus/index.ts'
+import { heroPreviewForRoute } from '../../../src/wind/routes/corpus/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 

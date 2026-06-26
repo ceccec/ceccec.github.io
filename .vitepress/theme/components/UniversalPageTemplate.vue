@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { CORPUS_GRID_PAGE_SIZE, type UniversalPage } from '../../../src/routes/corpus/index.ts'
+import { CORPUS_GRID_PAGE_SIZE, type UniversalPage } from '../../../src/wind/routes/corpus/index.ts'
 import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'

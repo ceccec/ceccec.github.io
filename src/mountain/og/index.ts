@@ -7,7 +7,7 @@ import { animatedHeroes, holographic, oneHolographicTemplate } from '../../wind/
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
-import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../routes/corpus'
+import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../wind/routes/corpus'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
 import { heroTapMusic } from '../../lake/music'
 import { conceptCommands } from '../../heaven/atoms'

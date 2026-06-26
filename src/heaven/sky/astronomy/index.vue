@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
 import { astronomySimulationPanelComputes } from './index.ts'
-import { prefersReducedMotion, useVisibleMovieCanvas } from '../../.vitepress/lib/movie-canvas'
-import { useSiteLocale } from '../../.vitepress/lib/mounts'
-import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
-import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
-import UiAlert from '../../.vitepress/theme/components/ui/Alert.vue'
+import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../../.vitepress/lib/movie-canvas'
+import { useSiteLocale } from '../../../../.vitepress/lib/mounts'
+import UiCard from '../../../../.vitepress/theme/components/ui/Card.vue'
+import UiCardContent from '../../../../.vitepress/theme/components/ui/CardContent.vue'
+import UiBadge from '../../../../.vitepress/theme/components/ui/Badge.vue'
+import UiAlert from '../../../../.vitepress/theme/components/ui/Alert.vue'
 
 const panel = shallowRef(astronomySimulationPanelComputes())
 const { pick } = useSiteLocale()

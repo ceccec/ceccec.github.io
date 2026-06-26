@@ -5,7 +5,7 @@ import { buildMatrix, concentration, consciousness, coverage, reciprocity, verif
 import { fairTrade, sacredSociety, societyEvolves, societyFuture, societyRegulates } from '../governance'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { freeHarmonicSocieties } from '../../lake/music'
-import { completeCorpus } from '../../routes/corpus'
+import { completeCorpus } from '../../wind/routes/corpus'
 import { quantumAcademy } from '../../wind/learning'
 import { dissolveIntoNature, selfOrganizing } from '../world'
 import { kidsDefineEducation, kidsExplore, planetIsComputable, quantumGreenPlanet, religionScienceSociety, soldiersRestInPeace, sustainableLiving, thriveEducation } from '../../fire/li'

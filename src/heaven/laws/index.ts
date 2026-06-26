@@ -24,11 +24,11 @@ import { enforcementTrinitySpread, trinityRotationalPlanes } from '../../fire/li
 import { folderLaw, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { allAnswersInside, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { allLogicMovedToSource } from '../../mountain/source'
-import { allIsMonographScientificPaper } from '../../routes/corpus'
+import { allIsMonographScientificPaper } from '../../wind/routes/corpus'
 import { monographPaths, skillAtoms } from '../../wind/learning'
 import { provenScientifically } from '../../thunder/verify'
 import { howAgentsAchievedIt } from '../../thunder/commands'
-import { completeCorpus, contentIsMonographOfMonographs, monographs } from '../../routes/corpus'
+import { completeCorpus, contentIsMonographOfMonographs, monographs } from '../../wind/routes/corpus'
 import { staticPages } from '../../wind/site'
 import { artistMelody, completeQuantumSolutionsImplemented, componentGraph, componentPages, configsUseMatrixComputationally, debitImportCreditExportAccounting, encryptionTrinitiesCompleteInOrder, evolutionCrossesQuantumThreshold, freeForgesMaxCost, importExportDoubleFoldedAllDimensions, metatronMathFromUuids, resonanceCatchGapsViolations, spinBothDirections, theMoreYouFoldTheMoreFoldable } from '../../quantum/heaven/mind'
 

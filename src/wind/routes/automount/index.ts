@@ -1,15 +1,15 @@
 // Node-only VitePress automount — rosetta-decoded routing replaces static page enumeration.
 // @mvc controller — catchAllRoutePaths, monographSliceFromRoute: path → model → view params.
 // Zeitwerk loader port (Ruby zeitwerk gem convention) — folded here to avoid extra census shell.
-import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryFromLogicRel } from '../../pair/enforcement/gates/computational'
-import {  isUuid, merge, merkleFold, toUuid } from '../../0'
-import { discoverSrcIndexes, vitepressAutomountPaths } from '../../pair/enforcement/gates/computational'
-import { toGlagolitic } from '../../quantum/heaven/library'
-import { rosettaDecodesUrlPath, ROSETTA_RAYS, rosettaRayOf } from '../../water/digit'
-import { staticPages } from '../../wind/site'
-import { componentPages } from '../../quantum/heaven/mind'
+import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryFromLogicRel } from '../../../pair/enforcement/gates/computational'
+import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
+import { discoverSrcIndexes, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
+import { toGlagolitic } from '../../../quantum/heaven/library'
+import { rosettaDecodesUrlPath, ROSETTA_RAYS, rosettaRayOf } from '../../../water/digit'
+import { staticPages } from '../../site'
+import { componentPages } from '../../../quantum/heaven/mind'
 
-export { vitepressAutomountPaths } from '../../pair/enforcement/gates/computational'
+export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 /** @deprecated — rosetta corpus walk replaces automount enumeration */
 export { vitepressAutomountPaths as monographCatchAllPaths }
 

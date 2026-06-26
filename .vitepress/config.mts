@@ -20,7 +20,7 @@ function glagoliticIfLatin(text: string): string {
   return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
 }
 import { buildMatrix } from '../src/heaven/compute'
-import { computeUniversalPage } from '../src/routes/corpus'
+import { computeUniversalPage } from '../src/wind/routes/corpus'
 import { heroChromeStyleBlocks } from './lib/hero-chrome'
 import { universalRoutePath } from './lib/universal-route-path'
 import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-server-bind.mts'

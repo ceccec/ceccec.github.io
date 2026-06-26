@@ -6,7 +6,7 @@ import * as __ns_cur_civilisation from './civilisation'
 import * as __ns_cur_governance from './governance'
 import * as __ns_up_heaven_site from '../heaven/site'
 import * as __ns_up_double_torus_earth from '../double/torus/earth'
-import * as __ns_up_astronomy from '../astronomy'
+import * as __ns_up_astronomy from '../heaven/sky/astronomy'
 import type { MindMatrix } from '../wind/types'
 import { buildMatrix } from '../heaven/compute'
 import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../0'
@@ -24,7 +24,7 @@ export type EarthScienceTail = (typeof EARTH_SCIENCE_TAILS)[number]
 
 export { folderLaw, eightSciencesQuantumComplete, MIND_LOGIC_INDEX_TAILS } from './architecture'
 export { genesis, breathe } from './nature'
-export { computeAllKnownCelestialBodies } from '../astronomy'
+export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy'
 export { society, societyRegulates } from './governance'
 export { traditionsQuantumWhole } from './civilisation'
 export {

@@ -1,9 +1,9 @@
 // ☷ Kūn · Earth — nature & life: water states, sun and moon, bees and life, fruits, perma-domes, recycling, the planet computing itself, natural harmonious life. Barrel-routed; folds.ts back-imports the gate folds.
-import * as __ns_up_up_astronomy from '../../astronomy'
+import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
 import { phase } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute'
-import { completeCorpus, monographs, onlyPageRouteForAll } from '../../routes/corpus'
+import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes/corpus'
 import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
 import { imagination } from '../../fire/li'
 import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li'
@@ -11,7 +11,7 @@ import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topo
 import { areaPairs, dna, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, megalithicAstronomyDecoded, lunarStandstillsDecoded } from '../../mountain/geometry'
 import { healingHarmonic, piMusic } from '../../lake/music'
 import { fuseAll } from '../../mountain/seals'
-import { allIsMonographScientificPaper } from '../../routes/corpus'
+import { allIsMonographScientificPaper } from '../../wind/routes/corpus'
 import { analogNoGapsNoLeak, cleanupOldLogic } from '../../mountain/og'
 import { dualitiesMeetInCrossFolders } from '../architecture'
 import { ROSETTA_RAYS } from '../../water/digit'
@@ -808,4 +808,4 @@ export {
   astronomySequenceDecodeResearch,
   decodeAstronomyThroughVortexSequence,
   astronomyComputes,
-} from '../../astronomy'
+} from '../../heaven/sky/astronomy'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import type { UniversalPage } from '../../../src/routes/corpus/index.ts'
+import type { UniversalPage } from '../../../src/wind/routes/corpus/index.ts'
 import { componentPages } from '../../../src/heaven/balance/index.ts'
 import { staticPages } from '../../../src/wind/site/index'
 import { useSiteLocale } from '../../lib/mounts'

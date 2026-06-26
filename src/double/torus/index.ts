@@ -59,7 +59,7 @@ import {
   computeUniversalPage,
   paperRoutes,
   paperReferenceRoutes,
-} from '../../routes/corpus'
+} from '../../wind/routes/corpus'
 import {
   analogSpeech,
   charUuids,

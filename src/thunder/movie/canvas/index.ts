@@ -20,7 +20,7 @@ import { backgroundMovieColorVars } from '../movievars'
 import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../wind/ui'
 import { computedWebManifest, siteConfig } from '../../../wind/site'
 import { livingTorus } from '../../../fire/diamonds'
-import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../routes/corpus'
+import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus'
 import { doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'
 import {
   matrixRgbDecodeFlowsInMovie,

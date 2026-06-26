@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import type { UniversalPage } from '../../../src/routes/corpus/index.ts'
+import type { UniversalPage } from '../../../src/wind/routes/corpus/index.ts'
 import DecodedCard from './DecodedCard.vue'
 
 const { params } = useData()

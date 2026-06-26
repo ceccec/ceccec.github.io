@@ -20,7 +20,7 @@ import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../../earth/world'
-import { completeCorpus } from '../../routes/corpus'
+import { completeCorpus } from '../routes/corpus'
 import { toGlagolitic } from '../../quantum/heaven/library'
 import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
@@ -337,7 +337,7 @@ export function vitepressDevServerBind() {
   return { host: '127.0.0.1' as const, port: 5173, strictPort: false }
 }
 
-export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../../routes/corpus'
+export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus'
 
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'

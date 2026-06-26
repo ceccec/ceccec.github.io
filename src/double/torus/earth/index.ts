@@ -33,7 +33,7 @@ import {
 import {
   computeAllKnownCelestialBodies,
   computeDiscoverExactMatchAllKnownCelestialBodies,
-} from '../../../astronomy'
+} from '../../../heaven/sky/astronomy'
 import {
   cardinalPyramidTipsProvenByMath,
   doubleTorusEarthPyramidTipsDeepResearched,

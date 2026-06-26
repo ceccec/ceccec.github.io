@@ -171,16 +171,16 @@ export type CorpusGridItem = {
 
 /** Defer sealed corpus graph until after first paint — work is math-bounded in src/routes/corpus. */
 export async function hubCardItemsAsync(locale: LocaleName): Promise<CorpusGridItem[]> {
-  const { hubCardItems } = await import('../../src/routes/corpus/index')
+  const { hubCardItems } = await import('../../src/wind/routes/corpus/index')
   return hubCardItems(locale)
 }
 
 export async function tagBrowserTagsAsync(): Promise<readonly string[]> {
-  const { tagBrowserTags } = await import('../../src/routes/corpus/index')
+  const { tagBrowserTags } = await import('../../src/wind/routes/corpus/index')
   return tagBrowserTags()
 }
 
 export async function tagBrowserItemsAsync(tag: string, locale: LocaleName): Promise<CorpusGridItem[]> {
-  const { tagBrowserItems } = await import('../../src/routes/corpus/index')
+  const { tagBrowserItems } = await import('../../src/wind/routes/corpus/index')
   return tagBrowserItems(tag, locale)
 }

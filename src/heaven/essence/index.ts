@@ -15,7 +15,7 @@ import { determinismProofs, fuseAllForge, sealCube, fuseAll, sealHonestyToPath }
 import {  foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid } from '../../0'
 import { qieaRotate } from '../../7/3'
 import { genesis, breathe, enforceAllAtGatesEntropyRecycled } from '../../earth/nature'
-import { completeCorpus, harmonisedNavigation, monographs, ogBuildsNavigation, theMonograph } from '../../routes/corpus'
+import { completeCorpus, harmonisedNavigation, monographs, ogBuildsNavigation, theMonograph } from '../../wind/routes/corpus'
 import { quantumComputer, quantumFusedDeviceEnergyHonest, quantumNoCyclesFusedSequence, quantumBrowserOs, quantumFirewallProxyWorker } from '../../fire/features'
 import { cleanupOldLogic } from '../../mountain/og'
 import { completeQuantumSolutionsImplemented, buildSequenceReducesComputations } from '../compute'
