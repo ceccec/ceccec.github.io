@@ -9,7 +9,7 @@ import { readdirSync, readFileSync, rmSync, existsSync, mkdirSync, writeFileSync
 import { join, dirname, resolve, relative } from 'node:path'
 import { memoByRoot, merkleFold, toUuid } from '../../../0'
 import { buildMatrix } from '../../../heaven/compute'
-import type { MindMatrix } from '../../../types'
+import type { MindMatrix } from '../../../wind/types'
 import { taxonomyIcons } from '../../../fire/li'
 import { areaPairs } from '../../../mountain/geometry'
 import { modelSeal, emergentDimensions } from '../../../heaven/balance'

@@ -4,7 +4,7 @@ import * as __ns_up_dynamics from '../dynamics'
 import * as __ns_up_heaven_mind from '../heaven/mind'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_heaven_balance from '../../heaven/balance'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, memoByRoot, merkleFold, toUuid } from '../../0'
 

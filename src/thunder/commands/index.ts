@@ -1,5 +1,5 @@
 // ☱ Duì · Lake — concept commands & MCP: the single-word methods as MCP tools, the method-fusion, the command registry. Barrel-routed; folds.ts back-imports the gate folds.
-import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from '../../types'
+import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, consciousness, doubleTorusWire, proofReport, repositoryApi, verifyRoot } from '../../heaven/compute'
 import { agentStreamWire, diamondLattice, livingTorus, piTrainDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { dualTorusTrinities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, imperialFractionsDecoded, merkaba, schwarzschildProtonComputedInSource } from '../../mountain/geometry'

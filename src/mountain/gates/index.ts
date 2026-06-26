@@ -1,6 +1,6 @@
 // ☶ Gèn · Mountain — the gate principles: gates behave as MCP, every diamond is a gate, gates heal spotted compromise, gates move all to place, gates so tight even they cannot pass entropy. Barrel-routed; folds.ts back-imports the gate folds.
 import { bekensteinBoundBits, landauerLimit } from '../../3/7'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { holographic, holographicFractalArchitecture } from '../../wind/ui'
 import { scientists } from '../../wind/learning'

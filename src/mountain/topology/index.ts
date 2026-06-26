@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — topology: the double torus (genus-2, χ=−2), the merkaba (star tetrahedron), the geodesic dome (the sphere dual), the homology loops. Barrel-routed; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
 import { computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, sealFacets, seedFromText, survive, toUuid } from '../../0'
-import type { MindMatrix, TorusBreath } from '../../types'
+import type { MindMatrix, TorusBreath } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus } from '../../heaven/compute'
 import { bothEarthsRotateWithinEachOther, cellHomology, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry'
 export { doubleTorusSurface, TORUS_LOBE_OFFSET } from '../../0'

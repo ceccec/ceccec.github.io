@@ -1,5 +1,5 @@
 // ☶ Gèn · Mountain — vortex / math: 1-2-4-8-7-5 lattice, paint tiers (dissolved src/math compose mount).
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
 import {
   VORTEX_SEQUENCE,

@@ -1,6 +1,6 @@
 // Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life).
 import * as __ns_up_life from '../life'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { doubleTorusCompost, trinityOtherSideDoomed } from '../../fire/li'

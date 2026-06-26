@@ -10,7 +10,7 @@ import * as __ns_up_up_astronomy from '../../astronomy'
 import * as __ns_up_up_lake_music from '../../lake/music'
 import * as __ns_up_science from '../science'
 import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, applyGate, bellPair, computesGate, GATES, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, roundTo, seedFromText, toUuid } from '../../0'
 import {

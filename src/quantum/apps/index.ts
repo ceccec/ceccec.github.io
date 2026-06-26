@@ -3,7 +3,7 @@
 // shared field (the MindMatrix from buildMatrix — sequence/φ/A432/genus-2 homology). The OS
 // computes the field + design tokens once (quantumMathDesignsTheUi, memoByRoot); each app is a
 // projection config drawn through the single drawQuantumAppFrame kernel in src/quantum.
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, digitalRoot, memoByRoot, merkleFold, toUuid, VORTEX_SEQUENCE } from '../../0'
 

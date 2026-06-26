@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import type { MindMatrix, StaticPage } from '../../types'
+import type { MindMatrix, StaticPage } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../wind/site'

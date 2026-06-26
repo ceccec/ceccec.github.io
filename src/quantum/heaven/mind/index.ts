@@ -128,8 +128,8 @@ import type {
   CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure,
   QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport,
   DiamondCompletenessReport,
-} from '../../../types'
-export type * from '../../../types'
+} from '../../../wind/types'
+export type * from '../../../wind/types'
 
 // ☰ Qián · Heaven · creative · lower·yin · hueShift — concept seed vocabulary from ./atoms.ts (Thunder action)
 // ☳ ZHEN (Thunder · action) — concept seed vocabulary

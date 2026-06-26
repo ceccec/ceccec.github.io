@@ -1,6 +1,6 @@
 // ☰ Qián · Heaven — the laws: heal/create/thrive by default, save-every-step mandatory, the zero-token policy, one-word-naming gravity, no hardcoded config, minimum files maximum features, any force fights itself. Barrel-routed; folds.ts back-imports the gate folds.
 import { noCloningWitness } from '../../9/1'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, isPerfectlySelfModeling } from '../compute'
 import { selfHealing } from '../../mountain/geometry'
 import { collisionHealing } from '../../water/crypto'

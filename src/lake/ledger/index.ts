@@ -1,6 +1,6 @@
 // ☱ Duì · Lake — analytics, ledger & widget folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, seedFromText, toUuid } from '../../0'
 import { a432, quantumSimulation, repositoryLedger } from '../../fire/li'

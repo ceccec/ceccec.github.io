@@ -2,7 +2,7 @@
 // Logic lives here; routes/corpus re-exports for REST/universal-page mounts. Pure folds only.
 // Canonical imports: src/double/torus/* · src/vortex/math · src/resonance · src/astronomy · src/quantum/dynamics · src/iching · src/rosetta · src/sound · src/plasma/ball · src/birth · src/life · src/death.
 
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, memoByRoot, merge } from '../../0'
 import {

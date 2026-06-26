@@ -1,7 +1,7 @@
 import { phase } from '../../6/4'
 import { folderTailFromMethodName } from '../../pair/enforcement/gates/computational'
 import { algorithmicCoolingBias, quantumBatteryAdvantage } from '../../9/1'
-import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../types'
+import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../wind/types'
 import { buildMatrix, completeQuantumSolutionsImplemented } from '../compute'
 import {   isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../0'
 import { crossFoldTrinity, torusUuid } from '../../fire/li'

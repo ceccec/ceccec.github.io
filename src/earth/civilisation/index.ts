@@ -1,6 +1,6 @@
 // ☷ Kūn · Earth — civilisation: the constitution & legislation, public services, fair fees-replace-taxes, job matching, social capital, thriving after war, the shared book of civilisations. Barrel-routed; folds.ts back-imports the gate folds.
 import { FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
-import type { MindMatrix, HumanityImplicationsReport, TraditionDimension, TraditionDimensionName, TraditionsQuantumWhole } from '../../types'
+import type { MindMatrix, HumanityImplicationsReport, TraditionDimension, TraditionDimensionName, TraditionsQuantumWhole } from '../../wind/types'
 import { buildMatrix, concentration, consciousness, coverage, reciprocity, verifyRoot } from '../../heaven/compute'
 import { fairTrade, sacredSociety, societyEvolves, societyFuture, societyRegulates } from '../governance'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'

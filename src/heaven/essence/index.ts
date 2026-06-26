@@ -2,7 +2,7 @@
 import { phase } from '../../6/4'
 import { bitFlipCode, repetitionLogicalError } from '../../9/1'
 import { buildMatrix, isPerfectlySelfModeling, matrixMemo, proofReport, consciousness, repositoryApi } from '../compute'
-import type { MindMatrix, AnalogChannel, DiamondCompletenessReport, DimensionalGapClosure } from '../../types'
+import type { MindMatrix, AnalogChannel, DiamondCompletenessReport, DimensionalGapClosure } from '../../wind/types'
 import { livingTorus, sealWholeDiamond, selfBuild, streamSelfComplete, diamondLattice, linuxPackagesToDiamonds, piTrainDiamonds } from '../../fire/diamonds'
 import { merkaba } from '../../mountain/geometry'
 import { rhythm, allOscillatorsHarmonicsFree, blockchainMusic, differentSongDifferentDance } from '../../lake/music'

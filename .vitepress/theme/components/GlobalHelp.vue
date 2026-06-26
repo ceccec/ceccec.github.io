@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { foldQuestion } from '../../../src/heaven/atoms/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
-import type { LocalAnswer } from '../../../src/types'
+import type { LocalAnswer } from '../../../src/wind/types'
 import UiAsideShell from './UiAsideShell.vue'
 
 const STARTER_TOPICS = ['proof', 'trinity', 'mcp', 'chain', 'school'] as const

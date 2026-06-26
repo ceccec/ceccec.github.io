@@ -4,7 +4,7 @@
 import { phase } from '../../6/4'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive } from '../../vortex/math'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { toUuid, merge, sealFacets, roundTo, rat, ratEq, ratAdd, ratMul, ratSub, ratDiv, ratToFloat } from '../../0'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'

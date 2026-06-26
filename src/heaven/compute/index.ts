@@ -6,7 +6,7 @@ import type {
   Atom, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow,
-} from '../../types'
+} from '../../wind/types'
 import { atoms } from '../atoms'
 import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
 import { digitalRoot } from '../../0'

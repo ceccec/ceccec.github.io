@@ -1,7 +1,7 @@
 // ☲ Lí · Fire — physics: what 'quantum' actually means (Hilbert space, Born rule, the honest bound), Tesla's verified patents, EMF & public frequency APIs, dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import { codeRobustness } from '../../earth/life'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../vortex/math'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
 import { a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
 import { isUuid, merkleFold, toUuid } from '../../0'

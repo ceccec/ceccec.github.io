@@ -1,6 +1,6 @@
 // ☶ Gèn · Mountain — verification: the proofs and verifiers (attestation, witnesses, the proof reports). Barrel-routed; folds.ts back-imports the gate folds.
 import { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations, coverage, entropy, verifyRoot } from '../../heaven/compute'
 import { minimumFilesMaximumFeaturesCost } from '../../heaven/laws'
 import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/architecture'

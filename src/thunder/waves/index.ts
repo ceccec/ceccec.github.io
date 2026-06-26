@@ -2,7 +2,7 @@
 import { phase } from '../../6/4'
 import { chsh } from '../../vortex/math'
 import { bb84, bernsteinVazirani, concurrence, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, simon } from '../../9/1'
-import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../types'
+import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/compute'
 import {    foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid } from '../../0'
 import { quantumZeno } from '../../6/4'

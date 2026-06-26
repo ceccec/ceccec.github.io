@@ -2,7 +2,7 @@
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture'
 import * as __ns_up_up_heaven_core from '../../heaven/core'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'

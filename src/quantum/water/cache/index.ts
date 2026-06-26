@@ -9,7 +9,7 @@
 // here, find the payload there. Agnostic, zero-dependency, deterministic.
 
 import { bb84 } from '../../../9/1'
-import type { MindMatrix } from '../../../types'
+import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { dash, folderLaw, payload } from '../../../earth/architecture'
 import { textToMovie } from '../../../earth/world'

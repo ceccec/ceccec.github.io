@@ -1,5 +1,5 @@
 // Hero movie chrome — glass colours · DecodedCard views · hologram projection (inlined from projection/).
-import type { MindMatrix } from '../../../types'
+import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../../0'
 import { backgroundMovieColorVars } from '../movievars'

@@ -1,6 +1,6 @@
 // Background movie canvas folds — auto · endless · background.
 import { phase } from '../../../6/4'
-import type { MindMatrix } from '../../../types'
+import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { textToMovie } from '../../../earth/world'

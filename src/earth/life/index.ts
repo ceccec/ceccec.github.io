@@ -5,7 +5,7 @@ import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
 import { phase } from '../../6/4'
 import { eigenErrorThreshold, GENETIC_CODE } from '../../3/7'
 export { GENETIC_CODE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../types'
+import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { determinismProofs } from '../../mountain/seals'
 import { animationTamperingCost, redTeam, tamperProofFabric } from '../../water/crypto'

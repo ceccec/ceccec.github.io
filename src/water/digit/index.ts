@@ -6,7 +6,7 @@ import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV
 import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../vortex/math'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
-import type { MindMatrix } from '../../types'
+import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
 import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot } from '../../0'

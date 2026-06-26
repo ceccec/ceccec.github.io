@@ -4,7 +4,7 @@ import * as __ns_up_computer from '../computer'
 import * as __ns_up_quantum_science from '../quantum/science'
 import * as __ns_up_quantum_application from '../quantum/application'
 import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational'
-import type { MindMatrix } from '../types'
+import type { MindMatrix } from '../wind/types'
 import { buildMatrix } from '../heaven/compute'
 import { computesGate, isUuid, memoByRoot, merkleFold, toUuid } from '../0'
 

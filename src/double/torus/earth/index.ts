@@ -3,7 +3,7 @@ import * as __ns_up_up_up_earth_world from '../../../earth/world'
 import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading'
 import { initialBearing, obliquityAtEpoch } from '../../../6/4'
 import { greatCircleKm } from '../../../5/5'
-import type { MindMatrix } from '../../../types'
+import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import {
   decodeVortexDashAngles,
