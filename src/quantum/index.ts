@@ -499,7 +499,13 @@ export interface SharedHeroCopy {
   keywords?: readonly string[]
 }
 
-/** Resolved hero + movie state at one instant — deterministic from route, copy, and `at`. */
+/**
+ * Resolved hero + movie state at one instant — deterministic from route, copy, and `at`.
+ * This IS the one animation field every surface reads: the background movie, the on-top app
+ * projections (QuantumAppFrame ⊂ this), and the per-page hero are all PROJECTIONS of it.
+ * `root` is the field's content-address (route + content + seed) — stable across the phase cycle,
+ * so layers/perspectives key off it without recomputing per frame.
+ */
 export interface SharedHeroState {
   route: string
   at: number
@@ -514,7 +520,16 @@ export interface SharedHeroState {
   palette: PlasmaMoviePalette
   reduce: boolean
   cssWidth: number
+  /** Content-address of the field's identity (route + folded copy + seed). */
+  root: string
 }
+
+/**
+ * The one canonical animation field — the single instant-state every animation projects from.
+ * `SharedHeroState` is its concrete shape; `AnimationField` is the domain-facing name used by the
+ * rosetta (perspective) and iching (force/domain layer) consolidation. One field, many projections.
+ */
+export type AnimationField = SharedHeroState
 
 export { HERO_CYCLE_MS } from '../fire/plasma/ball'
 
@@ -552,6 +567,7 @@ export function sharedHeroAt(
     palette,
     reduce,
     cssWidth,
+    root: toUuid(`animation-field:${path}:${seed}`),
   }
 }
 
@@ -896,15 +912,11 @@ const HOLO_POINTS: readonly { readonly x: number; readonly y: number; readonly z
 })()
 const HOLO_LIT = HOLO_POINTS.filter((p) => p.lit).length
 
-/** The shared per-frame state every projection reads — the field at one instant (from sharedHeroAt). */
-export interface QuantumAppFrame {
-  readonly hue: number
-  readonly p: number
-  readonly t: number
-  readonly reduce: boolean
-  readonly cssWidth: number
-  readonly palette: PlasmaMoviePalette
-}
+/**
+ * The shared per-frame state every projection reads — a PROJECTION (subset) of the one AnimationField.
+ * Derived from the canonical field, not hand-duplicated: every projection draws from the same instant-state.
+ */
+export type QuantumAppFrame = Pick<AnimationField, 'hue' | 'p' | 't' | 'reduce' | 'cssWidth' | 'palette'>
 
 type QProjected = { x: number; y: number; s: number; z: number }
 function qProject(x: number, y: number, z: number, rx: number, ry: number, rz: number, cx: number, cy: number, R: number): QProjected {
