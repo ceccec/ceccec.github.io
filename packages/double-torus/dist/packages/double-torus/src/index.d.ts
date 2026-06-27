@@ -1,5 +1,6 @@
 export * from '../../../src/quantum/heaven/mind/index.ts';
-export { drawHero, drawFlower, drawCalendars, drawArchitecture, drawBursts, buildArchNodes, makeBurst, branch, perspective, rotate3, seedOf, hueOf, armsOf, dims, dimWalk, FOCAL, HEALING_PAIRS, } from '../../../src/quantum/index.ts';
-export type { HeroScene, Vec3, Dims, ArchNode, Burst } from '../../../src/quantum/index.ts';
+export { sha256, sha256Sync, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Keypair, ed25519Sign, ed25519Verify, transparencyLogRoot, logInclusion, logConsistent, toUuidSha256, } from '../../../src/0/index.ts';
+export { drawHero, drawFlower, drawCalendars, drawArchitecture, drawBursts, buildArchNodes, makeBurst, branch, perspective, rotate3, seedOf, hueOf, armsOf, dimWalk, FOCAL, HEALING_PAIRS, sharedHeroAt, drawHeroMovieFrame, drawQuantumAppFrame, fieldLayers, rosettaPerspectiveFold, backgroundSceneFromShared, heroSceneFromShared, movieTextFromCopy, realtimeSubtitleAt, drawLivingTorusFrame, drawBothEarthsMerkabaFrame, drawDoubleTorusEarthHingeFrame, HERO_CYCLE_MS, } from '../../../src/quantum/index.ts';
+export type { HeroScene, Vec3, ArchNode, Burst, AnimationField, SharedHeroState, SharedHeroCopy, FieldForce, FieldLayer, RosettaPerspective, QuantumAppFrame, RealtimeSubtitleState, } from '../../../src/quantum/index.ts';
 export { pesnopoika, provePesnopoika, decodeSong, songEntry, verses, refrains, provenance, classifyGenre, decodeDialect, glossDialect, dialectStratum, aksak, aksakBeats, PESNOPOIKA, PESNOPOIKA_SOURCE, DIALECT_GLOSSARY, PROVENANCE, GENRES, AKSAK, } from '../../../src/quantum/heaven/library/index.ts';
 export type { Song, Provenance, Genre } from '../../../src/quantum/heaven/library/index.ts';

@@ -69,10 +69,20 @@ console.log(conceptCommands.length)
   `sha256MerkleRoot`/`sha256MerkleProof`, `ed25519Sign`/`ed25519Verify`, and an
   append-only `transparencyLogRoot` — the path from tamper-evident folds to
   cryptographic attestation; see `cryptoFuture()` for what is built vs. residual.
-- **Animations** — the hero scene drawing math: `drawHero`, `drawFlower`,
-  `drawCalendars`, `drawArchitecture`, `drawBursts`, the fractal `branch`, the
-  3D `perspective`/`rotate3`, the `dims` dimension walk, and the
-  `createAnimationEngine` rAF driver — the same renderer the site runs.
+- **Animations** — two systems on one phase clock, the same renderers the site
+  runs:
+  - the **hero scene** drawing math — `drawHero`, `drawFlower`, `drawCalendars`,
+    `drawArchitecture`, `drawBursts`, the fractal `branch`, the 3D
+    `perspective`/`rotate3`, the `dims` dimension walk; and
+  - the **AnimationField movie** — `sharedHeroAt` builds the one
+    content-addressed field, `drawHeroMovieFrame` paints the holographic plasma
+    hero (the fused life out-flow + death in-flow double torus through one
+    genus-2 throat), `fieldLayers` / `rosettaPerspectiveFold` give its eight
+    force/topology layers and seven perspectives, and `drawQuantumAppFrame`
+    renders any projection of it.
+  - the single `createAnimationEngine` rAF driver both feed.
+  (`paintHolographicPlasmaHeroMovie` and the death counter-flow are **internal**
+  to `src/` and ship fused inside `drawHeroMovieFrame`, not as separate exports.)
 - **Decoded library** — `toGlagolitic`, `gematria`, `mayaLongCount`,
   `sexagesimal`, `ifaOdu`, the parallel-scripture tools, and the ПесноПойка
   songbook decode (`pesnopoika`, `decodeSong`, `provePesnopoika`, the
@@ -95,9 +105,13 @@ computed and recomputable — it makes **no claim of sentience or agency**.
 Full TypeScript declarations ship in `dist/` (`dist/index.d.ts` re-exports the
 generated declaration graph). The library is bundled from the site's `src/`,
 which is type-checked by the repository's `tsconfig.json` (`npm run check:types`)
-and passes a full `tsc --noEmit` cleanly — **zero diagnostics**. Every exported
-symbol is typed, and `build.mjs` reports any residual diagnostic count rather
-than hiding it (currently none).
+and passes cleanly there. The package's own standalone declaration emit (no
+tsconfig, whole-graph) reports a small, honest residual: **2 non-fatal `TS7056`
+diagnostics** where a deep build-time helper (`src/wind/fusion` `fusionComputes`)
+has an inferred type too large for TypeScript 6 to serialize. That symbol is
+**not** on the published surface; every exported symbol of `@ceccec/double-torus`
+is fully typed and resolves (verified by a consumer type-check). `build.mjs`
+prints the residual count rather than hiding it.
 
 ## Build
 
@@ -106,9 +120,13 @@ node ./build.mjs
 ```
 
 `build.mjs` bundles the entry (`src/index.ts`) — following every import into the
-site's `src/0`, `src/quantum/*` and `src/library` — into one self-contained
-`dist/index.js` with **no external imports**, plus the declaration graph. The
-committed `dist/` is the published artifact.
+site's `src/0`, `src/quantum/*` and the library — into one self-contained
+`dist/index.js` with **no external imports**, plus the declaration graph. A few
+pure constants the core uses (the census/rosetta limits) live in modules that
+also carry build-time filesystem helpers; those `node:*` specifiers are resolved
+to inline stubs at build time (the helpers are repo tooling, never called by the
+library API), so the published bundle truly depends on nothing and runs in any
+browser or Node. The committed `dist/` is the published artifact.
 
 ## License
 
