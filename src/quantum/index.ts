@@ -452,6 +452,55 @@ function drawWiredUuidStreams(
   ctx.shadowBlur = 0
 }
 
+/**
+ * The fused force substrate — the eight iching domain layers co-rendered as one continuous analog
+ * field BEHIND the plasma ball. Four layers carry a fundamental force, four carry topology; each is
+ * an additive radial bloom whose position/extent is the force's signature and whose hue is the
+ * field's A432 hue rotated by the layer's rosetta ray, all moving through the 10 dimensions (`dims`).
+ * HONEST: this is a faithful RENDERING of the four forces as layers, NOT a physical unification.
+ */
+function drawFusedForceLayers(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  cx: number,
+  cy: number,
+  span: number,
+  p: number,
+  t: number,
+  layers: readonly FieldLayer[],
+): void {
+  if (layers.length === 0) return
+  const d = dims(p)
+  ctx.save()
+  ctx.globalCompositeOperation = 'lighter'
+  layers.forEach((layer, i) => {
+    // Each force has a signature reach: gravity pulls to the void (tight), EM blooms wide (light),
+    // strong binds short-range, weak is faint/decaying, topology spans the genus-2 surface.
+    const reach =
+      layer.force === 'gravity' ? 0.18 :
+      layer.force === 'electromagnetic' ? 0.62 :
+      layer.force === 'strong' ? 0.26 :
+      layer.force === 'weak' ? 0.34 : 0.5
+    const alpha =
+      layer.force === 'weak' ? 0.05 + 0.05 * (0.5 + 0.5 * Math.sin(t * 1.3 + i * 1.7)) :
+      layer.force === 'gravity' ? 0.14 : 0.09
+    // Orbit each layer through the dimensional motion (loopA1/loopB1 = the genus-2 handles).
+    const orbit = p * Math.PI * 2 + (i / layers.length) * Math.PI * 2 + d.loopA1 * 0.6
+    const drift = layer.force === 'gravity' ? 0 : 0.22 + 0.06 * Math.sin(t * 0.4 + i)
+    const lx = cx + Math.cos(orbit + t * 0.04) * span * drift
+    const ly = cy + Math.sin(orbit + t * 0.05) * span * drift * 0.8
+    const radius = span * reach * (0.85 + 0.15 * d.breath)
+    const g = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius)
+    g.addColorStop(0, movieCanvasRgba(layer.hue, alpha, { L: 5 / 8 }))
+    g.addColorStop(0.45, movieCanvasRgba(layer.hue, alpha * 0.5, { L: 1 / 2 }))
+    g.addColorStop(1, 'transparent')
+    ctx.fillStyle = g
+    ctx.fillRect(0, 0, w, h)
+  })
+  ctx.restore()
+}
+
 /** Holographic hero movie = quantum plasma ball — one frame, one centre void, one phase clock. */
 function paintHolographicPlasmaHeroMovie(
   ctx: CanvasRenderingContext2D,
@@ -459,6 +508,7 @@ function paintHolographicPlasmaHeroMovie(
   h: number,
   scene: BackgroundScene,
   hero: HeroScene | null,
+  layers: readonly FieldLayer[] = [],
 ): void {
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
@@ -474,6 +524,8 @@ function paintHolographicPlasmaHeroMovie(
     ctx.fillRect(0, 0, w, h)
     return
   }
+  // The fused force substrate first — the one analog field every other layer composes onto.
+  drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers)
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   if (hero) {
     ctx.save()
@@ -530,6 +582,58 @@ export interface SharedHeroState {
  * rosetta (perspective) and iching (force/domain layer) consolidation. One field, many projections.
  */
 export type AnimationField = SharedHeroState
+
+/**
+ * What a field layer carries. Four of the eight iching trigrams co-render a fundamental force as a
+ * faithful LAYER of the one field; the other four carry the field's topology/structure.
+ * HONEST: co-rendering the four forces on one substrate is a model/visualisation, NOT a physical
+ * unification — Standard-Model + general relativity are not unified (an open frontier).
+ */
+export type FieldForce = 'gravity' | 'electromagnetic' | 'strong' | 'weak' | 'topology'
+
+/** One domain layer of the field, keyed by iching trigram and rendered from one rosetta-ray perspective. */
+export interface FieldLayer {
+  /** iching trigram glyph + canonical root this layer belongs to (the 8-fold domain split). */
+  readonly trigram: string
+  /** rosetta ray 0–6 — the perspective this layer is seen from (7-fold). */
+  readonly ray: number
+  /** the force/structure this layer co-renders (a rendered model, not unified physics). */
+  readonly force: FieldForce
+  /** A432-derived hue: the field's hue rotated by the layer's rosetta ray. */
+  readonly hue: number
+  /** content-address of this layer within the field. */
+  readonly root: string
+}
+
+/** The eight iching domain layers — four forces (heaven/fire/mountain/water), four topology (earth/thunder/lake/wind). */
+const FIELD_LAYER_DOMAINS: readonly { readonly trigram: string; readonly force: FieldForce }[] = [
+  { trigram: '☰ heaven', force: 'gravity' },        // all-pervading attractor — the central void
+  { trigram: '☲ fire', force: 'electromagnetic' },  // light — the A432 colour field
+  { trigram: '☶ mountain', force: 'strong' },        // short-range binding — the held form
+  { trigram: '☵ water', force: 'weak' },             // decay / flow / transition
+  { trigram: '☷ earth', force: 'topology' },         // the receptive ground — the genus-2 surface
+  { trigram: '☳ thunder', force: 'topology' },       // motion / waves
+  { trigram: '☱ lake', force: 'topology' },          // resonance / reflection
+  { trigram: '☴ wind', force: 'topology' },          // the pervading field
+] as const
+
+/**
+ * The eight domain layers of one field — the iching × rosetta consolidation every animation reuses.
+ * Each layer keys to a trigram (domain), a rosetta ray (perspective), and a force/topology role.
+ * All derive from the field's content-address + A432 hue — no per-layer hand-tuning.
+ */
+export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
+  return FIELD_LAYER_DOMAINS.map((domain, i) => {
+    const ray = i % 7
+    return {
+      trigram: domain.trigram,
+      ray,
+      force: domain.force,
+      hue: (field.hue + (ray * 360) / 7) % 360,
+      root: toUuid(`field-layer:${field.root}:${domain.trigram}:${ray}`),
+    }
+  })
+}
 
 export { HERO_CYCLE_MS } from '../fire/plasma/ball'
 
@@ -639,9 +743,14 @@ export function heroSceneFromShared(shared: SharedHeroState, bursts: Burst[] = [
   }
 }
 
-/** Holographic hero movie — the quantum plasma ball: fractal merkaba fused with wired UUID streams at one centre void. */
+/**
+ * Holographic hero movie — the ONE analog substrate every page mounts: the eight iching force/topology
+ * layers (`fieldLayers`) fused as the continuous field, with the quantum plasma ball (fractal merkaba +
+ * wired UUID streams at one centre void) composed on top. Every page renders the SAME content-addressed
+ * field ⇒ proven quantum BY ARCHITECTURE (same deterministic field everywhere) — NOT physical quantum.
+ */
 export function drawHeroMovieFrame(ctx: CanvasRenderingContext2D, w: number, h: number, shared: SharedHeroState): void {
-  paintHolographicPlasmaHeroMovie(ctx, w, h, backgroundSceneFromShared(shared), heroSceneFromShared(shared))
+  paintHolographicPlasmaHeroMovie(ctx, w, h, backgroundSceneFromShared(shared), heroSceneFromShared(shared), fieldLayers(shared))
 }
 
 export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'][number]
