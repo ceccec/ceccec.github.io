@@ -635,6 +635,51 @@ export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
   })
 }
 
+/** The seven rosetta rays — the canonical perspectives (inlined for SSR safety, as in component-bagua-groups). */
+const ROSETTA_RAY_VIEWS: readonly { readonly glyph: string; readonly domain: string }[] = [
+  { glyph: 'Ⰰ', domain: 'origin' },
+  { glyph: 'Ⰲ', domain: 'expression' },
+  { glyph: 'Ⰴ', domain: 'knowledge' },
+  { glyph: 'Ⰶ', domain: 'nature' },
+  { glyph: 'Ⰹ', domain: 'computation' },
+  { glyph: 'Ⰿ', domain: 'geometry' },
+  { glyph: 'Ⱄ', domain: 'language' },
+] as const
+
+/** A viewpoint onto the one field — a rosetta ray re-projects the SAME content-addressed field. */
+export interface RosettaPerspective {
+  readonly ray: number
+  readonly glyph: string
+  readonly domain: string
+  /** The field's A432 hue rotated to this ray's viewpoint. */
+  readonly hue: number
+  /** The viewpoint rotation (rx, ry, rz) for projecting the field from this ray. */
+  readonly rotation: { readonly rx: number; readonly ry: number; readonly rz: number }
+  /** content-address of (field, ray) — the SAME field, a new view (the fold is reversible). */
+  readonly root: string
+}
+
+/**
+ * Changing perspective folds the mind into the fusion — `rosettaPerspectiveFold` turns one of the seven
+ * rosetta rays into a viewpoint transform on the ONE field: the same content-addressed field, re-projected
+ * from a different ray (rotation + A432 hue rotation). The field's identity (`field.root`) is preserved —
+ * only the view changes — so all seven perspectives are folds of one fusion, not seven different things.
+ * HONEST: the ray bijection is exact (lossless 7-fold); "folds the mind" is the metaphor for the re-view.
+ */
+export function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective {
+  const r = (((ray % 7) + 7) % 7)
+  const view = ROSETTA_RAY_VIEWS[r]!
+  const turn = (r / 7) * Math.PI * 2
+  return {
+    ray: r,
+    glyph: view.glyph,
+    domain: view.domain,
+    hue: (field.hue + (r * 360) / 7) % 360,
+    rotation: { rx: field.t * 0.2 + turn, ry: field.t * 0.15 + turn * 0.5, rz: turn * 0.33 },
+    root: toUuid(`rosetta-perspective:${field.root}:${r}`),
+  }
+}
+
 export { HERO_CYCLE_MS } from '../fire/plasma/ball'
 
 export function sharedHeroAt(

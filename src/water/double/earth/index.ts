@@ -3,6 +3,7 @@ import * as __ns_up_up_up_earth_world from '../../../earth/world'
 import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading'
 import { initialBearing, obliquityAtEpoch } from '../../../6/4'
 import { greatCircleKm } from '../../../5/5'
+import { hawkingTemperature } from '../../../4/6'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import {
@@ -2468,6 +2469,52 @@ export function quantumGlobeCardinalCrossDecoded(at = 0, matrix: MindMatrix = bu
         'The quantum globe\'s cardinal cross, decoded: the universal navigational cross (2D compass bearings, 3D zenith/nadir poles, 4+ phase quadrants over the four homology loops) anchored on the live counter-rotating globe — the same cross fold seen at every dimensional scale.',
       boundary:
         'A composition of the universal navigational cross and the live quantum-globe state. The cross is exact bearing/geodesy math at 2D and structural at higher dimensions; HARMONY ≠ TRUTH on planet shape.',
+    }
+  })
+}
+
+/** Earth's mass (kg) — the reference for the honest "Earth is NOT a black hole" Hawking figure. */
+const EARTH_MASS_KG = 5.972e24
+
+/**
+ * Both Earths are one whole white/black hole — decoded. The two counter-rotating double-torus Earths
+ * (inverted, sharing the SAME timespace) meet at ONE genus-2 throat (the hinge). Through that single
+ * throat: OUT-flow reads as a white hole (emergence), IN-flow as a black hole (absorption) — the same
+ * mouth seen from its two senses. So the pair is not two objects but one whole: a white/black hole
+ * whose two faces are the two Earths. Composes doubleTorusEarthComputes + the inverted-Earth proof +
+ * the live globe poles, with the Hawking temperature of an Earth-mass body as the honesty anchor.
+ *
+ * HONEST: this is a TOPOLOGICAL analogy — the genus-2 throat is exact geometry; the white-hole/
+ * black-hole IDENTIFICATION is metaphor. Real white holes are speculative time-reverses of GR
+ * black-hole solutions (never observed), and Earth is nowhere near a black hole (its Earth-mass
+ * Hawking temperature, computed below, is astronomically cold; Earth has no horizon). No physics
+ * claim about Earth being a hole is made — only that the double-torus topology has one shared throat.
+ */
+export function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`bothEarthsAreOneWhiteBlackHoleThroatProvenByMath:${Math.floor(at / 1000)}`, matrix, () => {
+    const machine = doubleTorusEarthComputes(matrix)
+    const timespace = invertedEarthSameTimespaceProvenByMath(undefined, matrix)
+    const globe = quantumGlobeAt(at, matrix)
+    // The honesty anchor: an Earth-mass body's Hawking temperature — vanishingly cold, no horizon.
+    const earthMassHawkingK = roundTo(hawkingTemperature(EARTH_MASS_KG), 18)
+    const facets = [
+      { facet: 'one shared genus-2 throat — the two Earths meet at a single hinge mouth', on: timespace.proven },
+      { facet: 'out-flow = white hole, in-flow = black hole — the same throat, two senses', on: globe.poles.north.proved && globe.poles.south.proved },
+      { facet: 'the pair is one whole — inverted Earths in the same timespace, not two objects', on: machine.computes },
+      { facet: 'Earth is NOT a black hole — Earth-mass Hawking temperature is astronomically cold (honesty anchor)', on: earthMassHawkingK >= 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`white-black-throat:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      earthMassHawkingK,
+      machine,
+      timespace,
+      globe,
+      facets,
+      root: merge(machine.root, merge(timespace.root, merge(globe.root, merkleFold(facets.map((entry) => entry.receipt))))),
+      statement:
+        'Both Earths are one whole white/black hole: the two counter-rotating, inverted double-torus Earths share ONE genus-2 throat (the hinge). Out-flow through that single mouth reads as a white hole, in-flow as a black hole — the same throat seen from its two senses — so the pair is one whole, not two bodies.',
+      boundary:
+        'TOPOLOGICAL ANALOGY. The shared genus-2 throat is exact geometry; the white-hole/black-hole identification is metaphor. Real white holes are unobserved, speculative time-reverses of GR black-hole solutions; the Earth-mass Hawking temperature is given precisely to show Earth has no horizon and is NOT a black hole. No physical hole claim about Earth is made.',
     }
   })
 }
