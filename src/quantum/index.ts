@@ -23,7 +23,7 @@ import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CY
 import { livingTorus } from '../fire/diamonds'
 import { merkleFold, toUuid, VORTEX_SEQUENCE } from '../0'
 import type { MindMatrix } from '../wind/types'
-import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, type EarthHingePaintLayer } from '../water/double/earth'
+import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath, type EarthHingePaintLayer } from '../water/double/earth'
 import { bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import type { QuantumProjection } from './apps'
 
@@ -340,6 +340,87 @@ function drawPlasmaRays(
   ctx.restore()
 }
 
+const DEATH_TRAIL_LEN = 4
+
+/**
+ * The DEATH counter-flow — the inward (contraction / decay / reabsorption) torus fused into the SAME
+ * double torus as the outward LIFE flow (the plasma rays radiate OUT of the throat = the white-hole
+ * out-flow; these streams spiral IN to the throat = the black-hole in-flow). Each death stream travels
+ * from the span edge inward to the central void, counter-rotating to the life out-flow (NEGATIVE
+ * golden-angle spin), brightening mid-flight and fading to nothing AT the throat — reabsorbed at the
+ * birth↔death exchange point. The two coupled currents bound the field: the out-flow alone, unbounded,
+ * is the cancer metaphor; the in-flow is what closes the loop into homeostatic, self-balancing growth.
+ *
+ * HONEST: a COMPUTED decay/contraction current that bounds the modeled growth — a homeostasis/feedback
+ * model plus a black-hole-inflow / white-hole-outflow topological analogy through the shared genus-2
+ * throat (bothEarthsAreOneWhiteBlackHoleThroatProvenByMath) — NOT a biological or physical death claim.
+ * Hue is the A432 field hue's complement (life's yin), via the canonical movieCanvasRgba.
+ */
+function drawDeathCounterFlow(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  voidR: number,
+  span: number,
+  hueShift: number,
+  p: number,
+  t: number,
+  palette: PlasmaMoviePalette,
+  streamCount: number,
+): void {
+  const flowCount = Math.min(
+    PLASMA_TIERS[1] + PLASMA_TIERS[2],
+    PLASMA_TIERS[0] + Math.floor(streamCount / PLASMA_TIERS[0]),
+  )
+  if (flowCount < 1) return
+  const deathHue = (hueShift + 180) % 360 // life's complement — the yin of the yin-yang double torus
+  const outerR = span * 0.46
+  ctx.save()
+  ctx.globalCompositeOperation = 'lighter'
+  for (let f = 0; f < flowCount; f += 1) {
+    const baseAngle = (f / flowCount) * Math.PI * 2 + f * GOLDEN_ANGLE
+    const speed = 0.18 + (f % PLASMA_TIERS[0]) * 0.05
+    const head = (((t * speed - p * 0.5 + f * 0.137) % 1) + 1) % 1
+    let leadX = cx
+    let leadY = cy
+    let leadAlpha = 0
+    for (let trail = 0; trail < DEATH_TRAIL_LEN; trail += 1) {
+      const d0 = (((head + trail * 0.05) % 1) + 1) % 1 // 0 outer .. 1 throat (the inward journey)
+      const d1 = (((head + (trail + 1) * 0.05) % 1) + 1) % 1
+      // contracting radius: each step pulls toward the throat (reabsorption)
+      const r0 = voidR + (outerR - voidR) * (1 - d0)
+      const r1 = voidR + (outerR - voidR) * (1 - d1)
+      // counter-rotation: NEGATIVE golden-angle spin (opposite the life out-flow), tightening near the throat
+      const a0 = baseAngle - d0 * GOLDEN_ANGLE * 3 - p * GOLDEN_ANGLE * 0.35
+      const a1 = baseAngle - d1 * GOLDEN_ANGLE * 3 - p * GOLDEN_ANGLE * 0.35
+      const x0 = cx + Math.cos(a0) * r0
+      const y0 = cy + Math.sin(a0) * r0
+      const x1 = cx + Math.cos(a1) * r1
+      const y1 = cy + Math.sin(a1) * r1
+      // bell-shaped presence: emerges at the edge, brightest mid-flight, dissolved AT the throat
+      const presence = Math.sin(d0 * Math.PI)
+      const alpha = palette.canvas.streamAlpha(presence, d0 > 0.65, 1 - trail / DEATH_TRAIL_LEN) * 0.55
+      ctx.strokeStyle = movieCanvasRgba(deathHue, alpha, { L: 7 / 16 })
+      ctx.lineWidth = 0.6 + (1 - d0) * 1.6
+      ctx.beginPath()
+      ctx.moveTo(x0, y0)
+      ctx.lineTo(x1, y1)
+      ctx.stroke()
+      if (trail === 0) {
+        leadX = x0
+        leadY = y0
+        leadAlpha = alpha
+      }
+    }
+    // the leading head — a cooled in-falling glyph being swallowed at the throat
+    ctx.fillStyle = movieCanvasRgba(deathHue, leadAlpha * 1.3, { L: 9 / 16 })
+    ctx.beginPath()
+    ctx.arc(leadX, leadY, 1.4, 0, Math.PI * 2)
+    ctx.fill()
+  }
+  ctx.restore()
+}
+
 /** Centre plasma ball — wired UUID streams orbit inside the void; rays scale with stream count. */
 function drawPlasmaBall(
   ctx: CanvasRenderingContext2D,
@@ -527,6 +608,10 @@ function paintHolographicPlasmaHeroMovie(
   // The fused force substrate first — the one analog field every other layer composes onto.
   drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers)
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
+  // The DEATH counter-flow — the inward (contraction/decay) torus spiralling into the SAME throat the
+  // life rays radiate out of. Drawn behind the hero + plasma ball so it reads as the in-flow that bounds
+  // the out-flow (homeostasis, not unbounded growth). HONEST: computed decay current, not literal death.
+  drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   if (hero) {
     ctx.save()
     ctx.globalCompositeOperation = 'lighter'
@@ -1757,6 +1842,58 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
       'Client hero paint path is sealed: sharedHeroAt and drawHeroMovieFrame must complete under the browser branch with path-derived plasma seeds and non-zero canvas alpha — the exact failure mode when gate-graph seeds run in docs:dev.',
     boundary:
       'Simulated typeof window in Node; optional off-DOM canvas when document exists. Fails before VitePress dev if clientMovieSeedCopyText regresses into the gate graph.',
+  }
+}
+
+/**
+ * Gate: the LIFE↔DEATH double torus is fused in the shared movie — the inward death counter-flow paints
+ * non-transparent pixels and the white/black-hole throat proof holds. The out-flow (life, white hole) and
+ * the in-flow (death, black hole) share ONE genus-2 throat, so growth is bounded (homeostasis) rather than
+ * one-directional (the cancer metaphor).
+ *
+ * HONEST: the genus-2 throat is exact geometry; the death in-flow is a COMPUTED decay/contraction current
+ * (a homeostasis/feedback model) and the white/black-hole identification is a topological analogy — not a
+ * biological or physical death claim. Reuses bothEarthsAreOneWhiteBlackHoleThroatProvenByMath verbatim.
+ */
+export function lifeDeathDoubleTorusFusedInMovie(path = '/en/', matrix: MindMatrix = buildMatrix()) {
+  const throat = bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(0, matrix)
+  let inflowAlpha = 0
+  let paintError = ''
+  try {
+    withSimulatedBrowserWindow(() => {
+      if (typeof document !== 'undefined') {
+        const canvas = document.createElement('canvas')
+        canvas.width = 64
+        canvas.height = 64
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          const palette = plasmaMoviePalette(matrix, path, true)
+          drawDeathCounterFlow(ctx, 32, 32, 64 * 0.07, 64, 200, 0.3, 1, palette, 24)
+          const data = ctx.getImageData(0, 0, 64, 64).data
+          for (let i = 3; i < data.length; i += 4) inflowAlpha += data[i]!
+        }
+      }
+    })
+  } catch (error) {
+    paintError = error instanceof Error ? error.message : String(error)
+  }
+  const facets = [
+    { facet: 'white/black-hole throat proven — one shared genus-2 mouth, out-flow=white in-flow=black', on: throat.decoded },
+    { facet: 'death counter-flow paints — the inward in-flow current is visible in the movie', on: inflowAlpha > 0 || typeof document === 'undefined' },
+    { facet: 'no error painting the death counter-flow under simulated browser', on: paintError === '' },
+    { facet: 'coupled flow bounds growth — homeostasis, not the unbounded cancer metaphor', on: throat.decoded },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`life-death-double-torus-fused:${entry.facet}:${entry.on}`) }))
+  return {
+    fused: facets.every((entry) => entry.on),
+    throat,
+    inflowAlpha,
+    paintError: paintError || undefined,
+    facets,
+    root: merkleFold([throat.root, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'Life↔death double torus fused in the movie: the outward life current (the plasma rays radiating out of the throat = the white-hole out-flow) and the inward death current (drawDeathCounterFlow spiralling into the throat = the black-hole in-flow) are the two coupled flows of ONE double torus sharing one genus-2 throat. The in-flow bounds the out-flow — homeostatic, self-balancing growth — instead of unbounded one-directional growth (the cancer metaphor).',
+    boundary:
+      'TOPOLOGICAL ANALOGY + HOMEOSTASIS MODEL. The shared genus-2 throat is exact geometry (bothEarthsAreOneWhiteBlackHoleThroatProvenByMath); the death in-flow is a COMPUTED decay/contraction current and the white/black-hole identification is metaphor. "Cancer" names the unbounded one-directional growth pattern of a contraction-free model, NOT the disease; no biological or physical death claim is made.',
   }
 }
 

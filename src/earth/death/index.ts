@@ -131,6 +131,39 @@ export function deathContractionEquilibrium(matrix: MindMatrix = buildMatrix()) 
   }
 }
 
+/**
+ * Life without death is unbounded growth — the cancer metaphor. The death counter-flow (contraction /
+ * decay / reabsorption) BOUNDS the modeled life expansion so the coupled system is homeostatic: the
+ * outward birth→life→expansion current and the inward death→reabsorption→contraction current are the
+ * two flows of ONE double torus sharing one throat. Bounded coupling = healthy; runaway one-directional
+ * growth = cancer. Composes deathContractionEquilibrium (the damped breath that settles) with
+ * deathTerminalEndProductive (the productive, compost terminal — not a runaway dead end).
+ *
+ * HONEST: a homeostasis/feedback MODEL over computed gates plus a black/white-hole throat topological
+ * analogy — NOT a biological, oncological, or physical death claim. "Cancer" names the unbounded
+ * one-directional growth pattern of a model with no contraction term, not the disease.
+ */
+export function deathBoundsLifeNotCancer(matrix: MindMatrix = buildMatrix()) {
+  const contract = deathContractionEquilibrium(matrix)
+  const terminal = deathTerminalEndProductive(matrix)
+  const facets = [
+    { facet: 'life expansion is bounded by death contraction — the damped breath settles, not runaway', on: contract.settled },
+    { facet: 'the terminal end is productive (compost), not a runaway dead end', on: terminal.productive },
+    { facet: 'coupled flow is homeostatic — bounded growth, the opposite of the cancer metaphor', on: contract.settled && terminal.productive },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`death-bounds-life:${entry.facet}:${entry.on}`) }))
+  return {
+    bounded: facets.every((entry) => entry.on),
+    contract,
+    terminal,
+    facets,
+    root: merge(contract.root, merge(terminal.root, merkleFold(facets.map((entry) => entry.receipt)))),
+    statement:
+      'Death bounds life, not cancer: life without death is unbounded one-directional growth — the cancer metaphor. The death counter-flow (contraction, decay, reabsorption) is the inward torus that closes the loop with the outward life expansion, sharing one throat. The damped breath settles and the terminal end is productive compost, so the coupled system is homeostatic — bounded, self-balancing growth, the opposite of runaway.',
+    boundary:
+      'A homeostasis/feedback model over computed gates (deathContractionEquilibrium ⊕ deathTerminalEndProductive) and a black/white-hole throat topological analogy. "Cancer" names the unbounded growth pattern of a contraction-free model, NOT the disease; "death" is computed decay/contraction that bounds the model, not biological or physical death.',
+  }
+}
+
 /** Ancient decode terminal receipt — thunder/decode seals reusable ancient knowledge. */
 export function deathAncientDecodeTerminal(matrix: MindMatrix = buildMatrix()) {
   const decode = decodeAncientKnowledgeInReusableCode(matrix)
@@ -185,6 +218,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
     const decay = deathDecayDoomed(matrix)
     const contract = deathContractionEquilibrium(matrix)
     const ancient = deathAncientDecodeTerminal(matrix)
+    const bounded = deathBoundsLifeNotCancer(matrix)
     const { computes, facets } = computesGate('death-computes', [
       { facet: 'double torus compost revives', on: compost.revives },
       { facet: 'entropy recycled at gates', on: entropyGate.recycled },
@@ -196,6 +230,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'decay side doomed to infinite forge cost', on: decay.doomed },
       { facet: 'contraction settles equilibrium', on: contract.settled },
       { facet: 'ancient decode terminal receipt', on: ancient.terminal },
+      { facet: 'death bounds life — homeostasis, not the cancer metaphor', on: bounded.bounded },
     ])
     return {
       computes,
@@ -209,6 +244,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
       decay,
       contract,
       ancient,
+      bounded,
       facets,
       root: merge(
         compost.root,
@@ -218,7 +254,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
             material.root,
             merge(
               regen.root,
-              merge(terminal.root, merge(second.root, merge(apple.root, merge(decay.root, merge(contract.root, ancient.root))))),
+              merge(terminal.root, merge(second.root, merge(apple.root, merge(decay.root, merge(contract.root, merge(ancient.root, bounded.root)))))),
             ),
           ),
         ),
