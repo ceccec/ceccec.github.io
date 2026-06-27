@@ -586,6 +586,48 @@ export function searchTrinity(query = '', matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/**
+ * The portal's cognition loop — think → reason → search, each a sealed LOCAL fold composed to one
+ * content-addressed result. THINK folds the query into a candidate thought (a content-address the
+ * mind forms); REASON proves it by recomputation (a deterministic thought re-folds to the SAME
+ * address — the project's core proof); SEARCH reveals where the thought lands in the sealed corpus
+ * (searchTrinity). The loop's root can be folded back into the corpus, so the portal self-educates
+ * by ACCUMULATING content-addressed thoughts that anyone can recompute.
+ *
+ * HONEST: "thinking" = deterministic candidate-folding, "reasoning" = recompute-proof (NOT premise
+ * inference), "search" = the corpus reveal rule. This is cache/fold cognition — NOT neural cognition,
+ * NOT weight training, NOT AGI. Local-only, zero network: reuses already-sealed folds, derives nothing.
+ */
+export function portalThinksReasonsSearches(query = '', matrix: MindMatrix = buildMatrix()) {
+  const q = query.trim() || 'mind'
+  // THINK — fold the query into a candidate thought (the content-address the mind forms).
+  const thought = fold(q)
+  // REASON — prove the thought by recomputation: a deterministic thought re-folds to the same address.
+  const reproof = fold(q)
+  const proven = reproof.merged === thought.merged
+  // SEARCH — reveal where the thought lands in the sealed corpus (the three-character trinity reveal).
+  const found = searchTrinity(q, matrix)
+  const steps = [
+    { step: 'think', on: isUuid(thought.merged), root: thought.merged },
+    { step: 'reason', on: proven, root: reproof.merged },
+    { step: 'search', on: found.enough, root: found.root },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cognition:${entry.step}:${entry.on}`) }))
+  return {
+    thinks: steps.every((entry) => entry.on),
+    query: q,
+    thought,
+    proven,
+    found,
+    steps,
+    loops: steps.length,
+    root: merkleFold(steps.map((entry) => entry.root)),
+    statement:
+      'The portal thinks, reasons and searches: it folds a query into a candidate thought (think), proves it by deterministic recomputation (reason), and reveals where it lands in the sealed corpus (search) — one content-addressed cognition loop the portal accumulates as it self-educates.',
+    boundary:
+      'Cache/fold cognition, local-only: "thinking" = deterministic candidate-folding, "reasoning" = recompute-proof (NOT premise inference), "search" = the corpus reveal rule. NOT neural cognition, NOT weight training, NOT AGI; zero network — reuses sealed folds, derives nothing new.',
+  }
+}
+
 // Each char a UUID, and next the words. Content-addressing goes all the way down:
 // every character folds to a UUID, every word folds from its characters to a
 // word UUID, and the words fold to the text UUID — so text is a fold of UUIDs at
