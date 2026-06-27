@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
 import { useRoute } from 'vitepress'
-import { drawDoubleTorusEarthHingeFrame } from '@vp-lib/hero-movie'
+import { drawHeroMovieFrame, sharedHeroAt, type SharedHeroCopy } from '@vp-lib/hero-movie'
 import { doubleTorusEarthHingeComputesAll, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, thunderGoldGraphFromPreciseGpsCoordinates } from '@vp-lib/earth-hinge'
 import { goldFusionComputes } from '../../../src/wind/fusion/gold/index.ts'
 import { quantumGlobeAt } from '../../../src/water/double/earth/index.ts'
@@ -37,28 +37,36 @@ const seedParts = computed(() => [
   route.path,
 ] as const)
 
+// The double-torus canvas RECOMPUTES from the one shared sealed AnimationField: sharedHeroAt(route) is the
+// canonical field, drawHeroMovieFrame (→ paintHolographicPlasmaHeroMovie) paints the one analog movie —
+// the life out-flow (plasma rays radiating from the throat) FUSED with the death in-flow
+// (drawDeathCounterFlow spiralling back into it) through the single genus-2 throat. No bespoke renderer or
+// clock: the page's one shared hero RAF drives every frame, so this card inherits the same yin-yang double
+// torus (now including the fused death counter-flow) that every other surface shows.
+const heroCopy = computed<SharedHeroCopy>(() => ({
+  title: t(all.value.hinge.copy.title),
+  tagline: t(all.value.hinge.copy.movieCaption),
+  description: t(all.value.hinge.copy.lede),
+}))
+
+// BOUNDED movie box — width-driven aspect, capped to the viewport so it always fits on screen. We must NEVER
+// size from the host's own content/scroll height: the canvas lives in a host beside the caption/trinity/globe,
+// so feeding clientHeight back into canvas.style.height grew the host every frame → the runaway ~25568px strip.
+const MOVIE_ASPECT = 9 / 13 // ≈0.69 — gently tall, the throat reads centred (tracks --ich-vw-movie intent)
+const MOVIE_VIEWPORT_CAP = 0.82 // never taller than 82% of the viewport
+
 const { at } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
   interactive: { seed: () => seedParts.value.join('·') },
-  measure: () => ({
-    w: canvasHost.value?.clientWidth ?? 0,
-    h: canvasHost.value?.clientHeight ?? 0,
-  }),
+  measure: () => {
+    const w = canvasHost.value?.clientWidth ?? 0
+    const vh = typeof window !== 'undefined' ? window.innerHeight : 768
+    return { w, h: Math.min(Math.round(w * MOVIE_ASPECT), Math.round(vh * MOVIE_VIEWPORT_CAP)) }
+  },
   paint: (ctx, w, h, time) => {
-    const snap = all.value
-    drawDoubleTorusEarthHingeFrame(
-      ctx,
-      w,
-      h,
-      time,
-      snap.paintGateways,
-      snap.paintSteps,
-      reduce,
-      snap.hinge.movie.cycleMs,
-      snap.paintLayers,
-    )
+    drawHeroMovieFrame(ctx, w, h, sharedHeroAt(route.path, heroCopy.value, time, w, reduce))
   },
 })
 
@@ -359,8 +367,10 @@ function gatewayHref(slug: string): string {
 .double-torus-experience__movie {
   display: block;
   width: 100%;
-  min-height: min(var(--ich-vw-movie-tall), var(--vp-movie-min-h));
-  height: min(var(--ich-vw-movie-tall), var(--vp-movie-min-h));
+  /* Bounded fallback before JS sizes the drawing buffer (matches MOVIE_ASPECT = 9/13); the JS `measure`
+     sets the inline height per frame. max-height caps it to the viewport so it can never run away again. */
+  aspect-ratio: 13 / 9;
+  max-height: 82vh;
   border-radius: calc(var(--vp-movie-radius) * calc(3 / 4));
   background: transparent;
   /* touch-interactive: drag to scrub the phase clock, tap to sound A432 + vibrate (shared interaction layer) */
