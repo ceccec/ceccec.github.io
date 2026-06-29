@@ -220,6 +220,10 @@ export default defineConfig({
   srcDir: '.vitepress/pages',
   publicDir: 'public',
   cleanUrls: true,
+  // Production seal (W6): dead markdown links FAIL the build — never suppressed. VitePress defaults to false,
+  // but we pin it so no future edit can silence a broken link; gaps surface loud and get filled. The computed
+  // catch-all route resolution (universalRoutePath / automount) keeps every internal link live by construction.
+  ignoreDeadLinks: false,
   // The published npm package lives under packages/; its README is not a site
   // page. README.md and AGENTS.md are repo docs, not portal pages — exclude them
   // so they are not built as orphan, crawlable HTML.

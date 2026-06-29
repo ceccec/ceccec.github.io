@@ -234,8 +234,9 @@ export function generators(): Generator[] {
           }
         }
         const messages = [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`]
-        // REPORT-ONLY .vue burn-down baseline (NOT yet a hard fail — W6 flips it): scan every src/**/*.vue for
-        // hardcoded <style> literals + canvas paint/font colour literals, and surface the running offender count.
+        // PRODUCTION SEAL (W6 flipped this from report-only to build-breaking): scan every src/**/*.vue for
+        // hardcoded <style> literals + canvas paint/font colour literals. The same canonical-CSS law that gates the
+        // theme stylesheets now gates the components — any non-canonical literal fails docs:build.
         if (ctx.list) {
           const vueFiles = ctx.list('src', '.vue')
           let vueOffenders = 0
@@ -248,7 +249,11 @@ export function generators(): Generator[] {
           }
           worst.sort((a, b) => b.n - a.n)
           const top = worst.slice(0, 5).map((w) => `${w.path.replace(/^src\//, '')}:${w.n}`).join(' · ')
-          messages.push(`${tri(0b111).glyph} vue-scan (report-only baseline): ${vueOffenders} hardcoded literal(s) across ${worst.length}/${vueFiles.length} .vue${top ? ` · heaviest: ${top}` : ''}.`)
+          if (vueOffenders > 0) {
+            if (!error) error = `Hardcoded .vue values (${vueOffenders} across ${worst.length} component(s)): ${top}${worst.length > 5 ? ' …' : ''}`
+          } else {
+            messages.push(`${tri(0b111).glyph} vue-scan: 0 hardcoded literal(s) across ${vueFiles.length} .vue — sealed.`)
+          }
         }
         return { files: out, messages, error }
       },
