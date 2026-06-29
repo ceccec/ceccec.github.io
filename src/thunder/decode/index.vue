@@ -37,18 +37,18 @@ onBeforeUnmount(() => engine?.dispose())
 </template>
 
 <style scoped>
-.mystery-atlas { display: grid; gap: 0.5rem; }
-.mystery-atlas__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.35rem; }
+.mystery-atlas { display: grid; gap: var(--ich-sp4); }
+.mystery-atlas__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp3); }
 .mystery-atlas__leaf {
-  display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.25rem 0.6rem; align-items: baseline;
-  padding: 0.4rem 0.6rem; border-radius: 8px;
-  border-left: 4px solid hsl(var(--tier-hue, 0) 70% 50%);
-  background: hsl(var(--tier-hue, 0) 70% 50% / 0.07);
-  transition: background 0.3s, transform 0.3s;
+  display: grid; grid-template-columns: calc(1rem * (9 - 1 / 2)) 1fr; gap: var(--ich-sp2) var(--ich-sp5); align-items: baseline;
+  padding: var(--ich-sp3) var(--ich-sp5); border-radius: 8px;
+  border-left: 4px solid hsl(var(--tier-hue, 0) calc(64% + 6%) calc(100% / 2));
+  background: hsl(var(--tier-hue, 0) calc(64% + 6%) calc(100% / 2) / calc(7 / 100));
+  transition: background var(--ich-dur), transform var(--ich-dur);
 }
-.mystery-atlas__leaf.is-active { background: hsl(var(--tier-hue, 0) 70% 50% / 0.18); transform: translateX(3px); }
-.mystery-atlas__tier { font-family: var(--vp-font-family-mono); font-size: 0.72rem; color: hsl(var(--tier-hue, 0) 70% 42%); }
-.mystery-atlas__verdict { grid-column: 2; font-size: 0.82rem; opacity: 0.82; }
+.mystery-atlas__leaf.is-active { background: hsl(var(--tier-hue, 0) calc(64% + 6%) calc(100% / 2) / calc((9 + 9) / 100)); transform: translateX(3px); }
+.mystery-atlas__tier { font-family: var(--vp-font-family-mono); font-size: var(--ich-text-xs); color: hsl(var(--tier-hue, 0) calc(64% + 6%) calc(6% * 7)); }
+.mystery-atlas__verdict { grid-column: 2; font-size: var(--ich-text-sm); opacity: var(--ich-op-card-faint); }
 .mystery-atlas__leaf strong { grid-column: 2; }
 @media (max-width: 640px) { .mystery-atlas__leaf { grid-template-columns: 1fr; } .mystery-atlas__verdict, .mystery-atlas__leaf strong { grid-column: 1; } }
 </style>
