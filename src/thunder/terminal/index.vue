@@ -61,8 +61,8 @@ watch(() => props.at, (at) => {
 </template>
 
 <style scoped>
-.terminal-driver-panel__header { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-.terminal-driver-panel__lede { opacity: 0.85; margin: 0.5rem 0 1rem; }
-.terminal-driver-panel__table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.terminal-driver-panel__table th, .terminal-driver-panel__table td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--vp-c-divider); }
+.terminal-driver-panel__header { display: flex; align-items: center; gap: var(--ich-sp6); flex-wrap: wrap; }
+.terminal-driver-panel__lede { opacity: var(--ich-op-card-soft); margin: var(--ich-sp4) 0 1rem; }
+.terminal-driver-panel__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); }
+.terminal-driver-panel__table th, .terminal-driver-panel__table td { text-align: left; padding: var(--ich-sp3) var(--ich-sp4); border-bottom: 1px solid var(--vp-c-divider); }
 </style>

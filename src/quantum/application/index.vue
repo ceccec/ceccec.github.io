@@ -33,8 +33,8 @@ const panel = shallowRef(quantumApplicationPanelComputes())
 </template>
 
 <style scoped>
-.quantum-application-compose__lede { opacity: 0.85; max-width: 52rem; }
-.quantum-application-compose__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
-.quantum-application-compose__list code { margin-left: 0.5rem; font-size: 0.85rem; }
-.quantum-application-compose__meta { display: block; font-size: 0.75rem; opacity: 0.7; margin-top: 0.15rem; }
+.quantum-application-compose__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.quantum-application-compose__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp4); }
+.quantum-application-compose__list code { margin-left: var(--ich-sp4); font-size: var(--ich-text-sm); }
+.quantum-application-compose__meta { display: block; font-size: var(--ich-text-xs); opacity: var(--ich-op-card-meta); margin-top: var(--ich-sp1); }
 </style>

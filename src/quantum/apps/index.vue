@@ -47,9 +47,9 @@ function openApp(appId: string) {
 </template>
 
 <style scoped>
-.quantum-apps__lede { opacity: 0.85; max-width: 52rem; }
-.quantum-apps__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+.quantum-apps__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.quantum-apps__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(1rem * (16 - 5)), 1fr)); gap: var(--ich-sp6); margin-top: 1rem; }
 .quantum-apps__tile { all: unset; cursor: pointer; display: block; }
-.quantum-apps__meta { display: block; font-size: 0.7rem; opacity: 0.65; margin-top: 0.25rem; padding: 0 0.25rem; }
+.quantum-apps__meta { display: block; font-size: var(--ich-text-xs); opacity: var(--ich-op-soft); margin-top: var(--ich-sp2); padding: 0 var(--ich-sp2); }
 .quantum-apps__footer { margin-top: 1rem; }
 </style>
