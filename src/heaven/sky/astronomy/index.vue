@@ -27,6 +27,7 @@ function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at:
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
   const cy = h / 2
+  const labelPx = Math.max(9, Math.round(h / 27))
   const scale = Math.min(w, h) * 0.38
   ctx.strokeStyle = ink(0.06)
   for (let ring = 1; ring <= 4; ring += 1) {
@@ -45,7 +46,7 @@ function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at:
     ctx.arc(body.kind === 'star' ? cx : x, body.kind === 'star' ? cy : y, size, 0, Math.PI * 2)
     ctx.fill()
     if (!reduce && (body.kind === 'planet' || body.kind === 'star' || body.kind === 'satellite')) {
-      ctx.font = '9px sans-serif'
+      ctx.font = `${labelPx}px sans-serif`
       ctx.fillStyle = ink(0.7)
       ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + 8, (body.kind === 'star' ? cy : y) - 4)
     }
@@ -121,20 +122,20 @@ watch(at, (time) => {
 }
 
 .astronomy-simulation-panel__lede {
-  margin: 0.5rem 0 0;
-  opacity: 0.9;
+  margin: var(--ich-sp4) 0 0;
+  opacity: var(--ich-op-strong);
 }
 
 .astronomy-simulation-panel__badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: var(--ich-sp4);
+  margin-top: var(--ich-sp6);
 }
 
 .astronomy-simulation-panel__movie-host {
-  min-height: 260px;
-  border-radius: 0.75rem;
+  min-height: calc(4px * 64 + 4px);
+  border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
 }
@@ -142,12 +143,12 @@ watch(at, (time) => {
 .astronomy-simulation-panel__movie {
   display: block;
   width: 100%;
-  height: 260px;
+  height: calc(4px * 64 + 4px);
 }
 
 .astronomy-simulation-panel__count {
   margin: 0;
-  font-size: 0.92em;
-  opacity: 0.85;
+  font-size: calc(1em * 8 / 9);
+  opacity: var(--ich-op-card-soft);
 }
 </style>

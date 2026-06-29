@@ -91,20 +91,20 @@ useVisibleMovieCanvas({
 }
 
 .emf-a432-panel__lede {
-  margin: 0.5rem 0 0;
-  opacity: 0.9;
+  margin: var(--ich-sp4) 0 0;
+  opacity: var(--ich-op-strong);
 }
 
 .emf-a432-panel__badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: var(--ich-sp4);
+  margin-top: var(--ich-sp6);
 }
 
 .emf-a432-panel__movie-host {
-  min-height: 220px;
-  border-radius: 0.75rem;
+  min-height: calc(216px + 4px);
+  border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
 }
@@ -112,14 +112,14 @@ useVisibleMovieCanvas({
 .emf-a432-panel__movie {
   display: block;
   width: 100%;
-  height: 220px;
+  height: calc(216px + 4px);
 }
 
 .emf-a432-panel__bands {
   margin: 0;
-  padding-left: 1.1rem;
+  padding-left: var(--ich-sp9);
   display: grid;
-  gap: 0.25rem;
-  font-size: 0.92em;
+  gap: var(--ich-sp2);
+  font-size: calc(1em * 8 / 9);
 }
 </style>
