@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
 import { resonanceSimulationPanelComputes } from './index.ts'
+import { A432_HUE, movieCanvasHex, movieCanvasRgba } from '../../../.vitepress/lib/hero-movie-paint'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
@@ -17,6 +18,9 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const modes = computed(() => panel.value.sim.modes)
 
+// Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
+const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: 15 / 16, C: 1 / 64 })
+
 function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = resonanceSimulationPanelComputes(undefined, at)
   const sim = panel.value.sim
@@ -24,7 +28,7 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
   const cx = w / 2
   const cy = h * 0.55
   const baseR = Math.min(w, h) * 0.32
-  ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+  ctx.strokeStyle = ink(0.08)
   ctx.beginPath()
   ctx.arc(cx, cy, baseR, 0, Math.PI * 2)
   ctx.stroke()
@@ -33,11 +37,11 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
     const r = baseR * (0.55 + mode.amplitude * 0.45)
     const x = cx + Math.cos(angle) * r
     const y = cy + Math.sin(angle) * r
-    ctx.fillStyle = `hsla(${mode.hue}, 72%, 58%, ${0.35 + mode.amplitude * 0.55})`
+    ctx.fillStyle = movieCanvasRgba(mode.hue, 0.35 + mode.amplitude * 0.55)
     ctx.beginPath()
     ctx.arc(x, y, 6 + mode.amplitude * 10, 0, Math.PI * 2)
     ctx.fill()
-    ctx.strokeStyle = `hsla(${mode.hue}, 80%, 70%, 0.5)`
+    ctx.strokeStyle = movieCanvasRgba(mode.hue, 0.5, { L: 13 / 16 })
     ctx.lineWidth = 1
     ctx.beginPath()
     ctx.moveTo(cx, cy)
@@ -45,7 +49,7 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
     ctx.stroke()
     if (!reduce) {
       ctx.font = '10px sans-serif'
-      ctx.fillStyle = 'rgba(255,255,255,0.75)'
+      ctx.fillStyle = ink(0.75)
       ctx.fillText(`${mode.hz} Hz`, x + 8, y - 4)
     }
   })
@@ -104,7 +108,7 @@ watch(at, (time) => {
 
       <ul class="resonance-simulation-panel__modes">
         <li v-for="mode in modes" :key="mode.receipt">
-          <span :style="{ color: `hsl(${mode.hue} 70% 65%)` }">{{ mode.hz }} Hz</span>
+          <span :style="{ color: movieCanvasHex(mode.hue) }">{{ mode.hz }} Hz</span>
           · mode {{ mode.mode }} · amp {{ mode.amplitude }}
         </li>
       </ul>
@@ -138,7 +142,7 @@ watch(at, (time) => {
   min-height: 220px;
   border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--ich-scrim);
 }
 
 .resonance-simulation-panel__movie {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
 import { quantumDynamicsSimulationPanelComputes } from './index.ts'
+import { A432_HUE, movieCanvasRgba } from '../../.vitepress/lib/hero-movie-paint'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../.vitepress/lib/mounts'
 import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
@@ -17,6 +18,9 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const amplitudes = computed(() => panel.value.sim.amplitudes)
 
+// Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
+const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: 15 / 16, C: 1 / 64 })
+
 function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = quantumDynamicsSimulationPanelComputes(undefined, at)
   const sim = panel.value.sim
@@ -27,11 +31,11 @@ function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: n
   sim.amplitudes.forEach((amp, index) => {
     const x = 20 + index * (barW + 8)
     const barH = amp.probability * maxH
-    ctx.fillStyle = `hsla(${amp.hue}, 72%, 55%, 0.85)`
+    ctx.fillStyle = movieCanvasRgba(amp.hue, 0.85)
     ctx.fillRect(x, baseY - barH, barW, barH)
-    ctx.strokeStyle = 'rgba(255,255,255,0.35)'
+    ctx.strokeStyle = ink(0.35)
     ctx.strokeRect(x, baseY - barH, barW, barH)
-    ctx.fillStyle = 'rgba(255,255,255,0.8)'
+    ctx.fillStyle = ink(0.8)
     ctx.font = '10px monospace'
     ctx.fillText(`|${amp.basis}⟩`, x, baseY + 14)
     if (!reduce) {
@@ -42,13 +46,13 @@ function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: n
     const x0 = 20 + barW / 2
     const x1 = 20 + (sim.amplitudes.length - 1) * (barW + 8) + barW / 2
     const linkY = h * 0.22
-    ctx.strokeStyle = 'rgba(180, 140, 255, 0.55)'
+    ctx.strokeStyle = movieCanvasRgba(A432_HUE, 0.55, { L: 13 / 16 })
     ctx.lineWidth = 2
     ctx.beginPath()
     ctx.moveTo(x0, linkY)
     ctx.lineTo(x1, linkY)
     ctx.stroke()
-    ctx.fillStyle = 'rgba(255,255,255,0.75)'
+    ctx.fillStyle = ink(0.75)
     ctx.font = '11px sans-serif'
     ctx.fillText('entangled phase lock', x0, linkY - 8)
   }
@@ -143,7 +147,7 @@ watch(at, (time) => {
   min-height: 200px;
   border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--ich-scrim);
 }
 
 .quantum-dynamics-simulation-panel__movie {

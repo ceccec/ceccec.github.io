@@ -31,6 +31,8 @@ export { pointerInteraction }
 export type PointerInteraction = ReturnType<typeof pointerInteraction>
 export { quantumAppForComponent, type QuantumProjection } from '../../src/quantum/apps'
 export { quantumModelSnapshot, observingMovieRevealsQuantumModel, type QuantumModelSnapshot } from '../../src/quantum/science'
+// The ONE A432/OKLCH canvas palette — every component canvas paints its colours through these (no rgba/hsla literals).
+export { movieCanvasRgba, movieCanvasHex, A432_HUE } from '../../src/quantum/science'
 export {
   plasmaBallComputes,
   realtimeComputationsMoviePaint,

@@ -148,7 +148,7 @@ const implications = computed(() => panel.value.human.implications)
 }
 
 .human-resonance-panel__on {
-  color: var(--vp-c-brand-1, #3eaf7c);
+  color: var(--vp-c-brand-1, var(--ich-success-1));
   margin-right: 0.35rem;
 }
 

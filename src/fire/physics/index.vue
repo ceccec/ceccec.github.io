@@ -4,6 +4,7 @@
 // engine (useVisibleMovieCanvas) and the one colour source (A432_HUE / frequencyToLight).
 import { computed, ref, shallowRef } from 'vue'
 import { drawEmfA432Field, emfA432PanelComputes } from './index.ts'
+import { movieCanvasHex } from '../../../.vitepress/lib/hero-movie-paint'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
@@ -70,7 +71,7 @@ useVisibleMovieCanvas({
 
       <ul class="emf-a432-panel__bands">
         <li v-for="b in bands" :key="b.receipt">
-          <span :style="{ color: `hsl(${panel.hue} 70% 65%)` }">{{ b.source }}</span>
+          <span :style="{ color: movieCanvasHex(panel.hue) }">{{ b.source }}</span>
           · {{ b.photonEvText }} eV · {{ b.ionizing ? 'ionizing' : 'non-ionizing' }}
           · ~{{ b.ordersBelowIonizing }} orders below 10 eV
         </li>
@@ -105,7 +106,7 @@ useVisibleMovieCanvas({
   min-height: 220px;
   border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--ich-scrim);
 }
 
 .emf-a432-panel__movie {

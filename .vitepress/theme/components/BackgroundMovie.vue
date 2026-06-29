@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
+import { useData } from 'vitepress'
 import {
   drawHeroMovieFrame,
   quantumModelSnapshot,
@@ -15,6 +16,9 @@ import { proveAllDeterministicCore, proveAllDeterministicCoreBeatAt } from '../.
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { route, copy } = useHeroCopy()
+// The resolved light/dark mode VitePress maintains from the html.dark class — threaded into the one animation
+// field so the plasma repaints DARKER and legibly on a light field instead of washing out (additive blend).
+const { isDark } = useData()
 const reduce = prefersReducedMotion()
 const at = ref(0)
 
@@ -36,13 +40,15 @@ const { repaint } = useVisibleMovieCanvas({
   measure: () => viewportSize(),
   paint: (ctx, w, h, atMs) => {
     at.value = atMs
-    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce)
+    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value)
     drawHeroMovieFrame(ctx, w, h, shared)
   },
 })
 
 watch(() => route.path, () => nextTick(repaint))
 watch(copy, () => repaint(), { deep: true })
+// Repaint immediately on theme toggle so the still frame (reduced motion) also swaps light/dark variants.
+watch(isDark, () => repaint())
 </script>
 
 <template>

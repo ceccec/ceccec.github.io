@@ -453,6 +453,8 @@ export type PlasmaMoviePalette = {
   soft: string
   card: string
   glow: string
+  /** Resolved field polarity — true paints the sealed dark-field look, false the legible light-field variant. */
+  dark: boolean
   root: string
   canvas: {
     tagLine(hue: number, persp: number): string
@@ -476,32 +478,42 @@ export type PlasmaMoviePalette = {
 }
 
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n))
-const rgbaAt = (hue: number, L: number, alpha: number) =>
-  scaleColorRgba(0, clamp01(alpha), { seedHue: (((hue % 360) + 360) % 360), L, C: CHROMA })
+// On a LIGHT field the same hues are repainted DARKER (lightness pulled down so the plasma reads on white) and
+// a touch softer. `dark` (true) is the sealed identity — the dark-field look is byte-for-byte unchanged.
+const LIGHT_FIELD_L = 5 / 9
+const LIGHT_FIELD_A = 4 / 5
+const rgbaAt = (hue: number, L: number, alpha: number, dark = true) =>
+  scaleColorRgba(0, clamp01(dark ? alpha : alpha * LIGHT_FIELD_A), {
+    seedHue: (((hue % 360) + 360) % 360),
+    L: dark ? L : L * LIGHT_FIELD_L,
+    C: CHROMA,
+  })
 
-/** Pure OKLCH canvas paint helpers — hue-parameterised so each scene paints its own colours. */
-const plasmaCanvas: PlasmaMoviePalette['canvas'] = {
-  tagLine: (hue, persp) => rgbaAt(hue, 0.6, 0.25 + 0.4 * persp),
-  tagDot: (hue, i, persp) => rgbaAt(hue + i * 12, 0.62, 0.4 + 0.5 * persp),
-  tagGlyph: (hue, i, persp) => rgbaAt(hue + i * 12, 0.7, 0.5 + 0.4 * persp),
-  blobInner: (hue, b) => rgbaAt(hue + b * 8, 0.45, 0.5),
-  blobMid: (hue, b) => rgbaAt(hue + b * 8, 0.32, 0.28),
-  vignetteInner: (hue) => rgbaAt(hue, 0.18, 0.55),
-  vignetteMid: (hue) => rgbaAt(hue, 0.12, 0.3),
-  streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : 0.7)),
-  streamFill: (hue, alpha, near) => rgbaAt(hue, near ? 0.7 : 0.6, alpha),
-  streamGlow: (hue, alpha) => rgbaAt(hue, 0.75, alpha * 0.8),
-  voidCore: (hue) => rgbaAt(hue, 0.08, 0.9),
-  voidMid: (hue) => rgbaAt(hue, 0.16, 0.5),
-  voidOuter: (hue) => rgbaAt(hue, 0.24, 0.2),
-  ring: (hue, pulse) => rgbaAt(hue, 0.6, 0.3 + 0.5 * pulse),
-  ballGlyphGlow: (hue, alpha) => rgbaAt(hue, 0.78, alpha),
-  ballGlyph: (hue, alpha, layer) => rgbaAt(hue, 0.66 - layer * 0.05, alpha),
-  reduceCore: (hue) => rgbaAt(hue, 0.1, 0.6),
+/** Pure OKLCH canvas paint helpers — hue-parameterised, dark/light-aware (legible on either field). */
+function plasmaCanvasFor(dark: boolean): PlasmaMoviePalette['canvas'] {
+  return {
+    tagLine: (hue, persp) => rgbaAt(hue, 0.6, 0.25 + 0.4 * persp, dark),
+    tagDot: (hue, i, persp) => rgbaAt(hue + i * 12, 0.62, 0.4 + 0.5 * persp, dark),
+    tagGlyph: (hue, i, persp) => rgbaAt(hue + i * 12, 0.7, 0.5 + 0.4 * persp, dark),
+    blobInner: (hue, b) => rgbaAt(hue + b * 8, 0.45, 0.5, dark),
+    blobMid: (hue, b) => rgbaAt(hue + b * 8, 0.32, 0.28, dark),
+    vignetteInner: (hue) => rgbaAt(hue, 0.18, 0.55, dark),
+    vignetteMid: (hue) => rgbaAt(hue, 0.12, 0.3, dark),
+    streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : 0.7)),
+    streamFill: (hue, alpha, near) => rgbaAt(hue, near ? 0.7 : 0.6, alpha, dark),
+    streamGlow: (hue, alpha) => rgbaAt(hue, 0.75, alpha * 0.8, dark),
+    voidCore: (hue) => rgbaAt(hue, 0.08, 0.9, dark),
+    voidMid: (hue) => rgbaAt(hue, 0.16, 0.5, dark),
+    voidOuter: (hue) => rgbaAt(hue, 0.24, 0.2, dark),
+    ring: (hue, pulse) => rgbaAt(hue, 0.6, 0.3 + 0.5 * pulse, dark),
+    ballGlyphGlow: (hue, alpha) => rgbaAt(hue, 0.78, alpha, dark),
+    ballGlyph: (hue, alpha, layer) => rgbaAt(hue, 0.66 - layer * 0.05, alpha, dark),
+    reduceCore: (hue) => rgbaAt(hue, 0.1, 0.6, dark),
+  }
 }
 
 /** One OKLCH palette per route — seeds the page canvas and glass chrome. */
-export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/', endless = false): PlasmaMoviePalette {
+export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/', endless = false, dark = true): PlasmaMoviePalette {
   const hue = heroMovieHueRaw(path, matrix)
   const waveIndex = heroMovieWaveIndex(path, matrix)
   const waveHue = (((hue + waveIndex * GOLDEN_ANGLE) % 360) + 360) % 360
@@ -518,8 +530,9 @@ export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/
     soft: css(L_SOFT),
     card: css(L_CARD),
     glow: css(L_GLOW),
+    dark,
     root: merkleFold([movieRouteKey(path), String(Math.round(hue)), endless ? 'endless' : 'once']),
-    canvas: plasmaCanvas,
+    canvas: plasmaCanvasFor(dark),
   }
 }
 

@@ -183,7 +183,7 @@ onBeforeUnmount(() => fabEngine?.dispose())
 .qc-lab__field { display: grid; gap: 0.2rem; font-size: 0.8rem; }
 .qc-lab__field input { width: 6rem; padding: 0.3rem 0.4rem; border: 1px solid var(--vp-c-divider); border-radius: var(--q-radius, 6px); background: var(--vp-c-bg-soft); }
 .qc-lab__presets { display: flex; gap: 0.35rem; margin-left: auto; }
-.qc-lab__palette { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; padding: 0.5rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, #888) 8%, transparent); }
+.qc-lab__palette { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; padding: 0.5rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 8%, transparent); }
 .qc-lab__palette-label { font-size: 0.8rem; opacity: 0.75; }
 .qc-lab__gate-btn { font-family: var(--vp-font-family-mono); }
 .qc-lab__ops { list-style: decimal; padding-left: 1.5rem; display: grid; gap: 0.35rem; }
@@ -198,7 +198,7 @@ onBeforeUnmount(() => fabEngine?.dispose())
 .qc-lab__hist li { display: grid; grid-template-columns: 4rem 1fr auto; align-items: center; gap: 0.5rem; }
 .qc-lab__bar { height: 0.8rem; border-radius: 4px; background: var(--q-primary, var(--vp-c-brand-1)); min-width: 2px; }
 .qc-lab__count { font-variant-numeric: tabular-nums; opacity: 0.8; }
-.qc-lab__fab { display: grid; gap: 0.5rem; padding: 0.6rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, #888) 6%, transparent); }
+.qc-lab__fab { display: grid; gap: 0.5rem; padding: 0.6rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 6%, transparent); }
 .qc-lab__fab-stages { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.3rem; font-size: 0.78rem; font-family: var(--vp-font-family-mono); }
 .qc-lab__fab-stages li { padding: 0.15rem 0.45rem; border-radius: 5px; border: 1px solid var(--vp-c-divider); opacity: 0.45; transition: opacity 0.3s, background 0.3s; }
 .qc-lab__fab-stages li.is-done { opacity: 1; background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 22%, transparent); }

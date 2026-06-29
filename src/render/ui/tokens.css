@@ -51,6 +51,7 @@
   --ich-lh-normal: calc(3 / 2);
   --ich-lh-relaxed: calc(8 / 5);
   --ich-lh-loose: calc(7 / 4);
+  --ich-lh-body: calc(8 / 5);
   --ich-track-tight: calc(-1em / 54);
   --ich-track-tighter: calc(-1em / 16 / 2);
   --ich-track-wide: calc(1em / 16);
@@ -118,6 +119,9 @@
   --ich-grid-min-card: calc(var(--ich-grid-min) * 23 / 24);
   --ich-meta-label-min: calc(var(--ich-sp10) * 3);
   --ich-meta-label-max: calc(var(--ich-sp10) * 9 / 2);
+  --ich-card-min: calc(1rem * (6 + 1 / 2));
+  --ich-card-min-sm: calc(1rem * (5 + 1 / 2));
+  --ich-scrim: oklch(0 0 0 / calc(1 / 4));
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
   --vp-c-default-3: var(--vp-c-gray-3);

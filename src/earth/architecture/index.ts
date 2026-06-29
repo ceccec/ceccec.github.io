@@ -1884,6 +1884,7 @@ export function ichingTokens() {
     ['--ich-lh-normal', 'calc(3 / 2)'], //  1.5
     ['--ich-lh-relaxed', 'calc(8 / 5)'], // 1.6
     ['--ich-lh-loose', 'calc(7 / 4)'], //   1.75 — prose body
+    ['--ich-lh-body', 'calc(8 / 5)'], //    1.6 — component body copy (DoubleTorusExperience, render/merkaba)
     ['--ich-track-tight', 'calc(-1em / 54)'], //   −0.0185em (a432 octave)
     ['--ich-track-tighter', 'calc(-1em / 16 / 2)'], // −0.031em (32 = 16 × 2)
     ['--ich-track-wide', 'calc(1em / 16)'], //     0.0625em — small caps
@@ -1980,6 +1981,7 @@ export function ichingTokens() {
     ['--ich-meta-label-max', 'calc(var(--ich-sp10) * 9 / 2)'], // page-meta dt max — 6rem
     ['--ich-card-min', 'calc(1rem * (6 + 1 / 2))'], // corpus linked-hero-card floor — 6.5rem
     ['--ich-card-min-sm', 'calc(1rem * (5 + 1 / 2))'], // hub/tag/trinity linked-hero-card floor — 5.5rem
+    ['--ich-scrim', 'oklch(0 0 0 / calc(1 / 4))'], // neutral dark wash behind component movie canvases — 1/4 alpha
   ]
 
   const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents, ...surfaces]

@@ -319,7 +319,8 @@ function drawPlasmaRays(
   const rayCount = plasmaRayCount(streams.length)
   if (rayCount < 1) return
   ctx.save()
-  ctx.globalCompositeOperation = 'lighter'
+  // Additive blend glows on a dark field; on a light field it washes to white, so paint normally there.
+  ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let r = 0; r < rayCount; r += 1) {
     const stream = streams[r % Math.max(1, streams.length)]
     const hue = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE) % 360
@@ -376,7 +377,7 @@ function drawDeathCounterFlow(
   const deathHue = (hueShift + 180) % 360 // life's complement — the yin of the yin-yang double torus
   const outerR = span * 0.46
   ctx.save()
-  ctx.globalCompositeOperation = 'lighter'
+  ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let f = 0; f < flowCount; f += 1) {
     const baseAngle = (f / flowCount) * Math.PI * 2 + f * GOLDEN_ANGLE
     const speed = 0.18 + (f % PLASMA_TIERS[0]) * 0.05
@@ -550,11 +551,12 @@ function drawFusedForceLayers(
   p: number,
   t: number,
   layers: readonly FieldLayer[],
+  dark = true,
 ): void {
   if (layers.length === 0) return
   const d = dims(p)
   ctx.save()
-  ctx.globalCompositeOperation = 'lighter'
+  ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over'
   layers.forEach((layer, i) => {
     // Each force has a signature reach: gravity pulls to the void (tight), EM blooms wide (light),
     // strong binds short-range, weak is faint/decaying, topology spans the genus-2 surface.
@@ -606,7 +608,7 @@ function paintHolographicPlasmaHeroMovie(
     return
   }
   // The fused force substrate first — the one analog field every other layer composes onto.
-  drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers)
+  drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers, scene.palette.dark)
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   // The DEATH counter-flow — the inward (contraction/decay) torus spiralling into the SAME throat the
   // life rays radiate out of. Drawn behind the hero + plasma ball so it reads as the in-flow that bounds
@@ -614,7 +616,7 @@ function paintHolographicPlasmaHeroMovie(
   drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   if (hero) {
     ctx.save()
-    ctx.globalCompositeOperation = 'lighter'
+    ctx.globalCompositeOperation = scene.palette.dark ? 'lighter' : 'source-over'
     ctx.globalAlpha = scene.palette.holographicAlpha
     drawHero(ctx, w, h, hero, { clear: false, voidR })
     ctx.restore()
@@ -656,6 +658,8 @@ export interface SharedHeroState {
   wiredStreams: readonly PlasmaWiredStream[]
   palette: PlasmaMoviePalette
   reduce: boolean
+  /** Resolved field polarity at this instant — false repaints the plasma legibly on a light field. */
+  dark: boolean
   cssWidth: number
   /** Content-address of the field's identity (route + folded copy + seed). */
   root: string
@@ -773,6 +777,7 @@ export function sharedHeroAt(
   at: number,
   cssWidth = 1024,
   reduce = false,
+  dark = true,
 ): SharedHeroState {
   const path = route || '/'
   const t = at / 1000
@@ -784,7 +789,7 @@ export function sharedHeroAt(
   const movieText = [movieTextFromCopy(copy), fusedCopy, path].filter(Boolean).join(' ')
   const seed = seedOf(movieText)
   const wired = plasmaMovieStreams(path, movieText, matrix)
-  const palette = plasmaMoviePalette(matrix, path, true)
+  const palette = plasmaMoviePalette(matrix, path, true, dark)
   const computePaint = realtimeComputationsMoviePaint(at, path, matrix)
   const hue = (heroMoviePhaseHue(path, p, matrix) + computePaint.hueShift) % 360
   return {
@@ -800,6 +805,7 @@ export function sharedHeroAt(
     wiredStreams: wired.streams,
     palette,
     reduce,
+    dark,
     cssWidth,
     root: toUuid(`animation-field:${path}:${seed}`),
   }

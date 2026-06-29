@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
 import { astronomySimulationPanelComputes } from './index.ts'
+import { A432_HUE, movieCanvasRgba } from '../../../../.vitepress/lib/hero-movie-paint'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../../.vitepress/lib/mounts'
 import UiCard from '../../../../.vitepress/theme/components/ui/Card.vue'
@@ -17,6 +18,9 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const bodies = computed(() => panel.value.sim.bodies)
 
+// Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
+const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: 15 / 16, C: 1 / 64 })
+
 function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = astronomySimulationPanelComputes(undefined, at)
   const sim = panel.value.sim
@@ -24,7 +28,7 @@ function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at:
   const cx = w / 2
   const cy = h / 2
   const scale = Math.min(w, h) * 0.38
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)'
+  ctx.strokeStyle = ink(0.06)
   for (let ring = 1; ring <= 4; ring += 1) {
     ctx.beginPath()
     ctx.arc(cx, cy, (scale * ring) / 4, 0, Math.PI * 2)
@@ -36,13 +40,13 @@ function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at:
     const x = cx + Math.cos(angle) * radius
     const y = cy + Math.sin(angle) * radius
     const size = body.kind === 'star' ? 10 : body.kind === 'satellite' ? 5 : 4
-    ctx.fillStyle = `hsla(${body.hue}, 70%, 58%, 0.85)`
+    ctx.fillStyle = movieCanvasRgba(body.hue, 0.85)
     ctx.beginPath()
     ctx.arc(body.kind === 'star' ? cx : x, body.kind === 'star' ? cy : y, size, 0, Math.PI * 2)
     ctx.fill()
     if (!reduce && (body.kind === 'planet' || body.kind === 'star' || body.kind === 'satellite')) {
       ctx.font = '9px sans-serif'
-      ctx.fillStyle = 'rgba(255,255,255,0.7)'
+      ctx.fillStyle = ink(0.7)
       ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + 8, (body.kind === 'star' ? cy : y) - 4)
     }
   })
@@ -132,7 +136,7 @@ watch(at, (time) => {
   min-height: 260px;
   border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--ich-scrim);
 }
 
 .astronomy-simulation-panel__movie {
