@@ -385,7 +385,7 @@ export function componentGraph() {
   const placements: Record<string, readonly string[]> = {
     '/': ['SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests', 'MatrixCube'],
   }
-  const composedBase = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex']
+  const composedBase = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex', 'RayHub']
   for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['UniversalPageTemplate']
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components
   const allPlaced = [...new Set([...Object.values(placements).flat()])]

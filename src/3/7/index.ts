@@ -556,6 +556,41 @@ export const ROSETTA_RAYS = [
   { ray: 6, glyph: 'Ⱄ', nameEn: 'Word', nameBg: 'Слово', domain: 'language', hue: 308 },
 ] as const
 export type RosettaRay = (typeof ROSETTA_RAYS)[number]
+/** The seven ray-hubs — the top-level information architecture. One slug per rosetta ray (index = ray):
+ * Alpha→/origin, Voice→/proof, Spirit→/explore, Life→/learn, Thought→/apps, Form→/frontier, Word→/reference.
+ * The Alpha hub (/origin) also fronts Home (/). Quantum-human-design IA: the 7 rays are the categorical lens. */
+export const ROSETTA_RAY_HUB_SLUGS = ['origin', 'proof', 'explore', 'learn', 'apps', 'frontier', 'reference'] as const
+export type RosettaRayHubSlug = (typeof ROSETTA_RAY_HUB_SLUGS)[number]
+/** A ray-hub: a top-level landing page, one per rosetta ray, derived (never hand-typed) from ROSETTA_RAYS +
+ * ROSETTA_RAY_HUB_SLUGS + ROSETTA_COMPUTATION_TYPES. The seven hubs ARE the quantum-human-design IA. */
+export type RosettaRayHub = {
+  ray: number
+  slug: RosettaRayHubSlug
+  route: string
+  glyph: string
+  nameEn: string
+  nameBg: string
+  domain: string
+  hue: number
+  pageKind: RosettaComputationType
+}
+/** The seven ray-hubs, computed from the sealed rosetta tables (index = ray; gapless 0..6). */
+export const ROSETTA_RAY_HUBS: readonly RosettaRayHub[] = ROSETTA_RAYS.map((rayMeta, ray) => ({
+  ray,
+  slug: ROSETTA_RAY_HUB_SLUGS[ray]!,
+  route: `/${ROSETTA_RAY_HUB_SLUGS[ray]!}`,
+  glyph: rayMeta.glyph,
+  nameEn: rayMeta.nameEn,
+  nameBg: rayMeta.nameBg,
+  domain: rayMeta.domain,
+  hue: rayMeta.hue,
+  pageKind: ROSETTA_COMPUTATION_TYPES[ray]!,
+}))
+/** The hub whose slug equals this slug (a ray-hub landing page), else null. */
+export function rosettaRayHub(slug: string): RosettaRayHub | null {
+  const bare = (slug ?? '').replace(/^\/+/, '').split('/').pop() || ''
+  return ROSETTA_RAY_HUBS.find((hub) => hub.slug === bare) ?? null
+}
 
 // Pi spigot + the 108 pi-digit train, and the diamond/analog requirement literals. Hosted in this zero-import
 // leaf so the COMPUTED const PI_TRAIN_DIGITS and the co-imported literals initialise before any cyclic consumer

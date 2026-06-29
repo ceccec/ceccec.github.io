@@ -5,7 +5,7 @@ import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryF
 import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
 import { discoverSrcIndexes, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 import { toGlagolitic } from '../../../quantum/heaven/library'
-import { rosettaDecodesUrlPath, ROSETTA_RAYS, rosettaRayOf } from '../../../water/digit'
+import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf } from '../../../water/digit'
 import { staticPages } from '../../site'
 import { componentPages } from '../../../quantum/heaven/mind'
 
@@ -456,12 +456,33 @@ export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
     add(page.slug)
     // Keywords resolve at runtime via monographSliceFromRoute — not SSG-enumerated (see [path].md).
   }
+  // The seven rosetta ray-hubs — top-level IA landings, mounted via the catch-all (not staticPages, so the
+  // harmonic page census stays a documented harmonic). explore/learn already exist as curated pages (skipped).
+  for (const hub of ROSETTA_RAY_HUBS) add(hub.slug)
   return paths
 }
 
 export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg' = 'gla') {
   const { path: bare } = parseHarmonicRequest(path)
   const decoded = rosettaDecodesUrlPath(`/${bare}`)
+  // Ray-hub landings (origin/proof/apps/frontier/reference) — the top-level rosetta IA, rendered by <RayHub>.
+  // explore/learn keep their curated staticPages, so only non-curated hub slugs short-circuit here.
+  const hub = rosettaRayHub(bare)
+  if (hub && !staticPages().some((page) => page.slug === bare)) {
+    const rawTitle = `${hub.nameEn} — the ${ROSETTA_RAYS[hub.ray]!.nameEn} ray`
+    const rawDescription = `${hub.glyph} ${hub.nameEn}: the rosetta ray-hub for ${hub.domain} (computation kind "${hub.pageKind}"). The seven rays are an organizing lens for navigation, not a metaphysical claim.`
+    return {
+      page: hub.slug,
+      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? `${hub.nameBg} — лъчът ${ROSETTA_RAYS[hub.ray]!.nameBg}` : rawTitle,
+      description: locale === 'gla' ? toGlagolitic(rawDescription) : rawDescription,
+      keywords: [hub.domain, `ray-${hub.ray}`, hub.pageKind, 'rosetta', 'hub'],
+      components: ['RayHub'],
+      proof: decoded.sharedRoot,
+      logic: decoded.glagoliticAddress,
+      target: null,
+      rosetta: decoded,
+    }
+  }
   const entry = resolveZeitwerkRegistryEntry(bare)
   const legacy = [...staticPages(), ...componentPages()].find((page) => page.slug === bare || (entry && page.slug === entry.action))
   if (legacy) {

@@ -750,6 +750,37 @@ function heroSvgPaletteFromUuid(uuid: string) {
   }
 }
 
+// The plasma-ball layer — a glowing core with radial filaments flickering on the a432 spine, hex-only (no hsl)
+// and SMIL-only so it stays GitHub-safe. The plasma ball folded into the hero: the fire-li energy at the throat.
+function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number): string {
+  const hue = Math.round((byte(6) * 360) / 256)
+  const core = movieCanvasHex(hue, { L: 7 / 8 })
+  const fil = movieCanvasHex((hue + 40) % 360, { L: 13 / 16 })
+  const n = 12
+  const filaments = Array.from({ length: n }, (_, k) => {
+    const a = (k / n) * Math.PI * 2
+    const r = 30 + (byte(k) % 26)
+    const x2 = Math.round(cx + Math.cos(a) * r)
+    const y2 = Math.round(cy + Math.sin(a) * r)
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${3 + (k % 5)}.5s" begin="${(k % 9) * 0.4 + 0.1}s" repeatCount="indefinite"/></line>`
+  }).join('')
+  return `<g opacity="0.5">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="6s" repeatCount="indefinite"/></circle></g>`
+}
+
+// The sacred-geometry layer — the Flower of Life, a real compass construction (seven circles), drawn as faint
+// strokes slowly turning. Hex-only, SMIL-only, GitHub-safe. The geometry folded into the hero behind the torus.
+function heroFlowerOfLifeLayer(cx: number, cy: number, byte: (k: number) => number): string {
+  const hue = Math.round((byte(9) * 360) / 256)
+  const stroke = movieCanvasHex(hue, { L: 13 / 16 })
+  const R = 26
+  const centers: [number, number][] = [[0, 0], ...Array.from({ length: 6 }, (_, k): [number, number] => {
+    const a = (k / 6) * Math.PI * 2
+    return [Math.cos(a) * R, Math.sin(a) * R]
+  })]
+  const circles = centers.map(([dx, dy]) => `<circle cx="${Math.round(dx)}" cy="${Math.round(dy)}" r="${R}" fill="none" stroke="${stroke}" stroke-width="1"/>`).join('')
+  return `<g transform="translate(${cx} ${cy})" opacity="0.26"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite" additive="sum"/>${circles}</g>`
+}
+
 export function heroSvgFromUuid(uuid: string): string {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
   const byte = (k: number) => parseInt(hex.slice((k * 2) % 28, ((k * 2) % 28) + 2), 16) || 128 // one byte of the forged UUID
@@ -777,6 +808,8 @@ export function heroSvgFromUuid(uuid: string): string {
     `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 13 / 16 })}"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
+    heroFlowerOfLifeLayer(cx, cy, byte),
+    heroPlasmaBallLayer(cx, cy, byte),
     `<g>${bagua}</g>`,
     `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
     torus(cx - 60, 'from="0" to="360"', '0s'),
@@ -792,6 +825,8 @@ export function heroSvgFromUuid(uuid: string): string {
 // tenDimensionalHeroSvg — the README hero, FORGED: the brand is content-addressed at MAX tampering cost (the
 // SHA-256 UUID) and that UUID directly computes the hero (heroSvgFromUuid). Much less code — one parametric
 // generator for ANY uuid — and a lot more features: every uuid forges its own hero. All wired through the forge.
+// The hero now also carries the sacred geometry (the Flower of Life compass construction) and the plasma ball
+// (a glowing core with radial filaments) folded in behind the double torus — both hex-only, SMIL-only, GitHub-safe.
 export function tenDimensionalHeroSvg(): string {
   return heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432'))
 }

@@ -62,6 +62,7 @@ const THEME_RESERVED = new Set([
 ])
 
 const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
+  RayHub: () => import('../theme/components/RayHub.vue'),
   Monograph: () => import('../theme/components/MonographFold.vue'),
   Corpus: () => import('../theme/components/CorpusFold.vue'),
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),

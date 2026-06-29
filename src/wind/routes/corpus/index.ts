@@ -4,7 +4,7 @@ import type { MindMatrix, StaticPage } from '../../types'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
-import { ROSETTA_RAYS, rosettaComputesAll, rosettaRayOf } from '../../../water/digit'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaRayHub, rosettaRayOf, type RosettaRayHub } from '../../../water/digit'
 import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { allPagesForPlasmaWiring } from '../../../water/double'
@@ -762,6 +762,38 @@ function corpusDetailPage(
     proofNote: pickLocale(locale, 'content-address', 'адрес по съдържание'),
     cardSeed: toUuid(`corpus:${kind}:${id}`).slice(0, 8),
     root: merkleFold([cc.root, toUuid(`corpus:${kind}:${id}`)]),
+  }
+}
+
+export type RosettaBreadcrumb = { label: string; labelBg: string; glyph: string; route: string; current: boolean }
+
+/** Breadcrumb trail computed from rosettaComputesAll: Home (Alpha) → ray-hub → current page. The ray-hub IA
+ * derives from the sealed rosetta tables (slug → ray → hub); a ray-hub landing has an EXPLICIT ray, every other
+ * route folds to its hub by the Glagolitic-ladder digital root. The taxonomy is an organizing lens, not metaphysics. */
+export function rosettaBreadcrumbs(route: string, at = 0, matrix: MindMatrix = buildMatrix()) {
+  const computed = rosettaComputesAll(route, at, matrix)
+  const home = ROSETTA_RAY_HUBS[0]! // Alpha hub fronts Home (/)
+  const explicitHub = rosettaRayHub(computed.slug)
+  const hub: RosettaRayHub = explicitHub ?? ROSETTA_RAY_HUBS[computed.ray]!
+  const onHub = explicitHub !== null
+  const isHome = route === '/' || route === '' || computed.slug === 'home'
+  const trail: RosettaBreadcrumb[] = [
+    { label: 'Home', labelBg: 'Начало', glyph: home.glyph, route: '/', current: isHome },
+  ]
+  if (!isHome) {
+    trail.push({ label: hub.nameEn, labelBg: hub.nameBg, glyph: hub.glyph, route: hub.route, current: onHub })
+    if (!onHub) trail.push({ label: computed.slug, labelBg: computed.slug, glyph: computed.rayMeta.glyph, route, current: true })
+  }
+  return {
+    route,
+    ray: hub.ray,
+    hub,
+    onHub,
+    trail,
+    root: merkleFold(trail.map((step) => toUuid(`crumb:${step.route}:${step.label}`))),
+    statement: `rosettaBreadcrumbs("${route}"): ${trail.map((step) => step.label).join(' › ')} — derived from the rosetta ray, not a hand-authored menu.`,
+    boundary:
+      'Breadcrumbs computed from rosettaComputesAll (slug → ray → hub). The rosetta ray taxonomy is an organizing lens for navigation, not a metaphysical claim; every route resolves to exactly one of the seven ray-hubs by the Glagolitic-ladder digital root.',
   }
 }
 
