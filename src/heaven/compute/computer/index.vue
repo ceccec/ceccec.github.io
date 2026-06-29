@@ -36,7 +36,7 @@ const panel = shallowRef(computerPanelComputes())
 </template>
 
 <style scoped>
-.driver-panel__content { display: grid; gap: 0.75rem; }
-.driver-panel__table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.driver-panel__table th, .driver-panel__table td { border-bottom: 1px solid var(--vp-c-divider); padding: 0.35rem 0.5rem; text-align: left; }
+.driver-panel__content { display: grid; gap: var(--ich-sp6); }
+.driver-panel__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); }
+.driver-panel__table th, .driver-panel__table td { border-bottom: 1px solid var(--vp-c-divider); padding: var(--ich-sp3) var(--ich-sp4); text-align: left; }
 </style>

@@ -35,7 +35,7 @@ const panel = shallowRef(computerSciencePanelComputes())
 </template>
 
 <style scoped>
-.cs-panel { display: grid; gap: 0.75rem; }
-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-th, td { border-bottom: 1px solid var(--vp-c-divider); padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+.cs-panel { display: grid; gap: var(--ich-sp6); }
+table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-sm); }
+th, td { border-bottom: 1px solid var(--vp-c-divider); padding: var(--ich-sp3) var(--ich-sp4); text-align: left; vertical-align: top; }
 </style>

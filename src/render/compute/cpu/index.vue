@@ -34,7 +34,7 @@ const driver = computed(() => panel.value.capstone.driver)
 </template>
 
 <style scoped>
-.driver-panel__content { display: grid; gap: 0.75rem; }
-.driver-panel__badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.driver-panel__probe { font-size: 0.85rem; overflow: auto; margin: 0; }
+.driver-panel__content { display: grid; gap: var(--ich-sp6); }
+.driver-panel__badges { display: flex; flex-wrap: wrap; gap: var(--ich-sp4); }
+.driver-panel__probe { font-size: var(--ich-text-sm); overflow: auto; margin: 0; }
 </style>
