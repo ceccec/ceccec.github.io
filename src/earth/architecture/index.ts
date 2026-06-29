@@ -2132,6 +2132,38 @@ export function scanCssForHardcoded(css: string): string[] {
   return offenders
 }
 
+// THE SAME LAW, EXTENDED TO .vue COMPONENTS — a single-file component is two surfaces the canonical-CSS scan
+// must also cover: its <style> block (ordinary CSS, scanned by scanCssForHardcoded) and its <script> canvas
+// paint (fillStyle/strokeStyle/shadowColor colour literals, ctx.font typography literals, and computed
+// hsl()/hsla() colour templates with literal saturation/lightness). Pure (string in → offender list out), so
+// the generator can scan every src/**/*.vue and report the burn-down count, and the build can later hard-fail.
+/** @rosetta ✦₀ · Heaven · creative */
+export function scanVueForHardcoded(vue: string): string[] {
+  const offenders = new Set<string>()
+  // <style> blocks ride the same canonical-CSS law as the theme stylesheets.
+  for (const block of vue.match(/<style[^>]*>[\s\S]*?<\/style>/gi) || []) {
+    const css = block.replace(/<\/?style[^>]*>/gi, ' ')
+    for (const o of scanCssForHardcoded(css)) offenders.add(`<style> ${o}`)
+  }
+  // <script> canvas paint — only the script surface (template inline styles are bound from computed values).
+  const scriptText = (vue.match(/<script[^>]*>[\s\S]*?<\/script>/gi) || []).join('\n')
+  // fillStyle / strokeStyle / shadowColor assigned a colour literal — hex or rgb()/rgba()/hsl()/hsla(), whether
+  // a plain string or a `template ${expr}` literal (so hsla(${hue}, 72%, …) is caught too).
+  const colorAssign = /(fillStyle|strokeStyle|shadowColor)\s*=\s*([`'"])([^`'"]*?)\2/g
+  let m: RegExpExecArray | null
+  while ((m = colorAssign.exec(scriptText))) {
+    const val = (m[3] ?? '').trim()
+    if (/#[0-9a-fA-F]{3,8}\b/.test(val) || /\b(?:rgba?|hsla?)\s*\(/.test(val)) offenders.add(`${m[1]} = ${val}`)
+  }
+  // ctx.font assigned a literal pixel/point/em size — typography should ride the type scale, not a magic px.
+  const fontAssign = /\.font\s*=\s*([`'"])([^`'"]*?)\1/g
+  while ((m = fontAssign.exec(scriptText))) {
+    const val = (m[2] ?? '').trim()
+    if (/\d+(?:\.\d+)?\s*(?:px|pt|em|rem)\b/.test(val)) offenders.add(`font = ${val}`)
+  }
+  return [...offenders]
+}
+
 // THE FOLD — the directive "i ching computed css, no hardcoded values whatsoever", encoded and proven. It walks
 // every computed token value and confirms (a) it reduces to canonical I Ching numbers only — the emitted layer
 // scans clean — and (b) the system is complete: the two bases, the vortex-laddered space, the a432 architecture,

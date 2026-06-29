@@ -5,7 +5,7 @@
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
 import { merkleFold, toUuid, foldVortex } from '../../../../0'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../../heaven/mind'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../../heaven/mind'
 import { glagoliticHomeFromEnglish } from '../../../heaven/mind'
 import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../../heaven/library'
 import { computedDistFiles, readmeMarkdown } from '..'
@@ -17,6 +17,8 @@ export interface GenContext {
   env: Record<string, string | undefined>
   args: readonly string[]
   read: (relPath: string) => string | null
+  /** Optional repo-relative recursive file lister by extension (e.g. '.vue') — undefined when unsupported. */
+  list?: (relDir: string, ext: string) => readonly string[]
   siteUrl: string
 }
 
@@ -231,7 +233,24 @@ export function generators(): Generator[] {
             break
           }
         }
-        return { files: out, messages: [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`], error }
+        const messages = [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`]
+        // REPORT-ONLY .vue burn-down baseline (NOT yet a hard fail — W6 flips it): scan every src/**/*.vue for
+        // hardcoded <style> literals + canvas paint/font colour literals, and surface the running offender count.
+        if (ctx.list) {
+          const vueFiles = ctx.list('src', '.vue')
+          let vueOffenders = 0
+          const worst: Array<{ path: string; n: number }> = []
+          for (const vuePath of vueFiles) {
+            const vueSrc = ctx.read(vuePath)
+            if (vueSrc == null) continue
+            const n = scanVueForHardcoded(vueSrc).length
+            if (n > 0) { vueOffenders += n; worst.push({ path: vuePath, n }) }
+          }
+          worst.sort((a, b) => b.n - a.n)
+          const top = worst.slice(0, 5).map((w) => `${w.path.replace(/^src\//, '')}:${w.n}`).join(' · ')
+          messages.push(`${tri(0b111).glyph} vue-scan (report-only baseline): ${vueOffenders} hardcoded literal(s) across ${worst.length}/${vueFiles.length} .vue${top ? ` · heaviest: ${top}` : ''}.`)
+        }
+        return { files: out, messages, error }
       },
     },
     {

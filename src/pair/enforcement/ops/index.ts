@@ -334,6 +334,22 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
     args: [...argv.slice(1)],
     siteUrl: (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, ''),
     read: (rel: string) => { try { return readFileSync(join(root, rel), 'utf8') } catch { return null } },
+    list: (relDir: string, ext: string): string[] => {
+      const found: string[] = []
+      const walk = (dir: string): void => {
+        let entries: { name: string; isDirectory: () => boolean }[]
+        try { entries = readdirSync(join(root, dir), { withFileTypes: true }) } catch { return }
+        for (const entry of entries) {
+          const name = String(entry.name)
+          if (name.startsWith('.') || name === 'node_modules') continue
+          const rel = `${dir}/${name}`
+          if (entry.isDirectory()) walk(rel)
+          else if (name.endsWith(ext)) found.push(rel)
+        }
+      }
+      walk(relDir)
+      return found.sort()
+    },
   }
   const result = runGenerator(selector, ctx)
   if (!result) { console.error(`Unknown generator: ${selector}`); return 1 }
