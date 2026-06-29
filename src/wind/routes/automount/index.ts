@@ -442,6 +442,11 @@ export function indexOfIndexes(projectRoot = process.cwd()) {
   return discoverSrcIndexes(projectRoot)
 }
 
+/** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
+ * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
+ * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
+export const ROUTE_ALIASES: Record<string, string> = { academy: 'learn', school: 'learn' }
+
 export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
   void _locale
   const automountSlugs = new Set(vitepressAutomountPaths().map((e) => e.params.page))
@@ -459,11 +464,15 @@ export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
   // The seven rosetta ray-hubs — top-level IA landings, mounted via the catch-all (not staticPages, so the
   // harmonic page census stays a documented harmonic). explore/learn already exist as curated pages (skipped).
   for (const hub of ROSETTA_RAY_HUBS) add(hub.slug)
+  // Declared aliases (/academy, /school → /learn) keep old URLs resolving to the unified learn surface.
+  for (const alias of Object.keys(ROUTE_ALIASES)) add(alias)
   return paths
 }
 
 export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg' = 'gla') {
-  const { path: bare } = parseHarmonicRequest(path)
+  const { path: rawBare } = parseHarmonicRequest(path)
+  // Declared aliases resolve to their canonical slug's content (/academy, /school → /learn).
+  const bare = ROUTE_ALIASES[rawBare] ?? rawBare
   const decoded = rosettaDecodesUrlPath(`/${bare}`)
   // Ray-hub landings (origin/proof/apps/frontier/reference) — the top-level rosetta IA, rendered by <RayHub>.
   // explore/learn keep their curated staticPages, so only non-curated hub slugs short-circuit here.

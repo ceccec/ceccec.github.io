@@ -494,7 +494,7 @@ export function quantumSolutions(matrix: MindMatrix = buildMatrix()) {
   const needs = [
     { need: 'Trust without a central authority', solution: 'Content-addressed receipts anyone recomputes — verify by use, not by permission.', quantum: 'collapse', route: '/architecture' },
     { need: 'Coordinate without a server', solution: 'A same-origin collective mind: every connected context folds into one distributed root.', quantum: 'entanglement', route: '/' },
-    { need: 'Equal access to learning', solution: 'A free, offline academy — five recomputable courses and a verifiable credential, at any age.', quantum: 'superposition', route: '/academy' },
+    { need: 'Equal access to learning', solution: 'A free, offline academy — five recomputable courses and a verifiable credential, at any age.', quantum: 'superposition', route: '/learn' },
     { need: 'Provenance against misinformation', solution: 'Cite a source by its content hash; the exact version survives even if the host disappears.', quantum: 'measurement', route: '/architecture' },
     { need: 'Quantum literacy for everyone', solution: 'Run a real quantum circuit in any browser and watch measurement collapse the state.', quantum: 'simulation', route: '/quantum-mind' },
     { need: 'Privacy by default', solution: 'Everything client-side: no account, no telemetry, nothing sent anywhere.', quantum: 'no observation', route: '/boundaries' },
@@ -677,7 +677,7 @@ export function solutions(matrix: MindMatrix = buildMatrix()) {
     { problem: 'Let an AI assistant use your tools', solution: 'Publish them on the MCP surface; the agent reads tools/list and calls tools/call.', capability: 'MCP', route: '/mcp' },
     { problem: 'Tune a reading voice to a harmony', solution: 'Read aloud with a harmonic pitch contour drawn from the balanced spectrum.', capability: 'harmonic speech', route: '/learn' },
     { problem: 'Run a quantum circuit with no hardware', solution: 'Simulate a GHZ state-vector in the browser and measure it — the histogram converges to the Born rule.', capability: 'quantum simulation', route: '/quantum-mind' },
-    { problem: 'Learn from the ground up, free, at any age', solution: 'The school and academy: five recomputable courses and a verifiable graduation credential.', capability: 'open learning', route: '/academy' },
+    { problem: 'Learn from the ground up, free, at any age', solution: 'The school and academy: five recomputable courses and a verifiable graduation credential.', capability: 'open learning', route: '/learn' },
     { problem: 'Work offline, with no account, nothing sent', solution: 'Everything runs on your device — the architecture itself is the only cost.', capability: 'offline-first', route: '/boundaries' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`solution:${entry.problem}`) }))
   return {

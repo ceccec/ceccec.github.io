@@ -14,7 +14,7 @@ import { atoms, conceptCommands } from '../../heaven/atoms'
 import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalLanguage } from '../../fire/li'
 import { rhythm } from '../../lake/music'
 import { heartProtonAtomDecoded } from '../../mountain/geometry'
-import { monographSliceFromRoute } from '../routes/automount'
+import { monographSliceFromRoute, ROUTE_ALIASES } from '../routes/automount'
 import { localePath, pickLocale, displayText, quantumSitemap, staticPages, type LocaleName } from '../site'
 import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
@@ -22,7 +22,7 @@ import { toGlagolitic } from '../../quantum/heaven/library'
 import { mcpCodebase } from '../../thunder/commands'
 import { completeCorpus } from '../routes/corpus'
 import { diamondLattice } from '../../fire/diamonds'
-import { ROSETTA_RAYS, rosettaDecodesUrlPath, rosettaRayOf } from '../../water/digit'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf } from '../../water/digit'
 import { quantumCoordinateNav } from '../../fire/features'
 import { openGraph } from '../../quantum/lake/icons'
 import { navigationAroundHero } from '../ui'
@@ -703,7 +703,7 @@ export function navigation358() {
     { tier: 3, name: 'arrive', items: [
       { label: 'Home', route: '/', tip: 'The promises, in plain words.' },
       { label: 'School', route: '/learn', tip: 'Learn it from the ground up, at any age.' },
-      { label: 'Academy', route: '/academy', tip: 'Five courses, a recomputable credential.' },
+      { label: 'Academy', route: '/learn', tip: 'Five courses, a recomputable credential.' },
     ] },
     { tier: 5, name: 'use', items: [
       { label: 'Console', route: '/console', tip: 'Ask — it consults itself before answering.' },
@@ -724,13 +724,34 @@ export function navigation358() {
     ] },
   ]
   const items = tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })))
+  // Gate facet: every nav route must resolve to a built page, a declared alias, or a real dist file artifact.
+  const builtSlugs = new Set<string>([
+    '', 'home',
+    ...staticPages().map((page) => page.slug),
+    ...componentPages().map((page) => page.slug),
+    ...ROSETTA_RAY_HUB_SLUGS,
+    ...Object.keys(ROUTE_ALIASES),
+  ])
+  const routeResolves = (route: string) => {
+    const bare = route.replace(/^\//, '').replace(/#.*$/, '')
+    if (/\.(json|txt|webmanifest|xml|svg|png|ico)$/.test(bare)) return true // a real dist file artifact
+    return builtSlugs.has(bare)
+  }
+  const unresolved = items.filter((item) => !routeResolves(item.route))
+  const facets = [
+    { facet: 'every nav route resolves to a built page or declared alias', on: unresolved.length === 0 },
+    { facet: '3-5-8 shape holds — the deep tier equals arrive + use', on: tiers[2].items.length === tiers[1].items.length + tiers[0].items.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nav358-facet:${entry.facet}:${entry.on}`) }))
   return {
     mapped: items.length === 16 && tiers[2].items.length === tiers[1].items.length + tiers[0].items.length,
     tiers,
     count: items.length,
+    facets,
+    routesResolve: facets[0]!.on,
+    unresolved: unresolved.map((item) => item.route),
     root: merkleFold(items.map((item) => toUuid(`nav358:${item.tier}:${item.label}`))),
-    statement: 'Navigation in 3-5-8: three ways to arrive (home, school, academy), five to use (console, commands, mcp, show, mind), and eight to go deep (architecture, boundaries, governance, developer, mcp.json, llms.txt, digit-index, manifest) — every destination with a tooltip.',
-    boundary: 'A navigation map of the portal organized in 3-5-8 tiers with tooltips. A guide over the real routes and artifacts.',
+    statement: 'Navigation in 3-5-8: three ways to arrive (home, school, academy), five to use (console, commands, mcp, show, mind), and eight to go deep (architecture, boundaries, governance, developer, mcp.json, llms.txt, digit-index, manifest) — every destination with a tooltip, and every route verified to resolve to a built page, a declared alias (/academy, /school → /learn), or a real dist artifact.',
+    boundary: 'A navigation map of the portal organized in 3-5-8 tiers with tooltips. A guide over the real routes and artifacts; routesResolve recomputes the built-slug set at call time (staticPages + componentPages + ray-hubs + declared aliases + file artifacts), so a dangling link flips the facet.',
   }
 }
 
@@ -876,7 +897,7 @@ export function learningPortal(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Merge and consolidate School and Academia into one auto-generated Learning Portal: the two overlapping education surfaces — the School age-ladder (kids→elders) and the Academy tracks (the 42 areas in five courses, "the school elevated") — join the Academia research corpus (the math paths, the waves of scientists, the 432 proof papers), the self-test and the agent curriculum into a single portal. It is auto-generated — one section is derived per source fold, never hand-listed, each carrying its source root — so the portal offers three ways to learn (by age, by track, by research) plus assessment, and folds them to one content-addressed root.',
     boundary:
-      'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time — complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/school, /academy, /papers and the quantum-mind sections).',
+      'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time — complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/learn — the unified school+academy — /papers and the quantum-mind sections; /academy and /school remain as declared aliases of /learn).',
   }
 }
 

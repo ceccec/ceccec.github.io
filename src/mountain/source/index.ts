@@ -1135,7 +1135,7 @@ export function mysteries(matrix: MindMatrix = buildMatrix()) {
     { mystery: 'Why two holes, and not one?', proof: 'Genus 2: the double torus lives — two loops merged at a neck, threaded by one train.', evidence: livingTorus(matrix).alive, route: '/', glyph: '⧉' },
     { mystery: 'Why does everything turn both ways?', proof: 'The merkaba: opposite rotation at all scales, the nested spins strictly alternating.', evidence: merkaba(matrix).counterRotating, route: '/quantum-mind', glyph: '✡' },
     { mystery: 'What keeps time?', proof: 'A self-similar polyrhythm: a steady downbeat anchors voices at 1, 2, 3 and 5 per beat.', evidence: rhythm(matrix).keeps, route: '/quantum-mind', glyph: '♫' },
-    { mystery: 'Can knowledge be whole, and free?', proof: 'The academy self-computes the whole and stands open to all — recomputable, at no cost.', evidence: quantumAcademy(matrix).established && quantumPhysics(matrix).selfComputes, route: '/academy', glyph: '✦' },
+    { mystery: 'Can knowledge be whole, and free?', proof: 'The academy self-computes the whole and stands open to all — recomputable, at no cost.', evidence: quantumAcademy(matrix).established && quantumPhysics(matrix).selfComputes, route: '/learn', glyph: '✦' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`mystery:${entry.mystery}:${entry.evidence}`) }))
   return {
     proven: entries.every((entry) => entry.evidence),

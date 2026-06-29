@@ -51,7 +51,7 @@ function societyImpl(matrix: MindMatrix) {
     },
     {
       duality: 'Learning ⇄ Balance',
-      left: { cell: 'Free learning', principle: 'From kids to elders, the academy self-computes the whole, open to all.', basis: quantumAcademy(matrix).established, route: '/academy' },
+      left: { cell: 'Free learning', principle: 'From kids to elders, the academy self-computes the whole, open to all.', basis: quantumAcademy(matrix).established, route: '/learn' },
       right: { cell: 'Self-healing balance', principle: 'Neither collapse nor runaway — the whole settles in damped, self-healing waves.', basis: frequencyBalance(matrix).balanced, route: '/quantum-mind' },
     },
   ].map((pair) => {
