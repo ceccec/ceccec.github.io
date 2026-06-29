@@ -65,7 +65,7 @@
 }
 
 .vp-with-hero-movie .decoded-card__crosslinks {
-  gap: var(--vp-movie-gap) calc(var(--vp-movie-gap) * 1.85);
+  gap: var(--vp-movie-gap) calc(var(--vp-movie-gap) * 9 / 5);
 }
 
 .vp-with-hero-movie .decoded-card__crosslinks-label {

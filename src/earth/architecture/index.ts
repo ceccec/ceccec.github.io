@@ -1978,6 +1978,8 @@ export function ichingTokens() {
     ['--ich-grid-min-card', 'calc(var(--ich-grid-min) * 23 / 24)'], // minmax card column — 11.5rem
     ['--ich-meta-label-min', 'calc(var(--ich-sp10) * 3)'], // page-meta dt min — 4rem
     ['--ich-meta-label-max', 'calc(var(--ich-sp10) * 9 / 2)'], // page-meta dt max — 6rem
+    ['--ich-card-min', 'calc(1rem * (6 + 1 / 2))'], // corpus linked-hero-card floor — 6.5rem
+    ['--ich-card-min-sm', 'calc(1rem * (5 + 1 / 2))'], // hub/tag/trinity linked-hero-card floor — 5.5rem
   ]
 
   const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents, ...surfaces]

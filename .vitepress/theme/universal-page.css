@@ -23,13 +23,13 @@
 }
 
 .corpus-grid .linked-hero-card {
-  min-height: 6.5rem;
+  min-height: var(--ich-card-min);
 }
 
 .hub-card-grid .linked-hero-card,
 .tag-browser .linked-hero-card,
 .trinity-gateways__related-cards .linked-hero-card {
-  min-height: 5.5rem;
+  min-height: var(--ich-card-min-sm);
 }
 
 .proof__ok {

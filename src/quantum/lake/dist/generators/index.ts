@@ -212,13 +212,24 @@ export function generators(): Generator[] {
           const skills = JSON.parse(skillsFile.content) as { complete: number; count: number; skills: { fn: string; complete: boolean }[] }
           if (skills.complete < skills.count) error = `Skill atoms incomplete: ${skills.skills.filter((s) => !s.complete).map((s) => s.fn).join(', ')}`
         }
-        // Gate "no hardcoded values whatsoever" over the real stylesheet: scan the body for any literal that is
-        // not a canonical I Ching number. The emitted tokens.css is clean by construction (cssIsIChingComputed);
-        // here we enforce the same law on the hand-maintained body, reading the actual file.
-        const bodyCss = ctx.read('src/render/ui/style.css')
-        if (bodyCss != null) {
-          const offenders = scanCssForHardcoded(bodyCss)
-          if (offenders.length > 0) error = `Hardcoded CSS values in src/render/ui/style.css (${offenders.length}): ${offenders.slice(0, 5).join(' · ')}${offenders.length > 5 ? ' …' : ''}`
+        // Gate "no hardcoded values whatsoever" over every hand-maintained stylesheet the theme loads: scan each
+        // for any literal that is not a canonical I Ching number. The emitted tokens.css is clean by construction
+        // (cssIsIChingComputed); here we enforce the same law on the body plus the three VitePress theme layers
+        // (hero-glass, universal-page, computed-typography) that .vitepress/theme/index.ts imports.
+        const THEME_CSS = [
+          'src/render/ui/style.css',
+          '.vitepress/theme/hero-glass.css',
+          '.vitepress/theme/universal-page.css',
+          '.vitepress/theme/computed-typography.css',
+        ]
+        for (const cssPath of THEME_CSS) {
+          const cssText = ctx.read(cssPath)
+          if (cssText == null) continue
+          const offenders = scanCssForHardcoded(cssText)
+          if (offenders.length > 0) {
+            error = `Hardcoded CSS values in ${cssPath} (${offenders.length}): ${offenders.slice(0, 5).join(' · ')}${offenders.length > 5 ? ' …' : ''}`
+            break
+          }
         }
         return { files: out, messages: [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`], error }
       },
