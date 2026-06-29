@@ -30,11 +30,11 @@ const panel = shallowRef(quantumResearchPanelComputes())
 </template>
 
 <style scoped>
-.quantum-research-index__lede { opacity: 0.85; max-width: 52rem; }
-.quantum-research-index__table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.quantum-research-index__table th, .quantum-research-index__table td { border: 1px solid color-mix(in srgb, currentColor 15%, transparent); padding: 0.5rem 0.65rem; vertical-align: top; text-align: left; }
-.quantum-research-index__meta { font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem; }
+.quantum-research-index__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.quantum-research-index__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); }
+.quantum-research-index__table th, .quantum-research-index__table td { border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
+.quantum-research-index__meta { font-size: var(--ich-text-xs); opacity: var(--ich-op-card-meta); margin-top: var(--ich-sp2); }
 .quantum-research-index__list { list-style: none; padding: 0; margin: 0; }
-.quantum-research-index__list li { margin-bottom: 0.35rem; }
-.quantum-research-index__pair { opacity: 0.65; margin-left: 0.35rem; }
+.quantum-research-index__list li { margin-bottom: var(--ich-sp3); }
+.quantum-research-index__pair { opacity: var(--ich-op-soft); margin-left: var(--ich-sp3); }
 </style>

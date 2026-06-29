@@ -25,6 +25,7 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
   panel.value = resonanceSimulationPanelComputes(undefined, at)
   const sim = panel.value.sim
   ctx.clearRect(0, 0, w, h)
+  const labelPx = Math.max(9, Math.round(h / 27))
   const cx = w / 2
   const cy = h * 0.55
   const baseR = Math.min(w, h) * 0.32
@@ -48,7 +49,7 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
     ctx.lineTo(x, y)
     ctx.stroke()
     if (!reduce) {
-      ctx.font = '10px sans-serif'
+      ctx.font = `${labelPx}px sans-serif`
       ctx.fillStyle = ink(0.75)
       ctx.fillText(`${mode.hz} Hz`, x + 8, y - 4)
     }
@@ -127,20 +128,20 @@ watch(at, (time) => {
 }
 
 .resonance-simulation-panel__lede {
-  margin: 0.5rem 0 0;
-  opacity: 0.9;
+  margin: var(--ich-sp4) 0 0;
+  opacity: var(--ich-op-strong);
 }
 
 .resonance-simulation-panel__badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: var(--ich-sp4);
+  margin-top: var(--ich-sp6);
 }
 
 .resonance-simulation-panel__movie-host {
-  min-height: 220px;
-  border-radius: 0.75rem;
+  min-height: calc(216px + 4px);
+  border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
 }
@@ -148,14 +149,14 @@ watch(at, (time) => {
 .resonance-simulation-panel__movie {
   display: block;
   width: 100%;
-  height: 220px;
+  height: calc(216px + 4px);
 }
 
 .resonance-simulation-panel__modes {
   margin: 0;
-  padding-left: 1.1rem;
+  padding-left: var(--ich-sp9);
   display: grid;
-  gap: 0.25rem;
-  font-size: 0.92em;
+  gap: var(--ich-sp2);
+  font-size: calc(1em * 8 / 9);
 }
 </style>

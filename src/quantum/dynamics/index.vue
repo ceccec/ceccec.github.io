@@ -25,6 +25,7 @@ function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: n
   panel.value = quantumDynamicsSimulationPanelComputes(undefined, at)
   const sim = panel.value.sim
   ctx.clearRect(0, 0, w, h)
+  const labelPx = Math.max(9, Math.round(h / 27))
   const barW = Math.min(48, (w - 40) / Math.max(sim.amplitudes.length, 1))
   const baseY = h * 0.78
   const maxH = h * 0.55
@@ -36,7 +37,7 @@ function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: n
     ctx.strokeStyle = ink(0.35)
     ctx.strokeRect(x, baseY - barH, barW, barH)
     ctx.fillStyle = ink(0.8)
-    ctx.font = '10px monospace'
+    ctx.font = `${labelPx}px monospace`
     ctx.fillText(`|${amp.basis}⟩`, x, baseY + 14)
     if (!reduce) {
       ctx.fillText(amp.probability.toFixed(3), x, baseY - barH - 6)
@@ -53,7 +54,7 @@ function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: n
     ctx.lineTo(x1, linkY)
     ctx.stroke()
     ctx.fillStyle = ink(0.75)
-    ctx.font = '11px sans-serif'
+    ctx.font = `${labelPx}px sans-serif`
     ctx.fillText('entangled phase lock', x0, linkY - 8)
   }
 }
@@ -132,20 +133,20 @@ watch(at, (time) => {
 }
 
 .quantum-dynamics-simulation-panel__lede {
-  margin: 0.5rem 0 0;
-  opacity: 0.9;
+  margin: var(--ich-sp4) 0 0;
+  opacity: var(--ich-op-strong);
 }
 
 .quantum-dynamics-simulation-panel__badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: var(--ich-sp4);
+  margin-top: var(--ich-sp6);
 }
 
 .quantum-dynamics-simulation-panel__movie-host {
-  min-height: 200px;
-  border-radius: 0.75rem;
+  min-height: calc(216px - 16px);
+  border-radius: calc(1rem * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
 }
@@ -153,15 +154,15 @@ watch(at, (time) => {
 .quantum-dynamics-simulation-panel__movie {
   display: block;
   width: 100%;
-  height: 200px;
+  height: calc(216px - 16px);
 }
 
 .quantum-dynamics-simulation-panel__amps {
   margin: 0;
-  padding-left: 1.1rem;
+  padding-left: var(--ich-sp9);
   display: grid;
-  gap: 0.25rem;
+  gap: var(--ich-sp2);
   font-family: ui-monospace, monospace;
-  font-size: 0.88em;
+  font-size: calc(1em * 8 / 9);
 }
 </style>
