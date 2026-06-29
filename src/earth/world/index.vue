@@ -167,66 +167,66 @@ const goldFusion = computed(() => goldFusionComputes())
 
 <style scoped>
 .bh-sim-panel {
-  font-size: 0.875rem;
-  max-width: 42rem;
+  font-size: calc(1rem * 7 / 8);
+  max-width: var(--ich-rosetta-measure);
   margin: 1rem 0;
 }
 .boundary {
-  opacity: 0.75;
-  font-size: 0.8rem;
+  opacity: var(--ich-op-card-meta);
+  font-size: var(--ich-text-sm);
 }
 dl {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.25rem 1rem;
+  gap: var(--ich-sp2) 1rem;
 }
 dt {
   font-weight: 600;
 }
 .gold-mine-map-panel {
-  font-size: 0.875rem;
-  max-width: 42rem;
-  margin: 1.5rem 0;
+  font-size: calc(1rem * 7 / 8);
+  max-width: var(--ich-rosetta-measure);
+  margin: var(--ich-sp12) 0;
 }
 .gold-fusion-generator-panel {
-  font-size: 0.875rem;
-  max-width: 42rem;
-  margin: 1.5rem 0;
+  font-size: calc(1rem * 7 / 8);
+  max-width: var(--ich-rosetta-measure);
+  margin: var(--ich-sp12) 0;
 }
 .tier-note {
-  font-size: 0.78rem;
-  opacity: 0.85;
-  margin: 0.5rem 0;
+  font-size: var(--ich-text-xs);
+  opacity: var(--ich-op-card-soft);
+  margin: var(--ich-sp4) 0;
 }
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
-  margin: 0.75rem 0;
+  font-size: var(--ich-text-xs);
+  margin: var(--ich-sp6) 0;
 }
 caption {
   text-align: left;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--ich-sp2);
 }
 th,
 td {
-  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
-  padding: 0.25rem 0.5rem 0.25rem 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent);
+  padding: var(--ich-sp2) var(--ich-sp4) var(--ich-sp2) 0;
   text-align: left;
 }
 .mean-fit {
-  font-size: 0.78rem;
-  opacity: 0.85;
+  font-size: var(--ich-text-xs);
+  opacity: var(--ich-op-card-soft);
 }
 .cosmos-capstone-panel {
-  font-size: 0.875rem;
-  max-width: 42rem;
-  margin: 1.5rem 0;
+  font-size: calc(1rem * 7 / 8);
+  max-width: var(--ich-rosetta-measure);
+  margin: var(--ich-sp12) 0;
 }
 .facet-list {
-  margin: 0.5rem 0 0;
-  padding-left: 1.25rem;
-  font-size: 0.8rem;
+  margin: var(--ich-sp4) 0 0;
+  padding-left: var(--ich-sp10);
+  font-size: var(--ich-text-sm);
 }
 </style>

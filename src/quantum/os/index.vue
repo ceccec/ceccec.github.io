@@ -94,20 +94,20 @@ function launchDock(appId: string) {
 </template>
 
 <style scoped>
-.quantum-os { position: relative; min-height: 70vh; display: grid; grid-template-rows: auto 1fr auto; gap: var(--q-space-2, 0.75rem); isolation: isolate; accent-color: var(--q-accent); }
+.quantum-os { position: relative; min-height: calc(64vh + 6vh); display: grid; grid-template-rows: auto 1fr auto; gap: var(--q-space-2, var(--ich-sp6)); isolation: isolate; accent-color: var(--q-accent); }
 .quantum-os__wallpaper { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-.quantum-os__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--q-space, 0.5rem); padding: var(--q-space, 0.5rem) var(--q-space-2, 0.75rem); backdrop-filter: blur(12px); background: color-mix(in srgb, var(--vp-c-bg) 72%, transparent); border-radius: var(--q-radius, 8px); border-top: 3px solid var(--q-primary, var(--vp-c-brand-1)); }
-.quantum-os__brand { font-weight: 700; margin-right: 0.5rem; color: var(--q-primary, inherit); }
-.quantum-os__design-badge { font-size: 0.65rem; }
-.quantum-os__drivers { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-left: auto; }
-.quantum-os__driver-badge { font-size: 0.65rem; }
-.quantum-os__workspace { padding: 0 0.25rem; }
-.quantum-os__workspace-card { backdrop-filter: blur(8px); background: color-mix(in srgb, var(--vp-c-bg) 88%, transparent); border-radius: var(--q-radius, 8px); box-shadow: 0 calc(var(--q-elevation, 1) * 4px) calc(var(--q-elevation, 1) * 16px) color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 18%, transparent); }
-.quantum-os__lede { opacity: 0.9; max-width: 48rem; }
-.quantum-os__boundary { font-size: 0.85rem; opacity: 0.75; max-width: 48rem; }
-.quantum-os__app-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.quantum-os__table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-.quantum-os__table th, .quantum-os__table td { border-bottom: 1px solid var(--vp-c-divider); padding: 0.35rem 0.5rem; text-align: left; }
-.quantum-os__dock { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--q-space, 0.5rem); padding: var(--q-space-2, 0.65rem); backdrop-filter: blur(14px); background: color-mix(in srgb, var(--vp-c-bg) 80%, transparent); border-radius: var(--q-radius, 8px); border-bottom: 3px solid var(--q-accent, var(--vp-c-brand-1)); }
+.quantum-os__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--q-space, var(--ich-sp4)); padding: var(--q-space, var(--ich-sp4)) var(--q-space-2, var(--ich-sp6)); backdrop-filter: blur(var(--ich-sp6)); background: color-mix(in srgb, var(--vp-c-bg) calc(64% + 8%), transparent); border-radius: var(--q-radius, 8px); border-top: 3px solid var(--q-primary, var(--vp-c-brand-1)); }
+.quantum-os__brand { font-weight: 700; margin-right: var(--ich-sp4); color: var(--q-primary, inherit); }
+.quantum-os__design-badge { font-size: var(--ich-text-2xs); }
+.quantum-os__drivers { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); margin-left: auto; }
+.quantum-os__driver-badge { font-size: var(--ich-text-2xs); }
+.quantum-os__workspace { padding: 0 var(--ich-sp2); }
+.quantum-os__workspace-card { backdrop-filter: blur(var(--ich-sp4)); background: color-mix(in srgb, var(--vp-c-bg) calc(64% + 16% + 8%), transparent); border-radius: var(--q-radius, 8px); box-shadow: 0 calc(var(--q-elevation, 1) * 4px) calc(var(--q-elevation, 1) * 16px) color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) calc(9% + 9%), transparent); }
+.quantum-os__lede { opacity: var(--ich-op-strong); max-width: calc(1rem * 16 * 3); }
+.quantum-os__boundary { font-size: var(--ich-text-sm); opacity: var(--ich-op-card-meta); max-width: calc(1rem * 16 * 3); }
+.quantum-os__app-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--ich-sp3); }
+.quantum-os__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-sm); }
+.quantum-os__table th, .quantum-os__table td { border-bottom: 1px solid var(--vp-c-divider); padding: var(--ich-sp3) var(--ich-sp4); text-align: left; }
+.quantum-os__dock { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--q-space, var(--ich-sp4)); padding: var(--q-space-2, var(--ich-sp5)); backdrop-filter: blur(var(--ich-sp7)); background: color-mix(in srgb, var(--vp-c-bg) calc(64% + 16%), transparent); border-radius: var(--q-radius, 8px); border-bottom: 3px solid var(--q-accent, var(--vp-c-brand-1)); }
 @media (max-width: 640px) { .quantum-os__drivers { width: 100%; margin-left: 0; } .quantum-os__dock { position: sticky; bottom: 0; } }
 </style>

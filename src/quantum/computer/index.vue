@@ -176,32 +176,32 @@ onBeforeUnmount(() => fabEngine?.dispose())
 </template>
 
 <style scoped>
-.qc-lab { display: grid; gap: var(--q-space-2, 0.85rem); accent-color: var(--q-accent, var(--vp-c-brand-1)); }
-.qc-lab__head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
-.qc-lab__lede { width: 100%; opacity: 0.85; margin: 0; }
-.qc-lab__controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: end; }
-.qc-lab__field { display: grid; gap: 0.2rem; font-size: 0.8rem; }
-.qc-lab__field input { width: 6rem; padding: 0.3rem 0.4rem; border: 1px solid var(--vp-c-divider); border-radius: var(--q-radius, 6px); background: var(--vp-c-bg-soft); }
-.qc-lab__presets { display: flex; gap: 0.35rem; margin-left: auto; }
-.qc-lab__palette { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; padding: 0.5rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 8%, transparent); }
-.qc-lab__palette-label { font-size: 0.8rem; opacity: 0.75; }
+.qc-lab { display: grid; gap: var(--q-space-2, var(--ich-sp7)); accent-color: var(--q-accent, var(--vp-c-brand-1)); }
+.qc-lab__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ich-sp4); }
+.qc-lab__lede { width: 100%; opacity: var(--ich-op-card-soft); margin: 0; }
+.qc-lab__controls { display: flex; flex-wrap: wrap; gap: var(--ich-sp6); align-items: end; }
+.qc-lab__field { display: grid; gap: var(--ich-sp2); font-size: var(--ich-text-sm); }
+.qc-lab__field input { width: 6rem; padding: var(--ich-sp3) var(--ich-sp3); border: 1px solid var(--vp-c-divider); border-radius: var(--q-radius, 6px); background: var(--vp-c-bg-soft); }
+.qc-lab__presets { display: flex; gap: var(--ich-sp3); margin-left: auto; }
+.qc-lab__palette { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ich-sp3); padding: var(--ich-sp4); border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 8%, transparent); }
+.qc-lab__palette-label { font-size: var(--ich-text-sm); opacity: var(--ich-op-card-meta); }
 .qc-lab__gate-btn { font-family: var(--vp-font-family-mono); }
-.qc-lab__ops { list-style: decimal; padding-left: 1.5rem; display: grid; gap: 0.35rem; }
-.qc-lab__op { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
-.qc-lab__target input, .qc-lab__theta input { width: 3.4rem; padding: 0.15rem 0.3rem; border: 1px solid var(--vp-c-divider); border-radius: 5px; background: var(--vp-c-bg-soft); margin-left: 0.15rem; }
-.qc-lab__empty { opacity: 0.7; font-style: italic; }
+.qc-lab__ops { list-style: decimal; padding-left: var(--ich-sp12); display: grid; gap: var(--ich-sp3); }
+.qc-lab__op { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ich-sp3); }
+.qc-lab__target input, .qc-lab__theta input { width: calc(1rem * 7 / 2); padding: var(--ich-sp1) var(--ich-sp3); border: 1px solid var(--vp-c-divider); border-radius: 5px; background: var(--vp-c-bg-soft); margin-left: var(--ich-sp1); }
+.qc-lab__empty { opacity: var(--ich-op-card-meta); font-style: italic; }
 .qc-lab__results { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .qc-lab__panel { min-width: 0; }
-.qc-lab__table { width: 100%; border-collapse: collapse; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
-.qc-lab__table th, .qc-lab__table td { border-bottom: 1px solid var(--vp-c-divider); padding: 0.25rem 0.4rem; text-align: left; }
-.qc-lab__hist { list-style: none; padding: 0; display: grid; gap: 0.25rem; font-size: 0.82rem; }
-.qc-lab__hist li { display: grid; grid-template-columns: 4rem 1fr auto; align-items: center; gap: 0.5rem; }
-.qc-lab__bar { height: 0.8rem; border-radius: 4px; background: var(--q-primary, var(--vp-c-brand-1)); min-width: 2px; }
-.qc-lab__count { font-variant-numeric: tabular-nums; opacity: 0.8; }
-.qc-lab__fab { display: grid; gap: 0.5rem; padding: 0.6rem; border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 6%, transparent); }
-.qc-lab__fab-stages { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.3rem; font-size: 0.78rem; font-family: var(--vp-font-family-mono); }
-.qc-lab__fab-stages li { padding: 0.15rem 0.45rem; border-radius: 5px; border: 1px solid var(--vp-c-divider); opacity: 0.45; transition: opacity 0.3s, background 0.3s; }
-.qc-lab__fab-stages li.is-done { opacity: 1; background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 22%, transparent); }
-.qc-lab__fab-blocks { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0; }
+.qc-lab__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-sm); font-variant-numeric: tabular-nums; }
+.qc-lab__table th, .qc-lab__table td { border-bottom: 1px solid var(--vp-c-divider); padding: var(--ich-sp2) var(--ich-sp3); text-align: left; }
+.qc-lab__hist { list-style: none; padding: 0; display: grid; gap: var(--ich-sp2); font-size: var(--ich-text-sm); }
+.qc-lab__hist li { display: grid; grid-template-columns: 4rem 1fr auto; align-items: center; gap: var(--ich-sp4); }
+.qc-lab__bar { height: var(--ich-sp6); border-radius: 4px; background: var(--q-primary, var(--vp-c-brand-1)); min-width: 2px; }
+.qc-lab__count { font-variant-numeric: tabular-nums; opacity: var(--ich-op-card-faint); }
+.qc-lab__fab { display: grid; gap: var(--ich-sp4); padding: var(--ich-sp5); border-radius: var(--q-radius, 8px); background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 6%, transparent); }
+.qc-lab__fab-stages { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--ich-sp3); font-size: var(--ich-text-xs); font-family: var(--vp-font-family-mono); }
+.qc-lab__fab-stages li { padding: var(--ich-sp1) var(--ich-sp4); border-radius: 5px; border: 1px solid var(--vp-c-divider); opacity: var(--ich-op-half); transition: opacity var(--ich-dur), background var(--ich-dur); }
+.qc-lab__fab-stages li.is-done { opacity: 1; background: color-mix(in srgb, var(--q-primary, var(--vp-c-brand-1)) 27%, transparent); }
+.qc-lab__fab-blocks { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); margin: 0; }
 @media (max-width: 720px) { .qc-lab__results { grid-template-columns: 1fr; } }
 </style>
