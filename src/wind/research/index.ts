@@ -273,9 +273,22 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         mount: 'src/pair/enforcement',
         receipt: toUuid('research:enforcement-trinity'),
       },
+      {
+        id: 'unit-distance-tower',
+        category: 'Unit distances / class-field towers',
+        question: 'At what scale (ℓ, t, conductor) does the unramified pro-3 tower construction give γ > 0, and how small is the resulting exponent δ in ν(n) ≥ n^{1+δ}?',
+        methods: 'unitDistanceTowerNumbers · unitDistanceGammaCrossover · unitDistanceDelta · unitDistanceGridBaseline (src/wind/research)',
+        dataTier: 'MODEL_FIT',
+        limitation: 'Exact prime/discriminant/GS-budget bookkeeping of the published construction — NOT a verification of the proof; least-split-prime size is a GRH-shaped heuristic; Cclass and C0 are unpinned absolute constants.',
+        nextExperiment: 'npm run check:types · unitDistanceResearch(matrix) facets',
+        balanceDim: 'research.unit.distance.tower',
+        mount: 'src/wind/research',
+        bibliography: 'OpenAI, Planar Point Sets with Many Unit Distances (2026); Erdős 1946; Golod–Shafarevich 1964; Hajir–Maire 2001; Lagarias–Odlyzko 1977',
+        receipt: toUuid('research:unit-distance-tower'),
+      },
     ]
     const facets = [
-      { facet: `${rows.length} research program rows — monograph-grade index`, on: rows.length >= 15 && rows.length <= 20 },
+      { facet: `${rows.length} research program rows — monograph-grade index`, on: rows.length >= 15 && rows.length <= 21 },
       { facet: 'three data tiers represented — DOCUMENTED · MODEL_FIT · HYPOTHESIS/METAPHOR/SIMULATOR/OPEN', on: rows.some((row) => row.dataTier === 'DOCUMENTED') && rows.some((row) => row.dataTier === 'MODEL_FIT') && rows.some((row) => row.dataTier === 'OPEN') },
       { facet: 'mandatory limitations on every row', on: rows.every((row) => row.limitation.length > 20) },
       { facet: 'nextExperiment npm/route on every row', on: rows.every((row) => row.nextExperiment.length > 8) },
@@ -367,6 +380,8 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'quantum-science-research', 'Quantum science research', 'src/quantum/science', 'quantum.science.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qsR.researched, qsR.boundary, qsR.root)
     pushDomainRow(rows, 'quantum-computer-research', 'Quantum computer model research', 'src/quantum/science', 'quantum.__ns_up_computer.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qcR.researched, qcR.boundary, qcR.root)
     pushDomainRow(rows, 'quantum-application-compose', 'Quantum application compose', 'src/quantum/application', 'quantum.application.computes', 'npm run docs:dev → /en/quantum/application', 'SIMULATOR', __ns_up_quantum_application.quantumApplicationResearch(matrix, at).researched, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).boundary, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).root)
+    const udR = unitDistanceResearch(matrix, at)
+    pushDomainRow(rows, 'unit-distance-research', 'Unit-distance tower numerics', 'src/wind/research', 'research.unit.distance.tower', 'npm run check:types · unitDistanceResearch(matrix)', 'MODEL_FIT', udR.researched, udR.boundary, udR.root)
     return { indexed: professional.indexed && rows.length >= 15, count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
   })
 }
@@ -403,4 +418,186 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = researchComputes(matrix, at)
   return { computes: cap.computes, capstone: cap, rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })), repro: cap.repro.gates, root: cap.root, statement: cap.statement, boundary: cap.boundary }
+}
+
+// ————— Unit distances / class-field towers — numeric companion to the pro-3 tower construction —————
+// Bookkeeping of "Planar Point Sets with Many Unit Distances" (OpenAI 2026): a cyclic cubic F from ℓ
+// primes r_i ≡ 1 (mod 3), an everywhere-unramified pro-3 tower kept infinite by Golod–Shafarevich after
+// killing the Frobenius classes of t = ⌊(ℓ−1)²/100⌋ split primes, then δ = γ/(4B) with γ = t·log2 − log H_ℓ.
+// Everything here is exact arithmetic except the two explicitly-flagged heuristics (least split prime, PNT tail).
+
+const UNIT_DISTANCE_SIEVE_LIMIT = 120_000
+let unitDistancePrimeCache: readonly number[] | null = null
+function unitDistancePrimes(): readonly number[] {
+  if (unitDistancePrimeCache) return unitDistancePrimeCache
+  const sieve = new Uint8Array(UNIT_DISTANCE_SIEVE_LIMIT + 1)
+  const out: number[] = []
+  for (let i = 2; i <= UNIT_DISTANCE_SIEVE_LIMIT; i++) {
+    if (sieve[i]) continue
+    out.push(i)
+    for (let j = i * i; j <= UNIT_DISTANCE_SIEVE_LIMIT; j += i) sieve[j] = 1
+  }
+  unitDistancePrimeCache = out
+  return out
+}
+
+export type UnitDistanceTowerNumbers = {
+  readonly ell: number
+  readonly d: number
+  readonly t: number
+  readonly logConductor: number
+  readonly logRootDiscriminant: number
+  readonly largestAuxPrime: number
+  readonly receipt: string
+}
+
+/** Exact tower bookkeeping: first ℓ primes ≡ 1 (mod 3) → log D, log rd(F) = (2/3)·log D, d = ℓ−1, t = ⌊(ℓ−1)²/100⌋. */
+export function unitDistanceTowerNumbers(ell: number): UnitDistanceTowerNumbers {
+  const rs = unitDistancePrimes().filter((p) => p % 3 === 1).slice(0, ell)
+  if (rs.length < ell) throw new Error(`unitDistanceTowerNumbers: ℓ=${ell} exceeds the ${UNIT_DISTANCE_SIEVE_LIMIT} sieve`)
+  const logConductor = rs.reduce((acc, r) => acc + Math.log(r), 0)
+  const d = ell - 1
+  const t = Math.floor(((ell - 1) * (ell - 1)) / 100)
+  return { ell, d, t, logConductor, logRootDiscriminant: (2 / 3) * logConductor, largestAuxPrime: rs[ell - 1], receipt: toUuid(`unit-distance:tower:${ell}`) }
+}
+
+/** Golod–Shafarevich survival margin of the Frobenius-killed quotient: d²/4 − d − c0 − 3t (positive = infinite tower). */
+export function unitDistanceGolodShafarevichMargin(ell: number, c0 = 3): number {
+  const { d, t } = unitDistanceTowerNumbers(ell)
+  return (d * d) / 4 - d - c0 - 3 * t
+}
+
+/** γ = t·log2 − 2·cClass·log(2·rd F): the class-number race the whole construction rides on. */
+export function unitDistanceGamma(ell: number, cClass = 1): number {
+  const { t, logRootDiscriminant } = unitDistanceTowerNumbers(ell)
+  return t * Math.LN2 - 2 * cClass * (Math.LN2 + logRootDiscriminant)
+}
+
+/** Minimal ℓ with γ > 0, or null if none exists below the sieve-bounded maxEll. */
+export function unitDistanceGammaCrossover(cClass = 1, maxEll = 4000): number | null {
+  for (let ell = 3; ell <= maxEll; ell++) if (unitDistanceGamma(ell, cClass) > 0) return ell
+  return null
+}
+
+/** ρ_R = lens(R)/(πR²): overlap fraction of two unit-separated radius-R discs — the averaging loss. */
+export function unitDistanceLensRatio(radius: number): number {
+  const lens = 2 * radius * radius * Math.acos(1 / (2 * radius)) - Math.sqrt(4 * radius * radius - 1) / 2
+  return lens / (Math.PI * radius * radius)
+}
+
+/** Smallest R > 1/2 with log ρ_R > −γ/2 (bisection; the paper's "Fix R > 1/2" step). */
+export function unitDistanceLensRadius(gamma: number): number {
+  const ok = (r: number) => Math.log(unitDistanceLensRatio(r)) > -gamma / 2
+  let lo = 0.5000001
+  let hi = 1
+  while (!ok(hi)) {
+    hi *= 2
+    if (hi > 1e12) return Number.POSITIVE_INFINITY
+  }
+  for (let i = 0; i < 200; i++) {
+    const mid = (lo + hi) / 2
+    if (ok(mid)) hi = mid
+    else lo = mid
+  }
+  return hi
+}
+
+export type UnitDistanceDeltaReport = {
+  readonly ell: number
+  readonly cClass: number
+  readonly gamma: number
+  readonly radius: number
+  readonly logQUtopian: number
+  readonly logQChebotarevGrh: number
+  readonly deltaUtopian: number
+  readonly deltaChebotarevGrh: number
+  readonly receipt: string
+}
+
+/**
+ * δ = γ/(4B), B = 2·log(4R) + 4·log Q, two readings of Q = ∏ q_b:
+ * utopian — q_b are literally the first t primes ≡ 1 (mod 4) (ignores splitting: hard UPPER bound on δ);
+ * GRH heuristic — least completely-split prime ≪ (log|d|)² in the degree-2·3^{d+1} Frattini closure (FLAGGED, not the paper's bound).
+ */
+export function unitDistanceDelta(ell: number, cClass = 1): UnitDistanceDeltaReport {
+  const tower = unitDistanceTowerNumbers(ell)
+  const gamma = unitDistanceGamma(ell, cClass)
+  const radius = gamma > 0 ? unitDistanceLensRadius(gamma) : Number.POSITIVE_INFINITY
+  const q1mod4 = unitDistancePrimes().filter((p) => p % 4 === 1)
+  const logQUtopian = tower.t <= q1mod4.length
+    ? q1mod4.slice(0, tower.t).reduce((acc, q) => acc + Math.log(q), 0)
+    : tower.t * (Math.log(2 * tower.t * Math.log(2 * tower.t)) - 1) // PNT tail for t past the sieve — flagged approximation
+  const logFrattiniDegree = Math.LN2 + (tower.d + 1) * Math.log(3)
+  const logQstar = 2 * (logFrattiniDegree + Math.log(Math.log(4) + tower.logRootDiscriminant))
+  const logQChebotarevGrh = tower.t * logQstar
+  const deltaAt = (logQ: number) => (gamma > 0 ? gamma / (4 * (2 * Math.log(4 * radius) + 4 * logQ)) : 0)
+  return { ell, cClass, gamma, radius, logQUtopian, logQChebotarevGrh, deltaUtopian: deltaAt(logQUtopian), deltaChebotarevGrh: deltaAt(logQChebotarevGrh), receipt: toUuid(`unit-distance:delta:${ell}:${cClass}`) }
+}
+
+/** Exact grid contrast: max #{(a,b) ∈ Z²: a²+b²=k} for k ≤ kMax — the engine of Erdős's classical lower bound. */
+export function unitDistanceGridBaseline(kMax = 100_000): { readonly kMax: number; readonly bestK: number; readonly vectors: number; readonly receipt: string } {
+  const cap = Math.min(kMax, 4_000_000)
+  const counts = new Map<number, number>()
+  const m = Math.floor(Math.sqrt(cap))
+  for (let a = -m; a <= m; a++) {
+    for (let b = -m; b <= m; b++) {
+      const k = a * a + b * b
+      if (k >= 1 && k <= cap) counts.set(k, (counts.get(k) ?? 0) + 1)
+    }
+  }
+  let bestK = 0
+  let vectors = 0
+  for (const [k, c] of counts) if (c > vectors || (c === vectors && k < bestK)) { bestK = k; vectors = c }
+  return { kMax: cap, bestK, vectors, receipt: toUuid(`unit-distance:grid:${cap}:${bestK}:${vectors}`) }
+}
+
+/** Computed findings — documented kept, heuristic flagged; each row recomputable from the functions above. */
+export const UNIT_DISTANCE_FINDINGS = [
+  { id: 'gs-budget', tier: 'DOCUMENTED', statement: 'Frobenius-killing spends 3t ≈ 3d²/100 of the d²/4 Golod–Shafarevich relation quota — 12%; the group theory is never the bottleneck.' },
+  { id: 'gamma-scale', tier: 'MODEL_FIT', statement: 'γ > 0 first at ℓ ≈ 1791 (Cclass=1): the cyclic cubic conductor D already has ≈ 7200 decimal digits and the tower needs t = 32041 split primes.' },
+  { id: 'delta-cap', tier: 'HYPOTHESIS', statement: 'Under a GRH-shaped least-split-prime heuristic δ peaks near 2.5e-6 (ℓ ≈ 3724) and decays like log2/(32·ℓ·log3): the Chebotarev height of the split primes caps δ, not Golod–Shafarevich.' },
+  { id: 'bite-scale', tier: 'MODEL_FIT', statement: 'Beating n^{1+1/log log n} needs log log n > 1/δ — around n > 10^10^172542 at the heuristic optimum; the refutation is purely asymptotic.' },
+  { id: 'grid-contrast', tier: 'DOCUMENTED', statement: 'Exact check: max #{a²+b²=k} = 24/48/72/128 for k ≤ 10³/10⁴/10⁵/10⁶ — the classical grid dominates at every computable scale.' },
+].map((row) => ({ ...row, receipt: toUuid(`unit-distance:finding:${row.id}`) }))
+
+/** Balance gate — unit-distance tower numerics recompute and stay honestly bounded at call time. */
+export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`unitDistanceResearch:${Math.floor(at / 1000)}`, matrix, () => {
+    const crossover = unitDistanceGammaCrossover(1)
+    const tower = unitDistanceTowerNumbers(crossover ?? 1791)
+    const report = unitDistanceDelta(tower.ell, 1)
+    const grid = unitDistanceGridBaseline(100_000)
+    const { computes, facets, root } = computesGate('unit-distance-research', [
+      { facet: 'exact bookkeeping — conductor and rd(F) from the first ℓ primes ≡ 1 (mod 3)', on: tower.logRootDiscriminant > 0 && tower.largestAuxPrime % 3 === 1 },
+      { facet: 'GS relation budget — margin d²/4 − d − C0 − 3t > 0 at the γ-crossover', on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
+      { facet: 'γ crossover exists — minimal ℓ with γ > 0 found below the sieve bound', on: crossover !== null && report.gamma > 0 },
+      { facet: 'δ positive and honestly tiny — 0 < δ < 1e-4 in both Q readings', on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
+      { facet: 'NOT proof verification — bookkeeping and flagged heuristics only', on: true },
+    ])
+    return {
+      computes,
+      researched: computes,
+      crossover,
+      tower,
+      report,
+      grid,
+      findings: UNIT_DISTANCE_FINDINGS,
+      facets,
+      root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, ...UNIT_DISTANCE_FINDINGS.map((row) => row.receipt)]),
+      statement: 'Unit-distance research computes: exact tower/γ/δ bookkeeping for the pro-3 class-field construction, grid contrast, and flagged heuristics — recomputed at call time.',
+      boundary: 'HONEST: exact arithmetic over the published construction — NOT a verification of the proof; the least-split-prime size is a GRH-shaped HYPOTHESIS; Cclass and C0 are unpinned absolute constants.',
+    }
+  })
+}
+
+/** CLI gate — npm-script runner for the unit-distance fold (pattern of the other Guarded exits). */
+export function runUnitDistanceResearchVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const research = unitDistanceResearch()
+  if (!research.computes) {
+    process.stderr.write(`✗ unit-distance-research — ${research.facets.filter((facet) => !facet.on).map((facet) => facet.facet).join(' · ')}\n`)
+    return 1
+  }
+  const { tower, report, grid } = research
+  process.stdout.write(`✓ unit-distance-research — ℓ*=${tower.ell} t=${tower.t} γ=${report.gamma.toFixed(4)} δ≤${report.deltaUtopian.toExponential(2)} (utopian) δ≈${report.deltaChebotarevGrh.toExponential(2)} (GRH heuristic) grid=${grid.vectors}\n`)
+  return 0
 }
