@@ -240,6 +240,15 @@ export default defineConfig({
       minify: false,
       rollupOptions: {
         maxParallelFileOps: 1,
+        // The plugin-timing profile is expected: node-only-client-stub and the src folder plugins do the
+        // heavy lifting by design, so the note carries no signal here.
+        checks: { pluginTimings: false },
+        // @vueuse/core ships mis-placed /* #__PURE__ */ annotations in its dist we cannot fix; drop the
+        // check for node_modules only — annotation mistakes in our own source still warn.
+        onwarn(warning, warn) {
+          if (warning.code === 'INVALID_ANNOTATION' && String(warning.id ?? '').includes('node_modules')) return
+          warn(warning)
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router')) {

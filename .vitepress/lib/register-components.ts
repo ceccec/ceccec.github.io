@@ -6,6 +6,12 @@ import UiCardShell from '../theme/components/UiCardShell.vue'
 import LinkedHeroCard from '../theme/components/LinkedHeroCard.vue'
 import HubCardGrid from '../theme/components/HubCardGrid.vue'
 import TagBrowser from '../theme/components/TagBrowser.vue'
+import VoidSidebar from '../theme/components/VoidSidebar.vue'
+import TrinityGateways from '../theme/components/TrinityGateways.vue'
+import GlobalHelp from '../theme/components/GlobalHelp.vue'
+import CollectiveMind from '../theme/components/CollectiveMind.vue'
+import RevolutAside from '../theme/components/RevolutAside.vue'
+import VitePressPossibilities from '../theme/components/VitePressPossibilities.vue'
 import { componentDisplayName, useSiteLocale } from './mounts'
 import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'
 import { localeFromRoute } from './site-locale'
@@ -68,12 +74,17 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),
   Merkaba: () => import('../../src/render/merkaba/index.vue'),
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
-  VoidSidebar: () => import('../theme/components/VoidSidebar.vue'),
-  TrinityGateways: () => import('../theme/components/TrinityGateways.vue'),
-  GlobalHelp: () => import('../theme/components/GlobalHelp.vue'),
-  CollectiveMind: () => import('../theme/components/CollectiveMind.vue'),
-  RevolutAside: () => import('../theme/components/RevolutAside.vue'),
-  VitePressPossibilities: () => import('../theme/components/VitePressPossibilities.vue'),
+}
+
+// Layout.vue mounts these on every page, so they live in the theme entry chunk already —
+// register the same static modules; a dynamic import here could never split them out.
+const STATIC_GLOBALS: Record<string, Component> = {
+  VoidSidebar,
+  TrinityGateways,
+  GlobalHelp,
+  CollectiveMind,
+  RevolutAside,
+  VitePressPossibilities,
 }
 
 /** Browser-safe registry — mirrors heaven/core componentGraph without loading the mind barrel at enhanceApp. */
@@ -174,6 +185,11 @@ export async function registerVitePressComponents(app: App): Promise<void> {
   if (!app.component('TagBrowser')) app.component('TagBrowser', TagBrowser)
   for (const name of await componentNamesForRegistration()) {
     if (THEME_RESERVED.has(name) || app.component(name)) continue
+    const staticGlobal = STATIC_GLOBALS[name]
+    if (staticGlobal) {
+      app.component(name, staticGlobal)
+      continue
+    }
     const override = OVERRIDES[name]
     if (override) {
       app.component(name, defineAsyncComponent(override))
