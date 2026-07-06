@@ -204,6 +204,28 @@ export declare const ROSETTA_RAYS: readonly [{
     readonly hue: 308;
 }];
 export type RosettaRay = (typeof ROSETTA_RAYS)[number];
+/** The seven ray-hubs — the top-level information architecture. One slug per rosetta ray (index = ray):
+ * Alpha→/origin, Voice→/proof, Spirit→/explore, Life→/learn, Thought→/apps, Form→/frontier, Word→/reference.
+ * The Alpha hub (/origin) also fronts Home (/). Quantum-human-design IA: the 7 rays are the categorical lens. */
+export declare const ROSETTA_RAY_HUB_SLUGS: readonly ["origin", "proof", "explore", "learn", "apps", "frontier", "reference"];
+export type RosettaRayHubSlug = (typeof ROSETTA_RAY_HUB_SLUGS)[number];
+/** A ray-hub: a top-level landing page, one per rosetta ray, derived (never hand-typed) from ROSETTA_RAYS +
+ * ROSETTA_RAY_HUB_SLUGS + ROSETTA_COMPUTATION_TYPES. The seven hubs ARE the quantum-human-design IA. */
+export type RosettaRayHub = {
+    ray: number;
+    slug: RosettaRayHubSlug;
+    route: string;
+    glyph: string;
+    nameEn: string;
+    nameBg: string;
+    domain: string;
+    hue: number;
+    pageKind: RosettaComputationType;
+};
+/** The seven ray-hubs, computed from the sealed rosetta tables (index = ray; gapless 0..6). */
+export declare const ROSETTA_RAY_HUBS: readonly RosettaRayHub[];
+/** The hub whose slug equals this slug (a ray-hub landing page), else null. */
+export declare function rosettaRayHub(slug: string): RosettaRayHub | null;
 /** @rosetta ✦₀ · Heaven · creative */
 export declare function computePiDigits(count: number): string;
 /** @rosetta ✦₀ · Heaven · creative — 108 pi-digit coordinates (the sacred 108: chakras × 12, the mala). */

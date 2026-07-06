@@ -3286,6 +3286,22 @@ var ROSETTA_RAYS = [
   { ray: 5, glyph: "\u2C0F", nameEn: "Form", nameBg: "\u0424\u043E\u0440\u043C\u0430", domain: "geometry", hue: 257 },
   { ray: 6, glyph: "\u2C14", nameEn: "Word", nameBg: "\u0421\u043B\u043E\u0432\u043E", domain: "language", hue: 308 }
 ];
+var ROSETTA_RAY_HUB_SLUGS = ["origin", "proof", "explore", "learn", "apps", "frontier", "reference"];
+var ROSETTA_RAY_HUBS = ROSETTA_RAYS.map((rayMeta, ray) => ({
+  ray,
+  slug: ROSETTA_RAY_HUB_SLUGS[ray],
+  route: `/${ROSETTA_RAY_HUB_SLUGS[ray]}`,
+  glyph: rayMeta.glyph,
+  nameEn: rayMeta.nameEn,
+  nameBg: rayMeta.nameBg,
+  domain: rayMeta.domain,
+  hue: rayMeta.hue,
+  pageKind: ROSETTA_COMPUTATION_TYPES[ray]
+}));
+function rosettaRayHub(slug) {
+  const bare = (slug ?? "").replace(/^\/+/, "").split("/").pop() || "";
+  return ROSETTA_RAY_HUBS.find((hub) => hub.slug === bare) ?? null;
+}
 function computePiDigits(count) {
   let q = 1n;
   let r = 0n;
@@ -4742,7 +4758,7 @@ function quantumSolutions(matrix = buildMatrix()) {
   const needs = [
     { need: "Trust without a central authority", solution: "Content-addressed receipts anyone recomputes \u2014 verify by use, not by permission.", quantum: "collapse", route: "/architecture" },
     { need: "Coordinate without a server", solution: "A same-origin collective mind: every connected context folds into one distributed root.", quantum: "entanglement", route: "/" },
-    { need: "Equal access to learning", solution: "A free, offline academy \u2014 five recomputable courses and a verifiable credential, at any age.", quantum: "superposition", route: "/academy" },
+    { need: "Equal access to learning", solution: "A free, offline academy \u2014 five recomputable courses and a verifiable credential, at any age.", quantum: "superposition", route: "/learn" },
     { need: "Provenance against misinformation", solution: "Cite a source by its content hash; the exact version survives even if the host disappears.", quantum: "measurement", route: "/architecture" },
     { need: "Quantum literacy for everyone", solution: "Run a real quantum circuit in any browser and watch measurement collapse the state.", quantum: "simulation", route: "/quantum-mind" },
     { need: "Privacy by default", solution: "Everything client-side: no account, no telemetry, nothing sent anywhere.", quantum: "no observation", route: "/boundaries" },
@@ -4932,7 +4948,7 @@ function solutions(matrix = buildMatrix()) {
     { problem: "Let an AI assistant use your tools", solution: "Publish them on the MCP surface; the agent reads tools/list and calls tools/call.", capability: "MCP", route: "/mcp" },
     { problem: "Tune a reading voice to a harmony", solution: "Read aloud with a harmonic pitch contour drawn from the balanced spectrum.", capability: "harmonic speech", route: "/learn" },
     { problem: "Run a quantum circuit with no hardware", solution: "Simulate a GHZ state-vector in the browser and measure it \u2014 the histogram converges to the Born rule.", capability: "quantum simulation", route: "/quantum-mind" },
-    { problem: "Learn from the ground up, free, at any age", solution: "The school and academy: five recomputable courses and a verifiable graduation credential.", capability: "open learning", route: "/academy" },
+    { problem: "Learn from the ground up, free, at any age", solution: "The school and academy: five recomputable courses and a verifiable graduation credential.", capability: "open learning", route: "/learn" },
     { problem: "Work offline, with no account, nothing sent", solution: "Everything runs on your device \u2014 the architecture itself is the only cost.", capability: "offline-first", route: "/boundaries" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`solution:${entry2.problem}`) }));
   return {
@@ -7046,9 +7062,27 @@ function parseHarmonicRequest(path12) {
   const stripped = path12.replace(/^\/(en|bg)(?=\/|$)/, "").replace(/^\//, "");
   return { locale, segments: stripped.split("/").filter(Boolean), path: stripped };
 }
+var ROUTE_ALIASES = { academy: "learn", school: "learn" };
 function monographSliceFromRoute(path12, locale = "gla") {
-  const { path: bare } = parseHarmonicRequest(path12);
+  const { path: rawBare } = parseHarmonicRequest(path12);
+  const bare = ROUTE_ALIASES[rawBare] ?? rawBare;
   const decoded = rosettaDecodesUrlPath(`/${bare}`);
+  const hub = rosettaRayHub(bare);
+  if (hub && !staticPages().some((page) => page.slug === bare)) {
+    const rawTitle = `${hub.nameEn} \u2014 the ${ROSETTA_RAYS[hub.ray].nameEn} ray`;
+    const rawDescription = `${hub.glyph} ${hub.nameEn}: the rosetta ray-hub for ${hub.domain} (computation kind "${hub.pageKind}"). The seven rays are an organizing lens for navigation, not a metaphysical claim.`;
+    return {
+      page: hub.slug,
+      title: locale === "gla" ? toGlagolitic(rawTitle) : locale === "bg" ? `${hub.nameBg} \u2014 \u043B\u044A\u0447\u044A\u0442 ${ROSETTA_RAYS[hub.ray].nameBg}` : rawTitle,
+      description: locale === "gla" ? toGlagolitic(rawDescription) : rawDescription,
+      keywords: [hub.domain, `ray-${hub.ray}`, hub.pageKind, "rosetta", "hub"],
+      components: ["RayHub"],
+      proof: decoded.sharedRoot,
+      logic: decoded.glagoliticAddress,
+      target: null,
+      rosetta: decoded
+    };
+  }
   const entry2 = resolveZeitwerkRegistryEntry(bare);
   const legacy = [...staticPages(), ...componentPages()].find((page) => page.slug === bare || entry2 && page.slug === entry2.action);
   if (legacy) {
@@ -7684,6 +7718,31 @@ function corpusDetailPage(kind, id, locale, route, matrix) {
     proofNote: pickLocale(locale, "content-address", "\u0430\u0434\u0440\u0435\u0441 \u043F\u043E \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u043D\u0438\u0435"),
     cardSeed: toUuid(`corpus:${kind}:${id}`).slice(0, 8),
     root: merkleFold([cc.root, toUuid(`corpus:${kind}:${id}`)])
+  };
+}
+function rosettaBreadcrumbs(route, at = 0, matrix = buildMatrix()) {
+  const computed = rosettaComputesAll(route, at, matrix);
+  const home = ROSETTA_RAY_HUBS[0];
+  const explicitHub = rosettaRayHub(computed.slug);
+  const hub = explicitHub ?? ROSETTA_RAY_HUBS[computed.ray];
+  const onHub = explicitHub !== null;
+  const isHome = route === "/" || route === "" || computed.slug === "home";
+  const trail = [
+    { label: "Home", labelBg: "\u041D\u0430\u0447\u0430\u043B\u043E", glyph: home.glyph, route: "/", current: isHome }
+  ];
+  if (!isHome) {
+    trail.push({ label: hub.nameEn, labelBg: hub.nameBg, glyph: hub.glyph, route: hub.route, current: onHub });
+    if (!onHub) trail.push({ label: computed.slug, labelBg: computed.slug, glyph: computed.rayMeta.glyph, route, current: true });
+  }
+  return {
+    route,
+    ray: hub.ray,
+    hub,
+    onHub,
+    trail,
+    root: merkleFold(trail.map((step) => toUuid(`crumb:${step.route}:${step.label}`))),
+    statement: `rosettaBreadcrumbs("${route}"): ${trail.map((step) => step.label).join(" \u203A ")} \u2014 derived from the rosetta ray, not a hand-authored menu.`,
+    boundary: "Breadcrumbs computed from rosettaComputesAll (slug \u2192 ray \u2192 hub). The rosetta ray taxonomy is an organizing lens for navigation, not a metaphysical claim; every route resolves to exactly one of the seven ray-hubs by the Glagolitic-ladder digital root."
   };
 }
 function computeUniversalPage(route, params = {}, matrix = buildMatrix()) {
@@ -16253,7 +16312,7 @@ function componentGraph() {
   const placements = {
     "/": ["SiteOverview", "QuantumLens", "Compass", "LivingTorus", "Live", "DeterminismProofs", "CryptoCompare", "Hologram", "Equilibrium", "QuantumRadar", "DeviceDashboard", "BlockchainCompare", "GlyphLabyrinth", "GlagoliticOcr", "Monograph", "HumanLens", "PathGuide", "QuantumClock", "Nav358", "ProofRenderer", "HologramMovie", "KnowledgeAtlas", "ElectromagneticRadiation", "RealtimeTests", "MatrixCube"]
   };
-  const composedBase = ["Chart", "DataTable", "DecodedCard", "DiamondDetail", "DiamondIndex", "LayersPanel", "PaperDetail", "PaperIndex", "ReferenceDetail", "ReferenceIndex"];
+  const composedBase = ["Chart", "DataTable", "DecodedCard", "DiamondDetail", "DiamondIndex", "LayersPanel", "PaperDetail", "PaperIndex", "ReferenceDetail", "ReferenceIndex", "RayHub"];
   for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ["UniversalPageTemplate"];
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components;
   const allPlaced = [.../* @__PURE__ */ new Set([...Object.values(placements).flat()])];
@@ -18543,7 +18602,7 @@ function mysteries(matrix = buildMatrix()) {
     { mystery: "Why two holes, and not one?", proof: "Genus 2: the double torus lives \u2014 two loops merged at a neck, threaded by one train.", evidence: livingTorus(matrix).alive, route: "/", glyph: "\u29C9" },
     { mystery: "Why does everything turn both ways?", proof: "The merkaba: opposite rotation at all scales, the nested spins strictly alternating.", evidence: merkaba(matrix).counterRotating, route: "/quantum-mind", glyph: "\u2721" },
     { mystery: "What keeps time?", proof: "A self-similar polyrhythm: a steady downbeat anchors voices at 1, 2, 3 and 5 per beat.", evidence: rhythm(matrix).keeps, route: "/quantum-mind", glyph: "\u266B" },
-    { mystery: "Can knowledge be whole, and free?", proof: "The academy self-computes the whole and stands open to all \u2014 recomputable, at no cost.", evidence: quantumAcademy(matrix).established && quantumPhysics3(matrix).selfComputes, route: "/academy", glyph: "\u2726" }
+    { mystery: "Can knowledge be whole, and free?", proof: "The academy self-computes the whole and stands open to all \u2014 recomputable, at no cost.", evidence: quantumAcademy(matrix).established && quantumPhysics3(matrix).selfComputes, route: "/learn", glyph: "\u2726" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`mystery:${entry2.mystery}:${entry2.evidence}`) }));
   return {
     proven: entries.every((entry2) => entry2.evidence),
@@ -24889,7 +24948,7 @@ function plainLanguage() {
     { term: "Palette & melody", plain: "Type a word and get the same colours and tune every time, shareable by citing the word.", route: "/learn" },
     { term: "Sonification", plain: "Hear data as sound \u2014 to catch what the eye misses, or to use without a screen.", route: "/commands" },
     { term: "MCP", plain: "A way for AI assistants to call these tools directly.", route: "/mcp" },
-    { term: "Academy", plain: "Five short courses; finish them and you earn a credential you can prove.", route: "/academy" },
+    { term: "Academy", plain: "Five short courses; finish them and you earn a credential you can prove.", route: "/learn" },
     { term: "Offline & free", plain: "It all runs on your device \u2014 no account, nothing sent anywhere.", route: "/boundaries" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`plain:${entry2.term}`) }));
   return {
@@ -25052,7 +25111,7 @@ function multidimensional() {
     ] },
     { dimension: "learn", icon: "\u{1F393}", items: [
       { label: "School", route: "/learn", tip: "From the ground up, any age." },
-      { label: "Academy", route: "/academy", tip: "Five courses, a credential." },
+      { label: "Academy", route: "/learn", tip: "Five courses, a credential." },
       { label: "Developer's mind", route: "/learn-developer", tip: "The laws, learned as skills." },
       { label: "Follow the path", route: "/", tip: "A guided journey, looping." }
     ] },
@@ -29276,6 +29335,8 @@ function ichingTokens() {
     // 1.6
     ["--ich-lh-loose", "calc(7 / 4)"],
     //   1.75 — prose body
+    ["--ich-lh-body", "calc(8 / 5)"],
+    //    1.6 — component body copy (DoubleTorusExperience, render/merkaba)
     ["--ich-track-tight", "calc(-1em / 54)"],
     //   −0.0185em (a432 octave)
     ["--ich-track-tighter", "calc(-1em / 16 / 2)"],
@@ -29406,8 +29467,14 @@ function ichingTokens() {
     // minmax card column — 11.5rem
     ["--ich-meta-label-min", "calc(var(--ich-sp10) * 3)"],
     // page-meta dt min — 4rem
-    ["--ich-meta-label-max", "calc(var(--ich-sp10) * 9 / 2)"]
+    ["--ich-meta-label-max", "calc(var(--ich-sp10) * 9 / 2)"],
     // page-meta dt max — 6rem
+    ["--ich-card-min", "calc(1rem * (6 + 1 / 2))"],
+    // corpus linked-hero-card floor — 6.5rem
+    ["--ich-card-min-sm", "calc(1rem * (5 + 1 / 2))"],
+    // hub/tag/trinity linked-hero-card floor — 5.5rem
+    ["--ich-scrim", "oklch(0 0 0 / calc(1 / 4))"]
+    // neutral dark wash behind component movie canvases — 1/4 alpha
   ];
   const light = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents, ...surfaces];
   const aliases = [
@@ -29523,6 +29590,26 @@ function scanCssForHardcoded(css) {
     if (bad.length > 0) offenders.push(`${shown}  [${[...new Set(bad)].join(", ")}]`);
   }
   return offenders;
+}
+function scanVueForHardcoded(vue) {
+  const offenders = /* @__PURE__ */ new Set();
+  for (const block of vue.match(/<style[^>]*>[\s\S]*?<\/style>/gi) || []) {
+    const css = block.replace(/<\/?style[^>]*>/gi, " ");
+    for (const o of scanCssForHardcoded(css)) offenders.add(`<style> ${o}`);
+  }
+  const scriptText = (vue.match(/<script[^>]*>[\s\S]*?<\/script>/gi) || []).join("\n");
+  const colorAssign = /(fillStyle|strokeStyle|shadowColor)\s*=\s*([`'"])([^`'"]*?)\2/g;
+  let m;
+  while (m = colorAssign.exec(scriptText)) {
+    const val = (m[3] ?? "").trim();
+    if (/#[0-9a-fA-F]{3,8}\b/.test(val) || /\b(?:rgba?|hsla?)\s*\(/.test(val)) offenders.add(`${m[1]} = ${val}`);
+  }
+  const fontAssign = /\.font\s*=\s*([`'"])([^`'"]*?)\1/g;
+  while (m = fontAssign.exec(scriptText)) {
+    const val = (m[2] ?? "").trim();
+    if (/\d+(?:\.\d+)?\s*(?:px|pt|em|rem)\b/.test(val)) offenders.add(`font = ${val}`);
+  }
+  return [...offenders];
 }
 function cssIsIChingComputed(matrix = { root: toUuid("iching-css") }) {
   const { light, aliases, dark } = ichingTokens();
@@ -29794,7 +29881,7 @@ function drawPlasmaRays(ctx, cx, cy, voidR, hueShift, p, t, streams, palette) {
   const rayCount = plasmaRayCount(streams.length);
   if (rayCount < 1) return;
   ctx.save();
-  ctx.globalCompositeOperation = "lighter";
+  ctx.globalCompositeOperation = palette.dark ? "lighter" : "source-over";
   for (let r = 0; r < rayCount; r += 1) {
     const stream = streams[r % Math.max(1, streams.length)];
     const hue2 = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE4) % 360;
@@ -29824,7 +29911,7 @@ function drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, p, t, palette,
   const deathHue = (hueShift + 180) % 360;
   const outerR = span * 0.46;
   ctx.save();
-  ctx.globalCompositeOperation = "lighter";
+  ctx.globalCompositeOperation = palette.dark ? "lighter" : "source-over";
   for (let f = 0; f < flowCount; f += 1) {
     const baseAngle = f / flowCount * Math.PI * 2 + f * GOLDEN_ANGLE4;
     const speed = 0.18 + f % PLASMA_TIERS[0] * 0.05;
@@ -29945,11 +30032,11 @@ function drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift) {
   }
   ctx.shadowBlur = 0;
 }
-function drawFusedForceLayers(ctx, w, h, cx, cy, span, p, t, layers) {
+function drawFusedForceLayers(ctx, w, h, cx, cy, span, p, t, layers, dark = true) {
   if (layers.length === 0) return;
   const d = dims(p);
   ctx.save();
-  ctx.globalCompositeOperation = "lighter";
+  ctx.globalCompositeOperation = dark ? "lighter" : "source-over";
   layers.forEach((layer, i) => {
     const reach = layer.force === "gravity" ? 0.18 : layer.force === "electromagnetic" ? 0.62 : layer.force === "strong" ? 0.26 : layer.force === "weak" ? 0.34 : 0.5;
     const alpha = layer.force === "weak" ? 0.05 + 0.05 * (0.5 + 0.5 * Math.sin(t * 1.3 + i * 1.7)) : layer.force === "gravity" ? 0.14 : 0.09;
@@ -29982,12 +30069,12 @@ function paintHolographicPlasmaHeroMovie(ctx, w, h, scene, hero, layers = []) {
     ctx.fillRect(0, 0, w, h);
     return;
   }
-  drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers);
+  drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers, scene.palette.dark);
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length);
   drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length);
   if (hero) {
     ctx.save();
-    ctx.globalCompositeOperation = "lighter";
+    ctx.globalCompositeOperation = scene.palette.dark ? "lighter" : "source-over";
     ctx.globalAlpha = scene.palette.holographicAlpha;
     drawHero(ctx, w, h, hero, { clear: false, voidR });
     ctx.restore();
@@ -30047,7 +30134,7 @@ function rosettaPerspectiveFold(ray, field) {
     root: toUuid(`rosetta-perspective:${field.root}:${r}`)
   };
 }
-function sharedHeroAt(route, copy, at, cssWidth = 1024, reduce = false) {
+function sharedHeroAt(route, copy, at, cssWidth = 1024, reduce = false, dark = true) {
   const path12 = route || "/";
   const t = at / 1e3;
   const p = heroPhaseAt(at);
@@ -30056,7 +30143,7 @@ function sharedHeroAt(route, copy, at, cssWidth = 1024, reduce = false) {
   const movieText = [movieTextFromCopy(copy), fusedCopy, path12].filter(Boolean).join(" ");
   const seed = seedOf(movieText);
   const wired = plasmaMovieStreams(path12, movieText, matrix);
-  const palette = plasmaMoviePalette(matrix, path12, true);
+  const palette = plasmaMoviePalette(matrix, path12, true, dark);
   const computePaint = realtimeComputationsMoviePaint(at, path12, matrix);
   const hue2 = (heroMoviePhaseHue(path12, p, matrix) + computePaint.hueShift) % 360;
   return {
@@ -30072,6 +30159,7 @@ function sharedHeroAt(route, copy, at, cssWidth = 1024, reduce = false) {
     wiredStreams: wired.streams,
     palette,
     reduce,
+    dark,
     cssWidth,
     root: toUuid(`animation-field:${path12}:${seed}`)
   };
@@ -33157,7 +33245,7 @@ function societyImpl(matrix) {
     },
     {
       duality: "Learning \u21C4 Balance",
-      left: { cell: "Free learning", principle: "From kids to elders, the academy self-computes the whole, open to all.", basis: quantumAcademy(matrix).established, route: "/academy" },
+      left: { cell: "Free learning", principle: "From kids to elders, the academy self-computes the whole, open to all.", basis: quantumAcademy(matrix).established, route: "/learn" },
       right: { cell: "Self-healing balance", principle: "Neither collapse nor runaway \u2014 the whole settles in damped, self-healing waves.", basis: frequencyBalance(matrix).balanced, route: "/quantum-mind" }
     }
   ].map((pair) => {
@@ -36452,27 +36540,35 @@ function heroMoviePhaseHue(path12 = "/", at = 0, matrix = buildMatrix()) {
   return ((base + at * GOLDEN_ANGLE) % 360 + 360) % 360;
 }
 var clamp01 = (n) => Math.max(0, Math.min(1, n));
-var rgbaAt = (hue2, L, alpha) => scaleColorRgba(0, clamp01(alpha), { seedHue: (hue2 % 360 + 360) % 360, L, C: CHROMA2 });
-var plasmaCanvas = {
-  tagLine: (hue2, persp) => rgbaAt(hue2, 0.6, 0.25 + 0.4 * persp),
-  tagDot: (hue2, i, persp) => rgbaAt(hue2 + i * 12, 0.62, 0.4 + 0.5 * persp),
-  tagGlyph: (hue2, i, persp) => rgbaAt(hue2 + i * 12, 0.7, 0.5 + 0.4 * persp),
-  blobInner: (hue2, b) => rgbaAt(hue2 + b * 8, 0.45, 0.5),
-  blobMid: (hue2, b) => rgbaAt(hue2 + b * 8, 0.32, 0.28),
-  vignetteInner: (hue2) => rgbaAt(hue2, 0.18, 0.55),
-  vignetteMid: (hue2) => rgbaAt(hue2, 0.12, 0.3),
-  streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : 0.7)),
-  streamFill: (hue2, alpha, near) => rgbaAt(hue2, near ? 0.7 : 0.6, alpha),
-  streamGlow: (hue2, alpha) => rgbaAt(hue2, 0.75, alpha * 0.8),
-  voidCore: (hue2) => rgbaAt(hue2, 0.08, 0.9),
-  voidMid: (hue2) => rgbaAt(hue2, 0.16, 0.5),
-  voidOuter: (hue2) => rgbaAt(hue2, 0.24, 0.2),
-  ring: (hue2, pulse) => rgbaAt(hue2, 0.6, 0.3 + 0.5 * pulse),
-  ballGlyphGlow: (hue2, alpha) => rgbaAt(hue2, 0.78, alpha),
-  ballGlyph: (hue2, alpha, layer) => rgbaAt(hue2, 0.66 - layer * 0.05, alpha),
-  reduceCore: (hue2) => rgbaAt(hue2, 0.1, 0.6)
-};
-function plasmaMoviePalette(matrix = buildMatrix(), path12 = "/", endless = false) {
+var LIGHT_FIELD_L = 5 / 9;
+var LIGHT_FIELD_A = 4 / 5;
+var rgbaAt = (hue2, L, alpha, dark = true) => scaleColorRgba(0, clamp01(dark ? alpha : alpha * LIGHT_FIELD_A), {
+  seedHue: (hue2 % 360 + 360) % 360,
+  L: dark ? L : L * LIGHT_FIELD_L,
+  C: CHROMA2
+});
+function plasmaCanvasFor(dark) {
+  return {
+    tagLine: (hue2, persp) => rgbaAt(hue2, 0.6, 0.25 + 0.4 * persp, dark),
+    tagDot: (hue2, i, persp) => rgbaAt(hue2 + i * 12, 0.62, 0.4 + 0.5 * persp, dark),
+    tagGlyph: (hue2, i, persp) => rgbaAt(hue2 + i * 12, 0.7, 0.5 + 0.4 * persp, dark),
+    blobInner: (hue2, b) => rgbaAt(hue2 + b * 8, 0.45, 0.5, dark),
+    blobMid: (hue2, b) => rgbaAt(hue2 + b * 8, 0.32, 0.28, dark),
+    vignetteInner: (hue2) => rgbaAt(hue2, 0.18, 0.55, dark),
+    vignetteMid: (hue2) => rgbaAt(hue2, 0.12, 0.3, dark),
+    streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : 0.7)),
+    streamFill: (hue2, alpha, near) => rgbaAt(hue2, near ? 0.7 : 0.6, alpha, dark),
+    streamGlow: (hue2, alpha) => rgbaAt(hue2, 0.75, alpha * 0.8, dark),
+    voidCore: (hue2) => rgbaAt(hue2, 0.08, 0.9, dark),
+    voidMid: (hue2) => rgbaAt(hue2, 0.16, 0.5, dark),
+    voidOuter: (hue2) => rgbaAt(hue2, 0.24, 0.2, dark),
+    ring: (hue2, pulse) => rgbaAt(hue2, 0.6, 0.3 + 0.5 * pulse, dark),
+    ballGlyphGlow: (hue2, alpha) => rgbaAt(hue2, 0.78, alpha, dark),
+    ballGlyph: (hue2, alpha, layer) => rgbaAt(hue2, 0.66 - layer * 0.05, alpha, dark),
+    reduceCore: (hue2) => rgbaAt(hue2, 0.1, 0.6, dark)
+  };
+}
+function plasmaMoviePalette(matrix = buildMatrix(), path12 = "/", endless = false, dark = true) {
   const hue2 = heroMovieHueRaw(path12, matrix);
   const waveIndex = heroMovieWaveIndex(path12, matrix);
   const waveHue = ((hue2 + waveIndex * GOLDEN_ANGLE) % 360 + 360) % 360;
@@ -36489,8 +36585,9 @@ function plasmaMoviePalette(matrix = buildMatrix(), path12 = "/", endless = fals
     soft: css(L_SOFT2),
     card: css(L_CARD2),
     glow: css(L_GLOW2),
+    dark,
     root: merkleFold([movieRouteKey(path12), String(Math.round(hue2)), endless ? "endless" : "once"]),
-    canvas: plasmaCanvas
+    canvas: plasmaCanvasFor(dark)
   };
 }
 function computedMovieThemeColors(matrix = buildMatrix(), path12 = "/", variant = "dark") {
@@ -38924,6 +39021,31 @@ function heroSvgPaletteFromUuid(uuid) {
     torusMid: scaleColor(byte(15), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA })
   };
 }
+function heroPlasmaBallLayer(cx, cy, byte) {
+  const hue2 = Math.round(byte(6) * 360 / 256);
+  const core = movieCanvasHex(hue2, { L: 7 / 8 });
+  const fil = movieCanvasHex((hue2 + 40) % 360, { L: 13 / 16 });
+  const n = 12;
+  const filaments = Array.from({ length: n }, (_, k) => {
+    const a = k / n * Math.PI * 2;
+    const r = 30 + byte(k) % 26;
+    const x2 = Math.round(cx + Math.cos(a) * r);
+    const y2 = Math.round(cy + Math.sin(a) * r);
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${3 + k % 5}.5s" begin="${k % 9 * 0.4 + 0.1}s" repeatCount="indefinite"/></line>`;
+  }).join("");
+  return `<g opacity="0.5">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="6s" repeatCount="indefinite"/></circle></g>`;
+}
+function heroFlowerOfLifeLayer(cx, cy, byte) {
+  const hue2 = Math.round(byte(9) * 360 / 256);
+  const stroke = movieCanvasHex(hue2, { L: 13 / 16 });
+  const R = 26;
+  const centers = [[0, 0], ...Array.from({ length: 6 }, (_, k) => {
+    const a = k / 6 * Math.PI * 2;
+    return [Math.cos(a) * R, Math.sin(a) * R];
+  })];
+  const circles = centers.map(([dx, dy]) => `<circle cx="${Math.round(dx)}" cy="${Math.round(dy)}" r="${R}" fill="none" stroke="${stroke}" stroke-width="1"/>`).join("");
+  return `<g transform="translate(${cx} ${cy})" opacity="0.26"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite" additive="sum"/>${circles}</g>`;
+}
 function heroSvgFromUuid(uuid) {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, "") || "8080808080808080";
   const byte = (k) => parseInt(hex.slice(k * 2 % 28, k * 2 % 28 + 2), 16) || 128;
@@ -38947,6 +39069,8 @@ function heroSvgFromUuid(uuid) {
     `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 13 / 16 })}"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W2}" height="${H}" rx="18" fill="url(#bg)"/>`,
+    heroFlowerOfLifeLayer(cx, cy, byte),
+    heroPlasmaBallLayer(cx, cy, byte),
     `<g>${bagua}</g>`,
     `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
     torus(cx - 60, 'from="0" to="360"', "0s"),
@@ -43240,7 +43364,7 @@ function navigation358() {
     { tier: 3, name: "arrive", items: [
       { label: "Home", route: "/", tip: "The promises, in plain words." },
       { label: "School", route: "/learn", tip: "Learn it from the ground up, at any age." },
-      { label: "Academy", route: "/academy", tip: "Five courses, a recomputable credential." }
+      { label: "Academy", route: "/learn", tip: "Five courses, a recomputable credential." }
     ] },
     { tier: 5, name: "use", items: [
       { label: "Console", route: "/console", tip: "Ask \u2014 it consults itself before answering." },
@@ -43261,13 +43385,34 @@ function navigation358() {
     ] }
   ];
   const items = tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })));
+  const builtSlugs = /* @__PURE__ */ new Set([
+    "",
+    "home",
+    ...staticPages().map((page) => page.slug),
+    ...componentPages().map((page) => page.slug),
+    ...ROSETTA_RAY_HUB_SLUGS,
+    ...Object.keys(ROUTE_ALIASES)
+  ]);
+  const routeResolves = (route) => {
+    const bare = route.replace(/^\//, "").replace(/#.*$/, "");
+    if (/\.(json|txt|webmanifest|xml|svg|png|ico)$/.test(bare)) return true;
+    return builtSlugs.has(bare);
+  };
+  const unresolved = items.filter((item) => !routeResolves(item.route));
+  const facets = [
+    { facet: "every nav route resolves to a built page or declared alias", on: unresolved.length === 0 },
+    { facet: "3-5-8 shape holds \u2014 the deep tier equals arrive + use", on: tiers[2].items.length === tiers[1].items.length + tiers[0].items.length }
+  ].map((entry2) => ({ ...entry2, receipt: toUuid(`nav358-facet:${entry2.facet}:${entry2.on}`) }));
   return {
     mapped: items.length === 16 && tiers[2].items.length === tiers[1].items.length + tiers[0].items.length,
     tiers,
     count: items.length,
+    facets,
+    routesResolve: facets[0].on,
+    unresolved: unresolved.map((item) => item.route),
     root: merkleFold(items.map((item) => toUuid(`nav358:${item.tier}:${item.label}`))),
-    statement: "Navigation in 3-5-8: three ways to arrive (home, school, academy), five to use (console, commands, mcp, show, mind), and eight to go deep (architecture, boundaries, governance, developer, mcp.json, llms.txt, digit-index, manifest) \u2014 every destination with a tooltip.",
-    boundary: "A navigation map of the portal organized in 3-5-8 tiers with tooltips. A guide over the real routes and artifacts."
+    statement: "Navigation in 3-5-8: three ways to arrive (home, school, academy), five to use (console, commands, mcp, show, mind), and eight to go deep (architecture, boundaries, governance, developer, mcp.json, llms.txt, digit-index, manifest) \u2014 every destination with a tooltip, and every route verified to resolve to a built page, a declared alias (/academy, /school \u2192 /learn), or a real dist artifact.",
+    boundary: "A navigation map of the portal organized in 3-5-8 tiers with tooltips. A guide over the real routes and artifacts; routesResolve recomputes the built-slug set at call time (staticPages + componentPages + ray-hubs + declared aliases + file artifacts), so a dangling link flips the facet."
   };
 }
 function multidimensionalSummaries(matrix = buildMatrix()) {
@@ -43383,7 +43528,7 @@ function learningPortal(matrix = buildMatrix()) {
     facets,
     root,
     statement: 'Merge and consolidate School and Academia into one auto-generated Learning Portal: the two overlapping education surfaces \u2014 the School age-ladder (kids\u2192elders) and the Academy tracks (the 42 areas in five courses, "the school elevated") \u2014 join the Academia research corpus (the math paths, the waves of scientists, the 432 proof papers), the self-test and the agent curriculum into a single portal. It is auto-generated \u2014 one section is derived per source fold, never hand-listed, each carrying its source root \u2014 so the portal offers three ways to learn (by age, by track, by research) plus assessment, and folds them to one content-addressed root.',
-    boundary: 'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time \u2014 complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/school, /academy, /papers and the quantum-mind sections).'
+    boundary: 'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time \u2014 complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/learn \u2014 the unified school+academy \u2014 /papers and the quantum-mind sections; /academy and /school remain as declared aliases of /learn).'
   };
 }
 function play(matrix = buildMatrix()) {
@@ -45991,7 +46136,7 @@ function professionals(matrix = buildMatrix()) {
         {
           profession: "Educator",
           capability: "all",
-          route: "/academy",
+          route: "/learn",
           task: "Teach a concept from one seed that unfolds the same palette, melody, and proof for every student.",
           why: "Reproducible and offline: identical for everyone, at no cost, on any device.",
           comparable: "open educational resources"
@@ -46304,8 +46449,8 @@ function staticPages() {
       slug: "learn-developer",
       title: { en: "The developer's mind", bg: "\u0423\u043C\u044A\u0442 \u043D\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430" },
       description: {
-        en: "The developer's mind: the receipt for learning to build on the double torus \u2014 the matrix, the commands, and the self-computing components \u2014 by reading the source that computes itself. Also available as part of the Academy (/academy).",
-        bg: "\u0423\u043C\u044A\u0442 \u043D\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430: \u0440\u0430\u0437\u043F\u0438\u0441\u043A\u0430 \u0437\u0430 \u0443\u0447\u0435\u043D\u0435 \u043A\u0430\u043A \u0434\u0430 \u0441\u0435 \u0433\u0440\u0430\u0434\u0438 \u0432\u044A\u0440\u0445\u0443 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440 \u2014 \u043C\u0430\u0442\u0440\u0438\u0446\u0430\u0442\u0430, \u043A\u043E\u043C\u0430\u043D\u0434\u0438\u0442\u0435 \u0438 \u0441\u0430\u043C\u043E-\u0438\u0437\u0447\u0438\u0441\u043B\u044F\u0432\u0430\u0449\u0438\u0442\u0435 \u0441\u0435 \u043A\u043E\u043C\u043F\u043E\u043D\u0435\u043D\u0442\u0438 \u2014 \u0447\u0435\u0442\u0435\u0439\u043A\u0438 \u043A\u043E\u0434\u0430, \u043A\u043E\u0439\u0442\u043E \u0441\u0435 \u0438\u0437\u0447\u0438\u0441\u043B\u044F\u0432\u0430 \u0441\u0430\u043C. \u041D\u0430\u043B\u0438\u0447\u043D\u043E \u0438 \u043A\u0430\u0442\u043E \u0447\u0430\u0441\u0442 \u043E\u0442 \u0410\u043A\u0430\u0434\u0435\u043C\u0438\u044F\u0442\u0430 (/academy)."
+        en: "The developer's mind: the receipt for learning to build on the double torus \u2014 the matrix, the commands, and the self-computing components \u2014 by reading the source that computes itself. Also available as part of the Academy (/learn).",
+        bg: "\u0423\u043C\u044A\u0442 \u043D\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430: \u0440\u0430\u0437\u043F\u0438\u0441\u043A\u0430 \u0437\u0430 \u0443\u0447\u0435\u043D\u0435 \u043A\u0430\u043A \u0434\u0430 \u0441\u0435 \u0433\u0440\u0430\u0434\u0438 \u0432\u044A\u0440\u0445\u0443 \u0434\u0432\u043E\u0439\u043D\u0438\u044F \u0442\u043E\u0440 \u2014 \u043C\u0430\u0442\u0440\u0438\u0446\u0430\u0442\u0430, \u043A\u043E\u043C\u0430\u043D\u0434\u0438\u0442\u0435 \u0438 \u0441\u0430\u043C\u043E-\u0438\u0437\u0447\u0438\u0441\u043B\u044F\u0432\u0430\u0449\u0438\u0442\u0435 \u0441\u0435 \u043A\u043E\u043C\u043F\u043E\u043D\u0435\u043D\u0442\u0438 \u2014 \u0447\u0435\u0442\u0435\u0439\u043A\u0438 \u043A\u043E\u0434\u0430, \u043A\u043E\u0439\u0442\u043E \u0441\u0435 \u0438\u0437\u0447\u0438\u0441\u043B\u044F\u0432\u0430 \u0441\u0430\u043C. \u041D\u0430\u043B\u0438\u0447\u043D\u043E \u0438 \u043A\u0430\u0442\u043E \u0447\u0430\u0441\u0442 \u043E\u0442 \u0410\u043A\u0430\u0434\u0435\u043C\u0438\u044F\u0442\u0430 (/learn)."
       },
       keywords: ["developer", "learn", "build", "source", "components", "academy"],
       components: ["LearnDeveloper"]
@@ -55353,6 +55498,8 @@ export {
   ROSETTA_GUIDED_WAVE_ONE_APPLIED,
   ROSETTA_GUIDED_WAVE_TWO_APPLIED,
   ROSETTA_RAYS,
+  ROSETTA_RAY_HUBS,
+  ROSETTA_RAY_HUB_SLUGS,
   ROSETTA_WIND_REGISTRY_TAILS,
   SCHUMANN_FUNDAMENTAL_HZ,
   SCHUMANN_HARMONICS_HZ,
@@ -56674,6 +56821,7 @@ export {
   rnot,
   roadmaps,
   rollingZScores,
+  rosettaBreadcrumbs,
   rosettaCanonicalImportPath,
   rosettaCodec,
   rosettaComputes,
@@ -56691,6 +56839,7 @@ export {
   rosettaIChingTrinityPlacesAllTools,
   rosettaImprovesDictationAndDialects,
   rosettaPerspectiveFold,
+  rosettaRayHub,
   rosettaRayOf,
   rosettaReuse,
   rotate3,
@@ -56734,6 +56883,7 @@ export {
   saveSkillsComputeImplementWaves,
   scaleColor,
   scanCssForHardcoded,
+  scanVueForHardcoded,
   schemaOrgDiamonds,
   schoolCurriculum,
   schumannGoldSiteCouplingAt,

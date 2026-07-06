@@ -1,5 +1,6 @@
 import type { MindMatrix } from '../../types';
 import { type LocaleName, type PageForgeSeal } from '../../site';
+import { type RosettaRayHub } from '../../../water/digit';
 import type { CorpusKind } from '../../../quantum/heaven/mind';
 import { type ComponentCrosslink } from '../../learning';
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
@@ -448,6 +449,26 @@ export declare function cardHeroLinkWiresInUi(matrix?: MindMatrix): {
     boundary: string;
 };
 export declare function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix?: MindMatrix): CorpusGridItem[];
+export type RosettaBreadcrumb = {
+    label: string;
+    labelBg: string;
+    glyph: string;
+    route: string;
+    current: boolean;
+};
+/** Breadcrumb trail computed from rosettaComputesAll: Home (Alpha) → ray-hub → current page. The ray-hub IA
+ * derives from the sealed rosetta tables (slug → ray → hub); a ray-hub landing has an EXPLICIT ray, every other
+ * route folds to its hub by the Glagolitic-ladder digital root. The taxonomy is an organizing lens, not metaphysics. */
+export declare function rosettaBreadcrumbs(route: string, at?: number, matrix?: MindMatrix): {
+    route: string;
+    ray: number;
+    hub: RosettaRayHub;
+    onHub: boolean;
+    trail: RosettaBreadcrumb[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** One fold per route — hero, rosetta groups, corpus, or catch-all monograph. */
 export declare function computeUniversalPage(route: string, params?: Record<string, unknown>, matrix?: MindMatrix): UniversalPage;
 export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount';

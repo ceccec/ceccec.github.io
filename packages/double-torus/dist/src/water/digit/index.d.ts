@@ -1,6 +1,6 @@
 import type { MindMatrix } from '../../wind/types';
 import { type RosettaComputationType } from '../../3/7';
-export { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7';
+export { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, type RosettaComputationType, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7';
 export declare function zeroDivisionTable(matrix?: MindMatrix): {
     holds: boolean;
     base: number;

@@ -111,6 +111,10 @@ export declare function zeitwerkPort(slug?: string): {
     boundary: string;
 };
 export declare function indexOfIndexes(projectRoot?: string): readonly import("../../../pair/enforcement/gates/computational").DiscoveredIndexEntry[];
+/** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
+ * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
+ * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
+export declare const ROUTE_ALIASES: Record<string, string>;
 export declare function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg'): {
     params: {
         path: string;

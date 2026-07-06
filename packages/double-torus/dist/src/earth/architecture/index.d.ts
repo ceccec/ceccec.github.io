@@ -826,6 +826,8 @@ export declare function ichingTokensCss(): string;
 /** @rosetta ✦₀ · Heaven · creative */
 export declare function scanCssForHardcoded(css: string): string[];
 /** @rosetta ✦₀ · Heaven · creative */
+export declare function scanVueForHardcoded(vue: string): string[];
+/** @rosetta ✦₀ · Heaven · creative */
 export declare function cssIsIChingComputed(matrix?: {
     root: string;
 }): {

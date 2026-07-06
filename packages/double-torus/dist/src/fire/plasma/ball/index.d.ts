@@ -89,6 +89,8 @@ export type PlasmaMoviePalette = {
     soft: string;
     card: string;
     glow: string;
+    /** Resolved field polarity — true paints the sealed dark-field look, false the legible light-field variant. */
+    dark: boolean;
     root: string;
     canvas: {
         tagLine(hue: number, persp: number): string;
@@ -111,7 +113,7 @@ export type PlasmaMoviePalette = {
     };
 };
 /** One OKLCH palette per route — seeds the page canvas and glass chrome. */
-export declare function plasmaMoviePalette(matrix?: MindMatrix, path?: string, endless?: boolean): PlasmaMoviePalette;
+export declare function plasmaMoviePalette(matrix?: MindMatrix, path?: string, endless?: boolean, dark?: boolean): PlasmaMoviePalette;
 /** Theme + background colour for a route (manifest/favicon/SVG). Hex, dark by default. */
 export declare function computedMovieThemeColors(matrix?: MindMatrix, path?: string, variant?: 'dark' | 'light'): {
     hue: number;

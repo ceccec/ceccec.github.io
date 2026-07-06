@@ -175,6 +175,13 @@ export declare function navigation358(): {
         }[];
     }[];
     count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    routesResolve: boolean;
+    unresolved: string[];
     root: string;
     statement: string;
     boundary: string;

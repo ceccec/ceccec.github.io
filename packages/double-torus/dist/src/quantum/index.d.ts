@@ -78,6 +78,8 @@ export interface SharedHeroState {
     wiredStreams: readonly PlasmaWiredStream[];
     palette: PlasmaMoviePalette;
     reduce: boolean;
+    /** Resolved field polarity at this instant — false repaints the plasma legibly on a light field. */
+    dark: boolean;
     cssWidth: number;
     /** Content-address of the field's identity (route + folded copy + seed). */
     root: string;
@@ -139,7 +141,7 @@ export interface RosettaPerspective {
  */
 export declare function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective;
 export { HERO_CYCLE_MS } from '../fire/plasma/ball';
-export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean): SharedHeroState;
+export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean): SharedHeroState;
 /** Page copy folded to one movie/subtitle seed string. */
 export declare function movieTextFromCopy(copy: SharedHeroCopy): string;
 /** One subtitle cue at instant `at` — same phase clock as `sharedHeroAt`. */
