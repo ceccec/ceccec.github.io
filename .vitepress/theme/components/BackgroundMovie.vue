@@ -40,7 +40,10 @@ const { repaint } = useVisibleMovieCanvas({
   measure: () => viewportSize(),
   paint: (ctx, w, h, atMs) => {
     at.value = atMs
-    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value)
+    // The field lives in DOCUMENT space; the fixed canvas is a camera, so the live scroll offset is
+    // part of the field state (heroFieldCenterY pans the void 1:1, wrapping toroidally off-canvas).
+    const scroll = typeof window === 'undefined' ? 0 : window.scrollY
+    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value, scroll)
     drawHeroMovieFrame(ctx, w, h, shared)
   },
 })
@@ -48,6 +51,8 @@ const { repaint } = useVisibleMovieCanvas({
 watch(() => route.path, () => nextTick(repaint))
 watch(copy, () => repaint(), { deep: true })
 // Repaint immediately on theme toggle so the still frame (reduced motion) also swaps light/dark variants.
+// NO scroll listener: the one hero clock ticks every visible canvas, and the paint reads window.scrollY
+// inside the tick — a separate listener would be a process OUTSIDE the sequence (the overload pattern).
 watch(isDark, () => repaint())
 </script>
 

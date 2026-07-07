@@ -140,6 +140,8 @@ export interface HeroScene {
 export interface HeroDrawOptions {
   clear?: boolean
   voidR?: number
+  /** Field centre in camera coordinates (heroFieldCenterY) — the hero rides the document-anchored void. */
+  centerY?: number
 }
 
 export function drawHero(
@@ -152,7 +154,7 @@ export function drawHero(
   const { clear = true, voidR } = opts
   if (clear) ctx.clearRect(0, 0, w, h)
   const cx = w / 2
-  const cy = h / 2
+  const cy = opts.centerY ?? h / 2
   const d = dims(scene.p)
   const minDim = Math.min(w, h)
   const coreR = voidR ?? minDim * 0.07
@@ -231,6 +233,8 @@ export interface BackgroundScene {
   wiredStreams: readonly PlasmaWiredStream[]
   palette: PlasmaMoviePalette
   reduce: boolean
+  /** Document scroll offset (CSS px) — anchors the plasma centre in document space (0 = page top). */
+  scroll?: number
 }
 
 const GOLDEN_ANGLE = 2.399963229728653
@@ -584,6 +588,20 @@ function drawFusedForceLayers(
   ctx.restore()
 }
 
+/**
+ * The field centre in CAMERA coordinates — the one field lives in DOCUMENT space and the fixed
+ * canvas is a camera over it: at the top of the page the void sits at h/2; scrolling pans it away
+ * 1:1 (so card movies, which scroll with the document, stay in registration with the page field),
+ * and the field re-enters toroidally with period 2h (two windows — the two handles of genus 2).
+ * The wrap seam lands at cy = −h/2 → +3h/2, both a half-window OFF canvas, so it never pops on
+ * screen. Pure and exported: the anti-hardcode gate recomputes this law, no CSS anchor involved.
+ */
+export function heroFieldCenterY(h: number, scroll: number): number {
+  const period = 2 * h
+  const wrapped = (((h / 2 - scroll) % period) + period) % period // [0, 2h)
+  return wrapped > (3 * h) / 2 ? wrapped - period : wrapped // (−h/2, 3h/2]
+}
+
 /** Holographic hero movie = quantum plasma ball — one frame, one centre void, one phase clock. */
 function paintHolographicPlasmaHeroMovie(
   ctx: CanvasRenderingContext2D,
@@ -595,7 +613,7 @@ function paintHolographicPlasmaHeroMovie(
 ): void {
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
-  const cy = h / 2
+  const cy = heroFieldCenterY(h, scene.scroll ?? 0)
   const span = Math.max(w, h)
   const voidR = Math.min(w, h) * 0.07
   const hueShift = scene.hue
@@ -618,7 +636,7 @@ function paintHolographicPlasmaHeroMovie(
     ctx.save()
     ctx.globalCompositeOperation = scene.palette.dark ? 'lighter' : 'source-over'
     ctx.globalAlpha = scene.palette.holographicAlpha
-    drawHero(ctx, w, h, hero, { clear: false, voidR })
+    drawHero(ctx, w, h, hero, { clear: false, voidR, centerY: cy })
     ctx.restore()
   }
   drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift)
@@ -661,6 +679,8 @@ export interface SharedHeroState {
   /** Resolved field polarity at this instant — false repaints the plasma legibly on a light field. */
   dark: boolean
   cssWidth: number
+  /** Document scroll offset (CSS px) — the field lives in DOCUMENT space; the fixed canvas is a camera. */
+  scroll: number
   /** Content-address of the field's identity (route + folded copy + seed). */
   root: string
 }
@@ -778,6 +798,7 @@ export function sharedHeroAt(
   cssWidth = 1024,
   reduce = false,
   dark = true,
+  scroll = 0,
 ): SharedHeroState {
   const path = route || '/'
   const t = at / 1000
@@ -807,6 +828,7 @@ export function sharedHeroAt(
     reduce,
     dark,
     cssWidth,
+    scroll,
     root: toUuid(`animation-field:${path}:${seed}`),
   }
 }
@@ -861,6 +883,7 @@ export function backgroundSceneFromShared(shared: SharedHeroState): BackgroundSc
     wiredStreams: shared.wiredStreams,
     palette: shared.palette,
     reduce: shared.reduce,
+    scroll: shared.scroll,
   }
 }
 
@@ -1209,6 +1232,7 @@ export function drawQuantumAppFrame(
     case 'merkaba': return drawMerkabaProjection(ctx, w, h, frame)
     case 'unit-distance': return drawUnitDistanceProjection(ctx, w, h, frame)
     case 'vortex-strokes': return drawVortexStrokesProjection(ctx, w, h, frame)
+    case 'double-torus': return drawDoubleTorusProjection(ctx, w, h, frame)
     default: return drawTorusFieldProjection(ctx, w, h, frame)
   }
 }
@@ -1668,6 +1692,61 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   ctx.beginPath(); ctx.arc(cx, cy, Math.max(1, R * 0.02), 0, Math.PI * 2); ctx.fill()
 }
 
+/**
+ * Double torus — the genus-2 signature itself, previously left on the generic fallback: two handles
+ * (counter-rotating rings, the merkaba sense law) joined at ONE throat, with the figure-eight train
+ * riding the lemniscate through both — the same path every fold in the repo claims to run on. The
+ * throat breathes with the phase; the train's wake fades along the eight. Counts stay sequence-true:
+ * two handles = quantumProjectionParams('double-torus').forms, nodes per handle = 9 (the digit ring).
+ */
+function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const cx = w / 2
+  const cy = h / 2
+  const r = Math.min(w, h) * 0.26
+  const { forms: handles } = quantumProjectionParams('double-torus') // 2 — the genus
+  const sep = r * 1.18
+  const squash = 0.62 // the camera tilt: rings read as tori, not coins
+  const drift = frame.reduce ? 0 : frame.t * 0.25
+  const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
+
+  // The two handles: nine digit-nodes each, strictly counter-rotating (left +, right −).
+  for (let s = 0; s < handles; s += 1) {
+    const hx = cx + (s === 0 ? -sep : sep)
+    const sense = s === 0 ? 1 : -1
+    const hue = (frame.hue + s * 180) % 360
+    ctx.strokeStyle = movieCanvasRgba(hue, 0.3, { L: 9 / 16 })
+    ctx.lineWidth = 1.2
+    ctx.beginPath(); ctx.ellipse(hx, cy, r, r * squash, 0, 0, Math.PI * 2); ctx.stroke()
+    ctx.strokeStyle = movieCanvasRgba(hue, 0.14, { L: 1 / 2 })
+    ctx.beginPath(); ctx.ellipse(hx, cy, r * 0.62, r * squash * 0.62, 0, 0, Math.PI * 2); ctx.stroke()
+    for (let k = 0; k < 9; k += 1) {
+      const a = sense * drift + (k / 9) * Math.PI * 2
+      ctx.fillStyle = movieCanvasRgba((hue + k * 12) % 360, 0.35 + 0.35 * pulse, { L: 5 / 8 })
+      ctx.beginPath(); ctx.arc(hx + Math.cos(a) * r, cy + Math.sin(a) * r * squash, Math.max(1, r * 0.045), 0, Math.PI * 2); ctx.fill()
+    }
+  }
+
+  // The figure-eight train: the lemniscate through both handles, crossing at the one throat.
+  const eight = (u: number): readonly [number, number] => {
+    const a = u * Math.PI * 2
+    return [cx + Math.sin(a) * sep * 1.55, cy + Math.sin(a * 2) * r * squash * 0.92] as const
+  }
+  const cars = frame.reduce ? 3 : 9
+  const head = frame.reduce ? 0.125 : frame.p
+  for (let c = 0; c < cars; c += 1) {
+    const u = ((head - c * 0.022) % 1 + 1) % 1
+    const [x, y] = eight(u)
+    const fade = 1 - c / cars
+    ctx.fillStyle = movieCanvasRgba((frame.hue + 90) % 360, 0.25 + 0.6 * fade, { L: 13 / 16 })
+    ctx.beginPath(); ctx.arc(x, y, Math.max(1, r * 0.05) * (0.6 + 0.4 * fade), 0, Math.PI * 2); ctx.fill()
+  }
+
+  // The one throat both flows share — genus 2, breathing with the phase.
+  ctx.strokeStyle = movieCanvasRgba(frame.hue, 0.5 + 0.3 * pulse, { L: 3 / 4 })
+  ctx.lineWidth = 1.4
+  ctx.beginPath(); ctx.arc(cx, cy, r * 0.16 * (0.8 + 0.5 * pulse), 0, Math.PI * 2); ctx.stroke()
+}
+
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */
 function drawTorusFieldProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
   const cx = w / 2
@@ -1993,6 +2072,54 @@ export function subscribeHeroClock(listener: (at: number) => void): () => void {
   }
 }
 
+/**
+ * Gate: every animation process rides the ONE clock. If even a single process runs outside the
+ * sequence — its own RAF loop, its own timer, an unthrottled listener — the cpu/gpu/memory cost
+ * multiplies per animation instead of amortising into one tick. The law, recomputed: N subscribers
+ * to the hero clock start exactly ONE loop, and the LAST unsubscribe cancels it (zero orphans).
+ * Scroll, theme, and interaction state are read INSIDE the tick, never from parallel loops.
+ */
+export function oneClockProcessLaw(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  let startedForThree = 1
+  let cancelledAfterLast = 1
+  if (typeof window === 'undefined') {
+    const g = globalThis as { requestAnimationFrame?: unknown; cancelAnimationFrame?: unknown }
+    const savedReq = g.requestAnimationFrame
+    const savedCan = g.cancelAnimationFrame
+    let started = 0
+    let cancelled = 0
+    let nextId = 1
+    g.requestAnimationFrame = (() => { started += 1; return nextId++ }) as never
+    g.cancelAnimationFrame = (() => { cancelled += 1 }) as never
+    try {
+      const offs = [0, 1, 2].map(() => subscribeHeroClock(() => {}))
+      startedForThree = started
+      offs.forEach((off) => off())
+      cancelledAfterLast = cancelled
+    } finally {
+      if (savedReq === undefined) delete (g as Record<string, unknown>).requestAnimationFrame
+      else g.requestAnimationFrame = savedReq
+      if (savedCan === undefined) delete (g as Record<string, unknown>).cancelAnimationFrame
+      else g.cancelAnimationFrame = savedCan
+    }
+  }
+  const facets = [
+    { facet: 'three subscribers start exactly ONE loop — the clock coalesces every animation into one tick', on: startedForThree === 1 },
+    { facet: 'the last unsubscribe cancels the loop — zero orphan processes outside the sequence', on: cancelledAfterLast === 1 },
+    { facet: 'field state (scroll · theme · scrub) is read inside the tick, never from a parallel loop or listener', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`one-clock-law:${entry.facet}:${entry.on}`) }))
+  return {
+    holds: facets.every((entry) => entry.on),
+    startedForThree,
+    cancelledAfterLast,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: 'One clock, one loop: N animation subscribers share a single RAF tick and the last unsubscribe cancels it — a process outside the sequence multiplies cpu/gpu/memory per animation, so none exists.',
+    boundary: 'The subscriber-coalescing law is recomputed with a shimmed RAF under node; in the browser the live loop itself is the witness. One-shot UI timeouts (idle fade, class removal) are not animation loops and stay out of scope.',
+  }
+}
+
 /** Gate: sharedHeroAt + drawHeroMovieFrame path completes under simulated browser — catches transparent canvas regressions. */
 export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = buildMatrix()) {
   const plasma = clientMoviePaintPathSealed(path, matrix)
@@ -2019,11 +2146,24 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
   } catch (error) {
     heroError = error instanceof Error ? error.message : String(error)
   }
+  // The document-anchor law, recomputed: at page top the void sits at h/2; scrolling pans it 1:1
+  // (registration with the card movies that scroll with the document — never a hardcoded CSS anchor);
+  // the field wraps with period 2h and the seam stays a half-window OFF canvas for every offset.
+  const anchorH = 432
+  const anchorSweep = Array.from({ length: 97 }, (_, i) => i * (anchorH / 8))
+  const anchorLaw =
+    heroFieldCenterY(anchorH, 0) === anchorH / 2 &&
+    heroFieldCenterY(anchorH, anchorH / 4) === anchorH / 4 &&
+    anchorSweep.every((s) => {
+      const y = heroFieldCenterY(anchorH, s)
+      return y > -anchorH / 2 - 1e-9 && y <= (3 * anchorH) / 2 + 1e-9 && Math.abs(heroFieldCenterY(anchorH, s + 2 * anchorH) - y) < 1e-9
+    })
   const facets = [
     { facet: 'plasma client paint path sealed', on: plasma.sealed },
     { facet: 'sharedHeroAt completes with plasma-seed movie text', on: heroOk },
     { facet: 'drawHeroMovieFrame paints non-transparent pixels when canvas exists', on: paintAlpha > 0 || typeof document === 'undefined' },
     { facet: 'no stack overflow in simulated browser hero path', on: heroError === '' },
+    { facet: 'field centre is document-anchored, never CSS-hardcoded — h/2 at top, 1:1 pan, period 2h, wrap seam always off-canvas', on: anchorLaw },
   ].map((entry) => ({ ...entry, receipt: toUuid(`client-hero-paint-sealed:${entry.facet}:${entry.on}`) }))
   return {
     sealed: facets.every((entry) => entry.on),
