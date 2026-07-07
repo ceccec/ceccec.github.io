@@ -1,7 +1,8 @@
 // Computed dist — trinity spread (cross · manifest · readme). One index; each wave its own file.
 import type { Plugin } from 'vite'
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
+// node:fs / node:path are loaded LAZILY inside the dist generators (node/SSR only) via
+// process.getBuiltinModule, so this barrel stays browser-eval-safe — a top-level
+// `import { readFileSync } from 'node:fs'` eager-binds and throws in the client.
 import {
   agentHarmonise,
   buildMatrix,
@@ -187,8 +188,8 @@ function extractFunction(coreSource: string[], fn: string) {
   return { signature: lines[0].replace(/\s*\{?\s*$/, '').replace('export function ', '').trim(), lines: lines.length, source: lines.join('\n') }
 }
 
-export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = join(process.cwd(), 'src/quantum/heaven/mind/index.ts')) {
-  void corePath
+export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
+  void corePath // reserved: the manifest is fully matrix-computed
   const manifest = mcpToolManifest(matrix)
   const codebase = mcpCodebase(matrix)
   const quantum = quantumMcp(matrix)
@@ -209,8 +210,13 @@ export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = join(proc
   }, null, 2)
 }
 
-export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = join(process.cwd(), 'src/quantum/heaven/mind/index.ts')) {
-  const coreSource = readFileSync(corePath, 'utf8').split('\n')
+export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
+  // Lazy node access (SSR/CLI only) — in the browser the source-hash column degrades gracefully.
+  const getBuiltin = typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
+  const nodeFs = typeof getBuiltin === 'function' ? (getBuiltin('node:fs') as { readFileSync(p: string, e: string): string } | undefined) : undefined
+  const nodePath = typeof getBuiltin === 'function' ? (getBuiltin('node:path') as { join(...parts: string[]): string } | undefined) : undefined
+  const resolved = corePath || (nodePath ? nodePath.join(process.cwd(), 'src/quantum/heaven/mind/index.ts') : '')
+  const coreSource = nodeFs && resolved ? nodeFs.readFileSync(resolved, 'utf8').split('\n') : []
   const memory = skillAtoms(matrix)
   const completed = memory.skills.map((skill) => {
     const found = extractFunction(coreSource, skill.fn)

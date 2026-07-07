@@ -37,7 +37,7 @@ async function loadCli(): Promise<Record<string, unknown>> {
   const keyFile = join(dir, `${safe}.key`)
 
   if (existsSync(bundle) && existsSync(keyFile) && readFileSync(keyFile, 'utf8') === merkle) {
-    return (await import(pathToFileURL(bundle).href)) as Record<string, unknown>
+    return (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
   }
 
   const built = await require('esbuild').build({
@@ -51,7 +51,7 @@ async function loadCli(): Promise<Record<string, unknown>> {
   mkdirSync(dir, { recursive: true })
   writeFileSync(bundle, built.outputFiles[0].text)
   writeFileSync(keyFile, merkle)
-  return (await import(pathToFileURL(bundle).href)) as Record<string, unknown>
+  return (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
 }
 
 export async function runBootstrapCliExit(argv: readonly string[] = []): Promise<number> {

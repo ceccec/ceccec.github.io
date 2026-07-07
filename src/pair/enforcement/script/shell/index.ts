@@ -192,7 +192,7 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
   }
 
   logDocsBuildPhase('build-lock', 'import .vitepress/build-lock.mjs')
-  const lockMod = (await import(pathToFileURL(join(root, '.vitepress/build-lock.mjs')).href)) as BuildLock
+  const lockMod = (await import(/* @vite-ignore */ pathToFileURL(join(root, '.vitepress/build-lock.mjs')).href)) as BuildLock
   const { acquireBuildLock, releaseBuildLock, BUILD_LOCK_HARMONIC_MS, BUILD_LOCK_TRINITY_CYCLES } = lockMod
   const cli = parseTimeoutCliArgs([...argv])
   const buildTimeoutMs = resolveScriptTimeoutMs('build', cli)

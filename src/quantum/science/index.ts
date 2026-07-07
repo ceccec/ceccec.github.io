@@ -11,7 +11,7 @@ import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI } from '../../3/7'
 import { gcd } from '../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../pair/enforcement/gates/strict/scan'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
 // frequencyToLight / A432_HUE / GOLDEN_ANGLE live in the zero-import leaf src/3/7 (beside SPEED_OF_LIGHT) so the
 // brand-anchor const initialises before any cyclic barrel, then re-export here for the canonical public path.
 export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'

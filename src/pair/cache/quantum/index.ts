@@ -194,7 +194,7 @@ export async function importQuantumBundle(entryRel: string, root: string): Promi
   if (!existsSync(entry)) throw new Error(`bundle entry missing: ${entryRel}`)
   const { dir, bundle, key: keyFile } = cachePaths(root, entryRel)
   if (existsSync(bundle) && existsSync(keyFile) && readFileSync(keyFile, 'utf8') === merkle) {
-    const mod = (await import(pathToFileURL(bundle).href)) as Record<string, unknown>
+    const mod = (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
     memory.set(key, mod)
     return mod
   }
@@ -204,7 +204,7 @@ export async function importQuantumBundle(entryRel: string, root: string): Promi
   mkdirSync(dir, { recursive: true })
   writeFileSync(bundle, text)
   writeFileSync(keyFile, merkle)
-  const mod = (await import(pathToFileURL(bundle).href)) as Record<string, unknown>
+  const mod = (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
   memory.set(key, mod)
   return mod
 }
