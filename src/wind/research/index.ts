@@ -6,6 +6,7 @@ import * as __ns_up_quantum_application from '../../quantum/application'
 import * as __ns_up_pair_enforcement_gates_computational from '../../pair/enforcement/gates/computational'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
+import { quantumProjectionParams } from '../../quantum/apps'
 import { computesGate, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
 
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN'
@@ -567,11 +568,13 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
     const tower = unitDistanceTowerNumbers(crossover ?? 1791)
     const report = unitDistanceDelta(tower.ell, 1)
     const grid = unitDistanceGridBaseline(100_000)
+    const projection = quantumProjectionParams('unit-distance')
     const { computes, facets, root } = computesGate('unit-distance-research', [
       { facet: 'exact bookkeeping — conductor and rd(F) from the first ℓ primes ≡ 1 (mod 3)', on: tower.logRootDiscriminant > 0 && tower.largestAuxPrime % 3 === 1 },
       { facet: 'GS relation budget — margin d²/4 − d − C0 − 3t > 0 at the γ-crossover', on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
       { facet: 'γ crossover exists — minimal ℓ with γ > 0 found below the sieve bound', on: crossover !== null && report.gamma > 0 },
       { facet: 'δ positive and honestly tiny — 0 < δ < 1e-4 in both Q readings', on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
+      { facet: 'animation projection registered — pro-3 layers and channel count derive from the sequence', on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === 10 },
       { facet: 'NOT proof verification — bookkeeping and flagged heuristics only', on: true },
     ])
     return {
@@ -581,9 +584,10 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
       tower,
       report,
       grid,
+      projection,
       findings: UNIT_DISTANCE_FINDINGS,
       facets,
-      root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, ...UNIT_DISTANCE_FINDINGS.map((row) => row.receipt)]),
+      root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, projection.root, ...UNIT_DISTANCE_FINDINGS.map((row) => row.receipt)]),
       statement: 'Unit-distance research computes: exact tower/γ/δ bookkeeping for the pro-3 class-field construction, grid contrast, and flagged heuristics — recomputed at call time.',
       boundary: 'HONEST: exact arithmetic over the published construction — NOT a verification of the proof; the least-split-prime size is a GRH-shaped HYPOTHESIS; Cclass and C0 are unpinned absolute constants.',
     }

@@ -1207,6 +1207,7 @@ export function drawQuantumAppFrame(
     case 'labyrinth': return drawLabyrinthProjection(ctx, w, h, frame)
     case 'movie-10d': return drawMovie10dProjection(ctx, w, h, frame)
     case 'merkaba': return drawMerkabaProjection(ctx, w, h, frame)
+    case 'unit-distance': return drawUnitDistanceProjection(ctx, w, h, frame)
     default: return drawTorusFieldProjection(ctx, w, h, frame)
   }
 }
@@ -1477,6 +1478,91 @@ function drawMerkabaProjection(ctx: CanvasRenderingContext2D, w: number, h: numb
   const a = frame.reduce ? 0.4 : frame.t * 0.5
   drawSolid3D(ctx, cx, cy, R, upTetra, a, a * 0.7, 0, frame.hue, 0.85)
   drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * 0.7, 0, (frame.hue + 180) % 360, 0.7)
+}
+
+/**
+ * Unit-distance tower — the class-field construction as a movie: three pro-3 layers (3, 9, 27 nodes)
+ * slowly counter-rotating, seven split-prime channels threading STRAIGHT through every layer (complete
+ * splitting forced by killing Frobenius in the Frattini subgroup — the channels never bend), the
+ * two-disc lens of the averaging step breathing at the centre (ρ_R → 1), and equal unit chords
+ * sparking on the outer layer (the harvested ν(P) pairs). Counts come from quantumProjectionParams
+ * ('unit-distance': segments 3, forms 7). HONEST: a structural movie of the tower bookkeeping in
+ * src/wind/research (unitDistanceResearch) — NOT the proof, and not to scale (real ℓ* ≈ 1791).
+ */
+function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const cx = w / 2
+  const cy = h / 2
+  const R0 = Math.min(w, h) * 0.44
+  const layers = 3 // VORTEX_SEQUENCE slot 6 — the pro-3 tower layers F₁ ⊂ F₂ ⊂ F₃
+  const channels = 7 // rosetta-sized sample of the t split primes
+  const drift = frame.reduce ? 0 : frame.t * 0.12
+  const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
+
+  // Tower layers: ring j holds 3^j nodes; alternating rotation sense — the tower breathes, the channels do not.
+  for (let j = 1; j <= layers; j += 1) {
+    const r = R0 * (0.28 + (0.66 * j) / layers)
+    const nodes = 3 ** j
+    const theta = drift * (j % 2 === 0 ? -1 : 1) / j
+    const hue = (frame.hue + j * 18) % 360
+    ctx.strokeStyle = movieCanvasRgba(hue, 0.22, { L: 1 / 2 })
+    ctx.lineWidth = 1
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
+    for (let k = 0; k < nodes; k += 1) {
+      const a = theta + (k / nodes) * Math.PI * 2
+      const x = cx + Math.cos(a) * r
+      const y = cy + Math.sin(a) * r
+      ctx.fillStyle = movieCanvasRgba(hue, 0.35 + 0.3 * pulse, { L: 5 / 8 })
+      ctx.beginPath(); ctx.arc(x, y, Math.max(0.8, R0 * 0.014), 0, Math.PI * 2); ctx.fill()
+    }
+  }
+
+  // Split-prime channels: straight rays crossing every layer — Frobenius killed, the alignment never breaks.
+  for (let c = 0; c < channels; c += 1) {
+    const a = (c / channels) * Math.PI * 2 + Math.PI / channels
+    const glow = 0.3 + 0.45 * (0.5 + 0.5 * Math.sin(frame.p * Math.PI * 2 + c))
+    ctx.strokeStyle = movieCanvasRgba((frame.hue + 180 + c * 8) % 360, glow, { L: 11 / 16 })
+    ctx.lineWidth = 1.4
+    ctx.beginPath()
+    ctx.moveTo(cx + Math.cos(a) * R0 * 0.3, cy + Math.sin(a) * R0 * 0.3)
+    ctx.lineTo(cx + Math.cos(a) * R0 * 0.96, cy + Math.sin(a) * R0 * 0.96)
+    ctx.stroke()
+    for (let j = 1; j <= layers; j += 1) {
+      const r = R0 * (0.28 + (0.66 * j) / layers)
+      ctx.fillStyle = movieCanvasRgba((frame.hue + 180 + c * 8) % 360, glow, { L: 3 / 4 })
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r, Math.max(1, R0 * 0.02), 0, Math.PI * 2); ctx.fill()
+    }
+  }
+
+  // The averaging lens: two unit-separated discs, radius breathing with the phase; the overlap is the harvest.
+  const lensR = R0 * 0.13 * (0.85 + 0.5 * pulse)
+  const sep = R0 * 0.11
+  const lens = (dx: number) => { ctx.beginPath(); ctx.arc(cx + dx, cy, lensR, 0, Math.PI * 2) }
+  ctx.strokeStyle = movieCanvasRgba(frame.hue, 0.55, { L: 5 / 8 })
+  ctx.lineWidth = 1.2
+  lens(-sep / 2); ctx.stroke()
+  lens(sep / 2); ctx.stroke()
+  ctx.save()
+  lens(-sep / 2); ctx.clip()
+  ctx.fillStyle = movieCanvasRgba((frame.hue + 180) % 360, 0.28 + 0.4 * pulse, { L: 3 / 4 })
+  lens(sep / 2); ctx.fill()
+  ctx.restore()
+
+  // Unit chords on the outer layer: equal-length pairs lighting up in sequence — the ν(P) count.
+  const outerR = R0 * 0.94
+  const outerNodes = 3 ** layers
+  const lit = frame.reduce ? 3 : 1 + Math.floor(pulse * 5)
+  const span = 3 // constant arc-step ⇒ constant chord length: every lit chord is the SAME distance
+  for (let s = 0; s < lit; s += 1) {
+    const k = (Math.floor(frame.t * 2) * 5 + s * 4) % outerNodes
+    const a1 = (k / outerNodes) * Math.PI * 2 + drift / layers * (layers % 2 === 0 ? -1 : 1)
+    const a2 = ((k + span) / outerNodes) * Math.PI * 2 + drift / layers * (layers % 2 === 0 ? -1 : 1)
+    ctx.strokeStyle = movieCanvasRgba((frame.hue + 90) % 360, 0.75, { L: 13 / 16 })
+    ctx.lineWidth = 1.6
+    ctx.beginPath()
+    ctx.moveTo(cx + Math.cos(a1) * outerR, cy + Math.sin(a1) * outerR)
+    ctx.lineTo(cx + Math.cos(a2) * outerR, cy + Math.sin(a2) * outerR)
+    ctx.stroke()
+  }
 }
 
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */

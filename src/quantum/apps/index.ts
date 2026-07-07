@@ -18,6 +18,7 @@ export type QuantumProjection =
   | 'living-torus'
   | 'merkaba'
   | 'double-torus'
+  | 'unit-distance'
 
 export type QuantumAppEntry = {
   readonly id: string
@@ -54,11 +55,13 @@ export type QuantumProjectionParams = {
 const PROJECTION_SEGMENT_SLOT: Record<QuantumProjection, number> = {
   plasma: 0, taiji: 1, 'sacred-morph': 2, hologram: 3, labyrinth: 4,
   'movie-10d': 5, 'living-torus': 6, merkaba: 7, 'double-torus': 8,
+  'unit-distance': 6, // VORTEX_SEQUENCE[6] = 3 — the pro-3 tower layers
 }
 
 const PROJECTION_FORMS: Record<QuantumProjection, number> = {
   plasma: 9, taiji: 2, 'sacred-morph': 13, hologram: 1, labyrinth: 24,
   'movie-10d': 6, 'living-torus': 1, merkaba: 2, 'double-torus': 2,
+  'unit-distance': 7, // seven split-prime channels drawn — a rosetta-sized sample of the t
 }
 
 /** The orbit's natural sense — derived from the doubling circuit (1→2 ascending ⇒ +1), not a literal. */
@@ -94,7 +97,7 @@ const APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
   { id: 'astronomy', title: 'Astronomy', route: '/en/astronomy', barrel: 'src/astronomy', icon: '☉', computesGate: 'astronomy.computes' },
   { id: 'resonance', title: 'Resonance', route: '/en/resonance', barrel: 'src/thunder/resonance', icon: '〰', computesGate: 'resonance.computes' },
   { id: 'quantum-dynamics', title: 'Quantum dynamics', route: '/en/quantum/dynamics', barrel: 'src/quantum/dynamics', icon: 'Ψ', computesGate: 'quantum.dynamics.computes' },
-  { id: 'research', title: 'Research', route: '/en/research', barrel: 'src/wind/research', icon: '◎', computesGate: 'research.computes' },
+  { id: 'research', title: 'Research', route: '/en/research', barrel: 'src/wind/research', icon: '◎', computesGate: 'research.computes', projection: 'unit-distance' },
   { id: 'merkaba', title: 'Merkaba', route: '/en/merkaba', barrel: 'src/mountain/geometry', icon: '✡', computesGate: 'merkaba.computes' },
   { id: 'double-torus-earth', title: 'Double torus Earth', route: '/en/double/torus/earth', barrel: 'src/water/double/earth', icon: '⊗', computesGate: 'double.torus.earth.computes' },
   { id: 'earth-world', title: 'Earth world · gold panels', route: '/en/earth/world', barrel: 'src/earth/world', icon: '☷', computesGate: 'earth.computes' },
