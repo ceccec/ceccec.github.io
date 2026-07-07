@@ -48,19 +48,17 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
   const base = 10 // the radix — the ONE input; everything below derives from it (no hardcoded table)
   const modulus = base - 1 // 9 — the digital-root ring ℤ/9ℤ, derived not typed
   const harmonic = vortexMath(matrix).divByZeroHarmonic // 1/0 = 9, the forward reading
-  // n⁻¹ mod (base−1): brute-force search — route 1 of the two independent computations. null ⇒ non-unit.
+  // Route 1 — brute-force n⁻¹ mod (base−1); route 2 below — modUnits by gcd. The two must agree.
   const inverseMod9 = (n: number): number | null => {
-    const r = ((n % modulus) + modulus) % modulus // residue (9 ≡ 0, 0 ≡ 0)
+    const r = ((n % modulus) + modulus) % modulus
     if (r === 0) return null // the void / the 0-axis: no inverse
     for (let x = 1; x < modulus; x += 1) if ((r * x) % modulus === 1) return x
     return null // gcd(n, modulus) ≠ 1 — non-unit
   }
-  // Route 2, independent: the unit group computed by gcd (src/0 modUnits) — the two routes must agree.
-  const unitGroup = modUnits(modulus) // (ℤ/9ℤ)* = {1,2,4,5,7,8}, computed not listed
-  const phi = unitGroup.length // Euler φ(9) = 6, computed
-  const involutive = unitGroup.filter((u) => (u * u) % modulus === 1) // x² ≡ 1 — {1,8}, computed
-  const digits = Array.from({ length: modulus }, (_, i) => i + 1) // 1..9 from the modulus, not a literal list
-  const table = digits.map((n) => {
+  const unitGroup = modUnits(modulus) // route 2: (ℤ/9ℤ)* computed by gcd, never listed
+  const phi = unitGroup.length // Euler φ
+  const involutive = unitGroup.filter((u) => (u * u) % modulus === 1) // x² ≡ 1
+  const table = Array.from({ length: modulus }, (_, i) => i + 1).map((n) => {
     const inverse = inverseMod9(n) // n⁻¹ mod 9 (unit) or null (non-unit 3,6,9)
     const invertible = inverse !== null
     const complement = base - n // the ADDITIVE ten's complement (10 − n) — names the folder lattice N/(10−N), NOT the reverse
@@ -106,9 +104,7 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
   const inversePairs = units
     .filter((row) => !row.selfInverse && (row.inverse as number) > row.n)
     .map((row) => [row.n, row.inverse as number] as const) // the nontrivial inverse pairs
-  // The corrected defining law, verified by AGREEMENT of two independent computations — the brute-force
-  // inverse search (route 1) against the gcd unit group and x²≡1 involutives (route 2). Nothing expected
-  // is a literal: φ, the involutive set, the pair count and the non-unit count are all derived.
+  // The defining law verified by AGREEMENT of the two routes — nothing expected is a literal.
   const inverseVerified =
     units.length === phi &&
     units.map((row) => row.n).join(',') === unitGroup.join(',') &&
