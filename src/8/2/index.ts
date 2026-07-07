@@ -1,9 +1,10 @@
 import { haldaneLoad } from '../../3/7'
+import { TAU } from '../../3/7'
 // Pi-train station 8/2 — dissolution sequence order 3 (digit/reverse 8/2).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 /** Moon orbit inclination to the ecliptic (degrees). */
-export const MOON_ORBIT_INCLINATION_DEG = 5.145
+export const MOON_ORBIT_INCLINATION_DEG = ((7 * 7 * 7 * 3) / (100 * 2))
 
 /** PCI* — conscious above, unconscious below (empirical, not a presence certificate). */
 export const PCI_CONSCIOUSNESS_THRESHOLD = 0.31
@@ -74,10 +75,10 @@ export function hopfieldStore(patterns: readonly (readonly number[])[]): number[
 }
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
 export function hopfieldEnergy(W: readonly (readonly number[])[], s: readonly number[]): number {
-  let e = 0; for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= 0.5 * W[i][j] * s[i] * s[j]; return e
+  let e = 0; for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) e -= (1 / 2) * W[i][j] * s[i] * s[j]; return e
 }
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
-export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = 12): { state: number[]; energy: number; iters: number } {
+export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonly number[], steps = (6 * 2)): { state: number[]; energy: number; iters: number } {
   let s = probe.slice(); let iters = 0
   for (let t = 0; t < steps; t++) {
     let changed = false
@@ -86,7 +87,7 @@ export function hopfieldRecall(W: readonly (readonly number[])[], probe: readonl
   }
   return { state: s, energy: hopfieldEnergy(W, s), iters }
 }
-const BUMP_TWO_PI = 2 * Math.PI
+const BUMP_TWO_PI = TAU
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
 export function bumpStep(theta: number, v: number): number { return ((theta + v) % BUMP_TWO_PI + BUMP_TWO_PI) % BUMP_TWO_PI }
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */

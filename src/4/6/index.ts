@@ -34,7 +34,7 @@ export function groupOrbit(generator: number, modulus: number): number[] {
 
 /** Sound pressure level in dB SPL — reference 20 µPa. */
 export function soundPressureLevelDb(pressurePa: number): number {
-  return 20 * Math.log10(pressurePa / 20e-6)
+  return (5 * 4) * Math.log10(pressurePa / 20e-6)
 }
 
 /** Hawking temperature T_H = ħc³/(8πGMk_B). */

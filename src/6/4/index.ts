@@ -3,9 +3,10 @@
 
 import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import { seedFromText } from '../../0'
+import { TAU } from '../../3/7'
 
 export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = Math.PI / 180
+  const r = Math.PI / (9 * 5 * 4)
   const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
   const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
   return (Math.atan2(y, x) / r + 360) % 360
@@ -33,7 +34,7 @@ export function resonantAmplitude(omega: number, omega0: number, q: number): num
 }
 
 /** Multi-mode resonant oscillator bank driven by stochastic kicks. */
-export function oscillatorBank(seed: string, modes: readonly { freq: number; q: number }[], samples: number, dt = 0.02): number[] {
+export function oscillatorBank(seed: string, modes: readonly { freq: number; q: number }[], samples: number, dt = (1 / (5 * 5 * 2))): number[] {
   const rng = ((s: string) => { let x = (seedFromText(s, 8) >>> 0) || 1; return () => { x = (Math.imul(x, 1664525) + 1013904223) >>> 0; return x / 0x100000000 } })(seed)
   const xs = modes.map(() => 0)
   const vs = modes.map(() => 0)
@@ -41,8 +42,8 @@ export function oscillatorBank(seed: string, modes: readonly { freq: number; q: 
   for (let n = 0; n < samples; n++) {
     let y = 0
     modes.forEach((m, i) => {
-      const omega = 2 * Math.PI * m.freq
-      const kick = rng() < 0.05 ? (rng() - 0.5) * 2 : 0
+      const omega = TAU * m.freq
+      const kick = rng() < (1 / (5 * 4)) ? (rng() - (1 / 2)) * 2 : 0
       const a = -omega * omega * xs[i] - (omega / m.q) * vs[i] + kick
       vs[i] += a * dt
       xs[i] += vs[i] * dt
@@ -54,7 +55,7 @@ export function oscillatorBank(seed: string, modes: readonly { freq: number; q: 
 }
 
 /** Casimir vacuum energy per unit area between parallel plates (J/m²). */
-export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / (720 * plateGapM ** 3) }
+export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / ((360 * 2) * plateGapM ** 3) }
 
 /** Bekenstein–Hawking black-hole entropy in bits — proportional to horizon area. */
 export function blackHoleEntropyBits(massKg: number): number { return (4 * Math.PI * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }

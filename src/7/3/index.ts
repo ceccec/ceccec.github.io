@@ -10,7 +10,7 @@ export const SCALAR_SPECTRAL_INDEX_NS = 0.9649
 export const NEUTRINO_DM2_SOLAR_EV2 = 7.49e-5
 
 /** ΛCDM dark-energy density fraction Ω_Λ. */
-export const OMEGA_DARK_ENERGY = 0.685
+export const OMEGA_DARK_ENERGY = (1 - (9 * 7) / (100 * 2))
 
 /** CMB-inferred Hubble constant H₀ (km/s/Mpc, Planck 2018). */
 export const HUBBLE_CONSTANT_CMB = 67.4

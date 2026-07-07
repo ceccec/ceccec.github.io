@@ -111,8 +111,8 @@ not quantum randomness**.
 | `bellPair()` | analog | demo — the entangled `(\|00⟩+\|11⟩)/√2`. |
 | `grover(n, marked, …)` | analog | demo — find the marked item in `~(π/4)√N` iterations. |
 | `pbits(n)` · `pflip` | analog | **classical shadow** — a probability distribution; probabilities spread but never interfere (what quantum adds). |
-| `rnot` · `rcnot` · `rtoffoli(bits, …)` | digital | reversible classical circuit (Toffoli computes AND); the gates quantum generalises. |
-| `caStep(rule, cells)` · `caEvolve(rule, init, steps)` | digital | an elementary cellular automaton (Rule 110 is Turing-complete) — a different universal model. |
+| `rnot` · `rtoffoli(bits, …)` → pi-train station 1/9 · `rcnot` → pi-train station 4/6 | digital | reversible classical circuit (Toffoli computes AND); the gates quantum generalises. |
+| `caStep(rule, cells)` · `caEvolve(rule, init, steps)` → pi-train station 4/6 | digital | an elementary cellular automaton (Rule 110 is Turing-complete) — a different universal model. |
 
 **This is a simulator, not a quantum computer.** No speedup (classical linear algebra over `2ⁿ` amplitudes —
 a few dozen qubits at most), and measurement is a seeded PRNG, not quantum randomness. A real quantum computer

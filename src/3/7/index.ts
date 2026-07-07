@@ -360,9 +360,19 @@ export function frequencyToLight(hz: number): { octaves: number; thz: number; nm
 /** 432 Hz carried up the octaves to visible light → hue 5 (red-orange) — the brand anchor, DERIVED not typed. */
 export const A432_HUE = frequencyToLight(432).hue // 5 — red-orange, the colour of 432 Hz, the brand anchor
 /** φ = (1+√5)/2 — golden ratio, the defining radical (not a hand-typed decimal). */
-const PHI = (1 + Math.sqrt(5)) / 2
-/** 360° / φ² — the golden angle, COMPUTED from φ (never a re-typed 137.5077… literal). */
+export const PHI = (1 + Math.sqrt(5)) / 2
+/** τ = 2π — the full turn. The one circle constant every domain imports (never a local 2π). */
+export const TAU = Math.PI * 2
+/** 360° / φ² — the golden angle in DEGREES, COMPUTED from φ (never a re-typed 137.5077… literal). */
 export const GOLDEN_ANGLE = 360 / (PHI * PHI) // the deterministic, never-aligning hue step
+/** The Fibonacci ladder, COMPUTED (no hardcoded members): [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, …]. */
+export const FIBONACCI: readonly number[] = (() => {
+  const f = [1, 2]
+  while (f.length < 4 * 8) f.push(f[f.length - 1]! + f[f.length - 2]!)
+  return f
+})()
+/** τ / φ² — the golden angle in RADIANS, same fold as GOLDEN_ANGLE seen from the radian side. */
+export const GOLDEN_ANGLE_RAD = TAU / (PHI * PHI)
 
 // The ten dimensions of the model (6 cross-fold appearance axes + 4 genus-2 homology loops). Hosted in
 // this zero-import leaf so the count + names initialise before any cyclic consumer barrel

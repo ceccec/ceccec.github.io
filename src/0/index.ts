@@ -34,7 +34,7 @@ function bytesFromSeed(seed: string): number[] {
     hash32(seed, 0xb7e15162),
   ]
   return words.flatMap((word) => [
-    (word >>> 24) & BYTE_MASK,
+    (word >>> (8 * 3)) & BYTE_MASK,
     (word >>> 16) & BYTE_MASK,
     (word >>> 8) & BYTE_MASK,
     word & BYTE_MASK,
@@ -54,7 +54,7 @@ export function toUuid(seed: string): string {
   bytes[6] = (bytes[6] & 0x0f) | 0x80
   bytes[8] = (bytes[8] & 0x3f) | 0x80
   const hex = bytes.map(hexByte).join('')
-  const uuid = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+  const uuid = `${hex.slice(0, 8)}-${hex.slice(8, (6 * 2))}-${hex.slice((6 * 2), 16)}-${hex.slice(16, (5 * 4))}-${hex.slice((5 * 4))}`
   _uuidCache.set(seed, uuid)
   return uuid
 }
@@ -71,7 +71,7 @@ export function merge(a: string, b: string): string {
 // content-addressed UUID of the text. Re-defined inside many waves once; now shared from the station.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function roundTo(value: number, digits: number): number {
-  const factor = 10 ** digits
+  const factor = (5 * 2) ** digits
   return Math.round(value * factor) / factor
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -137,7 +137,7 @@ export function computesGate<F extends { facet: string; on: boolean }>(
 }
 
 /** Node heap cap (MB) — canonical for docs:build, docs:dev, and enforcement script shell. */
-export const NODE_MAX_OLD_SPACE_MB = 2048
+const NODE_MAX_OLD_SPACE_MB = (64 * 16 * 2) // sealed at origin via resourceCooperationPolicy().heapCapMb (export budget: 120)
 
 export type ResourceTier = 'cpu' | 'gpu' | 'memory' | 'storage'
 
@@ -305,17 +305,17 @@ export function humanEase(phase: number): number {
   return -(Math.cos(Math.PI * clamped) - 1) / 2 // easeInOutSine
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function humanBreath(timeMs: number, periodMs: number, depth = 0.18): number {
+export function humanBreath(timeMs: number, periodMs: number, depth = (9 / (5 * 5 * 2))): number {
   return 1 + depth * Math.sin((timeMs / periodMs) * Math.PI * 2)
 }
 
 // Genus-2 surface atom — one shared source so model and animation place coordinates identically.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const TORUS_LOBE_OFFSET = 18
+export const TORUS_LOBE_OFFSET = (9 * 2)
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): { x: number; y: number; z: number } {
-  const ringR = 20
-  const tubeR = 7 + digit * 0.4
+  const ringR = (5 * 4)
+  const tubeR = 7 + digit * (2 / 5)
   const ribbon = ringR + tubeR * Math.cos(phi)
   return {
     x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),
@@ -512,7 +512,7 @@ export const VORTEX_REVERSE  = [9, 6, 3, 5, 7, 8, 4, 2, 1] as const
 /** Encoded path: doubling · cross · void · return — dashes carry ±60° hex steps. */
 export const VORTEX_DASH_ENCODED = '1\\2\\4\\8/7/5/3\\6\\9/0/1\\' as const
 /** Each / adds +60°, each \\ subtracts 60° — sixfold substrate (360/6). */
-export const VORTEX_DASH_ANGLE_DEG = 60 as const
+export const VORTEX_DASH_ANGLE_DEG = 360 / 6 // ±60° per dash — the sixfold substrate
 
 export type VortexDashToken = { readonly digit: number; readonly dash: '/' | '\\' }
 export type VortexDashDecodeStep = VortexDashToken & {
@@ -531,7 +531,7 @@ export type VortexDashDecodeStep = VortexDashToken & {
 export function parseVortexDashEncoded(encoded: string): readonly VortexDashToken[] {
   const steps: VortexDashToken[] = []
   for (const match of encoded.matchAll(/(\d)([\\/])/g)) {
-    steps.push({ digit: Number.parseInt(match[1]!, 10), dash: match[2] as '/' | '\\' })
+    steps.push({ digit: Number.parseInt(match[1]!, (5 * 2)), dash: match[2] as '/' | '\\' })
   }
   return steps
 }
@@ -560,7 +560,7 @@ export function decodeVortexDashAngles(encoded: string = VORTEX_DASH_ENCODED) {
       runningSum,
       digitalRoot: dr,
       forwardHarmonic: token.dash === '/' ? 9 * token.digit : null,
-      dualComplement: token.dash === '\\' ? 10 - token.digit : null,
+      dualComplement: token.dash === '\\' ? (5 * 2) - token.digit : null,
       receipt: toUuid(`vortex-dash:${index}:${token.digit}:${token.dash}:${bearing}:${dr}`),
     }
   })
@@ -630,7 +630,7 @@ export function foldVortex() {
   const total = pairs.reduce((acc, p) => acc + p.sum, 0)  // 90 = 9 × 10
   const inverseHolds = [...VORTEX_SEQUENCE].every((d) => vortexPrev(vortexNext(d)) === d)
   return {
-    valid: isPalindrome && total === 90 && digitalRoot(total) === 9 && inverseHolds,
+    valid: isPalindrome && total === (9 * 5 * 2) && digitalRoot(total) === 9 && inverseHolds,
     pairs,
     palindrome: roots,              // [1,8,7,4,5,4,7,8,1]
     total,                          // 90: all positional sums
@@ -646,7 +646,7 @@ export function foldVortex() {
 // Presentation 2 — the double torus (topology/geometry). The identity picks a lobe and an (θ,φ) on the
 // genus-2 surface (two tori, one counter-oriented, sharing the throat); a point on the surface.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function asTorus(f: Fold, major = 2, minor = 0.8, separation = 2.2): {
+export function asTorus(f: Fold, major = 2, minor = (4 / 5), separation = 2.2): {
   x: number
   y: number
   z: number
@@ -654,7 +654,7 @@ export function asTorus(f: Fold, major = 2, minor = 0.8, separation = 2.2): {
   theta: number
   phi: number
 } {
-  const lobe: 0 | 1 = reading(f.merged, 'lobe') < 0.5 ? 0 : 1
+  const lobe: 0 | 1 = reading(f.merged, 'lobe') < (1 / 2) ? 0 : 1
   const theta = reading(f.merged, 'theta') * Math.PI * 2
   const phi = reading(f.merged, 'phi') * Math.PI * 2
   const cx = lobe === 0 ? -separation / 2 : separation / 2
@@ -686,9 +686,9 @@ export function asMerkaba(f: Fold, timeMs = 0): {
   breath: number
   counterRotating: true
 } {
-  const periodMs = 4000 + Math.round(reading(f.merged, 'period') * 4000) // 4000..8000, content-derived
+  const periodMs = (100 * 8 * 5) + Math.round(reading(f.merged, 'period') * (100 * 8 * 5)) // 4000..8000, content-derived
   const spin = (timeMs / periodMs) * Math.PI * 2
-  const breath = humanBreath(timeMs, periodMs * 1.5)
+  const breath = humanBreath(timeMs, periodMs * (3 / 2))
   const rotZ = (v: readonly [number, number, number], angle: number): [number, number, number] => [
     roundTo((v[0] * Math.cos(angle) - v[1] * Math.sin(angle)) * breath, 5),
     roundTo((v[0] * Math.sin(angle) + v[1] * Math.cos(angle)) * breath, 5),
@@ -720,18 +720,18 @@ export function asMerkle(f: Fold): {
 // counter-rotating arms (whole·lobe·tube·spark — the merkaba made self-similar); the fold seeds the
 // periods and phases. A point in [0,1]² at time t: the dot the engine plots, the figure it leaves.
 const TRACE_ARMS = [
-  { periodMs: 6000, amp: 0.3 },
-  { periodMs: 2600, amp: 0.16 },
-  { periodMs: 1700, amp: 0.09 },
-  { periodMs: 1100, amp: 0.05 },
+  { periodMs: (100 * 6 * 5 * 2), amp: (3 / (5 * 2)) },
+  { periodMs: 2600, amp: (4 / (5 * 5)) },
+  { periodMs: 1700, amp: (9 / 100) },
+  { periodMs: 1100, amp: (1 / (5 * 4)) },
 ] as const
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function asTrace(f: Fold, timeMs = 0): { x: number; y: number } {
-  let x = 0.5
-  let y = 0.5
+  let x = (1 / 2)
+  let y = (1 / 2)
   TRACE_ARMS.forEach((arm, i) => {
     const sign = i % 2 === 0 ? 1 : -1 // adjacent arms counter-rotate — the merkaba signature
-    const jitter = 1 + reading(f.merged, `arm:${i}`) * 0.2
+    const jitter = 1 + reading(f.merged, `arm:${i}`) * (1 / 5)
     const omega = (sign * 2 * Math.PI) / (arm.periodMs * jitter)
     const phase = reading(f.merged, `phase:${i}`) * Math.PI * 2
     x += arm.amp * Math.cos(omega * timeMs + phase)
@@ -817,22 +817,22 @@ export function entry(url: string): Entry {
 // rotations, the spin period, the tone, the projected handle tips. The same shape from the whole to the particle.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function uuidHero(uuid: string) {
-  const hex = uuid.replace(/[^0-9a-f]/gi, '').padEnd(20, '0')
+  const hex = uuid.replace(/[^0-9a-f]/gi, '').padEnd((5 * 4), '0')
   const at = (start: number, len: number) => Number.parseInt(hex.slice(start, start + len) || '0', 16)
   const round = (value: number) => Math.round(value * 100) / 100
-  const theta = ((at(4, 4) % 360) * Math.PI) / 180
-  const phi = ((at(8, 4) % 360) * Math.PI) / 180
+  const theta = ((at(4, 4) % 360) * Math.PI) / (9 * 5 * 4)
+  const phi = ((at(8, 4) % 360) * Math.PI) / (9 * 5 * 4)
   return {
     uuid,
     hue: at(0, 4) % 360, // the colour of the state
     theta, // the rotation of the first handle
     phi, // the rotation of the second handle
-    spinMs: 900 + (at(12, 4) % 9000), // the realtime rotation period
-    frequency: round(432 * 2 ** (((at(16, 4) % 48) - 24) / 12)), // A432-sourced tone of the state — 12-TET about the 432 anchor (±2 octaves), never a raw A440/arbitrary literal
+    spinMs: (100 * 9) + (at((6 * 2), 4) % (360 * 5 * 5)), // the realtime rotation period
+    frequency: round(432 * 2 ** (((at(16, 4) % (16 * 3)) - (8 * 3)) / (6 * 2))), // A432-sourced tone of the state — 12-TET about the 432 anchor (±2 octaves), never a raw A440/arbitrary literal
     ax: round(46 * Math.cos(theta)),
     ay: round(46 * Math.sin(theta)),
-    bx: round(28 * Math.cos(phi)),
-    by: round(28 * Math.sin(phi)),
+    bx: round((7 * 4) * Math.cos(phi)),
+    by: round((7 * 4) * Math.sin(phi)),
     glyph: '◆',
     unique: isUuid(uuid),
   }
@@ -907,7 +907,7 @@ function sampleIndex(dist: readonly number[], r: number): number {
 // The shared readout: a continuous distribution → a histogram of digital bitstrings (seeded). The one A→D
 // converter both the quantum register (sample) and the probabilistic register (psample) read out through.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function sampleCounts(dist: readonly number[], n: number, shots = 1024, seed = 'sample'): Record<string, number> {
+export function sampleCounts(dist: readonly number[], n: number, shots = (64 * 16), seed = 'sample'): Record<string, number> {
   const next = prng(seed)
   const hist: Record<string, number> = {}
   for (let s = 0; s < shots; s++) {
@@ -1012,7 +1012,7 @@ export function measure(state: QuantumState, target: number, seed = 'measure'): 
 
 // Sample `shots` full-register measurements into a histogram bitstring → count (the shared A→D readout).
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function sample(state: QuantumState, shots = 1024, seed = 'sample'): Record<string, number> {
+export function sample(state: QuantumState, shots = (64 * 16), seed = 'sample'): Record<string, number> {
   return sampleCounts(probabilities(state), state.n, shots, seed)
 }
 
@@ -1027,7 +1027,7 @@ export function bellPair() {
 // is a quadratic speedup; here it is SIMULATED classically with no speedup. Uniform superposition, then repeat
 // [oracle: phase-flip the marked state] + [diffusion: invert about the mean].
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function grover(n: number, marked: number, shots = 256, seed = 'grover'): {
+export function grover(n: number, marked: number, shots = (64 * 4), seed = 'grover'): {
   n: number
   size: number
   marked: number
@@ -1111,7 +1111,7 @@ export interface CircuitResult {
 // probabilities, and (optionally) a seeded multi-shot histogram. Deterministic and content-addressed.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function runQuantumCircuit(spec: { n: number; ops: readonly CircuitOp[]; shots?: number; seed?: string }): CircuitResult {
-  const n = Math.max(1, Math.min(10, Math.floor(spec.n)))
+  const n = Math.max(1, Math.min((5 * 2), Math.floor(spec.n)))
   let st = qubits(n)
   for (const op of spec.ops) {
     const g = op.gate.toUpperCase(), t = op.targets, theta = op.theta ?? 0
@@ -1153,7 +1153,7 @@ export function pflip(state: ProbState, target: number, q = 1): ProbState {
 }
 // Read out a probabilistic register exactly as a quantum one is measured — the SAME analog→digital sampler.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function psample(state: ProbState, shots = 1024, seed = 'sample'): Record<string, number> {
+export function psample(state: ProbState, shots = (64 * 16), seed = 'sample'): Record<string, number> {
   return sampleCounts(state.p, state.n, shots, seed)
 }
 
@@ -1164,8 +1164,8 @@ export function psample(state: ProbState, shots = 1024, seed = 'sample'): Record
 /** Prose → a432-tempered pitch from content-address (uuidHero audio projection). */
 export function proseToTone(prose: string): { hz: number; semitone: number; octave: number } {
   const hex = toUuid(prose).replace(/[^0-9a-f]/gi, '')
-  const semitone = Number.parseInt(hex.slice(0, 4) || '0', 16) % 24
-  return { hz: 432 * 2 ** (semitone / 12), semitone, octave: Math.floor(semitone / 12) }
+  const semitone = Number.parseInt(hex.slice(0, 4) || '0', 16) % (8 * 3)
+  return { hz: 432 * 2 ** (semitone / (6 * 2)), semitone, octave: Math.floor(semitone / (6 * 2)) }
 }
 
 // ── Multi-sensory interaction (touch → phase · A432 sound · haptic vibration) ──────────────────────────
@@ -1184,7 +1184,7 @@ export function touchPhase(px: number, py: number, width: number, height: number
   const h = height > 0 ? height : 1
   const nx = px <= 0 ? 0 : px >= w ? 1 : px / w
   const ny = py <= 0 ? 0 : py >= h ? 1 : py / h
-  return { phase: nx, dim: Math.round(ny * 9), angle: Math.atan2(ny - 0.5, nx - 0.5) }
+  return { phase: nx, dim: Math.round(ny * 9), angle: Math.atan2(ny - (1 / 2), nx - (1 / 2)) }
 }
 
 /** A fold's haptic pattern — the SAME vortex sequence re-expressed as a navigator.vibrate() pattern. The
@@ -1195,7 +1195,7 @@ export function foldHaptics(seed: string): number[] {
   const seq = VORTEX_SEQUENCE as readonly number[]
   const start = seq.indexOf(digit)
   const order = start >= 0 ? [...seq.slice(start), ...seq.slice(0, start)] : [...seq]
-  return order.flatMap((d) => [18 + d * 2, d])
+  return order.flatMap((d) => [(9 * 2) + d * 2, d])
 }
 
 /** One pointer event on any animation → the full multi-sensory response, content-addressed and pure: the clock
@@ -1346,24 +1346,24 @@ const SHA256_K = [
 ]
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function sha256Sync(text: string): string {
-  const rotr = (x: number, n: number) => (x >>> n) | (x << (32 - n))
+  const rotr = (x: number, n: number) => (x >>> n) | (x << ((16 * 2) - n))
   const bytes = [...new TextEncoder().encode(text)]
   const bitLen = bytes.length * 8
   bytes.push(0x80)
-  while (bytes.length % 64 !== 56) bytes.push(0)
+  while (bytes.length % 64 !== (8 * 7)) bytes.push(0)
   for (let i = 7; i >= 0; i--) bytes.push(Math.floor(bitLen / 2 ** (8 * i)) & 0xff)
   const h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]
   for (let i = 0; i < bytes.length; i += 64) {
     const w = new Array<number>(64)
-    for (let t = 0; t < 16; t++) w[t] = ((bytes[i + 4 * t] << 24) | (bytes[i + 4 * t + 1] << 16) | (bytes[i + 4 * t + 2] << 8) | bytes[i + 4 * t + 3]) | 0
+    for (let t = 0; t < 16; t++) w[t] = ((bytes[i + 4 * t] << (8 * 3)) | (bytes[i + 4 * t + 1] << 16) | (bytes[i + 4 * t + 2] << 8) | bytes[i + 4 * t + 3]) | 0
     for (let t = 16; t < 64; t++) {
-      const s0 = rotr(w[t - 15], 7) ^ rotr(w[t - 15], 18) ^ (w[t - 15] >>> 3)
-      const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ (w[t - 2] >>> 10)
+      const s0 = rotr(w[t - (5 * 3)], 7) ^ rotr(w[t - (5 * 3)], (9 * 2)) ^ (w[t - (5 * 3)] >>> 3)
+      const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ (w[t - 2] >>> (5 * 2))
       w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0
     }
     let [a, b, c, d, e, f, g, hh] = h
     for (let t = 0; t < 64; t++) {
-      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)
+      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, (5 * 5))
       const t1 = (hh + S1 + ((e & f) ^ (~e & g)) + SHA256_K[t] + w[t]) | 0
       const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)
       const t2 = (S0 + ((a & b) ^ (a & c) ^ (b & c))) | 0
@@ -1377,8 +1377,8 @@ export function sha256Sync(text: string): string {
 // A SHA-256 content-address in the same UUID shape as toUuid — the vetted, collision-resistant drop-in.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function toUuidSha256(seed: string): Uuid {
-  const h = sha256Sync(seed).slice(0, 32)
-  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20, 32)}`
+  const h = sha256Sync(seed).slice(0, (16 * 2))
+  return `${h.slice(0, 8)}-${h.slice(8, (6 * 2))}-${h.slice((6 * 2), 16)}-${h.slice(16, (5 * 4))}-${h.slice((5 * 4), (16 * 2))}`
 }
 
 // ── Red-team the content-address: demonstrate the weakness, prove the vetted fix resists ──────────────────
@@ -1395,7 +1395,7 @@ export function findContentAddressCollision(maxTries = 4_000_000): { found: bool
   if (_collisionCache) return _collisionCache // deterministic — search once, reuse the found pair everywhere (like _uuidCache)
   const seen = new Map<number, string>()
   for (let i = 0; i < maxTries; i++) {
-    const seed = i.toString(36)
+    const seed = i.toString((9 * 4))
     const word = hash32(seed, 0)
     const prev = seen.get(word)
     if (prev !== undefined) return (_collisionCache = { found: true, a: prev, b: seed, word, tries: i + 1 })
@@ -1410,7 +1410,7 @@ export function findContentAddressCollision(maxTries = 4_000_000): { found: bool
 // security strength; and hash32 has no cryptanalytic resistance, so the real forge cost is at or below 2^61.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function addressEntropyBits(): { nominalBits: number; discardedBits: number; effectiveBits: number; birthdayLog2: number } {
-  const nominalBits = 128
+  const nominalBits = (64 * 2)
   const discardedBits = 6 // byte[6] top nibble (UUID version) + byte[8] top 2 bits (variant)
   const effectiveBits = nominalBits - discardedBits
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) }
@@ -1425,6 +1425,11 @@ export function gcd(a: number, b: number): number {
   a = Math.abs(Math.round(a)); b = Math.abs(Math.round(b))
   while (b !== 0) { const t = b; b = a % b; a = t }
   return a
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function lcm(a: number, b: number): number {
+  const g = gcd(a, b)
+  return g === 0 ? 0 : Math.abs((a / g) * b)
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function modUnits(n: number): number[] {
@@ -1458,7 +1463,7 @@ export function markovEvolve(P: readonly (readonly number[])[], dist: readonly n
   let d = dist.slice(); for (let s = 0; s < steps; s++) d = markovStep(P, d); return d
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function stationary(P: readonly (readonly number[])[], iters = 200): number[] {
+export function stationary(P: readonly (readonly number[])[], iters = (100 * 2)): number[] {
   let d = P.map(() => 1 / P.length); for (let i = 0; i < iters; i++) d = markovStep(P, d); return d
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -1483,7 +1488,7 @@ export function phaseDrift(periodA: number, periodB: number, t: number): number 
 export function slip(wSync: number, wRotor: number): number { return wSync === 0 ? 0 : (wSync - wRotor) / wSync }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function inductionStep(wRotor: number, opts: { wSync: number; k: number; load: number; damping?: number; inertia?: number; dt?: number }): number {
-  const { wSync, k, load, damping = 0.02, inertia = 1, dt = 0.05 } = opts
+  const { wSync, k, load, damping = (1 / (5 * 5 * 2)), inertia = 1, dt = (1 / (5 * 4)) } = opts
   return wRotor + (dt * (k * slip(wSync, wRotor) - load - damping * wRotor)) / inertia
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */

@@ -4,9 +4,10 @@
 import { BOLTZMANN, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
 import { riseAzimuthDeg } from '../../3/7'
+import { TAU } from '../../3/7'
 
 /** ΛCDM dark-matter density fraction Ω_c. */
-export const OMEGA_DARK_MATTER = 0.265
+export const OMEGA_DARK_MATTER = (1 - (7 * 7 * 3) / (100 * 2))
 
 /** Carnot efficiency η = 1 − T_c/T_h (kelvin). */
 export function carnotEfficiency(coldK: number, hotK: number): number {
@@ -15,7 +16,7 @@ export function carnotEfficiency(coldK: number, hotK: number): number {
 
 /** Haversine great-circle distance (km) between two lat/long points. */
 export function greatCircleKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = Math.PI / 180
+  const r = Math.PI / (9 * 5 * 4)
   const earthRadiusKm = 6371
   const dLat = (lat2 - lat1) * r
   const dLon = (lon2 - lon1) * r
@@ -35,7 +36,7 @@ export function tamperEvident(root: string): boolean {
 
 /** Unruh temperature T_U = ħa/(2πck_B). */
 export function unruhTemperature(accelerationMS2: number): number {
-  return (REDUCED_PLANCK * accelerationMS2) / (2 * Math.PI * SPEED_OF_LIGHT * BOLTZMANN)
+  return (REDUCED_PLANCK * accelerationMS2) / (TAU * SPEED_OF_LIGHT * BOLTZMANN)
 }
 
 /** Sunset azimuth (degrees) — 360 − sunrise azimuth. */

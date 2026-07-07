@@ -7,6 +7,7 @@
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import {   toUuid, merkleFold, digitalRoot } from '../../0'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
+import { TAU } from '../../3/7'
 
 export const digit = 1
 export const role = 'circuit' as const
@@ -52,7 +53,7 @@ export function composeHazard(base: number, levers: readonly number[]): number {
 
 /** Tesla rotating field — two currents 90° apart. */
 export function rotatingField(t: number, freq: number, phaseShift = Math.PI / 2): { bx: number; by: number; theta: number; omega: number } {
-  const omega = 2 * Math.PI * freq
+  const omega = TAU * freq
   return { bx: Math.cos(omega * t), by: Math.cos(omega * t - phaseShift), theta: omega * t, omega }
 }
 
@@ -63,7 +64,7 @@ export function powerSpectrum(samples: readonly number[], bins = 64): number[] {
     let re = 0
     let im = 0
     for (let n = 0; n < N; n++) {
-      const ang = (-2 * Math.PI * k * n) / N
+      const ang = (-TAU * k * n) / N
       re += samples[n] * Math.cos(ang)
       im += samples[n] * Math.sin(ang)
     }

@@ -7,11 +7,11 @@ import {  humanBreath, seedFromText } from '../../0'
 export const NEUTRINO_DM2_ATM_EV2 = 2.513e-3
 
 /** Aksak rhythm — bounded short:long ratio walk in the documented elastic band. */
-export function aksakRatioWalk(seed: string, cycles: number, lo = 1.4, hi = 1.7): number[] {
+export function aksakRatioWalk(seed: string, cycles: number, lo = (7 / 5), hi = 1.7): number[] {
   const mid = (lo + hi) / 2
   return Array.from({ length: cycles }, (_, c) => {
-    const breath = humanBreath(c * 1000, 7000, 0.1)
-    const jitter = ((seedFromText(`${seed}:${c}`, 6) % 1000) / 1000 - 0.5) * 0.12
+    const breath = humanBreath(c * (100 * 5 * 2), (100 * 7 * 5 * 2), (1 / (5 * 2)))
+    const jitter = ((seedFromText(`${seed}:${c}`, 6) % (100 * 5 * 2)) / (100 * 5 * 2) - (1 / 2)) * (3 / (5 * 5))
     return Math.min(hi, Math.max(lo, mid * breath + jitter))
   })
 }

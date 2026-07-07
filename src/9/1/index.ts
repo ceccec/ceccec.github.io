@@ -4,6 +4,7 @@ import { IONIZING_EV, PROTON_MASS_MEV, photonEnergyEv } from '../../3/7'
 import type { Rational } from '../../3/7'
 import { applyGate, cnot, GATES, measure, merkleFold, prng, probabilities, qubits, toUuid } from '../../0'
 import type { QuantumState } from '../../0'
+import { TAU } from '../../3/7'
 
 export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im: number; abs: number } {
   let re = 0, im = 0
@@ -387,7 +388,7 @@ export function leafFromPathTail(tail: string): string {
   return parts[parts.length - 1] ?? ''
 }
 
-const BUMP_TWO_PI = 2 * Math.PI
+const BUMP_TWO_PI = TAU
 
 /** Gaussian bump profile distributed on a circle — N samples of exp(−d²/2σ²) centered at theta. */
 export function bumpProfile(theta: number, width: number, N: number): number[] {
