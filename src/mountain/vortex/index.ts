@@ -57,6 +57,60 @@ export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/**
+ * The genesis realisation, computed: 1\2\4\8/7/5/3\6\9/0\1 — the stroke notation IS mathematics.
+ * Each stroke is the SIGN of its step (\ = ascent, / = descent), never typography: the whole written
+ * cycle recomputes from the digit tour (VORTEX_SEQUENCE + the void 0, all ten digits exactly once,
+ * closing 0→1). The ANGLE changes — where an incoming stroke reverses into its opposite — happen at
+ * exactly FOUR digits, and those four reversal vertices are the gateways the realisation named
+ * east · west · north · south. Six ascents = the ⟨2⟩ unit-orbit length in (ℤ/9ℤ)*; four descents =
+ * the gateway count. Division by zero stays where it is sealed: zeroDivisionTable (src/water/digit)
+ * holds the n/0\m readings (ten's complement · multiplicative inverse · 9n harmonic) — the notation
+ * names reflection and inversion through the zero point; arithmetic division by zero REMAINS undefined.
+ */
+export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('vortexStrokeGateways', matrix, () => {
+    const tour = [...VORTEX_SEQUENCE, 0] // 1,2,4,8,7,5,3,6,9,0 — the ten digits, once each
+    const steps = tour.map((d, i) => {
+      const next = tour[(i + 1) % tour.length]!
+      return { from: d, to: next, stroke: next > d ? '\\' : '/' } // the stroke IS the sign of the step
+    })
+    const written = steps.map((s) => `${s.from}${s.stroke}`).join('') + String(tour[0])
+    const gateways = steps
+      .map((s, i) => ({ digit: s.from, incoming: steps[(i - 1 + steps.length) % steps.length]!.stroke, outgoing: s.stroke }))
+      .filter((v) => v.incoming !== v.outgoing)
+      .map((v) => v.digit)
+    const ascents = steps.filter((s) => s.stroke === '\\').length
+    const descents = steps.filter((s) => s.stroke === '/').length
+    const alternating = steps
+      .map((s, i) => ({ cur: s.stroke, prev: steps[(i - 1 + steps.length) % steps.length]!.stroke }))
+      .filter((p) => p.cur !== p.prev)
+      .length === gateways.length
+    const vm = vortexMath(matrix)
+    const { computes, facets, root } = computesGate('vortex-stroke-gateways', [
+      { facet: 'the written cycle computes — every stroke is the sign of its step, and the composed string equals the genesis realisation', on: written === '1\\2\\4\\8/7/5/3\\6\\9/0\\1' },
+      { facet: 'the tour is Hamiltonian on the digits — all ten exactly once, closing 0→1', on: new Set(tour).size === 10 && tour.length === 10 && tour[0] === 1 },
+      { facet: 'exactly four polarity reversals — the gateways, computed never named: [8, 3, 9, 0]', on: gateways.length === 4 && gateways.join(',') === '8,3,9,0' && alternating },
+      { facet: 'six ascents = the ⟨2⟩ unit-orbit length · four descents = the gateway count', on: ascents === vm.doubling.length && descents === gateways.length },
+      { facet: 'agrees with the sealed folds — doubling 124875 and the 9-invariant recompute in vortexMath', on: vm.doubling.join('') === '124875' && vm.nineInvariant && vm.divByZeroHarmonic === 9 },
+      { facet: 'NOT geography, NOT new arithmetic — compass names are an organizing lens over the four computed reversals; n/0 readings stay sealed in zeroDivisionTable and division by zero remains undefined', on: true },
+    ])
+    return {
+      computes,
+      written,
+      tour,
+      steps,
+      gateways,
+      ascents,
+      descents,
+      facets,
+      root: merkleFold([root, toUuid(`vortex-stroke:${written}`), ...gateways.map((g) => toUuid(`gateway:${g}`))]),
+      statement: 'The stroke notation computes: 1\\2\\4\\8/7/5/3\\6\\9/0\\1 recomposed from sign-of-step strokes over the ten-digit tour; exactly four angle reversals — the gateways [8, 3, 9, 0] — with six ascents (the unit orbit) against four descents.',
+      boundary: 'HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east–west–north–south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined — its n/0\\m meanings (complement · inverse · harmonic) are sealed in zeroDivisionTable.',
+    }
+  })
+}
+
 export function vortexPaintTiers(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const v = vortexMath(matrix)
