@@ -117,7 +117,7 @@ function plasmaRayCount(streamCount: number): number {
 export { createAnimationEngine, type AnimationEngine } from '../0' // the rAF driver from the void/origin — the hero's loop folds through it too
 export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0' // the one math (the fold) and its presentations — projections of a single address
 export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions'
-export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, type Vec3 } from './wind/geometry'
+export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, depthIsThePerspectiveDivide, type Vec3 } from './wind/geometry'
 export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/experiments'
 
 // The whole scene for one frame: the resolved time t and phase p, the page's seeded identity (hue, arms), the
@@ -924,6 +924,13 @@ export function drawHeroMovieFrame(ctx: CanvasRenderingContext2D, w: number, h: 
 
 export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'][number]
 
+/**
+ * The oblique view angle the canvas painters previously FAKED as a "+0.35·z" y-offset: an honest
+ * YZ rotation whose sine is that same 0.35, composed through the sealed atoms (rotate3) so depth
+ * is real and carried by the perspective divide — size attenuation, not a screen offset.
+ */
+const OBLIQUE_VIEW_TILT = -Math.asin(0.35)
+
 /** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
 export function drawLivingTorusFrame(
   ctx: CanvasRenderingContext2D,
@@ -940,18 +947,33 @@ export function drawLivingTorusFrame(
   const cy = h / 2
   const phase = reduce ? 0 : at / 1000
 
-  // Project every coordinate onto the genus-2 surface — the two lobes counter-rotate
-  // about their own holes (sign from `lobe`), one pi-train threading both.
+  // Project every coordinate onto the genus-2 surface through the sealed atoms (rotate3 +
+  // perspective) — no z→y offset. Each lobe spins RIGIDLY about its own hole axis (an XY-plane
+  // rotation about the lobe centre, sign from `lobe` — the counter-rotation), the fixed oblique
+  // tilt tips the rings toward the camera so the spin moves points in true depth, and the
+  // perspective divide turns that depth into position and size. The raw surface units
+  // (doubleTorusSurface: ring 20 + tube + lobe offset 18) are normalized into the unit box the
+  // FOCAL divide expects — extents data-derived, no magic constant.
+  let ex = 1
+  let ey = 1
+  for (const c of coordinates) {
+    ex = Math.max(ex, Math.abs(c.x), Math.abs(c.z))
+    ey = Math.max(ey, Math.abs(c.y))
+  }
+  const extent = Math.max(ex, ey)
+  const view = Math.min(w, h * (ex / ey)) * 0.42 // pixels per unit — fit the wide figure both ways
   const px = new Array<number>(n)
   const py = new Array<number>(n)
+  const pz = new Array<number>(n) // perspective factor — nearer grows, farther recedes
   const byIndex = new Map<number, number>()
   for (let i = 0; i < n; i++) {
     const c = coordinates[i]!
-    const spin = phase * (c.lobe > 0 ? 0.55 : -0.55) + c.theta
-    const x3 = c.x * Math.cos(spin) - c.z * Math.sin(spin)
-    const y3 = c.y + Math.sin(spin) * 0.08
-    px[i] = cx + x3 * w * 0.34 + c.cx * w * 0.08
-    py[i] = cy + y3 * h * 0.34
+    const spin = phase * (c.lobe > 0 ? 0.55 : -0.55)
+    const v = rotate3((c.x - c.cx) / extent, c.y / extent, c.z / extent, spin, OBLIQUE_VIEW_TILT, 0)
+    const persp = perspective(v.Z)
+    px[i] = cx + (v.X + c.cx / extent) * persp * view
+    py[i] = cy + v.Y * persp * view
+    pz[i] = persp
     byIndex.set(c.index, i)
   }
 
@@ -971,14 +993,16 @@ export function drawLivingTorusFrame(
   }
 
   // Layer 2 — every pi-digit UUID coordinate, glowing by its frequency and pulsing
-  // at its own vibration (vibrationMs), rendered as its digit glyph.
+  // at its own vibration (vibrationMs), rendered as its digit glyph. Painter's order
+  // (far first) and size × the perspective factor — depth shown honestly, as size.
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  for (let i = 0; i < n; i++) {
+  const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => pz[a]! - pz[b]!)
+  for (const i of order) {
     const c = coordinates[i]!
     const pulse = reduce ? 0.7 : 0.5 + 0.5 * Math.sin((at / Math.max(1, c.vibrationMs)) * Math.PI * 2)
     const hue = Math.round(c.frequency) % 360
-    const size = 9 + c.scale * 13 + pulse * 5
+    const size = (9 + c.scale * 13 + pulse * 5) * pz[i]!
     ctx.font = `600 ${Math.round(size)}px ui-sans-serif, system-ui, sans-serif`
     ctx.fillStyle = movieCanvasRgba(hue, 0.42 + 0.46 * pulse, { L: 7 / 8 })
     ctx.fillText(String(c.digit), px[i]!, py[i]!)
@@ -999,27 +1023,29 @@ export function drawLivingTorusFrame(
       ctx.strokeStyle = movieCanvasRgba(hue, 0.9, { L: 6 / 8 })
       ctx.lineWidth = 2
       ctx.beginPath()
-      ctx.arc(px[slot]!, py[slot]!, 13, 0, Math.PI * 2)
+      ctx.arc(px[slot]!, py[slot]!, 13 * pz[slot]!, 0, Math.PI * 2)
       ctx.stroke()
       ctx.fillStyle = movieCanvasRgba(hue, 0.5, { L: 13 / 16 })
       ctx.beginPath()
-      ctx.arc(px[slot]!, py[slot]!, 4.5, 0, Math.PI * 2)
+      ctx.arc(px[slot]!, py[slot]!, 4.5 * pz[slot]!, 0, Math.PI * 2)
       ctx.fill()
     }
   }
 }
 
+// Tetra vertex → screen through the sealed atoms: the XY spin, then the oblique view tilt
+// (the honest form of the old "+0.35·z" y-offset), then the perspective divide. The vertex is
+// projected on the unit sphere so its depth stays inside FOCAL; the third slot returns the
+// perspective factor so the caller can attenuate vertex size by real depth.
 function rotateTetraXY(
   v: readonly [number, number, number],
   angle: number,
   scale: number,
-): [number, number] {
-  const x = v[0] * scale
-  const y = v[1] * scale
-  return [
-    x * Math.cos(angle) - y * Math.sin(angle),
-    x * Math.sin(angle) + y * Math.cos(angle) + v[2] * scale * 0.35,
-  ]
+): [number, number, number] {
+  const unit = Math.hypot(v[0], v[1], v[2]) || 1
+  const r = rotate3(v[0] / unit, v[1] / unit, v[2] / unit, angle, OBLIQUE_VIEW_TILT, 0)
+  const persp = perspective(r.Z)
+  return [r.X * persp * scale * unit, r.Y * persp * scale * unit, persp]
 }
 
 function drawTetrahedronEdges(
@@ -1047,7 +1073,7 @@ function drawTetrahedronEdges(
   ctx.fillStyle = movieCanvasRgba(hue, alpha * 0.55, { L: 13 / 16 })
   for (const p of pts) {
     ctx.beginPath()
-    ctx.arc(cx + p[0], cy + p[1], 2.5 * scale, 0, Math.PI * 2)
+    ctx.arc(cx + p[0], cy + p[1], 2.5 * scale * p[2], 0, Math.PI * 2)
     ctx.fill()
   }
 }

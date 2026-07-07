@@ -53,6 +53,26 @@ export function perspective(z: number): number {
   return FOCAL / (FOCAL - z)
 }
 
+// The projection law — depth IS the perspective divide. The 2026-07-07 animation audit found two
+// canvas painters faking depth as a z→y screen offset while these atoms sat sealed here; both now
+// compose rotate3 + perspective, and this fold states the law so no renderer re-fakes it. The
+// checks are the atoms' own invariants, computed live.
+export function depthIsThePerspectiveDivide() {
+  const r = rotate3(0.3, -0.5, 0.7, 0.4, -0.9, 1.3)
+  const rigid = Math.abs(Math.hypot(r.X, r.Y, r.Z) - Math.hypot(0.3, -0.5, 0.7)) < 1e-12 // rotation preserves length — an offset cannot
+  const centered = perspective(0) === 1 // the screen plane is unmagnified
+  const nearGrows = perspective(0.5) > 1 && perspective(-0.5) < 1 // depth becomes SIZE, the honest cue
+  const monotone = perspective(-1) < perspective(0) && perspective(0) < perspective(1)
+  return {
+    holds: rigid && centered && nearGrows && monotone,
+    focal: FOCAL,
+    statement:
+      'Depth is the perspective divide: every canvas projection composes the rotation atoms (rot2 → rotateXY/YZ/ZX → rotate3) and turns the rotated z into position and size through perspective() — never a z→y screen offset.',
+    boundary:
+      'A geometric law over this file\'s own atoms, checked by computation; the standard pinhole projection the living-torus and merkaba painters now compose, not a claim beyond it.',
+  }
+}
+
 // Holographic fractal branch — each branch spawns two smaller copies of the same rule.
 export function branch(
   ctx: CanvasRenderingContext2D,
